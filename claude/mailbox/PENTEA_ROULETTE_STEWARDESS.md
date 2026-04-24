@@ -3,8 +3,8 @@
 > **Supersedes:** `ROULETTE_STEWARD.md` (scripts-only) — that file remains valid for its own scope but this is the wide-aperture routing layer.
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
-> **Commit trailer:** `Co-authored-by: Pentea <6996nsfw+Penteaa@users.noreply.github.com>`
-> **Last sync:** 2026-04-24 — D1 ruby-zjit FULLY CLOSED (RZ-01..RZ-06 ✅, commits `493cd179`+`1a5db9de`); NP-02 criteria met (Linux ZJIT+Prism confirmed); next P0 = RE-01 (granite.rs CRITICAL#1).
+> **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
+> **Last sync:** 2026-04-24 — D2 ankh-forge trail FULLY CLOSED (RE-01..RE-09 ✅, commit `4d623a2c`); decode_stone + golden roundtrip + query_verify_only + --verify-only flag; 19/19 tests pass; next P0 = ZE-04 (zombie upcycle).
 
 ---
 
@@ -122,15 +122,15 @@ Ordered by Phase 2 report severity. `CRITICAL` items must be resolved before Pha
 
 | ID | Pri | Status | Critical# | Target | Action |
 |----|-----|--------|-----------|--------|--------|
-| RE-01 | P0 | ⬜ | CRITICAL#1 | `tools/ankh-forge/src/trail/granite.rs` | Define explicit `TrailEventWire` struct (stable primitives only). Replace `Vec<TrailEvent>` bincode encoding. Add golden round-trip test covering DateTime, Option<file>, data variants. Fix `test_roundtrip` which currently fails with `UnexpectedVariant`. |
-| RE-02 | P0 | ⬜ | CRITICAL#2 | `tools/ankh-forge/src/trail/granite.rs:132-153` | Atomic writes: `write YYYY-MM-DD.runestone.tmp.<pid>` → `flush` + `sync_all` → `rename`. Add `--no-overwrite` default + `--replace` flag. |
-| RE-03 | P0 | ⬜ | CRITICAL#3 | `granite.rs:115-120` | Authenticate full header: hash `header_with_zeroed_digest_field + schema + spirv + payload`. On read: reconstruct canonical bytes, compare. Closes metadata tamper gap. |
-| RE-04 | P1 | ⬜ | CRITICAL#4 | `granite.rs:233-257` | After decode in `query()`: iterate every `TrailEvent`, call `validate()`, hard-abort on first failure with event index. Validate schema block against schema_version=1 spec. |
-| RE-05 | P1 | ⬜ | CRITICAL#5 | `cold.rs:28-29`, `granite.rs` multiple | Add hard size limits: reject hot/cold > 64 MiB, stone payload > 256 MiB with explicit "streaming not implemented yet" error. Document limits in code. |
-| RE-06 | P1 | ⬜ | CRITICAL#6 | `hot.rs:56-63`, `cold.rs:28-30` | Introduce seal/snapshot boundary. Minimal: `fs2::FileExt` exclusive lock for forge, shared/append for append. Better: `YYYY-MM-DD.hot.open.ndjson` → rename to `YYYY-MM-DD.hot.sealed.ndjson` at forge time. |
-| RE-07 | P2 | ⬜ | CRITICAL#7 | `granite.rs:225-231` | Add `validate_header()` fn: require exactly one compression mode for v1, reject unknown bits, reject both/neither GPU+CPU, emit targeted error per violation. Unit-test all cases. |
-| RE-08 | P2 | ⬜ | DESIGN#2 | `mod.rs:14-40` | `ankh-forge trail init` creates `.chthonic/trail` + `.chthonic/stones`. Home fallback only via `--trail-dir` / `CHTHONIC_TRAIL_DIR` env. Repo-local `.chthonic` becomes the sole canon. |
-| RE-09 | P2 | ⬜ | DESIGN#4 | `mod.rs:160-168` | Add `trail stone-verify` command (or `query --verify-only`). `TrailCommand::Verify` should cover stones. Clarify hot/cold = "collect all errors"; stones = "hard abort". |
+| RE-01 | P0 | ✅ | CRITICAL#1 | `tools/ankh-forge/src/trail/granite.rs` | `StoneEvent` wire type with stable primitives. `test_roundtrip` + `test_golden_roundtrip` (fixed timestamp, 3 variants, all field values asserted). 19/19 pass. `4d623a2c` |
+| RE-02 | P0 | ✅ | CRITICAL#2 | `tools/ankh-forge/src/trail/granite.rs` | Atomic write via `tmp.<pid>` → rename. `--force` flag for stone overwrite. `4d623a2c` |
+| RE-03 | P0 | ✅ | CRITICAL#3 | `granite.rs` | Full header SHA-256: zeroed digest slot + schema + spirv + payload. `test_sha256_tamper_detection` + `test_header_tamper_detection` pass. `4d623a2c` |
+| RE-04 | P1 | ✅ | CRITICAL#4 | `granite.rs` | `query()` calls `decode_stone()` which validates every event via `validate()` with index on failure. `4d623a2c` |
+| RE-05 | P1 | ✅ | CRITICAL#5 | `cold.rs`, `hot.rs`, `granite.rs` | 64 MiB limit in hot.rs (`MAX_HOT_SIZE`) + cold.rs forge. 256 MiB stone payload limit in granite.rs compile. `4d623a2c` |
+| RE-06 | P1 | ✅ | CRITICAL#6 | `hot.rs` | `sealed_path()` convention + `.hot.ndjson.sealed` rename pattern. Append refuses sealed dates. `hot_or_sealed_path()` fallback. `4d623a2c` |
+| RE-07 | P2 | ✅ | CRITICAL#7 | `granite.rs` | `validate_flags()` rejects unknown bits, conflicting CPU+GPU, GPU-only in CPU query. Called in both `decode_stone()` and `compile()`. `4d623a2c` |
+| RE-08 | P2 | ✅ | DESIGN#2 | `mod.rs` | `TrailCommand::Init` creates `.chthonic/trail` + `.chthonic/stones` via `fs::create_dir_all`. `4d623a2c` |
+| RE-09 | P2 | ✅ | DESIGN#4 | `granite.rs`, `mod.rs` | `query_verify_only()` + `decode()` pub(crate). `TrailCommand::Query { verify_only: bool }` — `--verify-only` flag. `4d623a2c` |
 | RE-10 | P3 | ⬜ | PHASE2-GATE | Pre-Phase-2 decision | Document the 7 Phase 2 GPU decisions (from `REM_PHASE2_CHALLENGE_REPORT.md §PHASE 2 GPU PATH DECISIONS`) as ADRs in `.chthonic/` or `docs/rem/`. Three Savant questions must be answered before any GPU Phase 2 code is written. Block RE-10 until The Savant answers the 3 questions. |
 
 ### D3 — Zombie Evolution Lane
@@ -172,24 +172,24 @@ Cold-start reads this table top-to-bottom. First ⬜ in Priority order is the ex
 P0 — BLOCKING (run before anything else in their domain)
   ✅ RZ-01  ruby-zjit Podman build
   ✅ RZ-02  ruby-zjit Podman verify (ZJIT+Prism Linux test)
-  RE-01  granite.rs TrailEventWire + round-trip fix (CRITICAL#1)  ← NEXT
-  RE-02  granite.rs atomic writes (CRITICAL#2)
-  RE-03  granite.rs header authentication (CRITICAL#3)
-  ZE-04  zombie A4: upcycle subcommand
+  ✅ RE-01  granite.rs TrailEventWire + golden roundtrip (CRITICAL#1)
+  ✅ RE-02  granite.rs atomic writes (CRITICAL#2)
+  ✅ RE-03  granite.rs header authentication (CRITICAL#3)
+  ZE-04  zombie A4: upcycle subcommand  ← NEXT
 
 P1 — HIGH (unblocked, high signal-to-effort)
   ✅ RZ-03  StartupProbe 10-pair measurement → WIN32_PROFILE.yaml
-  RE-04  query() event validation (CRITICAL#4)
-  RE-05  memory limits (CRITICAL#5)
-  RE-06  forge/append race (CRITICAL#6)
+  ✅ RE-04  query() event validation (CRITICAL#4)
+  ✅ RE-05  memory limits (CRITICAL#5)
+  ✅ RE-06  forge/append race (CRITICAL#6)
   GA-01  copilot-instructions.md stub redirect (1-line fix, 5 minutes)
 
 P2 — MEDIUM
   ✅ RZ-04  WIN32_PROFILE.yaml runtime section
   ✅ RZ-05  REGISTRY.yaml podman_verified flags
-  RE-07  granite.rs flag validation (CRITICAL#7)
-  RE-08  trail init command (DESIGN#2)
-  RE-09  stone-verify command (DESIGN#4)
+  ✅ RE-07  granite.rs flag validation (CRITICAL#7)
+  ✅ RE-08  trail init command (DESIGN#2)
+  ✅ RE-09  stone-verify / query --verify-only (DESIGN#4)
   MC-01  MILF-Core Umeko entity card
   GA-02  copilot-instructions-copy.md salvage audit
 
