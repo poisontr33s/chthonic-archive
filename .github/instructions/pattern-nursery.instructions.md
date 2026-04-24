@@ -196,8 +196,9 @@ When porting a codebase (here: CRuby YJIT/ZJIT) to a new platform, the build ses
 
 ---
 
-### ZJIT Win32 Prism Shape-System Crash — `novel`
+### ZJIT Win32 Prism Shape-System Crash — `familiar`
 *Origin: 2026-04-23 — Ruby 4.0.3-zjit bin-only stub + junctioned stdlib*
+*Promoted: 2026-04-24 — RZ-02 confirmed Linux ZJIT+Prism clean (`1a5db9de`); second platform achieved → criteria met*
 
 The `ruby-4.0.3-zjit` binary distributed by rv (v0.5.3) is a **bin-only stub** — only `bin/` is present, no `lib/`, `include/`, `msys64/`. The stdlib gap can be patched via NTFS directory junctions pointing to the standard `ruby-4.0.3` install. After junctions: `require 'rbconfig'` and `require 'prism'` (without JIT) work. But `ruby --zjit -e "require 'prism'"` and `ruby --yjit -e "require 'prism'"` both crash with AV (exit -1073741819 / 0xC0000005).
 
@@ -211,7 +212,7 @@ The `ruby-4.0.3-zjit` binary distributed by rv (v0.5.3) is a **bin-only stub** �
 
 **Shape:** identify AV on `--zjit -e "require 'prism'"` → test same without JIT → if passes = JIT+Prism shape mismatch → Podman lane or source build with matching devkit.
 
-**Promotion criteria:** observed in ≥2 Ruby builds (different rv versions or platforms) → `familiar`. Currently: 1 (ruby-4.0.3-zjit rv 0.5.3, Win11 x64-mingw-ucrt).
+**Promotion criteria:** observed in ≥2 Ruby builds (different rv versions or platforms) → `familiar`. ✅ **Promoted 2026-04-24:** platform 1 = ruby-4.0.3-zjit rv 0.5.3 Win11 x64-mingw-ucrt (crash); platform 2 = Ruby 4.0.3 built from source via Podman Fedora 40 — Linux ZJIT+Prism clean (`1a5db9de`).
 
 ---
 
@@ -258,6 +259,34 @@ VS Code agent invocation requires `*.agent.md` flat files under `.github/agents/
 
 ---
 
+### Copilot SDK agentStop Queue Runner — `novel`
+*Origin: 2026-04-24 — VS Code Chat turn-based constraint investigation*
+
+VS Code Copilot Chat panel has no public API to inject user turns programmatically. `workbench.action.chat.open` cannot continue an existing session. The SDK (`meta-ide/copilot-sdk/sdk/index.d.ts`) exposes `hooks.agentStop` which fires when the agent naturally stops (no more tool calls). Returning `{ decision: "block", reason: "..." }` injects a new turn without any UI interaction.
+
+**Mechanism (`scripts/pentea_autoloop.ts`):**
+1. `sdk.query({ hooks: { agentStop: [hook] }, askUserDisabled: true })`
+2. In `agentStop` hook: read `git log` for `Pentea-Next:` trailer
+3. If trailer changed (new commit landed) and loop count < max: `decision: "block"` with next task as reason
+4. If queue empty or no progress: `decision: "allow"` → loop terminates
+
+**Wire contract — how tasks become a chain:**
+```
+Each completed task → git commit with Pentea-Next: <next-id>
+agentStop hook reads latest Pentea-Next: after each stop
+If changed → inject next turn (no user)
+Loop terminates on: absent / "none" / "DONE"
+In-turn VS Code Chat: Pentea reads trailer inline, executes next without stopping
+```
+
+**Shape:** Turn-based UI constraint → SDK layer bypass → `agentStop` hook as continuation signal → git trailer as inter-turn queue state.
+
+**Preconditions:** `gh auth token` valid. Bun runtime. `meta-ide/copilot-sdk/sdk/index.js` present. Auth type `gh-cli` only (no API key path).
+
+**Promotion criteria:** used for ≥2 distinct queue runs that execute ≥2 tasks each end-to-end without user intervention → `familiar`. Currently: 0 live runs (script written, not yet invoked autonomously).
+
+---
+
 ## Stale Queue
 
 *Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*
@@ -273,3 +302,4 @@ VS Code agent invocation requires `*.agent.md` flat files under `.github/agents/
 | Dispatch Channel Typing | `co-supplementary-methodology` §Subagent Channel Types | 2026-04-20 |
 | Cross-Platform-Port-Artifact-Lifecycle | `technical-directives.instructions.md` §14.10 | 2026-04-22 |
 | GCC Warning-Flood ICE Signature | `technical-directives.instructions.md` §14.10 | 2026-04-22 |
+| ZJIT Win32 Prism Shape-System Crash | `familiar` (in-nursery promotion) | 2026-04-24 |

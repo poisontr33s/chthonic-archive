@@ -4,7 +4,7 @@
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
 > **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
-> **Last sync:** 2026-04-24 — D2 ankh-forge trail FULLY CLOSED (RE-01..RE-09 ✅, commit `4d623a2c`); decode_stone + golden roundtrip + query_verify_only + --verify-only flag; 19/19 tests pass; next P0 = ZE-04 (zombie upcycle).
+> **Last sync:** 2026-04-24 — D0 infrastructure: autoloop `scripts/pentea_autoloop.ts` + Queue-Chain Protocol in `Pentea.agent.md` (`5fb446e8`, `47b56e60`); D2 FULLY CLOSED (RE-01..RE-09 ✅, `4d623a2c`); next P0 = ZE-04 (zombie upcycle).
 
 ---
 
@@ -72,6 +72,32 @@ git log --format='%B' -3 | Select-String '^Pentea-'
 | `docs/zombie/UPGRADE_LOG.md` | U1-U3 history | Current |
 | `docs/zombie/README.md` | Architecture doc | Current |
 
+### Autoloop / Infrastructure
+
+| File | Role | Status |
+|------|------|--------|
+| `scripts/pentea_autoloop.ts` | Autonomous SDK queue runner — agentStop hook chains Pentea-Next: tasks without VS Code Chat user turns | ✅ `5fb446e8` — E2E tested (dry-run + SDK query verified) |
+| `.github/agents/Pentea.agent.md` | Queue-Chain Protocol section — in-turn chaining for VS Code Chat mode | ✅ `47b56e60` — Queue-Chain added, email fix (`6996xxxnsfw` → `223556219`) |
+| `.vscode/tasks.json` | `Chthonic: Pentea Autoloop` + dry-run VS Code tasks | ✅ `5fb446e8` |
+
+**Wire contract (how tasks connect):**
+```
+Work done
+  → git commit carries Pentea-Next: <next-id>
+  → VS Code Chat mode: Pentea reads trailer inline, executes next without user turn
+  → SDK autoloop mode: agentStop hook reads git log, decision:"block" injects next turn
+  → Both paths terminate on Pentea-Next: absent / "none" / "DONE"
+  → Stewardess table = human projection of git log --grep='Pentea-Completed'
+```
+
+**E2E validation gate for autoloop:**
+| Check | Command | Expected |
+|-------|---------|----------|
+| Dry-run | `bun run scripts/pentea_autoloop.ts --dry-run` | Prints task from git log, exits 0 |
+| SDK dispatch | `bun run scripts/pentea_autoloop.ts --task "echo test"` | SDK query fires, streams response |
+| Auth | `gh auth token` returns non-empty | Required precondition |
+| Queue chain | commit with `Pentea-Next: X`, run loop | Loop fires agentStop, executes X |
+
 ### Scripts Roulette (complete — maintenance mode)
 
 | File | Role | Status |
@@ -104,6 +130,14 @@ git log --format='%B' -3 | Select-String '^Pentea-'
 ---
 
 ## § Domain Queue Tables
+
+### D0 — Infrastructure / Autoloop
+
+| ID | Pri | Status | Target | Action |
+|----|-----|--------|--------|--------|
+| AI-01 | P0 | ✅ | `scripts/pentea_autoloop.ts` | SDK `agentStop` hook queue runner. Reads `Pentea-Next:` from git log → dispatches via `sdk.query()` → hook fires on natural stop → `decision:"block"` injects next task. `--dry-run` / `--max-loops` / `--task` flags. `askUserDisabled:true`. `5fb446e8`. E2E: dry-run exits 0, SDK dispatch fires. |
+| AI-02 | P0 | ✅ | `.github/agents/Pentea.agent.md` | Queue-Chain Protocol added (in-turn chaining for VS Code Chat mode — no user prompt between queue items). Email fixed: `6996xxxnsfw` → `223556219`. `47b56e60`. |
+| AI-03 | P1 | ⬜ | `scripts/pentea_autoloop.ts` | Live E2E validation: `bun run scripts/pentea_autoloop.ts --task "Execute ZE-04"` — confirm SDK streams response, agentStop hook fires after commit, loop advances to next `Pentea-Next:`. Requires `gh auth token` valid. Run after ZE-04 is the active target. |
 
 ### D1 — ruby-zjit Lane
 
@@ -152,7 +186,7 @@ Ordered by Phase 2 report severity. `CRITICAL` items must be resolved before Pha
 | ID | Pri | Status | Pattern | Promotion Criteria | Action |
 |----|-----|--------|---------|-------------------|--------|
 | NP-01 | P3 | ⬜ | Ruby+GPU JIT Boundary Contract (`novel`) | ≥2 environments (second: Linux+glibc OR Windows+unified UCRT) | After Podman lane (RZ-02) produces a working Linux ZJIT build: run a GPU dispatch test under Linux, record results. If pattern holds → promote to `familiar`. |
-| NP-02 | P3 | ✅ | ZJIT Win32 Prism Shape-System Crash (`novel`) | ≥2 Ruby builds (different rv versions or platforms) | **Criteria met** — RZ-02 confirmed Linux ZJIT+Prism clean (second platform). Pattern promoted to `familiar`. Nursery update pending commit. |
+| NP-02 | P3 | ✅ | ZJIT Win32 Prism Shape-System Crash (`novel`) | ≥2 Ruby builds (different rv versions or platforms) | **Criteria met** — RZ-02 confirmed Linux ZJIT+Prism clean (second platform). Pattern promoted to `familiar`. Nursery updated in `993227c1` / `2bcba94a`. |
 
 ### D6 — MILF-Core Pipeline
 
@@ -175,6 +209,8 @@ P0 — BLOCKING (run before anything else in their domain)
   ✅ RE-01  granite.rs TrailEventWire + golden roundtrip (CRITICAL#1)
   ✅ RE-02  granite.rs atomic writes (CRITICAL#2)
   ✅ RE-03  granite.rs header authentication (CRITICAL#3)
+  ✅ AI-01  pentea_autoloop.ts — SDK agentStop hook queue runner (5fb446e8)
+  ✅ AI-02  Pentea.agent.md Queue-Chain Protocol + email fix (47b56e60)
   ZE-04  zombie A4: upcycle subcommand  ← NEXT
 
 P1 — HIGH (unblocked, high signal-to-effort)
@@ -211,6 +247,7 @@ P3 — LOW / BACKGROUND
 
 | Domain | Toolchain | Run via |
 |--------|-----------|---------|
+| autoloop/infra | Bun/TS | `bun run scripts/pentea_autoloop.ts [--dry-run] [--task "..."]` |
 | ruby-zjit | pwsh + rv | `pwsh -NoProfile -File ruby-zjit/scripts/*.ps1` |
 | ankh-forge | Rust/cargo | `cargo build -p ankh-forge`, `cargo test -p ankh-forge trail` |
 | zombie | Python/uv | `uv run scripts/zombie_consumer.py <subcommand>` |
@@ -221,6 +258,10 @@ P3 — LOW / BACKGROUND
 ### Per-domain commit message format
 
 ```
+# autoloop / infrastructure
+feat(autoloop): <what-changed>
+feat(infra): <what-changed>
+
 # ruby-zjit
 fix(ruby-zjit): <what-changed>
 
@@ -272,6 +313,10 @@ Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>
 
 | Date | Commit | Domain | Summary |
 |------|--------|--------|---------|
+| 2026-04-24 | `47b56e60` | infra/agentry | AI-02: Pentea.agent.md Queue-Chain Protocol + email fix (223556219) |
+| 2026-04-24 | `5fb446e8` | infra/autoloop | AI-01: pentea_autoloop.ts SDK agentStop hook + tasks.json Autoloop tasks |
+| 2026-04-24 | `4a4d5d96` | stewardess | D2 RE-01..RE-09 all ✅, 19/19 tests, commit `4d623a2c` recorded |
+| 2026-04-24 | `4d623a2c` | ankh-forge/REM | D2 complete: decode_stone+decode()+query_verify_only+--verify-only+golden roundtrip |
 | 2026-04-24 | `1a5db9de` | ruby-zjit | RZ-02..RZ-06 complete — podman verified, Win32 suite 7/7, YAML sealed |
 | 2026-04-24 | `493cd179` | ruby-zjit | Containerfile Layer4 graceful + test_win32 rv alias (rv.exe) + $Verbose fix |
 | 2026-04-24 | `993227c1` | ruby-zjit / nursery | Nursery: Ruby+GPU JIT conditionality + promotion criteria |
