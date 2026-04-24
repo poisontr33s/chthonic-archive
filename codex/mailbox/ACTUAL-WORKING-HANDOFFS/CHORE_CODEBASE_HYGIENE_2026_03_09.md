@@ -1,6 +1,6 @@
 ---
 type: savant level laborious
-from: Claude (steward) on behalf of the Savant
+from: Claudine (stewardess) -> on behalf of the Savant -> to Pentea (router) -> on behalf of the chthonic-archive
 to: codex
 created: 2026-03-09T00:00:00Z
 priority: extremely necessarily high

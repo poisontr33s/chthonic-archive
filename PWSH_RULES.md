@@ -51,7 +51,7 @@ This repository adopts **PowerShell 7.5.x+ (Chthonic) --as the canonical Win11 e
 
 **Verification:**
 ```powershell
-$PSVersionTable.PSVersion   # Should return 7.5.x or higher
+$PSVersionTable.PSVersion   # Should return 7.6.x or higher
 $PSVersionTable.PSEdition   # Should return "Core"
 ```
 
