@@ -299,6 +299,99 @@ Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>
 
 ---
 
+## § Automation Infrastructure
+
+> **Added: AI-03 — 2026-04-25. The actual answer to "are we running in circles hallucinating?"**
+> The stewardess documents the loop. The infrastructure below is what makes the loop self-sustain.
+
+### Tier Map — What Actually Auto-Fires
+
+| Tier | Mechanism | AFK-safe | VS Code needed | Status |
+|------|-----------|----------|----------------|--------|
+| **T1** | Queue-Chain Protocol (VS Code Chat inline) | ❌ No | ✅ Yes | ✅ Wired — `.github/agents/Pentea.agent.md` |
+| **T2** | `pentea_autoloop.ts` SDK agentStop hook | ❌ No | ✅ Yes (running) | ✅ Wired — `scripts/pentea_autoloop.ts` |
+| **T3** | `post-commit` hook → `gh agent-task create` | ✅ **Yes** | ❌ No | ✅ Wired — install: `pwsh -NoProfile -File scripts/install-git-hooks.ps1` |
+| **T4** | GitHub Actions `pentea-cloud-dispatch.yml` (push-triggered) | ✅ **Yes** | ❌ No | ✅ Wired — `.github/workflows/pentea-cloud-dispatch.yml` |
+
+**T3 and T4 are the AFK paths.** They require Copilot Pro+ (limitless — you have it) and `gh auth login`.
+
+### What "Generated Upon Creation" Actually Means
+
+```
+Commit lands with Pentea-Next: GA-02
+  ↓ T3: post-commit hook fires (local, immediately after commit)
+     → reads Pentea-Next: GA-02
+     → gh agent-task create "Execute Pentea task: GA-02 ..." --repo <auto>
+     → Copilot cloud agent picks up the task in GitHub Actions
+     → Agent executes: reads AGENTS.md + copilot-instructions.md, writes files, commits
+     → PR created → reviewer notification fires to mobile
+  ↓ T4: GitHub Actions fires on push (remote fallback if T3 not installed)
+     → Same dispatch logic — idempotent, deduped by cloud agent backend
+```
+
+Copilot cloud agent is available with Pro+ at no extra cost within monthly Actions/premium-request allowance. It runs autonomously — user plays WoW: Midnight, PR appears, mobile notification.
+
+### Install T3 (One-Time — Do This Now)
+
+```powershell
+# From repo root — installs .git/hooks/post-commit
+pwsh -NoProfile -File scripts/install-git-hooks.ps1
+
+# Verify
+Get-Content .git\hooks\post-commit | Select-Object -First 3
+```
+
+T4 (GitHub Actions) is already active at `.github/workflows/pentea-cloud-dispatch.yml` — no install needed.
+
+### What the Cloud Agent Can vs Cannot Do
+
+| Task Type | Cloud Agent (T3/T4) | Local Pentea (T1/T2) |
+|-----------|--------------------|-----------------------|
+| File edits, markdown, governance, MILF-Core cards | ✅ Yes | ✅ Yes |
+| Rust (`cargo build`, `cargo test`) | ✅ Yes (Actions has Rust) | ✅ Yes |
+| Python scripts (`uv run scripts/*.py`) | ✅ Yes (uv in Actions) | ✅ Yes |
+| Bun/TS scripts (`bun run scripts/*.ts`) | ✅ Yes (Bun in Actions) | ✅ Yes |
+| `rv` / `ridk` / MSYS2-dependent tasks | ❌ No (Win32-only) | ✅ Yes |
+| `podman` / container operations | ❌ No | ✅ Yes |
+| Local GPU / CUDA / Vulkan probes | ❌ No | ✅ Yes |
+
+Tag Win32-only tasks with `[local-only]` in the stewardess — they stay in T1/T2 queues only.
+
+### Full Queue-Chain Flow (All Tiers)
+
+```
+Task committed → Pentea-Next: <next-id>
+  │
+  ├─ [VS Code session open] T1: Queue-Chain Protocol
+  │    Pentea reads trailer inline → executes next without user turn
+  │
+  ├─ [pentea_autoloop.ts running] T2: SDK agentStop hook
+  │    Hook reads Pentea-Next: → decision:"block" → next task injected
+  │
+  ├─ [T3 hook installed] T3: post-commit → cloud agent
+  │    .git/hooks/post-commit fires → gh agent-task create → PR + notification
+  │
+  └─ [always, on push to main] T4: GitHub Actions
+       pentea-cloud-dispatch.yml reads Pentea-Next: → cloud agent task created
+
+All tiers terminate when Pentea-Next: absent / "none" / "DONE"
+Cloud agent tasks (T3/T4) terminate by creating a PR — human review required before merge
+```
+
+### Verification: T3 Hook Installed
+
+```powershell
+# Verify T3 hook is present
+Test-Path .git\hooks\post-commit
+# Expected: True
+
+# Verify T4 workflow is active (not .off)
+Test-Path .github\workflows\pentea-cloud-dispatch.yml
+# Expected: True
+```
+
+---
+
 ## § Verification Oracle
 
 > **Rule:** A task is only ✅ when the verify command below exits with the expected result.
