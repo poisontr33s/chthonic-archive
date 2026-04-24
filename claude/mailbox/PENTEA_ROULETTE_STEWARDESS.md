@@ -3,29 +3,32 @@
 > **Supersedes:** `ROULETTE_STEWARD.md` (scripts-only) — that file remains valid for its own scope but this is the wide-aperture routing layer.
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
-> **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
+> **Commit trailer:** `Co-authored-by: Pentea <6996nsfw+Penteaa@users.noreply.github.com>`
 > **Last sync:** 2026-04-24 — D1 ruby-zjit FULLY CLOSED (RZ-01..RZ-06 ✅, commits `493cd179`+`1a5db9de`); NP-02 criteria met (Linux ZJIT+Prism confirmed); next P0 = RE-01 (granite.rs CRITICAL#1).
 
 ---
 
 ## § Cold-Start Bootstrap
 
+```powershell
+# PRIMARY — local reward register (no GitHub, no push, no network):
+git log --format='%B' -3 | Select-String '^Pentea-'
+# → Pentea-Completed: <what the last commit closed>
+# → Pentea-Next: <execution target RIGHT NOW>
+# → Pentea-Domain: <which queue was advanced>
+# Commit never needs to reach GitHub. git log is local. Signal is immediate.
+
+# FALLBACK (when trailers absent / fresh session before any Pentea commits):
+1. grep "⬜" in this file → first ⬜ by (Priority, Domain-Tier) = execution target
+2. Read target file(s) in Family Map below
+3. Execute. No planning pass.
 ```
-# Fastest path — read current state from git trailers directly:
-git log --format='%B' -3 | grep '^Pentea-'
-# → emits Pentea-Completed / Pentea-Next / Pentea-Domain from last 3 commits
-# → Pentea-Next value IS the execution target — no markdown file read needed
 
-# Full path (when git trailers absent or this file is trusted fresh):
-1. read PENTEA_ROULETTE_STEWARDESS.md §§ Domain Map + Queue tables  (this file)
-2. grep for "⬜" across ALL queues  →  first ⬜ by (Priority, Domain-Tier) = execution target
-3. Read the target file(s) in Family Map below
-4. Execute. No planning pass.
-```
+**Reward-register contract:** Each completed unit of work mints a local `git commit` carrying `Pentea-Next`. That commit IS the reward token — it proves work done AND encodes the next target in the same atomic write. Cold-start reads the register with one command; no markdown parse needed, no GitHub webhook, no notification channel. Push to remote is a separate deliberate act with zero coupling to the signal loop.
 
-**Commit-as-signal contract:** every Pentea commit carries structured trailers (see §Domain Execution Contract). The commit IS the handoff packet — it validates work done AND signals next state. Cold-start via `git log` trailers is the canonical fast path; this file is the human-readable projection.
+**Architecture:** `work done → git commit (local) → Pentea-Next encoded → cold-start reads git log → executes next → commit → loop`. The stewardess table is a human-readable projection regenerable at any time from `git log --grep='Pentea-Completed'`. If table and git log disagree, **git log wins**.
 
-**If this file is stale** — run the git trailer query above. `Pentea-Next:` from the latest commit overrides any ⬜ ambiguity in the table.
+**If this file is stale** — run the powershell one-liner above. `Pentea-Next:` from the latest commit is authoritative.
 
 ---
 
