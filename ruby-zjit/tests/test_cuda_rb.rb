@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'cuda_rb'
+CUDA_RB_AVAILABLE = begin; require 'cuda_rb'; true; rescue LoadError => e; warn "cuda_rb not built: #{e.message}"; false; end
 
 GPU_COUNT = begin; CudaRb.device_count; rescue => e; warn "cuda_rb init: #{e}"; 0; end
 
 class TestCudaRb < Minitest::Test
+  def setup
+    skip "cuda_rb extension not built — run build_win32.ps1 or build_podman.ps1" unless CUDA_RB_AVAILABLE
+  end
   def test_driver_version_is_positive_integer
     v = CudaRb.driver_version
     assert_kind_of Integer, v

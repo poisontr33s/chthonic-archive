@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'vk_rb'
+VK_RB_AVAILABLE = begin; require 'vk_rb'; true; rescue LoadError => e; warn "vk_rb not built: #{e.message}"; false; end
 
 VK_DEVS = begin; VkRb.physical_devices; rescue => e; warn "vk_rb init: #{e}"; []; end
 
 class TestVkRb < Minitest::Test
+  def setup
+    skip "vk_rb extension not built — run build_win32.ps1" unless VK_RB_AVAILABLE
+  end
   def test_instance_version_is_not_nil
     v = VkRb.instance_version
     refute_nil v

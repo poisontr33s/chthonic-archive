@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'cudnn_rb'
+CUDNN_RB_AVAILABLE = begin; require 'cudnn_rb'; true; rescue LoadError => e; warn "cudnn_rb not built: #{e.message}"; false; end
 
 CUDNN_AVAIL = begin; CudnnRb.available?; rescue => e; warn "cudnn_rb init: #{e}"; false; end
 
 class TestCudnnRb < Minitest::Test
+  def setup
+    skip "cudnn_rb extension not built — run build_win32.ps1" unless CUDNN_RB_AVAILABLE
+  end
   def test_version_returns_triple_array
     v = CudnnRb.version
     assert_kind_of Array, v

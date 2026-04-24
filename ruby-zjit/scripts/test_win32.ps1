@@ -64,23 +64,23 @@ $TestDir     = Join-Path $ProjectRoot "tests"
 $BuildDir    = Join-Path $RepoRoot "build\ruby-zjit-ext-win32"
 
 # ── Ruby selection (rv spinel canonical path resolution — rv.dev) ─────────────
-$_rvCmd          = Get-Command rv -ErrorAction SilentlyContinue
+$_rvCmd          = (Get-Command 'rv.exe' -ErrorAction SilentlyContinue)?.Source
 $RUBY_ZJIT_BUILD = "C:\ruby-zjit-build\ruby-4.0.3\ruby.exe"
 
 function Find-RubyExe {
-    # Tier 1: custom ZJIT source build
-    if (Test-Path $RUBY_ZJIT_BUILD) { return $RUBY_ZJIT_BUILD }
-
-    # Tier 2-3: rv ruby find — canonical rv path resolution (rv.dev)
-    # rv ruby find <version>  →  installed path for that version label
+    # Tier 1: rv ruby find — canonical rv path resolution (rv.dev)
+    # rv-managed rubies have gems (minitest etc.) — prefer over bare source build
     if ($_rvCmd) {
         foreach ($ver in @('4.0.3-zjit', '4.0.3')) {
-            $p = & rv ruby find $ver 2>$null
+            $p = & $_rvCmd ruby find $ver 2>$null
             if ($LASTEXITCODE -eq 0 -and $p -and (Test-Path $p)) { return $p }
         }
     }
 
-    # Tier 4: PATH fallback
+    # Tier 2: custom ZJIT source build (no gems — fallback only)
+    if (Test-Path $RUBY_ZJIT_BUILD) { return $RUBY_ZJIT_BUILD }
+
+    # Tier 3: PATH fallback
     $r = Get-Command ruby -ErrorAction SilentlyContinue
     return $r ? $r.Source : $null
 }
@@ -262,7 +262,7 @@ foreach ($tf in $AllTests) {
         } else {
             Write-Host "  ✓ passed" -ForegroundColor Green
         }
-        if ($Verbose) {
+        if ($VerbosePreference -ne [System.Management.Automation.ActionPreference]::SilentlyContinue) {
             $output | ForEach-Object { Write-Host "    $_" -ForegroundColor DarkGray }
         }
     } else {

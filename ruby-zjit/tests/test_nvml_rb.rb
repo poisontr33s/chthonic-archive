@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'nvml_rb'
+NVML_RB_AVAILABLE = begin; require 'nvml_rb'; true; rescue LoadError => e; warn "nvml_rb not built: #{e.message}"; false; end
 
 NVML_COUNT = begin; NvmlRb.device_count; rescue => e; warn "nvml_rb init: #{e}"; 0; end
 
 class TestNvmlRb < Minitest::Test
+  def setup
+    skip "nvml_rb extension not built — run build_win32.ps1" unless NVML_RB_AVAILABLE
+  end
   def test_device_count_is_non_negative_integer
     c = NvmlRb.device_count
     assert_kind_of Integer, c

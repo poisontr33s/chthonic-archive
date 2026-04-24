@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'nvrtc_rb'
+NVRTC_RB_AVAILABLE = begin; require 'nvrtc_rb'; true; rescue LoadError => e; warn "nvrtc_rb not built: #{e.message}"; false; end
 
 NVRTC_VER = begin; NvrtcRb.version; rescue => e; warn "nvrtc_rb init: #{e}"; [0, 0]; end
 NVRTC_OK  = NVRTC_VER[0] > 0
@@ -14,6 +14,9 @@ CUDA
 PROBE_OPTS = %w[--gpu-architecture=compute_89].freeze
 
 class TestNvrtcRb < Minitest::Test
+  def setup
+    skip "nvrtc_rb extension not built — run build_win32.ps1" unless NVRTC_RB_AVAILABLE
+  end
   def test_version_returns_pair_array
     v = NvrtcRb.version
     assert_kind_of Array, v

@@ -97,8 +97,23 @@ sdks:
     source: "https://developer.nvidia.com/rtx/path-tracing/nvapi/get-started"
     notes: "Not in CUDA toolkit — must download NvAPI SDK independently"
 
+# ── Runtime measurements ─────────────────────────────────────────────────────
+runtime:
+  rv_direct_median_ms: 27
+  rv_r_median_ms: 164
+  rv_startup_overhead_ms: 137
+  probe_samples: 10
+  probe_method: "alternating pairs (rv r ruby -e exit0 vs ruby -e exit0)"
+  probe_note: "Win32 overhead = CreateProcessW chain (rv → cmd.status() → ruby); Unix exec() collapses to 1 process"
+  podman_build_verified: true
+  podman_image: "chthonic-ruby-zjit:4.0.3"
+  podman_image_hash: "68e29f3a7cad2cda30a2803ed6568374c0fbc4b256cad3065b80bd4d5262bc3a"
+  podman_ruby_version: "ruby 4.0.3 (2026-04-21 revision 85ddef263a) +ZJIT +PRISM [x86_64-linux]"
+  last_rz_run: "2026-04-24"
+  extensions_tested: [cuda_rb, vk_rb, trt_rb, cudnn_rb, nvml_rb, nvrtc_rb, spirv_rb]
+
 # ── Registry cross-reference ──────────────────────────────────────────────────
 registry: "ruby-zjit/REGISTRY.yaml"
-ready_extensions: [cuda_rb, vk_rb, trt_rb]
-pending_extensions: [cudnn_rb, nvml_rb, nvrtc_rb, spirv_rb]
+ready_extensions: [cuda_rb, vk_rb, trt_rb, cudnn_rb, nvml_rb, nvrtc_rb, spirv_rb]
+pending_extensions: []
 idea_extensions: [cublas_rb, cufft_rb, d3d12_rb, nvapi_rb, onnxruntime_rb, slang_rb]

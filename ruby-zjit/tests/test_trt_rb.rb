@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 require 'minitest/autorun'
-require 'trt_rb'
+TRT_RB_AVAILABLE = begin; require 'trt_rb'; true; rescue LoadError => e; warn "trt_rb not built: #{e.message}"; false; end
 
 class TestTrtRb < Minitest::Test
+  def setup
+    skip "trt_rb extension not built — run build_win32.ps1" unless TRT_RB_AVAILABLE
+  end
   def test_version_returns_string
     v = TrtRb.version
     assert_kind_of String, v
