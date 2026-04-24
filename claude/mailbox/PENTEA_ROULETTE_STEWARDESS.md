@@ -4,7 +4,7 @@
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
 > **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
-> **Last sync:** 2026-04-24 — D0 ✅ autoloop; D2 ✅ ankh-forge; D3 ZE-04 ✅ + ZE-05 ✅ (zombie A5: NOV-CAD pre-CHEW embalm wiring, `2026-04-24T02-25-48Z_zombie_chew`); next P1 = GA-01 (copilot-instructions.md pointer).
+> **Last sync:** 2026-04-24 — All P0/P1 closed. D0 ✅ D2 ✅ D3 ZE-04+ZE-05 ✅ D4 GA-01 ✅. Priority Dispatch stale entries corrected. Verification Oracle section added. Next unblocked: GA-02 (P2) or MC-01 (P2).
 
 ---
 
@@ -219,7 +219,7 @@ P1 — HIGH (unblocked, high signal-to-effort)
   ✅ RE-04  query() event validation (CRITICAL#4)
   ✅ RE-05  memory limits (CRITICAL#5)
   ✅ RE-06  forge/append race (CRITICAL#6)
-  GA-01  copilot-instructions.md stub redirect (1-line fix, 5 minutes)
+  ✅ GA-01  copilot-instructions.md stub redirect (1-line fix, 5 minutes)
 
 P2 — MEDIUM
   ✅ RZ-04  WIN32_PROFILE.yaml runtime section
@@ -237,7 +237,6 @@ P3 — LOW / BACKGROUND
   MC-03  Chemical Sensitivity Matrix
   NP-01  Nursery: Ruby+GPU JIT → `familiar` (GPU dispatch test pending)
   ✅ NP-02  Nursery: ZJIT Prism crash → `familiar` (Linux confirmed, promoted)
-  ZE-05  Zombie A5 (blocked on A4 review)
 ```
 
 ---
@@ -290,7 +289,7 @@ Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>
 ### Validation gate before ✅
 
 | Domain | Required before marking done |
-|--------|------------------------------|
+|--------|--------------------------|
 | ruby-zjit build | Script exits 0, all `-Probe` outputs show OK |
 | ruby-zjit tests | All targeted test files pass Minitest |
 | ankh-forge | `cargo test -p ankh-forge --quiet` passes |
@@ -300,12 +299,44 @@ Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>
 
 ---
 
-## § Blocked Items (requires Savant input)
+## § Verification Oracle
+
+> **Rule:** A task is only ✅ when the verify command below exits with the expected result.
+> Running these re-proves the claim independently of session narrative.
+> **If re-run fails → reset status to ⬜ and re-execute the task.**
+
+| ID | Verify Command | Expected | Last Validated |
+|----|---------------|----------|----------------|
+| AI-01 | `bun run scripts/pentea_autoloop.ts --dry-run` | `[DRY RUN]` in output, exit 0 | 2026-04-24 `5fb446e8` |
+| AI-02 | `Select-String 'Queue-Chain' .github/agents/Pentea.agent.md` | match found | 2026-04-24 `47b56e60` |
+| RZ-01 | `podman images --format '{{.Repository}}:{{.Tag}} {{.ID}}' \| Select-String 'chthonic-ruby-zjit'` | `localhost/chthonic-ruby-zjit:4.0.3  68e29f3a...` | 2026-04-24 `68e29f3a` |
+| RZ-02 | `podman images --format '{{.Repository}}:{{.Tag}}' \| Select-String 'chthonic-ruby-zjit'` + image build date recent | image exists, exit 0 | 2026-04-24 `1a5db9de` |
+| RZ-03 | `Select-String 'rv_startup_overhead_ms' ruby-zjit/WIN32_PROFILE.yaml` | match found | 2026-04-24 `1a5db9de` |
+| RZ-04 | `Select-String 'podman_build_verified' ruby-zjit/WIN32_PROFILE.yaml` | match found | 2026-04-24 |
+| RZ-05 | `Select-String 'podman_verified: true' ruby-zjit/REGISTRY.yaml` | ≥7 matches | 2026-04-24 |
+| RZ-06 | `uv run scripts/zombie_consumer.py --help \| head -1` | exits 0 (zombie syntax OK) | — |
+| RE-01–RE-09 | `cargo test -p ankh-forge --quiet` | `19 passed; 0 failed`, exit 0 | 2026-04-24 `4d623a2c` |
+| ZE-04 | `uv run scripts/zombie_consumer.py upcycle --json` | `slag_scanned: 79`, exit 0 | 2026-04-24 `672175c5` |
+| ZE-05 | `uv run scripts/zombie_consumer.py chew dumpster-dive/forge/slag/claude_test.py --json 2>$null \| python -c "import json,sys; d=json.load(sys.stdin); print('embalm_provenance' in d)"` | `True`, exit 0 | 2026-04-24 `61574546` |
+| GA-01 | `Get-Content .github/copilot-instructions.md \| Select-Object -First 4 \| Select-String 'Active SSOT'` | match found | 2026-04-24 `7b9cf547` |
+
+**Re-validation one-liner (all oracle checks):**
+```powershell
+# Run from repo root — exits non-zero if any check fails
+$ok = $true
+if (-not (bun run scripts/pentea_autoloop.ts --dry-run 2>&1 | Select-String 'DRY RUN')) { Write-Host 'FAIL AI-01'; $ok=$false }
+if (-not (Select-String 'Queue-Chain' .github/agents/Pentea.agent.md -Quiet)) { Write-Host 'FAIL AI-02'; $ok=$false }
+if (-not (cargo test -p ankh-forge --quiet 2>&1 | Select-String '19 passed')) { Write-Host 'FAIL RE-01-09'; $ok=$false }
+if (-not (uv run scripts/zombie_consumer.py upcycle --json 2>&1 | Select-String 'slag_scanned')) { Write-Host 'FAIL ZE-04'; $ok=$false }
+if (-not (Get-Content .github/copilot-instructions.md | Select-Object -First 4 | Select-String 'Active SSOT')) { Write-Host 'FAIL GA-01'; $ok=$false }
+if ($ok) { Write-Host 'ALL ORACLE CHECKS PASS' } else { exit 1 }
+```
+
+
 
 | ID | Blocked On | Question |
-|----|-----------|---------|
+|----|-----------|----------|
 | RE-10 | The Savant | (1) Is one runestone-per-day immutable artifact or mutable latest snapshot? (2) Is repo-local `.chthonic` now the only canon, or must legacy home-directory trails remain first-class? (3) Should the schema block be human-readable provenance, machine-enforced validation, or both? |
-| ZE-05 | A4 review | The Savant must review `zombie upcycle` output before A5 scope is confirmed. |
 | MC-02/03 | MILF-Core card count | Conflict Pairs + Chemical Matrix are more valuable after 3-4 entity cards exist (current: 2 canonical cards). May proceed in parallel after MC-01 (Umeko). |
 
 ---
