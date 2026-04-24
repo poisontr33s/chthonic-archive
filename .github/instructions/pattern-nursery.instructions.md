@@ -230,7 +230,7 @@ When wrapping GPU operations in Ruby C extensions, ZJIT/YJIT's effective boundar
 ```
 
 **Where JIT is non-zero (not "adds zero" — too absolute):**
-- High-frequency Ruby→C dispatch loops: `100_000.times { cuda_rb.launch(...) }` — JIT reduces per-call Ruby-side overhead (arg handling, shape checks, object churn around the boundary), not kernel speed but the **rate at which Ruby feeds the GPU**.
+- High-frequency Ruby→C dispatch loops: `100_000.times { cuda_rb.launch(...) }` — JIT reduces per-call Ruby-side overhead (arg handling, shape checks, object churn around the boundary), not kernel speed but the **rate at which Ruby feeds the GPU**. *Conditional: only if the boundary is chatty AND the extension is not already batching. If the extension batches internally, this is a non-event.*
 - Control-plane logic written in Ruby (kernel scheduling, batch decisions, memory orchestration, pipeline construction) — JIT helps if this code is hot.
 - Test harness / orchestration (build scripts, validation loops) — JIT helps here cleanly.
 
@@ -238,7 +238,7 @@ When wrapping GPU operations in Ruby C extensions, ZJIT/YJIT's effective boundar
 
 **Shape:** GPU extension project → rank optimization targets by hierarchy → JIT is layer 5; ABI/CRT coherence + extension boundary quality are layers 3-4 and are the real levers.
 
-**Promotion criteria:** applied to ≥2 Ruby+native extension projects → `familiar`. Currently: 1 (ruby-zjit/ CUDA/Vulkan/TRT on Win32/RTX 4090).
+**Promotion criteria:** applied to ≥2 Ruby+native extension projects → `familiar`. Second environment must differ meaningfully: Linux+glibc or Windows+fully unified UCRT toolchain without MSYS leakage. Currently: 1 (ruby-zjit/ CUDA/Vulkan/TRT on Win32/RTX 4090).
 
 ---
 
