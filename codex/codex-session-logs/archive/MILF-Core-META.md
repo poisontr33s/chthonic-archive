@@ -215,3 +215,121 @@ Every file in this registry was produced under conditions that don't fully recur
 The Battletech rogue-lite isometric turn-based cRPG direction didn't emerge *despite* the prototype analysis chain — it emerged *from* it. Step 3 (Deep Exploration) is older than Step 6 (Umeko card) and contains structural insights that Step 6 depends on. The Iron Maiden source files predate all the MILF-Core pipeline work and ARE the foundation it rests on.
 
 **Read across the chain, not down it.**
+
+---
+
+## § Iron Maiden Family Map
+
+The Iron Maiden source material exists as **two lineages × two formats = 4 files**. They are not redundant — they differ in structural completeness, access pattern, and attribution authority.
+
+### Lineage Axis: WIP → SSOT
+
+| | WIP lineage | SSOT lineage |
+|---|---|---|
+| **Root** | `The-Iron-Maiden.md` | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md` |
+| **Companion JSON** | `The-Iron-Maiden.md.voicepack.json` | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json` |
+| **Acts** | 6 acts (ONE, TWO, THREE, THREE.5, FOUR, SEVEN) — no Act ZERO | 12 acts (ZERO–TWELVE) — Act ZERO = "The Weight of the Belt" atmosphere piece |
+| **Operational directives** | Embedded in narrative prose / SYSTEM INSTRUCTIONS section | Extracted as formal `§ CORE OPERATIONAL DIRECTIVES` block at document head: SESSION MEMORY CACHE, INVENTORY & RESOURCE MANAGEMENT, CONSTRAINED RANDOMIZATION ENGINE |
+| **Voices array** | Not extracted as structured data | Full 23 inner voices (id / name / title / creed_id / creed / whisper) |
+| **Attribution** | Uncredited | Copyright Savant — "E.s.Abbr. :: Copyright (c) 2025-2027 :: the Savant :: All Rights Reserved" |
+| **Directive: ACT labels** | None | Do NOT refer to ACT numbers to user — use plain section names instead |
+| **Original model** | Not specified | `Gemini 2.5 Pro Preview 03-25` |
+
+### Format Axis: .md → .json
+
+The `.json` companions are not summaries — they are structured extractions with **different payload layouts** between the two lineages:
+
+| Field | WIP voicepack.json | SSOT voicepack.json |
+|---|---|---|
+| `acts` | 6 entries | 12 entries |
+| `modules` | 4 entries (Inner Circle / Beyond Ring / Art of Fight / Show Must Go On) | empty |
+| `system_instructions` | populated (5 instruction strings) | empty |
+| `guiding_principles` | populated (multi-entry) | empty |
+| `ideology_options` | empty | empty |
+| `voice_quotes` | 2 entries | 2 entries (higher-fidelity prose) |
+| `voices` | **empty** | **23 entries (full creed + whisper per voice)** |
+
+**Critical asymmetry:** The WIP .json has `system_instructions` + `guiding_principles` but **no voices**. The SSOT .json has **full voices array** but empty instructions/principles. They complement each other — neither supersedes.
+
+### Access Pattern: Which File to Reach For
+
+| Task | File |
+|---|---|
+| Authoring entity card `Nature` field | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md` — Act ZERO (atmosphere) + Act THREE (inner voices) |
+| Authoring entity card `Creed` field | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json` → `voices[n].creed` |
+| Authoring entity card `Whisper` field | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json` → `voices[n].whisper` |
+| Understanding the system's formation / DE inspiration | `The-Iron-Maiden.md` — genesis form, lighter, more exploratory |
+| Machine parsing all 23 voices for batch work | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json` → `voices` array |
+| Embedding operational directives into a runtime system | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md` → `§ CORE OPERATIONAL DIRECTIVES` |
+| Copyright / attribution question | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md` — canonical attribution line |
+| Understanding the WIP voice system structure | `The-Iron-Maiden.md.voicepack.json` — acts, modules, system_instructions, guiding_principles |
+
+### Structural Relationship
+
+```
+The-Iron-Maiden.md  (genesis, 6 acts, DE-style)
+    └── .voicepack.json  (acts + modules + system_instructions — NO voices array)
+
+The-Iron-Maiden-(SSOT)-Copyright-Savant.md  (canonical, 12 acts, operational directives, copyright)
+    └── .voicepack.json  (acts + full 23 voices with creed/whisper — NO system_instructions)
+```
+
+Neither JSON is a complete extraction of its parent .md — each extracts a *different* structural layer. Both are needed for full machine access.
+
+---
+
+## § JSON Companion Registry
+
+All `.json` files in this archive and their parent relationships. The naming convention `<parent-filename>.<kind>.json` is the pattern — the JSON is a structured extraction of a specific layer from the parent, not a copy.
+
+| JSON File | Parent .md | Kind | Payload | Access Use Case |
+|---|---|---|---|---|
+| `The-Iron-Maiden.md.voicepack.json` | `The-Iron-Maiden.md` | `voicepack` | Acts, modules, system_instructions, guiding_principles | Machine-readable operational layer of the WIP voicepack — no voices |
+| `The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json` | `The-Iron-Maiden-(SSOT)-Copyright-Savant.md` | `voicepack` | Acts, 23 voices (id/name/title/creed_id/creed/whisper), voice_quotes | Authoritative voice data — creed + whisper extraction for entity card authoring |
+| `MILF-Core-Prototype-Analysis.md.genre.json` | `MILF-Core-Prototype-Analysis.md` | `milf-core-genre` | reference_models (primary/secondary/canonical), coverage scores, dependency map | Machine-readable genre spec — dependency links, coverage data, schema pointers |
+| `codex-session-log-00001_structured.json` | `codex-session-log-00001_pretty.md` (session trail) | `session-structured` | Command/action/event extraction | Machine-parseable session trace — grep target for specific operations |
+| `default-session-code-gemini.json` | Gemini session transcript | `gemini-session` | Gemini lane session data | Gemini synthesis lane artifact |
+| `default-session-code-gemini.json_structured.json` | `default-session-code-gemini.json` | `session-structured` | Structured extraction of Gemini session | Doubly-structured form — machine parsing of Gemini output |
+| `default-session-code-gemini.py_transcript.txt_structured.json` | Python transcript `.txt` file | `session-structured` | Structured extraction of Python execution trace | Execution trace in machine-readable form |
+| `bonus-missions-txt.txt_structured.json` | `bonus-missions-txt.txt` | `session-structured` | Structured extraction of bonus mission candidates | Game content layer — run-content candidates for rogue-lite |
+
+### The Naming Pattern
+
+```
+<parent-filename>.<kind>.json
+
+Where <kind> is one of:
+  voicepack       — structured extraction of a voice architecture document
+  genre           — structured extraction of a genre specification
+  session-structured  — structured extraction of a session log or transcript
+```
+
+Future JSON companions should follow this convention. The `.kind.` infix makes the parent-child relationship legible from the filename alone without opening either file.
+
+---
+
+## § Family Pattern (Generalizable)
+
+The Iron Maiden family (4 files) and the MILF-Core pipeline files illustrate a recurring pattern this archive uses:
+
+```
+Family = { root source(s) } + { structured companion(s) } + { META entry }
+
+root source:        the .md file — human-readable, full prose, canonical authority
+structured companion: the .json file — machine-readable extraction of ONE layer
+META entry:         this file — the map that explains what each member provides
+                    and when to use which
+```
+
+**What the pattern prevents:**
+- Opening the wrong file and getting incomplete data (e.g. reaching for WIP voicepack.json expecting voices)
+- Treating companions as redundant (WIP.json ≠ SSOT.json — different payloads)
+- Treating older members as superseded (WIP.md has DE-genesis signal the SSOT doesn't)
+- Creating new files without a declared parent relationship (new companion → META entry required)
+
+**When a new family member is added:**
+1. Add a row to `§ JSON Companion Registry` (if it's a .json) or a row to the appropriate `§ File Registry` subsection (if it's a .md)
+2. Confirm the naming pattern: `<parent>.<kind>.json`
+3. Note the access pattern difference from existing family members
+
+No file in a family is removed because a newer member was added. The family grows; it does not prune.
