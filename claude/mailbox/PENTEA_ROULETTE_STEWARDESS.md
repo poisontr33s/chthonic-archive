@@ -3,8 +3,8 @@
 > **Supersedes:** `ROULETTE_STEWARD.md` (scripts-only) — that file remains valid for its own scope but this is the wide-aperture routing layer.
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
-> **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
-> **Last sync:** 2026-04-24 — ruby-zjit lane closed (all 7 exts `ready`); Scripts Roulette 100%; REM Phase 2 report landed; Zombie A3 complete.
+> **Commit trailer:** `Co-authored-by: Pentea <6996nsfw+Penteaa@users.noreply.github.com>`
+> **Last sync:** 2026-04-24 — D1 ruby-zjit FULLY CLOSED (RZ-01..RZ-06 ✅, commits `493cd179`+`1a5db9de`); NP-02 criteria met (Linux ZJIT+Prism confirmed); next P0 = RE-01 (granite.rs CRITICAL#1).
 
 ---
 
@@ -98,12 +98,12 @@
 
 | ID | Pri | Status | Target | Action |
 |----|-----|--------|--------|--------|
-| RZ-01 | P0 | ⬜ | `ruby-zjit/scripts/build_podman.ps1 -Build` | Run Podman lane build — Linux-native ZJIT+Prism. Validates Containerfile. Expected: Ruby 4.0.3 with ZJIT+YJIT+Prism all operational. |
-| RZ-02 | P0 | ⬜ | `ruby-zjit/scripts/build_podman.ps1 -Verify` | Run `build-verify.sh` inside container — GPU probe + Prism smoke test. Expected: `--zjit -e "require 'prism'"` exits 0 (no 0xC0000005). |
-| RZ-03 | P1 | ⬜ | `ruby-zjit/scripts/test_win32.ps1 -StartupProbe 10` | Run 10-pair startup probe. Capture median rv overhead on this machine. Write result into `WIN32_PROFILE.yaml → runtime.rv_startup_overhead_ms`. |
-| RZ-04 | P2 | ⬜ | `ruby-zjit/WIN32_PROFILE.yaml` | Add `runtime:` section: rv_startup_overhead_ms (from RZ-03), podman_build_verified: (from RZ-02), last_test_run: date, extensions_tested: all 7. |
-| RZ-05 | P2 | ⬜ | `ruby-zjit/REGISTRY.yaml` | Add `podman_verified:` flag per extension once RZ-02 passes. Update `meta:` with `podman_lane_status: verified`. |
-| RZ-06 | P3 | ⬜ | `ruby-zjit/tests/test_*.rb` | Run `test_win32.ps1` full suite, capture pass/fail per extension. If any fail: diagnose + fix ext source. All 7 must pass before `WIN32_PROFILE.yaml` can be marked `test_status: clean`. |
+| RZ-01 | P0 | ✅ | `ruby-zjit/scripts/build_podman.ps1 -Build` | `68e29f3a` — Ruby 4.0.3 +ZJIT +PRISM [x86_64-linux], all 39 steps exit 0. Layer 4 pkg split: required block + graceful shaderc. |
+| RZ-02 | P0 | ✅ | `ruby-zjit/scripts/build_podman.ps1 -Verify` | `build-verify.sh` passed — ZJIT+Prism clean, vk_rb Vulkan 1.3.296 (llvmpipe), GPU exts graceful as designed. |
+| RZ-03 | P1 | ✅ | `ruby-zjit/scripts/test_win32.ps1 -StartupProbe 10` | direct 27ms / rv r 164ms / overhead **+137ms** (CreateProcessW chain). Written to WIN32_PROFILE.yaml. |
+| RZ-04 | P2 | ✅ | `ruby-zjit/WIN32_PROFILE.yaml` | `runtime:` section added — rv_startup_overhead_ms: 137, podman_build_verified: true, image hash `68e29f3a`, all 7 extensions listed. |
+| RZ-05 | P2 | ✅ | `ruby-zjit/REGISTRY.yaml` | `podman_verified: true` added to all 7 extensions. ready_extensions promoted from 3 → 7. |
+| RZ-06 | P3 | ✅ | `ruby-zjit/tests/test_*.rb` | 7/7 pass, 73 Minitest runs (all skip-guarded when extensions absent). `$Verbose`→`$VerbosePreference`, rv tier priority fixed. |
 
 ### D2 — REM / ankh-forge Trail Lane
 
@@ -141,7 +141,7 @@ Ordered by Phase 2 report severity. `CRITICAL` items must be resolved before Pha
 | ID | Pri | Status | Pattern | Promotion Criteria | Action |
 |----|-----|--------|---------|-------------------|--------|
 | NP-01 | P3 | ⬜ | Ruby+GPU JIT Boundary Contract (`novel`) | ≥2 environments (second: Linux+glibc OR Windows+unified UCRT) | After Podman lane (RZ-02) produces a working Linux ZJIT build: run a GPU dispatch test under Linux, record results. If pattern holds → promote to `familiar`. |
-| NP-02 | P3 | ⬜ | ZJIT Win32 Prism Shape-System Crash (`novel`) | ≥2 Ruby builds (different rv versions or platforms) | After RZ-02 (Podman Prism test): if Podman lane resolves the crash → update pattern with confirmation + promote to `familiar`. |
+| NP-02 | P3 | ✅ | ZJIT Win32 Prism Shape-System Crash (`novel`) | ≥2 Ruby builds (different rv versions or platforms) | **Criteria met** — RZ-02 confirmed Linux ZJIT+Prism clean (second platform). Pattern promoted to `familiar`. Nursery update pending commit. |
 
 ### D6 — MILF-Core Pipeline
 
@@ -159,23 +159,23 @@ Cold-start reads this table top-to-bottom. First ⬜ in Priority order is the ex
 
 ```
 P0 — BLOCKING (run before anything else in their domain)
-  RZ-01  ruby-zjit Podman build
-  RZ-02  ruby-zjit Podman verify (ZJIT+Prism Linux test)
-  RE-01  granite.rs TrailEventWire + round-trip fix (CRITICAL#1)
+  ✅ RZ-01  ruby-zjit Podman build
+  ✅ RZ-02  ruby-zjit Podman verify (ZJIT+Prism Linux test)
+  RE-01  granite.rs TrailEventWire + round-trip fix (CRITICAL#1)  ← NEXT
   RE-02  granite.rs atomic writes (CRITICAL#2)
   RE-03  granite.rs header authentication (CRITICAL#3)
   ZE-04  zombie A4: upcycle subcommand
 
 P1 — HIGH (unblocked, high signal-to-effort)
-  RZ-03  StartupProbe 10-pair measurement → WIN32_PROFILE.yaml
+  ✅ RZ-03  StartupProbe 10-pair measurement → WIN32_PROFILE.yaml
   RE-04  query() event validation (CRITICAL#4)
   RE-05  memory limits (CRITICAL#5)
   RE-06  forge/append race (CRITICAL#6)
   GA-01  copilot-instructions.md stub redirect (1-line fix, 5 minutes)
 
 P2 — MEDIUM
-  RZ-04  WIN32_PROFILE.yaml runtime section
-  RZ-05  REGISTRY.yaml podman_verified flags
+  ✅ RZ-04  WIN32_PROFILE.yaml runtime section
+  ✅ RZ-05  REGISTRY.yaml podman_verified flags
   RE-07  granite.rs flag validation (CRITICAL#7)
   RE-08  trail init command (DESIGN#2)
   RE-09  stone-verify command (DESIGN#4)
@@ -183,12 +183,12 @@ P2 — MEDIUM
   GA-02  copilot-instructions-copy.md salvage audit
 
 P3 — LOW / BACKGROUND
-  RZ-06  Full test suite pass
+  ✅ RZ-06  Full test suite pass (7/7, 73 runs)
   RE-10  Phase 2 GPU decision ADRs (blocked on Savant questions)
   MC-02  Conflict Pairs formalization
   MC-03  Chemical Sensitivity Matrix
-  NP-01  Nursery: Ruby+GPU JIT → `familiar` (after Podman result)
-  NP-02  Nursery: ZJIT Prism crash → `familiar` (after Podman result)
+  NP-01  Nursery: Ruby+GPU JIT → `familiar` (GPU dispatch test pending)
+  ✅ NP-02  Nursery: ZJIT Prism crash → `familiar` (Linux confirmed, promoted)
   ZE-05  Zombie A5 (blocked on A4 review)
 ```
 
@@ -256,6 +256,8 @@ Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>
 
 | Date | Commit | Domain | Summary |
 |------|--------|--------|---------|
+| 2026-04-24 | `1a5db9de` | ruby-zjit | RZ-02..RZ-06 complete — podman verified, Win32 suite 7/7, YAML sealed |
+| 2026-04-24 | `493cd179` | ruby-zjit | Containerfile Layer4 graceful + test_win32 rv alias (rv.exe) + $Verbose fix |
 | 2026-04-24 | `993227c1` | ruby-zjit / nursery | Nursery: Ruby+GPU JIT conditionality + promotion criteria |
 | 2026-04-24 | `2bcba94a` | ruby-zjit / nursery | Nursery: JIT Boundary Contract (novel) + ZJIT crash root cause tightened |
 | 2026-04-24 | `67767baf` | ruby-zjit | tighten rv diagnosis comments (cmd.status, Unix phrasing, remove ms estimates) |
