@@ -49,7 +49,6 @@
 [CmdletBinding()]
 param(
     [string[]]$Ext          = @(),
-    [switch]  $Verbose,
     [switch]  $List,
     [switch]  $Bench,
     [int]     $StartupProbe = 0   # N>0: run startup-isolation probe with N sample pairs
@@ -123,11 +122,11 @@ if ($StartupProbe -gt 0) {
             $t.Stop(); $directSamples.Add($t.ElapsedMilliseconds)
 
             $t = [System.Diagnostics.Stopwatch]::StartNew()
-            & rv r ruby -e "exit 0" 2>$null | Out-Null
+            & $_rvCmd r ruby -e "exit 0" 2>$null | Out-Null
             $t.Stop(); $rvSamples.Add($t.ElapsedMilliseconds)
         } else {
             $t = [System.Diagnostics.Stopwatch]::StartNew()
-            & rv r ruby -e "exit 0" 2>$null | Out-Null
+            & $_rvCmd r ruby -e "exit 0" 2>$null | Out-Null
             $t.Stop(); $rvSamples.Add($t.ElapsedMilliseconds)
 
             $t = [System.Diagnostics.Stopwatch]::StartNew()

@@ -48,19 +48,21 @@ RUN dnf install -y libnvinfer-devel libnvinfer-headers \
     && dnf clean all \
     || echo "[WARN] TensorRT headers unavailable — trt_rb extension will skip"
 
-# ── Layer 4: Vulkan + full shader toolchain ───────────────────────────────────
-# glslc     — GLSL → SPIR-V
-# glslangValidator — GLSL validation
-# spirv-*   — SPIR-V toolchain (cross, opt, val, dis)
-# dxc       — HLSL → SPIR-V (DirectX Shader Compiler, native Linux)
-# slangc    — Slang shader language (NVIDIA — install from GitHub release)
+# ── Layer 4: Vulkan + shader toolchain ───────────────────────────────────────
+# glslangValidator + GLSL validation — SPIR-V toolchain (opt, val, dis)
+# dxc     — HLSL → SPIR-V (DirectX Shader Compiler, native Linux)
+# Note: spirv-cross is NOT in standard Fedora 40 repos — spirv_rb build is graceful
+# Note: shaderc-devel → shaderc on Fedora 40; glslc comes from glslang-devel
 RUN dnf install -y \
     vulkan-devel vulkan-headers vulkan-loader-devel \
     glslang glslang-devel \
     spirv-tools spirv-headers-devel \
-    spirv-cross \
-    shaderc-devel \
     && dnf clean all
+
+# shaderc (glslc binary) — Fedora 40 package name is 'shaderc', not 'shaderc-devel'
+RUN dnf install -y shaderc \
+    && dnf clean all \
+    || echo "[WARN] shaderc unavailable — GLSL->SPIR-V via glslang path only"
 
 # DXC (DirectX Shader Compiler) — HLSL → SPIR-V
 RUN dnf install -y directx-shader-compiler 2>/dev/null \
