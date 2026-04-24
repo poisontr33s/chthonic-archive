@@ -846,6 +846,40 @@
 				"focus": true
 			},
 			"problemMatcher": []
+                },
+		{
+			"label": "Chthonic: Pentea Autoloop",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/pentea_autoloop.ts"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"focus": true,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"detail": "Autonomous Pentea queue runner — reads Pentea-Next: from git log, chains tasks via agentStop hook without VS Code Chat UI turns."
+		},
+		{
+			"label": "Chthonic: Pentea Autoloop (dry-run)",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/pentea_autoloop.ts",
+				"--dry-run"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared"
+			},
+			"problemMatcher": [],
+			"detail": "Dry-run: shows what task would be dispatched without running SDK."
 		}
-	]
 }
