@@ -203,7 +203,7 @@ The `ruby-4.0.3-zjit` binary distributed by rv (v0.5.3) is a **bin-only stub** �
 
 **Crash signature:** `rb_shape_free_all+0x74b` → `pm_ast_new+0x13e53` in `x64-ucrt-ruby400.dll` from the zjit bin. The shape-system corruption fires during `prism/pack.rb`'s `Pack` module autoload (module definition + `Array#each` iterating format constants). The crash is JIT-specific — same code runs clean without `--zjit`/`--yjit`.
 
-**Root cause:** The zjit DLL was compiled with a different object shape layout than what the junctioned stdlib (from the standard install) expects. JIT-compiled stubs hold stale shape IDs. The DLL mismatch between zjit's binary and the stdlib from standard install is the trigger.
+**Root cause:** The zjit DLL was compiled with a different object shape layout than what the junctioned stdlib (from the standard install) expects. JIT-compiled stubs hold stale shape IDs. More precisely: mismatched memory ownership across the DLL boundary and/or incompatible struct layout between Ruby's JIT-compiled code and the extension's build. The DLL mismatch between zjit's binary and the stdlib from standard install is the trigger. This is a **toolchain coherence issue**, not a JIT correctness issue — if the entire stack (zjit binary + stdlib + extensions) is built from one source with one devkit, the crash disappears.
 
 **Workaround (Win32):** Use `ruby-4.0.3` (standard install) for all Prism/gem work. YJIT support is not compiled into the standard RubyInstaller Win32 binary (prints a warning, falls back to interpreter). Win32 YJIT/ZJIT + Prism = currently broken without a from-source build.
 
@@ -212,6 +212,33 @@ The `ruby-4.0.3-zjit` binary distributed by rv (v0.5.3) is a **bin-only stub** �
 **Shape:** identify AV on `--zjit -e "require 'prism'"` → test same without JIT → if passes = JIT+Prism shape mismatch → Podman lane or source build with matching devkit.
 
 **Promotion criteria:** observed in ≥2 Ruby builds (different rv versions or platforms) → `familiar`. Currently: 1 (ruby-4.0.3-zjit rv 0.5.3, Win11 x64-mingw-ucrt).
+
+---
+
+### Ruby+GPU JIT Boundary Contract — `novel`
+*Origin: 2026-04-24 — ruby-zjit/ extension stack + GPT.5.5 validation pass*
+
+When wrapping GPU operations in Ruby C extensions, ZJIT/YJIT's effective boundary is precisely the C extension call. Everything past that boundary (CUDA kernels, Vulkan command buffers, TensorRT graphs) is compiled AoT and dispatched through vendor drivers — no Ruby JIT touches it.
+
+**Performance hierarchy for Ruby+GPU stacks (correct ranking):**
+```
+1. GPU kernel efficiency          (dominant — JIT has zero reach)
+2. Driver / API overhead          (CUDA/Vulkan dispatch — JIT has zero reach)
+3. C extension quality            (FFI/ABI/memory handling — JIT has zero reach)
+4. Ruby dispatch layer            (argument handling, method dispatch, shape checks)
+5. Ruby JIT                       (affects layer 4 only)
+```
+
+**Where JIT is non-zero (not "adds zero" — too absolute):**
+- High-frequency Ruby→C dispatch loops: `100_000.times { cuda_rb.launch(...) }` — JIT reduces per-call Ruby-side overhead (arg handling, shape checks, object churn around the boundary), not kernel speed but the **rate at which Ruby feeds the GPU**.
+- Control-plane logic written in Ruby (kernel scheduling, batch decisions, memory orchestration, pipeline construction) — JIT helps if this code is hot.
+- Test harness / orchestration (build scripts, validation loops) — JIT helps here cleanly.
+
+**The actual lever for this project:** ABI stability, consistent CRT linkage (UCRT throughout), matching compiler flags across all extensions, and minimizing per-call allocations at the Ruby↔C boundary. The 0xC0000005 crash in `rb_shape_free_all` is a toolchain coherence issue (mismatched struct layout / memory ownership across DLL boundary), not a JIT issue — see ZJIT Win32 Prism Shape-System Crash pattern.
+
+**Shape:** GPU extension project → rank optimization targets by hierarchy → JIT is layer 5; ABI/CRT coherence + extension boundary quality are layers 3-4 and are the real levers.
+
+**Promotion criteria:** applied to ≥2 Ruby+native extension projects → `familiar`. Currently: 1 (ruby-zjit/ CUDA/Vulkan/TRT on Win32/RTX 4090).
 
 ---
 
