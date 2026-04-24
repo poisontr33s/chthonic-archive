@@ -4,7 +4,7 @@
 > **SSOT anchor:** `copilot-instructions.archive.md §1.01` — `PVX-RLTSHPS` (Pentea canonical RLTSHPS)
 > **DCRP:** `§XV.7` / `DCRP-RDV` — Deployment-Adapter class — PRISM: GOLD 🏰 Fortress
 > **Commit trailer:** `Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`
-> **Last sync:** 2026-04-24 — D0 infrastructure: autoloop `scripts/pentea_autoloop.ts` + Queue-Chain Protocol in `Pentea.agent.md` (`5fb446e8`, `47b56e60`); D2 FULLY CLOSED (RE-01..RE-09 ✅, `4d623a2c`); next P0 = ZE-04 (zombie upcycle).
+> **Last sync:** 2026-04-24 — D0 infrastructure: autoloop `scripts/pentea_autoloop.ts` + Queue-Chain Protocol in `Pentea.agent.md` (`5fb446e8`, `47b56e60`); D2 FULLY CLOSED (RE-01..RE-09 ✅, `4d623a2c`); D3 ZE-04 ✅ (zombie upcycle verified: 79 slag, 1 candidate `claude_test.py` +1 ore via ML); next P0 = ZE-05 (zombie A5, now unblocked).
 
 ---
 
@@ -171,8 +171,8 @@ Ordered by Phase 2 report severity. `CRITICAL` items must be resolved before Pha
 
 | ID | Pri | Status | Upgrade | Target | Action |
 |----|-----|--------|---------|--------|--------|
-| ZE-04 | P0 | ⬜ | A4 | `scripts/zombie_consumer.py` | `zombie upcycle` subcommand: scan `forge/slag/`, score each with current GBT model, surface files where `current_score ≥ original_ore + 1`. Read-only — does NOT move files. Surface for SFS decision. Precondition: A3 ✅. |
-| ZE-05 | P1 | ⬜ | A5 | `scripts/zombie_consumer.py` | Read `RESUME_ZOMBIE_EVOLUTION_20260327.md §Execution Menu` for A5 definition. Implement once A4 is validated (`zombie upcycle` output reviewed). |
+| ZE-04 | P0 | ✅ | A4 | `scripts/zombie_consumer.py` | `zombie upcycle` subcommand: scan `forge/slag/`, score each with current GBT model, surface files where `current_score ≥ original_ore + 1`. Read-only. **Verified 2026-04-24:** 79 slag scanned, 76 content-duplicate-skipped, 1 candidate (`claude_test.py` ore 2→3, ML signal `ore_ml:2->3`). |
+| ZE-05 | P1 | ⬜ | A5 | `scripts/zombie_consumer.py` | Read `RESUME_ZOMBIE_EVOLUTION_20260327.md §Execution Menu` for A5 definition. Implement once A4 output reviewed. **Unblocked — ZE-04 validated.** |
 
 ### D4 — Governance / Agentry
 
@@ -211,7 +211,8 @@ P0 — BLOCKING (run before anything else in their domain)
   ✅ RE-03  granite.rs header authentication (CRITICAL#3)
   ✅ AI-01  pentea_autoloop.ts — SDK agentStop hook queue runner (5fb446e8)
   ✅ AI-02  Pentea.agent.md Queue-Chain Protocol + email fix (47b56e60)
-  ZE-04  zombie A4: upcycle subcommand  ← NEXT
+  ✅ ZE-04  zombie A4: upcycle subcommand  (79 slag scanned, 1 candidate, ML verified)
+  ZE-05  zombie A5 (now unblocked — ZE-04 validated)  ← NEXT
 
 P1 — HIGH (unblocked, high signal-to-effort)
   ✅ RZ-03  StartupProbe 10-pair measurement → WIN32_PROFILE.yaml
