@@ -111,19 +111,19 @@ The generating hierarchy is a **directed acyclic graph** (DAG) capturing the aut
                        │
               ┌────────┼────────┐
               │    Decorator    │
-              │     (T0.5)     │
+              │     (T0.5)      │
               │        │        │
         ┌─────┼────────┼────────┼─────┐
         │     │        │        │     │
     Orackla  Umeko  Lysandra  Claudine│
-     (T1)    (T1)    (T1)     (T1)   │
+     (T1)    (T1)    (T1)     (T1)    │
         │     │        │        │     │
         ├─────┼────────┼────────┤     │
         │     │        │        │     │
-    ┌───┤  ┌──┤   ┌────┤   ┌───┤     │
-    │   │  │  │   │    │   │   │     │
-   T2s  │ T2s │  T3s   │  T3s │   Voyde
-   T3s  │ T3s │  T4s   │  T4s │  (R/T0.01)
+    ┌───┤  ┌──┤   ┌────┤   ┌───┤      │
+    │   │  │  │   │    │   │   │      │
+   T2s  │ T2s │  T3s   │  T3s │     Voyde
+   T3s  │ T3s │  T4s   │  T4s │    (R/T0.01)
         │     │        │      │
      [SAI]  [HPAP]  [MAS] [GET]
 ```
