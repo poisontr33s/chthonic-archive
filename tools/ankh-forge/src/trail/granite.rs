@@ -251,84 +251,55 @@ pub fn compile(trail_dir: &Path, date: &str, force: bool) -> Result<()> {
     Ok(())
 }
 
-/// Query/inspect a `.runestone` binary stone — verify integrity, decode, print.
-pub fn query(stone_path: &Path) -> Result<()> {
-    if !stone_path.exists() {
-        bail!("stone not found: {}", stone_path.display());
-    }
-
-    let data = fs::read(stone_path)
-        .with_context(|| format!("reading {}", stone_path.display()))?;
-
+/// Decode stone bytes into verified TrailEvents. Shared core for query() and decode().
+fn decode_stone(data: &[u8]) -> Result<Vec<TrailEvent>> {
     if data.len() < HEADER_SIZE {
         bail!("file too small for runestone header ({} < {HEADER_SIZE})", data.len());
     }
-
-    // Verify magic
     if &data[0..8] != MAGIC {
-        bail!(
-            "invalid magic: expected {:?}, got {:?}",
-            MAGIC, &data[0..8]
-        );
+        bail!("invalid magic: expected {:?}, got {:?}", MAGIC, &data[0..8]);
     }
-
-    // Parse fixed header
-    let format_version = u16::from_le_bytes(data[8..10].try_into().unwrap());
-    let schema_version = u32::from_le_bytes(data[10..14].try_into().unwrap());
-    let event_count = u32::from_le_bytes(data[14..18].try_into().unwrap());
-    let flags = u32::from_le_bytes(data[18..22].try_into().unwrap());
-    let stored_hash: [u8; 32] = data[22..54].try_into().unwrap();
-    let spirv_len = u32::from_le_bytes(data[54..58].try_into().unwrap()) as usize;
-    let schema_len = u32::from_le_bytes(data[58..62].try_into().unwrap()) as usize;
+    let event_count            = u32::from_le_bytes(data[14..18].try_into().unwrap());
+    let flags                  = u32::from_le_bytes(data[18..22].try_into().unwrap());
+    let stored_hash: [u8; 32]  = data[22..54].try_into().unwrap();
+    let spirv_len              = u32::from_le_bytes(data[54..58].try_into().unwrap()) as usize;
+    let schema_len             = u32::from_le_bytes(data[58..62].try_into().unwrap()) as usize;
     let payload_compressed_len = u32::from_le_bytes(data[62..66].try_into().unwrap()) as usize;
-    let _payload_uncompressed_len = u32::from_le_bytes(data[66..70].try_into().unwrap()) as usize;
 
-    // Validate flags before any block extraction or decode
     validate_flags(flags)?;
 
-    // Bounds check
     let total_needed = HEADER_SIZE + schema_len + spirv_len + payload_compressed_len;
     if data.len() < total_needed {
-        bail!(
-            "truncated stone: need {total_needed} bytes, have {}",
-            data.len()
-        );
+        bail!("truncated stone: need {total_needed} bytes, have {}", data.len());
     }
 
-    // Extract blocks
-    let schema_start = HEADER_SIZE;
-    let spirv_start = schema_start + schema_len;
+    let schema_start  = HEADER_SIZE;
+    let spirv_start   = schema_start + schema_len;
     let payload_start = spirv_start + spirv_len;
 
-    let schema_bytes = &data[schema_start..spirv_start];
-    let spirv_bytes = &data[spirv_start..payload_start];
+    let schema_bytes       = &data[schema_start..spirv_start];
+    let spirv_bytes        = &data[spirv_start..payload_start];
     let payload_compressed = &data[payload_start..payload_start + payload_compressed_len];
 
-    // Verify SHA-256: reconstruct canonical hash (header with zeroed digest slot)
     let mut header_for_hash = data[0..HEADER_SIZE].to_vec();
     header_for_hash[22..54].fill(0);
-
     let mut hasher = Sha256::new();
     hasher.update(&header_for_hash);
     hasher.update(schema_bytes);
     hasher.update(spirv_bytes);
     hasher.update(payload_compressed);
-    let computed_hash: [u8; 32] = hasher.finalize().into();
-
-    if computed_hash != stored_hash {
+    let computed: [u8; 32] = hasher.finalize().into();
+    if computed != stored_hash {
         bail!("SHA-256 integrity check failed — stone is corrupted or tampered");
     }
 
-    // Decompress payload
     let is_cpu_compressed = (flags & FLAG_CPU_COMPRESSED) != 0;
     let payload_raw = if is_cpu_compressed {
-        zstd::decode_all(payload_compressed)
-            .context("zstd decompression failed")?
+        zstd::decode_all(payload_compressed).context("zstd decompression failed")?
     } else {
         payload_compressed.to_vec()
     };
 
-    // Decode events via bincode 2.0 (native Decode)
     let (stone_events, _): (Vec<StoneEvent>, _) =
         bincode::decode_from_slice(&payload_raw, bincode::config::standard())
             .context("bincode decoding failed")?;
@@ -340,31 +311,63 @@ pub fn query(stone_path: &Path) -> Result<()> {
         .context("converting stone events")?;
 
     if events.len() as u32 != event_count {
-        bail!(
-            "event count mismatch: header says {event_count}, decoded {}",
-            events.len()
-        );
+        bail!("event count mismatch: header says {event_count}, decoded {}", events.len());
     }
-
-    // Validate every decoded event against the REM schema
     for (i, event) in events.iter().enumerate() {
         event.validate()
             .with_context(|| format!("granite event {i} schema violation"))?;
     }
+    Ok(events)
+}
 
-    // Print header info
+/// Decode a `.runestone` into verified events without printing.
+/// Used by `--verify-only` and tests that need to inspect decoded field values.
+pub(crate) fn decode(stone_path: &Path) -> Result<Vec<TrailEvent>> {
+    if !stone_path.exists() {
+        bail!("stone not found: {}", stone_path.display());
+    }
+    let data = fs::read(stone_path)
+        .with_context(|| format!("reading {}", stone_path.display()))?;
+    decode_stone(&data)
+}
+
+/// Query/inspect a `.runestone` binary stone — verify integrity, decode, print.
+pub fn query(stone_path: &Path) -> Result<()> {
+    if !stone_path.exists() {
+        bail!("stone not found: {}", stone_path.display());
+    }
+    let data = fs::read(stone_path)
+        .with_context(|| format!("reading {}", stone_path.display()))?;
+    if data.len() < HEADER_SIZE {
+        bail!("file too small for runestone header ({} < {HEADER_SIZE})", data.len());
+    }
+    // Parse display-only header fields (decode_stone re-validates all of them)
+    let format_version         = u16::from_le_bytes(data[8..10].try_into().unwrap());
+    let schema_version         = u32::from_le_bytes(data[10..14].try_into().unwrap());
+    let event_count            = u32::from_le_bytes(data[14..18].try_into().unwrap());
+    let flags                  = u32::from_le_bytes(data[18..22].try_into().unwrap());
+    let spirv_len              = u32::from_le_bytes(data[54..58].try_into().unwrap()) as usize;
+    let schema_len             = u32::from_le_bytes(data[58..62].try_into().unwrap()) as usize;
+    let payload_compressed_len = u32::from_le_bytes(data[62..66].try_into().unwrap()) as usize;
+
+    let events = decode_stone(&data)?;
+
     eprintln!(
         "runestone v{format_version} schema={schema_version} events={event_count} \
          flags=0x{flags:04x} schema_len={schema_len} spirv_len={spirv_len} \
          payload={payload_compressed_len} bytes (compressed)"
     );
-
-    // Print each event
     for event in &events {
         println!("{event}");
     }
-
     eprintln!("{event_count} event(s) decoded from {}", stone_path.display());
+    Ok(())
+}
+
+/// Verify a `.runestone` without printing events — exits cleanly if integrity holds.
+pub fn query_verify_only(stone_path: &Path) -> Result<()> {
+    let events = decode(stone_path)?;
+    eprintln!("OK: {} event(s) verified in {}", events.len(), stone_path.display());
     Ok(())
 }
 
@@ -785,6 +788,84 @@ mod tests {
             err_msg.contains("magic"),
             "error should mention magic: {err_msg}"
         );
+
+        Ok(())
+    }
+
+    /// Golden round-trip: compile three variants (file=Some, data=Some, both absent)
+    /// with a fixed timestamp, then assert every decoded field value is preserved.
+    #[test]
+    fn test_golden_roundtrip() -> Result<()> {
+        use chrono::DateTime;
+
+        let tmp = tempfile::tempdir()?;
+        let chthonic = tmp.path().join(".chthonic");
+        let trail_dir = chthonic.join("trail");
+        let date = "2026-04-24";
+
+        let fixed_ts: DateTime<chrono::Utc> = "2026-04-24T12:34:56Z".parse().unwrap();
+
+        let golden = vec![
+            // Variant 1: file=Some, data=None
+            TrailEvent {
+                event_type: "diagnostic".into(),
+                kind: "probe".into(),
+                at: fixed_ts,
+                p: 1,
+                msg: "golden: file present, no data".into(),
+                file: Some("src/trail/granite.rs".into()),
+                data: None,
+            },
+            // Variant 2: file=None, data=Some
+            TrailEvent {
+                event_type: "decision".into(),
+                kind: "arch".into(),
+                at: fixed_ts,
+                p: 2,
+                msg: "golden: no file, data present".into(),
+                file: None,
+                data: Some(serde_json::json!({"key": "value", "n": 42})),
+            },
+            // Variant 3: both absent
+            TrailEvent {
+                event_type: "artifact".into(),
+                kind: "commit".into(),
+                at: fixed_ts,
+                p: 3,
+                msg: "golden: both absent".into(),
+                file: None,
+                data: None,
+            },
+        ];
+
+        make_cold_file(&trail_dir, date, &golden);
+        compile(&trail_dir, date, false)?;
+
+        let stone_path = chthonic.join("stones").join(format!("{date}.runestone"));
+        let decoded = decode(&stone_path)?;
+
+        assert_eq!(decoded.len(), 3, "event count must be preserved");
+
+        // Variant 1: file present
+        assert_eq!(decoded[0].event_type, "diagnostic");
+        assert_eq!(decoded[0].kind, "probe");
+        assert_eq!(decoded[0].at, fixed_ts, "DateTime must round-trip exactly");
+        assert_eq!(decoded[0].p, 1);
+        assert_eq!(decoded[0].msg, "golden: file present, no data");
+        assert_eq!(decoded[0].file.as_deref(), Some("src/trail/granite.rs"));
+        assert!(decoded[0].data.is_none(), "data must remain None");
+
+        // Variant 2: data present
+        assert_eq!(decoded[1].event_type, "decision");
+        assert!(decoded[1].file.is_none(), "file must remain None");
+        let d = decoded[1].data.as_ref().expect("data must survive round-trip");
+        assert_eq!(d["key"], serde_json::json!("value"));
+        assert_eq!(d["n"], serde_json::json!(42));
+
+        // Variant 3: both absent
+        assert_eq!(decoded[2].event_type, "artifact");
+        assert!(decoded[2].file.is_none(), "file must remain None");
+        assert!(decoded[2].data.is_none(), "data must remain None");
 
         Ok(())
     }

@@ -138,6 +138,10 @@ pub enum TrailCommand {
     Query {
         /// Path to the .runestone file.
         stone: std::path::PathBuf,
+
+        /// Verify integrity only — do not print events. Exits 0 if stone is valid.
+        #[arg(long, default_value_t = false)]
+        verify_only: bool,
     },
 
     /// GPU-decode a .runestone compiled with --gpu (requires --features gpu).
@@ -204,7 +208,13 @@ pub fn run(args: TrailArgs) -> Result<()> {
             granite::compile(&trail_dir, &d, force)
         }
 
-        TrailCommand::Query { stone } => granite::query(&stone),
+        TrailCommand::Query { stone, verify_only } => {
+            if verify_only {
+                granite::query_verify_only(&stone)
+            } else {
+                granite::query(&stone)
+            }
+        }
 
         TrailCommand::Execute { stone: _stone } => {
             #[cfg(feature = "gpu")]
