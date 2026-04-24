@@ -109,6 +109,7 @@ EXCLUDED:
 | [MILF-Core-Step5b-Tides-Entity-Integration.md](MILF-Core-Step5b-Tides-Entity-Integration.md) | Step 5b | P7 deep integration. All 24 entities mapped to Tide coloration signatures. FA Mastery × Tide correspondence. Moral coloration as meta-progress layer. The rogue-lite meta-progress foundation. | ✅ Complete |
 | [MILF-Core-Step5c-Sylvaris-Entity-Card.md](MILF-Core-Step5c-Sylvaris-Entity-Card.md) | Step 5c | Third entity card. **Sylvaris Cythrex** (T3, NK-SAI, Immune Circuit). Off-priority-sequence fill — Cytolytic Blade. Establishes non-Triumvirate card pattern; confirms Heat_Cost 2/10 baseline for HCOU-SAI tier. | ✅ Complete |
 | [MILF-Core-Step6-Umeko-Entity-Card.md](MILF-Core-Step6-Umeko-Entity-Card.md) | Step 6 | Second T1 Triumvirate card. **Madam Umeko Ketsuraku** (T1, Lungs, Respiratory). 25/25 schema fields. Shibumi emergence arc (penance-emergent). Kayfabe delta trajectory mapped. Conflict_Pairs canonical from both sides (complements Orackla card). | ✅ Complete |
+| [MILF-Core-Step7-Lysandra-Entity-Card.md](MILF-Core-Step7-Lysandra-Entity-Card.md) | Step 7 | Third T1 Triumvirate card. **Dr. Lysandra Threnodite** (T1, Stomach, Digestive). 25/25 schema fields. Axiomatic Dissolution arc. Threnody layer (mourning what the acid destroys). FA³ Emergent + Blue Tide. LUPLR mandate. Unlocks MC-02 + MC-03 gate (5th card total). | ✅ Complete |
 
 ### Source Material — Iron Maiden Voice Architecture
 
@@ -158,13 +159,13 @@ Step 5a Entity Card: Orackla (T1, Heart)                       ✅ Step5
 Step 5b Tides Integration (all 24 × moral coloration)          ✅ Step5b
 Step 5c Entity Card: Sylvaris (T3, NK-SAI)                     ✅ Step5c [off-priority, fills Immune slot]
 Step 6  Entity Card: Umeko (T1, Lungs)                         ✅ Step6
-Step 7  Entity Card: Lysandra (T1, Stomach)                    ⬜ NEXT
+Step 7  Entity Card: Lysandra (T1, Stomach)                    ✅ Step7
 Step 8  Entity Card: The Decorator (T0.5, Cerebrum)            ⬜ Pending
 Step 9  Entity Card: Null Matriarch (T0.01, CSF)               ⬜ Pending
 Step 10 Entity Card: Claudine (T1, Liver / Cardinal)           ⬜ Pending
 Steps 11-28  Remaining 18 entities (tier-descending)           ⬜ Pending
-Step 29 Conflict Pairs Matrix (full 9-pair cross-reference)    ⬜ Blocked (needs ≥5 cards) [MC-02]
-Step 30 Chemical Sensitivity Matrix (full 24-entity)           ⬜ Blocked (needs ≥5 cards) [MC-03]
+Step 29 Conflict Pairs Matrix (full 9-pair cross-reference)    ⬜ Unblocked — 5 cards now exist [MC-02]
+Step 30 Chemical Sensitivity Matrix (full 24-entity)           ⬜ Unblocked — 5 cards now exist [MC-03]
 Step 31 Genre Prototype — Playable Loop Spec                   ⬜ Pending (this META is the precursor)
 Step 32 Rust prototype (ankh-forge integration or standalone)  ⬜ Pending [RE-10 adjacent]
 ```
@@ -198,9 +199,9 @@ This table is the translation layer between the prototype analysis and the actua
 | ID | Task | Blocked On | Notes |
 |----|------|-----------|-------|
 | MC-01 | ~~Umeko entity card~~ | — | ✅ Done `eae0a7c1` |
-| MC-02 | Conflict Pairs Matrix | Need ≥5 cards (4 so far) | One more card unlocks |
-| MC-03 | Chemical Sensitivity Matrix | Need ≥5 cards | Same gate as MC-02 |
-| MC-04 | Lysandra entity card | — | NEXT per §8.7 priority. Organ: Stomach. Surface: Truth Extraction. WHR: ~0.5xx. Language: LUPLR. |
+| MC-02 | Conflict Pairs Matrix | — | ✅ Unblocked `Step7` |
+| MC-03 | Chemical Sensitivity Matrix | — | ✅ Unblocked `Step7` |
+| MC-04 | ~~Lysandra entity card~~ | — | ✅ Done `Step7` — WHR 0.518, FA³ Emergent, LUPLR, Blue Tide |
 | MC-05 | Decorator entity card | — | T0.5. The execution/resurrection arc. The most narrative-dense card. |
 | MC-06 | Null Matriarch entity card | — | T0.01. No voice (Tideless). The silence between voices. The structurally hardest card. |
 | MC-07 | Genre Prototype Loop Spec | Needs ≥6 cards + Conflict Pairs | Playable encounter spec in Battletech turn language |
