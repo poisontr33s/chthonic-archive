@@ -1,5 +1,7 @@
 # (Pointer)
 
+> Active SSOT: [copilot-instructions.archive.md](copilot-instructions.archive.md)
+
 - This file is kept intentionally small. Preventing contextual excess from nesting "files/path-to-files" convention, inc. very large artifacts.
 
 ## Applies To

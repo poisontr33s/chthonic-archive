@@ -178,7 +178,7 @@ Ordered by Phase 2 report severity. `CRITICAL` items must be resolved before Pha
 
 | ID | Pri | Status | Source | Target | Action |
 |----|-----|--------|--------|--------|--------|
-| GA-01 | P1 | ⬜ | AGENTRY_AUDIT#1 | `.github/copilot-instructions.md` | Add one line: `> Active SSOT: [copilot-instructions.archive.md](copilot-instructions.archive.md)` — agents following instruction links from the 3 pointer files no longer dead-end on a stub. |
+| GA-01 | P1 | ✅ | AGENTRY_AUDIT#1 | `.github/copilot-instructions.md` | Added `> Active SSOT: [copilot-instructions.archive.md](copilot-instructions.archive.md)` at line 3 (after title). Agents no longer dead-end on stub. |
 | GA-02 | P2 | ⬜ | AGENTRY_AUDIT#2 | `.github/copilot-instructions-copy.md` | Salvage audit: diff against `.archive.md`. If substantively identical → archive to `codex/codex-session-logs/archive/copilot-instructions-copy.archived.md` + delete. If contains unique content → extract and merge into archive. |
 
 ### D5 — Nursery Promotion Tracking
