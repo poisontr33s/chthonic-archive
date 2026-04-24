@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: meta_sync.py
@@ -38,6 +38,7 @@ Flags:
     --strict         Exit 1 if any META file has a sync discrepancy
 """
 
+import datetime
 import re
 import sys
 import json
@@ -58,6 +59,11 @@ except ImportError:
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONSOLE = Console(stderr=False) if _RICH else None
+
+
+def _now_local() -> str:
+    """Current local datetime, timezone-aware, ISO-8601 with UTC offset."""
+    return datetime.datetime.now(datetime.timezone.utc).astimezone().strftime("%Y-%m-%d %H:%M:%S %z")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # MLRSP Lend  §10.6 — $lend${capability}@$from${source}@$to${target}@$duration
@@ -407,18 +413,98 @@ class GenericMetaHandler:
 # META discovery + handler routing
 # ─────────────────────────────────────────────────────────────────────────────
 
-_IGNORE_DIRS = {".git", "target", "node_modules", "build", "dumpster-dive",
-                "__pycache__", ".deprecated", "artifacts", "bun-playwright-poc"}
+# Directories whose subtrees should never be walked for META files.
+# Covers: build outputs, package caches, language module trees,
+# Ruby gem dirs, Python venvs, JS/TS node_modules, vendor trees.
+_IGNORE_DIRS = {
+    # VCS / build outputs
+    ".git", "target", "build", ".cache", ".tmp",
+    # JS / TS
+    "node_modules", ".next", ".nuxt", ".output", "dist", ".turbo",
+    "bun-playwright-poc",
+    # Python
+    "__pycache__", ".venv", "venv", ".tox", "site-packages",
+    "dist-info", "egg-info", ".eggs",
+    # Ruby
+    "gems", ".gems", ".bundle", ".rubygems",
+    # Rust
+    "registry",          # cargo registry cache under target/
+    # Generic vendor / third-party
+    "vendor", "third_party", "third-party",
+    # Archive-specific noise
+    "dumpster-dive", ".deprecated", "artifacts",
+}
 
-def discover_meta_files(repo: Path) -> list[Path]:
-    """Find all files matching *META*.md in the repo, excluding noise dirs."""
+# ─────────────────────────────────────────────────────────────────────────────
+# Discovery cache — stored in .git/ so it is never committed
+# ─────────────────────────────────────────────────────────────────────────────
+
+_CACHE_PATH = REPO_ROOT / ".git" / "meta_sync_cache.json"
+
+
+def _load_cache(repo: Path) -> list[Path] | None:
+    """
+    Return cached META file paths if every entry still exists with the same
+    mtime. Returns None if the cache is absent, stale, or corrupt.
+    """
+    if not _CACHE_PATH.exists():
+        return None
+    try:
+        data = json.loads(_CACHE_PATH.read_text(encoding="utf-8"))
+        entries = data["files"]          # [{"path": str, "mtime": float}, ...]
+        paths: list[Path] = []
+        for e in entries:
+            p = repo / e["path"]
+            if not p.exists():
+                return None             # file was deleted — cache is stale
+            if abs(p.stat().st_mtime - e["mtime"]) > 0.01:
+                return None             # mtime changed — cache is stale
+            paths.append(p)
+        return paths
+    except Exception:                   # malformed JSON or missing keys
+        return None
+
+
+def _save_cache(repo: Path, paths: list[Path]) -> None:
+    """Persist the discovered file list + their mtimes to .git/meta_sync_cache.json."""
+    try:
+        entries = [
+            {"path": str(p.relative_to(repo)), "mtime": p.stat().st_mtime}
+            for p in paths
+        ]
+        _CACHE_PATH.write_text(
+            json.dumps({"generated_at": _now_local(), "files": entries}, indent=2),
+            encoding="utf-8",
+        )
+    except Exception:
+        pass                            # non-fatal — next run will re-walk
+
+
+def discover_meta_files(repo: Path, use_cache: bool = True) -> list[Path]:
+    """
+    Find all files matching *META*.md in the repo, excluding noise dirs.
+
+    On first run (or when --no-cache is passed) performs a full rglob walk
+    and saves results to .git/meta_sync_cache.json.  Subsequent runs load
+    the cache and skip the walk if every entry is still valid (mtime match).
+    Cache is invalidated automatically when any file is added, removed, or
+    modified.
+    """
+    if use_cache:
+        cached = _load_cache(repo)
+        if cached is not None:
+            return sorted(cached)
+
     found: list[Path] = []
     for p in repo.rglob("*META*.md"):
         parts = set(p.relative_to(repo).parts)
         if parts & _IGNORE_DIRS:
             continue
         found.append(p)
-    return sorted(found)
+
+    found = sorted(found)
+    _save_cache(repo, found)
+    return found
 
 
 def _handler_for(path: Path) -> MilfCoreMetaHandler | AnkhSynthesisMetaHandler | GenericMetaHandler:
@@ -457,6 +543,7 @@ def _status_color(status: str) -> str:
 
 
 def report_rich(results: list[MetaSyncResult], console: "Console") -> None:
+    console.print(f"[dim]meta_sync  {_now_local()}[/]\n")
     for r in results:
         rel = r.path.relative_to(REPO_ROOT)
         title = f"[bold gold1]{r.handler_type.upper()}[/] — [cyan]{rel}[/]"
@@ -503,6 +590,7 @@ def report_rich(results: list[MetaSyncResult], console: "Console") -> None:
 
 
 def report_plain(results: list[MetaSyncResult], out) -> None:
+    out.write(f"meta_sync  {_now_local()}\n")
     for r in results:
         rel = r.path.relative_to(REPO_ROOT)
         out.write(f"\n=== {r.handler_type.upper()} | {rel} ===\n")
@@ -521,6 +609,7 @@ def report_plain(results: list[MetaSyncResult], out) -> None:
 
 def report_json(results: list[MetaSyncResult], out) -> None:
     payload = []
+    _ts = _now_local()
     for r in results:
         payload.append({
             "file": str(r.path.relative_to(REPO_ROOT)),
@@ -541,7 +630,7 @@ def report_json(results: list[MetaSyncResult], out) -> None:
             "sync_errors": r.errors,
             "patch_available": len(r.patch_hunks) > 0,
         })
-    json.dump(payload, out, indent=2, ensure_ascii=False)
+    json.dump({"scanned_at": _ts, "results": payload}, out, indent=2, ensure_ascii=False)
     out.write("\n")
 
 
@@ -564,13 +653,15 @@ def main() -> int:
                     help="Exit code 1 if any sync gaps found")
     ap.add_argument("--meta", metavar="FILE",
                     help="Process a single META file instead of auto-discovering")
+    ap.add_argument("--no-cache", action="store_true",
+                    help="Force a full filesystem walk, ignoring the .git/meta_sync_cache.json cache")
     args = ap.parse_args()
 
     # Discover META files
     if args.meta:
         meta_files = [Path(args.meta).resolve()]
     else:
-        meta_files = discover_meta_files(REPO_ROOT)
+        meta_files = discover_meta_files(REPO_ROOT, use_cache=not args.no_cache)
 
     if not meta_files:
         sys.stderr.write("meta_sync: no META files found\n")
