@@ -1208,7 +1208,12 @@ def _git_output(*args: str) -> str | None:
 
 
 def _build_bride_provenance(path: Path, assessment: dict) -> dict:
-    """Inline Novia-style provenance without invoking the unfinished embalm tool."""
+    """Inline NOV-CAD provenance summary (backward-compat).
+
+    A5 upgrade: the real embalm_before_edit snapshot is in chew()'s
+    extract['embalm_provenance']. This inline summary is kept for
+    backward-compat with callers that read extract['provenance'].
+    """
     source = safe_relative(path)
     return {
         "operator": "Novia Cadaveris",
@@ -1246,12 +1251,56 @@ def _load_forge_bridge_module():
     spec.loader.exec_module(module)
     return module
 
+
+def _load_embalm_module():
+    """Dynamically load embalm_before_edit from the corpse-reviver skill."""
+    module_path = ROOT / ".codex" / "skills" / "corpse-reviver" / "scripts" / "embalm_before_edit.py"
+    if not module_path.exists():
+        raise RuntimeError(f"embalm_before_edit not found at {module_path}")
+    spec = importlib.util.spec_from_file_location("embalm_before_edit_runtime", module_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"Could not load embalm module from {module_path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def _embalm_pre_chew(path: Path) -> dict:
+    """Snapshot a file via embalm_before_edit before intelligence extraction.
+
+    Pre-CHEW provenance capture — NOV-CAD surface. Gracefully degrades to
+    empty dict on any failure so chew() is never blocked by embalm errors.
+    Returns the embalm provenance dict, or {} on failure.
+    """
+    try:
+        embalm = _load_embalm_module()
+        session_dir = embalm.create_session_dir(label="zombie_chew")
+        prov = embalm.snapshot_file(path, session_dir)
+        if prov is None:
+            # File already snapshotted in this session (duplicate) — still OK
+            return {"status": "duplicate_skipped", "session": session_dir.name}
+        # Write session manifest for the single-file session
+        embalm.write_session_manifest(session_dir, [prov])
+        return prov
+    except Exception as exc:  # noqa: BLE001
+        return {"status": "embalm_unavailable", "reason": str(exc)}
+
+
 # ---------------------------------------------------------------------------
 # CHEW — extract value from a file
 # ---------------------------------------------------------------------------
 
 def chew(path: Path) -> dict:
-    """Extract all intelligence from a file."""
+    """Extract all intelligence from a file.
+
+    A5 (Novia Cadaveris × Zombie CHEW composition): snapshot the file via
+    embalm_before_edit as a pre-CHEW step before intelligence extraction.
+    Provenance snapshot lives in extract['embalm_provenance']; the inline
+    NOV-CAD summary lives in extract['provenance'] for backward compat.
+    """
+    # --- A5: Pre-CHEW embalm snapshot (NOV-CAD surface) ---
+    embalm_prov = _embalm_pre_chew(path)
+
     assessment = bite(path, deep=True)
     if "error" in assessment:
         return assessment
@@ -1271,6 +1320,7 @@ def chew(path: Path) -> dict:
 
     extract["content_hash"] = assessment.get("content_hash", "")
     extract["provenance"] = _build_bride_provenance(path, assessment)
+    extract["embalm_provenance"] = embalm_prov  # A5: real NOV-CAD snapshot
 
     # --- Upgrade A2: Annotate community membership for this file's imports ---
     imports_found = [
