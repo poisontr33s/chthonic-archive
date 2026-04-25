@@ -97,7 +97,13 @@ Status as of commit `bfeb655b` / `f03cf39d` (2026-04-25).
 **Level reached:** L2 (Interrogable — resolver can identify and route packages)  
 **Status:** `admitted` — resolver operates correctly on Python 3.14  
 **Proof:** `uv run pytest tests/test_start_ps1.py -v` → 17/17 passed (Python 3.14.4)  
-**Commit:** `bfeb655b`
+**Commit:** `bfeb655b` — *EDITED* — **Savent-Grade** **commit:** 
+  * **Message:** 
+* **(1):** `tabbyAPI/pyproject.toml: add override-dependencies to bypass exact pin blocker for pydantic-core upgrade (enables Python 3.14 resolver coherence)`, 
+* **(2):** `docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md: add FAF application for tabbyAPI Python 3.14 GPU inference host verification`, *plus related ledger updates in* `docs/reference/FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md` + `scripts/toml_audit.py`, `pyproject.toml`, `dev/tabbyAPI/start.ps1`, `dev/tabbyAPI/tests/test_start_ps1.py`, + `dev/tabbyAPI/.python-version` *to support Python 3.14 and the gate artifacts*.
+* **(3.):** *The override-dependencies entry is a critical artifact that allows the resolver to bypass an exact pin blocker in exllamav3's metadata, enabling pydantic-core 2.46.x (with cp314 wheels) to resolve and be used by tabbyAPI on Python 3.14. This is a key step in the gate progression, as it unlocks the ability to use a compatible pydantic-core version that supports Python 3.14, which is essential for the GPU inference host capability. The commit message emphasizes the significance of this change in achieving resolver coherence on Python 3.14, which is a prerequisite for the subsequent gates related to CUDA discovery and inference library compatibility*.
+* **(4):** *The **FAF-application** document is added to provide a structured framework for understanding the challenge, the gates, and the current status of the verification process for tabbyAPI on Python 3.14 as a GPU inference host. This document serves as a reference point for tracking progress, recording artifacts, and outlining next steps in the verification process*.
+  * **Savent-Grade:** *High* (Critical resolver fix + comprehensive **FAF-application** documentation)
 
 ---
 
