@@ -126,6 +126,12 @@ RUN git clone --branch v0.3.2 --depth 1 \
     && cd /build/exllamav2 \
     && uv pip install . --no-build-isolation
 
+# --- exllamav2 runtime deps not declared in pyproject (cp314 compat) ---
+# tokenizers: used at import time by exllamav2 but not listed as a dep for cp314.
+# HuggingFace ships cp314 manylinux wheels; falls back to source build (Rust not needed
+# as of tokenizers >=0.20 which ships abi3 wheels).
+RUN uv pip install tokenizers
+
 # --- Run probe ladder ---
 # Default CMD: P-08 (exllamav2 source build gate — G4 Linux path)
 # Override with: podman run ... python /workspace/probes/python/P-07.py (G7)
