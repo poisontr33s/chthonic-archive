@@ -132,7 +132,15 @@ RUN git clone --branch v0.3.2 --depth 1 \
 # as of tokenizers >=0.20 which ships abi3 wheels).
 RUN uv pip install tokenizers
 
+# --- tabby-modern src package (G9 import gate layer) ---
+# Copy forged package from apps/tabby-modern/ into container.
+# uv pip install -e installs in editable mode with all declared deps resolved.
+# No --no-build-isolation: hatchling + all build deps already present in venv.
+COPY apps/tabby-modern/pyproject.toml /workspace/app/pyproject.toml
+COPY apps/tabby-modern/src/ /workspace/app/src/
+RUN uv pip install -e /workspace/app/ --no-build-isolation
+
 # --- Run probe ladder ---
-# Default CMD: P-08 (exllamav2 source build gate — G4 Linux path)
-# Override with: podman run ... python /workspace/probes/python/P-07.py (G7)
-CMD ["python", "/workspace/probes/python/P-08.py"]
+# CMD: P-09 (tabby-modern import gate — G9)
+# Override with: podman run ... python /workspace/probes/python/P-08.py (G4 Linux)
+CMD ["python", "/workspace/probes/python/P-09.py"]

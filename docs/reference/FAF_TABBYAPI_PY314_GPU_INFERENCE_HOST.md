@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.7  
-**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible. **v0.5 (2026-04-25):** flash_attn Linux/Podman lane: source build blocked (torch 2.11+cu128 exposes sm_120 via `get_arch_list()`; CUTLASS in 2.8.3 lacks sm_120; `TORCH_CUDA_ARCH_LIST` env bypassed by flash-attn directly); `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` applied — Python layer only, `python_only_admitted`. **v0.6 (2026-04-25):** P-08 EMITTED — exllamav2 G4 Linux/Podman gate: `admitted_L2_source_linux`. Source build `exllamav2==0.3.2` + `tokenizers==0.22.2` via Containerfile 28-STEP build; image `chthonic-tabby-modern-gpu:latest` (`3062c46dac1b`). `import exllamav2` SUCCESS; `ExLlamaV2Config` import SUCCESS (L2_interrogable). G4 Linux lane closed. **v0.7 (2026-04-25):** `apps/tabby-modern/` scaffold landed — `pyproject.toml` (cp314 dep set, G7 formatron pin `>=0.4.11,<1.0`, exllamav3 cp314 wheel, exllamav2 container-layer annotation) + `config.yml` (exllamav3 backend, `host: 0.0.0.0`, RTX 4090 single-GPU). GPU inference row: `scaffolding_pending` → `scaffold_landed`. P-09 is next gate.  
+**Version:** v0.8  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible. **v0.5 (2026-04-25):** flash_attn Linux/Podman lane: source build blocked (torch 2.11+cu128 exposes sm_120 via `get_arch_list()`; CUTLASS in 2.8.3 lacks sm_120; `TORCH_CUDA_ARCH_LIST` env bypassed by flash-attn directly); `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` applied — Python layer only, `python_only_admitted`. **v0.6 (2026-04-25):** P-08 EMITTED — exllamav2 G4 Linux/Podman gate: `admitted_L2_source_linux`. Source build `exllamav2==0.3.2` + `tokenizers==0.22.2` via Containerfile 28-STEP build; image `chthonic-tabby-modern-gpu:latest` (`3062c46dac1b`). `import exllamav2` SUCCESS; `ExLlamaV2Config` import SUCCESS (L2_interrogable). G4 Linux lane closed. **v0.7 (2026-04-25):** `apps/tabby-modern/` scaffold landed (REVERTED Brunhilda-clone approach). **v0.8 (2026-04-25):** `apps/tabby-modern/` forged as new archetype — Blacksmith Protocol: DELETE `config.yml` (YAML-first slag), REVISE `pyproject.toml` (src-layout, `[project.scripts]`, `pydantic-settings` as config primary, no `ruamel.yaml`), FORGE `src/tabby_modern/` package (12 files: settings.py/state.py/app.py/\__main__.py/sampler.py + api/\{health,models,completions,chat\}.py). P-09 (import gate probe) forged. Containerfile CMD updated P-08→P-09. Commit: `c08013a3`.  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -537,6 +537,27 @@ sys.exit(0 if result.get("status", "").startswith("admitted") else 1)
 
 ---
 
+### Probe P-09 — tabby-modern Import Gate (Container)
+```python
+# probes/python/P-09.py — forged at commit c08013a3
+# Gate: tabby_modern/import_gate
+# Validates all src/tabby_modern modules import cleanly on cp314 inside the container.
+# Run AFTER: apps/tabby-modern/src/ COPYed into /workspace/app/ in Containerfile.
+# Required: COPY apps/tabby-modern/src/ /workspace/app/src/ (+ pyproject.toml)
+#           uv pip install -e /workspace/app/ --no-build-isolation (optional)
+#           sys.path.insert(0, '/workspace/app/src')
+```
+
+**Gate:** `tabby_modern/import_gate`  
+**Run:** Inside `tabby-modern-gpu` container after Containerfile updated to COPY `apps/tabby-modern/src/`  
+**Required emissions:** `/workspace/manifest/tabby_modern_import_gate.json`  
+**Manifest schema:** `probe_id`, `gate`, `python_version`, `substrate`, `timestamp`, `module_imports` (dict keyed by module path, value: `"SUCCESS"` or error string), `settings_check` (env instantiation), `app_factory_check` (route count), `status` (`admitted_import_gate` \| `failed_import_gate`), `level`  
+**Container prerequisite:** Containerfile needs `COPY apps/tabby-modern/src/ /workspace/app/src/` + `COPY apps/tabby-modern/pyproject.toml /workspace/app/pyproject.toml` BEFORE P-09 CMD. Current Containerfile CMD has been updated to P-09.py but the COPY layer is not yet present — rebuild required.  
+**Status:** `probe_declared` — P-09 forged at `c08013a3`; container rebuild + P-09 execution is the next gate action.  
+**Proof (pending):** `manifest/tabby_modern_import_gate.json` — not yet emitted; requires container rebuild with COPY layer.
+
+---
+
 ## 8. Admitted Capabilities
 
 As of probe trajectory execution 2026-04-25:
@@ -556,6 +577,7 @@ As of probe trajectory execution 2026-04-25:
 | **flash_attn 2.8.3 source build** | **P-06 (2026-04-25T05:45:25Z) → build exit_code=0, MSVC 14.44.35207, CUDA 12.8, 60m 42s; `manifest/vs2022_flash_attn_probe.json` L1 admitted** |
 | **CI membrane 8/8 green** | **`bun run ci/run.ts` → all 8 checks pass (2026-04-25, commit `2241ed22`) — shebang, blessing-gate, inference-gates, terminal-hook, gh-runs** |
 | **`pentea-cloud-dispatch.yml` workflow** | **YAML corruption root-caused + rewritten; run `24934808239` → conclusion=success; `dispatch_consecutive_fail=false`** |
+| **`apps/tabby-modern/` package forged** | **Commit `c08013a3` — Blacksmith Protocol: 12-file src-layout package (pydantic-settings, exllamav3-native, OAI v1 surface, FastAPI lifespan, uvloop); `config.yml` slag deleted; P-09 import gate probe forged; Containerfile CMD→P-09** |
 
 ---
 
@@ -567,14 +589,14 @@ As of probe trajectory execution 2026-04-25:
 | exllamav2 on Python 3.14 (Linux, source) | CUDA dev + GCC + cmake (all present in container) | P-08 probe result | ~~`source_build_unprobed`~~ → **`admitted_L2_source_linux`** — P-08 2026-04-25T19:14:56Z; `exllamav2==0.3.2`; `ExLlamaV2Config` SUCCESS; Containerfile `3062c46dac1b` |
 | exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | ~~Gate 6 clears~~ | ~~`import_blocked_on_flash_attn`~~ → **`admitted`** — Gate 6 cleared (P-06); `import exllamav3` → SUCCESS, L4 |
 | flash_attn cp314 | kingbri1/flash-attention | ~~cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update~~ | ~~`source_build_blocked_msvc_ceiling`~~ → **`admitted`** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
-| GPU inference (full tabbyAPI, exllamav3 backend) | exllamav3 imports cleanly | tabbyAPI wired to exllamav3 backend + service layer | **`scaffold_landed`** — `apps/tabby-modern/` committed; `pyproject.toml` (cp314 dep set + G7 formatron pin) + `config.yml` (exllamav3 backend, `host: 0.0.0.0`); P-09 (tabbyAPI startup probe) is next gate |
+| GPU inference (tabby-modern, exllamav3 backend) | exllamav3 imports cleanly | `apps/tabby-modern/src/tabby_modern/` package + P-09 import gate | **`package_forged`** — Commit `c08013a3`: DELETE `config.yml` (YAML-first slag); `pyproject.toml` src-layout reforged; `src/tabby_modern/` 12-file package (Pydantic Settings primary, FastAPI lifespan, exllamav3-native state, OAI v1 surface, sampler extracted from tabbyAPI); `probes/python/P-09.py` import gate; Containerfile CMD→P-09. P-09 execution in container is next gate. |
 | GPU inference (full tabbyAPI, exllamav2 backend) | turboderp-org/exllamav2 cp314 wheel | cp314-cp314-win_amd64 wheel published | `blocked_not_closed` — G4 impossible-currently; exllamav2 v0.3.2 highest=cp313 |
 | ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
 | formatron SyntaxError on ~3.16 | GuidoGuardiani/formatron or tabbyAPI maintainers | formatron upstream fixes `\A`/`\z`/`\[` bare-string invalid escapes; or tabbyAPI substitutes dependency | `warning_degraded` — SyntaxWarning on 3.14; hard cessation at ~3.16 |
 
 **Key reclassifications (2026-04-25 pre-P-06):** torch ADMITTED L4. exllamav3 wheel EXISTS + INSTALLS (L1). flash_attn: blocked — MSVC 14.51 (VS 2027) exceeds CUDA 12.8's host compiler ceiling of MSVC 14.40 (VS 2022). Two independent blockers — host_config.h ceiling + CUTLASS header incompatibility with MSVC 18.
 
-**P-06 epoch reclassifications (2026-04-25T05:45:25Z, commit `d7ae56ae`):** flash_attn ADMITTED L1 — source build succeeded via temp-batch-file vcvars fix (bypassed cmd.exe quote-nesting bug), MSVC 14.44.35207, CUDA 12.8, 60m 42s. exllamav3 import cascade ADMITTED L4. **E2E gate PASSED (2026-04-25, commit `2241ed22`):** CI membrane 8/8 green, `pentea-cloud-dispatch.yml` workflow fixed and verified clean. **v0.7 (2026-04-25):** `apps/tabby-modern/` scaffold landed — `pyproject.toml` (cp314 dep set, G7 formatron pin `>=0.4.11,<1.0`, exllamav3 cp314 wheel, exllamav2 excluded with container-layer annotation) + `config.yml` (exllamav3 backend, `host: 0.0.0.0`, RTX 4090 single-GPU layout). Next gate: P-09 tabbyAPI startup probe inside container.
+**P-06 epoch reclassifications (2026-04-25T05:45:25Z, commit `d7ae56ae`):** flash_attn ADMITTED L1 — source build succeeded via temp-batch-file vcvars fix (bypassed cmd.exe quote-nesting bug), MSVC 14.44.35207, CUDA 12.8, 60m 42s. exllamav3 import cascade ADMITTED L4. **E2E gate PASSED (2026-04-25, commit `2241ed22`):** CI membrane 8/8 green, `pentea-cloud-dispatch.yml` workflow fixed and verified clean. **v0.7 (2026-04-25):** `apps/tabby-modern/` scaffold landed (clone approach — superseded by v0.8). **v0.8 (2026-04-25, commit `c08013a3`):** Blacksmith Protocol forge — `config.yml` deleted (YAML-first slag); `pyproject.toml` reforged (src-layout, `[project.scripts] tabby-modern`, `pydantic-settings` config primary, no `ruamel.yaml`, no `aiohttp`/`huggingface_hub`/`async_lru` cargo); `src/tabby_modern/` package (12 files): `settings.py` (Pydantic BaseSettings env-first, YAML optional overlay), `state.py` (exllamav3-native model lifecycle, asyncio Lock, executor-dispatched blocking load), `app.py` (FastAPI lifespan context manager, `create_app()` factory), `__main__.py` (sets `PYTORCH_CUDA_ALLOC_CONF` pre-import, uvloop on Linux), `sampler.py` (ExllamaV3 sampler chain extracted + duck-typed from tabbyAPI `backends/exllamav3/sampler.py`), `api/__init__.py`, `api/health.py`, `api/models.py`, `api/completions.py`, `api/chat.py` (OAI v1 surface). `probes/python/P-09.py` — import gate probe emits `/workspace/manifest/tabby_modern_import_gate.json`. Containerfile CMD updated P-08→P-09. Next gate: P-09 execution inside `chthonic-tabby-modern-gpu:latest` (requires container rebuild to COPY `apps/tabby-modern/src/`).
 
 ---
 
