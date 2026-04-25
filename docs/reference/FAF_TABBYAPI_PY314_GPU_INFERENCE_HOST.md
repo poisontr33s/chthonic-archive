@@ -141,21 +141,25 @@ torch loads, cuda available, device_count=0 -> record device_absent gate
 torch loads, cuda available, device_count>0 -> L3 survivable, next: L4 call gate
 ```
 
-**Level reached:** L1 (resolver can locate torch wheel slot; load not yet confirmed on cp314)  
-**Status:** `probe_pending` — wheel resolution admitted; CUDA load truth unknown  
-**Minimum condition to run probe:** `uv sync --extra cu12` completes on Python 3.14.4
+**Level reached:** L4 (Useful — `torch 2.11.0+cu128` loads, `cuda_available=True`, RTX 4090 `device_count=1`, `capability=(8,9)`)  
+**Status:** `admitted` — P-02 executed 2026-04-25T04:30:36Z  
+**Proof:** `manifest/cuda_gate.jsonl`
 
 ```json
 {
   "artifact_type": "probe",
   "gate": "torch/cuda_discovery",
   "claim": "torch.cuda.is_available() returns True on Python 3.14.4 + RTX 4090 + driver 596.21",
-  "observed_failure": "not yet probed",
-  "proof": "uv run --extra cu12 python -c \"import torch; print(torch.version.cuda, torch.cuda.is_available())\"",
-  "minimum_condition_to_reopen": "cp314 torch wheel confirmed present in pytorch-cu128 index",
-  "upstream_dependency": "pytorch/pytorch wheel release for cp314",
-  "next_probe": "torch_cuda_device_interrogation_probe",
-  "status": "blocked_not_closed"
+  "torch_version": "2.11.0+cu128",
+  "cuda_version": "12.8",
+  "cuda_available": true,
+  "device_count": 1,
+  "device_name": "NVIDIA GeForce RTX 4090",
+  "device_capability": [8, 9],
+  "python_version": "3.14.4",
+  "timestamp": "2026-04-25T04:30:36Z",
+  "level": "L4_useful",
+  "status": "admitted"
 }
 ```
 
@@ -194,53 +198,62 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 
 ---
 
-### Gate 5 — exllamav3 cp314 Wheel (Impossible-Currently)
+### Gate 5 — exllamav3 cp314 Wheel → **BOUNDARY OPENED / IMPORT BLOCKED ON flash_attn**
 **Question:** Can exllamav3 be loaded on Python 3.14?
 
-**Background:** exllamav3 v0.0.21 (turboderp-org/exllamav3) covers cp310–cp313. No cp314 wheel exists. Additionally, exllamav3 v0.0.21 contains an exact `pydantic==2.11.0` pin in its metadata — bypassed by `override-dependencies` at the resolver level, but this does not create a cp314 wheel.
-
-**Observed failure:** No cp314 direct-URL entry; resolver correctly skips exllamav3 for Python 3.14.
+**State change (2026-04-25):**  
+- P-03: exllamav3 v0.0.30 (released 2026-04-19) ships `cp314-cp314-win_amd64` — existence gate OPEN  
+- Install confirmed: `uv pip install exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl --no-deps` → SUCCESS  
+- Import probe: `import exllamav3` → `ModuleNotFoundError: No module named 'flash_attn'`  
+- Hard dep: `exllamav3/modules/attn.py` imports `flash_attn` at module init level — not optional
 
 ```json
 {
-  "artifact_type": "impossible_currently_boundary",
-  "gate": "exllamav3/cp314_wheel",
-  "claim": "exllamav3 is loadable on Python 3.14",
-  "observed_failure": "No cp314 wheel published at turboderp-org/exllamav3 as of 2026-04-25. Highest published: cp313. Additionally: exact pydantic==2.11.0 pin in v0.0.21 metadata (bypassed by override-dependencies, does not create a wheel).",
-  "proof": "grep exllamav3 dev/tabbyAPI/pyproject.toml",
-  "minimum_condition_to_reopen": "turboderp-org/exllamav3 publishes a release with cp314-cp314-win_amd64 wheel AND drops or loosens pydantic exact pin",
-  "upstream_dependency": "turboderp-org/exllamav3 v0.0.22+ release",
-  "next_probe": "exllamav3_cp314_wheel_existence_probe",
-  "status": "blocked_not_closed"
+  "artifact_type": "probe",
+  "gate": "exllamav3/cp314_install_import",
+  "claim": "exllamav3 0.0.30 cp314 wheel installs and imports on Python 3.14",
+  "wheel": "exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl",
+  "install_result": "SUCCESS — package installed via uv pip --no-deps",
+  "import_result": "BLOCKED — ModuleNotFoundError: No module named 'flash_attn' at exllamav3/modules/attn.py:10",
+  "blocking_dependency": "flash_attn — hard import at module init, not conditional",
+  "level": "L1_install_admitted",
+  "status": "import_blocked_on_flash_attn",
+  "next_gate": "Gate 6 — flash_attn cp314 source build"
 }
 ```
 
-**Level reached:** L0  
-**Status:** `blocked_not_closed`
+**Level reached:** L1 (install admitted; import blocked on flash_attn hard dependency)  
+**Status:** `import_blocked_on_flash_attn` — resolves when Gate 6 clears
 
 ---
 
-### Gate 6 — flash_attn cp314 Wheel (Impossible-Currently)
+### Gate 6 — flash_attn cp314 (No Pre-Built Wheel → Source-Buildable Boundary)
 **Question:** Can flash_attn be loaded on Python 3.14?
 
-**Background:** flash_attn v2.8.3 (kingbri1/flash-attention fork) covers cp310–cp313. No cp314 wheel exists.
+**Background:** No cp314 pre-built wheel at kingbri1/flash-attention v2.8.3 (P-03 confirmed: highest=cp313). However, source build is structurally possible: nvcc v12.8 confirmed (`nvcc --version`), `CUDA_HOME=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8`, torch 2.11.0+cu128 in venv.
+
+**Build attempt (2026-04-25):** `uv sync --extra cu12` triggered flash_attn source build. First attempt failed (isolated build env got `torch 2.10.0+cpu`). Second attempt with `--no-build-isolation` failed (CUDA_HOME not propagated to isolated build env). Source build deferred — time-intensive (20–60 min CUDA compilation), not truly impossible.
 
 ```json
 {
-  "artifact_type": "impossible_currently_boundary",
-  "gate": "flash_attn/cp314_wheel",
-  "claim": "flash_attn is loadable on Python 3.14",
-  "observed_failure": "No cp314 wheel published at kingbri1/flash-attention as of 2026-04-25. Highest published: cp313.",
-  "proof": "grep flash_attn dev/tabbyAPI/pyproject.toml",
-  "minimum_condition_to_reopen": "kingbri1/flash-attention publishes a release with cp314-cp314-win_amd64 wheel",
-  "upstream_dependency": "kingbri1/flash-attention v2.9.x+ release with cp314 wheel",
-  "next_probe": "flash_attn_cp314_wheel_existence_probe",
-  "status": "blocked_not_closed"
+  "artifact_type": "probe",
+  "gate": "flash_attn/cp314_source_build",
+  "claim": "flash_attn is buildable from source on Python 3.14 with nvcc v12.8",
+  "wheel_existence": "no cp314 pre-built wheel at kingbri1/flash-attention v2.8.3 (P-03: highest=cp313)",
+  "source_build_feasibility": "structurally possible",
+  "nvcc_confirmed": "nvcc --version: NVIDIA (R) Cuda compiler driver, Built Mon_Mar__2_21:54:11_PST_2026",
+  "cuda_home": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8",
+  "torch_in_venv": "2.11.0+cu128",
+  "build_blocker": "uv build isolation passes torch 2.10.0+cpu to build env; --no-build-isolation workaround available",
+  "level": "L0_source_buildable",
+  "status": "source_build_deferred",
+  "minimum_condition_to_close_via_wheel": "kingbri1/flash-attention release with cp314-cp314-win_amd64 wheel",
+  "minimum_condition_to_close_via_source": "CUDA_HOME propagated to build env + uv pip install flash_attn --no-build-isolation"
 }
 ```
 
-**Level reached:** L0  
-**Status:** `blocked_not_closed`
+**Level reached:** L0 (no pre-built cp314 wheel; source-buildable with nvcc — build deferred)  
+**Status:** `source_build_deferred` — not impossible-currently; time-gated on source compilation
 
 ---
 
@@ -251,11 +264,11 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 | Python 3.14 interpreter | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — uv-managed, 17/17 tests |
 | pydantic-core 2.46.x | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — cp314 wheel, PyO3 0.25.x |
 | uv resolver (cu12 index) | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — index routing operational |
-| torch (cu12, cp314) | ✅ | ❓ | ❓ | ❓ | ❓ | L0 admitted; L1+ probe pending |
-| exllamav2 | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently (cp314 gap) |
-| exllamav3 | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently (cp314 gap) |
-| flash_attn | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently (cp314 gap) |
-| CUDA driver (RTX 4090) | ✅ | ❓ | ❓ | ❓ | ❓ | L0 (driver installed); L1+ awaits torch probe |
+| torch 2.11.0+cu128 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — P-02: CUDA 12.8, RTX 4090, device_count=1 |
+| exllamav2 | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently — v0.3.2 highest=cp313 |
+| exllamav3 0.0.30 | ✅ | ✅ | ❌ | ❌ | ❌ | L1 install admitted; import blocked on flash_attn |
+| flash_attn | ✅ | ❌ | ❌ | ❌ | ❌ | No cp314 pre-built wheel; source-buildable (deferred) |
+| CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
 
 Key: ✅ = admitted at this level | ❌ = blocked | ❓ = not yet probed
 
@@ -391,29 +404,33 @@ print(json.dumps(result, indent=2))
 
 ## 8. Admitted Capabilities
 
-As of `bfeb655b` / `f03cf39d`:
+As of probe trajectory execution 2026-04-25:
 
 | Capability | Admission Evidence |
 |------------|-------------------|
-| Python 3.14.4 host | `uv run python --version` → `Python 3.14.4` |
-| uv resolver + cu12 index routing | `uv sync --extra cu12` completes; torch resolves from pytorch-cu128 |
+| Python 3.14.4 host | P-01 → `manifest/python_host.json`: CPython 3.14.4, AMD64, Win11, L4 |
+| uv resolver + cu12 index routing | `uv lock` → 147 packages resolved including `torch 2.11.0+cu128` |
 | pydantic-core 2.46.x on cp314 | 17/17 test suite passes on Python 3.14.4; pydantic validation exercised |
 | tabbyAPI start.ps1 contract | 17/17 test_start_ps1 tests pass (parameter handling, backend selection, model path routing) |
 | hatchling editable build on cp314 | `uv run pytest` resolves without build backend failure |
+| **torch 2.11.0+cu128 on cp314** | **P-02 → `manifest/cuda_gate.jsonl`: `cuda_available=True`, `device_count=1`, `device_name=RTX 4090`** |
+| **CUDA 12.8 + RTX 4090 runtime** | **P-02: `cuda_version=12.8`, `device_capability=(8,9)` — driver 596.21, SM 8.9** |
+| exllamav3 0.0.30 cp314 wheel exists | P-03 → 6 cp314 wheels confirmed in v0.0.30 release (released 2026-04-19) |
+| exllamav3 0.0.30 cp314 installs | `uv pip install exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl --no-deps` → SUCCESS |
 
 ---
 
 ## 9. Impossible-Currently Boundaries (Summary)
 
-| Boundary | Upstream Dependency | Reopen Condition |
-|----------|--------------------|--------------------|
-| exllamav2 on Python 3.14 | turboderp-org/exllamav2 | cp314-cp314-win_amd64 wheel in release |
-| exllamav3 on Python 3.14 | turboderp-org/exllamav3 | cp314 wheel + loosened pydantic pin |
-| flash_attn on Python 3.14 | kingbri1/flash-attention | cp314-cp314-win_amd64 wheel in release |
-| GPU inference (full tabbyAPI) on Python 3.14 | All three above | exllamav2 OR exllamav3 + torch + flash_attn all at cp314 |
-| ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff |
+| Boundary | Upstream Dependency | Reopen Condition | Status (2026-04-25) |
+|----------|--------------------|--------------------|----------------------|
+| exllamav2 on Python 3.14 | turboderp-org/exllamav2 | cp314-cp314-win_amd64 wheel in release | `blocked_not_closed` — v0.3.2 highest=cp313 |
+| exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | Gate 6 clears | `import_blocked_on_flash_attn` — L1 install admitted |
+| flash_attn cp314 pre-built | kingbri1/flash-attention | cp314 pre-built wheel in release | `source_build_deferred` — nvcc v12.8 present |
+| GPU inference (full tabbyAPI) on Python 3.14 | flash_attn cp314 (source build or pre-built) | flash_attn loads + exllamav3 imports | `partial` — blocked only on flash_attn |
+| ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
 
-None of these are closures. Each has a named ceiling and a concrete reopen condition.
+**Key reclassification (2026-04-25):** torch is ADMITTED L4. exllamav3 wheel EXISTS and INSTALLS. flash_attn is **not** impossible-currently — nvcc v12.8 present, source-buildable; build time-gated only.
 
 ---
 
