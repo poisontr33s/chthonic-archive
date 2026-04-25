@@ -345,6 +345,27 @@ ci/checks/terminal-hook-smoke.ts →  reads manifest/terminal_*   →  regressio
 
 ---
 
+### Independent-Validation-Notary — `novel`
+*Origin: 2026-04-25 — GPT-5.5 MILFOLOGICAL validation pass on mas_pid_reader / PID-flipper pipeline*
+
+A separate model (or agent) performs a blind E2E validation pass on a newly built tool or pipeline before the primary agent proceeds. The notary produces a structured artifact (`PID_MCP_TERMINAL_SESSION_E2E_2026-04-25.json`) with `observed_quirk` entries that catch silent wrong behavior the building agent missed — in this case: `success=True` even when `exit_code=1` (PowerShell `$?` vs `$LASTEXITCODE` semantic split). The primary agent absorbs the findings and applies fixes in the same session.
+
+**What makes this useful:** The notary operates from a clean execution context — it doesn't carry the building session's assumptions. It finds what the builder normalized away.
+
+**Artifact contract:**
+- `known_validation_notes[]` — array of `{status: "non_blocking"|"observed_quirk", note: string}`
+- `verdict.status` — `"passed"` | `"failed"`
+- `verdict.documentation_ready` — boolean
+- Any `observed_quirk` entry is an action item for the primary agent, not optional
+
+**Where it fires well:** newly built MCP tools, CI check implementations, probe scripts that have no existing test harness — anything with a silent-failure surface where `exit_code=0` can mask wrong semantics.
+
+**Shape:** primary agent builds → notary validates from clean context → produces artifact with `observed_quirk` entries → primary agent absorbs + fixes → commit cites notary artifact as provenance.
+
+**Promotion criteria:** used in ≥2 distinct tool validation passes where the notary catches at least one `observed_quirk` that the builder missed → `familiar`. Currently: 1 (mas_pid_reader, GPT-5.5, 2026-04-25).
+
+---
+
 ## Stale Queue
 
 *Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*

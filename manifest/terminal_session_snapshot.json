@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0",
+  "snapshot_ts": "2026-04-25T16:52:05.170Z",
+  "source": "manifest/terminal_session.jsonl",
+  "stats": {
+    "total_complete": 87,
+    "succeeded": 71,
+    "failed": 16,
+    "success_rate": 0.8161,
+    "avg_duration_ms": 858,
+    "max_duration_ms": 13299
+  },
+  "pid_summary": {
+    "70336": {
+      "session_id": "964b4806",
+      "start_ts": "2026-04-25T17:31:04.7957429+02:00",
+      "term": "vscode",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "commands": 87,
+      "failed": 16,
+      "success_rate": 0.8161
+    }
+  },
+  "recent_entries": [
+    {
+      "seq": 58,
+      "ts": "2026-04-25T18:02:26.1707032+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add mas_mcp/__main__.py mas_mcp/abbreviation_system/__init__.py mas_mcp/lib/__i…",
+      "exit_code": 0,
+      "duration_ms": 704
+    },
+    {
+      "seq": 59,
+      "ts": "2026-04-25T18:11:15.3313584+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git add docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md docs/reference/TABBY_MODERNIZATION_SCAFFOLD_DECISION.md…",
+      "exit_code": 0,
+      "duration_ms": 105
+    },
+    {
+      "seq": 60,
+      "ts": "2026-04-25T18:11:29.4051166+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git commit --no-verify -m \"docs: E2E gate epoch + tabby scaffold decision\n\nFAF_TABB…",
+      "exit_code": 0,
+      "duration_ms": 538
+    },
+    {
+      "seq": 61,
+      "ts": "2026-04-25T18:14:02.6599590+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content manifest\\terminal_pids.json 2>&1 | Select-Object -First 30",
+      "exit_code": 0,
+      "duration_ms": 14
+    },
+    {
+      "seq": 62,
+      "ts": "2026-04-25T18:14:07.7482227+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "bun run scripts/terminal_session_query.ts --report 2>&1 | Select-Object -First 40",
+      "exit_code": 0,
+      "duration_ms": 74
+    },
+    {
+      "seq": 63,
+      "ts": "2026-04-25T18:14:42.0550248+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content manifest\\terminal_session.jsonl 2>&1 | Select-Object -Last 3 | ConvertFrom-Json | Select-Object ts,pid,sid,…",
+      "exit_code": 0,
+      "duration_ms": 39
+    },
+    {
+      "seq": 64,
+      "ts": "2026-04-25T18:15:39.3997538+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport json\nfrom pathlib import Path\nimport sy…",
+      "exit_code": 1,
+      "duration_ms": 135
+    },
+    {
+      "seq": 65,
+      "ts": "2026-04-25T18:15:45.6609938+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport json, sys\nfrom pathlib import Path\nsys.…",
+      "exit_code": 0,
+      "duration_ms": 139
+    },
+    {
+      "seq": 66,
+      "ts": "2026-04-25T18:15:51.8359535+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport sys\nfrom pathlib import Path\nsys.path.i…",
+      "exit_code": 1,
+      "duration_ms": 2470
+    },
+    {
+      "seq": 67,
+      "ts": "2026-04-25T18:15:59.0117740+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport sys\nfrom pathlib import Path\nsys.path.i…",
+      "exit_code": 0,
+      "duration_ms": 1099
+    },
+    {
+      "seq": 68,
+      "ts": "2026-04-25T18:16:05.1998353+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport sys, asyncio\nfrom pathlib import Path\ns…",
+      "exit_code": 0,
+      "duration_ms": 1087
+    },
+    {
+      "seq": 69,
+      "ts": "2026-04-25T18:16:11.8159393+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport sys, asyncio, json\nfrom pathlib import …",
+      "exit_code": 0,
+      "duration_ms": 1093
+    },
+    {
+      "seq": 70,
+      "ts": "2026-04-25T18:16:26.9869417+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add mas_mcp/logic/pid_reader.py mas_mcp/server.py; git commit --no-verify -m \"f…",
+      "exit_code": 0,
+      "duration_ms": 578
+    },
+    {
+      "seq": 71,
+      "ts": "2026-04-25T18:40:05.3045245+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git status --short 2>&1",
+      "exit_code": 0,
+      "duration_ms": 88
+    },
+    {
+      "seq": 72,
+      "ts": "2026-04-25T18:40:09.6542662+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "uv run --project mas_mcp python -c \"import fastmcp; print(fastmcp.__version__)\" 2>&1",
+      "exit_code": 0,
+      "duration_ms": 1082
+    },
+    {
+      "seq": 73,
+      "ts": "2026-04-25T18:40:15.1247168+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "uv run --project mas_mcp python -m pip index versions fastmcp 2>&1 | Select-String \"Available\" | Select-Object -First 1",
+      "exit_code": 0,
+      "duration_ms": 4991
+    },
+    {
+      "seq": 74,
+      "ts": "2026-04-25T18:40:32.8747108+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content .github\\workflows\\pentea-cloud-dispatch.yml.off | Select-Object -First 5 2>&1",
+      "exit_code": 0,
+      "duration_ms": 11
+    },
+    {
+      "seq": 75,
+      "ts": "2026-04-25T18:40:46.1456752+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git log --oneline --diff-filter=R -- \"*.off\" 2>&1 | Select-Object -First 3",
+      "exit_code": 0,
+      "duration_ms": 346
+    },
+    {
+      "seq": 76,
+      "ts": "2026-04-25T18:41:05.3610923+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content .gitignore 2>&1 | Select-String \"\\.off|workflow\" | Select-Object -First 5",
+      "exit_code": 0,
+      "duration_ms": 13
+    },
+    {
+      "seq": 77,
+      "ts": "2026-04-25T18:41:10.7768208+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content .gitignore 2>&1 | Select-String -n \"tmp|temp|\\.bak|local|disabled\" | Select-Object -First 8",
+      "exit_code": 0,
+      "duration_ms": 36
+    },
+    {
+      "seq": 78,
+      "ts": "2026-04-25T18:41:15.1986043+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content .gitignore 2>&1 | Select-String \"tmp|temp|bak|local|disabled\" | Select-Object -First 8",
+      "exit_code": 0,
+      "duration_ms": 14
+    },
+    {
+      "seq": 79,
+      "ts": "2026-04-25T18:41:36.3920382+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "uv sync --project mas_mcp --upgrade-package fastmcp 2>&1 | Select-Object -Last 8",
+      "exit_code": 0,
+      "duration_ms": 6546
+    },
+    {
+      "seq": 80,
+      "ts": "2026-04-25T18:41:47.6077173+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "uv run --project mas_mcp python -c \"import fastmcp; print('fastmcp:', fastmcp.__version__)\" 2>&1",
+      "exit_code": 0,
+      "duration_ms": 1261
+    },
+    {
+      "seq": 81,
+      "ts": "2026-04-25T18:41:55.5381479+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run --project mas_mcp python -c \"\nimport sys, asyncio, json\nfrom pathlib import …",
+      "exit_code": 0,
+      "duration_ms": 1081
+    },
+    {
+      "seq": 82,
+      "ts": "2026-04-25T18:42:16.7481484+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git add mas_mcp/logic/pid_reader.py mas_mcp/pyproject.toml mas_mcp/uv.lock .gitignore docs/reference/PID_MCP_TERMINAL_S…",
+      "exit_code": 0,
+      "duration_ms": 218
+    },
+    {
+      "seq": 83,
+      "ts": "2026-04-25T18:42:31.8975634+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add uv.lock 2>&1; git commit --no-verify -m \"fix(mas-mcp): FastMCP 3.1->3.2.4 u…",
+      "exit_code": 0,
+      "duration_ms": 604
+    },
+    {
+      "seq": 84,
+      "ts": "2026-04-25T18:50:17.9740029+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content manifest\\terminal_pids.json 2>&1 | ConvertFrom-Json | ConvertTo-Json -Depth 3",
+      "exit_code": 0,
+      "duration_ms": 13
+    },
+    {
+      "seq": 85,
+      "ts": "2026-04-25T18:50:22.5496982+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "Get-Content .gitignore 2>&1 | Select-String \"manifest\"",
+      "exit_code": 0,
+      "duration_ms": 13
+    },
+    {
+      "seq": 86,
+      "ts": "2026-04-25T18:50:27.9829472+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git ls-files --others --ignored --exclude-standard manifest/ 2>&1 | Select-Object -First 10",
+      "exit_code": 0,
+      "duration_ms": 51
+    },
+    {
+      "seq": 87,
+      "ts": "2026-04-25T18:50:31.9915338+02:00",
+      "pid": 70336,
+      "sid": "964b4806",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
+      "command": "git ls-files manifest/ 2>&1",
+      "exit_code": 0,
+      "duration_ms": 51
+    }
+  ]
+}

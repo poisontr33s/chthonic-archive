@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// @SID: TERMINAL_SESSION_QUERY_V1
+// @SID: TERMINAL_SESSION_QUERY_V2
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ scripts/terminal_session_query.ts
@@ -21,9 +21,13 @@
 // ║   --json                   Output raw JSON array (default: table)
 // ║   --summary                One-line summary per PID
 // ║   --report                 Full structured JSON report (pids + entries)
+// ║   --snapshot               Emit compact tracked artifact to
+// ║                            manifest/terminal_session_snapshot.json
+// ║                            (persists session data across JSONL wipes;
+// ║                            run at trainstop time or pre-commit)
 // ╚════════════════════════════════════════════════════════════════════════════
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 const REPO_ROOT = resolve(import.meta.dir, "..");
@@ -51,6 +55,7 @@ const CWD_FILTER = opt("--cwd");
 const JSON_OUT = flag("--json");
 const SUMMARY = flag("--summary");
 const REPORT = flag("--report");
+const SNAPSHOT = flag("--snapshot");
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -236,4 +241,71 @@ if (JSON_OUT) {
   console.log(JSON.stringify(filtered, null, 2));
 } else {
   printTable(filtered);
+}
+
+// ── Snapshot ──────────────────────────────────────────────────────────────────
+// Emits a compact, tracked artifact to manifest/terminal_session_snapshot.json.
+// Run at trainstop time or pre-commit to persist session archaeology across
+// JSONL wipes. The JSONL is gitignored (ephemeral); the snapshot is tracked.
+//
+// Schema: session stats + per-PID summary + last 30 complete entries (commands only).
+// Designed to be small enough to commit without noise.
+
+if (SNAPSHOT) {
+  const SNAPSHOT_PATH = resolve(REPO_ROOT, "manifest", "terminal_session_snapshot.json");
+  const complete = allEntries.filter((e) => e.exit_code !== null);
+  const failed = complete.filter((e) => e.exit_code !== 0);
+  const durations = complete.map((e) => e.duration_ms).filter((d): d is number => d != null);
+  const avgDur = durations.length ? Math.round(durations.reduce((a, b) => a + b, 0) / durations.length) : null;
+  const maxDur = durations.length ? Math.max(...durations) : null;
+
+  // Per-PID summary
+  const pidSummary: Record<string, object> = {};
+  for (const [pidStr, info] of Object.entries(pids)) {
+    const pidNum = Number(pidStr);
+    const pidEntries = complete.filter((e) => e.pid === pidNum);
+    const pidFailed = pidEntries.filter((e) => e.exit_code !== 0);
+    pidSummary[pidStr] = {
+      session_id: info.session_id,
+      start_ts: info.start_ts,
+      term: info.term ?? null,
+      cwd: info.cwd,
+      commands: pidEntries.length,
+      failed: pidFailed.length,
+      success_rate: pidEntries.length ? Math.round((1 - pidFailed.length / pidEntries.length) * 10000) / 10000 : null,
+    };
+  }
+
+  // Last 30 complete entries — compact form (command, exit_code, duration_ms, ts, pid)
+  const recentEntries = complete.slice(-30).map((e) => ({
+    seq: e.seq,
+    ts: e.ts,
+    pid: e.pid,
+    sid: e.sid,
+    cwd: e.cwd,
+    command: e.command.length > 120 ? e.command.substring(0, 119) + "…" : e.command,
+    exit_code: e.exit_code,
+    duration_ms: e.duration_ms ?? null,
+  }));
+
+  const snapshot = {
+    schema_version: "1.0",
+    snapshot_ts: new Date().toISOString(),
+    source: "manifest/terminal_session.jsonl",
+    stats: {
+      total_complete: complete.length,
+      succeeded: complete.length - failed.length,
+      failed: failed.length,
+      success_rate: complete.length ? Math.round((1 - failed.length / complete.length) * 10000) / 10000 : null,
+      avg_duration_ms: avgDur,
+      max_duration_ms: maxDur,
+    },
+    pid_summary: pidSummary,
+    recent_entries: recentEntries,
+  };
+
+  writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2), "utf-8");
+  console.log(`[terminal-session-query] Snapshot written: ${SNAPSHOT_PATH}`);
+  console.log(`  complete=${complete.length}  failed=${failed.length}  pids=${Object.keys(pids).length}  recent=${recentEntries.length}`);
+  process.exit(0);
 }
