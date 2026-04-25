@@ -449,6 +449,69 @@ bun run ci/run.ts --check uv-guard
 
 ---
 
+### `ci/checks/blessing-gate.ts`
+
+**@SID:** `CI_CHECK_BLESSING_GATE_V1`  
+**Purpose:** Local equivalent of `.github/workflows/blessing-gate.yml.off`. Runs `canonize_blessing.py` envelope drift checks across all canonical targets plus `radiance_validate.py` cross-reference validation.
+
+Registered in `ci/run.ts` as a `staged/fast` check. In staged mode, only activates when `.py` files are in the Added set. In default/full mode, always runs all targets.
+
+**Canonical targets checked:**
+- `scripts/` — primary script envelope
+- `mas_mcp/` — workspace member
+- `ankh_atlas/` — workspace member
+- `.codex/` — Codex lane
+- `.temple/` — Temple protocols
+
+**Run manually:**
+```powershell
+# Full run (all targets)
+bun run ci/checks/blessing-gate.ts
+
+# Staged mode (what pre-commit runs — activates only if .py Added)
+bun run ci/checks/blessing-gate.ts --staged
+
+# Via CI runner
+bun run ci/run.ts --check blessing-gate
+```
+
+---
+
+### `scripts/toml_audit.py`
+
+**@SID:** `TOOL_TOML_AUDIT_V1`  
+**Purpose:** TOML inventory + PyPI latest-stable comparison for the entire chthonic-archive workspace. Discovers all `.toml` files, classifies them by type, extracts Python dependencies from `pyproject.toml` files, and optionally queries the PyPI JSON API to report version drift.
+
+**Run:**
+```powershell
+# Inventory only (no network)
+uv run scripts/toml_audit.py
+
+# Add PyPI latest-stable lookup
+uv run scripts/toml_audit.py --compare-pypi
+
+# pyproject.toml files only + PyPI compare
+uv run scripts/toml_audit.py --pyproject-only --compare-pypi
+
+# JSON output
+uv run scripts/toml_audit.py --json
+
+# Write report
+uv run scripts/toml_audit.py --compare-pypi --report docs/design/TOML_AUDIT.md
+
+# Only authored (git-tracked) files
+uv run scripts/toml_audit.py --authored-only --compare-pypi
+```
+
+**Output columns (PyPI mode):**  
+`Package | Group | Spec | Latest | Status (✓ ok / ↑ behind / ✗ error)`
+
+**Dep groups scanned:** `core`, `dev`, `analysis`, `embeddings`, `hf`, `openai`, `poe`, `optional/*`
+
+**PyPI endpoint:** `https://pypi.org/pypi/{package}/json` → `.info.version`
+
+---
+
 ## Validation & Scanning Tools
 
 ### `validate_probe.ps1`

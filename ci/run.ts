@@ -70,6 +70,13 @@ const CHECKS: Check[] = [
     description: "No bare python/python3 invocations — use uv run",
   },
   {
+    name: "blessing-gate",
+    script: "ci/checks/blessing-gate.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Script envelope drift (canonize_blessing) + radiance cross-ref validation",
+  },
+  {
     name: "bun-audit",
     script: "ci/checks/bun-audit.ts",
     scope: "always",

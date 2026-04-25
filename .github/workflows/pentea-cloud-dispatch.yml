@@ -67,22 +67,22 @@ jobs:
           NEXT_TASK="${{ steps.queue.outputs.next_task }}"
           REPO="${{ github.repository }}"
           STEWARDESS_URL="https://github.com/${REPO}/blob/main/claude/mailbox/PENTEA_ROULETTE_STEWARDESS.md"
-
           PROMPT="Execute Pentea queue task: ${NEXT_TASK}
-
-Context: chthonic-archive autonomous queue system. Task spec in stewardess:
-${STEWARDESS_URL}
+Context: chthonic-archive autonomous queue system.
+Task spec in stewardess: ${STEWARDESS_URL}
 
 Custom instructions: .github/copilot-instructions.md and AGENTS.md define all invariants.
 Constraint: follow AGENT_COMMON.md. No file deletion without salvage (upcycle first).
-Python: uv run <script>. JS/TS: bun. Rust: cargo (tools/ankh-forge/). Shell: pwsh.
+Python: uv run <script>.
+JS/TS: bun.
+Rust: cargo (tools/ankh-forge/).
+Shell: pwsh.
 
 Required git trailer on your commit:
-  Pentea-Completed: ${NEXT_TASK}
-  Pentea-Next: <next-id-or-none>
-  Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>"
+Pentea-Completed: ${NEXT_TASK}
+Pentea-Next: <next-id-or-none>
+Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>"
 
-          # Detect gh CLI version — agent-task subcommand requires v2.80.0+
           GH_VER=$(gh --version | head -1 | grep -oP '\d+\.\d+\.\d+' | head -1)
           GH_MAJOR=$(echo "$GH_VER" | cut -d. -f1)
           GH_MINOR=$(echo "$GH_VER" | cut -d. -f2)
@@ -91,7 +91,7 @@ Required git trailer on your commit:
 
           if [ "$GH_MAJOR" -gt 2 ] || ([ "$GH_MAJOR" -eq 2 ] && [ "$GH_MINOR" -ge 80 ]); then
             echo "Dispatching via gh agent-task create..."
-            gh agent-task create "$PROMPT" --repo "$REPO" || {
+            if ! gh agent-task create "$PROMPT" --repo "$REPO"; then
               echo "gh agent-task failed — trying issue fallback"
               gh issue create \
                 --repo "$REPO" \
@@ -103,8 +103,9 @@ Required git trailer on your commit:
                 --repo "$REPO" \
                 --title "[Pentea-Queue] Execute task: ${NEXT_TASK}" \
                 --body "$PROMPT" \
-                --label "pentea-queue" || true
-            }
+                --label "pentea-queue" \
+              || true
+            fi
           else
             echo "gh v${GH_VER} < 2.80.0 — falling back to issue creation"
             gh issue create \
@@ -117,5 +118,6 @@ Required git trailer on your commit:
               --repo "$REPO" \
               --title "[Pentea-Queue] Execute task: ${NEXT_TASK}" \
               --body "$PROMPT" \
-              --label "pentea-queue" || true
+              --label "pentea-queue" \
+            || true
           fi
