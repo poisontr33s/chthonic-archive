@@ -80,7 +80,7 @@ RUN uv pip install --no-deps \
 # packaging must be pre-installed: flash-attn 2.8.3 setup.py uses it but
 # doesn't declare it in build-system.requires — uv surfaces this as ModuleNotFoundError
 ENV MAX_JOBS=4
-RUN uv pip install packaging
+RUN uv pip install packaging wheel
 RUN uv pip install flash-attn==2.8.3 --no-build-isolation
 
 # --- tabbyAPI core deps (pydantic, formatron, etc.) ---
