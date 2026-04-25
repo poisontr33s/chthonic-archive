@@ -1,0 +1,13 @@
+{
+  "probe_id": "P-08",
+  "gate": "exllamav2/cp314_source_build_linux",
+  "python_version": "3.14.4",
+  "substrate": "linux",
+  "note": "Wall is the wheel, not the code. Source build on Linux CUDA dev environment (CUDA 12.8, GCC, cmake).",
+  "exllamav2_version": "0.3.2",
+  "import_result": "SUCCESS",
+  "level": "L2_interrogable",
+  "status": "admitted_L2_source_linux",
+  "config_import": "SUCCESS",
+  "timestamp": "2026-04-25T19:14:56.300347Z"
+}
