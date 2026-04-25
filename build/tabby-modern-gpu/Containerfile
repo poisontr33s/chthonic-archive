@@ -25,15 +25,15 @@
 FROM nvcr.io/nvidia/cuda:12.8.0-devel-ubi9
 
 # --- System dependencies ---
-# gcc-toolset-14 provides GCC 14 for flash_attn source build
+# gcc/gcc-c++/libstdc++-devel already present in devel image; listed for explicitness
 # ninja-build + cmake required by flash_attn's build system
-RUN dnf install -y \
+# curl-minimal is pre-installed and conflicts with full curl — omit curl here
+RUN dnf install -y --allowerasing \
         git \
         gcc \
         gcc-c++ \
         cmake \
         ninja-build \
-        curl \
         libstdc++-devel \
         python3-devel \
     && dnf clean all
