@@ -1,0 +1,99 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# tabby-modern is not a distributable package — hatchling minimal build backend
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+only-include = []
+
+[project]
+name = "tabby-modern"
+version = "0.1.0"
+description = "tabbyAPI modernization scaffold — Python 3.14 + exllamav3 + CUDA 12.8 container lane"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi-slim >= 0.115",
+    # pydantic 2.13+ → pydantic-core 2.46.x → PyO3 0.25.x → cp314 wheels (FAF Gate 2 admitted)
+    "pydantic >= 2.13.0,<3",
+    "ruamel.yaml >= 0.18.0",
+    "rich >= 15.0.0,<16",
+    "uvicorn >= 0.28.1",
+    "jinja2 >= 3.0.0",
+    "loguru >= 0.7.0",
+    "sse-starlette >= 2.2.0",
+    "packaging >= 24.0",
+    "tokenizers >= 0.21.0",
+
+    # Gate 7 — formatron cessation trajectory
+    # SyntaxWarning on Python 3.14 (bare-string \A, \z, \[ invalid escapes):
+    #   formatron/formats/json.py:116, formatron/schemas/json_schema.py:72
+    # Cessation boundary: ~Python 3.16 — SyntaxError, import fails unconditionally.
+    # Pin: >=0.4.11 (last tested clean on 3.14), <1.0 (major API break sentinel).
+    # Upstream: GuidoGuardiani/formatron — no fix as of 2026-04-25.
+    # If upstream crosses cessation before fix → substitute with compatible JSON schema enforcer.
+    # FAF reference: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md Gate 7
+    "formatron >= 0.4.11,<1.0",
+
+    "kbnf >= 0.4.1",
+    "aiofiles >= 24.0.0",
+    "aiohttp >= 3.11.0",
+    "async_lru >= 2.0.0",
+    "huggingface_hub >= 0.30.0",
+    "psutil >= 6.0.0",
+    "httptools >= 0.5.0",
+    "pillow >= 11.0.0",
+
+    # Linux asyncio event loop performance (container deployment)
+    "uvloop >= 0.21.0 ; platform_system == 'Linux' and platform_machine == 'x86_64'",
+]
+
+[project.optional-dependencies]
+cu128 = [
+    # torch 2.11+cu128 — routed via pytorch-cu128 index (FAF Gate 3 admitted L4)
+    # P-02: cuda_available=True, device_count=1, device_name=RTX 4090, capability=(8,9)
+    "torch >= 2.11.0",
+
+    # exllamav3 cp314 — ADMITTED L4 (FAF Gate 5, P-05 cascade + G6 cleared 2026-04-25)
+    # v0.0.30 released 2026-04-19 ships cp314-cp314-linux_x86_64 + cp314-cp314-win_amd64
+    # import exllamav3 → SUCCESS; triton warning non-fatal; torch SDPA fallback active
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl ; platform_system == 'Windows' and python_version == '3.14'",
+
+    # exllamav2 — cp314 gap on ALL platforms as of 2026-04-25 (G4 wall = the wheel, not the code)
+    # Linux/Podman: admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)
+    #   Source build via Containerfile STEP 26-27 in chthonic-tabby-modern-gpu:latest (3062c46dac1b)
+    #   Installed via: git clone v0.3.2 + uv pip install . --no-build-isolation + tokenizers
+    #   TORCH_CUDA_ARCH_LIST="8.9" required — _get_cuda_arch_flags() reads this env var
+    #   exllamav2 is PRE-INSTALLED in the container image layer — NOT installed here
+    # Win32: impossible_currently — no cp314 wheel; source build not attempted
+    # DO NOT add exllamav2 wheel entries for cp314 — none exist. Use container layer.
+
+    # flash_attn 2.8.3 — G6 admitted
+    # Linux/Podman: python_only_admitted (FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE in container)
+    #   torch SDPA fallback active; sm_120 + CUTLASS 2.8.3 incompatibility prevents CUDA kernel build
+    # Win32: ADMITTED L1 (P-06 source build 2026-04-25T05:45:25Z, MSVC 14.44.35207, 60m 42s)
+    "flash-attn == 2.8.3",
+]
+
+[tool.uv]
+# exllamav3 v0.0.21 pins pydantic==2.11.0 exactly (over-constrained upstream).
+# This override forces the resolver past the tight pin — enables pydantic-core 2.46.x (cp314 wheels).
+# FAF Gate 1 membrane: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md
+override-dependencies = ["pydantic>=2.13.0,<3"]
+
+[tool.uv.sources]
+# Route torch to pytorch-cu128 index (any Python version the index carries — no per-version matrix)
+torch = { index = "pytorch-cu128", extra = "cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.extra-build-dependencies]
+# flash-attn source build needs torch in isolated build env
+# Linux: FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE bypasses CUDA kernel compilation
+flash-attn = ["torch"]
