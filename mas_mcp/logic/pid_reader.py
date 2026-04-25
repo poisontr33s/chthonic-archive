@@ -166,7 +166,9 @@ def mas_pid_reader_logic(
         filtered = [e for e in filtered if cwd_filter.lower() in (e.get("cwd") or "").lower()]
 
     if failed_only:
-        filtered = [e for e in filtered if not e.get("success", True)]
+        # Prefer exit_code semantics over success flag — success reflects PowerShell $?
+        # which can be True even when $LASTEXITCODE != 0 (observed_quirk 2026-04-25)
+        filtered = [e for e in filtered if e.get("exit_code", 0) != 0]
 
     # Last N (chronological)
     filtered = filtered[-last:] if last and len(filtered) > last else filtered

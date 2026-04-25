@@ -205,6 +205,9 @@ extensions/*/bun.lock
 # Exclude temp/ephemeral scripts (underscore prefix)
 scripts/_*.py
 
+# Disabled workflow files (*.off = local disable, not committed artifacts)
+*.off
+
 # Allow targeted workspace diagnostics
 !.vscode/
 !.vscode/SETTINGS_LIVE_AUDIT.md

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-04-25T16:24:00Z",
+  "project": "PID-Flipper terminal PID/MCP validation",
+  "platform": {
+    "os": "Windows 11",
+    "terminal": "vscode",
+    "shell": "PowerShell 7",
+    "repo_root": "C:\\Users\\eldno\\chthonic-archive"
+  },
+  "data_sources": {
+    "hook": "scripts/chthonic-shell-hook.ps1",
+    "query_cli": "scripts/terminal_session_query.ts",
+    "mcp_server": "mas_mcp/server.py",
+    "mcp_logic": "mas_mcp/logic/pid_reader.py",
+    "pid_registry": "manifest/terminal_pids.json",
+    "session_log": "manifest/terminal_session.jsonl"
+  },
+  "live_pid_registry": {
+    "pid_count": 1,
+    "sessions": [
+      {
+        "pid": 70336,
+        "session_id": "964b4806",
+        "cwd": "C:\\Users\\eldno\\chthonic-archive",
+        "start_ts": "2026-04-25T17:31:04.7957429+02:00",
+        "term": "vscode"
+      }
+    ]
+  },
+  "terminal_session_query_result": {
+    "command": "bun run scripts/terminal_session_query.ts --report --last 12",
+    "status": "passed",
+    "total_entries": 70,
+    "filtered_entries": 12,
+    "observed_properties": [
+      "manifest/terminal_session.jsonl is readable",
+      "manifest/terminal_pids.json is readable",
+      "query output is valid structured JSON",
+      "patch entries are deduplicated by sequence number",
+      "PID, session id, cwd, command, exit_code, success, duration_ms, and seq are present"
+    ]
+  },
+  "mcp_result": {
+    "command": "uv run --project mas_mcp python -c <noninteractive FastMCP probe>",
+    "status": "passed",
+    "tool_count": 13,
+    "mas_pid_reader_present": true,
+    "mas_pid_reader_structured_content": true,
+    "stats": {
+      "total_complete_commands": 70,
+      "succeeded": 70,
+      "failed": 0,
+      "success_rate": 1.0,
+      "avg_duration_ms": 831,
+      "max_duration_ms": 13299,
+      "sessions_seen": [
+        "964b4806"
+      ],
+      "cwds_seen": [
+        "C:\\Users\\eldno\\chthonic-archive"
+      ],
+      "manifest_path": "manifest\\terminal_session.jsonl",
+      "manifest_exists": true,
+      "pids_manifest_exists": true
+    },
+    "filters_applied": {
+      "last": 12,
+      "sid": null,
+      "pid": null,
+      "failed_only": false,
+      "cwd_filter": null
+    },
+    "entry_count": 12
+  },
+  "known_validation_notes": [
+    {
+      "status": "non_blocking",
+      "note": "A PowerShell here-string piped into `uv run --project mas_mcp python -` entered Python 3.14 interactive mode and produced pyrepl console errors. The spawned uv/python processes were stopped, and the MCP probe was rerun successfully with noninteractive `python -c`."
+    },
+    {
+      "status": "observed_quirk",
+      "note": "The hook records PowerShell `$?` as success and `$LASTEXITCODE` as exit_code. For one malformed Python probe, exit_code was 1 while success was true. Consumers that need external-process failure semantics should prefer exit_code != 0 over success alone."
+    }
+  ],
+  "verdict": {
+    "pipeline": "hook -> manifest JSONL/PID registry -> terminal_session_query.ts -> mas_pid_reader MCP tool -> structured_content",
+    "status": "passed",
+    "documentation_ready": true,
+    "tabby_scaffold_gate": "unblocked_for_next_lane"
+  }
+}

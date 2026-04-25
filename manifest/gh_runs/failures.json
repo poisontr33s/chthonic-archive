@@ -1,10 +1,10 @@
 {
-  "generated": "2026-04-25T15:56:12.069Z",
-  "total_failed": 16,
-  "success_rate": 20,
+  "generated": "2026-04-25T15:59:38.547Z",
+  "total_failed": 15,
+  "success_rate": 25,
   "by_workflow": {
-    ".github/workflows/pentea-cloud-dispatch.yml": 5,
-    "Dependabot Updates": 11
+    "Pentea Cloud Dispatch": 5,
+    "Dependabot Updates": 10
   },
   "failures": [
     {
@@ -20,7 +20,7 @@
       "updatedAt": "2026-04-25T01:48:49Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24919698884",
       "workflowDatabaseId": 266068053,
-      "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+      "workflowName": "Pentea Cloud Dispatch"
     },
     {
       "conclusion": "failure",
@@ -35,7 +35,7 @@
       "updatedAt": "2026-04-25T01:45:56Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24919642351",
       "workflowDatabaseId": 266068053,
-      "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+      "workflowName": "Pentea Cloud Dispatch"
     },
     {
       "conclusion": "failure",
@@ -50,7 +50,7 @@
       "updatedAt": "2026-04-25T00:18:44Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24917770727",
       "workflowDatabaseId": 266068053,
-      "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+      "workflowName": "Pentea Cloud Dispatch"
     },
     {
       "conclusion": "failure",
@@ -80,7 +80,7 @@
       "updatedAt": "2026-04-24T22:58:15Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24915616858",
       "workflowDatabaseId": 266068053,
-      "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+      "workflowName": "Pentea Cloud Dispatch"
     },
     {
       "conclusion": "failure",
@@ -95,7 +95,7 @@
       "updatedAt": "2026-04-24T22:58:03Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24915610879",
       "workflowDatabaseId": 266068053,
-      "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+      "workflowName": "Pentea Cloud Dispatch"
     },
     {
       "conclusion": "failure",
@@ -229,21 +229,6 @@
       "status": "completed",
       "updatedAt": "2026-04-22T21:38:56Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24804013838",
-      "workflowDatabaseId": 227354342,
-      "workflowName": "Dependabot Updates"
-    },
-    {
-      "conclusion": "failure",
-      "createdAt": "2026-04-22T21:27:43Z",
-      "databaseId": 24803583166,
-      "displayTitle": "cargo in /extensions/chthonic-archive/native, /tools/ankh-forge for atty, curve25519-dalek, ed25519-dalek, quinn-proto, rand, rand, rustls-webpki, rustls-webpki, rustls-webpki, rustls-webpki, rustls-webpki - Update #1333604572",
-      "event": "dynamic",
-      "headBranch": "main",
-      "headSha": "3bd5cb8f72fc3e9def46f490b1c12e31201d22db",
-      "name": "cargo in /extensions/chthonic-archive/native, /tools/ankh-forge for atty, curve25519-dalek, ed25519-dalek, quinn-proto, rand, rand, rustls-webpki, rustls-webpki, rustls-webpki, rustls-webpki, rustls-webpki - Update #1333604572",
-      "status": "completed",
-      "updatedAt": "2026-04-22T21:28:23Z",
-      "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24803583166",
       "workflowDatabaseId": 227354342,
       "workflowName": "Dependabot Updates"
     }
