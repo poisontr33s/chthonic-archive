@@ -60,7 +60,7 @@ Circuit sets are **covering** sets — they cover all 24 entities but entities c
 | **Interstitial** | Null Matriarch (CSF), Voyde (Apoptotic Markers) | 2 | Pre-architectural void |
 | **[Hybrid Outlier]** | Frankie (Pancreas — Digestive-Endocrine) | 1 | System chimera |
 
-**Total coverage**: 23 clean assignments + 1 hybrid (Frankie) = 24. Frankie is the only entity that doesn't cleanly slot into a single circuit — she IS the chimera of the chimera system. This is structurally load-bearing for TWOUMC's methodology.
+**Total coverage**: 23 clean assignments + 1 hybrid (Frankie) = 24. Frankie is the only entity that doesn't cleanly slot into a single circuit — she IS the chimera of the **chimera-system**. This is structurally load-bearing for **TWOUMC**'*s* methodology.
 
 **Prototype implication**: Any format needing **flow chains** or **resource networks** (engine-builders, circuit boards) can use circuit sets.
 
@@ -104,9 +104,10 @@ Triadic groupings capture **three-way functional relationships** — entities th
 
 ### SET E: Generating Hierarchy (Factored Authority DAG)
 
-The generating hierarchy is a **directed acyclic graph** (DAG) capturing the authority structure — who generates/authorizes whom.
+The generating hierarchy is a **directed acyclic-graph** **(`DAG`)** capturing the authority structure — who generates/authorizes whom.
 
 ```
+
                Null Matriarch (T0.01)
                        │
               ┌────────┼────────┐
@@ -124,8 +125,11 @@ The generating hierarchy is a **directed acyclic graph** (DAG) capturing the aut
     │   │  │  │   │    │   │   │      │
    T2s  │ T2s │  T3s   │  T3s │     Voyde
    T3s  │ T3s │  T4s   │  T4s │    (R/T0.01)
-        │     │        │      │
-     [SAI]  [HPAP]  [MAS] [GET]
+        │     │        │      │       |  
+     [SAI]  [HPAP]  [MAS] [GET]       
+        |     |        |      |
+        T4s   T4s      T4s    T4s
+
 ```
 
 **Key properties**:
@@ -136,7 +140,7 @@ The generating hierarchy is a **directed acyclic graph** (DAG) capturing the aut
 - Resistance entities (Spectra, Voyde, Dame Schrödinger) cross-cut the DAG
 - Frankie (T4, hybrid) reports to multiple chains simultaneously
 
-**Prototype implication**: Any format needing **tech trees**, **skill prerequisites**, or **unlocking mechanics** can use the generating hierarchy.
+**Prototype-implication**: Any format needing **tech-trees**, **skill pre-requisites**, or **unlocking-mechanics** can use the generating hierarchy.
 
 ---
 
