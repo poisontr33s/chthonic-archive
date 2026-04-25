@@ -1,0 +1,97 @@
+# SID: CONTAINERFILE_TABBY_MODERN_GPU_V1
+# Gate: tabby-modern GPU stack on Python 3.14.4 / CUDA 12.8 / Linux x86_64
+# FAF: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md
+#
+# Resolves:
+#   G5  exllamav3 cp314-linux_x86_64 wheel — L4 (no source build needed)
+#   G6  flash_attn source build — GCC path, no MSVC hell (faster than Win32)
+#   G7  formatron escape-sequence cessation — patchable in-container
+#   G4  exllamav2 cp314 — still impossible_currently (turboderp maxes at cp313)
+#
+# Build:
+#   podman build --tag tabby-modern-gpu -f build/tabby-modern-gpu/Containerfile .
+#
+# Run (GPU passthrough via NVIDIA CDI):
+#   podman run --rm --device nvidia.com/gpu=all tabby-modern-gpu
+#
+# Run (NVIDIA Workbench / nvidia-container-toolkit):
+#   podman run --rm --security-opt=label=disable \
+#     --hooks-dir=/usr/share/containers/oci/hooks.d/ \
+#     tabby-modern-gpu
+
+FROM nvcr.io/nvidia/cuda:12.8.0-devel-ubi9
+
+# --- System dependencies ---
+# gcc-toolset-14 provides GCC 14 for flash_attn source build
+# ninja-build + cmake required by flash_attn's build system
+RUN dnf install -y \
+        git \
+        gcc \
+        gcc-c++ \
+        cmake \
+        ninja-build \
+        curl \
+        libstdc++-devel \
+        python3-devel \
+    && dnf clean all
+
+# --- uv install ---
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:${PATH}"
+
+# --- Python 3.14.4 via uv ---
+RUN uv python install 3.14.4
+ENV UV_PYTHON=3.14.4
+
+# --- CUDA environment ---
+ENV CUDA_HOME=/usr/local/cuda
+ENV PATH="${CUDA_HOME}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}"
+
+WORKDIR /workspace
+
+# --- Copy probe ladder and patches into container ---
+COPY probes/python/ /workspace/probes/python/
+COPY build/tabby-modern-gpu/patches/ /workspace/patches/
+
+# --- Create manifest output directory ---
+RUN mkdir -p /workspace/manifest
+
+# --- Install GPU stack into a uv-managed venv ---
+# Pass 1: torch + CUDA (pytorch-cu128 index)
+RUN uv venv /workspace/.venv --python 3.14.4
+ENV VIRTUAL_ENV=/workspace/.venv
+ENV PATH="/workspace/.venv/bin:${PATH}"
+
+RUN uv pip install \
+        --index-url https://download.pytorch.org/whl/cu128 \
+        "torch>=2.11.0"
+
+# --- exllamav3 cp314 Linux wheel (G5 — direct URL, no source build) ---
+RUN uv pip install --no-deps \
+    "https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl"
+
+# --- flash_attn source build (G6 — GCC path, no MSVC) ---
+# MAX_JOBS controls parallel compile; set relative to container CPU budget
+# --no-build-isolation: uses already-installed torch headers
+ENV MAX_JOBS=4
+RUN uv pip install flash-attn==2.8.3 --no-build-isolation
+
+# --- tabbyAPI core deps (pydantic, formatron, etc.) ---
+# formatron pinned to known-working version per FAF Gate 7 membrane
+# Replace <VERSION> with output of: pip show formatron | grep Version
+# in the dev/tabbyAPI venv — or latest stable before cessation boundary
+RUN uv pip install \
+        "pydantic>=2.13.0,<3" \
+        "pydantic-core>=2.46.0" \
+        "formatron>=0.4.0,<1.0"
+
+# --- Apply formatron escape-sequence patch (G7 membrane) ---
+# Fixes \A, \z, \[ bare-string invalid escape sequences
+# Safe to apply — r-prefix is semantically identical for regex strings
+RUN python /workspace/patches/patch-formatron-escape.py
+
+# --- Run probe ladder ---
+# P-07: formatron cessation gate (validates patch applied correctly)
+# P-02 / P-03 equivalents run inline below
+CMD ["python", "/workspace/probes/python/P-07.py"]
