@@ -74,17 +74,22 @@ RUN uv pip install \
 RUN uv pip install --no-deps \
     "https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl"
 
-# --- flash_attn source build (G6 — GCC path, no MSVC) ---
-# MAX_JOBS controls parallel compile; set relative to container CPU budget
-# --no-build-isolation: uses already-installed torch headers
-# packaging must be pre-installed: flash-attn 2.8.3 setup.py uses it but
-# doesn't declare it in build-system.requires — uv surfaces this as ModuleNotFoundError
-# TORCH_CUDA_ARCH_LIST: restrict to sm_89 (RTX 4090) only.
-# torch 2.11+cu128 auto-expands to include compute_120 (Blackwell/sm_120);
-# flash-attn 2.8.3 bundles CUTLASS that predates sm_120 — nvcc fails on every
-# .cu file immediately. Restricting to 8.9 fixes the failure and cuts build time.
+# --- flash_attn (G6) ---
+# DIAGNOSIS (2026-04-25): flash-attn 2.8.3 hardcodes its own arch list (sm_80/90/100/120)
+# and ignores TORCH_CUDA_ARCH_LIST entirely. With CUDA 12.8 and the bundled CUTLASS
+# that predates sm_100/120, nvcc fails on ALL .cu files simultaneously (ninja parallel
+# failure — actual nvcc error is swallowed). Source kernel build is not viable on
+# cp314 + torch 2.11 + CUDA 12.8 without patching flash-attn's setup.py arch list.
+#
+# RESOLUTION: FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE installs the Python layer only.
+# flash_attn Python API is available; CUDA kernel (flash_attn_2_cuda) is not built.
+# tabbyAPI checks: try: from flash_attn import flash_attn_func — if unavailable,
+# falls back to torch native SDPA (GPU-accelerated via cuBLAS, not flash kernel).
+# G6 gate status: python_only_admitted. CUDA kernel: source_build_failed_diagnosed.
+#
+# MAX_JOBS kept for exllamav2 build below (also uses ninja).
 ENV MAX_JOBS=4
-ENV TORCH_CUDA_ARCH_LIST="8.9"
+ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
 RUN uv pip install packaging wheel
 RUN uv pip install flash-attn==2.8.3 --no-build-isolation
 
