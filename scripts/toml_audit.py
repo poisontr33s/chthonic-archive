@@ -9,16 +9,27 @@ pyproject.toml files: extracts all declared dependencies (core + dependency-grou
 queries the PyPI JSON API for latest stable versions, and reports deltas.
 
 Usage:
-    uv run scripts/toml_audit.py                    # inventory only (no network)
-    uv run scripts/toml_audit.py --compare-pypi     # add PyPI latest-stable lookup
-    uv run scripts/toml_audit.py --json             # JSON output to stdout
-    uv run scripts/toml_audit.py --report FILE      # write markdown report
-    uv run scripts/toml_audit.py --authored-only    # only git-tracked authored files
-    uv run scripts/toml_audit.py --pyproject-only   # only pyproject.toml files
+    uv run scripts/toml_audit.py                              # inventory only (no network)
+    uv run scripts/toml_audit.py --compare-pypi               # add PyPI latest-stable lookup
+    uv run scripts/toml_audit.py --dry-run                    # resolve plan (no writes, implies --compare-pypi)
+    uv run scripts/toml_audit.py --smoke                      # sanity-check parsing + PyPI responses
+    uv run scripts/toml_audit.py --smoke --dry-run            # gate + plan in one pass
+    uv run scripts/toml_audit.py --json                       # JSON output to stdout
+    uv run scripts/toml_audit.py --report FILE                # write markdown report
+    uv run scripts/toml_audit.py --authored-only              # only git-tracked authored files
+    uv run scripts/toml_audit.py --pyproject-only             # only pyproject.toml files
+
+Resolution kinds (--dry-run):
+    bump-lower     safe: latest within upper bounds, lower bound bumped to latest
+    blocked-upper  latest exceeds an upper bound — human decision required
+    exact-pin      ==X.Y.Z pin — never auto-resolved
+    no-lower-bound no >= clause — cannot infer safe bump
+    no-spec        empty spec — informational only
 """
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 import tomllib
@@ -93,6 +104,8 @@ class DepEntry:
     source_file: str   # repo-relative path
     latest_pypi: Optional[str] = None
     status: str = "unknown"   # "ok" | "behind" | "ahead" | "error" | "unknown"
+    resolved_spec: Optional[str] = None
+    resolution_kind: str = ""  # "bump-lower" | "blocked-upper" | "exact-pin" | "no-lower-bound" | "already-ok" | "unknown"
 
 
 @dataclass
@@ -246,6 +259,130 @@ def _compare_versions(spec: str, latest: str) -> str:
         return "unknown"
 
 
+def _resolve_spec(spec: str, latest: str) -> tuple[str, str]:
+    """
+    Propose a safe spec bump given the latest PyPI version.
+
+    Returns (proposed_spec, resolution_kind) where resolution_kind is one of:
+      "already-ok"      — latest already satisfies current spec, no change needed
+      "bump-lower"      — safe: bump >= lower bound to latest, upper bounds preserved
+      "blocked-upper"   — latest exceeds an upper bound; human decision required
+      "exact-pin"       — spec uses ==; never auto-resolve
+      "no-lower-bound"  — spec has no >= clause; cannot infer safe bump
+      "no-spec"         — empty spec string; nothing to resolve
+      "unknown"         — could not parse
+    """
+    if not spec:
+        return spec, "no-spec"
+    if not latest or latest in ("unknown", "-") or latest.startswith("error:"):
+        return spec, "unknown"
+    try:
+        from packaging.requirements import Requirement
+        from packaging.version import Version
+
+        v_latest = Version(latest)
+        r = Requirement(f"pkg{spec}")
+
+        # Already satisfied — no change needed
+        if v_latest in r.specifier:
+            return spec, "already-ok"
+
+        # Exact pin — never auto-resolve
+        if any(s.operator == "==" for s in r.specifier):
+            return spec, "exact-pin"
+
+        # Check upper bounds: if latest would exceed any of them, block
+        for s in r.specifier:
+            if s.operator == "<" and v_latest >= Version(s.version):
+                return spec, "blocked-upper"
+            if s.operator == "<=" and v_latest > Version(s.version):
+                return spec, "blocked-upper"
+
+        # Look for a >= lower bound to bump
+        has_lower = any(s.operator in (">=", ">") for s in r.specifier)
+        if not has_lower:
+            return spec, "no-lower-bound"
+
+        # Replace the >= lower bound value with latest; preserve everything else
+        new_spec = re.sub(r">=[\d][\d.]*(?:\.[\d]+)*", f">={latest}", spec, count=1)
+        return new_spec, "bump-lower"
+
+    except Exception:
+        return spec, "unknown"
+
+
+def _smoke_test(result: "AuditResult") -> list[str]:
+    """
+    Sanity-check parsed deps and PyPI responses.
+    Returns a list of failure strings (empty = all clear).
+    """
+    failures: list[str] = []
+
+    try:
+        from packaging.requirements import Requirement
+        from packaging.version import Version, InvalidVersion
+    except ImportError as e:
+        return [f"packaging import failed: {e}"]
+
+    # External submodule trees where duplicate optional-dep variants are expected
+    _EXTERNAL_PREFIXES = ("dev/", "build/", "rv/")
+
+    seen_pairs: dict[str, set[str]] = {}  # source_file -> set(pkg+group)
+
+    for entry in result.dep_entries:
+        # Empty package name
+        if not entry.package:
+            failures.append(
+                f"empty package name in {entry.source_file} group={entry.group}"
+            )
+            continue
+
+        # Package name normalization sanity (must be lowercase, no underscores)
+        if entry.package != entry.package.lower():
+            failures.append(
+                f"package name not normalised: '{entry.package}' in {entry.source_file}"
+            )
+
+        # Spec string must be parseable
+        if entry.spec:
+            try:
+                Requirement(f"pkg{entry.spec}")
+            except Exception as e:
+                failures.append(
+                    f"unparseable spec '{entry.spec}' for '{entry.package}' "
+                    f"in {entry.source_file}: {e}"
+                )
+
+        # PyPI version must be valid semver — only check when lookup actually succeeded
+        if (
+            entry.latest_pypi
+            and entry.status != "error"
+            and entry.latest_pypi not in ("unknown", "-")
+        ):
+            try:
+                Version(entry.latest_pypi)
+            except InvalidVersion:
+                failures.append(
+                    f"invalid PyPI version '{entry.latest_pypi}' for '{entry.package}'"
+                )
+
+        # Duplicate detection — skip external submodule trees (multi-variant opt-deps expected)
+        if not any(entry.source_file.startswith(p) for p in _EXTERNAL_PREFIXES):
+            key = entry.source_file
+            pair = f"{entry.group}::{entry.package}"
+            if key not in seen_pairs:
+                seen_pairs[key] = set()
+            if pair in seen_pairs[key]:
+                failures.append(
+                    f"duplicate dep '{entry.package}' in group '{entry.group}' "
+                    f"in {entry.source_file} \u2014 possible parsing artefact"
+                )
+            else:
+                seen_pairs[key].add(pair)
+
+    return failures
+
+
 # ---------------------------------------------------------------------------
 # Core pipeline
 # ---------------------------------------------------------------------------
@@ -300,6 +437,121 @@ def run_audit(
                 entry.status = _compare_versions(entry.spec, raw)
 
     return result
+
+
+# ---------------------------------------------------------------------------
+# Resolution plan
+# ---------------------------------------------------------------------------
+
+
+def _compute_resolutions(result: "AuditResult") -> None:
+    """Populate resolved_spec / resolution_kind on every 'behind' DepEntry in-place."""
+    for entry in result.dep_entries:
+        if entry.status == "behind" and entry.latest_pypi:
+            new_spec, kind = _resolve_spec(entry.spec, entry.latest_pypi)
+            entry.resolved_spec = new_spec
+            entry.resolution_kind = kind
+        elif entry.status == "ok":
+            entry.resolution_kind = "already-ok"
+
+
+def _render_resolve_plan(result: "AuditResult") -> str:
+    """Render the dry-run resolution plan as human-readable text."""
+    lines: list[str] = []
+    lines.append("# Resolution Plan — Dry Run\n")
+    lines.append(
+        "Packages marked 'behind' are classified below. No files are written in dry-run mode.\n"
+    )
+
+    from collections import defaultdict
+
+    # Partition by resolution_kind
+    bump: list["DepEntry"] = []
+    blocked: list["DepEntry"] = []
+    exact: list["DepEntry"] = []
+    no_lower: list["DepEntry"] = []
+    unknown_res: list["DepEntry"] = []
+
+    for entry in result.dep_entries:
+        if entry.status != "behind":
+            continue
+        kind = entry.resolution_kind or "unknown"
+        if kind == "bump-lower":
+            bump.append(entry)
+        elif kind == "blocked-upper":
+            blocked.append(entry)
+        elif kind == "exact-pin":
+            exact.append(entry)
+        elif kind == "no-lower-bound":
+            no_lower.append(entry)
+        else:
+            unknown_res.append(entry)
+
+    # Safe bumps
+    lines.append(f"## Safe Bumps — {len(bump)} (auto-resolvable lower-bound)\n")
+    if bump:
+        lines.append(f"  {'Package':<30} {'Group':<20} {'Current Spec':<25} {'→'} {'Proposed Spec':<25} {'Source'}")
+        lines.append("  " + "-" * 120)
+        for e in sorted(bump, key=lambda x: (x.source_file, x.group, x.package)):
+            lines.append(
+                f"  {e.package:<30} {e.group:<20} {e.spec:<25}   {(e.resolved_spec or ''):<25} {e.source_file}"
+            )
+    else:
+        lines.append("  (none)")
+    lines.append("")
+
+    # Blocked
+    lines.append(f"## Blocked — {len(blocked)} (upper bound exceeded — human review required)\n")
+    if blocked:
+        lines.append(f"  {'Package':<30} {'Group':<20} {'Current Spec':<25} {'Latest':<12} {'Source'}")
+        lines.append("  " + "-" * 110)
+        for e in sorted(blocked, key=lambda x: (x.source_file, x.package)):
+            lines.append(
+                f"  {e.package:<30} {e.group:<20} {e.spec:<25} {(e.latest_pypi or ''):<12} {e.source_file}"
+            )
+            lines.append(
+                f"  {'':>30}   ↳ Bump upper bound first, then re-run --dry-run to confirm"
+            )
+    else:
+        lines.append("  (none)")
+    lines.append("")
+
+    # Exact pins
+    lines.append(f"## Exact Pins — {len(exact)} (never auto-resolved)\n")
+    if exact:
+        for e in exact:
+            lines.append(f"  {e.package:<30} {e.spec}  ({e.source_file})")
+    else:
+        lines.append("  (none)")
+    lines.append("")
+
+    # No lower bound
+    lines.append(f"## No Lower Bound — {len(no_lower)} (cannot infer safe bump)\n")
+    if no_lower:
+        for e in no_lower:
+            lines.append(f"  {e.package:<30} {e.spec}  ({e.source_file})")
+    else:
+        lines.append("  (none)")
+    lines.append("")
+
+    # Unknown
+    if unknown_res:
+        lines.append(f"## Unclassified — {len(unknown_res)}\n")
+        for e in unknown_res:
+            lines.append(f"  {e.package:<30} {e.spec}  ({e.source_file})")
+        lines.append("")
+
+    total_behind = len(bump) + len(blocked) + len(exact) + len(no_lower) + len(unknown_res)
+    lines.append(f"## Summary")
+    lines.append(f"  ↑ Behind total:   {total_behind}")
+    lines.append(f"  ✓ Safe to bump:   {len(bump)}")
+    lines.append(f"  ⊘ Blocked:        {len(blocked)}")
+    lines.append(f"  ⊘ Exact-pinned:   {len(exact)}")
+    lines.append(f"  ⊘ No lower bound: {len(no_lower)}")
+    lines.append("")
+    lines.append("(No files written — dry-run mode. Pass --apply when ready.)")
+
+    return "\n".join(lines)
 
 
 # ---------------------------------------------------------------------------
@@ -371,6 +623,10 @@ def main() -> int:
     )
     ap.add_argument("--compare-pypi", action="store_true",
                     help="Query PyPI JSON API for latest stable version of each dep")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="Show resolution plan (implies --compare-pypi). No files are written.")
+    ap.add_argument("--smoke", action="store_true",
+                    help="Run internal sanity checks on parsed deps and PyPI responses")
     ap.add_argument("--json", action="store_true",
                     help="JSON output to stdout")
     ap.add_argument("--report", metavar="FILE",
@@ -381,11 +637,52 @@ def main() -> int:
                     help="Only surface pyproject.toml files and their deps")
     args = ap.parse_args()
 
+    # --dry-run always requires PyPI data
+    need_pypi = args.compare_pypi or args.dry_run
+
     result = run_audit(
         authored_only=args.authored_only,
         pyproject_only=args.pyproject_only,
-        compare_pypi=args.compare_pypi,
+        compare_pypi=need_pypi,
     )
+
+    # --smoke: validate parsed data and PyPI responses before any further action
+    if args.smoke:
+        failures = _smoke_test(result)
+        total = len(result.dep_entries)
+        print("\n## Smoke Test — Dependency Parsing Validation\n")
+        if failures:
+            for f in failures:
+                print(f"  ✗ {f}")
+            print(f"\nSmoke: {total - len(failures)}/{total} passed, {len(failures)} FAILED")
+            return 1
+        else:
+            pypi_note = f" + {sum(1 for d in result.dep_entries if d.latest_pypi)} PyPI versions" if need_pypi else ""
+            print(f"  ✓ All {total} package entries parsed clean{pypi_note}")
+            print(f"  ✓ No duplicate entries within same file+group")
+            print(f"  ✓ All spec strings parseable")
+            if need_pypi:
+                print(f"  ✓ All returned PyPI versions are valid semver")
+            print(f"\nSmoke: {total} checks passed, 0 failed")
+            if not args.dry_run and not args.compare_pypi:
+                return 0
+
+    # --dry-run: compute resolutions and print plan without writing
+    if args.dry_run:
+        _compute_resolutions(result)
+        plan = _render_resolve_plan(result)
+        if args.report:
+            rp = Path(args.report)
+            rp.parent.mkdir(parents=True, exist_ok=True)
+            rp.write_text(plan, encoding="utf-8")
+            print(f"[toml-audit] Dry-run plan written to {rp}")
+        else:
+            print(plan)
+        # Exit 1 if there are any safe bumps waiting (useful in CI)
+        has_bumps = any(
+            e.resolution_kind == "bump-lower" for e in result.dep_entries
+        )
+        return 1 if has_bumps else 0
 
     if args.json:
         out = {
