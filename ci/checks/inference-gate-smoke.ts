@@ -15,9 +15,12 @@
 // ║   G1  resolver_coherence        manifest: (inline — no probe file)
 // ║   G2  pydantic_pyо3_abi         manifest: (inline — via pytest results)
 // ║   G3  torch_cuda                manifest/cuda_gate.jsonl
-// ║   G4  exllamav2_cp314           manifest: impossible_currently
+// ║   G4  exllamav2_cp314           manifest: impossible_currently (Win32/wheel)
 // ║   G5  exllamav3_cp314           manifest: inferred from G6
 // ║   G6  flash_attn_build          manifest/vs2022_flash_attn_probe.json
+// ║   G7  formatron_cessation       manifest: static (warning_degraded L3)
+// ║   G8  exllamav2_linux_source    manifest/exllamav2_source_gate.json
+// ║   G9  tabby_modern_import_gate  manifest/tabby_modern_import_gate.json
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync } from "fs";
@@ -115,7 +118,58 @@ function probeG6(): GateResult {
   };
 }
 
-// ── Static gates (no manifest file — status known from ledger) ───────────────
+function probeG8(): GateResult {
+  const m = readJson(resolve(MANIFEST_DIR, "exllamav2_source_gate.json"));
+  if (!m) {
+    return {
+      gate: "G8_exllamav2_linux_source",
+      question: "Can exllamav2 0.3.2 be source-built and imported on Linux cp314?",
+      status: "not_probed",
+      level: "L0",
+      proof: "manifest/exllamav2_source_gate.json not found",
+    };
+  }
+  const ok = m["status"] === "admitted_L2_source_linux" || (m["import_result"] === "SUCCESS");
+  const level = (m["level"] as GateLevel) ?? (ok ? "L2" : "L0");
+  return {
+    gate: "G8_exllamav2_linux_source",
+    question: "Can exllamav2 0.3.2 be source-built and imported on Linux cp314?",
+    status: ok ? "admitted" : "blocked",
+    level,
+    proof: ok
+      ? `P-08: exllamav2==${m["exllamav2_version"]} import=SUCCESS config_import=${m["config_import"]} — ${m["timestamp"]}`
+      : `P-08: ${m["status"]} — ${m["import_result"]}`,
+    notes: ok ? "Linux source build — wall is the wheel, not the code" : undefined,
+  };
+}
+
+function probeG9(): GateResult {
+  const m = readJson(resolve(MANIFEST_DIR, "tabby_modern_import_gate.json"));
+  if (!m) {
+    return {
+      gate: "G9_tabby_modern_import_gate",
+      question: "Do all tabby_modern modules import cleanly on cp314 in container?",
+      status: "not_probed",
+      level: "L0",
+      proof: "manifest/tabby_modern_import_gate.json not found",
+    };
+  }
+  const ok = m["status"] === "admitted_import_gate";
+  const imports = m["module_imports"] as Record<string, string> | undefined;
+  const passCount = imports ? Object.values(imports).filter((v) => v === "PASS").length : 0;
+  const totalCount = imports ? Object.keys(imports).length : 0;
+  return {
+    gate: "G9_tabby_modern_import_gate",
+    question: "Do all tabby_modern modules import cleanly on cp314 in container?",
+    status: ok ? "admitted" : "blocked",
+    level: ok ? "L1" : "L0",
+    proof: ok
+      ? `P-09: ${passCount}/${totalCount} modules PASS, settings=OK, app_factory=OK — ${m["timestamp"]}`
+      : `P-09: ${m["status"]} — ${passCount}/${totalCount} PASS`,
+  };
+}
+
+
 
 const STATIC_GATES: GateResult[] = [
   {
@@ -148,6 +202,14 @@ const STATIC_GATES: GateResult[] = [
     proof: "import exllamav3 → OK after Gate 6 cleared (2026-04-25T08:46:33Z); triton warning non-fatal",
     notes: "triton not available on Win32 Python 3.14 — performance warning only, not blocking",
   },
+  {
+    gate: "G7_formatron_cessation",
+    question: "Will formatron survive Python's invalid-escape-sequence escalation?",
+    status: "admitted",
+    level: "L3",
+    proof: "SyntaxWarning on 3.14 — import succeeds; cessation boundary ~3.16; upstream fix required before then",
+    notes: "warning_degraded: '\\A','\\z' in formatron/formats/json.py + '\\[' in schemas/json_schema.py; non-fatal today",
+  },
 ];
 
 // ── Known warnings (non-fatal, should be tracked not silenced) ───────────────
@@ -179,11 +241,14 @@ const KNOWN_WARNINGS = [
 // ── Runner ────────────────────────────────────────────────────────────────────
 
 const gates: GateResult[] = [
-  ...STATIC_GATES.slice(0, 2),
-  probeG3(),
-  STATIC_GATES[2], // G4
-  STATIC_GATES[3], // G5
-  probeG6(),
+  ...STATIC_GATES.slice(0, 2), // G1, G2
+  probeG3(),                   // G3
+  STATIC_GATES[2],             // G4
+  STATIC_GATES[3],             // G5
+  probeG6(),                   // G6
+  STATIC_GATES[4],             // G7
+  probeG8(),                   // G8
+  probeG9(),                   // G9
 ];
 
 const blockedGates = gates.filter((g) => g.status === "blocked" || g.status === "not_probed");
