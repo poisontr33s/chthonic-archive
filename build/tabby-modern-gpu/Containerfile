@@ -88,7 +88,14 @@ RUN uv pip install --no-deps \
 # G6 gate status: python_only_admitted. CUDA kernel: source_build_failed_diagnosed.
 #
 # MAX_JOBS kept for exllamav2 build below (also uses ninja).
+# TORCH_CUDA_ARCH_LIST: required for exllamav2 source build.
+#   torch.utils.cpp_extension._get_cuda_arch_flags() reads this env var.
+#   Without it — and with no CUDA runtime at build time (GPU only available
+#   at run-time via CDI) — _get_cuda_arch_flags() returns an empty list,
+#   then crashes: arch_list[-1] += '+PTX' → IndexError.
+#   flash-attn with SKIP_CUDA_BUILD=TRUE ignores this env var entirely.
 ENV MAX_JOBS=4
+ENV TORCH_CUDA_ARCH_LIST="8.9"
 ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
 RUN uv pip install packaging wheel
 RUN uv pip install flash-attn==2.8.3 --no-build-isolation
