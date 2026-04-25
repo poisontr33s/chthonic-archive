@@ -17,6 +17,7 @@ import os
 import pathlib
 import subprocess
 import sys
+import tempfile
 
 MANIFEST_DIR = pathlib.Path(__file__).parents[2] / "manifest"
 MANIFEST_DIR.mkdir(exist_ok=True)
@@ -57,20 +58,66 @@ def install_vs2022_buildtools() -> tuple[int, str]:
     return result.returncode, (result.stdout + result.stderr)
 
 
+def capture_vcvars_env(vctools_version: str) -> dict[str, str]:
+    """Run vcvarsall.bat amd64 from VS 2022 BuildTools and capture the resulting environment.
+
+    Uses a temp batch file to avoid cmd.exe quote-nesting bugs that prevent
+    vcvarsall.bat from being invoked when the path contains spaces and the
+    whole command is wrapped in outer double-quotes.
+    """
+    vcvarsall = r"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat"
+    print(f"[P-06] vcvarsall: {vcvarsall}")
+
+    bat_fd, bat_path = tempfile.mkstemp(suffix=".bat", prefix="p06_vcvars_")
+    try:
+        with os.fdopen(bat_fd, "w") as f:
+            f.write("@echo off\r\n")
+            f.write(f"set VCToolsVersion={vctools_version}\r\n")
+            f.write(f'call "{vcvarsall}" amd64 > NUL 2>&1\r\n')
+            f.write("set\r\n")
+
+        result = subprocess.run(
+            ["cmd.exe", "/c", bat_path],
+            capture_output=True, text=True,
+        )
+        env: dict[str, str] = {}
+        for line in result.stdout.splitlines():
+            if "=" in line:
+                k, _, v = line.partition("=")
+                env[k.strip()] = v.strip()
+        return env
+    finally:
+        try:
+            os.unlink(bat_path)
+        except OSError:
+            pass
+
+
 def attempt_flash_attn_build(vctools_version: str) -> tuple[int, str]:
     """Attempt flash-attn==2.8.3 source build with VS 2022 14.4x toolchain."""
-    vctools_dir = os.path.join(VS2022_MSVC_BASE, vctools_version) + "\\"
-    cl_bin_dir = os.path.join(vctools_dir, "bin", "Hostx64", "x64")
+    env = capture_vcvars_env(vctools_version)
+    if not env:
+        # Fallback: manual env construction
+        vctools_dir = os.path.join(VS2022_MSVC_BASE, vctools_version) + "\\"
+        cl_bin_dir = os.path.join(vctools_dir, "bin", "Hostx64", "x64")
+        env = os.environ.copy()
+        env["VCToolsVersion"] = vctools_version
+        env["VCToolsInstallDir"] = vctools_dir
+        env["PATH"] = cl_bin_dir + os.pathsep + env.get("PATH", "")
+    else:
+        # Ensure CUDA_HOME is set in the captured env
+        pass
 
-    env = os.environ.copy()
     env["CUDA_HOME"] = CUDA_HOME
-    env["VCToolsVersion"] = vctools_version
-    env["VCToolsInstallDir"] = vctools_dir
-    # Prepend 14.4x bin dir so nvcc finds the right cl.exe first
-    env["PATH"] = cl_bin_dir + os.pathsep + env.get("PATH", "")
+    env["VCToolsVersion"] = vctools_version  # re-assert in case vcvarsall reset it
+    env["DISTUTILS_USE_SDK"] = "1"  # required by torch cpp_extension when VC env is pre-activated
 
+    cl_bin_dir = os.path.join(VS2022_MSVC_BASE, vctools_version, "bin", "Hostx64", "x64")
     print(f"[P-06] Building flash-attn==2.8.3 with MSVC {vctools_version}...")
     print(f"       cl.exe: {os.path.join(cl_bin_dir, 'cl.exe')}")
+    # Verify the captured INCLUDE points to 14.4x, not 14.51
+    inc = env.get("INCLUDE", "")
+    print(f"       INCLUDE[:120]: {inc[:120]}")
 
     cmd = [
         "uv", "pip", "install",
@@ -78,11 +125,19 @@ def attempt_flash_attn_build(vctools_version: str) -> tuple[int, str]:
         "flash-attn==2.8.3",
         "--no-build-isolation",
     ]
-    result = subprocess.run(
-        cmd, capture_output=True, text=True, env=env, timeout=7200
+    build_log_path = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+        "manifest", "flash_attn_build_full.log"
     )
-    combined = result.stdout + result.stderr
-    # Truncate for manifest but keep tail (where errors land)
+    print(f"[P-06] Build output → {build_log_path}")
+    with open(build_log_path, "w", encoding="utf-8", errors="replace") as flog:
+        result = subprocess.run(
+            cmd, stdout=flog, stderr=subprocess.STDOUT,
+            text=True, env=env, timeout=7200
+        )
+    with open(build_log_path, "r", encoding="utf-8", errors="replace") as flog:
+        combined = flog.read()
+    # Tail for manifest; full log on disk for diagnosis
     tail = combined[-6000:] if len(combined) > 6000 else combined
     return result.returncode, tail
 
