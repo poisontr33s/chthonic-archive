@@ -1,0 +1,22 @@
+{
+  "probe_id": "P-09",
+  "gate": "tabby-modern/import_gate",
+  "python_version": "3.14.4",
+  "substrate": "linux",
+  "timestamp": "2026-04-25T19:57:28.191233+00:00",
+  "module_imports": {
+    "tabby_modern": "PASS",
+    "tabby_modern.settings": "PASS",
+    "tabby_modern.state": "PASS",
+    "tabby_modern.sampler": "PASS",
+    "tabby_modern.app": "PASS",
+    "tabby_modern.api.health": "PASS",
+    "tabby_modern.api.models": "PASS",
+    "tabby_modern.api.completions": "PASS",
+    "tabby_modern.api.chat": "PASS"
+  },
+  "settings_check": "OK: host=127.0.0.1 port=5000",
+  "app_factory_check": "OK: 9 routes (/openapi.json, /docs, /docs/oauth2-redirect, /redoc...)",
+  "status": "admitted_import_gate",
+  "level": "L1"
+}

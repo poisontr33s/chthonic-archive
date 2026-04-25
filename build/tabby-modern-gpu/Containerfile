@@ -138,7 +138,7 @@ RUN uv pip install tokenizers
 # No --no-build-isolation: hatchling + all build deps already present in venv.
 COPY apps/tabby-modern/pyproject.toml /workspace/app/pyproject.toml
 COPY apps/tabby-modern/src/ /workspace/app/src/
-RUN uv pip install -e /workspace/app/ --no-build-isolation
+RUN uv pip install -e /workspace/app/
 
 # --- Run probe ladder ---
 # CMD: P-09 (tabby-modern import gate — G9)
