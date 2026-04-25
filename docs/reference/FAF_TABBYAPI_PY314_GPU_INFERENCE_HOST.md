@@ -227,33 +227,52 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 
 ---
 
-### Gate 6 — flash_attn cp314 (No Pre-Built Wheel → Source-Buildable Boundary)
+### Gate 6 — flash_attn cp314 (No Pre-Built Wheel + Source Build BLOCKED)
 **Question:** Can flash_attn be loaded on Python 3.14?
 
-**Background:** No cp314 pre-built wheel at kingbri1/flash-attention v2.8.3 (P-03 confirmed: highest=cp313). However, source build is structurally possible: nvcc v12.8 confirmed (`nvcc --version`), `CUDA_HOME=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8`, torch 2.11.0+cu128 in venv.
+**P-05 result (2026-04-25T04:40:23Z):** Source build attempted with `--no-build-isolation` + `CUDA_HOME=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8`. **FAILED — two independent blockers:**
 
-**Build attempt (2026-04-25):** `uv sync --extra cu12` triggered flash_attn source build. First attempt failed (isolated build env got `torch 2.10.0+cpu`). Second attempt with `--no-build-isolation` failed (CUDA_HOME not propagated to isolated build env). Source build deferred — time-intensive (20–60 min CUDA compilation), not truly impossible.
+**Blocker 1 (nvcc host compiler ceiling):** `crt/host_config.h(170): fatal error C1189 — unsupported Microsoft Visual Studio version! Only 2017–2022 inclusive are supported.`  
+Installed MSVC: `14.51.36231` (VS BuildTools 2027 / MSVC 19.51). CUDA 12.8 caps at MSVC 14.40 (VS 2022). Exceeds ceiling by one major VS generation.
+
+**Blocker 2 (CUTLASS header incompatibility):** `cutlass/exmy_base.h(404): error C2039: 'is_unsigned_v': is not a member of 'cutlass::platform'`  
+flash_attn 2.8.3's bundled CUTLASS headers reference `cutlass::platform::is_unsigned_v` — does not exist in MSVC 18's STL port. Structural incompatibility, not a flag tweak.
 
 ```json
 {
+  "gate": "flash_attn/source_build_attempt",
   "artifact_type": "probe",
-  "gate": "flash_attn/cp314_source_build",
-  "claim": "flash_attn is buildable from source on Python 3.14 with nvcc v12.8",
-  "wheel_existence": "no cp314 pre-built wheel at kingbri1/flash-attention v2.8.3 (P-03: highest=cp313)",
-  "source_build_feasibility": "structurally possible",
-  "nvcc_confirmed": "nvcc --version: NVIDIA (R) Cuda compiler driver, Built Mon_Mar__2_21:54:11_PST_2026",
+  "probe_id": "P-05",
+  "timestamp": "2026-04-25T04:40:23.121627Z",
+  "target_package": "flash-attn==2.8.3",
+  "build_mode": "--no-build-isolation",
   "cuda_home": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8",
-  "torch_in_venv": "2.11.0+cu128",
-  "build_blocker": "uv build isolation passes torch 2.10.0+cpu to build env; --no-build-isolation workaround available",
-  "level": "L0_source_buildable",
-  "status": "source_build_deferred",
-  "minimum_condition_to_close_via_wheel": "kingbri1/flash-attention release with cp314-cp314-win_amd64 wheel",
-  "minimum_condition_to_close_via_source": "CUDA_HOME propagated to build env + uv pip install flash_attn --no-build-isolation"
+  "msvc_versions_found": ["14.51.36231"],
+  "failure_mode_1": {
+    "location": "crt/host_config.h(170)",
+    "error": "fatal error C1189: unsupported Microsoft Visual Studio version! Only 2017–2022 supported.",
+    "installed_msvc": "14.51.36231",
+    "cuda_12_8_max_msvc": "14.40.x (VS 2022)",
+    "verdict": "MSVC 14.51 exceeds CUDA 12.8 host_config.h ceiling of 14.40"
+  },
+  "failure_mode_2": {
+    "location": "cutlass/exmy_base.h(404)",
+    "error": "error C2039: 'is_unsigned_v': is not a member of 'cutlass::platform'",
+    "verdict": "flash_attn 2.8.3 bundled CUTLASS headers incompatible with MSVC 18 STL port"
+  },
+  "build_result": "FAILED",
+  "level": "L0_blocked",
+  "status": "source_build_blocked_msvc_ceiling",
+  "remediation_paths": [
+    "Install VS 2022 BuildTools (MSVC 14.4x) alongside VS 2027; set VCToolsVersion to 14.4x for nvcc",
+    "Wait for kingbri1/flash-attention cp314-cp314-win_amd64 pre-built wheel",
+    "Wait for flash_attn to update CUTLASS headers for MSVC 18 support"
+  ]
 }
 ```
 
-**Level reached:** L0 (no pre-built cp314 wheel; source-buildable with nvcc — build deferred)  
-**Status:** `source_build_deferred` — not impossible-currently; time-gated on source compilation
+**Level reached:** L0 — no pre-built cp314 wheel; source build blocked (not deferred)  
+**Status:** `source_build_blocked_msvc_ceiling` — blocked by MSVC 14.51 exceeding CUDA 12.8 host_config.h ceiling (max 14.40) AND bundled CUTLASS header incompatibility with MSVC 18
 
 ---
 
@@ -267,7 +286,7 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 | torch 2.11.0+cu128 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — P-02: CUDA 12.8, RTX 4090, device_count=1 |
 | exllamav2 | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently — v0.3.2 highest=cp313 |
 | exllamav3 0.0.30 | ✅ | ✅ | ❌ | ❌ | ❌ | L1 install admitted; import blocked on flash_attn |
-| flash_attn | ✅ | ❌ | ❌ | ❌ | ❌ | No cp314 pre-built wheel; source-buildable (deferred) |
+| flash_attn | ✅ | ❌ | ❌ | ❌ | ❌ | **source_build_blocked_msvc_ceiling** — P-05: MSVC 14.51 > CUDA 12.8 ceiling (14.40) + CUTLASS/MSVC18 compat |
 | CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
 
 Key: ✅ = admitted at this level | ❌ = blocked | ❓ = not yet probed
@@ -426,11 +445,11 @@ As of probe trajectory execution 2026-04-25:
 |----------|--------------------|--------------------|----------------------|
 | exllamav2 on Python 3.14 | turboderp-org/exllamav2 | cp314-cp314-win_amd64 wheel in release | `blocked_not_closed` — v0.3.2 highest=cp313 |
 | exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | Gate 6 clears | `import_blocked_on_flash_attn` — L1 install admitted |
-| flash_attn cp314 pre-built | kingbri1/flash-attention | cp314 pre-built wheel in release | `source_build_deferred` — nvcc v12.8 present |
-| GPU inference (full tabbyAPI) on Python 3.14 | flash_attn cp314 (source build or pre-built) | flash_attn loads + exllamav3 imports | `partial` — blocked only on flash_attn |
+| flash_attn cp314 | kingbri1/flash-attention | cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update | `source_build_blocked_msvc_ceiling` — P-05: MSVC 14.51 > CUDA 12.8 max (14.40) + CUTLASS headers |
+| GPU inference (full tabbyAPI) on Python 3.14 | flash_attn cp314 | flash_attn loads + exllamav3 imports | `blocked` — depends on flash_attn clearing |
 | ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
 
-**Key reclassification (2026-04-25):** torch is ADMITTED L4. exllamav3 wheel EXISTS and INSTALLS. flash_attn is **not** impossible-currently — nvcc v12.8 present, source-buildable; build time-gated only.
+**Key reclassifications (2026-04-25):** torch ADMITTED L4. exllamav3 wheel EXISTS + INSTALLS (L1). flash_attn: NOT source-buildable currently — MSVC 14.51 (VS 2027) exceeds CUDA 12.8's host compiler ceiling of MSVC 14.40 (VS 2022). Two independent blockers — host_config.h ceiling + CUTLASS header incompatibility with MSVC 18.
 
 ---
 
