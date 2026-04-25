@@ -12,7 +12,7 @@ dependencies = [
     "numpy>=2.4.3,<3",
     "packaging>=24.2",
     "polars>=1.39.3,<2",
-    "rich>=14.3.3,<15",
+    "rich>=15.0.0,<16",
     "scikit-learn>=1.8.0,<2",
 ]
 
