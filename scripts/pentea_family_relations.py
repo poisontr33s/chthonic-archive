@@ -14,7 +14,7 @@
 """
 pentea_family_relations.py — Full-archive .md × *META*.md family relation mapper.
 
-@SID:           TOOL_PENTEA_FAMILY_V1
+@SID:           TOOL_PENTEA_FAMILY_V2
 @Shabti:        Relation Mapper
 @Context:       Archive Maintenance / MILF-Core + ANKH Synthesis Domains
 @Implements:    PENTARCH_FIELD_EXTRACTION + FAMILY_GRAPH + CACHE_V2
@@ -34,6 +34,12 @@ pentea_family_relations.py — Full-archive .md × *META*.md family relation map
                 dir-mtime + file-mtime coherence — detects add/modify/delete
                 without a full re-walk.
 
+                Authorship classification (V2): each .md file is tagged
+                origin="authored" if tracked in git (git ls-files), or
+                origin="framework" if present on disk but not committed.
+                Use --authored-only to exclude framework/vendor .md files
+                from the relational graph entirely.
+
 meta_sync.py vs pentea_family_relations.py:
   meta_sync.py          — deep parse of *META*.md internals (pipeline state,
                           priority queue, strikethrough patching)
@@ -44,17 +50,19 @@ Usage:
     uv run scripts/pentea_family_relations.py [OPTIONS]
 
 Flags:
-    --json           Emit machine-readable JSON
-    --report FILE    Write report to FILE (default: stdout)
-    --no-cache       Force full filesystem walk, refresh cache
-    --strict         Exit 1 if unclaimed .md files or :pentarch gaps exist
-    --domain GLOB    Filter .md files to paths matching GLOB (e.g. "codex/**")
-    --meta FILE      Scope to a single META file
+    --json             Emit machine-readable JSON
+    --report FILE      Write report to FILE (default: stdout)
+    --no-cache         Force full filesystem walk, refresh cache
+    --strict           Exit 1 if unclaimed .md files or :pentarch gaps exist
+    --domain GLOB      Filter .md files to paths matching GLOB (e.g. "codex/**")
+    --meta FILE        Scope to a single META file
+    --authored-only    Exclude framework/untracked .md files (git ls-files gate)
 """
 
 import datetime
 import fnmatch
 import re
+import subprocess
 import sys
 import json
 import argparse
@@ -107,6 +115,32 @@ _CACHE_PATH = REPO_ROOT / ".git" / "pentea_family_cache.json"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Git authorship oracle — V2
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _git_tracked_set(repo: Path) -> set[str]:
+    """
+    Return the set of repo-relative POSIX paths currently tracked by git.
+    Used to classify .md files as 'authored' (committed) vs 'framework'
+    (present on disk but not in the git index — vendored, generated, or
+    auto-created by framework tooling).
+    Returns an empty set on any failure — callers degrade gracefully.
+    """
+    try:
+        result = subprocess.run(
+            ["git", "ls-files"],
+            cwd=repo,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=15,
+        )
+        return set(result.stdout.splitlines())
+    except Exception:
+        return set()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Data structures
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -118,6 +152,7 @@ class FamilyMember:
     meta_families: list[Path]    # META files whose File Registry lists this .md
     in_registry: bool            # at least one META claims it
     is_meta: bool                # is this file itself a *META*.md?
+    origin: str = "unknown"      # "authored" | "framework" | "unknown"
 
 
 @dataclass
@@ -165,6 +200,14 @@ class FamilyMap:
             return 100.0
         claimed = len(non_meta) - len(self.unclaimed_mds)
         return round(claimed / len(non_meta) * 100, 1)
+
+    @property
+    def authored_count(self) -> int:
+        return sum(1 for m in self.members.values() if m.origin == "authored")
+
+    @property
+    def framework_count(self) -> int:
+        return sum(1 for m in self.members.values() if m.origin == "framework")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -402,13 +445,21 @@ def build_family_map(
     meta_files: list[Path],
     domain_filter: Optional[str] = None,
     scope_meta: Optional[Path] = None,
+    authored_filter: bool = False,
 ) -> FamilyMap:
     """
     1. Extract File Registry claims from each META file.
     2. Extract :pentarch fields from all .md files.
     3. Cross-join: for each .md, which META files claim it?
     4. Classify: claimed, unclaimed, :pentarch gap.
+    5. (V2) Tag each .md with origin: authored | framework | unknown.
     """
+    # V2: git-tracked oracle for authorship classification
+    tracked = _git_tracked_set(repo)
+
+    def _rel_posix(p: Path) -> str:
+        return str(p.relative_to(repo)).replace("\\", "/")
+
     # Apply scope / domain filters
     filtered_meta = [scope_meta] if scope_meta else meta_files
     filtered_mds = (
@@ -416,6 +467,10 @@ def build_family_map(
         if domain_filter
         else all_mds
     )
+
+    # --authored-only: drop .md files not in the git index
+    if authored_filter and tracked:
+        filtered_mds = [p for p in filtered_mds if _rel_posix(p) in tracked]
 
     # Step 1 — process each META file
     meta_family_map: dict[Path, MetaFamily] = {}
@@ -448,12 +503,18 @@ def build_family_map(
         families = claimed_by.get(p, [])
         rel_key = str(p.relative_to(repo))
 
+        origin = (
+            "authored" if tracked and _rel_posix(p) in tracked
+            else "framework" if tracked
+            else "unknown"
+        )
         members[rel_key] = FamilyMember(
             path=p,
             pentarch=pentarch,
             meta_families=families,
             in_registry=len(families) > 0,
             is_meta=p in meta_set,
+            origin=origin,
         )
 
         if pentarch is not None:
@@ -497,6 +558,12 @@ def report_rich(fm: FamilyMap, console: "Console") -> None:
     console.print(f"[dim]pentea_family_relations  {fm.scanned_at}[/]\n")
 
     cov_col = _cov_color(fm.coverage_pct)
+    authored_str = (
+        f"  [bold]authored[/]: [green]{fm.authored_count}[/]  "
+        f"[bold]framework[/]: [dim]{fm.framework_count}[/]"
+        if fm.authored_count + fm.framework_count > 0
+        else ""
+    )
     summary = (
         f"[bold].md total[/]: {fm.total_mds}  "
         f"[bold]META[/]: {fm.total_meta}  "
@@ -504,6 +571,7 @@ def report_rich(fm: FamilyMap, console: "Console") -> None:
         f"[bold]unclaimed[/]: [{'red' if fm.unclaimed_mds else 'green'}]{len(fm.unclaimed_mds)}[/]  "
         f"[bold]:pentarch declared[/]: {len(fm.pentarch_declared)}  "
         f"[bold]:pentarch gap[/]: [{'red' if fm.pentarch_gap else 'green'}]{len(fm.pentarch_gap)}[/]"
+        f"{authored_str}"
     )
     console.print(Panel(summary, title="[bold gold1]PENTARCH FAMILY MAP[/]", expand=False))
     console.print()
@@ -537,13 +605,18 @@ def report_rich(fm: FamilyMap, console: "Console") -> None:
 
     # Unclaimed .md files
     if fm.unclaimed_mds:
-        t = Table("File", ":pentarch", show_header=True, header_style="bold red")
+        t = Table("File", ":pentarch", "origin", show_header=True, header_style="bold red")
         for p in sorted(fm.unclaimed_mds)[:200]:
             rel = p.relative_to(fm.repo)
             member = fm.members.get(str(rel))
-            t.add_row(str(rel), member.pentarch or "—" if member else "—")
+            origin_str = (
+                f"[dim]{member.origin}[/]" if member and member.origin != "authored"
+                else f"[green]{member.origin}[/]" if member
+                else "—"
+            )
+            t.add_row(str(rel), member.pentarch or "—" if member else "—", origin_str)
         if len(fm.unclaimed_mds) > 200:
-            t.add_row(f"… {len(fm.unclaimed_mds) - 200} more", "")
+            t.add_row(f"… {len(fm.unclaimed_mds) - 200} more", "", "")
         console.print(
             Panel(t, title=f"[red]UNCLAIMED .md ({len(fm.unclaimed_mds)})[/]", expand=False)
         )
@@ -568,10 +641,16 @@ def report_rich(fm: FamilyMap, console: "Console") -> None:
 
 def report_plain(fm: FamilyMap, out) -> None:
     out.write(f"pentea_family_relations  {fm.scanned_at}\n")
+    origin_line = (
+        f" | authored: {fm.authored_count} | framework: {fm.framework_count}"
+        if fm.authored_count + fm.framework_count > 0
+        else ""
+    )
     out.write(
         f"total .md: {fm.total_mds} | META: {fm.total_meta} | "
         f"coverage: {fm.coverage_pct}% | unclaimed: {len(fm.unclaimed_mds)} | "
-        f":pentarch declared: {len(fm.pentarch_declared)} | :pentarch gap: {len(fm.pentarch_gap)}\n\n"
+        f":pentarch declared: {len(fm.pentarch_declared)} | :pentarch gap: {len(fm.pentarch_gap)}"
+        f"{origin_line}\n\n"
     )
     for mf in fm.meta_families:
         rel = mf.meta_path.relative_to(fm.repo)
@@ -589,7 +668,10 @@ def report_plain(fm: FamilyMap, out) -> None:
     if fm.unclaimed_mds:
         out.write(f"UNCLAIMED ({len(fm.unclaimed_mds)}):\n")
         for p in sorted(fm.unclaimed_mds):
-            out.write(f"  ⬜ {p.relative_to(fm.repo)}\n")
+            rel = p.relative_to(fm.repo)
+            member = fm.members.get(str(rel))
+            origin_tag = f"  [{member.origin}]" if member else ""
+            out.write(f"  ⬜ {rel}{origin_tag}\n")
 
 
 def report_json(fm: FamilyMap, out) -> None:
@@ -613,7 +695,20 @@ def report_json(fm: FamilyMap, out) -> None:
             }
             for mf in fm.meta_families
         ],
-        "unclaimed_mds": [str(p.relative_to(fm.repo)) for p in fm.unclaimed_mds],
+        "origin_summary": {
+            "authored": fm.authored_count,
+            "framework": fm.framework_count,
+            "unknown": fm.total_mds - fm.authored_count - fm.framework_count,
+        },
+        "unclaimed_mds": [
+            {
+                "file": str(p.relative_to(fm.repo)),
+                "origin": fm.members[str(p.relative_to(fm.repo))].origin
+                if str(p.relative_to(fm.repo)) in fm.members
+                else "unknown",
+            }
+            for p in fm.unclaimed_mds
+        ],
         "pentarch_declared": [
             {
                 "file": str(p.relative_to(fm.repo)),
@@ -651,6 +746,8 @@ def main() -> int:
                     help="Filter .md files to paths matching GLOB (e.g. 'codex/**')")
     ap.add_argument("--meta", metavar="FILE",
                     help="Scope relation graph to a single META file")
+    ap.add_argument("--authored-only", action="store_true",
+                    help="Exclude framework/untracked .md files (git ls-files gate)")
     args = ap.parse_args()
 
     all_mds, meta_files = discover_all_md_files(REPO_ROOT, use_cache=not args.no_cache)
@@ -667,6 +764,7 @@ def main() -> int:
         meta_files=meta_files,
         domain_filter=args.domain,
         scope_meta=scope_meta,
+        authored_filter=getattr(args, "authored_only", False),
     )
 
     out_file = open(args.report, "w", encoding="utf-8") if args.report else None
@@ -683,10 +781,15 @@ def main() -> int:
         if out_file:
             out_file.close()
 
+    origin_note = (
+        f" | {fm.authored_count} authored / {fm.framework_count} framework"
+        if fm.authored_count + fm.framework_count > 0
+        else ""
+    )
     sys.stderr.write(
         f"pentea_family_relations: {fm.total_mds} .md | {fm.total_meta} META | "
         f"{fm.coverage_pct}% coverage | {len(fm.unclaimed_mds)} unclaimed | "
-        f"{len(fm.pentarch_gap)} :pentarch gap(s)\n"
+        f"{len(fm.pentarch_gap)} :pentarch gap(s){origin_note}\n"
     )
 
     if args.strict and (fm.unclaimed_mds or fm.pentarch_gap):

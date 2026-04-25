@@ -63,6 +63,13 @@ const CHECKS: Check[] = [
     description: "@SID presence in new scripts/*.ts and ci/**/*.ts (Added only)",
   },
   {
+    name: "uv-guard",
+    script: "ci/checks/uv-guard.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "No bare python/python3 invocations — use uv run",
+  },
+  {
     name: "bun-audit",
     script: "ci/checks/bun-audit.ts",
     scope: "always",

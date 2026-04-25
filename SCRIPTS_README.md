@@ -347,6 +347,108 @@ This directory contains production-ready tools for repository governance, enviro
 
 ---
 
+## Archive Maintenance Tools (V2)
+
+### `scripts/pentea_family_relations.py`
+
+**@SID:** `TOOL_PENTEA_FAMILY_V2`  
+**Purpose:** Full-archive `.md` × `*META*.md` relational mapper with git authorship classification.
+
+Maps every `.md` file in the archive to META families, extracts `:pentarch` fields, and reports coverage gaps. V2 adds origin classification: each `.md` is tagged `authored` (git-tracked) or `framework` (present on disk but not committed — vendored, auto-generated, or framework scaffolding).
+
+**Usage:**
+```powershell
+# Default: rich tree report
+uv run scripts/pentea_family_relations.py
+
+# Authored files only (exclude framework/vendor .md)
+uv run scripts/pentea_family_relations.py --authored-only
+
+# JSON output (CI/scripting)
+uv run scripts/pentea_family_relations.py --json
+
+# Write report to file
+uv run scripts/pentea_family_relations.py --report docs/family-report.md
+
+# Force cache refresh
+uv run scripts/pentea_family_relations.py --no-cache
+
+# Strict mode: exit 1 if unclaimed or :pentarch gaps
+uv run scripts/pentea_family_relations.py --strict
+
+# Scope to a sub-tree
+uv run scripts/pentea_family_relations.py --domain "codex/**"
+
+# Scope to a single META file
+uv run scripts/pentea_family_relations.py --meta codex/MILF-Core-META.md
+```
+
+**Origin classification:**
+- `authored` — file appears in `git ls-files` (you or an agent committed it)
+- `framework` — on disk but not in git index (auto-generated / vendored)
+- `unknown` — git oracle unavailable (non-git environment)
+
+**Flags:**
+
+| Flag | Effect |
+|------|--------|
+| `--authored-only` | Drop framework/untracked `.md` files before building the graph |
+| `--json` | Emit JSON (includes `origin_summary` + per-file `origin` in `unclaimed_mds`) |
+| `--report FILE` | Write output to FILE instead of stdout |
+| `--no-cache` | Force full filesystem walk, refresh `.git/pentea_family_cache.json` |
+| `--strict` | Exit 1 if any unclaimed `.md` or `:pentarch` gaps exist |
+| `--domain GLOB` | Filter `.md` paths to GLOB pattern |
+| `--meta FILE` | Scope to a single META file |
+
+**Cache:** `.git/pentea_family_cache.json` (Cache V2 — dir-mtime + file-mtime coherence, gitignored by location)
+
+---
+
+## Local CI Checks (`ci/checks/`)
+
+### `ci/checks/uv-guard.ts`
+
+**@SID:** `CI_CHECK_UV_GUARD_V1`  
+**Purpose:** Block bare `python`/`python3` invocations — enforce the repo-wide `uv run` mandate.
+
+Scans `.py`, `.sh`, `.ps1`, `.ts` files for raw Python calls not prefixed with `uv run`. Registered in `ci/run.ts` as a `staged/fast` check — runs in pre-commit mode automatically.
+
+**Enforcement levels:**
+- **Added files (strict):** exit 1 — blocks the commit
+- **Modified files (advisory):** warns but does not block
+- **Default scan (advisory):** `bun run ci/checks/uv-guard.ts` — advisory over all tracked files (exit 0)
+
+**Detected patterns:**
+```shell
+python script.py          # bare shell
+python3 -m module         # bare module
+& python script.py        # PowerShell ampersand call
+spawnSync("python3", …)   # Node/Bun spawn
+subprocess.run(["python", …])  # Python subprocess
+```
+
+**Allowed patterns:**
+```shell
+uv run script.py          # correct
+uv run python3 -c "…"     # correct
+#!/usr/bin/env python3    # shebang (allowed)
+# python3 foo             # comment (skipped)
+```
+
+**Run manually:**
+```powershell
+# Advisory scan (all tracked files)
+bun run ci/checks/uv-guard.ts
+
+# Staged mode (what pre-commit runs)
+bun run ci/checks/uv-guard.ts --staged
+
+# Via CI runner
+bun run ci/run.ts --check uv-guard
+```
+
+---
+
 ## Validation & Scanning Tools
 
 ### `validate_probe.ps1`
