@@ -2,53 +2,49 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-# tabby-modern is not a distributable package — hatchling minimal build backend
 [tool.hatch.metadata]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-only-include = []
+packages = ["src/tabby_modern"]
 
 [project]
 name = "tabby-modern"
 version = "0.1.0"
-description = "tabbyAPI modernization scaffold — Python 3.14 + exllamav3 + CUDA 12.8 container lane"
+description = "Modern GPU inference host — Python 3.14 / uv / exllamav3 / Podman CDI"
 requires-python = ">=3.14"
 dependencies = [
     "fastapi-slim >= 0.115",
-    # pydantic 2.13+ → pydantic-core 2.46.x → PyO3 0.25.x → cp314 wheels (FAF Gate 2 admitted)
+
+    # pydantic 2.13+ → pydantic-core 2.46.x → PyO3 0.25.x → cp314 wheels (FAF Gate 2)
+    # pydantic-settings is the config primary — no ruamel.yaml, no YAML-first paradigm
     "pydantic >= 2.13.0,<3",
-    "ruamel.yaml >= 0.18.0",
-    "rich >= 15.0.0,<16",
-    "uvicorn >= 0.28.1",
+    "pydantic-settings >= 2.3.0",
+
+    "uvicorn[standard] >= 0.28.1",
     "jinja2 >= 3.0.0",
     "loguru >= 0.7.0",
     "sse-starlette >= 2.2.0",
-    "packaging >= 24.0",
     "tokenizers >= 0.21.0",
 
-    # Gate 7 — formatron cessation trajectory
-    # SyntaxWarning on Python 3.14 (bare-string \A, \z, \[ invalid escapes):
-    #   formatron/formats/json.py:116, formatron/schemas/json_schema.py:72
-    # Cessation boundary: ~Python 3.16 — SyntaxError, import fails unconditionally.
-    # Pin: >=0.4.11 (last tested clean on 3.14), <1.0 (major API break sentinel).
+    # Gate 7 — formatron cessation trajectory (FAF Gate 7, warning_degraded on 3.14)
+    # Bare-string \A \z \[ in formatron/formats/json.py:116, formatron/schemas/json_schema.py:72
+    # Cessation boundary: ~Python 3.16 — SyntaxError. Pin <1.0 as major-API sentinel.
     # Upstream: GuidoGuardiani/formatron — no fix as of 2026-04-25.
-    # If upstream crosses cessation before fix → substitute with compatible JSON schema enforcer.
-    # FAF reference: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md Gate 7
+    # FAF: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md#gate-7
     "formatron >= 0.4.11,<1.0",
 
     "kbnf >= 0.4.1",
     "aiofiles >= 24.0.0",
-    "aiohttp >= 3.11.0",
-    "async_lru >= 2.0.0",
-    "huggingface_hub >= 0.30.0",
     "psutil >= 6.0.0",
-    "httptools >= 0.5.0",
     "pillow >= 11.0.0",
 
-    # Linux asyncio event loop performance (container deployment)
+    # Linux asyncio event loop (container deployment — uvloop over selector loop)
     "uvloop >= 0.21.0 ; platform_system == 'Linux' and platform_machine == 'x86_64'",
 ]
+
+[project.scripts]
+tabby-modern = "tabby_modern.__main__:main"
 
 [project.optional-dependencies]
 cu128 = [
