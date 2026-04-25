@@ -32,6 +32,7 @@ from mas_mcp.logic.tools import (
     mas_narrative_scan_logic, mas_qualia_check_logic,
     mas_validate_entity_logic
 )
+from mas_mcp.logic.pid_reader import mas_pid_reader_logic
 from mas_mcp.logic.governance import policy_check_logic
 from mas_mcp.logic.ssot_binding import (
     resolve_ssot, resolve_ssot_for_lexicon,
@@ -183,6 +184,42 @@ def mas_scm_suppress(dry_run: bool = True):
     recommendations = generate_fix_recommendations(result)
     suppression = suppress_noise(PROJECT_ROOT, recommendations, dry_run=dry_run)
     return {"triage_summary": result["by_classification"], "suppression": suppression}
+
+
+@mcp.tool()
+def mas_pid_reader(
+    last: int = 20,
+    sid: str = None,
+    pid: int = None,
+    failed_only: bool = False,
+    summary_only: bool = False,
+    cwd_filter: str = None,
+):
+    """
+    Read the terminal session manifest (manifest/terminal_session.jsonl) produced by
+    chthonic-shell-hook.ps1 (PID reader). Returns structured, machine-readable session
+    data: command history, exit codes, durations, session metadata, and aggregate stats.
+
+    Use for: documentation supplementation, session archaeology, failure triage,
+    CI gate data, cross-session command audit.
+
+    Parameters:
+      last        — last N completed commands (default 20)
+      sid         — filter by session ID (8-char hex, e.g. '964b4806')
+      pid         — filter by process PID
+      failed_only — return only failed commands (exit_code != 0)
+      summary_only — return stats + active sessions only, no entries
+      cwd_filter  — substring filter on working directory path
+    """
+    return mas_pid_reader_logic(
+        PROJECT_ROOT,
+        last=last,
+        sid=sid,
+        pid=pid,
+        failed_only=failed_only,
+        summary_only=summary_only,
+        cwd_filter=cwd_filter,
+    )
 
 
 def main():
