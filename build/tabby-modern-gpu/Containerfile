@@ -79,7 +79,12 @@ RUN uv pip install --no-deps \
 # --no-build-isolation: uses already-installed torch headers
 # packaging must be pre-installed: flash-attn 2.8.3 setup.py uses it but
 # doesn't declare it in build-system.requires — uv surfaces this as ModuleNotFoundError
+# TORCH_CUDA_ARCH_LIST: restrict to sm_89 (RTX 4090) only.
+# torch 2.11+cu128 auto-expands to include compute_120 (Blackwell/sm_120);
+# flash-attn 2.8.3 bundles CUTLASS that predates sm_120 — nvcc fails on every
+# .cu file immediately. Restricting to 8.9 fixes the failure and cuts build time.
 ENV MAX_JOBS=4
+ENV TORCH_CUDA_ARCH_LIST="8.9"
 RUN uv pip install packaging wheel
 RUN uv pip install flash-attn==2.8.3 --no-build-isolation
 
