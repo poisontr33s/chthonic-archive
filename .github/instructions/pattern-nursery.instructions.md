@@ -311,15 +311,18 @@ VS 2026 Installer (generation `4.x`, ships with VS 18 Insiders) presents as "Mod
 
 ---
 
-### Probe-Manifest-CI-Membrane — `novel`
+### Probe-Manifest-CI-Membrane — `familiar`
 *Origin: 2026-04-25 — tabbyAPI GPU inference gate ladder, Python 3.14 session*
+*Promoted: 2026-04-25 — second gate (terminal-hook-smoke) added, regression detector armed; criteria met*
 
 When building a complex dependency stack (here: Python 3.14 + CUDA 12.8 + flash_attn + exllamav3), the probe scripts that validate each gate ARE the CI — they just need a membrane layer that reads their output manifests and reports gate status without re-running the expensive operations.
 
 **Architecture:**
 ```
-probes/python/P-0N.py  →  runs once (possibly 60min)  →  manifest/P-0N.json
-ci/checks/gate-smoke.ts  →  reads manifest/*.json  →  structured exit 0/1
+probes/python/P-0N.py           →  runs once (possibly 60min)  →  manifest/P-0N.json
+scripts/chthonic-shell-hook.ps1  →  emits per-command JSONL     →  manifest/terminal_session.jsonl
+ci/checks/gate-smoke.ts          →  reads manifest/*.json       →  structured exit 0/1
+ci/checks/terminal-hook-smoke.ts →  reads manifest/terminal_*   →  regression gate
 ```
 
 **Key insight**: terminal buffer scraping is the wrong approach for CI. All probes emit `manifest/*.json`. The CI reads manifests. PID/scrollback access is not needed — the probe output is already persisted. The gate smoke check is then idempotent and instant (<1s) for all gates that have already run.
@@ -331,9 +334,14 @@ ci/checks/gate-smoke.ts  →  reads manifest/*.json  →  structured exit 0/1
 - No PID-based scrollback read, no full-buffer access
 - Correct workaround: all probes write structured JSON to `manifest/`; CI reads manifests
 
+**Concrete failure story (PATCH_FILTER_BYPASS — 2026-04-25):**
+`terminal_session_query.ts` merge logic kept `_patch:true` on winning entries. `applyFilters(!e._patch)` then excluded ALL merged entries → empty query output despite data present. Detected via `bun run ci/checks/terminal-hook-smoke.ts --report` → `stale_patch_entries > 0`. Fix: `{ ...entry, _patch: false }` on `bySeq.set` winner. Confirmed at commit `dfb63f02`. The CI membrane is what made this diagnosable — without `manifest/terminal_hook_validation.json` the failure would have been a mystery across sessions.
+
+**`2>&1` trap (VS Code run_in_terminal):** tool captures stdout only; some bun CLI output was silently dropped without stderr redirect. Always use `2>&1` in `run_in_terminal` calls to guarantee capture.
+
 **Shape:** complex probe results → `manifest/*.json` → gate smoke check reads manifests → CI exits 0/1 → no terminal scraping needed.
 
-**Promotion criteria:** CI membrane survives a second proof-of-concept gate (new gate added, probe runs, smoke check picks it up without manual intervention) → `familiar`.
+**Promotion criteria:** ✅ CI membrane survived a second gate (`terminal-hook-smoke`), regression detector armed (`stale_patch_entries` field), `manifest/terminal_hook_validation.json` produced as road-stop artifact.
 
 ---
 
@@ -353,3 +361,4 @@ ci/checks/gate-smoke.ts  →  reads manifest/*.json  →  structured exit 0/1
 | Cross-Platform-Port-Artifact-Lifecycle | `technical-directives.instructions.md` §14.10 | 2026-04-22 |
 | GCC Warning-Flood ICE Signature | `technical-directives.instructions.md` §14.10 | 2026-04-22 |
 | ZJIT Win32 Prism Shape-System Crash | `familiar` (in-nursery promotion) | 2026-04-24 |
+| Probe-Manifest-CI-Membrane | `familiar` (in-nursery promotion) | 2026-04-25 |

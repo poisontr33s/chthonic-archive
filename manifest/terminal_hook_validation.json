@@ -1,0 +1,18 @@
+{
+  "generated": "2026-04-25T17:42:57.1003260+02:00",
+  "validation_commit": "dfb63f02",
+  "failure_mode": "patch_filter_bypass",
+  "failure_description": "_patch:true preserved on merge winners; applyFilters(!e._patch) excluded all entries; output: empty",
+  "fix_applied": "{ ...entry, _patch: false } on bySeq.set winner",
+  "total_merged_entries": 14,
+  "entries_with_stale_patch": 0,
+  "entries_with_exit_code": 13,
+  "pid_registered": "70336",
+  "session_id": "964b4806",
+  "status": "VALIDATED",
+  "notes": [
+    "2>&1 required for run_in_terminal tool stdout capture",
+    "hook must be sourced per-session: . scripts/chthonic-shell-hook.ps1",
+    "manifest/terminal_session.jsonl is gitignored — CI reads live file"
+  ]
+}

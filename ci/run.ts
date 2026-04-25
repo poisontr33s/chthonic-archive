@@ -90,6 +90,13 @@ const CHECKS: Check[] = [
     speed: "fast",
     description: "Python 3.14 GPU inference gate ladder status (reads manifest/*.json)",
   },
+  {
+    name: "terminal-hook",
+    script: "ci/checks/terminal-hook-smoke.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Terminal session hook health (JSONL merge regression gate + stale _patch:true detector)",
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");
