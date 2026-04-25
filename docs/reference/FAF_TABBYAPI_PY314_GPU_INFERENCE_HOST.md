@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.1  
-**Status:** Gates executed, boundaries recorded, ledger current  
+**Version:** v0.2  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -421,6 +421,10 @@ As of probe trajectory execution 2026-04-25:
 | **CUDA 12.8 + RTX 4090 runtime** | **P-02: `cuda_version=12.8`, `device_capability=(8,9)` — driver 596.21, SM 8.9** |
 | exllamav3 0.0.30 cp314 wheel exists | P-03 → 6 cp314 wheels confirmed in v0.0.30 release (released 2026-04-19) |
 | exllamav3 0.0.30 cp314 installs | `uv pip install exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl --no-deps` → SUCCESS |
+| **exllamav3 0.0.30 cp314 imports** | **P-05 cascade + G6 cleared → `import exllamav3` → SUCCESS; triton warning non-fatal; L4 admitted** |
+| **flash_attn 2.8.3 source build** | **P-06 (2026-04-25T05:45:25Z) → build exit_code=0, MSVC 14.44.35207, CUDA 12.8, 60m 42s; `manifest/vs2022_flash_attn_probe.json` L1 admitted** |
+| **CI membrane 8/8 green** | **`bun run ci/run.ts` → all 8 checks pass (2026-04-25, commit `2241ed22`) — shebang, blessing-gate, inference-gates, terminal-hook, gh-runs** |
+| **`pentea-cloud-dispatch.yml` workflow** | **YAML corruption root-caused + rewritten; run `24934808239` → conclusion=success; `dispatch_consecutive_fail=false`** |
 
 ---
 
@@ -429,12 +433,15 @@ As of probe trajectory execution 2026-04-25:
 | Boundary | Upstream Dependency | Reopen Condition | Status (2026-04-25) |
 |----------|--------------------|--------------------|----------------------|
 | exllamav2 on Python 3.14 | turboderp-org/exllamav2 | cp314-cp314-win_amd64 wheel in release | `blocked_not_closed` — v0.3.2 highest=cp313 |
-| exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | Gate 6 clears | `import_blocked_on_flash_attn` — L1 install admitted |
-| flash_attn cp314 | kingbri1/flash-attention | cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update | `source_build_blocked_msvc_ceiling` — P-05: MSVC 14.51 > CUDA 12.8 max (14.40) + CUTLASS headers |
-| GPU inference (full tabbyAPI) on Python 3.14 | flash_attn cp314 | flash_attn loads + exllamav3 imports | `blocked` — depends on flash_attn clearing |
+| exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | ~~Gate 6 clears~~ | ~~`import_blocked_on_flash_attn`~~ → **`admitted`** — Gate 6 cleared (P-06); `import exllamav3` → SUCCESS, L4 |
+| flash_attn cp314 | kingbri1/flash-attention | ~~cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update~~ | ~~`source_build_blocked_msvc_ceiling`~~ → **`admitted`** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
+| GPU inference (full tabbyAPI, exllamav3 backend) | exllamav3 imports cleanly | tabbyAPI wired to exllamav3 backend + service layer | `scaffolding_pending` — G5+G6 both admitted; tabbyAPI modernization scaffold required |
+| GPU inference (full tabbyAPI, exllamav2 backend) | turboderp-org/exllamav2 cp314 wheel | cp314-cp314-win_amd64 wheel published | `blocked_not_closed` — G4 impossible-currently; exllamav2 v0.3.2 highest=cp313 |
 | ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
 
-**Key reclassifications (2026-04-25):** torch ADMITTED L4. exllamav3 wheel EXISTS + INSTALLS (L1). flash_attn: NOT source-buildable currently — MSVC 14.51 (VS 2027) exceeds CUDA 12.8's host compiler ceiling of MSVC 14.40 (VS 2022). Two independent blockers — host_config.h ceiling + CUTLASS header incompatibility with MSVC 18.
+**Key reclassifications (2026-04-25 pre-P-06):** torch ADMITTED L4. exllamav3 wheel EXISTS + INSTALLS (L1). flash_attn: blocked — MSVC 14.51 (VS 2027) exceeds CUDA 12.8's host compiler ceiling of MSVC 14.40 (VS 2022). Two independent blockers — host_config.h ceiling + CUTLASS header incompatibility with MSVC 18.
+
+**P-06 epoch reclassifications (2026-04-25T05:45:25Z, commit `d7ae56ae`):** flash_attn ADMITTED L1 — source build succeeded via temp-batch-file vcvars fix (bypassed cmd.exe quote-nesting bug), MSVC 14.44.35207, CUDA 12.8, 60m 42s. exllamav3 import cascade ADMITTED L4. **E2E gate PASSED (2026-04-25, commit `2241ed22`):** CI membrane 8/8 green, `pentea-cloud-dispatch.yml` workflow fixed and verified clean. Tabby modernization scaffold is the next lanework phase.
 
 ---
 
@@ -449,9 +456,9 @@ This document does not defer the impossible-currently boundaries with "coming so
 What this document claims:
 
 > Python 3.14 + uv is a **structurally admitted host** for tabbyAPI's non-GPU baseline.  
-> The GPU inference stack has **three named impossible-currently boundaries** with explicit reopen conditions.  
-> The resolver, build backend, and pydantic-core PyO3 layer are **admitted at L4**.  
-> The remaining GPU stack is **L0 (known-absent) pending upstream cp314 releases**.
+> The GPU inference stack has **one remaining impossible-currently boundary** (exllamav2/G4) with explicit reopen condition.  
+> The resolver, build backend, pydantic-core PyO3 layer, torch, flash_attn, and exllamav3 are **admitted**.  
+> The **exllamav3 backend path is unblocked** — tabbyAPI scaffold is the next work phase.
 
 The boundary ledger is the artifact.  
 The probe is the tool.  
@@ -459,3 +466,41 @@ The membrane is the guard.
 The impossible-currently boundary is the honest ceiling.
 
 No false success. No decoration. No mythology.
+
+---
+
+## 11. E2E Gate Verdict Epoch (2026-04-25)
+
+**Epoch commit:** `2241ed22` — `bun run ci/run.ts` → 8/8 checks pass  
+**Workflow commit:** `d7ae56ae` — `pentea-cloud-dispatch.yml` rewritten + verified clean (run `24934808239`, conclusion=success)  
+**Gate ladder closed:** G1 L4, G2 L4, G3 L4, G4 `impossible_currently`, G5 L4, G6 L1
+
+### Infrastructure built to reach this epoch (in chronological order)
+
+| Layer | Artifact | Function |
+|-------|----------|----------|
+| 1. Terminal visibility | `scripts/chthonic-shell-hook.ps1` | PSReadLine-based PID instrumentation; every pwsh command → `manifest/terminal_session.jsonl` + `manifest/terminal_pids.json` |
+| 2. Session query | `scripts/terminal_session_query.ts` | Reads `terminal_session.jsonl`; PATCH_FILTER_BYPASS diagnosed + fixed at commit `dfb63f02` |
+| 3. Gate probes | `probes/python/P-0{1..6}.py` | Python 3.14 GPU inference stack validation, each → `manifest/*.json` |
+| 4. Inference CI gate | `ci/checks/inference-gate-smoke.ts` | Reads `manifest/` probe outputs → structured exit 0/1 |
+| 5. Terminal CI gate | `ci/checks/terminal-hook-smoke.ts` | PATCH_FILTER_BYPASS regression detector; `stale_patch_entries` field; committed `9b2a2d70` |
+| 6. GH run manifest | `scripts/gh_run_pull.ts` | Pulls GitHub Actions run data → `manifest/gh_runs/index.json`; upstream extension of CI membrane |
+| 7. GH run CI gate | `ci/checks/gh-run-smoke.ts` | Reads `manifest/gh_runs/`; reports `dispatch_consecutive_fail` |
+| 8. Dispatch workflow fix | `.github/workflows/pentea-cloud-dispatch.yml` | YAML corruption root-caused (mid-word linebreak artifacts in heredoc + indentation failure); rewritten; run `24934808239` → success |
+| 9. E2E sweep | `bun run ci/run.ts` → 8/8 | Pre-existing shebang (19 files, `# ` vs `#` whitespace) + blessing-gate drift (2 files) cleared; all checks green |
+
+### Why the infrastructure preceded the scaffold
+
+The PID reader (`chthonic-shell-hook.ps1`) was required because VS Code Copilot agent has no PID-based scrollback access — only `terminal_last_command`, `terminal_selection`, and agent-launched terminal UUIDs. All probe output had to be persisted to `manifest/*.json` for CI to read. Without this membrane, each session would lose gate state and the probe ladder could not be verified across session boundaries.
+
+The `pentea-cloud-dispatch.yml` YAML corruption was blocking every push from triggering autonomous agent runs — the 5 consecutive failures in the GH run window needed root-cause isolation before the GH run manifest pipeline could be trusted as a CI signal.
+
+The E2E sweep cleared two independent pre-existing CI failures (shebang whitespace + blessing envelope drift) so the gate is unambiguously clean — not "passes except for pre-existing noise."
+
+### What the epoch unlocks
+
+- **Tabby modernization scaffold** — the exllamav3 backend path is unblocked; `apps/tabby-modern/` scaffold is the next phase
+- **Autonomous agent dispatch** — `pentea-cloud-dispatch.yml` is clean; Pentea can run on push without YAML parse failure
+- **CI as ground truth** — `ci/run.ts` 8/8 is the entry condition for new work phases; any regression is immediately visible
+
+See: [TABBY_MODERNIZATION_SCAFFOLD_DECISION.md](TABBY_MODERNIZATION_SCAFFOLD_DECISION.md)
