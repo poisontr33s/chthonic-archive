@@ -83,6 +83,13 @@ const CHECKS: Check[] = [
     speed: "slow",
     description: "Dependency security audit via bun audit (slow — full mode only)",
   },
+  {
+    name: "inference-gates",
+    script: "ci/checks/inference-gate-smoke.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Python 3.14 GPU inference gate ladder status (reads manifest/*.json)",
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

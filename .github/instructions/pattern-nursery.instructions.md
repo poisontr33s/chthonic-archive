@@ -287,6 +287,56 @@ In-turn VS Code Chat: Pentea reads trailer inline, executes next without stoppin
 
 ---
 
+### VS-Installer-Generation-Mismatch — `novel`
+*Origin: 2026-04-25 — flash_attn P-06 session, MSVC 14.44.35207 installation*
+
+VS 2026 Installer (generation `4.x`, ships with VS 18 Insiders) presents as "Modify" UI for VS 2022 BuildTools but the `--installPath` and component ID invocation that works with VS 2022 Installer fails silently or enters a mutex conflict under VS 2026 Installer's orchestration. The working path:
+
+| Path | Result |
+|------|--------|
+| winget → VS 2022 BuildTools | ❌ `_MSIExecute` mutex block if VS 18 Insiders update pending |
+| VS 2026 Installer "Modify" button | ❌ Steals elevated context; self-update loop |
+| `vs_BuildTools.exe` direct bootstrapper | ✅ Bypasses VS 2026 Installer; installs MSVC 14.4x clean |
+
+**Canonical URL:** `https://aka.ms/vs/17/release/vs_BuildTools.exe`
+
+**Compound blocker chain** (all must clear before bootstrapper succeeds):
+1. Zombie msiexec PID holding `Global\_MSIExecute` mutex → `Stop-Process` + `Restart-Service wuauserv`
+2. SoftReboot registry key from VS 18 Insiders pending update → `Remove-ItemProperty HKLM:\...\SoftReboot`
+3. `DevdivInstallerUI` singleton mutex from concurrent VS 18 upgrade → wait for upgrade to complete
+
+**Shape:** VS 2026 Installer involved + MSVC needed → skip Installer UI → download bootstrapper directly → add components via `--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --quiet --norestart`.
+
+**Promotion criteria:** reproduced in a second session where VS 2026 Installer is active and MSVC install needed → `familiar`. Currently: 1 (MSVC 14.44 for flash_attn 2.8.3, Win11, April 2026).
+
+---
+
+### Probe-Manifest-CI-Membrane — `novel`
+*Origin: 2026-04-25 — tabbyAPI GPU inference gate ladder, Python 3.14 session*
+
+When building a complex dependency stack (here: Python 3.14 + CUDA 12.8 + flash_attn + exllamav3), the probe scripts that validate each gate ARE the CI — they just need a membrane layer that reads their output manifests and reports gate status without re-running the expensive operations.
+
+**Architecture:**
+```
+probes/python/P-0N.py  →  runs once (possibly 60min)  →  manifest/P-0N.json
+ci/checks/gate-smoke.ts  →  reads manifest/*.json  →  structured exit 0/1
+```
+
+**Key insight**: terminal buffer scraping is the wrong approach for CI. All probes emit `manifest/*.json`. The CI reads manifests. PID/scrollback access is not needed — the probe output is already persisted. The gate smoke check is then idempotent and instant (<1s) for all gates that have already run.
+
+**Terminal visibility reality (VS Code Insiders + Copilot agent):**
+- `terminal_last_command` — last command + output only
+- `terminal_selection` — what user manually selects
+- `get_terminal_output` — only for agent-launched terminals via UUID
+- No PID-based scrollback read, no full-buffer access
+- Correct workaround: all probes write structured JSON to `manifest/`; CI reads manifests
+
+**Shape:** complex probe results → `manifest/*.json` → gate smoke check reads manifests → CI exits 0/1 → no terminal scraping needed.
+
+**Promotion criteria:** CI membrane survives a second proof-of-concept gate (new gate added, probe runs, smoke check picks it up without manual intervention) → `familiar`.
+
+---
+
 ## Stale Queue
 
 *Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*
