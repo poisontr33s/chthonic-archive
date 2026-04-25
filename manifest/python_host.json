@@ -1,0 +1,19 @@
+{
+  "gate": "host/python_identity",
+  "python_version": "3.14.4 (main, Apr  7 2026, 20:48:46) [MSC v.1944 64 bit (AMD64)]",
+  "python_implementation": "CPython",
+  "python_version_info": {
+    "major": 3,
+    "minor": 14,
+    "micro": 4,
+    "releaselevel": "final"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "system": "Windows",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "python_path": "C:\\Users\\eldno\\chthonic-archive\\dev\\tabbyAPI\\.venv\\Scripts\\python.exe",
+  "prefix": "C:\\Users\\eldno\\chthonic-archive\\dev\\tabbyAPI\\.venv",
+  "level": "L4_useful",
+  "status": "admitted"
+}
