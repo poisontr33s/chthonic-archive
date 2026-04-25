@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """Entry point for `python -m mas_mcp` (when `mas_mcp/` is importable).
 
 Practical note (uv): if you run with `uv run --directory mas_mcp ...`, your

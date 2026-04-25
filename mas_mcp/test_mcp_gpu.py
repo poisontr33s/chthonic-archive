@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """Test live MCP tools with GPU acceleration."""
 
 import sys

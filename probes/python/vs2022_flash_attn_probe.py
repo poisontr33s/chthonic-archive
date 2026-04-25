@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # @SID: P-06
 # P-06 — VS 2022 BuildTools (14.4x) install gate + flash_attn source build retry
 #

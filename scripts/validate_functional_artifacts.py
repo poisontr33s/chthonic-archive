@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: validate_functional_artifacts.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Validate that the current functional artifact system has registered sources,
 canonical outputs, and residue visibility.
@@ -9,6 +18,10 @@ Usage:
   uv run scripts/validate_functional_artifacts.py
   uv run scripts/validate_functional_artifacts.py --json
   uv run scripts/validate_functional_artifacts.py --strict
+
+@SID:           TOOL_VALIDATE_FUNCTIONAL_ARTIFACTS_V1
+@Shabti:        CLI Script
+@Purpose:       Validate that the current functional artifact system has registered sources,
 """
 
 from __future__ import annotations

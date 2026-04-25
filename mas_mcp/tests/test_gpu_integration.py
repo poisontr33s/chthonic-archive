@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 """GPU integration tests for MAS-MCP.
 
 These tests validate the GPU execution lane (CuPy / CUDA DLLs / batch scoring).

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # SID: PROBE-P01-PYTHON-HOST-IDENTITY
 # Gate: host/python_identity
 # FAF artifact type: probe

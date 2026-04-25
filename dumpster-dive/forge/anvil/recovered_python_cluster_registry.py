@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 """
 @SID: SCRIPT_RECOVERED_PYTHON_CLUSTER_REGISTRY_V1

@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-# @SID: TOOL_TOML_AUDIT_V1
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: toml_audit.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 TOML Audit — chthonic-archive workspace TOML inventory + PyPI version comparison.
 
@@ -25,7 +34,13 @@ Resolution kinds (--dry-run):
     exact-pin      ==X.Y.Z pin — never auto-resolved
     no-lower-bound no >= clause — cannot infer safe bump
     no-spec        empty spec — informational only
+
+@SID:           TOOL_TOML_AUDIT_V1
+@Shabti:        CLI Script
+@Purpose:       TOML Audit — chthonic-archive workspace TOML inventory + PyPI version comparison.
 """
+
+# @SID: TOOL_TOML_AUDIT_V1
 
 import argparse
 import json
