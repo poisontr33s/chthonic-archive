@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # @SID: PATCH_FORMATRON_ESCAPE_V1
 # patch-formatron-escape.py — Fix formatron invalid escape sequences
 #

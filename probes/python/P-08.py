@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # @SID: PROBE_EXLLAMAV2_SOURCE_BUILD_V1
 # P-08.py — exllamav2 source build validation on Linux cp314
 #

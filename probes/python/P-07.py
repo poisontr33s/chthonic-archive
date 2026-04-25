@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # @SID: PROBE_FORMATRON_CESSATION_V1
 # P-07 — formatron escape-sequence cessation gate
 #

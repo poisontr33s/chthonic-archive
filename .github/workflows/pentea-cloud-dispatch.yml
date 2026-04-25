@@ -92,7 +92,7 @@ jobs:
           if [ "$GH_MAJOR" -gt 2 ] || ([ "$GH_MAJOR" -eq 2 ] && [ "$GH_MINOR" -ge 80 ]); then
             echo "Dispatching via gh agent-task create..."
             if ! gh agent-task create "$PROMPT" --repo "$REPO"; then
-              echo "gh agent-task failed — trying issue fallback"
+              echo "gh agent-task failed — falling back to issue creation"
               gh issue create \
                 --repo "$REPO" \
                 --title "[Pentea-Queue] Execute task: ${NEXT_TASK}" \
