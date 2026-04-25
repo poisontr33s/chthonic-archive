@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.4  
-**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible.  
+**Version:** v0.5  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible. **v0.5 (2026-04-25):** flash_attn Linux/Podman lane: source build blocked (torch 2.11+cu128 exposes sm_120 via `get_arch_list()`; CUTLASS in 2.8.3 lacks sm_120; `TORCH_CUDA_ARCH_LIST` env bypassed by flash-attn directly); `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` applied — Python layer only, `python_only_admitted`; P-08 pending (exllamav2 G4 gate).  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -248,6 +248,8 @@ The wall was the wheel. The code does not know what Python version the wheel was
 ### Gate 6 — flash_attn cp314 Source Build → **ADMITTED L1 (installed)**
 **Question:** Can flash_attn be loaded on Python 3.14?
 
+**Linux/Podman subgate (v0.5, commit `6f0c9591`):** Source build blocked — torch 2.11.0+cu128 exposes sm_120 (Blackwell) via `torch.cuda.get_arch_list()`; flash-attn 2.8.3 calls this directly, bypassing `TORCH_CUDA_ARCH_LIST` env var. CUTLASS bundled in 2.8.3 lacks sm_120 support → nvcc fails all `.cu` files in parallel. Resolution: `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` — Python API layer installed, CUDA kernel not compiled. tabbyAPI falls back to torch native SDPA (cuBLAS-accelerated). Gate status: `python_only_admitted`.
+
 **P-05 result (2026-04-25T04:40:23Z):** FAILED — MSVC 14.51 (`_MSC_VER 1951 >= 1950`) exceeded CUDA 12.8 host_config.h ceiling AND CUTLASS `is_unsigned_v` incompatibility with MSVC 18 STL.
 
 **Remediation executed:** Installed VS 2022 BuildTools (MSVC 14.44.35207) alongside VS 18 Insiders. Root blocker was a cmd.exe quote-nesting bug in `capture_vcvars_env()` preventing vcvarsall.bat from activating — nvcc resolved VS 18 Insiders `cl.exe` (14.51) from PATH instead of 14.44. Fixed via temp batch file approach.
@@ -347,7 +349,8 @@ print(json.dumps(result, indent=2))
 | exllamav2 (Win32/wheel) | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | `impossible_currently` — no cp314 wheel, no source build on Win32 attempted |
 | exllamav2 (Linux/Podman/source) | ✅ | ❓ | ❓ | ❓ | ❓ | `source_build_unprobed` — P-08 required; wall is the wheel, code has no cp314 barrier |
 | exllamav3 0.0.30 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — imports OK after Gate 6 cleared; triton warning non-fatal |
-| flash_attn 2.8.3 | ✅ | ✅ | ❌ | ❌ | ❌ | **ADMITTED L1** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
+| flash_attn 2.8.3 (Win32) | ✅ | ✅ | ❌ | ❌ | ❌ | **ADMITTED L1** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
+| flash_attn 2.8.3 (Linux/Podman) | ✅ | ✅ | ❌ | ❌ | ❌ | `python_only_admitted` — `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE`; CUDA kernel not built; torch 2.11+cu128 sm_120 + CUTLASS incompatibility; commit `6f0c9591` |
 | CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
 | formatron (JSON schema) | ✅ | ✅ | ✅ | ✅ | ❌ | **L3 warning_degraded** — SyntaxWarning on 3.14; cessation ~3.16; upstream fix required |
 
