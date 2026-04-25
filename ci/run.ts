@@ -97,6 +97,13 @@ const CHECKS: Check[] = [
     speed: "fast",
     description: "Terminal session hook health (JSONL merge regression gate + stale _patch:true detector)",
   },
+  {
+    name: "gh-runs",
+    script: "ci/checks/gh-run-smoke.ts",
+    scope: "always",
+    speed: "fast",
+    description: "GitHub Actions run health membrane (reads manifest/gh_runs/index.json — exits 0 if absent)",
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

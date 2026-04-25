@@ -47,7 +47,7 @@ jobs:
             echo "No pending Pentea-Next — skipping cloud dispatch."
           fi
 
-      - name: Check if already dispatched by post-commit hook (T3 dedup)
+      - name: Check T3 dedup (audit trail only)
         id: dedup
         if: steps.queue.outputs.dispatch == 'true'
         run: |
@@ -55,7 +55,6 @@ jobs:
           # session should already exist. We attempt dispatch anyway because:
           # (a) gh agent-task is idempotent on prompt hash per GitHub's backend
           # (b) if T3 was not installed, T4 is the only path
-          # No dedup action needed here — log for audit trail only.
           echo "T3 status: not checked (local hook runs asynchronously before push)"
           echo "T4 proceeding with dispatch for task: ${{ steps.queue.outputs.next_task }}"
 
@@ -67,21 +66,22 @@ jobs:
           NEXT_TASK="${{ steps.queue.outputs.next_task }}"
           REPO="${{ github.repository }}"
           STEWARDESS_URL="https://github.com/${REPO}/blob/main/claude/mailbox/PENTEA_ROULETTE_STEWARDESS.md"
+
           PROMPT="Execute Pentea queue task: ${NEXT_TASK}
-Context: chthonic-archive autonomous queue system.
-Task spec in stewardess: ${STEWARDESS_URL}
+          Context: chthonic-archive autonomous queue system.
+          Task spec in stewardess: ${STEWARDESS_URL}
 
-Custom instructions: .github/copilot-instructions.md and AGENTS.md define all invariants.
-Constraint: follow AGENT_COMMON.md. No file deletion without salvage (upcycle first).
-Python: uv run <script>.
-JS/TS: bun.
-Rust: cargo (tools/ankh-forge/).
-Shell: pwsh.
+          Custom instructions: .github/copilot-instructions.md and AGENTS.md define all invariants.
+          Constraint: follow AGENT_COMMON.md. No file deletion without salvage (upcycle first).
+          Python: uv run <script>.
+          JS/TS: bun.
+          Rust: cargo (tools/ankh-forge/).
+          Shell: pwsh.
 
-Required git trailer on your commit:
-Pentea-Completed: ${NEXT_TASK}
-Pentea-Next: <next-id-or-none>
-Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>"
+          Required git trailer on your commit:
+          Pentea-Completed: ${NEXT_TASK}
+          Pentea-Next: <next-id-or-none>
+          Co-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>"
 
           GH_VER=$(gh --version | head -1 | grep -oP '\d+\.\d+\.\d+' | head -1)
           GH_MAJOR=$(echo "$GH_VER" | cut -d. -f1)
