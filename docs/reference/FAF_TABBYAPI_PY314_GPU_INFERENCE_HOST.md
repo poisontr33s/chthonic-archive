@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.5  
-**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible. **v0.5 (2026-04-25):** flash_attn Linux/Podman lane: source build blocked (torch 2.11+cu128 exposes sm_120 via `get_arch_list()`; CUTLASS in 2.8.3 lacks sm_120; `TORCH_CUDA_ARCH_LIST` env bypassed by flash-attn directly); `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` applied — Python layer only, `python_only_admitted`; P-08 pending (exllamav2 G4 gate).  
+**Version:** v0.6  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible. **v0.5 (2026-04-25):** flash_attn Linux/Podman lane: source build blocked (torch 2.11+cu128 exposes sm_120 via `get_arch_list()`; CUTLASS in 2.8.3 lacks sm_120; `TORCH_CUDA_ARCH_LIST` env bypassed by flash-attn directly); `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE` applied — Python layer only, `python_only_admitted`. **v0.6 (2026-04-25):** P-08 EMITTED — exllamav2 G4 Linux/Podman gate: `admitted_L2_source_linux`. Source build `exllamav2==0.3.2` + `tokenizers==0.22.2` via Containerfile 28-STEP build; image `chthonic-tabby-modern-gpu:latest` (`3062c46dac1b`). `import exllamav2` SUCCESS; `ExLlamaV2Config` import SUCCESS (L2_interrogable). G4 Linux lane closed.  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -200,7 +200,7 @@ The `impossible_currently` label above is **wheel-scoped and substrate-sensitive
 | Substrate | Path | Barrier | Status |
 |-----------|------|---------|--------|
 | Win32 | Wheel install | No cp314 wheel | `impossible_currently` — wheel gap, same MSVC build surface as G6 (took 60min); not the priority lane |
-| Linux / Podman | **Source build** | **None identified** | `unprobed_source_candidate` — CUDA dev + GCC + cmake standard in `cuda:12.8.0-devel-ubi9`; exllamav2 source has no cp314 code barrier |
+| Linux / Podman | **Source build** | **None identified** | `admitted_L2_source_linux` — P-08 2026-04-25T19:14:56Z; `exllamav2==0.3.2` + `tokenizers==0.22.2`; `import exllamav2` SUCCESS; `ExLlamaV2Config` SUCCESS; image `3062c46dac1b` |
 
 The wall was the wheel. The code does not know what Python version the wheel was published for. `pip install .` (or `uv pip install .`) in the CUDA dev container should produce a working cp314 install. **P-08 is required to confirm.**
 
@@ -212,7 +212,7 @@ The wall was the wheel. The code does not know what Python version the wheel was
 
 **Status:**
 - Win32: `blocked_not_closed` (wheel gap)
-- Linux: `source_build_unprobed` — Containerfile updated, P-08 probe required
+- Linux: `admitted_L2_source_linux` — P-08 2026-04-25T19:14:56Z; source build succeeded; `ExLlamaV2Config` importable
 
 ---
 
@@ -347,7 +347,7 @@ print(json.dumps(result, indent=2))
 | uv resolver (cu12 index) | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — index routing operational |
 | torch 2.11.0+cu128 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — P-02: CUDA 12.8, RTX 4090, device_count=1 |
 | exllamav2 (Win32/wheel) | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | `impossible_currently` — no cp314 wheel, no source build on Win32 attempted |
-| exllamav2 (Linux/Podman/source) | ✅ | ❓ | ❓ | ❓ | ❓ | `source_build_unprobed` — P-08 required; wall is the wheel, code has no cp314 barrier |
+| exllamav2 (Linux/Podman/source) | ✅ | ✅ | ✅ | ❌ | ❌ | **`admitted_L2_source_linux`** — P-08 2026-04-25T19:14:56Z; `exllamav2==0.3.2`; `ExLlamaV2Config` SUCCESS; image `3062c46dac1b` |
 | exllamav3 0.0.30 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — imports OK after Gate 6 cleared; triton warning non-fatal |
 | flash_attn 2.8.3 (Win32) | ✅ | ✅ | ❌ | ❌ | ❌ | **ADMITTED L1** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
 | flash_attn 2.8.3 (Linux/Podman) | ✅ | ✅ | ❌ | ❌ | ❌ | `python_only_admitted` — `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE`; CUDA kernel not built; torch 2.11+cu128 sm_120 + CUTLASS incompatibility; commit `6f0c9591` |
@@ -533,7 +533,7 @@ sys.exit(0 if result.get("status", "").startswith("admitted") else 1)
 **Gate:** `exllamav2/cp314_source_build_linux`  
 **Run:** Inside `tabby-modern-gpu` container after G4 source build layer  
 **Required emissions:** `manifest/exllamav2_source_gate.json`  
-**Status:** Probe file exists (`probes/python/P-08.py`). Containerfile G4 layer added. Result pending first container build.
+**Status:** **ADMITTED L2** — P-08 emitted 2026-04-25T19:14:56Z. `exllamav2_version=0.3.2`, `import_result=SUCCESS`, `config_import=SUCCESS`, `level=L2_interrogable`, `status=admitted_L2_source_linux`. Container image `chthonic-tabby-modern-gpu:latest` (`3062c46dac1b`). Root cause of initial `L0_blocked`: `tokenizers` not declared as cp314 dep by exllamav2 pyproject; fixed via explicit `uv pip install tokenizers` (commit `966c8dbc`). CUDA extension compiled with `arch=compute_89,code=sm_89` via `TORCH_CUDA_ARCH_LIST="8.9"` (commit `953ca105`).
 
 ---
 
@@ -564,7 +564,7 @@ As of probe trajectory execution 2026-04-25:
 | Boundary | Upstream Dependency | Reopen Condition | Status (2026-04-25) |
 |----------|--------------------|--------------------|----------------------|
 | exllamav2 on Python 3.14 (Win32, wheel) | turboderp-org/exllamav2 | cp314 wheel in release (any platform) | `blocked_not_closed` — v0.3.2 highest=cp313 across all platforms |
-| exllamav2 on Python 3.14 (Linux, source) | CUDA dev + GCC + cmake (all present in container) | P-08 probe result | `source_build_unprobed` — wall is wheel, not code; Containerfile updated v0.4 |
+| exllamav2 on Python 3.14 (Linux, source) | CUDA dev + GCC + cmake (all present in container) | P-08 probe result | ~~`source_build_unprobed`~~ → **`admitted_L2_source_linux`** — P-08 2026-04-25T19:14:56Z; `exllamav2==0.3.2`; `ExLlamaV2Config` SUCCESS; Containerfile `3062c46dac1b` |
 | exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | ~~Gate 6 clears~~ | ~~`import_blocked_on_flash_attn`~~ → **`admitted`** — Gate 6 cleared (P-06); `import exllamav3` → SUCCESS, L4 |
 | flash_attn cp314 | kingbri1/flash-attention | ~~cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update~~ | ~~`source_build_blocked_msvc_ceiling`~~ → **`admitted`** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
 | GPU inference (full tabbyAPI, exllamav3 backend) | exllamav3 imports cleanly | tabbyAPI wired to exllamav3 backend + service layer | `scaffolding_pending` — G5+G6 both admitted; tabbyAPI modernization scaffold required |
@@ -589,7 +589,7 @@ This document does not defer the impossible-currently boundaries with "coming so
 What this document claims:
 
 > Python 3.14 + uv is a **structurally admitted host** for tabbyAPI's non-GPU baseline.  
-> The GPU inference stack has **one impossible-currently boundary on Win32** (exllamav2/G4 wheel gap) and **one unprobed source-build path on Linux** (G4 Podman lane — P-08 required). The wall is the wheel. The code has no cp314 barrier.  
+> The GPU inference stack has **one impossible-currently boundary on Win32** (exllamav2/G4 wheel gap). **The Linux G4 lane is admitted** — P-08 2026-04-25T19:14:56Z: `admitted_L2_source_linux`, `exllamav2==0.3.2`, `ExLlamaV2Config` importable. The wall is the wheel. The code has no cp314 barrier.  
 > The resolver, build backend, pydantic-core PyO3 layer, torch, flash_attn, and exllamav3 are **admitted**.  
 > The **exllamav3 backend path is unblocked** — tabbyAPI scaffold is the next work phase.
 
@@ -606,7 +606,7 @@ No false success. No decoration. No mythology.
 
 **Epoch commit:** `2241ed22` — `bun run ci/run.ts` → 8/8 checks pass  
 **Workflow commit:** `d7ae56ae` — `pentea-cloud-dispatch.yml` rewritten + verified clean (run `24934808239`, conclusion=success)  
-**Gate ladder closed:** G1 L4, G2 L4, G3 L4, G4 `impossible_currently`, G5 L4, G6 L1
+**Gate ladder closed:** G1 L4, G2 L4, G3 L4, G4 Win32=`impossible_currently` / Linux=`admitted_L2` (P-08 2026-04-25T19:14:56Z), G5 L4, G6 L1
 
 ### Infrastructure built to reach this epoch (in chronological order)
 
