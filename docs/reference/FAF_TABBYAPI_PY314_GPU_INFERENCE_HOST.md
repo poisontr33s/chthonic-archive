@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.2  
-**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green  
+**Version:** v0.3  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25.  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -261,6 +261,63 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 
 ---
 
+### Gate 7 — formatron escape-sequence cessation trajectory
+**Question:** Will `formatron` (tabbyAPI's formatting-constraint/JSON-schema subsystem) survive Python's invalid-escape-sequence escalation path before the tabby-modern scaffold ships?
+
+**Background:** `formatron` is a hard tabbyAPI dependency — it drives JSON schema enforcement and grammar-guided generation. It was surfaced during the Gate 5 import probe (2026-04-25, commit `a7eae24f` epoch). Three bare string literals contain invalid escape sequences:
+
+| File | Line | Sequence | Usage |
+|------|------|----------|-------|
+| `formatron/formats/json.py` | 116 | `'\A'`, `'\z'` | Regex anchor check in bare string comparison |
+| `formatron/schemas/json_schema.py` | 72 | `'\['` | Docstring text (non-functional, but escalates anyway) |
+
+**Cessation timeline:**
+
+| Python Version | Severity | Status |
+|----------------|----------|--------|
+| 3.12 | `DeprecationWarning` | Historical |
+| 3.14 | `SyntaxWarning` | **You are here** — `manifest/vs2022_flash_attn_probe.log` confirms warnings emitted |
+| ~3.16 (est.) | `SyntaxError` | Cessation — import fails unconditionally |
+
+This is **not** "just a warning" in FAF context. It is a warning **inside cessation range**. The `formatron` subsystem will hard-fail on Python ~3.16 without an upstream fix or a dependency substitution.
+
+**False Success Ban note:** `import exllamav3` succeeding on 3.14 does NOT admit `formatron`. The SyntaxWarning is emitted at module import time (`formatron` is imported by `exllamav3`'s dependency chain via tabbyAPI). It is a non-fatal degrade today; it is a hard gate on the cessation boundary.
+
+**Probe P-07 (required for tabby-modern scaffold gate):**
+```python
+# probes/python/P-07.py
+# Gate: formatron/escape_sequence_cessation
+# Validates formatron import does not raise SyntaxError.
+# If it warns: record version + cessation proximity.
+# If it errors: gate is FAILED — dependency substitution required.
+import warnings, json, importlib.metadata
+result = {"gate": "formatron/escape_sequence_cessation"}
+try:
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        import formatron  # noqa
+        syntax_warnings = [str(x.message) for x in w if issubclass(x.category, SyntaxWarning)]
+    result["status"] = "warning_degraded" if syntax_warnings else "clean"
+    result["syntax_warnings"] = syntax_warnings
+    result["formatron_version"] = importlib.metadata.version("formatron")
+    result["level"] = "L3_survivable" if syntax_warnings else "L4_useful"
+except SyntaxError as e:
+    result["status"] = "FAILED_cessation_hit"
+    result["error"] = str(e)
+    result["level"] = "L0_blocked"
+    result["minimum_condition_to_reopen"] = "formatron upstream fixes invalid escape sequences OR dependency substituted"
+print(json.dumps(result, indent=2))
+```
+
+**Membrane required:** Pin `formatron` to a known-working version in `apps/tabby-modern/pyproject.toml`. Add a comment citing this gate. Monitor upstream for fix. If the cessation boundary is crossed before a fix lands: substitute with a dependency that provides equivalent JSON schema enforcement without the invalid-escape defect.
+
+**Level reached:** L3 (Survivable — SyntaxWarning emitted but import succeeds on 3.14)  
+**Status:** `warning_degraded` — cessation boundary at ~Python 3.16; upstream fix required before that horizon  
+**Proof:** `manifest/vs2022_flash_attn_probe.log` — SyntaxWarning lines from `formatron` emitted during `import exllamav3` probe (2026-04-25)  
+**Gate entry epoch:** 2026-04-25 v0.3 — retroactively admitted from `a7eae24f` probe evidence; invisible at that strategic horizon; surfaced via Independent-Validation-Notary pass
+
+---
+
 ## 4. Capability Ladder — Current State
 
 | Capability | L0 | L1 | L2 | L3 | L4 | Status |
@@ -273,6 +330,7 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 | exllamav3 0.0.30 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — imports OK after Gate 6 cleared; triton warning non-fatal |
 | flash_attn 2.8.3 | ✅ | ✅ | ❌ | ❌ | ❌ | **ADMITTED L1** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
 | CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
+| formatron (JSON schema) | ✅ | ✅ | ✅ | ✅ | ❌ | **L3 warning_degraded** — SyntaxWarning on 3.14; cessation ~3.16; upstream fix required |
 
 Key: ✅ = admitted at this level | ❌ = blocked | ❓ = not yet probed
 
@@ -304,8 +362,7 @@ Key: ✅ = admitted at this level | ❌ = blocked | ❓ = not yet probed
 | `[[tool.uv.index]]` | Routes torch/triton to vendor index, not PyPI | Active — correct wheel source for CUDA builds |
 | `[tool.hatch.metadata] allow-direct-references = true` | Permits direct-URL wheel entries in pyproject.toml | Active — required for exllamav2/exl3/flash_attn direct URLs |
 | `package = false` | Prevents uv from treating tabbyAPI as a publishable dist-package | Active |
-| cp314 gap comments | Documents known impossible-currently boundaries inline in pyproject.toml | Active — prevents false assumption that wheel exists |
-
+| cp314 gap comments | Documents known impossible-currently boundaries inline in pyproject.toml | Active — prevents false assumption that wheel exists || formatron version pin | Pins formatron to a known-working version in apps/tabby-modern/; monitors cessation trajectory | **Required** — add to tabby-modern scaffold; cite Gate 7 |
 ---
 
 ## 7. Pending Probes
@@ -438,6 +495,7 @@ As of probe trajectory execution 2026-04-25:
 | GPU inference (full tabbyAPI, exllamav3 backend) | exllamav3 imports cleanly | tabbyAPI wired to exllamav3 backend + service layer | `scaffolding_pending` — G5+G6 both admitted; tabbyAPI modernization scaffold required |
 | GPU inference (full tabbyAPI, exllamav2 backend) | turboderp-org/exllamav2 cp314 wheel | cp314-cp314-win_amd64 wheel published | `blocked_not_closed` — G4 impossible-currently; exllamav2 v0.3.2 highest=cp313 |
 | ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
+| formatron SyntaxError on ~3.16 | GuidoGuardiani/formatron or tabbyAPI maintainers | formatron upstream fixes `\A`/`\z`/`\[` bare-string invalid escapes; or tabbyAPI substitutes dependency | `warning_degraded` — SyntaxWarning on 3.14; hard cessation at ~3.16 |
 
 **Key reclassifications (2026-04-25 pre-P-06):** torch ADMITTED L4. exllamav3 wheel EXISTS + INSTALLS (L1). flash_attn: blocked — MSVC 14.51 (VS 2027) exceeds CUDA 12.8's host compiler ceiling of MSVC 14.40 (VS 2022). Two independent blockers — host_config.h ceiling + CUTLASS header incompatibility with MSVC 18.
 
