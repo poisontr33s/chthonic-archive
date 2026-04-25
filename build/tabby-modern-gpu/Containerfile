@@ -1,4 +1,4 @@
-# SID: CONTAINERFILE_TABBY_MODERN_GPU_V1
+# SID: CONTAINERFILE_TABBY_MODERN_GPU_V2
 # Gate: tabby-modern GPU stack on Python 3.14.4 / CUDA 12.8 / Linux x86_64
 # FAF: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md
 #
@@ -6,7 +6,10 @@
 #   G5  exllamav3 cp314-linux_x86_64 wheel — L4 (no source build needed)
 #   G6  flash_attn source build — GCC path, no MSVC hell (faster than Win32)
 #   G7  formatron escape-sequence cessation — patchable in-container
-#   G4  exllamav2 cp314 — still impossible_currently (turboderp maxes at cp313)
+#   G4  exllamav2 cp314 — source build from repo (no cp314 wheel; wall is wheel, not code)
+#       FAF v0.4 reframe: impossible_currently was wheel-scoped Win32 label.
+#       Linux CUDA dev env: git clone v0.3.2 + uv pip install . --no-build-isolation
+#       P-08 validates the source install. Expected: L1-L2 admitted.
 #
 # Build:
 #   podman build --tag tabby-modern-gpu -f build/tabby-modern-gpu/Containerfile .
@@ -91,7 +94,19 @@ RUN uv pip install \
 # Safe to apply — r-prefix is semantically identical for regex strings
 RUN python /workspace/patches/patch-formatron-escape.py
 
+# --- G4: exllamav2 source build (Linux lane — no cp314 wheel, wall is wheel not code) ---
+# FAF v0.4: impossible_currently was a wheel-scoped Win32 label.
+# CUDA dev + GCC + cmake are already present in this image.
+# exllamav2 source has no Python 3.14 barrier.
+# --no-build-isolation shares already-installed torch headers.
+# Expected build time: 5-15 min (smaller C++ surface than flash_attn).
+RUN git clone --branch v0.3.2 --depth 1 \
+        https://github.com/turboderp-org/exllamav2 \
+        /build/exllamav2 \
+    && cd /build/exllamav2 \
+    && uv pip install . --no-build-isolation
+
 # --- Run probe ladder ---
-# P-07: formatron cessation gate (validates patch applied correctly)
-# P-02 / P-03 equivalents run inline below
-CMD ["python", "/workspace/probes/python/P-07.py"]
+# Default CMD: P-08 (exllamav2 source build gate — G4 Linux path)
+# Override with: podman run ... python /workspace/probes/python/P-07.py (G7)
+CMD ["python", "/workspace/probes/python/P-08.py"]

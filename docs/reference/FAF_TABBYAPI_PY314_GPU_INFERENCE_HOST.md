@@ -1,7 +1,7 @@
 # FAF Application: tabbyAPI / Python 3.14 / uv GPU Inference Host
 
-**Version:** v0.3  
-**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25.  
+**Version:** v0.4  
+**Status:** E2E gate PASSED (2026-04-25, commit `2241ed22`) — flash_attn L1 admitted, exllamav3 L4 admitted, CI membrane 8/8 green. Gate 7 (formatron cessation) added 2026-04-25. G4 platform stratification added (Podman lane, 2026-04-25) — `impossible_currently` was a wheel-scoped Win32 label; Linux source build via Podman is unprobed, not impossible.  
 **Primary challenge:** tabbyAPI on Python 3.14 + uv must be verified as a GPU-capable inference host  
 **FAF source:** [FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md](FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md)  
 **Filed:** 2026-04-25  
@@ -165,14 +165,14 @@ torch loads, cuda available, device_count>0 -> L3 survivable, next: L4 call gate
 
 ---
 
-### Gate 4 — exllamav2 cp314 Wheel (Impossible-Currently)
+### Gate 4 — exllamav2 cp314 (Platform-Stratified)
 **Question:** Can exllamav2 be loaded on Python 3.14?
 
-**Background:** exllamav2 v0.3.2 (turboderp-org/exllamav2) was built against cp310–cp313. No cp314 wheel exists at the direct-URL slots in pyproject.toml as of 2026-04-25.
+**Background:** exllamav2 v0.3.2 (turboderp-org/exllamav2) was built against cp310–cp313. No cp314 wheel exists on any platform as of 2026-04-25. This is a **publishing constraint**, not a **code compatibility constraint**. The C extension source has no Python 3.14 barrier.
 
-**Observed failure:** `pyproject.toml` lists 8 direct-URL entries for exllamav2 covering cp310–cp313. There is no cp314 entry. uv resolver skips the package for Python 3.14 resolves of the cu12 extra.
+**Observed failure (wheels):** `pyproject.toml` lists 8 direct-URL entries for exllamav2 covering cp310–cp313. There is no cp314 entry. uv resolver skips the package for Python 3.14 resolves of the cu12 extra.
 
-**Proof:**
+**Proof (wheel gap):**
 ```
 grep exllamav2 dev/tabbyAPI/pyproject.toml
 # Result: 8 entries, highest: cp313-cp313-win_amd64
@@ -183,18 +183,36 @@ grep exllamav2 dev/tabbyAPI/pyproject.toml
 {
   "artifact_type": "impossible_currently_boundary",
   "gate": "exllamav2/cp314_wheel",
-  "claim": "exllamav2 is loadable on Python 3.14",
-  "observed_failure": "No cp314 wheel published at turboderp-org/exllamav2 as of 2026-04-25. Highest published: cp313.",
-  "proof": "grep exllamav2 dev/tabbyAPI/pyproject.toml",
-  "minimum_condition_to_reopen": "turboderp-org/exllamav2 publishes a release with cp314-cp314-win_amd64 wheel",
+  "claim": "exllamav2 is loadable on Python 3.14 via pre-built wheel",
+  "observed_failure": "No cp314 wheel published at turboderp-org/exllamav2 as of 2026-04-25. Highest published: cp313. Applies to all platforms.",
+  "proof": "grep exllamav2 dev/tabbyAPI/pyproject.toml + GitHub releases API probe (2026-04-25)",
+  "minimum_condition_to_reopen": "turboderp-org/exllamav2 publishes a release with cp314 wheel (any platform)",
   "upstream_dependency": "turboderp-org/exllamav2 v0.3.x+ release with cp314 wheel",
   "next_probe": "exllamav2_cp314_wheel_existence_probe",
   "status": "blocked_not_closed"
 }
 ```
 
-**Level reached:** L0 (Discoverable — package known, URL pattern known, cp314 slot absent)  
-**Status:** `blocked_not_closed`
+**Platform stratification (added v0.4):**
+
+The `impossible_currently` label above is **wheel-scoped and substrate-sensitive**. Applying it globally was a linear pattern — equivalent to Gemini's "no wheel = downgrade Python" conclusion. FAF corrects:
+
+| Substrate | Path | Barrier | Status |
+|-----------|------|---------|--------|
+| Win32 | Wheel install | No cp314 wheel | `impossible_currently` — wheel gap, same MSVC build surface as G6 (took 60min); not the priority lane |
+| Linux / Podman | **Source build** | **None identified** | `unprobed_source_candidate` — CUDA dev + GCC + cmake standard in `cuda:12.8.0-devel-ubi9`; exllamav2 source has no cp314 code barrier |
+
+The wall was the wheel. The code does not know what Python version the wheel was published for. `pip install .` (or `uv pip install .`) in the CUDA dev container should produce a working cp314 install. **P-08 is required to confirm.**
+
+**P-08 target:** `build/tabby-modern-gpu/Containerfile` — exllamav2 source build layer added (commit pending P-08 validation).
+
+**Level reached:**
+- Win32: L0 (wheel gap — no cp314 wheel, no source build attempted)
+- Linux/Podman: **L0-unprobed** — source build viable in theory; P-08 required
+
+**Status:**
+- Win32: `blocked_not_closed` (wheel gap)
+- Linux: `source_build_unprobed` — Containerfile updated, P-08 probe required
 
 ---
 
@@ -326,7 +344,8 @@ print(json.dumps(result, indent=2))
 | pydantic-core 2.46.x | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — cp314 wheel, PyO3 0.25.x |
 | uv resolver (cu12 index) | ✅ | ✅ | ✅ | ✅ | ✅ | Admitted — index routing operational |
 | torch 2.11.0+cu128 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — P-02: CUDA 12.8, RTX 4090, device_count=1 |
-| exllamav2 | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | Impossible-Currently — v0.3.2 highest=cp313 |
+| exllamav2 (Win32/wheel) | ✅ (L0 known-absent) | ❌ | ❌ | ❌ | ❌ | `impossible_currently` — no cp314 wheel, no source build on Win32 attempted |
+| exllamav2 (Linux/Podman/source) | ✅ | ❓ | ❓ | ❓ | ❓ | `source_build_unprobed` — P-08 required; wall is the wheel, code has no cp314 barrier |
 | exllamav3 0.0.30 | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — imports OK after Gate 6 cleared; triton warning non-fatal |
 | flash_attn 2.8.3 | ✅ | ✅ | ❌ | ❌ | ❌ | **ADMITTED L1** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
 | CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
@@ -463,6 +482,58 @@ print(json.dumps(result, indent=2))
 
 ---
 
+### Probe P-08 — exllamav2 Source Build Gate (Linux / Podman)
+```python
+# probes/python/P-08.py
+# Gate: exllamav2/cp314_source_build_linux
+# Validates exllamav2 installed from source on Python 3.14 in Linux CUDA dev container.
+# The wheel ceiling (cp313) is a publishing constraint, not a code barrier.
+# Run AFTER: exllamav2 installed via `uv pip install . --no-build-isolation`
+#            in build/tabby-modern-gpu/Containerfile G4 layer.
+import json, sys, importlib.metadata, importlib.util, pathlib, datetime
+
+result = {
+    "probe_id": "P-08",
+    "gate": "exllamav2/cp314_source_build_linux",
+    "python_version": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+    "substrate": "linux",
+    "note": "Wall is the wheel, not the code. Source build on Linux CUDA dev env.",
+}
+
+try:
+    import exllamav2
+    result["exllamav2_version"] = importlib.metadata.version("exllamav2")
+    result["import_result"] = "SUCCESS"
+    result["level"] = "L1_installed"
+    result["status"] = "admitted_L1_source_linux"
+    try:
+        from exllamav2 import ExLlamaV2Config
+        result["config_import"] = "SUCCESS"
+        result["level"] = "L2_interrogable"
+    except Exception as e:
+        result["config_import"] = f"PARTIAL: {e}"
+except ImportError as e:
+    result["import_result"] = f"FAILED: {str(e)}"
+    result["level"] = "L0_blocked"
+    result["status"] = "source_build_failed"
+    result["error"] = str(e)
+    result["minimum_condition_to_reopen"] = "exllamav2 source build succeeded in CUDA dev container"
+
+result["timestamp"] = datetime.datetime.utcnow().isoformat() + "Z"
+manifest = pathlib.Path("/workspace/manifest/exllamav2_source_gate.json")
+manifest.parent.mkdir(parents=True, exist_ok=True)
+manifest.write_text(json.dumps(result, indent=2))
+print(json.dumps(result, indent=2))
+sys.exit(0 if result.get("status", "").startswith("admitted") else 1)
+```
+
+**Gate:** `exllamav2/cp314_source_build_linux`  
+**Run:** Inside `tabby-modern-gpu` container after G4 source build layer  
+**Required emissions:** `manifest/exllamav2_source_gate.json`  
+**Status:** Probe file exists (`probes/python/P-08.py`). Containerfile G4 layer added. Result pending first container build.
+
+---
+
 ## 8. Admitted Capabilities
 
 As of probe trajectory execution 2026-04-25:
@@ -489,7 +560,8 @@ As of probe trajectory execution 2026-04-25:
 
 | Boundary | Upstream Dependency | Reopen Condition | Status (2026-04-25) |
 |----------|--------------------|--------------------|----------------------|
-| exllamav2 on Python 3.14 | turboderp-org/exllamav2 | cp314-cp314-win_amd64 wheel in release | `blocked_not_closed` — v0.3.2 highest=cp313 |
+| exllamav2 on Python 3.14 (Win32, wheel) | turboderp-org/exllamav2 | cp314 wheel in release (any platform) | `blocked_not_closed` — v0.3.2 highest=cp313 across all platforms |
+| exllamav2 on Python 3.14 (Linux, source) | CUDA dev + GCC + cmake (all present in container) | P-08 probe result | `source_build_unprobed` — wall is wheel, not code; Containerfile updated v0.4 |
 | exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | ~~Gate 6 clears~~ | ~~`import_blocked_on_flash_attn`~~ → **`admitted`** — Gate 6 cleared (P-06); `import exllamav3` → SUCCESS, L4 |
 | flash_attn cp314 | kingbri1/flash-attention | ~~cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update~~ | ~~`source_build_blocked_msvc_ceiling`~~ → **`admitted`** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
 | GPU inference (full tabbyAPI, exllamav3 backend) | exllamav3 imports cleanly | tabbyAPI wired to exllamav3 backend + service layer | `scaffolding_pending` — G5+G6 both admitted; tabbyAPI modernization scaffold required |
@@ -514,7 +586,7 @@ This document does not defer the impossible-currently boundaries with "coming so
 What this document claims:
 
 > Python 3.14 + uv is a **structurally admitted host** for tabbyAPI's non-GPU baseline.  
-> The GPU inference stack has **one remaining impossible-currently boundary** (exllamav2/G4) with explicit reopen condition.  
+> The GPU inference stack has **one impossible-currently boundary on Win32** (exllamav2/G4 wheel gap) and **one unprobed source-build path on Linux** (G4 Podman lane — P-08 required). The wall is the wheel. The code has no cp314 barrier.  
 > The resolver, build backend, pydantic-core PyO3 layer, torch, flash_attn, and exllamav3 are **admitted**.  
 > The **exllamav3 backend path is unblocked** — tabbyAPI scaffold is the next work phase.
 
@@ -539,7 +611,7 @@ No false success. No decoration. No mythology.
 |-------|----------|----------|
 | 1. Terminal visibility | `scripts/chthonic-shell-hook.ps1` | PSReadLine-based PID instrumentation; every pwsh command → `manifest/terminal_session.jsonl` + `manifest/terminal_pids.json` |
 | 2. Session query | `scripts/terminal_session_query.ts` | Reads `terminal_session.jsonl`; PATCH_FILTER_BYPASS diagnosed + fixed at commit `dfb63f02` |
-| 3. Gate probes | `probes/python/P-0{1..6}.py` | Python 3.14 GPU inference stack validation, each → `manifest/*.json` |
+| 3. Gate probes | `probes/python/P-0{1..8}.py` | Python 3.14 GPU inference stack validation, each → `manifest/*.json` |
 | 4. Inference CI gate | `ci/checks/inference-gate-smoke.ts` | Reads `manifest/` probe outputs → structured exit 0/1 |
 | 5. Terminal CI gate | `ci/checks/terminal-hook-smoke.ts` | PATCH_FILTER_BYPASS regression detector; `stale_patch_entries` field; committed `9b2a2d70` |
 | 6. GH run manifest | `scripts/gh_run_pull.ts` | Pulls GitHub Actions run data → `manifest/gh_runs/index.json`; upstream extension of CI membrane |
