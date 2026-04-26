@@ -25,21 +25,32 @@ if not TARGET.exists():
     print(f"SKIP: {TARGET} not found")
     sys.exit(0)
 
-text = TARGET.read_text()
+lines = TARGET.read_text().splitlines(keepends=True)
 
-OLD = "import flash_attn_2_cuda as flash_attn_gpu"
-NEW = (
-    "try:\n"
-    "    import flash_attn_2_cuda as flash_attn_gpu\n"
-    "except ImportError:\n"
-    "    flash_attn_gpu = None  # Python-only mode; CUDA kernels not compiled"
-)
+MARKER = "import flash_attn_2_cuda as flash_attn_gpu"
+patch_idx = None
+for i, line in enumerate(lines):
+    if MARKER in line and not line.lstrip().startswith("#"):
+        patch_idx = i
+        break
 
-if OLD not in text:
+if patch_idx is None:
     print(f"SKIP: pattern not found in {TARGET} — already patched or different version")
     sys.exit(0)
 
-patched = text.replace(OLD, NEW, 1)
-TARGET.write_text(patched)
-print(f"PATCHED: {TARGET}")
+original_line = lines[patch_idx]
+# Detect leading whitespace of the target line
+indent = len(original_line) - len(original_line.lstrip())
+pad = " " * indent
+
+replacement = (
+    f"{pad}try:\n"
+    f"{pad}    import flash_attn_2_cuda as flash_attn_gpu\n"
+    f"{pad}except ImportError:\n"
+    f"{pad}    flash_attn_gpu = None  # Python-only mode; CUDA kernels not compiled\n"
+)
+
+lines[patch_idx] = replacement
+TARGET.write_text("".join(lines))
+print(f"PATCHED: {TARGET} (line {patch_idx + 1}, indent={indent})")
 print("flash_attn CUDA import is now optional (Python-only mode active)")
