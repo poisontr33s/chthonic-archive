@@ -1,0 +1,40 @@
+{
+  "gate": "tabby_model_load_gate",
+  "probe": "P-10",
+  "level": "L2",
+  "status": "admitted_model_load_gate",
+  "verdict": "ADMITTED",
+  "model_dir": "/models/test-model",
+  "checks": [
+    {
+      "check": "model_dir_contents",
+      "status": "OK",
+      "files_found": [
+        ".cache",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors.index.json",
+        "output.safetensors",
+        "special_tokens_map.json",
+        "tokenizer.json",
+        "tokenizer_config.json"
+      ],
+      "has_config_json": true,
+      "has_tokenizer": true,
+      "has_safetensors": true
+    },
+    {
+      "check": "tabby_modern_import",
+      "status": "OK"
+    },
+    {
+      "check": "model_load",
+      "status": "OK",
+      "state_loaded": true,
+      "model_name": "test-model",
+      "load_time_s": 18.2
+    }
+  ]
+}

@@ -21,6 +21,7 @@
 // ║   G7  formatron_cessation       manifest: static (warning_degraded L3)
 // ║   G8  exllamav2_linux_source    manifest/exllamav2_source_gate.json
 // ║   G9  tabby_modern_import_gate  manifest/tabby_modern_import_gate.json
+// ║   G10 tabby_model_load_gate     manifest/tabby_model_load_gate.json
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync } from "fs";
@@ -169,6 +170,34 @@ function probeG9(): GateResult {
   };
 }
 
+function probeG10(): GateResult {
+  const m = readJson(resolve(MANIFEST_DIR, "tabby_model_load_gate.json"));
+  if (!m) {
+    return {
+      gate: "G10_tabby_model_load_gate",
+      question: "Does ModelState.load() succeed against a real EXL2 model in container?",
+      status: "not_probed",
+      level: "L0",
+      proof: "manifest/tabby_model_load_gate.json not found",
+    };
+  }
+  const ok = m["status"] === "admitted_model_load_gate" && m["verdict"] === "ADMITTED";
+  const modelCheck = (m["checks"] as Array<Record<string, unknown>> | undefined)
+    ?.find((c) => c["check"] === "model_load");
+  const stateLoaded = modelCheck?.["state_loaded"] === true;
+  const loadTime = modelCheck?.["load_time_s"] ?? "?";
+  return {
+    gate: "G10_tabby_model_load_gate",
+    question: "Does ModelState.load() succeed against a real EXL2 model in container?",
+    status: ok ? "admitted" : "blocked",
+    level: ok ? "L2" : "L0",
+    proof: ok
+      ? `P-10: state_loaded=${stateLoaded} load_time_s=${loadTime} model_name=${modelCheck?.["model_name"] ?? "?"} — exllamav2 EXL2 backend`
+      : `P-10: ${m["status"]} — ${m["verdict"]}`,
+    notes: ok ? "Backend: exllamav2 (EXL2 format). CDI GPU passthrough (nvidia.com/gpu=all)." : undefined,
+  };
+}
+
 
 
 const STATIC_GATES: GateResult[] = [
@@ -249,6 +278,7 @@ const gates: GateResult[] = [
   STATIC_GATES[4],             // G7
   probeG8(),                   // G8
   probeG9(),                   // G9
+  probeG10(),                  // G10
 ];
 
 const blockedGates = gates.filter((g) => g.status === "blocked" || g.status === "not_probed");
