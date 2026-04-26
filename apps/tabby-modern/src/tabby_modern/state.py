@@ -53,15 +53,14 @@ class ModelState:
             ) from exc
 
         logger.info("loading model from {}", model_path)
-        cfg = Config()
-        cfg.model_dir = str(model_path)
+        cfg = Config.from_directory(str(model_path))
 
         # FAF Gate 3: CUDA availability was validated at container build time.
         # We do NOT probe here — loading fails explicitly if CUDA is absent.
 
         self._tokenizer = Tokenizer(cfg)
-        self._model = Model(cfg)
-        self._model.load()  # type: ignore[union-attr]
+        self._model = Model.from_config(cfg)
+        self._model.load(device="cuda:0")  # type: ignore[union-attr]
         self._model_name = model_path.name
         logger.info("model loaded: {}", self._model_name)
 

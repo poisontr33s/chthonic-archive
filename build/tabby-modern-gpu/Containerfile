@@ -142,6 +142,6 @@ COPY apps/tabby-modern/src/ /workspace/app/src/
 RUN uv pip install -e /workspace/app/
 
 # --- Run probe ladder ---
-# CMD: P-09 (tabby-modern import gate — G9)
-# Override with: podman run ... python /workspace/probes/python/P-08.py (G4 Linux)
-CMD ["python", "/workspace/probes/python/P-09.py"]
+# CMD: P-10 (tabby-modern model load gate — G10)
+# Override with: podman run ... python /workspace/probes/python/P-09.py (G9 import)
+CMD ["python", "/workspace/probes/python/P-10.py"]
