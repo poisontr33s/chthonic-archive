@@ -643,6 +643,20 @@ As of probe trajectory execution 2026-04-25:
 
 ---
 
+## G10 Open Deviations — Punch List
+
+Tracked items from G10 admission that are **open** and **gate-relevant**. Not prose — scannable state. Each item has an owner gate and a closure condition.
+
+| ID | Item | State | Owner Gate | Closure Condition |
+|----|------|-------|------------|-------------------|
+| DEV-G10-01 | flash_attn CUDA kernel (`flash_attn_2_cuda`) not compiled — Python-only mode. Attention calls at inference time will route to torch SDPA (cuBLAS) or fail with ImportError if flash_attn C path is called directly. Behavior at G11 is unproven. | **open** | G11 (generation gate) | P-11 probe must detect which attention path fires and whether tokens flow. If flash_attn C path is hard-required: CUTLASS sm_120 incompatibility must be resolved or torch SDPA fallback must be validated. Closure = `flash_attn_path` field in `manifest/tabby_generation_gate.json` with value `sdpa_fallback` or `flash_attn_cuda`. |
+| DEV-G10-02 | Containerfile CMD bakes `P-09` (cached build layer). Image `0a625eec29f6` CMD is effectively P-09 from cache. Runtime override (`python /ext-probes/P-10.py`) was used for G10 — gate-validated. Production server launch path (`CMD ["python", "-m", "tabby_modern"]`) is not what bakes. | **open** | G12 (server smoke) | Containerfile CMD corrected to `CMD ["python", "-m", "tabby_modern"]` and image rebuilt before G12. Not blocking G11 (G11 uses external probe override). |
+| DEV-G10-03 | Backend identity unresolved: `state.py` pivoted to exllamav2 because test model is EXL2 format. tabby-modern was forged as "exllamav3-native" but has never run an EXL3 model. If corpus is EXL2, exllamav2 is the production backend and the exllamav3-native framing is wrong. If corpus is mixed or EXL3-primary, pivot was format-driven and original design holds contingent on sourcing an EXL3 model. | **open — user input required** | G11 (cannot write P-11 until resolved) | User states corpus intent. Two paths: (A) corpus is EXL2 → exllamav2 is production backend, state.py module docstring revised, exllamav3-native framing deprecated; (B) EXL3 model sourced → exllamav3 backend re-tested, G11 runs against EXL3 model. |
+
+**Punch list last updated:** 2026-04-26 (G10 admission). Items close when their owner gate is admitted with the stated evidence. CI does not currently read this table — it reads `manifest/*.json`. Gate-level evidence is the canonical closure artifact; this table is the human/agent-facing state summary.
+
+---
+
 ## 10. What This Is Not
 
 ```
