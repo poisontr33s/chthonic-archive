@@ -101,6 +101,15 @@ ENV FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE
 RUN uv pip install packaging wheel
 RUN uv pip install flash-attn==2.8.3 --no-build-isolation
 
+# --- flash_attn CUDA-optional patch (G10 membrane) ---
+# FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE installs Python layer only — but
+# flash_attn/__init__ → flash_attn_interface.py:15 unconditionally imports
+# flash_attn_2_cuda at module load time → ModuleNotFoundError on import.
+# Patch guards the import with try/except; Python-only mode active for G10.
+# Attention calls will raise AttributeError at call time (not import time).
+# For G11 generation gate: flash_attn CUDA kernel must be compiled.
+RUN python /workspace/patches/patch-flash-attn-cuda-optional.py
+
 # --- tabbyAPI core deps (pydantic, formatron, etc.) ---
 # formatron pinned to known-working version per FAF Gate 7 membrane
 # Replace <VERSION> with output of: pip show formatron | grep Version
