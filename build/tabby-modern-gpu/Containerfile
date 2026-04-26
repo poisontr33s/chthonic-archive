@@ -22,21 +22,23 @@
 #     --hooks-dir=/usr/share/containers/oci/hooks.d/ \
 #     tabby-modern-gpu
 
-FROM nvcr.io/nvidia/cuda:12.8.0-devel-ubi9
+FROM nvcr.io/nvidia/cuda:12.8.0-devel-ubuntu22.04
+# Ubuntu 22.04 provides libstdc++ from GCC 12 → GLIBCXX_3.4.30 (required by
+# exllamav3_ext.cpython-314-x86_64-linux-gnu.so built on Ubuntu CI).
+# UBI9 (GCC 11) only provides GLIBCXX_3.4.29 — not sufficient.
 
 # --- System dependencies ---
-# gcc/gcc-c++/libstdc++-devel already present in devel image; listed for explicitness
-# ninja-build + cmake required by flash_attn's build system
-# curl-minimal is pre-installed and conflicts with full curl — omit curl here
-RUN dnf install -y --allowerasing \
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         gcc \
-        gcc-c++ \
+        g++ \
         cmake \
         ninja-build \
-        libstdc++-devel \
-        python3-devel \
-    && dnf clean all
+        libstdc++-dev \
+        python3-dev \
+        curl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # --- uv install ---
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
