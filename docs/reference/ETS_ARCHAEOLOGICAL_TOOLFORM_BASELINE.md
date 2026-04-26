@@ -35,7 +35,15 @@ Secondary consumers:
 This reference focuses on:
 - Egyptian strike, shaping, and woodworking/stoneworking tool forms
 - Andean strike, hammered-metal, pin/knife, and stone-fit form language
-- early or archaeologically grounded visual traits that can survive 16px icon abstraction
+- early or archaeologically grounded visual traits that can survive 16px icon abstraction emoji: 
+- blunt mass-first strike bodies emoji: 🪓
+- handle-head junction logic emoji: 🔨
+- cut-sheet and void geometry emoji: 🪙
+- masonry framing and taper emoji: 🧱
+- bilateral symmetry and nested curve logic emoji: 🌀
+- avoidance of later industrial hammer traits emoji: 🚫
+- avoidance of non-archaeological generic strike-tool traits emoji: 🚫
+- 🔥
 
 This reference does **not** claim that Egypt and the Andes shared the same tool
 types or metallurgical history. The 50/50 ANKH lane is a design synthesis, not
