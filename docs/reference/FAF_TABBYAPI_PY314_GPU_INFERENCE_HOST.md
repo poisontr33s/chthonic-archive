@@ -353,6 +353,7 @@ print(json.dumps(result, indent=2))
 | flash_attn 2.8.3 (Linux/Podman) | ✅ | ✅ | ❌ | ❌ | ❌ | `python_only_admitted` — `FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE`; CUDA kernel not built; torch 2.11+cu128 sm_120 + CUTLASS incompatibility; commit `6f0c9591` |
 | CUDA driver (RTX 4090) | ✅ | ✅ | ✅ | ✅ | ✅ | **ADMITTED L4** — via torch CUDA probe, capability=(8,9) |
 | formatron (JSON schema) | ✅ | ✅ | ✅ | ✅ | ❌ | **L3 warning_degraded** — SyntaxWarning on 3.14; cessation ~3.16; upstream fix required |
+| **GPU inference (tabby-modern, exllamav3)** | ✅ | ✅ | ❓ | ❌ | ❌ | **`probe_pending`** — G10 P-10 forged; state.py API fixed (Config.from_directory / Model.from_config); container rebuild in progress |
 
 Key: ✅ = admitted at this level | ❌ = blocked | ❓ = not yet probed
 
@@ -558,6 +559,41 @@ sys.exit(0 if result.get("status", "").startswith("admitted") else 1)
 
 ---
 
+### Probe P-10 — tabby-modern Model Load Gate (G10)
+```python
+# probes/python/P-10.py — forged at commit 175eeb4f
+# Gate: tabby_modern/model_load_gate
+# Validates ModelState.load() succeeds against a real exl2 model.
+# Run with model mounted read-only at /models/test-model:
+#   podman run --rm ... \
+#     -v .../Llama-3.1-8B-Instruct-exl2-8.0bpw:/models/test-model:ro \
+#     <IMAGE> python /ext-probes/P-10.py
+# Emits: /workspace/manifest/tabby_model_load_gate.json
+```
+
+**Gate:** `tabby_modern/model_load_gate`  
+**Run:** Inside rebuilt ubuntu22.04 image with model volume mounted  
+**Model:** `Llama-3.1-8B-Instruct-exl2-8.0bpw` at `-v /mnt/c/Users/eldno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-8.0bpw:/models/test-model:ro`  
+**Required emissions:** `/workspace/manifest/tabby_model_load_gate.json`  
+**Target level:** L2 (model loads, `state.loaded=True`, `state.model_name` set)  
+
+**Pre-G10a API audit (2026-04-26, commit `175eeb4f`):** Executed via Windows-installed exllamav3 wheel (same cp314 Python surface as linux wheel). Found three API mismatches in `state.py:_load_blocking()`:
+
+| Old (Wrong) | Correct |
+|-------------|---------|
+| `cfg = Config()` | `cfg = Config.from_directory(str(model_path))` |
+| `cfg.model_dir = str(model_path)` | *(removed — `Config` is ABC, `directory` is constructor arg)* |
+| `self._model = Model(cfg)` | `self._model = Model.from_config(cfg)` |
+| `self._model.load()` | `self._model.load(device="cuda:0")` |
+
+Root: `Config` is an Abstract Base Class — `Config()` raises `TypeError`. Factory is `Config.from_directory(directory: str)` which reads `config.json`, detects arch from `architectures[0]`, dispatches to arch-specific subclass. `Model.from_config(cfg, component="text")` constructs the arch-specific model instance. `model.load(device=...)` requires a device argument for single-device load.
+
+**Container prerequisite:** ubuntu22.04 base (GLIBCXX_3.4.30 for exllamav3_ext .so). `libstdc++-dev` meta-package absent on ubuntu22.04 — dropped from apt layer (commit `5a859978`). Rebuild required.  
+**Status:** `probe_pending` — container rebuild in progress (ubuntu22.04 base; dropped `libstdc++-dev`); P-10 will run after image lands  
+**Admission target:** L2 (`admitted_model_load_gate`) — `state.loaded=True`, `model_name` matches directory name, `manifest/tabby_model_load_gate.json` emitted
+
+---
+
 ## 8. Admitted Capabilities
 
 As of probe trajectory execution 2026-04-25:
@@ -590,7 +626,7 @@ As of probe trajectory execution 2026-04-25:
 | exllamav2 on Python 3.14 (Linux, source) | CUDA dev + GCC + cmake (all present in container) | P-08 probe result | ~~`source_build_unprobed`~~ → **`admitted_L2_source_linux`** — P-08 2026-04-25T19:14:56Z; `exllamav2==0.3.2`; `ExLlamaV2Config` SUCCESS; Containerfile `3062c46dac1b` |
 | exllamav3 import on Python 3.14 | flash_attn (hard dep at module init) | ~~Gate 6 clears~~ | ~~`import_blocked_on_flash_attn`~~ → **`admitted`** — Gate 6 cleared (P-06); `import exllamav3` → SUCCESS, L4 |
 | flash_attn cp314 | kingbri1/flash-attention | ~~cp314 pre-built wheel OR VS 2022 BuildTools + CUTLASS update~~ | ~~`source_build_blocked_msvc_ceiling`~~ → **`admitted`** — P-06: source build succeeded, MSVC 14.44.35207, CUDA 12.8, 60m 42s |
-| GPU inference (tabby-modern, exllamav3 backend) | model load + inference smoke test | next: `state.load(model_path)` + single completion | ~~`package_forged`~~ → **`admitted_import_gate`** — Commit `c08013a3`: DELETE `config.yml` (YAML-first slag); `pyproject.toml` src-layout reforged; `src/tabby_modern/` 12-file package (Pydantic Settings primary, FastAPI lifespan, exllamav3-native state, OAI v1 surface, sampler extracted from tabbyAPI); `probes/python/P-09.py` import gate; Containerfile CMD→P-09. P-09 execution in container is next gate. |
+| GPU inference (tabby-modern, exllamav3 backend) | model load + inference smoke test | next: `state.load(model_path)` + single completion | ~~`package_forged`~~ → ~~`admitted_import_gate`~~ → **`probe_pending_G10`** — Commit `175eeb4f`: state.py API fixed (Config.from_directory/Model.from_config/model.load(device)); P-10 model load probe forged; Containerfile CMD P-09→P-10; container rebuild in progress (ubuntu22.04 + dropped libstdc++-dev). Admission target: `admitted_model_load_gate` L2. |
 | GPU inference (full tabbyAPI, exllamav2 backend) | turboderp-org/exllamav2 cp314 wheel | cp314-cp314-win_amd64 wheel published | `blocked_not_closed` — G4 impossible-currently; exllamav2 v0.3.2 highest=cp313 |
 | ruff py314 target | astral-sh/ruff | `py314` target-version added to ruff | `blocked_not_closed` |
 | formatron SyntaxError on ~3.16 | GuidoGuardiani/formatron or tabbyAPI maintainers | formatron upstream fixes `\A`/`\z`/`\[` bare-string invalid escapes; or tabbyAPI substitutes dependency | `warning_degraded` — SyntaxWarning on 3.14; hard cessation at ~3.16 |
