@@ -5,13 +5,13 @@
 > After ANY SSOT edit, run: `.\ssot_outline_extractor.ps1 -UpdateIndex`
 > See: `.github/instructions/ssot-toolbox.instructions.md` for full toolbox documentation.
 
-## **1\. Introduction: The Convergence of Infrastructure and Imaginary**
+## **1. Introduction: The Convergence of Infrastructure and Imaginary**
 
 The endeavor to stabilize and enhance a "macro-prompt-world"—specifically one characterized by "private no-policy nonsense," "NSFW18+++extreme" aesthetics, and a reliance on modern generative automation—requires a rigorous, transdisciplinary architectural approach. This report provides an exhaustive analysis of the foundational elements required to transmute such a chaotic collection of prompts into a cohesive, functioning system. By synthesizing disparate fields—software engineering (specifically the interoperability of modern JavaScript runtimes like Bun with browser automation tools), critical aesthetic theory (focusing on Biopunk, Industrial Maximalism, and the Sociology of Decay), evolutionary psychology (supernormal stimuli in character design), and information architecture (Single Source of Truth methodologies)—we can establish a robust framework for this "world."
 
 The objective is to move beyond disparate, fragile "prompts" into a cohesive, functioning system. This requires addressing the fragility of the technical stack (specifically Windows IPC issues with Bun and Playwright), refining the sensory language of the world (moving beyond generic "slime" to nuanced olfactory and tactile descriptors like "chitinous" and "petrichor"), and establishing a philosophical backbone that embraces, rather than denies, the processes of decay and transformation symbolized by alchemical traditions. The "nonsense" of the prompt is treated here not as gibberish, but as the *Prima Materia*—the chaotic, undifferentiated base matter that, through the alchemical operations of *Nigredo* (blackening/decomposition) and *Albedo* (whitening/purification), can be refined into a sophisticated narrative engine.
 
-## **2\. Technical Substrate: Runtime Interoperability and IPC Architectures**
+## **2. Technical Substrate: Runtime Interoperability and IPC Architectures**
 
 The stability of any digital "world"—whether a simulation, a testing environment, or a generative narrative engine—relies on the robustness of its underlying runtime environment. The current landscape reveals a critical friction point between the emergent, high-performance runtime **Bun** and established automation frameworks like **Playwright**, particularly within the **Microsoft Windows** ecosystem. This section analyzes the mechanical failures of this stack and proposes architectural remediation to ensure the "macro-world" can operate without interruption.
 
