@@ -19,6 +19,7 @@ import { LoomViewProvider } from './monolith/loomView';
 import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import { StylusInputProvider } from './monolith/stylusInputView';
+import { registerRenderedMarkdownPasteLane } from './markdownPaste/register';
 import { SSOT_POINTER } from './ssot-paths';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
@@ -34,6 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         outputChannel,
         vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(workspaceRoot)),
     );
+    registerRenderedMarkdownPasteLane(context, outputChannel);
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
     const deepFocusLayout = new DeepFocusLayout(outputChannel);
@@ -1034,6 +1036,7 @@ function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
         }`,
     );
     rows.push(`loom-view=${input.workspaceRoot ? 'READY' : 'PARKED (workspace unavailable)'}`);
+    rows.push('markdown-paste=READY (text/html -> GFM Markdown, sidecar-free)');
     rows.push(`web-cockpit-url=${input.webCockpitUrl}`);
     rows.push(
         `web-cockpit=${

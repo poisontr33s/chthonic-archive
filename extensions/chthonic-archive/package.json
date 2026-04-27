@@ -2,7 +2,7 @@
   "name": "chthonic-archive",
   "displayName": "Chthonic Archive",
   "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and policy tools.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.png",
   "repository": {
@@ -172,8 +172,22 @@
         "command": "chthonic.runtimeStatus",
         "title": "Chthonic: Runtime Status",
         "icon": "$(pulse)"
+      },
+      {
+        "command": "chthonic.pasteRenderedAiMarkdown",
+        "title": "Chthonic: Paste Rendered AI HTML as Markdown",
+        "icon": "$(markdown)"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "chthonic.pasteRenderedAiMarkdown",
+          "when": "editorLangId == markdown",
+          "group": "navigation"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -395,7 +409,7 @@
     "verify:host": "bun run scripts/toolpool-scan.ts --quiet && bun run scripts/verify-host.ts",
     "verify:codex": "bun run scripts/verify-host.ts --codex-only",
     "precompile": "bun run verify:host",
-    "vscode:prepublish": "bun run compile",
+    "prepublish:bundle": "bun run compile",
     "build:ledger": "bun run scripts/verify-host.ts && bun run scripts/build-ledger.ts",
     "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
     "build:daemon": "bun run scripts/verify-host.ts && bun run scripts/build-daemon.ts",
@@ -408,11 +422,13 @@
     "audit:vs2026:strict": "pwsh -NoProfile -File scripts/vs2026_audit.ps1 -Strict",
     "sql:version": "pwsh -NoProfile -File scripts/sqlpackage_task.ps1 -Mode version",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
+    "test:markdown-paste": "bun run scripts/markdown-paste-fixture.ts",
+    "test:markdown-paste:stress": "bun run scripts/markdown-paste-stress-corpus.ts",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
     "test:e2e": "bun run scripts/e2e-extension-host.ts",
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
-    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license",
+    "insiders:package": "bun run compile && bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main",
     "insiders:restart:gate": "bun run scripts/insiders-post-restart-verify.ts --gate-only",
@@ -428,8 +444,13 @@
     "@vscode/test-electron": "^2.5.2",
     "@vscode/test-web": "^0.0.80",
     "@vscode/vsce": "^3.7.1",
+    "@types/turndown": "5.0.6",
+    "markdown-it": "14.1.1",
     "openai": "^6.32.0",
     "typescript": "^5.9.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "turndown": "7.2.4",
+    "turndown-plugin-gfm": "1.0.2"
+  }
 }

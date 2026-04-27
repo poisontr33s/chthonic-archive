@@ -8,3 +8,5 @@
 !syntaxes/**
 !themes/**
 !package.json
+!fixtures/
+!fixtures/rendered-sample.md

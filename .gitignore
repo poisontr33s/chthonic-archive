@@ -121,6 +121,8 @@ mas_mcp/uv.lock
 !extensions/*/src/*.ts
 !extensions/*/src/monolith/
 !extensions/*/src/monolith/*.ts
+!extensions/*/src/markdownPaste/
+!extensions/*/src/markdownPaste/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
 !extensions/*/src/reactor/
@@ -155,6 +157,8 @@ mas_mcp/uv.lock
 !extensions/*/scripts/*.ts
 !extensions/*/scripts/*.ps1
 !extensions/*/scripts/*.cjs
+!extensions/*/fixtures/
+!extensions/*/fixtures/**
 !extensions/*/.vscodeignore
 !extensions/*/.chthonic/
 !extensions/*/.chthonic/**
