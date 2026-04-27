@@ -20,6 +20,7 @@ import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import { StylusInputProvider } from './monolith/stylusInputView';
 import { registerRenderedMarkdownPasteLane } from './markdownPaste/register';
+import { formatRuntimeLaneState } from './runtime/laneState';
 import { SSOT_POINTER } from './ssot-paths';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
@@ -591,7 +592,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // --- Status Bar: Policy Fingerprint ---
     const displayConfig = chthonicConfig;
-    if (displayConfig.get<boolean>('showSSOTHash', true)) {
+    if (displayConfig.get<boolean>('showSSOTHash', false)) {
         const fpItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 50);
         fpItem.command = 'chthonic.verifySSOT';
         fpItem.tooltip = 'Policy fingerprint — click to verify integrity';
@@ -1002,49 +1003,71 @@ function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
     const entropyWorkerPath = path.join(input.extensionPath, 'dist', 'entropy-worker.js');
     const entropyWorkerReady = fs.existsSync(entropyWorkerPath);
 
-    rows.push(`workspace=${input.workspaceRoot ? 'READY' : 'UNAVAILABLE'}`);
-    rows.push(`workspace-health=${input.entropyEnabled ? 'ENABLED' : 'DISABLED'}`);
-    rows.push(
-        `native-sidecars=${
-            input.allowNativeSidecars
-                ? 'ENABLED'
-                : 'DISABLED (chthonic.security.allowNativeSidecars=false)'
-        }`,
-    );
-    rows.push(
-        `polyglot-sidecars=${
-            input.entropyEnabled
-                ? (input.entropyPolyglotEnabled ? 'ENABLED' : 'DISABLED')
-                : 'PARKED (workspace-health disabled)'
-        }`,
-    );
-    rows.push(
-        `ledger-mode=${
-            input.entropyEnabled && input.entropyPolyglotEnabled
-                ? input.entropyLedgerMode
-                : `PARKED (${input.entropyLedgerMode}, polyglot disabled)`
-        }`,
-    );
-    rows.push(`self-healing=${input.slabSelfHealingEnabled ? 'ENABLED' : 'DISABLED'}`);
-    rows.push(`reactor=${input.reactorReadiness.ready ? 'READY' : `PARKED (${input.reactorReadiness.reason})`}`);
-    rows.push(`entropy-worker=${entropyWorkerReady ? 'READY' : 'MISSING'}`);
-    rows.push(
-        `abyssal-view=${
-            input.entropyEnabled
-                ? (entropyWorkerReady ? 'READY' : `PARKED (worker missing at ${entropyWorkerPath})`)
-                : 'PARKED (workspace-health disabled)'
-        }`,
-    );
-    rows.push(`loom-view=${input.workspaceRoot ? 'READY' : 'PARKED (workspace unavailable)'}`);
-    rows.push('markdown-paste=READY (text/html -> GFM Markdown, sidecar-free)');
+    rows.push(formatRuntimeLaneState({
+        name: 'workspace',
+        state: input.workspaceRoot ? 'READY' : 'UNAVAILABLE',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'workspace-health',
+        state: input.entropyEnabled ? 'LIVE' : 'DISABLED',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'native-sidecars',
+        state: input.allowNativeSidecars ? 'LIVE' : 'DISABLED',
+        reason: input.allowNativeSidecars ? undefined : 'chthonic.security.allowNativeSidecars=false',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'polyglot-sidecars',
+        state: input.entropyEnabled
+            ? (input.entropyPolyglotEnabled ? 'LIVE' : 'DISABLED')
+            : 'PARKED',
+        reason: input.entropyEnabled ? undefined : 'workspace-health disabled',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'ledger-mode',
+        state: input.entropyEnabled && input.entropyPolyglotEnabled ? 'LIVE' : 'PARKED',
+        reason: input.entropyEnabled && input.entropyPolyglotEnabled
+            ? input.entropyLedgerMode
+            : `${input.entropyLedgerMode}, polyglot disabled`,
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'self-healing',
+        state: input.slabSelfHealingEnabled ? 'LIVE' : 'DISABLED',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'reactor',
+        state: input.reactorReadiness.ready ? 'READY' : 'PARKED',
+        reason: input.reactorReadiness.ready ? undefined : input.reactorReadiness.reason,
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'entropy-worker',
+        state: entropyWorkerReady ? 'READY' : 'MISSING',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'abyssal-view',
+        state: input.entropyEnabled
+            ? (entropyWorkerReady ? 'READY' : 'PARKED')
+            : 'PARKED',
+        reason: input.entropyEnabled
+            ? (entropyWorkerReady ? undefined : `worker missing at ${entropyWorkerPath}`)
+            : 'workspace-health disabled',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'loom-view',
+        state: input.workspaceRoot ? 'READY' : 'PARKED',
+        reason: input.workspaceRoot ? undefined : 'workspace unavailable',
+    }));
+    rows.push(formatRuntimeLaneState({
+        name: 'markdown-paste',
+        state: 'READY',
+        reason: 'text/html -> GFM Markdown, sidecar-free',
+    }));
     rows.push(`web-cockpit-url=${input.webCockpitUrl}`);
-    rows.push(
-        `web-cockpit=${
-            input.webCockpitReachable
-                ? 'REACHABLE'
-                : 'UNREACHABLE (run "Chthonic: Start Next Cockpit")'
-        }`,
-    );
+    rows.push(formatRuntimeLaneState({
+        name: 'web-cockpit',
+        state: input.webCockpitReachable ? 'LIVE' : 'UNAVAILABLE',
+        reason: input.webCockpitReachable ? undefined : 'run "Chthonic: Start Next Cockpit"',
+    }));
     rows.push(`bridge-mandala=${formatBridgeStatus(input.bridgeMandala)}`);
     rows.push(`bridge-statusbar=${formatBridgeStatus(input.bridgeStatusbar)}`);
     if (input.reactorReadiness.daemonPath) {

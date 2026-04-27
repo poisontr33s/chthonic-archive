@@ -123,6 +123,8 @@ mas_mcp/uv.lock
 !extensions/*/src/monolith/*.ts
 !extensions/*/src/markdownPaste/
 !extensions/*/src/markdownPaste/*.ts
+!extensions/*/src/runtime/
+!extensions/*/src/runtime/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
 !extensions/*/src/reactor/
@@ -220,6 +222,9 @@ scripts/_*.py
 !apps/
 !apps/mistralrs-ui/
 !apps/mistralrs-ui/index.html
+!apps/chthonic-next/
+!apps/chthonic-next/next.config.ts
+apps/chthonic-next/package.json
 
 # Allow architecture docs
 !.temple/

@@ -98,11 +98,11 @@ export class StylusInputProvider implements vscode.WebviewViewProvider {
     }
 
     private _getHtml(webview: vscode.Webview): string {
-        // Content Security Policy: no external resources, inline styles/scripts only.
+        const nonce = getNonce();
         const csp = [
             `default-src 'none'`,
             `style-src 'unsafe-inline'`,
-            `script-src 'unsafe-inline'`,
+            `script-src 'nonce-${nonce}'`,
         ].join('; ');
 
         return /* html */ `<!DOCTYPE html>
@@ -279,7 +279,7 @@ export class StylusInputProvider implements vscode.WebviewViewProvider {
 
 <div id="status"></div>
 
-<script>
+<script nonce="${nonce}">
 (function() {
   const vscode = acquireVsCodeApi();
   const pad    = document.getElementById('pad');
@@ -367,4 +367,13 @@ export class StylusInputProvider implements vscode.WebviewViewProvider {
 </body>
 </html>`;
     }
+}
+
+function getNonce(): string {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let text = '';
+    for (let index = 0; index < 32; index += 1) {
+        text += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    return text;
 }
