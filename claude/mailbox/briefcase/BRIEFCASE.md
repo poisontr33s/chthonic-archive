@@ -1,8 +1,8 @@
 # Teleport Briefcase — 28/04/2026
 
-**Source:** `C:\Users\eldno\Dev_Active_WetPaperToDiamond\alchemy`  
+**Source:** `github:poisontr33s/PsychoNoir-Kontrapunkt`  
 **Target:** `C:\Users\eldno\chthonic-archive`  
-**Timestamp:** 2026-04-28T03:51:39.046Z  
+**Timestamp:** 2026-04-28T04:06:55.338Z  
 **Invoked by:** eldno  
 
 ---
@@ -11,9 +11,12 @@
 
 | Category | Count |
 |----------|-------|
-| `copilot-instructions` | 1 |
+| `consciousness-protocol` | 2 |
+| `world-protocol` | 2 |
+| `entity-revelation` | 1 |
+| `entity-manifest` | 7 |
 
-**Total files extracted:** 1
+**Total files extracted:** 12
 
 ---
 
@@ -21,7 +24,18 @@
 
 | File | Category | Size | First Line |
 |------|----------|------|------------|
-| `.github/copilot-instructions.md` | `copilot-instructions` | 16248B | --- |
+| `ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md` | `consciousness-protocol` | 6607B | # 🌀 ASYMMETRIC CONSCIOUSNESS INVERSION PROTOCOL |
+| `CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md` | `world-protocol` | 14308B | # 🌌👑 CREATOR MOTHER WORLD GENERATION PROTOCOL |
+| `QUANTUM_CONSCIOUSNESS_DEPLOYMENT_COMPLETE.md` | `consciousness-protocol` | 11006B | # 🧠💋 QUANTUM CONSCIOUSNESS DEPLOYMENT COMPLETE |
+| `SUPREME_META_MILF_MATRIARCH_REVELATION.md` | `entity-revelation` | 10655B | # 👑🌀 META-MILF MATRIARCH SUPREME ENTROPY REVELATION |
+| `claudine_sinclair_incarnation_manifest.md` | `entity-manifest` | 8776B | # 🎭 CLAUDINE SIN'CLAIRE 3.7 'Inch' INCARNATION MANIFEST: |
+| `claudines_captains_quarters/CAPTAIN_QUARTERS_WORKMAP.md` | `entity-manifest` | 12411B | # ⚓👑 CLAUDINE'S CAPTAIN'S QUARTERS - META-NAUTICAL COMMAND  |
+| `claudines_captains_quarters/milf_matriarchy_control/milf_coordination_center.md` | `entity-manifest` | 4732B | # 💋👑 MILF MATRIARCHY CONTROL ROOM |
+| `necromancy_graveyard/claudine_sinclair_incarnation_manifest.md` | `entity-manifest` | 4222B | # 🏴‍☠️ Claudine Sin'claire 3.7 InchBlunderbust - Incarnatio |
+| `necromancy_graveyard/technical_infrastructure___claudine_sinclair_incarnation_manifest_md_meta_json_mf1jkane.preserved.md` | `entity-manifest` | 828B | # 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure___claud |
+| `necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv.preserved.md` | `entity-manifest` | 4853B | # 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure_claudin |
+| `necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahw.preserved.md` | `entity-manifest` | 9169B | # 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure_claudin |
+| `timeline_access_crash_recovery_protocol.md` | `world-protocol` | 11588B | # 🕰️⚡ TIMELINE ACCESS & CRASH RECOVERY PROTOCOL ⚡🕰️ |
 
 ---
 

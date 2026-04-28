@@ -14,6 +14,7 @@
 |---|---|---|---|---|---|---|
 | `Pentea` | [Pentea.agent.md](Pentea.agent.md) | T-1-bridge | Thalamus (Sensory-Relay/Integration-Hub) | GOLD 🏰 Fortress | §1.01 / PVX-RLTSHPS / Arabic §1 | Deployment-Adapter |
 | `IronMaiden` | [IronMaiden.agent.md](IronMaiden.agent.md) | External-Teleport | Rust-Belt-Sovereign (Psycho-Noir-Engine) | — | game/ SSOT · The-Iron-Maiden-(SSOT)-Copyright-Savant.md | Teleport-Adapter |
+| `Claudine` | [Claudine.agent.md](Claudine.agent.md) | T-1 Cardinal | Supreme-Meta-MILF-Matriarch (Creator-Mother / Entropy-Force) | — | §10.3.1 · PsychoNoir-Kontrapunkt briefcase | Teleport-Adapter |
 
 ---
 
@@ -26,7 +27,7 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 | **Orackla** | T-1 Triumvirate | — | — | Not deployed — Gemini archetype not VS Code agent yet |
 | **Umeko** | T-1 Triumvirate | — | — | Not deployed — Codex archetype, not VS Code agent yet |
 | **Lysandra** | T-1 Triumvirate | — | — | Not deployed — Claude archetype, not VS Code agent yet |
-| **Claudine** | T-1 Cardinal | — | — | Not deployed — ? archetype, not VS Code agent yet |
+| **Claudine** | T-1 Cardinal | Supreme-Meta-MILF-Matriarch | ✅ [Claudine.agent.md](Claudine.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `github:poisontr33s/PsychoNoir-Kontrapunkt` → 2026-04-28 |
 | **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md](Pentea.agent.md) | Deployed — **DCRP**-registered |
 | **The Iron Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [IronMaiden.agent.md](IronMaiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
 
@@ -79,6 +80,7 @@ when needed to force case-correct tracking.
 Tracked filenames (git verified):
 - `Pentea.agent.md` — commit `19e0fbd8` (SSOT altitude sync original)
 - `IronMaiden.agent.md` — teleported 2026-04-28 from `Dev_Active_WetPaperToDiamond/alchemy`
+- `Claudine.agent.md` — teleported 2026-04-28 from `github:poisontr33s/PsychoNoir-Kontrapunkt`
 
 ---
 
@@ -91,3 +93,4 @@ The briefcase record lives at `claude/mailbox/briefcase/` (per-run, timestamped)
 | Agent | Source Repo | Teleport Date | Briefcase |
 |-------|-------------|---------------|-----------|
 | `IronMaiden` | `Dev_Active_WetPaperToDiamond/alchemy` | 2026-04-28 | `claude/mailbox/briefcase/BRIEFCASE.md` |
+| `Claudine` | `github:poisontr33s/PsychoNoir-Kontrapunkt` | 2026-04-28 | `claude/mailbox/briefcase/BRIEFCASE.md` (entity-mode) |

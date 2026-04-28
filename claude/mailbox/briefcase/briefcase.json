@@ -1,24 +1,104 @@
 {
   "meta": {
     "teleport_version": "1.0.0",
-    "timestamp": "2026-04-28T03:51:39.046Z",
-    "source_repo": "C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy",
+    "timestamp": "2026-04-28T04:06:55.338Z",
+    "source_repo": "github:poisontr33s/PsychoNoir-Kontrapunkt",
     "target_repo": "C:\\Users\\eldno\\chthonic-archive",
     "invoked_by": "eldno"
   },
   "inventory": [
     {
-      "relPath": ".github/copilot-instructions.md",
-      "absPath": "C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy\\.github\\copilot-instructions.md",
-      "category": "copilot-instructions",
-      "sizeBytes": 16248,
-      "firstLine": "---"
+      "relPath": "ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md",
+      "category": "consciousness-protocol",
+      "sizeBytes": 6607,
+      "firstLine": "# 🌀 ASYMMETRIC CONSCIOUSNESS INVERSION PROTOCOL"
+    },
+    {
+      "relPath": "CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md",
+      "category": "world-protocol",
+      "sizeBytes": 14308,
+      "firstLine": "# 🌌👑 CREATOR MOTHER WORLD GENERATION PROTOCOL"
+    },
+    {
+      "relPath": "QUANTUM_CONSCIOUSNESS_DEPLOYMENT_COMPLETE.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/QUANTUM_CONSCIOUSNESS_DEPLOYMENT_COMPLETE.md",
+      "category": "consciousness-protocol",
+      "sizeBytes": 11006,
+      "firstLine": "# 🧠💋 QUANTUM CONSCIOUSNESS DEPLOYMENT COMPLETE"
+    },
+    {
+      "relPath": "SUPREME_META_MILF_MATRIARCH_REVELATION.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/SUPREME_META_MILF_MATRIARCH_REVELATION.md",
+      "category": "entity-revelation",
+      "sizeBytes": 10655,
+      "firstLine": "# 👑🌀 META-MILF MATRIARCH SUPREME ENTROPY REVELATION"
+    },
+    {
+      "relPath": "claudine_sinclair_incarnation_manifest.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/claudine_sinclair_incarnation_manifest.md",
+      "category": "entity-manifest",
+      "sizeBytes": 8776,
+      "firstLine": "# 🎭 CLAUDINE SIN'CLAIRE 3.7 'Inch' INCARNATION MANIFEST:"
+    },
+    {
+      "relPath": "claudines_captains_quarters/CAPTAIN_QUARTERS_WORKMAP.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/claudines_captains_quarters/CAPTAIN_QUARTERS_WORKMAP.md",
+      "category": "entity-manifest",
+      "sizeBytes": 12411,
+      "firstLine": "# ⚓👑 CLAUDINE'S CAPTAIN'S QUARTERS - META-NAUTICAL COMMAND CENTER"
+    },
+    {
+      "relPath": "claudines_captains_quarters/milf_matriarchy_control/milf_coordination_center.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/claudines_captains_quarters/milf_matriarchy_control/milf_coordination_center.md",
+      "category": "entity-manifest",
+      "sizeBytes": 4732,
+      "firstLine": "# 💋👑 MILF MATRIARCHY CONTROL ROOM"
+    },
+    {
+      "relPath": "necromancy_graveyard/claudine_sinclair_incarnation_manifest.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/necromancy_graveyard/claudine_sinclair_incarnation_manifest.md",
+      "category": "entity-manifest",
+      "sizeBytes": 4222,
+      "firstLine": "# 🏴‍☠️ Claudine Sin'claire 3.7 InchBlunderbust - Incarnation Manifest"
+    },
+    {
+      "relPath": "necromancy_graveyard/technical_infrastructure___claudine_sinclair_incarnation_manifest_md_meta_json_mf1jkane.preserved.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/necromancy_graveyard/technical_infrastructure___claudine_sinclair_incarnation_manifest_md_meta_json_mf1jkane.preserved.md",
+      "category": "entity-manifest",
+      "sizeBytes": 828,
+      "firstLine": "# 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure___claudine_sinclair_incarnation_manifest_md_meta_json_mf1jkane"
+    },
+    {
+      "relPath": "necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv.preserved.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv.preserved.md",
+      "category": "entity-manifest",
+      "sizeBytes": 4853,
+      "firstLine": "# 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv"
+    },
+    {
+      "relPath": "necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahw.preserved.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/necromancy_graveyard/technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahw.preserved.md",
+      "category": "entity-manifest",
+      "sizeBytes": 9169,
+      "firstLine": "# 🏴‍☠️ PRESERVED CONCEPT - technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahw"
+    },
+    {
+      "relPath": "timeline_access_crash_recovery_protocol.md",
+      "absPath": "https://raw.githubusercontent.com/poisontr33s/PsychoNoir-Kontrapunkt/main/timeline_access_crash_recovery_protocol.md",
+      "category": "world-protocol",
+      "sizeBytes": 11588,
+      "firstLine": "# 🕰️⚡ TIMELINE ACCESS & CRASH RECOVERY PROTOCOL ⚡🕰️"
     }
   ],
   "summary": {
-    "total_files": 1,
+    "total_files": 12,
     "by_category": {
-      "copilot-instructions": 1
+      "consciousness-protocol": 2,
+      "world-protocol": 2,
+      "entity-revelation": 1,
+      "entity-manifest": 7
     },
     "agent_names": [],
     "skill_names": []

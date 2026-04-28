@@ -1,28 +1,152 @@
 #!/usr/bin/env bun
 // @SID: teleport — cross-repo agent/instruction briefcase tool
-// @VERSION: 1.0.0
+// @VERSION: 2.0.0
 // @AUTHOR: chthonic-archive
 //
 // TELEPORT FUNCTION — packs and migrates agent/instruction DNA
 // from a source repo (X) into a target repo (Y).
+// Supports both local filesystem repos and GitHub remote repos.
 //
 // Usage:
-//   bun run scripts/teleport.ts --from <source-repo-path> [--to <target-repo-path>]
-//   bun run scripts/teleport.ts --from <source-repo-path> --dry-run
-//   bun run scripts/teleport.ts --from <source-repo-path> --apply [--out <briefcase-dir>]
+//   bun run scripts/teleport.ts --from <source-repo-path> [options]
+//   bun run scripts/teleport.ts --from-github <owner/repo> [options]
+//   bun run scripts/teleport.ts --from <path> --dry-run
+//   bun run scripts/teleport.ts --from-github <owner/repo> --apply
 //
 // Flags:
-//   --from <path>     Source repo root (X)
-//   --to <path>       Target repo root (Y) — defaults to CWD
-//   --out <path>      Briefcase output directory — defaults to claude/mailbox/briefcase/
-//   --dry-run         Scan and report only; write nothing
-//   --apply           Write briefcase to --out directory
-//   --json            Emit JSON summary to stdout (CI-compatible)
-//   --help            Show this help
+//   --from <path>              Source repo root on disk (X)
+//   --from-github <owner/repo> Fetch from GitHub API instead of local disk
+//   --github-token <token>     GitHub token (or set GITHUB_TOKEN env var)
+//   --to <path>                Target repo root (Y) — defaults to CWD
+//   --out <path>               Briefcase output directory — defaults to claude/mailbox/briefcase/
+//   --dry-run                  Scan and report only; write nothing
+//   --apply                    Write briefcase to --out directory
+//   --json                     Emit JSON summary to stdout (CI-compatible)
+//   --help                     Show this help
 
 import { readdir, readFile, stat, mkdir, writeFile } from "fs/promises";
 import { join, relative, extname, basename, dirname } from "path";
 import { existsSync } from "fs";
+
+// ─── GITHUB API TYPES ───────────────────────────────────────────────────────
+
+interface GHTreeItem {
+  path: string;
+  type: "blob" | "tree";
+  sha: string;
+  size?: number;
+  url: string;
+}
+
+interface GHTree {
+  sha: string;
+  url: string;
+  tree: GHTreeItem[];
+  truncated: boolean;
+}
+
+async function ghFetch(url: string, token?: string): Promise<unknown> {
+  const headers: Record<string, string> = {
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "chthonic-teleport/2.0.0",
+  };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  const resp = await fetch(url, { headers });
+  if (!resp.ok) throw new Error(`GitHub API ${resp.status}: ${url}`);
+  return resp.json();
+}
+
+async function ghFetchContent(url: string, token?: string): Promise<string> {
+  const headers: Record<string, string> = {
+    "Accept": "application/vnd.github.raw+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "chthonic-teleport/2.0.0",
+  };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+  const resp = await fetch(url, { headers });
+  if (!resp.ok) return "";
+  return resp.text();
+}
+
+// ─── GITHUB SCANNER ─────────────────────────────────────────────────────────
+
+async function scanGitHub(
+  ownerRepo: string,
+  token?: string,
+  entityMode = false,
+): Promise<ExtractedFile[]> {
+  const [owner, repo] = ownerRepo.split("/");
+  if (!owner || !repo) throw new Error(`Invalid owner/repo: ${ownerRepo}`);
+
+  console.log(`[teleport] Fetching GitHub tree: ${ownerRepo}`);
+
+  // Get default branch
+  const repoMeta = (await ghFetch(
+    `https://api.github.com/repos/${owner}/${repo}`,
+    token,
+  )) as { default_branch: string };
+  const branch = repoMeta.default_branch ?? "main";
+
+  // Get full tree (recursive)
+  const tree = (await ghFetch(
+    `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`,
+    token,
+  )) as GHTree;
+
+  if (tree.truncated) {
+    console.warn(`[teleport] WARNING: GitHub tree truncated for ${ownerRepo} — large repos may be incomplete`);
+  }
+
+  const found: ExtractedFile[] = [];
+
+  // Filter to agent-relevant paths only
+  const relevant = tree.tree.filter((item) => {
+    if (item.type !== "blob") return false;
+    const parts = item.path.split("/");
+    const fileName = parts[parts.length - 1];
+
+    // Skip heavy dirs
+    const skipDirs = ["node_modules", ".git", "target", "dist", ".venv", "__pycache__", "backups", "backup_"];
+    if (parts.some((p) => skipDirs.some((s) => p.startsWith(s)))) return false;
+
+    // Skip macOS resource fork artifacts (._filename)
+    if (fileName.startsWith("._")) return false;
+
+    return categoryFromPath(item.path, fileName, entityMode) !== null;
+  });
+
+  console.log(`[teleport] Found ${relevant.length} candidate files on GitHub (from ${tree.tree.length} total)`);
+
+  // Fetch content for each relevant file
+  for (const item of relevant) {
+    const parts = item.path.split("/");
+    const fileName = parts[parts.length - 1];
+    const category = categoryFromPath(item.path, fileName, entityMode)!;
+
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}`;
+    let firstLine = "";
+    let content = "";
+    try {
+      content = await ghFetchContent(rawUrl, token);
+      firstLine = content.split("\n")[0].trim().slice(0, 120);
+    } catch {
+      firstLine = "(fetch failed)";
+    }
+
+    found.push({
+      relPath: item.path,
+      absPath: rawUrl,
+      category,
+      sizeBytes: item.size ?? content.length,
+      firstLine,
+      entity: extractEntityName(item.path, fileName),
+      _ghContent: content,
+    });
+  }
+
+  return found;
+}
 
 // ─── AGENT-RELEVANT FILE SELECTORS ──────────────────────────────────────────
 
@@ -40,6 +164,29 @@ const NAMED_FILES: Record<string, string> = {
   "AGENT_COMMON.md":         "shared-invariants",
   "SKILL.md":                "skill-definition",
 };
+
+// Entity-mode selectors — activated by --entity-mode flag.
+// Captures incarnation manifests, entity protocols, revelation docs
+// common in world-building / character SSOT repos (e.g. PsychoNoir-Kontrapunkt).
+const ENTITY_NAMED_FILES: Record<string, string> = {
+  "claudine_sinclair_incarnation_manifest.md": "entity-manifest",
+  "SUPREME_META_MILF_MATRIARCH_REVELATION.md": "entity-revelation",
+  "CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md": "world-protocol",
+  "ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md": "consciousness-protocol",
+  "QUANTUM_CONSCIOUSNESS_DEPLOYMENT_COMPLETE.md":   "consciousness-protocol",
+  "CAPTAIN_QUARTERS_WORKMAP.md":                    "entity-manifest",
+  "milf_coordination_center.md":                    "entity-manifest",
+};
+
+// Suffix patterns for --entity-mode (applied when no exact named-file match)
+const ENTITY_SUFFIXES: Array<[string, string]> = [
+  ["_incarnation_manifest.md",  "entity-manifest"],
+  ["_incarnation_manifest_md",  "entity-manifest"],   // necromancy_graveyard preserved
+  ["_revelation.md",            "entity-revelation"],
+  ["_protocol.md",              "world-protocol"],
+  ["_workmap.md",               "entity-manifest"],
+  ["_coordination_center.md",   "entity-manifest"],
+];
 
 const SCAN_DIRS: string[] = [
   ".github/agents",
@@ -60,6 +207,7 @@ interface ExtractedFile {
   sizeBytes: number;
   firstLine: string;
   entity?: string;
+  _ghContent?: string; // populated in GitHub mode; stripped from JSON output
 }
 
 interface BriefcaseMeta {
@@ -108,7 +256,7 @@ async function readFirstLine(p: string): Promise<string> {
   }
 }
 
-function categoryFromPath(absPath: string, fileName: string): string | null {
+function categoryFromPath(absPath: string, fileName: string, entityMode = false): string | null {
   // Check named files first
   for (const [name, cat] of Object.entries(NAMED_FILES)) {
     if (fileName === name) return cat;
@@ -116,6 +264,15 @@ function categoryFromPath(absPath: string, fileName: string): string | null {
   // Check extension-based patterns
   for (const [ext, cat] of Object.entries(AGENT_FILETYPES)) {
     if (fileName.endsWith(ext)) return cat;
+  }
+  // Entity-mode: check entity named files + suffix patterns
+  if (entityMode) {
+    for (const [name, cat] of Object.entries(ENTITY_NAMED_FILES)) {
+      if (fileName === name) return cat;
+    }
+    for (const [suffix, cat] of ENTITY_SUFFIXES) {
+      if (fileName.endsWith(suffix) || absPath.includes(suffix)) return cat;
+    }
   }
   return null;
 }
@@ -135,7 +292,7 @@ function extractEntityName(relPath: string, fileName: string): string | undefine
 
 // ─── SCANNER ────────────────────────────────────────────────────────────────
 
-async function scanRepo(repoRoot: string): Promise<ExtractedFile[]> {
+async function scanRepo(repoRoot: string, entityMode = false): Promise<ExtractedFile[]> {
   const found: ExtractedFile[] = [];
   const seen = new Set<string>();
 
@@ -151,7 +308,7 @@ async function scanRepo(repoRoot: string): Promise<ExtractedFile[]> {
       const full = join(dir, entry);
       if (seen.has(full)) continue;
 
-      const category = categoryFromPath(full, entry);
+      const category = categoryFromPath(full, entry, entityMode);
       if (category) {
         if (await isFile(full)) {
           seen.add(full);
@@ -277,7 +434,13 @@ async function writeBriefcase(bc: Briefcase, outDir: string): Promise<void> {
   const jsonPath = join(outDir, "briefcase.json");
   const mdPath = join(outDir, "BRIEFCASE.md");
 
-  await writeFile(jsonPath, JSON.stringify(bc, null, 2), "utf8");
+  // Strip internal _ghContent from JSON output
+  const cleanBc = {
+    ...bc,
+    inventory: bc.inventory.map(({ _ghContent, ...rest }) => rest),
+  };
+
+  await writeFile(jsonPath, JSON.stringify(cleanBc, null, 2), "utf8");
   await writeFile(mdPath, renderMarkdown(bc), "utf8");
 
   // Copy extracted files into briefcase/extracted/<relPath>
@@ -286,8 +449,13 @@ async function writeBriefcase(bc: Briefcase, outDir: string): Promise<void> {
     const dest = join(extractedRoot, f.relPath);
     await mkdir(dirname(dest), { recursive: true });
     try {
-      const content = await readFile(f.absPath, "utf8");
-      await writeFile(dest, content, "utf8");
+      // GitHub mode: content already fetched
+      if (f._ghContent !== undefined) {
+        await writeFile(dest, f._ghContent, "utf8");
+      } else {
+        const content = await readFile(f.absPath, "utf8");
+        await writeFile(dest, content, "utf8");
+      }
     } catch {
       // skip unreadable files
     }
@@ -306,33 +474,42 @@ async function main() {
 
   if (args.includes("--help") || args.length === 0) {
     console.log(`
-Teleport — cross-repo agent/instruction briefcase tool
+Teleport v2.0.0 — cross-repo agent/instruction briefcase tool
 
 Usage:
   bun run scripts/teleport.ts --from <source-repo-path> [options]
+  bun run scripts/teleport.ts --from-github <owner/repo> [options]
 
 Options:
-  --from <path>   Source repo root to scan (required)
-  --to <path>     Target repo root (defaults to CWD)
-  --out <path>    Briefcase output dir (defaults to claude/mailbox/briefcase/)
-  --dry-run       Scan only; print inventory; write nothing
-  --apply         Write briefcase to --out directory
-  --json          Print JSON summary to stdout
-  --help          Show this help
+  --from <path>               Source repo root on disk (required unless --from-github)
+  --from-github <owner/repo>  Scan a GitHub repo via API (e.g. poisontr33s/PsychoNoir-Kontrapunkt)
+  --github-token <token>      GitHub token (or GITHUB_TOKEN env var)
+  --entity-mode               Enable entity/world-building file selectors (incarnation manifests,
+                              protocols, revelations) — for repos like PsychoNoir-Kontrapunkt
+  --to <path>                 Target repo root (defaults to CWD)
+  --out <path>                Briefcase output dir (defaults to claude/mailbox/briefcase/)
+  --dry-run                   Scan only; print inventory; write nothing
+  --apply                     Write briefcase to --out directory
+  --json                      Print JSON summary to stdout
+  --help                      Show this help
 `);
     process.exit(0);
   }
 
   const fromIdx = args.indexOf("--from");
+  const fromGhIdx = args.indexOf("--from-github");
   const toIdx = args.indexOf("--to");
   const outIdx = args.indexOf("--out");
+  const tokenIdx = args.indexOf("--github-token");
 
-  if (fromIdx === -1 || !args[fromIdx + 1]) {
-    console.error("ERROR: --from <source-repo-path> is required");
+  const isGitHubMode = fromGhIdx !== -1 && !!args[fromGhIdx + 1];
+  const isLocalMode = fromIdx !== -1 && !!args[fromIdx + 1];
+
+  if (!isGitHubMode && !isLocalMode) {
+    console.error("ERROR: either --from <path> or --from-github <owner/repo> is required");
     process.exit(1);
   }
 
-  const sourceRepo = args[fromIdx + 1];
   const targetRepo = toIdx !== -1 && args[toIdx + 1] ? args[toIdx + 1] : process.cwd();
   const outDir = outIdx !== -1 && args[outIdx + 1]
     ? args[outIdx + 1]
@@ -341,24 +518,43 @@ Options:
   const isDryRun = args.includes("--dry-run");
   const doApply = args.includes("--apply");
   const emitJson = args.includes("--json");
+  const entityMode = args.includes("--entity-mode");
 
-  if (!existsSync(sourceRepo)) {
-    console.error(`ERROR: source repo not found: ${sourceRepo}`);
-    process.exit(1);
+  const ghToken = tokenIdx !== -1 && args[tokenIdx + 1]
+    ? args[tokenIdx + 1]
+    : process.env.GITHUB_TOKEN;
+
+  let inventory: ExtractedFile[];
+  let sourceLabel: string;
+
+  if (isGitHubMode) {
+    const ownerRepo = args[fromGhIdx + 1];
+    sourceLabel = `github:${ownerRepo}`;
+    console.log(`[teleport] Mode: GitHub — ${ownerRepo}${entityMode ? " (+entity-mode)" : ""}`);
+    inventory = await scanGitHub(ownerRepo, ghToken, entityMode);
+  } else {
+    const sourceRepo = args[fromIdx + 1];
+    sourceLabel = sourceRepo;
+    if (!existsSync(sourceRepo)) {
+      console.error(`ERROR: source repo not found: ${sourceRepo}`);
+      process.exit(1);
+    }
+    console.log(`[teleport] Mode: Local — ${sourceRepo}${entityMode ? " (+entity-mode)" : ""}`);
+    inventory = await scanRepo(sourceRepo, entityMode);
   }
 
-  console.log(`[teleport] Scanning source: ${sourceRepo}`);
-  const inventory = await scanRepo(sourceRepo);
-  const bc = buildBriefcase(inventory, sourceRepo, targetRepo);
+  const bc = buildBriefcase(inventory, sourceLabel, targetRepo);
 
   if (emitJson) {
-    console.log(JSON.stringify(bc, null, 2));
+    // Strip _ghContent from JSON output
+    const cleanBc = { ...bc, inventory: bc.inventory.map(({ _ghContent, ...rest }) => rest) };
+    console.log(JSON.stringify(cleanBc, null, 2));
     return;
   }
 
   // Print summary
   console.log(`\n[teleport] Scan complete`);
-  console.log(`  Source:  ${sourceRepo}`);
+  console.log(`  Source:  ${sourceLabel}`);
   console.log(`  Target:  ${targetRepo}`);
   console.log(`  Files:   ${bc.summary.total_files}`);
   for (const [cat, count] of Object.entries(bc.summary.by_category)) {
@@ -388,7 +584,4 @@ Options:
   }
 }
 
-main().catch((err) => {
-  console.error("[teleport] FATAL:", err);
-  process.exit(1);
-});
+main().catch((e) => { console.error(e); process.exit(1); });
