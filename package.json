@@ -81,7 +81,7 @@
   },
   "devDependencies": {
     "@davestewart/outliner": "^1.2.0",
-    "@google/gemini-cli": "^0.38.2",
+    "@google/gemini-cli": "^0.39.1",
     "@playwright/mcp": "^0.0.70",
     "svg2ttf": "^6.0.3",
     "svgicons2svgfont": "^16.0.0",
