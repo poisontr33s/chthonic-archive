@@ -1,0 +1,33 @@
+{
+  "gate": "H3",
+  "level_reached": "L3",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
+    "extensions/chthonic-archive/src/reactor/annoClient.ts",
+    "extensions/chthonic-archive/src/activation/activateCommands.ts",
+    "extensions/chthonic-archive/src/activation/activateSidecars.ts"
+  ],
+  "smoke_evidence": {
+    "command": "bun --eval <SynapseBridge.drain jsonl smoke>",
+    "real_daemon": "extensions/chthonic-archive/native/target/debug/chthonic-daemon.exe",
+    "request": {
+      "method": "reactor/sediment_synapse",
+      "params": {
+        "max_layers": 10,
+        "max_files": 220,
+        "chunk_size": 64
+      }
+    },
+    "drain": {
+      "received_chunks": 4,
+      "received_bytes": 7232,
+      "first_chunk_bytes": 2096
+    },
+    "lane_state": {
+      "name": "synapseShm",
+      "state": "DEGRADED",
+      "reason": "transport=jsonl fallback"
+    }
+  }
+}

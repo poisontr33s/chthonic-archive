@@ -6,6 +6,7 @@ import type { PolyglotEntropyOrchestrator } from '../polyglot/polyglotEntropyOrc
 import type { LedgerMode } from '../polyglot/ledgerBroker';
 import type { AnnoClient } from '../reactor/annoClient';
 import type { CockpitLayout } from '../reactor/cockpitLayout';
+import type { SynapseBridge } from '../reactor/synapseBridge';
 import type { DeepFocusLayout } from '../monolith/deepFocusLayout';
 import type { RestoreOrderLayout } from '../monolith/restoreOrderLayout';
 import type { SelfHealingLoop } from '../monolith/selfHealingLoop';
@@ -45,6 +46,7 @@ export interface ActivateCommandsDeps {
     readonly entropyClient: EntropyWorkerClient;
     readonly polyglotOrchestrator: PolyglotEntropyOrchestrator;
     readonly annoClient: AnnoClient;
+    readonly synapseBridge: SynapseBridge;
     readonly themeProvider: ThemeTreeProvider;
     readonly statusProvider: StatusTreeProvider;
     readonly refreshToolchainCompleteness: (reason: string) => Promise<void>;
@@ -122,9 +124,20 @@ export function activateCommands(context: vscode.ExtensionContext, deps: Activat
                 return;
             }
             try {
-                const result = await deps.annoClient.requestSediment(10, 500);
+                const maxLayers = 10;
+                const maxFiles = 500;
+                const chunkSize = 220;
+                const result = await deps.annoClient.requestSedimentSynapse(maxLayers, maxFiles, chunkSize);
+                let drainedBytes = 0;
+                const drainedChunks = await deps.synapseBridge.drain(
+                    result,
+                    (chunk) => {
+                        drainedBytes += chunk.byteLength;
+                    },
+                    { maxLayers, maxFiles, chunkSize },
+                );
                 vscode.window.showInformationMessage(
-                    `Sediment computed: ${result.file_count} files, ${result.layer_count} layers (${result.backend}, ${result.compute_time_ms}ms)`,
+                    `Sediment computed: ${result.file_count} files, ${result.layer_count} layers (${result.backend}, ${result.compute_time_ms}ms, ${drainedChunks}/${result.chunks_written} chunks, ${drainedBytes} bytes)`,
                 );
             } catch (err) {
                 vscode.window.showErrorMessage(`Sediment computation failed: ${err}`);

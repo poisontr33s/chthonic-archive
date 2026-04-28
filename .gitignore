@@ -189,6 +189,7 @@ extensions/*/bun.lock
 !artifacts/mcp_run_*.json
 !manifest/
 !manifest/extension_phase3*.json
+!manifest/daemon_jsonl_*.json
 !manifest/failures.jsonl
 
 # Allow root-level MCP validation runner
@@ -375,4 +376,3 @@ mcp_fs_root/
 # Satellite Orbit live-links (NTFS junctions to sibling repos — not repo content)
 # Managed via SATELLITE_REGISTRY.json + scripts/teleport.ts --from-sibling
 pnk-live/
-

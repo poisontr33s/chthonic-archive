@@ -1,7 +1,7 @@
 use std::io::{self, BufRead, Write};
 
 use anyhow::{Context, Result};
-use clap::Parser;
+use clap::{Parser, ValueEnum};
 use serde::Serialize;
 
 mod anno;
@@ -11,15 +11,15 @@ mod reactor;
 mod synapse;
 mod types;
 
-use types::{
-    JsonRpcError, JsonRpcNotification, JsonRpcRequest, JsonRpcSuccess,
-    SedimentRequest,
-};
+use types::{JsonRpcError, JsonRpcNotification, JsonRpcRequest, JsonRpcSuccess, SedimentRequest};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, ValueEnum)]
 enum ReactorTransportMode {
+    #[value(name = "auto")]
     Auto,
+    #[value(name = "shared_memory", alias = "shm", alias = "synapse")]
     SharedMemory,
+    #[value(name = "jsonl", alias = "safe")]
     Jsonl,
 }
 
@@ -34,18 +34,22 @@ struct Opts {
     /// Falls back to CPU if no Vulkan device is available.
     #[arg(long, default_value_t = false)]
     headless_vulkan: bool,
+
+    /// Sediment transport mode. Defaults to CHTHONIC_REACTOR_TRANSPORT, then auto.
+    #[arg(long, value_enum)]
+    transport: Option<ReactorTransportMode>,
 }
 
 fn main() -> Result<()> {
     let opts = Opts::parse();
-    let transport_mode = reactor_transport_mode();
+    let transport_mode = reactor_transport_mode(opts.transport);
 
     // -------------------------------------------------------------------
     // Phase 1: ANNO project detection
     // -------------------------------------------------------------------
 
-    let manifest = anno::detect_project(&opts.workspace)
-        .context("ANNO project detection failed")?;
+    let manifest =
+        anno::detect_project(&opts.workspace).context("ANNO project detection failed")?;
 
     write_json(&JsonRpcNotification {
         jsonrpc: "2.0",
@@ -57,8 +61,8 @@ fn main() -> Result<()> {
     // Phase 2: Environment provisioning
     // -------------------------------------------------------------------
 
-    let env_report = env::provision(&manifest, &opts.workspace)
-        .context("environment provisioning failed")?;
+    let env_report =
+        env::provision(&manifest, &opts.workspace).context("environment provisioning failed")?;
 
     write_json(&JsonRpcNotification {
         jsonrpc: "2.0",
@@ -147,7 +151,9 @@ fn main() -> Result<()> {
                         "reason": format!("{err:#}")
                     }),
                 })?;
-                eprintln!("[daemon] shared memory synapse unavailable; falling back to JSONL: {err:#}");
+                eprintln!(
+                    "[daemon] shared memory synapse unavailable; falling back to JSONL: {err:#}"
+                );
                 None
             }
         }
@@ -191,40 +197,31 @@ fn main() -> Result<()> {
         };
 
         match request.method.as_str() {
-            "anno/detect" => {
-                match anno::detect_project(&opts.workspace) {
-                    Ok(m) => write_json(&JsonRpcSuccess {
-                        jsonrpc: "2.0",
-                        id: request.id,
-                        result: &m,
-                    })?,
-                    Err(err) => write_json(&JsonRpcError::internal(
-                        request.id,
-                        err,
-                    ))?,
-                }
-            }
+            "anno/detect" => match anno::detect_project(&opts.workspace) {
+                Ok(m) => write_json(&JsonRpcSuccess {
+                    jsonrpc: "2.0",
+                    id: request.id,
+                    result: &m,
+                })?,
+                Err(err) => write_json(&JsonRpcError::internal(request.id, err))?,
+            },
 
             "anno/provision" => {
-                let current = anno::detect_project(&opts.workspace)
-                    .unwrap_or_else(|_| manifest.clone());
+                let current =
+                    anno::detect_project(&opts.workspace).unwrap_or_else(|_| manifest.clone());
                 match env::provision(&current, &opts.workspace) {
                     Ok(report) => write_json(&JsonRpcSuccess {
                         jsonrpc: "2.0",
                         id: request.id,
                         result: &report,
                     })?,
-                    Err(err) => write_json(&JsonRpcError::internal(
-                        request.id,
-                        err,
-                    ))?,
+                    Err(err) => write_json(&JsonRpcError::internal(request.id, err))?,
                 }
             }
 
             "reactor/sediment" => {
                 let params: SedimentRequest =
-                    serde_json::from_value(request.params.clone())
-                        .unwrap_or_default();
+                    serde_json::from_value(request.params.clone()).unwrap_or_default();
 
                 let result = match &vulkan_reactor {
                     Some(r) => r.compute_sediment(&opts.workspace, &params),
@@ -237,17 +234,13 @@ fn main() -> Result<()> {
                         id: request.id,
                         result: &r,
                     })?,
-                    Err(err) => write_json(&JsonRpcError::internal(
-                        request.id,
-                        err,
-                    ))?,
+                    Err(err) => write_json(&JsonRpcError::internal(request.id, err))?,
                 }
             }
 
             "reactor/sediment_stream" => {
                 let params: SedimentRequest =
-                    serde_json::from_value(request.params.clone())
-                        .unwrap_or_default();
+                    serde_json::from_value(request.params.clone()).unwrap_or_default();
 
                 let result = match &vulkan_reactor {
                     Some(r) => r.compute_sediment(&opts.workspace, &params),
@@ -263,17 +256,13 @@ fn main() -> Result<()> {
                             result: &r,
                         })?;
                     }
-                    Err(err) => write_json(&JsonRpcError::internal(
-                        request.id,
-                        err,
-                    ))?,
+                    Err(err) => write_json(&JsonRpcError::internal(request.id, err))?,
                 }
             }
 
             "reactor/sediment_synapse" => {
                 let params: SedimentRequest =
-                    serde_json::from_value(request.params.clone())
-                        .unwrap_or_default();
+                    serde_json::from_value(request.params.clone()).unwrap_or_default();
 
                 let result = reactor::simulate_firedancer_telemetry(&opts.workspace, &params);
 
@@ -282,12 +271,13 @@ fn main() -> Result<()> {
                         let publish = if let Some(writer) = synapse_writer.as_mut() {
                             writer.publish_result(&r, params.chunk_size.max(1))?
                         } else {
-                            synapse::SynapsePublishSummary {
-                                total_chunks: 0,
-                                chunks_written: 0,
-                                dropped_chunks: 0,
-                                queue_depth: 0,
-                            }
+                            synapse::emit_jsonl_result(&r, params.chunk_size.max(1), |chunk| {
+                                write_json(&JsonRpcNotification {
+                                    jsonrpc: "2.0",
+                                    method: "reactor/sedimentSlot",
+                                    params: chunk,
+                                })
+                            })?
                         };
 
                         write_json(&JsonRpcSuccess {
@@ -320,10 +310,7 @@ fn main() -> Result<()> {
                             })?;
                         }
                     }
-                    Err(err) => write_json(&JsonRpcError::internal(
-                        request.id,
-                        err,
-                    ))?,
+                    Err(err) => write_json(&JsonRpcError::internal(request.id, err))?,
                 }
             }
 
@@ -421,7 +408,11 @@ fn write_json<T: Serialize>(value: &T) -> Result<()> {
     Ok(())
 }
 
-fn reactor_transport_mode() -> ReactorTransportMode {
+fn reactor_transport_mode(cli_mode: Option<ReactorTransportMode>) -> ReactorTransportMode {
+    if let Some(mode) = cli_mode {
+        return mode;
+    }
+
     match std::env::var("CHTHONIC_REACTOR_TRANSPORT") {
         Ok(raw) => match raw.trim().to_ascii_lowercase().as_str() {
             "shared_memory" | "shm" | "synapse" => ReactorTransportMode::SharedMemory,

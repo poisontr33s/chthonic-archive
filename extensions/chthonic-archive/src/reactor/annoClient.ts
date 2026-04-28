@@ -62,6 +62,7 @@ export class AnnoClient implements vscode.Disposable {
         private readonly daemonBinaryOverride?: string,
         private readonly eolApiBase = 'https://endoflife.date/api/v1',
         private readonly entropyMonitorIntervalMs = 6 * 60 * 60 * 1_000,
+        private readonly transportMode = 'auto',
     ) {}
 
     start(rootPath: string): void {
@@ -132,6 +133,10 @@ export class AnnoClient implements vscode.Disposable {
         if (this.headlessVulkan) {
             args.push('--headless-vulkan');
         }
+        const transportMode = normalizeTransportMode(this.transportMode);
+        if (transportMode !== 'auto') {
+            args.push(`--transport=${transportMode}`);
+        }
 
         this.daemonProcess = spawn(binaryPath, args, {
             cwd: this.rootPath,
@@ -197,6 +202,8 @@ export class AnnoClient implements vscode.Disposable {
             }
             case 'reactor/sedimentChunk':
                 this.onDidReceiveSedimentChunkEmitter.fire(params as unknown as SedimentChunk);
+                break;
+            case 'reactor/sedimentSlot':
                 break;
             case 'reactor/synapse':
                 this.onDidReceiveSynapseEmitter.fire(params as unknown as SynapseDescriptor);
@@ -269,4 +276,15 @@ export class AnnoClient implements vscode.Disposable {
 function resolveDaemonBinaryPath(rootPath: string): string {
     const binary = process.platform === 'win32' ? 'chthonic-daemon.exe' : 'chthonic-daemon';
     return path.join(rootPath, 'native', 'target', 'release', binary);
+}
+
+function normalizeTransportMode(value: string): 'auto' | 'shared_memory' | 'jsonl' {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === 'shared_memory') {
+        return 'shared_memory';
+    }
+    if (normalized === 'jsonl') {
+        return 'jsonl';
+    }
+    return 'auto';
 }

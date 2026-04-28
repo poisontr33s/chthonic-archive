@@ -1,11 +1,11 @@
-use std::mem::size_of;
+use std::mem::{align_of, size_of};
 use std::sync::atomic::{fence, AtomicU64, Ordering};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use anyhow::{anyhow, Context, Result};
 use chthonic_synapse_schema::{
-    slot_header_bytes, vertex_stride_bytes, PackedSedimentVertex, SedimentSlotHeader,
-    SLOT_MAGIC, SLOT_VERSION, SYNAPSE_MAGIC,
+    slot_header_bytes, vertex_stride_bytes, PackedSedimentVertex, SedimentSlotHeader, SLOT_MAGIC,
+    SLOT_VERSION, SYNAPSE_MAGIC,
 };
 use shared_memory::{Shmem, ShmemConf};
 
@@ -45,6 +45,19 @@ pub struct SynapsePublishSummary {
     pub queue_depth: u64,
 }
 
+#[derive(Debug, Clone, serde::Serialize)]
+pub struct JsonlSynapseChunk {
+    pub schema: &'static str,
+    pub encoding: &'static str,
+    pub slot_header_bytes: u32,
+    pub vertex_stride_bytes: u32,
+    pub byte_len: u32,
+    pub chunk_index: u32,
+    pub total_chunks: u32,
+    pub vertex_count: u32,
+    pub payload_base64: String,
+}
+
 pub struct SynapseWriter {
     shmem: Shmem,
     descriptor: SynapseDescriptor,
@@ -56,8 +69,10 @@ impl SynapseWriter {
     pub fn create() -> Result<Self> {
         let slot_capacity: u32 = 64;
         let vertex_capacity: u32 = 384;
-        let slot_stride = (slot_header_bytes() + (vertex_capacity as usize * vertex_stride_bytes())) as u32;
-        let total_size = size_of::<SynapseHeader>() + (slot_capacity as usize * slot_stride as usize);
+        let slot_stride =
+            (slot_header_bytes() + (vertex_capacity as usize * vertex_stride_bytes())) as u32;
+        let total_size =
+            size_of::<SynapseHeader>() + (slot_capacity as usize * slot_stride as usize);
 
         let tag = unique_tag();
         let shm_id = format!("chthonic.synapse.{tag}");
@@ -111,7 +126,11 @@ impl SynapseWriter {
         &self.descriptor
     }
 
-    pub fn publish_result(&mut self, result: &SedimentResult, requested_chunk_size: u32) -> Result<SynapsePublishSummary> {
+    pub fn publish_result(
+        &mut self,
+        result: &SedimentResult,
+        requested_chunk_size: u32,
+    ) -> Result<SynapsePublishSummary> {
         let chunk_size = requested_chunk_size
             .max(1)
             .min(self.descriptor.vertex_capacity) as usize;
@@ -168,7 +187,9 @@ impl SynapseWriter {
         let read = self.header_ref().read_index.load(Ordering::Acquire);
 
         if write.saturating_sub(read) >= self.descriptor.slot_capacity as u64 {
-            self.header_ref().dropped_frames.fetch_add(1, Ordering::AcqRel);
+            self.header_ref()
+                .dropped_frames
+                .fetch_add(1, Ordering::AcqRel);
             return Ok(false);
         }
 
@@ -187,16 +208,16 @@ impl SynapseWriter {
         );
 
         unsafe {
-            self.write_slot(
-                slot_index,
-                slot_header,
-                vertices,
-            )?;
+            self.write_slot(slot_index, slot_header, vertices)?;
         }
 
         fence(Ordering::Release);
-        self.header_ref().write_index.store(write + 1, Ordering::Release);
-        self.header_ref().notify_counter.fetch_add(1, Ordering::AcqRel);
+        self.header_ref()
+            .write_index
+            .store(write + 1, Ordering::Release);
+        self.header_ref()
+            .notify_counter
+            .fetch_add(1, Ordering::AcqRel);
 
         let depth = (write + 1).saturating_sub(read);
         if depth >= self.descriptor.high_water_mark as u64 {
@@ -250,7 +271,9 @@ impl SynapseWriter {
 
     unsafe fn slot_ptr(&self, slot_index: u32) -> *mut u8 {
         let base = self.shmem.as_ptr();
-        base.add(size_of::<SynapseHeader>() + slot_index as usize * self.descriptor.slot_stride as usize)
+        base.add(
+            size_of::<SynapseHeader>() + slot_index as usize * self.descriptor.slot_stride as usize,
+        )
     }
 
     fn signal(&self) {
@@ -259,6 +282,59 @@ impl SynapseWriter {
             let _ = windows_sys::Win32::System::Threading::SetEvent(self.event_handle);
         }
     }
+}
+
+pub fn emit_jsonl_result<F>(
+    result: &SedimentResult,
+    requested_chunk_size: u32,
+    mut emit: F,
+) -> Result<SynapsePublishSummary>
+where
+    F: FnMut(&JsonlSynapseChunk) -> Result<()>,
+{
+    let chunk_size = requested_chunk_size.max(1) as usize;
+    let total_chunks = if result.vertices.is_empty() {
+        0
+    } else {
+        ((result.vertices.len() + chunk_size - 1) / chunk_size) as u32
+    };
+
+    let mut chunks_written = 0u32;
+    for (chunk_index, vertices) in result.vertices.chunks(chunk_size).enumerate() {
+        let final_chunk = chunk_index as u32 + 1 == total_chunks;
+        let slot_header = build_slot_header(
+            chunk_index as u32,
+            total_chunks,
+            result.layer_count,
+            result.file_count,
+            result.compute_time_ms,
+            backend_code(result.backend),
+            vertices.len() as u32,
+            final_chunk,
+            result.telemetry.as_ref(),
+        );
+        let payload = encode_slot_payload(slot_header, vertices);
+        let chunk = JsonlSynapseChunk {
+            schema: "chthonic-synapse-schema/SedimentSlotHeader+PackedSedimentVertex@1",
+            encoding: "base64",
+            slot_header_bytes: slot_header_bytes() as u32,
+            vertex_stride_bytes: vertex_stride_bytes() as u32,
+            byte_len: payload.len() as u32,
+            chunk_index: chunk_index as u32,
+            total_chunks,
+            vertex_count: vertices.len() as u32,
+            payload_base64: encode_base64(&payload),
+        };
+        emit(&chunk)?;
+        chunks_written += 1;
+    }
+
+    Ok(SynapsePublishSummary {
+        total_chunks,
+        chunks_written,
+        dropped_chunks: 0,
+        queue_depth: 0,
+    })
 }
 
 impl Drop for SynapseWriter {
@@ -270,6 +346,87 @@ impl Drop for SynapseWriter {
             }
         }
     }
+}
+
+fn encode_slot_payload(slot_header: SedimentSlotHeader, vertices: &[SedimentVertex]) -> Vec<u8> {
+    let mut bytes =
+        Vec::with_capacity(slot_header_bytes() + vertices.len() * vertex_stride_bytes());
+    push_slot_header(&mut bytes, slot_header);
+    for vertex in vertices {
+        push_f32(&mut bytes, vertex.x);
+        push_f32(&mut bytes, vertex.y);
+        push_f32(&mut bytes, vertex.z);
+        push_f32(&mut bytes, vertex.radius);
+        push_f32(&mut bytes, vertex.r);
+        push_f32(&mut bytes, vertex.g);
+        push_f32(&mut bytes, vertex.b);
+        push_f32(&mut bytes, vertex.alpha);
+    }
+    bytes
+}
+
+fn push_slot_header(bytes: &mut Vec<u8>, header: SedimentSlotHeader) {
+    push_u32(bytes, header.magic);
+    push_u16(bytes, header.version);
+    push_u16(bytes, header.flags);
+    push_u32(bytes, header.vertex_count);
+    push_u32(bytes, header.layer_count);
+    push_u32(bytes, header.file_count);
+    push_u32(bytes, header.chunk_index);
+    push_u32(bytes, header.total_chunks);
+    align_bytes(bytes, align_of::<u64>());
+    push_u64(bytes, header.compute_time_ms);
+    push_u32(bytes, header.backend_code);
+    push_u32(bytes, header.reserved);
+    bytes.resize(slot_header_bytes(), 0);
+}
+
+fn align_bytes(bytes: &mut Vec<u8>, alignment: usize) {
+    let padding = (alignment - (bytes.len() % alignment)) % alignment;
+    bytes.resize(bytes.len() + padding, 0);
+}
+
+fn push_u16(bytes: &mut Vec<u8>, value: u16) {
+    bytes.extend_from_slice(&value.to_le_bytes());
+}
+
+fn push_u32(bytes: &mut Vec<u8>, value: u32) {
+    bytes.extend_from_slice(&value.to_le_bytes());
+}
+
+fn push_u64(bytes: &mut Vec<u8>, value: u64) {
+    bytes.extend_from_slice(&value.to_le_bytes());
+}
+
+fn push_f32(bytes: &mut Vec<u8>, value: f32) {
+    bytes.extend_from_slice(&value.to_le_bytes());
+}
+
+fn encode_base64(bytes: &[u8]) -> String {
+    const TABLE: &[u8; 64] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    let mut encoded = String::with_capacity(((bytes.len() + 2) / 3) * 4);
+
+    for chunk in bytes.chunks(3) {
+        let first = chunk[0];
+        let second = chunk.get(1).copied().unwrap_or(0);
+        let third = chunk.get(2).copied().unwrap_or(0);
+        let block = ((first as u32) << 16) | ((second as u32) << 8) | third as u32;
+
+        encoded.push(TABLE[((block >> 18) & 0x3f) as usize] as char);
+        encoded.push(TABLE[((block >> 12) & 0x3f) as usize] as char);
+        if chunk.len() > 1 {
+            encoded.push(TABLE[((block >> 6) & 0x3f) as usize] as char);
+        } else {
+            encoded.push('=');
+        }
+        if chunk.len() > 2 {
+            encoded.push(TABLE[(block & 0x3f) as usize] as char);
+        } else {
+            encoded.push('=');
+        }
+    }
+
+    encoded
 }
 
 fn backend_code(backend: &str) -> u32 {
@@ -344,21 +501,16 @@ fn unique_tag() -> String {
 }
 
 #[cfg(windows)]
-fn create_signal_event(tag: &str) -> Result<(Option<String>, windows_sys::Win32::Foundation::HANDLE)> {
+fn create_signal_event(
+    tag: &str,
+) -> Result<(Option<String>, windows_sys::Win32::Foundation::HANDLE)> {
     use windows_sys::Win32::System::Threading::CreateEventW;
 
     let event_name = format!("Local\\chthonic.synapse.{tag}.signal");
     let mut wide: Vec<u16> = event_name.encode_utf16().collect();
     wide.push(0);
 
-    let handle = unsafe {
-        CreateEventW(
-            std::ptr::null_mut(),
-            0,
-            0,
-            wide.as_ptr(),
-        )
-    };
+    let handle = unsafe { CreateEventW(std::ptr::null_mut(), 0, 0, wide.as_ptr()) };
 
     if handle.is_null() {
         return Err(anyhow!("failed to create signal event"));

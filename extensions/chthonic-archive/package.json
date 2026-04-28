@@ -429,6 +429,7 @@
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify",
     "test:markdown-paste": "bun run scripts/markdown-paste-fixture.ts",
     "test:markdown-paste:stress": "bun run scripts/markdown-paste-stress-corpus.ts",
+    "test:daemon-jsonl": "bun run scripts/daemon-jsonl-smoke.ts",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
     "test:e2e": "bun run scripts/e2e-extension-host.ts",

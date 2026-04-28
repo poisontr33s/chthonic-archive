@@ -1,16 +1,27 @@
 {
   "gate": "Gate H JSONL fallback transport",
-  "level_reached": "L0",
-  "status": "blocked_not_closed",
+  "level_reached": "L4",
+  "status": "admitted",
   "evidence_files": [
+    "manifest/daemon_jsonl_baseline.json",
+    "manifest/daemon_jsonl_h1.json",
+    "manifest/daemon_jsonl_h2.json",
+    "manifest/daemon_jsonl_h3.json",
+    "manifest/daemon_jsonl_h4.json",
     "manifest/failures.jsonl",
     "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
-    "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs"
+    "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs",
+    "extensions/chthonic-archive/native/chthonic-daemon/src/synapse.rs",
+    "extensions/chthonic-archive/scripts/daemon-jsonl-smoke.ts"
   ],
   "checks": {
-    "jsonl_branch_deleted": false,
+    "jsonl_branch_deleted": true,
     "boundary_recorded": true,
-    "daemon_emitter_available": false
+    "daemon_emitter_available": true,
+    "bridge_reader_available": true,
+    "native_smoke_passed": true,
+    "extension_e2e_passed": true
   },
-  "next_probe": "daemon_jsonl_emit_smoke_inside_native_workspace"
+  "admission_probe": "bun run --cwd extensions/chthonic-archive test:daemon-jsonl",
+  "e2e_probe": "bun run --cwd extensions/chthonic-archive test:e2e"
 }
