@@ -9276,7 +9276,7 @@ The SSOT governs only what has been metabolized. The Nursery is where metabolism
 - **Behavior:** Focus on git status cleanup, dependency updates, refactoring
 - **Use Case:** "Dirty codebase" cleanup, SSOT verification, hash checks
 
-**Paused Mode** (Emergency Stop)
+**Paused Mode:** (`Emergency-Stop`)
 - **Allowed Agents:** None (manual operation only)
 - **Blocked Agents:** ALL agents disabled
 - **Behavior:** System frozen, awaiting user directive
@@ -9284,7 +9284,7 @@ The SSOT governs only what has been metabolized. The Nursery is where metabolism
 
 ---
 
-#### **16.2. Priority Hierarchy (Conflict Resolution) (`PH-CR`)**
+#### 16.2. **(`Priority-Hierarchy-Conflict Resolution`/`PH-CR`)**
 
 **When multiple agents provide conflicting directives, resolve via this hierarchy:**
 

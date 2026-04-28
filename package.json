@@ -63,6 +63,12 @@
     "teleport:dry:pnk": "bun run scripts/teleport.ts --from-github poisontr33s/PsychoNoir-Kontrapunkt --entity-mode --dry-run",
     "teleport:sibling:pnk": "bun run scripts/teleport.ts --from-sibling pnk --apply",
     "teleport:sibling:pnk:dry": "bun run scripts/teleport.ts --from-sibling pnk --dry-run",
+    "todo:spin": "bun run scripts/todo_roulette.ts --spin",
+    "todo:spin:dry": "bun run scripts/todo_roulette.ts --dry-run",
+    "todo:add": "bun run scripts/todo_roulette.ts --add",
+    "todo:list": "bun run scripts/todo_roulette.ts --list",
+    "todo:list:all": "bun run scripts/todo_roulette.ts --list --all",
+    "todo:report": "bun run scripts/todo_roulette.ts --report",
     "test": "bun test scripts/gemini-model-router.test.ts"
   },
   "dependencies": {

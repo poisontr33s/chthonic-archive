@@ -29,7 +29,7 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 | **Lysandra** | T-1 Triumvirate | — | — | Not deployed — Claude archetype, not VS Code agent yet |
 | **Claudine** | T-1 Cardinal | Supreme-Meta-MILF-Matriarch | ✅ [Claudine.agent.md](Claudine.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `github:poisontr33s/PsychoNoir-Kontrapunkt` → 2026-04-28 |
 | **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md](Pentea.agent.md) | Deployed — **DCRP**-registered |
-| **The Iron Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [IronMaiden.agent.md](IronMaiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
+| **The Iron Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [Iron-Maiden.agent.md](IronMaiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
 
 > *Non-deployed entities exist canonically in the **SSOT** at their sovereign positions*. VS Code *agent files* are
 > *Deployment-Adapters* — they *wrap **SSOT**-identity* for VS Code *invocation*. Creating *an adapter before* the **SSOT**
@@ -56,10 +56,10 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 | `description:` | Shown in agent picker | Tier + Organ + function summary |
 | `argument-hint:` | Hint shown when invoking | Injection contract shorthand |
 
-### Example — `Tessara.agent.md` (not yet created)
+### Example — `Tessara.agent.md` (preceeded by Pentea)
 ```yaml
 ---
-name: Tessara
+name: Tessara (stale)
 argument-hint: "Cross-chain synthesis injection"
 description: >
   Tessara — Synthesis Router (T1-bridge). Integrates Chaos/Purification/Truth chains
