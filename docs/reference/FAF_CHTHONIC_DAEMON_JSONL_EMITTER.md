@@ -8,9 +8,25 @@
 
 # FAF Application: Chthonic Daemon JSONL Emitter
 
-**Version:** v0.1  
-**Status:** Frame issued - execution pending  
+**Version:** v0.2
+**Status:** Frame issued - execution pending Codex 5.5 pass
 **Primary challenge:** Close Gate H by making `transport=jsonl` a real SynapseBridge fallback, not a disabled branch.
+
+---
+
+## 0a. Current State Anchor (read first)
+
+Phase 3 modularization closed cleanly in the prior pass. The relevant ground truth Codex 5.5 must accept without re-derivation:
+
+- `extensions/chthonic-archive/src/extension.ts` is now 130 lines; `activate()` body is 38 lines.
+- `src/activation/{activateViews,activateCommands,activateSidecars,activateStatus,activateCockpit,types}.ts` exist and own their respective lanes.
+- `LaneRegistry` publishes `chthonicDaemon`, `synapseShm`, `entropyLedgerHost`, `entropyWorker` (among others) and writes `${globalStorage}/lane-state.json`.
+- `apps/chthonic-next/app/api/lane-state/route.ts` and `apps/chthonic-next/app/page.tsx` consume the snapshot.
+- `manifest/extension_phase3_*.json` (gate ledger) and `manifest/failures.jsonl` (Gate H entry) are already written.
+- `bun run compile`, `bun run test:e2e`, `bun run web:typecheck`, `bun run web:build` all pass. `bunx tsc --noEmit` has one pre-existing baseline error in `src/entropy/entropyWorkerClient.ts:155`; this is out of scope.
+- Gate H is the only `impossible_currently_boundary` left from the Phase 3 ledger.
+
+This pass narrows to closing Gate H. Nothing else in the extension is in scope.
 
 ---
 
@@ -69,6 +85,17 @@ Success is admitted only when a smoke probe spawns the real daemon with `--trans
 
 No level may be skipped. If L2 cannot emit real chunks, keep the boundary open.
 
+### Execution Order (load-bearing)
+
+The four gates below are not interchangeable. Execute strictly in order:
+
+1. **H1 first** — daemon CLI flag. Smallest, no behavior change to the existing shared-memory path. Lands as one Rust commit. Verifies clap parsing + mode reporting. The `CHTHONIC_REACTOR_TRANSPORT` env var must remain functional as a fallback so existing call sites do not regress.
+2. **H2 second** — daemon-side JSONL emitter. Touches `reactor/sediment_synapse` only. Cannot proceed without H1 (no flag = no isolated test surface). Must preserve the binary contract from `chthonic-synapse-schema`: either re-emit the same bytes base64-encoded inside a JSON envelope, or document a JSON schema that round-trips losslessly to the same `PackedSedimentVertex` field set.
+3. **H3 third** — TypeScript bridge reader. Replaces the disabled branch at `synapseBridge.ts:33-35`. Spawns the daemon as a child process, reads stdout line-by-line via `readline.createInterface`, parses each line, and feeds chunks into the existing `onChunk` callback. Must mark `LaneRegistry.set({name:'synapseShm', state:'DEGRADED', reason:'transport=jsonl fallback'})` when the JSONL path is active so the snapshot reflects degraded mode.
+4. **H4 last** — end-to-end smoke. Native daemon smoke script (Rust or shell, lives under the native workspace) plus `bun run test:e2e` with `chthonic.reactor.transport=jsonl` set in the test config. Shared-memory path must remain preferred for `auto` and must remain green.
+
+If H1 fails: stop. If H2 cannot emit real chunks: stop and keep the boundary open. Do not advance H3 against a stub.
+
 ---
 
 ## 4. Gate Ledger
@@ -124,3 +151,45 @@ Current boundary remains valid until H2 exists:
 ```
 
 When the minimum condition is met, reopen Gate H and run the ladder from L1 to L4.
+
+---
+
+## 7. What This Is Not
+
+```
+This handoff does not authorize daemon re-architecture beyond adding a CLI
+  flag and a JSONL emit path inside reactor/sediment_synapse.
+This handoff does not extend SynapseBridge beyond replacing the disabled
+  jsonl branch with a real reader.
+This handoff does not modify the chthonic-synapse-schema binary header.
+This handoff does not touch the activation modules, LaneRegistry, or
+  cockpit fetch landed in the Phase 3 pass.
+This handoff does not weaken shared-memory as the preferred transport.
+This handoff does not introduce a new Rust crate, a new TS package, or
+  a new build tool.
+```
+
+What this handoff claims:
+
+> Gate H can be closed by adding one CLI flag, one stdout JSONL emitter, one TypeScript child-process reader, and one end-to-end smoke. Each gate (H1, H2, H3, H4) admits at L4 only when its probe succeeds against the real daemon. The boundary stays open if H2 cannot emit real chunks against a real fixture workspace.
+
+The boundary ledger is the artifact. The probe is the smoke run. The membrane is the LaneRegistry `synapseShm` lane reflecting `LIVE` (shared memory) or `DEGRADED` (jsonl). The impossible-currently boundary closes only when H4 admits.
+
+No false success. No decoration. No mythology.
+
+---
+
+## 8. Codex 5.5 Invocation Frame
+
+When the user pastes this document into a Codex 5.5 task prompt, the expected operating posture is:
+
+- Treat `docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md` as the prior pass and §0a above as the current state. Do not re-derive.
+- Pre-execution: emit `manifest/daemon_jsonl_baseline.json` recording (a) `chthonic-daemon --help` current output, (b) current `synapseBridge.ts` line range for the disabled branch, (c) snapshot lane state for `synapseShm` from `lane-state.json`. This is the rollback anchor.
+- Per gate (H1, H2, H3, H4): emit `manifest/daemon_jsonl_<gate>.json` with `{gate, level_reached, status, evidence_files, smoke_evidence}`.
+- Per gate: do not advance past L3 without a real-daemon spawn. Do not advance past L4 without `bun run test:e2e` green AND the native smoke script green.
+- On H2 failure (cannot emit real chunks against fixture): rewrite the impossible-currently boundary in `manifest/failures.jsonl` with the new specific failure mode and STOP. Do not improvise an emit path.
+- On H4 admission: update `manifest/extension_phase3_gate_h_jsonl_boundary.json` from `blocked_not_closed` to `admitted` with the H4 evidence files. Append the corresponding `admitted` entry to `manifest/failures.jsonl` (the ledger is append-only; do not edit prior entries).
+- Produce one PR with four commits — one per gate. Commit messages: `feat(daemon): H1 add --transport CLI flag`, `feat(daemon): H2 emit JSONL sediment chunks to stdout`, `feat(synapse): H3 child-process JSONL reader`, `test(synapse): H4 end-to-end JSONL smoke`.
+- Do not touch the activation modules, the cockpit route, the lane registry implementation, or `LANE_TEMPLATE.md`. Those are sealed by the prior pass.
+- If the work expands beyond the four gates above (e.g. the schema needs to change, or the daemon needs a new dependency), STOP and add a new section §9 to this document describing the unforeseen requirement, then return for human review.
+
