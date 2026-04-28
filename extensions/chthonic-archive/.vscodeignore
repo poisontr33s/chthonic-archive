@@ -10,3 +10,4 @@
 !package.json
 !fixtures/
 !fixtures/rendered-sample.md
+!native/dist/**

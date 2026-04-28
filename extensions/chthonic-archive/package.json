@@ -390,6 +390,11 @@
           "default": false,
           "description": "Master kill-switch for native/sidecar process lanes (daemon, ledger host, Solana validator, Python/Ruby sidecars, and slab self-healing probes)."
         },
+        "chthonic.dev.autoReload": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, the extension reloads the VS Code window automatically whenever dist/extension.js changes (via bun build --watch). Opt-in; intended for extension-host iteration."
+        },
         "chthonic.webCockpit.url": {
           "type": "string",
           "default": "http://127.0.0.1:3000",

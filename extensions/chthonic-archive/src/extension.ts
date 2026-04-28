@@ -20,7 +20,14 @@ import { SelfHealingLoop } from './monolith/selfHealingLoop';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import { StylusInputProvider } from './monolith/stylusInputView';
 import { registerRenderedMarkdownPasteLane } from './markdownPaste/register';
-import { formatRuntimeLaneState } from './runtime/laneState';
+import { LaneRegistry } from './runtime/laneState';
+import { registerDevAutoReload } from './runtime/devAutoReload';
+import {
+    collectRuntimeLaneStates,
+    collectRuntimeStatusRows,
+    type ReactorReadiness,
+    type RuntimeStatusInput,
+} from './runtime/statusReport';
 import { SSOT_POINTER } from './ssot-paths';
 import type { EntropyState, FiredancerSurgeState } from './reactor/types';
 
@@ -32,8 +39,13 @@ export function activate(context: vscode.ExtensionContext) {
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || null;
     const chthonicConfig = vscode.workspace.getConfiguration('chthonic');
 
+    const laneRegistry = new LaneRegistry();
+    laneRegistry.bindSnapshotFile(context.globalStorageUri);
+    registerDevAutoReload(context, outputChannel);
+
     context.subscriptions.push(
         outputChannel,
+        laneRegistry,
         vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(workspaceRoot)),
     );
     registerRenderedMarkdownPasteLane(context, outputChannel);
@@ -512,7 +524,7 @@ export function activate(context: vscode.ExtensionContext) {
             const commandCatalog = new Set(await vscode.commands.getCommands(true));
             const mandalaExtension = vscode.extensions.getExtension('chthonic-archive.chthonic-mandala');
             const statusbarExtension = vscode.extensions.getExtension('chthonic-archive.chthonic-statusbar');
-            const rows = collectRuntimeStatusRows({
+            const statusInput: RuntimeStatusInput = {
                 workspaceRoot,
                 entropyEnabled,
                 entropyPolyglotEnabled,
@@ -534,7 +546,9 @@ export function activate(context: vscode.ExtensionContext) {
                     active: statusbarExtension?.isActive ?? false,
                     commandAvailable: commandCatalog.has('chthonic.bridge.verifySSOT'),
                 },
-            });
+            };
+            laneRegistry.setMany(collectRuntimeLaneStates(statusInput));
+            const rows = collectRuntimeStatusRows(statusInput);
 
             outputChannel.show(true);
             outputChannel.appendLine('[runtime] component status');
@@ -918,12 +932,6 @@ function createNonce(): string {
     return crypto.randomBytes(18).toString('base64');
 }
 
-interface ReactorReadiness {
-    ready: boolean;
-    reason: string;
-    daemonPath?: string;
-}
-
 function assessReactorReadiness(
     workspaceRoot: string | null,
     enabled: boolean,
@@ -974,119 +982,6 @@ function resolveDaemonBinaryPath(workspaceRoot: string, daemonBinaryOverride?: s
     }
     const binary = process.platform === 'win32' ? 'chthonic-daemon.exe' : 'chthonic-daemon';
     return path.join(workspaceRoot, 'native', 'target', 'release', binary);
-}
-
-interface RuntimeStatusInput {
-    workspaceRoot: string | null;
-    entropyEnabled: boolean;
-    entropyPolyglotEnabled: boolean;
-    entropyLedgerMode: LedgerMode;
-    reactorReadiness: ReactorReadiness;
-    slabSelfHealingEnabled: boolean;
-    allowNativeSidecars: boolean;
-    extensionPath: string;
-    webCockpitUrl: string;
-    webCockpitReachable: boolean;
-    commandCatalog: Set<string>;
-    bridgeMandala: BridgeLaneStatus;
-    bridgeStatusbar: BridgeLaneStatus;
-}
-
-interface BridgeLaneStatus {
-    installed: boolean;
-    active: boolean;
-    commandAvailable: boolean;
-}
-
-function collectRuntimeStatusRows(input: RuntimeStatusInput): string[] {
-    const rows: string[] = [];
-    const entropyWorkerPath = path.join(input.extensionPath, 'dist', 'entropy-worker.js');
-    const entropyWorkerReady = fs.existsSync(entropyWorkerPath);
-
-    rows.push(formatRuntimeLaneState({
-        name: 'workspace',
-        state: input.workspaceRoot ? 'READY' : 'UNAVAILABLE',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'workspace-health',
-        state: input.entropyEnabled ? 'LIVE' : 'DISABLED',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'native-sidecars',
-        state: input.allowNativeSidecars ? 'LIVE' : 'DISABLED',
-        reason: input.allowNativeSidecars ? undefined : 'chthonic.security.allowNativeSidecars=false',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'polyglot-sidecars',
-        state: input.entropyEnabled
-            ? (input.entropyPolyglotEnabled ? 'LIVE' : 'DISABLED')
-            : 'PARKED',
-        reason: input.entropyEnabled ? undefined : 'workspace-health disabled',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'ledger-mode',
-        state: input.entropyEnabled && input.entropyPolyglotEnabled ? 'LIVE' : 'PARKED',
-        reason: input.entropyEnabled && input.entropyPolyglotEnabled
-            ? input.entropyLedgerMode
-            : `${input.entropyLedgerMode}, polyglot disabled`,
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'self-healing',
-        state: input.slabSelfHealingEnabled ? 'LIVE' : 'DISABLED',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'reactor',
-        state: input.reactorReadiness.ready ? 'READY' : 'PARKED',
-        reason: input.reactorReadiness.ready ? undefined : input.reactorReadiness.reason,
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'entropy-worker',
-        state: entropyWorkerReady ? 'READY' : 'MISSING',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'abyssal-view',
-        state: input.entropyEnabled
-            ? (entropyWorkerReady ? 'READY' : 'PARKED')
-            : 'PARKED',
-        reason: input.entropyEnabled
-            ? (entropyWorkerReady ? undefined : `worker missing at ${entropyWorkerPath}`)
-            : 'workspace-health disabled',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'loom-view',
-        state: input.workspaceRoot ? 'READY' : 'PARKED',
-        reason: input.workspaceRoot ? undefined : 'workspace unavailable',
-    }));
-    rows.push(formatRuntimeLaneState({
-        name: 'markdown-paste',
-        state: 'READY',
-        reason: 'text/html -> GFM Markdown, sidecar-free',
-    }));
-    rows.push(`web-cockpit-url=${input.webCockpitUrl}`);
-    rows.push(formatRuntimeLaneState({
-        name: 'web-cockpit',
-        state: input.webCockpitReachable ? 'LIVE' : 'UNAVAILABLE',
-        reason: input.webCockpitReachable ? undefined : 'run "Chthonic: Start Next Cockpit"',
-    }));
-    rows.push(`bridge-mandala=${formatBridgeStatus(input.bridgeMandala)}`);
-    rows.push(`bridge-statusbar=${formatBridgeStatus(input.bridgeStatusbar)}`);
-    if (input.reactorReadiness.daemonPath) {
-        rows.push(`reactor-daemon=${input.reactorReadiness.daemonPath}`);
-    }
-    return rows;
-}
-
-function formatBridgeStatus(status: BridgeLaneStatus): string {
-    if (!status.installed) {
-        return 'UNAVAILABLE (extension not installed)';
-    }
-    if (status.commandAvailable) {
-        return 'READY';
-    }
-    if (status.active) {
-        return 'DEGRADED (active but command missing)';
-    }
-    return 'INSTALLED (awaiting activation)';
 }
 
 interface GitLineage {
@@ -1144,43 +1039,6 @@ function readGitLineage(workspaceRoot: string | null): GitLineage {
             label: 'lineage-error',
             tooltip: `Chthonic lineage read failed: ${String(error)}`,
         };
-    }
-}
-
-class ParkedChatProvider implements vscode.WebviewViewProvider {
-    resolveWebviewView(
-        webviewView: vscode.WebviewView,
-        _context: vscode.WebviewViewResolveContext,
-        _token: vscode.CancellationToken,
-    ): void {
-        webviewView.webview.options = { enableScripts: false };
-        webviewView.webview.html = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <style>
-                    body {
-                        font-family: var(--vscode-font-family);
-                        font-size: 14px;
-                    }
-                    p {
-                        margin: 0;
-                        line-height: 1.4;
-                        color: var(--vscode-descriptionForeground);
-                    }
-                </style>
-            </head>
-            <body>
-                <h3>Agent Chat Parked</h3>
-                <p>
-                    SDK/ACP chat integration is intentionally parked during runtime hardening.
-                    Existing SDK files remain in source for later reactivation.
-                </p>
-            </body>
-            </html>
-        `;
     }
 }
 

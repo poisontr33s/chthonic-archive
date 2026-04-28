@@ -5,7 +5,13 @@ import { spawnSync } from 'child_process';
 
 const extensionRoot = process.cwd();
 const workspaceManifestPath = path.join(extensionRoot, 'native', 'Cargo.toml');
-const outPath = path.join(extensionRoot, 'src', 'reactor', 'synapse.node');
+const legacyOutPath = path.join(extensionRoot, 'src', 'reactor', 'synapse.node');
+const platformOutPath = path.join(
+    extensionRoot,
+    'native',
+    'dist',
+    `synapse-${process.platform}-${process.arch}.node`,
+);
 
 async function main(): Promise<void> {
     if (!existsSync(workspaceManifestPath)) {
@@ -23,9 +29,13 @@ async function main(): Promise<void> {
         throw new Error(`synapse-node artifact not found: ${artifact}`);
     }
 
-    mkdirSync(path.dirname(outPath), { recursive: true });
-    copyFileSync(artifact, outPath);
-    console.log(`[synapse] copied ${artifact} -> ${outPath}`);
+    mkdirSync(path.dirname(platformOutPath), { recursive: true });
+    copyFileSync(artifact, platformOutPath);
+    console.log(`[synapse] copied ${artifact} -> ${platformOutPath}`);
+
+    mkdirSync(path.dirname(legacyOutPath), { recursive: true });
+    copyFileSync(artifact, legacyOutPath);
+    console.log(`[synapse] copied ${artifact} -> ${legacyOutPath} (legacy fallback)`);
 }
 
 function resolveArtifactPath(): string {

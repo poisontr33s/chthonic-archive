@@ -111,7 +111,9 @@ export class SynapseBridge implements vscode.Disposable {
             return this.binding;
         }
 
+        const platformArtifact = `synapse-${process.platform}-${process.arch}.node`;
         const candidates = [
+            path.join(this.extensionRoot, 'native', 'dist', platformArtifact),
             path.join(this.extensionRoot, 'src', 'reactor', 'synapse.node'),
             path.join(this.extensionRoot, 'native', 'target', 'release', 'synapse.node'),
         ];
