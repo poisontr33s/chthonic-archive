@@ -7,18 +7,29 @@ type ExtensionSmokeCase = {
     label: string;
     extensionDevelopmentPath: string;
     extensionId: string;
+    workspacePath?: string;
+    workspaceSettings?: Record<string, unknown>;
     expectedCommands: string[];
     smokeCommands: string[];
 };
 
 const repoRoot = path.resolve(import.meta.dir, '..', '..', '..');
 const runnerPath = path.join(import.meta.dir, 'e2e-smoke-runner.cjs');
+const daemonBinary = process.platform === 'win32' ? 'chthonic-daemon.exe' : 'chthonic-daemon';
 
 const smokeCases: ExtensionSmokeCase[] = [
     {
         label: 'chthonic-archive',
         extensionDevelopmentPath: path.join(repoRoot, 'extensions', 'chthonic-archive'),
         extensionId: 'chthonic-archive.chthonic-archive',
+        workspacePath: repoRoot,
+        workspaceSettings: {
+            'security.allowNativeSidecars': true,
+            'reactor.enabled': true,
+            'reactor.headlessVulkan': false,
+            'reactor.transport': 'jsonl',
+            'reactor.daemonBinaryPath': path.join(repoRoot, 'extensions', 'chthonic-archive', 'native', 'target', 'debug', daemonBinary),
+        },
         expectedCommands: [
             'chthonic.openStylusInput',
             'chthonic.entropyRefresh',
@@ -46,6 +57,8 @@ const smokeCases: ExtensionSmokeCase[] = [
             'chthonic.refreshRustification',
             'chthonic.runtimeStatus',
             'chthonic.entropyRefresh',
+            'chthonic.annoDetect',
+            'chthonic.reactorSediment',
         ],
     },
     {
@@ -94,21 +107,26 @@ async function main(): Promise<void> {
 
     for (const testCase of smokeCases) {
         console.log(`[e2e] running ${testCase.label}`);
+        const launchArgs = [
+            '--new-window',
+            '--disable-workspace-trust',
+            '--skip-welcome',
+            '--skip-release-notes',
+            '--disable-updates',
+        ];
+        if (testCase.workspacePath) {
+            launchArgs.push(testCase.workspacePath);
+        }
         await runTests({
             extensionDevelopmentPath: testCase.extensionDevelopmentPath,
             extensionTestsPath: runnerPath,
-            launchArgs: [
-                '--new-window',
-                '--disable-workspace-trust',
-                '--skip-welcome',
-                '--skip-release-notes',
-                '--disable-updates',
-            ],
+            launchArgs,
             vscodeExecutablePath,
             extensionTestsEnv: {
                 CHTHONIC_E2E_EXTENSION_ID: testCase.extensionId,
                 CHTHONIC_E2E_EXPECTED_COMMANDS: JSON.stringify(testCase.expectedCommands),
                 CHTHONIC_E2E_SMOKE_COMMANDS: JSON.stringify(testCase.smokeCommands),
+                CHTHONIC_E2E_WORKSPACE_SETTINGS: JSON.stringify(testCase.workspaceSettings ?? {}),
             },
         });
         console.log(`[e2e] pass ${testCase.label}`);

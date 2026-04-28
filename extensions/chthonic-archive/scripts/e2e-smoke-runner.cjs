@@ -37,6 +37,9 @@ async function run() {
 
     const expectedCommands = parseJsonEnv('CHTHONIC_E2E_EXPECTED_COMMANDS', []);
     const smokeCommands = parseJsonEnv('CHTHONIC_E2E_SMOKE_COMMANDS', []);
+    const workspaceSettings = parseJsonEnv('CHTHONIC_E2E_WORKSPACE_SETTINGS', {});
+
+    await applyWorkspaceSettings(workspaceSettings);
 
     const extension = vscode.extensions.getExtension(extensionId);
     assert.ok(extension, `Extension not found: ${extensionId}`);
@@ -60,6 +63,22 @@ async function run() {
             Promise.resolve(vscode.commands.executeCommand(command)),
             `executeCommand(${command})`,
         );
+    }
+}
+
+async function applyWorkspaceSettings(settings) {
+    const entries = Object.entries(settings);
+    if (entries.length === 0) {
+        return;
+    }
+
+    const target = vscode.workspace.workspaceFolders?.length
+        ? vscode.ConfigurationTarget.Workspace
+        : vscode.ConfigurationTarget.Global;
+    const config = vscode.workspace.getConfiguration('chthonic');
+    for (const [key, value] of entries) {
+        const section = key.startsWith('chthonic.') ? key.slice('chthonic.'.length) : key;
+        await config.update(section, value, target);
     }
 }
 

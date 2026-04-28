@@ -1,0 +1,48 @@
+{
+  "gate": "H4",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "manifest/daemon_jsonl_baseline.json",
+    "manifest/daemon_jsonl_h1.json",
+    "manifest/daemon_jsonl_h2.json",
+    "manifest/daemon_jsonl_h3.json",
+    "extensions/chthonic-archive/scripts/daemon-jsonl-smoke.ts",
+    "extensions/chthonic-archive/scripts/e2e-extension-host.ts",
+    "extensions/chthonic-archive/scripts/e2e-smoke-runner.cjs"
+  ],
+  "smoke_evidence": {
+    "cargo_build": {
+      "command": "cargo build -p chthonic-daemon",
+      "status": "passed"
+    },
+    "compile": {
+      "command": "bun run --cwd extensions/chthonic-archive compile",
+      "status": "passed"
+    },
+    "native_jsonl_smoke": {
+      "command": "bun run --cwd extensions/chthonic-archive test:daemon-jsonl",
+      "status": "passed",
+      "native_slots": 4,
+      "native_bytes": 7232,
+      "bridge_chunks": 4,
+      "bridge_bytes": 7232,
+      "lane_state": "synapseShm=DEGRADED (transport=jsonl fallback)"
+    },
+    "e2e": {
+      "command": "bun run --cwd extensions/chthonic-archive test:e2e",
+      "status": "passed",
+      "jsonl_config_applied_to": "chthonic-archive",
+      "cases": [
+        "chthonic-archive",
+        "chthonic-statusbar",
+        "chthonic-mandala"
+      ]
+    },
+    "typescript_no_emit": {
+      "command": "bunx tsc --noEmit",
+      "status": "baseline_failed",
+      "known_error": "src/entropy/entropyWorkerClient.ts(155,63): error TS18046: 'error' is of type 'unknown'."
+    }
+  }
+}
