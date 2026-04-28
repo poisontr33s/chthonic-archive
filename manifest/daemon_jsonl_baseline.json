@@ -1,0 +1,34 @@
+{
+  "artifact_type": "daemon_jsonl_baseline",
+  "gate": "synapse/jsonl_fallback",
+  "captured_at": "2026-04-29T00:00:00+02:00",
+  "daemon_help": {
+    "command": "extensions/chthonic-archive/native/target/release/chthonic-daemon.exe --help",
+    "output": [
+      "Usage: chthonic-daemon.exe [OPTIONS] --workspace <WORKSPACE>",
+      "",
+      "Options:",
+      "      --workspace <WORKSPACE>  Workspace root directory to scan for project markers",
+      "      --headless-vulkan        Enable headless Vulkan compute for sediment layer calculation. Falls back to CPU if no Vulkan device is available",
+      "  -h, --help                   Print help"
+    ]
+  },
+  "disabled_branch": {
+    "path": "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
+    "lines": [
+      "33:         if (this.transportMode === 'jsonl') {",
+      "34:             this.output.appendLine('[synapse] disabled by transport=jsonl');",
+      "35:             return;",
+      "36:         }"
+    ]
+  },
+  "lane_state": {
+    "path": "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json",
+    "synapseShm": {
+      "name": "synapseShm",
+      "state": "PARKED",
+      "reason": "chthonic.security.allowNativeSidecars=false"
+    }
+  },
+  "status": "baseline_captured"
+}

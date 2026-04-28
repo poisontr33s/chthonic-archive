@@ -1,0 +1,22 @@
+{
+  "gate": "H1",
+  "level_reached": "L1",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs"
+  ],
+  "smoke_evidence": {
+    "help_command": "cargo run -p chthonic-daemon -- --help",
+    "help_contains": "--transport <TRANSPORT>",
+    "mode_command": "cargo run -p chthonic-daemon -- --workspace ..\\.. --transport=jsonl",
+    "mode_report": {
+      "jsonrpc": "2.0",
+      "method": "reactor/synapse",
+      "params": {
+        "mode": "jsonl",
+        "status": "disabled"
+      }
+    },
+    "env_fallback_preserved": true
+  }
+}

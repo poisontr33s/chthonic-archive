@@ -1,7 +1,7 @@
 use std::io::{self, BufRead, Write};
 
 use anyhow::{Context, Result};
-use clap::Parser;
+use clap::{Parser, ValueEnum};
 use serde::Serialize;
 
 mod anno;
@@ -16,10 +16,13 @@ use types::{
     SedimentRequest,
 };
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, ValueEnum)]
 enum ReactorTransportMode {
+    #[value(name = "auto")]
     Auto,
+    #[value(name = "shared_memory", alias = "shm", alias = "synapse")]
     SharedMemory,
+    #[value(name = "jsonl", alias = "safe")]
     Jsonl,
 }
 
@@ -34,11 +37,15 @@ struct Opts {
     /// Falls back to CPU if no Vulkan device is available.
     #[arg(long, default_value_t = false)]
     headless_vulkan: bool,
+
+    /// Sediment transport mode. Defaults to CHTHONIC_REACTOR_TRANSPORT, then auto.
+    #[arg(long, value_enum)]
+    transport: Option<ReactorTransportMode>,
 }
 
 fn main() -> Result<()> {
     let opts = Opts::parse();
-    let transport_mode = reactor_transport_mode();
+    let transport_mode = reactor_transport_mode(opts.transport);
 
     // -------------------------------------------------------------------
     // Phase 1: ANNO project detection
@@ -421,7 +428,11 @@ fn write_json<T: Serialize>(value: &T) -> Result<()> {
     Ok(())
 }
 
-fn reactor_transport_mode() -> ReactorTransportMode {
+fn reactor_transport_mode(cli_mode: Option<ReactorTransportMode>) -> ReactorTransportMode {
+    if let Some(mode) = cli_mode {
+        return mode;
+    }
+
     match std::env::var("CHTHONIC_REACTOR_TRANSPORT") {
         Ok(raw) => match raw.trim().to_ascii_lowercase().as_str() {
             "shared_memory" | "shm" | "synapse" => ReactorTransportMode::SharedMemory,
