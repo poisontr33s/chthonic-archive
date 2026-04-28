@@ -1,0 +1,35 @@
+{
+  "gate": "H2",
+  "level_reached": "L2",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs",
+    "extensions/chthonic-archive/native/chthonic-daemon/src/synapse.rs"
+  ],
+  "smoke_evidence": {
+    "command": "cargo run -p chthonic-daemon -- --workspace ..\\.. --transport=jsonl",
+    "request": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "reactor/sediment_synapse",
+      "params": {
+        "max_layers": 10,
+        "max_files": 220,
+        "chunk_size": 64
+      }
+    },
+    "notifications": {
+      "method": "reactor/sedimentSlot",
+      "count": 4,
+      "slot_header_bytes": 48,
+      "vertex_stride_bytes": 32,
+      "encoding": "base64"
+    },
+    "response": {
+      "transport": "jsonl",
+      "total_chunks": 4,
+      "chunks_written": 4,
+      "dropped_chunks": 0
+    }
+  }
+}
