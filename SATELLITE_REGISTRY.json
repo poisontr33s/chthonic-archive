@@ -1,0 +1,26 @@
+{
+  "_schema": "satellite-registry/v1",
+  "_comment": "Satellite Orbit Registry — chthonic-archive sovereign repos in orbit. Machine-readable by teleport.ts --from-sibling. Add entries here to register new satellites.",
+  "_governance": {
+    "pattern": "Satellite Orbit",
+    "axiom": "Gitological sovereignty is non-negotiable. Each satellite retains its own .git/, history, remote, and commit governance. The orbit is contextual binding only — not absorption.",
+    "SSOT": ".github/agents/_index.md (Teleport-Adapters section)",
+    "junction_root": "pnk-live/",
+    "briefcase_root": "claude/mailbox/briefcase/"
+  },
+  "satellites": [
+    {
+      "alias": "pnk",
+      "name": "PsychoNoir-Kontrapunkt",
+      "github": "poisontr33s/PsychoNoir-Kontrapunkt",
+      "local_path": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+      "junction": "pnk-live",
+      "clone_depth": 1,
+      "teleport_flags": ["--entity-mode"],
+      "domain": "entity-lore / world-generation / Claudine Sin'claire entity SSOT",
+      "governance_class": "Teleport-Adapter",
+      "briefcase_last": "2026-04-28",
+      "notes": "Primary Claudine entity source. entity-mode captures incarnation manifests, protocols, revelations. Large-file-holder repo (psychonoir-kontrapunkt-large-file-holder) holds LFS assets — not cloned."
+    }
+  ]
+}

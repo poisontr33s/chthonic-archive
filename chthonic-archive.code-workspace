@@ -1,0 +1,56 @@
+{
+  // ─────────────────────────────────────────────────────────────────────────────
+  // SATELLITE ORBIT WORKSPACE — Chthonic Archive + PsychoNoir-Kontrapunkt
+  //
+  // Architecture: "Satellite Orbit" pattern
+  //   - Each repo retains full gitological sovereignty (separate .git/, history,
+  //     remotes, commit flow). Neither absorbs the other.
+  //   - VS Code multi-root creates a contextual binding: Copilot, search, and
+  //     the editor see both repos simultaneously without repo coupling.
+  //   - NTFS junction at chthonic-archive/pnk-live/ → ../PsychoNoir-Kontrapunkt
+  //     gives teleport.ts and scripts a live filesystem path into the satellite
+  //     without appearing in PNK's own git index.
+  //   - SATELLITE_REGISTRY.json is the machine-readable satellite map — the
+  //     SSOT for which siblings are in orbit and their governance metadata.
+  //   - teleport.ts --from-sibling <alias> resolves via the registry, making
+  //     the discovery mechanism self-describing and extensible.
+  //
+  // Open this workspace: VS Code Insiders → File → Open Workspace from File
+  // ─────────────────────────────────────────────────────────────────────────────
+  "folders": [
+    {
+      "path": ".",
+      "name": "⚡ chthonic-archive [primary]"
+    },
+    {
+      "path": "../PsychoNoir-Kontrapunkt",
+      "name": "🌀 PsychoNoir-Kontrapunkt [satellite]"
+    }
+  ],
+  "settings": {
+    // Hide the junction alias from the chthonic-archive Explorer tree
+    // (it's a live link, not repo content)
+    "files.exclude": {
+      "pnk-live": true
+    },
+    // Search: include PNK satellite by default (both repos in Ctrl+Shift+F scope)
+    "search.useIgnoreFiles": true,
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/target": true,
+      "**/__pycache__": true,
+      "**/dumpster-dive": true
+    },
+    // Copilot workspace context: both repo roots visible
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+    // Git: manage both repos independently in Source Control panel
+    "git.openRepositoryInParentFolders": "always"
+  },
+  "extensions": {
+    "recommendations": [
+      "github.copilot",
+      "github.copilot-chat",
+      "github.vscode-pull-request-github"
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 // @SID: teleport — cross-repo agent/instruction briefcase tool
-// @VERSION: 2.0.0
+// @VERSION: 2.1.0
 // @AUTHOR: chthonic-archive
 //
 // TELEPORT FUNCTION — packs and migrates agent/instruction DNA
@@ -308,6 +308,9 @@ async function scanRepo(repoRoot: string, entityMode = false): Promise<Extracted
       const full = join(dir, entry);
       if (seen.has(full)) continue;
 
+      // Skip macOS resource fork artifacts (._filename)
+      if (entry.startsWith("._")) continue;
+
       const category = categoryFromPath(full, entry, entityMode);
       if (category) {
         if (await isFile(full)) {
@@ -467,6 +470,39 @@ async function writeBriefcase(bc: Briefcase, outDir: string): Promise<void> {
   console.log(`  → ${extractedRoot}/`);
 }
 
+// ─── SATELLITE REGISTRY LOADER ─────────────────────────────────────────────
+
+interface SatelliteEntry {
+  alias: string;
+  name: string;
+  github?: string;
+  local_path: string;
+  junction?: string;
+  teleport_flags?: string[];
+  domain?: string;
+  governance_class?: string;
+}
+
+interface SatelliteRegistry {
+  satellites: SatelliteEntry[];
+}
+
+async function loadSatelliteRegistry(targetRepo: string): Promise<SatelliteRegistry> {
+  const registryPath = join(targetRepo, "SATELLITE_REGISTRY.json");
+  if (!existsSync(registryPath)) {
+    console.error(`ERROR: SATELLITE_REGISTRY.json not found at ${registryPath}`);
+    console.error(`       Create it to register sibling repos, or use --from <path> directly.`);
+    process.exit(1);
+  }
+  try {
+    const raw = await readFile(registryPath, "utf8");
+    return JSON.parse(raw) as SatelliteRegistry;
+  } catch (e) {
+    console.error(`ERROR: Failed to parse SATELLITE_REGISTRY.json: ${e}`);
+    process.exit(1);
+  }
+}
+
 // ─── CLI ENTRYPOINT ─────────────────────────────────────────────────────────
 
 async function main() {
@@ -481,8 +517,10 @@ Usage:
   bun run scripts/teleport.ts --from-github <owner/repo> [options]
 
 Options:
-  --from <path>               Source repo root on disk (required unless --from-github)
+  --from <path>               Source repo root on disk (required unless --from-github/--from-sibling)
   --from-github <owner/repo>  Scan a GitHub repo via API (e.g. poisontr33s/PsychoNoir-Kontrapunkt)
+  --from-sibling <alias>      Resolve a registered sibling from SATELLITE_REGISTRY.json
+                              (e.g. --from-sibling pnk). teleport_flags from registry auto-applied.
   --github-token <token>      GitHub token (or GITHUB_TOKEN env var)
   --entity-mode               Enable entity/world-building file selectors (incarnation manifests,
                               protocols, revelations) — for repos like PsychoNoir-Kontrapunkt
@@ -498,15 +536,17 @@ Options:
 
   const fromIdx = args.indexOf("--from");
   const fromGhIdx = args.indexOf("--from-github");
+  const fromSiblingIdx = args.indexOf("--from-sibling");
   const toIdx = args.indexOf("--to");
   const outIdx = args.indexOf("--out");
   const tokenIdx = args.indexOf("--github-token");
 
   const isGitHubMode = fromGhIdx !== -1 && !!args[fromGhIdx + 1];
   const isLocalMode = fromIdx !== -1 && !!args[fromIdx + 1];
+  const isSiblingMode = fromSiblingIdx !== -1 && !!args[fromSiblingIdx + 1];
 
-  if (!isGitHubMode && !isLocalMode) {
-    console.error("ERROR: either --from <path> or --from-github <owner/repo> is required");
+  if (!isGitHubMode && !isLocalMode && !isSiblingMode) {
+    console.error("ERROR: one of --from <path>, --from-github <owner/repo>, or --from-sibling <alias> is required");
     process.exit(1);
   }
 
@@ -518,7 +558,7 @@ Options:
   const isDryRun = args.includes("--dry-run");
   const doApply = args.includes("--apply");
   const emitJson = args.includes("--json");
-  const entityMode = args.includes("--entity-mode");
+  let entityMode = args.includes("--entity-mode");
 
   const ghToken = tokenIdx !== -1 && args[tokenIdx + 1]
     ? args[tokenIdx + 1]
@@ -527,7 +567,30 @@ Options:
   let inventory: ExtractedFile[];
   let sourceLabel: string;
 
-  if (isGitHubMode) {
+  if (isSiblingMode) {
+    const aliasArg = args[fromSiblingIdx + 1].toLowerCase();
+    const registry = await loadSatelliteRegistry(targetRepo);
+    const entry = registry.satellites.find(
+      (s) => s.alias.toLowerCase() === aliasArg || s.name.toLowerCase() === aliasArg,
+    );
+    if (!entry) {
+      const known = registry.satellites.map((s) => `${s.alias} (${s.name})`).join(", ");
+      console.error(`ERROR: satellite alias "${aliasArg}" not found in SATELLITE_REGISTRY.json`);
+      console.error(`       Known satellites: ${known}`);
+      process.exit(1);
+    }
+    // Apply registry teleport_flags automatically (e.g. --entity-mode)
+    if (entry.teleport_flags?.includes("--entity-mode")) entityMode = true;
+    sourceLabel = `satellite:${entry.name} (${entry.local_path})`;
+    if (!existsSync(entry.local_path)) {
+      console.error(`ERROR: satellite local_path not found: ${entry.local_path}`);
+      console.error(`       Run: git clone --depth 1 ${entry.github ?? entry.name} "${entry.local_path}"`);
+      process.exit(1);
+    }
+    console.log(`[teleport] Mode: Sibling — ${entry.name} @ ${entry.local_path}${entityMode ? " (+entity-mode)" : ""}`);
+    if (entry.domain) console.log(`[teleport] Domain: ${entry.domain}`);
+    inventory = await scanRepo(entry.local_path, entityMode);
+  } else if (isGitHubMode) {
     const ownerRepo = args[fromGhIdx + 1];
     sourceLabel = `github:${ownerRepo}`;
     console.log(`[teleport] Mode: GitHub — ${ownerRepo}${entityMode ? " (+entity-mode)" : ""}`);

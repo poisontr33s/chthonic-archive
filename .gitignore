@@ -351,6 +351,10 @@ book/
 !claude-codex-gemini/
 !claude-codex-gemini/**
 
+# Allow Satellite Orbit infrastructure
+!SATELLITE_REGISTRY.json
+!chthonic-archive.code-workspace
+
 # Exclude Python bytecode cache (regenerable)
 **/__pycache__/
 *.pyc
@@ -367,3 +371,8 @@ claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
 
 # MCP filesystem server sandbox
 mcp_fs_root/
+
+# Satellite Orbit live-links (NTFS junctions to sibling repos — not repo content)
+# Managed via SATELLITE_REGISTRY.json + scripts/teleport.ts --from-sibling
+pnk-live/
+

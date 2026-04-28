@@ -61,6 +61,8 @@
     "teleport:from:alchemy": "bun run scripts/teleport.ts --from \"C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy\" --apply",
     "teleport:from:pnk": "bun run scripts/teleport.ts --from-github poisontr33s/PsychoNoir-Kontrapunkt --entity-mode --apply",
     "teleport:dry:pnk": "bun run scripts/teleport.ts --from-github poisontr33s/PsychoNoir-Kontrapunkt --entity-mode --dry-run",
+    "teleport:sibling:pnk": "bun run scripts/teleport.ts --from-sibling pnk --apply",
+    "teleport:sibling:pnk:dry": "bun run scripts/teleport.ts --from-sibling pnk --dry-run",
     "test": "bun test scripts/gemini-model-router.test.ts"
   },
   "dependencies": {
