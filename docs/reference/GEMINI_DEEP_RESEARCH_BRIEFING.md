@@ -32,7 +32,7 @@ ANKH is:
 - **An abstraction layer** mapping ancient Egyptian computational metaphysics (vertical command, authoritative logic) with Andean computational topology (horizontal memory, reciprocal data flow) — in equal 50/50 proportion
 - **A bridge prototype** between human cognition and digital cognition — not a governance framework, not a policy language, not a prompt system
 - **The highest-level candidate** for what the Chthonic Archive codebase IS when seen as a unified whole — its identity, its organizing principle, its architectural DNA
-- **Hardware-specialized** — designed for the creator's laptop (i9-14900HX, NVIDIA RTX 4090 16GB VRAM, Win11 build 26200+), not for generic consumer machines
+- **Hardware-specialized** — designed for the creator's desktop (i9-14900, NVIDIA RTX 4090 24GB VRAM, Win11 build 26200+), not for generic consumer machines
 
 ### 1.3. What ANKH Is NOT (Corrected Misconceptions)
 

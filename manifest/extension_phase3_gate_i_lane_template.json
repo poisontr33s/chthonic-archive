@@ -1,0 +1,22 @@
+{
+  "gate": "Gate I LANE_TEMPLATE.md",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/docs/LANE_TEMPLATE.md",
+    "extensions/chthonic-archive/src/markdownPaste/register.ts",
+    "extensions/chthonic-archive/src/runtime/devAutoReload.ts",
+    "extensions/chthonic-archive/src/runtime/laneState.ts",
+    "extensions/chthonic-archive/src/runtime/statusReport.ts"
+  ],
+  "checks": {
+    "doc_exists": true,
+    "sections": [
+      "Lane Shape",
+      "Lane State Contract",
+      "Test Contract",
+      "What Not To Do"
+    ],
+    "section_length": "each <= 5 lines"
+  }
+}

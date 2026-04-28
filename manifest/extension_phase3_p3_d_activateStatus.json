@@ -1,0 +1,34 @@
+{
+  "gate": "P3-D activateStatus",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/src/activation/activateStatus.ts",
+    "extensions/chthonic-archive/src/extension.ts",
+    "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json"
+  ],
+  "checks": {
+    "compile": "passed",
+    "tsc_no_emit": "baseline_failed_only",
+    "tsc_known_errors": [
+      "src/entropy/entropyWorkerClient.ts(155,63): error TS18046: 'error' is of type 'unknown'.",
+      "src/extension.ts(668,67): error TS2304: Cannot find name 'stringifyError'."
+    ],
+    "smoke": "passed",
+    "snapshot_lane_set": "matches_baseline"
+  },
+  "extension_ts_line_count_after_gate": 1039,
+  "smoke_diff": {
+    "commands": "unchanged",
+    "lane_names": "unchanged",
+    "ignored_fields": [
+      "updatedAt",
+      "emittedAt"
+    ]
+  },
+  "notes": [
+    "Default-off status bar semantics preserved.",
+    "The existing 6-second lineage polling interval moved into activateStatus.",
+    "policyOracle and git-lineage lane publications occur only when their opt-in status items are enabled."
+  ]
+}

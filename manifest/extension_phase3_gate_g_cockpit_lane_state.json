@@ -1,0 +1,33 @@
+{
+  "gate": "Gate G cockpit lane-state fetch",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "apps/chthonic-next/app/api/lane-state/route.ts",
+    "apps/chthonic-next/app/page.tsx",
+    "extensions/chthonic-archive/src/activation/activateCommands.ts"
+  ],
+  "checks": {
+    "api_route": "reads CHTHONIC_LANE_STATE_PATH via node:fs/promises",
+    "browser_filesystem_access": "none",
+    "extension_terminal_env": "sets CHTHONIC_LANE_STATE_PATH and CHTHONIC_COCKPIT_ORIGIN",
+    "page_fetch": "/api/lane-state with revalidate=1",
+    "manual_launch_boundary": "renders NO SNAPSHOT / UNAVAILABLE without crashing",
+    "web_typecheck": "passed",
+    "web_build": "passed"
+  },
+  "lane_bindings": {
+    "Rust Reactor": [
+      "chthonicDaemon",
+      "reactor"
+    ],
+    "Solana Stream": [
+      "entropyLedgerHost",
+      "ledger-mode"
+    ],
+    "Policy Oracle": [
+      "self-healing",
+      "native-sidecars"
+    ]
+  }
+}
