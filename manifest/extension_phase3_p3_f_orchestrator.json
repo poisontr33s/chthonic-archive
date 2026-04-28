@@ -1,0 +1,29 @@
+{
+  "gate": "P3-F activation orchestrator",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "extensions/chthonic-archive/src/activation/types.ts",
+    "extensions/chthonic-archive/src/extension.ts",
+    "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json"
+  ],
+  "checks": {
+    "compile": "passed",
+    "tsc_no_emit": "baseline_failed_only",
+    "tsc_known_errors": [
+      "src/entropy/entropyWorkerClient.ts(155,63): error TS18046: 'error' is of type 'unknown'."
+    ],
+    "smoke": "passed",
+    "extension_ts_line_count": 130,
+    "activate_body_line_count": 38,
+    "module_failure_path": "runActivationLane marks DEGRADED and does not throw"
+  },
+  "smoke_diff": {
+    "commands": "unchanged",
+    "lane_names": "baseline_plus_sidecar_telemetry",
+    "ignored_fields": [
+      "updatedAt",
+      "emittedAt"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "artifact_type": "phase3_baseline",
+  "extension": "extensions/chthonic-archive",
+  "captured_at": "2026-04-28T00:00:00Z",
+  "extension_ts_line_count": 1158,
+  "compile": {
+    "command": "bun run compile",
+    "status": "passed"
+  },
+  "typescript": {
+    "command": "bunx tsc --noEmit",
+    "status": "baseline_failed",
+    "known_errors": [
+      "src/entropy/entropyWorkerClient.ts(155,63): error TS18046: 'error' is of type 'unknown'.",
+      "src/extension.ts(706,67): error TS2304: Cannot find name 'stringifyError'."
+    ]
+  },
+  "smoke": {
+    "command": "bun run test:e2e",
+    "status": "passed",
+    "cases": [
+      "chthonic-archive",
+      "chthonic-statusbar",
+      "chthonic-mandala"
+    ]
+  },
+  "lane_snapshot": {
+    "path": "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json",
+    "lane_names": [
+      "abyssal-view",
+      "entropy-worker",
+      "ledger-mode",
+      "loom-view",
+      "markdown-paste",
+      "native-sidecars",
+      "polyglot-sidecars",
+      "reactor",
+      "self-healing",
+      "web-cockpit",
+      "workspace",
+      "workspace-health"
+    ],
+    "lane_count": 12
+  }
+}

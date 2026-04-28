@@ -1,0 +1,16 @@
+{
+  "gate": "Gate H JSONL fallback transport",
+  "level_reached": "L0",
+  "status": "blocked_not_closed",
+  "evidence_files": [
+    "manifest/failures.jsonl",
+    "extensions/chthonic-archive/src/reactor/synapseBridge.ts",
+    "extensions/chthonic-archive/native/chthonic-daemon/src/main.rs"
+  ],
+  "checks": {
+    "jsonl_branch_deleted": false,
+    "boundary_recorded": true,
+    "daemon_emitter_available": false
+  },
+  "next_probe": "daemon_jsonl_emit_smoke_inside_native_workspace"
+}

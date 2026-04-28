@@ -1,0 +1,40 @@
+{
+  "gate": "P3-C activateSidecars",
+  "level_reached": "L4",
+  "status": "admitted_with_snapshot_expansion",
+  "evidence_files": [
+    "extensions/chthonic-archive/src/activation/activateSidecars.ts",
+    "extensions/chthonic-archive/src/extension.ts",
+    "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json"
+  ],
+  "checks": {
+    "compile": "passed",
+    "tsc_no_emit": "baseline_failed_only",
+    "tsc_known_errors": [
+      "src/entropy/entropyWorkerClient.ts(155,63): error TS18046: 'error' is of type 'unknown'."
+    ],
+    "smoke": "passed",
+    "native_sidecars_default": "DISABLED",
+    "synapseShm_default": "PARKED",
+    "snapshot_lane_set": "expanded_by_gate"
+  },
+  "sidecar_lanes_added": [
+    "chthonicDaemon",
+    "entropyLedgerHost",
+    "entropyWorker",
+    "synapseShm"
+  ],
+  "smoke_diff": {
+    "commands": "unchanged",
+    "lane_names": "baseline_plus_sidecar_telemetry",
+    "ignored_fields": [
+      "updatedAt",
+      "emittedAt"
+    ]
+  },
+  "notes": [
+    "Sidecar construction and start/stop state publication moved into activateSidecars.",
+    "Activation now publishes native-sidecars, synapseShm, chthonicDaemon, entropyLedgerHost, and entropyWorker state before runtimeStatus.",
+    "The added lanes intentionally close the sidecar telemetry loop, so this gate evolves the snapshot set instead of preserving the earlier 12-lane baseline."
+  ]
+}
