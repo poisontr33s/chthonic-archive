@@ -125,6 +125,8 @@ mas_mcp/uv.lock
 !extensions/*/src/markdownPaste/*.ts
 !extensions/*/src/runtime/
 !extensions/*/src/runtime/*.ts
+!extensions/*/src/activation/
+!extensions/*/src/activation/*.ts
 !extensions/*/src/entropy/
 !extensions/*/src/entropy/*.ts
 !extensions/*/src/reactor/
@@ -161,6 +163,8 @@ mas_mcp/uv.lock
 !extensions/*/scripts/*.cjs
 !extensions/*/fixtures/
 !extensions/*/fixtures/**
+!extensions/*/docs/
+!extensions/*/docs/*.md
 !extensions/*/.vscodeignore
 !extensions/*/.chthonic/
 !extensions/*/.chthonic/**
@@ -183,6 +187,9 @@ extensions/*/bun.lock
 # Allow MCP workflow artifacts (smoke suite provenance)
 !artifacts/
 !artifacts/mcp_run_*.json
+!manifest/
+!manifest/extension_phase3*.json
+!manifest/failures.jsonl
 
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
@@ -223,6 +230,10 @@ scripts/_*.py
 !apps/mistralrs-ui/
 !apps/mistralrs-ui/index.html
 !apps/chthonic-next/
+!apps/chthonic-next/app/
+!apps/chthonic-next/app/page.tsx
+!apps/chthonic-next/app/api/
+!apps/chthonic-next/app/api/**
 !apps/chthonic-next/next.config.ts
 apps/chthonic-next/package.json
 
