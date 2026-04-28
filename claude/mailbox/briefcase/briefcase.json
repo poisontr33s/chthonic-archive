@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "teleport_version": "1.0.0",
+    "timestamp": "2026-04-28T03:51:39.046Z",
+    "source_repo": "C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy",
+    "target_repo": "C:\\Users\\eldno\\chthonic-archive",
+    "invoked_by": "eldno"
+  },
+  "inventory": [
+    {
+      "relPath": ".github/copilot-instructions.md",
+      "absPath": "C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy\\.github\\copilot-instructions.md",
+      "category": "copilot-instructions",
+      "sizeBytes": 16248,
+      "firstLine": "---"
+    }
+  ],
+  "summary": {
+    "total_files": 1,
+    "by_category": {
+      "copilot-instructions": 1
+    },
+    "agent_names": [],
+    "skill_names": []
+  }
+}
