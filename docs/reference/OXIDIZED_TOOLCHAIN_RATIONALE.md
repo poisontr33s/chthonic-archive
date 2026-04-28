@@ -58,7 +58,7 @@ The repo favors one primary tool owner for each language/runtime lane:
 | JS/TS | `bun` |
 | Rust | `cargo` / `rustup` |
 | Bash-compatible shell | `brush` |
-| R versions | `rig` |
+| R versions | `rv-r` |
 | Zig versions | `zv` |
 
 This reduces decision churn, command drift, and "which tool owns this install?" ambiguity.

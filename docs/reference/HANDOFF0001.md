@@ -24,7 +24,7 @@ We will edit `copilot-instructions.md` and add a unique HTML comment before each
 
 ```
 
-Each comment (e.g., ``) serves as a hidden anchor. This does not appear in rendered output, but tools and Markdown parsers will recognize the anchor label. This technique is analogous to using named HTML anchor tags in Markdown. For instance, one StackOverflow answer shows that you can insert an anchor point by adding an HTML tag like `<a name="tith"></a>` before a header [stackoverflow.com](https://stackoverflow.com).
+Each comment (`e.g.,`) serves as a hidden anchor. This does not appear in rendered output, but tools and Markdown parsers will recognize the anchor label. This technique is analogous to using named HTML anchor tags in Markdown. For instance, one StackOverflow answer shows that you can insert an anchor point by adding an HTML tag like `<a name="tith"></a>` before a header [stackoverflow.com](https://stackoverflow.com).
 
 By contrast, our approach uses the HTML comment format shown above. The Anchor Suggester documentation even enforces a standard uppercase-hyphen naming convention for such anchors.
 
