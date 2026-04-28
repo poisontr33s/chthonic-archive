@@ -123,9 +123,15 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
         reactorDaemonBinaryPath,
         daemonEolApiBase,
         daemonEntropyIntervalMs,
+        reactorTransport,
     );
     const cockpitLayout = new CockpitLayout(deps.outputChannel, context.environmentVariableCollection);
-    const synapseBridge = new SynapseBridge(deps.outputChannel, context.extensionPath, reactorTransport);
+    const synapseBridge = new SynapseBridge(deps.outputChannel, context.extensionPath, reactorTransport, {
+        workspaceRoot: deps.workspaceRoot,
+        daemonPath: reactorReadiness.daemonPath,
+        headlessVulkan: reactorHeadlessVulkan,
+        laneRegistry: deps.laneRegistry,
+    });
 
     context.subscriptions.push(
         entropyClient,
