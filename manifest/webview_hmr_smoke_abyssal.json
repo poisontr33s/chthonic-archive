@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "surface": "abyssal",
+      "marker": "webview-hmr-abyssal-1777422156311",
+      "reloadLatencyMs": 426,
+      "reloadCount": 1,
+      "watchEvents": 1,
+      "windowReloadInvoked": false
+    }
+  ],
+  "unwatchedChecks": [
+    {
+      "file": "media/abyssalPane.js",
+      "watchEventsBefore": 2,
+      "watchEventsAfter": 2
+    },
+    {
+      "file": "media/wasm/pkg/chthonic_loom.js",
+      "watchEventsBefore": 2,
+      "watchEventsAfter": 2
+    }
+  ],
+  "lane": {
+    "name": "webviewHmr",
+    "state": "LIVE",
+    "reason": "watching media/views/**",
+    "updatedAt": 1777422155921
+  },
+  "reloadSpyInstalled": true,
+  "reloadWindowCalls": 0,
+  "completedAt": "2026-04-29T00:22:37.953Z"
+}

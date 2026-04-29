@@ -17,7 +17,7 @@ export function loadWebviewHtml(
     const viewScriptUri = webview.asWebviewUri(
         viewScriptDiskUri,
     );
-    const csp = [
+    const defaultCsp = [
         `default-src 'none'`,
         `style-src 'unsafe-inline'`,
         `script-src 'nonce-${nonce}'`,
@@ -26,12 +26,16 @@ export function loadWebviewHtml(
     try {
         const template = fs.readFileSync(templateUri.fsPath, 'utf8');
         const rawViewScript = fs.readFileSync(viewScriptDiskUri.fsPath, 'utf8');
-        const baseSubstitutions = {
+        const rawSubstitutions = {
             nonce,
-            csp,
             cspSource: webview.cspSource,
             viewScriptUri: viewScriptUri.toString(),
             ...substitutions,
+        };
+        const csp = applySubstitutions(substitutions.csp ?? defaultCsp, rawSubstitutions);
+        const baseSubstitutions = {
+            ...rawSubstitutions,
+            csp,
         };
         const viewScript = applySubstitutions(rawViewScript, baseSubstitutions);
         return applySubstitutions(template, {
@@ -41,7 +45,7 @@ export function loadWebviewHtml(
     } catch (error) {
         const reason = `media/views/${surface}/index.html unreadable: ${stringifyError(error)}`;
         markWebviewHmrDegraded(reason);
-        return unavailableHtml(surface, nonce, csp);
+        return unavailableHtml(surface, nonce, defaultCsp);
     }
 }
 

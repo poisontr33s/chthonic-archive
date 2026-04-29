@@ -73,6 +73,9 @@ async function run() {
             assert.ok(SURFACES[surface], `Unknown webview HMR surface: ${surface}`);
             results.push(await runSurfaceProbe(extension.extensionPath, surface));
         }
+        const unwatchedChecks = surfaces.includes('abyssal')
+            ? await assertAbyssalUnwatchedFiles(extension.extensionPath)
+            : [];
 
         const state = await vscode.commands.executeCommand('chthonic.__webviewHmrState');
         assert.equal(state?.lane?.state, 'LIVE', `Expected webviewHmr lane LIVE, got ${JSON.stringify(state?.lane)}`);
@@ -80,6 +83,7 @@ async function run() {
 
         const payload = {
             results,
+            unwatchedChecks,
             lane: state?.lane,
             reloadSpyInstalled: reloadSpy.installed,
             reloadWindowCalls: reloadSpy.calls(),
@@ -90,6 +94,39 @@ async function run() {
     } finally {
         await restoreWorkspaceSettings(previousSettings);
     }
+}
+
+async function assertAbyssalUnwatchedFiles(extensionPath) {
+    const files = [
+        path.join('media', 'abyssalPane.js'),
+        path.join('media', 'wasm', 'pkg', 'chthonic_loom.js'),
+    ];
+    const checks = [];
+
+    for (const relativePath of files) {
+        const filePath = path.join(extensionPath, relativePath);
+        const original = await fs.readFile(filePath, 'utf8');
+        const before = await vscode.commands.executeCommand('chthonic.__webviewHmrState');
+        try {
+            await fs.writeFile(filePath, `${original}\n/* webview-hmr-unwatched-${Date.now()} */\n`, 'utf8');
+            await delay(450);
+            const after = await vscode.commands.executeCommand('chthonic.__webviewHmrState');
+            assert.equal(
+                after.watchEventCount,
+                before.watchEventCount,
+                `${relativePath} unexpectedly triggered media/views watcher`,
+            );
+            checks.push({
+                file: relativePath.replace(/\\/g, '/'),
+                watchEventsBefore: before.watchEventCount,
+                watchEventsAfter: after.watchEventCount,
+            });
+        } finally {
+            await fs.writeFile(filePath, original, 'utf8');
+        }
+    }
+
+    return checks;
 }
 
 async function applyWorkspaceSettings(settings) {

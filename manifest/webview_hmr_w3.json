@@ -1,0 +1,44 @@
+{
+  "gate": "W3",
+  "surface": "abyssal",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "manifest/webview_hmr_smoke_abyssal.json",
+    "extensions/chthonic-archive/src/entropy/archiveAbyssalView.ts",
+    "extensions/chthonic-archive/media/views/abyssal/index.html",
+    "extensions/chthonic-archive/media/views/abyssal/view.js",
+    "extensions/chthonic-archive/media/abyssalPane.js",
+    "extensions/chthonic-archive/media/wasm/pkg/chthonic_loom.js"
+  ],
+  "html_diff_summary": {
+    "provider_line_count_before": 290,
+    "provider_line_count_after": 141,
+    "external_assets_preserved": [
+      "media/abyssalPane.js",
+      "media/wasm/"
+    ],
+    "watch_glob": "media/views/**",
+    "custom_csp_preserved_for_existing_assets": true
+  },
+  "reload_latency_ms": 426,
+  "smoke_evidence": {
+    "command": "bun run scripts/webview-hmr-smoke.ts --surface=abyssal",
+    "watch_events": 1,
+    "reload_count": 1,
+    "reload_window_calls": 0,
+    "lane": "webviewHmr=LIVE",
+    "unwatched_checks": [
+      {
+        "file": "media/abyssalPane.js",
+        "watch_events_before": 2,
+        "watch_events_after": 2
+      },
+      {
+        "file": "media/wasm/pkg/chthonic_loom.js",
+        "watch_events_before": 2,
+        "watch_events_after": 2
+      }
+    ]
+  }
+}
