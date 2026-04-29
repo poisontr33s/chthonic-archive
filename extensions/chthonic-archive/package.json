@@ -434,6 +434,7 @@
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "watch:worker": "bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --watch",
     "test:e2e": "bun run scripts/e2e-extension-host.ts",
+    "verify:all": "bun run scripts/verify-all.ts",
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
     "insiders:package": "bun run compile && bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
