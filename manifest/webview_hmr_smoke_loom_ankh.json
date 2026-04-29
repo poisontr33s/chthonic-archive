@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "surface": "loom",
+      "marker": "webview-hmr-loom-1777421872209",
+      "reloadLatencyMs": 416,
+      "reloadCount": 1,
+      "watchEvents": 1,
+      "windowReloadInvoked": false
+    },
+    {
+      "surface": "ankh",
+      "marker": "webview-hmr-ankh-1777421873239",
+      "reloadLatencyMs": 363,
+      "reloadCount": 3,
+      "watchEvents": 3,
+      "windowReloadInvoked": false
+    }
+  ],
+  "lane": {
+    "name": "webviewHmr",
+    "state": "LIVE",
+    "reason": "watching media/views/**",
+    "updatedAt": 1777421871849
+  },
+  "reloadSpyInstalled": true,
+  "reloadWindowCalls": 0,
+  "completedAt": "2026-04-29T00:17:53.908Z"
+}

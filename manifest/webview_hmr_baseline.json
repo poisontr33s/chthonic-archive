@@ -1,0 +1,56 @@
+{
+  "artifact_type": "webview_hmr_baseline",
+  "gate": "webview_hmr",
+  "captured_at": "2026-04-29T00:00:00+02:00",
+  "capture_note": "Pre-extraction VS Code webview HTML is generated inside providers and is not exposed through the extension-test API before the HMR probe hook exists; this rollback anchor records the embedded provider source hashes and current lane snapshot. Post-extraction smoke uses real WebviewView instances.",
+  "surfaces": {
+    "stylus": {
+      "provider": "extensions/chthonic-archive/src/monolith/stylusInputView.ts",
+      "line_count": 379,
+      "sha256": "F018C5786186D1F06B7088DE488745E68FD4DC436CC0F4559D2FDC77202C1115",
+      "html_source": "embedded _getHtml(webview) template"
+    },
+    "loom": {
+      "provider": "extensions/chthonic-archive/src/monolith/loomView.ts",
+      "line_count": 286,
+      "sha256": "F5F8B0649298780CA83C790DE5CA45F902E04413876F8C370F8CBA6C4705EDE7",
+      "html_source": "embedded buildHtml() template"
+    },
+    "ankh": {
+      "provider": "extensions/chthonic-archive/src/monolith/ankhReferenceView.ts",
+      "line_count": 535,
+      "sha256": "12B61647EB7B3C60C00731CCFC68CC4C6F21EFED45FA1F44ED4BE0658DC35E80",
+      "html_source": "embedded buildHtml(sections, sourcePath) template"
+    },
+    "abyssal": {
+      "provider": "extensions/chthonic-archive/src/entropy/archiveAbyssalView.ts",
+      "line_count": 290,
+      "sha256": "0C897AA09759AE195B4452751280F6422DF586A1D2DCC031387AA52746C51619",
+      "html_source": "embedded getHtml(webview) template"
+    }
+  },
+  "media_state": {
+    "existing_files": [
+      "extensions/chthonic-archive/media/abyssalPane.js",
+      "extensions/chthonic-archive/media/wasm/"
+    ],
+    "views_dir_exists": false
+  },
+  "lane_snapshot": {
+    "path": "extensions/chthonic-archive/.vscode-test/user-data/User/globalStorage/chthonic-archive.chthonic-archive/lane-state.json",
+    "view_lanes": [
+      {
+        "name": "abyssal-view",
+        "state": "PARKED",
+        "reason": "workspace-health disabled"
+      },
+      {
+        "name": "loom-view",
+        "state": "PARKED",
+        "reason": "workspace unavailable"
+      }
+    ],
+    "webviewHmr": null
+  },
+  "status": "baseline_captured"
+}

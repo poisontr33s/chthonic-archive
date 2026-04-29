@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "surface": "stylus",
+      "marker": "webview-hmr-stylus-1777421365576",
+      "reloadLatencyMs": 469,
+      "reloadCount": 1,
+      "watchEvents": 1,
+      "windowReloadInvoked": false
+    }
+  ],
+  "lane": {
+    "name": "webviewHmr",
+    "state": "LIVE",
+    "reason": "watching media/views/**",
+    "updatedAt": 1777421365053
+  },
+  "reloadSpyInstalled": true,
+  "reloadWindowCalls": 0,
+  "completedAt": "2026-04-29T00:09:26.354Z"
+}

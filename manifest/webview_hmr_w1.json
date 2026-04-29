@@ -1,0 +1,30 @@
+{
+  "gate": "W1",
+  "surface": "stylus",
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "manifest/webview_hmr_baseline.json",
+    "manifest/webview_hmr_smoke_stylus.json",
+    "extensions/chthonic-archive/src/runtime/webviewLoader.ts",
+    "extensions/chthonic-archive/src/runtime/webviewHmrWatcher.ts",
+    "extensions/chthonic-archive/src/monolith/stylusInputView.ts",
+    "extensions/chthonic-archive/media/views/stylus/index.html",
+    "extensions/chthonic-archive/media/views/stylus/view.js"
+  ],
+  "html_diff_summary": {
+    "provider_line_count_before": 379,
+    "provider_line_count_after": 108,
+    "csp_preserved": "default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}'",
+    "payload_externalized": true,
+    "script_payload_source": "media/views/stylus/view.js is read from disk and inlined under the nonce-preserved CSP"
+  },
+  "reload_latency_ms": 469,
+  "smoke_evidence": {
+    "command": "bun run scripts/webview-hmr-smoke.ts --surface=stylus",
+    "watch_events": 1,
+    "reload_count": 1,
+    "reload_window_calls": 0,
+    "lane": "webviewHmr=LIVE"
+  }
+}

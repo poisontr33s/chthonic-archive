@@ -1,0 +1,57 @@
+{
+  "results": [
+    {
+      "surface": "stylus",
+      "marker": "webview-hmr-stylus-1777422245485",
+      "reloadLatencyMs": 477,
+      "reloadCount": 1,
+      "watchEvents": 1,
+      "windowReloadInvoked": false
+    },
+    {
+      "surface": "loom",
+      "marker": "webview-hmr-loom-1777422246577",
+      "reloadLatencyMs": 464,
+      "reloadCount": 3,
+      "watchEvents": 4,
+      "windowReloadInvoked": false
+    },
+    {
+      "surface": "ankh",
+      "marker": "webview-hmr-ankh-1777422247650",
+      "reloadLatencyMs": 440,
+      "reloadCount": 5,
+      "watchEvents": 6,
+      "windowReloadInvoked": false
+    },
+    {
+      "surface": "abyssal",
+      "marker": "webview-hmr-abyssal-1777422248705",
+      "reloadLatencyMs": 703,
+      "reloadCount": 7,
+      "watchEvents": 8,
+      "windowReloadInvoked": false
+    }
+  ],
+  "unwatchedChecks": [
+    {
+      "file": "media/abyssalPane.js",
+      "watchEventsBefore": 9,
+      "watchEventsAfter": 9
+    },
+    {
+      "file": "media/wasm/pkg/chthonic_loom.js",
+      "watchEventsBefore": 9,
+      "watchEventsAfter": 9
+    }
+  ],
+  "lane": {
+    "name": "webviewHmr",
+    "state": "LIVE",
+    "reason": "watching media/views/**",
+    "updatedAt": 1777422244988
+  },
+  "reloadSpyInstalled": true,
+  "reloadWindowCalls": 0,
+  "completedAt": "2026-04-29T00:24:10.652Z"
+}

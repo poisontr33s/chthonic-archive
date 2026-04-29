@@ -1,0 +1,50 @@
+{
+  "gate": "W4",
+  "surfaces": ["stylus", "loom", "ankh", "abyssal"],
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "manifest/webview_hmr_smoke_stylus_loom_ankh_abyssal.json",
+    "manifest/webview_hmr_w1.json",
+    "manifest/webview_hmr_w2.json",
+    "manifest/webview_hmr_w3.json",
+    "extensions/chthonic-archive/scripts/webview-hmr-smoke.ts",
+    "extensions/chthonic-archive/scripts/webview-hmr-smoke-runner.cjs",
+    "extensions/chthonic-archive/package.json"
+  ],
+  "html_diff_summary": {
+    "stylus": "L4 retained after W2/W3",
+    "loom": "L4 retained in all-surface smoke",
+    "ankh": "L4 retained with sectionsJsonInlined membrane",
+    "abyssal": "L4 retained with existing renderer/WASM assets outside the watcher glob"
+  },
+  "reload_latency_ms": {
+    "stylus": 477,
+    "loom": 464,
+    "ankh": 440,
+    "abyssal": 703
+  },
+  "smoke_evidence": {
+    "command": "bun run test:webview-hmr",
+    "lane": "webviewHmr=LIVE",
+    "reload_window_calls": 0,
+    "reload_spy_installed": true,
+    "unwatched_checks": [
+      {
+        "file": "media/abyssalPane.js",
+        "watch_events_before": 9,
+        "watch_events_after": 9
+      },
+      {
+        "file": "media/wasm/pkg/chthonic_loom.js",
+        "watch_events_before": 9,
+        "watch_events_after": 9
+      }
+    ],
+    "verification": [
+      "bun run compile",
+      "bun run test:e2e",
+      "bunx tsc --noEmit (baseline TS18046 remains at src/entropy/entropyWorkerClient.ts:155)"
+    ]
+  }
+}

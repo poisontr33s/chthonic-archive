@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-{{nonce}}';">
+    <title>ANKH Reference</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: var(--vscode-editor-foreground);
+            --muted: var(--vscode-descriptionForeground);
+            --accent: #F4C430;
+            --accent2: #c0a020;
+            --panel: color-mix(in srgb, var(--bg) 88%, #161616);
+            --border: color-mix(in srgb, var(--accent) 32%, transparent);
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            margin: 0; height: 100%;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--vscode-font-family, 'Segoe UI', sans-serif);
+        }
+        body { display: flex; flex-direction: column; height: 100%; }
+
+        .header {
+            padding: 8px 10px 4px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .header-title {
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 0 0 4px 0;
+        }
+        .header-meta { font-size: 10px; color: var(--muted); }
+
+        #search {
+            width: 100%;
+            padding: 5px 8px;
+            margin: 6px 0 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--fg);
+            font-size: 12px;
+            outline: none;
+        }
+        #search:focus { border-color: var(--accent); }
+
+        #list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 6px 0;
+        }
+
+        .section-item {
+            padding: 5px 10px;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            transition: border-color 0.1s, background 0.1s;
+        }
+        .section-item:hover { background: var(--panel); border-left-color: var(--accent); }
+        .section-item.active { background: var(--panel); border-left-color: var(--accent); }
+        .section-item.l1 { padding-left: 10px; }
+        .section-item.l2 { padding-left: 18px; }
+        .section-item.l3 { padding-left: 26px; }
+
+        .section-title {
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--fg);
+        }
+        .section-item.l1 .section-title { color: var(--accent); font-weight: 600; }
+        .section-item.l2 .section-title { color: var(--fg); }
+        .section-item.l3 .section-title { color: var(--muted); font-size: 11px; }
+        .section-item.l4 .section-title { color: var(--muted); font-size: 10px; padding-left: 34px; }
+
+        .section-item[data-kind="entity"] .section-title { color: #D4907A; }
+        .section-item[data-kind="tier"] .section-title { color: #F4C430; font-weight: 600; }
+        .section-item[data-kind="xref"] .section-title { color: #7AAAB2; font-style: italic; }
+        .section-item[data-kind="anchor"] .section-title { color: #8CB87A; }
+        .section-item[data-kind="mention"] .section-title { color: #B0A0D0; font-size: 10px; }
+
+        .kind-icon {
+            display: inline-block;
+            width: 14px;
+            font-size: 10px;
+            margin-right: 4px;
+            opacity: 0.7;
+        }
+
+        .header-counts {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 2px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--fg); }
+        .filter-btn.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
+        .snippet {
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: none;
+        }
+        .section-item.active .snippet { display: block; }
+
+        .open-link {
+            display: none;
+            font-size: 10px;
+            color: var(--accent2);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .section-item.active .open-link { display: block; }
+
+        #count { font-size: 10px; color: var(--muted); padding: 0 10px 4px; flex-shrink: 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="header-title">☥ ANKH Reference</h1>
+        <div class="header-meta">{{archiveLabel}} · {{totalSections}} entries</div>
+        <div class="header-counts">{{headingCount}}§ {{entityCount}}⚙ {{tierCount}}♔ {{xrefCount}}→ {{anchorCount}}⚓ {{mentionCount}}◆</div>
+        <input id="search" type="text" placeholder="Search sections, entities, tiers…" autocomplete="off" />
+        <div class="filter-row">
+            <button class="filter-btn active" data-kind="all">All</button>
+            <button class="filter-btn" data-kind="heading">§</button>
+            <button class="filter-btn" data-kind="entity">⚙</button>
+            <button class="filter-btn" data-kind="tier">♔</button>
+            <button class="filter-btn" data-kind="xref">→</button>
+            <button class="filter-btn" data-kind="anchor">⚓</button>
+            <button class="filter-btn" data-kind="mention">◆</button>
+        </div>
+    </div>
+    <div id="count"></div>
+    <div id="list"></div>
+
+    <script nonce="{{nonce}}">
+{{viewScript}}
+    </script>
+</body>
+</html>
