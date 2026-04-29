@@ -2,6 +2,8 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { jsonForInlineScript, loadWebviewHtml } from '../runtime/webviewLoader';
+import { trackWebview } from '../runtime/webviewHmrWatcher';
 import { SSOT_HOLDER } from '../ssot-paths';
 
 type SectionKind = 'heading' | 'entity' | 'tier' | 'xref' | 'anchor' | 'mention';
@@ -165,22 +167,17 @@ function parseArchiveSections(text: string): ArchiveSection[] {
     return sections;
 }
 
-function createNonce(): string {
-    const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let n = '';
-    for (let i = 0; i < 24; i++) { n += alpha[Math.floor(Math.random() * alpha.length)]; }
-    return n;
-}
-
 export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
     static readonly viewType = 'chthonic.chatView';
 
     private readonly workspaceRoot: string | null;
+    private readonly extensionUri: vscode.Uri;
     private _currentSourcePath: string | null = null;
     private _configListener: vscode.Disposable | undefined;
 
-    constructor(workspaceRoot: string | null) {
+    constructor(workspaceRoot: string | null, extensionUri: vscode.Uri = resolveExtensionUri()) {
         this.workspaceRoot = workspaceRoot;
+        this.extensionUri = extensionUri;
     }
 
     /**
@@ -227,16 +224,20 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
         _context: vscode.WebviewViewResolveContext,
         _token: vscode.CancellationToken,
     ): void {
-        webviewView.webview.options = { enableScripts: true };
+        webviewView.webview.options = {
+            enableScripts: true,
+            localResourceRoots: [this.extensionUri],
+        };
 
         const refresh = () => {
             const sourcePath = this.resolveSourcePath();
             const sections = this.loadSections(sourcePath);
-            webviewView.webview.html = this.buildHtml(sections, sourcePath);
+            webviewView.webview.html = this.buildHtml(webviewView.webview, sections, sourcePath);
             this._currentSourcePath = sourcePath;
         };
 
         refresh();
+        trackWebview('ankh', webviewView, refresh);
 
         webviewView.webview.onDidReceiveMessage((msg: unknown) => {
             if (!msg || typeof msg !== 'object') { return; }
@@ -273,263 +274,46 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
         }
     }
 
-    private buildHtml(sections: ArchiveSection[], sourcePath: string | null): string {
-        const nonce = createNonce();
-        // Embed title/line/level/kind/tag — no full content to keep payload small
-        const sectionsJson = JSON.stringify(
-            sections.map((s) => ({ l: s.level, t: s.title, s: s.snippet, n: s.line, k: s.kind, g: s.tag || '' })),
-        );
-        const headingCount = sections.filter(s => s.kind === 'heading').length;
-        const entityCount = sections.filter(s => s.kind === 'entity').length;
-        const tierCount = sections.filter(s => s.kind === 'tier').length;
-        const xrefCount = sections.filter(s => s.kind === 'xref').length;
-        const anchorCount = sections.filter(s => s.kind === 'anchor').length;
-        const mentionCount = sections.filter(s => s.kind === 'mention').length;
-        const totalSections = sections.length;
+    private buildHtml(webview: vscode.Webview, sections: ArchiveSection[], sourcePath: string | null): string {
+        const sectionPayload = sections.map((section) => ({
+            l: section.level,
+            t: section.title,
+            s: section.snippet,
+            n: section.line,
+            k: section.kind,
+            g: section.tag || '',
+        }));
+        const headingCount = sections.filter((section) => section.kind === 'heading').length;
+        const entityCount = sections.filter((section) => section.kind === 'entity').length;
+        const tierCount = sections.filter((section) => section.kind === 'tier').length;
+        const xrefCount = sections.filter((section) => section.kind === 'xref').length;
+        const anchorCount = sections.filter((section) => section.kind === 'anchor').length;
+        const mentionCount = sections.filter((section) => section.kind === 'mention').length;
         const archiveLabel = sourcePath ? path.basename(sourcePath) : 'no source found';
 
-        return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}';">
-    <title>ANKH Reference</title>
-    <style>
-        :root {
-            --bg: #050505;
-            --fg: var(--vscode-editor-foreground);
-            --muted: var(--vscode-descriptionForeground);
-            --accent: #F4C430;
-            --accent2: #c0a020;
-            --panel: color-mix(in srgb, var(--bg) 88%, #161616);
-            --border: color-mix(in srgb, var(--accent) 32%, transparent);
-        }
-        * { box-sizing: border-box; }
-        html, body {
-            margin: 0; height: 100%;
-            background: var(--bg);
-            color: var(--fg);
-            font-family: var(--vscode-font-family, 'Segoe UI', sans-serif);
-        }
-        body { display: flex; flex-direction: column; height: 100%; }
-
-        .header {
-            padding: 8px 10px 4px;
-            border-bottom: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-        .header-title {
-            font-size: 11px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin: 0 0 4px 0;
-        }
-        .header-meta { font-size: 10px; color: var(--muted); }
-
-        #search {
-            width: 100%;
-            padding: 5px 8px;
-            margin: 6px 0 0;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--panel);
-            color: var(--fg);
-            font-size: 12px;
-            outline: none;
-        }
-        #search:focus { border-color: var(--accent); }
-
-        #list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 6px 0;
-        }
-
-        .section-item {
-            padding: 5px 10px;
-            cursor: pointer;
-            border-left: 2px solid transparent;
-            transition: border-color 0.1s, background 0.1s;
-        }
-        .section-item:hover { background: var(--panel); border-left-color: var(--accent); }
-        .section-item.active { background: var(--panel); border-left-color: var(--accent); }
-        .section-item.l1 { padding-left: 10px; }
-        .section-item.l2 { padding-left: 18px; }
-        .section-item.l3 { padding-left: 26px; }
-
-        .section-title {
-            font-size: 12px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--fg);
-        }
-        .section-item.l1 .section-title { color: var(--accent); font-weight: 600; }
-        .section-item.l2 .section-title { color: var(--fg); }
-        .section-item.l3 .section-title { color: var(--muted); font-size: 11px; }
-        .section-item.l4 .section-title { color: var(--muted); font-size: 10px; padding-left: 34px; }
-
-        .section-item[data-kind="entity"] .section-title { color: #D4907A; }
-        .section-item[data-kind="tier"] .section-title { color: #F4C430; font-weight: 600; }
-        .section-item[data-kind="xref"] .section-title { color: #7AAAB2; font-style: italic; }
-        .section-item[data-kind="anchor"] .section-title { color: #8CB87A; }
-        .section-item[data-kind="mention"] .section-title { color: #B0A0D0; font-size: 10px; }
-
-        .kind-icon {
-            display: inline-block;
-            width: 14px;
-            font-size: 10px;
-            margin-right: 4px;
-            opacity: 0.7;
-        }
-
-        .header-counts {
-            font-size: 10px;
-            color: var(--muted);
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-        }
-
-        .filter-row {
-            display: flex;
-            gap: 2px;
-            margin-top: 6px;
-            flex-wrap: wrap;
-        }
-        .filter-btn {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            color: var(--muted);
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .filter-btn:hover { border-color: var(--accent); color: var(--fg); }
-        .filter-btn.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
-
-        .snippet {
-            font-size: 10px;
-            color: var(--muted);
-            margin-top: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: none;
-        }
-        .section-item.active .snippet { display: block; }
-
-        .open-link {
-            display: none;
-            font-size: 10px;
-            color: var(--accent2);
-            text-decoration: underline;
-            cursor: pointer;
-            margin-top: 4px;
-        }
-        .section-item.active .open-link { display: block; }
-
-        #count { font-size: 10px; color: var(--muted); padding: 0 10px 4px; flex-shrink: 0; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1 class="header-title">☥ ANKH Reference</h1>
-        <div class="header-meta">${archiveLabel} · ${totalSections} entries</div>
-        <div class="header-counts">${headingCount}§ ${entityCount}⚙ ${tierCount}♔ ${xrefCount}→ ${anchorCount}⚓ ${mentionCount}◆</div>
-        <input id="search" type="text" placeholder="Search sections, entities, tiers…" autocomplete="off" />
-        <div class="filter-row">
-            <button class="filter-btn active" data-kind="all">All</button>
-            <button class="filter-btn" data-kind="heading">§</button>
-            <button class="filter-btn" data-kind="entity">⚙</button>
-            <button class="filter-btn" data-kind="tier">♔</button>
-            <button class="filter-btn" data-kind="xref">→</button>
-            <button class="filter-btn" data-kind="anchor">⚓</button>
-            <button class="filter-btn" data-kind="mention">◆</button>
-        </div>
-    </div>
-    <div id="count"></div>
-    <div id="list"></div>
-
-    <script nonce="${nonce}">
-        const vscode = acquireVsCodeApi();
-        const sections = ${sectionsJson};
-        const listEl = document.getElementById('list');
-        const searchEl = document.getElementById('search');
-        const countEl = document.getElementById('count');
-        let activeItem = null;
-        let activeKind = 'all';
-
-        const kindIcons = { heading: '§', entity: '⚙', tier: '♔', xref: '→', anchor: '⚓', mention: '◆' };
-
-        function render(filter) {
-            const q = (filter || '').toLowerCase();
-            let filtered = sections;
-            if (activeKind !== 'all') {
-                filtered = filtered.filter(s => s.k === activeKind);
-            }
-            if (q) {
-                filtered = filtered.filter(s =>
-                    s.t.toLowerCase().includes(q) ||
-                    (s.s && s.s.toLowerCase().includes(q)) ||
-                    (s.g && s.g.toLowerCase().includes(q))
-                );
-            }
-
-            listEl.innerHTML = '';
-            activeItem = null;
-            countEl.textContent = filtered.length + ' / ' + sections.length + ' entries';
-
-            filtered.forEach(sec => {
-                const div = document.createElement('div');
-                div.className = 'section-item l' + sec.l;
-                div.setAttribute('data-kind', sec.k);
-                const icon = kindIcons[sec.k] || '';
-                div.innerHTML =
-                    '<div class="section-title"><span class="kind-icon">' + icon + '</span>' + escHtml(sec.t) + '</div>' +
-                    '<div class="snippet">' + escHtml(sec.s || '') + '</div>' +
-                    '<span class="open-link">Open in editor ↗</span>';
-
-                div.querySelector('.section-title').addEventListener('click', () => {
-                    if (activeItem === div) {
-                        activeItem.classList.remove('active');
-                        activeItem = null;
-                    } else {
-                        if (activeItem) { activeItem.classList.remove('active'); }
-                        div.classList.add('active');
-                        activeItem = div;
-                    }
-                });
-
-                div.querySelector('.open-link').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    vscode.postMessage({ type: 'open', line: sec.n });
-                });
-
-                listEl.appendChild(div);
-            });
-        }
-
-        function escHtml(s) {
-            return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        }
-
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeKind = btn.getAttribute('data-kind');
-                render(searchEl.value);
-            });
+        return loadWebviewHtml(webview, this.extensionUri, 'ankh', {
+            sectionsJsonInlined: jsonForInlineScript(sectionPayload),
+            archiveLabel: escapeHtml(archiveLabel),
+            totalSections: String(sections.length),
+            headingCount: String(headingCount),
+            entityCount: String(entityCount),
+            tierCount: String(tierCount),
+            xrefCount: String(xrefCount),
+            anchorCount: String(anchorCount),
+            mentionCount: String(mentionCount),
         });
-
-        searchEl.addEventListener('input', () => render(searchEl.value));
-        render('');
-    </script>
-</body>
-</html>`;
     }
+}
+
+function resolveExtensionUri(): vscode.Uri {
+    const extension = vscode.extensions.getExtension('chthonic-archive.chthonic-archive');
+    return extension?.extensionUri ?? vscode.Uri.file(path.resolve(__dirname, '..'));
+}
+
+function escapeHtml(value: string): string {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 }

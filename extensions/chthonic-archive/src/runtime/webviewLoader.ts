@@ -25,14 +25,18 @@ export function loadWebviewHtml(
 
     try {
         const template = fs.readFileSync(templateUri.fsPath, 'utf8');
-        const viewScript = fs.readFileSync(viewScriptDiskUri.fsPath, 'utf8');
-        return applySubstitutions(template, {
+        const rawViewScript = fs.readFileSync(viewScriptDiskUri.fsPath, 'utf8');
+        const baseSubstitutions = {
             nonce,
             csp,
             cspSource: webview.cspSource,
-            viewScript,
             viewScriptUri: viewScriptUri.toString(),
             ...substitutions,
+        };
+        const viewScript = applySubstitutions(rawViewScript, baseSubstitutions);
+        return applySubstitutions(template, {
+            ...baseSubstitutions,
+            viewScript,
         });
     } catch (error) {
         const reason = `media/views/${surface}/index.html unreadable: ${stringifyError(error)}`;

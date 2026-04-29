@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-{{nonce}}';">
+    <title>The Loom</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --fg: var(--vscode-editor-foreground);
+            --muted: var(--vscode-descriptionForeground);
+            --accent: #F4C430;
+            --panel: color-mix(in srgb, var(--bg) 88%, #161616);
+            --border: color-mix(in srgb, var(--accent) 32%, transparent);
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            margin: 0;
+            height: 100%;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--vscode-font-family, Segoe UI, sans-serif);
+        }
+        body { padding: 10px; display: flex; flex-direction: column; gap: 10px; min-height: 100%; }
+        .panel {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--panel);
+            padding: 10px;
+        }
+        .title { margin: 0; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+        .score { font-size: 28px; margin: 8px 0 0; }
+        .meta { color: var(--muted); font-size: 11px; }
+        .list { margin: 8px 0 0; padding: 0; list-style: none; max-height: 140px; overflow: auto; }
+        .list li { font-size: 11px; color: var(--muted); padding: 2px 0; }
+        .row { display: flex; gap: 8px; }
+        .row button { min-width: 0; }
+        .health-grid {
+            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .health-cell {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            background: color-mix(in srgb, var(--panel) 90%, transparent);
+        }
+        .health-label {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .health-value {
+            margin-top: 4px;
+            font-size: 13px;
+        }
+        button {
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--fg);
+            padding: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <section class="panel">
+        <h1 class="title">The Loom</h1>
+        <div id="score" class="score">0%</div>
+        <div id="tier" class="meta">Gate</div>
+    </section>
+
+    <section class="panel">
+        <div class="title">Workspace Health Stream</div>
+        <div class="health-grid">
+            <div class="health-cell">
+                <div class="health-label">Tracked Files</div>
+                <div id="health-files" class="health-value">0</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Average Entropy</div>
+                <div id="health-entropy" class="health-value">0%</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Last Scan</div>
+                <div id="health-duration" class="health-value">0 ms</div>
+            </div>
+            <div class="health-cell">
+                <div class="health-label">Updated</div>
+                <div id="health-updated" class="health-value">n/a</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="title">Markers Present</div>
+        <ul id="present" class="list"></ul>
+    </section>
+
+    <section class="panel">
+        <div class="title">Markers Missing</div>
+        <ul id="missing" class="list"></ul>
+    </section>
+
+    <div class="row">
+        <button id="refresh">Refresh Toolchain</button>
+        <button id="rescan">Rescan Health</button>
+        <button id="heal">Self-Heal</button>
+        <button id="focus">Deep Focus</button>
+        <button id="restore">Restore Order</button>
+    </div>
+
+    <script nonce="{{nonce}}">
+{{viewScript}}
+    </script>
+</body>
+</html>

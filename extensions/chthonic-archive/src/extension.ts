@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
     const deepFocusLayout = new DeepFocusLayout(outputChannel);
     const restoreOrderLayout = new RestoreOrderLayout(outputChannel);
-    const loomProvider = new LoomViewProvider();
+    const loomProvider = new LoomViewProvider(context.extensionUri);
     const activationDeps: ActivationDeps = { context, outputChannel, workspaceRoot, chthonicConfig, laneRegistry, activityBarMorph, restoreOrderLayout, loomProvider };
 
     context.subscriptions.push(activityBarMorph, loomProvider);

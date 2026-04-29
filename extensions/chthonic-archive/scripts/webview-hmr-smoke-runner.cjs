@@ -59,34 +59,37 @@ async function run() {
     const extensionId = process.env.CHTHONIC_E2E_EXTENSION_ID ?? 'chthonic-archive.chthonic-archive';
     const surfaces = parseJsonEnv('CHTHONIC_WEBVIEW_HMR_SURFACES', ['stylus', 'loom', 'ankh', 'abyssal']);
     const reloadSpy = installReloadSpy();
-
-    await applyWorkspaceSettings({
+    const previousSettings = await applyWorkspaceSettings({
         'dev.autoReload': true,
     });
 
-    const extension = vscode.extensions.getExtension(extensionId);
-    assert.ok(extension, `Extension not found: ${extensionId}`);
-    await withTimeout(Promise.resolve(extension.activate()), `activate(${extensionId})`);
+    try {
+        const extension = vscode.extensions.getExtension(extensionId);
+        assert.ok(extension, `Extension not found: ${extensionId}`);
+        await withTimeout(Promise.resolve(extension.activate()), `activate(${extensionId})`);
 
-    const results = [];
-    for (const surface of surfaces) {
-        assert.ok(SURFACES[surface], `Unknown webview HMR surface: ${surface}`);
-        results.push(await runSurfaceProbe(extension.extensionPath, surface));
+        const results = [];
+        for (const surface of surfaces) {
+            assert.ok(SURFACES[surface], `Unknown webview HMR surface: ${surface}`);
+            results.push(await runSurfaceProbe(extension.extensionPath, surface));
+        }
+
+        const state = await vscode.commands.executeCommand('chthonic.__webviewHmrState');
+        assert.equal(state?.lane?.state, 'LIVE', `Expected webviewHmr lane LIVE, got ${JSON.stringify(state?.lane)}`);
+        assert.equal(reloadSpy.calls(), 0, 'workbench.action.reloadWindow was invoked during webview HMR smoke');
+
+        const payload = {
+            results,
+            lane: state?.lane,
+            reloadSpyInstalled: reloadSpy.installed,
+            reloadWindowCalls: reloadSpy.calls(),
+            completedAt: new Date().toISOString(),
+        };
+        await writeResult(payload);
+        console.log(JSON.stringify(payload, null, 2));
+    } finally {
+        await restoreWorkspaceSettings(previousSettings);
     }
-
-    const state = await vscode.commands.executeCommand('chthonic.__webviewHmrState');
-    assert.equal(state?.lane?.state, 'LIVE', `Expected webviewHmr lane LIVE, got ${JSON.stringify(state?.lane)}`);
-    assert.equal(reloadSpy.calls(), 0, 'workbench.action.reloadWindow was invoked during webview HMR smoke');
-
-    const payload = {
-        results,
-        lane: state?.lane,
-        reloadSpyInstalled: reloadSpy.installed,
-        reloadWindowCalls: reloadSpy.calls(),
-        completedAt: new Date().toISOString(),
-    };
-    await writeResult(payload);
-    console.log(JSON.stringify(payload, null, 2));
 }
 
 async function applyWorkspaceSettings(settings) {
@@ -94,8 +97,18 @@ async function applyWorkspaceSettings(settings) {
         ? vscode.ConfigurationTarget.Workspace
         : vscode.ConfigurationTarget.Global;
     const config = vscode.workspace.getConfiguration('chthonic');
+    const previous = [];
     for (const [key, value] of Object.entries(settings)) {
         const section = key.startsWith('chthonic.') ? key.slice('chthonic.'.length) : key;
+        previous.push({ section, value: config.inspect(section)?.workspaceValue, target });
+        await config.update(section, value, target);
+    }
+    return previous;
+}
+
+async function restoreWorkspaceSettings(previous) {
+    const config = vscode.workspace.getConfiguration('chthonic');
+    for (const { section, value, target } of previous) {
         await config.update(section, value, target);
     }
 }

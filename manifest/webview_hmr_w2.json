@@ -1,0 +1,42 @@
+{
+  "gate": "W2",
+  "surfaces": ["loom", "ankh"],
+  "level_reached": "L4",
+  "status": "admitted",
+  "evidence_files": [
+    "manifest/webview_hmr_smoke_loom_ankh.json",
+    "extensions/chthonic-archive/src/monolith/loomView.ts",
+    "extensions/chthonic-archive/src/monolith/ankhReferenceView.ts",
+    "extensions/chthonic-archive/media/views/loom/index.html",
+    "extensions/chthonic-archive/media/views/loom/view.js",
+    "extensions/chthonic-archive/media/views/ankh/index.html",
+    "extensions/chthonic-archive/media/views/ankh/view.js"
+  ],
+  "html_diff_summary": {
+    "loom_provider_line_count_before": 286,
+    "loom_provider_line_count_after": 86,
+    "ankh_provider_line_count_before": 535,
+    "ankh_provider_line_count_after": 319,
+    "csp_preserved": "default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}'",
+    "ankh_sections_membrane": "section parsing remains in TypeScript; sectionsJsonInlined is serialized at resolve time and substituted into media/views/ankh/view.js"
+  },
+  "reload_latency_ms": {
+    "loom": 416,
+    "ankh": 363
+  },
+  "smoke_evidence": {
+    "command": "bun run scripts/webview-hmr-smoke.ts --surfaces=loom,ankh",
+    "reload_window_calls": 0,
+    "lane": "webviewHmr=LIVE",
+    "surfaces": {
+      "loom": {
+        "watch_events": 1,
+        "reload_count": 1
+      },
+      "ankh": {
+        "watch_events": 3,
+        "reload_count": 3
+      }
+    }
+  }
+}
