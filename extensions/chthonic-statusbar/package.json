@@ -14,22 +14,7 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:chthonic.bridge.verifySSOT",
-    "onCommand:chthonic.bridge.selfHeal",
-    "onCommand:chthonic.bridge.sediment",
-    "onCommand:chthonic.bridge.verifyHost",
-    "onCommand:chthonic.bridge.vsAudit",
-    "onCommand:chthonic.bridge.webCockpit",
-    "onCommand:chthonic.bridge.bunDocs",
-    "onCommand:chthonic.verifySSO_T",
-    "onCommand:chthonic.runMetabolicCycle",
-    "onCommand:chthonic.showGPUStats",
-    "onCommand:chthonic.runHostVerify",
-    "onCommand:chthonic.runVsAudit",
-    "onCommand:chthonic.openWebCockpitBridge",
-    "onCommand:chthonic.openBunTrainingDocsBridge"
-  ],
+  "activationEvents": [],
   "main": "./dist/extension.js",
   "sideEffects": false,
   "bun": {
