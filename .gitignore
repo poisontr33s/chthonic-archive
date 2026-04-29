@@ -190,6 +190,7 @@ extensions/*/bun.lock
 !manifest/
 !manifest/extension_phase3*.json
 !manifest/daemon_jsonl_*.json
+!manifest/webview_hmr_*.json
 !manifest/failures.jsonl
 
 # Allow root-level MCP validation runner

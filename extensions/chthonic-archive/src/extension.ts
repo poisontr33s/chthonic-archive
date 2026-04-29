@@ -9,6 +9,7 @@ import { StylusInputProvider } from './monolith/stylusInputView';
 import { registerRenderedMarkdownPasteLane } from './markdownPaste/register';
 import { LaneRegistry } from './runtime/laneState';
 import { registerDevAutoReload } from './runtime/devAutoReload';
+import { registerWebviewHmrWatcher } from './runtime/webviewHmrWatcher';
 import { activateCommands } from './activation/activateCommands';
 import { activateStatus, computePolicyFingerprint } from './activation/activateStatus';
 import { activateViews, StatusTreeProvider, ThemeTreeProvider } from './activation/activateViews';
@@ -25,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
     const laneRegistry = new LaneRegistry();
     laneRegistry.bindSnapshotFile(context.globalStorageUri);
     runActivationLane(laneRegistry, outputChannel, 'dev-reload', () => registerDevAutoReload(context, outputChannel));
+    runActivationLane(laneRegistry, outputChannel, 'webview-hmr', () => registerWebviewHmrWatcher(context, outputChannel, laneRegistry));
 
     context.subscriptions.push(outputChannel, laneRegistry);
     runActivationLane(laneRegistry, outputChannel, 'markdown-paste', () => registerRenderedMarkdownPasteLane(context, outputChannel));
