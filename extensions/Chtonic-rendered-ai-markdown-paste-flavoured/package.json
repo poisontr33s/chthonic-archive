@@ -17,8 +17,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:markdown",
-    "onCommand:renderedAiMarkdownPaste.pasteAsMarkdown"
+    "onLanguage:markdown"
   ],
   "main": "./dist/extension.js",
   "contributes": {
