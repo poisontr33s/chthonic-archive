@@ -152,7 +152,8 @@ export class EntropyWorkerClient implements vscode.Disposable {
         this.worker = new Worker(this.workerPath);
         this.worker.on('message', (event: EntropyWorkerEvent) => this.handleWorkerEvent(event));
         this.worker.on('error', (error) => {
-            this.output.appendLine(`[entropy] worker error: ${error.message}`);
+            const message = error instanceof Error ? error.message : String(error);
+            this.output.appendLine(`[entropy] worker error: ${message}`);
         });
         this.worker.on('exit', (code) => {
             this.output.appendLine(`[entropy] worker exited with code ${code}`);
