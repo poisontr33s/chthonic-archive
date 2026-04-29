@@ -8,6 +8,7 @@ resolution-markers = [
 
 [manifest]
 members = [
+    "ankh-atlas",
     "chthonic-archive-tools",
     "mas-mcp",
 ]
@@ -23,6 +24,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/67/e2/d7cb819de8df6b5c1
 wheels = [
     { url = "https://files.pythonhosted.org/packages/50/25/da1f0b4dd970e52bf5a36c204c107e11a0c6d3ed195eba0bfbc664c312b2/aiofile-3.9.0-py3-none-any.whl", hash = "sha256:ce2f6c1571538cbdfa0143b04e16b208ecb0e9cb4148e528af8a640ed51cc8aa", size = 19539, upload-time = "2024-10-08T10:39:32.955Z" },
 ]
+
+[[package]]
+name = "ankh-atlas"
+version = "0.1.0"
+source = { virtual = "ankh_atlas" }
 
 [[package]]
 name = "annotated-doc"
