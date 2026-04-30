@@ -248,6 +248,10 @@ function shouldExclude(relPath: string): boolean {
     "meta-ide/copilot-sdk/prebuilds/",
     "meta-ide/copilot-sdk/definitions/",
     "meta-ide/copilot-sdk/schemas/",
+    // Third-party RV package library — vendored; not repo-owned signal
+    "rv/library/",
+    // Daemon must not scan itself (string literals match TODO/FIXME/HACK patterns)
+    "scripts/overnight_daemon.ts",
   ];
   for (const h of hard) {
     if (p.startsWith(h) || p.includes(`/${h}`)) return true;

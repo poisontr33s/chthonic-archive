@@ -40,8 +40,6 @@ use data::persistence::{load_game_state, save_game_state};
 use data::factions::FactionRegistry;
 use data::game_tree::{inspect_game_tree, log_game_tree_report};
 use data::game_schemas::{load_game_schema_documents, log_game_schema_documents};
-// use data::game_tree::{inspect_game_tree, log_game_tree_report}; // TODO: implement game_tree module
-// use data::game_schemas::{load_game_schema_documents, log_game_schema_documents}; // TODO: implement game_schemas module
 use data::types::GameData;
 use data::verifier::AxiomVerifier;
 use render::{VulkanContext, Renderer};
