@@ -219,9 +219,9 @@ function runPreflight(entry: TodoEntry): { resolved: boolean; reason: string } |
     if (v.type === "file-exists") {
       const abs = join(REPO_ROOT, v.path);
       if (existsSync(abs)) {
-        return { resolved: false, reason: `file-exists: ${v.path} present — task is valid` };
+        return { resolved: true, reason: `file-exists: ${v.path} found — task complete` };
       }
-      return { resolved: true, reason: `file-exists: ${v.path} was supposed to exist but is absent — stale ticket` };
+      return { resolved: false, reason: `file-exists: ${v.path} not yet present — task still pending` };
     }
   } catch {
     // Git not available or path error — cannot verify, pass through

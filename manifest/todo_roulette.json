@@ -1,7 +1,7 @@
 {
   "version": "1",
   "created": "2026-04-28T00:00:00.000Z",
-  "total_spins": 1,
+  "total_spins": 2,
   "entries": [
     {
       "id": "a1b2c3d4",
@@ -59,7 +59,8 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 6,
       "origin": "session",
-      "spin_count": 0
+      "spin_count": 1,
+      "last_spun": "2026-04-30T04:47:35.074Z"
     },
     {
       "id": "f6a7b8c9",
@@ -132,7 +133,11 @@
       "weight": 7,
       "origin": "manual",
       "spin_count": 0,
-      "verify": { "type": "file-exists", "path": "scripts/session_compress.ts" }
+      "verify": {
+        "type": "file-exists",
+        "path": "scripts/session_compress.ts"
+      }
     }
-  ]
+  ],
+  "last_spun": "2026-04-30T04:47:35.074Z"
 }
