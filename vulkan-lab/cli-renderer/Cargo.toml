@@ -1,0 +1,21 @@
+[package]
+name = "cli-renderer"
+version = "0.1.0"
+edition = "2021"
+description = "Vulkan-native CLI renderer — roulette arc wheel + isometric dungeon, stdout surface"
+
+# Gate 1: headless Vulkan instance + physical device enumeration
+# Gate 2: euler scoring compute pipeline (serde_json manifest → SSBO → GPU scores)
+# Gate 3: ASCII framebuffer (VkImage → ascii_downsample → ANSI truecolor stdout)
+# Gate 4: differential frame streaming (GPU diff pass → dirty-cell cursor positioning)
+# Gate 5: simulation state machine (SpinState → RoomState, same structure)
+# Gate 6: unified render mode — polar arc wheel ↔ isometric dungeon (same manifest)
+# Gate 7: self-seeding documentation → next session's Gate 0
+
+[dependencies]
+ash        = "0.38"
+serde      = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Isolate from root chthonic-archive workspace — vulkan-lab is a standalone lab
+[workspace]
