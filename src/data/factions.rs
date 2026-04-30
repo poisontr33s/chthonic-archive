@@ -157,7 +157,7 @@ impl FactionRegistry {
             supervising_crc: None, // Self-governing
             district: Some(self.create_inner_citadel()),
             linguistic_mode: LinguisticMode::Mixed,
-            operational_mandate: "Universal PS transmutation via FA¹⁻⁴".to_string(),
+            operational_mandate: "Universal PS transmutation via FA¹⁻^5".to_string(),
             motto: "We are not three—we are ONE. Our synthesis is the Engine.".to_string(),
         };
         self.factions.insert(FactionCode::CRC, triumvirate);
