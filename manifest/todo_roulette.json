@@ -1,0 +1,91 @@
+{
+  "version": "1",
+  "created": "2026-04-28T00:00:00.000Z",
+  "total_spins": 1,
+  "entries": [
+    {
+      "id": "a1b2c3d4",
+      "title": "Add --from-sibling to teleport.ts (satellite lane)",
+      "tags": ["infra"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 7,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "b2c3d4e5",
+      "title": "Commit satellite orbit prototype",
+      "tags": ["infra"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 8,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "c3d4e5f6",
+      "title": "Enrich SSOT §10.3.1 Claudine — add CSI-SOI-SMM Supreme Meta-Matriarch block",
+      "tags": ["ssot", "entity"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 9,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "d4e5f6a7",
+      "title": "Add §10.3 modern profiles for Orackla, Umeko, Lysandra (three T1 entities at old CRC format)",
+      "tags": ["ssot", "entity"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 7,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "e5f6a7b8",
+      "title": "Rewrite Pentea agent file after SSOT T1 stabilization",
+      "tags": ["entity", "infra"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 6,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "f6a7b8c9",
+      "title": "Remove [patch.crates-io] openssl block once openssl-sys ≥ 0.9.114 ships on crates.io",
+      "tags": ["build", "debt"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 4,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "a7b8c9d0",
+      "title": "Investigate poisontr33s/psychonoir-kontrapunkt-large-file-holder (Git LFS media assets)",
+      "tags": ["lore", "infra"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 3,
+      "origin": "session",
+      "spin_count": 0
+    },
+    {
+      "id": "b8c9d0e1",
+      "title": "Resolve .github/agents/_index.md unstaged modifications",
+      "tags": ["infra"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 5,
+      "origin": "session",
+      "spin_count": 1,
+      "status": "closed",
+      "closed": "2026-04-30T00:00:00.000Z",
+      "resolution": "auto-resolved: git diff .github/agents/_index.md returned empty — already committed in a prior session. Ghost ticket. Closed on first spin."
+    },
+    {
+      "id": "c9d0e1f2",
+      "title": "exllamav2 backend identity resolution in tabby-modern state.py (exllamav3-native label is stale)",
+      "tags": ["infra", "debt"],
+      "created": "2026-04-28T00:00:00.000Z",
+      "weight": 5,
+      "origin": "session",
+      "spin_count": 0
+    }
+  ]
+}
