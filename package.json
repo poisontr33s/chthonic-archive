@@ -34,6 +34,8 @@
     "uncensored:serve:code": "pwsh -NoProfile -File scripts/serve_uncensored_lane.ps1 -Lane code",
     "uncensored:serve:unrestricted": "pwsh -NoProfile -File scripts/serve_uncensored_lane.ps1 -Lane unrestricted",
     "hf:rank": "bun run scripts/hf-model-ranker.ts",
+    "roulette:gen": "bun run scripts/roulette_html_gen.ts",
+    "roulette:open": "bun run scripts/roulette_html_gen.ts --open",
     "cross:critique": "bun run scripts/cross-critique.ts",
     "artcop:vscode": "bun run scripts/vscode-art-cop.ts",
     "review:ai": "bun run hf:rank --limit 80 && bun run artcop:vscode --images-dir bun-playwright-poc --max-images 4 --no-llm",

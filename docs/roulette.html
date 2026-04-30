@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chthonic Roulette — Eulian TODO Engine</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0f1a;
+    --surface: #111827;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --accent: #a78bfa;
+    --gold: #f59e0b;
+    --win: #10b981;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  h1 { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+  h2 { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+  .header .meta { font-size: 12px; color: var(--muted); }
+  .layout { display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: start; }
+  .wheel-panel { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  #wheel-svg { filter: drop-shadow(0 0 18px #a78bfa33); cursor: pointer; }
+  .wheel-seg { transition: filter 0.15s; }
+  .wheel-seg:hover { filter: brightness(1.3); }
+  #spin-btn {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: #fff;
+    border: none;
+    padding: 10px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 0 16px #7c3aed55;
+  }
+  #spin-btn:hover { transform: scale(1.04); box-shadow: 0 0 28px #7c3aed88; }
+  #spin-btn:active { transform: scale(0.98); }
+  #spin-btn.spinning { animation: pulse 0.4s infinite alternate; }
+  @keyframes pulse { from { box-shadow: 0 0 16px #7c3aed55; } to { box-shadow: 0 0 40px #c084fccc; } }
+  #winner-panel {
+    min-height: 72px;
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: border-color 0.3s;
+  }
+  #winner-panel.has-winner { border-color: var(--win); }
+  #winner-title { font-size: 15px; font-weight: 700; color: var(--win); margin-bottom: 4px; }
+  #winner-meta { font-size: 12px; color: var(--muted); font-family: monospace; }
+  #winner-convergence { font-size: 11px; color: #fbbf24; margin-top: 8px; }
+  .right-panel { display: flex; flex-direction: column; gap: 20px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { padding: 6px 8px; text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  tbody tr { border-bottom: 1px solid #0f172a; transition: background 0.15s; }
+  tbody tr:hover { background: #1e293b; }
+  tbody tr.selected { background: #1e3a5f; }
+  .git-log { font-family: monospace; }
+  .closed-count { font-size: 12px; color: var(--muted); }
+  #needle { transform-origin: 200px 200px; transition: transform 2.5s cubic-bezier(0.17,0.67,0.12,0.99); pointer-events: none; }
+  .stats-row { display: flex; gap: 16px; font-size: 12px; color: var(--muted); }
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .stat-val { font-size: 20px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ Chthonic Roulette</h1>
+  <span class="meta">Eulian TODO Engine · v1 · manifest/todo_roulette.json</span>
+  <span class="meta" style="margin-left:auto">Generated: 2026-04-30 03:54</span>
+</div>
+
+<div class="layout">
+  <div class="wheel-panel">
+    <svg id="wheel-svg" width="400" height="400" viewBox="0 0 400 400">
+      <path d="M200,200 L200.00,20.00 A180,180 0 0,1 363.67,125.09 Z" fill="#34d399" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="0" class="wheel-seg"/><text x="263.22" y="101.55" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(32.7,263.22,101.55)">Commit satellite orb…</text><path d="M200,200 L363.67,125.09 A180,180 0 0,1 351.57,297.09 Z" fill="#34d399" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="1" class="wheel-seg"/><text x="316.71" y="208.21" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(94.0,316.71,208.21)">Add --from-sibling t…</text><path d="M200,200 L351.57,297.09 A180,180 0 0,1 251.06,372.61 Z" fill="#34d399" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="2" class="wheel-seg"/><text x="270.28" y="293.54" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(143.1,270.28,293.54)">Resolve .github/agen…</text><path d="M200,200 L251.06,372.61 A180,180 0 0,1 125.64,363.92 Z" fill="#34d399" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="3" class="wheel-seg"/><text x="191.92" y="316.72" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(184.0,191.92,316.72)">exllamav2 backend id…</text><path d="M200,200 L125.64,363.92 A180,180 0 0,1 42.28,286.73 Z" fill="#c084fc" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="4" class="wheel-seg"/><text x="120.51" y="285.85" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(222.8,120.51,285.85)">Enrich SSOT §10.3.1 …</text><path d="M200,200 L42.28,286.73 A180,180 0 0,1 21.75,174.99 Z" fill="#f472b6" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="5" class="wheel-seg"/><text x="84.93" y="221.14" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(259.6,84.93,221.14)">Rewrite Pentea agent…</text><path d="M200,200 L21.75,174.99 A180,180 0 0,1 59.13,87.95 Z" fill="#60a5fa" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="6" class="wheel-seg"/><text x="92.50" y="153.83" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(293.2,92.50,153.83)">Remove [patch.crates…</text><path d="M200,200 L59.13,87.95 A180,180 0 0,1 130.00,34.17 Z" fill="#c084fc" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="7" class="wheel-seg"/><text x="129.27" y="106.80" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(322.8,129.27,106.80)">Add §10.3 modern pro…</text><path d="M200,200 L130.00,34.17 A180,180 0 0,1 200.00,20.00 Z" fill="#fb923c" fill-opacity="0.85" stroke="#0f172a" stroke-width="1.5" data-idx="8" class="wheel-seg"/><text x="176.79" y="85.33" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#f1f5f9" font-family="monospace" transform="rotate(348.6,176.79,85.33)">Investigate poisontr…</text>
+      <!-- needle -->
+      <g id="needle">
+        <polygon points="200,22 196,56 204,56" fill="#f59e0b" stroke="#0a0f1a" stroke-width="1"/>
+        <circle cx="200" cy="200" r="10" fill="#0a0f1a" stroke="#f59e0b" stroke-width="2"/>
+      </g>
+    </svg>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">9</div><div>open</div></div>
+      <div class="stat"><div class="stat-val">0</div><div>closed</div></div>
+      <div class="stat"><div class="stat-val">0</div><div>spins</div></div>
+      <div class="stat"><div class="stat-val">51</div><div>total Σ</div></div>
+    </div>
+
+    <button id="spin-btn" onclick="spin()">⟳ SPIN</button>
+
+    <div id="winner-panel">
+      <div style="color:var(--muted);font-size:13px">Press SPIN to select the next Roulette Σ-item.</div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="card">
+      <h2>Active tasks — ranked by Euler score</h2>
+      <table>
+        <thead><tr>
+          <th>#</th><th>Title</th><th>score ∠ φ°</th><th>Age</th><th>Tag</th><th>Meta</th>
+        </tr></thead>
+        <tbody id="task-tbody">
+          <tr data-idx="0" class="task-row" onclick="selectTask(0)">
+      <td style="padding:6px 8px;color:#34d399;font-weight:700">1</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Commit satellite orbit prototype</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">9.31 ∠ 90°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#34d39922;color:#34d399;padding:2px 6px;border-radius:4px;font-size:11px">infra</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w8 · 0×</td>
+    </tr>
+<tr data-idx="1" class="task-row" onclick="selectTask(1)">
+      <td style="padding:6px 8px;color:#34d399;font-weight:700">2</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Add --from-sibling to teleport.ts (satellite lane)</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">8.14 ∠ 90°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#34d39922;color:#34d399;padding:2px 6px;border-radius:4px;font-size:11px">infra</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w7 · 0×</td>
+    </tr>
+<tr data-idx="2" class="task-row" onclick="selectTask(2)">
+      <td style="padding:6px 8px;color:#34d399;font-weight:700">3</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Resolve .github/agents/_index.md unstaged modifications</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">5.82 ∠ 90°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#34d39922;color:#34d399;padding:2px 6px;border-radius:4px;font-size:11px">infra</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w5 · 0×</td>
+    </tr>
+<tr data-idx="3" class="task-row" onclick="selectTask(3)">
+      <td style="padding:6px 8px;color:#34d399;font-weight:700">4</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">exllamav2 backend identity resolution in tabby-modern state.py (exllamav3-native label is stale)</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">5.82 ∠ 90°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#34d39922;color:#34d399;padding:2px 6px;border-radius:4px;font-size:11px">infra</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w5 · 0×</td>
+    </tr>
+<tr data-idx="4" class="task-row" onclick="selectTask(4)">
+      <td style="padding:6px 8px;color:#c084fc;font-weight:700">5</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Enrich SSOT §10.3.1 Claudine — add CSI-SOI-SMM Supreme Meta-Matriarch block</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">5.24 ∠ 0°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#c084fc22;color:#c084fc;padding:2px 6px;border-radius:4px;font-size:11px">ssot</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w9 · 0×</td>
+    </tr>
+<tr data-idx="5" class="task-row" onclick="selectTask(5)">
+      <td style="padding:6px 8px;color:#f472b6;font-weight:700">6</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Rewrite Pentea agent file after SSOT T1 stabilization</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">5.24 ∠ 30°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#f472b622;color:#f472b6;padding:2px 6px;border-radius:4px;font-size:11px">entity</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w6 · 0×</td>
+    </tr>
+<tr data-idx="6" class="task-row" onclick="selectTask(6)">
+      <td style="padding:6px 8px;color:#60a5fa;font-weight:700">7</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Remove [patch.crates-io] openssl block once openssl-sys ≥ 0.9.114 ships on crates.io</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">4.34 ∠ 120°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#60a5fa22;color:#60a5fa;padding:2px 6px;border-radius:4px;font-size:11px">build</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w4 · 0×</td>
+    </tr>
+<tr data-idx="7" class="task-row" onclick="selectTask(7)">
+      <td style="padding:6px 8px;color:#c084fc;font-weight:700">8</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Add §10.3 modern profiles for Orackla, Umeko, Lysandra (three T1 entities at old CRC format)</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">4.07 ∠ 0°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#c084fc22;color:#c084fc;padding:2px 6px;border-radius:4px;font-size:11px">ssot</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w7 · 0×</td>
+    </tr>
+<tr data-idx="8" class="task-row" onclick="selectTask(8)">
+      <td style="padding:6px 8px;color:#fb923c;font-weight:700">9</td>
+      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Investigate poisontr33s/psychonoir-kontrapunkt-large-file-holder (Git LFS media assets)</td>
+      <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">3.26 ∠ 60°</td>
+      <td style="padding:6px 8px"><span style="color:#64748b;font-size:10px">2.2d</span></td>
+      <td style="padding:6px 8px"><span style="background:#fb923c22;color:#fb923c;padding:2px 6px;border-radius:4px;font-size:11px">lore</span></td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">w3 · 0×</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card git-log">
+      <h2>Recent commits</h2>
+      <div style="margin:2px 0;font-size:11px;color:#94a3b8">8b6ed6ad feat(factions): expand FactionRegistry with lore overlays and schema documents</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">7613eb46 fix(factions): correct operational mandate notation in FactionRegistry</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">7cc535be feat(factions): add agents roster and expand tier 3 functionality in FactionRegistry</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">3542cf9b fix(main): remove unused imports for game_tree and game_schemas modules</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">55e26dd1 fix(package): remove obsolete activation event for paste command</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">992e787a fix(statusbar): remove obsolete activation events from package.json</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">43c2011c feat(verify): add verify:all native artifact smoke script</div><div style="margin:2px 0;font-size:11px;color:#94a3b8">c9e1f081 feat(uv.lock): add ankh-atlas package to the manifest and lock file</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  "scored": [
+    {
+      "id": "b2c3d4e5",
+      "title": "Commit satellite orbit prototype",
+      "score": 9.307556957836859,
+      "tag": "infra",
+      "color": "#34d399"
+    },
+    {
+      "id": "a1b2c3d4",
+      "title": "Add --from-sibling to teleport.ts (satellite lane)",
+      "score": 8.144112331509012,
+      "tag": "infra",
+      "color": "#34d399"
+    },
+    {
+      "id": "b8c9d0e1",
+      "title": "Resolve .github/agents/_index.md unstaged modifications",
+      "score": 5.817223098648037,
+      "tag": "infra",
+      "color": "#34d399"
+    },
+    {
+      "id": "c9d0e1f2",
+      "title": "exllamav2 backend identity resolution in tabby-modern state.py (exllamav3-native label is stale)",
+      "score": 5.817223098648037,
+      "tag": "infra",
+      "color": "#34d399"
+    },
+    {
+      "id": "c3d4e5f6",
+      "title": "Enrich SSOT §10.3.1 Claudine — add CSI-SOI-SMM Supreme Meta-Matriarch block",
+      "score": 5.2355007887832326,
+      "tag": "ssot",
+      "color": "#c084fc"
+    },
+    {
+      "id": "e5f6a7b8",
+      "title": "Rewrite Pentea agent file after SSOT T1 stabilization",
+      "score": 5.2355007887832326,
+      "tag": "entity",
+      "color": "#f472b6"
+    },
+    {
+      "id": "f6a7b8c9",
+      "title": "Remove [patch.crates-io] openssl block once openssl-sys ≥ 0.9.114 ships on crates.io",
+      "score": 4.342034432623547,
+      "tag": "build",
+      "color": "#60a5fa"
+    },
+    {
+      "id": "d4e5f6a7",
+      "title": "Add §10.3 modern profiles for Orackla, Umeko, Lysandra (three T1 entities at old CRC format)",
+      "score": 4.072056169053626,
+      "tag": "ssot",
+      "color": "#c084fc"
+    },
+    {
+      "id": "a7b8c9d0",
+      "title": "Investigate poisontr33s/psychonoir-kontrapunkt-large-file-holder (Git LFS media assets)",
+      "score": 3.25652582446766,
+      "tag": "lore",
+      "color": "#fb923c"
+    }
+  ],
+  "totalScore": 51.227733490353245
+};
+
+const CONVERGENCE_TEMPLATES = {
+  ssot: (t) => `¬missing_§10.3(${t.slice(0,20)}) ∧ hash_verified`,
+  entity: (t) => `entity_profile_modern ∧ §10.3_format_complete`,
+  lore: (t) => `lore_loaded ∧ ∀m: m.spectral≠∅`,
+  infra: (t) => `artifact_exists ∧ cargo_check_clean`,
+  build: (t) => `binary_builds ∧ ¬patch_required`,
+  ci: (t) => `gates_admitted ∧ exit_0`,
+  game: (t) => `scene_renders ∧ entity_visible`,
+  narrative: (t) => `arc_committed ∧ voice_trace_present`,
+  debt: (t) => `deprecated_artifact_removed ∧ canonical_path_active`,
+  default: (t) => `artifact_exists ∧ convergence_defined`,
+};
+
+let currentWinnerIdx = null;
+
+function selectTask(idx) {
+  document.querySelectorAll('.task-row').forEach(r => r.classList.remove('selected'));
+  const row = document.querySelector(`[data-idx="${idx}"]`);
+  if (row) row.classList.add('selected');
+  showWinner(idx);
+}
+
+function showWinner(idx) {
+  const item = DATA.scored[idx];
+  if (!item) return;
+  currentWinnerIdx = idx;
+  const panel = document.getElementById('winner-panel');
+  const tmpl = CONVERGENCE_TEMPLATES[item.tag] ?? CONVERGENCE_TEMPLATES.default;
+  panel.classList.add('has-winner');
+  panel.innerHTML = `
+    <div id="winner-title">Σ-0: ${item.title}</div>
+    <div id="winner-meta">score ${item.score.toFixed(2)} · tag:${item.tag} · id:${item.id}</div>
+    <div id="winner-convergence">Convergence: ${tmpl(item.title)}</div>
+  `;
+  // Highlight wheel segment
+  document.querySelectorAll('.wheel-seg').forEach(seg => {
+    seg.style.filter = seg.dataset.idx == idx ? 'brightness(1.6) drop-shadow(0 0 8px #f59e0b)' : 'brightness(0.5)';
+  });
+}
+
+function spin() {
+  const btn = document.getElementById('spin-btn');
+  btn.classList.add('spinning');
+  btn.disabled = true;
+
+  // Reset segments
+  document.querySelectorAll('.wheel-seg').forEach(seg => { seg.style.filter = ''; });
+
+  // Pick winner by weighted random
+  const total = DATA.totalScore;
+  let r = Math.random() * total;
+  let winIdx = DATA.scored.length - 1;
+  for (let i = 0; i < DATA.scored.length; i++) {
+    r -= DATA.scored[i].score;
+    if (r <= 0) { winIdx = i; break; }
+  }
+
+  // Compute needle target angle
+  // segments are in order; find midpoint angle of winner
+  let cumPct = 0;
+  for (let i = 0; i < winIdx; i++) cumPct += DATA.scored[i].score / total;
+  const winPct = DATA.scored[winIdx].score / total;
+  const midPct = cumPct + winPct / 2;
+  // needle starts at top (0deg = -90deg in SVG), spins clockwise
+  // to land at midPct of wheel, needle must rotate to point at midPct * 360
+  // but wheel is fixed and needle rotates — so spin at least 3 full revolutions + target
+  const targetDeg = 360 * 3 + (midPct * 360);
+  const needle = document.getElementById('needle');
+  needle.style.transform = `rotate(${targetDeg}deg)`;
+
+  setTimeout(() => {
+    btn.classList.remove('spinning');
+    btn.disabled = false;
+    selectTask(winIdx);
+  }, 2700);
+}
+</script>
+
+</body>
+</html>
