@@ -31,6 +31,8 @@
 use std::collections::HashMap;
 use super::faction_types::*;
 use super::procedural::ProceduralEngine;
+use super::lore_types::{LoreCharacterOverlay, LoreTriumvirate, LorePrimeFactionEntry};
+use super::game_schemas::GameSchemaDocument;
 
 /// Central faction registry - singleton access pattern
 pub struct FactionRegistry {
@@ -52,6 +54,14 @@ pub struct FactionRegistry {
     pub procedural_engine: ProceduralEngine,
     /// Tier 4 interloper/agent roster seeded by ProceduralEngine
     pub agents: Vec<AgentTemplate>,
+    /// Lore character overlays — combat abilities, spectral freq, chain role
+    pub lore_characters: HashMap<String, LoreCharacterOverlay>,
+    /// Triumvirate lore overlay — chains with spectral_color + faction_bonuses
+    pub lore_triumvirate: Option<LoreTriumvirate>,
+    /// Prime faction lore entries — TMO/TTG/TDPC/Svartseils abilities + metadata
+    pub lore_prime_factions: Vec<LorePrimeFactionEntry>,
+    /// Schema documents loaded from game/lore — populated by Phase 12.5
+    pub schema_docs: Vec<GameSchemaDocument>,
 }
 
 impl FactionRegistry {
@@ -72,6 +82,10 @@ impl FactionRegistry {
             registry_log: Vec::new(),
             procedural_engine: ProceduralEngine::new(42), // Default seed
             agents: Vec::new(),
+            lore_characters: HashMap::new(),
+            lore_triumvirate: None,
+            lore_prime_factions: Vec::new(),
+            schema_docs: Vec::new(),
         }
     }
 
@@ -97,6 +111,45 @@ impl FactionRegistry {
         // Phase 13.5: Procedural Tier 3 + Tier 4 expansion
         self.expand_tier3();
         self.seed_faction_agents();
+
+        // Phase 13.6: Merge authored lore overlays from game/lore/**
+        self.merge_lore("game");
+    }
+
+    /// Merge authored lore from game/lore into registry.
+    /// Character overlays keyed by character_id; faction overlays by type.
+    /// Non-fatal: missing files produce empty / None results and log a warning.
+    fn merge_lore(&mut self, game_root: &str) {
+        use super::lore_loader::{
+            load_lore_characters, load_lore_triumvirate, load_lore_prime_factions,
+        };
+
+        match load_lore_characters(game_root) {
+            Ok(chars) => {
+                log::info!("🎭 Lore: merged {} character overlays", chars.len());
+                for c in chars {
+                    self.lore_characters.insert(c.character_id.clone(), c);
+                }
+            }
+            Err(e) => log::error!("⚠️ Lore character load failed: {}", e),
+        }
+
+        match load_lore_triumvirate(game_root) {
+            Ok(t) => {
+                let chain_count = t.as_ref().map_or(0, |x| x.chains.len());
+                log::info!("⚡ Lore: merged Triumvirate overlay ({} chains)", chain_count);
+                self.lore_triumvirate = t;
+            }
+            Err(e) => log::error!("⚠️ Lore Triumvirate load failed: {}", e),
+        }
+
+        match load_lore_prime_factions(game_root) {
+            Ok(pf) => {
+                log::info!("🏴 Lore: merged {} prime faction entries", pf.len());
+                self.lore_prime_factions = pf;
+            }
+            Err(e) => log::error!("⚠️ Lore prime factions load failed: {}", e),
+        }
     }
 
     /// Manifest the 6-Layer World Architecture
@@ -145,7 +198,7 @@ impl FactionRegistry {
     /// Register Core Triumvirate
     fn register_triumvirate(&mut self, data: &super::types::GameData) {
         // Find Orackla (ID 3)
-        let orackla_entity = data.entities.iter().find(|e| e.id == 3);
+        let orackla_entity = data.entities.iter().find(|e| e.name == "Orackla Nocticula");
 
         // Create Triumvirate faction
         let triumvirate = Faction {
@@ -165,7 +218,7 @@ impl FactionRegistry {
         // Register Orackla
         if let Some(entity) = orackla_entity {
             let orackla = Matriarch {
-                entity_id: 3,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "Apex Synthesist / Abyssal Oracle".to_string(),
                 crc_type: Some(CRCType::AS),
@@ -186,13 +239,13 @@ impl FactionRegistry {
                     "Abyssal Glyphs on Mons".to_string(),
                 ],
             };
-            self.matriarchs.insert(3, orackla);
+            self.matriarchs.insert(entity.id, orackla);
         }
 
         // Register Umeko (ID 4)
-        if let Some(entity) = data.entities.iter().find(|e| e.id == 4) {
+        if let Some(entity) = data.entities.iter().find(|e| e.name == "Madam Umeko Ketsuraku") {
             let umeko = Matriarch {
-                entity_id: 4,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "Grandmistress of Architectonic Refinement".to_string(),
                 crc_type: Some(CRCType::GAR),
@@ -213,13 +266,13 @@ impl FactionRegistry {
                     "Extreme Flexibility".to_string(),
                 ],
             };
-            self.matriarchs.insert(4, umeko);
+            self.matriarchs.insert(entity.id, umeko);
         }
 
         // Register Lysandra (ID 5)
-        if let Some(entity) = data.entities.iter().find(|e| e.id == 5) {
+        if let Some(entity) = data.entities.iter().find(|e| e.name == "Dr. Lysandra Thorne") {
             let lysandra = Matriarch {
-                entity_id: 5,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "Mistress of Empathetic Deconstruction".to_string(),
                 crc_type: Some(CRCType::MEDAT),
@@ -240,7 +293,7 @@ impl FactionRegistry {
                     "Non-Euclidean Geometry".to_string(),
                 ],
             };
-            self.matriarchs.insert(5, lysandra);
+            self.matriarchs.insert(entity.id, lysandra);
         }
     }
 
@@ -318,9 +371,9 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TMO, faction);
 
-        if let Some(entity) = data.entities.iter().find(|e| e.id == 6) {
+        if let Some(entity) = data.entities.iter().find(|e| e.name == "Kali Nyx Ravenscar") {
             let kali = Matriarch {
-                entity_id: 6,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "Mistress of Abductive Seduction".to_string(),
                 crc_type: None,
@@ -341,7 +394,7 @@ impl FactionRegistry {
                     "Voice Modulation (60-120 Hz)".to_string(),
                 ],
             };
-            self.matriarchs.insert(6, kali);
+            self.matriarchs.insert(entity.id, kali);
         }
     }
 
@@ -389,9 +442,9 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TTG, faction);
 
-        if let Some(entity) = data.entities.iter().find(|e| e.id == 7) {
+        if let Some(entity) = data.entities.iter().find(|e| e.name == "Vesper Mnemosyne Lockhart") {
             let vesper = Matriarch {
-                entity_id: 7,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "Grandmaster of Epistemic Theft".to_string(),
                 crc_type: None,
@@ -412,7 +465,7 @@ impl FactionRegistry {
                     "Confession Fingers".to_string(),
                 ],
             };
-            self.matriarchs.insert(7, vesper);
+            self.matriarchs.insert(entity.id, vesper);
         }
     }
 
@@ -460,9 +513,9 @@ impl FactionRegistry {
         };
         self.factions.insert(FactionCode::TDPC, faction);
 
-        if let Some(entity) = data.entities.iter().find(|e| e.id == 8) {
+        if let Some(entity) = data.entities.iter().find(|e| e.name == "Seraphine Kore Ashenhelm") {
             let seraphine = Matriarch {
-                entity_id: 8,
+                entity_id: entity.id,
                 name: entity.name.clone(),
                 title: "High Priestess of Architectonic Purity".to_string(),
                 crc_type: None,
@@ -483,7 +536,7 @@ impl FactionRegistry {
                     "Fire-Resistant Skin".to_string(),
                 ],
             };
-            self.matriarchs.insert(8, seraphine);
+            self.matriarchs.insert(entity.id, seraphine);
         }
     }
 

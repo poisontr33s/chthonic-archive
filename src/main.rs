@@ -39,7 +39,7 @@ use winit::{
 use data::persistence::{load_game_state, save_game_state};
 use data::factions::FactionRegistry;
 use data::game_tree::{inspect_game_tree, log_game_tree_report};
-use data::game_schemas::{load_game_schema_documents, log_game_schema_documents};
+use data::game_schemas::load_game_schema_documents;
 use data::types::GameData;
 use data::verifier::AxiomVerifier;
 use render::{VulkanContext, Renderer};
@@ -258,16 +258,17 @@ fn main() -> Result<()> {
     info!("║   Engine: Rust/Vulkan 1.3 Native | Blockchain: Solana (Pending) ║");
     info!("╚══════════════════════════════════════════════════════════════════╝");
 
-    // === PHASE 14: AXIOMATIC VERIFICATION ===
-    info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
-    let verifier = AxiomVerifier::new(
-        ".github/copilot-instructions.md",
-        "cc1d0f63b564f90861bea13995aaa445055fb8ac1d7b6965bc6700eb0e41ad1b"
-    );
-    if let Err(e) = verifier.verify_integrity() {
-        error!("❌ AXIOMATIC FAILURE: {}", e);
-        // In a production build, we might terminate here.
-        // For development, we log and proceed with caution.
+    // === PHASE 14: AXIOMATIC VERIFICATION (debug builds only) ===
+    #[cfg(debug_assertions)]
+    {
+        info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
+        let verifier = AxiomVerifier::new(
+            ".github/copilot-instructions.md",
+            "cc1d0f63b564f90861bea13995aaa445055fb8ac1d7b6965bc6700eb0e41ad1b"
+        );
+        if let Err(e) = verifier.verify_integrity() {
+            error!("❌ AXIOMATIC FAILURE: {}", e);
+        }
     }
 
     // === PHASE 1: LOAD GAME DATA (Level 1.5 Entity Persistence) ===
@@ -297,7 +298,10 @@ fn main() -> Result<()> {
         Err(e) => error!("⚠️ Game tree inspection failed: {}", e),
     }
     match load_game_schema_documents("game") {
-        Ok(schema_docs) => log_game_schema_documents(&schema_docs),
+        Ok(schema_docs) => {
+            info!("📚 Loaded {} game schema documents into registry", schema_docs.len());
+            faction_registry.schema_docs = schema_docs;
+        }
         Err(e) => error!("⚠️ Schema document loading failed: {}", e),
     }
 

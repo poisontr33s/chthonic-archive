@@ -29,3 +29,5 @@ pub mod procedural;
 pub mod verifier;
 pub mod game_tree;
 pub mod game_schemas;
+pub mod lore_types;
+pub mod lore_loader;
