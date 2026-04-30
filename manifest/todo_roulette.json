@@ -55,7 +55,8 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 4,
       "origin": "session",
-      "spin_count": 0
+      "spin_count": 0,
+      "verify": { "type": "text-absent", "path": "extensions/chthonic-archive/native/Cargo.toml", "pattern": "[patch.crates-io]" }
     },
     {
       "id": "a7b8c9d0",
@@ -74,9 +75,9 @@
       "weight": 5,
       "origin": "session",
       "spin_count": 1,
-      "status": "closed",
-      "closed": "2026-04-30T00:00:00.000Z",
-      "resolution": "auto-resolved: git diff .github/agents/_index.md returned empty — already committed in a prior session. Ghost ticket. Closed on first spin."
+      "completed": "2026-04-30T00:00:00.000Z",
+      "body": "[auto-closed] ghost ticket — git diff .github/agents/_index.md returned empty. Already committed in a prior session. Detected on spin 1.",
+      "verify": { "type": "git-clean", "path": ".github/agents/_index.md" }
     },
     {
       "id": "c9d0e1f2",

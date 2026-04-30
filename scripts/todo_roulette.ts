@@ -35,6 +35,7 @@
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { randomUUID } from "crypto";
+import { execSync } from "child_process";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -70,7 +71,20 @@ interface TodoEntry {
   weight: number; // 1–10
   origin: "manual" | "session" | "git-trailer";
   spin_count: number;
+  verify?: VerifyCondition; // optional preflight auto-resolution check
 }
+
+// ── Verify Conditions (stewarding layer) ──────────────────────────────────────
+// Structured conditions attached to an entry. If the condition is already met,
+// the task is auto-resolved on next spin — "ghost detection" without a human.
+
+type VerifyCondition =
+  | { type: "git-clean"; path: string }           // git diff <path> is empty → task already done
+  | { type: "file-absent"; path: string }          // file/pattern was to be removed and is gone
+  | { type: "text-absent"; path: string; pattern: string } // a string no longer appears in a file
+  | { type: "file-exists"; path: string };         // artifact must exist — winner only valid if present
+
+const REPO_ROOT = join(import.meta.dir, "..");
 
 interface Manifest {
   version: "1";
@@ -162,6 +176,55 @@ function weightedRandom(scores: number[]): number {
   return scores.length - 1;
 }
 
+// ── Preflight Verifier ────────────────────────────────────────────────────────
+// Run before recording a spin result. If the condition is already satisfied,
+// the task is auto-closeable — no human work needed. Returns null if no verify
+// condition is attached (trust the entry).
+
+function runPreflight(entry: TodoEntry): { resolved: boolean; reason: string } | null {
+  if (!entry.verify) return null;
+  const v = entry.verify;
+  try {
+    if (v.type === "git-clean") {
+      const diff = execSync(`git diff -- "${v.path}"`, { cwd: REPO_ROOT, encoding: "utf-8" }).trim();
+      const diffCached = execSync(`git diff --cached -- "${v.path}"`, { cwd: REPO_ROOT, encoding: "utf-8" }).trim();
+      if (diff === "" && diffCached === "") {
+        return { resolved: true, reason: `git-clean: ${v.path} has no unstaged/staged changes` };
+      }
+      return { resolved: false, reason: `git-clean: ${v.path} still dirty` };
+    }
+    if (v.type === "file-absent") {
+      const abs = join(REPO_ROOT, v.path);
+      if (!existsSync(abs)) {
+        return { resolved: true, reason: `file-absent: ${v.path} does not exist` };
+      }
+      return { resolved: false, reason: `file-absent: ${v.path} still present` };
+    }
+    if (v.type === "text-absent") {
+      const abs = join(REPO_ROOT, v.path);
+      if (!existsSync(abs)) {
+        return { resolved: true, reason: `text-absent: ${v.path} does not exist (pattern vacuously absent)` };
+      }
+      const content = readFileSync(abs, "utf-8");
+      if (!content.includes(v.pattern)) {
+        return { resolved: true, reason: `text-absent: pattern "${v.pattern}" not found in ${v.path}` };
+      }
+      return { resolved: false, reason: `text-absent: pattern "${v.pattern}" still present in ${v.path}` };
+    }
+    if (v.type === "file-exists") {
+      const abs = join(REPO_ROOT, v.path);
+      if (existsSync(abs)) {
+        return { resolved: false, reason: `file-exists: ${v.path} present — task is valid` };
+      }
+      return { resolved: true, reason: `file-exists: ${v.path} was supposed to exist but is absent — stale ticket` };
+    }
+  } catch {
+    // Git not available or path error — cannot verify, pass through
+    return null;
+  }
+  return null;
+}
+
 function spin(manifest: Manifest): SpinResult | null {
   const active = manifest.entries.filter((e) => !e.completed);
   if (active.length === 0) return null;
@@ -241,14 +304,42 @@ function cmdSpin(args: string[]): void {
     process.exit(0);
   }
 
-  const result = spin(manifest);
+  // Preflight pass: auto-close ghost tickets before spinning
+  let ghostsClosed = 0;
+  for (const entry of active) {
+    const check = runPreflight(entry);
+    if (check?.resolved) {
+      const idx = manifest.entries.findIndex((e) => e.id === entry.id);
+      if (idx >= 0) {
+        manifest.entries[idx].completed = new Date().toISOString();
+        manifest.entries[idx].spin_count = (manifest.entries[idx].spin_count ?? 0) + 1;
+        // Store resolution reason in body
+        manifest.entries[idx].body = `[auto-closed] ${check.reason}`;
+      }
+      console.log(`\n  ⚡ Preflight auto-closed ghost [${entry.id}]: ${check.reason}`);
+      ghostsClosed++;
+    }
+  }
+  if (ghostsClosed > 0 && !dryRun) {
+    saveManifest(manifest);
+    console.log(`  ${ghostsClosed} ghost(s) cleared before spin.\n`);
+  }
+
+  // Re-check active after ghost sweep
+  const liveActive = manifest.entries.filter((e) => !e.completed);
+  if (liveActive.length === 0) {
+    console.log("\n  Wheel cleared by preflight — all tasks resolved. Add new tasks with --add.\n");
+    process.exit(0);
+  }
+
+  const result = spin({ ...manifest, entries: liveActive });
   if (!result) {
     console.log("\n  No tasks to spin.\n");
     process.exit(0);
   }
 
   // Compute all scores for wheel render
-  const allScored = active.map((e) => {
+  const allScored = liveActive.map((e) => {
     const { score } = eulerScore(e);
     return { entry: e, score };
   });
@@ -410,6 +501,24 @@ if (args.includes("--add")) {
   cmdList(args);
 } else if (args.includes("--report")) {
   cmdReport(args);
+} else if (args.includes("--preflight")) {
+  // Stewarding sweep: check all active tasks against their verify conditions
+  const manifest = loadManifest();
+  const active = manifest.entries.filter((e) => !e.completed);
+  console.log(`\n  ─── Preflight Steward Sweep (${active.length} active tasks) ───\n`);
+  for (const entry of active) {
+    const check = runPreflight(entry);
+    if (!check) {
+      console.log(`  [${entry.id}]  —  no verify condition  "${entry.title}"`);
+    } else if (check.resolved) {
+      console.log(`  [${entry.id}]  ⚡ AUTO-RESOLVABLE  "${entry.title}"`);
+      console.log(`             reason: ${check.reason}`);
+    } else {
+      console.log(`  [${entry.id}]  ✗ still open  "${entry.title}"`);
+      console.log(`             status: ${check.reason}`);
+    }
+  }
+  console.log();
 } else {
   // Default: spin (respects --dry-run)
   cmdSpin(args);
