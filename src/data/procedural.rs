@@ -35,7 +35,6 @@ impl ProceduralEngine {
 
     /// MMPS-PAGRO: Generate a Manifested Sub-MILF (Tier 3)
     /// $matriarch${base}+$type${specialization}
-    #[allow(dead_code)] // TODO: Hook into the runtime Tier 3 manifestation flow.
     pub fn generate_sub_milf(
         &self,
         base_id: u32,
@@ -70,7 +69,6 @@ impl ProceduralEngine {
     }
 
     /// Generate a Tier 4 Interloper Agent
-    #[allow(dead_code)] // TODO: Hook into dynamic faction encounter generation.
     pub fn generate_agent(&self, faction_code: FactionCode) -> AgentTemplate {
         let mut rng = rand::rng();
         let agent_id = rng.random_range(50000..99999);

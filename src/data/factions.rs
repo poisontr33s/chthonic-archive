@@ -50,6 +50,8 @@ pub struct FactionRegistry {
     pub registry_log: Vec<String>,
     /// Procedural generation engine
     pub procedural_engine: ProceduralEngine,
+    /// Tier 4 interloper/agent roster seeded by ProceduralEngine
+    pub agents: Vec<AgentTemplate>,
 }
 
 impl FactionRegistry {
@@ -69,6 +71,7 @@ impl FactionRegistry {
             active_handoffs: Vec::new(),
             registry_log: Vec::new(),
             procedural_engine: ProceduralEngine::new(42), // Default seed
+            agents: Vec::new(),
         }
     }
 
@@ -90,12 +93,53 @@ impl FactionRegistry {
 
         // Phase 13: Manifest the 6-layer Archive
         self.manifest_archive();
+
+        // Phase 13.5: Procedural Tier 3 + Tier 4 expansion
+        self.expand_tier3();
+        self.seed_faction_agents();
     }
 
     /// Manifest the 6-Layer World Architecture
     pub fn manifest_archive(&mut self) {
         let engine = ProceduralEngine::new(self.procedural_engine.seed);
         engine.manifest_world_layers(self);
+    }
+
+    /// Phase 13.5 — Expand Tier 3 Sub-MILFs from all Tier 1 (CRC) base matriarchs.
+    /// Uses a shadow clone of the procedural engine to avoid borrow conflict with &self.
+    pub fn expand_tier3(&mut self) {
+        let engine = ProceduralEngine::new(self.procedural_engine.seed);
+        // Collect CRC (Tier 1) matriarch IDs — only those with a crc_type are Tier 1
+        let base_ids: Vec<u32> = self.matriarchs
+            .iter()
+            .filter(|(_, m)| m.crc_type.is_some())
+            .map(|(id, _)| *id)
+            .collect();
+
+        for base_id in base_ids {
+            for spec in ["Synthesis", "Chaos", "Purification"] {
+                if let Some(sub_milf) = engine.generate_sub_milf(base_id, spec, self) {
+                    let sub_id = sub_milf.entity_id;
+                    log::info!("🌀 MMPS Tier 3: {} manifested (id={})", sub_milf.name, sub_id);
+                    self.matriarchs.insert(sub_id, sub_milf);
+                }
+            }
+        }
+        self.log_invocation("MMPS-PAGRO: Tier 3 Sub-MILF expansion complete");
+    }
+
+    /// Phase 13.5 — Seed Tier 4 Interloper Agents for every registered faction.
+    /// Offset seed by 1 from the main engine to produce distinct agent identities.
+    pub fn seed_faction_agents(&mut self) {
+        let engine = ProceduralEngine::new(self.procedural_engine.seed.wrapping_add(1));
+        let faction_codes: Vec<FactionCode> = self.factions.keys().copied().collect();
+
+        for faction_code in faction_codes {
+            let agent = engine.generate_agent(faction_code);
+            log::info!("🎭 Tier 4 agent seeded: {} (faction: {:?})", agent.name, agent.faction);
+            self.agents.push(agent);
+        }
+        self.log_invocation("MMPS-T4: Tier 4 agent seeding complete");
     }
 
     /// Register Core Triumvirate
