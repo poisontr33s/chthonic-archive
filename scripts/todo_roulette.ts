@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// @SID: TODO_ROULETTE_V1
+// @SID: TODO_ROULETTE_V2
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ scripts/todo_roulette.ts
@@ -24,12 +24,16 @@
 // ║
 // ║ Usage:
 // ║   bun run scripts/todo_roulette.ts --spin              (default)
-// ║   bun run scripts/todo_roulette.ts --add "title" [--tag ssot] [--weight 5]
+// ║   bun run scripts/todo_roulette.ts --add "title" [--tags ssot,entity] [--weight 5]
 // ║   bun run scripts/todo_roulette.ts --complete <id>
 // ║   bun run scripts/todo_roulette.ts --list
 // ║   bun run scripts/todo_roulette.ts --list --all        (include completed)
 // ║   bun run scripts/todo_roulette.ts --report
 // ║   bun run scripts/todo_roulette.ts --dry-run           (spin without recording)
+// ║   bun run scripts/todo_roulette.ts --preflight          (verify sweep, read-only)
+// ║   bun run scripts/todo_roulette.ts --preflight --apply  (verify + auto-close resolved)
+// ║   bun run scripts/todo_roulette.ts --nudge <id> [--days <n>]  (boost urgency)
+// ║   bun run scripts/todo_roulette.ts --stats              (entropy, tag distribution)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
@@ -40,6 +44,7 @@ import { execSync } from "child_process";
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const MANIFEST_PATH = join(import.meta.dir, "..", "manifest", "todo_roulette.json");
+const HISTORY_PATH  = join(import.meta.dir, "..", "manifest", "todo_roulette_history.jsonl");
 const KAPPA = 0.07; // exponential growth constant per idle day
 
 /** Tag families → phase angle arc (radians, 0…2π) */
@@ -320,9 +325,13 @@ function cmdSpin(args: string[]): void {
       ghostsClosed++;
     }
   }
-  if (ghostsClosed > 0 && !dryRun) {
-    saveManifest(manifest);
-    console.log(`  ${ghostsClosed} ghost(s) cleared before spin.\n`);
+  if (ghostsClosed > 0) {
+    if (!dryRun) {
+      saveManifest(manifest);
+      console.log(`  ${ghostsClosed} ghost(s) cleared before spin.\n`);
+    } else {
+      console.log(`  [dry-run] ${ghostsClosed} ghost(s) would be cleared (not saved).\n`);
+    }
   }
 
   // Re-check active after ghost sweep
@@ -357,6 +366,7 @@ function cmdSpin(args: string[]): void {
     manifest.last_spun = new Date().toISOString();
     manifest.total_spins = (manifest.total_spins ?? 0) + 1;
     saveManifest(manifest);
+    appendHistory(result);
     console.log(`  [recorded — spin #${manifest.total_spins}]\n`);
   } else {
     console.log("  [dry-run — not recorded]\n");
@@ -371,8 +381,14 @@ function cmdAdd(args: string[]): void {
   }
   const title = args[titleIdx];
 
-  const tagIdx = args.indexOf("--tag");
-  const tag = tagIdx >= 0 && tagIdx + 1 < args.length ? args[tagIdx + 1] : null;
+  const tagsRaw = (() => {
+    const tagsIdx = args.indexOf("--tags");
+    if (tagsIdx >= 0 && tagsIdx + 1 < args.length)
+      return args[tagsIdx + 1].split(",").map((t) => t.trim()).filter(Boolean);
+    const tagIdx = args.indexOf("--tag");
+    if (tagIdx >= 0 && tagIdx + 1 < args.length) return [args[tagIdx + 1]];
+    return [] as string[];
+  })();
 
   const weightIdx = args.indexOf("--weight");
   const weight =
@@ -390,7 +406,7 @@ function cmdAdd(args: string[]): void {
   const entry: TodoEntry = {
     id: randomUUID().split("-")[0], // short 8-char id
     title,
-    tags: tag ? [tag] : [],
+    tags: tagsRaw,
     created: new Date().toISOString(),
     weight: Math.min(10, Math.max(1, weight)),
     origin,
@@ -489,6 +505,103 @@ function cmdReport(args: string[]): void {
   console.log(JSON.stringify(report, null, 2));
 }
 
+// ── History ───────────────────────────────────────────────────────────────────
+
+function appendHistory(result: SpinResult): void {
+  const line = JSON.stringify({
+    ts: new Date().toISOString(),
+    id: result.task.id,
+    title: result.task.title,
+    score: +result.score.toFixed(4),
+    spin_vector: result.spin_vector,
+    arc_pct: +result.wheel_arc_pct.toFixed(2),
+    staleness_days: +result.staleness_days.toFixed(2),
+  });
+  const dir = join(import.meta.dir, "..", "manifest");
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  const existing = existsSync(HISTORY_PATH) ? readFileSync(HISTORY_PATH, "utf-8") : "";
+  writeFileSync(HISTORY_PATH, existing + line + "\n", "utf-8");
+}
+
+// ── Nudge ─────────────────────────────────────────────────────────────────────
+
+/** Reset last_spun to N days ago, inflating staleness and urgency score. */
+function cmdNudge(args: string[]): void {
+  const idx = args.indexOf("--nudge");
+  if (idx < 0 || idx + 1 >= args.length) {
+    console.error("  Usage: --nudge <id> [--days <n>]  (inflate staleness by N days, default 30)");
+    process.exit(1);
+  }
+  const id = args[idx + 1];
+  const daysIdx = args.indexOf("--days");
+  const days = daysIdx >= 0 && daysIdx + 1 < args.length ? parseInt(args[daysIdx + 1], 10) : 30;
+  const manifest = loadManifest();
+  const entry = manifest.entries.find((e) => e.id === id || e.id.startsWith(id));
+  if (!entry || entry.completed) {
+    console.error(`  No active task found matching id: ${id}`);
+    process.exit(1);
+  }
+  const anchor = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+  entry.last_spun = anchor;
+  saveManifest(manifest);
+  const { score, phi } = eulerScore(entry);
+  const sv = spinVector(score, phi);
+  console.log(`\n  ⚡ Nudged [${entry.id}] — staleness inflated to ${days}d`);
+  console.log(`  New score: ${sv.label}\n`);
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+
+/** Wheel entropy, tag distribution, staleness summary. */
+function cmdStats(): void {
+  const manifest = loadManifest();
+  const active = manifest.entries.filter((e) => !e.completed);
+  if (active.length === 0) {
+    console.log("\n  No active tasks.\n");
+    return;
+  }
+  const scored = active.map((e) => {
+    const { score, phi, staleness } = eulerScore(e);
+    return { entry: e, score, phi, staleness };
+  });
+  const totalScore = scored.reduce((a, b) => a + b.score, 0);
+  const entropy = scored.reduce((H, s) => {
+    const p = s.score / totalScore;
+    return H - (p > 0 ? p * Math.log2(p) : 0);
+  }, 0);
+  const maxEntropy = Math.log2(active.length);
+  const tagCounts: Record<string, number> = {};
+  for (const { entry } of scored) {
+    for (const t of entry.tags) tagCounts[t] = (tagCounts[t] ?? 0) + 1;
+  }
+  const stalenesses = scored.map((s) => s.staleness);
+  const avgStaleness = stalenesses.reduce((a, b) => a + b, 0) / stalenesses.length;
+  const maxStaleness = Math.max(...stalenesses);
+  console.log(`\n  ─── Wheel Statistics ───────────────────────────────────\n`);
+  console.log(`  Active tasks   : ${active.length}`);
+  console.log(`  Completed      : ${manifest.entries.filter((e) => e.completed).length}`);
+  console.log(`  Total spins    : ${manifest.total_spins}`);
+  console.log(`  Wheel entropy  : H=${entropy.toFixed(3)} bits  (max ${maxEntropy.toFixed(3)})`);
+  console.log(`  Uniformity     : ${((entropy / maxEntropy) * 100).toFixed(1)}%`);
+  console.log(`  Avg staleness  : ${avgStaleness.toFixed(1)}d`);
+  console.log(`  Max staleness  : ${maxStaleness.toFixed(1)}d`);
+  if (Object.keys(tagCounts).length > 0) {
+    console.log(`\n  Tag distribution:`);
+    for (const [tag, count] of Object.entries(tagCounts).sort((a, b) => b[1] - a[1])) {
+      const bar = "█".repeat(count * 2);
+      console.log(`    #${tag.padEnd(12)} ${bar} ${count}`);
+    }
+  }
+  console.log(`\n  Top 3 by Euler score:`);
+  const top3 = [...scored].sort((a, b) => b.score - a.score).slice(0, 3);
+  for (const { entry, score, phi } of top3) {
+    const sv = spinVector(score, phi);
+    const title = entry.title.length > 48 ? entry.title.slice(0, 45) + "…" : entry.title;
+    console.log(`    [${entry.id}] ${sv.label.padEnd(20)} ${title}`);
+  }
+  console.log();
+}
+
 // ── Entry ─────────────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);
@@ -502,10 +615,12 @@ if (args.includes("--add")) {
 } else if (args.includes("--report")) {
   cmdReport(args);
 } else if (args.includes("--preflight")) {
-  // Stewarding sweep: check all active tasks against their verify conditions
+  const apply = args.includes("--apply");
   const manifest = loadManifest();
   const active = manifest.entries.filter((e) => !e.completed);
-  console.log(`\n  ─── Preflight Steward Sweep (${active.length} active tasks) ───\n`);
+  const mode = apply ? "apply" : "read-only";
+  console.log(`\n  ─── Preflight Steward Sweep (${active.length} active tasks, ${mode}) ───\n`);
+  let closedCount = 0;
   for (const entry of active) {
     const check = runPreflight(entry);
     if (!check) {
@@ -513,12 +628,32 @@ if (args.includes("--add")) {
     } else if (check.resolved) {
       console.log(`  [${entry.id}]  ⚡ AUTO-RESOLVABLE  "${entry.title}"`);
       console.log(`             reason: ${check.reason}`);
+      if (apply) {
+        const idx = manifest.entries.findIndex((e) => e.id === entry.id);
+        if (idx >= 0) {
+          manifest.entries[idx].completed = new Date().toISOString();
+          manifest.entries[idx].body = `[auto-closed] ${check.reason}`;
+        }
+        closedCount++;
+      }
     } else {
       console.log(`  [${entry.id}]  ✗ still open  "${entry.title}"`);
       console.log(`             status: ${check.reason}`);
     }
   }
+  if (apply) {
+    if (closedCount > 0) {
+      saveManifest(manifest);
+      console.log(`\n  [--apply] Auto-closed ${closedCount} resolved task(s). Manifest saved.\n`);
+    } else {
+      console.log(`\n  [--apply] No resolved tasks found. Nothing to close.\n`);
+    }
+  }
   console.log();
+} else if (args.includes("--nudge")) {
+  cmdNudge(args);
+} else if (args.includes("--stats")) {
+  cmdStats();
 } else {
   // Default: spin (respects --dry-run)
   cmdSpin(args);
