@@ -45,5 +45,5 @@ toml = "0.8"
 shared_memory = "0.12"
 libloading = "0.8"
 
-# openssl-sys 0.9.114 (released after PR #2591, merged 2026-04-16) includes
-# OpenSSL 4.0 support natively. No [patch.crates-io] override needed.
+# openssl-sys 0.9.114 (2026-04-16 PR #2591) includes OpenSSL 4.0 support natively.
+# Git pin removed. Crates.io version resolves correctly against OpenSSL 4.0.0.
