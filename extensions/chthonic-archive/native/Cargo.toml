@@ -45,11 +45,5 @@ toml = "0.8"
 shared_memory = "0.12"
 libloading = "0.8"
 
-# ── OpenSSL 4.0 forward-fix ─────────────────────────────────────────
-# System has OpenSSL 4.0.0; openssl-sys 0.9.113 only supports up to 3.x.
-# PR #2591 (merged 2026-04-16) added 4.0 support to rust-openssl master
-# but hasn't been released to crates.io yet.
-# REMOVE this [patch] block once openssl-sys ≥ 0.9.114 ships with 4.0 support.
-[patch.crates-io]
-openssl      = { git = "https://github.com/rust-openssl/rust-openssl.git", branch = "master" }
-openssl-sys  = { git = "https://github.com/rust-openssl/rust-openssl.git", branch = "master" }
+# openssl-sys 0.9.114 (released after PR #2591, merged 2026-04-16) includes
+# OpenSSL 4.0 support natively. No [patch.crates-io] override needed.
