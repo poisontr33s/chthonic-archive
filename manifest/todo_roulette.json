@@ -1,7 +1,7 @@
 {
   "version": "1",
   "created": "2026-04-28T00:00:00.000Z",
-  "total_spins": 2,
+  "total_spins": 4,
   "entries": [
     {
       "id": "a1b2c3d4",
@@ -47,7 +47,8 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 7,
       "origin": "session",
-      "spin_count": 0
+      "spin_count": 1,
+      "last_spun": "2026-04-30T05:07:56.905Z"
     },
     {
       "id": "e5f6a7b8",
@@ -59,8 +60,8 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 6,
       "origin": "session",
-      "spin_count": 1,
-      "last_spun": "2026-04-30T04:47:35.074Z"
+      "spin_count": 2,
+      "last_spun": "2026-04-30T05:08:00.904Z"
     },
     {
       "id": "f6a7b8c9",
@@ -139,5 +140,5 @@
       }
     }
   ],
-  "last_spun": "2026-04-30T04:47:35.074Z"
+  "last_spun": "2026-04-30T05:08:00.904Z"
 }

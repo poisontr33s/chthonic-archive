@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// @SID: TODO_ROULETTE_V2
+// @SID: TODO_ROULETTE_V3
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ scripts/todo_roulette.ts
@@ -34,18 +34,21 @@
 // ║   bun run scripts/todo_roulette.ts --preflight --apply  (verify + auto-close resolved)
 // ║   bun run scripts/todo_roulette.ts --nudge <id> [--days <n>]  (boost urgency)
 // ║   bun run scripts/todo_roulette.ts --stats              (entropy, tag distribution)
+// ║   bun run scripts/todo_roulette.ts --history [--top <n>] [--since <YYYY-MM-DD>]  (spin log)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { randomUUID } from "crypto";
 import { execSync } from "child_process";
+import { Database } from "bun:sqlite";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const MANIFEST_PATH = join(import.meta.dir, "..", "manifest", "todo_roulette.json");
 const HISTORY_PATH  = join(import.meta.dir, "..", "manifest", "todo_roulette_history.jsonl");
 const KAPPA = 0.07; // exponential growth constant per idle day
+const DB_PATH = join(import.meta.dir, "..", "manifest", "roulette.db");
 
 /** Tag families → phase angle arc (radians, 0…2π) */
 const TAG_PHASE: Record<string, number> = {
@@ -62,6 +65,37 @@ const TAG_PHASE: Record<string, number> = {
   debt:      (11 * Math.PI) / 6,
   default:   Math.PI / 4, // fallback
 };
+
+// ── ANSI Colors ───────────────────────────────────────────────────────────────
+const R        = "\x1b[0m";   // reset
+const B        = "\x1b[1m";   // bold
+const DIM      = "\x1b[2m";   // dim
+const GOLD     = "\x1b[33m";  // winner / headers
+const CYAN     = "\x1b[36m";  // spin vector
+const GREEN_C  = "\x1b[32m";  // high uniformity
+const RED_C    = "\x1b[31m";  // low uniformity / ghost
+
+const TAG_COLOR: Record<string, string> = {
+  ssot:      "\x1b[35m",  // magenta
+  entity:    "\x1b[34m",  // blue
+  lore:      "\x1b[36m",  // cyan
+  infra:     "\x1b[33m",  // yellow
+  build:     "\x1b[32m",  // green
+  ci:        "\x1b[92m",  // bright green
+  game:      "\x1b[31m",  // red
+  narrative: "\x1b[95m",  // bright magenta
+  session:   "\x1b[94m",  // bright blue
+  handoff:   "\x1b[96m",  // bright cyan
+  debt:      "\x1b[91m",  // bright red
+};
+function tagPill(t: string): string {
+  return `${TAG_COLOR[t] ?? "\x1b[37m"}#${t}${R}`;
+}
+function uniformityColor(pct: number): string {
+  if (pct >= 80) return GREEN_C;
+  if (pct >= 50) return GOLD;
+  return RED_C;
+}
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -262,39 +296,44 @@ function spin(manifest: Manifest): SpinResult | null {
 function renderWheel(results: Array<{ entry: TodoEntry; score: number }>, winner: TodoEntry): void {
   const total = results.reduce((a, b) => a + b.score, 0);
   const sorted = [...results].sort((a, b) => b.score - a.score).slice(0, 8);
-  console.log("\n  ┌─ Wheel (top 8) ──────────────────────────────────────┐");
+  console.log(`\n  ${GOLD}${B}┌─ Wheel (top 8) ──────────────────────────────────────┐${R}`);
   for (const r of sorted) {
+    const isWinner = r.entry.id === winner.id;
     const pct = total > 0 ? (r.score / total) * 100 : 0;
     const bar = "█".repeat(Math.round(pct / 3)).padEnd(33, "░");
-    const marker = r.entry.id === winner.id ? " ◀ LANDED" : "";
-    console.log(`  │ ${bar} ${pct.toFixed(1).padStart(5)}%${marker}`);
-    const title = r.entry.title.length > 46 ? r.entry.title.slice(0, 43) + "…" : r.entry.title;
-    console.log(`  │   ${title}`);
+    const marker = isWinner ? ` ${GOLD}${B}◀ LANDED${R}` : "";
+    const barStr = isWinner ? `${GOLD}${B}${bar}${R}` : `${DIM}${bar}${R}`;
+    console.log(`  │ ${barStr} ${pct.toFixed(1).padStart(5)}%${marker}`);
+    const rawTitle = r.entry.title.length > 46 ? r.entry.title.slice(0, 43) + "…" : r.entry.title;
+    const titleStr = isWinner ? `${B}${rawTitle}${R}` : rawTitle;
+    const pills = r.entry.tags.slice(0, 3).map(tagPill).join(" ");
+    console.log(`  │   ${titleStr}  ${pills}`);
   }
-  console.log("  └──────────────────────────────────────────────────────┘");
+  console.log(`  ${GOLD}${B}└──────────────────────────────────────────────────────┘${R}`);
 }
 
 function renderResult(r: SpinResult): void {
-  const tags = r.task.tags.length ? r.task.tags.map((t) => `#${t}`).join(" ") : "(no tags)";
-  console.log(`\n  ╔══ TODOI ROULETTE — SPIN RESULT ═══════════════════════╗`);
-  console.log(`  ║`);
-  console.log(`  ║  ${r.task.title}`);
-  console.log(`  ║`);
-  console.log(`  ║  id       : ${r.task.id}`);
-  console.log(`  ║  tags     : ${tags}`);
-  console.log(`  ║  weight   : ${r.task.weight}/10`);
-  console.log(`  ║  staleness: ${r.staleness_days.toFixed(1)}d`);
-  console.log(`  ║  spin vec : ${r.spin_vector}   (e^(iφ) form)`);
-  console.log(`  ║  arc      : ${r.wheel_arc_pct.toFixed(1)}% of wheel`);
+  const tagStr = r.task.tags.length ? r.task.tags.map(tagPill).join(" ") : `${DIM}(no tags)${R}`;
+  const G = `${GOLD}${B}`;
+  console.log(`\n  ${G}╔══ TODOI ROULETTE — SPIN RESULT ═══════════════════════╗${R}`);
+  console.log(`  ${G}║${R}`);
+  console.log(`  ${G}║${R}  ${B}${r.task.title}${R}`);
+  console.log(`  ${G}║${R}`);
+  console.log(`  ${G}║${R}  id       : ${DIM}${r.task.id}${R}`);
+  console.log(`  ${G}║${R}  tags     : ${tagStr}`);
+  console.log(`  ${G}║${R}  weight   : ${B}${r.task.weight}/10${R}`);
+  console.log(`  ${G}║${R}  staleness: ${r.staleness_days.toFixed(1)}d`);
+  console.log(`  ${G}║${R}  spin vec : ${CYAN}${r.spin_vector}${R}   ${DIM}(e^(iφ) form)${R}`);
+  console.log(`  ${G}║${R}  arc      : ${r.wheel_arc_pct.toFixed(1)}% of wheel`);
   if (r.task.body) {
-    console.log(`  ║`);
+    console.log(`  ${G}║${R}`);
     const bodyLines = r.task.body.split("\n").slice(0, 4);
     for (const line of bodyLines) {
-      console.log(`  ║  ${line}`);
+      console.log(`  ${G}║${R}  ${DIM}${line}${R}`);
     }
   }
-  console.log(`  ║`);
-  console.log(`  ╚════════════════════════════════════════════════════════╝\n`);
+  console.log(`  ${G}║${R}`);
+  console.log(`  ${G}╚════════════════════════════════════════════════════════╝${R}\n`);
 }
 
 // ── Commands ──────────────────────────────────────────────────────────────────
@@ -507,6 +546,39 @@ function cmdReport(args: string[]): void {
 
 // ── History ───────────────────────────────────────────────────────────────────
 
+function openDb(): Database {
+  const dir = join(import.meta.dir, "..", "manifest");
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  const db = new Database(DB_PATH);
+  db.run(`CREATE TABLE IF NOT EXISTS spins (
+    seq INTEGER PRIMARY KEY AUTOINCREMENT,
+    ts TEXT NOT NULL,
+    task_id TEXT NOT NULL,
+    title TEXT NOT NULL,
+    score REAL,
+    spin_vector TEXT,
+    arc_pct REAL,
+    staleness_days REAL
+  )`);
+  db.run(`CREATE INDEX IF NOT EXISTS idx_task_id ON spins(task_id)`);
+  db.run(`CREATE INDEX IF NOT EXISTS idx_ts ON spins(ts)`);
+  return db;
+}
+
+function syncToDb(result: SpinResult): void {
+  try {
+    const db = openDb();
+    db.run(
+      `INSERT INTO spins (ts, task_id, title, score, spin_vector, arc_pct, staleness_days)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [new Date().toISOString(), result.task.id, result.task.title,
+       +result.score.toFixed(4), result.spin_vector,
+       +result.wheel_arc_pct.toFixed(2), +result.staleness_days.toFixed(2)]
+    );
+    db.close();
+  } catch { /* DB sync non-fatal — JSONL is authoritative */ }
+}
+
 function appendHistory(result: SpinResult): void {
   const line = JSON.stringify({
     ts: new Date().toISOString(),
@@ -521,6 +593,7 @@ function appendHistory(result: SpinResult): void {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   const existing = existsSync(HISTORY_PATH) ? readFileSync(HISTORY_PATH, "utf-8") : "";
   writeFileSync(HISTORY_PATH, existing + line + "\n", "utf-8");
+  syncToDb(result);
 }
 
 // ── Nudge ─────────────────────────────────────────────────────────────────────
@@ -550,6 +623,52 @@ function cmdNudge(args: string[]): void {
   console.log(`  New score: ${sv.label}\n`);
 }
 
+// ── History Query ─────────────────────────────────────────────────────────────
+
+function cmdHistory(args: string[]): void {
+  const topIdx = args.indexOf("--top");
+  const limit = topIdx >= 0 && topIdx + 1 < args.length ? parseInt(args[topIdx + 1], 10) : 20;
+  const sinceIdx = args.indexOf("--since");
+  const since = sinceIdx >= 0 && sinceIdx + 1 < args.length ? args[sinceIdx + 1] : null;
+  try {
+    const db = openDb();
+    let q = `SELECT ts, task_id, title, score, spin_vector, arc_pct FROM spins`;
+    const params: (string | number)[] = [];
+    if (since) { q += ` WHERE ts >= ?`; params.push(since); }
+    q += ` ORDER BY ts DESC LIMIT ?`;
+    params.push(limit);
+    const rows = db.query(q).all(...params) as Array<{
+      ts: string; task_id: string; title: string;
+      score: number; spin_vector: string; arc_pct: number;
+    }>;
+    db.close();
+    console.log(`\n  ${GOLD}${B}─── Spin History (last ${rows.length}) ───${R}\n`);
+    for (const row of rows) {
+      const d = `${DIM}${row.ts.slice(0, 10)}${R}`;
+      const vec = `${CYAN}${row.spin_vector}${R}`;
+      const titleStr = row.title.length > 44 ? row.title.slice(0, 41) + "…" : row.title;
+      console.log(`  ${d}  [${row.task_id}]  ${vec}  ${titleStr}`);
+    }
+    if (rows.length === 0) console.log(`  ${DIM}(no spins recorded yet)${R}`);
+    console.log();
+  } catch {
+    // Fallback: parse JSONL directly
+    if (!existsSync(HISTORY_PATH)) { console.log("\n  No history yet.\n"); return; }
+    const lines = readFileSync(HISTORY_PATH, "utf-8").trim().split("\n")
+      .filter(Boolean).reverse().slice(0, limit);
+    console.log(`\n  ${GOLD}${B}─── Spin History (JSONL fallback, last ${lines.length}) ───${R}\n`);
+    for (const line of lines) {
+      try {
+        const row = JSON.parse(line);
+        const d = `${DIM}${String(row.ts).slice(0, 10)}${R}`;
+        const vec = `${CYAN}${row.spin_vector}${R}`;
+        console.log(`  ${d}  [${row.id}]  ${vec}  ${row.title}`);
+      } catch { /* malformed line */ }
+    }
+    console.log();
+  }
+}
+
 // ── Stats ─────────────────────────────────────────────────────────────────────
 
 /** Wheel entropy, tag distribution, staleness summary. */
@@ -577,27 +696,29 @@ function cmdStats(): void {
   const stalenesses = scored.map((s) => s.staleness);
   const avgStaleness = stalenesses.reduce((a, b) => a + b, 0) / stalenesses.length;
   const maxStaleness = Math.max(...stalenesses);
-  console.log(`\n  ─── Wheel Statistics ───────────────────────────────────\n`);
-  console.log(`  Active tasks   : ${active.length}`);
+  const uniformityPct = active.length > 1 ? (entropy / maxEntropy) * 100 : 100;
+  const uColor = uniformityColor(uniformityPct);
+  console.log(`\n  ${GOLD}${B}─── Wheel Statistics ───────────────────────────────────${R}\n`);
+  console.log(`  Active tasks   : ${B}${active.length}${R}`);
   console.log(`  Completed      : ${manifest.entries.filter((e) => e.completed).length}`);
   console.log(`  Total spins    : ${manifest.total_spins}`);
-  console.log(`  Wheel entropy  : H=${entropy.toFixed(3)} bits  (max ${maxEntropy.toFixed(3)})`);
-  console.log(`  Uniformity     : ${((entropy / maxEntropy) * 100).toFixed(1)}%`);
+  console.log(`  Wheel entropy  : ${CYAN}H=${entropy.toFixed(3)} bits${R}  ${DIM}(max ${maxEntropy.toFixed(3)})${R}`);
+  console.log(`  Uniformity     : ${uColor}${B}${uniformityPct.toFixed(1)}%${R}`);
   console.log(`  Avg staleness  : ${avgStaleness.toFixed(1)}d`);
   console.log(`  Max staleness  : ${maxStaleness.toFixed(1)}d`);
   if (Object.keys(tagCounts).length > 0) {
     console.log(`\n  Tag distribution:`);
     for (const [tag, count] of Object.entries(tagCounts).sort((a, b) => b[1] - a[1])) {
       const bar = "█".repeat(count * 2);
-      console.log(`    #${tag.padEnd(12)} ${bar} ${count}`);
+      console.log(`    ${tagPill(tag)}${" ".repeat(Math.max(1, 13 - tag.length))}${bar} ${count}`);
     }
   }
-  console.log(`\n  Top 3 by Euler score:`);
+  console.log(`\n  ${B}Top 3 by Euler score:${R}`);
   const top3 = [...scored].sort((a, b) => b.score - a.score).slice(0, 3);
   for (const { entry, score, phi } of top3) {
     const sv = spinVector(score, phi);
     const title = entry.title.length > 48 ? entry.title.slice(0, 45) + "…" : entry.title;
-    console.log(`    [${entry.id}] ${sv.label.padEnd(20)} ${title}`);
+    console.log(`    [${DIM}${entry.id}${R}] ${CYAN}${sv.label.padEnd(20)}${R} ${title}`);
   }
   console.log();
 }
@@ -650,6 +771,8 @@ if (args.includes("--add")) {
     }
   }
   console.log();
+} else if (args.includes("--history")) {
+  cmdHistory(args);
 } else if (args.includes("--nudge")) {
   cmdNudge(args);
 } else if (args.includes("--stats")) {
