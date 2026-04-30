@@ -345,7 +345,52 @@ ci/checks/terminal-hook-smoke.ts →  reads manifest/terminal_*   →  regressio
 
 ---
 
-### Independent-Validation-Notary — `novel`
+### Blocker-as-Can-Opener (Gate Architecture) — `novel`
+*Origin: 2026-04-30 — vulkan-lab V6 cli-renderer session, G0–G7 gate walk*
+
+When building a multi-gate project (here: Vulkan×CLI renderer), each gate's blocker is not a stop — it is the key that opens the next gate. The pattern: **name the blocker explicitly**, then ask "what does solving this blocker teach me that the next gate requires?" The answer is always the next gate's entry condition.
+
+| Gate | Blocker | Can-Opener → Next Gate Subject |
+|------|---------|-------------------------------|
+| G1 | none (G0 proved headless device) | G2: data ingestion (manifest → SSBO) |
+| G2 | schema-sync (JSON ↔ GPU buffer) | `#[repr(C)]` struct as both → G3: pixel rendering |
+| G3 | Vulkan barrier boilerplate (~80 lines) | `fn transition_image_layout()` written once, load-bearing for all subsequent gates → G4: animation |
+| G4 | full clear-screen flicker at 30fps | GPU diff pass (curr vs prev VkImage) → dirty-cell cursor positioning → G5: simulation state |
+| G5 | state machine design | SpinState == RoomState (same transition graph) — written once serves both → G6: render modes |
+| G6 | dungeon layout algorithm | force-directed GPU simulation → V7 (world-generation compute vector) |
+
+**The inversion:** what looks like a blocker is actually the project's structural load-bearer. The harder the blocker, the more foundational the can-opener. Give-up routines are triggered when blockers are classified as walls rather than doors.
+
+**Applied self-documentation:** the gate walk documents each blocker-as-can-opener in advance (at architecture time, not post-mortem). This makes the documentation self-seeding — each session's FAF artifact becomes the next session's Gate 0.
+
+**Shape:** project → enumerate gates → for each gate, name expected blocker → name the architectural decision the blocker forces → document it as a can-opener → the doc chain becomes the entry point for the next epoch.
+
+**Promotion criteria:** applied to ≥2 multi-gate projects where at least one blocker-as-can-opener resolves cleanly and the documentation was written before the blocker was hit (not post-mortem) → `familiar`. Currently: 1 (vulkan-lab V6, G0–G7 walk, 2026-04-30).
+
+---
+
+### Urca-De-Lima Synthesis (Isomorphic System Discovery) — `novel`
+*Origin: 2026-04-30 — roulette × dungeon identity, vulkan-lab V6 session*
+
+The Urca de Lima pattern: two systems that appear to be separate products are, on closer inspection, the **same data viewed through two projection functions**. The treasure was always aboard — the salvage operation is recognizing it.
+
+**Canonical instance:** `todo_roulette.ts` + isometric cRPG dungeon. Both read `manifest/todo_roulette.json`. The roulette renders the task manifest as a polar arc wheel (phase angle = compass bearing, Euler score = arc span). The dungeon renders the same manifest as rooms (room area ∝ score, adjacency = shared tags, locked door = unfulfilled verify_condition). These are the same data; the render mode is the only variable. The cRPG was never "a separate project to add" — it was always inside the roulette.
+
+**The isomorphisms that revealed it:**
+- SpinState `{ Idle, Spinning, Decelerating, Landed }` == RoomState `{ Locked, Unlocked, Visited, Cleared }` — same transition graph
+- `verify_condition: file-exists` == locked door unlock trigger
+- `status: completed` == cleared room
+- `weight` == room encounter level / luminance
+- `TAG_COLOR` == room biome color
+- task → room, completion event → room collapse
+
+**Detection heuristic:** when you are designing two systems and their data schemas look nearly identical, pause. Run the isomorphism test: map every field in system A to system B. If ≥80% of fields map cleanly, you have one system with two projection functions, not two systems.
+
+**Practical form:** add `--mode` flag to the existing CLI. `--mode=polar` (default) renders the roulette. `--mode=dungeon` renders the cRPG. The GPU pipeline handles both; the render mode is a uniform push constant.
+
+**Promotion criteria:** observed in ≥2 projects where the isomorphism was non-obvious and discovered during architecture work → `familiar`. Currently: 1 (roulette×dungeon, 2026-04-30).
+
+
 *Origin: 2026-04-25 — GPT-5.5 MILFOLOGICAL validation pass on mas_pid_reader / PID-flipper pipeline*
 
 A separate model (or agent) performs a blind E2E validation pass on a newly built tool or pipeline before the primary agent proceeds. The notary produces a structured artifact (`PID_MCP_TERMINAL_SESSION_E2E_2026-04-25.json`) with `observed_quirk` entries that catch silent wrong behavior the building agent missed — in this case: `success=True` even when `exit_code=1` (PowerShell `$?` vs `$LASTEXITCODE` semantic split). The primary agent absorbs the findings and applies fixes in the same session.
