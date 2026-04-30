@@ -138,6 +138,23 @@
         "type": "file-exists",
         "path": "scripts/session_compress.ts"
       }
+    },
+    {
+      "id": "281734ec",
+      "title": "Vulkan headless CLI renderer — euler scores on GPU compute, arc wheel rasterized to ASCII framebuffer, piped to stdout (vulkan-lab V6)",
+      "tags": [
+        "vulkan",
+        "build",
+        "infra"
+      ],
+      "verify": {
+        "type": "file-exists",
+        "path": "vulkan-lab/cli-renderer/src/main.rs"
+      },
+      "created": "2026-04-30T05:12:10.827Z",
+      "weight": 9,
+      "origin": "manual",
+      "spin_count": 0
     }
   ],
   "last_spun": "2026-04-30T05:08:00.904Z"

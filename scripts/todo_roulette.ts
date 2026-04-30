@@ -60,6 +60,7 @@ const TAG_PHASE: Record<string, number> = {
   ci:        (5 * Math.PI) / 6,
   game:      Math.PI,
   narrative: (7 * Math.PI) / 6,
+  vulkan:    (4 * Math.PI) / 3, // 240° — GPU frontier, fills π/6 grid
   session:   (3 * Math.PI) / 2,
   handoff:   (5 * Math.PI) / 3,
   debt:      (11 * Math.PI) / 6,
@@ -84,6 +85,7 @@ const TAG_COLOR: Record<string, string> = {
   ci:        "\x1b[92m",  // bright green
   game:      "\x1b[31m",  // red
   narrative: "\x1b[95m",  // bright magenta
+  vulkan:    "\x1b[93m",  // bright yellow — GPU thermal
   session:   "\x1b[94m",  // bright blue
   handoff:   "\x1b[96m",  // bright cyan
   debt:      "\x1b[91m",  // bright red
