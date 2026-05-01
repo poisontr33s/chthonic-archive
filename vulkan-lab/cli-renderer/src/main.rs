@@ -33,6 +33,8 @@ const TAG_PHASE: &[(&str, f32)] = &[
     ("vulkan",   240.0),
     ("session",  270.0),
     ("handoff",  300.0),
+    ("liminal",  306.0),   // 17π/10 rad
+    ("scaffold", 350.0),   // 35π/18 rad
     ("debt",     330.0),
 ];
 
