@@ -574,7 +574,7 @@
     },
 
     // === CLAUDE CODE ===
-    "claudeCode.selectedModel": "claude-opus-4-6",
+    "claudeCode.selectedModel": "claude-sonnet-4-6",
     "claudeCode.allowDangerouslySkipPermissions": true,
     "claudeCode.useTerminal": false,
     "claudeCode.respectGitIgnore": false,
