@@ -1,5 +1,6 @@
-// @SID: VULKAN_CLI_RENDERER_V8
+// @SID: VULKAN_CLI_RENDERER_V9
 // Gates 1–7 complete. V8: isometric cRPG vertical slice (--iso flag).
+// V9: raw terminal mode (crossterm) + Ω-3 XP trail write (roulette_steward events → chthonic-xp.ps1).
 //
 // G1: create Entry → headless Instance → pick physical device (RTX 4090)
 // G2: select compute queue family (prefer Q2 COMPUTE-only, fallback Q0 GRAPHICS|COMPUTE)
@@ -244,6 +245,23 @@ fn state_label(s: StatePhase) -> &'static str {
         StatePhase::Decelerating => "Decel/Visited",
         StatePhase::Landed       => "Landed/Cleared",
     }
+}
+
+/// Ω-3: Emit a roulette_steward trail event when a dungeon room reaches cleared state.
+/// chthonic-xp.ps1 reads .chthonic/trail/*.json → type (XP_BASE=10) + kind (KIND_BONUS=12) + priority (MULT=1.5).
+/// Total XP per cleared room: (10 + 12) × 1.5 = 33.
+fn write_trail_event(trail_dir: &std::path::Path, task_title: &str) {
+    let _ = std::fs::create_dir_all(trail_dir);
+    let ns = SystemTime::now()
+        .duration_since(UNIX_EPOCH)
+        .unwrap_or_default()
+        .as_nanos();
+    let fname = trail_dir.join(format!("roulette_{ns}.json"));
+    let title_esc = task_title.replace('\\', "\\\\").replace('"', "\\\"");
+    let payload = format!(
+        "{{\"type\":\"artifact\",\"kind\":\"roulette_steward\",\"priority\":1,\"msg\":\"dungeon room cleared: {title_esc}\"}}"
+    );
+    let _ = std::fs::write(fname, payload.as_bytes());
 }
 
 /// V8: Player position in iso tile space.
@@ -1158,6 +1176,8 @@ fn main() {
         use std::io::{BufRead, Write};
         use std::sync::mpsc;
         use std::time::{Duration, Instant};
+        use crossterm::event::{self as ct_event, Event, KeyCode, KeyEventKind, KeyModifiers};
+        use crossterm::terminal::{enable_raw_mode, disable_raw_mode};
 
         // Allocate prev_cells and dirty-flag buffers (HOST_COHERENT STORAGE_BUFFER, 300×u32).
         let (prev_buf, prev_mem) = unsafe {
@@ -1276,14 +1296,36 @@ fn main() {
             device.create_fence(&vk::FenceCreateInfo::default(), None).expect("diff fence")
         };
 
-        // Stdin reader thread → mpsc for IPC commands.
+        // V9: raw keypress reader (iso) or line-based IPC (polar/dungeon).
         // TS --live sends {"cmd":"quit"} to terminate cleanly.
         let (stdin_tx, stdin_rx) = mpsc::channel::<String>();
-        std::thread::spawn(move || {
-            for line in std::io::stdin().lock().lines().flatten() {
-                if stdin_tx.send(line).is_err() { break; }
-            }
-        });
+        if iso_mode {
+            // Raw mode: immediate keypress, no Enter required.
+            enable_raw_mode().expect("enable raw mode");
+            std::thread::spawn(move || {
+                loop {
+                    if let Ok(Event::Key(ke)) = ct_event::read() {
+                        if ke.kind != KeyEventKind::Press { continue; }
+                        let cmd: String = match ke.code {
+                            KeyCode::Char('q') | KeyCode::Esc => "{\"cmd\":\"quit\"}".into(),
+                            KeyCode::Char('c') if ke.modifiers.contains(KeyModifiers::CONTROL) => "{\"cmd\":\"quit\"}".into(),
+                            KeyCode::Char('w') | KeyCode::Up    => "w".into(),
+                            KeyCode::Char('s') | KeyCode::Down  => "s".into(),
+                            KeyCode::Char('a') | KeyCode::Left  => "a".into(),
+                            KeyCode::Char('d') | KeyCode::Right => "d".into(),
+                            _ => continue,
+                        };
+                        if stdin_tx.send(cmd).is_err() { break; }
+                    }
+                }
+            });
+        } else {
+            std::thread::spawn(move || {
+                for line in std::io::stdin().lock().lines().flatten() {
+                    if stdin_tx.send(line).is_err() { break; }
+                }
+            });
+        }
 
         // Ready event: TS orchestrator waits for this line before interacting.
         eprintln!("{{\"event\":\"ready\"}}");
@@ -1294,6 +1336,13 @@ fn main() {
         let mut spin_state = StatePhase::Idle;
         // Ω-2: last room index the player stepped on — prevents state advancing every frame.
         let mut last_entered_room: i32 = -1;
+        // Ω-3: trail directory + cleared-room dedup tracker.
+        let trail_dir: std::path::PathBuf = manifest_path
+            .parent()
+            .and_then(|p| p.parent())
+            .map(|p| p.join(".chthonic").join("trail"))
+            .unwrap_or_else(|| std::path::PathBuf::from(".chthonic/trail"));
+        let mut cleared_rooms: std::collections::HashSet<usize> = std::collections::HashSet::new();
 
         print!("\x1B[?25l"); // hide cursor for flicker-free overwrite
         std::io::stdout().flush().ok();
@@ -1351,7 +1400,18 @@ fn main() {
                             entered = i as i32;
                             if entered != last_entered_room {
                                 let r = &mut *rptr.add(i);
-                                if r.room_state < 3 { r.room_state += 1; }
+                                if r.room_state < 3 {
+                                    r.room_state += 1;
+                                    // Ω-3: room cleared → emit roulette_steward trail event.
+                                    if r.room_state == 3 && !cleared_rooms.contains(&i) {
+                                        cleared_rooms.insert(i);
+                                        let task_title = active
+                                            .get(r.task_idx as usize)
+                                            .map(|e| e.title.as_str())
+                                            .unwrap_or("unknown task");
+                                        write_trail_event(&trail_dir, task_title);
+                                    }
+                                }
                             }
                             break;
                         }
@@ -1560,6 +1620,8 @@ fn main() {
             if elapsed < frame_target { std::thread::sleep(frame_target - elapsed); }
         } // 'render
 
+        // V9: restore terminal on exit.
+        if iso_mode { let _ = disable_raw_mode(); }
         // Restore cursor visibility; move past render area.
         print!("\x1B[?25h\n");
         std::io::stdout().flush().ok();
