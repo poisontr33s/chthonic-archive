@@ -1,3 +1,4 @@
 {"ts":"2026-04-30T04:47:35.079Z","id":"e5f6a7b8","title":"Rewrite Pentea agent file after SSOT T1 stabilization","score":6.53,"spin_vector":"8.64 ∠ 60.0°","arc_pct":14.98,"staleness_days":2.2}
 {"ts":"2026-04-30T05:07:56.906Z","id":"d4e5f6a7","title":"Add §10.3 modern profiles for Orackla, Umeko, Lysandra (three T1 entities at old CRC format)","score":5.1444,"spin_vector":"5.31 ∠ 15.0°","arc_pct":11.13,"staleness_days":2.21}
 {"ts":"2026-04-30T05:08:00.904Z","id":"e5f6a7b8","title":"Rewrite Pentea agent file after SSOT T1 stabilization","score":5.6036,"spin_vector":"7.41 ∠ 60.0°","arc_pct":12.33,"staleness_days":0.01}
+{"ts":"2026-05-01T21:20:50.906Z","id":"a7b8c9d0","title":"Investigate poisontr33s/psychonoir-kontrapunkt-large-file-holder (Git LFS media assets)","score":3.8717,"spin_vector":"5.38 ∠ 75.0°","arc_pct":7.57,"staleness_days":3.89}
