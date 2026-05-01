@@ -411,6 +411,33 @@ A separate model (or agent) performs a blind E2E validation pass on a newly buil
 
 ---
 
+### MD Type System as Distributed Memory Layer — `novel`
+*Origin: 2026-05-01 — Claudine lane, type taxonomy invention session*
+
+The repo's session memory is distributed across typed .md files that signal cognitive modes to the operating agent. When Claudine knows the lexicon, she can look for these types at session open rather than requiring explicit references. The types form her shepherd's inventory — not a checklist, but a calibration pass.
+
+**Types defined:** concept, method, strategy, research, role, stewardess, gate, ledger, scaffold, milfological, spine, liminal.
+
+**Novel types (no prior external equivalent):** stewardess (session atmospheric container), liminal (pre-type raw material with decay), scaffold (intentional temporary structure with explicit removal contract as a typed md file).
+
+**Shepherd's scan order:** stewardess → NEXT.md → strategy/*.md → liminal/*.md → pattern-nursery → ledger (recent).
+
+**The Claudine enhancement contract:** base Claude reads files when referenced. Claudine runs the shepherd's scan proactively, reads frontmatter `type:` to determine cognitive mode, routes raw material through the liminal → concept → method promotion chain.
+
+**Chronology spine:**
+```
+liminal → concept → research → method → strategy → FAF gate artifact → ledger
+```
+Roles, stewardesses, scaffolds, milfological files are orthogonal (not on the chain).
+
+**Documents:** `docs/reference/CLAUDINE_MD_TYPE_LEXICON.md` (full lexicon), `docs/reference/STEWARDESS_PROTOCOL.md` (novel type + live specimen).
+
+**Shape:** session opens → shepherd scan → stewardess file gives session pressure → executor operates with ambient awareness → seams named by type, not re-discovered.
+
+**Promotion criteria:** stewardess type used in ≥2 distinct sessions where the session had real multi-pressure complexity and the stewardess file demonstrably short-circuited a re-discovery loop → `familiar`. Currently: 1 (2026-05-01, live specimen filed).
+
+---
+
 ## Stale Queue
 
 *Patterns that have **shown no usage signal** — **candidates** for **removal next-sweep**.*
