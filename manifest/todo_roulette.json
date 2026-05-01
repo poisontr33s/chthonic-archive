@@ -159,8 +159,38 @@
       "origin": "manual",
       "spin_count": 1,
       "completed": "2026-05-01T21:20:50.900Z",
-      "body": "[auto-closed] file-exists: vulkan-lab/cli-renderer/src/main.rs found — task complete"
-    }
+      "body": "[auto-closed] file-exists: vulkan-lab/cli-renderer/src/main.rs found — task complete"    },
+    {
+      "id": "c0c05000",
+      "title": "Initialize Cocos Creator iso project scaffold (game/cocos-iso/)",
+      "tags": [
+        "game",
+        "build"
+      ],
+      "created": "2026-05-02T00:00:00.000Z",
+      "weight": 8,
+      "origin": "session",
+      "spin_count": 0,
+      "verify": {
+        "type": "file-exists",
+        "path": "game/cocos-iso/project.json"
+      }
+    },
+    {
+      "id": "c0c05001",
+      "title": "Cocos headless build: web-mobile target (Creator 3.8.8 CLI axis)",
+      "tags": [
+        "build",
+        "game"
+      ],
+      "created": "2026-05-02T00:00:00.000Z",
+      "weight": 7,
+      "origin": "session",
+      "spin_count": 0,
+      "verify": {
+        "type": "file-exists",
+        "path": "manifest/cocos_build.json"
+      }    }
   ],
   "last_spun": "2026-05-01T21:20:50.901Z"
 }

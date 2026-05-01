@@ -237,7 +237,23 @@ function cmdBuild(args: string[]) {
     encoding: "utf8",
   });
 
-  process.exit(result.status ?? 0);
+  // Emit manifest/cocos_build.json — verify_condition battery for todo_roulette tasks.
+  const exitCode = result.status ?? 1;
+  const buildManifestPath = join(import.meta.dir, "../manifest/cocos_build.json");
+  const buildManifest = {
+    generated: new Date().toISOString(),
+    creator_version: creator.version,
+    creator_exe: creator.exe,
+    project: projectPath,
+    platform,
+    build_options: buildOpts,
+    exit_code: exitCode,
+    status: exitCode === 0 ? "success" : "failed",
+  };
+  writeFileSync(buildManifestPath, JSON.stringify(buildManifest, null, 2));
+  console.log(`\n  manifest → ${buildManifestPath}  [${buildManifest.status}]`);
+
+  process.exit(exitCode);
 }
 
 function cmdOpen(args: string[]) {
