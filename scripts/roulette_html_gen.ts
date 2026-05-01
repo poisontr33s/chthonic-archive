@@ -1,13 +1,14 @@
 #!/usr/bin/env bun
-// @SID: ROULETTE_HTML_GEN_V1
+// @SID: ROULETTE_HTML_GEN_V2
 
 // ╔════════════════════════════════════════════════════════════════════════════
 // ║ scripts/roulette_html_gen.ts
 // ║
 // ║ Generates docs/roulette.html — a self-contained Roulette POC dashboard.
 // ║
-// ║ Reads manifest/todo_roulette.json, computes live Euler scores, embeds
-// ║ the data into a single-file HTML with an interactive spin wheel.
+// ║ Reads manifest/todo_roulette.json + manifest/md_types.json (if present).
+// ║ MD-typed entries (liminal, scaffold, stewardess, etc.) are merged into
+// ║ the wheel alongside regular TODOs — the spin can land on session work.
 // ║
 // ║ Usage:
 // ║   bun run scripts/roulette_html_gen.ts
@@ -20,6 +21,7 @@ import { execSync } from "child_process";
 
 const ROOT = join(import.meta.dir, "..");
 const MANIFEST_PATH = join(ROOT, "manifest", "todo_roulette.json");
+const MD_TYPES_PATH = join(ROOT, "manifest", "md_types.json");
 const OUT_PATH = join(ROOT, "docs", "roulette.html");
 const OPEN_FLAG = process.argv.includes("--open");
 
@@ -33,8 +35,11 @@ const TAG_PHASE: Record<string, number> = {
   ci:        (5 * Math.PI) / 6,
   game:      Math.PI,
   narrative: (7 * Math.PI) / 6,
+  vulkan:    (4 * Math.PI) / 3,
   session:   (3 * Math.PI) / 2,
   handoff:   (5 * Math.PI) / 3,
+  liminal:   (17 * Math.PI) / 10,  // 306° — between handoff and debt
+  scaffold:  (35 * Math.PI) / 18,  // 350° — near debt, construction zone
   debt:      (11 * Math.PI) / 6,
   default:   Math.PI / 4,
 };
@@ -48,8 +53,11 @@ const TAG_COLOR: Record<string, string> = {
   ci:        "#a78bfa",
   game:      "#f87171",
   narrative: "#facc15",
+  vulkan:    "#22d3ee",
   session:   "#2dd4bf",
   handoff:   "#e879f9",
+  liminal:   "#818cf8",  // indigo — twilight between types
+  scaffold:  "#fbbf24",  // amber — under construction
   debt:      "#94a3b8",
   default:   "#6b7280",
 };
@@ -64,6 +72,11 @@ interface TodoEntry {
   weight: number;
   origin: string;
   spin_count: number;
+  // md-types extensions (optional)
+  source?: string;
+  source_file?: string;
+  md_type?: string;
+  meta?: Record<string, string>;
 }
 
 interface Manifest {
@@ -104,14 +117,28 @@ function loadManifest(): Manifest {
   return JSON.parse(readFileSync(MANIFEST_PATH, "utf8")) as Manifest;
 }
 
+function loadMdTypes(): TodoEntry[] {
+  if (!existsSync(MD_TYPES_PATH)) return [];
+  try {
+    const raw = JSON.parse(readFileSync(MD_TYPES_PATH, "utf8")) as { entries: TodoEntry[] };
+    return raw.entries ?? [];
+  } catch {
+    return [];
+  }
+}
+
 function getGitLog(): string {
   try {
     return execSync('git log --oneline -8', { cwd: ROOT, encoding: "utf8" }).trim();
   } catch { return "(git unavailable)"; }
 }
 
-function buildHtml(manifest: Manifest, gitLog: string): string {
-  const active = manifest.entries.filter(e => !e.completed);
+function buildHtml(manifest: Manifest, mdTypeEntries: TodoEntry[], gitLog: string): string {
+  const allEntries = [
+    ...manifest.entries,
+    ...mdTypeEntries.filter(e => !e.completed),
+  ];
+  const active = allEntries.filter(e => !e.completed);
   const completed = manifest.entries.filter(e => !!e.completed);
   const scored = active.map(e => ({ entry: e, score: eulerScore(e), polar: polarDisplay(e) }))
     .sort((a, b) => b.score - a.score);
@@ -158,19 +185,22 @@ function buildHtml(manifest: Manifest, gitLog: string): string {
     const staleBadge = parseFloat(days) > 5
       ? `<span style="color:#f87171;font-size:10px">⚑ ${days}d</span>`
       : `<span style="color:#64748b;font-size:10px">${days}d</span>`;
+    const sourceBadge = s.entry.source === "md-types"
+      ? `<span style="background:#1e293b;border:1px solid #475569;color:#94a3b8;padding:1px 5px;border-radius:3px;font-size:10px">${s.entry.md_type ?? "md"}</span>`
+      : "";
     return `<tr data-idx="${i}" class="task-row" onclick="selectTask(${i})">
       <td style="padding:6px 8px;color:${color};font-weight:700">${i + 1}</td>
-      <td style="padding:6px 8px;max-width:340px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.entry.title}</td>
+      <td style="padding:6px 8px;max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.entry.title}</td>
       <td style="padding:6px 8px;font-family:monospace;color:#a5b4fc">${s.polar}</td>
       <td style="padding:6px 8px">${staleBadge}</td>
       <td style="padding:6px 8px"><span style="background:${color}22;color:${color};padding:2px 6px;border-radius:4px;font-size:11px">${tag}</span></td>
-      <td style="padding:6px 8px;color:#64748b;font-size:11px">w${s.entry.weight} · ${s.entry.spin_count}×</td>
+      <td style="padding:6px 8px;color:#64748b;font-size:11px">${sourceBadge} w${s.entry.weight} · ${s.entry.spin_count}×</td>
     </tr>`;
   }).join("\n");
 
   const gitLines = gitLog.split("\n").map(l => `<div style="margin:2px 0;font-size:11px;color:#94a3b8">${l}</div>`).join("");
 
-  const manifestJson = JSON.stringify({ scored: scored.map(s => ({ id: s.entry.id, title: s.entry.title, score: s.score, tag: primaryTag(s.entry), color: TAG_COLOR[primaryTag(s.entry)] ?? TAG_COLOR.default })), totalScore }, null, 2);
+  const manifestJson = JSON.stringify({ scored: scored.map(s => ({ id: s.entry.id, title: s.entry.title, score: s.score, tag: primaryTag(s.entry), color: TAG_COLOR[primaryTag(s.entry)] ?? TAG_COLOR.default, source: s.entry.source ?? "todo", md_type: s.entry.md_type, source_file: s.entry.source_file, meta: s.entry.meta })), totalScore }, null, 2);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -278,7 +308,7 @@ function buildHtml(manifest: Manifest, gitLog: string): string {
 
     <div class="stats-row">
       <div class="stat"><div class="stat-val">${active.length}</div><div>open</div></div>
-      <div class="stat"><div class="stat-val">${completed.length}</div><div>closed</div></div>
+      <div class="stat"><div class="stat-val">${mdTypeEntries.filter(e => !e.completed).length}</div><div>session</div></div>
       <div class="stat"><div class="stat-val">${manifest.total_spins}</div><div>spins</div></div>
       <div class="stat"><div class="stat-val">${totalScore.toFixed(0)}</div><div>total Σ</div></div>
     </div>
@@ -287,6 +317,9 @@ function buildHtml(manifest: Manifest, gitLog: string): string {
 
     <div id="winner-panel">
       <div style="color:var(--muted);font-size:13px">Press SPIN to select the next Roulette Σ-item.</div>
+    </div>
+    <div id="md-types-indicator" style="margin-top:8px;font-size:11px;color:#475569;text-align:center">
+      ${mdTypeEntries.length > 0 ? `+ ${mdTypeEntries.length} session item${mdTypeEntries.length === 1 ? "" : "s"} (md-types)` : "run md_types_scan.ts to add session items"}
     </div>
   </div>
 
@@ -323,6 +356,10 @@ const CONVERGENCE_TEMPLATES = {
   game: (t) => \`scene_renders ∧ entity_visible\`,
   narrative: (t) => \`arc_committed ∧ voice_trace_present\`,
   debt: (t) => \`deprecated_artifact_removed ∧ canonical_path_active\`,
+  liminal: (t) => \`promote_or_decay(\${t.slice(0,22)}) ∧ decay_date_not_passed ∨ promotion_target_filed\`,
+  scaffold: (t) => \`removal_condition_met ∧ scaffold_deleted ∨ holds_up_fixed\`,
+  session: (t) => \`session_gate_closed ∧ stewardess_archived\`,
+  handoff: (t) => \`handoff_received ∧ continuation_viable\`,
   default: (t) => \`artifact_exists ∧ convergence_defined\`,
 };
 
@@ -342,11 +379,23 @@ function showWinner(idx) {
   const panel = document.getElementById('winner-panel');
   const tmpl = CONVERGENCE_TEMPLATES[item.tag] ?? CONVERGENCE_TEMPLATES.default;
   panel.classList.add('has-winner');
-  panel.innerHTML = \`
-    <div id="winner-title">Σ-0: \${item.title}</div>
-    <div id="winner-meta">score \${item.score.toFixed(2)} · tag:\${item.tag} · id:\${item.id}</div>
-    <div id="winner-convergence">Convergence: \${tmpl(item.title)}</div>
-  \`;
+  const isMdType = item.source === 'md-types';
+  let metaExtra = '';
+  if (isMdType && item.meta) {
+    Object.entries(item.meta).forEach(function([k, v]) {
+      metaExtra += '<div style="font-size:10px;color:#64748b;margin-top:2px">' + k + ': ' + v + '</div>';
+    });
+  }
+  const sourceLink = (isMdType && item.source_file)
+    ? '<div style="font-size:10px;color:#475569;margin-top:4px">\ud83d\udcc4 ' + item.source_file + '</div>'
+    : '';
+  const titlePrefix = isMdType ? '\u25c8 ' : '\u03a3-0: ';
+  const mdTypeLabel = isMdType ? ' \u00b7 md-type:' + item.md_type : '';
+  panel.innerHTML =
+    '<div id="winner-title">' + titlePrefix + item.title + '</div>' +
+    '<div id="winner-meta">score ' + item.score.toFixed(2) + ' \u00b7 tag:' + item.tag + ' \u00b7 id:' + item.id + mdTypeLabel + '</div>' +
+    '<div id="winner-convergence">Convergence: ' + tmpl(item.title) + '</div>' +
+    metaExtra + sourceLink;
   // Highlight wheel segment
   document.querySelectorAll('.wheel-seg').forEach(seg => {
     seg.style.filter = seg.dataset.idx == idx ? 'brightness(1.6) drop-shadow(0 0 8px #f59e0b)' : 'brightness(0.5)';
@@ -398,14 +447,15 @@ function spin() {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 const manifest = loadManifest();
+const mdTypeEntries = loadMdTypes();
 const gitLog = getGitLog();
-const html = buildHtml(manifest, gitLog);
+const html = buildHtml(manifest, mdTypeEntries, gitLog);
 
 if (!existsSync(join(ROOT, "docs"))) mkdirSync(join(ROOT, "docs"), { recursive: true });
 writeFileSync(OUT_PATH, html, "utf8");
 
 const active = manifest.entries.filter(e => !e.completed).length;
-console.log(`✅ docs/roulette.html generated (${active} active tasks)`);
+console.log(`✅ docs/roulette.html generated (${active} TODO + ${mdTypeEntries.length} session items)`);
 console.log(`   Open: ${OUT_PATH}`);
 
 if (OPEN_FLAG) {

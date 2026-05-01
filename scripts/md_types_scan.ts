@@ -153,6 +153,23 @@ function typeWeight(type: string, fm: Frontmatter): number {
 
 // ── Title extractor ───────────────────────────────────────────────────────────
 
+function extractRawTitle(content: string, filename: string, fm: Frontmatter): string {
+  // Prefer frontmatter id/name field (concise, no type prefix)
+  if (fm.id) return fm.id.replace(/[_-]/g, " ");
+  if ((fm as Record<string,string>)["name"]) return (fm as Record<string,string>)["name"].replace(/[_-]/g, " ");
+  const normalized = content.replace(/\r\n/g, "\n");
+  // Try first H1 after frontmatter
+  const afterFm = normalized.replace(/^---[\s\S]*?---\n/, "");
+  const h1 = afterFm.match(/^#\s+(.+)/m);
+  if (h1) {
+    // Strip type-prefix pattern like "Liminal: " or "Scaffold: "
+    return h1[1].replace(/^(liminal|scaffold|stewardess|concept|method|strategy|gate):\s*/i, "")
+      .replace(/[^a-zA-Z0-9\s\-_:().—–]/g, "").trim();
+  }
+  // Fallback: filename without extension
+  return basename(filename, extname(filename)).replace(/[_-]/g, " ");
+}
+
 function extractTitle(content: string, filename: string): string {
   const normalized = content.replace(/\r\n/g, "\n");
   // Try first H1 after frontmatter
@@ -166,7 +183,11 @@ function extractTitle(content: string, filename: string): string {
 function rouletteTitle(type: string, title: string, fm: Frontmatter): string {
   if (type === "liminal") return `↯ Promote or decay: ${title}`;
   if (type === "scaffold") return `⚠ Check removal: ${title}`;
-  if (type === "stewardess") return `⚡ Stewardess: ${fm.session ?? title}`;
+  if (type === "stewardess") {
+    const scope = fm.scope ?? "session";
+    const session = fm.session ?? "current";
+    return `⚡ Stewardess: ${scope} ${session}`;
+  }
   return title;
 }
 
@@ -201,7 +222,7 @@ function scanDir(dir: string, filter?: (f: string) => boolean): MdTypeEntry[] {
     const type = fm.type;
     if (!type || !MD_TYPE_TO_TAG[type]) continue;
 
-    const rawTitle = extractTitle(content, file);
+    const rawTitle = extractRawTitle(content, file, fm);
     const title = rouletteTitle(type, rawTitle, fm);
     const tag = MD_TYPE_TO_TAG[type];
     const weight = typeWeight(type, fm);

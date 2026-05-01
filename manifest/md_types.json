@@ -1,0 +1,59 @@
+{
+  "generated": "2026-05-01T07:17:44.315Z",
+  "count": 3,
+  "entries": [
+    {
+      "id": "md_liminal_INVOCATION_GAP",
+      "title": "↯ Promote or decay: INVOCATION GAP",
+      "tags": [
+        "liminal"
+      ],
+      "created": "2026-05-01T00:00:00.000Z",
+      "weight": 5,
+      "origin": "md-types",
+      "source": "md-types",
+      "source_file": "docs\\liminal\\INVOCATION_GAP.md",
+      "md_type": "liminal",
+      "spin_count": 0,
+      "meta": {
+        "decay_date": "2026-06-01",
+        "decay_condition": "Either: a concrete mechanism is found that makes shepherd's scan run automatical…"
+      }
+    },
+    {
+      "id": "md_scaffold_SCAFFOLD_TRANSFO",
+      "title": "⚠ Check removal: TRANSFORMERS NOMIC KWARGS PATCH",
+      "tags": [
+        "scaffold"
+      ],
+      "created": "2026-05-01T00:00:00.000Z",
+      "weight": 6,
+      "origin": "md-types",
+      "source": "md-types",
+      "source_file": "docs\\reference\\SCAFFOLD_TRANSFORMERS_NOMIC_KWARGS_PATCH.md",
+      "md_type": "scaffold",
+      "spin_count": 0,
+      "meta": {
+        "holds_up": "CocoIndex semantic search in both chthonic-archive and PsychoNoir-Kontrapunkt. Without this patch, loading nomic-ai/Code",
+        "removal_condition": "transformers upstream merges a fix for NomicBertModel.__init__ to accept **kwargs OR cocoindex-code pins transformers to"
+      }
+    },
+    {
+      "id": "md_stewardess_ACTIVE_2026_05_0",
+      "title": "⚡ Stewardess: chthonic-archive 2026-05-01",
+      "tags": [
+        "session"
+      ],
+      "created": "2026-05-01T00:00:00.000Z",
+      "weight": 9,
+      "origin": "md-types",
+      "source": "md-types",
+      "source_file": "claude\\stewardess\\ACTIVE_2026-05-01.md",
+      "md_type": "stewardess",
+      "spin_count": 0,
+      "meta": {
+        "pressure_level": "moderate"
+      }
+    }
+  ]
+}
