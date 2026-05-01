@@ -86,16 +86,39 @@ interface Frontmatter {
 }
 
 function parseFrontmatter(content: string): Frontmatter {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  // Normalize CRLF → LF before parsing
+  const normalized = content.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  // Strip leading HTML comment blocks (<!-- ... -->) before looking for ---
+  const stripped = normalized.replace(/^<!--[\s\S]*?-->\s*/m, "");
+  const match = stripped.match(/^---\n([\s\S]*?)\n---/m);
   if (!match) return {};
   const fm: Frontmatter = {};
-  for (const line of match[1].split("\n")) {
+  const lines = match[1].split("\n");
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
     const m = line.match(/^(\w+):\s*(.*)/);
     if (m) {
       const key = m[1].trim() as keyof Frontmatter;
-      // Strip YAML block scalar indicators and quotes
-      const val = m[2].trim().replace(/^[>|]$/, "").replace(/^["']|["']$/g, "");
+      let val = m[2].trim();
+      if (val === ">" || val === "|") {
+        // Block scalar: collect next non-empty indented line as first sentence
+        const parts: string[] = [];
+        i++;
+        while (i < lines.length && (lines[i].startsWith("  ") || lines[i].trim() === "")) {
+          const t = lines[i].trim();
+          if (t) parts.push(t);
+          i++;
+        }
+        val = parts.slice(0, 2).join(" ").slice(0, 120);
+      } else {
+        // Strip inline quotes
+        val = val.replace(/^["']|["']$/g, "");
+        i++;
+      }
       (fm as Record<string, string>)[key] = val;
+    } else {
+      i++;
     }
   }
   return fm;
@@ -131,8 +154,9 @@ function typeWeight(type: string, fm: Frontmatter): number {
 // ── Title extractor ───────────────────────────────────────────────────────────
 
 function extractTitle(content: string, filename: string): string {
+  const normalized = content.replace(/\r\n/g, "\n");
   // Try first H1 after frontmatter
-  const afterFm = content.replace(/^---[\s\S]*?---\n/, "");
+  const afterFm = normalized.replace(/^---[\s\S]*?---\n/, "");
   const h1 = afterFm.match(/^#\s+(.+)/m);
   if (h1) return h1[1].replace(/[^a-zA-Z0-9\s\-_:().—–]/g, "").trim();
   // Fallback: filename without extension
@@ -181,7 +205,10 @@ function scanDir(dir: string, filter?: (f: string) => boolean): MdTypeEntry[] {
     const title = rouletteTitle(type, rawTitle, fm);
     const tag = MD_TYPE_TO_TAG[type];
     const weight = typeWeight(type, fm);
-    const filed = fm.filed ?? fm.session ?? new Date().toISOString().slice(0, 10);
+    // filed: use frontmatter, or file mtime as fallback
+    const filedRaw = fm.filed ?? fm.session;
+    const fileStat = statSync(fullPath);
+    const filed = filedRaw ?? fileStat.mtime.toISOString().slice(0, 10);
     const created = new Date(filed).toISOString();
 
     const meta: Record<string, string> = {};
