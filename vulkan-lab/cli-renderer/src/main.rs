@@ -264,6 +264,27 @@ fn write_trail_event(trail_dir: &std::path::Path, task_title: &str) {
     let _ = std::fs::write(fname, payload.as_bytes());
 }
 
+/// Ω-4: XP tier from cumulative XP. Returns (class_label, xp_in_tier, tier_size).
+fn xp_tier(total_xp: u64) -> (&'static str, u64, u64) {
+    const TIER: u64 = 80;
+    let class = match total_xp / TIER {
+        0 => "Acolyte",
+        1 => "Adept",
+        2 => "Expert",
+        _ => "Archon",
+    };
+    (class, total_xp % TIER, TIER)
+}
+
+/// Ω-4: Render `[Class ████░░░░ xp/next XP]` as ANSI string for row-23 HUD overlay.
+fn render_xp_hud(total_xp: u64) -> String {
+    let (class, xp_in, tier_size) = xp_tier(total_xp);
+    let filled = ((xp_in * 8) / tier_size).min(8) as usize;
+    let empty  = 8usize.saturating_sub(filled);
+    let bar    = "█".repeat(filled) + &"░".repeat(empty);
+    format!("\x1b[48;2;15;10;25m\x1b[38;2;180;140;255m[{class} {bar} {xp_in}/{tier_size} XP]\x1b[0m")
+}
+
 /// V8: Player position in iso tile space.
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -1343,6 +1364,16 @@ fn main() {
             .map(|p| p.join(".chthonic").join("trail"))
             .unwrap_or_else(|| std::path::PathBuf::from(".chthonic/trail"));
         let mut cleared_rooms: std::collections::HashSet<usize> = std::collections::HashSet::new();
+        // Ω-4: load base XP from .chthonic/xp-state.json (cross-session persistence).
+        let base_xp: u64 = {
+            let xp_path = trail_dir.parent()
+                .map(|d| d.join("xp-state.json"))
+                .unwrap_or_else(|| std::path::PathBuf::from(".chthonic/xp-state.json"));
+            std::fs::read_to_string(&xp_path).ok()
+                .and_then(|s| serde_json::from_str::<serde_json::Value>(&s).ok())
+                .and_then(|v| v["xp"].as_u64())
+                .unwrap_or(0)
+        };
 
         print!("\x1B[?25l"); // hide cursor for flicker-free overwrite
         std::io::stdout().flush().ok();
@@ -1589,6 +1620,13 @@ fn main() {
                     print!("\x1b[38;2;{r};{g};{b}m{ch}");
                 }
                 print!("\x1b[0m\n");
+            }
+            // Ω-4: XP HUD overlay — rewrite left half of iso row 23 with progress bar.
+            if iso_mode {
+                let total_xp = base_xp + (cleared_rooms.len() as u64 * 33);
+                let hud = render_xp_hud(total_xp);
+                // Cursor sits at status-line position (1 line below row 23). Step up, write, step back.
+                print!("\x1B[1A\r{hud}\x1B[1B\r");
             }
             let elapsed_ms = t0.elapsed().as_millis();
             let mode_label = if dungeon_mode { "dungeon" } else if iso_mode { "iso" } else { "polar" };
