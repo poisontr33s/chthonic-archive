@@ -48,6 +48,7 @@ import { Database } from "bun:sqlite";
 
 const MANIFEST_PATH = join(import.meta.dir, "..", "manifest", "todo_roulette.json");
 const HISTORY_PATH  = join(import.meta.dir, "..", "manifest", "todo_roulette_history.jsonl");
+const META_PATH     = join(import.meta.dir, "..", "manifest", "todo_meta.json");
 const KAPPA = 0.07; // exponential growth constant per idle day
 const DB_PATH = join(import.meta.dir, "..", "manifest", "roulette.db");
 
@@ -267,8 +268,34 @@ function runPreflight(entry: TodoEntry): { resolved: boolean; reason: string } |
   return null;
 }
 
+function loadBlockedIds(): Set<string> {
+  const blocked = new Set<string>();
+  if (!existsSync(META_PATH)) return blocked;
+  try {
+    const meta = JSON.parse(readFileSync(META_PATH, "utf-8"));
+    const chains: Array<{ ordered: string[] }> = meta?.dependency_chains ?? [];
+    // Must read the FULL manifest to get completed state — caller may pass a slice
+    const fullManifest = existsSync(MANIFEST_PATH)
+      ? (JSON.parse(readFileSync(MANIFEST_PATH, "utf-8")) as Manifest)
+      : null;
+    const completedIds = new Set(
+      (fullManifest?.entries ?? []).filter((e) => e.completed).map((e) => e.id)
+    );
+    for (const chain of chains) {
+      for (let i = 1; i < chain.ordered.length; i++) {
+        const predecessor = chain.ordered[i - 1];
+        if (!completedIds.has(predecessor)) {
+          blocked.add(chain.ordered[i]);
+        }
+      }
+    }
+  } catch { /* meta parse failure is non-fatal */ }
+  return blocked;
+}
+
 function spin(manifest: Manifest): SpinResult | null {
-  const active = manifest.entries.filter((e) => !e.completed);
+  const blockedIds = loadBlockedIds();
+  const active = manifest.entries.filter((e) => !e.completed && !blockedIds.has(e.id));
   if (active.length === 0) return null;
 
   const scored = active.map((e) => {
@@ -376,8 +403,9 @@ function cmdSpin(args: string[]): void {
     }
   }
 
-  // Re-check active after ghost sweep
-  const liveActive = manifest.entries.filter((e) => !e.completed);
+  // Re-check active after ghost sweep — exclude chain-blocked entries
+  const blockedIds = loadBlockedIds();
+  const liveActive = manifest.entries.filter((e) => !e.completed && !blockedIds.has(e.id));
   if (liveActive.length === 0) {
     console.log("\n  Wheel cleared by preflight — all tasks resolved. Add new tasks with --add.\n");
     process.exit(0);

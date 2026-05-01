@@ -1,0 +1,13 @@
+{
+  "generated": "2026-05-01T23:46:17.103Z",
+  "creator_version": "3.8.8",
+  "creator_exe": "C:\\ProgramData\\cocos\\editors\\Creator\\3.8.8\\CocosCreator.exe",
+  "project": "C:\\Users\\eldno\\chthonic-archive\\game\\cocos-iso",
+  "platform": "web-mobile",
+  "build_options": {
+    "platform": "web-mobile",
+    "debug": false
+  },
+  "exit_code": 0,
+  "status": "success"
+}

@@ -182,6 +182,7 @@
     {
       "id": "c0c05001",
       "title": "Cocos headless build: web-mobile target (Creator 3.8.8 CLI axis)",
+      "body": "Gate closed: `bun run scripts/cocos_probe.ts build game/cocos-iso web-mobile` → manifest/cocos_build.json written, exit_code=0. Creator 3.8.8 headless CLI build succeeded.",
       "tags": [
         "build",
         "game"
@@ -193,7 +194,9 @@
       "verify": {
         "type": "file-exists",
         "path": "manifest/cocos_build.json"
-      }    }
+      },
+      "completed": "2026-05-02T00:00:00.000Z"
+    }
   ],
   "last_spun": "2026-05-01T21:20:50.901Z"
 }
