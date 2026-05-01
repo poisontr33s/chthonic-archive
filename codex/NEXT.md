@@ -6,6 +6,20 @@ updated: 2026-05-01
 
 # Codex: Next Steps
 
+## Roulette Queue Topology (2026-05-02)
+
+**Meta:** [manifest/todo_meta.json](../manifest/todo_meta.json) — axis map + dependency chains + spin semantics  
+**Data:** [manifest/todo_roulette.json](../manifest/todo_roulette.json) — 10 active, 3 completed
+
+| Chain | IDs (ordered) | Rule |
+|-------|--------------|------|
+| `ssot-entity-upgrade` | c3d4e5f6 → d4e5f6a7 → e5f6a7b8 | each blocked until prior `status:completed` |
+| `cocos-build-axis` | c0c05000 → c0c05001 | scaffold before build; c0c05001 verify cannot pass without c0c05000 |
+
+**Spin semantics:** `spin_decides` (5 entries) · `gate_self_closes` (3) · `blocked_until_chain` (3)  
+**Highest-weight unblocked:** `c3d4e5f6` (SSOT §10.3.1 Claudine, weight 9)  
+**Urca De Lima axes:** roulette(time) · dungeon(space) · xp_trail(reward) · cocos_build(artifact) — all share `manifest/todo_roulette.json`
+
 ## Vulkan-Lab V6 Arc — G5+G6+G7 (2026-05-01)
 
 **Status: landed.** Gates G5, G6, G7 committed in overnight arc. Release binary built.

@@ -29,6 +29,14 @@ Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/ba
 - **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
 - **Genre Metadata**: [MILF-Core-Prototype-Analysis.md.genre.json](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json)
 
+## Roulette Queue
+
+- **Manifest (data):** [manifest/todo_roulette.json](manifest/todo_roulette.json) — 10 active entries, 3 completed
+- **Topology (meta):** [manifest/todo_meta.json](manifest/todo_meta.json) — axis map, dependency chains, spin semantics
+- **Spin rule:** `blocked_until_chain` entries must not be selected until predecessor is `status:completed`. See `dependency_chains` in todo_meta.
+- **Intertwined chains:** `ssot-entity-upgrade` (c3→d4→e5) · `cocos-build-axis` (c0c05000→c0c05001)
+- **Highest-weight unblocked:** `c3d4e5f6` (SSOT §10.3.1 Claudine CSI-SOI-SMM, weight 9)
+
 ## Compact
 
 Preserve: @SID headers, architecture decisions, cross-refs. Summarize: tool output, searches.
