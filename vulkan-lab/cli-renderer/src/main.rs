@@ -1,5 +1,5 @@
-// @SID: VULKAN_CLI_RENDERER_G7
-// Gates 1–3: headless Vulkan + Euler scoring + ASCII framebuffer.
+// @SID: VULKAN_CLI_RENDERER_V8
+// Gates 1–7 complete. V8: isometric cRPG vertical slice (--iso flag).
 //
 // G1: create Entry → headless Instance → pick physical device (RTX 4090)
 // G2: select compute queue family (prefer Q2 COMPUTE-only, fallback Q0 GRAPHICS|COMPUTE)
@@ -244,6 +244,40 @@ fn state_label(s: StatePhase) -> &'static str {
     }
 }
 
+/// V8: Player position in iso tile space.
+#[repr(C)]
+#[derive(Clone, Copy)]
+struct PlayerState {
+    tile_x: i32,
+    tile_y: i32,
+    facing: u32,
+    _pad:   u32,
+}
+
+/// V8: One iso room — maps to a todo_roulette task.
+#[repr(C)]
+#[derive(Clone, Copy)]
+struct IsoRoom {
+    tile_x:      i32,
+    tile_y:      i32,
+    room_state:  u32,
+    task_idx:    u32,
+    tag_color_r: f32,
+    tag_color_g: f32,
+    tag_color_b: f32,
+    _pad:        f32,
+}
+
+/// V8: Push constants for iso_render.comp — 16 bytes.
+#[repr(C)]
+#[derive(Clone, Copy)]
+struct IsoPushConst {
+    state_phase:   u32,
+    player_tile_x: i32,
+    player_tile_y: i32,
+    _pad:          u32,
+}
+
 fn main() {
     // ── CLI args ──────────────────────────────────────────────────────────
     let args: Vec<String> = std::env::args().collect();
@@ -254,9 +288,11 @@ fn main() {
         .unwrap_or_else(find_manifest);
     // --loop: continuous 33ms render loop for TS --live orchestration.
     // --dungeon: G6 Urca de Lima synthesis — same manifest, dungeon projection.
+    // --iso: V8 isometric cRPG vertical slice, diamond-angle terminal rendering.
     // Emits JSON events on stdout; non-JSON lines are ANSI display output.
     let loop_mode    = args.iter().any(|a| a == "--loop");
     let dungeon_mode = args.iter().any(|a| a == "--dungeon");
+    let iso_mode     = args.iter().any(|a| a == "--iso");
 
     // ── G1: headless Vulkan instance ──────────────────────────────────────
     let entry = unsafe { Entry::load().expect("Vulkan loader not found — install NVIDIA drivers") };
@@ -822,6 +858,126 @@ fn main() {
     unsafe { device.update_descriptor_sets(&dng_writes, &[]) };
     println!("cli-renderer  G6     dungeon pipeline ready");
 
+    // ── V8: iso buffers (80×24=1920 cells, player, 12 rooms) ─────────────────
+    let iso_cell_cols  = 80u32;
+    let iso_cell_rows  = 24u32;
+    let iso_cell_count = (iso_cell_cols * iso_cell_rows) as usize; // 1920
+    let iso_cell_bytes = (iso_cell_count * std::mem::size_of::<u32>()) as u64; // 7680
+    let (iso_cell_buf, iso_cell_mem) = unsafe {
+        alloc_mapped_buffer(&device, &instance, pd, iso_cell_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+    };
+    let player_bytes = std::mem::size_of::<PlayerState>() as u64; // 16
+    let (player_buf, player_mem) = unsafe {
+        alloc_mapped_buffer(&device, &instance, pd, player_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+    };
+    unsafe {
+        let ptr = device.map_memory(player_mem, 0, player_bytes, vk::MemoryMapFlags::empty())
+            .expect("map player_mem") as *mut PlayerState;
+        ptr.write(PlayerState { tile_x: 6, tile_y: 3, facing: 2, _pad: 0 });
+        device.unmap_memory(player_mem);
+    }
+    let iso_room_bytes = (12 * std::mem::size_of::<IsoRoom>()) as u64; // 384
+    let (iso_room_buf, iso_room_mem) = unsafe {
+        alloc_mapped_buffer(&device, &instance, pd, iso_room_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+    };
+    // Seed 12 rooms from manifest tasks (clamped to available tasks)
+    {
+        let ptr = unsafe {
+            device.map_memory(iso_room_mem, 0, iso_room_bytes, vk::MemoryMapFlags::empty())
+                .expect("map iso_room_mem") as *mut IsoRoom
+        };
+        let room_layout: [(i32, i32); 12] = [
+            (2,1),(4,1),(6,1),(8,1),
+            (3,2),(5,2),(7,2),
+            (2,3),(4,3),(6,3),(8,3),
+            (5,4),
+        ];
+        for (i, &(tx, ty)) in room_layout.iter().enumerate() {
+            let task_idx = i.min(gpu_tasks.len().saturating_sub(1)) as u32;
+            let phase: f32 = if i < gpu_tasks.len() { gpu_tasks[i].phase_angle } else { 0.0 };
+            let rr = (0.5_f32 + 0.5 * phase.cos()).clamp(0.0, 1.0);
+            let rg = (0.5_f32 + 0.5 * (phase + 2.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0);
+            let rb = (0.5_f32 + 0.5 * (phase + 4.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0);
+            unsafe {
+                ptr.add(i).write(IsoRoom {
+                    tile_x: tx, tile_y: ty,
+                    room_state: 0u32,
+                    task_idx,
+                    tag_color_r: rr, tag_color_g: rg, tag_color_b: rb,
+                    _pad: 0.0,
+                });
+            }
+        }
+        unsafe { device.unmap_memory(iso_room_mem); }
+    }
+
+    // ── V8: iso_render shader + pipeline ─────────────────────────────────────
+    let iso_spv   = include_bytes!("../shaders/iso_render.comp.spv");
+    let iso_words: Vec<u32> = iso_spv.chunks_exact(4)
+        .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
+    let iso_module = unsafe {
+        device.create_shader_module(
+            &vk::ShaderModuleCreateInfo::default().code(&iso_words), None)
+            .expect("iso shader module")
+    };
+    let iso_bindings = [0u32, 1, 2, 3, 4, 5].map(|i|
+        vk::DescriptorSetLayoutBinding::default()
+            .binding(i).descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+            .descriptor_count(1).stage_flags(vk::ShaderStageFlags::COMPUTE)
+    );
+    let iso_dsl = unsafe {
+        device.create_descriptor_set_layout(
+            &vk::DescriptorSetLayoutCreateInfo::default().bindings(&iso_bindings), None)
+            .expect("iso dsl")
+    };
+    let iso_push_range = vk::PushConstantRange::default()
+        .stage_flags(vk::ShaderStageFlags::COMPUTE)
+        .offset(0).size(std::mem::size_of::<IsoPushConst>() as u32); // 16
+    let iso_pl = unsafe {
+        device.create_pipeline_layout(
+            &vk::PipelineLayoutCreateInfo::default()
+                .set_layouts(&[iso_dsl])
+                .push_constant_ranges(&[iso_push_range]),
+            None).expect("iso pipeline layout")
+    };
+    let iso_stage = vk::PipelineShaderStageCreateInfo::default()
+        .stage(vk::ShaderStageFlags::COMPUTE).module(iso_module).name(c"main");
+    let iso_pipeline = unsafe {
+        device.create_compute_pipelines(
+            vk::PipelineCache::null(),
+            &[vk::ComputePipelineCreateInfo::default().stage(iso_stage).layout(iso_pl)],
+            None).expect("iso pipeline")[0]
+    };
+    let iso_pool_sizes = [vk::DescriptorPoolSize {
+        ty: vk::DescriptorType::STORAGE_BUFFER, descriptor_count: 6 }];
+    let iso_desc_pool = unsafe {
+        device.create_descriptor_pool(
+            &vk::DescriptorPoolCreateInfo::default().max_sets(1).pool_sizes(&iso_pool_sizes), None)
+            .expect("iso desc pool")
+    };
+    let iso_desc_set = unsafe {
+        device.allocate_descriptor_sets(
+            &vk::DescriptorSetAllocateInfo::default()
+                .descriptor_pool(iso_desc_pool).set_layouts(&[iso_dsl]))
+            .expect("iso desc sets")[0]
+    };
+    let iso_buf_infos = [
+        vk::DescriptorBufferInfo { buffer: task_buf,     offset: 0, range: task_bytes     },
+        vk::DescriptorBufferInfo { buffer: score_buf,    offset: 0, range: score_bytes    },
+        vk::DescriptorBufferInfo { buffer: count_buf,    offset: 0, range: count_bytes    },
+        vk::DescriptorBufferInfo { buffer: iso_cell_buf, offset: 0, range: iso_cell_bytes },
+        vk::DescriptorBufferInfo { buffer: player_buf,   offset: 0, range: player_bytes   },
+        vk::DescriptorBufferInfo { buffer: iso_room_buf, offset: 0, range: iso_room_bytes },
+    ];
+    let iso_writes: Vec<vk::WriteDescriptorSet> = iso_buf_infos.iter().enumerate().map(|(i, bi)|
+        vk::WriteDescriptorSet::default()
+            .dst_set(iso_desc_set).dst_binding(i as u32)
+            .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+            .buffer_info(std::slice::from_ref(bi))
+    ).collect();
+    unsafe { device.update_descriptor_sets(&iso_writes, &[]) };
+    println!("cli-renderer  V8     iso pipeline ready");
+
     // G3 command buffer (fresh allocation from existing pool)
     let g3_cmd = unsafe {
         device
@@ -879,7 +1035,7 @@ fn main() {
             vk::AccessFlags::TRANSFER_WRITE,       vk::AccessFlags::SHADER_READ,
         );
 
-        // 4. Dispatch: polar (ascii_downsample) or dungeon (ascii_dungeon)
+        // 4. Dispatch: polar (ascii_downsample) or dungeon (ascii_dungeon) or iso (iso_render)
         if dungeon_mode {
             // Dungeon path: no VkImage used, dispatch directly to cell_buf.
             device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, dng_pipeline);
@@ -889,6 +1045,26 @@ fn main() {
             device.cmd_push_constants(
                 g3_cmd, dng_pl, vk::ShaderStageFlags::COMPUTE, 0, &0u32.to_ne_bytes());
             device.cmd_dispatch(g3_cmd, 8, 1, 1); // local(8,8,1): ceil(60/8)=8x, rows guarded
+        } else if iso_mode {
+            // Iso path: dispatch to iso_cell_buf (80×24).
+            let player_state: PlayerState = unsafe {
+                let ptr = device.map_memory(player_mem, 0, player_bytes, vk::MemoryMapFlags::empty())
+                    .expect("map player for push") as *const PlayerState;
+                let s = *ptr; device.unmap_memory(player_mem); s
+            };
+            let push = IsoPushConst {
+                state_phase: 0u32,
+                player_tile_x: player_state.tile_x,
+                player_tile_y: player_state.tile_y,
+                _pad: 0,
+            };
+            let push_bytes: [u8; 16] = unsafe { std::mem::transmute(push) };
+            device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, iso_pipeline);
+            device.cmd_bind_descriptor_sets(
+                g3_cmd, vk::PipelineBindPoint::COMPUTE, iso_pl, 0, &[iso_desc_set], &[],
+            );
+            device.cmd_push_constants(g3_cmd, iso_pl, vk::ShaderStageFlags::COMPUTE, 0, &push_bytes);
+            device.cmd_dispatch(g3_cmd, 10, 3, 1); // ceil(80/8)=10, ceil(24/8)=3
         } else {
             device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
             device.cmd_bind_descriptor_sets(
@@ -911,8 +1087,9 @@ fn main() {
     // Read back cells[] → decode ANSI truecolor block characters
     // Indices 0–4: polar density (ascii_downsample). Indices 5–12: box-drawing (dungeon).
     const BLOCK_CHARS: &[&str] = &[
-        " ", "░", "▒", "▓", "█",           // 0-4: density blocks (polar mode)
-        "╔", "═", "╗", "║", "╚", "╝", "·", "╬", // 5-12: box-drawing (dungeon mode)
+        " ", "░", "▒", "▓", "█",                  // 0-4:  density blocks (polar mode)
+        "╔", "═", "╗", "║", "╚", "╝", "·", "╬",  // 5-12: box-drawing (dungeon mode)
+        "◆", "◇", "╱", "╲", "▲", "▼", "@", "☥",  // 13-20: iso cRPG (V8)
     ];
     let cells: Vec<u32> = unsafe {
         let ptr = device
@@ -939,6 +1116,33 @@ fn main() {
     }
     println!();
     println!("cli-renderer  G3 ✓  480×80 VkImage → ascii_downsample.comp.spv → {cell_count} cells → ANSI stdout");
+    if iso_mode {
+        // V8: iso one-shot readback and print (80×24 grid)
+        let iso_cells: Vec<u32> = unsafe {
+            let ptr = device.map_memory(iso_cell_mem, 0, iso_cell_bytes, vk::MemoryMapFlags::empty())
+                .expect("map iso_cell_mem") as *const u32;
+            let v = std::slice::from_raw_parts(ptr, iso_cell_count).to_vec();
+            device.unmap_memory(iso_cell_mem);
+            v
+        };
+        println!();
+        for row in 0..iso_cell_rows as usize {
+            let mut line = String::new();
+            for col in 0..iso_cell_cols as usize {
+                let cell = iso_cells[row * iso_cell_cols as usize + col];
+                let idx  = ((cell >> 24) & 0xFF) as usize;
+                let r    = (cell >> 16) & 0xFF;
+                let g    = (cell >>  8) & 0xFF;
+                let b    =  cell        & 0xFF;
+                let ch   = BLOCK_CHARS.get(idx).copied().unwrap_or(" ");
+                line.push_str(&format!("\x1b[38;2;{r};{g};{b}m{ch}"));
+            }
+            line.push_str("\x1b[0m");
+            println!("{line}");
+        }
+        println!();
+        println!("cli-renderer  V8 ✓  iso cRPG  {iso_cell_cols}×{iso_cell_rows} terminal grid → diamond-angle Vulkan");
+    }
     if !loop_mode {
         println!("cli-renderer  →     G4: prev_frame VkImage + GPU diff pass → dirty-cell cursor positioning");
     }
@@ -1105,6 +1309,25 @@ fn main() {
             // Drain IPC commands (non-blocking).
             while let Ok(cmd) = stdin_rx.try_recv() {
                 if cmd.contains("\"quit\"") { break 'render; }
+                if iso_mode {
+                    let trimmed = cmd.trim();
+                    let delta: Option<(i32, i32)> = match trimmed {
+                        "w" => Some((0, -1)),
+                        "s" => Some((0,  1)),
+                        "a" => Some((-1, 0)),
+                        "d" => Some(( 1, 0)),
+                        _ => None,
+                    };
+                    if let Some((dx, dy)) = delta {
+                        unsafe {
+                            let ptr = device.map_memory(player_mem, 0, player_bytes, vk::MemoryMapFlags::empty())
+                                .expect("map player WASD") as *mut PlayerState;
+                            (*ptr).tile_x = ((*ptr).tile_x + dx).max(0).min(11);
+                            (*ptr).tile_y = ((*ptr).tile_y + dy).max(0).min(5);
+                            device.unmap_memory(player_mem);
+                        }
+                    }
+                }
             }
 
             // ── Re-record + submit G3 ─────────────────────────────────────
@@ -1158,6 +1381,26 @@ fn main() {
                         g3_cmd, dng_pl, vk::ShaderStageFlags::COMPUTE, 0,
                         &(spin_state as u32).to_ne_bytes());
                     device.cmd_dispatch(g3_cmd, 8, 1, 1);
+                } else if iso_mode {
+                    // Iso V8: dispatch to iso_cell_buf (80×24) with player push constant.
+                    let player_state: PlayerState = {
+                        let ptr = device.map_memory(player_mem, 0, player_bytes, vk::MemoryMapFlags::empty())
+                            .expect("map player loop") as *const PlayerState;
+                        let s = *ptr; device.unmap_memory(player_mem); s
+                    };
+                    let push = IsoPushConst {
+                        state_phase: spin_state as u32,
+                        player_tile_x: player_state.tile_x,
+                        player_tile_y: player_state.tile_y,
+                        _pad: 0,
+                    };
+                    let push_bytes: [u8; 16] = std::mem::transmute(push);
+                    device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, iso_pipeline);
+                    device.cmd_bind_descriptor_sets(
+                        g3_cmd, vk::PipelineBindPoint::COMPUTE, iso_pl, 0, &[iso_desc_set], &[],
+                    );
+                    device.cmd_push_constants(g3_cmd, iso_pl, vk::ShaderStageFlags::COMPUTE, 0, &push_bytes);
+                    device.cmd_dispatch(g3_cmd, 10, 3, 1);
                 } else {
                     // Polar G3: image-based ascii downsample.
                     device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
@@ -1173,7 +1416,7 @@ fn main() {
                 device.wait_for_fences(&[g3_fence], true, u64::MAX).expect("g3 loop wait");
             }
 
-            // Read curr_cells.
+            // Read curr_cells (polar/dungeon) or iso_cells (iso mode).
             let curr_cells: Vec<u32> = unsafe {
                 let ptr = device
                     .map_memory(cell_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
@@ -1181,6 +1424,19 @@ fn main() {
                 let v = std::slice::from_raw_parts(ptr, cell_count).to_vec();
                 device.unmap_memory(cell_mem);
                 v
+            };
+            // V8: iso display uses a separate larger cell buffer.
+            let (display_cells, display_cols, display_rows): (Vec<u32>, usize, usize) = if iso_mode {
+                let iso_cells = unsafe {
+                    let ptr = device.map_memory(iso_cell_mem, 0, iso_cell_bytes, vk::MemoryMapFlags::empty())
+                        .expect("map iso_cell loop") as *const u32;
+                    let v = std::slice::from_raw_parts(ptr, iso_cell_count).to_vec();
+                    device.unmap_memory(iso_cell_mem);
+                    v
+                };
+                (iso_cells, iso_cell_cols as usize, iso_cell_rows as usize)
+            } else {
+                (curr_cells.clone(), cell_cols as usize, cell_rows as usize)
             };
 
             // ── Dispatch dirty_diff ───────────────────────────────────────
@@ -1222,15 +1478,15 @@ fn main() {
             };
 
             // ── ANSI overwrite-in-place (no clear-screen, no flicker) ──────
-            // Cursor positioning: on first loop frame (frame_count==0), cursor is 8 lines
-            // below the blank line that opens the render area (G3 one-shot output).
-            // On subsequent frames, cursor is on the status line (no trailing newline).
-            let up: u32 = if frame_count == 0 { 8 } else { 6 };
-            print!("\x1B[{up}A\r\n"); // move up + CR, then newline for blank spacer
-            for row in 0..cell_rows as usize {
+            // up: iso=24 rows → 26/25; polar/dungeon=5 rows → 8/6.
+            let up: u32 = if iso_mode {
+                if frame_count == 0 { 26 } else { 25 }
+            } else if frame_count == 0 { 8 } else { 6 };
+            print!("\x1B[{up}A\r\n");
+            for row in 0..display_rows {
                 print!("\r");
-                for col in 0..cell_cols as usize {
-                    let cell = curr_cells[row * cell_cols as usize + col];
+                for col in 0..display_cols {
+                    let cell = display_cells[row * display_cols + col];
                     let idx  = ((cell >> 24) & 0xFF) as usize;
                     let r    = (cell >> 16) & 0xFF;
                     let g    = (cell >>  8) & 0xFF;
@@ -1241,8 +1497,9 @@ fn main() {
                 print!("\x1b[0m\n");
             }
             let elapsed_ms = t0.elapsed().as_millis();
-            let mode_label = if dungeon_mode { "dungeon" } else { "polar" };
-            print!("\r\x1b[2m  G5 frame:{frame_count:>6}  Δcells:{dirty_count:>3}/300  {elapsed_ms:>3}ms  [{mode_label}:{state}]\x1b[0m",
+            let mode_label = if dungeon_mode { "dungeon" } else if iso_mode { "iso" } else { "polar" };
+            let cell_total = if iso_mode { iso_cell_count } else { cell_count };
+            print!("\r\x1b[2m  G5 frame:{frame_count:>6}  Δcells:{dirty_count:>3}/{cell_total}  {elapsed_ms:>3}ms  [{mode_label}:{state}]\x1b[0m",
                 state = state_label(spin_state));
             std::io::stdout().flush().ok();
 
@@ -1291,6 +1548,18 @@ fn main() {
 
     // ── cleanup ───────────────────────────────────────────────────────────
     unsafe {
+        // V8 iso pipeline resources
+        device.destroy_descriptor_pool(iso_desc_pool, None);
+        device.destroy_pipeline(iso_pipeline, None);
+        device.destroy_pipeline_layout(iso_pl, None);
+        device.destroy_descriptor_set_layout(iso_dsl, None);
+        device.destroy_shader_module(iso_module, None);
+        device.free_memory(iso_room_mem, None);
+        device.destroy_buffer(iso_room_buf, None);
+        device.free_memory(player_mem, None);
+        device.destroy_buffer(player_buf, None);
+        device.free_memory(iso_cell_mem, None);
+        device.destroy_buffer(iso_cell_buf, None);
         // G6 dungeon pipeline resources
         device.destroy_descriptor_pool(dng_desc_pool, None);
         device.destroy_pipeline(dng_pipeline, None);
