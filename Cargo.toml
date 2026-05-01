@@ -25,7 +25,7 @@ ash-window = "0.13"
 gpu-allocator = { version = "0.28", features = ["vulkan"] }
 
 # === ENTITY COMPONENT SYSTEM (Per Gemini Directive) ===
-bevy_ecs = { version = "0.18", optional = true }
+bevy_ecs = { version = "0.18.1", optional = true }
 
 # === SERIALIZATION (ASC Lore Ingestion) ===
 serde = { version = "1.0", features = ["derive"] }

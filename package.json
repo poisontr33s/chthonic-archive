@@ -71,6 +71,10 @@
     "todo:list": "bun run scripts/todo_roulette.ts --list",
     "todo:list:all": "bun run scripts/todo_roulette.ts --list --all",
     "todo:report": "bun run scripts/todo_roulette.ts --report",
+    "vs:battery": "bun run scripts/vs_battery.ts audit",
+    "vs:battery:diff": "bun run scripts/vs_battery.ts diff",
+    "vs:battery:components": "bun run scripts/vs_battery.ts components",
+    "vs:battery:install": "bun run scripts/vs_battery.ts install",
     "test": "bun test scripts/gemini-model-router.test.ts"
   },
   "dependencies": {
