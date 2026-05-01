@@ -1,4 +1,4 @@
-// @SID: VULKAN_CLI_RENDERER_G3
+// @SID: VULKAN_CLI_RENDERER_G7
 // Gates 1–3: headless Vulkan + Euler scoring + ASCII framebuffer.
 //
 // G1: create Entry → headless Instance → pick physical device (RTX 4090)
@@ -220,6 +220,30 @@ fn find_manifest() -> PathBuf {
     )
 }
 
+/// G5: SpinState ≡ RoomState — same 4-phase FSM, two names.
+/// Polar mode:  Idle → Spinning → Decelerating → Landed (arc-wheel animation tempo)
+/// Dungeon mode: Locked → Unlocked → Visited → Cleared (room visual state)
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum StatePhase { Idle = 0, Spinning = 1, Decelerating = 2, Landed = 3 }
+
+fn tick_state(s: StatePhase, frame: u64) -> StatePhase {
+    match s {
+        StatePhase::Idle         => StatePhase::Spinning,
+        StatePhase::Spinning     => if frame % 90 == 0 { StatePhase::Decelerating } else { s },
+        StatePhase::Decelerating => if frame % 30 == 0 { StatePhase::Landed       } else { s },
+        StatePhase::Landed       => StatePhase::Idle,
+    }
+}
+
+fn state_label(s: StatePhase) -> &'static str {
+    match s {
+        StatePhase::Idle         => "Idle/Locked",
+        StatePhase::Spinning     => "Spinning/Unlocked",
+        StatePhase::Decelerating => "Decel/Visited",
+        StatePhase::Landed       => "Landed/Cleared",
+    }
+}
+
 fn main() {
     // ── CLI args ──────────────────────────────────────────────────────────
     let args: Vec<String> = std::env::args().collect();
@@ -229,8 +253,10 @@ fn main() {
         .map(|w| PathBuf::from(&w[1]))
         .unwrap_or_else(find_manifest);
     // --loop: continuous 33ms render loop for TS --live orchestration.
+    // --dungeon: G6 Urca de Lima synthesis — same manifest, dungeon projection.
     // Emits JSON events on stdout; non-JSON lines are ANSI display output.
-    let loop_mode = args.iter().any(|a| a == "--loop");
+    let loop_mode    = args.iter().any(|a| a == "--loop");
+    let dungeon_mode = args.iter().any(|a| a == "--dungeon");
 
     // ── G1: headless Vulkan instance ──────────────────────────────────────
     let entry = unsafe { Entry::load().expect("Vulkan loader not found — install NVIDIA drivers") };
@@ -525,6 +551,19 @@ fn main() {
         .collect();
     ranked.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
 
+    // G6 dungeon: re-write score_buf in ranked order (room 0 = highest Euler score).
+    if dungeon_mode {
+        let sorted_scores: Vec<f32> = ranked.iter().map(|(s, _)| *s).collect();
+        unsafe {
+            let ptr = device.map_memory(score_mem, 0, score_bytes, vk::MemoryMapFlags::empty())
+                .expect("map score_mem ranked") as *mut f32;
+            for (i, &s) in sorted_scores.iter().enumerate().take(n) {
+                ptr.add(i).write(s);
+            }
+            device.unmap_memory(score_mem);
+        }
+    }
+
     println!(
         "\n  {:>8}  {:>9}  {:48}  {}",
         "Score", "Phase(°)", "Title", "Tags"
@@ -714,6 +753,75 @@ fn main() {
         )
     };
 
+    // ── G6: dungeon pipeline (4×STORAGE_BUFFER + push_constant uint state_phase) ────
+    let dng_spv   = include_bytes!("../shaders/ascii_dungeon.comp.spv");
+    let dng_words: Vec<u32> = dng_spv.chunks_exact(4)
+        .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
+    let dng_module = unsafe {
+        device.create_shader_module(
+            &vk::ShaderModuleCreateInfo::default().code(&dng_words), None)
+            .expect("dng shader module")
+    };
+    let dng_bindings = [0u32, 1, 2, 3].map(|i|
+        vk::DescriptorSetLayoutBinding::default()
+            .binding(i)
+            .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+            .descriptor_count(1)
+            .stage_flags(vk::ShaderStageFlags::COMPUTE)
+    );
+    let dng_dsl = unsafe {
+        device.create_descriptor_set_layout(
+            &vk::DescriptorSetLayoutCreateInfo::default().bindings(&dng_bindings), None)
+            .expect("dng dsl")
+    };
+    let dng_push_range = vk::PushConstantRange::default()
+        .stage_flags(vk::ShaderStageFlags::COMPUTE)
+        .offset(0).size(std::mem::size_of::<u32>() as u32);
+    let dng_pl = unsafe {
+        device.create_pipeline_layout(
+            &vk::PipelineLayoutCreateInfo::default()
+                .set_layouts(&[dng_dsl])
+                .push_constant_ranges(&[dng_push_range]),
+            None)
+            .expect("dng pipeline layout")
+    };
+    let dng_stage = vk::PipelineShaderStageCreateInfo::default()
+        .stage(vk::ShaderStageFlags::COMPUTE).module(dng_module).name(c"main");
+    let dng_pipeline = unsafe {
+        device.create_compute_pipelines(
+            vk::PipelineCache::null(),
+            &[vk::ComputePipelineCreateInfo::default().stage(dng_stage).layout(dng_pl)],
+            None)
+            .expect("dng pipeline")[0]
+    };
+    let dng_pool_sizes = [vk::DescriptorPoolSize {
+        ty: vk::DescriptorType::STORAGE_BUFFER, descriptor_count: 4 }];
+    let dng_desc_pool = unsafe {
+        device.create_descriptor_pool(
+            &vk::DescriptorPoolCreateInfo::default().max_sets(1).pool_sizes(&dng_pool_sizes), None)
+            .expect("dng desc pool")
+    };
+    let dng_desc_set = unsafe {
+        device.allocate_descriptor_sets(
+            &vk::DescriptorSetAllocateInfo::default()
+                .descriptor_pool(dng_desc_pool).set_layouts(&[dng_dsl]))
+            .expect("dng desc sets")[0]
+    };
+    let dng_buf_infos = [
+        vk::DescriptorBufferInfo { buffer: task_buf,  offset: 0, range: task_bytes  },
+        vk::DescriptorBufferInfo { buffer: score_buf, offset: 0, range: score_bytes },
+        vk::DescriptorBufferInfo { buffer: count_buf, offset: 0, range: count_bytes },
+        vk::DescriptorBufferInfo { buffer: cell_buf,  offset: 0, range: cell_bytes  },
+    ];
+    let dng_writes: Vec<vk::WriteDescriptorSet> = dng_buf_infos.iter().enumerate().map(|(i, bi)|
+        vk::WriteDescriptorSet::default()
+            .dst_set(dng_desc_set).dst_binding(i as u32)
+            .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+            .buffer_info(std::slice::from_ref(bi))
+    ).collect();
+    unsafe { device.update_descriptor_sets(&dng_writes, &[]) };
+    println!("cli-renderer  G6     dungeon pipeline ready");
+
     // G3 command buffer (fresh allocation from existing pool)
     let g3_cmd = unsafe {
         device
@@ -771,12 +879,23 @@ fn main() {
             vk::AccessFlags::TRANSFER_WRITE,       vk::AccessFlags::SHADER_READ,
         );
 
-        // 4. Dispatch ascii_downsample — one workgroup per cell (60 × 5)
-        device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
-        device.cmd_bind_descriptor_sets(
-            g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
-        );
-        device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+        // 4. Dispatch: polar (ascii_downsample) or dungeon (ascii_dungeon)
+        if dungeon_mode {
+            // Dungeon path: no VkImage used, dispatch directly to cell_buf.
+            device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, dng_pipeline);
+            device.cmd_bind_descriptor_sets(
+                g3_cmd, vk::PipelineBindPoint::COMPUTE, dng_pl, 0, &[dng_desc_set], &[],
+            );
+            device.cmd_push_constants(
+                g3_cmd, dng_pl, vk::ShaderStageFlags::COMPUTE, 0, &0u32.to_ne_bytes());
+            device.cmd_dispatch(g3_cmd, 8, 1, 1); // local(8,8,1): ceil(60/8)=8x, rows guarded
+        } else {
+            device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
+            device.cmd_bind_descriptor_sets(
+                g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
+            );
+            device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+        }
         device.end_command_buffer(g3_cmd).expect("end g3 cmd");
     }
 
@@ -790,7 +909,11 @@ fn main() {
     }
 
     // Read back cells[] → decode ANSI truecolor block characters
-    const BLOCK_CHARS: &[&str] = &[" ", "░", "▒", "▓", "█"];
+    // Indices 0–4: polar density (ascii_downsample). Indices 5–12: box-drawing (dungeon).
+    const BLOCK_CHARS: &[&str] = &[
+        " ", "░", "▒", "▓", "█",           // 0-4: density blocks (polar mode)
+        "╔", "═", "╗", "║", "╚", "╝", "·", "╬", // 5-12: box-drawing (dungeon mode)
+    ];
     let cells: Vec<u32> = unsafe {
         let ptr = device
             .map_memory(cell_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
@@ -961,6 +1084,8 @@ fn main() {
 
         let frame_target = Duration::from_millis(33);
         let mut frame_count: u64 = 0;
+        // G5: SpinState == RoomState — state drives both animation phase (polar) and room visual (dungeon).
+        let mut spin_state = StatePhase::Idle;
 
         print!("\x1B[?25l"); // hide cursor for flicker-free overwrite
         std::io::stdout().flush().ok();
@@ -1023,11 +1148,24 @@ fn main() {
                     vk::PipelineStageFlags::TRANSFER,      vk::PipelineStageFlags::COMPUTE_SHADER,
                     vk::AccessFlags::TRANSFER_WRITE,       vk::AccessFlags::SHADER_READ,
                 );
-                device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
-                device.cmd_bind_descriptor_sets(
-                    g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
-                );
-                device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+                if dungeon_mode {
+                    // Dungeon G6: skip VkImage ops, dispatch dungeon shader with state_phase.
+                    device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, dng_pipeline);
+                    device.cmd_bind_descriptor_sets(
+                        g3_cmd, vk::PipelineBindPoint::COMPUTE, dng_pl, 0, &[dng_desc_set], &[],
+                    );
+                    device.cmd_push_constants(
+                        g3_cmd, dng_pl, vk::ShaderStageFlags::COMPUTE, 0,
+                        &(spin_state as u32).to_ne_bytes());
+                    device.cmd_dispatch(g3_cmd, 8, 1, 1);
+                } else {
+                    // Polar G3: image-based ascii downsample.
+                    device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
+                    device.cmd_bind_descriptor_sets(
+                        g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
+                    );
+                    device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+                }
                 device.end_command_buffer(g3_cmd).expect("end g3 loop");
 
                 let sub = vk::SubmitInfo::default().command_buffers(std::slice::from_ref(&g3_cmd));
@@ -1103,7 +1241,9 @@ fn main() {
                 print!("\x1b[0m\n");
             }
             let elapsed_ms = t0.elapsed().as_millis();
-            print!("\r\x1b[2m  G4 frame:{frame_count:>6}  Δcells:{dirty_count:>3}/300  {elapsed_ms:>3}ms\x1b[0m");
+            let mode_label = if dungeon_mode { "dungeon" } else { "polar" };
+            print!("\r\x1b[2m  G5 frame:{frame_count:>6}  Δcells:{dirty_count:>3}/300  {elapsed_ms:>3}ms  [{mode_label}:{state}]\x1b[0m",
+                state = state_label(spin_state));
             std::io::stdout().flush().ok();
 
             // Copy curr → prev (1200 bytes on CPU; no GPU copy needed at this scale).
@@ -1120,7 +1260,8 @@ fn main() {
             }
 
             // Machine-readable frame event on stderr (TS --live reads this).
-            eprintln!("{{\"event\":\"frame\",\"frame\":{frame_count},\"dirty\":{dirty_count}}}");
+            eprintln!("{{\"event\":\"frame\",\"frame\":{frame_count},\"dirty\":{dirty_count},\"state\":{phase}}}",
+                phase = spin_state as u32);
             frame_count += 1;
 
             // Sleep remainder of 33ms budget.
@@ -1150,6 +1291,12 @@ fn main() {
 
     // ── cleanup ───────────────────────────────────────────────────────────
     unsafe {
+        // G6 dungeon pipeline resources
+        device.destroy_descriptor_pool(dng_desc_pool, None);
+        device.destroy_pipeline(dng_pipeline, None);
+        device.destroy_pipeline_layout(dng_pl, None);
+        device.destroy_descriptor_set_layout(dng_dsl, None);
+        device.destroy_shader_module(dng_module, None);
         device.destroy_fence(g3_fence, None);
         device.destroy_descriptor_pool(asc_desc_pool, None);
         device.destroy_pipeline(asc_pipeline, None);

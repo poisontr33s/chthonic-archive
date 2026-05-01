@@ -1,10 +1,21 @@
 ---
 type: waypoint
 category: codex, claude, github copilot
-updated: 2026-03-23
+updated: 2026-05-01
 ---
 
 # Codex: Next Steps
+
+## Vulkan-Lab V6 Arc — G5+G6+G7 (2026-05-01)
+
+**Status: landed.** Gates G5, G6, G7 committed in overnight arc. Release binary built.
+
+- **G5:** `StatePhase` FSM (`Idle→Spinning→Decelerating→Landed`). SpinState ≡ RoomState — same 4-phase graph, two render projections.
+- **G6:** Dungeon render mode (`--dungeon` flag). `ascii_dungeon.comp.spv`, 4×STORAGE_BUFFER + `push_constant uint state_phase`. BLOCK_CHARS extended to 13 entries (box-drawing indices 5–12). Urca de Lima synthesis confirmed: roulette IS dungeon (one manifest, two projection functions).
+- **G7:** `vulkan-lab/cli-renderer/GATE_WALK.md` — gate walk seeds next epoch. `todo_roulette.ts` `--live --dungeon` pass-through live.
+- **V7 vector:** force-directed GPU room layout (spring-force compute pass), hot-reload manifest watcher, room collapse animation on task completion.
+- **Gate walk:** [vulkan-lab/cli-renderer/GATE_WALK.md](../vulkan-lab/cli-renderer/GATE_WALK.md)
+
 
 ## Current State (2026-03-14)
 

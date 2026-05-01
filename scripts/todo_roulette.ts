@@ -777,7 +777,7 @@ if (args.includes("--add")) {
 } else if (args.includes("--history")) {
   cmdHistory(args);
 } else if (args.includes("--live")) {
-  await cmdLive();
+  await cmdLive(args);
 } else if (args.includes("--nudge")) {
   cmdNudge(args);
 } else if (args.includes("--stats")) {
@@ -791,7 +791,7 @@ if (args.includes("--add")) {
 // Spawns vulkan-lab/cli-renderer with --loop. stdout → terminal (ANSI display).
 // stderr → intercepted for JSON events {event:"ready"}, {event:"frame",...}, etc.
 // IPC: write JSON lines to stdin to control the renderer (e.g. {"cmd":"quit"}).
-async function cmdLive(): Promise<void> {
+async function cmdLive(args: string[]): Promise<void> {
   const { join: pjoin, dirname } = await import("path");
   const { existsSync: pExists } = await import("fs");
 
@@ -809,12 +809,16 @@ async function cmdLive(): Promise<void> {
     process.exit(1);
   }
 
-  console.log(`[live] spawning ${bin}`);
+  // G6: dungeon flag — same manifest, dungeon projection (Urca de Lima synthesis).
+  const dungeon = args.includes("--dungeon");
+  const modeLabel = dungeon ? "[dungeon]" : "[polar]";
+  console.log(`[live] ${modeLabel} spawning ${bin}`);
 
   // stdout inherits → ANSI display passes through to user terminal.
   // stderr piped → TS reads JSON events.
   // stdin piped → TS can send quit command on Ctrl+C.
-  const proc = Bun.spawn([bin, "--loop"], {
+  const spawnArgs = [bin, "--loop", ...(dungeon ? ["--dungeon"] : [])];
+  const proc = Bun.spawn(spawnArgs, {
     stdout: "inherit",
     stderr: "pipe",
     stdin:  "pipe",
