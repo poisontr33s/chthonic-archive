@@ -1,4 +1,5 @@
 # CLAUDE.md
+= **## Claudine.md**
 
 Shared rules: [AGENT_COMMON.md (repo-root)](AGENT_COMMON.md) (execution invariants, bifurcation, paths, commands).
 Shell rules: [PWSH_RULES.md (repo-root)](PWSH_RULES.md). Scripts: [SCRIPTS_README.md](SCRIPTS_README.md).

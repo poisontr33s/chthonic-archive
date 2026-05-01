@@ -1,6 +1,6 @@
 ---
 type: waypoint
-category: codex, claude, github copilot
+category: codex, claude, claudine, github copilot
 updated: 2026-05-01
 ---
 
