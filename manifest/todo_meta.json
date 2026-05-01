@@ -1,0 +1,87 @@
+{
+  "version": "1",
+  "updated": "2026-05-02T00:00:00.000Z",
+  "manifest_ref": "manifest/todo_roulette.json",
+  "_note": "Topology layer over todo_roulette.json. Does NOT duplicate entry content — references IDs only. Bilateral: roulette runner reads this for block/gate logic; agents read it for session orientation.",
+
+  "axes": {
+    "ssot-chain": {
+      "description": "SSOT entity profile upgrade — sequential, each entry unlocks the next. Highest-leverage chain in queue.",
+      "type": "sequential",
+      "entries": ["c3d4e5f6", "d4e5f6a7", "e5f6a7b8"],
+      "layers": ".github/copilot-instructions.archive.md §10.3"
+    },
+    "cocos-build": {
+      "description": "Cocos Creator headless CLI axis — scaffold the project, then trigger the build. Writes manifest/cocos_build.json as the build-artifact axis of the Urca De Lima synthesis.",
+      "type": "sequential",
+      "entries": ["c0c05000", "c0c05001"],
+      "layers": "game/cocos-iso/ + manifest/cocos_build.json",
+      "cli": "bun run scripts/cocos_probe.ts build game/cocos-iso web-mobile"
+    },
+    "infra": {
+      "description": "Repo infrastructure, toolchain, debt — independently executable, no internal ordering constraint.",
+      "type": "independent",
+      "entries": ["a1b2c3d4", "b2c3d4e5", "ce8aeac5", "c9d0e1f2"]
+    },
+    "lore": {
+      "description": "External lore + media asset investigation — low-weight, spin-decides.",
+      "type": "independent",
+      "entries": ["a7b8c9d0"]
+    }
+  },
+
+  "dependency_chains": [
+    {
+      "id": "ssot-entity-upgrade",
+      "ordered": ["c3d4e5f6", "d4e5f6a7", "e5f6a7b8"],
+      "rule": "Each entry is blocked until all prior entries carry status:completed. Do NOT spin into d4e5f6a7 or e5f6a7b8 while their predecessor is pending."
+    },
+    {
+      "id": "cocos-build-axis",
+      "ordered": ["c0c05000", "c0c05001"],
+      "rule": "c0c05001 verify_condition (manifest/cocos_build.json) cannot pass until c0c05000 verify_condition (game/cocos-iso/project.json) passes. Scaffold before build."
+    }
+  ],
+
+  "spin_semantics": {
+    "_note": "Three behavioral classes. The roulette runner MUST respect blocked_until_chain before selecting a task.",
+    "spin_decides": [
+      "a1b2c3d4",
+      "b2c3d4e5",
+      "c3d4e5f6",
+      "a7b8c9d0",
+      "c9d0e1f2"
+    ],
+    "gate_self_closes": [
+      "ce8aeac5",
+      "c0c05000",
+      "c0c05001"
+    ],
+    "blocked_until_chain": [
+      "d4e5f6a7",
+      "e5f6a7b8",
+      "c0c05001"
+    ]
+  },
+
+  "urca_de_lima_synthesis": {
+    "_note": "All four axes share manifest/todo_roulette.json as single data source. Four projection functions, one manifest.",
+    "axes": {
+      "roulette":   "time axis   — task age/weight → Euler arc wheel (polar, todo_roulette.ts --live)",
+      "dungeon":    "space axis  — room graph = task graph, adjacency=shared tags (main.rs --iso --dungeon)",
+      "xp_trail":   "reward axis — Ω-3 write on room clear, Ω-4 HUD bar (.chthonic/xp-state.json)",
+      "cocos_build":"build axis  — headless Creator build → manifest/cocos_build.json → c0c05001 auto-clear"
+    },
+    "isomorphisms": {
+      "status:completed":      "room_state=3 (cleared)",
+      "verify_condition":      "locked door unlock trigger",
+      "weight":                "room encounter level + arc span",
+      "tags (shared)":         "adjacency (shared tags = connected rooms)",
+      "spin_decides entry":    "unlocked room (freely traversable)"
+    }
+  },
+
+  "active_entry_count": 10,
+  "completed_entry_count": 3,
+  "highest_weight_unblocked": "c3d4e5f6"
+}
