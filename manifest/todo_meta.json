@@ -39,7 +39,7 @@
     {
       "id": "cocos-build-axis",
       "ordered": ["c0c05000", "c0c05001"],
-      "rule": "c0c05001 verify_condition (manifest/cocos_build.json) cannot pass until c0c05000 verify_condition (game/cocos-iso/project.json) passes. Scaffold before build."
+      "rule": "c0c05001 verify_condition (manifest/cocos_build.json) cannot pass until c0c05000 verify_condition (game/cocos-iso/package.json) passes. Scaffold before build. NOTE: Creator 3.x uses package.json as project file."
     }
   ],
 

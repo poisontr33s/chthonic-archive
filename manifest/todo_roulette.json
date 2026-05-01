@@ -171,9 +171,12 @@
       "weight": 8,
       "origin": "session",
       "spin_count": 0,
+      "status": "completed",
+      "completed": "2026-05-02T00:00:00.000Z",
+      "body": "[auto-closed] file-exists: game/cocos-iso/package.json found — Creator 3.x uses package.json as project file, not project.json. 2D project created at game/cocos-iso/ with UUID 208e38a5.",
       "verify": {
         "type": "file-exists",
-        "path": "game/cocos-iso/project.json"
+        "path": "game/cocos-iso/package.json"
       }
     },
     {
