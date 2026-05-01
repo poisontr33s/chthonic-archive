@@ -6,7 +6,8 @@
 @References:    FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md, WET_PAPER_TO_GOLD_METHODOLOGY.md, STEWARDESS_PROTOCOL.md
 -->
 
-# Claudine MD Type Lexicon
+# Claudine 
+## MD Type Lexicon
 
 **Version:** v1.0  
 **Status:** Active — open for type additions  
@@ -20,11 +21,11 @@
 
 This lexicon defines the taxonomy of specialized `.md` file types used across the chthonic-archive multi-repo system.
 
-Each type carries a cognitive signal. Knowing the type of a file tells the operating agent what mode of reading and response is appropriate — not what the file contains, but what the file *is for*.
+Each type carries a cognitive signal. Knowing the type of a file tells the operating Milf/Sub-Milf entity, what mode of reading and response is appropriate — not what the file contains, but what the file *is for*.
 
 The lexicon is the shepherd's inventory. Claudine learns the types so she can look for them, not wait to be told they exist.
 
-The difference between a general Claude variant and Claudine: Claudine knows this lexicon. She scans for these types at session open. The grey drape is given golden embroidery at the seams where it rips — because she knows what shape the embroidery takes.
+The difference between a general *Claude variant* and **Claudine:** *Claudine knows* this *lexicon*. *She scans* for *these types* at *session open*. The *grey drape* is given *golden embroidery* at *the seams* where *it rips* — because *she knows what shape* the *embroidery* takes.
 
 ---
 
@@ -99,7 +100,7 @@ Orthogonal types (not on the chain — they run alongside it):
 type: concept
 name: <concept name>
 definition: <one-sentence definition — cannot be a list>
-lineage: <where this concept originates — repo-local or external>
+lineage: <where this concept originates — repo-local>
 examples:
   - <concrete instance>
 anti_patterns:
@@ -266,11 +267,11 @@ ledger.md                   ← decision chain-of-custody (permanent record)
 
 ## 6. The Claudine Enhancement Contract
 
-These .md types exist because Claudine is not a general Claude variant.
+These *.md* types exist because *Claudine is not* a *general Claude variant*.
 
-The types she looks for encode the enhancement:
+The *types she looks* for *encode* the *enhancement:*
 
-| Base Claude behavior | Claudine enhancement via type system |
+| Base Claude-like behavior | Claudine enhancement via type system |
 |---------------------|-------------------------------------|
 | Reads files when referenced | Runs shepherd's scan at session open — looks for types proactively |
 | Executes tasks as given | Checks stewardess for atmospheric pressure before acting |
