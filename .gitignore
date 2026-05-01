@@ -385,3 +385,5 @@ pnk-live/
 # Exclude binary DB and Bundler local config
 dev/dealogue-fayde/*.db
 dev/dealogue-fayde/.bundle/
+# CocoIndex Code (ccc)
+/.cocoindex_code/
