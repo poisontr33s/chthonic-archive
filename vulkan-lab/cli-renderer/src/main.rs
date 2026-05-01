@@ -1290,6 +1290,8 @@ fn main() {
         let mut frame_count: u64 = 0;
         // G5: SpinState == RoomState — state drives both animation phase (polar) and room visual (dungeon).
         let mut spin_state = StatePhase::Idle;
+        // Ω-2: last room index the player stepped on — prevents state advancing every frame.
+        let mut last_entered_room: i32 = -1;
 
         print!("\x1B[?25l"); // hide cursor for flicker-free overwrite
         std::io::stdout().flush().ok();
@@ -1327,6 +1329,33 @@ fn main() {
                             device.unmap_memory(player_mem);
                         }
                     }
+                }
+            }
+
+            // Ω-2: room_state mutation — advance state once per new tile the player steps onto.
+            if iso_mode {
+                unsafe {
+                    let pptr = device.map_memory(player_mem, 0, player_bytes, vk::MemoryMapFlags::empty())
+                        .expect("map player Ω2") as *const PlayerState;
+                    let (px, py) = ((*pptr).tile_x, (*pptr).tile_y);
+                    device.unmap_memory(player_mem);
+
+                    let rptr = device.map_memory(iso_room_mem, 0, iso_room_bytes, vk::MemoryMapFlags::empty())
+                        .expect("map iso_room Ω2") as *mut IsoRoom;
+                    let mut entered: i32 = -1;
+                    for i in 0..12usize {
+                        let room = &*rptr.add(i);
+                        if room.tile_x == px && room.tile_y == py {
+                            entered = i as i32;
+                            if entered != last_entered_room {
+                                let r = &mut *rptr.add(i);
+                                if r.room_state < 3 { r.room_state += 1; }
+                            }
+                            break;
+                        }
+                    }
+                    device.unmap_memory(iso_room_mem);
+                    last_entered_room = entered;
                 }
             }
 
