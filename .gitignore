@@ -350,6 +350,8 @@ book/
 !codex/**
 !claude/
 !claude/**
+# stewardess/ is session-scoped — intentionally gitignored, lives and dies with the session
+claude/stewardess/
 !claude-codex-gemini/
 !claude-codex-gemini/**
 
