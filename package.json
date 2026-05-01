@@ -75,6 +75,10 @@
     "vs:battery:diff": "bun run scripts/vs_battery.ts diff",
     "vs:battery:components": "bun run scripts/vs_battery.ts components",
     "vs:battery:install": "bun run scripts/vs_battery.ts install",
+    "cocos:probe": "bun run scripts/cocos_probe.ts probe",
+    "cocos:info": "bun run scripts/cocos_probe.ts info",
+    "cocos:build": "bun run scripts/cocos_probe.ts build",
+    "cocos:dashboard": "bun run scripts/cocos_probe.ts dashboard",
     "test": "bun test scripts/gemini-model-router.test.ts"
   },
   "dependencies": {

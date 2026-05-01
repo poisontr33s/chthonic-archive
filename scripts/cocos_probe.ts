@@ -35,6 +35,10 @@ const DASHBOARD_GPU_FLAGS = [
 // Can't easily parse LevelDB without native module; use path scan instead.
 
 const CREATOR_SEARCH_ROOTS = [
+  // Dashboard-managed (actual default on Windows)
+  "C:\\ProgramData\\cocos\\editors\\Creator",
+  join(process.env.PROGRAMDATA || "C:\\ProgramData", "cocos", "editors", "Creator"),
+  // Legacy / custom paths
   "C:\\CocosCreator",
   join(process.env.USERPROFILE || "", "CocosCreator"),
   join(process.env.LOCALAPPDATA || "", "CocosCreator"),
@@ -72,7 +76,9 @@ function findCreatorInstalls(): CreatorInstall[] {
   const found: CreatorInstall[] = [];
 
   // 1. Filesystem scan — Dashboard installs Creator under version subdirs
-  for (const root of CREATOR_SEARCH_ROOTS) {
+  const seenExes = new Set<string>();
+  const uniqueRoots = [...new Set(CREATOR_SEARCH_ROOTS)];
+  for (const root of uniqueRoots) {
     if (!existsSync(root)) continue;
     try {
       const entries = readdirSync(root, { withFileTypes: true });
@@ -86,7 +92,8 @@ function findCreatorInstalls(): CreatorInstall[] {
           join(creatorDir, "editor", "CocosCreator.exe"),
         ];
         for (const exe of candidates) {
-          if (existsSync(exe)) {
+          if (existsSync(exe) && !seenExes.has(exe)) {
+            seenExes.add(exe);
             found.push({ version: e.name, exe, root: creatorDir });
           }
         }
@@ -167,7 +174,7 @@ function cmdProbe() {
     console.log("     Launch the Dashboard and install Creator 3.8.x:");
     console.log(`     ${DASHBOARD_EXE}`);
     console.log(`     ${DASHBOARD_GPU_FLAGS.join(" ")}`);
-    console.log("\n     Default install path when prompted: C:\\CocosCreator\\Creator\\3.8.x\\");
+    console.log("\n     Default install path (Dashboard-managed): C:\\ProgramData\\cocos\\editors\\Creator\\<version>\\");
     console.log("\n     After install, re-run: bun run scripts/cocos_probe.ts probe");
   } else {
     for (const c of creators) {
