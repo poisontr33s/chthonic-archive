@@ -77,6 +77,11 @@ _chthonic_update_pid_registry
 
 Set-PSReadLineOption -AddToHistoryHandler {
     param([string]$cmd)
+    # AGENT-INJECTION MEMBRANE: VS Code run_in_terminal prepends \x15 (Ctrl+U / clear-line)
+    # before injected commands. Strip leading terminal control sequences so the logged
+    # command is clean and $var = ... assignments don't parse as command invocations.
+    $cmd = [regex]::Replace($cmd, '^[\x00-\x1F\x7F]+', '')
+    $cmd = $cmd.TrimStart()
     if ([string]::IsNullOrWhiteSpace($cmd)) { return $true }
     $entry = [ordered]@{
         ts          = (Get-Date -Format 'o')
@@ -104,24 +109,29 @@ function global:prompt {
     $ec  = $LASTEXITCODE
     $ok  = $?
 
-    # Patch the last JSONL entry with exit_code + duration
-    if ($null -ne $global:_cthLastEntry -and $null -ne $global:_cthCmdStart) {
-        $global:_cthCmdStart.Stop()
-        $patch = [ordered]@{
-            ts          = $global:_cthLastEntry.ts
-            pid         = $global:_cthLastEntry.pid
-            sid         = $global:_cthLastEntry.sid
-            cwd         = $global:_cthLastEntry.cwd
-            command     = $global:_cthLastEntry.command
-            exit_code   = $ec
-            success     = $ok
-            duration_ms = $global:_cthCmdStart.ElapsedMilliseconds
-            seq         = $global:_cthLastEntry.seq
+    # HOOK-SAFETY MEMBRANE: wrap all logging in try/catch so the hook never
+    # crashes the shell or corrupts $LASTEXITCODE for the calling session.
+    try {
+        if ($null -ne $global:_cthLastEntry -and $null -ne $global:_cthCmdStart) {
+            $global:_cthCmdStart.Stop()
+            $patch = [ordered]@{
+                ts          = $global:_cthLastEntry.ts
+                pid         = $global:_cthLastEntry.pid
+                sid         = $global:_cthLastEntry.sid
+                cwd         = $global:_cthLastEntry.cwd
+                command     = $global:_cthLastEntry.command
+                exit_code   = $ec
+                success     = $ok
+                duration_ms = $global:_cthCmdStart.ElapsedMilliseconds
+                seq         = $global:_cthLastEntry.seq
+            }
+            # Append a corrected entry with _patch=true so the query tool can use the latest
+            Add-Content -Path $_hookSessionLog -Value ($patch | ConvertTo-Json -Compress -AsArray:$false | ForEach-Object { $_ -replace '^{', '{"_patch":true,' }) -Encoding UTF8
+            $global:_cthLastEntry = $null
+            $global:_cthCmdStart  = $null
         }
-        # Append a corrected entry with _patch=true so the query tool can use the latest
-        Add-Content -Path $_hookSessionLog -Value ($patch | ConvertTo-Json -Compress -AsArray:$false | ForEach-Object { $_ -replace '^{', '{"_patch":true,' }) -Encoding UTF8
-        $global:_cthLastEntry = $null
-        $global:_cthCmdStart  = $null
+    } catch {
+        # Hook logging failed — absorb silently. Never propagate into the shell.
     }
 
     # Restore LASTEXITCODE so prompt doesn't interfere with $?
