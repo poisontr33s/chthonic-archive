@@ -57,13 +57,15 @@ struct Manifest {
 #[derive(Deserialize, Clone)]
 struct ManifestEntry {
     #[allow(dead_code)]
-    id:      String,
-    title:   String,
-    tags:    Vec<String>,
-    weight:  f32,
-    created: String,
+    id:        String,
+    title:     String,
+    tags:      Vec<String>,
+    weight:    f32,
+    created:   String,
     #[serde(default)]
-    status:  Option<String>,
+    status:    Option<String>,
+    #[serde(default)]
+    completed: Option<String>,
 }
 
 // ── helpers ───────────────────────────────────────────────────────────────────
@@ -368,7 +370,7 @@ fn main() {
     let active: Vec<&ManifestEntry> = manifest
         .entries
         .iter()
-        .filter(|e| !matches!(e.status.as_deref(), Some("completed") | Some("ghost")))
+        .filter(|e| e.completed.is_none() && !matches!(e.status.as_deref(), Some("completed") | Some("ghost")))
         .collect();
 
     let n = active.len();
@@ -1358,6 +1360,9 @@ fn main() {
                     last_entered_room = entered;
                 }
             }
+
+            // G5: advance SpinState FSM each frame (drives polar arc phase + iso room visual cue).
+            spin_state = tick_state(spin_state, frame_count);
 
             // ── Re-record + submit G3 ─────────────────────────────────────
             // UNDEFINED→TRANSFER_DST is valid every frame because we immediately clear.

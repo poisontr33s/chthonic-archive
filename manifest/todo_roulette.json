@@ -1,7 +1,7 @@
 {
   "version": "1",
   "created": "2026-04-28T00:00:00.000Z",
-  "total_spins": 4,
+  "total_spins": 5,
   "entries": [
     {
       "id": "a1b2c3d4",
@@ -79,6 +79,7 @@
         "path": "extensions/chthonic-archive/native/Cargo.toml",
         "pattern": "[patch.crates-io]"
       },
+      "status": "completed",
       "completed": "2026-04-30T04:37:28.621Z",
       "body": "[auto-closed] text-absent: pattern \"[patch.crates-io]\" not found in extensions/chthonic-archive/native/Cargo.toml"
     },
@@ -92,7 +93,8 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 3,
       "origin": "session",
-      "spin_count": 0
+      "spin_count": 1,
+      "last_spun": "2026-05-01T21:20:50.901Z"
     },
     {
       "id": "b8c9d0e1",
@@ -104,6 +106,7 @@
       "weight": 5,
       "origin": "session",
       "spin_count": 1,
+      "status": "completed",
       "completed": "2026-04-30T00:00:00.000Z",
       "body": "[auto-closed] ghost ticket — git diff .github/agents/_index.md returned empty. Already committed in a prior session. Detected on spin 1.",
       "verify": {
@@ -154,8 +157,10 @@
       "created": "2026-04-30T05:12:10.827Z",
       "weight": 9,
       "origin": "manual",
-      "spin_count": 0
+      "spin_count": 1,
+      "completed": "2026-05-01T21:20:50.900Z",
+      "body": "[auto-closed] file-exists: vulkan-lab/cli-renderer/src/main.rs found — task complete"
     }
   ],
-  "last_spun": "2026-04-30T05:08:00.904Z"
+  "last_spun": "2026-05-01T21:20:50.901Z"
 }
