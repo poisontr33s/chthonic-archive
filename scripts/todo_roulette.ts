@@ -35,6 +35,7 @@
 // ║   bun run scripts/todo_roulette.ts --nudge <id> [--days <n>]  (boost urgency)
 // ║   bun run scripts/todo_roulette.ts --stats              (entropy, tag distribution)
 // ║   bun run scripts/todo_roulette.ts --history [--top <n>] [--since <YYYY-MM-DD>]  (spin log)
+// ║   bun run scripts/todo_roulette.ts --live               (G4 Vulkan renderer: 33ms loop)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
@@ -775,6 +776,8 @@ if (args.includes("--add")) {
   console.log();
 } else if (args.includes("--history")) {
   cmdHistory(args);
+} else if (args.includes("--live")) {
+  await cmdLive();
 } else if (args.includes("--nudge")) {
   cmdNudge(args);
 } else if (args.includes("--stats")) {
@@ -782,4 +785,65 @@ if (args.includes("--add")) {
 } else {
   // Default: spin (respects --dry-run)
   cmdSpin(args);
+}
+
+// ── G4 Vulkan live renderer ───────────────────────────────────────────────────
+// Spawns vulkan-lab/cli-renderer with --loop. stdout → terminal (ANSI display).
+// stderr → intercepted for JSON events {event:"ready"}, {event:"frame",...}, etc.
+// IPC: write JSON lines to stdin to control the renderer (e.g. {"cmd":"quit"}).
+async function cmdLive(): Promise<void> {
+  const { join: pjoin, dirname } = await import("path");
+  const { existsSync: pExists } = await import("fs");
+
+  // Resolve binary path relative to this script.
+  const repoRoot = pjoin(dirname(import.meta.path), "..");
+  const releaseBin = pjoin(repoRoot, "vulkan-lab", "cli-renderer", "target", "release", "cli-renderer.exe");
+  const debugBin   = pjoin(repoRoot, "vulkan-lab", "cli-renderer", "target", "debug",   "cli-renderer.exe");
+  const bin = pExists(releaseBin) ? releaseBin : debugBin;
+
+  if (!pExists(bin)) {
+    console.error(
+      "cli-renderer binary not found. Build with:\n" +
+      "  cargo build --manifest-path vulkan-lab/cli-renderer/Cargo.toml"
+    );
+    process.exit(1);
+  }
+
+  console.log(`[live] spawning ${bin}`);
+
+  // stdout inherits → ANSI display passes through to user terminal.
+  // stderr piped → TS reads JSON events.
+  // stdin piped → TS can send quit command on Ctrl+C.
+  const proc = Bun.spawn([bin, "--loop"], {
+    stdout: "inherit",
+    stderr: "pipe",
+    stdin:  "pipe",
+  });
+
+  // Forward Ctrl+C as a clean quit command to the renderer.
+  process.on("SIGINT", () => {
+    proc.stdin.write(JSON.stringify({ cmd: "quit" }) + "\n");
+    proc.stdin.flush?.();
+  });
+
+  // Read JSON events from stderr.
+  const decoder = new TextDecoder();
+  for await (const chunk of proc.stderr as AsyncIterable<Uint8Array>) {
+    const text = decoder.decode(chunk);
+    for (const line of text.split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed.startsWith("{")) continue;
+      try {
+        const evt = JSON.parse(trimmed) as Record<string, unknown>;
+        if (evt.event === "ready") {
+          console.error("[live] renderer ready — Ctrl+C to stop");
+        } else if (evt.event === "stopped") {
+          console.error(`[live] stopped after ${evt.frames} frames`);
+        }
+        // frame events: available here for future --record / HUD overlay use
+      } catch { /* non-JSON stderr line */ }
+    }
+  }
+
+  await proc.exited;
 }

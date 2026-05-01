@@ -221,13 +221,16 @@ fn find_manifest() -> PathBuf {
 }
 
 fn main() {
-    // ── CLI: --manifest override ───────────────────────────────────────────
+    // ── CLI args ──────────────────────────────────────────────────────────
     let args: Vec<String> = std::env::args().collect();
     let manifest_path = args
         .windows(2)
         .find(|w| w[0] == "--manifest")
         .map(|w| PathBuf::from(&w[1]))
         .unwrap_or_else(find_manifest);
+    // --loop: continuous 33ms render loop for TS --live orchestration.
+    // Emits JSON events on stdout; non-JSON lines are ANSI display output.
+    let loop_mode = args.iter().any(|a| a == "--loop");
 
     // ── G1: headless Vulkan instance ──────────────────────────────────────
     let entry = unsafe { Entry::load().expect("Vulkan loader not found — install NVIDIA drivers") };
@@ -454,10 +457,13 @@ fn main() {
     unsafe { device.update_descriptor_sets(&writes, &[]) };
 
     // ── G2: command pool → buffer → record dispatch ───────────────────────
+    // RESET_COMMAND_BUFFER: allows per-buffer reset for the G4 render loop.
     let cmd_pool = unsafe {
         device
             .create_command_pool(
-                &vk::CommandPoolCreateInfo::default().queue_family_index(qf_idx),
+                &vk::CommandPoolCreateInfo::default()
+                    .queue_family_index(qf_idx)
+                    .flags(vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER),
                 None,
             )
             .expect("create_command_pool")
@@ -810,7 +816,337 @@ fn main() {
     }
     println!();
     println!("cli-renderer  G3 ✓  480×80 VkImage → ascii_downsample.comp.spv → {cell_count} cells → ANSI stdout");
-    println!("cli-renderer  →     G4: prev_frame VkImage + GPU diff pass → dirty-cell cursor positioning");
+    if !loop_mode {
+        println!("cli-renderer  →     G4: prev_frame VkImage + GPU diff pass → dirty-cell cursor positioning");
+    }
+
+    // ── G4: dirty-cell render loop (activated by --loop) ──────────────────
+    // Architecture: TS --live spawns this binary with --loop. stdout = ANSI display
+    // (passed through to user terminal). stderr = JSON events (captured by TS for IPC).
+    // Containment contract: agents can only act on manifest entries; roulette physics
+    // determine selection. The manifest is the safe boundary.
+    if loop_mode {
+        use std::io::{BufRead, Write};
+        use std::sync::mpsc;
+        use std::time::{Duration, Instant};
+
+        // Allocate prev_cells and dirty-flag buffers (HOST_COHERENT STORAGE_BUFFER, 300×u32).
+        let (prev_buf, prev_mem) = unsafe {
+            alloc_mapped_buffer(&device, &instance, pd, cell_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+        };
+        let (dirty_buf, dirty_mem) = unsafe {
+            alloc_mapped_buffer(&device, &instance, pd, cell_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+        };
+
+        // ── dirty_diff shader + pipeline ──────────────────────────────────
+        let diff_spv   = include_bytes!("../shaders/dirty_diff.comp.spv");
+        let diff_words: Vec<u32> = diff_spv
+            .chunks_exact(4)
+            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]]))
+            .collect();
+        let diff_module = unsafe {
+            device
+                .create_shader_module(&vk::ShaderModuleCreateInfo::default().code(&diff_words), None)
+                .expect("dirty_diff shader module")
+        };
+        let diff_bindings = [0u32, 1u32, 2u32].map(|i| {
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(i)
+                .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::COMPUTE)
+        });
+        let diff_dsl = unsafe {
+            device
+                .create_descriptor_set_layout(
+                    &vk::DescriptorSetLayoutCreateInfo::default().bindings(&diff_bindings),
+                    None,
+                )
+                .expect("diff dsl")
+        };
+        let diff_pc_range = vk::PushConstantRange::default()
+            .stage_flags(vk::ShaderStageFlags::COMPUTE)
+            .offset(0)
+            .size(4); // cell_count as u32
+        let diff_pl = unsafe {
+            device
+                .create_pipeline_layout(
+                    &vk::PipelineLayoutCreateInfo::default()
+                        .set_layouts(&[diff_dsl])
+                        .push_constant_ranges(std::slice::from_ref(&diff_pc_range)),
+                    None,
+                )
+                .expect("diff pipeline layout")
+        };
+        let diff_stage = vk::PipelineShaderStageCreateInfo::default()
+            .stage(vk::ShaderStageFlags::COMPUTE)
+            .module(diff_module)
+            .name(c"main");
+        let diff_pipeline = unsafe {
+            device
+                .create_compute_pipelines(
+                    vk::PipelineCache::null(),
+                    &[vk::ComputePipelineCreateInfo::default().stage(diff_stage).layout(diff_pl)],
+                    None,
+                )
+                .expect("diff pipeline")[0]
+        };
+        let diff_pool_sizes = [vk::DescriptorPoolSize {
+            ty: vk::DescriptorType::STORAGE_BUFFER, descriptor_count: 3,
+        }];
+        let diff_desc_pool = unsafe {
+            device
+                .create_descriptor_pool(
+                    &vk::DescriptorPoolCreateInfo::default()
+                        .max_sets(1)
+                        .pool_sizes(&diff_pool_sizes),
+                    None,
+                )
+                .expect("diff desc pool")
+        };
+        let diff_desc_set = unsafe {
+            device
+                .allocate_descriptor_sets(
+                    &vk::DescriptorSetAllocateInfo::default()
+                        .descriptor_pool(diff_desc_pool)
+                        .set_layouts(&[diff_dsl]),
+                )
+                .expect("diff desc sets")[0]
+        };
+        // binding 0 = curr (cell_buf), binding 1 = prev, binding 2 = dirty
+        let diff_buf_infos = [
+            vk::DescriptorBufferInfo { buffer: cell_buf,  offset: 0, range: cell_bytes },
+            vk::DescriptorBufferInfo { buffer: prev_buf,  offset: 0, range: cell_bytes },
+            vk::DescriptorBufferInfo { buffer: dirty_buf, offset: 0, range: cell_bytes },
+        ];
+        let diff_writes: Vec<vk::WriteDescriptorSet> = diff_buf_infos
+            .iter()
+            .enumerate()
+            .map(|(i, bi)| {
+                vk::WriteDescriptorSet::default()
+                    .dst_set(diff_desc_set)
+                    .dst_binding(i as u32)
+                    .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+                    .buffer_info(std::slice::from_ref(bi))
+            })
+            .collect();
+        unsafe { device.update_descriptor_sets(&diff_writes, &[]) };
+
+        // Diff command buffer + fence (distinct from G3).
+        let diff_cmd = unsafe {
+            device
+                .allocate_command_buffers(
+                    &vk::CommandBufferAllocateInfo::default()
+                        .command_pool(cmd_pool)
+                        .level(vk::CommandBufferLevel::PRIMARY)
+                        .command_buffer_count(1),
+                )
+                .expect("alloc diff cmd")[0]
+        };
+        let diff_fence = unsafe {
+            device.create_fence(&vk::FenceCreateInfo::default(), None).expect("diff fence")
+        };
+
+        // Stdin reader thread → mpsc for IPC commands.
+        // TS --live sends {"cmd":"quit"} to terminate cleanly.
+        let (stdin_tx, stdin_rx) = mpsc::channel::<String>();
+        std::thread::spawn(move || {
+            for line in std::io::stdin().lock().lines().flatten() {
+                if stdin_tx.send(line).is_err() { break; }
+            }
+        });
+
+        // Ready event: TS orchestrator waits for this line before interacting.
+        eprintln!("{{\"event\":\"ready\"}}");
+
+        let frame_target = Duration::from_millis(33);
+        let mut frame_count: u64 = 0;
+
+        print!("\x1B[?25l"); // hide cursor for flicker-free overwrite
+        std::io::stdout().flush().ok();
+
+        // G3 one-shot printed:
+        //   println!()        → blank line      (+1)
+        //   println!(row 0-4) → 5 cell rows     (+5)
+        //   println!()        → blank line      (+1)
+        //   println!(G3 ✓)    → status          (+1)
+        // Total: 8 lines above cursor at loop entry.
+        // Each loop iter after frame 0 reprints: blank+5rows+status = 7 lines, cursor on status (no NL).
+        // So: frame 0 needs `up=8`, frame N needs `up=6` (blank+5rows ends on last row, + status no-NL).
+
+        'render: loop {
+            let t0 = Instant::now();
+
+            // Drain IPC commands (non-blocking).
+            while let Ok(cmd) = stdin_rx.try_recv() {
+                if cmd.contains("\"quit\"") { break 'render; }
+            }
+
+            // ── Re-record + submit G3 ─────────────────────────────────────
+            // UNDEFINED→TRANSFER_DST is valid every frame because we immediately clear.
+            unsafe {
+                device.reset_command_buffer(g3_cmd, vk::CommandBufferResetFlags::empty())
+                    .expect("reset g3_cmd");
+                device.reset_fences(&[g3_fence]).expect("reset g3 fence");
+                device.begin_command_buffer(
+                    g3_cmd,
+                    &vk::CommandBufferBeginInfo::default()
+                        .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT),
+                ).expect("begin g3 loop");
+
+                transition_image_layout(
+                    &device, g3_cmd, fb_image,
+                    vk::ImageLayout::UNDEFINED,             vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                    vk::PipelineStageFlags::TOP_OF_PIPE,    vk::PipelineStageFlags::TRANSFER,
+                    vk::AccessFlags::empty(),               vk::AccessFlags::TRANSFER_WRITE,
+                );
+
+                let (fr, fg, fb_) = if let Some((_score, entry)) = ranked.first() {
+                    let ph = phase_radians(&entry.tags);
+                    (
+                        (0.5 + 0.5 * ph.cos()).clamp(0.0, 1.0),
+                        (0.5 + 0.5 * (ph + 2.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0),
+                        (0.5 + 0.5 * (ph + 4.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0),
+                    )
+                } else { (0.4_f32, 0.1_f32, 0.6_f32) };
+
+                let subres = vk::ImageSubresourceRange::default()
+                    .aspect_mask(vk::ImageAspectFlags::COLOR)
+                    .base_mip_level(0).level_count(1).base_array_layer(0).layer_count(1);
+                device.cmd_clear_color_image(
+                    g3_cmd, fb_image, vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                    &vk::ClearColorValue { float32: [fr, fg, fb_, 1.0] }, &[subres],
+                );
+                transition_image_layout(
+                    &device, g3_cmd, fb_image,
+                    vk::ImageLayout::TRANSFER_DST_OPTIMAL, vk::ImageLayout::GENERAL,
+                    vk::PipelineStageFlags::TRANSFER,      vk::PipelineStageFlags::COMPUTE_SHADER,
+                    vk::AccessFlags::TRANSFER_WRITE,       vk::AccessFlags::SHADER_READ,
+                );
+                device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
+                device.cmd_bind_descriptor_sets(
+                    g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
+                );
+                device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+                device.end_command_buffer(g3_cmd).expect("end g3 loop");
+
+                let sub = vk::SubmitInfo::default().command_buffers(std::slice::from_ref(&g3_cmd));
+                device.queue_submit(queue, &[sub], g3_fence).expect("g3 loop submit");
+                device.wait_for_fences(&[g3_fence], true, u64::MAX).expect("g3 loop wait");
+            }
+
+            // Read curr_cells.
+            let curr_cells: Vec<u32> = unsafe {
+                let ptr = device
+                    .map_memory(cell_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
+                    .expect("map cell_mem loop") as *const u32;
+                let v = std::slice::from_raw_parts(ptr, cell_count).to_vec();
+                device.unmap_memory(cell_mem);
+                v
+            };
+
+            // ── Dispatch dirty_diff ───────────────────────────────────────
+            unsafe {
+                device.reset_command_buffer(diff_cmd, vk::CommandBufferResetFlags::empty())
+                    .expect("reset diff_cmd");
+                device.reset_fences(&[diff_fence]).expect("reset diff fence");
+                device.begin_command_buffer(
+                    diff_cmd,
+                    &vk::CommandBufferBeginInfo::default()
+                        .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT),
+                ).expect("begin diff cmd");
+
+                device.cmd_bind_pipeline(diff_cmd, vk::PipelineBindPoint::COMPUTE, diff_pipeline);
+                device.cmd_bind_descriptor_sets(
+                    diff_cmd, vk::PipelineBindPoint::COMPUTE, diff_pl, 0, &[diff_desc_set], &[],
+                );
+                device.cmd_push_constants(
+                    diff_cmd, diff_pl, vk::ShaderStageFlags::COMPUTE, 0,
+                    &(cell_count as u32).to_ne_bytes(),
+                );
+                let groups = ((cell_count as u32) + 63) / 64;
+                device.cmd_dispatch(diff_cmd, groups, 1, 1);
+                device.end_command_buffer(diff_cmd).expect("end diff cmd");
+
+                let sub = vk::SubmitInfo::default().command_buffers(std::slice::from_ref(&diff_cmd));
+                device.queue_submit(queue, &[sub], diff_fence).expect("diff submit");
+                device.wait_for_fences(&[diff_fence], true, u64::MAX).expect("diff wait");
+            }
+
+            // Read dirty count (sum of dirty[] — the IPC telemetry signal).
+            let dirty_count: u32 = unsafe {
+                let ptr = device
+                    .map_memory(dirty_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
+                    .expect("map dirty_mem") as *const u32;
+                let v: u32 = std::slice::from_raw_parts(ptr, cell_count).iter().sum();
+                device.unmap_memory(dirty_mem);
+                v
+            };
+
+            // ── ANSI overwrite-in-place (no clear-screen, no flicker) ──────
+            // Cursor positioning: on first loop frame (frame_count==0), cursor is 8 lines
+            // below the blank line that opens the render area (G3 one-shot output).
+            // On subsequent frames, cursor is on the status line (no trailing newline).
+            let up: u32 = if frame_count == 0 { 8 } else { 6 };
+            print!("\x1B[{up}A\r\n"); // move up + CR, then newline for blank spacer
+            for row in 0..cell_rows as usize {
+                print!("\r");
+                for col in 0..cell_cols as usize {
+                    let cell = curr_cells[row * cell_cols as usize + col];
+                    let idx  = ((cell >> 24) & 0xFF) as usize;
+                    let r    = (cell >> 16) & 0xFF;
+                    let g    = (cell >>  8) & 0xFF;
+                    let b    =  cell        & 0xFF;
+                    let ch   = BLOCK_CHARS.get(idx).copied().unwrap_or("█");
+                    print!("\x1b[38;2;{r};{g};{b}m{ch}");
+                }
+                print!("\x1b[0m\n");
+            }
+            let elapsed_ms = t0.elapsed().as_millis();
+            print!("\r\x1b[2m  G4 frame:{frame_count:>6}  Δcells:{dirty_count:>3}/300  {elapsed_ms:>3}ms\x1b[0m");
+            std::io::stdout().flush().ok();
+
+            // Copy curr → prev (1200 bytes on CPU; no GPU copy needed at this scale).
+            unsafe {
+                let src = device
+                    .map_memory(cell_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
+                    .expect("map cell for curr→prev") as *const u32;
+                let dst = device
+                    .map_memory(prev_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
+                    .expect("map prev for curr→prev") as *mut u32;
+                std::ptr::copy_nonoverlapping(src, dst, cell_count);
+                device.unmap_memory(cell_mem);
+                device.unmap_memory(prev_mem);
+            }
+
+            // Machine-readable frame event on stderr (TS --live reads this).
+            eprintln!("{{\"event\":\"frame\",\"frame\":{frame_count},\"dirty\":{dirty_count}}}");
+            frame_count += 1;
+
+            // Sleep remainder of 33ms budget.
+            let elapsed = t0.elapsed();
+            if elapsed < frame_target { std::thread::sleep(frame_target - elapsed); }
+        } // 'render
+
+        // Restore cursor visibility; move past render area.
+        print!("\x1B[?25h\n");
+        std::io::stdout().flush().ok();
+        eprintln!("{{\"event\":\"stopped\",\"frames\":{frame_count}}}");
+
+        // Cleanup G4-specific resources (before the main cleanup below).
+        unsafe {
+            device.destroy_fence(diff_fence, None);
+            device.destroy_descriptor_pool(diff_desc_pool, None);
+            device.destroy_pipeline(diff_pipeline, None);
+            device.destroy_pipeline_layout(diff_pl, None);
+            device.destroy_descriptor_set_layout(diff_dsl, None);
+            device.destroy_shader_module(diff_module, None);
+            device.free_memory(dirty_mem, None);
+            device.destroy_buffer(dirty_buf, None);
+            device.free_memory(prev_mem, None);
+            device.destroy_buffer(prev_buf, None);
+        }
+    } // end loop_mode
 
     // ── cleanup ───────────────────────────────────────────────────────────
     unsafe {
