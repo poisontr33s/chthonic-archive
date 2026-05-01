@@ -1,15 +1,14 @@
-// @SID: VULKAN_CLI_RENDERER_G2
-// Gates 1–2: headless Vulkan instance + Euler scoring GPU compute dispatch.
+// @SID: VULKAN_CLI_RENDERER_G3
+// Gates 1–3: headless Vulkan + Euler scoring + ASCII framebuffer.
 //
 // G1: create Entry → headless Instance → pick physical device (RTX 4090)
 // G2: select compute queue family (prefer Q2 COMPUTE-only, fallback Q0 GRAPHICS|COMPUTE)
 //     → VkDevice → read manifest/todo_roulette.json
-//     → EulerTask[n] SSBO upload (host-coherent; staging unnecessary at manifest scale)
-//     → euler_score.comp.spv dispatch
-//     → read back f32 scores → sorted output
+//     → EulerTask[n] SSBO upload → euler_score.comp.spv dispatch → sorted output
+// G3: fn transition_image_layout() (load-bearing for G3/G4/G5/G6)
+//     → VkImage 480×80 RGBA8 (phase-colored fill) → ascii_downsample.comp.spv
+//     → ANSI truecolor block-char stdout (60×5 cell grid)
 //
-// G3 (TODO): fn transition_image_layout() FIRST — load-bearing for G3/G4/G5/G6.
-//            VkImage 480×80 RGBA8 → ascii_downsample.comp.spv → ANSI stdout.
 // G4 (TODO): 33ms render loop, prev_frame VkImage, GPU diff → dirty-cell cursor.
 // G5 (TODO): SpinState { Idle, Spinning, Decelerating, Landed } == RoomState graph.
 // G6 (TODO): --mode=polar vs --mode=dungeon via push constant.
@@ -162,6 +161,43 @@ unsafe fn alloc_mapped_buffer(
         .expect("allocate_memory");
     device.bind_buffer_memory(buf, mem, 0).expect("bind_buffer_memory");
     (buf, mem)
+}
+
+/// Record a VkImage layout transition barrier into `cmd`.
+unsafe fn transition_image_layout(
+    device:     &Device,
+    cmd:        vk::CommandBuffer,
+    image:      vk::Image,
+    old_layout: vk::ImageLayout,
+    new_layout: vk::ImageLayout,
+    src_stage:  vk::PipelineStageFlags,
+    dst_stage:  vk::PipelineStageFlags,
+    src_access: vk::AccessFlags,
+    dst_access: vk::AccessFlags,
+) {
+    let barrier = vk::ImageMemoryBarrier::default()
+        .old_layout(old_layout)
+        .new_layout(new_layout)
+        .src_queue_family_index(vk::QUEUE_FAMILY_IGNORED)
+        .dst_queue_family_index(vk::QUEUE_FAMILY_IGNORED)
+        .image(image)
+        .subresource_range(
+            vk::ImageSubresourceRange::default()
+                .aspect_mask(vk::ImageAspectFlags::COLOR)
+                .base_mip_level(0)
+                .level_count(1)
+                .base_array_layer(0)
+                .layer_count(1),
+        )
+        .src_access_mask(src_access)
+        .dst_access_mask(dst_access);
+    device.cmd_pipeline_barrier(
+        cmd,
+        src_stage,
+        dst_stage,
+        vk::DependencyFlags::empty(),
+        &[], &[], &[barrier],
+    );
 }
 
 /// Walk cwd upward to find manifest/todo_roulette.json.
@@ -504,10 +540,289 @@ fn main() {
     }
 
     println!("\ncli-renderer  G2 ✓  {n} tasks scored via GPU (euler_score.comp.spv  QF={qf_idx})");
-    println!("cli-renderer  →     G3: fn transition_image_layout() → VkImage 480×80 → ANSI stdout");
+
+    // ── G3: VkImage 480×80 → ascii_downsample → ANSI stdout ──────────────
+    const IMG_W: u32 = 480;
+    const IMG_H: u32 = 80;
+    const CELL_W: u32 = 8;
+    const CELL_H: u32 = 16;
+    let cell_cols  = IMG_W / CELL_W;               // 60
+    let cell_rows  = IMG_H / CELL_H;               // 5
+    let cell_count = (cell_cols * cell_rows) as usize; // 300
+
+    // Create device-local framebuffer image (OPTIMAL tiling, STORAGE | TRANSFER_DST)
+    let fb_image = unsafe {
+        device
+            .create_image(
+                &vk::ImageCreateInfo::default()
+                    .image_type(vk::ImageType::TYPE_2D)
+                    .format(vk::Format::R8G8B8A8_UNORM)
+                    .extent(vk::Extent3D { width: IMG_W, height: IMG_H, depth: 1 })
+                    .mip_levels(1)
+                    .array_layers(1)
+                    .samples(vk::SampleCountFlags::TYPE_1)
+                    .tiling(vk::ImageTiling::OPTIMAL)
+                    .usage(vk::ImageUsageFlags::STORAGE | vk::ImageUsageFlags::TRANSFER_DST)
+                    .sharing_mode(vk::SharingMode::EXCLUSIVE)
+                    .initial_layout(vk::ImageLayout::UNDEFINED),
+                None,
+            )
+            .expect("create_image G3")
+    };
+    let img_mem = unsafe {
+        let reqs = device.get_image_memory_requirements(fb_image);
+        let mem  = device
+            .allocate_memory(
+                &vk::MemoryAllocateInfo::default()
+                    .allocation_size(reqs.size)
+                    .memory_type_index(find_memory_type(
+                        &instance, pd, reqs.memory_type_bits,
+                        vk::MemoryPropertyFlags::DEVICE_LOCAL,
+                    )),
+                None,
+            )
+            .expect("allocate image mem G3");
+        device.bind_image_memory(fb_image, mem, 0).expect("bind_image_memory G3");
+        mem
+    };
+    let img_view = unsafe {
+        device
+            .create_image_view(
+                &vk::ImageViewCreateInfo::default()
+                    .image(fb_image)
+                    .view_type(vk::ImageViewType::TYPE_2D)
+                    .format(vk::Format::R8G8B8A8_UNORM)
+                    .subresource_range(
+                        vk::ImageSubresourceRange::default()
+                            .aspect_mask(vk::ImageAspectFlags::COLOR)
+                            .base_mip_level(0)
+                            .level_count(1)
+                            .base_array_layer(0)
+                            .layer_count(1),
+                    ),
+                None,
+            )
+            .expect("create_image_view G3")
+    };
+
+    // Output cell buffer: 300 × u32 (HOST_COHERENT — direct readback, no flush)
+    let cell_bytes = (cell_count * std::mem::size_of::<u32>()) as u64;
+    let (cell_buf, cell_mem) = unsafe {
+        alloc_mapped_buffer(&device, &instance, pd, cell_bytes, vk::BufferUsageFlags::STORAGE_BUFFER)
+    };
+
+    // ascii_downsample shader + pipeline
+    let asc_spv   = include_bytes!("../shaders/ascii_downsample.comp.spv");
+    let asc_words: Vec<u32> = asc_spv
+        .chunks_exact(4)
+        .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]]))
+        .collect();
+    let asc_module = unsafe {
+        device
+            .create_shader_module(&vk::ShaderModuleCreateInfo::default().code(&asc_words), None)
+            .expect("create ascii_downsample shader module")
+    };
+    let asc_bindings = [
+        vk::DescriptorSetLayoutBinding::default()
+            .binding(0)
+            .descriptor_type(vk::DescriptorType::STORAGE_IMAGE)
+            .descriptor_count(1)
+            .stage_flags(vk::ShaderStageFlags::COMPUTE),
+        vk::DescriptorSetLayoutBinding::default()
+            .binding(1)
+            .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+            .descriptor_count(1)
+            .stage_flags(vk::ShaderStageFlags::COMPUTE),
+    ];
+    let asc_dsl = unsafe {
+        device
+            .create_descriptor_set_layout(
+                &vk::DescriptorSetLayoutCreateInfo::default().bindings(&asc_bindings),
+                None,
+            )
+            .expect("asc dsl")
+    };
+    let asc_pl = unsafe {
+        device
+            .create_pipeline_layout(
+                &vk::PipelineLayoutCreateInfo::default().set_layouts(&[asc_dsl]),
+                None,
+            )
+            .expect("asc pipeline layout")
+    };
+    let asc_stage = vk::PipelineShaderStageCreateInfo::default()
+        .stage(vk::ShaderStageFlags::COMPUTE)
+        .module(asc_module)
+        .name(c"main");
+    let asc_pipeline = unsafe {
+        device
+            .create_compute_pipelines(
+                vk::PipelineCache::null(),
+                &[vk::ComputePipelineCreateInfo::default().stage(asc_stage).layout(asc_pl)],
+                None,
+            )
+            .expect("asc pipeline")[0]
+    };
+    let asc_pool_sizes = [
+        vk::DescriptorPoolSize { ty: vk::DescriptorType::STORAGE_IMAGE,  descriptor_count: 1 },
+        vk::DescriptorPoolSize { ty: vk::DescriptorType::STORAGE_BUFFER, descriptor_count: 1 },
+    ];
+    let asc_desc_pool = unsafe {
+        device
+            .create_descriptor_pool(
+                &vk::DescriptorPoolCreateInfo::default().max_sets(1).pool_sizes(&asc_pool_sizes),
+                None,
+            )
+            .expect("asc desc pool")
+    };
+    let asc_desc_set = unsafe {
+        device
+            .allocate_descriptor_sets(
+                &vk::DescriptorSetAllocateInfo::default()
+                    .descriptor_pool(asc_desc_pool)
+                    .set_layouts(&[asc_dsl]),
+            )
+            .expect("asc desc sets")[0]
+    };
+    let img_info     = vk::DescriptorImageInfo::default()
+        .image_layout(vk::ImageLayout::GENERAL)
+        .image_view(img_view);
+    let cell_buf_info = vk::DescriptorBufferInfo { buffer: cell_buf, offset: 0, range: cell_bytes };
+    unsafe {
+        device.update_descriptor_sets(
+            &[
+                vk::WriteDescriptorSet::default()
+                    .dst_set(asc_desc_set)
+                    .dst_binding(0)
+                    .descriptor_type(vk::DescriptorType::STORAGE_IMAGE)
+                    .image_info(std::slice::from_ref(&img_info)),
+                vk::WriteDescriptorSet::default()
+                    .dst_set(asc_desc_set)
+                    .dst_binding(1)
+                    .descriptor_type(vk::DescriptorType::STORAGE_BUFFER)
+                    .buffer_info(std::slice::from_ref(&cell_buf_info)),
+            ],
+            &[],
+        )
+    };
+
+    // G3 command buffer (fresh allocation from existing pool)
+    let g3_cmd = unsafe {
+        device
+            .allocate_command_buffers(
+                &vk::CommandBufferAllocateInfo::default()
+                    .command_pool(cmd_pool)
+                    .level(vk::CommandBufferLevel::PRIMARY)
+                    .command_buffer_count(1),
+            )
+            .expect("alloc g3 cmd")[0]
+    };
+    unsafe {
+        device
+            .begin_command_buffer(
+                g3_cmd,
+                &vk::CommandBufferBeginInfo::default()
+                    .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT),
+            )
+            .expect("begin g3 cmd");
+
+        // 1. UNDEFINED → TRANSFER_DST_OPTIMAL
+        transition_image_layout(
+            &device, g3_cmd, fb_image,
+            vk::ImageLayout::UNDEFINED, vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+            vk::PipelineStageFlags::TOP_OF_PIPE, vk::PipelineStageFlags::TRANSFER,
+            vk::AccessFlags::empty(),            vk::AccessFlags::TRANSFER_WRITE,
+        );
+
+        // 2. Fill with hue derived from top-ranked task phase angle
+        let (fill_r, fill_g, fill_b) = if let Some((_score, entry)) = ranked.first() {
+            let phase = phase_radians(&entry.tags);
+            let r = (0.5 + 0.5 * phase.cos()).clamp(0.0, 1.0);
+            let g = (0.5 + 0.5 * (phase + 2.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0);
+            let b = (0.5 + 0.5 * (phase + 4.0 * std::f32::consts::PI / 3.0).cos()).clamp(0.0, 1.0);
+            (r, g, b)
+        } else {
+            (0.4_f32, 0.1_f32, 0.6_f32)
+        };
+        let subres_range = vk::ImageSubresourceRange::default()
+            .aspect_mask(vk::ImageAspectFlags::COLOR)
+            .base_mip_level(0).level_count(1)
+            .base_array_layer(0).layer_count(1);
+        device.cmd_clear_color_image(
+            g3_cmd, fb_image,
+            vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+            &vk::ClearColorValue { float32: [fill_r, fill_g, fill_b, 1.0] },
+            &[subres_range],
+        );
+
+        // 3. TRANSFER_DST_OPTIMAL → GENERAL (storage image read for ascii_downsample)
+        transition_image_layout(
+            &device, g3_cmd, fb_image,
+            vk::ImageLayout::TRANSFER_DST_OPTIMAL, vk::ImageLayout::GENERAL,
+            vk::PipelineStageFlags::TRANSFER,      vk::PipelineStageFlags::COMPUTE_SHADER,
+            vk::AccessFlags::TRANSFER_WRITE,       vk::AccessFlags::SHADER_READ,
+        );
+
+        // 4. Dispatch ascii_downsample — one workgroup per cell (60 × 5)
+        device.cmd_bind_pipeline(g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pipeline);
+        device.cmd_bind_descriptor_sets(
+            g3_cmd, vk::PipelineBindPoint::COMPUTE, asc_pl, 0, &[asc_desc_set], &[],
+        );
+        device.cmd_dispatch(g3_cmd, cell_cols, cell_rows, 1);
+        device.end_command_buffer(g3_cmd).expect("end g3 cmd");
+    }
+
+    let g3_fence = unsafe {
+        device.create_fence(&vk::FenceCreateInfo::default(), None).expect("g3 fence")
+    };
+    unsafe {
+        let submit = vk::SubmitInfo::default().command_buffers(std::slice::from_ref(&g3_cmd));
+        device.queue_submit(queue, &[submit], g3_fence).expect("g3 submit");
+        device.wait_for_fences(&[g3_fence], true, u64::MAX).expect("g3 wait");
+    }
+
+    // Read back cells[] → decode ANSI truecolor block characters
+    const BLOCK_CHARS: &[&str] = &[" ", "░", "▒", "▓", "█"];
+    let cells: Vec<u32> = unsafe {
+        let ptr = device
+            .map_memory(cell_mem, 0, cell_bytes, vk::MemoryMapFlags::empty())
+            .expect("map cell_mem") as *const u32;
+        let v = std::slice::from_raw_parts(ptr, cell_count).to_vec();
+        device.unmap_memory(cell_mem);
+        v
+    };
+    println!();
+    for row in 0..cell_rows as usize {
+        let mut line = String::new();
+        for col in 0..cell_cols as usize {
+            let cell = cells[row * cell_cols as usize + col];
+            let idx  = ((cell >> 24) & 0xFF) as usize;
+            let r    = (cell >> 16) & 0xFF;
+            let g    = (cell >>  8) & 0xFF;
+            let b    =  cell        & 0xFF;
+            let ch   = BLOCK_CHARS.get(idx).copied().unwrap_or("█");
+            line.push_str(&format!("\x1b[38;2;{r};{g};{b}m{ch}"));
+        }
+        line.push_str("\x1b[0m");
+        println!("{line}");
+    }
+    println!();
+    println!("cli-renderer  G3 ✓  480×80 VkImage → ascii_downsample.comp.spv → {cell_count} cells → ANSI stdout");
+    println!("cli-renderer  →     G4: prev_frame VkImage + GPU diff pass → dirty-cell cursor positioning");
 
     // ── cleanup ───────────────────────────────────────────────────────────
     unsafe {
+        device.destroy_fence(g3_fence, None);
+        device.destroy_descriptor_pool(asc_desc_pool, None);
+        device.destroy_pipeline(asc_pipeline, None);
+        device.destroy_pipeline_layout(asc_pl, None);
+        device.destroy_descriptor_set_layout(asc_dsl, None);
+        device.destroy_shader_module(asc_module, None);
+        device.free_memory(cell_mem, None);
+        device.destroy_buffer(cell_buf, None);
+        device.destroy_image_view(img_view, None);
+        device.free_memory(img_mem, None);
+        device.destroy_image(fb_image, None);
         device.destroy_fence(fence, None);
         device.destroy_command_pool(cmd_pool, None);
         device.destroy_descriptor_pool(desc_pool, None);

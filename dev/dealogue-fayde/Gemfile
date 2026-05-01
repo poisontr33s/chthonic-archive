@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+
+gem "colorize", "~> 0.8.1"
+
+gem "json", "~> 2.5"
+
+gem "tk", "~> 0.1.0" # Prøver en enda eldre versjon av tk
+
+gem "sqlite3", "~> 3.9" # Endret for å prøve en nyere, Ruby 2.7-kompatibel versjon

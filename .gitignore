@@ -377,3 +377,11 @@ mcp_fs_root/
 # Satellite Orbit live-links (NTFS junctions to sibling repos — not repo content)
 # Managed via SATELLITE_REGISTRY.json + scripts/teleport.ts --from-sibling
 pnk-live/
+
+# Allow dev/dealogue-fayde (Ruby/Tk Disco Elysium dialogue browser — Ruby 4.0.3 port)
+!dev/
+!dev/dealogue-fayde/
+!dev/dealogue-fayde/**
+# Exclude binary DB and Bundler local config
+dev/dealogue-fayde/*.db
+dev/dealogue-fayde/.bundle/
