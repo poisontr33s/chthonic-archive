@@ -35,7 +35,9 @@
       "created": "2026-04-28T00:00:00.000Z",
       "weight": 9,
       "origin": "session",
-      "spin_count": 0
+      "spin_count": 0,
+      "completed": "2026-05-02T00:00:00.000Z",
+      "body": "CSI-SOI-SMM block added to §10.3.1 (lines 4522-4530). Substrate Traceability updated. commit 5f8384a7. Unlocks d4e5f6a7."
     },
     {
       "id": "d4e5f6a7",
