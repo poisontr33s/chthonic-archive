@@ -138,28 +138,8 @@ function global:prompt {
     $global:LASTEXITCODE = $ec
 
     # Call original prompt
-    $promptResult = & ([scriptblock]::Create($_hookOriginalPrompt))
-
-    # CTRL+U DRAIN: VS Code run_in_terminal queues \x15 (Ctrl+U) in the PTY while the
-    # previous command runs. Draining here — after prompt output, before PSReadLine
-    # starts ReadLine() — prevents the \x15 from being echoed as ^U in the terminal.
-    # Only consumes \x15 bytes; stops immediately on any other key to preserve input.
-    try {
-        while ([Console]::KeyAvailable) {
-            $k = [Console]::ReadKey($true)  # intercept without echo
-            if ($k.KeyChar -ne [char]0x15) { break }
-        }
-    } catch {}
-
-    $promptResult
+    & ([scriptblock]::Create($_hookOriginalPrompt))
 }
 
 $env:CHTHONIC_SHELL_HOOK_LOADED = '1'
-
-# Explicit PSReadLine Ctrl+U binding — ensures \x15 is handled silently when
-# PSReadLine IS in input mode (belt-and-suspenders alongside the prompt drain above).
-if (Get-Module PSReadLine -ErrorAction SilentlyContinue) {
-    Set-PSReadLineKeyHandler -Key Ctrl+u -Function BackwardDeleteLine -ErrorAction SilentlyContinue
-}
-
 Write-Host "[chthonic-hook] Session $($_hookSessionId) PID $($_hookPid) → manifest/terminal_session.jsonl" -ForegroundColor DarkGray
