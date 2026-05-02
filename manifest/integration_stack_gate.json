@@ -1,0 +1,15 @@
+{
+  "gate": "integration/flash_attn+triton+xformers+formatron",
+  "level": "L4_integration_verified",
+  "status": "joint_forward_pass_verified_win32_rtx4090",
+  "mea_max_abs_diff": 0.0,
+  "mea_pass": true,
+  "formatron_schema_build": true,
+  "xformers_dispatch_flash_available": true,
+  "triton_deprecation_warning": "warmup/rep/use_cuda_graph \u2014 upstream triton-windows/xformers version skew, no functional impact",
+  "torch_version": "2.11.0+cu128",
+  "triton_version": "3.6.0",
+  "flash_attn_version": "2.8.3",
+  "xformers_version": "0.0.35",
+  "timestamp": "2026-05-02"
+}

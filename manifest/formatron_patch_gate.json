@@ -1,24 +1,40 @@
 {
-  "gate": "formatron/escape_sequence_fix",
-  "level": "L4_import_clean",
-  "status": "patched_win32_venv",
+  "gate": "formatron/escape_sequence_fix+pydantic_v2_compat",
+  "level": "L4_grammar_construction_verified",
+  "status": "patched_and_integration_verified_win32_rtx4090",
   "import_ok": true,
+  "grammar_construction_ok": true,
   "formatron_version": "0.5.0",
+  "pydantic_version": "2.13.3",
   "python_version": "3.14.4",
   "venv": "dev/tabbyAPI/.venv",
   "patch_script": "build/tabby-modern-gpu/patches/patch-formatron-escape.py",
   "patches_applied": [
     {
       "file": "formatron/formats/json.py",
-      "fixes": ["'\\\\A' -> r'\\\\A'", "'\\\\z' -> r'\\\\z'"]
-    }
-  ],
-  "patches_skipped": [
+      "fixes": ["'\\A' -> r'\\A'", "'\\z' -> r'\\z'"]
+    },
     {
       "file": "formatron/schemas/json_schema.py",
-      "reason": "already patched or pattern not present"
+      "fixes": [
+        "from pydantic import typing -> import typing  (Pydantic V2 removed pydantic.typing)",
+        "docstring \\[ -> \\\\[  (invalid escape in docstring)"
+      ]
     }
   ],
-  "note": "formatron 0.5.0 had 3 bare-string invalid escape sequences. Patch script is idempotent — was pre-committed for Podman lane, now applied to local Win11 venv. Previously classified as 'cosmetic warning' — now admitted at L4.",
+  "verification": {
+    "method": "tabbyAPI grammar.py pattern: json_schema.create_schema({$id, $schema, type, properties, required}) + FormatterBuilder().json(schema_obj)",
+    "result": "PASS",
+    "probe": "probes/python/integration_stack_probe.py"
+  },
+  "root_cause_history": [
+    "Initial patch (commit 8e15245c): fixed formats/json.py escape sequences only, claimed L4 on import-only evidence",
+    "Integration test revealed: FormatterBuilder.json() FAILED with 'pydantic.typing:get_origin has been removed in V2'",
+    "Root cause: formatron/schemas/json_schema.py uses 'from pydantic import typing' -- pydantic.typing module removed in V2",
+    "Secondary: docstring on line 72 had '\\[' invalid escape (SyntaxWarning on 3.14)",
+    "Fix: replace pydantic import with stdlib typing; fix docstring escape",
+    "Also fixed: patch script idempotency bug (check new-present BEFORE old-present to avoid double-prefix)"
+  ],
+  "note": "The original 'non-fatal warning' dismissal was wrong. formatron required two separate patches to work correctly under Python 3.14 + Pydantic V2. Gate is now L4 -- grammar construction proven by json_schema.create_schema() + FormatterBuilder().json() which is the exact path used by tabbyAPI backends/exllamav2/grammar.py",
   "timestamp": "2026-05-02"
 }

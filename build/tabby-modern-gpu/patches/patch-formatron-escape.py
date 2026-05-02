@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-# @SID: PATCH_FORMATRON_ESCAPE_V1
-# patch-formatron-escape.py — Fix formatron invalid escape sequences
+# @SID: PATCH_FORMATRON_ESCAPE_V2
+# patch-formatron-escape.py — Fix formatron Python 3.14 + Pydantic V2 incompatibilities
 #
-# FAF Gate 7: formatron/escape_sequence_cessation
+# FAF Gate 7: formatron/escape_sequence_cessation + pydantic_v2_compat
 # Target: installed formatron package in current venv
 #
 # Fixes:
 #   formatron/formats/json.py:116     '\A', '\z'  -> r'\A', r'\z'
-#   formatron/schemas/json_schema.py:72  '\['      -> r'\['
+#   formatron/schemas/json_schema.py:72  '\['      -> '\\['  (docstring)
+#   formatron/schemas/json_schema.py     'from pydantic import typing'
+#                                     -> 'import typing'   (Pydantic V2 compat)
 #
-# These are bare-string invalid escape sequences on the cessation path:
-#   Python 3.14 = SyntaxWarning
-#   Python ~3.16 = SyntaxError (import fails)
+# Invalid escape sequences:
+#   Python 3.14 = SyntaxWarning; Python ~3.16 = SyntaxError (import fails)
+#   r-prefix on regex strings is semantically correct.
 #
-# This patch is semantically identical — r-prefix on regex strings is correct.
+# Pydantic V2 incompatibility:
+#   pydantic.typing module removed in Pydantic V2. formatron 0.5.0 imports it.
+#   Fix: use stdlib `typing` instead — all usages are standard typing functions.
+#
 # Safe to apply unconditionally. Idempotent.
 
 import importlib.util
@@ -68,9 +73,12 @@ def apply_patch(pkg_dir: pathlib.Path) -> dict:
         },
         {
             "file": pkg_dir / "schemas" / "json_schema.py",
-            "description": "schemas/json_schema.py — \\[ bare string",
+            "description": "schemas/json_schema.py — pydantic V2 compat + \\[ docstring escape",
             "subs": [
-                (r"'\['", r"r'\['"),
+                # Pydantic V2 removed pydantic.typing — replace with stdlib typing
+                ("from pydantic import typing", "import typing"),
+                # \[ in docstring — double the backslash so it's a valid escape
+                (r"like \[\[\[\[...\]\]\]\]", r"like \\[\\[\\[\\[...\\]\\]\\]\\]"),
             ],
         },
     ]
@@ -86,12 +94,12 @@ def apply_patch(pkg_dir: pathlib.Path) -> dict:
         applied = []
 
         for old, new in target["subs"]:
-            if old in patched:
-                patched = patched.replace(old, new)
-                applied.append({"old": old, "new": new})
-            elif new in patched:
+            if new in patched:
                 # Already patched — idempotent skip
                 applied.append({"already_present": new, "skipped": True})
+            elif old in patched:
+                patched = patched.replace(old, new)
+                applied.append({"old": old, "new": new})
 
         if patched != original:
             fpath.write_text(patched, encoding="utf-8")
