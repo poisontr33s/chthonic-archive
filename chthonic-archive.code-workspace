@@ -72,5 +72,37 @@
       "github.copilot-chat",
       "github.vscode-pull-request-github"
     ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "🌊 Claudine: Polyrepo Quick Descent",
+        "type": "shell",
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/polyrepo-runner.ps1",
+          "-Quick",
+          "-NoFetch"
+        ],
+        "group": "test",
+        "detail": "Quick sweep of all districts (git + typecheck only). Claudine Sin'claire MILFOLOGICAL flavor. ~22s."
+      },
+      {
+        "label": "☥ Claudine: Polyrepo Full Descent + Manifest",
+        "type": "shell",
+        "command": "pwsh",
+        "args": [
+          "-NoProfile",
+          "-File",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/polyrepo-runner.ps1",
+          "-Report"
+        ],
+        "group": "test",
+        "detail": "Full district sweep — all tributaries. Emits manifest/polyrepo_gate.json. All entropy flows back."
+      }
+    ]
   }
 }
