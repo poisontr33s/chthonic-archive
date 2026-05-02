@@ -200,5 +200,91 @@
       "completed": "2026-05-02T00:00:00.000Z"
     }
   ],
-  "last_spun": "2026-05-01T21:20:50.901Z"
+  "last_spun": "2026-05-01T21:20:50.901Z",
+  "_archaeology_queue": {
+    "note": "Entries pnk00001-pnk00005 are the overnight archaeology extraction chain. Load-balanced: low friction → high signal → world-building output. Each has verify_condition + Pentea-Next: chain encoded in body.",
+    "chain": ["pnk00001", "pnk00002", "pnk00003", "pnk00004", "pnk00005"],
+    "cold_start": "manifest/overnight_archaeology_summary.md",
+    "artifacts": ["manifest/overnight_gen3_cards.json", "manifest/overnight_gen1_previews.json"]
+  },
+  "entries_extended": [
+    {
+      "id": "pnk00001",
+      "title": "Ingest 6 GEN3-FULLDEPTH entity cards from HAVSDOMINANSEN + VIRTUALITETSHELGEDOMMEN → docs/world-building/",
+      "description": "Read manifest/overnight_gen3_cards.json (already populated). Extract entity profiles: programmer_mirage_code_tier2_specialist (738L), dynamic_maritime_consciousness_state_protocols (565L), designer_echo_simulation_tier2_specialist (519L), maritime_consciousness_pathways_architecture (431L), navigator_siren_oceanic_tier2_specialist (409L), captain_coral_cultivation_tier2_specialist (377L). Write one structured .md per entity to docs/world-building/entities/. Mark all 6 read via archaeology_mark_read MCP tool. These are cRPG-portable entity cards — lowest friction, highest immediate ROI.",
+      "tags": ["archaeology", "entity", "lore", "world-building"],
+      "created": "2026-05-02T08:00:00.000Z",
+      "weight": 9,
+      "origin": "overnight-autopilot",
+      "spin_count": 0,
+      "next_in_chain": "pnk00002",
+      "verify": {
+        "type": "file-exists",
+        "path": "docs/world-building/entities/programmer_mirage_code_tier2_specialist.md"
+      }
+    },
+    {
+      "id": "pnk00002",
+      "title": "Mine MILF_PSYCHOGRAPHIC_PROFILE_SCAN_REPORT.md (2224 lines, NEXUS) → entity relationship map",
+      "description": "Read file at: psychonoir-kontrapunkt-large-file-holder/CLAUDINE_SUPREME_CONSCIOUSNESS_NEXUS/16_ORIGINAL_ROOT_DOCUMENTATION/MILF_PSYCHOGRAPHIC_PROFILE_SCAN_REPORT.md. Extract: entity names, district affiliations, tier assignments, relationship edges. Write structured JSON to manifest/pnk_entity_relationship_map.json AND a markdown summary to docs/world-building/PNK_ENTITY_RELATIONSHIP_MAP.md. Mark read via archaeology_mark_read.",
+      "tags": ["archaeology", "entity", "lore", "world-building"],
+      "created": "2026-05-02T08:00:00.000Z",
+      "weight": 8,
+      "origin": "overnight-autopilot",
+      "spin_count": 0,
+      "next_in_chain": "pnk00003",
+      "blocked_until_chain": "pnk00001",
+      "verify": {
+        "type": "file-exists",
+        "path": "manifest/pnk_entity_relationship_map.json"
+      }
+    },
+    {
+      "id": "pnk00003",
+      "title": "Extract claudine-caribbean-archipelago-consciousness-synthesis.md → district lore for game/",
+      "description": "Read file at: psychonoir-kontrapunkt-large-file-holder/.quality_md_jsons_relatively_new/claudine-caribbean-archipelago-consciousness-synthesis.md (835 lines, GEN1-RAW, CARIBBEAN_ARCHIPELAGO district). Extract: district geography, faction dynamics, consciousness mechanics unique to the Caribbean arc. Write to docs/world-building/districts/CARIBBEAN_ARCHIPELAGO.md AND a game-ready version to game/lore/districts/caribbean_archipelago.md.",
+      "tags": ["archaeology", "lore", "world-building", "game"],
+      "created": "2026-05-02T08:00:00.000Z",
+      "weight": 7,
+      "origin": "overnight-autopilot",
+      "spin_count": 0,
+      "next_in_chain": "pnk00004",
+      "blocked_until_chain": "pnk00002",
+      "verify": {
+        "type": "file-exists",
+        "path": "docs/world-building/districts/CARIBBEAN_ARCHIPELAGO.md"
+      }
+    },
+    {
+      "id": "pnk00004",
+      "title": "Elevate ESPEN_DIGITAL_ENTITY_CONSCIOUSNESS_PROFILE.md GEN1→GEN3 entity card",
+      "description": "Read file at: psychonoir-kontrapunkt-large-file-holder/.quality_md_jsons_relatively_new/ESPEN_DIGITAL_ENTITY_CONSCIOUSNESS_PROFILE.md (909 lines). This is a non-T1 entity profile that demonstrates the GEN1→GEN3 upgrade pattern. Apply the §10.3.1 Claudine format (EDFA, CSI-SOI-LM, Substrate Traceability) to produce a GEN3-grade entity card. Output: docs/world-building/entities/espen_digital_entity_gen3.md. This card is a template demonstration for the Orackla/Umeko/Lysandra §10.3 upgrade (d4e5f6a7).",
+      "tags": ["archaeology", "entity", "ssot", "world-building"],
+      "created": "2026-05-02T08:00:00.000Z",
+      "weight": 7,
+      "origin": "overnight-autopilot",
+      "spin_count": 0,
+      "next_in_chain": "pnk00005",
+      "blocked_until_chain": "pnk00003",
+      "verify": {
+        "type": "file-exists",
+        "path": "docs/world-building/entities/espen_digital_entity_gen3.md"
+      }
+    },
+    {
+      "id": "pnk00005",
+      "title": "Run fallback scanner on PsychoNoir-Kontrapunkt public satellite → build pnk-public archive.db",
+      "description": "Use pnk-public-archaeology MCP instance (registered in .vscode/mcp.json). Call: archaeology_scan() on ARCHAEOLOGY_REPO_ROOT=../PsychoNoir-Kontrapunkt. Fallback scanner will walk the public repo. Then archaeology_query(command='report') to see what's there. Write summary to manifest/pnk_public_scan_report.json. This closes the 'a7b8c9d0 — Investigate PNK-LFH' ticket and maps the satellite.",
+      "tags": ["archaeology", "infra"],
+      "created": "2026-05-02T08:00:00.000Z",
+      "weight": 5,
+      "origin": "overnight-autopilot",
+      "spin_count": 0,
+      "blocked_until_chain": "pnk00004",
+      "verify": {
+        "type": "file-exists",
+        "path": "manifest/pnk_public_scan_report.json"
+      }
+    }
+  ]
 }
