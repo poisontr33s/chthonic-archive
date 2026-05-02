@@ -39,7 +39,9 @@
     // Hide the junction alias from the chthonic-archive Explorer tree
     // (it's a live link, not repo content)
     "files.exclude": {
-      "pnk-live": true
+      "pnk-live": true,
+      "rmco-live": true,
+      "csb-live": true
     },
     // Search: include PNK satellite by default (both repos in Ctrl+Shift+F scope)
     "search.useIgnoreFiles": true,
