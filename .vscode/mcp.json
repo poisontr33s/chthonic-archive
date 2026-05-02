@@ -84,7 +84,36 @@
 				"--quiet",
 				"scripts/archaeology_mcp.py"
 			],
-			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
+			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+			"env": {
+				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
+			}
+		},
+		"pnk-public-archaeology": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"--quiet",
+				"scripts/archaeology_mcp.py"
+			],
+			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+			"env": {
+				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../PsychoNoir-Kontrapunkt"
+			}
+		},
+		"chthonic-archaeology": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"--quiet",
+				"scripts/archaeology_mcp.py"
+			],
+			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+			"env": {
+				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
+			}
 		}
 	}
 }
