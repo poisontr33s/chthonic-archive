@@ -27,7 +27,7 @@
       "name": "Restructure-MCP-Orchestration",
       "github": "poisontr33s/Restructure-MCP-Orchestration",
       "local_path": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
-      "junction": null,
+      "junction": "rmco-live",
       "clone_depth": 1,
       "teleport_flags": [],
       "domain": "MCP orchestration / monorepo architecture / pnpm workspace / autonomous agent systems",
@@ -42,7 +42,7 @@
       "name": "Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "github": "poisontr33s/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "local_path": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-      "junction": null,
+      "junction": "csb-live",
       "clone_depth": 1,
       "teleport_flags": [],
       "domain": "ASC Framework SSOT / Claudine Triumvirate canon / polyglot toolchain (Bun) / git-lsp engineering",
@@ -51,6 +51,32 @@
       "open_issues": 5,
       "last_pushed": "2025-12-01",
       "notes": "Houses the Apex Synthesis Core copilot-instructions.md — the MILFOLOGICAL governance doc. Claudine archetype canon including Decorator/Triumvirate/Prime Factions/Lesser Factions full spec. The ASC Framework SSOT for the agent system."
+    },
+    {
+      "alias": "git-dump",
+      "name": "git-dump-lfs-holder-we-it-takes",
+      "github": "poisontr33s/git-dump-lfs-holder-we-it-takes",
+      "local_path": "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
+      "junction": "git-dump-live",
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "LFS asset dump / git archaeology / large-file holding orbit",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "notes": "LFS holder satellite for git-dump assets. Junctioned as git-dump-live."
+    },
+    {
+      "alias": "pnk-lfh",
+      "name": "psychonoir-kontrapunkt-large-file-holder",
+      "github": "poisontr33s/psychonoir-kontrapunkt-large-file-holder",
+      "local_path": "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder",
+      "junction": "pnk-lfh-live",
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "PsychoNoir-Kontrapunkt LFS assets / large media / binary artifacts",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "notes": "LFS asset holder for PsychoNoir-Kontrapunkt. Holds large binary files not tracked in the primary PNK repo. Junctioned as pnk-lfh-live."
     }
   ]
 }

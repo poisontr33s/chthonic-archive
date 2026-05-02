@@ -33,6 +33,14 @@
     {
       "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
+    },
+    {
+      "path": "../git-dump-lfs-holder-we-it-takes",
+      "name": "📦 git-dump-lfs-holder [satellite]"
+    },
+    {
+      "path": "../psychonoir-kontrapunkt-large-file-holder",
+      "name": "📦 pnk-large-file-holder [satellite]"
     }
   ],
   "settings": {
@@ -41,7 +49,9 @@
     "files.exclude": {
       "pnk-live": true,
       "rmco-live": true,
-      "csb-live": true
+      "csb-live": true,
+      "git-dump-live": true,
+      "pnk-lfh-live": true
     },
     // Search: include PNK satellite by default (both repos in Ctrl+Shift+F scope)
     "search.useIgnoreFiles": true,
