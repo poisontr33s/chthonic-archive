@@ -25,6 +25,14 @@
     {
       "path": "../PsychoNoir-Kontrapunkt",
       "name": "🌀 PsychoNoir-Kontrapunkt [satellite]"
+    },
+    {
+      "path": "../Restructure-MCP-Orchestration",
+      "name": "🔧 Restructure-MCP-Orchestration [satellite]"
+    },
+    {
+      "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
     }
   ],
   "settings": {

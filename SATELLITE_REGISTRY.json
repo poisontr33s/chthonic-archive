@@ -21,6 +21,36 @@
       "governance_class": "Teleport-Adapter",
       "briefcase_last": "2026-04-28",
       "notes": "Primary Claudine entity source. entity-mode captures incarnation manifests, protocols, revelations. Large-file-holder repo (psychonoir-kontrapunkt-large-file-holder) holds LFS assets — not cloned."
+    },
+    {
+      "alias": "rmo",
+      "name": "Restructure-MCP-Orchestration",
+      "github": "poisontr33s/Restructure-MCP-Orchestration",
+      "local_path": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+      "junction": null,
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "MCP orchestration / monorepo architecture / pnpm workspace / autonomous agent systems",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "open_issues": 19,
+      "last_pushed": "2026-04-27",
+      "notes": "Most issue-active repo. Contains MCP server packages (core/, cli/), Copilot/Claude collaboration docs, Captain Guthilda persona docs, agent registry. 19 open PRs/issues to review in REDUX."
+    },
+    {
+      "alias": "csp",
+      "name": "Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "github": "poisontr33s/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "local_path": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "junction": null,
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "ASC Framework SSOT / Claudine Triumvirate canon / polyglot toolchain (Bun) / git-lsp engineering",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "open_issues": 5,
+      "last_pushed": "2025-12-01",
+      "notes": "Houses the Apex Synthesis Core copilot-instructions.md — the MILFOLOGICAL governance doc. Claudine archetype canon including Decorator/Triumvirate/Prime Factions/Lesser Factions full spec. The ASC Framework SSOT for the agent system."
     }
   ]
 }
