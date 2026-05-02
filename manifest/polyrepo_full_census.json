@@ -1,0 +1,336 @@
+{
+  "_meta": {
+    "generated": "2026-05-24",
+    "scope": "Full 7-repo census — poisontr33s org",
+    "repos_covered": 7,
+    "prior_manifest": "manifest/branch_archaeology.json (5cf8cd1a)",
+    "session": "polyrepo-archaeology-2"
+  },
+  "repos": {
+    "chthonic-archive": {
+      "full_name": "poisontr33s/chthonic-archive",
+      "alias": "archive",
+      "tags": 0,
+      "open_prs": 0,
+      "open_issues": 0,
+      "branches_profiled": "none — main is primary, copilot branches resolved in prior session",
+      "coderabbit_yml": false,
+      "notes": "Primary repo. Manifests live here. 5cf8cd1a committed but NOT yet pushed to origin."
+    },
+    "claudine": {
+      "full_name": "poisontr33s/Claudine_Supreme-Polyglot-CLI-Agent",
+      "alias": "claudine",
+      "tags": 0,
+      "coderabbit_yml": false,
+      "draft_prs": {
+        "#8": {"branch": "copilot/create-e2e-workflow-tests", "verdict": "HARVEST", "signal": "368-line E2E test suite"},
+        "#12": {"branch": "copilot/implement-config-system-tests", "verdict": "HARVEST", "signal": "346-line config-manager + 507-line tests"},
+        "#13": {"branch": "copilot/integrate-config-manager-orchestrator", "verdict": "HARVEST", "signal": "orchestrator + detector + config index"}
+      },
+      "notes": "3 harvest PRs already open. All copilot branches profiled in prior session."
+    },
+    "pnk": {
+      "full_name": "poisontr33s/PsychoNoir-Kontrapunkt",
+      "alias": "pnk",
+      "tags": 3,
+      "tag_names": ["archive-2025-10-17", "archive-2025-10-19", "pnk-2025-10-17"],
+      "coderabbit_yml": false,
+      "copilot_branches": {
+        "copilot/fix-16": {"ahead": 0, "behind": 2, "files": 0, "verdict": "STALE"}
+      },
+      "notes": "3 archive-style tags exist. No open PRs. 1 stale copilot branch."
+    },
+    "mcp": {
+      "full_name": "poisontr33s/Restructure-MCP-Orchestration",
+      "alias": "mcp",
+      "tags": 0,
+      "coderabbit_yml": false,
+      "open_issues": {
+        "#263": {
+          "title": "Potential prompt injection vulnerability in summary.yml",
+          "state": "open",
+          "filed_by": "cicd-security",
+          "filed_date": "2026-03-29",
+          "severity": "HIGH",
+          "description": "summary.yml workflow concatenates LLM output directly into gh issue comment --body shell arg. Fix: route through env var RESPONSE then reference $RESPONSE in shell.",
+          "affected_file": ".github/workflows/summary.yml",
+          "verdict": "FIX NOW — Phase 2.1"
+        }
+      },
+      "branches": {
+        "issue_number_copilot": {
+          "copilot/fix-46": {"verdict": "STALE", "notes": "in prior manifest"},
+          "copilot/fix-64": {"verdict": "STALE", "notes": "in prior manifest"},
+          "copilot/fix-68": {"verdict": "STALE", "notes": "in prior manifest"},
+          "copilot/fix-84": {"verdict": "STALE", "notes": "in prior manifest"},
+          "copilot/fix-88": {"verdict": "STALE", "notes": "in prior manifest"},
+          "copilot/fix-91": {"verdict": "HARVEST", "draft_pr": "#281", "signal": "52 files: 13 dead workflows removed + packages/auth (1593 lines) + 6 agent packages"},
+          "copilot/fix-108": {"verdict": "HARVEST", "draft_pr": "#282", "signal": "Gemini Code Assist + Guthilda update"}
+        },
+        "uuid_copilot_sample": {
+          "copilot/fix-41bc9e10-b9dd-4df8-ade5-ae91edfc6b3e": {
+            "ahead": 2, "behind": 85,
+            "files": [".github/alpha-directives.md", ".gitignore", "README.md", "custom-instructions.md", "docs/POISONTR33S-PROTOCOL.md", "package.json", "scripts/validate-agent-response.js"],
+            "verdict": "HARVEST",
+            "signal": "POISONTR33S-PROTOCOL.md + alpha-directives.md — governance docs"
+          },
+          "other_uuids_note": "15 additional UUID branches not yet profiled individually. Pattern: small fixups, mostly stale. Sample fix-41bc9e10 shows governance docs."
+        },
+        "new_non_copilot": {
+          "feature/java21-port": {
+            "ahead": 14,
+            "behind": 39,
+            "files_count": 300,
+            "verdict": "HARVEST-SELECTIVE",
+            "harvest_targets": [
+              ".github/guthilda-java21-rituals.md",
+              ".github/guthilda-monorepo-notes.md",
+              ".github/copilot-java21-instructions.md",
+              "mcp-v2-protocol-spec/schemas/*.json",
+              "mcp-v2-protocol-spec/transport/*.yml",
+              "mcp-v2-protocol-spec/transport/*.proto",
+              "mcp-v2-java-client/src/**/*.java",
+              "mcp-v2-python-client/src/**/*.py",
+              "mcp-v2-typescript-client/src/**/*.ts",
+              ".devcontainer/",
+              "docs/CAPTAIN_GUTHILDA_UNIFIED_GUIDE.md",
+              "agents/registry.json"
+            ],
+            "noise": "target/ compiled .class/.jar files, autonomous-logs/*.md session artifacts, AUTONOMOUS-* docs",
+            "notes": "Complete Java 21 reimplementation + MCP v2 multi-language protocol clients + devcontainer. DO NOT import compiled artifacts."
+          },
+          "poisontr33s/issue46": {
+            "ahead": 96,
+            "behind": 119,
+            "files_count": 300,
+            "verdict": "HARVEST-SELECTIVE",
+            "harvest_targets": [
+              ".claude/agents/captain-guthilda-navigator.md",
+              ".claude/agents/claude-companion-girlfriend.md",
+              ".claude/agents/claudine-team-psychologist.md",
+              ".claude/agents/code-performance-optimizer.md",
+              ".claude/agents/eva-green-code-oracle.md",
+              ".claude/agents/github-vscode-grandmaster.md",
+              ".claude/agents/greater-entity-force.md",
+              ".claude/agents/infrastructure-polyglot-architect.md",
+              ".claude/agents/infrastructure-polyglot-expert.md",
+              ".claude/agents/kendra-sunderland-persona.md",
+              ".claude/agents/meta-programming-genius.md",
+              ".claude/agents/multilingual-japanese-cs-expert.md",
+              ".claude/agents/overseer-taskmaster-allocator.md",
+              ".claude/agents/rae-lil-black-persona.md",
+              ".claude/agents/role-reversal-agent.md",
+              ".claude/agents/savant-multidisciplinarian-autodidact.md",
+              ".claude/agents/stingy-prodigious-token-whisperer.md",
+              ".claude/agents/ux-strategy-designer.md",
+              ".claude/agents/zen-monk-elder-grandmaster.md",
+              "consciousness-ecosystem/",
+              ".consciousness-bridge/",
+              "TRIUMVIRATE-CHARTER.md",
+              "MULTI-AGENT-CROSS-POLLINATION.md"
+            ],
+            "noise": "euler-heritage-weaving-*.json (mass runtime artifacts), __pycache__, docs/session-log/problems-*.json",
+            "notes": "19 Claude agents + consciousness-bridge infrastructure + 96 commits of work. Severely diverged from main (119 behind). Agent files are the primary harvest vector."
+          },
+          "feature/bun-migration": {
+            "ahead": 1,
+            "behind": 118,
+            "files_count": 44,
+            "verdict": "DEFER",
+            "notes": "118 behind main makes merge cost high. Key files (.github/instructions/*.instructions.md, .vscode/scripts/) may already exist in main or are superseded."
+          },
+          "release/captain-guthilda-rc1": {"ahead": 0, "behind": 91, "verdict": "STALE"},
+          "codespace-jubilant-telegram-xr9vwjg57w36xvv": {"ahead": 0, "behind": 32, "verdict": "STALE"},
+          "codespace-zany-engine-5gxx5x574pgpc477j": {
+            "ahead": 1,
+            "behind": 49,
+            "files": [".github/actions/setup-node-pnpm/action.yml", ".github/workflows-graveyard/20250826_rubyonrails.yml", ".github/workflows-graveyard/CONSOLIDATION_PLAN.md", ".github/workflows-graveyard/quick-exile.sh", ".github/workflows/NEW_monorepo-ci.yml", "CSS4_FIX_MOBILE.md", "CSS4_PREVENTION_STRATEGY.md", "MOBILE_CSS4_FIX.md", "WORKFLOW_DISINTEGRATION_SOLUTION.md", "package.json", "packages/monitor/package.json", "packages/monitor/postcss.config.js", "packages/monitor/src/css4-mobile-fix.css", "packages/monitor/src/index.css", "packages/monitor/tailwind.config.ts", "pnpm-lock.yaml", "scripts/css4-fix.sh", "scripts/css4-monitor.sh", "scripts/make-executable.sh", "scripts/workflow-cleanup.sh", "scripts/workflow-consolidation.sh", "scripts/workflow-disintegrator.sh", "scripts/workflow-remove.sh"],
+            "verdict": "HARVEST-SELECTIVE",
+            "harvest_targets": [".github/workflows-graveyard/CONSOLIDATION_PLAN.md", ".github/workflows/NEW_monorepo-ci.yml", ".github/actions/setup-node-pnpm/action.yml"],
+            "notes": "workflows-graveyard pattern + new CI workflow + pnpm setup action worth extracting. CSS4 docs are noise."
+          },
+          "My-repo-branches-🪾-Gone-Wild-🔥😈💦💧⛓️": {"ahead": 0, "behind": 119, "verdict": "STALE"},
+          "add-claude-github-actions-1756038739909": {"ahead": 0, "behind": 83, "verdict": "STALE"},
+          "add-claude-github-actions-1756038739919": {"ahead": 0, "behind": 83, "verdict": "STALE"}
+        }
+      },
+      "draft_prs": {
+        "#281": {"branch": "copilot/fix-91", "state": "draft"},
+        "#282": {"branch": "copilot/fix-108", "state": "draft"}
+      }
+    },
+    "profile": {
+      "full_name": "poisontr33s/poisontr33s",
+      "alias": "profile",
+      "tags": 0,
+      "coderabbit_yml": false,
+      "copilot_branches": {
+        "copilot/fix-0eaffaa7-a238-44eb-b665-7f786be66fe4": {
+          "ahead": 3, "behind": 10,
+          "files_count": 35,
+          "verdict": "HARVEST",
+          "signal": "Complete dynamic_mcp Python package: orchestrator, router, schemas, RAG pipeline, automation handlers, GitHub handler, trigger processor, demo.py, config/system_config.yaml, requirements.txt, pyproject.toml, tests/",
+          "harvest_targets": ["src/dynamic_mcp/", "config/system_config.yaml", "demo.py", "pyproject.toml"]
+        },
+        "copilot/fix-3d42673b-b524-4e06-8a9f-4b45c45be048": {
+          "ahead": 4, "behind": 0,
+          "files_count": 3,
+          "verdict": "IMMEDIATE-HARVEST",
+          "files": [".github/ARTIFACT_STANDARDS.md", ".github/workflows/add-contributors.yml", ".github/workflows/repo-setup.yml"],
+          "signal": "0 behind main — clean addition of governance docs + automation workflows"
+        },
+        "copilot/fix-55df25bc-319a-4987-a900-dc34681487c7": {
+          "ahead": 1, "behind": 12,
+          "files_count": 13,
+          "verdict": "STALE",
+          "notes": "12 behind main makes merge cost high"
+        },
+        "copilot/fix-8c4f8aec-b447-4900-b18d-bc038d189294": {
+          "ahead": 2, "behind": 0,
+          "files_count": 9,
+          "verdict": "IMMEDIATE-HARVEST",
+          "files": [".github/CODEOWNERS", ".github/ISSUE_TEMPLATE/task.yml", ".github/labels.yml", ".github/pull_request_template.md", ".github/workflows/branch-naming.yml", ".github/workflows/labels.yml", ".github/workflows/stale.yml", "scripts/branch-audit-and-pr.sh", "scripts/mass-issues-from-families.sh"],
+          "signal": "0 behind main — clean .github governance + automation scripts"
+        },
+        "copilot/fix-b4d121b5-...": {"ahead": 2, "behind": 12, "files_count": 0, "verdict": "STALE"},
+        "copilot/fix-f17c90ed-0e2c-4621-b203-8bb71fd98046": {
+          "ahead": 2, "behind": 8,
+          "files_count": 7,
+          "verdict": "STALE",
+          "notes": "8 behind main"
+        }
+      },
+      "other_branches": {
+        "ai_main_1b463b74c4b1": {
+          "ahead": 4, "behind": 5,
+          "files_count": 10,
+          "verdict": "HARVEST",
+          "files": [".env.template", "META_AUTOMATA_README.md", "main.py", "main_simple.py", "requirements.txt", "src/ai_integrations/orchestrator.py", "src/core/config_manager.py", "src/core/meta_automata.py", "src/vulkan/renderer.py", "src/web/server.py"],
+          "signal": "META_AUTOMATA Python system + Vulkan renderer stub + AI integrations orchestrator + web server + config manager"
+        }
+      },
+      "action_plan": "Open 2 PRs for IMMEDIATE-HARVEST branches (fix-3d42673b + fix-8c4f8aec). Profile repo PRs need to target poisontr33s/poisontr33s. Note: no merge authority confirmed — these may be read-only."
+    },
+    "lfs_dump": {
+      "full_name": "poisontr33s/git-dump-lfs-holder-we-it-takes",
+      "alias": "lfs-dump",
+      "tags": 0,
+      "size_kb": 63828,
+      "branches": {
+        "main": "primary",
+        "mobile-paradise-development": {"ahead": 0, "behind": 5, "files_count": 0, "verdict": "STALE"},
+        "dependabot/pip/...": {"verdict": "ROUTINE", "count": 2}
+      },
+      "notes": "LFS holder for git-dump artifacts. No harvest signal."
+    },
+    "lfs_pnk": {
+      "full_name": "poisontr33s/psychonoir-kontrapunkt-large-file-holder",
+      "alias": "lfs-pnk",
+      "tags": 0,
+      "size_kb": 230059,
+      "branches": {
+        "main": "primary",
+        "claudine-cli-extraction-clean": {
+          "verdict": "DEAD",
+          "notes": "Orphaned history, no common ancestor with main. Root tree = only .gitignore. Prior content was cleaned to marker-file-only strategy. The Claudine CLI content was moved/extracted elsewhere."
+        },
+        "claudine-escape-fresh": {"verdict": "ORPHANED-LFS", "notes": "No common ancestor with main"},
+        "claudine-fresh-escape": {"verdict": "ORPHANED-LFS", "notes": "No common ancestor with main"},
+        "evolution-v2-oct27": {
+          "verdict": "DEAD",
+          "notes": "Orphaned, commit message: 'chore: eliminate source control spam - track only marker file'"
+        },
+        "copilot/optimize-planning-mode-yaml": {
+          "ahead": 2, "behind": 6,
+          "files": [".github/chatmodes/Planning.chatmode.md"],
+          "verdict": "HARVEST",
+          "signal": ".github/chatmodes/Planning.chatmode.md — VS Code Copilot chat mode configuration",
+          "notes": "1 file, low conflict risk. Planning.chatmode.md is useful for chthonic-archive."
+        },
+        "dependabot/pip/...": {"verdict": "ROUTINE", "count": 2}
+      }
+    }
+  },
+  "action_queue": {
+    "immediate": [
+      {
+        "id": "P2.1",
+        "label": "Fix security issue #263",
+        "repo": "mcp",
+        "action": "Create .github/SECURITY_PATTERNS.md documenting prompt injection fix pattern. Comment on #263 citing the file. Close #263 as completed.",
+        "fix": "In summary.yml: env: { RESPONSE: ${{ steps.inference.outputs.response }} } then reference $RESPONSE in shell body arg — never inline ${{ ... }} in shell context"
+      },
+      {
+        "id": "P3.1",
+        "label": "PR: MCP issue46 agents harvest",
+        "repo": "mcp",
+        "branch": "poisontr33s/issue46",
+        "action": "Open draft PR targeting only .claude/agents/*.md + consciousness-ecosystem/ + TRIUMVIRATE-CHARTER.md. Exclude euler-heritage JSON artifacts and __pycache__."
+      },
+      {
+        "id": "P3.2",
+        "label": "PR: MCP java21-port protocol spec harvest",
+        "repo": "mcp",
+        "branch": "feature/java21-port",
+        "action": "Open draft PR targeting mcp-v2-protocol-spec/, mcp-v2-python-client/, mcp-v2-typescript-client/, .devcontainer/, .github/guthilda-*.md, agents/registry.json. Exclude target/ dirs and session log artifacts."
+      },
+      {
+        "id": "P3.3",
+        "label": "PR: Profile repo fix-3d42673b (IMMEDIATE)",
+        "repo": "profile",
+        "branch": "copilot/fix-3d42673b-b524-4e06-8a9f-4b45c45be048",
+        "action": "Open PR in poisontr33s/poisontr33s for .github/ARTIFACT_STANDARDS.md + 2 workflows. 0 behind, clean merge."
+      },
+      {
+        "id": "P3.4",
+        "label": "PR: Profile repo fix-8c4f8aec (IMMEDIATE)",
+        "repo": "profile",
+        "branch": "copilot/fix-8c4f8aec-b447-4900-b18d-bc038d189294",
+        "action": "Open PR in poisontr33s/poisontr33s for CODEOWNERS + issue templates + labels + PR template + workflows + scripts. 0 behind, clean merge."
+      },
+      {
+        "id": "P3.5",
+        "label": "Harvest Planning.chatmode.md from lfs-pnk",
+        "repo": "lfs-pnk",
+        "branch": "copilot/optimize-planning-mode-yaml",
+        "action": "Open PR or directly extract .github/chatmodes/Planning.chatmode.md from this branch. Consider porting to chthonic-archive/.github/chatmodes/."
+      }
+    ],
+    "phase_4": [
+      {
+        "id": "P4.1",
+        "label": "Tag v0.1.0 on 4 repos",
+        "repos": ["chthonic-archive", "claudine", "pnk", "mcp"],
+        "action": "gh release create v0.1.0 --prerelease on each repo"
+      },
+      {
+        "id": "P4.3",
+        "label": "Add .coderabbit.yml to 4 repos",
+        "repos": ["chthonic-archive", "claudine", "pnk", "mcp"],
+        "action": "Create fresh .coderabbit.yml (none exist in any of the 4 repos)"
+      }
+    ],
+    "phase_5": [
+      {
+        "id": "P5.1",
+        "label": "Dependabot auto-merge workflow",
+        "repos": ["chthonic-archive", "claudine", "pnk", "mcp"],
+        "action": "Add .github/workflows/dependabot-auto-merge.yml — auto-merge patch/minor, NOT major"
+      },
+      {
+        "id": "P5.2",
+        "label": "polyrepo-runner.ps1 -GitHub flag",
+        "repo": "chthonic-archive",
+        "action": "Add -GitHub flag to scripts/polyrepo-runner.ps1 for cross-repo operations"
+      }
+    ]
+  },
+  "stale_branches_total": {
+    "mcp": ["fix-46", "fix-64", "fix-68", "fix-84", "fix-88", "release/captain-guthilda-rc1", "codespace-jubilant-telegram", "add-claude-github-actions-×2", "My-repo-branches-emoji"],
+    "profile": ["fix-55df25bc", "fix-b4d121b5", "fix-f17c90ed"],
+    "pnk": ["copilot/fix-16"],
+    "lfs_dump": ["mobile-paradise-development"],
+    "lfs_pnk": ["claudine-cli-extraction-clean", "claudine-escape-fresh", "claudine-fresh-escape", "evolution-v2-oct27"],
+    "note": "DO NOT delete stale branches — propose only. User decides per WPTG methodology."
+  }
+}
