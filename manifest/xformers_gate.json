@@ -1,0 +1,19 @@
+{
+  "gate": "xformers/win32_cp314_mea",
+  "level": "L4_cuda_kernel_verified",
+  "status": "mea_verified_win32_rtx4090",
+  "import_ok": true,
+  "xformers_version": "0.0.35",
+  "python_version": "3.14.4",
+  "platform": "win_amd64",
+  "venv": "dev/tabbyAPI/.venv",
+  "mea_forward_pass": {
+    "input_shape": "[1, 64, 8, 64]",
+    "output_shape": "[1, 64, 8, 64]",
+    "dtype": "float16",
+    "device": "cuda"
+  },
+  "triton_path": "enabled (triton-windows 3.6.0 installed)",
+  "note": "xformers 0.0.35 was already installed and functional. MEA forward pass verified on RTX 4090. Previously showed 'A matching Triton is not available' warning — resolved by installing triton-windows. Triton fusions now enabled.",
+  "timestamp": "2026-05-02"
+}

@@ -1,0 +1,24 @@
+{
+  "gate": "formatron/escape_sequence_fix",
+  "level": "L4_import_clean",
+  "status": "patched_win32_venv",
+  "import_ok": true,
+  "formatron_version": "0.5.0",
+  "python_version": "3.14.4",
+  "venv": "dev/tabbyAPI/.venv",
+  "patch_script": "build/tabby-modern-gpu/patches/patch-formatron-escape.py",
+  "patches_applied": [
+    {
+      "file": "formatron/formats/json.py",
+      "fixes": ["'\\\\A' -> r'\\\\A'", "'\\\\z' -> r'\\\\z'"]
+    }
+  ],
+  "patches_skipped": [
+    {
+      "file": "formatron/schemas/json_schema.py",
+      "reason": "already patched or pattern not present"
+    }
+  ],
+  "note": "formatron 0.5.0 had 3 bare-string invalid escape sequences. Patch script is idempotent — was pre-committed for Podman lane, now applied to local Win11 venv. Previously classified as 'cosmetic warning' — now admitted at L4.",
+  "timestamp": "2026-05-02"
+}

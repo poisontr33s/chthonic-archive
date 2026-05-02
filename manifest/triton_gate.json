@@ -1,0 +1,15 @@
+{
+  "gate": "triton/win32_cp314",
+  "level": "L4_kernel_importable",
+  "status": "installed_win32_rtx4090",
+  "import_ok": true,
+  "triton_version": "3.6.0",
+  "package": "triton-windows",
+  "pypi_package": "triton-windows==3.6.0.post26",
+  "wheel": "triton_windows-3.6.0.post26-cp314-cp314-win_amd64.whl",
+  "python_version": "3.14.4",
+  "platform": "win_amd64",
+  "venv": "dev/tabbyAPI/.venv",
+  "note": "triton (PyPI) has 0 Windows wheels — linux manylinux only. triton-windows is the Win32 maintained fork with native cp314 wheels (3.6.0.post26 as of 2026-05). Previously classified as 'non-fatal warning' — now L4 admitted.",
+  "timestamp": "2026-05-02"
+}
