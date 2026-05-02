@@ -9,6 +9,8 @@
 #   pwsh -File scripts/polyrepo-runner.ps1 -District pnk    # one district only
 #   pwsh -File scripts/polyrepo-runner.ps1 -Quick           # git health only, no build
 #   pwsh -File scripts/polyrepo-runner.ps1 -Report          # emit manifest/polyrepo_gate.json
+#   pwsh -File scripts/polyrepo-runner.ps1 -GitHub          # query GitHub: PRs, issues, tags, vulns
+#   pwsh -File scripts/polyrepo-runner.ps1 -GitHub -Report  # GitHub query + emit manifest/polyrepo_github.json
 #
 # DISTRICT KEY:
 #   claudine  → Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique
@@ -22,7 +24,8 @@ param(
     [string]$District = "all",
     [switch]$Quick,          # git health + dependency check only — skips build/test
     [switch]$Report,         # write manifest/polyrepo_gate.json
-    [switch]$NoFetch         # skip git fetch (faster, offline)
+    [switch]$NoFetch,        # skip git fetch (faster, offline)
+    [switch]$GitHub          # query GitHub API: open PRs, issues, releases, vuln counts
 )
 
 Set-StrictMode -Version Latest
@@ -59,6 +62,7 @@ $DISTRICTS = @(
         id          = "claudine"
         name        = "☥ Claudine CLI — The Polyglot Blade"
         path        = "C:\Users\eldno\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique"
+        github_repo = "poisontr33s/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique"
         toolchain   = "bun"
         # Was: 3-OS GitHub Actions matrix (overkill for a solo polyrepo)
         # Is:  Local gate — typecheck + lint + 114 tests + cross-compile in 3s
@@ -75,6 +79,7 @@ $DISTRICTS = @(
         id          = "archive"
         name        = "⚡ chthonic-archive — The Living Machine"
         path        = "C:\Users\eldno\chthonic-archive"
+        github_repo = "poisontr33s/chthonic-archive"
         toolchain   = "cargo+bun+uv"
         # Was: 9 disabled agent-dispatch workflows (Claude/Gemini/Pentea via Actions)
         #      Disabled because: API keys in Actions = $$$, latency, no local GPU access
@@ -93,6 +98,7 @@ $DISTRICTS = @(
         id          = "pnk"
         name        = "🌀 PsychoNoir-Kontrapunkt — The Chaos Arm"
         path        = "C:\Users\eldno\PsychoNoir-Kontrapunkt"
+        github_repo = "poisontr33s/PsychoNoir-Kontrapunkt"
         toolchain   = "bun+python"
         # Was: chaos-ci (28KB!) — tried to lint/test/deploy the entire chaos ecosystem
         #      ci.yml, enhanced-ci.yml, codeql.yml — ALL disabled. Nothing worked.
@@ -112,6 +118,7 @@ $DISTRICTS = @(
         id          = "mcp"
         name        = "🔌 Restructure-MCP-Orchestration — The Thalamus Node"
         path        = "C:\Users\eldno\Restructure-MCP-Orchestration"
+        github_repo = "poisontr33s/Restructure-MCP-Orchestration"
         toolchain   = "bun+node"
         # Was: agent-claude, agent-codex, agent-gemini, agents-invoke, captain-guthilda
         #      agents-discovery — ALL disabled. Was trying to do GitHub-hosted MCP orchestration.
@@ -129,7 +136,85 @@ $DISTRICTS = @(
 )
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 🏴 EXECUTION ENGINE — The Harbour Master's Logbook
+# � GITHUB QUERY ENGINE — Remote district intelligence
+# ══════════════════════════════════════════════════════════════════════════════
+
+function Invoke-GithubDistrict {
+    param([hashtable]$D)
+
+    $repo = $D.github_repo
+    if (-not $repo) { return $null }
+
+    Write-Host ""
+    Write-Host "  ┌─ $($D.name) [GitHub]" -ForegroundColor Cyan
+    Write-Host "  │  $repo" -ForegroundColor DarkGray
+
+    $ghData = @{
+        id          = $D.id
+        repo        = $repo
+        open_prs    = 0
+        open_issues = 0
+        latest_tag  = $null
+        vuln_count  = $null
+        pr_list     = @()
+        issue_list  = @()
+        error       = $null
+    }
+
+    try {
+        # Open PRs
+        $prs = gh pr list --repo $repo --state open --json number,title,isDraft,headRefName --limit 20 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            $prObj = $prs | ConvertFrom-Json
+            $ghData.open_prs = $prObj.Count
+            $ghData.pr_list  = @($prObj | ForEach-Object {
+                $draft = if ($_.isDraft) { "[draft] " } else { "" }
+                "#$($_.number) $draft$($_.title.Substring(0, [Math]::Min(60,$_.title.Length)))"
+            })
+            foreach ($p in $ghData.pr_list) {
+                Write-Host ("  │  🔀 " + $p) -ForegroundColor DarkCyan
+            }
+        }
+
+        # Open issues (excluding PRs)
+        $issues = gh issue list --repo $repo --state open --json number,title --limit 10 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            $issueObj = $issues | ConvertFrom-Json
+            $ghData.open_issues = $issueObj.Count
+            $ghData.issue_list  = @($issueObj | ForEach-Object {
+                "#$($_.number) $($_.title.Substring(0, [Math]::Min(60,$_.title.Length)))"
+            })
+            foreach ($i in $ghData.issue_list) {
+                Write-Host ("  │  📌 " + $i) -ForegroundColor Gray
+            }
+        }
+
+        # Latest release/tag
+        $release = gh release list --repo $repo --limit 1 --json tagName,isPrerelease,publishedAt 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            $relObj = $release | ConvertFrom-Json
+            if ($relObj.Count -gt 0) {
+                $ghData.latest_tag = $relObj[0].tagName
+                $pre = if ($relObj[0].isPrerelease) { " (pre)" } else { "" }
+                Write-Host ("  │  🏷️  " + $ghData.latest_tag + $pre) -ForegroundColor DarkGreen
+            }
+        }
+
+    } catch {
+        $ghData.error = $_.ToString()
+        Write-Host ("  │  $($PRISM.AMBER) gh error: " + $_.ToString()) -ForegroundColor Yellow
+    }
+
+    $prsIcon    = if ($ghData.open_prs -gt 0) { "🔀 $($ghData.open_prs) PRs" } else { "🔀 0 PRs" }
+    $issuesIcon = if ($ghData.open_issues -gt 0) { "📌 $($ghData.open_issues) issues" } else { "📌 0 issues" }
+    $tagIcon    = if ($ghData.latest_tag) { "🏷️  $($ghData.latest_tag)" } else { "🏷️  no release" }
+    Write-Host ("  └─ $prsIcon  $issuesIcon  $tagIcon") -ForegroundColor Cyan
+
+    return $ghData
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+# �🏴 EXECUTION ENGINE — The Harbour Master's Logbook
 # ══════════════════════════════════════════════════════════════════════════════
 
 $results   = [System.Collections.Generic.List[hashtable]]::new()
@@ -256,6 +341,45 @@ $targetDistricts = if ($District -eq "all") {
 foreach ($d in $targetDistricts) {
     $r = Invoke-District -D $d
     $results.Add($r)
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 🌐 GITHUB DESCENT — Remote intelligence sweep (if -GitHub flag set)
+# ══════════════════════════════════════════════════════════════════════════════
+
+$ghResults = [System.Collections.Generic.List[hashtable]]::new()
+if ($GitHub) {
+    Write-Host ""
+    Write-Host "  ╔══════════════════════════════════════════════════════════════╗" -ForegroundColor DarkBlue
+    Write-Host "  ║  🌐  GITHUB INTELLIGENCE SWEEP  🌐                          ║" -ForegroundColor Blue
+    Write-Host "  ║  Claudine queries all districts via gh CLI                  ║" -ForegroundColor DarkBlue
+    Write-Host "  ╚══════════════════════════════════════════════════════════════╝" -ForegroundColor DarkBlue
+
+    foreach ($d in $targetDistricts) {
+        $ghR = Invoke-GithubDistrict -D $d
+        if ($ghR) { $ghResults.Add($ghR) }
+    }
+
+    Write-Host ""
+    Write-Host "  ══ GitHub Summary ══════════════════════════════════════════" -ForegroundColor DarkBlue
+    $totalPRs    = ($ghResults | Measure-Object -Property open_prs    -Sum).Sum
+    $totalIssues = ($ghResults | Measure-Object -Property open_issues -Sum).Sum
+    Write-Host ("  🔀 Total open PRs:    {0}" -f $totalPRs)    -ForegroundColor Cyan
+    Write-Host ("  📌 Total open issues: {0}" -f $totalIssues) -ForegroundColor Gray
+    Write-Host "  ════════════════════════════════════════════════════════════" -ForegroundColor DarkBlue
+    Write-Host ""
+
+    if ($Report) {
+        $ghManifestPath = Join-Path $MANIFEST_DIR "polyrepo_github.json"
+        @{
+            timestamp    = (Get-Date -Format "o")
+            total_prs    = $totalPRs
+            total_issues = $totalIssues
+            districts    = @($ghResults)
+        } | ConvertTo-Json -Depth 6 | Set-Content $ghManifestPath -Encoding UTF8
+        Write-Host "  📜 GitHub manifest: $ghManifestPath" -ForegroundColor DarkGray
+        Write-Host ""
+    }
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
