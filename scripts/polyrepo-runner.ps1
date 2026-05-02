@@ -162,10 +162,10 @@ function Invoke-GithubDistrict {
     }
 
     try {
-        # Open PRs
+        # Open PRs — @() coerces null (empty JSON array []) to empty PowerShell array
         $prs = gh pr list --repo $repo --state open --json number,title,isDraft,headRefName --limit 20 2>&1
         if ($LASTEXITCODE -eq 0) {
-            $prObj = $prs | ConvertFrom-Json
+            $prObj = @($prs | ConvertFrom-Json)
             $ghData.open_prs = $prObj.Count
             $ghData.pr_list  = @($prObj | ForEach-Object {
                 $draft = if ($_.isDraft) { "[draft] " } else { "" }
@@ -176,10 +176,10 @@ function Invoke-GithubDistrict {
             }
         }
 
-        # Open issues (excluding PRs)
+        # Open issues (excluding PRs) — @() coerces null to empty array
         $issues = gh issue list --repo $repo --state open --json number,title --limit 10 2>&1
         if ($LASTEXITCODE -eq 0) {
-            $issueObj = $issues | ConvertFrom-Json
+            $issueObj = @($issues | ConvertFrom-Json)
             $ghData.open_issues = $issueObj.Count
             $ghData.issue_list  = @($issueObj | ForEach-Object {
                 "#$($_.number) $($_.title.Substring(0, [Math]::Min(60,$_.title.Length)))"
@@ -189,10 +189,10 @@ function Invoke-GithubDistrict {
             }
         }
 
-        # Latest release/tag
+        # Latest release/tag — @() coerces null to empty array
         $release = gh release list --repo $repo --limit 1 --json tagName,isPrerelease,publishedAt 2>&1
         if ($LASTEXITCODE -eq 0) {
-            $relObj = $release | ConvertFrom-Json
+            $relObj = @($release | ConvertFrom-Json)
             if ($relObj.Count -gt 0) {
                 $ghData.latest_tag = $relObj[0].tagName
                 $pre = if ($relObj[0].isPrerelease) { " (pre)" } else { "" }
@@ -202,7 +202,7 @@ function Invoke-GithubDistrict {
 
     } catch {
         $ghData.error = $_.ToString()
-        Write-Host ("  │  $($PRISM.AMBER) gh error: " + $_.ToString()) -ForegroundColor Yellow
+        Write-Host ("  │  ⚠️  gh error: " + $_.ToString()) -ForegroundColor Yellow
     }
 
     $prsIcon    = if ($ghData.open_prs -gt 0) { "🔀 $($ghData.open_prs) PRs" } else { "🔀 0 PRs" }
