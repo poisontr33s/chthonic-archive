@@ -11,10 +11,14 @@
   "vs2022_14_4x_detected": true,
   "vs2022_version": "14.44.35207",
   "vs2022_cl_path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
-  "install_phase": "skipped \u2014 already present",
+  "install_phase": "skipped — already present",
   "build_exit_code": 0,
   "build_output_tail": "Using Python 3.14.4 environment at: dev\\tabbyAPI\\.venv\nINFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(1) @ 2.8.3 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(2) @ 2.11.0+cu128 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(3) @ 0.8.2 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(4) @ 3.29.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(5) @ 4.15.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(6) @ 81.0.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(7) @ 1.14.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(8) @ 3.6.1 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(9) @ 3.1.6 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(10) @ 2026.3.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(11) @ 1.3.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(12) @ 3.0.3 without checking dependencies\nResolved 12 packages in 6ms\n   Building flash-attn==2.8.3\n      Built flash-attn==2.8.3\nPrepared 1 package in 60m 42s\nInstalled 1 package in 30ms\n + flash-attn==2.8.3\n",
   "build_result": "SUCCESS",
-  "status": "source_build_succeeded_vs2022_14_4x",
-  "level": "L1_install_admitted"
+  "status": "cuda_kernel_verified_win11_rtx4090",
+  "level": "L4_cuda_kernel_verified",
+  "import_ok": true,
+  "forward_pass_shape": "[1, 64, 4, 32]",
+  "torch_version": "2.11.0+cu128",
+  "verification_ts": "2026-05-02T20:32:02.7043348+02:00"
 }
