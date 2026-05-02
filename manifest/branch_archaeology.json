@@ -1,0 +1,212 @@
+{
+  "generated": "2026-05-02",
+  "methodology": "diff-first harvest — read every branch before deciding fate",
+  "claudine": {
+    "repo": "poisontr33s/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+    "branches": [
+      {
+        "branch": "copilot/add-gpu-accelerated-tfjs-package",
+        "verdict": "stale",
+        "rationale": "ahead_by=0 — no commits ahead of main. Branch pointer only, nothing was ever committed.",
+        "action": "skip"
+      },
+      {
+        "branch": "copilot/create-e2e-workflow-tests",
+        "verdict": "draft_pr",
+        "ahead_by": 3,
+        "behind_by": 21,
+        "rationale": "Adds claudine-cli/tests/e2e/clit-workflow.test.ts (368 lines) + tests/README.md (114 lines). Also refactors several command files (health.ts, project/list.ts, project/new.ts, environment.ts). Test infrastructure is the primary harvest.",
+        "key_files": [
+          "claudine-cli/tests/e2e/clit-workflow.test.ts",
+          "claudine-cli/tests/README.md"
+        ],
+        "action": "open_draft_pr",
+        "label": "copilot-harvest",
+        "priority": 2,
+        "note": "21 commits behind main — will have conflicts. Cherry-pick tests + biome.json changes as minimum viable harvest."
+      },
+      {
+        "branch": "copilot/implement-config-system-tests",
+        "verdict": "draft_pr",
+        "ahead_by": 2,
+        "behind_by": 21,
+        "rationale": "Adds full config-manager implementation (346 lines src/core/config/config-manager.ts) + 507-line test suite. This is a complete subsystem — the implementation AND its tests in one branch.",
+        "key_files": [
+          "claudine-cli/src/core/config/config-manager.ts",
+          "claudine-cli/tests/config-manager.test.ts"
+        ],
+        "action": "open_draft_pr",
+        "label": "copilot-harvest",
+        "priority": 1,
+        "note": "Highest architectural density of the 3 harvest branches. config-manager.ts is the foundation that the orchestrator branch depends on."
+      },
+      {
+        "branch": "copilot/integrate-config-manager-orchestrator",
+        "verdict": "draft_pr",
+        "ahead_by": 3,
+        "behind_by": 20,
+        "rationale": "Adds the orchestrator layer: src/core/orchestrator/orchestrator.ts (161 lines) + src/core/detector/index.ts (23 lines) + src/core/config/index.ts (88 lines) + tests/orchestration.test.ts (87 lines). This is the architectural wiring that makes the config system usable from CLI commands.",
+        "key_files": [
+          "claudine-cli/src/core/orchestrator/orchestrator.ts",
+          "claudine-cli/src/core/detector/index.ts",
+          "claudine-cli/src/core/config/index.ts",
+          "claudine-cli/tests/orchestration.test.ts"
+        ],
+        "action": "open_draft_pr",
+        "label": "copilot-harvest",
+        "priority": 1,
+        "note": "Depends on implement-config-system-tests branch. Open that PR first. These two together form the complete config+orchestration subsystem."
+      },
+      {
+        "branch": "copilot/refactor-cli-commands-orchestrator",
+        "verdict": "stale",
+        "rationale": "ahead_by=0 — no commits ahead of main. Empty branch.",
+        "action": "skip"
+      }
+    ],
+    "summary": {
+      "harvest_branches": 3,
+      "stale_branches": 2,
+      "total_new_lines": 1530,
+      "subsystems_found": ["config-manager", "orchestrator", "e2e-tests"]
+    }
+  },
+  "mcp": {
+    "repo": "poisontr33s/Restructure-MCP-Orchestration",
+    "branches": [
+      {
+        "branch": "copilot/fix-91",
+        "verdict": "draft_pr",
+        "priority": "CRITICAL",
+        "rationale": "52 file changes. Two major components: (1) Workflow cleanup — removes 10 dead/wrong-scope workflows (cmake-multi-platform, docker-image, gem-push, jekyll-docker, ruby, rubyonrails, stale, static, artifact-v4-test, universal-branch-manager). (2) Feature: full packages/auth/ library (1593 lines new) + 5 M365 agents (Graph/OneDrive/Outlook/SharePoint/Teams) + Google Workspace agent + M365 Graph MCP server + auth docs.",
+        "key_files": [
+          "packages/auth/src/index.ts",
+          "packages/auth/src/content-discovery.ts",
+          "packages/auth/src/vscode-integration.ts",
+          "packages/agents/m365-graph/src/index.ts",
+          "packages/agents/m365-outlook/src/index.ts",
+          "packages/agents/m365-teams/src/index.ts",
+          "packages/agents/m365-sharepoint/src/index.ts",
+          "packages/agents/m365-onedrive/src/index.ts",
+          "packages/agents/google-workspace/src/index.ts",
+          "packages/servers/m365-graph/src/index.ts",
+          "docs/AUTHENTICATION_EXAMPLES.md",
+          "docs/M365_CONFIGURATION.md"
+        ],
+        "workflow_deletions": [
+          ".github/workflows/artifact-v4-test.yml",
+          ".github/workflows/cleanup-branches.yml",
+          ".github/workflows/cmake-multi-platform.yml",
+          ".github/workflows/docker-image.yml",
+          ".github/workflows/gem-push.yml",
+          ".github/workflows/generator-generic-ossf-slsa3-publish.yml",
+          ".github/workflows/jekyll-docker.yml",
+          ".github/workflows/repo-hygiene-report.yml",
+          ".github/workflows/ruby.yml",
+          ".github/workflows/rubyonrails.yml",
+          ".github/workflows/stale.yml",
+          ".github/workflows/static.yml",
+          ".github/workflows/universal-branch-manager.yml"
+        ],
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest",
+        "note": "Consider splitting into two PRs: (1) workflow cleanup only (zero risk, immediate merge), (2) auth+agents feature (needs review). Or merge as-is if trust in Copilot's auth implementation is high."
+      },
+      {
+        "branch": "copilot/fix-108",
+        "verdict": "draft_pr",
+        "priority": "HIGH",
+        "rationale": "8 file changes. Integrates Gemini Code Assist as code review layer (.github/gemini-code-assist.yml 128 lines + .github/workflows/gemini-code-assist.yml 227 lines). Updates packages/guthilda/src/index.ts significantly (+200/-14). Adds GEMINI_CODE_ASSIST_SETUP.md (233 lines).",
+        "key_files": [
+          ".github/gemini-code-assist.yml",
+          ".github/workflows/gemini-code-assist.yml",
+          "docs/GEMINI_CODE_ASSIST_SETUP.md",
+          "packages/guthilda/src/index.ts"
+        ],
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest",
+        "note": "Gemini Code Assist complements CodeRabbit already active on chthonic-archive. Doubles AI review coverage on MCP repo."
+      },
+      {
+        "branch": "copilot/fix-46",
+        "verdict": "draft_pr",
+        "priority": "MEDIUM",
+        "rationale": "Workflow cleanup + lockfile update. Structural hygiene.",
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest"
+      },
+      {
+        "branch": "copilot/fix-64",
+        "verdict": "draft_pr",
+        "priority": "MEDIUM",
+        "rationale": "Workflow cleanup.",
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest"
+      },
+      {
+        "branch": "copilot/fix-68",
+        "verdict": "draft_pr",
+        "priority": "MEDIUM",
+        "rationale": "ESLint additions + test infrastructure.",
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest"
+      },
+      {
+        "branch": "copilot/fix-88",
+        "verdict": "draft_pr",
+        "priority": "LOW",
+        "rationale": "Script and docs updates.",
+        "action": "open_draft_pr",
+        "label": "copilot-fix-harvest"
+      },
+      {
+        "branch": "copilot/fix-84",
+        "verdict": "stale",
+        "rationale": "Empty diff — zero files changed ahead of main.",
+        "action": "skip"
+      },
+      {
+        "branch": "copilot/fix-91 UUID variants",
+        "verdict": "needs_check",
+        "rationale": "UUID-named branches — possible duplicate attempts of numeric-issue branches. Defer until numeric branches are reviewed.",
+        "action": "defer"
+      }
+    ],
+    "summary": {
+      "critical_harvest": 1,
+      "high_harvest": 1,
+      "medium_harvest": 3,
+      "low_harvest": 1,
+      "stale": 1,
+      "defer": 1,
+      "total_new_auth_lines": 1593,
+      "workflow_files_to_remove": 13
+    }
+  },
+  "pr_archaeology": {
+    "summary": {
+      "chthonic_archive": { "total_closed": 14, "bot": 8, "human": 6 },
+      "restructure_mcp": { "total_closed": 100, "bot": 99, "human": 1 },
+      "pnk": { "total_closed": 29, "bot": 25, "human": 4 },
+      "note": "MCP is 99% bot activity — almost no human review signal. chthonic-archive human PRs (6) are the richest source for PR template patterns."
+    }
+  },
+  "dependabot": {
+    "mcp_open": 18,
+    "claudine_open": 2,
+    "major_version_bumps_mcp": ["vite 7→8", "@ai-sdk/google 2→3", "ora 8→9 (ESM-only)", "inquirer 12→13"],
+    "recommendation": "Do NOT auto-merge the major bumps. Patch/minor only for automation. Major bumps need explicit decision per package."
+  },
+  "execution_order": [
+    "1. Open draft PR: claudine copilot/implement-config-system-tests",
+    "2. Open draft PR: claudine copilot/integrate-config-manager-orchestrator",
+    "3. Open draft PR: claudine copilot/create-e2e-workflow-tests",
+    "4. Open draft PR: mcp copilot/fix-91 (CRITICAL — split workflow-cleanup vs auth if needed)",
+    "5. Open draft PR: mcp copilot/fix-108 (Gemini Code Assist)",
+    "6. Close issue #263 after writing SECURITY_PATTERNS.md",
+    "7. Tag v0.1.0 across all 4 repos",
+    "8. Set up GitHub Projects v2 board",
+    "9. Configure Dependabot auto-merge (patch/minor only)",
+    "10. Add -GitHub flag to polyrepo-runner.ps1"
+  ]
+}
