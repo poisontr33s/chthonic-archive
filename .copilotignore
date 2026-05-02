@@ -1,7 +1,9 @@
 # Copilot Context Ignore File
-# Exclude large, generated, or irrelevant directories to prevent context window overflow.
+# Aggressive exclusions for 200GB+ repo — prevents CPU indexer starvation.
+# Hardware profile: RTX 4090 + i9-13900. Semantic indexing offloaded to
+# scripts/embedding_server.py (GPU, localhost:8765).
 
-# Build Artifacts
+# ── Build Artifacts ─────────────────────────────────────────────────────────
 target/
 build/
 dist/
@@ -10,33 +12,90 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Compiled binaries (non-source)
 *.dll
 *.exe
 *.so
 *.dylib
+*.lib
+*.a
+*.obj
+*.o
+*.whl
+*.egg-info/
 
-# Dependencies
+# Compiled shaders (binary SPIR-V — text .glsl/.hlsl are indexed)
+*.spv
+
+# ── Dependencies ────────────────────────────────────────────────────────────
 node_modules/
 .venv/
 venv/
 .cargo/
+site-packages/
+dist-packages/
 
-# Large Data & Models (keep SSOT directories available)
+# ── Model Weights & ML Artifacts ────────────────────────────────────────────
+# All weight formats — indexing binary tensors wastes context budget
+*.safetensors
+*.bin
+*.gguf
+*.pt
+*.pth
+*.engine
+*.trt
+*.onnx
+*.npz
+models/
+
+# ── Databases ───────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Large Data Directories ──────────────────────────────────────────────────
 mas_mcp/
 error-classifier/
-models/
 debugging_data/
-
-# Archives & Logs
-logs/
-.cache/
 dumpster-dive/
 artifacts/
+pnk-live/
+chthonic-golden/
 
-# Documentation Generators
+# Dev environments (tabbyAPI venv, build trees, etc.)
+dev/
+
+# ── Logs & Session Data ─────────────────────────────────────────────────────
+logs/
+.cache/
+*.log
+*.jsonl
+
+# ── Media ───────────────────────────────────────────────────────────────────
+*.mp4
+*.mp3
+*.wav
+*.flac
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.ico
+*.bmp
+*.tiff
+
+# ── Large Manifest Artifacts (generated — not source) ───────────────────────
+manifest/overnight_gen3_cards.json
+manifest/overnight_gen1_previews.json
+manifest/terminal_session.jsonl
+manifest/cuda_gate.jsonl
+
+# ── Archive / Documentation Generators ─────────────────────────────────────
 book/
 ankh_atlas/
 
-# IDE & Tooling
+# ── IDE & Tooling ────────────────────────────────────────────────────────────
 .idea/
 .git/

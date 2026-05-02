@@ -35,8 +35,14 @@ members = [
     "ankh_atlas",
 ]
 
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
 [tool.uv.sources]
 mas-mcp = { workspace = true }
+torch = [{ index = "pytorch-cu128" }]
 
 [tool.uv]
 default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe"]
@@ -51,6 +57,9 @@ embeddings = [
     "sentence-transformers>=5.3.0,<6",
     "transformers>=5.4.0,<6",
     "torch>=2.11.0,<3",
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.34,<1",
+    "accelerate>=1.0,<2",
 ]
 
 poe = [
