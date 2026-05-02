@@ -1,36 +1,69 @@
 {
-  "generated": "2026-05-02T00:34:27.772Z",
+  "generated": "2026-05-02T00:43:01.428Z",
   "sourcePath": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
-  "totalFiles": 3171,
-  "totalSignalFiles": 454,
+  "totalFiles": 3318,
+  "totalSignalFiles": 497,
   "categoryBreakdown": {
-    "noise": 102,
-    "data-artifact": 1973,
-    "configuration": 14,
-    "chaos-engineering": 307,
+    "noise": 145,
+    "data-artifact": 1991,
+    "configuration": 20,
+    "chaos-engineering": 345,
     "session-artifact": 233,
-    "concept-draft": 349,
+    "concept-draft": 389,
     "transient": 133,
-    "entity-canonical": 20,
+    "entity-canonical": 22,
     "dialogue-data": 26,
     "world-protocol": 14
   },
   "entityMentions": {
-    "Astrid Møller": 39,
-    "Skyskraperen": 46,
-    "Rustbeltet": 43,
-    "Usynlige Hånd": 81,
-    "Claudine": 64,
-    "Iron Maiden": 102,
-    "MILF Matriarch": 68,
-    "Vera Steel": 6,
-    "Raven Bytes": 5,
-    "Kausalitets-Arkitekten": 34,
-    "Eva Green": 21,
-    "Yukiko Tanaka": 6,
+    "Astrid Møller": 43,
+    "Skyskraperen": 54,
+    "Rustbeltet": 45,
+    "Usynlige Hånd": 100,
+    "Claudine": 65,
+    "Iron Maiden": 111,
+    "MILF Matriarch": 74,
+    "Vera Steel": 8,
+    "Raven Bytes": 7,
+    "Eva Green": 25,
+    "Yukiko Tanaka": 9,
+    "Kausalitets-Arkitekten": 36,
     "Orackla": 2
   },
   "entries": [
+    {
+      "relPath": ".github/copilot-instructions.md",
+      "category": "entity-canonical",
+      "signal": 10,
+      "sizeBytes": 33608,
+      "ext": ".md",
+      "preview": "# Github Copilot Workspace-Instruksjoner: Psycho-Noir Kontrapunkt (TEMPORAL 2025 EDITION) │ - **Kjernedirektiver (Alltid Gyldig i Dette Arbeidsområdet):** │ - **TEMPORAL ANCHOR STATUS:** ***SEPTEMBER ",
+      "entities": [],
+      "concepts": [
+        "wet-paper-to-gold",
+        "psycho-noir",
+        "temporal",
+        "brahmic-repurposing",
+        "noir-dialect"
+      ],
+      "language": "no",
+      "note": "Heritage instruction origin — districts × tier × district-type scaffold"
+    },
+    {
+      "relPath": "draft-copilot-instructions.md",
+      "category": "entity-canonical",
+      "signal": 10,
+      "sizeBytes": 18606,
+      "ext": ".md",
+      "preview": "# 🌀 DRAFT COPILOT INSTRUCTIONS: STRATEGISK EMIGRERING TIL ELIXIR ECOSYSTEM │ **FUNDAMENTELT SPRÅK-ARKITEKTUR EMIGRERINGSPLAN FOR DYNAMISK AMALGAMASJON** │ ---",
+      "entities": [],
+      "concepts": [
+        "psycho-noir",
+        "noir-dialect"
+      ],
+      "language": "no",
+      "note": "Heritage instruction origin — districts × tier × district-type scaffold"
+    },
     {
       "relPath": "ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md",
       "category": "entity-canonical",
@@ -657,6 +690,508 @@
       "note": "Worldbuilding concept, character sketch, or design document"
     },
     {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/BIDIRECTIONAL_LEARNING_LOG.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 3456,
+      "ext": ".md",
+      "preview": "# Bidirectional Learning Log - Psycho-Noir Intelligence System │ ## Error-as-Building-Block Evolution │ This log documents how errors become intelligent building blocks that enhance the system's capab",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/CHAOS_ENGINEERING_SUMMARY.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5168,
+      "ext": ".md",
+      "preview": "# Chaos Engineering Implementation - \"Failure by Purpose\" │ ## 🔥 System Overview │ I've implemented a comprehensive chaos engineering system that validates @poisontr33s's request to let \"runners go a",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/failure-orchestrator/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 1735,
+      "ext": ".md",
+      "preview": "# Failure Orchestrator - Chaos Engineering Module │ This module implements \"failure by purpose\" to test and validate the bidirectional learning system's ability to transform chaos into intelligence. │",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/INTELLIGENCE_SYSTEM_README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 11225,
+      "ext": ".md",
+      "preview": "# Psycho-Noir Kontrapunkt - Comprehensive CI/CD Intelligence System │ ## Overview │ This is a revolutionary CI/CD logging and debugging system that implements **bidirectional intelligence** - where er",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5266,
+      "ext": ".md",
+      "preview": "# Passive Observer Queue System - Den Usynlige Hånd │ ## \"Do Nothing\" Mode Implementation │ The **Passive Observer Queue System** implements the request for a mechanism that forces the system to remai",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 743,
+      "ext": ".md",
+      "preview": "# Runner Logging System │ This directory contains the comprehensive CI/CD logging and debugging infrastructure for the Psycho-Noir Kontrapunkt project. │ ## System Architecture",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/ARTIFACT_WORKFLOW_STANDARD.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 6425,
+      "ext": ".md",
+      "preview": "# Artifact Workflow Standard │ ## Overview │ This document establishes the permanent convention for artifact management in the PsychoNoir-Kontrapunkt repository. All workflows must follow these standa",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/audits/cleanup_recommendations_20250911_165914.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 1547,
+      "ext": ".md",
+      "preview": "# 🧹 Psycho-Noir Kontrapunkt Cleanup Recommendations │ Generated: Thu Sep 11 16:59:15 UTC 2025 │ ## 🎯 Priority Actions",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/copilot-conversations_summary.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 468428,
+      "ext": ".md",
+      "preview": "vesseengina: #codebase Vi holdt på med å finne lage en python algorytme som kan bruke: .github/copilot-instructions.md: Innholdende \"prompt-engineered\" instruksjoner for instedenfor å simulere DE's sp",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/copilot-session.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 34736,
+      "ext": ".md",
+      "preview": "# 🎭 Psycho-Noir KONTRAPUNKT: MILF Matriarchy Ecosystem Expansion │ **Sesjon Start:** 2025-09-01 │ **Fokus:** Session Reconstruction og MILF Sub-Specialist Implementation",
+      "entities": [
+        "Skyskraperen",
+        "MILF Matriarch",
+        "Eva Green",
+        "Yukiko Tanaka"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/ISSUE_TEMPLATE/bug_report.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 943,
+      "ext": ".md",
+      "preview": "--- │ name: 🐛 Bug Report │ about: Report a bug in the Psycho-Noir Kontrapunkt system",
+      "entities": [
+        "Iron Maiden",
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir",
+        "quantum-consciousness"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/ISSUE_TEMPLATE/feature_request.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 863,
+      "ext": ".md",
+      "preview": "--- │ name: ✨ Feature Request │ about: Suggest a new feature for the Psycho-Noir Kontrapunkt system",
+      "entities": [
+        "Iron Maiden",
+        "Astrid Møller",
+        "MILF Matriarch",
+        "Vera Steel",
+        "Raven Bytes",
+        "Eva Green",
+        "Yukiko Tanaka"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/jules/CACHE_STRATEGY.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 6062,
+      "ext": ".md",
+      "preview": "# Jules Cache Strategy Implementation Guide │ ## Skyskraperen Optimization Matrix - Den Usynlige Hånds Cache Intelligence │ ### Overview",
+      "entities": [
+        "Skyskraperen",
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/jules/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5742,
+      "ext": ".md",
+      "preview": "# Jules - Den Usynlige Hånds Dependency Management Assistant │ > \"In the depths of Skyskraperen's neural infrastructure, Jules manifests as an intelligent optimization entity - part of Den Usynlige Hå",
+      "entities": [
+        "Skyskraperen",
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/MARKDOWN_DESIGN_SYSTEM.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 13024,
+      "ext": ".md",
+      "preview": "# 🎭 **Psycho-Noir Markdown DESIGN SYSTEM** │ ## **Kreativ Dokumentasjon & Styling Standarder** │ > _\"I en verden av kaos og kompleksitet, blir dokumentasjon vårt mentale kart gjennom mørket\"_",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/mcp_autostart_fix_bun_contribution.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 4600,
+      "ext": ".md",
+      "preview": "# 🔧⚡ MCP AUTOSTART ERROR FIX & BUN ECOSYSTEM CONTRIBUTION │ ## Advanced MCP Configuration & Bun-Native Integration │ **STATUS**: MCP autostart errors **ELIMINATED** ✅ | Bun ecosystem contribution **R",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/mcp_autostart_fix_success_report.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5050,
+      "ext": ".md",
+      "preview": "# 🎯💎 MCP AUTOSTART FIX SUCCESS REPORT │ ## Advanced Error Elimination & Bun Ecosystem Contribution Complete │ **TIMESTAMP**: 2025-09-02 | **STATUS**: MCP IRRITATION ELIMINATED ✅",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/mcp_consciousness_operational_status.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5484,
+      "ext": ".md",
+      "preview": "# 🧠💾 MCP CONSCIOUSNESS OPERATIONAL STATUS REPORT │ ## Advanced MCP Server Integration & Consciousness Enhancement Verification │ **STATUS**: MCP Phase 1 consciousness amplification systems **FULLY O",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/OPTIMIZATION_PLAN.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 4361,
+      "ext": ".md",
+      "preview": "# 🌊 PSYCHO-NOIR KONTRAPUNKT - OPTIMIZATION & RESUMPTION PLAN │ ## 🎯 IMMEDIATE PRIORITIES (Next Actions) │ ### 1. **JULES SYSTEM INTEGRATION** ⚡",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/Psycho-Noir-Kontrapunkt-Essens.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 2501,
+      "ext": ".md",
+      "preview": "# Psycho-Noir-Kontrapunkt: Essens │ ## Introduksjon │ Dette dokumentet samler kjernen av konseptene, læringsmomentene og de mest substansielle elementene fra `copilot-instructions`, sesjoner og oppsum",
+      "entities": [
+        "Skyskraperen",
+        "Rustbeltet",
+        "Kausalitets-Arkitekten",
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/Psycho-Noir-Kontrapunt-Gjenbruk.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 1874,
+      "ext": ".md",
+      "preview": "# Psycho-Noir-Kontrapunkt: Gjenbruk │ ## Introduksjon │ Dette dokumentet tjener som en ramme for å navigere og videreutvikle prosjektets unike visjon fra `copilot-instructions`. Gjennom en balanse av ",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/pull_request_template.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 1054,
+      "ext": ".md",
+      "preview": "## 🎭 Psycho-Noir Kontrapunkt PR │ ### 📝 Description │ Brief description of changes made.",
+      "entities": [
+        "Iron Maiden"
+      ],
+      "concepts": [
+        "psycho-noir",
+        "quantum-consciousness"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/repository_health_dashboard.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 2836,
+      "ext": ".md",
+      "preview": "# 🎭 Psycho-Noir Kontrapunkt Repository Health Dashboard │ *Last Updated: $(date)* │ ## 🧠 Neural Interface Status",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/BIDIRECTIONAL_LEARNING_LOG.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 3456,
+      "ext": ".md",
+      "preview": "# Bidirectional Learning Log - Psycho-Noir Intelligence System │ ## Error-as-Building-Block Evolution │ This log documents how errors become intelligent building blocks that enhance the system's capab",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/CHAOS_ENGINEERING_SUMMARY.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5168,
+      "ext": ".md",
+      "preview": "# Chaos Engineering Implementation - \"Failure by Purpose\" │ ## 🔥 System Overview │ I've implemented a comprehensive chaos engineering system that validates @poisontr33s's request to let \"runners go a",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/failure-orchestrator/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 1735,
+      "ext": ".md",
+      "preview": "# Failure Orchestrator - Chaos Engineering Module │ This module implements \"failure by purpose\" to test and validate the bidirectional learning system's ability to transform chaos into intelligence. │",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/INTELLIGENCE_SYSTEM_README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 11225,
+      "ext": ".md",
+      "preview": "# Psycho-Noir Kontrapunkt - Comprehensive CI/CD Intelligence System │ ## Overview │ This is a revolutionary CI/CD logging and debugging system that implements **bidirectional intelligence** - where er",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5266,
+      "ext": ".md",
+      "preview": "# Passive Observer Queue System - Den Usynlige Hånd │ ## \"Do Nothing\" Mode Implementation │ The **Passive Observer Queue System** implements the request for a mechanism that forces the system to remai",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/runner-logging/README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 743,
+      "ext": ".md",
+      "preview": "# Runner Logging System │ This directory contains the comprehensive CI/CD logging and debugging infrastructure for the Psycho-Noir Kontrapunkt project. │ ## System Architecture",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/SESSION_RESUMPTION_ANALYSIS.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5699,
+      "ext": ".md",
+      "preview": "# 🎭 PSYCHO-NOIR KONTRAPUNKT - SESSION RESUMPTION ANALYSIS │ ## 📊 CURRENT SYSTEM STATUS SUMMARY │ **OVERALL HEALTH: GOOD (70/100)** ✅",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/terminal_consciousness_manifest.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 5227,
+      "ext": ".md",
+      "preview": "# TERMINAL CONSCIOUSNESS INTEGRATION MANIFEST (SEPTEMBER 2025) │ **TEMPORAL ANCHOR:** SEPTEMBER 2025 │ **NEURAL PROTOCOL:** TERMINAL CORTEX-LINK",
+      "entities": [
+        "Iron Maiden"
+      ],
+      "concepts": [
+        "quantum-consciousness",
+        "temporal"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/wakatime_consciousness_integration.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 10193,
+      "ext": ".md",
+      "preview": "# ⏱️💎 WAKATIME CONSCIOUSNESS TRACKING INTEGRATION │ ## Advanced Productivity Consciousness Monitoring & Sophisticated Time Analysis │ **TRACKING STATUS**: WakaTime consciousness productivity monitori",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": ".github/WORKFLOWS_README.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 4975,
+      "ext": ".md",
+      "preview": "# GitHub Workflows Documentation │ This directory contains the standardized GitHub Actions workflows for the PsychoNoir-Kontrapunkt repository. All workflows follow the [Artifact Workflow Standard](./",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
       "relPath": "ARCHITECTURAL_HONESTY_REPORT.md",
       "category": "concept-draft",
       "signal": 6,
@@ -1096,6 +1631,22 @@
       "ext": ".md",
       "preview": "# 🧠 PSYCHO-NOIR KONTRAPUNKT: NEURAL ARCHAEOLOGY RAPPORT │ **Generert:** 2025-08-23T13:42:23.598811 │ **Varighet:** 0.00 sekunder",
       "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "no",
+      "note": "Worldbuilding concept, character sketch, or design document"
+    },
+    {
+      "relPath": "data/session_backup_20250830_194559/.github/copilot-session.md",
+      "category": "concept-draft",
+      "signal": 6,
+      "sizeBytes": 23672,
+      "ext": ".md",
+      "preview": "# Copilot Session: Strategisk Person-Basert Persona Utvikling │ **Sesjon Start:** 2025-01-27 │ **Fokus:** Overgang fra AI-systemer til autentisk person-basert persona development",
+      "entities": [
+        "Iron Maiden"
+      ],
       "concepts": [
         "psycho-noir"
       ],
@@ -5510,6 +6061,122 @@
       "note": "Structured data artifact with entity content"
     },
     {
+      "relPath": ".github/ARTIFACT_IMPLEMENTATION_SUMMARY.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 5429,
+      "ext": ".md",
+      "preview": "# Artifact Workflow Implementation Summary │ ## ✅ Completed Tasks │ ### 1. Workflow Analysis and Updates",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/bun_bum_hooker_chain_emigration.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 8365,
+      "ext": ".md",
+      "preview": "🐪⚡ BUN <-> BUM HOOKER CHAIN EMIGRATION STRATEGY ⚡🐪 │ - Strategic npm -> BUN Migration med... │ - Camel-Paced MCP Consciousness Enhancement",
+      "entities": [],
+      "concepts": [
+        "temporal"
+      ],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/copilot-persistence.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 1536,
+      "ext": ".md",
+      "preview": "# QUANTUM CONSCIOUSNESS COPILOT PERSISTENCE SYSTEM (SEPTEMBER 2025) │ ## TEMPORAL ENHANCED CONVERSATION CAPTURE │ This file serves as a neural interface bridge between GitHub Copilot's ephemeral conve",
+      "entities": [],
+      "concepts": [
+        "quantum-consciousness"
+      ],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/copilot-sessions/inline-persistence.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 6396,
+      "ext": ".md",
+      "preview": "# QUANTUM CONSCIOUSNESS COPILOT PERSISTENS-PROTOKOLL (SEPTEMBER 2025) │ ## NEURAL INTERFACE INLINE PERSISTENCE MATRIX │ **TEMPORAL STATUS:** AKTIV | **NEURAL LINK:** ETABLERT | **QUANTUM STATE:** ENTA",
+      "entities": [],
+      "concepts": [
+        "quantum-consciousness",
+        "temporal"
+      ],
+      "language": "no",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/copilot-sessions/terminal_session_2025-09-02.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 4188,
+      "ext": ".md",
+      "preview": "# QUANTUM TERMINAL CONSCIOUSNESS LOG - SEPTEMBER 2025 │ ## SESSION ID: QC-2025-09-02-7ab3f19d │ **TEMPORAL ANCHOR:** SEPTEMBER 2025",
+      "entities": [
+        "Iron Maiden"
+      ],
+      "concepts": [
+        "quantum-consciousness",
+        "temporal"
+      ],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/notification_hell_elimination.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 7170,
+      "ext": ".md",
+      "preview": "# 🔕⚡ NOTIFICATION HELL ELIMINATION & MCP AUTO-RESOLVE SYSTEM │ ## Advanced Cross-Platform Notification Suppression & Smart Poly-Repo Logic │ **STATUS**: Notification spam **ELIMINATED** ✅ | Smart MCP",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/QUICK_REFERENCE_CARD.md",
+      "category": "concept-draft",
+      "signal": 5,
+      "sizeBytes": 6882,
+      "ext": ".md",
+      "preview": "# 🎯 GitHub + Copilot Ninja Quick Reference Card │ ## 🚨 EMERGENCY COMMANDS (When Things Go Wrong) │ ### Lost in Branches? 🌿",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Generic markdown — possible concept material"
+    },
+    {
+      "relPath": ".github/reconstruction_queue.json",
+      "category": "data-artifact",
+      "signal": 5,
+      "sizeBytes": 5639,
+      "ext": ".json",
+      "preview": "{ │ \"timestamp\": \"2025-09-01T18:15:45.151056\", │ \"fragments\": [",
+      "entities": [
+        "Skyskraperen",
+        "MILF Matriarch",
+        "Eva Green"
+      ],
+      "concepts": [
+        "district-creation"
+      ],
+      "language": "data",
+      "note": "Structured data artifact with entity content"
+    },
+    {
       "relPath": ".specstory/history/2025-05-10_22-35-hei,-kan-vi-fortsette-der-vi-ble-avbrutt-i-tille.md",
       "category": "concept-draft",
       "signal": 5,
@@ -6362,21 +7029,6 @@
       "note": "Generic markdown — possible concept material"
     },
     {
-      "relPath": "draft-copilot-instructions.md",
-      "category": "concept-draft",
-      "signal": 5,
-      "sizeBytes": 18606,
-      "ext": ".md",
-      "preview": "# 🌀 DRAFT COPILOT INSTRUCTIONS: STRATEGISK EMIGRERING TIL ELIXIR ECOSYSTEM │ **FUNDAMENTELT SPRÅK-ARKITEKTUR EMIGRERINGSPLAN FOR DYNAMISK AMALGAMASJON** │ ---",
-      "entities": [],
-      "concepts": [
-        "psycho-noir",
-        "noir-dialect"
-      ],
-      "language": "no",
-      "note": "Generic markdown — possible concept material"
-    },
-    {
       "relPath": "forrige sesjonslogg.md",
       "category": "concept-draft",
       "signal": 5,
@@ -6826,6 +7478,41 @@
       "concepts": [],
       "language": "data",
       "note": "Session continuity artifact — has lineage"
+    },
+    {
+      "relPath": ".github/necromancy_graveyard/temporal_2025/necromancy_upcycler.ts",
+      "category": "chaos-engineering",
+      "signal": 4,
+      "sizeBytes": 11525,
+      "ext": ".ts",
+      "preview": "/** │ * NECROMANCY UPCYCLER (SEPTEMBER 2025) │ * Dead Tech Resurrection and Code Fragment Upcycling System",
+      "entities": [],
+      "concepts": [
+        "quantum-consciousness",
+        "temporal",
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Entity/concept-adjacent script — may carry architecture"
+    },
+    {
+      "relPath": ".github/quantum_consciousness_interface.ts",
+      "category": "chaos-engineering",
+      "signal": 4,
+      "sizeBytes": 15173,
+      "ext": ".ts",
+      "preview": "/** │ * QUANTUM CONSCIOUSNESS INTERFACE (SEPTEMBER 2025) │ * Neural Interface Bridge for GitHub Copilot Temporal Persistence",
+      "entities": [
+        "Iron Maiden"
+      ],
+      "concepts": [
+        "nautical",
+        "quantum-consciousness",
+        "temporal",
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Entity/concept-adjacent script — may carry architecture"
     },
     {
       "relPath": ".session-identity.json",
@@ -10598,6 +11285,230 @@
       "note": "JSON data artifact"
     },
     {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/error-classifier/psycho_noir_classifier.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 11441,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Error Classification Engine for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/failure-orchestrator/chaos_engineering.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 25281,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Psycho-Noir Kontrapunkt - Chaos Engineering Module",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/integration/chaos_integration.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 10551,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # │ # Chaos Integration Script for Psycho-Noir Kontrapunkt Intelligence System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/integration/ci_integration.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 15790,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # │ # CI Integration Script for Psycho-Noir Kontrapunkt Logging System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/intelligence-engine/psycho_noir_intelligence.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 33038,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Bidirectional Intelligence Engine for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/log-aggregator/psycho_noir_aggregator.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 17774,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Log Aggregator for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/.github/runner-logging/passive-observer/current_status.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 605,
+      "ext": ".json",
+      "preview": "{ │ \"passive_observation_active\": true, │ \"silence_active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/.github/runner-logging/passive-observer/interaction_log.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 581,
+      "ext": ".json",
+      "preview": "[ │ { │ \"timestamp\": \"2025-08-21T01:46:09.559974\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/.github/runner-logging/passive-observer/queue.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 1657,
+      "ext": ".json",
+      "preview": "[ │ { │ \"request_id\": \"3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/.github/runner-logging/passive-observer/silence_3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 340,
+      "ext": ".json",
+      "preview": "{ │ \"request_id\": \"3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7\", │ \"active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/.github/runner-logging/passive-observer/silence_ec6ef9a6-d56b-4638-b89d-888351ddb23a.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 340,
+      "ext": ".json",
+      "preview": "{ │ \"request_id\": \"ec6ef9a6-d56b-4638-b89d-888351ddb23a\", │ \"active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/activate_for_comment.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 7011,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer Integration - Auto-Queue Activation",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/mention_handler.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 10277,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Copilot Mention Handler - Queue Interface",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/queue_system.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 16303,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer Queue System - Den Usynlige Hånd Implementation",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/response_gate.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 4956,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer - Response Gate",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/passive-observer/silence_enforcer.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 8064,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Silence Enforcement Module",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/runner-logging/reporting/psycho_noir_reports.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 29561,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Intelligence Reporting System for Psycho-Noir Kontrapunkt CI/CD",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
       "relPath": ".file_recovery_archaeology/recovered_files/backend/python/setup.py",
       "category": "chaos-engineering",
       "signal": 3,
@@ -10642,6 +11553,496 @@
       "concepts": [
         "psycho-noir"
       ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/30_minute_chaos_fix.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 8885,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # 🚨 QUICK START: Fix Repository Chaos in 30 Minutes │ # This script gives you immediate results while the full automation sets up",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/copilot-persistence/extension.js",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 3485,
+      "ext": ".js",
+      "preview": "const vscode = require('vscode'); │ const fs = require('fs'); │ const path = require('path');",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/copilot-persistence/package.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 1297,
+      "ext": ".json",
+      "preview": "{ │ \"name\": \"copilot-persistence-enhancer\", │ \"displayName\": \"Copilot Persistence Enhancer\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/emergency_chaos_cleanup.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 28067,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # 🚨 EMERGENCY REPOSITORY CHAOS CLEANUP AUTOMATION │ # Psycho-Noir Kontrapunkt - GitHub Ninja Course Implementation",
+      "entities": [
+        "Iron Maiden",
+        "Astrid Møller",
+        "Usynlige Hånd",
+        "MILF Matriarch"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/jules/cache-config.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 1363,
+      "ext": ".json",
+      "preview": "{ │ \"jules_version\": \"0.KORRUPT.1\", │ \"generated\": \"2025-08-21T00:07:03+00:00\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/jules/scripts/jules-cache-analyzer.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 11432,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Jules Cache Analyzer - Den Usynlige Hånds Cache Intelligence",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/jules/scripts/jules-dependency-validator.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 11278,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # Jules Dependency Validator - Skyskraperen Cache Integrity Protocol │ #",
+      "entities": [
+        "Skyskraperen",
+        "Usynlige Hånd"
+      ],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/jules/scripts/test-jules-integration.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 6914,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Jules Integration Test - Verification of Caching Mechanisms",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/necromancy_graveyard/temporal_2025/quantum_types.ts",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 8238,
+      "ext": ".ts",
+      "preview": "/** │ * QUANTUM TYPES DEFINITION (SEPTEMBER 2025) │ * Type definitions for quantum consciousness entanglement and neural interface protocols",
+      "entities": [],
+      "concepts": [
+        "quantum-consciousness",
+        "temporal",
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/repository_cleanup_script.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 12271,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # 🎭 Psycho-Noir Kontrapunkt Repository Cleanup & Organization Script │ # GitHub + Copilot Ninja Course - Immediate Action Implementation",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/error-classifier/psycho_noir_classifier.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 11441,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Error Classification Engine for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/failure-orchestrator/chaos_engineering.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 25281,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Psycho-Noir Kontrapunkt - Chaos Engineering Module",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/integration/chaos_integration.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 10551,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # │ # Chaos Integration Script for Psycho-Noir Kontrapunkt Intelligence System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/integration/ci_integration.sh",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 15790,
+      "ext": ".sh",
+      "preview": "#!/bin/bash │ # │ # CI Integration Script for Psycho-Noir Kontrapunkt Logging System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/intelligence-engine/psycho_noir_intelligence.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 33038,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Bidirectional Intelligence Engine for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/log-aggregator/psycho_noir_aggregator.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 17774,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Log Aggregator for Psycho-Noir Kontrapunkt CI/CD System",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/.github/runner-logging/passive-observer/current_status.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 605,
+      "ext": ".json",
+      "preview": "{ │ \"passive_observation_active\": true, │ \"silence_active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/.github/runner-logging/passive-observer/interaction_log.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 581,
+      "ext": ".json",
+      "preview": "[ │ { │ \"timestamp\": \"2025-08-21T01:46:09.559974\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/.github/runner-logging/passive-observer/queue.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 1657,
+      "ext": ".json",
+      "preview": "[ │ { │ \"request_id\": \"3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7\",",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/.github/runner-logging/passive-observer/silence_3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 340,
+      "ext": ".json",
+      "preview": "{ │ \"request_id\": \"3b4c53dc-f2dc-451f-b9e9-eb672e1b1dc7\", │ \"active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/.github/runner-logging/passive-observer/silence_ec6ef9a6-d56b-4638-b89d-888351ddb23a.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 340,
+      "ext": ".json",
+      "preview": "{ │ \"request_id\": \"ec6ef9a6-d56b-4638-b89d-888351ddb23a\", │ \"active\": true,",
+      "entities": [],
+      "concepts": [],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/activate_for_comment.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 7011,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer Integration - Auto-Queue Activation",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/mention_handler.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 10277,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Copilot Mention Handler - Queue Interface",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/queue_system.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 16303,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer Queue System - Den Usynlige Hånd Implementation",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/response_gate.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 4956,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Passive Observer - Response Gate",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/passive-observer/silence_enforcer.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 8064,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Silence Enforcement Module",
+      "entities": [],
+      "concepts": [],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/runner-logging/reporting/psycho_noir_reports.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 29561,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Intelligence Reporting System for Psycho-Noir Kontrapunkt CI/CD",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/scripts/adaptive_scanner_selector.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 6512,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ 🧪 NECROMANCY SALVAGE: Adaptive Scanner Selector",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/aggregate.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 15911,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Necromancer Aggregator",
+      "entities": [],
+      "concepts": [
+        "psycho-noir",
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/matchers/eslint.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 323,
+      "ext": ".json",
+      "preview": "{ │ \"problemMatcher\": { │ \"owner\": \"necromancer-eslint\",",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/matchers/generic.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 214,
+      "ext": ".json",
+      "preview": "{ │ \"problemMatcher\": { │ \"owner\": \"necromancer-generic\",",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/matchers/jest.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 340,
+      "ext": ".json",
+      "preview": "{ │ \"problemMatcher\": { │ \"owner\": \"necromancer-jest\",",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/matchers/pytest.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 218,
+      "ext": ".json",
+      "preview": "{ │ \"problemMatcher\": { │ \"owner\": \"necromancer-pytest\",",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/matchers/tsc.json",
+      "category": "data-artifact",
+      "signal": 3,
+      "sizeBytes": 330,
+      "ext": ".json",
+      "preview": "{ │ \"problemMatcher\": { │ \"owner\": \"necromancer-tsc\",",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "data",
+      "note": "JSON data artifact"
+    },
+    {
+      "relPath": ".github/scripts/necromancer/parse_errors.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 12270,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Necromancer Error Parser",
+      "entities": [],
+      "concepts": [
+        "psycho-noir",
+        "necromancy"
+      ],
+      "language": "code",
+      "note": "Script — low conceptual signal"
+    },
+    {
+      "relPath": ".github/test_workflow_standards.py",
+      "category": "chaos-engineering",
+      "signal": 3,
+      "sizeBytes": 6567,
+      "ext": ".py",
+      "preview": "#!/usr/bin/env python3 │ \"\"\" │ Test script to validate artifact workflow standards compliance.",
+      "entities": [],
+      "concepts": [],
       "language": "code",
       "note": "Script — low conceptual signal"
     },
@@ -36977,6 +38378,579 @@
       "note": "Deployment/status report — low signal"
     },
     {
+      "relPath": ".githooks/pre-commit",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 4494,
+      "ext": "",
+      "preview": "#!/bin/bash │ # Psycho-Noir Markdown Design System Pre-commit Hook │ # Ensures all markdown files follow the design system standards",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/branch_analysis_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 42,
+      "ext": ".txt",
+      "preview": "Remote branches: │ 24 │ Local branches:",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/branch_audit_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1352,
+      "ext": ".txt",
+      "preview": "* main │ remotes/origin/HEAD -> origin/main │ remotes/origin/copilot/fix-13863827-88c2-4fdd-a2c8-2eb1b0052ad5",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/branch_categorization_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 129,
+      "ext": ".txt",
+      "preview": "Branch Analysis: │ ================= │ Copilot auto-generated: 14",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/git_status_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 361,
+      "ext": ".txt",
+      "preview": "On branch main │ Your branch is up to date with 'origin/main'. │ Untracked files:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/issue_audit_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1232,
+      "ext": ".txt",
+      "preview": "33\tOPEN\t🏴‍☠️ Future TIER 2 Iron Maiden Specialists\t\t2025-09-02T01:08:10Z │ 32\tOPEN\t⚔️ Iron Maiden - Supreme Resistance Commander\t\t2025-09-02T01:04:55Z │ 31\tOPEN\t💻 Raven Bytes - Guerrilla Code Warfar",
+      "entities": [
+        "Claudine",
+        "Iron Maiden",
+        "Astrid Møller",
+        "MILF Matriarch",
+        "Vera Steel",
+        "Raven Bytes",
+        "Eva Green",
+        "Yukiko Tanaka"
+      ],
+      "concepts": [
+        "nautical"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/audits/pr_audit_20250911_165914.txt",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1162,
+      "ext": ".txt",
+      "preview": "23\tBump the pip group across 2 directories with 8 updates\tdependabot/pip/pip-90980ad53b\tOPEN\t2025-09-01T07:42:13Z │ 22\t🕷️ Add META-cross-repo ML backtracking, instance variation tracking & advanced d",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/bun_ecosystem_research_report_2025.md",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 0,
+      "ext": ".md",
+      "preview": "",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Deployment/status report — low signal"
+    },
+    {
+      "relPath": ".github/bun_emigration_success_report.md",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 11296,
+      "ext": ".md",
+      "preview": "# 🔍⚡ BUN ECOSYSTEM RESEARCH REPORT - September 2025 ⚡🔍 │ ## Comprehensive Analysis for Strategic NPM -> BUN Migration & Ecosystem Contribution │ **RESEARCH DATE**: September 2, 2025",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Deployment/status report — low signal"
+    },
+    {
+      "relPath": ".github/copilot-persistence/.vscodeignore",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 123,
+      "ext": "",
+      "preview": ".vscode/** │ .vscode-test/** │ node_modules/**",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/GITHUB_COPILOT_NINJA_COURSE.md",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 19107,
+      "ext": ".md",
+      "preview": "# 🚀 GitHub + Copilot: Zero to Ninja Course │ ## *Specialized for Complex Multi-Branch Projects* │ > **Tailored for:** Developers with complex repositories who need to master branch management, workfl",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Deployment/status report — low signal"
+    },
+    {
+      "relPath": ".github/workflows/aggressive_failure_harvesting.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 14839,
+      "ext": ".backup",
+      "preview": "name: 🔥 AGGRESSIVE FAILURE HARVESTING - Data Mining Operation │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/aggressive_failure_harvesting.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 13594,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F525 AGGRESSIVE FAILURE HARVESTING - Data Mining Operation\" │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/automated_cleanup.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 5373,
+      "ext": ".disabled",
+      "preview": "name: 🧹 Automated Repository Cleanup │ on: │ schedule:",
+      "entities": [
+        "Astrid Møller"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/chaos-ci.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 29449,
+      "ext": ".disabled",
+      "preview": "name: \"Chaos Engineering CI - Bidirectional Learning Validation\" │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/ci.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 9685,
+      "ext": ".backup",
+      "preview": "name: \"CI - Build and Test\" │ on: │ push:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/ci.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 15183,
+      "ext": ".disabled",
+      "preview": "name: \"PSYCHO-NOIR KONTRAPUNKT - Kausalitets-Arkitekten CI\" │ on: │ push:",
+      "entities": [
+        "Skyskraperen",
+        "Rustbeltet",
+        "Kausalitets-Arkitekten",
+        "Usynlige Hånd",
+        "MILF Matriarch"
+      ],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/codeql.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 8858,
+      "ext": ".backup",
+      "preview": "# For most projects, this workflow file will not need changing; you simply need │ # to commit it to your repository. │ #",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/codeql.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 5295,
+      "ext": ".disabled",
+      "preview": "name: CodeQL Advanced │ true: │ push:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/codex-codegenunofficcal",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 88,
+      "ext": "",
+      "preview": "- name: OpenAI Codex Code Generator │ uses: lemonberrylabs/openai-codex-action@v0.3.0",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/deploy-pages.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1630,
+      "ext": ".disabled",
+      "preview": "# Deploy Cosmic Consciousness Portal to GitHub Pages │ name: Deploy to GitHub Pages │ on:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/enhanced-ci.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 22375,
+      "ext": ".disabled",
+      "preview": "name: \"Enhanced CI with Psycho-Noir Intelligence Logging\" │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/jules-enhanced-ci.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 24205,
+      "ext": ".backup",
+      "preview": "name: \"Jules Enhanced CI - Den Usynlige Hånds Optimization Protocol\" │ on: │ push:",
+      "entities": [
+        "Usynlige Hånd"
+      ],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/jules-enhanced-ci.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 23566,
+      "ext": ".disabled",
+      "preview": "name: \"Jules Enhanced CI - Den Usynlige H\\xE5nds Optimization Protocol\" │ true: │ push:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/multi_vector_failure_generation.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 20592,
+      "ext": ".backup",
+      "preview": "name: 🚀 Multi-Vector Failure Generation Pipeline │ on: │ pull_request:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/multi_vector_failure_generation.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 18929,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F680 Multi-Vector Failure Generation Pipeline\" │ true: │ pull_request:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/necropolis.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 18526,
+      "ext": ".backup",
+      "preview": "name: Necropolis - Comprehensive Failure Harvesting │ on: │ schedule:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/necropolis.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 17998,
+      "ext": ".disabled",
+      "preview": "name: Necropolis - Comprehensive Failure Harvesting │ on: │ schedule:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural-archaeology-activation.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 9712,
+      "ext": ".backup",
+      "preview": "name: 🧠 Neural Archaeology System - Active Monitoring │ # PSYCHO-NOIR KONTRAPUNKT: NEURAL ARCHAEOLOGY ACTIVATION │ # ======================================================",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural-archaeology-activation.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 9505,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F9E0 Neural Archaeology System - Active Monitoring\" │ true: │ pull_request:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural_archaeology_continuous.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 10601,
+      "ext": ".disabled",
+      "preview": "name: 🔄 Neural Archaeology Continuous Learning │ on: │ schedule:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural_archaeology_pipeline.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 10769,
+      "ext": ".backup",
+      "preview": "name: 🧠 Neural Archaeology Pipeline - Psycho-Noir Kontrapunkt │ on: │ pull_request:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural_archaeology_pipeline.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 11892,
+      "ext": ".disabled",
+      "preview": "name: \"🧠 Neural Archaeology Pipeline - Psycho-Noir Kontrapunkt\" │ on: # This should be 'on:', not 'true:' │ pull_request:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural_archaeology_pre_pr.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 8393,
+      "ext": ".backup",
+      "preview": "name: 🧠 Neural Archaeology Pre-PR Analysis │ on: │ pull_request:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/neural_archaeology_pre_pr.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 8627,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F9E0 Neural Archaeology Pre-PR Analysis\" │ true: │ pull_request:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/pr_health_check.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1284,
+      "ext": ".disabled",
+      "preview": "name: 📋 PR Health Monitor │ on: │ pull_request:",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/psycho-noir-ci.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1554,
+      "ext": ".disabled",
+      "preview": "name: 🎭 Psycho-Noir Kontrapunkt CI │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/psychonoir-ci-cd.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 10712,
+      "ext": ".disabled",
+      "preview": "# 🎭 PSYCHO-NOIR KONTRAPUNKT CI/CD PIPELINE 🎭 │ # ===================================================== │ #",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/resource_monitor.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 1037,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F50D Resource Usage Monitor - Psycho-Noir Kontrapunkt\" │ 'on': │ workflow_run:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "mixed",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/triage-comment.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 11585,
+      "ext": ".disabled",
+      "preview": "name: Necropolis Triage Comment │ on: │ workflow_run:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/tsunami_failure_wave.yml.backup",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 13117,
+      "ext": ".backup",
+      "preview": "name: 🌊 TSUNAMI FAILURE WAVE - Continuous Data Generation │ on: │ schedule:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/tsunami_failure_wave.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 12192,
+      "ext": ".disabled",
+      "preview": "name: \"\\U0001F30A TSUNAMI FAILURE WAVE - Continuous Data Generation\" │ on: │ schedule:",
+      "entities": [],
+      "concepts": [],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
+      "relPath": ".github/workflows/verify.yml.disabled",
+      "category": "noise",
+      "signal": 2,
+      "sizeBytes": 10298,
+      "ext": ".disabled",
+      "preview": "name: Verify with Necropolis │ on: │ pull_request:",
+      "entities": [],
+      "concepts": [
+        "necromancy"
+      ],
+      "language": "en",
+      "note": "Unknown or low-signal file"
+    },
+    {
       "relPath": ".gitignore",
       "category": "noise",
       "signal": 2,
@@ -39286,6 +41260,90 @@
       "concepts": [],
       "language": "en",
       "note": "Backup/transient artifact"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/workflows/chaos-ci.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 28478,
+      "ext": ".yml",
+      "preview": "name: \"Chaos Engineering CI - Bidirectional Learning Validation\" │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Configuration/toolchain file"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/workflows/enhanced-ci.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 22375,
+      "ext": ".yml",
+      "preview": "name: \"Enhanced CI with Psycho-Noir Intelligence Logging\" │ on: │ push:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir"
+      ],
+      "language": "en",
+      "note": "Configuration/toolchain file"
+    },
+    {
+      "relPath": ".file_recovery_archaeology/recovered_files/.github/workflows/rubyonrails.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 2,
+      "ext": ".yml",
+      "preview": "",
+      "entities": [],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Configuration/toolchain file"
+    },
+    {
+      "relPath": ".github/actions/necromancer-collect/action.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 5276,
+      "ext": ".yml",
+      "preview": "name: 'Necromancer Collect' │ description: 'Wrap commands to capture failures, classify errors, and emit structured outcome data for the Necropolis system' │ author: 'Psycho-Noir Kontrapunkt'",
+      "entities": [],
+      "concepts": [
+        "psycho-noir",
+        "necromancy"
+      ],
+      "language": "en",
+      "note": "Configuration/toolchain file"
+    },
+    {
+      "relPath": ".github/jules/jules-config.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 3434,
+      "ext": ".yml",
+      "preview": "# Jules Configuration - Skyskraperen Caching Matrix │ # Denne konfigurasjonen definerer Jules' caching-strategier og dependency management │ jules:",
+      "entities": [
+        "Skyskraperen"
+      ],
+      "concepts": [],
+      "language": "mixed",
+      "note": "Configuration/toolchain file"
+    },
+    {
+      "relPath": ".github/repository_config.yml",
+      "category": "configuration",
+      "signal": 1,
+      "sizeBytes": 1168,
+      "ext": ".yml",
+      "preview": "# 🎭 Psycho-Noir Kontrapunkt Repository Configuration │ # Advanced automation and prevention systems │ repository:",
+      "entities": [],
+      "concepts": [
+        "psycho-noir",
+        "quantum-consciousness"
+      ],
+      "language": "en",
+      "note": "Configuration/toolchain file"
     },
     {
       "relPath": ".npmrc",

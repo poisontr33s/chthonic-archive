@@ -164,6 +164,17 @@ function classify(relPath: string, content: string, ext: string): Classification
   const nameLower = name.toLowerCase();
   const contentSnip = content.slice(0, 800).toLowerCase();
 
+  // ── heritage-canonical (signal 10) — origin instruction files ──
+  if (
+    nameLower === "copilot-instructions.md" ||
+    nameLower === "draft-copilot-instructions.md" ||
+    contentSnip.includes("jsoniffisert") ||
+    contentSnip.includes("alfa_direktiver_superb_suverenitets") ||
+    (nameLower.includes("copilot-instructions") && ext === ".md")
+  ) {
+    return { category: "entity-canonical", signal: 10, note: "Heritage instruction origin — districts × tier × district-type scaffold" };
+  }
+
   // ── entity-canonical (signal 9–10) ──
   if (
     nameLower.includes("incarnation_manifest") ||
@@ -368,7 +379,7 @@ async function walkDir(
     }
 
     if (info.isDirectory()) {
-      if (SKIP_DIRS.has(item) || item.startsWith(".git")) continue;
+      if (SKIP_DIRS.has(item) || item === ".git") continue;
       await walkDir(fullPath, rootDir, entries);
       continue;
     }
