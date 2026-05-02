@@ -75,6 +75,16 @@
 			"args": [
 				"@upstash/context7-mcp@1.0.31",
 			]
+		},
+		"pnk-archaeology": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"--quiet",
+				"scripts/archaeology_mcp.py"
+			],
+			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
 		}
 	}
 }
