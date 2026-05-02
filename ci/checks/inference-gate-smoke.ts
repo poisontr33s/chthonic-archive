@@ -107,15 +107,20 @@ function probeG6(): GateResult {
     };
   }
   const ok = m["build_result"] === "SUCCESS";
+  const level = (m["level"] as GateLevel) ?? (ok ? "L1" : "L0");
+  const kernelVerified = m["import_ok"] === true && m["forward_pass_shape"] != null;
+  const proofStr = kernelVerified
+    ? `P-06 + kernel: flash_attn_func ${m["forward_pass_shape"]} on CUDA — MSVC ${m["vs2022_version"]}`
+    : ok
+    ? `P-06 succeeded: MSVC ${m["vs2022_version"]} + CUDA 12.8 — build_exit_code=0`
+    : `P-06 failed: ${m["status"]} — ${m["remaining_blocker"] ?? "see manifest"}`;
   return {
     gate: "G6_flash_attn_build",
     question: "Can flash_attn 2.8.3 be built and installed on Python 3.14 + CUDA 12.8?",
     status: ok ? "admitted" : "blocked",
-    level: ok ? "L1" : "L0",
-    proof: ok
-      ? `P-06 succeeded: MSVC ${m["vs2022_version"]} + CUDA 12.8 — build_exit_code=0`
-      : `P-06 failed: ${m["status"]} — ${m["remaining_blocker"] ?? "see manifest"}`,
-    notes: ok ? `Build time inferred ~60m (source build). Wheel cached in uv store.` : undefined,
+    level,
+    proof: proofStr,
+    notes: ok ? `Build time 60m 42s (source build). Wheel cached in uv store.` : undefined,
   };
 }
 
@@ -228,16 +233,16 @@ const STATIC_GATES: GateResult[] = [
     question: "Can exllamav3 be loaded on Python 3.14?",
     status: "admitted",
     level: "L4",
-    proof: "import exllamav3 → OK after Gate 6 cleared (2026-04-25T08:46:33Z); triton warning non-fatal",
-    notes: "triton not available on Win32 Python 3.14 — performance warning only, not blocking",
+    proof: "import exllamav3 → OK after Gate 6 cleared (2026-04-25T08:46:33Z); triton-windows 3.6.0 installed",
+    notes: "triton-windows (cp314-win_amd64) installed — official triton PyPI has 0 Win wheels; triton-windows fork is the Win32 path",
   },
   {
     gate: "G7_formatron_cessation",
     question: "Will formatron survive Python's invalid-escape-sequence escalation?",
     status: "admitted",
-    level: "L3",
-    proof: "SyntaxWarning on 3.14 — import succeeds; cessation boundary ~3.16; upstream fix required before then",
-    notes: "warning_degraded: '\\A','\\z' in formatron/formats/json.py + '\\[' in schemas/json_schema.py; non-fatal today",
+    level: "L4",
+    proof: "patch-formatron-escape.py V2 applied: formats/json.py escapes fixed + json_schema.py pydantic V2 compat + docstring escape. Grammar construction verified via json_schema.create_schema() + FormatterBuilder().json()",
+    notes: "Two patches required: (1) escape sequences in formats/json.py, (2) from pydantic import typing removed in V2 — replaced with stdlib typing in json_schema.py. Triton DeprecationWarnings from autotuner are upstream triton-windows/xformers version skew, not blocking.",
   },
 ];
 
@@ -245,25 +250,11 @@ const STATIC_GATES: GateResult[] = [
 
 const KNOWN_WARNINGS = [
   {
-    id: "triton_unavailable",
-    description: "No module named 'triton' — Triton not available on Win32 Python 3.14",
-    impact: "flop_counter disabled; some torch optimizations inactive",
+    id: "triton_deprecation_warnings",
+    description: "triton.runtime.autotuner:101 DeprecationWarning: warmup/rep/use_cuda_graph params deprecated",
+    impact: "cosmetic deprecation warnings on xformers import; triton-windows 3.6.0 is installed and functional",
     blocking: false,
-    resolution: "triton has no Win32 wheel for cp314; WSL2 or Linux build required for full triton support",
-  },
-  {
-    id: "xformers_triton_missing",
-    description: "xformers imports triton internally — same root as triton_unavailable",
-    impact: "xformers falls back to non-triton kernels",
-    blocking: false,
-    resolution: "same as triton_unavailable",
-  },
-  {
-    id: "formatron_escape_sequences",
-    description: "SyntaxWarning: invalid escape sequences in formatron/formats/json.py",
-    impact: "cosmetic warning; no runtime effect on Python 3.14",
-    blocking: false,
-    resolution: "upstream fix in formatron — not our dependency to patch",
+    resolution: "upstream triton-windows/xformers version skew — fix when xformers pins triton>=3.7",
   },
 ];
 
