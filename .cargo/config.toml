@@ -28,3 +28,8 @@ rustflags = [
     "-C", "target-cpu=native",
     "-C", "link-arg=/OPT:ICF",
 ]
+
+# shaderc-sys: use prebuilt VulkanSDK library instead of building from source
+# (build from source requires python3 which may not be on PATH in all runner environments)
+[env]
+SHADERC_LIB_DIR = "C:\\VulkanSDK\\1.4.341.1\\Lib"
