@@ -18,7 +18,7 @@
  *   corpus_sql           — raw SELECT-only SQL (sandboxed)
  *   corpus_classify      — sessions grouped by topic
  *   corpus_session_context — full resume-packet for one session
- *   corpus_tool_result   — G2: tool call details + result snippet by callId
+ *   corpus_tool_result   — G2: tool call details + full result content (lossless) by callId
  *   corpus_memories      — G2: memory snapshots (session + global)
  *   corpus_annotate      — G4: write topic/tags/note to a session record
  *   corpus_memory_write  — G4: inject a memory snapshot programmatically
@@ -287,6 +287,7 @@ function toolToolResult(callId: string): unknown {
              DATETIME(tc.ts/1000,'unixepoch')           AS startTime,
              DATETIME(tc.tsComplete/1000,'unixepoch')   AS endTime,
              tc.argsJson,
+             tc.resultContent,
              tc.resultSnippet,
              tc.sessionId
       FROM tool_calls tc
@@ -370,7 +371,7 @@ function toolMemories(sessionId: string | null, limit: number): unknown[] {
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "2.1.0" },
+  { name: "corpus", version: "2.2.0" },
   { capabilities: { tools: {} } }
 );
 

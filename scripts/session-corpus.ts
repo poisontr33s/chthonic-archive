@@ -467,6 +467,24 @@ function ingestSession(db: Database, sessionId: string): boolean {
     })();
   }
 
+  // ── Tool-result content backfill ──
+  // Lossless full content from mirrored chat-session-resources/<callId>.txt
+  const toolResultsDir = join(sessionDir, "tool-results");
+  if (existsSync(toolResultsDir)) {
+    const updResult = db.prepare(
+      "UPDATE tool_calls SET resultContent = ? WHERE sessionId = ? AND callId = ?"
+    );
+    db.transaction(() => {
+      for (const f of readdirSync(toolResultsDir)) {
+        if (!f.endsWith(".txt")) continue;
+        const callId = f.replace(/\.txt$/, "");
+        let content = "";
+        try { content = readFileSync(join(toolResultsDir, f), "utf8"); } catch { continue; }
+        updResult.run(content, sessionId, callId);
+      }
+    })();
+  }
+
   return true;
 }
 
@@ -613,6 +631,7 @@ if (!rebuildMode) {
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN tags          TEXT");
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN workspaceName TEXT");
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN note          TEXT");
+  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN resultContent  TEXT");
 }
 
 db.exec(DDL_TABLES);

@@ -107,6 +107,22 @@ function mirrorAuxiliaries(tPath: string, sessionId: string, sessionDir: string)
       }
     }
   }
+
+  // chat-session-resources/<callId>__vscode-<ts>/content.txt → tool-results/<callId>.txt
+  // Lossless mirror of externalized MCP tool payloads (VS Code stores large results here).
+  const resourcesBase = join(copilotChatBase, "chat-session-resources", sessionId);
+  if (existsSync(resourcesBase)) {
+    const toolResultsOut = join(sessionDir, "tool-results");
+    mkdirSync(toolResultsOut, { recursive: true });
+    for (const callDir of readdirSync(resourcesBase)) {
+      const contentPath = join(resourcesBase, callDir, "content.txt");
+      if (!existsSync(contentPath)) continue;
+      // callDir = "{callId}__vscode-{ts}" — extract callId prefix before __vscode-
+      const callId = callDir.replace(/__vscode-\d+$/, "");
+      if (!callId) continue;
+      try { copyFileSync(contentPath, join(toolResultsOut, `${callId}.txt`)); } catch { /* skip */ }
+    }
+  }
 }
 
 // ──────────────────────────────────────────────────────────────

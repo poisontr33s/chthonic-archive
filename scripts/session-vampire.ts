@@ -9,7 +9,7 @@
 //   debug.jsonl        — telemetry spans (session_start, copilot/vscode versions)
 //   models.json        — model catalog available at session time
 //   memories/*.md      — in-session agent memory writes (highest signal: working state)
-//   [NOT mirrored] chat-session-resources/<call-id>/content.txt|json  — raw tool payloads (too large)
+//   [mirrored] chat-session-resources/<call-id>/content.txt  — raw tool payloads (mirrored to tool-results/)
 //   [NOT mirrored] codebase-external.sqlite  — global workspace embedding index
 //
 // Usage:
