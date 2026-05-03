@@ -9,7 +9,7 @@
 //   bun run scripts/session-viewer.ts --tail                  # only render last N turns (default 40)
 //   bun run scripts/session-viewer.ts --tail 20               # last 20 turns
 
-import { readFileSync, existsSync, writeFileSync, statSync, readdirSync } from "fs";
+import { readFileSync, existsSync, writeFileSync, statSync, readdirSync, mkdirSync, copyFileSync } from "fs";
 import { join, basename } from "path";
 import { spawnSync } from "child_process";
 import * as os from "os";
@@ -27,6 +27,7 @@ function hasFlag(flag: string): boolean { return args.includes(flag); }
 const explicitTranscript = flagValue("--transcript");
 const explicitOutput = flagValue("--output");
 const doOpen = !hasFlag("--no-open");
+const doArchive = hasFlag("--archive");
 const tailFlag = hasFlag("--tail");
 const tailN = (() => {
   const v = flagValue("--tail");
@@ -257,13 +258,81 @@ const doc = header + "\n" + body + footer;
 // ──────────────────────────────────────────────────────────────
 //  Write output
 // ──────────────────────────────────────────────────────────────
-const defaultOutput = join(
-  "C:\\Users\\eldno\\chthonic-archive\\manifest",
-  "session_view.md"
-);
+const manifestDir = join(import.meta.dir, "..", "manifest");
+const defaultOutput = join(manifestDir, "session_view.md");
 const outputPath = explicitOutput ?? defaultOutput;
 writeFileSync(outputPath, doc, "utf8");
 console.log(`✅ Written: ${outputPath} (${turns.length} turns, ${visibleTurns.length} shown)`);
+
+// ──────────────────────────────────────────────────────────────
+//  Archive: copy JSONL + full render into manifest/sessions/<id>/
+// ──────────────────────────────────────────────────────────────
+if (doArchive) {
+  const sessionsDir = join(manifestDir, "sessions");
+  const sessionDir = join(sessionsDir, sessionId);
+  mkdirSync(sessionDir, { recursive: true });
+
+  // Copy raw JSONL (ground truth — no truncation)
+  copyFileSync(transcriptPath, join(sessionDir, "transcript.jsonl"));
+
+  // Write meta.json
+  const workspaceHash = transcriptPath.match(/workspaceStorage[\/\\]([^\/\\]+)[\/\\]/)?.[1] ?? "";
+  const meta = {
+    sessionId,
+    startTime,
+    archivedAt: new Date().toISOString(),
+    sourcePath: transcriptPath,
+    workspaceHash,
+    vscodeVersion: vscodeVer,
+    copilotVersion: copilotVer,
+    turns: turns.length,
+    lines: lines.length,
+  };
+  writeFileSync(join(sessionDir, "meta.json"), JSON.stringify(meta, null, 2), "utf8");
+
+  // Full render (all turns, no tail truncation) into session dir
+  const archiveHeader = [
+    `# Session Transcript — ${sessionId}`,
+    ``,
+    `| Field | Value |`,
+    `|-------|-------|`,
+    `| Session ID | \`${sessionId}\` |`,
+    `| Started | ${startTime} |`,
+    `| VS Code | ${vscodeVer} |`,
+    `| Copilot | ${copilotVer} |`,
+    `| Total turns | ${turns.length} |`,
+    `| JSONL lines | ${lines.length} |`,
+    `| Archived | ${meta.archivedAt} |`,
+    `| Workspace hash | \`${workspaceHash}\` |`,
+    ``,
+    `> Full session — ${turns.length} turns total.`,
+    ``,
+  ].join("\n");
+  const archiveBody = turns.map(renderTurn).join("\n");
+  const archiveDoc = archiveHeader + "\n" + archiveBody + footer;
+  writeFileSync(join(sessionDir, "session_view.md"), archiveDoc, "utf8");
+
+  // Upsert sessions_index.json
+  const indexPath = join(manifestDir, "sessions_index.json");
+  type MetaEntry = typeof meta;
+  let index: MetaEntry[] = [];
+  if (existsSync(indexPath)) {
+    try { index = JSON.parse(readFileSync(indexPath, "utf8")); } catch { /* start fresh */ }
+  }
+  const existingIdx = index.findIndex((s: MetaEntry) => s.sessionId === sessionId);
+  if (existingIdx >= 0) index[existingIdx] = meta;
+  else index.push(meta);
+  index.sort((a: MetaEntry, b: MetaEntry) =>
+    new Date(b.startTime || b.archivedAt).getTime() - new Date(a.startTime || a.archivedAt).getTime()
+  );
+  writeFileSync(indexPath, JSON.stringify(index, null, 2), "utf8");
+
+  console.log(`📦 Archived to: ${sessionDir}`);
+  console.log(`   - transcript.jsonl (${lines.length} lines — ground truth)`);
+  console.log(`   - session_view.md (${turns.length} turns — full render)`);
+  console.log(`   - meta.json`);
+  console.log(`   - sessions_index.json updated (${index.length} total sessions)`);
+}
 
 // ──────────────────────────────────────────────────────────────
 //  Open in VS Code (to the side)

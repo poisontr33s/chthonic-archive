@@ -102,6 +102,69 @@
         ],
         "group": "test",
         "detail": "Full district sweep — all tributaries. Emits manifest/polyrepo_gate.json. All entropy flows back."
+      },
+      {
+        "label": "📜 Session: View Transcript (latest, tail 40)",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-viewer.ts",
+          "--tail",
+          "40"
+        ],
+        "group": "test",
+        "detail": "Renders latest Copilot Chat JSONL transcript to manifest/session_view.md and opens it in VS Code. Last 40 turns. Use --tail 9999 for full history."
+      },
+      {
+        "label": "📜 Session: View Transcript (full session)",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-viewer.ts",
+          "--tail",
+          "9999"
+        ],
+        "group": "test",
+        "detail": "Renders FULL latest Copilot Chat JSONL transcript to manifest/session_view.md and opens it in VS Code."
+      },
+      {
+        "label": "📦 Session: Archive to repo (sync JSONL)",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-viewer.ts",
+          "--archive"
+        ],
+        "group": "test",
+        "detail": "Copies current session JSONL → manifest/sessions/<id>/transcript.jsonl. Writes meta.json + full session_view.md. Updates sessions_index.json."
+      },
+      {
+        "label": "📋 Session: List archives",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-index.ts"
+        ],
+        "group": "test",
+        "detail": "Lists all archived sessions in manifest/sessions_index.json."
+      },
+      {
+        "label": "🔍 Session: Search archives",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-index.ts",
+          "--search",
+          "${input:searchTerm}"
+        ],
+        "group": "test",
+        "detail": "Grep term across all archived session transcripts.",
+        "dependsOn": []
       }
     ]
   }
