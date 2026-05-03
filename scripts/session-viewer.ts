@@ -290,28 +290,6 @@ if (doArchive) {
   };
   writeFileSync(join(sessionDir, "meta.json"), JSON.stringify(meta, null, 2), "utf8");
 
-  // Full render (all turns, no tail truncation) into session dir
-  const archiveHeader = [
-    `# Session Transcript — ${sessionId}`,
-    ``,
-    `| Field | Value |`,
-    `|-------|-------|`,
-    `| Session ID | \`${sessionId}\` |`,
-    `| Started | ${startTime} |`,
-    `| VS Code | ${vscodeVer} |`,
-    `| Copilot | ${copilotVer} |`,
-    `| Total turns | ${turns.length} |`,
-    `| JSONL lines | ${lines.length} |`,
-    `| Archived | ${meta.archivedAt} |`,
-    `| Workspace hash | \`${workspaceHash}\` |`,
-    ``,
-    `> Full session — ${turns.length} turns total.`,
-    ``,
-  ].join("\n");
-  const archiveBody = turns.map(renderTurn).join("\n");
-  const archiveDoc = archiveHeader + "\n" + archiveBody + footer;
-  writeFileSync(join(sessionDir, "session_view.md"), archiveDoc, "utf8");
-
   // Upsert sessions_index.json
   const indexPath = join(manifestDir, "sessions_index.json");
   type MetaEntry = typeof meta;
@@ -329,7 +307,6 @@ if (doArchive) {
 
   console.log(`📦 Archived to: ${sessionDir}`);
   console.log(`   - transcript.jsonl (${lines.length} lines — ground truth)`);
-  console.log(`   - session_view.md (${turns.length} turns — full render)`);
   console.log(`   - meta.json`);
   console.log(`   - sessions_index.json updated (${index.length} total sessions)`);
 }

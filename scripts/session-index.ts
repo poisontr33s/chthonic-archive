@@ -200,18 +200,22 @@ function cmdFailures() {
 }
 
 // ──────────────────────────────────────────────────────────────
-//  --show <session-id>  — open archived session_view.md
+//  --show <session-id>  — render + open archived session
 // ──────────────────────────────────────────────────────────────
 function cmdShow(sessionId: string) {
-  const viewPath = join(sessionsDir, sessionId, "session_view.md");
-  if (!existsSync(viewPath)) {
+  const jsonlPath = join(sessionsDir, sessionId, "transcript.jsonl");
+  if (!existsSync(jsonlPath)) {
     console.error(`No archive for session: ${sessionId}`);
-    console.error(`Run: bun run scripts/session-viewer.ts --archive --transcript <path>`);
+    console.error(`Run: bun run scripts/session-viewer.ts --archive`);
     process.exit(1);
   }
-  const r = spawnSync("code-insiders", ["-r", viewPath], { shell: true });
-  if (r.status !== 0) spawnSync("code", ["-r", viewPath], { shell: true });
-  console.log(`📖 Opened: ${viewPath}`);
+  // Re-render from ground truth (lossless JSONL → markdown viewer)
+  const r = spawnSync("bun", [
+    "run",
+    join(import.meta.dir, "session-viewer.ts"),
+    "--transcript", jsonlPath,
+  ], { shell: true, stdio: "inherit" });
+  process.exit(r.status ?? 0);
 }
 
 // ──────────────────────────────────────────────────────────────
