@@ -289,10 +289,13 @@ function ingestSession(db: Database, sessionId: string): boolean {
   const ingest = db.transaction(() => {
     for (const line of raw.split("\n")) {
       if (!line.trim()) continue;
-      let entry: { type: string; ts?: number; data: Record<string, unknown> };
+      let entry: { type: string; ts?: number; timestamp?: string; data: Record<string, unknown> };
       try { entry = JSON.parse(line); } catch { continue; }
       const { type, data } = entry;
-      const ts: number | null = typeof entry.ts === "number" ? entry.ts : null;
+      // transcript uses ISO "timestamp", not numeric "ts"
+      const tsRaw = entry.ts ?? entry.timestamp;
+      const ts: number | null = typeof tsRaw === "number" ? tsRaw
+        : typeof tsRaw === "string" && tsRaw ? new Date(tsRaw).getTime() : null;
 
       if (type === "user.message") {
         userMessages++;
@@ -335,9 +338,12 @@ function ingestSession(db: Database, sessionId: string): boolean {
         const toolArgs = asObj(data?.arguments);
         const argsJson = JSON.stringify(toolArgs).slice(0, 1024);
 
-        // Dequeue callId for this tool name (FIFO — matches order of toolRequests)
+        // Prefer direct callId from execution_start event; fall back to FIFO queue
+        const directCallId = String(data?.toolCallId ?? "");
         const q      = pendingCallIds.get(toolName);
-        const callId = q?.length ? q.shift()! : null;
+        const callId = directCallId || (q?.length ? q.shift()! : null);
+        // Keep FIFO queue in sync when direct callId was used
+        if (directCallId && q?.length && q[0] === directCallId) q.shift();
 
         const row = insToolCall.get(sessionId, toolName, callId ?? null, turnIdx, ts, argsJson) as { id: number } | undefined;
         if (row && callId) callIdToRowId.set(callId, row.id);
