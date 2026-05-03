@@ -242,6 +242,142 @@ if (flag("--timeline")) {
   }
   console.log(`\n${msgs.length} messages`);
 
+} else if (flag("--report-html")) {
+  const outPath = join(import.meta.dir, "..", "manifest", "corpus-report.html");
+
+  const sessions = db.prepare(`
+    SELECT sessionId, startTime, turns, userTurns, assistantTurns,
+           editCount, cmdCount, commitCount,
+           SUBSTR(intent, 1, 90) AS intent
+    FROM session_timeline ORDER BY startTime DESC
+  `).all() as Record<string, unknown>[];
+
+  const hotFiles = db.prepare(`
+    SELECT filePath, editCount, sessionCount FROM hot_files LIMIT 25
+  `).all() as Array<{ filePath: string; editCount: number; sessionCount: number }>;
+
+  const toolFreq = db.prepare(`
+    SELECT toolName, COUNT(*) AS callCount,
+           ROUND(100.0 * SUM(CASE WHEN success = 1 THEN 1 ELSE 0 END) / COUNT(*), 1) AS successPct
+    FROM tool_calls GROUP BY toolName ORDER BY callCount DESC LIMIT 20
+  `).all() as Array<{ toolName: string; callCount: number; successPct: number }>;
+
+  const summary = db.prepare(`
+    SELECT
+      (SELECT COUNT(*) FROM sessions)       AS sessions,
+      (SELECT COUNT(*) FROM messages)       AS messages,
+      (SELECT COUNT(*) FROM tool_calls)     AS toolCalls,
+      (SELECT COUNT(*) FROM file_edits)     AS fileEdits,
+      (SELECT COUNT(*) FROM terminal_cmds)  AS termCmds,
+      (SELECT COUNT(*) FROM commit_refs)    AS commits
+  `).get() as Record<string, number>;
+
+  const maxEdits   = Math.max(1, ...hotFiles.map(f => f.editCount));
+  const maxCalls   = Math.max(1, ...toolFreq.map(t => t.callCount));
+
+  function shortPath(p: string): string {
+    return p.replace(/\\/g, "/").split("/").slice(-2).join("/");
+  }
+  function fmtDate(d: unknown): string {
+    if (!d) return "—";
+    const s = String(d);
+    return s.slice(0, 10) + " " + s.slice(11, 16);
+  }
+
+  const sessRows = sessions.map(s => `
+    <tr>
+      <td title="${s.sessionId}">${String(s.sessionId).slice(0, 8)}</td>
+      <td>${fmtDate(s.startTime)}</td>
+      <td>${s.turns}</td>
+      <td class="num">${s.editCount}</td>
+      <td class="num">${s.cmdCount}</td>
+      <td class="num">${s.commitCount}</td>
+      <td class="intent">${String(s.intent ?? "").replace(/</g, "&lt;")}</td>
+    </tr>`).join("");
+
+  const fileRows = hotFiles.map(f => `
+    <tr>
+      <td class="path" title="${f.filePath}">${shortPath(f.filePath)}</td>
+      <td><div class="bar" style="width:${Math.round(100*f.editCount/maxEdits)}%"></div></td>
+      <td class="num">${f.editCount}</td>
+      <td class="num">${f.sessionCount}</td>
+    </tr>`).join("");
+
+  const toolRows = toolFreq.map(t => `
+    <tr>
+      <td class="path">${t.toolName}</td>
+      <td><div class="bar" style="width:${Math.round(100*t.callCount/maxCalls)}%"></div></td>
+      <td class="num">${t.callCount}</td>
+      <td class="num">${t.successPct}%</td>
+    </tr>`).join("");
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Corpus Report — chthonic-archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#0e0e12;--panel:#16161e;--border:#2a2a3a;--text:#d4d4f0;--muted:#666;--accent:#9d7cd8;--green:#73daca;--red:#f7768e;--yellow:#e0af68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Cascadia Code","JetBrains Mono",monospace;padding:24px}
+h1{font-size:1.2rem;color:var(--accent);margin-bottom:4px}
+.sub{color:var(--muted);font-size:.8rem;margin-bottom:24px}
+h2{font-size:.9rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:12px 20px;min-width:100px}
+.stat .val{font-size:1.5rem;color:var(--green);font-weight:700}
+.stat .lbl{font-size:.75rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th{text-align:left;color:var(--muted);font-weight:400;padding:4px 8px;border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border)22;vertical-align:middle}
+tr:hover td{background:#1e1e2a}
+.num{text-align:right;color:var(--accent)}
+.path{color:var(--text);font-size:.78rem;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.intent{color:var(--muted);font-size:.78rem;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{height:10px;background:var(--accent);border-radius:3px;opacity:.7;min-width:2px}
+.generated{color:var(--muted);font-size:.72rem;margin-top:32px}
+</style>
+</head>
+<body>
+<h1>⚡ chthonic-archive — Corpus Report</h1>
+<p class="sub">manifest/corpus.sqlite · generated ${new Date().toISOString().slice(0, 16).replace("T", " ")}</p>
+
+<div class="stats">
+  <div class="stat"><div class="val">${summary.sessions}</div><div class="lbl">sessions</div></div>
+  <div class="stat"><div class="val">${summary.messages.toLocaleString()}</div><div class="lbl">messages</div></div>
+  <div class="stat"><div class="val">${summary.toolCalls.toLocaleString()}</div><div class="lbl">tool calls</div></div>
+  <div class="stat"><div class="val">${summary.fileEdits.toLocaleString()}</div><div class="lbl">file edits</div></div>
+  <div class="stat"><div class="val">${summary.termCmds.toLocaleString()}</div><div class="lbl">terminal cmds</div></div>
+  <div class="stat"><div class="val">${summary.commits.toLocaleString()}</div><div class="lbl">commit refs</div></div>
+</div>
+
+<h2>Sessions</h2>
+<table>
+<thead><tr><th>ID</th><th>Start</th><th>Turns</th><th>Edits</th><th>Cmds</th><th>Commits</th><th>Intent</th></tr></thead>
+<tbody>${sessRows}</tbody>
+</table>
+
+<h2>Hot Files (top 25 by edit count)</h2>
+<table>
+<thead><tr><th>File</th><th style="width:50%">Activity</th><th>Edits</th><th>Sessions</th></tr></thead>
+<tbody>${fileRows}</tbody>
+</table>
+
+<h2>Tool Frequency (top 20)</h2>
+<table>
+<thead><tr><th>Tool</th><th style="width:50%">Calls</th><th>Count</th><th>Success%</th></tr></thead>
+<tbody>${toolRows}</tbody>
+</table>
+
+<p class="generated">bun run scripts/session-query.ts --report-html · corpus v3 · 18722fea</p>
+</body>
+</html>`;
+
+  await Bun.write(outPath, html);
+  console.log(`✓ Report written: ${outPath}`);
+  console.log(`  ${sessions.length} sessions · ${hotFiles.length} hot files · ${toolFreq.length} tools`);
+
 } else if (flag("--sessions")) {
   console.log("\n📋 ALL SESSIONS\n");
   const rows = db.prepare(`
@@ -270,6 +406,7 @@ session-query — query manifest/corpus.sqlite
   --code-langs            language distribution of code blocks
   --sessions              list all sessions
   --session <id>          detailed view of one session (partial id ok)
+  --report-html           generate manifest/corpus-report.html (self-contained, no deps)
   --sql "..."             raw SQL query against corpus.sqlite
 
 Tables: sessions, session_restarts, file_edits, terminal_cmds,

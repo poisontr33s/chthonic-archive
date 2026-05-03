@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Corpus Report — chthonic-archive</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{--bg:#0e0e12;--panel:#16161e;--border:#2a2a3a;--text:#d4d4f0;--muted:#666;--accent:#9d7cd8;--green:#73daca;--red:#f7768e;--yellow:#e0af68}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 "Cascadia Code","JetBrains Mono",monospace;padding:24px}
+h1{font-size:1.2rem;color:var(--accent);margin-bottom:4px}
+.sub{color:var(--muted);font-size:.8rem;margin-bottom:24px}
+h2{font-size:.9rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:12px 20px;min-width:100px}
+.stat .val{font-size:1.5rem;color:var(--green);font-weight:700}
+.stat .lbl{font-size:.75rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th{text-align:left;color:var(--muted);font-weight:400;padding:4px 8px;border-bottom:1px solid var(--border)}
+td{padding:5px 8px;border-bottom:1px solid var(--border)22;vertical-align:middle}
+tr:hover td{background:#1e1e2a}
+.num{text-align:right;color:var(--accent)}
+.path{color:var(--text);font-size:.78rem;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.intent{color:var(--muted);font-size:.78rem;max-width:380px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar{height:10px;background:var(--accent);border-radius:3px;opacity:.7;min-width:2px}
+.generated{color:var(--muted);font-size:.72rem;margin-top:32px}
+</style>
+</head>
+<body>
+<h1>⚡ chthonic-archive — Corpus Report</h1>
+<p class="sub">manifest/corpus.sqlite · generated 2026-05-03 03:59</p>
+
+<div class="stats">
+  <div class="stat"><div class="val">13</div><div class="lbl">sessions</div></div>
+  <div class="stat"><div class="val">14 277</div><div class="lbl">messages</div></div>
+  <div class="stat"><div class="val">12 149</div><div class="lbl">tool calls</div></div>
+  <div class="stat"><div class="val">1 372</div><div class="lbl">file edits</div></div>
+  <div class="stat"><div class="val">4 063</div><div class="lbl">terminal cmds</div></div>
+  <div class="stat"><div class="val">457</div><div class="lbl">commit refs</div></div>
+</div>
+
+<h2>Sessions</h2>
+<table>
+<thead><tr><th>ID</th><th>Start</th><th>Turns</th><th>Edits</th><th>Cmds</th><th>Commits</th><th>Intent</th></tr></thead>
+<tbody>
+    <tr>
+      <td title="2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8">2b2dfd13</td>
+      <td>2026-05-01 02:18</td>
+      <td>3196</td>
+      <td class="num">276</td>
+      <td class="num">1494</td>
+      <td class="num">159</td>
+      <td class="intent">* I added: ruby-4.0.3 ehere I accidentally just did uv r ruby pin list or was it uv r pin </td>
+    </tr>
+    <tr>
+      <td title="1996a5d8-1d7e-4334-83d7-d11efba77cbc">1996a5d8</td>
+      <td>2026-04-30 00:32</td>
+      <td>370</td>
+      <td class="num">52</td>
+      <td class="num">92</td>
+      <td class="num">16</td>
+      <td class="intent">* ***Claudine***, *sugarplummy*. * *Would you be as kind as to diagnose and find out to ha</td>
+    </tr>
+    <tr>
+      <td title="7592984a-a7f4-486a-9199-0d112ec1bfc4">7592984a</td>
+      <td>2026-04-28 03:46</td>
+      <td>176</td>
+      <td class="num">34</td>
+      <td class="num">44</td>
+      <td class="num">4</td>
+      <td class="intent">The git repository would be -- https://github.com/poisontr33s/psychonoir-kontrapunkt-large</td>
+    </tr>
+    <tr>
+      <td title="8148fe61-004d-42ac-9088-528edae4e92b">8148fe61</td>
+      <td>2026-04-27 23:17</td>
+      <td>0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="intent"></td>
+    </tr>
+    <tr>
+      <td title="898c7571-8c50-4e43-b6ef-a124473bb012">898c7571</td>
+      <td>2026-04-22 17:25</td>
+      <td>3598</td>
+      <td class="num">405</td>
+      <td class="num">1176</td>
+      <td class="num">134</td>
+      <td class="intent">[XP] Lv.6 Master [██████░░░░] 438 XP (+52 -> Lv.7) [T] [E] [P] [D] [G] PS C:\Users\eldno\c</td>
+    </tr>
+    <tr>
+      <td title="aa4fe4b5-5b21-4e03-96db-0abcda07f1c1">aa4fe4b5</td>
+      <td>2026-04-22 16:29</td>
+      <td>208</td>
+      <td class="num">17</td>
+      <td class="num">51</td>
+      <td class="num">8</td>
+      <td class="intent">Can you also add rv for broken uv upgrade I managed to mess up. ^^ For more information, t</td>
+    </tr>
+    <tr>
+      <td title="7961b8ed-3cd1-4253-b067-8f742e045f3f">7961b8ed</td>
+      <td>2026-04-20 18:42</td>
+      <td>55</td>
+      <td class="num">2</td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+      <td class="intent">* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women</td>
+    </tr>
+    <tr>
+      <td title="79682e02-d0ce-4b47-b9ce-9de191f62f77">79682e02</td>
+      <td>2026-04-15 11:44</td>
+      <td>4629</td>
+      <td class="num">543</td>
+      <td class="num">1151</td>
+      <td class="num">127</td>
+      <td class="intent">* **->**: * [Let us look at the current changes and some manualized iterations to improve]</td>
+    </tr>
+    <tr>
+      <td title="cdaeb5b1-4c3a-437f-a7e1-49ad848308f8">cdaeb5b1</td>
+      <td>2026-04-15 10:59</td>
+      <td>83</td>
+      <td class="num">6</td>
+      <td class="num">16</td>
+      <td class="num">2</td>
+      <td class="intent">* **Great**, *I need the* `Triumvirate`. -- * **Orackla Nocticula:** What the hell is up w</td>
+    </tr>
+    <tr>
+      <td title="c6250cb5-8251-4198-bf6d-6c311bbcf016">c6250cb5</td>
+      <td>2026-04-15 10:57</td>
+      <td>2</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="num">0</td>
+      <td class="intent"></td>
+    </tr>
+    <tr>
+      <td title="85ece81f-59d6-440f-8121-83f35563473d">85ece81f</td>
+      <td>2026-04-15 10:23</td>
+      <td>64</td>
+      <td class="num">12</td>
+      <td class="num">11</td>
+      <td class="num">0</td>
+      <td class="intent">* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruf</td>
+    </tr>
+    <tr>
+      <td title="30ac60fa-c5f9-4a3f-bdbd-8b17689ae312">30ac60fa</td>
+      <td>2026-04-15 09:09</td>
+      <td>135</td>
+      <td class="num">22</td>
+      <td class="num">18</td>
+      <td class="num">2</td>
+      <td class="intent">All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Fi</td>
+    </tr>
+    <tr>
+      <td title="54cd9cad-bbd1-4759-9e5a-4e1e03dbc722">54cd9cad</td>
+      <td>2026-02-10 16:14</td>
+      <td>1761</td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="num">4</td>
+      <td class="intent">#asc-injector</td>
+    </tr></tbody>
+</table>
+
+<h2>Hot Files (top 25 by edit count)</h2>
+<table>
+<thead><tr><th>File</th><th style="width:50%">Activity</th><th>Edits</th><th>Sessions</th></tr></thead>
+<tbody>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md">.github/copilot-instructions.archive.md</td>
+      <td><div class="bar" style="width:100%"></div></td>
+      <td class="num">80</td>
+      <td class="num">4</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\claude\mailbox\SCRIPTS_ROULETTE.md">mailbox/SCRIPTS_ROULETTE.md</td>
+      <td><div class="bar" style="width:70%"></div></td>
+      <td class="num">56</td>
+      <td class="num">4</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\nvidia_drs_tool.ps1">scripts/nvidia_drs_tool.ps1</td>
+      <td><div class="bar" style="width:65%"></div></td>
+      <td class="num">52</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\docs\reference\FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md">reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md</td>
+      <td><div class="bar" style="width:39%"></div></td>
+      <td class="num">31</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\vulkan-lab\cli-renderer\src\main.rs">src/main.rs</td>
+      <td><div class="bar" style="width:35%"></div></td>
+      <td class="num">28</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\.github\agents\tessara.agent.md">agents/tessara.agent.md</td>
+      <td><div class="bar" style="width:34%"></div></td>
+      <td class="num">27</td>
+      <td class="num">3</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\.github\instructions\pattern-nursery.instructions.md">instructions/pattern-nursery.instructions.md</td>
+      <td><div class="bar" style="width:29%"></div></td>
+      <td class="num">23</td>
+      <td class="num">4</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\chthonic.ps1">scripts/chthonic.ps1</td>
+      <td><div class="bar" style="width:28%"></div></td>
+      <td class="num">22</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\build\tabby-modern-gpu\Containerfile">tabby-modern-gpu/Containerfile</td>
+      <td><div class="bar" style="width:21%"></div></td>
+      <td class="num">17</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\teleport.ts">scripts/teleport.ts</td>
+      <td><div class="bar" style="width:21%"></div></td>
+      <td class="num">17</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\claude\mailbox\PENTEA_ROULETTE_STEWARDESS.md">mailbox/PENTEA_ROULETTE_STEWARDESS.md</td>
+      <td><div class="bar" style="width:20%"></div></td>
+      <td class="num">16</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\package.json">chthonic-archive/package.json</td>
+      <td><div class="bar" style="width:19%"></div></td>
+      <td class="num">15</td>
+      <td class="num">4</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\session-watcher.ts">scripts/session-watcher.ts</td>
+      <td><div class="bar" style="width:19%"></div></td>
+      <td class="num">15</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\todo_roulette.ts">scripts/todo_roulette.ts</td>
+      <td><div class="bar" style="width:19%"></div></td>
+      <td class="num">15</td>
+      <td class="num">3</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\dev\tabbyAPI\pyproject.toml">tabbyAPI/pyproject.toml</td>
+      <td><div class="bar" style="width:18%"></div></td>
+      <td class="num">14</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\manifest\todo_roulette.json">manifest/todo_roulette.json</td>
+      <td><div class="bar" style="width:18%"></div></td>
+      <td class="num">14</td>
+      <td class="num">3</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\ruby-zjit\scripts\test_win32.ps1">scripts/test_win32.ps1</td>
+      <td><div class="bar" style="width:18%"></div></td>
+      <td class="num">14</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="C:\Users\eldno\chthonic-archive\scripts\polyrepo-runner.ps1">scripts/polyrepo-runner.ps1</td>
+      <td><div class="bar" style="width:16%"></div></td>
+      <td class="num">13</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\AGENT_COMMON.md">chthonic-archive/AGENT_COMMON.md</td>
+      <td><div class="bar" style="width:16%"></div></td>
+      <td class="num">13</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\chthonic-xp.ps1">scripts/chthonic-xp.ps1</td>
+      <td><div class="bar" style="width:16%"></div></td>
+      <td class="num">13</td>
+      <td class="num">2</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\build\ruby-zjit\build.sh">ruby-zjit/build.sh</td>
+      <td><div class="bar" style="width:15%"></div></td>
+      <td class="num">12</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\.github\instructions\technical-directives.instructions.md">instructions/technical-directives.instructions.md</td>
+      <td><div class="bar" style="width:14%"></div></td>
+      <td class="num">11</td>
+      <td class="num">3</td>
+    </tr>
+    <tr>
+      <td class="path" title="C:\Users\eldno\psychonoir-kontrapunkt-large-file-holder\scripts\archaeology_mcp.py">scripts/archaeology_mcp.py</td>
+      <td><div class="bar" style="width:13%"></div></td>
+      <td class="num">10</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\scripts\polyrepo-runner.ps1">scripts/polyrepo-runner.ps1</td>
+      <td><div class="bar" style="width:13%"></div></td>
+      <td class="num">10</td>
+      <td class="num">1</td>
+    </tr>
+    <tr>
+      <td class="path" title="c:\Users\eldno\chthonic-archive\.gitignore">chthonic-archive/.gitignore</td>
+      <td><div class="bar" style="width:11%"></div></td>
+      <td class="num">9</td>
+      <td class="num">4</td>
+    </tr></tbody>
+</table>
+
+<h2>Tool Frequency (top 20)</h2>
+<table>
+<thead><tr><th>Tool</th><th style="width:50%">Calls</th><th>Count</th><th>Success%</th></tr></thead>
+<tbody>
+    <tr>
+      <td class="path">run_in_terminal</td>
+      <td><div class="bar" style="width:100%"></div></td>
+      <td class="num">4063</td>
+      <td class="num">99.9%</td>
+    </tr>
+    <tr>
+      <td class="path">read_file</td>
+      <td><div class="bar" style="width:79%"></div></td>
+      <td class="num">3209</td>
+      <td class="num">99.2%</td>
+    </tr>
+    <tr>
+      <td class="path">grep_search</td>
+      <td><div class="bar" style="width:25%"></div></td>
+      <td class="num">1014</td>
+      <td class="num">99.3%</td>
+    </tr>
+    <tr>
+      <td class="path">manage_todo_list</td>
+      <td><div class="bar" style="width:21%"></div></td>
+      <td class="num">868</td>
+      <td class="num">99.9%</td>
+    </tr>
+    <tr>
+      <td class="path">replace_string_in_file</td>
+      <td><div class="bar" style="width:17%"></div></td>
+      <td class="num">686</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">get_terminal_output</td>
+      <td><div class="bar" style="width:8%"></div></td>
+      <td class="num">345</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">multi_replace_string_in_file</td>
+      <td><div class="bar" style="width:8%"></div></td>
+      <td class="num">334</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">execution_subagent</td>
+      <td><div class="bar" style="width:7%"></div></td>
+      <td class="num">292</td>
+      <td class="num">99%</td>
+    </tr>
+    <tr>
+      <td class="path">list_dir</td>
+      <td><div class="bar" style="width:7%"></div></td>
+      <td class="num">272</td>
+      <td class="num">99.3%</td>
+    </tr>
+    <tr>
+      <td class="path">create_file</td>
+      <td><div class="bar" style="width:6%"></div></td>
+      <td class="num">227</td>
+      <td class="num">96%</td>
+    </tr>
+    <tr>
+      <td class="path">file_search</td>
+      <td><div class="bar" style="width:4%"></div></td>
+      <td class="num">170</td>
+      <td class="num">99.4%</td>
+    </tr>
+    <tr>
+      <td class="path">memory</td>
+      <td><div class="bar" style="width:3%"></div></td>
+      <td class="num">136</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">fetch_webpage</td>
+      <td><div class="bar" style="width:3%"></div></td>
+      <td class="num">102</td>
+      <td class="num">92.2%</td>
+    </tr>
+    <tr>
+      <td class="path">send_to_terminal</td>
+      <td><div class="bar" style="width:2%"></div></td>
+      <td class="num">94</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">task_complete</td>
+      <td><div class="bar" style="width:2%"></div></td>
+      <td class="num">90</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">tool_search</td>
+      <td><div class="bar" style="width:1%"></div></td>
+      <td class="num">53</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">mcp_chthonic-v3_brush</td>
+      <td><div class="bar" style="width:1%"></div></td>
+      <td class="num">30</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">kill_terminal</td>
+      <td><div class="bar" style="width:1%"></div></td>
+      <td class="num">23</td>
+      <td class="num">100%</td>
+    </tr>
+    <tr>
+      <td class="path">runSubagent</td>
+      <td><div class="bar" style="width:0%"></div></td>
+      <td class="num">13</td>
+      <td class="num">92.3%</td>
+    </tr>
+    <tr>
+      <td class="path">mcp_bun-docs_query_docs_filesystem_bun</td>
+      <td><div class="bar" style="width:0%"></div></td>
+      <td class="num">12</td>
+      <td class="num">100%</td>
+    </tr></tbody>
+</table>
+
+<p class="generated">bun run scripts/session-query.ts --report-html · corpus v3 · 18722fea</p>
+</body>
+</html>
