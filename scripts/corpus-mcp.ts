@@ -56,10 +56,104 @@ function toolTimeline(limit: number): unknown[] {
     return db.prepare(`
       SELECT sessionId, startTime, turns, copilotVersion,
              editCount, cmdCount, commitCount, userTurns, assistantTurns,
+             topic, tags,
              SUBSTR(intent, 1, 150) AS intent
       FROM session_timeline
       LIMIT ?
     `).all(limit);
+  } finally { db.close(); }
+}
+
+function toolClassify(): unknown[] {
+  const db = openDB();
+  try {
+    // Group sessions by topic, include per-group session list
+    const rows = db.prepare(`
+      SELECT topic, tags, sessionId, startTime, turns,
+             SUBSTR(intent, 1, 120) AS intent
+      FROM session_timeline
+      ORDER BY COALESCE(topic,'zzz'), startTime DESC
+    `).all() as Array<{ topic: string | null; tags: string | null; sessionId: string; startTime: string; turns: number; intent: string }>;
+
+    // Group by topic
+    const groups: Record<string, { topic: string; sessions: unknown[] }> = {};
+    for (const r of rows) {
+      const key = r.topic ?? "(unclassified)";
+      if (!groups[key]) groups[key] = { topic: key, sessions: [] };
+      groups[key].sessions.push({
+        sessionId: r.sessionId,
+        startTime: r.startTime,
+        turns:     r.turns,
+        tags:      r.tags ? JSON.parse(r.tags) : [],
+        intent:    r.intent,
+      });
+    }
+    return Object.values(groups).map(g => ({
+      topic:    g.topic,
+      count:    g.sessions.length,
+      sessions: g.sessions,
+    }));
+  } finally { db.close(); }
+}
+
+function toolSessionContext(sessionId: string): unknown {
+  const db = openDB();
+  try {
+    // Resolve prefix
+    let sid = sessionId;
+    if (sid.length < 36) {
+      const row = db.prepare(
+        "SELECT sessionId FROM sessions WHERE sessionId LIKE ? LIMIT 1"
+      ).get(sid + "%") as { sessionId: string } | undefined;
+      if (!row) throw new Error(`No session matching prefix: ${sid}`);
+      sid = row.sessionId;
+    }
+
+    const meta = db.prepare(
+      "SELECT sessionId, startTime, turns, copilotVersion, workspaceHash, topic, tags, intent FROM sessions WHERE sessionId = ?"
+    ).get(sid) as Record<string, unknown> | undefined;
+    if (!meta) throw new Error(`Session not found: ${sid}`);
+
+    const topFiles = db.prepare(
+      "SELECT filePath, COUNT(*) AS edits FROM file_edits WHERE sessionId = ? GROUP BY filePath ORDER BY edits DESC LIMIT 15"
+    ).all(sid) as Array<{ filePath: string; edits: number }>;
+
+    const recentCmds = db.prepare(
+      "SELECT command, goal, turn FROM terminal_cmds WHERE sessionId = ? ORDER BY turn DESC LIMIT 10"
+    ).all(sid);
+
+    const commits = db.prepare(
+      "SELECT sha, turn FROM commit_refs WHERE sessionId = ? ORDER BY turn DESC LIMIT 10"
+    ).all(sid) as Array<{ sha: string; turn: number }>;
+
+    const recentMsgs = db.prepare(`
+      SELECT role, turn, SUBSTR(content, 1, 400) AS preview
+      FROM messages WHERE sessionId = ?
+      ORDER BY turn DESC LIMIT 8
+    `).all(sid) as Array<{ role: string; turn: number; preview: string }>;
+    recentMsgs.reverse();
+
+    const toolStats = db.prepare(`
+      SELECT toolName, COUNT(*) AS calls,
+             SUM(CASE WHEN success=1 THEN 1 ELSE 0 END) AS ok
+      FROM tool_calls WHERE sessionId = ?
+      GROUP BY toolName ORDER BY calls DESC LIMIT 12
+    `).all(sid);
+
+    return {
+      sessionId:    meta.sessionId,
+      startTime:    meta.startTime,
+      turns:        meta.turns,
+      topic:        meta.topic,
+      tags:         meta.tags ? JSON.parse(String(meta.tags)) : [],
+      intent:       meta.intent,
+      copilotVersion: meta.copilotVersion,
+      topFiles,
+      recentCmds,
+      commits,
+      recentMessages: recentMsgs,
+      toolStats,
+    };
   } finally { db.close(); }
 }
 
@@ -237,6 +331,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         },
         required: ["sql"]
       }
+    },
+    {
+      name: "corpus_classify",
+      description: "Return all sessions grouped by topic (vulkan, tabby-inference, corpus-builder, mas-mcp, extension, theme-system, ssot-governance, ruby-zjit, game, ci-gates, or unclassified). Each group includes session IDs, turn counts, tags, and intent summaries. Run session:corpus --classify to refresh classifications.",
+      inputSchema: { type: "object" as const, properties: {} }
+    },
+    {
+      name: "corpus_session_context",
+      description: "Return full resume-packet context for a single session: metadata (topic/tags/intent), top edited files, recent terminal commands, commit refs, most recent messages, and tool usage stats. Use this when an agent needs to pick up where a previous session left off.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          sessionId: { type: "string", description: "Session UUID or 8+ char prefix" }
+        },
+        required: ["sessionId"]
+      }
     }
   ]
 }));
@@ -276,6 +386,11 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     } else if (name === "corpus_sql") {
       if (!a.sql) throw new Error("sql is required");
       result = toolSQL(String(a.sql));
+    } else if (name === "corpus_classify") {
+      result = toolClassify();
+    } else if (name === "corpus_session_context") {
+      if (!a.sessionId) throw new Error("sessionId is required");
+      result = toolSessionContext(String(a.sessionId));
     } else {
       throw new Error(`Unknown tool: ${name}`);
     }

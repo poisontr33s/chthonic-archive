@@ -97,6 +97,7 @@
     "session:vampire:commands": "bun run scripts/session-vampire.ts --extract commands",
     "session:corpus": "bun run scripts/session-corpus.ts",
     "session:corpus:rebuild": "bun run scripts/session-corpus.ts --rebuild",
+    "session:corpus:classify": "bun run scripts/session-corpus.ts --classify",
     "session:corpus:stats": "bun run scripts/session-corpus.ts --stats",
     "session:corpus:watch": "bun run scripts/session-corpus.ts --watch",
     "session:corpus:mcp": "bun run scripts/corpus-mcp.ts",

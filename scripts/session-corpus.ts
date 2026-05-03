@@ -24,6 +24,7 @@ const args = process.argv.slice(2);
 const rebuildMode   = args.includes("--rebuild");
 const statsMode     = args.includes("--stats");
 const watchMode     = args.includes("--watch");
+const classifyMode  = args.includes("--classify");
 const sessionArgIdx = args.indexOf("--session");
 const targetSession = sessionArgIdx >= 0 ? args[sessionArgIdx + 1] : null;
 
@@ -44,6 +45,8 @@ CREATE TABLE IF NOT EXISTS sessions (
   vscodeVersion  TEXT,
   turns          INTEGER DEFAULT 0,
   intent         TEXT    DEFAULT '',
+  topic          TEXT    DEFAULT NULL,
+  tags           TEXT    DEFAULT NULL,
   ingestedAt     TEXT    NOT NULL
 );
 
@@ -155,6 +158,7 @@ CREATE VIEW IF NOT EXISTS session_timeline AS
   SELECT
     s.sessionId, s.startTime, s.intent, s.turns,
     s.copilotVersion, s.workspaceHash,
+    s.topic, s.tags,
     (SELECT COUNT(*) FROM file_edits       WHERE sessionId = s.sessionId) AS editCount,
     (SELECT COUNT(*) FROM terminal_cmds    WHERE sessionId = s.sessionId) AS cmdCount,
     (SELECT COUNT(*) FROM code_blocks      WHERE sessionId = s.sessionId) AS codeBlockCount,
@@ -445,6 +449,116 @@ function ingestSession(db: Database, sessionId: string): boolean {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Session classification
+// ─────────────────────────────────────────────────────────────
+
+interface TopicSignature {
+  topic: string;
+  fileRe:   RegExp[];
+  cmdRe:    RegExp[];
+  intentRe: RegExp[];
+}
+
+const TOPIC_SIGS: TopicSignature[] = [
+  {
+    topic:    "vulkan",
+    fileRe:   [/vulkan-lab/i, /\.comp\.glsl$/i, /\.spv$/i, /vulkan/i],
+    cmdRe:    [/glslc/i, /\bash\b/i, /vulkan/i],
+    intentRe: [/vulkan/i, /shader/i, /compute.*pipeline/i, /framebuffer/i],
+  },
+  {
+    topic:    "tabby-inference",
+    fileRe:   [/tabby/i, /probes[\\/]python/i, /flash.attn/i, /exllama/i, /tabby.modern/i],
+    cmdRe:    [/tabby/i, /flash.attn/i, /exllama/i, /probes/i, /uv run probes/i],
+    intentRe: [/tabby/i, /gpu inference/i, /flash.attn/i, /exllama/i, /inference/i],
+  },
+  {
+    topic:    "corpus-builder",
+    fileRe:   [/session-corpus/i, /corpus-mcp/i, /session-query/i, /session-watcher/i],
+    cmdRe:    [/session.corpus/i, /corpus/i, /session.query/i],
+    intentRe: [/corpus/i, /sqlite/i, /session.*mirror/i, /mcp.*server/i],
+  },
+  {
+    topic:    "mas-mcp",
+    fileRe:   [/mas_mcp[\\/]/i, /mas.mcp/i],
+    cmdRe:    [/mas.mcp/i, /mas_mcp/i, /fastmcp/i],
+    intentRe: [/mas.mcp/i, /mas_mcp/i, /mas pulse/i],
+  },
+  {
+    topic:    "extension",
+    fileRe:   [/chthonic.vscode.extension[\\/]/i, /extensions[\\/]chthonic/i, /activateCockpit/i],
+    cmdRe:    [/vsce/i, /extension.*build/i],
+    intentRe: [/vscode.*extension/i, /extension.*cockpit/i, /webview/i],
+  },
+  {
+    topic:    "theme-system",
+    fileRe:   [/chthonic.golden[\\/]/i, /theme_contrast/i, /icon_scaffold/i, /SFS_SLABSTONE/i, /\.tmTheme/i],
+    cmdRe:    [/theme.*contrast/i, /icon.*scaffold/i, /sfs.*slabstone/i],
+    intentRe: [/theme/i, /icon.*font/i, /color.*palette/i, /contrast.*ratio/i],
+  },
+  {
+    topic:    "ssot-governance",
+    fileRe:   [/copilot-instructions\.archive/i, /\.github[\\/]instructions/i, /SSOT/i],
+    cmdRe:    [/ssot/i, /copilot.instructions/i],
+    intentRe: [/ssot/i, /§\d+/i, /entity.*profile/i, /governance/i, /triumvirate/i],
+  },
+  {
+    topic:    "ruby-zjit",
+    fileRe:   [/ruby.zjit/i, /patch-jit/i, /ruby[\\/]build/i],
+    cmdRe:    [/\brv\b/i, /zjit/i, /yjit/i, /ruby.*build/i, /ridk/i],
+    intentRe: [/zjit/i, /yjit/i, /ruby.*port/i, /ruby.*build/i],
+  },
+  {
+    topic:    "game",
+    fileRe:   [/[\\/]game[\\/]/i, /dungeon/i, /crpg/i, /iron.maiden/i],
+    cmdRe:    [/game/i],
+    intentRe: [/dungeon/i, /crpg/i, /game.*world/i, /iron.*maiden/i],
+  },
+  {
+    topic:    "ci-gates",
+    fileRe:   [/ci[\\/]checks/i, /probes[\\/]/i, /gate.smoke/i],
+    cmdRe:    [/ci[\\/]checks/i, /gate.smoke/i, /probe/i],
+    intentRe: [/gate/i, /ci.*check/i, /probe/i, /inference.*gate/i],
+  },
+];
+
+function classifySession(
+  files: string[],
+  cmds:  string[],
+  intent: string,
+): { topic: string | null; tags: string } {
+  const scores: Record<string, number> = {};
+  for (const sig of TOPIC_SIGS) {
+    let score = 0;
+    for (const re of sig.fileRe)   if (files.some(f => re.test(f)))  score += 2;
+    for (const re of sig.cmdRe)    if (cmds.some(c => re.test(c)))   score += 1;
+    for (const re of sig.intentRe) if (re.test(intent))              score += 1;
+    if (score > 0) scores[sig.topic] = score;
+  }
+  const entries = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const topic   = entries[0]?.[0] ?? null;
+  const tags    = JSON.stringify(entries.map(e => e[0]));
+  return { topic, tags };
+}
+
+function classifyAll(db: Database): void {
+  const sessions = db.prepare("SELECT sessionId, intent FROM sessions").all() as Array<{ sessionId: string; intent: string }>;
+  const updSession = db.prepare("UPDATE sessions SET topic = ?, tags = ? WHERE sessionId = ?");
+  let classified = 0;
+  db.transaction(() => {
+    for (const s of sessions) {
+      const files = (db.prepare("SELECT DISTINCT filePath FROM file_edits WHERE sessionId = ?").all(s.sessionId) as Array<{ filePath: string }>).map(r => r.filePath);
+      const cmds  = (db.prepare("SELECT command FROM terminal_cmds WHERE sessionId = ?").all(s.sessionId) as Array<{ command: string }>).map(r => r.command);
+      const { topic, tags } = classifySession(files, cmds, s.intent ?? "");
+      updSession.run(topic, tags, s.sessionId);
+      classified++;
+      process.stdout.write(`  🏷  ${s.sessionId.slice(0, 8)}  topic=${topic ?? "—"}  tags=${tags}\n`);
+    }
+  })();
+  console.log(`\n✅ Classified ${classified} session(s)`);
+}
+
+// ─────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────
 
@@ -472,6 +586,8 @@ if (!rebuildMode) {
   tryAlter(db, "ALTER TABLE file_edits    ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE terminal_cmds ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE code_blocks   ADD COLUMN ts          INTEGER");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN topic       TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN tags        TEXT");
 }
 
 db.exec(DDL_TABLES);
@@ -482,6 +598,14 @@ for (const v of ["session_timeline", "memory_chain", "hot_files"])
 db.exec(DDL_VIEWS);
 // FTS5 (graceful — created once, only dropped on --rebuild)
 try { db.exec(DDL_FTS5); } catch (e) { console.warn("⚠️  FTS5 not available:", e); }
+
+// Standalone classify mode (no ingest, just re-score existing sessions)
+if (classifyMode && !rebuildMode && !statsMode) {
+  console.log("🏷  Classifying sessions...\n");
+  classifyAll(db);
+  db.close();
+  process.exit(0);
+}
 
 if (statsMode) {
   console.log("\n📊 CORPUS STATS\n");
@@ -530,6 +654,11 @@ for (const id of ids) {
 }
 
 if (!watchMode) {
+  // Auto-classify after any ingest pass (or when explicitly requested with --classify)
+  if (ingested > 0 || rebuildMode || classifyMode) {
+    console.log("\n🏷  Classifying sessions...\n");
+    classifyAll(db);
+  }
   db.close();
   console.log(`\nDone: ${ingested} ingested, ${skipped} up-to-date  →  ${corpusPath}`);
   process.exit(0);
