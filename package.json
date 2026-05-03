@@ -98,6 +98,7 @@
     "session:corpus": "bun run scripts/session-corpus.ts",
     "session:corpus:rebuild": "bun run scripts/session-corpus.ts --rebuild",
     "session:corpus:stats": "bun run scripts/session-corpus.ts --stats",
+    "session:corpus:watch": "bun run scripts/session-corpus.ts --watch",
     "session:query": "bun run scripts/session-query.ts",
     "session:query:timeline": "bun run scripts/session-query.ts --timeline",
     "session:query:hot": "bun run scripts/session-query.ts --hot-files",

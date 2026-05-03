@@ -14,14 +14,16 @@
 //   bun run scripts/session-corpus.ts --rebuild          # drop all tables + full rebuild
 //   bun run scripts/session-corpus.ts --session <id>     # re-ingest one session
 //   bun run scripts/session-corpus.ts --stats            # row counts per table
+//   bun run scripts/session-corpus.ts --watch            # hot-reload: re-ingest on transcript change
 
 import { Database } from "bun:sqlite";
-import { existsSync, readdirSync, readFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync, statSync, watch } from "fs";
 import { join } from "path";
 
 const args = process.argv.slice(2);
 const rebuildMode   = args.includes("--rebuild");
 const statsMode     = args.includes("--stats");
+const watchMode     = args.includes("--watch");
 const sessionArgIdx = args.indexOf("--session");
 const targetSession = sessionArgIdx >= 0 ? args[sessionArgIdx + 1] : null;
 
@@ -513,15 +515,13 @@ let ingested = 0;
 let skipped  = 0;
 
 for (const id of ids) {
-  // Incremental: skip if already ingested and meta hasn't changed
+  // Incremental: skip if already ingested and transcript hasn't grown since
   if (!targetSession && !rebuildMode) {
     const row = db.prepare("SELECT ingestedAt FROM sessions WHERE sessionId = ?").get(id) as { ingestedAt: string } | undefined;
     if (row) {
-      let metaLastSync = "";
-      try {
-        metaLastSync = (JSON.parse(readFileSync(join(sessionsDir, id, "meta.json"), "utf8")) as { lastSyncedAt?: string }).lastSyncedAt ?? "";
-      } catch { /* ok */ }
-      if (row.ingestedAt >= metaLastSync) { skipped++; continue; }
+      const tPath = join(sessionsDir, id, "transcript.jsonl");
+      const mtime = existsSync(tPath) ? statSync(tPath).mtime : new Date(0);
+      if (new Date(row.ingestedAt) >= mtime) { skipped++; continue; }
     }
   }
 
@@ -529,5 +529,38 @@ for (const id of ids) {
   else { process.stdout.write(`  ⚠️  ${id.slice(0, 8)} — skipped (no transcript)\n`); }
 }
 
-db.close();
-console.log(`\nDone: ${ingested} ingested, ${skipped} up-to-date  →  ${corpusPath}`);
+if (!watchMode) {
+  db.close();
+  console.log(`\nDone: ${ingested} ingested, ${skipped} up-to-date  →  ${corpusPath}`);
+  process.exit(0);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Watch mode — re-ingest sessions as transcript.jsonl grows
+// ─────────────────────────────────────────────────────────────
+console.log(`\n👁  Watching ${sessionsDir} for changes (Ctrl+C to stop)...`);
+
+const debounceTimers = new Map<string, ReturnType<typeof setTimeout>>();
+
+watch(sessionsDir, { recursive: true }, (event, filename) => {
+  if (!filename) return;
+  const norm = filename.replace(/\\/g, "/");
+  if (!norm.endsWith("transcript.jsonl")) return;
+  const sessionId = norm.split("/")[0];
+  if (!sessionId) return;
+
+  // Debounce per session — wait 1.5s of quiet before re-ingesting
+  const existing = debounceTimers.get(sessionId);
+  if (existing) clearTimeout(existing);
+  debounceTimers.set(sessionId, setTimeout(() => {
+    debounceTimers.delete(sessionId);
+    const before = db.prepare("SELECT COUNT(*) AS n FROM messages WHERE sessionId = ?").get(sessionId) as { n: number } | undefined;
+    const ok = ingestSession(db, sessionId);
+    if (ok) {
+      const after = db.prepare("SELECT COUNT(*) AS n FROM messages WHERE sessionId = ?").get(sessionId) as { n: number };
+      const delta = after.n - (before?.n ?? 0);
+      const sign  = delta > 0 ? `+${delta}` : String(delta);
+      console.log(`  ↻ [${sessionId.slice(0, 8)}] re-ingested  ${after.n} messages (${sign} new)  ${new Date().toISOString().slice(11, 19)}`);
+    }
+  }, 1500));
+});
