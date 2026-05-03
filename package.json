@@ -79,7 +79,10 @@
     "cocos:info": "bun run scripts/cocos_probe.ts info",
     "cocos:build": "bun run scripts/cocos_probe.ts build",
     "cocos:dashboard": "bun run scripts/cocos_probe.ts dashboard",
-    "test": "bun test scripts/gemini-model-router.test.ts"
+    "test": "bun test scripts/gemini-model-router.test.ts",
+    "session:view": "bun run scripts/session-viewer.ts",
+    "session:view:tail": "bun run scripts/session-viewer.ts --tail 40",
+    "session:view:full": "bun run scripts/session-viewer.ts --tail 9999"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
