@@ -130,6 +130,22 @@
         "detail": "Renders FULL latest Copilot Chat JSONL transcript to manifest/session_view.md and opens it in VS Code."
       },
       {
+        "label": "�️ Session: Watch (auto-mirror transcripts)",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-watcher.ts"
+        ],
+        "group": "test",
+        "isBackground": true,
+        "runOptions": {
+          "runOn": "folderOpen"
+        },
+        "detail": "Real-time mirror: watches AppData/.../transcripts/*.jsonl and copies every write to manifest/sessions/. Starts automatically when VS Code opens the folder.",
+        "problemMatcher": []
+      },
+      {
         "label": "📦 Session: Archive to repo (sync JSONL)",
         "type": "shell",
         "command": "bun",
@@ -139,7 +155,7 @@
           "--archive"
         ],
         "group": "test",
-        "detail": "Copies current session JSONL → manifest/sessions/<id>/transcript.jsonl. Writes meta.json + full session_view.md. Updates sessions_index.json."
+        "detail": "Copies current session JSONL → manifest/sessions/<id>/transcript.jsonl. Writes meta.json. Updates sessions_index.json."
       },
       {
         "label": "📋 Session: List archives",
