@@ -1,0 +1,56 @@
+{
+  "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
+  "drainedAt": "2026-05-03T03:00:42.609Z",
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\7961b8ed-3cd1-4253-b067-8f742e045f3f\\transcript.jsonl",
+  "sessionIntent": "* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women in the SSOT are Milfs/Sub-Milfs, as to structure the MILFOL",
+  "turns": 55,
+  "userMessages": 4,
+  "assistantMessages": 51,
+  "fileEdits": [
+    {
+      "tool": "replace_string_in_file",
+      "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "turn": 49
+    },
+    {
+      "tool": "replace_string_in_file",
+      "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "turn": 51
+    }
+  ],
+  "terminalCommands": [
+    {
+      "command": "Get-Content \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" | Measure-Object -Line",
+      "explanation": "Get total line count of the SSOT",
+      "goal": "Find the end of the file",
+      "turn": 12
+    },
+    {
+      "command": "$f = \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $lines = Get-Content $f; $lines.Count; $lines[-80..-1] | Select-Object -Last 80",
+      "explanation": "Get total line count and the last 80 lines of the SSOT to find the anchor",
+      "goal": "Find the end-of-file anchor",
+      "turn": 18
+    }
+  ],
+  "codeBlocks": [
+    {
+      "lang": "md",
+      "lines": 2,
+      "preview": "> **Canonical:** [SSOT §1 · Pentea-Vox-Internum](../copilot-instructions.archive",
+      "turn": 5
+    }
+  ],
+  "toolCallSummary": {
+    "read_file": 37,
+    "list_dir": 1,
+    "grep_search": 20,
+    "file_search": 1,
+    "run_in_terminal": 2,
+    "memory": 4,
+    "manage_todo_list": 2,
+    "replace_string_in_file": 2
+  },
+  "commitRefs": [
+    "19e0fbd8"
+  ]
+}

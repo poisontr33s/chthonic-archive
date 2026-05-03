@@ -1,0 +1,17 @@
+{
+  "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
+  "drainedAt": "2026-05-03T03:00:42.819Z",
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\c6250cb5-8251-4198-bf6d-6c311bbcf016\\transcript.jsonl",
+  "sessionIntent": "",
+  "turns": 2,
+  "userMessages": 0,
+  "assistantMessages": 2,
+  "fileEdits": [],
+  "terminalCommands": [],
+  "codeBlocks": [],
+  "toolCallSummary": {
+    "read_file": 1,
+    "tool_search": 1
+  },
+  "commitRefs": []
+}
