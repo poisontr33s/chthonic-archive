@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "corpus": {
+      "type": "stdio",
+      "command": "C:/Users/eldno/.bun/bin/bun.exe",
+      "args": ["run", "${workspaceFolder}/scripts/corpus-mcp.ts"]
+    },
+    "cocoindex-code": {
+      "type": "stdio",
+      "command": "C:/Users/eldno/.local/bin/ccc.exe",
+      "args": ["mcp"]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer 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"
+      }
+    },
+    "huggingface": {
+      "type": "http",
+      "url": "https://huggingface.co/mcp",
+      "headers": {
+        "Authorization": "Bearer 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"
+      }
+    }
+  }
+}
