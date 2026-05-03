@@ -94,7 +94,14 @@
     "session:vampire": "bun run scripts/session-vampire.ts",
     "session:vampire:blood": "bun run scripts/session-vampire.ts --blood",
     "session:vampire:edits": "bun run scripts/session-vampire.ts --extract edits",
-    "session:vampire:commands": "bun run scripts/session-vampire.ts --extract commands"
+    "session:vampire:commands": "bun run scripts/session-vampire.ts --extract commands",
+    "session:corpus": "bun run scripts/session-corpus.ts",
+    "session:corpus:rebuild": "bun run scripts/session-corpus.ts --rebuild",
+    "session:corpus:stats": "bun run scripts/session-corpus.ts --stats",
+    "session:query": "bun run scripts/session-query.ts",
+    "session:query:timeline": "bun run scripts/session-query.ts --timeline",
+    "session:query:hot": "bun run scripts/session-query.ts --hot-files",
+    "session:query:tools": "bun run scripts/session-query.ts --tool-frequency"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
