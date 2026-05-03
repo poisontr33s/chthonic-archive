@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   sessionId      TEXT PRIMARY KEY,
   startTime      TEXT,
   workspaceHash  TEXT,
+  workspaceName  TEXT,
   copilotVersion TEXT,
   vscodeVersion  TEXT,
   turns          INTEGER DEFAULT 0,
@@ -158,7 +159,7 @@ CREATE VIEW IF NOT EXISTS memory_chain AS
 CREATE VIEW IF NOT EXISTS session_timeline AS
   SELECT
     s.sessionId, s.startTime, s.intent, s.turns,
-    s.copilotVersion, s.workspaceHash,
+    s.copilotVersion, s.workspaceHash, s.workspaceName,
     s.topic, s.tags,
     (SELECT COUNT(*) FROM file_edits       WHERE sessionId = s.sessionId) AS editCount,
     (SELECT COUNT(*) FROM terminal_cmds    WHERE sessionId = s.sessionId) AS cmdCount,
@@ -259,12 +260,13 @@ function ingestSession(db: Database, sessionId: string): boolean {
 
   // Insert sessions row (turns + intent updated after transcript pass)
   db.prepare(`
-    INSERT INTO sessions (sessionId, startTime, workspaceHash, copilotVersion, vscodeVersion, turns, intent, ingestedAt)
-    VALUES (?, ?, ?, ?, ?, 0, '', ?)
+    INSERT INTO sessions (sessionId, startTime, workspaceHash, workspaceName, copilotVersion, vscodeVersion, turns, intent, ingestedAt)
+    VALUES (?, ?, ?, ?, ?, ?, 0, '', ?)
   `).run(
     sessionId,
     String(meta.startTime      ?? ""),
     String(meta.workspaceHash  ?? ""),
+    String(meta.workspaceName  ?? ""),
     String(meta.copilotVersion ?? ""),
     String(meta.vscodeVersion  ?? ""),
     now,
@@ -607,8 +609,9 @@ if (!rebuildMode) {
   tryAlter(db, "ALTER TABLE file_edits    ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE terminal_cmds ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE code_blocks   ADD COLUMN ts          INTEGER");
-  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN topic       TEXT");
-  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN tags        TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN topic         TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN tags          TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN workspaceName TEXT");
 }
 
 db.exec(DDL_TABLES);

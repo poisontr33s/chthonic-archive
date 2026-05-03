@@ -48,7 +48,7 @@ interface JEntry {
 }
 interface MetaEntry {
   sessionId: string; startTime: string; archivedAt: string; lastSyncedAt: string;
-  sourcePath: string; workspaceHash: string;
+  sourcePath: string; workspaceHash: string; workspaceName: string;
   vscodeVersion: string; copilotVersion: string;
   turns: number; lines: number; isLive?: boolean;
 }
@@ -141,6 +141,20 @@ function mirrorSession(tPath: string, isLive: boolean): boolean {
   const wHash = tPath.match(/workspaceStorage[\/\\]([^\/\\]+)[\/\\]/)?.[1] ?? "";
   const turnCount = entries.filter(e => e.type === "user.message" || e.type === "assistant.message").length;
 
+  // Derive workspace name from workspace.json
+  let workspaceName = "";
+  try {
+    const wjPath = join(wsRoot, wHash, "workspace.json");
+    if (existsSync(wjPath)) {
+      const wj = JSON.parse(readFileSync(wjPath, "utf8")) as Record<string, unknown>;
+      const uri = String(wj["folder"] ?? wj["workspace"] ?? "");
+      const decoded = decodeURIComponent(uri.replace(/^file:\/\/\//i, ""));
+      const parts = decoded.replace(/\\/g, "/").split("/");
+      const last = parts[parts.length - 1] ?? "";
+      workspaceName = last.replace(/\.code-workspace$/i, "") || wHash.slice(0, 8);
+    }
+  } catch { /* ok */ }
+
   // Copy JSONL
   const sessionDir = join(sessionsDir, sessionId);
   mkdirSync(sessionDir, { recursive: true });
@@ -161,7 +175,8 @@ function mirrorSession(tPath: string, isLive: boolean): boolean {
     archivedAt: existingMeta.archivedAt ?? new Date().toISOString(),
     lastSyncedAt: new Date().toISOString(),
     sourcePath: tPath,
-    workspaceHash: wHash,
+    workspaceHash:  wHash,
+    workspaceName:  workspaceName || existingMeta.workspaceName || "",
     vscodeVersion: sd?.vscodeVersion ?? existingMeta.vscodeVersion ?? "",
     copilotVersion: sd?.copilotVersion ?? existingMeta.copilotVersion ?? "",
     turns: turnCount,

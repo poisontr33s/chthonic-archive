@@ -54,11 +54,24 @@ function openDB(): Database {
 // Tool implementations
 // ─────────────────────────────────────────────────────────────
 
-function toolTimeline(limit: number): unknown[] {
+function toolTimeline(limit: number, workspaceHash?: string): unknown[] {
   const db = openDB();
   try {
+    if (workspaceHash) {
+      return db.prepare(`
+        SELECT sessionId, startTime, turns, copilotVersion,
+               workspaceHash, workspaceName,
+               editCount, cmdCount, commitCount, userTurns, assistantTurns,
+               topic, tags,
+               SUBSTR(intent, 1, 150) AS intent
+        FROM session_timeline
+        WHERE workspaceHash = ?
+        LIMIT ?
+      `).all(workspaceHash, limit);
+    }
     return db.prepare(`
       SELECT sessionId, startTime, turns, copilotVersion,
+             workspaceHash, workspaceName,
              editCount, cmdCount, commitCount, userTurns, assistantTurns,
              topic, tags,
              SUBSTR(intent, 1, 150) AS intent
@@ -304,11 +317,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: "corpus_timeline",
-      description: "List all Copilot Chat sessions ordered by start time. Returns session IDs, timestamps, turn counts, edit/cmd stats, and a brief intent summary.",
+      description: "List all Copilot Chat sessions ordered by start time. Returns session IDs, timestamps, turn counts, workspaceHash, workspaceName, edit/cmd stats, and a brief intent summary.",
       inputSchema: {
         type: "object" as const,
         properties: {
-          limit: { type: "number", description: "Max sessions to return (default 20)" }
+          limit:          { type: "number", description: "Max sessions to return (default 20)" },
+          workspace_hash: { type: "string", description: "Filter by workspace hash (optional)" }
         }
       }
     },
@@ -421,7 +435,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     let result: unknown;
 
     if (name === "corpus_timeline") {
-      result = toolTimeline(Number(a.limit ?? 20));
+      result = toolTimeline(Number(a.limit ?? 20), a.workspace_hash ? String(a.workspace_hash) : undefined);
     } else if (name === "corpus_search") {
       if (!a.query) throw new Error("query is required");
       result = toolSearch(String(a.query), Number(a.limit ?? 20));
