@@ -8,20 +8,25 @@
  * query session history, search messages, inspect tool usage, etc.
  * without any manual CLI invocations.
  *
- * Tools (13):
- *   corpus_timeline      — session list ordered by time
- *   corpus_search        — FTS5 full-text search across all messages
- *   corpus_messages      — messages for a specific session
- *   corpus_hot_files     — most-edited files across all sessions
- *   corpus_tool_freq     — tool usage frequency ranking
- *   corpus_stats         — row counts per table
- *   corpus_sql           — raw SELECT-only SQL (sandboxed)
- *   corpus_classify      — sessions grouped by topic
+ * Tools (15):
+ *   corpus_timeline        — session list ordered by time
+ *   corpus_search          — FTS5 full-text search across all messages
+ *   corpus_messages        — messages for a specific session
+ *   corpus_hot_files       — most-edited files across all sessions
+ *   corpus_tool_freq       — tool usage frequency ranking
+ *   corpus_stats           — row counts per table
+ *   corpus_sql             — raw SELECT-only SQL (sandboxed)
+ *   corpus_classify        — sessions grouped by topic
  *   corpus_session_context — full resume-packet for one session
- *   corpus_tool_result   — G2: tool call details + full result content (lossless) by callId
- *   corpus_memories      — G2: memory snapshots (session + global)
- *   corpus_annotate      — G4: write topic/tags/note to a session record
- *   corpus_memory_write  — G4: inject a memory snapshot programmatically
+ *   corpus_tool_result     — G2: tool call details + full result content (lossless) by callId
+ *   corpus_memories        — G2: memory snapshots (session + global)
+ *   corpus_annotate        — G4: write topic/tags/note to a session record
+ *   corpus_memory_write    — G4: inject a memory snapshot programmatically
+ *   corpus_gate_ladder     — G5: read or persist the pipeline gate state into corpus memory
+ *   corpus_resources_list  — G5: list all sessions as MCP Resources URIs
+ *
+ * Resources:
+ *   corpus://session/<sessionId>  — full session context as JSON (MCP Resources protocol)
  *
  * Registration: .mcp.json → "corpus" → "command": "bun run scripts/corpus-mcp.ts"
  */
@@ -31,6 +36,8 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
+  ListResourcesRequestSchema,
+  ReadResourceRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { Database } from "bun:sqlite";
 import { existsSync } from "fs";
@@ -188,12 +195,17 @@ function toolSessionContext(sessionId: string): unknown {
 function toolSearch(query: string, limit: number): unknown[] {
   const db = openDB();
   try {
+    // fts_messages is a standalone FTS5 table (NOT content=); join on sessions for
+    // workspace name, NOT on messages.rowid (rowids don't align).
     return db.prepare(`
-      SELECT m.sessionId, m.role, m.turn,
-             DATETIME(m.ts/1000,'unixepoch') AS time,
-             snippet(fts_messages, 3, '▸', '◂', '…', 30) AS excerpt
+      SELECT f.sessionId,
+             s.workspaceName,
+             f.role,
+             CAST(f.turn AS INTEGER)                        AS turn,
+             s.startTime,
+             snippet(fts_messages, 3, '▸', '◂', '…', 30)  AS excerpt
       FROM fts_messages f
-      JOIN messages m ON m.rowid = f.rowid
+      JOIN sessions s ON s.sessionId = f.sessionId
       WHERE fts_messages MATCH ?
       ORDER BY rank
       LIMIT ?
@@ -299,6 +311,68 @@ function toolToolResult(callId: string): unknown {
   } finally { db.close(); }
 }
 
+// ─── G5 gate ladder ──────────────────────────────────────────
+
+function toolGateLadder(persist: boolean): unknown {
+  const db = openDB();
+  let ladder: Array<{ gate: string; status: string; detail: string }>;
+  try {
+    const cols = (t: string) =>
+      (db.prepare(`PRAGMA table_info(${t})`).all() as Array<{ name: string }>)
+        .map(c => c.name);
+
+    const count = (sql: string, ...p: unknown[]) =>
+      (db.prepare(sql).get(...p) as { c: number }).c;
+
+    const hasFts = db.prepare(
+      "SELECT COUNT(*) AS c FROM sqlite_master WHERE type='table' AND name='fts_messages'"
+    ).get() as { c: number };
+
+    const sessionCols  = cols("sessions");
+    const toolCols     = cols("tool_calls");
+
+    ladder = [
+      { gate: "G0",  status: "admitted", detail: "corpus.sqlite + session-watcher + session-corpus + corpus-mcp present" },
+      { gate: "G1a", status: count("SELECT COUNT(*) AS c FROM sessions") > 0 ? "admitted" : "open",
+        detail: `sessions: ${count("SELECT COUNT(*) AS c FROM sessions")} rows` },
+      { gate: "G1b", status: count("SELECT COUNT(*) AS c FROM memory_snapshots") > 0 ? "admitted" : "open",
+        detail: `memory_snapshots: ${count("SELECT COUNT(*) AS c FROM memory_snapshots")} rows` },
+      { gate: "G2",  status: count("SELECT COUNT(*) AS c FROM tool_calls") > 0 ? "admitted" : "open",
+        detail: `messages: ${count("SELECT COUNT(*) AS c FROM messages")} · tool_calls: ${count("SELECT COUNT(*) AS c FROM tool_calls")}` },
+      { gate: "G3",  status: sessionCols.includes("workspaceName") ? "admitted" : "open",
+        detail: sessionCols.includes("workspaceName") ? "workspaceName column present" : "MISSING workspaceName" },
+      { gate: "G4",  status: sessionCols.includes("note") ? "admitted" : "open",
+        detail: sessionCols.includes("note") ? "write-back columns present (topic/tags/note)" : "MISSING note column" },
+      { gate: "G4.5",status: toolCols.includes("resultContent") ? "admitted" : "open",
+        detail: toolCols.includes("resultContent")
+          ? `resultContent column present · ${count("SELECT COUNT(*) AS c FROM tool_calls WHERE resultContent IS NOT NULL")} rows populated`
+          : "MISSING resultContent" },
+      { gate: "G5",  status: hasFts.c > 0 ? "admitted" : "open",
+        detail: hasFts.c > 0 ? "fts_messages FTS5 index present · MCP Resources protocol active" : "FTS5 index not yet created" },
+    ];
+  } finally { db.close(); }
+
+  if (!persist) return ladder;
+
+  // Persist as memory snapshot
+  const lines = [
+    "# Corpus Pipeline — Gate Ladder",
+    `\n_Updated: ${new Date().toISOString()}_\n`,
+    "| Gate | Status | Detail |",
+    "|------|--------|--------|",,
+    ...ladder.map(r => `| ${r.gate.padEnd(5)} | ${r.status.padEnd(8)} | ${r.detail} |`),
+  ].join("\n");
+
+  const dbw = openDBWrite();
+  try {
+    dbw.prepare(
+      "INSERT INTO memory_snapshots (sessionId, filename, content, capturedAt) VALUES (?, ?, ?, ?)"
+    ).run("_global_", "gate-ladder.md", lines, new Date().toISOString());
+  } finally { dbw.close(); }
+
+  return { persisted: true, gates: ladder };
+}
+
 // ─── G4 write tools ───────────────────────────────────────────
 
 function toolAnnotate(
@@ -371,8 +445,8 @@ function toolMemories(sessionId: string | null, limit: number): unknown[] {
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "2.2.0" },
-  { capabilities: { tools: {} } }
+  { name: "corpus", version: "2.3.0" },
+  { capabilities: { tools: {}, resources: {} } }
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
@@ -511,8 +585,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           content:   { type: "string", description: "Memory content to store" }
         },
         required: ["sessionId", "filename", "content"]
+      }    },
+    {
+      name: "corpus_gate_ladder",
+      description: "G5: Read or persist the corpus pipeline gate-ladder. Returns the current gate state derived live from the DB schema. Pass persist=true to write the result to corpus memory as 'gate-ladder.md' (replacing any external gate doc).",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          persist: { type: "boolean", description: "If true, write gate-ladder.md to memory_snapshots (default false)" }
+        }
       }
-    }
+    },
+    {
+      name: "corpus_resources_list",
+      description: "G5: List all sessions as MCP Resources URIs (corpus://session/<sessionId>). Thin wrapper over ListResources for agent callers that prefer tool interface.",
+      inputSchema: { type: "object" as const, properties: {} }    }
   ]
 }));
 
@@ -573,6 +660,15 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       if (!a.filename)  throw new Error("filename is required");
       if (!a.content)   throw new Error("content is required");
       result = toolMemoryWrite(String(a.sessionId), String(a.filename), String(a.content));
+    } else if (name === "corpus_gate_ladder") {
+      result = toolGateLadder(Boolean(a.persist ?? false));
+    } else if (name === "corpus_resources_list") {
+      const db = openDB();
+      try {
+        result = db.prepare(
+          "SELECT sessionId, workspaceName, startTime, topic FROM sessions ORDER BY startTime DESC"
+        ).all();
+      } finally { db.close(); }
     } else {
       throw new Error(`Unknown tool: ${name}`);
     }
@@ -586,6 +682,42 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       isError: true
     };
   }
+});
+
+// ─────────────────────────────────────────────────────────────
+// MCP Resources — corpus://session/<sessionId>
+// ─────────────────────────────────────────────────────────────
+
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  const db = openDB();
+  try {
+    const rows = db.prepare(
+      "SELECT sessionId, workspaceName, startTime, topic FROM sessions ORDER BY startTime DESC"
+    ).all() as Array<{ sessionId: string; workspaceName: string | null; startTime: string; topic: string | null }>;
+    return {
+      resources: rows.map(s => ({
+        uri:         `corpus://session/${s.sessionId}`,
+        name:        s.workspaceName ?? s.sessionId.slice(0, 8),
+        description: [s.topic, s.startTime].filter(Boolean).join(" · "),
+        mimeType:    "application/json",
+      }))
+    };
+  } finally { db.close(); }
+});
+
+server.setRequestHandler(ReadResourceRequestSchema, async (req) => {
+  const uri = req.params.uri as string;
+  const match = uri.match(/^corpus:\/\/session\/(.+)$/);
+  if (!match) throw new Error(`Unsupported resource URI: ${uri}`);
+  const sessionId = match[1];
+  const content   = toolSessionContext(sessionId);
+  return {
+    contents: [{
+      uri,
+      mimeType: "application/json",
+      text:     JSON.stringify(content, null, 2),
+    }]
+  };
 });
 
 // ─────────────────────────────────────────────────────────────
