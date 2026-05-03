@@ -3,7 +3,8 @@
     "corpus": {
       "type": "stdio",
       "command": "C:/Users/eldno/.bun/bin/bun.exe",
-      "args": ["run", "${workspaceFolder}/scripts/corpus-mcp.ts"]
+      "args": ["run", "C:/Users/eldno/chthonic-archive/scripts/corpus-mcp.ts"],
+      "cwd": "C:/Users/eldno/chthonic-archive"
     },
     "cocoindex-code": {
       "type": "stdio",
