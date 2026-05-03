@@ -65,11 +65,12 @@ function flagNum(name: string, def: number): number {
 if (flag("--timeline")) {
   console.log("\n📅 SESSION TIMELINE\n");
   const rows = db.prepare(`
-    SELECT sessionId, startTime, turns, editCount, cmdCount, codeBlockCount,
-           memoryFileCount, commitCount, SUBSTR(intent, 1, 60) AS intent
+    SELECT sessionId, startTime, turns, userTurns, assistantTurns,
+           editCount, cmdCount, commitCount, memoryFileCount,
+           SUBSTR(intent, 1, 55) AS intent
     FROM session_timeline
   `).all() as Record<string, unknown>[];
-  table(rows, ["sessionId", "startTime", "turns", "editCount", "cmdCount", "memoryFileCount", "commitCount", "intent"]);
+  table(rows, ["sessionId", "startTime", "turns", "editCount", "cmdCount", "commitCount", "intent"]);
 
 } else if (flag("--hot-files")) {
   const n = flagNum("--hot-files", 20);
@@ -184,6 +185,63 @@ if (flag("--timeline")) {
     for (const t of topTools) console.log(`    ${String(t.n).padStart(3)}×  ${t.toolName}  (${t.ok} ok)`);
   }
 
+} else if (flag("--search")) {
+  const term = flagArg("--search");
+  if (!term) { console.error("Usage: --search <term>"); process.exit(1); }
+  console.log(`\n🔍 CORPUS SEARCH: "${term}"\n`);
+  // Check if FTS5 tables exist
+  const hasFts = (db.prepare("SELECT COUNT(*) AS n FROM sqlite_master WHERE type='table' AND name='fts_messages'").get() as { n: number }).n > 0;
+  if (hasFts) {
+    const msgs = db.prepare(`
+      SELECT sessionId, role, turn, snippet(fts_messages, 3, '▸', '◂', '…', 20) AS excerpt
+      FROM fts_messages WHERE content MATCH ? ORDER BY rank LIMIT 20
+    `).all(term) as Array<{ sessionId: string; role: string; turn: number; excerpt: string }>;
+    if (msgs.length) {
+      console.log("Messages:");
+      for (const m of msgs)
+        console.log(`  [${m.sessionId.slice(0, 8)}] ${m.role.padEnd(9)} turn ${String(m.turn).padStart(3)}: ${m.excerpt}`);
+    }
+    const cmds = db.prepare(`
+      SELECT sessionId, snippet(fts_cmds, 1, '▸', '◂', '…', 15) AS cmdExcerpt, goal
+      FROM fts_cmds WHERE fts_cmds MATCH ? ORDER BY rank LIMIT 10
+    `).all(term) as Array<{ sessionId: string; cmdExcerpt: string; goal: string | null }>;
+    if (cmds.length) {
+      console.log("\nTerminal commands:");
+      for (const c of cmds)
+        console.log(`  [${c.sessionId.slice(0, 8)}] ${c.cmdExcerpt}${c.goal ? `  [${c.goal}]` : ""}`);
+    }
+    if (!msgs.length && !cmds.length) console.log("(no matches)");
+  } else {
+    console.log("FTS5 not indexed yet — run: bun run session:corpus:rebuild");
+    const rows = db.prepare(`
+      SELECT sessionId, role, turn, SUBSTR(content, MAX(1, INSTR(content, ?) - 60), 140) AS excerpt
+      FROM messages WHERE content LIKE ? LIMIT 20
+    `).all(term, `%${term}%`) as Record<string, unknown>[];
+    table(rows);
+  }
+
+} else if (flag("--messages")) {
+  const id = flagArg("--messages");
+  if (!id) { console.error("Usage: --messages <id>"); process.exit(1); }
+  const hasMsgs = (db.prepare("SELECT COUNT(*) AS n FROM sqlite_master WHERE type='table' AND name='messages'").get() as { n: number }).n > 0;
+  if (!hasMsgs) { console.error("No messages table. Rebuild: bun run session:corpus:rebuild"); process.exit(1); }
+  const s = db.prepare("SELECT * FROM sessions WHERE sessionId LIKE ?").get(`${id}%`) as Record<string, unknown> | undefined;
+  if (!s) { console.error(`Session not found: ${id}`); process.exit(1); }
+  const sId = String(s.sessionId);
+  console.log(`\n💬 MESSAGES: ${sId}\n  ${String(s.startTime)}  —  ${String(s.intent ?? "").slice(0, 80)}\n`);
+  const msgs = db.prepare(`
+    SELECT role, turn, ts, SUBSTR(content, 1, 250) AS preview, toolRequestCount
+    FROM messages WHERE sessionId = ? ORDER BY turn ASC
+  `).all(sId) as Array<{ role: string; turn: number; ts: number | null; preview: string; toolRequestCount: number }>;
+  for (const m of msgs) {
+    const time = m.ts ? new Date(m.ts).toISOString().slice(11, 19) : "--:--:--";
+    const tools = m.toolRequestCount > 0 ? ` [⦀${m.toolRequestCount} tools]` : "";
+    const icon  = m.role === "user" ? "👤" : "🤖";
+    console.log(`${icon} [${time}] turn ${String(m.turn).padStart(3)}${tools}`);
+    console.log(`   ${m.preview.replace(/\n/g, " ").slice(0, 200)}`);
+  }
+  console.log(`\n${msgs.length} messages`);
+
 } else if (flag("--sessions")) {
   console.log("\n📋 ALL SESSIONS\n");
   const rows = db.prepare(`
@@ -202,18 +260,21 @@ if (flag("--timeline")) {
   console.log(`
 session-query — query manifest/corpus.sqlite
 
-  --timeline              all sessions (start, turns, edits, commands, memory files, commits)
+  --timeline              all sessions (start, turns, edits, commands, commits)
   --hot-files [N]         top N most edited files across all sessions  (default 20)
   --tool-frequency [N]    top N tools by call count with success %     (default 20)
   --memory-chain <file>   how one memory file evolved across sessions  + latest content
-  --memory-search <term>  full-text search across all memory file content
+  --memory-search <term>  search across memory file content
+  --search <term>         FTS5 search across messages + terminal commands
+  --messages <id>         conversation messages for one session (partial id ok)
   --code-langs            language distribution of code blocks
   --sessions              list all sessions
   --session <id>          detailed view of one session (partial id ok)
   --sql "..."             raw SQL query against corpus.sqlite
 
 Tables: sessions, session_restarts, file_edits, terminal_cmds,
-        code_blocks, tool_calls, commit_refs, memory_snapshots
+        code_blocks, tool_calls, commit_refs, memory_snapshots, messages
+FTS5:   fts_messages, fts_cmds
 Views:  hot_files, memory_chain, session_timeline
 `);
 }

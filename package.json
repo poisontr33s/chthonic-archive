@@ -101,7 +101,9 @@
     "session:query": "bun run scripts/session-query.ts",
     "session:query:timeline": "bun run scripts/session-query.ts --timeline",
     "session:query:hot": "bun run scripts/session-query.ts --hot-files",
-    "session:query:tools": "bun run scripts/session-query.ts --tool-frequency"
+    "session:query:tools": "bun run scripts/session-query.ts --tool-frequency",
+    "session:query:search": "bun run scripts/session-query.ts --search",
+    "session:query:messages": "bun run scripts/session-query.ts --messages"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
