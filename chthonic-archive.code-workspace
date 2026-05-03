@@ -130,7 +130,23 @@
         "detail": "Renders FULL latest Copilot Chat JSONL transcript to manifest/session_view.md and opens it in VS Code."
       },
       {
-        "label": "�️ Session: Watch (auto-mirror transcripts)",
+        "label": "👁️ Session: Watch + Push (siphon to GitHub)",
+        "type": "shell",
+        "command": "bun",
+        "args": [
+          "run",
+          "${workspaceFolder:⚡ chthonic-archive [primary]}/scripts/session-watcher.ts",
+          "--push"
+        ],
+        "group": "test",
+        "isBackground": true,
+        "runOptions": {
+          "runOn": "folderOpen"
+        },
+        "detail": "Real-time siphon: AppData transcript writes → manifest/sessions/ → git commit → git push to GitHub. Auto-debounced 30s. Starts on workspace open.",
+        "problemMatcher": []
+      },
+      {
         "type": "shell",
         "command": "bun",
         "args": [

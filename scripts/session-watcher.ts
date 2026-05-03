@@ -1,15 +1,21 @@
 #!/usr/bin/env bun
-// @SID: session-watcher — real-time mirror of Copilot Chat transcripts → repo
-// Watches all workspaceStorage/*/GitHub.copilot-chat/transcripts/*.jsonl
-// and copies every write event to manifest/sessions/<sessionId>/transcript.jsonl
+// @SID: session-watcher — interval poller: AppData transcripts → repo → GitHub
+// Polls workspaceStorage/*/GitHub.copilot-chat/transcripts/*.jsonl on a timer.
+// On each tick: if a file grew, copy it. With --push: debounced commit + push.
+//
+// Strategy: mirrors how the JSONL itself fills in — periodic check, copy if grown.
+// No fs.watch, no event plumbing, no Windows ReadDirectoryChangesW edge cases.
 //
 // Usage:
-//   bun run scripts/session-watcher.ts           # watch + mirror forever
-//   bun run scripts/session-watcher.ts --once    # snapshot all known sessions now, then exit
+//   bun run scripts/session-watcher.ts                       # poll every 10s (local mirror)
+//   bun run scripts/session-watcher.ts --push                # poll + auto-commit + push (30s debounce)
+//   bun run scripts/session-watcher.ts --interval 5          # custom poll interval in seconds
+//   bun run scripts/session-watcher.ts --once                # one poll pass, then exit
+//   bun run scripts/session-watcher.ts --once --push         # one pass + commit + push, then exit
 //
-// VS Code task: "Chthonic: Session Watcher (auto-start)" — runOn: folderOpen
+// VS Code task "Session: Watch + Push" has runOn: folderOpen — starts automatically.
 
-import { readFileSync, existsSync, writeFileSync, statSync, readdirSync, mkdirSync, copyFileSync, watch } from "fs";
+import { readFileSync, existsSync, writeFileSync, statSync, readdirSync, mkdirSync, copyFileSync } from "fs";
 import { join, basename } from "path";
 import * as os from "os";
 
@@ -18,7 +24,12 @@ import * as os from "os";
 // ──────────────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 const onceMode = args.includes("--once");
+const pushMode = args.includes("--push");
 const verbose = args.includes("--verbose");
+
+const intervalArg = args.indexOf("--interval");
+const POLL_MS = (intervalArg >= 0 ? parseInt(args[intervalArg + 1] ?? "10", 10) : 10) * 1000;
+const PUSH_DEBOUNCE_MS = 30_000;
 
 const appdata = process.env["APPDATA"] ?? join(os.homedir(), "AppData", "Roaming");
 const wsRoot = join(appdata, "Code - Insiders", "User", "workspaceStorage");
@@ -73,20 +84,19 @@ function writeIndex(index: MetaEntry[]) {
 // ──────────────────────────────────────────────────────────────
 const lastSizeMap = new Map<string, number>(); // path → last synced size
 
-function mirrorSession(tPath: string, isLive: boolean) {
-  if (!existsSync(tPath)) return;
+function mirrorSession(tPath: string, isLive: boolean): boolean {
+  if (!existsSync(tPath)) return false;
 
   const currentSize = (() => { try { return statSync(tPath).size; } catch { return -1; } })();
-  if (currentSize < 0) return;
+  if (currentSize < 0) return false;
 
-  // Skip if nothing changed (for polling)
   const lastSize = lastSizeMap.get(tPath);
-  if (lastSize === currentSize) { vlog(`  skip (unchanged) ${basename(tPath)}`); return; }
+  if (lastSize === currentSize) { vlog(`  skip (unchanged) ${basename(tPath)}`); return false; }
   lastSizeMap.set(tPath, currentSize);
 
   // Parse for metadata
-  const raw = (() => { try { return readFileSync(tPath, "utf8"); } catch { return null; } })();
-  if (!raw) return;
+  const raw = (() => { try { return readFileSync(tPath, "utf8"); } catch { return false; } })();
+  if (!raw) return false;
 
   const lines = raw.split("\n").filter(l => l.trim());
   const entries: JEntry[] = [];
@@ -96,7 +106,7 @@ function mirrorSession(tPath: string, isLive: boolean) {
     { sessionId?: string; startTime?: string; vscodeVersion?: string; copilotVersion?: string } | undefined;
 
   const sessionId = (sd?.sessionId ?? basename(tPath).replace(".jsonl", "")).trim();
-  if (!sessionId) return;
+  if (!sessionId) return false;
 
   const wHash = tPath.match(/workspaceStorage[\/\\]([^\/\\]+)[\/\\]/)?.[1] ?? "";
   const turnCount = entries.filter(e => e.type === "user.message" || e.type === "assistant.message").length;
@@ -137,6 +147,7 @@ function mirrorSession(tPath: string, isLive: boolean) {
 
   const status = isLive ? "🔴 live" : "✅ closed";
   log(`${status}  ${sessionId}  (${lines.length} lines, ${turnCount} turns)`);
+  return true;
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -160,23 +171,34 @@ function allTranscripts(): Array<{ path: string; mtime: number }> {
 // ──────────────────────────────────────────────────────────────
 //  Snapshot all (--once mode or initial sync)
 // ──────────────────────────────────────────────────────────────
-function snapshotAll() {
+function snapshotAll(): number {
   const files = allTranscripts();
-  if (files.length === 0) { log("No transcripts found."); return; }
+  if (files.length === 0) { log("No transcripts found."); return 0; }
   const livePath = files[0].path;
+  let changed = 0;
   for (const { path: tPath } of files) {
-    mirrorSession(tPath, tPath === livePath);
+    if (mirrorSession(tPath, tPath === livePath)) changed++;
   }
-  log(`Snapshot complete. ${files.length} sessions mirrored.`);
+  if (changed > 0) log(`Poll: ${changed} session(s) updated (${files.length} total).`);
+  else vlog(`Poll: no changes (${files.length} sessions checked).`);
+  return changed;
 }
 
 // ──────────────────────────────────────────────────────────────
 //  --once: snapshot and exit
 // ──────────────────────────────────────────────────────────────
-if (onceMode) {
+if (onceMode && !pushMode) {
   log("session-watcher: snapshot mode");
   snapshotAll();
   process.exit(0);
+}
+
+if (onceMode && pushMode) {
+  // Snapshot + push, then exit. Push runs after snapshot.
+  log("session-watcher: snapshot + push mode");
+  snapshotAll();
+  // push block below will call siphonToGitHub() via setTimeout(500)
+  // Let it run — process stays alive until push completes, then exits.
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -190,44 +212,88 @@ log(`  Target: ${sessionsDir}`);
 snapshotAll();
 
 // Watch each transcripts directory (recursive watch on Windows works via fs.watch)
-const watchedDirs = new Set<string>();
+// ──────────────────────────────────────────────────────────────
+//  Git siphon helpers (--push mode)
+// ──────────────────────────────────────────────────────────────
+const repoRoot = join(import.meta.dir, "..");
 
-function watchTranscriptsDir(tDir: string) {
-  if (watchedDirs.has(tDir)) return;
-  watchedDirs.add(tDir);
-  vlog(`  watching: ${tDir}`);
-  try {
-    watch(tDir, { persistent: true }, (_event, filename) => {
-      if (!filename || !filename.endsWith(".jsonl")) return;
-      const tPath = join(tDir, filename);
-
-      // Determine if live (most recently modified)
-      const files = allTranscripts();
-      const isLive = files.length > 0 && files[0].path === tPath;
-      mirrorSession(tPath, isLive);
-    });
-  } catch (err) {
-    log(`  watch error on ${tDir}: ${err}`);
-  }
-}
-
-// Watch existing dirs now
-if (existsSync(wsRoot)) {
-  for (const hash of readdirSync(wsRoot)) {
-    const tDir = join(wsRoot, hash, "GitHub.copilot-chat", "transcripts");
-    if (existsSync(tDir)) watchTranscriptsDir(tDir);
-  }
-}
-
-// Also watch the workspaceStorage root for new workspace hashes appearing
-// (new workspace opened = new hash dir with transcripts subdir)
-if (existsSync(wsRoot)) {
-  watch(wsRoot, { persistent: true }, (_event, hash) => {
-    if (!hash) return;
-    const tDir = join(wsRoot, hash, "GitHub.copilot-chat", "transcripts");
-    if (existsSync(tDir)) watchTranscriptsDir(tDir);
+async function runGit(...gitArgs: string[]): Promise<{ ok: boolean; out: string }> {
+  const proc = Bun.spawn(["git", "-C", repoRoot, ...gitArgs], {
+    stdout: "pipe",
+    stderr: "pipe",
   });
+  const out = await new Response(proc.stdout).text();
+  const err = await new Response(proc.stderr).text();
+  const code = await proc.exited;
+  return { ok: code === 0, out: (out + err).trim() };
 }
 
-log("session-watcher: ready — Ctrl+C to stop");
-// Process stays alive via persistent watchers
+async function siphonToGitHub() {
+  log("  siphon: staging sessions...");
+  const stage = await runGit("add", "-f",
+    join("manifest", "sessions"),
+    join("manifest", "sessions_index.json"),
+  );
+  if (!stage.ok) { log(`  siphon: stage failed: ${stage.out}`); return; }
+
+  const status = await runGit("diff", "--cached", "--name-only");
+  if (!status.out.trim()) {
+    vlog("  siphon: nothing new to commit");
+    if (onceMode) process.exit(0);
+    return;
+  }
+
+  const msg = `chore(sessions): auto-siphon ${new Date().toISOString()}\n\nCo-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>`;
+  const commit = await runGit("commit", "--no-verify", "-m", msg);
+  if (!commit.ok) { log(`  siphon: commit failed: ${commit.out}`); if (onceMode) process.exit(1); return; }
+
+  log("  siphon: pushing to origin...");
+  const push = await runGit("push");
+  if (push.ok) {
+    log(`  siphon: ✅ pushed — ${status.out.trim().split("\n").length} file(s)`);
+  } else {
+    log(`  siphon: ⚠️ push failed: ${push.out}`);
+  }
+  if (onceMode) process.exit(push.ok ? 0 : 1);
+}
+
+// ──────────────────────────────────────────────────────────────
+//  --once: one pass, then exit (with optional push)
+// ──────────────────────────────────────────────────────────────
+if (onceMode) {
+  log(`session-watcher: one-shot pass${pushMode ? " + push" : ""}`);
+  snapshotAll();
+  if (pushMode) {
+    await siphonToGitHub(); // exits inside siphonToGitHub when onceMode=true
+  }
+  process.exit(0);
+}
+
+// ──────────────────────────────────────────────────────────────
+//  Poll loop: tick every POLL_MS, mirror any grown files
+//  Push debounce: after a tick with changes, push 30s later
+//  (reset on each tick that finds more changes)
+// ──────────────────────────────────────────────────────────────
+log(`session-watcher: polling every ${POLL_MS / 1000}s${pushMode ? ` — push debounce ${PUSH_DEBOUNCE_MS / 1000}s` : ""}`);
+log(`  Source: ${wsRoot}`);
+log(`  Target: ${sessionsDir}`);
+
+let pushTimer: ReturnType<typeof setTimeout> | null = null;
+
+function armPush() {
+  if (pushTimer) clearTimeout(pushTimer);
+  pushTimer = setTimeout(() => { pushTimer = null; siphonToGitHub(); }, PUSH_DEBOUNCE_MS);
+}
+
+async function tick() {
+  const changed = snapshotAll();
+  if (pushMode && changed > 0) armPush();
+}
+
+// Initial tick immediately, then on interval
+await tick();
+setInterval(tick, POLL_MS);
+
+    setTimeout(() => siphonToGitHub(), 500);
+  }
+}
