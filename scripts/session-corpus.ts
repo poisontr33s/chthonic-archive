@@ -88,15 +88,16 @@ CREATE TABLE IF NOT EXISTS code_blocks (
 );
 
 CREATE TABLE IF NOT EXISTS tool_calls (
-  id         INTEGER PRIMARY KEY AUTOINCREMENT,
-  sessionId  TEXT NOT NULL REFERENCES sessions(sessionId),
-  toolName   TEXT NOT NULL,
-  callId     TEXT,
-  turn       INTEGER,
-  ts         INTEGER,
-  tsComplete INTEGER,
-  argsJson   TEXT,
-  success    INTEGER  -- 1=success  0=failure  NULL=no completion record
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  sessionId     TEXT NOT NULL REFERENCES sessions(sessionId),
+  toolName      TEXT NOT NULL,
+  callId        TEXT,
+  turn          INTEGER,
+  ts            INTEGER,
+  tsComplete    INTEGER,
+  argsJson      TEXT,
+  success       INTEGER,  -- 1=success  0=failure  NULL=no completion record
+  resultSnippet TEXT
 );
 
 CREATE TABLE IF NOT EXISTS commit_refs (
@@ -428,6 +429,25 @@ function ingestSession(db: Database, sessionId: string): boolean {
     })();
   }
 
+  // ── Result snippet backfill ──
+  // For each tool call, grab the first assistant message in the same or later turn
+  // as a proxy for "what did the tool accomplish" (ephemeral result content is not persisted).
+  db.exec(`
+    UPDATE tool_calls
+    SET resultSnippet = (
+      SELECT SUBSTR(m.content, 1, 400)
+      FROM messages m
+      WHERE m.sessionId = tool_calls.sessionId
+        AND m.role = 'assistant'
+        AND m.turn >= tool_calls.turn
+        AND m.content != ''
+      ORDER BY m.turn ASC
+      LIMIT 1
+    )
+    WHERE sessionId = '${sessionId}'
+      AND resultSnippet IS NULL
+  `);
+
   // ── Memory snapshots pass ──
   const memoriesDir = join(sessionDir, "memories");
   if (existsSync(memoriesDir)) {
@@ -580,9 +600,10 @@ if (rebuildMode) {
 
 // Column migration for incremental upgrades (no-op if columns already exist)
 if (!rebuildMode) {
-  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN ts          INTEGER");
-  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN tsComplete  INTEGER");
-  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN argsJson    TEXT");
+  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN ts             INTEGER");
+  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN tsComplete     INTEGER");
+  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN argsJson       TEXT");
+  tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN resultSnippet  TEXT");
   tryAlter(db, "ALTER TABLE file_edits    ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE terminal_cmds ADD COLUMN ts          INTEGER");
   tryAlter(db, "ALTER TABLE code_blocks   ADD COLUMN ts          INTEGER");

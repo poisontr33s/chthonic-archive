@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// @SID: SCRIPT_CORPUS_MCP_V1
+// @SID: SCRIPT_CORPUS_MCP_V2
 
 /**
  * corpus-mcp — Bun stdio MCP server for manifest/corpus.sqlite
@@ -8,7 +8,7 @@
  * query session history, search messages, inspect tool usage, etc.
  * without any manual CLI invocations.
  *
- * Tools:
+ * Tools (11):
  *   corpus_timeline      — session list ordered by time
  *   corpus_search        — FTS5 full-text search across all messages
  *   corpus_messages      — messages for a specific session
@@ -16,6 +16,10 @@
  *   corpus_tool_freq     — tool usage frequency ranking
  *   corpus_stats         — row counts per table
  *   corpus_sql           — raw SELECT-only SQL (sandboxed)
+ *   corpus_classify      — sessions grouped by topic
+ *   corpus_session_context — full resume-packet for one session
+ *   corpus_tool_result   — G2: tool call details + result snippet by callId
+ *   corpus_memories      — G2: memory snapshots (session + global)
  *
  * Registration: .mcp.json → "corpus" → "command": "bun run scripts/corpus-mcp.ts"
  */
@@ -251,12 +255,48 @@ function toolSQL(sql: string): unknown[] {
   } finally { db.close(); }
 }
 
+function toolToolResult(callId: string): unknown {
+  const db = openDB();
+  try {
+    const row = db.prepare(`
+      SELECT tc.callId, tc.toolName, tc.success, tc.turn,
+             DATETIME(tc.ts/1000,'unixepoch')           AS startTime,
+             DATETIME(tc.tsComplete/1000,'unixepoch')   AS endTime,
+             tc.argsJson,
+             tc.resultSnippet,
+             tc.sessionId
+      FROM tool_calls tc
+      WHERE tc.callId = ?
+      LIMIT 1
+    `).get(callId);
+    if (!row) throw new Error(`No tool call found with callId: ${callId}`);
+    return row;
+  } finally { db.close(); }
+}
+
+function toolMemories(sessionId: string | null, limit: number): unknown[] {
+  const db = openDB();
+  try {
+    const sql = sessionId
+      ? `SELECT sessionId, filename, SUBSTR(content, 1, 600) AS preview, capturedAt
+         FROM memory_snapshots
+         WHERE sessionId = ? OR sessionId = '_global_'
+         ORDER BY capturedAt DESC LIMIT ?`
+      : `SELECT sessionId, filename, SUBSTR(content, 1, 600) AS preview, capturedAt
+         FROM memory_snapshots
+         ORDER BY capturedAt DESC LIMIT ?`;
+    return sessionId
+      ? db.prepare(sql).all(sessionId, limit)
+      : db.prepare(sql).all(limit);
+  } finally { db.close(); }
+}
+
 // ─────────────────────────────────────────────────────────────
 // MCP server
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "1.0.0" },
+  { name: "corpus", version: "2.0.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -347,6 +387,28 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         },
         required: ["sessionId"]
       }
+    },
+    {
+      name: "corpus_tool_result",
+      description: "Fetch details + result snippet for a specific tool call by callId. Returns toolName, args, success flag, timing, and the first 400 chars of the assistant message that followed (result proxy).",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          callId: { type: "string", description: "Tool call ID (e.g. toolu_bdrk_01...)" }
+        },
+        required: ["callId"]
+      }
+    },
+    {
+      name: "corpus_memories",
+      description: "Return Copilot memory snapshots — session-scoped and global. These are the files written by the memory-tool across sessions. Filter by sessionId to scope to a specific session, or omit to see all recent memories.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          sessionId: { type: "string", description: "Session UUID to scope results (optional — omit for all)" },
+          limit:     { type: "number", description: "Max memories to return (default 30)" }
+        }
+      }
     }
   ]
 }));
@@ -391,6 +453,11 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     } else if (name === "corpus_session_context") {
       if (!a.sessionId) throw new Error("sessionId is required");
       result = toolSessionContext(String(a.sessionId));
+    } else if (name === "corpus_tool_result") {
+      if (!a.callId) throw new Error("callId is required");
+      result = toolToolResult(String(a.callId));
+    } else if (name === "corpus_memories") {
+      result = toolMemories(a.sessionId ? String(a.sessionId) : null, Number(a.limit ?? 30));
     } else {
       throw new Error(`Unknown tool: ${name}`);
     }
