@@ -590,7 +590,7 @@ if (!existsSync(sessionsDir)) {
 }
 
 const db = new Database(corpusPath, { create: true });
-db.exec("PRAGMA journal_mode = DELETE; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON;");
+db.exec("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON;");
 
 if (rebuildMode) {
   console.log("⚡ Rebuild: dropping all tables and views...");

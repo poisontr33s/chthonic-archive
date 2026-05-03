@@ -46,7 +46,7 @@ function openDB(): Database {
     throw new Error(`corpus.sqlite not found at ${corpusPath}. Run: bun run session:corpus`);
   }
   const db = new Database(corpusPath, { readonly: true });
-  db.exec("PRAGMA journal_mode = DELETE; PRAGMA foreign_keys = ON;");
+  db.exec("PRAGMA foreign_keys = ON;");
   return db;
 }
 
