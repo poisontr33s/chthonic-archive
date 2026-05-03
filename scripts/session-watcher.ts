@@ -80,6 +80,36 @@ function writeIndex(index: MetaEntry[]) {
 }
 
 // ──────────────────────────────────────────────────────────────
+//  Mirror auxiliary artifacts: debug-logs + memory-tool memories
+// ──────────────────────────────────────────────────────────────
+function mirrorAuxiliaries(tPath: string, sessionId: string, sessionDir: string) {
+  // Derive GitHub.copilot-chat base from transcript path
+  const copilotChatBase = tPath.replace(/[/\\]transcripts[/\\][^/\\]+\.jsonl$/, "");
+
+  // debug-logs/<sessionId>/main.jsonl → debug.jsonl, models.json → models.json
+  const debugDir = join(copilotChatBase, "debug-logs", sessionId);
+  if (existsSync(debugDir)) {
+    const debugMain = join(debugDir, "main.jsonl");
+    const debugModels = join(debugDir, "models.json");
+    try { if (existsSync(debugMain)) copyFileSync(debugMain, join(sessionDir, "debug.jsonl")); } catch { /* skip */ }
+    try { if (existsSync(debugModels)) copyFileSync(debugModels, join(sessionDir, "models.json")); } catch { /* skip */ }
+  }
+
+  // memory-tool/memories/<base64(sessionId)>/*.md → memories/*.md
+  const b64Id = Buffer.from(sessionId).toString("base64");
+  const memoriesDir = join(copilotChatBase, "memory-tool", "memories", b64Id);
+  if (existsSync(memoriesDir)) {
+    const memOut = join(sessionDir, "memories");
+    mkdirSync(memOut, { recursive: true });
+    for (const f of readdirSync(memoriesDir)) {
+      if (f.endsWith(".md") || f.endsWith(".json")) {
+        try { copyFileSync(join(memoriesDir, f), join(memOut, f)); } catch { /* skip */ }
+      }
+    }
+  }
+}
+
+// ──────────────────────────────────────────────────────────────
 //  Mirror a single JSONL file to the repo
 // ──────────────────────────────────────────────────────────────
 const lastSizeMap = new Map<string, number>(); // path → last synced size
@@ -115,6 +145,9 @@ function mirrorSession(tPath: string, isLive: boolean): boolean {
   const sessionDir = join(sessionsDir, sessionId);
   mkdirSync(sessionDir, { recursive: true });
   copyFileSync(tPath, join(sessionDir, "transcript.jsonl"));
+
+  // Mirror auxiliary artifacts (debug-logs + memory-tool memories)
+  mirrorAuxiliaries(tPath, sessionId, sessionDir);
 
   // Write / update meta.json
   const metaPath = join(sessionDir, "meta.json");
