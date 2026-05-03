@@ -185,34 +185,6 @@ function snapshotAll(): number {
 }
 
 // ──────────────────────────────────────────────────────────────
-//  --once: snapshot and exit
-// ──────────────────────────────────────────────────────────────
-if (onceMode && !pushMode) {
-  log("session-watcher: snapshot mode");
-  snapshotAll();
-  process.exit(0);
-}
-
-if (onceMode && pushMode) {
-  // Snapshot + push, then exit. Push runs after snapshot.
-  log("session-watcher: snapshot + push mode");
-  snapshotAll();
-  // push block below will call siphonToGitHub() via setTimeout(500)
-  // Let it run — process stays alive until push completes, then exits.
-}
-
-// ──────────────────────────────────────────────────────────────
-//  Watch mode: initial sync + fs.watch on each transcripts dir
-// ──────────────────────────────────────────────────────────────
-log("session-watcher: starting — watching for transcript changes");
-log(`  Source: ${wsRoot}`);
-log(`  Target: ${sessionsDir}`);
-
-// Initial sync of all known sessions
-snapshotAll();
-
-// Watch each transcripts directory (recursive watch on Windows works via fs.watch)
-// ──────────────────────────────────────────────────────────────
 //  Git siphon helpers (--push mode)
 // ──────────────────────────────────────────────────────────────
 const repoRoot = join(import.meta.dir, "..");
@@ -294,6 +266,3 @@ async function tick() {
 await tick();
 setInterval(tick, POLL_MS);
 
-    setTimeout(() => siphonToGitHub(), 500);
-  }
-}
