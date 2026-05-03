@@ -9,5 +9,137 @@
     "copilotVersion": "0.47.2026043005",
     "turns": 3072,
     "lines": 15120
+  },
+  {
+    "sessionId": "1996a5d8-1d7e-4334-83d7-d11efba77cbc",
+    "startTime": "2026-04-30T00:32:44.760Z",
+    "archivedAt": "2026-05-03T02:46:54.945Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\transcripts\\1996a5d8-1d7e-4334-83d7-d11efba77cbc.jsonl",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
+    "vscodeVersion": "1.119.0-insider",
+    "copilotVersion": "0.47.2026042905",
+    "turns": 370,
+    "lines": 1865
+  },
+  {
+    "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
+    "startTime": "2026-04-28T03:46:32.510Z",
+    "archivedAt": "2026-05-03T02:46:55.060Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\7592984a-a7f4-486a-9199-0d112ec1bfc4.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.118.0-insider",
+    "copilotVersion": "0.46.2026042705",
+    "turns": 176,
+    "lines": 877
+  },
+  {
+    "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
+    "startTime": "2026-04-27T23:17:04.657Z",
+    "archivedAt": "2026-05-03T02:46:55.066Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\8148fe61-004d-42ac-9088-528edae4e92b.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.118.0-insider",
+    "copilotVersion": "0.46.2026042705",
+    "turns": 0,
+    "lines": 1
+  },
+  {
+    "sessionId": "898c7571-8c50-4e43-b6ef-a124473bb012",
+    "startTime": "2026-04-22T17:25:48.017Z",
+    "archivedAt": "2026-05-03T02:46:55.116Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\898c7571-8c50-4e43-b6ef-a124473bb012.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.118.0-insider",
+    "copilotVersion": "0.46.2026042204",
+    "turns": 3598,
+    "lines": 17214
+  },
+  {
+    "sessionId": "aa4fe4b5-5b21-4e03-96db-0abcda07f1c1",
+    "startTime": "2026-04-22T16:29:31.654Z",
+    "archivedAt": "2026-05-03T02:46:55.126Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\aa4fe4b5-5b21-4e03-96db-0abcda07f1c1.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.118.0-insider",
+    "copilotVersion": "0.46.2026042204",
+    "turns": 208,
+    "lines": 982
+  },
+  {
+    "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
+    "startTime": "2026-04-20T18:42:34.314Z",
+    "archivedAt": "2026-05-03T02:46:55.206Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\7961b8ed-3cd1-4253-b067-8f742e045f3f.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026042001",
+    "turns": 55,
+    "lines": 295
+  },
+  {
+    "sessionId": "79682e02-d0ce-4b47-b9ce-9de191f62f77",
+    "startTime": "2026-04-15T11:44:01.402Z",
+    "archivedAt": "2026-05-03T02:46:55.195Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\79682e02-d0ce-4b47-b9ce-9de191f62f77.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026041402",
+    "turns": 4629,
+    "lines": 22633
+  },
+  {
+    "sessionId": "cdaeb5b1-4c3a-437f-a7e1-49ad848308f8",
+    "startTime": "2026-04-15T10:59:04.254Z",
+    "archivedAt": "2026-05-03T02:46:55.134Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\cdaeb5b1-4c3a-437f-a7e1-49ad848308f8.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026041402",
+    "turns": 83,
+    "lines": 414
+  },
+  {
+    "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
+    "startTime": "2026-04-15T10:57:32.050Z",
+    "archivedAt": "2026-05-03T02:46:55.213Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\c6250cb5-8251-4198-bf6d-6c311bbcf016.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026041402",
+    "turns": 2,
+    "lines": 11
+  },
+  {
+    "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
+    "startTime": "2026-04-15T10:23:34.490Z",
+    "archivedAt": "2026-05-03T02:46:55.296Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\85ece81f-59d6-440f-8121-83f35563473d.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026041402",
+    "turns": 64,
+    "lines": 289
+  },
+  {
+    "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
+    "startTime": "2026-04-15T09:09:31.802Z",
+    "archivedAt": "2026-05-03T02:46:55.307Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\710554437afe84ae817dd8a105e496f6\\GitHub.copilot-chat\\transcripts\\30ac60fa-c5f9-4a3f-bdbd-8b17689ae312.jsonl",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "vscodeVersion": "1.117.0-insider",
+    "copilotVersion": "0.45.2026041402",
+    "turns": 135,
+    "lines": 630
+  },
+  {
+    "sessionId": "54cd9cad-bbd1-4759-9e5a-4e1e03dbc722",
+    "startTime": "2026-02-10T16:14:59.310Z",
+    "archivedAt": "2026-05-03T02:46:55.326Z",
+    "sourcePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\ef54bace47120bf8bda2a555aef41825\\GitHub.copilot-chat\\transcripts\\54cd9cad-bbd1-4759-9e5a-4e1e03dbc722.jsonl",
+    "workspaceHash": "ef54bace47120bf8bda2a555aef41825",
+    "vscodeVersion": "1.110.0-insider",
+    "copilotVersion": "0.38.2026021002",
+    "turns": 1761,
+    "lines": 5236
   }
 ]

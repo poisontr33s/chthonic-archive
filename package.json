@@ -84,6 +84,7 @@
     "session:view:tail": "bun run scripts/session-viewer.ts --tail 40",
     "session:view:full": "bun run scripts/session-viewer.ts --tail 9999",
     "session:archive": "bun run scripts/session-viewer.ts --archive",
+    "session:archive:closed": "bun run scripts/session-viewer.ts --archive --closed --no-open",
     "session:index": "bun run scripts/session-index.ts",
     "session:search": "bun run scripts/session-index.ts --search",
     "session:failures": "bun run scripts/session-index.ts --failures"
