@@ -46,6 +46,8 @@ torch = [{ index = "pytorch-cu128" }]
 
 [tool.uv]
 default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe"]
+python-downloads = "manual"
+python-preference = "only-managed"
 
 [dependency-groups]
 analysis = [
