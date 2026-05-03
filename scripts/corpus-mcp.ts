@@ -8,7 +8,7 @@
  * query session history, search messages, inspect tool usage, etc.
  * without any manual CLI invocations.
  *
- * Tools (11):
+ * Tools (13):
  *   corpus_timeline      — session list ordered by time
  *   corpus_search        — FTS5 full-text search across all messages
  *   corpus_messages      — messages for a specific session
@@ -20,6 +20,8 @@
  *   corpus_session_context — full resume-packet for one session
  *   corpus_tool_result   — G2: tool call details + result snippet by callId
  *   corpus_memories      — G2: memory snapshots (session + global)
+ *   corpus_annotate      — G4: write topic/tags/note to a session record
+ *   corpus_memory_write  — G4: inject a memory snapshot programmatically
  *
  * Registration: .mcp.json → "corpus" → "command": "bun run scripts/corpus-mcp.ts"
  */
@@ -46,6 +48,15 @@ function openDB(): Database {
     throw new Error(`corpus.sqlite not found at ${corpusPath}. Run: bun run session:corpus`);
   }
   const db = new Database(corpusPath, { readonly: true });
+  db.exec("PRAGMA foreign_keys = ON;");
+  return db;
+}
+
+function openDBWrite(): Database {
+  if (!existsSync(corpusPath)) {
+    throw new Error(`corpus.sqlite not found at ${corpusPath}. Run: bun run session:corpus`);
+  }
+  const db = new Database(corpusPath, { readonly: false });
   db.exec("PRAGMA foreign_keys = ON;");
   return db;
 }
@@ -287,6 +298,56 @@ function toolToolResult(callId: string): unknown {
   } finally { db.close(); }
 }
 
+// ─── G4 write tools ───────────────────────────────────────────
+
+function toolAnnotate(
+  sessionId: string,
+  fields: { topic?: string; tags?: string[]; note?: string }
+): { sessionId: string; updated: number } {
+  const db = openDBWrite();
+  try {
+    // Resolve prefix
+    let sid = sessionId;
+    if (sid.length < 36) {
+      const row = db.prepare(
+        "SELECT sessionId FROM sessions WHERE sessionId LIKE ? LIMIT 1"
+      ).get(sid + "%") as { sessionId: string } | undefined;
+      if (!row) throw new Error(`No session matching prefix: ${sid}`);
+      sid = row.sessionId;
+    }
+
+    const setParts: string[] = [];
+    const values: unknown[]  = [];
+
+    if (fields.topic !== undefined) { setParts.push("topic = ?"); values.push(fields.topic); }
+    if (fields.tags  !== undefined) { setParts.push("tags  = ?"); values.push(JSON.stringify(fields.tags)); }
+    if (fields.note  !== undefined) { setParts.push("note  = ?"); values.push(fields.note); }
+
+    if (setParts.length === 0)
+      throw new Error("At least one of topic, tags, or note must be provided.");
+
+    values.push(sid);
+    const stmt = db.prepare(`UPDATE sessions SET ${setParts.join(", ")} WHERE sessionId = ?`);
+    const r = stmt.run(...(values as [unknown, ...unknown[]]));
+    return { sessionId: sid, updated: (r as { changes: number }).changes };
+  } finally { db.close(); }
+}
+
+function toolMemoryWrite(
+  sessionId: string,
+  filename:  string,
+  content:   string
+): { sessionId: string; filename: string; inserted: boolean } {
+  const db = openDBWrite();
+  try {
+    const capturedAt = new Date().toISOString();
+    db.prepare(
+      "INSERT INTO memory_snapshots (sessionId, filename, content, capturedAt) VALUES (?, ?, ?, ?)"
+    ).run(sessionId, filename, content, capturedAt);
+    return { sessionId, filename, inserted: true };
+  } finally { db.close(); }
+}
+
 function toolMemories(sessionId: string | null, limit: number): unknown[] {
   const db = openDB();
   try {
@@ -309,7 +370,7 @@ function toolMemories(sessionId: string | null, limit: number): unknown[] {
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "2.0.0" },
+  { name: "corpus", version: "2.1.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -423,6 +484,33 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           limit:     { type: "number", description: "Max memories to return (default 30)" }
         }
       }
+    },
+    {
+      name: "corpus_annotate",
+      description: "Write observations or labels to a session record. Mutable fields: topic (string), tags (string[]), note (free text). All other session fields are read-only. Use this to classify sessions, add research notes, or record insights discovered after the session ended.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          sessionId: { type: "string", description: "Session UUID or 8+ char prefix" },
+          topic:     { type: "string", description: "Session topic label (e.g. 'vulkan', 'tabby-inference')" },
+          tags:      { type: "array",  items: { type: "string" }, description: "Tag array to replace current tags" },
+          note:      { type: "string", description: "Free-text note about the session" }
+        },
+        required: ["sessionId"]
+      }
+    },
+    {
+      name: "corpus_memory_write",
+      description: "Inject a memory snapshot into the corpus programmatically. Use sessionId='_global_' for cross-session memories. filename should match the source file (e.g. 'user-preferences.md'). Useful for recording agent-derived insights back into the corpus.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          sessionId: { type: "string", description: "Session UUID, prefix, or '_global_' for cross-session scope" },
+          filename:  { type: "string", description: "Memory file name (e.g. 'session-notes.md')" },
+          content:   { type: "string", description: "Memory content to store" }
+        },
+        required: ["sessionId", "filename", "content"]
+      }
     }
   ]
 }));
@@ -472,6 +560,18 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       result = toolToolResult(String(a.callId));
     } else if (name === "corpus_memories") {
       result = toolMemories(a.sessionId ? String(a.sessionId) : null, Number(a.limit ?? 30));
+    } else if (name === "corpus_annotate") {
+      if (!a.sessionId) throw new Error("sessionId is required");
+      result = toolAnnotate(String(a.sessionId), {
+        topic: a.topic  !== undefined ? String(a.topic)  : undefined,
+        tags:  Array.isArray(a.tags) ? (a.tags as string[]) : undefined,
+        note:  a.note   !== undefined ? String(a.note)   : undefined,
+      });
+    } else if (name === "corpus_memory_write") {
+      if (!a.sessionId) throw new Error("sessionId is required");
+      if (!a.filename)  throw new Error("filename is required");
+      if (!a.content)   throw new Error("content is required");
+      result = toolMemoryWrite(String(a.sessionId), String(a.filename), String(a.content));
     } else {
       throw new Error(`Unknown tool: ${name}`);
     }

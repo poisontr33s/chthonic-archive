@@ -612,6 +612,7 @@ if (!rebuildMode) {
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN topic         TEXT");
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN tags          TEXT");
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN workspaceName TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN note          TEXT");
 }
 
 db.exec(DDL_TABLES);
