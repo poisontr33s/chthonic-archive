@@ -88,7 +88,7 @@ $DISTRICTS = @(
         # Automation: VS Code tasks + chthonic.ps1 + ci/checks/
         tributaries = @(
             @{ name = "$($PRISM.SCROLL) Git Health";     cmd = 'git status --short | Select-Object -First 20'; cwd = "."; quick = $true  }
-            @{ name = "$($PRISM.RUST) Cargo Check";      cmd = "cargo check --quiet 2>&1";                     cwd = "."; quick = $true  }
+            @{ name = "$($PRISM.RUST) Cargo Check";      cmd = '$p = ($env:PATH -split ";" | Where-Object { $_ -notmatch "msys|ucrt64|mingw" }) -join ";"; $env:PATH = $env:USERPROFILE + "\.cargo\bin;" + $p; cargo check --quiet 2>&1'; cwd = "."; quick = $true  }
             @{ name = "$($PRISM.BUN) CI Gate Smoke";     cmd = "bun run ci/checks/inference-gate-smoke.ts 2>&1"; cwd = "."; quick = $false }
             @{ name = "$($PRISM.PYTHON) Link Audit";     cmd = "uv run scripts/link_audit.py check pathstofiles.md --dry-run 2>&1"; cwd = "."; quick = $false }
         )
