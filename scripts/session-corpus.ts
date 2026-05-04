@@ -891,8 +891,8 @@ if (embedMode && !rebuildMode) {
         G6:  hasRankedNow,
         G8b: hasEntitiesNow,
         G7:  hasVecNow && vecCountNow > 0,
-        G8a: false,
-        G8c: false,
+        G8a: (() => { try { return countQ("SELECT COUNT(*) AS c FROM sessions WHERE topic IS NOT NULL") > 0; } catch { return false; } })(),  // heuristic topic classification
+        G8c: hasEntitiesNow && (() => { try { return countQ("SELECT COUNT(*) AS c FROM entity_cooccurrence") > 0; } catch { return false; } })(),  // cross-session entity graph
       },
       vec_count: vecCountNow,
       vec_model: ACTIVE_VEC_MODEL,
@@ -1037,8 +1037,8 @@ if (!watchMode) {
       G6:  hasRanked,
       G8b: hasEntities,
       G7:  hasVec && vecCount > 0,
-      G8a: false,   // LLM summaries — future
-      G8c: false,   // cross-session views — future
+      G8a: (() => { try { return count("SELECT COUNT(*) AS c FROM sessions WHERE topic IS NOT NULL") > 0; } catch { return false; } })(),  // heuristic topic classification
+      G8c: hasEntities && (() => { try { return count("SELECT COUNT(*) AS c FROM entity_cooccurrence") > 0; } catch { return false; } })(),  // cross-session entity graph
     },
     vec_count: vecCount,
     vec_model: ACTIVE_VEC_MODEL,

@@ -1,6 +1,6 @@
 {
-  "schema_version": 3,
-  "ingest_ts": "2026-05-04T05:56:06.985Z",
+  "schema_version": 4,
+  "ingest_ts": "2026-05-04T21:48:59.685Z",
   "sessions": 13,
   "entities": 1073,
   "entity_occurrences": 16637,
@@ -12,12 +12,12 @@
     "G5": true,
     "G6": true,
     "G8b": true,
-    "G7": true,
-    "G8a": false,
-    "G8c": false
+    "G7": false,
+    "G8a": true,
+    "G8c": true
   },
-  "vec_count": 13,
-  "vec_model": "sentence-transformers/all-MiniLM-L6-v2",
-  "vec_dims": 384,
+  "vec_count": 0,
+  "vec_model": "Qwen/Qwen3-Embedding-0.6B",
+  "vec_dims": 1024,
   "satellites": []
 }

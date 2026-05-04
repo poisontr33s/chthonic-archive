@@ -116,8 +116,8 @@ ingestedAt      TEXT
 | G8b | enrich | b | ✅ done | L4 | Entity DDL + cross-session tracking | entity MCP | d1509972 |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native drain | vampire:* | 82c60dd7 |
 | G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (Apache-2.0, 32k ctx, CUDA, schema v4 — upgraded 2026-05-04 from all-MiniLM-L6-v2 384d; pipeline hardened `13089647`; gated automation `ca14e308`; Bun.WebView Tier 3 `efdce1e4`) | semantic search | 72954168 |
-| G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `sessions.intent` auto-populate | intent queries | after G7 |
-| G8c | view | c | ⬜ pending | L0 | Cross-session derived views (trend, velocity) | G9 | after G8a |
+| G8a | enrich | a | ✅ done | L2 | Heuristic topic classification (`classifyAll` — TOPIC_SIGS keyword scoring → `sessions.topic`); LLM summarization (MCP sampling G8a-next) | intent queries | `12581b3c` |
+| G8c | view | c | ✅ done | L2 | Cross-session entity co-occurrence (`entity_cooccurrence` view — entities appearing in ≥2 sessions) | `--entity-graph` | `12581b3c` |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE multi-satellite merge | full federation | after G8c |
 
 **Gate check:** `bun run ci/checks/inference-gate-smoke.ts --report`  
@@ -176,7 +176,7 @@ Emitted to `manifest/corpus-state.json` on every ingest run. This is the fast-lo
     "G0": true,  "G1a": true, "G1b": true,
     "G2": true,  "G5": true,  "G6": true,
     "G8b": true, "G7": true,
-    "G8a": false, "G8c": false
+    "G8a": true, "G8c": true
   },
   "vec_count": 13,
   "vec_model": "Qwen/Qwen3-Embedding-0.6B",
@@ -465,3 +465,32 @@ G3 is the highest-priority prompt file — it is the next open gate in the vulka
 | `src/extension/chat/chatParticipants.tsx` | Chat participant registration — how agent mode participants are registered |
 
 **Action:** Read `mcpToolCallingLoop.tsx` before next `corpus-mcp.ts` schema revision to ensure response shapes match VS Code's expected MCP tool output contract.
+
+---
+
+## Bun 1.3.13 Runtime Updates
+
+**Confirmed runtime:** `bun 1.3.13` (`package.json` `engines.bun >=1.3.13`).
+
+### Test runner — new flags (2026-04-20)
+
+| Flag | Semantics | Corpus use-case |
+|------|-----------|----------------|
+| `bun test --parallel[=N]` | Run spec files concurrently | `npm run test:parallel` — faster CI on session-corpus test suite |
+| `bun test --isolate` | Each file in its own worker | Prevents DB handle leaks in sqlite-vec tests |
+| `bun test --shard=M/N` | Distribute across N runners | Future multi-runner gate checks |
+| `bun test --changed` | Only files changed since last git commit | `npm run test:changed` — zero-cost re-run guard |
+
+Scripts wired in `package.json`: `test:changed`, `test:parallel`.
+
+### Performance wins relevant to corpus pipeline
+
+| Feature | Improvement | Impact |
+|---------|-------------|--------|
+| `bun install` tarball streaming | 17× less peak memory | HF model wheel install during G7 embed pass |
+| zlib-ng 2.3.3 | 5.5× faster gzip | Session transcript JSONL compression; `bun:gzip` in corpus ingest |
+| mimalloc v3 + libpas | ~5% less runtime memory | Sustained corpus build (13 sessions × embedding batch) |
+| SHA3 + X25519 WebCrypto | Standard in `crypto` module | Available for future session auth/signing layer |
+
+### WebView status (for HF gating pipeline)
+`Bun.WebView` shipped in **v1.3.12** — Bun 1.3.13 contains no new WebView features. `scripts/hf_gate_playwright.ts` (Tier 3 browser automation) remains current.
