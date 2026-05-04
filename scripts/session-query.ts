@@ -11,6 +11,13 @@
 //   bun run scripts/session-query.ts --sessions              # list all sessions
 //   bun run scripts/session-query.ts --session <id>          # detailed view of one session (partial id ok)
 //   bun run scripts/session-query.ts --sql "SELECT ..."      # raw SQL against corpus.sqlite
+//
+// [G6] bun run scripts/session-query.ts --ranked [N]              # recency+signal ranked sessions
+//      bun run scripts/session-query.ts --ranked 10 --alpha 0.7   # custom recency weight
+// [G8b] bun run scripts/session-query.ts --entities               # all entities by occurrence count
+//       bun run scripts/session-query.ts --entities file          # filter by kind
+//       bun run scripts/session-query.ts --entity-graph <id>      # cooccurrence neighbors
+//       bun run scripts/session-query.ts --related <sessionId>    # Jaccard entity similarity
 
 import { Database } from "bun:sqlite";
 import { existsSync } from "fs";
@@ -392,6 +399,115 @@ tr:hover td{background:#1e1e2a}
   const rows = db.prepare(sql).all() as Record<string, unknown>[];
   table(rows);
 
+// ── G6: Recency rank ────────────────────────────────────────────────────────
+} else if (flag("--ranked")) {
+  const n      = flagNum("--ranked", 20);
+  const alphaI = args.indexOf("--alpha");
+  const alpha  = alphaI >= 0 ? Math.max(0, Math.min(1, parseFloat(args[alphaI + 1] ?? "0.6"))) : 0.6;
+  console.log(`\n📊 RECENCY RANK (top ${n}, α=${alpha.toFixed(2)} recency + ${(1 - alpha).toFixed(2)} signal)\n`);
+  const rows = db.prepare(`
+    SELECT sessionId, startTime, turns, editCount, cmdCount, commitCount,
+           ROUND(recencyScore, 4)                            AS recency,
+           ROUND(signalScore,  4)                            AS signal,
+           ROUND(? * recencyScore + ? * signalScore, 4)      AS composite,
+           SUBSTR(intent, 1, 50)                             AS intent
+    FROM session_ranked
+    ORDER BY composite DESC LIMIT ?
+  `).all(alpha, 1 - alpha, n) as Record<string, unknown>[];
+  table(rows, ["sessionId", "startTime", "turns", "editCount", "recency", "signal", "composite", "intent"]);
+
+// ── G8b: Entity list ─────────────────────────────────────────────────────────
+} else if (flag("--entities")) {
+  const kindArg = (() => {
+    const i = args.indexOf("--entities");
+    const v = args[i + 1];
+    return (v && !v.startsWith("-")) ? v : null;
+  })();
+  const n = 50;
+  console.log(`\n🧬 ENTITIES${kindArg ? ` [kind=${kindArg}]` : " (all kinds)"} (top ${n})\n`);
+  const rows = (kindArg
+    ? db.prepare(`
+        SELECT e.id, e.kind, e.name,
+               COUNT(DISTINCT eo.sessionId) AS sessionCount,
+               COUNT(*)                     AS occurrenceCount
+        FROM entities e
+        JOIN entity_occurrences eo ON eo.entityId = e.id
+        WHERE e.kind = ?
+        GROUP BY e.id
+        ORDER BY occurrenceCount DESC LIMIT ?
+      `).all(kindArg, n)
+    : db.prepare(`
+        SELECT e.id, e.kind, e.name,
+               COUNT(DISTINCT eo.sessionId) AS sessionCount,
+               COUNT(*)                     AS occurrenceCount
+        FROM entities e
+        JOIN entity_occurrences eo ON eo.entityId = e.id
+        GROUP BY e.id
+        ORDER BY occurrenceCount DESC LIMIT ?
+      `).all(n)
+  ) as Record<string, unknown>[];
+  table(rows);
+
+// ── G8b: Entity cooccurrence graph ───────────────────────────────────────────
+} else if (flag("--entity-graph")) {
+  const entityId = flagArg("--entity-graph");
+  if (!entityId) { console.error("Usage: --entity-graph <entityId>"); process.exit(1); }
+  console.log(`\n🕸  ENTITY GRAPH neighbors: ${entityId}\n`);
+  const focus = db.prepare("SELECT kind, name FROM entities WHERE id = ?").get(entityId) as { kind: string; name: string } | undefined;
+  if (focus) console.log(`  Focus: [${focus.kind}] ${focus.name}\n`);
+  else { console.error(`Entity not found: ${entityId}`); process.exit(1); }
+  const neighbors = db.prepare(`
+    SELECT
+      CASE WHEN ec.fromId = ? THEN ec.toId ELSE ec.fromId END AS neighborId,
+      e.kind, e.name, ec.coSessions
+    FROM entity_cooccurrence ec
+    JOIN entities e
+      ON e.id = CASE WHEN ec.fromId = ? THEN ec.toId ELSE ec.fromId END
+    WHERE ec.fromId = ? OR ec.toId = ?
+    ORDER BY ec.coSessions DESC LIMIT 30
+  `).all(entityId, entityId, entityId, entityId) as Record<string, unknown>[];
+  table(neighbors, ["neighborId", "kind", "name", "coSessions"]);
+
+// ── G8b: Related sessions by entity Jaccard ───────────────────────────────────
+} else if (flag("--related")) {
+  const sessionId = flagArg("--related");
+  if (!sessionId) { console.error("Usage: --related <sessionId>"); process.exit(1); }
+  const s = db.prepare("SELECT * FROM sessions WHERE sessionId LIKE ?").get(`${sessionId}%`) as Record<string, unknown> | undefined;
+  if (!s) { console.error(`Session not found: ${sessionId}`); process.exit(1); }
+  const sId = String(s.sessionId);
+  console.log(`\n🔗 RELATED SESSIONS (Jaccard entity similarity): ${sId.slice(0, 8)}\n`);
+  const rows = db.prepare(`
+    WITH target AS (
+      SELECT DISTINCT entityId FROM entity_occurrences WHERE sessionId = ?
+    ),
+    intersection AS (
+      SELECT eo.sessionId, COUNT(*) AS shared
+      FROM entity_occurrences eo
+      JOIN target t ON eo.entityId = t.entityId
+      WHERE eo.sessionId != ?
+      GROUP BY eo.sessionId
+    ),
+    other_counts AS (
+      SELECT sessionId, COUNT(DISTINCT entityId) AS entCount
+      FROM entity_occurrences
+      WHERE sessionId != ?
+      GROUP BY sessionId
+    ),
+    target_count AS (SELECT COUNT(*) AS n FROM target)
+    SELECT i.sessionId,
+           ROUND(CAST(i.shared AS REAL) /
+                 (tc.n + oc.entCount - i.shared), 4)  AS jaccard,
+           i.shared,
+           oc.entCount,
+           SUBSTR(s.intent, 1, 60)                    AS intent
+    FROM intersection i
+    JOIN other_counts oc      ON i.sessionId = oc.sessionId
+    JOIN sessions s           ON i.sessionId = s.sessionId
+    JOIN target_count tc
+    ORDER BY jaccard DESC LIMIT 15
+  `).all(sId, sId, sId) as Record<string, unknown>[];
+  table(rows, ["sessionId", "jaccard", "shared", "entCount", "intent"]);
+
 } else {
   console.log(`
 session-query — query manifest/corpus.sqlite
@@ -409,10 +525,17 @@ session-query — query manifest/corpus.sqlite
   --report-html           generate manifest/corpus-report.html (self-contained, no deps)
   --sql "..."             raw SQL query against corpus.sqlite
 
+  [G6] --ranked [N]               top N sessions by composite score  (default 20)
+       --alpha <0..1>             recency weight (default 0.6; signal weight = 1-alpha)
+  [G8b] --entities [kind]         entity list, optional kind filter (file|tool|commit|gate|agent)
+        --entity-graph <id>       cooccurrence neighbors of one entity
+        --related <sessionId>     sessions related by Jaccard entity similarity
+
 Tables: sessions, session_restarts, file_edits, terminal_cmds,
-        code_blocks, tool_calls, commit_refs, memory_snapshots, messages
+        code_blocks, tool_calls, commit_refs, memory_snapshots, messages,
+        entities, entity_occurrences
 FTS5:   fts_messages, fts_cmds
-Views:  hot_files, memory_chain, session_timeline
+Views:  hot_files, memory_chain, session_timeline, session_ranked, entity_cooccurrence
 `);
 }
 
