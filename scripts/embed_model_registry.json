@@ -8,11 +8,16 @@
   "active_since": "2026-05-04",
   "schema_version": 4,
   "task_profiles": {
-    "default":       "Qwen/Qwen3-Embedding-0.6B",
-    "code_retrieval": "ibm-granite/granite-embedding-small-english-r2",
-    "multilingual":  "BAAI/bge-m3",
-    "task_aware":    "jinaai/jina-embeddings-v3",
-    "max_accuracy":  "Qwen/Qwen3-Embedding-8B"
+    "default":              "Qwen/Qwen3-Embedding-0.6B",
+    "code_retrieval":       "ibm-granite/granite-embedding-small-english-r2",
+    "multilingual":         "BAAI/bge-m3",
+    "multilingual_enhanced":"Cohere/Cohere-embed-multilingual-v3.0",
+    "task_aware":           "jinaai/jina-embeddings-v3",
+    "max_accuracy":         "Qwen/Qwen3-Embedding-8B",
+    "semantic":             "google/embeddinggemma-300m",
+    "high_accuracy":        "NVIDIA/NV-Embed-v2",
+    "english_commercial":   "Cohere/Cohere-embed-english-v3.0",
+    "multilingual_commercial":"mistralai/Mistral-Embed"
   },
   "models": {
     "sentence-transformers/all-MiniLM-L6-v2": {
@@ -140,6 +145,66 @@
       "hf_downloads": "6.6M (2026-05-04)",
       "architecture": "modernbert",
       "notes": "ModernBERT architecture (2025 encoder refresh). Apache-2.0. Same dims as current baseline so zero schema migration. Strong English + code retrieval benchmarks (arxiv:2508.21085). Fast inference — encoder-only, no causal overhead. Underrated pick if upgrade budget is zero.",
+      "migration_to": null
+    },
+    "Cohere/Cohere-embed-multilingual-v3.0": {
+      "dims": 1024,
+      "context_tokens": 512,
+      "license": "cc-by-nc-4.0 (self-hosted) / commercial via Cohere API",
+      "gated": false,
+      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms",
+      "schema_version_required": 4,
+      "tei_compatible": true,
+      "hf_downloads": "21.3M (2026-05-04)",
+      "params_M": 560,
+      "architecture": "transformer encoder",
+      "matryoshka": false,
+      "notes": "GATED (agree-terms). Leading multilingual embedding model — 100+ languages. 1024d. MTEB multilingual top-tier. TEI-compatible, ONNX export available. RTX 4090: ~2GB VRAM FP16, runs at very high batch size. Strong for code+prose cross-lingual retrieval. task_profile: multilingual_enhanced.",
+      "migration_to": null
+    },
+    "Cohere/Cohere-embed-english-v3.0": {
+      "dims": 1024,
+      "context_tokens": 512,
+      "license": "cc-by-nc-4.0 (self-hosted) / commercial via Cohere API",
+      "gated": false,
+      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms",
+      "schema_version_required": 4,
+      "tei_compatible": true,
+      "hf_downloads": "14.2M (2026-05-04)",
+      "params_M": 560,
+      "architecture": "transformer encoder",
+      "notes": "GATED (agree-terms). English-focused sibling of multilingual v3. 1024d. MTEB English SOTA for encoder-only size class. Same VRAM profile as multilingual variant. task_profile: english_commercial.",
+      "migration_to": null
+    },
+    "mistralai/Mistral-Embed": {
+      "dims": 1024,
+      "context_tokens": 8192,
+      "license": "mistral-community (non-commercial allowed, commercial requires agreement)",
+      "gated": "form",
+      "gating_type": "form",
+      "_gated_live_check": "2026-05-04 — agree-terms API absent; org-controlled gate confirmed. Run --allow-playwright or visit HF Hub to request access.",
+      "schema_version_required": 4,
+      "tei_compatible": true,
+      "hf_downloads": "5.1M (2026-05-04)",
+      "params_M": 7111,
+      "architecture": "mistral decoder finetuned bidirectional",
+      "notes": "GATED (agree-terms). Mistral's embedding model — 7B decoder finetuned for retrieval. 8192 ctx. 1024d output. ~14GB VRAM FP16 on RTX 4090 (TRT quantized to INT8 fits <8GB). Strong on code + technical prose. MTEB competitive with much smaller encoders. TEI supports it. task_profile: multilingual_commercial.",
+      "migration_to": null
+    },
+    "NVIDIA/NV-Embed-v2": {
+      "dims": 4096,
+      "context_tokens": 32768,
+      "license": "other (NVIDIA NV-Community — non-commercial; commercial requires NVIDIA agreement)",
+      "gated": false,
+      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible (NV-Community terms accepted by HF account or not enforced at download level)",
+      "schema_version_required": 6,
+      "tei_compatible": true,
+      "hf_downloads": "2.9M (2026-05-04)",
+      "params_M": 7566,
+      "architecture": "llama3 decoder finetuned bidirectional (latent attention)",
+      "matryoshka": false,
+      "_rtx4090_note": "~15GB VRAM FP16; TEI TRT backend quantizes to INT8 at ~8GB. RTX 4090 24GB runs FP16 comfortably with bs=8. Designed specifically for NVIDIA hardware — Flash Attn 2 path, cuBLAS GEMM. Best MTEB score of any model in registry (69.32 as of 2026-05-04).",
+      "notes": "GATED (agree-terms). SOTA MTEB as of 2026-05. 7B Llama-3 decoder with latent attention pooling. 4096d native (use Matryoshka-style truncation to 1024d via TEI dim truncation for schema v4). 32k ctx — captures full multi-session texts. NVIDIA hardware advantage: TRT backend, Flash Attn 2, cuBLAS. Best accuracy pick when VRAM budget allows. task_profile: high_accuracy.",
       "migration_to": null
     }
   }

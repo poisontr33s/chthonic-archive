@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # @SID: embed_gate_accept — HF gated model acceptance (3-tier CLI-first escalation ladder)
-# Protocol: G7-REDUX — programmatic gate acceptance so gated embedding models can be used
-#           without manual HF Hub UI interaction.
+# Protocol: G7-REDUX — programmatic gate acceptance so gated embedding models can be used NOTE: BUN LATEST VERSION RESOLVES PLAYWRIGHT automation via —> 1.3.13 (!) — no separate playwright install needed
+#           without manual HF Hub UI interaction. Metadta may be stale (e.g. gated status can change), so script checks live API status and escalates through multiple acceptance methods if needed.
 #
 # Escalation ladder (tried in order, stops at first success):
 #
@@ -13,7 +13,7 @@
 #   Tier 3  Bun.WebView      — bun run scripts/hf_gate_playwright.ts (headless Chromium)
 #                             For gated="form" (Meta Llama, some Mistral) or Tier 1 403
 #                             Only fires when --allow-playwright is passed
-#                             Uses Bun.WebView (built-in v1.3.12+, no npm/playwright dep, Chrome via DevTools Protocol)
+#                             Uses Bun.WebView (built-in v1.3.12+, no npm/playwright dep, Chrome via DevTools Protocol) 
 #
 # Note on the active model: Qwen/Qwen3-Embedding-0.6B has gated=false → Tier 0 fast-exit.
 # This script becomes active when a gated model (e.g. google/embeddinggemma-300m,
@@ -179,6 +179,31 @@ def accept_auto_gate(model_id: str, token: str) -> dict:
                 ),
                 "http_status": 403,
             }
+        if e.code == 404:
+            # agree-terms endpoint absent — this model does not use HF's agree-terms API gate.
+            # Verify accessibility via model info endpoint: if reachable and not gated, treat as open.
+            live = check_gate_status(model_id, token)
+            if live["api_gated"] is False:
+                return {
+                    "success": True,
+                    "detail": "agree-terms endpoint absent (HTTP 404) — model not gated via agree-terms API; openly accessible",
+                    "http_status": 404,
+                }
+            if live["user_accepted"] is True:
+                return {
+                    "success": True,
+                    "detail": "agree-terms endpoint absent (HTTP 404) — model accessible via organisation-controlled gate (already granted)",
+                    "http_status": 404,
+                }
+            return {
+                "success": False,
+                "detail": (
+                    f"agree-terms endpoint absent (HTTP 404) — model uses organisation-controlled access gate. "
+                    f"Visit https://huggingface.co/{model_id} to request access, "
+                    f"or re-run with --allow-playwright to attempt form automation."
+                ),
+                "http_status": 404,
+            }
         return {"success": False, "detail": f"HTTP {e.code}: {body[:300]}", "http_status": e.code}
     except Exception as e:
         return {"success": False, "detail": f"Network error: {e}", "http_status": None}
@@ -263,6 +288,143 @@ def accept_form_gate_bun(model_id: str, token: str | None) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Core acceptance logic — shared by single-model and batch modes
+# ---------------------------------------------------------------------------
+
+def _do_accept(
+    model_id: str,
+    registry_gated,
+    token: str | None,
+    allow_playwright: bool,
+) -> tuple[dict, int]:
+    """
+    Accept gate for a single model. Returns (result_dict, exit_code).
+
+    Called by both single-model path and --accept-all batch mode so the
+    escalation ladder lives in exactly one place.
+    """
+    if registry_gated is False:
+        return (
+            {
+                "model_id": model_id, "gated": False, "status": "not_gated",
+                "method": "none",
+                "detail": "Model is not gated per registry — no acceptance needed",
+                "pass": True,
+            },
+            0,
+        )
+
+    if not token:
+        return (
+            {
+                "model_id": model_id, "gated": registry_gated, "status": "failed",
+                "method": "none",
+                "detail": "HF token required for gated model acceptance. Set HF_TOKEN or run: . .\\scripts\\api_pool.ps1 -Quiet",
+                "pass": False,
+            },
+            1,
+        )
+
+    gate_status = check_gate_status(model_id, token)
+
+    if gate_status["user_accepted"] is True:
+        return (
+            {
+                "model_id": model_id, "gated": registry_gated, "status": "already_accepted",
+                "method": "hf_api_check",
+                "detail": "Gate already accepted — model is accessible",
+                "pass": True,
+            },
+            0,
+        )
+
+    if registry_gated == "auto" or (gate_status["api_gated"] not in ("manual", None)):
+        result = accept_auto_gate(model_id, token)
+        if result["success"]:
+            return (
+                {
+                    "model_id": model_id, "gated": registry_gated, "status": "accepted_now",
+                    "method": "hf_api", "detail": result["detail"], "pass": True,
+                },
+                0,
+            )
+
+        if result.get("http_status") == 403:
+            if allow_playwright:
+                pw_result = accept_form_gate_bun(model_id, token)
+                status = "accepted_now" if pw_result["success"] else "failed"
+                return (
+                    {
+                        "model_id": model_id, "gated": registry_gated, "status": status,
+                        "method": pw_result.get("method", "bun_webview"),
+                        "detail": pw_result["detail"], "pass": pw_result["success"],
+                    },
+                    0 if pw_result["success"] else 1,
+                )
+            else:
+                return (
+                    {
+                        "model_id": model_id, "gated": registry_gated, "status": "pending_form",
+                        "method": "none",
+                        "detail": (
+                            f"Model requires manual form acceptance on HF Hub. "
+                            f"Re-run with --allow-playwright to automate via Bun.WebView "
+                            f"(Bun v1.3.12+ native, no npm), or visit: "
+                            f"https://huggingface.co/{model_id}"
+                        ),
+                        "pass": False,
+                    },
+                    1,
+                )
+
+        return (
+            {
+                "model_id": model_id, "gated": registry_gated, "status": "failed",
+                "method": "hf_api", "detail": result["detail"], "pass": False,
+            },
+            1,
+        )
+
+    if registry_gated == "form" or gate_status["api_gated"] == "manual":
+        if allow_playwright:
+            pw_result = accept_form_gate_bun(model_id, token)
+            status = "accepted_now" if pw_result["success"] else "failed"
+            return (
+                {
+                    "model_id": model_id, "gated": registry_gated, "status": status,
+                    "method": pw_result.get("method", "bun_webview"),
+                    "detail": pw_result["detail"], "pass": pw_result["success"],
+                },
+                0 if pw_result["success"] else 1,
+            )
+        else:
+            return (
+                {
+                    "model_id": model_id, "gated": registry_gated, "status": "pending_form",
+                    "method": "none",
+                    "detail": (
+                        f"Model {model_id!r} requires manual form gate. "
+                        f"Re-run with --allow-playwright to automate via Bun.WebView "
+                        f"(Bun v1.3.12+ native, no npm), or visit: "
+                        f"https://huggingface.co/{model_id} and click 'Agree and access repository'."
+                    ),
+                    "pass": False,
+                },
+                1,
+            )
+
+    return (
+        {
+            "model_id": model_id, "gated": registry_gated, "status": "failed",
+            "method": "none",
+            "detail": f"Unknown gate state: registry_gated={registry_gated!r}, api_gated={gate_status['api_gated']!r}",
+            "pass": False,
+        },
+        1,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -283,6 +445,22 @@ def main():
         help="Report gate status without accepting"
     )
     parser.add_argument(
+        "--accept-all",
+        action="store_true",
+        dest="accept_all",
+        help=(
+            "Accept gates for ALL gated models in registry (batch mode). "
+            "Writes manifest/embed_gate_accept_batch.json. "
+            "Exit 0 if all accepted/already-open, 1 if any hard failure."
+        ),
+    )
+    parser.add_argument(
+        "--list-gated",
+        action="store_true",
+        dest="list_gated",
+        help="List all gated models from registry with gating type. No API calls.",
+    )
+    parser.add_argument(
         "--allow-playwright",
         action="store_true",
         dest="allow_playwright",
@@ -298,170 +476,108 @@ def main():
         print(json.dumps(out, indent=2))
         sys.exit(1)
 
+    models_map = registry.get("models", {})
+
+    # ------------------------------------------------------------------
+    # --list-gated: show all gated models, no API calls
+    # ------------------------------------------------------------------
+    if args.list_gated:
+        gated_models = {
+            mid: {
+                "gated": info.get("gated"),
+                "dims": info.get("dims"),
+                "license": info.get("license", "unknown"),
+                "notes": (info.get("notes", "")[:100] + "...") if len(info.get("notes", "")) > 100 else info.get("notes", ""),
+            }
+            for mid, info in models_map.items()
+            if info.get("gated") is not False
+        }
+        out = {"total_gated": len(gated_models), "models": gated_models}
+        print(json.dumps(out, indent=2))
+        sys.exit(0)
+
+    # ------------------------------------------------------------------
+    # --accept-all: batch acceptance sweep over all gated models
+    # ------------------------------------------------------------------
+    if args.accept_all:
+        import time as _time
+        token = get_hf_token()
+        results = []
+        any_failure = False
+
+        for mid, minfo in models_map.items():
+            gated = minfo.get("gated", False)
+            result, _ = _do_accept(mid, gated, token, args.allow_playwright)
+            results.append(result)
+            if not result["pass"] and gated is not False:
+                any_failure = True
+
+        batch_out = {
+            "ts": _time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime()),
+            "total": len(results),
+            "gated_count": sum(1 for r in results if r.get("gated") is not False),
+            "accepted": sum(1 for r in results if r["pass"] and r.get("gated") is not False),
+            "already_accepted": sum(1 for r in results if r.get("status") == "already_accepted"),
+            "skipped_not_gated": sum(1 for r in results if r.get("gated") is False),
+            "failed": sum(1 for r in results if not r["pass"] and r.get("gated") is not False),
+            "results": results,
+        }
+
+        manifest_path = Path(__file__).parent.parent / "manifest" / "embed_gate_accept_batch.json"
+        manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        manifest_path.write_text(json.dumps(batch_out, indent=2))
+
+        print(json.dumps(batch_out, indent=2))
+        sys.exit(1 if any_failure else 0)
+
+    # ------------------------------------------------------------------
+    # Single-model path (default)
+    # ------------------------------------------------------------------
     model_id = args.model_id or registry.get("active_model_id")
     if not model_id:
         out = {"pass": False, "status": "failed", "detail": "No model_id specified and no active_model_id in registry"}
         print(json.dumps(out, indent=2))
         sys.exit(1)
 
-    model_info = registry.get("models", {}).get(model_id, {})
+    model_info = models_map.get(model_id, {})
     registry_gated = model_info.get("gated", False)
 
-    # --- Not gated: fast exit ---
-    if registry_gated is False:
-        out = {
-            "model_id": model_id,
-            "gated": False,
-            "status": "not_gated",
-            "method": "none",
-            "detail": "Model is not gated per registry — no acceptance needed",
-            "pass": True
-        }
-        print(json.dumps(out, indent=2))
-        sys.exit(0)
-
-    # --- Need token for gated work ---
-    token = get_hf_token()
-    if not token:
-        out = {
-            "model_id": model_id,
-            "gated": registry_gated,
-            "status": "failed",
-            "method": "none",
-            "detail": "HF token required for gated model acceptance. Set HF_TOKEN or run: . .\\scripts\\api_pool.ps1 -Quiet",
-            "pass": False
-        }
-        print(json.dumps(out, indent=2))
-        sys.exit(1)
-
-    # --- Check current gate status via HF API ---
-    gate_status = check_gate_status(model_id, token)
-
+    # --check-only: status report without acceptance attempt
     if args.check_only:
-        out = {
-            "model_id": model_id,
-            "gated": registry_gated,
-            "api_gated": gate_status["api_gated"],
-            "user_accepted": gate_status["user_accepted"],
-            "status": "already_accepted" if gate_status["user_accepted"] else "pending",
-            "method": "check_only",
-            "detail": gate_status["detail"],
-            "pass": bool(gate_status["user_accepted"])
-        }
-        print(json.dumps(out, indent=2))
-        sys.exit(0 if gate_status["user_accepted"] else 1)
-
-    # Already accepted
-    if gate_status["user_accepted"] is True:
-        out = {
-            "model_id": model_id,
-            "gated": registry_gated,
-            "status": "already_accepted",
-            "method": "hf_api_check",
-            "detail": "Gate already accepted — model is accessible",
-            "pass": True
-        }
-        print(json.dumps(out, indent=2))
-        sys.exit(0)
-
-    # --- Try auto-gate acceptance ---
-    if registry_gated == "auto" or (gate_status["api_gated"] not in ("manual", None)):
-        result = accept_auto_gate(model_id, token)
-        if result["success"]:
+        token = get_hf_token()
+        if registry_gated is False:
             out = {
-                "model_id": model_id,
-                "gated": registry_gated,
-                "status": "accepted_now",
-                "method": "hf_api",
-                "detail": result["detail"],
-                "pass": True
+                "model_id": model_id, "gated": False, "status": "not_gated",
+                "method": "check_only",
+                "detail": "Model is not gated per registry — no acceptance needed",
+                "pass": True,
             }
-            print(json.dumps(out, indent=2))
-            sys.exit(0)
-
-        # If auto-gate failed with 403 → model actually needs form gate
-        if result.get("http_status") == 403:
-            if args.allow_playwright:
-                pw_result = accept_form_gate_bun(model_id, token)
-                out = {
-                    "model_id": model_id,
-                    "gated": registry_gated,
-                    "status": "accepted_now" if pw_result["success"] else "failed",
-                    "method": pw_result.get("method", "bun_webview"),
-                    "detail": pw_result["detail"],
-                    "pass": pw_result["success"]
-                }
-                print(json.dumps(out, indent=2))
-                sys.exit(0 if pw_result["success"] else 1)
-            else:
-                out = {
-                    "model_id": model_id,
-                    "gated": registry_gated,
-                    "status": "pending_form",
-                    "method": "none",
-                    "detail": (
-                        f"Model requires manual form acceptance on HF Hub. "
-                        f"Re-run with --allow-playwright to automate via Bun.WebView (Bun v1.3.12+ native, no npm), or visit: "
-                        f"https://huggingface.co/{model_id}"
-                    ),
-                    "pass": False
-                }
-                print(json.dumps(out, indent=2))
-                sys.exit(1)
-
-        # Other failure
-        out = {
-            "model_id": model_id,
-            "gated": registry_gated,
-            "status": "failed",
-            "method": "hf_api",
-            "detail": result["detail"],
-            "pass": False
-        }
-        print(json.dumps(out, indent=2))
-        sys.exit(1)
-
-    # --- Form-gated fallback ---
-    if registry_gated == "form" or gate_status["api_gated"] == "manual":
-        if args.allow_playwright:
-            pw_result = accept_form_gate_bun(model_id, token)
+        elif not token:
             out = {
-                "model_id": model_id,
-                "gated": registry_gated,
-                "status": "accepted_now" if pw_result["success"] else "failed",
-                "method": pw_result.get("method", "bun_webview"),
-                "detail": pw_result["detail"],
-                "pass": pw_result["success"]
+                "model_id": model_id, "gated": registry_gated, "status": "check_failed",
+                "method": "check_only",
+                "detail": "HF token required to check gate status. Set HF_TOKEN.",
+                "pass": False,
             }
-            print(json.dumps(out, indent=2))
-            sys.exit(0 if pw_result["success"] else 1)
         else:
+            gate_status = check_gate_status(model_id, token)
             out = {
                 "model_id": model_id,
                 "gated": registry_gated,
-                "status": "pending_form",
-                "method": "none",
-                "detail": (
-                    f"Model {model_id!r} requires manual form gate. "
-                    f"Re-run with --allow-playwright to automate via Bun.WebView (Bun v1.3.12+ native, no npm), or visit: "
-                    f"https://huggingface.co/{model_id} and click 'Agree and access repository'."
-                ),
-                "pass": False
+                "api_gated": gate_status["api_gated"],
+                "user_accepted": gate_status["user_accepted"],
+                "status": "already_accepted" if gate_status["user_accepted"] else "pending",
+                "method": "check_only",
+                "detail": gate_status["detail"],
+                "pass": bool(gate_status["user_accepted"]),
             }
-            print(json.dumps(out, indent=2))
-            sys.exit(1)
+        print(json.dumps(out, indent=2))
+        sys.exit(0 if out["pass"] else 1)
 
-    # Unknown gating state
-    out = {
-        "model_id": model_id,
-        "gated": registry_gated,
-        "status": "failed",
-        "method": "none",
-        "detail": f"Unknown gate state: registry_gated={registry_gated!r}, api_gated={gate_status['api_gated']!r}",
-        "pass": False
-    }
+    token = get_hf_token()
+    out, code = _do_accept(model_id, registry_gated, token, args.allow_playwright)
     print(json.dumps(out, indent=2))
-    sys.exit(1)
+    sys.exit(code)
 
 
 if __name__ == "__main__":

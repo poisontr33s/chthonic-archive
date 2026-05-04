@@ -119,7 +119,19 @@
     "session:query:hot": "bun run scripts/session-query.ts --hot-files",
     "session:query:tools": "bun run scripts/session-query.ts --tool-frequency",
     "session:query:search": "bun run scripts/session-query.ts --search",
-    "session:query:messages": "bun run scripts/session-query.ts --messages"
+    "session:query:messages": "bun run scripts/session-query.ts --messages",
+    "embed:gate:list": "uv run scripts/embed_gate_accept.py --list-gated",
+    "embed:gate:check": "uv run scripts/embed_gate_accept.py --check-only",
+    "embed:gate:accept": "uv run scripts/embed_gate_accept.py",
+    "embed:gate:accept:all": "uv run scripts/embed_gate_accept.py --accept-all",
+    "embed:gate:accept:all:playwright": "uv run scripts/embed_gate_accept.py --accept-all --allow-playwright",
+    "embed:discover": "uv run scripts/embed_model_discover.py",
+    "embed:discover:gated": "uv run scripts/embed_model_discover.py --filter-gated",
+    "embed:discover:open": "uv run scripts/embed_model_discover.py --filter-open",
+    "embed:discover:top": "uv run scripts/embed_model_discover.py --sort-by mteb --min-downloads 50000",
+    "embed:switch": "uv run scripts/embed_registry_switch.py",
+    "embed:switch:list": "uv run scripts/embed_registry_switch.py --list",
+    "embed:switch:dry": "uv run scripts/embed_registry_switch.py --dry-run"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
