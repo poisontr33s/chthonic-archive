@@ -307,3 +307,161 @@ WHERE s.sessionId = '2b2dfd13-5eee-...';
 
 Fast pickup rule: if you are **building or observing** → start in `VAMPIRISM_SATELLITES.md`.  
 If you are **ingesting or querying** → start here.
+
+---
+
+## GHC Integration Vectors (v1.99–v1.102)
+
+> **Context:** How the VS Code Insiders + Copilot Chat release cycle (v1.99–v1.102) aligns with or extends the corpus pipeline architecture. Research date: 2026-05-04 (anno).
+
+### MCP Layer Alignment
+
+`corpus-mcp.ts` is a first-class MCP surface (four tools: `corpus_search`, `corpus_semantic_search`, `corpus_session`, `corpus_entities`, `corpus_timeline`). The v1.99–v1.102 cycle advances MCP from experimental to GA and materially widens the protocol surface:
+
+| MCP Evolution | Version | corpus-mcp.ts Impact |
+|--------------|---------|----------------------|
+| MCP server support lands in stable | v1.99 | `corpus-mcp.ts` is a first-class VS Code server from this release |
+| MCP Streamable HTTP transport | v1.100 | Future: streaming `corpus_search` result pages |
+| MCP prompts (`/mcp.server.prompt` slash cmds) | v1.101 | `/mcp.corpus.gate_status` as a slash command exposed from `corpus-mcp.ts` |
+| MCP resources (attach as context) | v1.101 | `manifest/corpus-state.json` as an MCP resource — gate ladder always in context |
+| MCP sampling — servers request back to model | v1.101 | G8a (LLM session summaries) can be triggered from within corpus-mcp via sampling |
+| **MCP GA** — stable protocol, org policy, curated list | v1.102 | Breaking-change risk removed; server management view replaces manual `settings.json` |
+| MCP in profile-scoped `mcp.json` (not `settings.json`) | v1.102 | New high-signal sovereignty surface (see below) |
+| MCP elicitations — server requests input | v1.102 | `corpus-mcp.ts` can elicit query parameters (session date range, tag filter) interactively |
+
+**Action:** `corpus-mcp.ts` registration moves from `settings.json#mcpServers` to profile-scoped `mcp.json` when user upgrades to v1.102. Registration block:
+```json
+{
+  "corpus": {
+    "command": "bun",
+    "args": ["run", "scripts/corpus-mcp.ts"],
+    "cwd": "${workspaceFolder}"
+  }
+}
+```
+
+### Satellite New Surface: `User/mcp.json`
+
+With MCP GA in v1.102, `%APPDATA%\Code - Insiders\User\mcp.json` becomes a profile-scoped sovereignty surface: it records which MCP servers run, their auth config, and tool exposure. The `vampire-vscode-surface` satellite source contract (defined in `VAMPIRISM_SATELLITES.md`) must include this path alongside the existing `sync/` surface.
+
+**Schema extension for `vscode_sync_queue`:**
+```sql
+-- surface: 'mcp_profile' — new surface type for mcp.json capture
+-- item_id: '<profile_name>_mcp' — one row per profile
+-- payload: full mcp.json content (BLOB) — what servers run, what tools they expose
+-- captured_ts: epoch when captured; upload_ts NULL = captured before upload
+INSERT INTO vscode_sync_queue (item_id, surface, payload, captured_ts)
+VALUES ('default_mcp', 'mcp_profile', readfile('User/mcp.json'), unixepoch());
+```
+
+**Why this matters:** The `sync/` surface already captures settings sync payloads. `mcp.json` is a new parallel sovereignty surface — a user's MCP server list is a high-signal artifact (reveals what AI tools run, what data they can access). Observing it locally before Settings Sync uploads it is consistent with the Vampirism doctrine.
+
+### CLI Dispatch (`code chat` — v1.102)
+
+`code chat` CLI opens a direct automation path for corpus-aware scripts without opening the VS Code UI:
+
+```powershell
+# Pipe gate status to agent for autonomous analysis
+bun run session:query --status | code chat -m agent -a manifest/corpus-state.json "analyze gate ladder and recommend next action"
+
+# Run gate walk step non-interactively
+code chat -m agent "execute G3 gate: write transition_image_layout() in vulkan-lab/cli-renderer/src/main.rs"
+
+# Stdin injection: session timeline → agent
+bun run session:query --timeline | code chat -m agent - "summarize corpus quality delta since last embed pass"
+
+# Run with custom gate-walk mode (v1.101+)
+code chat -m gate-walk "advance to G3, commit with --no-verify and Pentea co-author trailer"
+```
+
+**Automation chain:** `scripts/chthonic.ps1` can wrap `code chat` for scheduled autonomous gate ticks. Combined with terminal auto-approval, full gate cycles run without UI interaction.
+
+### Terminal Auto-Approval — Chthonic Toolchain Config (v1.102)
+
+`github.copilot.chat.agent.terminal.allowList` + `denyList` enable unattended terminal dispatch. Recommended `.vscode/settings.json` additions for chthonic-archive gate-walk automation:
+
+```jsonc
+"github.copilot.chat.agent.terminal.allowList": [
+  "bun run",         // corpus ingest, vampire drain, gate checks, embed
+  "uv run",          // embed.py, embed_doctor.py, embed_gate_accept.py, probes
+  "cargo build",     // vulkan-lab cli-renderer
+  "cargo check",
+  "cargo clippy",
+  "cargo test",
+  "git add -f",      // vulkan-lab/ and tools/ are .gitignored — -f required
+  "git commit",      // --no-verify standard in chthonic-archive
+  "git status",
+  "git log",
+  "rv",              // Ruby toolchain
+  "pwsh"             // PowerShell scripts (chthonic.ps1, api_pool.ps1)
+],
+"github.copilot.chat.agent.terminal.denyList": [
+  "rm -rf",
+  "Remove-Item -Recurse -Force",
+  "git push --force",
+  "git reset --hard"
+]
+```
+
+**Corpus integrity note:** `chthonic-shell-hook.ps1` logs all terminal commands to `manifest/terminal_session.jsonl`. With auto-approval, agent-dispatched terminal commands land in the JSONL alongside manual commands. The `source` field does not currently distinguish them — this is a future schema consideration for `terminal_cmds` in `corpus.sqlite` (add `source TEXT CHECK(source IN ('manual', 'agent', 'script'))`).
+
+### Gate-Walk Custom Chat Mode (v1.101/v1.102)
+
+Custom chat modes (`*.chatprompt.md`) with `model:` frontmatter (v1.102) encode the gate-walk context at mode entry:
+
+```markdown
+---
+description: Chthonic Archive gate-walk mode — corpus tools + gate status always in context
+tools:
+  - corpus_search
+  - corpus_semantic_search
+  - corpus_session
+  - corpus_timeline
+  - fetch
+  - usages
+model: claude-sonnet-4-5
+---
+
+You are operating in chthonic-archive gate-walk mode.
+Active gate ladder: `bun run session:query --status` → `manifest/corpus-state.json`.
+Commit standard: `--no-verify`. Co-author: `Pentea <223556219+Penteaa@users.noreply.github.com>`.
+Never delete; upcycle per WET_PAPER_TO_GOLD_METHODOLOGY.md.
+```
+
+**File:** `.vscode/gate-walk.chatprompt.md` (pending — add to Next Build Actions Priority 6).
+
+### `#copilotCodingAgent` as Pentea Background Session Vector (v1.102)
+
+`#copilotCodingAgent` tool (v1.102) enables background coding agent sessions with session log view. This is architecturally adjacent to the `agentStop` hook queue in `scripts/pentea_autoloop.ts`:
+
+| Mechanism | Surface | Status | Corpus relevance |
+|-----------|---------|--------|-----------------|
+| `agentStop` hook (SDK) | `meta-ide/copilot-sdk/sdk/index.d.ts` | Implemented (`scripts/pentea_autoloop.ts`) | Agent sessions → transcript → corpus ingest |
+| `#copilotCodingAgent` (v1.102) | VS Code Chat panel + PR/issue view | Available in v1.102 | Background sessions = new transcript stream → new corpus drain path |
+
+Both produce session transcripts. `vampire-copilot-chat` captures both streams (`GitHub.copilot-chat/transcripts/`). No corpus schema change required — `copilotVersion` column on `sessions` already captures agent context. `workspaceHash` on `sessions` may differ for coding agent sessions — verify before assuming they land in the standard drain path.
+
+### Prompt Files as Gate Encoders (v1.100)
+
+Each gate in the G7-REDUX walk can be encoded as a `.prompt.md` file, making the gate runnable via `/` slash command without full context re-establishment:
+
+| Gate | Prompt file | Key tools in frontmatter |
+|------|-------------|--------------------------|
+| G3 ASCII framebuffer | `.vscode/prompts/g3-ascii-framebuffer.prompt.md` | `codebase`, `editFiles`, `runCommands` |
+| G7 embed pass | `.vscode/prompts/g7-embed-pass.prompt.md` | `runCommands` (`bun run session:corpus -- --embed`) |
+| G8a LLM summaries | `.vscode/prompts/g8a-intent-classify.prompt.md` | `runCommands`, `fetch` |
+| G9 federation | `.vscode/prompts/g9-federation-attach.prompt.md` | `codebase`, `editFiles` |
+
+G3 is the highest-priority prompt file — it is the next open gate in the vulkan-lab gate walk and unblocks G4–G6.
+
+### Open Source Inspection Targets (v1.102)
+
+`microsoft/vscode-copilot-chat` (MIT). Files of direct corpus/satellite interest:
+
+| File | Signal |
+|------|--------|
+| `src/extension/chat/mcpToolCallingLoop.tsx` | Tool dispatch loop — how tools are called, retried, results merged — align `corpus-mcp.ts` tool response shapes |
+| `src/extension/chat/agentPrompt.tsx` | Agent prompt construction — system prompt shape, tool injection order |
+| `src/extension/chat/chatParticipants.tsx` | Chat participant registration — how agent mode participants are registered |
+
+**Action:** Read `mcpToolCallingLoop.tsx` before next `corpus-mcp.ts` schema revision to ensure response shapes match VS Code's expected MCP tool output contract.

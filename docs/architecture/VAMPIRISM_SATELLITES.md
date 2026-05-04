@@ -425,5 +425,99 @@ This document is a **parallel ladder** to the **FAF** plan, not part of *G6–G9
 | 1 | `vampire-vscode-surface` watcher + normalizer scaffolding | after G7.0 |
 | 2 | Corpus ATTACH DATABASE merge query set | after vampire-vscode-surface drain DB exists |
 | 3 | `vampire-terminal-history` (PSReadLine ingest) | low-effort, any time |
+| 4 | Wire `corpus-mcp.ts` to VS Code profile-scoped `mcp.json` (v1.102 MCP GA) | after G7 |
+| 5 | Terminal auto-approval allowList — add chthonic toolchain entries (`bun run`, `uv run`, `git commit --no-verify`, `cargo`) | v1.102 installed |
+| 6 | `gate-walk.chatprompt.md` custom chat mode with corpus tool set | after corpus-mcp stable |
+| 7 | Prompt files (`.prompt.md`) per gate: `g3-ascii-framebuffer.prompt.md`, `g7-embed-pass.prompt.md` | after G3, G7 |
+| 8 | `#copilotCodingAgent` (v1.102) as Pentea background session channel — investigate dispatch contract | v1.102 installed |
+| 9 | Add `User/mcp.json` to `vampire-vscode-surface` source contract (new v1.102 sovereignty surface) | before vampire-vscode-surface implementation |
 
 The CI gate (`federation-contract-validate.ts`) is the only item that can ship before G7.0 — it validates the doctrine before any new satellite exists, which is the correct enforcement order.
+
+---
+
+## GHC Agent Mode Research (v1.99–v1.102)
+
+> **Lens:** How each VS Code Insiders + GitHub Copilot Chat release surfaces new vectors for the corpus/satellite architecture, the G7-REDUX gate walk, and autonomous toolchain dispatch.  
+> **Research date:** 2026-05-04 (anno). Coverage: v1.99 (March 2025) → v1.102 (June 2025).
+
+### v1.99 — Agent Mode GA (March 2025)
+
+| Feature | Signal | Relevance |
+|---------|--------|-----------|
+| **Agent mode GA** (`chat.agent.enabled`) — unified Ask/Edit/Agent modes in single Chat view | Stable, not experimental | Agent mode is the canonical execution surface for corpus-aware gate workflows |
+| **MCP server support** — `mcp` settings key or `.vscode/mcp.json`; `MCP: Add Server`; auto-discovers Claude Desktop servers | Infrastructure landed | `corpus-mcp.ts` can surface via this mechanism from v1.99 onward |
+| **`#fetch` tool** (headless browser, JS disabled) + **`#usages`** (Find All References/Impl/Definition) + **thinking tool** (experimental `github.copilot.chat.agent.thinkingTool`) | Three new built-in agent tools | `#fetch` + `#usages` usable inline in gate-walk sessions without custom tools |
+| **Tool approvals** — remember at session/workspace/app level; `chat.tools.autoApprove` experimental | Approval state persistence | Foundation for the auto-approval allowList system that GA lands in v1.102 |
+| **BYOK (Preview)** — Anthropic, Azure, Gemini, OpenAI, Ollama, OpenRouter | User-controlled model routing | Enables tabbyAPI (chthonic-archive local inference) as Copilot backend |
+| **SWE-bench 56.0%** with Claude 3.7 Sonnet | Capability baseline | G7-REDUX gate work (vulkan-lab, embed pipeline) is within the agent capability envelope |
+| **Instant workspace indexing** for `#codebase`/`@workspace` | No wait for corpus-quality search | Parallel to semantic search in `corpus-mcp.ts` — different index (workspace tree vs sqlite-vec), same intent |
+
+### v1.100 — Prompt Files + Faster Edits (April 2025)
+
+| Feature | Signal | Relevance |
+|---------|--------|-----------|
+| **Prompt files** (`.prompt.md`) — standalone reusable chat requests with `mode: 'agent'`, `tools:` frontmatter; run via `/` slash command | New dispatch primitive | Gate-walk workflows can be encoded as prompt files — run G3 via `/g3-ascii-framebuffer` |
+| **Instructions files** (`.instructions.md`) — `applyTo` glob frontmatter replaces `.github/copilot-instructions.md` | Per-glob instruction injection | Already in use in chthonic-archive; v1.100 formalizes auto-attach contract |
+| **Faster agent mode edits** — OpenAI apply-patch (GPT-4.1, o4-mini) + Anthropic replace-string (Claude 3.5/3.7) | Latency reduction | Shorter feedback loops in gate sessions |
+| **GPT-4.1 as default base model** | Model shift | Prompt files run on GPT-4.1 unless `model:` frontmatter specifies otherwise |
+| **`#githubRepo` tool** — search any GitHub repo code without opening it | Cross-repo research | Research corpus from exllamav3, Bun, ash crates without cloning |
+| **`#extensions` tool** — find Marketplace extensions from chat | Extension discovery | Satellite host research: find what each VS Code extension stores before building normalizer |
+| **Improved `#fetch` tool** — full page as Markdown context | Richer fetch | Gate documentation ingestion (HF model cards, CUDA release notes) |
+| **Conversation summary + prompt caching** — stable prefix for repeated requests | Context stability | Persistent gate-walk sessions across turns without context rebuilding |
+| **MCP Streamable HTTP transport** + **MCP image output support** | Protocol expansion | `corpus-mcp.ts` future: streaming search results; `vampire-vscode-surface` can drain screenshot surfaces |
+
+### v1.101 — Tool Sets + Custom Chat Modes (May 2025)
+
+| Feature | Signal | Relevance |
+|---------|--------|-----------|
+| **Tool sets** — collections of tools, `#mention` by name or via UI picker; `Configure Tool Sets` | Grouped tool dispatch | Define a `corpus-tools` tool set: `corpus_search`, `corpus_semantic_search`, `corpus_session`, `corpus_timeline`, `#fetch`, `#usages` |
+| **MCP prompts** — `/mcp.servername.promptname` slash commands | MCP-native dispatch | `corpus-mcp.ts` prompt: `/mcp.corpus.gate_status` → live gate ladder state |
+| **MCP resources** — attach as context, browse with `MCP: Browse Resources` | Context injection | Attach `manifest/corpus-state.json` as MCP resource → gate state always in context without `#fetch` |
+| **MCP sampling (Experimental)** — MCP servers request back to model | Bidirectional MCP | `corpus-mcp.ts` G8a path: server requests LLM summary for `sessions.intent` auto-population |
+| **MCP auth** — authorization spec; GitHub/Entra as auth servers | Auth gate | Relevant if `corpus-mcp.ts` is surfaced across machines or to team |
+| **MCP development mode** — `dev.watch` (file glob restart) + `dev.debug` (Node/Python debugger attach) | MCP dev UX | `corpus-mcp.ts` hot-reload on `scripts/corpus-mcp.ts` save — zero restart friction |
+| **Custom chat modes (Preview)** — `*.chatprompt.md` with `description:`, `tools:` frontmatter | Gate-walk modes | `gate-walk.chatprompt.md` — loads corpus tools + gate status resource automatically at mode entry |
+| **Implicit context** — current file offered as suggested context; agent hints file + cursor position | Less manual context overhead | Less friction for corpus-aware sessions when cursor is in a gate-relevant file |
+| **Task diagnostic awareness** — agent aware of problem matcher errors/warnings | Build feedback | Gate build errors (cargo, bun) surfaced directly to agent without manual paste |
+| **Terminal cwd context** — agent knows cwd when shell integration active | Shell hygiene | Agent always knows it is in `chthonic-archive/` root; `cd` commands become redundant |
+| **Copilot coding agent integration** — "Assign to Copilot" from PR/issue; "Copilot on My Behalf" PR query; session details | Background agent sessions | Early form of the Pentea dispatch vector — async task execution with session log |
+| **NES import suggestions for Python** (JS/TS already in v1.100) | DX improvement | `embed.py`, `embed_doctor.py`, `embed_gate_accept.py` benefit without configuration |
+
+### v1.102 — MCP GA + Open Source + CLI Chat (June 2025)
+
+| Feature | Signal | Relevance |
+|---------|--------|-----------|
+| **Copilot Chat MIT-licensed** (`microsoft/vscode-copilot-chat`) | Source visible | `mcpToolCallingLoop.tsx`, `agentPrompt.tsx` inspectable — direct insight into tool dispatch architecture for `corpus-mcp.ts` schema alignment |
+| **Generate custom instructions** — `Chat: Generate Instructions` → analyzes codebase → creates `.github/copilot-instructions.md` | Auto-generated SSOT | Run on chthonic-archive → diff against hand-authored SSOT; surface instruction gaps |
+| **Load instruction files on demand** — LLM loads matching `.instructions.md` based on glob + description | Demand-side loading | `.instructions.md` files self-documenting to model; gate-specific instruction files are viable |
+| **Terminal auto-approval (Experimental)** — `allowList`/`denyList` with command prefixes or regex; chained commands checked sub-command by sub-command; default allow: `echo`, `cd`, `ls`, `cat`; default deny: `rm`, `rmdir`, `del`, `kill`, `curl`, `wget` | Automated terminal dispatch | Add chthonic toolchain to allowList — enables fully unattended gate walks (see SESSION_CORPUS.md §GHC Integration Vectors for config) |
+| **Agent awareness of tasks + terminals** — knows which background terminals it created; `GetTaskOutput` tool | Background task observability | Agent fires corpus ingest task → polls `GetTaskOutput` → no user needed |
+| **`code chat` CLI** — `code chat [options] [prompt]`; `-m --mode <ask\|edit\|agent\|custom>`, `-a --add-file`, stdin via `-` | CLI-native dispatch | Scripts pipe gate artifacts to `code chat -m agent` for autonomous processing; usable from `chthonic.ps1` |
+| **Edit previous requests (Experimental)** — click prior request; all subsequent turns undone | Turn replay | Gate-walk turn replay without full session restart |
+| **MCP GA** — MCP generally available; org policy control; curated server list | Stable surface | `corpus-mcp.ts` now on stable protocol; server management view replaces manual `settings.json` edit |
+| **MCP server management view** — Extensions → MCP SERVERS - INSTALLED; Start/Stop/Restart/Uninstall | Managed MCP lifecycle | `corpus-mcp.ts` lifecycle without editing config files |
+| **MCP in profile-scoped `mcp.json`** — not `settings.json`; Settings Sync integration; migration automatic | Sovereignty note | `mcp.json` is a new high-signal sovereignty surface — `vampire-vscode-surface` must add it to source contract |
+| **MCP elicitations** — servers request input from client | Interactive MCP | `corpus-mcp.ts` can elicit query parameters (e.g. session date range) interactively |
+| **Custom chat modes improvements** — `model:` frontmatter; completions/validation/hovers; gear menu; import via `vscode:chat-mode/install` | Mature modes | `gate-walk.chatprompt.md` gains model pinning (pin to Claude Sonnet) + validation |
+| **Agent mode badge indicator** — dock badge when agent needs confirmation in background | Background agent UX | Unattended gate walks surface confirmations visually without terminal polling |
+| **`#copilotCodingAgent` tool** — background coding agent sessions; session log view; `#activePullRequest` auto-attached | Async agent sessions | Potential Pentea dispatch channel: inject task → coding agent session in background; transcripts land in `GitHub.copilot-chat/` → corpus drain |
+| **Fetch tool supports `file://` URLs` + returns images** | Local file fetch | `#fetch file://manifest/corpus-state.json` → gate state in context without MCP running |
+| **Pylance MCP tools (Experimental)** — documentation, import analysis, environment management | Python-aware MCP | `embed.py` / `embed_doctor.py` import analysis from chat; environment management for tabbyAPI venv |
+
+### G7-REDUX Anno Integration Map
+
+How the research intersects with the active gate walk and corpus architecture:
+
+| Anno Vector | GHC Feature (version) | Integration Action |
+|-------------|----------------------|--------------------|
+| `corpus-mcp.ts` stability | MCP GA (v1.102) | No breaking changes expected; server management view replaces `settings.json` edit |
+| Gate status in context | MCP resources (v1.101) + `#fetch file://` (v1.102) | Attach `manifest/corpus-state.json` as MCP resource or `#fetch file://manifest/corpus-state.json` |
+| Unattended gate walks | Terminal auto-approval (v1.102) | Add to allowList: `bun run`, `uv run`, `git add -f`, `git commit --no-verify`, `cargo build` |
+| Prompt files as gate triggers | Prompt files (v1.100) | `.vscode/prompts/g3-ascii-framebuffer.prompt.md`, `g7-embed-pass.prompt.md` |
+| Tool set for corpus tools | Tool sets (v1.101) | `corpus-tools.toolset.json`: `corpus_search`, `corpus_semantic_search`, `corpus_timeline` |
+| Gate-walk custom mode | Custom chat modes (v1.101/v1.102) | `gate-walk.chatprompt.md` with `tools: [corpus-tools]` + `model: claude-sonnet-4-5` |
+| `vampire-vscode-surface` new seam | Profile-scoped `mcp.json` (v1.102) | Add `User/mcp.json` to satellite source contract surfaces |
+| Pentea dispatch | `#copilotCodingAgent` (v1.102) | Investigate as background session runner — async analog to `agentStop` hook queue |
+| SSOT instruction audit | Generate custom instructions (v1.102) | Run `Chat: Generate Instructions` → diff against hand-authored; surface gaps |
+| Source inspection | Copilot Chat open source MIT (v1.102) | Read `mcpToolCallingLoop.tsx` + `agentPrompt.tsx` for tool dispatch internals |
