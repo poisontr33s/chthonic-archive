@@ -147,6 +147,7 @@
         "problemMatcher": []
       },
       {
+        "label": "👁️ Session: Watch (local mirror only)",
         "type": "shell",
         "command": "bun",
         "args": [
