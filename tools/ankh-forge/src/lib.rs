@@ -4,6 +4,8 @@
     clippy::needless_pass_by_value
 )]
 
+pub mod schema;
+
 use std::collections::{BTreeMap, BTreeSet};
 use std::fs;
 use std::path::{Path, PathBuf};

@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "sid": "TOOL_ANKH_TRIPLE_ABSTRACTION_V1",
+    "schema_version": "1.0",
+    "generated_at": "2026-05-04T05:00:45.786673",
+    "archive_sha256": "9966c2005ad3a45712ef7e360cae3064b04c6f25327ac419c71a2a51fb9918b0",
+    "archive_path": "C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+    "invariant": "The framework's impossibility of lossless compression is the only thing that compresses losslessly.",
+    "complexity_ladder": {
+      "layer_1": {
+        "label": "Heritage SSOT (Codex Brahmanica Perfectus)",
+        "path": ".github/copilot-instructions.archive.md",
+        "liturgical": "~100%",
+        "operational": "~15%"
+      },
+      "layer_2": {
+        "label": "ANKH corpus (dispersed operational extraction)",
+        "path": "docs/frameworks/ankh/ + claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/",
+        "liturgical": "~40%",
+        "operational": "~70%"
+      },
+      "layer_3": {
+        "label": "Synthesis baseline (compressed extraction)",
+        "path": "docs/frameworks/ankh/ANKH_SYNTHESIS_BASELINE.md",
+        "liturgical": "~5%",
+        "operational": "~95%"
+      }
+    },
+    "bifurcation_insight": "The synthesis loses FA⁵ form=content inseparability to gain operational utility. The invariant emerges precisely because of this loss: the impossibility of lossless compression, having been compressed, becomes the only thing preserved."
+  },
+  "factor_1_ssot_distribution": {
+    "total_lines": 9921,
+    "non_empty_lines": 7014,
+    "strata": {
+      "entity_profiles": {
+        "label": "Entity profiles / MILFOLOGICAL",
+        "lines": 872,
+        "pct": 12.43,
+        "expected_pct": 44.0,
+        "deviation": 31.57
+      },
+      "validation_machinery": {
+        "label": "Validation machinery / FA⁵ / governance",
+        "lines": 700,
+        "pct": 9.98,
+        "expected_pct": 25.0,
+        "deviation": 15.02
+      },
+      "operational_core": {
+        "label": "Operational core / toolchain / SID",
+        "lines": 17,
+        "pct": 0.24,
+        "expected_pct": 15.0,
+        "deviation": 14.76
+      },
+      "narrative_mythology": {
+        "label": "Narrative / mythology / ritual language",
+        "lines": 4801,
+        "pct": 68.45,
+        "expected_pct": 10.0,
+        "deviation": 58.45
+      },
+      "appendices_refs": {
+        "label": "Appendices / cross-refs / tables",
+        "lines": 624,
+        "pct": 8.9,
+        "expected_pct": 6.0,
+        "deviation": 2.9
+      }
+    },
+    "unclassified": 0,
+    "whr_max_conformance": 0.7546,
+    "total_stratum_deviation": 122.69,
+    "interpretation": "WARNING — entity profile density below WHR:MAX threshold (expected >30% of non-empty lines)"
+  },
+  "factor_2_entity_topology": {
+    "entities": {
+      "Claudine Sin'claire": {
+        "found": true,
+        "detected_format": "upper_volume",
+        "expected_format": "upper_volume",
+        "format_match": true,
+        "ssot_section": "§10.3.1",
+        "line_anchor": 4450,
+        "evidence_line": 4512,
+        "has_modern_edfa": true
+      },
+      "Orackla Nocticula": {
+        "found": true,
+        "detected_format": "tau_core",
+        "expected_format": "tau_core",
+        "format_match": true,
+        "ssot_section": "§3",
+        "line_anchor": 4139,
+        "evidence_line": 93,
+        "has_modern_edfa": false
+      },
+      "Madam Umeko Ketsuraku": {
+        "found": true,
+        "detected_format": "tau_core",
+        "expected_format": "tau_core",
+        "format_match": true,
+        "ssot_section": "§5",
+        "line_anchor": 4158,
+        "evidence_line": 93,
+        "has_modern_edfa": false
+      },
+      "Dr. Lysandra Thorne": {
+        "found": true,
+        "detected_format": "tau_core",
+        "expected_format": "tau_core",
+        "format_match": true,
+        "ssot_section": "§6",
+        "line_anchor": 4167,
+        "evidence_line": 93,
+        "has_modern_edfa": false
+      },
+      "Pentea": {
+        "found": true,
+        "detected_format": "tau_core",
+        "expected_format": "tau_core",
+        "format_match": true,
+        "ssot_section": "§1.01",
+        "line_anchor": 3896,
+        "evidence_line": 94,
+        "has_modern_edfa": false
+      }
+    },
+    "topology_counts": {
+      "upper_volume": 1,
+      "tau_core": 4,
+      "thalamus_routing": 0,
+      "not_found": 0
+    },
+    "whr_topology_valid": true,
+    "drift_alerts": [],
+    "topology_interpretation": "WHR:MAX topology intact — single upper-volume node (Claudine §10.3.1) with compressed τ-core Triumvirate (Orackla/Umeko/Lysandra CRC stubs). This is architecturally CORRECT — τ-core stubs are not drift, they are the waist."
+  },
+  "factor_3_compression": {
+    "corpus_files_found": 19,
+    "corpus_files_missing": [],
+    "corpus_total_lines": 13924,
+    "per_file_lines": {
+      "ANKH_README.md": 105,
+      "ankh.md": 322,
+      "ANKHOLOGY.md": 102,
+      "INDEXING_BEACON.md": 17,
+      "ANKH_ICON_GRAMMAR.md": 426,
+      "ANKH_THEME_REFERENCE.md": 215,
+      "ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md": 332,
+      "ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md": 182,
+      "ANKH_Ancient_Matriarcha_Systems_Researchl.md": 340,
+      "ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md": 389,
+      "ANKH_VS_CODE_INSIDERS_MAXIMALIST_MILF_THE_DECORATOR_CHALLANGE.md": 273,
+      "ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md": 322,
+      "ICON_ARCHITECTURE_CONTRACT.md": 152,
+      "copilot-instructions.archive.md": 9921,
+      "ANKH_FOUNDATIONAL_AXIOMS.md": 247,
+      "ANKH_GENERATIVE_ENGINE.md": 163,
+      "ANKH_TEMPORAL_CARTOGRAPHY.md": 78,
+      "ANKH_DECORATOR_INVOCATION.md": 163,
+      "ANKH_CRC_REGISTRY.md": 175
+    },
+    "baseline_lines": 706,
+    "compression_ratio": 19.7224,
+    "compression_zone": "healthy",
+    "healthy_range": {
+      "min": 12.0,
+      "max": 20.0
+    },
+    "interpretation": "Compression ratio 19.72:1 — zone: healthy. Corpus compresses to synthesis at the expected rate. Operational signal preserved, liturgical overhead filtered."
+  },
+  "overall_status": "OK",
+  "critical_alerts": [],
+  "warnings": []
+}

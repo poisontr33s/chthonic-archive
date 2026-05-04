@@ -64,7 +64,8 @@
     // Copilot workspace context: both repo roots visible
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
     // Git: manage both repos independently in Source Control panel
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+    "claudeCode.allowDangerouslySkipPermissions": true
   },
   "extensions": {
     "recommendations": [
