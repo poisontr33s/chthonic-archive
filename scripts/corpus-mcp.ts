@@ -72,28 +72,24 @@ function openDBWrite(): Database {
 // Tool implementations
 // ─────────────────────────────────────────────────────────────
 
-function toolTimeline(limit: number, workspaceHash?: string): unknown[] {
+function toolTimeline(limit: number, workspaceHash?: string, ranked = false): unknown[] {
   const db = openDB();
   try {
+    const view = ranked ? "session_ranked" : "session_timeline";
+    const orderBy = ranked
+      ? "ORDER BY (0.6 * recencyScore + 0.4 * signalScore) DESC"
+      : "";
     if (workspaceHash) {
       return db.prepare(`
-        SELECT sessionId, startTime, turns, copilotVersion,
-               workspaceHash, workspaceName,
-               editCount, cmdCount, commitCount, userTurns, assistantTurns,
-               topic, tags,
-               SUBSTR(intent, 1, 150) AS intent
-        FROM session_timeline
+        SELECT * FROM ${view}
         WHERE workspaceHash = ?
+        ${orderBy}
         LIMIT ?
       `).all(workspaceHash, limit);
     }
     return db.prepare(`
-      SELECT sessionId, startTime, turns, copilotVersion,
-             workspaceHash, workspaceName,
-             editCount, cmdCount, commitCount, userTurns, assistantTurns,
-             topic, tags,
-             SUBSTR(intent, 1, 150) AS intent
-      FROM session_timeline
+      SELECT * FROM ${view}
+      ${orderBy}
       LIMIT ?
     `).all(limit);
   } finally { db.close(); }
@@ -313,6 +309,201 @@ function toolToolResult(callId: string): unknown {
 
 // ─── G5 gate ladder ──────────────────────────────────────────
 
+// ─── G6 recency ranking ──────────────────────────────────────
+
+function toolRecencyRank(
+  limit: number,
+  alpha: number,
+  halfLifeDays: number,
+  workspaceHash?: string
+): unknown[] {
+  const db = openDB();
+  try {
+    const base = workspaceHash
+      ? db.prepare(
+          "SELECT * FROM session_ranked WHERE workspaceHash = ? ORDER BY startTime DESC"
+        ).all(workspaceHash) as Array<Record<string, unknown>>
+      : db.prepare(
+          "SELECT * FROM session_ranked ORDER BY startTime DESC"
+        ).all() as Array<Record<string, unknown>>;
+
+    const k = Math.log(2) / halfLifeDays;
+    const results = base.map(r => {
+      const daysSince = Number(r.daysSince ?? 0);
+      const recencyScore = Math.exp(-daysSince * k);
+      const signalScore  = Number(r.signalScore ?? 0);
+      const compositeScore = alpha * recencyScore + (1 - alpha) * signalScore;
+      return {
+        sessionId:      r.sessionId,
+        startTime:      r.startTime,
+        topic:          r.topic,
+        tags:           r.tags,
+        turns:          r.turns,
+        daysSince:      Math.round(daysSince * 10) / 10,
+        recencyScore:   Math.round(recencyScore  * 10000) / 10000,
+        signalScore:    Math.round(signalScore   * 10000) / 10000,
+        compositeScore: Math.round(compositeScore * 10000) / 10000,
+      };
+    });
+    results.sort((a, b) => b.compositeScore - a.compositeScore);
+    return results.slice(0, limit);
+  } finally { db.close(); }
+}
+
+// ─── G8b entity tools ─────────────────────────────────────────
+
+function toolEntities(
+  kind?: string,
+  name?: string,
+  limit = 50
+): unknown[] {
+  const db = openDB();
+  try {
+    const wheres: string[] = [];
+    const params: unknown[] = [];
+    if (kind) { wheres.push("kind = ?"); params.push(kind); }
+    if (name) { wheres.push("name LIKE ?"); params.push(name.includes("%") ? name : `%${name}%`); }
+    const where = wheres.length ? "WHERE " + wheres.join(" AND ") : "";
+    params.push(limit);
+    return db.prepare(
+      `SELECT id, kind, name, occurrenceCount, firstSeenAt, lastSeenAt, source
+       FROM entities ${where}
+       ORDER BY occurrenceCount DESC LIMIT ?`
+    ).all(...(params as [unknown, ...unknown[]]));
+  } finally { db.close(); }
+}
+
+function toolEntityGraph(
+  entityId: string,
+  depth: number,
+  limit: number
+): unknown {
+  const db = openDB();
+  try {
+    const root = db.prepare(
+      "SELECT id, kind, name, occurrenceCount, firstSeenAt, lastSeenAt FROM entities WHERE id = ?"
+    ).get(entityId) as Record<string, unknown> | undefined;
+    if (!root) throw new Error(`Entity not found: ${entityId}`);
+
+    const neighbors = db.prepare(`
+      SELECT e.id, e.kind, e.name, e.occurrenceCount, ec.coSessions
+      FROM entity_cooccurrence ec
+      JOIN entities e ON e.id = ec.toId
+      WHERE ec.fromId = ?
+      UNION
+      SELECT e.id, e.kind, e.name, e.occurrenceCount, ec.coSessions
+      FROM entity_cooccurrence ec
+      JOIN entities e ON e.id = ec.fromId
+      WHERE ec.toId = ?
+      ORDER BY coSessions DESC
+      LIMIT ?
+    `).all(entityId, entityId, limit) as Array<Record<string, unknown>>;
+
+    let level2: Array<{ via: string; entity: Record<string, unknown>; coSessions: number }> = [];
+    if (depth >= 2 && neighbors.length > 0) {
+      const top5 = neighbors.slice(0, 5);
+      for (const n of top5) {
+        const nid = String(n.id);
+        if (nid === entityId) continue;
+        const l2rows = db.prepare(`
+          SELECT e.id, e.kind, e.name, e.occurrenceCount, ec.coSessions
+          FROM entity_cooccurrence ec
+          JOIN entities e ON e.id = ec.toId
+          WHERE ec.fromId = ? AND ec.toId != ?
+          UNION
+          SELECT e.id, e.kind, e.name, e.occurrenceCount, ec.coSessions
+          FROM entity_cooccurrence ec
+          JOIN entities e ON e.id = ec.fromId
+          WHERE ec.toId = ? AND ec.fromId != ?
+          ORDER BY coSessions DESC LIMIT 5
+        `).all(nid, entityId, nid, entityId) as Array<Record<string, unknown>>;
+        for (const r of l2rows) {
+          level2.push({ via: nid, entity: r, coSessions: Number(r.coSessions) });
+        }
+      }
+      // Deduplicate by entity id
+      const seen = new Set([entityId, ...neighbors.map(n => String(n.id))]);
+      level2 = level2.filter(r => !seen.has(String(r.entity.id)));
+    }
+
+    return { root, neighbors, level2 };
+  } finally { db.close(); }
+}
+
+function toolRelated(
+  sessionId: string,
+  limit: number,
+  scoreFn: "jaccard" | "weighted"
+): unknown[] {
+  const db = openDB();
+  try {
+    // Resolve prefix
+    let sid = sessionId;
+    if (sid.length < 36) {
+      const row = db.prepare(
+        "SELECT sessionId FROM sessions WHERE sessionId LIKE ? LIMIT 1"
+      ).get(sid + "%") as { sessionId: string } | undefined;
+      if (!row) throw new Error(`No session matching prefix: ${sid}`);
+      sid = row.sessionId;
+    }
+
+    // Get entity ids for target session
+    const myEntities = new Set(
+      (db.prepare("SELECT DISTINCT entityId FROM entity_occurrences WHERE sessionId = ?").all(sid) as Array<{ entityId: string }>)
+        .map(r => r.entityId)
+    );
+    if (myEntities.size === 0) return [];
+
+    // Find other sessions sharing at least one entity
+    const candidates = db.prepare(`
+      SELECT DISTINCT sessionId FROM entity_occurrences
+      WHERE entityId IN (${[...myEntities].map(() => "?").join(",")})
+        AND sessionId != ?
+    `).all(...([...myEntities, sid] as [unknown, ...unknown[]])) as Array<{ sessionId: string }>;
+
+    const scored: Array<{ sessionId: string; topic: unknown; sharedEntities: number; score: number; topShared: unknown[] }> = [];
+    for (const c of candidates) {
+      const theirEntities = new Set(
+        (db.prepare("SELECT DISTINCT entityId FROM entity_occurrences WHERE sessionId = ?").all(c.sessionId) as Array<{ entityId: string }>)
+          .map(r => r.entityId)
+      );
+      const shared = [...myEntities].filter(e => theirEntities.has(e));
+      const union  = new Set([...myEntities, ...theirEntities]);
+
+      let score: number;
+      if (scoreFn === "jaccard") {
+        score = shared.length / union.size;
+      } else {
+        // weighted: each shared entity contributes its occurrenceCount
+        const weights = db.prepare(
+          `SELECT SUM(occurrenceCount) AS w FROM entities WHERE id IN (${shared.map(() => "?").join(",")})`
+        ).get(...(shared as [unknown, ...unknown[]])) as { w: number | null } | undefined;
+        score = (weights?.w ?? shared.length) / (myEntities.size + theirEntities.size);
+      }
+
+      const meta = db.prepare(
+        "SELECT topic FROM sessions WHERE sessionId = ?"
+      ).get(c.sessionId) as { topic: string | null } | undefined;
+
+      const topSharedRows = db.prepare(
+        `SELECT e.id, e.kind, e.name FROM entities e
+         WHERE e.id IN (${shared.slice(0, 10).map(() => "?").join(",")})
+         ORDER BY e.occurrenceCount DESC LIMIT 5`
+      ).all(...(shared.slice(0, 10) as [unknown, ...unknown[]]));
+
+      scored.push({
+        sessionId:      c.sessionId,
+        topic:          meta?.topic ?? null,
+        sharedEntities: shared.length,
+        score:          Math.round(score * 10000) / 10000,
+        topShared:      topSharedRows,
+      });
+    }
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, limit);
+  } finally { db.close(); }
+}
+
 function toolGateLadder(persist: boolean): unknown {
   const db = openDB();
   let ladder: Array<{ gate: string; status: string; detail: string }>;
@@ -332,6 +523,19 @@ function toolGateLadder(persist: boolean): unknown {
     const toolCols     = cols("tool_calls");
 
     ladder = [
+      { gate: "G6",  status: (() => {
+        const viewExists = db.prepare("SELECT COUNT(*) AS c FROM sqlite_master WHERE type='view' AND name='session_ranked'").get() as {c:number};
+        return viewExists.c > 0 ? "admitted" : "open";
+      })(), detail: "session_ranked view + corpus_recency_rank tool" },
+      { gate: "G8b", status: (() => {
+        const tableExists = db.prepare("SELECT COUNT(*) AS c FROM sqlite_master WHERE type='table' AND name='entities'").get() as {c:number};
+        if (!tableExists.c) return "open";
+        const rows = db.prepare("SELECT COUNT(*) AS c FROM entities").get() as {c:number};
+        return rows.c > 0 ? "admitted" : "open";
+      })(), detail: (() => {
+        try { const r = db.prepare("SELECT COUNT(*) AS c FROM entities").get() as {c:number}; return `entities: ${r.c} rows`; }
+        catch { return "entities table not present"; }
+      })() },
       { gate: "G0",  status: "admitted", detail: "corpus.sqlite + session-watcher + session-corpus + corpus-mcp present" },
       { gate: "G1a", status: count("SELECT COUNT(*) AS c FROM sessions") > 0 ? "admitted" : "open",
         detail: `sessions: ${count("SELECT COUNT(*) AS c FROM sessions")} rows` },
@@ -445,7 +649,7 @@ function toolMemories(sessionId: string | null, limit: number): unknown[] {
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "2.3.0" },
+  { name: "corpus", version: "2.4.0" },
   { capabilities: { tools: {}, resources: {} } }
 );
 
@@ -453,12 +657,13 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: "corpus_timeline",
-      description: "List all Copilot Chat sessions ordered by start time. Returns session IDs, timestamps, turn counts, workspaceHash, workspaceName, edit/cmd stats, and a brief intent summary.",
+      description: "List all Copilot Chat sessions ordered by start time. Returns session IDs, timestamps, turn counts, workspaceHash, workspaceName, edit/cmd stats, and a brief intent summary. Set ranked=true to order by composite recency+signal score instead.",
       inputSchema: {
         type: "object" as const,
         properties: {
-          limit:          { type: "number", description: "Max sessions to return (default 20)" },
-          workspace_hash: { type: "string", description: "Filter by workspace hash (optional)" }
+          limit:          { type: "number",  description: "Max sessions to return (default 20)" },
+          workspace_hash: { type: "string",  description: "Filter by workspace hash (optional)" },
+          ranked:         { type: "boolean", description: "If true, order by composite recency+signal score (default false)" }
         }
       }
     },
@@ -587,6 +792,57 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         required: ["sessionId", "filename", "content"]
       }    },
     {
+      name: "corpus_recency_rank",
+      description: "G6: Return sessions ranked by a composite of recency and signal density. alpha=0.6 weights recency vs signal. halfLifeDays controls decay speed. Returns daysSince, recencyScore, signalScore, compositeScore per session.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          limit:        { type: "number",  description: "Max sessions to return (default 20)" },
+          alpha:        { type: "number",  description: "Recency weight 0..1 (default 0.6)" },
+          halfLifeDays: { type: "number",  description: "Recency half-life in days (default 7)" },
+          workspaceHash:{ type: "string",  description: "Filter to a specific workspace hash" }
+        }
+      }
+    },
+    {
+      name: "corpus_entities",
+      description: "G8b: List extracted entities (files, tools, commits, gates, agents, concepts) sorted by occurrence frequency.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          kind:  { type: "string", description: "Filter by kind: file|tool|commit|gate|agent|concept" },
+          name:  { type: "string", description: "Substring match on entity name" },
+          limit: { type: "number", description: "Max results (default 50)" }
+        }
+      }
+    },
+    {
+      name: "corpus_entity_graph",
+      description: "G8b: Return the co-occurrence graph for an entity — which other entities appear in the same sessions. depth=2 expands one hop further.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          entityId: { type: "string",  description: "Entity id in kind:name format (e.g. 'file:scripts/corpus-mcp.ts')" },
+          depth:    { type: "number",  description: "Graph depth: 1 or 2 (default 1)" },
+          limit:    { type: "number",  description: "Max neighbors (default 20)" }
+        },
+        required: ["entityId"]
+      }
+    },
+    {
+      name: "corpus_related",
+      description: "G8b: Find sessions related to a target session by shared entity overlap. scoreFn: 'jaccard' (set ratio) or 'weighted' (occurrence-weighted). Returns ranked list with sharedEntities count and topShared entities.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          sessionId: { type: "string", description: "Session UUID or 8+ char prefix" },
+          limit:     { type: "number", description: "Max results (default 10)" },
+          scoreFn:   { type: "string", description: "'jaccard' or 'weighted' (default 'weighted')" }
+        },
+        required: ["sessionId"]
+      }
+    },
+    {
       name: "corpus_gate_ladder",
       description: "G5: Read or persist the corpus pipeline gate-ladder. Returns the current gate state derived live from the DB schema. Pass persist=true to write the result to corpus memory as 'gate-ladder.md' (replacing any external gate doc).",
       inputSchema: {
@@ -611,7 +867,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     let result: unknown;
 
     if (name === "corpus_timeline") {
-      result = toolTimeline(Number(a.limit ?? 20), a.workspace_hash ? String(a.workspace_hash) : undefined);
+      result = toolTimeline(Number(a.limit ?? 20), a.workspace_hash ? String(a.workspace_hash) : undefined, Boolean(a.ranked ?? false));
     } else if (name === "corpus_search") {
       if (!a.query) throw new Error("query is required");
       result = toolSearch(String(a.query), Number(a.limit ?? 20));
@@ -660,6 +916,29 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       if (!a.filename)  throw new Error("filename is required");
       if (!a.content)   throw new Error("content is required");
       result = toolMemoryWrite(String(a.sessionId), String(a.filename), String(a.content));
+    } else if (name === "corpus_recency_rank") {
+      result = toolRecencyRank(
+        Number(a.limit ?? 20),
+        Math.min(1, Math.max(0, Number(a.alpha ?? 0.6))),
+        Number(a.halfLifeDays ?? 7),
+        a.workspaceHash ? String(a.workspaceHash) : undefined
+      );
+    } else if (name === "corpus_entities") {
+      result = toolEntities(
+        a.kind ? String(a.kind) : undefined,
+        a.name ? String(a.name) : undefined,
+        Number(a.limit ?? 50)
+      );
+    } else if (name === "corpus_entity_graph") {
+      if (!a.entityId) throw new Error("entityId is required");
+      result = toolEntityGraph(String(a.entityId), Math.min(2, Number(a.depth ?? 1)), Number(a.limit ?? 20));
+    } else if (name === "corpus_related") {
+      if (!a.sessionId) throw new Error("sessionId is required");
+      result = toolRelated(
+        String(a.sessionId),
+        Number(a.limit ?? 10),
+        (a.scoreFn === "jaccard" ? "jaccard" : "weighted") as "jaccard" | "weighted"
+      );
     } else if (name === "corpus_gate_ladder") {
       result = toolGateLadder(Boolean(a.persist ?? false));
     } else if (name === "corpus_resources_list") {

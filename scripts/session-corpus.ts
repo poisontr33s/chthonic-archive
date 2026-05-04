@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS sessions (
   intent         TEXT    DEFAULT '',
   topic          TEXT    DEFAULT NULL,
   tags           TEXT    DEFAULT NULL,
+  note           TEXT    DEFAULT NULL,
   ingestedAt     TEXT    NOT NULL
 );
 
@@ -98,7 +99,8 @@ CREATE TABLE IF NOT EXISTS tool_calls (
   tsComplete    INTEGER,
   argsJson      TEXT,
   success       INTEGER,  -- 1=success  0=failure  NULL=no completion record
-  resultSnippet TEXT
+  resultSnippet TEXT,
+  resultContent TEXT
 );
 
 CREATE TABLE IF NOT EXISTS commit_refs (
@@ -170,6 +172,18 @@ CREATE VIEW IF NOT EXISTS session_timeline AS
     (SELECT COUNT(*) FROM messages WHERE sessionId = s.sessionId AND role = 'assistant') AS assistantTurns
   FROM sessions s
   ORDER BY s.startTime DESC;
+
+CREATE VIEW IF NOT EXISTS session_ranked AS
+SELECT
+  st.*,
+  (julianday('now') - julianday(st.startTime))                              AS daysSince,
+  EXP(-((julianday('now') - julianday(st.startTime)) * 0.1))               AS recencyScore,
+  (
+    MIN(CAST(st.turns    AS REAL) / 200.0, 1.0) * 0.4 +
+    MIN(CAST(st.editCount AS REAL) / 50.0,  1.0) * 0.3 +
+    MIN(CAST(st.commitCount AS REAL) / 10.0, 1.0) * 0.3
+  )                                                                          AS signalScore
+FROM session_timeline st;
 `;
 
 const DDL_FTS5 = `
@@ -185,6 +199,37 @@ CREATE VIRTUAL TABLE IF NOT EXISTS fts_cmds USING fts5(
   command,
   goal
 );
+`;
+
+const DDL_ENTITIES = `
+CREATE TABLE IF NOT EXISTS entities (
+  id              TEXT PRIMARY KEY,  -- '<kind>:<normalized_name>'
+  kind            TEXT NOT NULL,     -- 'file'|'tool'|'commit'|'gate'|'agent'|'concept'
+  name            TEXT NOT NULL,
+  firstSeenAt     TEXT NOT NULL,
+  lastSeenAt      TEXT NOT NULL,
+  occurrenceCount INTEGER NOT NULL DEFAULT 0,
+  source          TEXT NOT NULL DEFAULT 'rule'
+);
+CREATE INDEX IF NOT EXISTS idx_entities_kind ON entities(kind);
+CREATE INDEX IF NOT EXISTS idx_entities_name ON entities(name);
+
+CREATE TABLE IF NOT EXISTS entity_occurrences (
+  id       INTEGER PRIMARY KEY AUTOINCREMENT,
+  entityId TEXT NOT NULL REFERENCES entities(id),
+  sessionId TEXT NOT NULL REFERENCES sessions(sessionId),
+  turn     INTEGER,
+  context  TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_eo_entity  ON entity_occurrences(entityId);
+CREATE INDEX IF NOT EXISTS idx_eo_session ON entity_occurrences(sessionId);
+
+CREATE VIEW IF NOT EXISTS entity_cooccurrence AS
+SELECT a.entityId AS fromId, b.entityId AS toId,
+       COUNT(DISTINCT a.sessionId) AS coSessions
+FROM entity_occurrences a
+JOIN entity_occurrences b ON a.sessionId = b.sessionId AND a.entityId < b.entityId
+GROUP BY a.entityId, b.entityId;
 `;
 
 // ─────────────────────────────────────────────────────────────
@@ -255,8 +300,10 @@ function ingestSession(db: Database, sessionId: string): boolean {
   db.prepare("DELETE FROM session_restarts  WHERE sessionId = ?").run(sessionId);
   db.prepare("DELETE FROM sessions          WHERE sessionId = ?").run(sessionId);
   // FTS5 cleanup (graceful — tables may not exist on schema migration)
-  try { db.prepare("DELETE FROM fts_messages WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
-  try { db.prepare("DELETE FROM fts_cmds     WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
+  try { db.prepare("DELETE FROM fts_messages      WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
+  try { db.prepare("DELETE FROM fts_cmds           WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
+  // G8b entity cleanup (graceful)
+  try { db.prepare("DELETE FROM entity_occurrences WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
 
   // Insert sessions row (turns + intent updated after transcript pass)
   db.prepare(`
@@ -277,6 +324,8 @@ function ingestSession(db: Database, sessionId: string): boolean {
   try { raw = readFileSync(tPath, "utf8"); } catch { return false; }
 
   const insFileEdit  = db.prepare("INSERT INTO file_edits  (sessionId, filePath, tool, turn, ts) VALUES (?, ?, ?, ?, ?)");
+  const AGENT_RE     = /\b(Lysandra|Pentea|Codex|Claudine|Gemini|Curatrix|Tessara|Penteaa)\b/g;
+  const GATE_RE      = /\bG\d+(?:\.\d+)?[a-z]?\b/g;
   const insTermCmd   = db.prepare("INSERT INTO terminal_cmds (sessionId, command, goal, explanation, turn, ts) VALUES (?, ?, ?, ?, ?, ?)");
   const insCodeBlock = db.prepare("INSERT INTO code_blocks (sessionId, lang, lines, preview, turn, ts) VALUES (?, ?, ?, ?, ?, ?)");
   const insToolCall  = db.prepare("INSERT INTO tool_calls (sessionId, toolName, callId, turn, ts, argsJson, success) VALUES (?, ?, ?, ?, ?, ?, NULL) RETURNING id");
@@ -285,6 +334,26 @@ function ingestSession(db: Database, sessionId: string): boolean {
   const insMessage   = db.prepare("INSERT INTO messages (sessionId, role, turn, ts, content, toolRequestCount) VALUES (?, ?, ?, ?, ?, ?)");
   const insFtsMsg    = db.prepare("INSERT INTO fts_messages (sessionId, role, turn, content) VALUES (?, ?, ?, ?)");
   const insFtsCmd    = db.prepare("INSERT INTO fts_cmds (sessionId, command, goal) VALUES (?, ?, ?)");
+  // G8b: entity upsert helpers
+  const upsertEntity = db.prepare(`
+    INSERT INTO entities (id, kind, name, firstSeenAt, lastSeenAt, occurrenceCount, source)
+    VALUES (?, ?, ?, ?, ?, 1, 'rule')
+    ON CONFLICT(id) DO UPDATE SET
+      occurrenceCount = occurrenceCount + 1,
+      lastSeenAt = excluded.lastSeenAt
+  `);
+  const insEntityOcc = db.prepare(
+    "INSERT INTO entity_occurrences (entityId, sessionId, turn, context) VALUES (?, ?, ?, ?)"
+  );
+  const now8b = new Date().toISOString();
+  function recordEntity(kind: string, raw: string, turn: number | null, context: string) {
+    const normalized = raw.replace(/\\/g, "/").toLowerCase();
+    const id = `${kind}:${normalized}`;
+    try {
+      upsertEntity.run(id, kind, raw, now8b, now8b);
+      insEntityOcc.run(id, sessionId, turn, context);
+    } catch { /* graceful — entities table may not exist on old schema */ }
+  }
 
   // callId correlation: toolRequests from assistant.message → dequeue on execution_start
   const pendingCallIds = new Map<string, string[]>(); // toolName → ordered queue of callIds
@@ -323,11 +392,19 @@ function ingestSession(db: Database, sessionId: string): boolean {
         if (content) {
           for (const cb of extractCodeBlocks(content, turnIdx))
             insCodeBlock.run(sessionId, cb.lang, cb.lines, cb.preview, cb.turn, ts);
-          for (const sha of extractCommits(content))
+          for (const sha of extractCommits(content)) {
             insCommit.run(sha, sessionId, turnIdx);
+            // G8b: commit entity
+            recordEntity("commit", sha.slice(0, 12), turnIdx, "commit_ref");
+          }
         }
         insMessage.run(sessionId, "assistant", turnIdx, ts, content, toolReqCount);
         try { insFtsMsg.run(sessionId, "assistant", turnIdx, content); } catch { /* FTS not ready */ }
+        // G8b: gate + agent extraction from assistant message content
+        if (content) {
+          for (const m of content.matchAll(GATE_RE))  recordEntity("gate",  m[0], turnIdx, "message_mention");
+          for (const m of content.matchAll(AGENT_RE)) recordEntity("agent", m[0], turnIdx, "message_mention");
+        }
         // Collect callIds from toolRequests for execution matching
         if (Array.isArray(toolRequests)) {
           for (const req of toolRequests) {
@@ -356,18 +433,20 @@ function ingestSession(db: Database, sessionId: string): boolean {
 
         const row = insToolCall.get(sessionId, toolName, callId ?? null, turnIdx, ts, argsJson) as { id: number } | undefined;
         if (row && callId) callIdToRowId.set(callId, row.id);
+        // G8b: tool entity
+        recordEntity("tool", toolName, turnIdx, "tool_call");
 
         // file_edits
         if (toolName === "replace_string_in_file" || toolName === "create_file") {
           const fp = String(toolArgs.filePath ?? toolArgs.path ?? "");
-          if (fp) insFileEdit.run(sessionId, fp, toolName, turnIdx, ts);
+          if (fp) { insFileEdit.run(sessionId, fp, toolName, turnIdx, ts); recordEntity("file", fp, turnIdx, "file_edit"); }
         } else if (toolName === "multi_replace_string_in_file") {
           const reps = toolArgs.replacements as Array<{ filePath?: string }> | undefined;
           const seen = new Set<string>();
           if (Array.isArray(reps)) {
             for (const r of reps) {
               const fp = String(r.filePath ?? "");
-              if (fp && !seen.has(fp)) { seen.add(fp); insFileEdit.run(sessionId, fp, toolName, turnIdx, ts); }
+              if (fp && !seen.has(fp)) { seen.add(fp); insFileEdit.run(sessionId, fp, toolName, turnIdx, ts); recordEntity("file", fp, turnIdx, "file_edit"); }
             }
           }
         }
@@ -612,9 +691,9 @@ db.exec("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_
 
 if (rebuildMode) {
   console.log("⚡ Rebuild: dropping all tables and views...");
-  for (const v of ["session_timeline", "memory_chain", "hot_files"])
+  for (const v of ["entity_cooccurrence", "session_ranked", "session_timeline", "memory_chain", "hot_files"])
     db.exec(`DROP VIEW IF EXISTS ${v}`);
-  for (const t of ["fts_messages", "fts_cmds", "messages", "memory_snapshots", "commit_refs", "tool_calls", "code_blocks", "terminal_cmds", "file_edits", "session_restarts", "sessions"])
+  for (const t of ["fts_messages", "fts_cmds", "entity_occurrences", "entities", "messages", "memory_snapshots", "commit_refs", "tool_calls", "code_blocks", "terminal_cmds", "file_edits", "session_restarts", "sessions"])
     db.exec(`DROP TABLE IF EXISTS ${t}`);
 }
 
@@ -632,16 +711,19 @@ if (!rebuildMode) {
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN workspaceName TEXT");
   tryAlter(db, "ALTER TABLE sessions      ADD COLUMN note          TEXT");
   tryAlter(db, "ALTER TABLE tool_calls    ADD COLUMN resultContent  TEXT");
+  tryAlter(db, "ALTER TABLE sessions      ADD COLUMN note           TEXT");
 }
 
 db.exec(DDL_TABLES);
 db.exec(DDL_INDEXES);
 // Always drop+recreate views (safe — views carry no data)
-for (const v of ["session_timeline", "memory_chain", "hot_files"])
+for (const v of ["entity_cooccurrence", "session_ranked", "session_timeline", "memory_chain", "hot_files"])
   db.exec(`DROP VIEW IF EXISTS ${v}`);
 db.exec(DDL_VIEWS);
 // FTS5 (graceful — created once, only dropped on --rebuild)
 try { db.exec(DDL_FTS5); } catch (e) { console.warn("⚠️  FTS5 not available:", e); }
+// G8b entities (graceful)
+try { db.exec(DDL_ENTITIES); } catch (e) { console.warn("⚠️  Entities DDL failed:", e); }
 
 // Standalone classify mode (no ingest, just re-score existing sessions)
 if (classifyMode && !rebuildMode && !statsMode) {
