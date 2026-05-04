@@ -8,7 +8,7 @@
   - Claudine
   - Description: Hardcore fitness + nightly escapades in Vampiric form — for training scope nightly date-base calls
 - pair: docs/architecture/SESSION_CORPUS.md
-- References: docs/architecture/SESSION_CORPUS.md, scripts/satellite.json, ci/checks/federation-contract-validate.ts
+- References: docs/architecture/SESSION_CORPUS.md, scripts/satellite.json, ci/checks/federation-contract-validate.ts, scripts/embed.py, scripts/embed_doctor.py, scripts/embed_model_registry.json
 
 ---
 
@@ -147,7 +147,7 @@ Drain-relevant slice of the full G0–G9 ladder. Columns — **Type:** `infra` �
 | G6 | view | — | ✅ done | L4 | `session_ranked` view — blood score computable without re-parse |
 | G8b | enrich | b | ✅ done | L4 | Entity tables — `--extract` entity mode available |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native, `_corpus_ref` identity locked |
-| G7 | satellite | — | ⬜ pending | L0 | sqlite-vec embeddings → semantic drain (query by meaning) |
+| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (schema v4, upgraded 2026-05-04 from all-MiniLM-L6-v2 384d) — semantic drain (query by meaning) |
 | G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `drain.json.sessionIntent` auto-populated |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE — sidecar satellite DBs federated into corpus |
 
@@ -167,8 +167,9 @@ Drain-relevant slice of the full G0–G9 ladder. Columns — **Type:** `infra` �
 
 **Drain format**
 - SQLite: `manifest/corpus.sqlite` (federation hub — satellite writes here directly, not to a sidecar)
-- Tables: `sessions`, `turns`, `file_edits`, `terminal_cmds`, `code_blocks`, `entities`, `entity_occurrences`, `memory_snapshots`
+- Tables: `sessions`, `turns`, `file_edits`, `terminal_cmds`, `code_blocks`, `entities`, `entity_occurrences`, `memory_snapshots`, `vec_embeddings` (1024d, sqlite-vec, G7, Qwen3-Embedding-0.6B)
 - Schema owner: `scripts/session-corpus.ts` DDL constants
+- Embed pipeline: `scripts/embed_model_registry.json` (active model) → `scripts/embed_doctor.py` (pre-flight) → `scripts/embed.py` (Python stdin/stdout bridge) → `vec_embeddings` virtual table
 
 **Federation key**
 - `sessionId` (UUID from transcript filename) + `ts` (turn timestamp ISO8601)
@@ -176,7 +177,7 @@ Drain-relevant slice of the full G0–G9 ladder. Columns — **Type:** `infra` �
 **Rebase decision (Option B — locked 2026-05-04)**  
 `session-vampire.ts` internals rebase onto `corpus.sqlite` queries. The filesystem artifact contract (`drain.json`, `session_blood.json`) is preserved — outputs are generated from SQLite queries against the already-ingested corpus, not from re-parsing transcripts. Zero external consumers confirmed before decision.
 
-**Status:** awaiting implementation of G7.0 rebase. `scripts/session-vampire.ts` → `scripts/vampire-copilot-chat.ts` rename happens at same time.
+**Status:** ✅ Implemented — commit `82c60dd7`. `scripts/session-vampire.ts` renamed to `scripts/vampire-copilot-chat.ts`. `_corpus_ref` frontmatter in every drain artifact. Semantic drain (G7) available via `bun run vampire:drain --embed` after corpus embed pass.
 
 ---
 
@@ -292,7 +293,7 @@ Each satellite ships a `satellite.json` at its repo root:
   "federation_keys": ["workspace_hash", "captured_ts"],
   "outbound_network": false,                 // HARD CONSTRAINT — CI gate fails if true
   "license": "Apache-2.0",                   // CI gate: must match license header in src/
-  "corpus_schema_min": 2                     // minimum corpus user_version (G6+G8b baseline)
+  "corpus_schema_min": 4                     // minimum corpus user_version (schema v4 = G7/Qwen3 baseline)
 }
 ```
 
@@ -405,12 +406,19 @@ This document is a **parallel ladder** to the **FAF** plan, not part of *G6–G9
 
 ## Next Build Actions
 
+### Completed
+
+| Action | Commit |
+|--------|--------|
+| `vampire-copilot-chat` rebase (G7.0) — renamed from `session-vampire.ts`, corpus-native, `_corpus_ref` locked | `82c60dd7` |
+| `ci/checks/federation-contract-validate.ts` — satellite contract CI gate | present |
+
+### Pending
+
 | Priority | Action | Prerequisite |
-|----------|--------|-------------|
-| 1 | `vampire-copilot-chat` rebase (G7.0) — rename `session-vampire.ts`, rebase internals on corpus.sqlite | G7.0 per FAF §10.3 |
-| 2 | `ci/checks/federation-contract-validate.ts` — validate `satellite.json` schema + CI gate | standalone, now |
-| 3 | `vampire-vscode-surface` watcher + normalizer scaffolding | after G7.0 |
-| 4 | Corpus ATTACH DATABASE merge query set | after vampire-vscode-surface drain DB exists |
-| 5 | `vampire-terminal-history` (PSReadLine ingest) | low-effort, any time |
+|----------|--------|--------------|
+| 1 | `vampire-vscode-surface` watcher + normalizer scaffolding | after G7.0 |
+| 2 | Corpus ATTACH DATABASE merge query set | after vampire-vscode-surface drain DB exists |
+| 3 | `vampire-terminal-history` (PSReadLine ingest) | low-effort, any time |
 
 The CI gate (`federation-contract-validate.ts`) is the only item that can ship before G7.0 — it validates the doctrine before any new satellite exists, which is the correct enforcement order.

@@ -27,8 +27,18 @@ import { load as loadSqliteVec } from "sqlite-vec";
 //   1 = G0-G5 base tables
 //   2 = G6 session_ranked view + G8b entities/entity_occurrences
 //   3 = G7 vec_embeddings virtual table (sqlite-vec 0.1.9)
+//   4 = G7 upgrade: FLOAT[384] → FLOAT[1024] (Qwen3-Embedding-0.6B, Matryoshka 64-1024)
 // ─────────────────────────────────────────────────────────────
-const CORPUS_SCHEMA_VERSION = 3;
+const CORPUS_SCHEMA_VERSION = 4;
+
+// Active embedding model provenance — read from registry so corpus-state.json stays in sync
+const _embedReg = (() => {
+  try { return JSON.parse(readFileSync(join(import.meta.dir, "embed_model_registry.json"), "utf8")) as Record<string, unknown>; }
+  catch { return {} as Record<string, unknown>; }
+})();
+const _activeModelId: string = (_embedReg.active_model_id as string) ?? "sentence-transformers/all-MiniLM-L6-v2";
+const ACTIVE_VEC_MODEL: string = _activeModelId;
+const ACTIVE_VEC_DIMS: number = ((_embedReg.models as Record<string, { dims: number }> | undefined)?.[_activeModelId]?.dims) ?? 384;
 
 const args = process.argv.slice(2);
 const rebuildMode   = args.includes("--rebuild");
@@ -218,7 +228,7 @@ CREATE VIRTUAL TABLE IF NOT EXISTS fts_cmds USING fts5(
 const DDL_VEC = `
 CREATE VIRTUAL TABLE IF NOT EXISTS vec_embeddings USING vec0(
   session_id TEXT PRIMARY KEY,
-  content_embedding FLOAT[384]
+  content_embedding FLOAT[1024]
 );
 `;
 
@@ -718,6 +728,8 @@ if (rebuildMode) {
     db.exec(`DROP VIEW IF EXISTS ${v}`);
   for (const t of ["fts_messages", "fts_cmds", "entity_occurrences", "entities", "messages", "memory_snapshots", "commit_refs", "tool_calls", "code_blocks", "terminal_cmds", "file_edits", "session_restarts", "sessions"])
     db.exec(`DROP TABLE IF EXISTS ${t}`);
+  // Drop vec_embeddings virtual table (must use DROP VIRTUAL TABLE, not DROP TABLE)
+  try { db.exec("DROP TABLE IF EXISTS vec_embeddings"); } catch { /* sqlite-vec not loaded yet — ignore */ }
 }
 
 // Column migration for incremental upgrades (no-op if columns already exist)
@@ -752,8 +764,10 @@ try { db.exec(DDL_VEC); } catch (e) { console.warn("⚠️  vec_embeddings DDL f
 
 // ─────────────────────────────────────────────────────────────
 // G7 embed mode — embed all sessions via scripts/embed.py
+// Note: when --rebuild is also set we skip this early path so that ingest runs
+//       first (populating the sessions table), then embed is called post-ingest.
 // ─────────────────────────────────────────────────────────────
-if (embedMode) {
+if (embedMode && !rebuildMode) {
   // ── Pre-flight: validate model cache + schema compat before touching DB ──────
   {
     const doctorScript = join(import.meta.dir, "embed_doctor.py");
@@ -881,13 +895,8 @@ if (embedMode) {
         G8c: false,
       },
       vec_count: vecCountNow,
-      // G7 model provenance — offline-cached baseline (HF token unavailable at build time).
-      // all-MiniLM-L6-v2: 384d, max 256 word-pieces, 22M params.
-      // Upgrade path: Nomic-embed-text-v1.5 (768d, Matryoshka 64-768, 8192 ctx) or
-      //               BGE-M3 (1024d, multilingual) once HF token and larger cache available.
-      // Schema note: FLOAT[384] DDL locks this DB to 384d vectors; migration required for dim change.
-      vec_model: "sentence-transformers/all-MiniLM-L6-v2",
-      vec_dims: 384,
+      vec_model: ACTIVE_VEC_MODEL,
+      vec_dims: ACTIVE_VEC_DIMS,
       satellites: [] as string[],
     };
     await Bun.write(
@@ -964,6 +973,47 @@ if (!watchMode) {
     classifyAll(db);
   }
 
+  // Post-ingest embed: when --rebuild --embed are combined, embed runs here after ingest
+  // has populated the sessions table (the early embed path was skipped via !rebuildMode guard).
+  if (embedMode && rebuildMode) {
+    console.log("\n[G7] Running post-ingest embed pass (--rebuild --embed)...");
+    const pyScriptPostIngest = join(import.meta.dir, "embed.py");
+    const sessionsForEmbed = db.prepare("SELECT sessionId, intent, topic, tags FROM sessions").all() as Array<{ sessionId: string; intent: string; topic: string | null; tags: string | null }>;
+    const textsForEmbed: Array<{ id: string; text: string }> = [];
+    for (const s of sessionsForEmbed) {
+      const files = (db.prepare("SELECT DISTINCT filePath FROM file_edits WHERE sessionId = ? LIMIT 20")
+        .all(s.sessionId) as Array<{ filePath: string }>)
+        .map(r => r.filePath.replace(/^.*[\\/]/, ""))
+        .join(" ");
+      const text = [s.intent ?? "", s.topic ?? "", files].join(" ").replace(/\s+/g, " ").trim().slice(0, 512);
+      textsForEmbed.push({ id: s.sessionId, text: text || s.sessionId });
+    }
+    console.log(`[G7] Embedding ${textsForEmbed.length} session(s) via embed.py...`);
+    if (textsForEmbed.length > 0) {
+      const embedProc = Bun.spawn(["uv", "run", pyScriptPostIngest], { stdin: "pipe", stdout: "pipe", stderr: "inherit" });
+      const enc2 = new TextEncoder();
+      for (const item of textsForEmbed) embedProc.stdin.write(enc2.encode(JSON.stringify(item) + "\n"));
+      embedProc.stdin.end();
+      const rawOut2 = await new Response(embedProc.stdout).text();
+      await embedProc.exited;
+      const insVec2 = db.prepare("INSERT OR REPLACE INTO vec_embeddings(session_id, content_embedding) VALUES (?, ?)");
+      let embedded2 = 0;
+      db.transaction(() => {
+        for (const line of rawOut2.split("\n")) {
+          if (!line.trim()) continue;
+          try {
+            const { id, vec } = JSON.parse(line) as { id: string; vec: number[] };
+            insVec2.run(id, new Uint8Array(new Float32Array(vec).buffer));
+            embedded2++;
+            process.stdout.write(`  ✅ [${id.slice(0, 8)}] embedded ${vec.length}d\n`);
+          } catch { /* malformed line */ }
+        }
+      })();
+      console.log(`[G7] Done: ${embedded2}/${textsForEmbed.length} sessions embedded`);
+      db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
+    }
+  }
+
   // Emit corpus-state.json — single integration frame for satellites + CI
   const count = (sql: string) => (db.prepare(sql).get() as { c: number }).c;
   const hasFts  = (() => { try { count("SELECT COUNT(*) AS c FROM fts_messages"); return true; } catch { return false; } })();
@@ -991,6 +1041,8 @@ if (!watchMode) {
       G8c: false,   // cross-session views — future
     },
     vec_count: vecCount,
+    vec_model: ACTIVE_VEC_MODEL,
+    vec_dims: ACTIVE_VEC_DIMS,
     satellites: [] as string[],   // populated by federation-contract-validate.ts
   };
   await Bun.write(

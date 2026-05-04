@@ -106,9 +106,9 @@ def main():
     parser.add_argument(
         "--current-schema-version",
         type=int,
-        default=3,
+        default=4,
         dest="current_schema_version",
-        help="Current corpus schema_version from the DB (default: 3)",
+        help="Current corpus schema_version from the DB (default: 4)",
     )
     args = parser.parse_args()
 

@@ -15,6 +15,11 @@
 #
 # Usage:
 # - .\scripts\api_pool.ps1 -Load
+# - .\scripts\api_pool.ps1 -VerifyPool
+# - .\scripts\api_pool.ps1 -SetHFToken
+# - .\scripts\api_pool.ps1 -VerifyHF
+# - .\scripts\api_pool.ps1 -SyncGitHubFromGh
+# - .\scripts\api_pool.ps1 -VerifyGitHub
 #
 # Data file:
 # - $HOME\.chthonic\api_pool.json (user profile, not repo)
@@ -30,12 +35,24 @@
 
 param(
   [switch]$Load,
-  [switch]$Verify,
+  [switch]$VerifyPool,
+  [switch]$SetHFToken,
+  [switch]$VerifyHF,
+  [switch]$SyncGitHubFromGh,
+  [switch]$VerifyGitHub,
   [switch]$Quiet
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+$InvocationLine = [string]$MyInvocation.Line
+$WantLoad = $PSBoundParameters.ContainsKey("Load") -or ($InvocationLine -match '(?i)(^|\s)-Load(\s|$)')
+$WantVerifyPool = $PSBoundParameters.ContainsKey("VerifyPool") -or ($InvocationLine -match '(?i)(^|\s)-VerifyPool(\s|$)')
+$WantSetHFToken = $PSBoundParameters.ContainsKey("SetHFToken") -or ($InvocationLine -match '(?i)(^|\s)-SetHFToken(\s|$)')
+$WantVerifyHF = $PSBoundParameters.ContainsKey("VerifyHF") -or ($InvocationLine -match '(?i)(^|\s)-VerifyHF(\s|$)')
+$WantSyncGitHubFromGh = $PSBoundParameters.ContainsKey("SyncGitHubFromGh") -or ($InvocationLine -match '(?i)(^|\s)-SyncGitHubFromGh(\s|$)')
+$WantVerifyGitHub = $PSBoundParameters.ContainsKey("VerifyGitHub") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGitHub(\s|$)')
 
 function Get-ApiPoolPath {
   $dir = Join-Path $HOME ".chthonic"
@@ -69,9 +86,133 @@ function Normalize-Token {
   return $v
 }
 
-if (-not $Load) {
+function Set-GitHubAliases {
+  param([Parameter(Mandatory=$true)][string]$Token)
+  $v = Normalize-Token -Value $Token
+  if ([string]::IsNullOrWhiteSpace($v)) { return 0 }
+  $names = @(
+    "GITHUB_TOKEN",
+    "GH_TOKEN",
+    "GITHUB_PERSONAL_ACCESS_TOKEN",
+    "GITHUB_PAT",
+    "GITHUB_MCP_PAT",
+    "GITHUB_MCP_PAT_TOKEN"
+  )
+  $count = 0
+  foreach ($n in $names) {
+    $prior = Get-EnvVar -Name $n
+    if ($prior -ne $v) {
+      [System.Environment]::SetEnvironmentVariable($n, $v, "Process")
+      $count++
+    }
+  }
+  return $count
+}
+
+function Set-HFAliases {
+  param([Parameter(Mandatory=$true)][string]$Token)
+  $v = Normalize-Token -Value $Token
+  if ([string]::IsNullOrWhiteSpace($v)) { return 0 }
+  $count = 0
+  foreach ($n in @("HUGGINGFACE_HUB_TOKEN", "HF_TOKEN")) {
+    $prior = Get-EnvVar -Name $n
+    if ($prior -ne $v) {
+      [System.Environment]::SetEnvironmentVariable($n, $v, "Process")
+      $count++
+    }
+  }
+  return $count
+}
+
+function Read-SecretPlainText {
+  param([Parameter(Mandatory=$true)][string]$Prompt)
+  $secure = Read-Host -Prompt $Prompt -AsSecureString
+  $ptr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
+  try {
+    return [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($ptr)
+  } finally {
+    [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($ptr)
+  }
+}
+
+function Set-PoolEnvValue {
+  param(
+    [Parameter(Mandatory=$true)][string]$Path,
+    [Parameter(Mandatory=$true)][string]$Name,
+    [Parameter(Mandatory=$true)][string]$Value
+  )
+  $json = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+  if (-not $json.env) {
+    $json | Add-Member -MemberType NoteProperty -Name env -Value ([pscustomobject]@{})
+  }
+  $props = $json.env.PSObject.Properties.Name
+  if ($props -contains $Name) {
+    $json.env.$Name = $Value
+  } else {
+    $json.env | Add-Member -MemberType NoteProperty -Name $Name -Value $Value
+  }
+  $json | ConvertTo-Json -Depth 8 | Out-File -FilePath $Path -Encoding utf8 -NoNewline
+}
+
+function Invoke-GhKeyringToken {
+  $names = @("GITHUB_TOKEN", "GH_TOKEN", "GITHUB_PERSONAL_ACCESS_TOKEN", "GITHUB_PAT")
+  $saved = @{}
+  foreach ($n in $names) {
+    $saved[$n] = [System.Environment]::GetEnvironmentVariable($n, "Process")
+    Remove-Item ("Env:" + $n) -ErrorAction SilentlyContinue
+    [System.Environment]::SetEnvironmentVariable($n, $null, "Process")
+  }
+  try {
+    $token = (& gh auth token 2>$null)
+    if ($LASTEXITCODE -ne 0) { throw "gh auth token failed; run gh auth login first." }
+    $token = Normalize-Token -Value ([string]$token)
+    if ([string]::IsNullOrWhiteSpace($token)) { throw "gh auth token returned no token." }
+    return $token
+  } finally {
+    foreach ($n in $names) {
+      [System.Environment]::SetEnvironmentVariable($n, $saved[$n], "Process")
+    }
+  }
+}
+
+function Verify-GitHub {
+  $login = (& gh api user --jq ".login" 2>$null)
+  if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace([string]$login)) {
+    if (-not $Quiet) { Write-Host "fail: GitHub token rejected" }
+    return 2
+  }
+  if (-not $Quiet) { Write-Host ("ok: " + [string]$login) }
+  return 0
+}
+
+function Verify-HF {
+  $probe = Join-Path (Resolve-Path (Join-Path $PSScriptRoot "..")).Path "scripts\hf_probe.py"
+  $output = & uv run $probe 2>&1
+  $rc = $LASTEXITCODE
+  foreach ($line in @($output)) {
+    if (-not [string]::IsNullOrWhiteSpace([string]$line)) {
+      Write-Host ([string]$line)
+    }
+  }
+  return $rc
+}
+
+if (-not (
+    $WantLoad -or
+    $WantVerifyPool -or
+    $WantSetHFToken -or
+    $WantVerifyHF -or
+    $WantSyncGitHubFromGh -or
+    $WantVerifyGitHub
+  )) {
   if ($Quiet) { exit 2 }
-  Write-Host "Usage: .\\scripts\\api_pool.ps1 -Load"
+  Write-Host "Usage:"
+  Write-Host "  .\\scripts\\api_pool.ps1 -Load"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyPool"
+  Write-Host "  .\\scripts\\api_pool.ps1 -SetHFToken"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyHF"
+  Write-Host "  .\\scripts\\api_pool.ps1 -SyncGitHubFromGh"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGitHub"
   exit 2
 }
 
@@ -95,6 +236,30 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
   exit 3
 }
 
+if ($WantSyncGitHubFromGh) {
+  $token = Invoke-GhKeyringToken
+  Set-PoolEnvValue -Path $p.Path -Name "GITHUB_TOKEN" -Value $token
+  $mapped = Set-GitHubAliases -Token $token
+  if (-not $Quiet) {
+    Write-Host "Synced GitHub token from gh keyring into local API pool (token not printed)."
+    Write-Host "Updated current-process GitHub aliases: $mapped"
+  }
+  exit (Verify-GitHub)
+}
+
+if ($WantSetHFToken) {
+  $token = Normalize-Token -Value (Read-SecretPlainText -Prompt "Paste Hugging Face token")
+  if ([string]::IsNullOrWhiteSpace($token)) { throw "Empty Hugging Face token." }
+  Set-PoolEnvValue -Path $p.Path -Name "HUGGINGFACE_HUB_TOKEN" -Value $token
+  Set-PoolEnvValue -Path $p.Path -Name "HF_TOKEN" -Value $token
+  $mapped = Set-HFAliases -Token $token
+  if (-not $Quiet) {
+    Write-Host "Synced Hugging Face token into local API pool (token not printed)."
+    Write-Host "Updated current-process Hugging Face aliases: $mapped"
+  }
+  exit (Verify-HF)
+}
+
 $json = Get-Content -LiteralPath $p.Path -Raw | ConvertFrom-Json
 if (-not $json.env) {
   throw "Invalid api_pool.json: missing env object"
@@ -115,11 +280,7 @@ if (Has-EnvVar -Name "HUGGINGFACE_HUB_TOKEN") {
   $v = [System.Environment]::GetEnvironmentVariable("HUGGINGFACE_HUB_TOKEN", "Process")
   $v = Normalize-Token -Value $v
   if (-not [string]::IsNullOrWhiteSpace($v)) {
-    $prior = [System.Environment]::GetEnvironmentVariable("HF_TOKEN", "Process")
-    if ($prior -ne $v) {
-      [System.Environment]::SetEnvironmentVariable("HF_TOKEN", $v, "Process")
-      $count++
-    }
+    $count += Set-HFAliases -Token $v
   }
 }
 
@@ -128,13 +289,7 @@ if (Has-EnvVar -Name "HUGGINGFACE_HUB_TOKEN") {
 if (Has-EnvVar -Name "GITHUB_TOKEN") {
   $v = Normalize-Token -Value (Get-EnvVar -Name "GITHUB_TOKEN")
   if (-not [string]::IsNullOrWhiteSpace($v)) {
-    foreach ($alias in @("GITHUB_PERSONAL_ACCESS_TOKEN","GITHUB_PAT","GITHUB_MCP_PAT","GITHUB_MCP_PAT_TOKEN")) {
-      $prior = Get-EnvVar -Name $alias
-      if ($prior -ne $v) {
-        [System.Environment]::SetEnvironmentVariable($alias, $v, "Process")
-        $count++
-      }
-    }
+    $count += Set-GitHubAliases -Token $v
   }
 }
 
@@ -142,7 +297,7 @@ if (-not $Quiet) {
   Write-Host "Loaded $count env var(s) into this shell process."
 }
 
-if ($Verify) {
+if ($WantVerifyPool) {
   $missing = @()
   foreach ($k in $json.env.PSObject.Properties.Name) {
     $v = [System.Environment]::GetEnvironmentVariable($k, "Process")
@@ -153,4 +308,12 @@ if ($Verify) {
     exit 4
   }
   if (-not $Quiet) { Write-Host "Verify: all $($json.env.PSObject.Properties.Name.Count) key(s) non-empty." }
+}
+
+if ($WantVerifyGitHub) {
+  exit (Verify-GitHub)
+}
+
+if ($WantVerifyHF) {
+  exit (Verify-HF)
 }

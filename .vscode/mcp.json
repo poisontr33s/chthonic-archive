@@ -1,119 +1,123 @@
 {
-	"servers": {
-		"github": {
-			"type": "http",
-			"url": "https://api.githubcopilot.com/mcp/insiders"
-		},
-		"browser": {
-			"type": "stdio",
-			"command": "bun",
-			"args": [
-				"run",
-				"scripts/mcp-browser.ts"
-			],
-			"cwd": "${workspaceFolder}"
-		},
-		"bun-docs": {
-			"type": "http",
-			"url": "https://bun.com/docs/mcp"
-		},
-		"microsoft-docs": {
-			"type": "http",
-			"url": "https://learn.microsoft.com/api/mcp"
-		},
-		"asc-injector": {
-			"type": "stdio",
-			"command": "bun",
-			"args": [
-				"run",
-				"scripts/mcp-asc-injector.ts"
-			],
-			"cwd": "${workspaceFolder}",
-			"env": {
-				"SSOT_PATH": ".github/copilot-instructions.archive.md"
-			}
-		},
-		"chthonic-v3": {
-			"type": "stdio",
-			"command": "bun",
-			"args": [
-				"run",
-				"scripts/mcp-chthonic-server.ts"
-			],
-			"cwd": "${workspaceFolder}",
-			"env": {
-				"CHTHONIC_ROOT": "${workspaceFolder}"
-			}
-		},
-		"mas-mcp": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"run",
-				"--quiet",
-				"--directory",
-				"${workspaceFolder}/mas_mcp",
-				"python",
-				"-m",
-				"server"
-			],
-			"cwd": "${workspaceFolder}"
-		},
-		"filesystem": {
-			"type": "stdio",
-			"command": "bun",
-			"args": [
-				"run",
-				"scripts/mcp-filesystem.ts",
-				"${workspaceFolder}/mcp_fs_root"
-			],
-			"cwd": "${workspaceFolder}"
-		},
-		"io.github.upstash/context7": {
-			"type": "stdio",
-			"command": "bunx",
-			"args": [
-				"@upstash/context7-mcp@1.0.31",
-			]
-		},
-		"pnk-archaeology": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"run",
-				"--quiet",
-				"scripts/archaeology_mcp.py"
-			],
-			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
-			"env": {
-				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
-			}
-		},
-		"pnk-public-archaeology": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"run",
-				"--quiet",
-				"scripts/archaeology_mcp.py"
-			],
-			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
-			"env": {
-				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../PsychoNoir-Kontrapunkt"
-			}
-		},
-		"chthonic-archaeology": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"run",
-				"--quiet",
-				"scripts/archaeology_mcp.py"
-			],
-			"cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
-			"env": {
-				"ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
-			}
-		}
-	}
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/insiders"
+    },
+    "browser": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-browser.ts"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    "bun-docs": {
+      "type": "http",
+      "url": "https://bun.com/docs/mcp"
+    },
+    "microsoft-docs": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "asc-injector": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-asc-injector.ts"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "SSOT_PATH": ".github/copilot-instructions.archive.md"
+      }
+    },
+    "chthonic-v3": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-chthonic-server.ts"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "CHTHONIC_ROOT": "${workspaceFolder}"
+      }
+    },
+    "mas-mcp": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "--directory",
+        "${workspaceFolder}/mas_mcp",
+        "python",
+        "-m",
+        "server"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-filesystem.ts",
+        "${workspaceFolder}/mcp_fs_root"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    "io.github.upstash/context7": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": [
+        "@upstash/context7-mcp@1.0.31"
+      ]
+    },
+    "pnk-archaeology": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "scripts/archaeology_mcp.py"
+      ],
+      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "env": {
+        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
+      }
+    },
+    "pnk-public-archaeology": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "scripts/archaeology_mcp.py"
+      ],
+      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "env": {
+        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../PsychoNoir-Kontrapunkt"
+      }
+    },
+    "chthonic-archaeology": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "scripts/archaeology_mcp.py"
+      ],
+      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "env": {
+        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
+      }
+    },
+    "huggingface": {
+      "type": "http",
+      "url": "https://huggingface.co/mcp"
+    }
+  }
 }

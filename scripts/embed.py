@@ -2,47 +2,49 @@
 # @SID: embed — sentence-transformers embedding bridge for session-corpus G7
 # Protocol: reads JSON-lines from stdin {id: str, text: str}
 #           writes JSON-lines to stdout {id: str, vec: list[float]}
-# Backend:  sentence-transformers/all-MiniLM-L6-v2 (384d, GPU-native, OFFLINE)
+# Backend:  Qwen/Qwen3-Embedding-0.6B (1024d, 32k ctx, Matryoshka, GPU-native)
 # Usage:    cat session_texts.jsonl | uv run scripts/embed.py
 #           uv run scripts/embed.py --batch-size 32
 #
-# MODEL PROVENANCE (2026-05-04)
-# ─────────────────────────────
-# all-MiniLM-L6-v2 was selected as the G7 baseline because it was the only
-# sentence-transformers model confirmed present in the local HF cache at time of
-# implementation (TRANSFORMERS_OFFLINE=1 enforced; HF token was invalid/stale).
+# MODEL PROVENANCE (2026-05-04 → 2026-05-04 upgrade)
+# ────────────────────────────────────────────────────
+# G7 baseline was all-MiniLM-L6-v2 (384d, OFFLINE-only, 256 token limit).
+# Upgraded to Qwen/Qwen3-Embedding-0.6B per HF market sweep 2026-05-04:
+#   - 1024d Matryoshka vectors (effective dims: 64, 128, 256, 512, 1024)
+#   - 32k token context window — no more truncation on long session transcripts
+#   - SOTA MTEB; 43.7M downloads; Apache-2.0; 595.8M params fit comfortably on RTX 4090
+#   - trust_remote_code=True required
+#   - Attention pooling: EOS token extraction (causal LM, NOT mean pooling)
+#   - HF token (esabbr) required for first download — then cached locally
 #
-# Known limitations:
-#   - 384d vectors (FLOAT[384] schema is now locked to this; migration needed for dim change)
-#   - Max 256 word-pieces (session texts are truncated beyond that boundary)
-#   - Trained for sentence/short-paragraph similarity; not optimised for code retrieval
+# CORPUS_SCHEMA_VERSION bump: 3 → 4 (FLOAT[384] → FLOAT[1024])
+# Requires: bun run scripts/session-corpus.ts --rebuild --embed
 #
-# Upgrade candidates (require HF token + cache population):
-#   nomic-embed-text-v1.5  — 768d, Matryoshka 64-768, 8192 ctx, GPLv3
-#   BGE-M3                 — 1024d, multilingual, dense+sparse+colbert hybrid
-#   Qwen3-Embedding        — flexible dims, 32k ctx, multilingual, top MTEB 2025-06
-#   jina-embeddings-v3     — 1024d, task-aware, 8192 ctx
+# Remaining upgrade candidates (registry: scripts/embed_model_registry.json):
+#   Qwen/Qwen3-Embedding-8B    — 4096d (Matryoshka to 1024d), 32k ctx, 7.5B params, max accuracy.
+#   BAAI/bge-m3                — 1024d, 8192 ctx, MIT, 142.8M dl, hybrid dense+sparse+colbert.
+#   nomic-embed-text-v1.5      — 768d, Matryoshka 64-768, 8192 ctx, Apache-2.0, 77.6M dl.
+#   ibm-granite/granite-embed… — 384d (ZERO schema change!), ModernBERT arch, code-optimised.
 #
-# Migration path: bump schema_version to 4, DROP vec_embeddings, recreate with new FLOAT[N],
-# re-run --embed with updated MODEL_ID.
+# Track B (future — baby-Claudine fine-tune):
+#   Base: Qwen3-0.6B-Base (raw LLM, NOT Qwen3-Embedding-0.6B — avoids spatial bias)
+#   Framework: sentence-transformers v5.4+ (MatryoshkaLoss + CachedMNRL + Qwen3 native)
+#   Data: ~15k-50k synthetic triplets via Poe API (Claude Sonnet 4.6 for hard negatives)
+#   Loss: InfoNCE (L_InfoNCE + 2×L_distillation) per Jina v5 arxiv:2602.15547
+#   Deploy: safetensors export + config.json model_type:qwen3 + TEI 1.9+ on RTX 4090
 
 import os
 import sys
 import json
-
-# MUST be set before any HF/transformers import (network blocked in this env)
-os.environ["TRANSFORMERS_OFFLINE"] = "1"
-os.environ["HF_DATASETS_OFFLINE"] = "1"
-
 import argparse
 
-DIMS = 384
-MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2"
+DIMS = 1024
+MODEL_ID = "Qwen/Qwen3-Embedding-0.6B"
 
 
 def load_model():
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer(MODEL_ID, device="cuda")
+    model = SentenceTransformer(MODEL_ID, device="cuda", trust_remote_code=True)
     return model
 
 
@@ -87,7 +89,7 @@ def main():
     parser.add_argument("--batch-size", type=int, default=32, help="Encode batch size (default: 32)")
     args = parser.parse_args()
 
-    sys.stderr.write(f"[embed.py] Loading {MODEL_ID} on CUDA (OFFLINE mode)...\n")
+    sys.stderr.write(f"[embed.py] Loading {MODEL_ID} on CUDA...\n")
     sys.stderr.flush()
     model = load_model()
     sys.stderr.write(f"[embed.py] Model ready. dims={DIMS}. Reading stdin...\n")

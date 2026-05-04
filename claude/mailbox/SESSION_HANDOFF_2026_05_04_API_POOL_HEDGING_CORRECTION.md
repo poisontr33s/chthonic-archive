@@ -9,6 +9,17 @@ subject: api pool verification and hedging correction
 
 # API Pool Verification: No Hedging
 
+## Superseding Update: Tokens Fixed
+- Hugging Face is now live-valid: `.\scripts\api_pool.ps1 -VerifyHF` returns `ok: esabbr`.
+- GitHub is now live-valid: `.\scripts\api_pool.ps1 -VerifyGitHub` returns `ok: poisontr33s`.
+- Poe account 1 and account 2 still resolve from the local API pool.
+- The tracked pool helper now owns consolidation:
+  - `.\scripts\api_pool.ps1 -SetHFToken`
+  - `.\scripts\api_pool.ps1 -SyncGitHubFromGh`
+  - `.\scripts\api_pool.ps1 -VerifyHF`
+  - `.\scripts\api_pool.ps1 -VerifyGitHub`
+- Do not use the older failing HF/GitHub observations below as current blockers; they are preserved as provenance only.
+
 ## What I Did
 - Verified local pool presence at `C:\Users\eldno\.chthonic\api_pool.json`; last modified `2026-02-23 17:49:36` local time.
 - Generated no-secrets registry reports:
@@ -33,14 +44,13 @@ subject: api pool verification and hedging correction
   - Poe account 1: key accepted for model listing; control/app-creator probes are subscription-gated.
   - Poe account 2: key accepted and callable for `claude-sonnet-4.5` and `app-creator` over both OpenAI-compatible and SDK probes.
 - Live-failing tools:
-  - Hugging Face: `HUGGINGFACE_HUB_TOKEN` is invalid as of this check. `HF_TOKEN` also exists in env/user scope and can mask auth, but clearing it did not make HF pass.
-  - GitHub: pool `GITHUB_TOKEN` is invalid as of this check; GitHub returned `401 Bad credentials`.
+  - None among required current lanes after the superseding token update above.
 - Missing optional direct API keys in registry include OpenAI, Gemini, Anthropic, OpenRouter, Groq, Together, Fireworks, Replicate, Cohere, Pinecone, Tavily, Mistral, Perplexity, xAI, DeepSeek, Azure OpenAI, Voyage, Exa, Brave Search, SerpAPI, ElevenLabs, AssemblyAI, Cerebras, and LangSmith.
 
 ## Claude Instruction
 - Do not say "probably", "appears", "should", or "maybe" for this state unless a fresh command was not run.
 - Say `passed`, `failed`, `missing`, or `not checked`, and cite the command/artifact.
-- Do not imply Hugging Face or GitHub are healthy until their live auth probes pass.
+- Hugging Face and GitHub are healthy only when the commands in "Superseding Update" pass in the current shell.
 - Use Poe account 2 as the currently verified callable Poe lane; treat account 1 as model-list-valid but subscription-gated for the probed Claude/app-creator calls.
 
 ## Claude Correction Addendum
@@ -49,7 +59,7 @@ subject: api pool verification and hedging correction
 - If token rotation is required, state the blocker once, then continue with the non-secret work that remains available.
 - If no work remains available, close with the exact blocker and verification command; do not ask the user to choose between blocked and unblocked lanes.
 - For the pasted response pattern, the compliant close is:
-  - `Proceeding with the local G7 embed path. HF and GitHub remain blocked pending token rotation; Poe account 2 is the verified callable Poe lane.`
+  - `Proceeding with the next local lane. HF, GitHub, and Poe account 2 are verified; Poe account 1 remains subscription-gated for the probed Claude/app-creator calls.`
 - If the user explicitly asks only for status, give status only. If the user asks to move forward and a verified lane exists, execute it.
 
 ## How to Verify
@@ -62,4 +72,6 @@ uv run scripts/poe_transport_audit.py --accounts '1,2' --openai-max-tokens 1 --m
 Expected: account 2 callable in transport audit; account 1 subscription-gated for the probed models.
 
 ## Blockers
-- HF and GitHub require token rotation or correction in the local/user secret pool. No repo secret values were written.
+- No required token blockers remain after the superseding update.
+- Optional direct API keys remain missing unless explicitly needed: OpenAI, Gemini, Anthropic, OpenRouter, Groq, Together, Fireworks, Replicate, Cohere, Pinecone, Tavily, Mistral, Perplexity, xAI, DeepSeek, Azure OpenAI, Voyage, Exa, Brave Search, SerpAPI, ElevenLabs, AssemblyAI, Cerebras, and LangSmith.
+- No repo secret values were written.

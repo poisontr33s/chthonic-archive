@@ -8,7 +8,7 @@
   - Claudine
   - Description: Iron foundation behind the nightly escapades — the DB that the vampire drains from, training scope corpus calls
 - pair: docs/architecture/VAMPIRISM_SATELLITES.md
-- References: scripts/session-corpus.ts, scripts/vampire-copilot-chat.ts, ci/checks/federation-contract-validate.ts
+- References: scripts/session-corpus.ts, scripts/vampire-copilot-chat.ts, ci/checks/federation-contract-validate.ts, scripts/embed.py, scripts/embed_doctor.py, scripts/embed_model_registry.json
 
 ---
 
@@ -28,21 +28,26 @@
 | `scripts/session-query.ts` | **QUERY** — corpus.sqlite → stdout reports | `bun run session:query` |
 | `scripts/corpus-mcp.ts` | **SERVE** — corpus.sqlite → MCP tool surface | `bun run session:corpus:mcp` |
 | `scripts/session-watcher.ts` | **MIRROR** — Copilot Chat dir → manifest/sessions/ | `bun run session:watch` |
+| `scripts/embed.py` | **EMBED** — stdin JSON-lines → sentence-transformers → sqlite-vec | called by `session:corpus:embed` |
+| `scripts/embed_doctor.py` | **PREFLIGHT** — validates HF cache + schema compatibility | auto-runs before `--embed` |
+| `scripts/embed_model_registry.json` | **REGISTRY** — active model contract (dims, schema_version_required) | read by doctor + embed.py |
 | `ci/checks/federation-contract-validate.ts` | **GATE** — satellite.json contract check | `bun run vampire:validate` |
 
 **Data flow:**
 ```
 GitHub.copilot-chat/transcripts/<sid>.jsonl
-  → session-watcher.ts  (mirror to manifest/sessions/)
-  → session-corpus.ts   (ingest to manifest/corpus.sqlite)
-  → vampire-copilot-chat.ts (drain to manifest/sessions/*/drain.json)
-  → session-query.ts    (report)
-  → corpus-mcp.ts       (MCP surface)
+  → session-watcher.ts      (mirror to manifest/sessions/)
+  → session-corpus.ts       (ingest to manifest/corpus.sqlite)
+      └→ embed_doctor.py    (pre-flight: HF cache + schema compat)
+      └→ embed.py           (sentence-transformers → vec_embeddings FLOAT[1024])
+  → vampire-copilot-chat.ts (drain to manifest/sessions/*/drain.json + session_blood.json)
+  → session-query.ts        (report)
+  → corpus-mcp.ts           (MCP surface: FTS5 + semantic search)
 ```
 
 ---
 
-## corpus.sqlite — Schema (PRAGMA user_version = 2)
+## corpus.sqlite — Schema (PRAGMA user_version = 4)
 
 ### Core Tables
 
@@ -59,6 +64,7 @@ GitHub.copilot-chat/transcripts/<sid>.jsonl
 | `messages` | `id` | Full message content (role=user/assistant, turn, ts) |
 | `entities` | `id` | Named entities extracted cross-session: name, type, first/last seen |
 | `entity_occurrences` | `id` | Per-session entity mention: turn, context snippet |
+| `vec_embeddings` | `rowid` | sqlite-vec virtual table — FLOAT[1024] Matryoshka embeddings (G7, Qwen3-Embedding-0.6B) |
 
 ### Views
 
@@ -106,7 +112,7 @@ ingestedAt      TEXT
 | G6 | view | — | ✅ done | L4 | session_ranked + hot_files + memory_chain views | G8b, G7.0 | d1509972 |
 | G8b | enrich | b | ✅ done | L4 | Entity DDL + cross-session tracking | entity MCP | d1509972 |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native drain | vampire:* | 82c60dd7 |
-| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + all-MiniLM-L6-v2 384d (offline baseline; see embed.py MODEL PROVENANCE for upgrade path) | semantic search | 525ad245 |
+| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (Apache-2.0, 32k ctx, CUDA, schema v4 — upgraded 2026-05-04 from all-MiniLM-L6-v2 384d, pipeline hardened `13089647`) | semantic search | 72954168 |
 | G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `sessions.intent` auto-populate | intent queries | after G7 |
 | G8c | view | c | ⬜ pending | L0 | Cross-session derived views (trend, velocity) | G9 | after G8a |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE multi-satellite merge | full federation | after G8c |
@@ -122,18 +128,21 @@ Emitted to `manifest/corpus-state.json` on every ingest run. This is the fast-lo
 
 ```json
 {
-  "schema_version": 2,
-  "ingest_ts": "2026-05-04T03:00:00.000Z",
-  "sessions": 47,
-  "entities": 312,
-  "entity_occurrences": 1840,
+  "schema_version": 4,
+  "ingest_ts": "2026-05-04T20:18:26.096Z",
+  "sessions": 13,
+  "entities": 1073,
+  "entity_occurrences": 16637,
   "gate_ladder": {
-    "G0": true,   "G1a": true, "G1b": true,
-    "G2": true,   "G5": true,  "G6": true,
-    "G8b": true,  "G7": true,
+    "G0": true,  "G1a": true, "G1b": true,
+    "G2": true,  "G5": true,  "G6": true,
+    "G8b": true, "G7": true,
     "G8a": false, "G8c": false
   },
-  "satellites": ["vampire-copilot-chat"]
+  "vec_count": 13,
+  "vec_model": "Qwen/Qwen3-Embedding-0.6B",
+  "vec_dims": 1024,
+  "satellites": []
 }
 ```
 
@@ -148,6 +157,7 @@ Four tools available when `session:corpus:mcp` is running:
 | Tool | Inputs | Returns |
 |------|--------|---------|
 | `corpus_search` | `query: string, limit?: number` | FTS5 ranked results from messages |
+| `corpus_semantic_search` | `query: string, limit?: number` | sqlite-vec ANN search via Qwen3-Embedding-0.6B 1024d embeddings |
 | `corpus_session` | `sessionId: string` | Full session row + edit/cmd counts |
 | `corpus_entities` | `name?: string, type?: string` | Entity records + occurrence count |
 | `corpus_timeline` | `limit?: number, minTurns?: number` | session_ranked view rows |
@@ -165,6 +175,17 @@ bun run session:corpus:rebuild              # drop + full reingest
 bun run session:corpus:classify             # re-run intent classification on all sessions
 bun run session:corpus:stats                # print DB stats to stdout
 bun run session:corpus:watch                # continuous watch mode
+# HF token required — inject before embedding:
+. .\scripts\api_pool.ps1 -Quiet; bun run session:corpus -- --embed
+bun run session:corpus -- --embed           # embed all non-embedded sessions (doctor pre-flight auto-runs)
+bun run session:corpus -- --embed --dry-run # doctor pre-flight only — no embedding
+bun run session:corpus:rebuild              # full rebuild (drop + ingest + no embed)
+. .\scripts\api_pool.ps1 -Quiet; bun run scripts/session-corpus.ts --rebuild --embed  # full rebuild + embed in one pass
+
+# EMBED PRE-FLIGHT
+uv run scripts/embed_doctor.py --current-schema-version 4  # standalone doctor check
+# Model registry: scripts/embed_model_registry.json (active_model_id, dims, schema_version_required)
+# HF token source: scripts/api_pool.ps1 → sets HF_TOKEN + HUGGINGFACE_HUB_TOKEN for subprocess
 
 # QUERY
 bun run session:query                       # summary (session count, top files, top tools)
@@ -201,7 +222,7 @@ The vampire does not re-parse transcripts. Every `drain.json` is a SQL projectio
 {
   "_corpus_ref": {
     "sessionId":      "2b2dfd13-5eee-...",
-    "schema_version": 2,
+    "schema_version": 4,
     "corpus_path":    "manifest/corpus.sqlite",
     "workspaceHash":  "eccd2abd...",
     "startTime":      "2026-05-04T01:32:00Z",
