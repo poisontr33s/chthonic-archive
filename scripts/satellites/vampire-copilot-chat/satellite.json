@@ -1,0 +1,66 @@
+{
+  "satellite_id": "vampire-copilot-chat",
+  "version": "2.0.0",
+  "description": "Lossless drain projection: reads corpus.sqlite, writes drain.json + session_blood.json + nightly digests. The corpus INGESTS; the vampire DRAINS. Same data, two projection surfaces.",
+
+  "source_contract": {
+    "host": "manifest/corpus.sqlite",
+    "platform": "win32",
+    "surfaces": [
+      "sessions",
+      "file_edits",
+      "terminal_cmds",
+      "code_blocks",
+      "tool_calls",
+      "commit_refs",
+      "memory_snapshots",
+      "messages"
+    ],
+    "poll_interval_ms": 60000,
+    "trigger": "corpus-query",
+    "schema_owner": "scripts/session-corpus.ts"
+  },
+
+  "drain_format": {
+    "type": "sqlite",
+    "path": "manifest/corpus.sqlite",
+    "schema_version": 2,
+    "schema_doc": "docs/architecture/VAMPIRISM_SATELLITES.md#vampire-copilot-chat-promoted-from-session-vampirets",
+    "tables": [
+      "sessions",
+      "file_edits",
+      "terminal_cmds",
+      "code_blocks",
+      "tool_calls",
+      "commit_refs",
+      "memory_snapshots",
+      "messages"
+    ],
+    "artifact_outputs": [
+      "manifest/sessions/*/drain.json",
+      "manifest/session_blood.json",
+      "manifest/vampire_nightly_{YYYY-MM-DD}.json"
+    ]
+  },
+
+  "federation_keys": ["sessionId", "startTime"],
+  "corpus_frontmatter_anchor": "sessionId",
+
+  "cross_reference_proof": {
+    "description": "drain.json._corpus_ref.sessionId === corpus.sessions.sessionId — same object, two surfaces",
+    "verify": "SELECT s.sessionId, s.intent FROM sessions s WHERE s.sessionId = (SELECT sessionId FROM json_each(readfile('manifest/sessions/<id>/drain.json')) LIMIT 1)"
+  },
+
+  "nightly_escapades": {
+    "description": "Last-24h digest — catches what ran while you slept",
+    "window_hours": 24,
+    "output_pattern": "manifest/vampire_nightly_{date}.json",
+    "schedule_hint": "0 3 * * *",
+    "flag": "--nightly",
+    "npm_script": "vampire:nightly"
+  },
+
+  "outbound_network": false,
+  "license": "Apache-2.0",
+  "corpus_schema_min": 2
+}

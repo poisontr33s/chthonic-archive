@@ -779,12 +779,55 @@ for (const id of ids) {
   else { process.stdout.write(`  ⚠️  ${id.slice(0, 8)} — skipped (no transcript)\n`); }
 }
 
+// ─────────────────────────────────────────────────────────────
+// Schema version (satellite federation contract)
+// Increment when DDL gains a new gate tier:
+//   1 = G0-G5 base tables
+//   2 = G6 session_ranked view + G8b entities/entity_occurrences
+//   3 = G7 embeddings (future)
+// ─────────────────────────────────────────────────────────────
+const CORPUS_SCHEMA_VERSION = 2;
+db.exec(`PRAGMA user_version = ${CORPUS_SCHEMA_VERSION}`);
+
 if (!watchMode) {
   // Auto-classify after any ingest pass (or when explicitly requested with --classify)
   if (ingested > 0 || rebuildMode || classifyMode) {
     console.log("\n🏷  Classifying sessions...\n");
     classifyAll(db);
   }
+
+  // Emit corpus-state.json — single integration frame for satellites + CI
+  const count = (sql: string) => (db.prepare(sql).get() as { c: number }).c;
+  const hasFts  = (() => { try { count("SELECT COUNT(*) AS c FROM fts_messages"); return true; } catch { return false; } })();
+  const hasRanked = (() => { try { count("SELECT COUNT(*) AS c FROM session_ranked"); return true; } catch { return false; } })();
+  const hasEntities = (() => { try { count("SELECT COUNT(*) AS c FROM entities"); return true; } catch { return false; } })();
+  const hasVec  = (() => { try { count("SELECT COUNT(*) AS c FROM vec_embeddings"); return true; } catch { return false; } })();
+  const corpusState = {
+    schema_version: CORPUS_SCHEMA_VERSION,
+    ingest_ts: new Date().toISOString(),
+    sessions: count("SELECT COUNT(*) AS c FROM sessions"),
+    entities: hasEntities ? count("SELECT COUNT(*) AS c FROM entities") : 0,
+    entity_occurrences: hasEntities ? count("SELECT COUNT(*) AS c FROM entity_occurrences") : 0,
+    gate_ladder: {
+      G0:  count("SELECT COUNT(*) AS c FROM sessions") > 0,
+      G1a: count("SELECT COUNT(*) AS c FROM sessions") > 0,
+      G1b: count("SELECT COUNT(*) AS c FROM memory_snapshots") > 0,
+      G2:  count("SELECT COUNT(*) AS c FROM tool_calls") > 0,
+      G5:  hasFts,
+      G6:  hasRanked,
+      G8b: hasEntities,
+      G7:  hasVec,
+      G8a: false,   // LLM summaries — future
+      G8c: false,   // cross-session views — future
+    },
+    satellites: [] as string[],   // populated by federation-contract-validate.ts
+  };
+  await Bun.write(
+    join(import.meta.dir, "..", "manifest", "corpus-state.json"),
+    JSON.stringify(corpusState, null, 2) + "\n"
+  );
+  console.log(`📋  corpus-state.json  schema_version=${CORPUS_SCHEMA_VERSION}`);
+
   db.close();
   console.log(`\nDone: ${ingested} ingested, ${skipped} up-to-date  →  ${corpusPath}`);
   process.exit(0);

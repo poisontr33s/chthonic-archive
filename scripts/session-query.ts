@@ -11,6 +11,7 @@
 //   bun run scripts/session-query.ts --sessions              # list all sessions
 //   bun run scripts/session-query.ts --session <id>          # detailed view of one session (partial id ok)
 //   bun run scripts/session-query.ts --sql "SELECT ..."      # raw SQL against corpus.sqlite
+//   bun run scripts/session-query.ts --status               # corpus-state.json gate ladder + satellite frame
 //
 // [G6] bun run scripts/session-query.ts --ranked [N]              # recency+signal ranked sessions
 //      bun run scripts/session-query.ts --ranked 10 --alpha 0.7   # custom recency weight
@@ -393,6 +394,27 @@ tr:hover td{background:#1e1e2a}
   `).all() as Record<string, unknown>[];
   table(rows);
 
+} else if (flag("--status")) {
+  const statePath = join(import.meta.dir, "..", "manifest", "corpus-state.json");
+  if (!existsSync(statePath)) {
+    console.log("⚠️  corpus-state.json not found. Run: bun run session:corpus");
+  } else {
+    const state = JSON.parse(require("fs").readFileSync(statePath, "utf8")) as Record<string, unknown>;
+    const ladder = state.gate_ladder as Record<string, boolean>;
+    console.log(`\n📋 CORPUS STATE\n`);
+    console.log(`  Schema version : ${state.schema_version}`);
+    console.log(`  Ingested       : ${state.ingest_ts}`);
+    console.log(`  Sessions       : ${state.sessions}`);
+    console.log(`  Entities       : ${state.entities}`);
+    console.log(`  Entity occ.    : ${state.entity_occurrences}\n`);
+    console.log("  Gate Ladder:");
+    for (const [gate, admitted] of Object.entries(ladder))
+      console.log(`    ${gate.padEnd(5)}  ${admitted ? "✅ admitted" : "⬜ open"}`);
+    const sats = state.satellites as string[];
+    if (sats.length) { console.log(`\n  Satellites (${sats.length}):`); for (const s of sats) console.log(`    ${s}`); }
+    else console.log("\n  Satellites: none registered");
+  }
+
 } else if (flag("--sql")) {
   const sql = flagArg("--sql");
   if (!sql) { console.error('Usage: --sql "SELECT ..."'); process.exit(1); }
@@ -524,6 +546,7 @@ session-query — query manifest/corpus.sqlite
   --session <id>          detailed view of one session (partial id ok)
   --report-html           generate manifest/corpus-report.html (self-contained, no deps)
   --sql "..."             raw SQL query against corpus.sqlite
+  --status                corpus-state.json: schema_version, gate ladder, satellite registry
 
   [G6] --ranked [N]               top N sessions by composite score  (default 20)
        --alpha <0..1>             recency weight (default 0.6; signal weight = 1-alpha)
