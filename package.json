@@ -124,7 +124,8 @@
     "@sentry/bun": "^10.49.0",
     "ajv": "^8.18.0",
     "hono": "^4.12.12",
-    "minimatch": "^10.2.4"
+    "minimatch": "^10.2.4",
+    "sqlite-vec": "^0.1.9"
   },
   "devDependencies": {
     "@davestewart/outliner": "^1.2.0",

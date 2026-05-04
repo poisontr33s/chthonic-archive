@@ -19,12 +19,23 @@
 import { Database } from "bun:sqlite";
 import { existsSync, readdirSync, readFileSync, statSync, watch } from "fs";
 import { join } from "path";
+import { load as loadSqliteVec } from "sqlite-vec";
+
+// ─────────────────────────────────────────────────────────────
+// Schema version (satellite federation contract)
+// Increment when DDL gains a new gate tier:
+//   1 = G0-G5 base tables
+//   2 = G6 session_ranked view + G8b entities/entity_occurrences
+//   3 = G7 vec_embeddings virtual table (sqlite-vec 0.1.9)
+// ─────────────────────────────────────────────────────────────
+const CORPUS_SCHEMA_VERSION = 3;
 
 const args = process.argv.slice(2);
 const rebuildMode   = args.includes("--rebuild");
 const statsMode     = args.includes("--stats");
 const watchMode     = args.includes("--watch");
 const classifyMode  = args.includes("--classify");
+const embedMode     = args.includes("--embed");
 const sessionArgIdx = args.indexOf("--session");
 const targetSession = sessionArgIdx >= 0 ? args[sessionArgIdx + 1] : null;
 
@@ -198,6 +209,16 @@ CREATE VIRTUAL TABLE IF NOT EXISTS fts_cmds USING fts5(
   sessionId UNINDEXED,
   command,
   goal
+);
+`;
+
+// ─────────────────────────────────────────────────────────────
+// G7 — sqlite-vec virtual table
+// ─────────────────────────────────────────────────────────────
+const DDL_VEC = `
+CREATE VIRTUAL TABLE IF NOT EXISTS vec_embeddings USING vec0(
+  session_id TEXT PRIMARY KEY,
+  content_embedding FLOAT[384]
 );
 `;
 
@@ -688,6 +709,8 @@ if (!existsSync(sessionsDir)) {
 
 const db = new Database(corpusPath, { create: true });
 db.exec("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON;");
+// G7: load sqlite-vec extension
+try { loadSqliteVec(db); } catch (e) { console.warn("⚠️  sqlite-vec load failed:", e); }
 
 if (rebuildMode) {
   console.log("⚡ Rebuild: dropping all tables and views...");
@@ -724,6 +747,159 @@ db.exec(DDL_VIEWS);
 try { db.exec(DDL_FTS5); } catch (e) { console.warn("⚠️  FTS5 not available:", e); }
 // G8b entities (graceful)
 try { db.exec(DDL_ENTITIES); } catch (e) { console.warn("⚠️  Entities DDL failed:", e); }
+// G7 vec (graceful)
+try { db.exec(DDL_VEC); } catch (e) { console.warn("⚠️  vec_embeddings DDL failed:", e); }
+
+// ─────────────────────────────────────────────────────────────
+// G7 embed mode — embed all sessions via scripts/embed.py
+// ─────────────────────────────────────────────────────────────
+if (embedMode) {
+  // ── Pre-flight: validate model cache + schema compat before touching DB ──────
+  {
+    const doctorScript = join(import.meta.dir, "embed_doctor.py");
+    const doctorProc = Bun.spawnSync(
+      ["uv", "run", doctorScript, "--current-schema-version", String(CORPUS_SCHEMA_VERSION)],
+      { stdout: "pipe", stderr: "inherit" }
+    );
+    let doctorResult: Record<string, unknown> = {};
+    try {
+      doctorResult = JSON.parse(new TextDecoder().decode(doctorProc.stdout));
+    } catch {
+      console.error("[G7] embed_doctor.py returned non-JSON output — aborting.\n");
+      db.close();
+      process.exit(1);
+    }
+
+    const warnings = (doctorResult.warnings as string[]) ?? [];
+    const hardFails = (doctorResult.hard_failures as string[]) ?? [];
+
+    if (warnings.length > 0) {
+      for (const w of warnings) console.warn(`[G7] ⚠️  ${w}`);
+    }
+
+    if (!doctorResult.pass) {
+      console.error("\n[G7] ❌  Embed pre-flight FAILED — aborting before DB changes.\n");
+      for (const f of hardFails) console.error(`   • ${f}`);
+      console.error(
+        `\nFix the issues above, then re-run: bun run scripts/session-corpus.ts --embed\n` +
+        `Model registry: scripts/embed_model_registry.json\n`
+      );
+      db.close();
+      process.exit(1);
+    }
+
+    console.log(
+      `[G7] ✅  Pre-flight passed: model=${doctorResult.model_id} dims=${doctorResult.dims} ` +
+      `cached=${doctorResult.cached} schema_ok=${doctorResult.schema_compatible}`
+    );
+  }
+
+  const sessions = db.prepare("SELECT sessionId, intent, topic, tags FROM sessions").all() as Array<{ sessionId: string; intent: string; topic: string | null; tags: string | null }>;
+
+  // Build embed text per session: intent + topic + top file names
+  const texts: Array<{ id: string; text: string }> = [];
+  for (const s of sessions) {
+    const files = (db.prepare("SELECT DISTINCT filePath FROM file_edits WHERE sessionId = ? LIMIT 20")
+      .all(s.sessionId) as Array<{ filePath: string }>)
+      .map(r => r.filePath.replace(/^.*[\\/]/, ""))  // basename only
+      .join(" ");
+    const text = [
+      s.intent ?? "",
+      s.topic  ?? "",
+      files,
+    ].join(" ").replace(/\s+/g, " ").trim().slice(0, 512);
+    texts.push({ id: s.sessionId, text: text || s.sessionId });
+  }
+
+  console.log(`[G7] Embedding ${texts.length} session(s) via scripts/embed.py...`);
+
+  // Pipe texts to embed.py
+  const pyScript = join(import.meta.dir, "embed.py");
+  const proc = Bun.spawn(["uv", "run", pyScript], {
+    stdin:  "pipe",
+    stdout: "pipe",
+    stderr: "inherit",
+  });
+
+  // Write all session texts as JSON-lines to stdin (Bun FileSink API)
+  const enc = new TextEncoder();
+  for (const item of texts) {
+    proc.stdin.write(enc.encode(JSON.stringify(item) + "\n"));
+  }
+  proc.stdin.end();
+
+  // Collect stdout text (wait for process to close)
+  const rawOut = await new Response(proc.stdout).text();
+  await proc.exited;
+
+  const insVec = db.prepare(
+    "INSERT OR REPLACE INTO vec_embeddings(session_id, content_embedding) VALUES (?, ?)"
+  );
+
+  let embedded = 0;
+  db.transaction(() => {
+    for (const line of rawOut.split("\n")) {
+      if (!line.trim()) continue;
+      try {
+        const { id, vec } = JSON.parse(line) as { id: string; vec: number[] };
+        const buf = new Float32Array(vec);
+        insVec.run(id, new Uint8Array(buf.buffer));
+        embedded++;
+        process.stdout.write(`  \u2705 [${id.slice(0, 8)}] embedded ${vec.length}d\n`);
+      } catch { /* malformed line */ }
+    }
+  })();
+  console.log(`\n[G7] Done: ${embedded}/${texts.length} sessions embedded → vec_embeddings`);
+
+  // Checkpoint WAL so the committed DB file contains the vec_embeddings data
+  db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
+
+  // Update corpus-state.json to reflect G7 admission (same block as main ingest path)
+  {
+    const countQ = (sql: string) => (db.prepare(sql).get() as { c: number }).c;
+    const hasVecNow  = (() => { try { countQ("SELECT COUNT(*) AS c FROM vec_embeddings"); return true; } catch { return false; } })();
+    const hasRankedNow = (() => { try { countQ("SELECT COUNT(*) AS c FROM session_ranked"); return true; } catch { return false; } })();
+    const hasEntitiesNow = (() => { try { countQ("SELECT COUNT(*) AS c FROM entities"); return true; } catch { return false; } })();
+    const hasFtsNow  = (() => { try { countQ("SELECT COUNT(*) AS c FROM fts_messages"); return true; } catch { return false; } })();
+    const vecCountNow = hasVecNow ? countQ("SELECT COUNT(*) AS c FROM vec_embeddings") : 0;
+    const state = {
+      schema_version: CORPUS_SCHEMA_VERSION,
+      ingest_ts: new Date().toISOString(),
+      sessions: countQ("SELECT COUNT(*) AS c FROM sessions"),
+      entities: hasEntitiesNow ? countQ("SELECT COUNT(*) AS c FROM entities") : 0,
+      entity_occurrences: hasEntitiesNow ? countQ("SELECT COUNT(*) AS c FROM entity_occurrences") : 0,
+      gate_ladder: {
+        G0:  countQ("SELECT COUNT(*) AS c FROM sessions") > 0,
+        G1a: countQ("SELECT COUNT(*) AS c FROM sessions") > 0,
+        G1b: countQ("SELECT COUNT(*) AS c FROM memory_snapshots") > 0,
+        G2:  countQ("SELECT COUNT(*) AS c FROM tool_calls") > 0,
+        G5:  hasFtsNow,
+        G6:  hasRankedNow,
+        G8b: hasEntitiesNow,
+        G7:  hasVecNow && vecCountNow > 0,
+        G8a: false,
+        G8c: false,
+      },
+      vec_count: vecCountNow,
+      // G7 model provenance — offline-cached baseline (HF token unavailable at build time).
+      // all-MiniLM-L6-v2: 384d, max 256 word-pieces, 22M params.
+      // Upgrade path: Nomic-embed-text-v1.5 (768d, Matryoshka 64-768, 8192 ctx) or
+      //               BGE-M3 (1024d, multilingual) once HF token and larger cache available.
+      // Schema note: FLOAT[384] DDL locks this DB to 384d vectors; migration required for dim change.
+      vec_model: "sentence-transformers/all-MiniLM-L6-v2",
+      vec_dims: 384,
+      satellites: [] as string[],
+    };
+    await Bun.write(
+      join(import.meta.dir, "..", "manifest", "corpus-state.json"),
+      JSON.stringify(state, null, 2) + "\n"
+    );
+    console.log(`📋  corpus-state.json  G7=${state.gate_ladder.G7}  vec_count=${vecCountNow}`);
+  }
+
+  db.close();
+  process.exit(0);
+}
 
 // Standalone classify mode (no ingest, just re-score existing sessions)
 if (classifyMode && !rebuildMode && !statsMode) {
@@ -779,14 +955,6 @@ for (const id of ids) {
   else { process.stdout.write(`  ⚠️  ${id.slice(0, 8)} — skipped (no transcript)\n`); }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Schema version (satellite federation contract)
-// Increment when DDL gains a new gate tier:
-//   1 = G0-G5 base tables
-//   2 = G6 session_ranked view + G8b entities/entity_occurrences
-//   3 = G7 embeddings (future)
-// ─────────────────────────────────────────────────────────────
-const CORPUS_SCHEMA_VERSION = 2;
 db.exec(`PRAGMA user_version = ${CORPUS_SCHEMA_VERSION}`);
 
 if (!watchMode) {
@@ -802,7 +970,9 @@ if (!watchMode) {
   const hasRanked = (() => { try { count("SELECT COUNT(*) AS c FROM session_ranked"); return true; } catch { return false; } })();
   const hasEntities = (() => { try { count("SELECT COUNT(*) AS c FROM entities"); return true; } catch { return false; } })();
   const hasVec  = (() => { try { count("SELECT COUNT(*) AS c FROM vec_embeddings"); return true; } catch { return false; } })();
-  const corpusState = {
+  // G7: semantic search helper (exposed in corpus-state for MCP consumers)
+  const vecCount = hasVec ? count("SELECT COUNT(*) AS c FROM vec_embeddings") : 0;
+  const corpusState: Record<string, unknown> = {
     schema_version: CORPUS_SCHEMA_VERSION,
     ingest_ts: new Date().toISOString(),
     sessions: count("SELECT COUNT(*) AS c FROM sessions"),
@@ -816,10 +986,11 @@ if (!watchMode) {
       G5:  hasFts,
       G6:  hasRanked,
       G8b: hasEntities,
-      G7:  hasVec,
+      G7:  hasVec && vecCount > 0,
       G8a: false,   // LLM summaries — future
       G8c: false,   // cross-session views — future
     },
+    vec_count: vecCount,
     satellites: [] as string[],   // populated by federation-contract-validate.ts
   };
   await Bun.write(
@@ -862,3 +1033,5 @@ watch(sessionsDir, { recursive: true }, (event, filename) => {
     }
   }, 1500));
 });
+
+

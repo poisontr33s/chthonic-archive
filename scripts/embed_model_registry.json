@@ -1,0 +1,47 @@
+{
+  "_comment": "Embedding model registry for session-corpus G7. Each entry declares the full contract.",
+  "_doc": "Add an entry here before changing MODEL_ID in embed.py. schema_version_required must match the vec_embeddings DDL dims.",
+  "active_model_id": "sentence-transformers/all-MiniLM-L6-v2",
+  "models": {
+    "sentence-transformers/all-MiniLM-L6-v2": {
+      "dims": 384,
+      "context_tokens": 256,
+      "license": "Apache-2.0",
+      "schema_version_required": 3,
+      "notes": "Offline-cached baseline. Chosen from local cache (HF token unavailable at G7 build time). Not benchmarked — convenience selection. Suitable for short-text similarity; not optimised for code retrieval.",
+      "migration_to": null
+    },
+    "nomic-ai/nomic-embed-text-v1.5": {
+      "dims": 768,
+      "context_tokens": 8192,
+      "license": "Apache-2.0",
+      "schema_version_required": 4,
+      "notes": "Matryoshka dims (64-768 usable). Requires HF token + local cache. 8192 ctx captures full session texts.",
+      "migration_to": null
+    },
+    "BAAI/bge-m3": {
+      "dims": 1024,
+      "context_tokens": 8192,
+      "license": "MIT",
+      "schema_version_required": 5,
+      "notes": "Dense + sparse + colbert hybrid. Multilingual. Requires HF token + local cache.",
+      "migration_to": null
+    },
+    "Qwen/Qwen3-Embedding": {
+      "dims": 4096,
+      "context_tokens": 32768,
+      "license": "Qwen-Research",
+      "schema_version_required": 6,
+      "notes": "Flexible dims (64-4096 via Matryoshka). Multilingual. Top MTEB 2025-06. Requires HF token + local cache.",
+      "migration_to": null
+    },
+    "jinaai/jina-embeddings-v3": {
+      "dims": 1024,
+      "context_tokens": 8192,
+      "license": "CC-BY-NC-4.0",
+      "schema_version_required": 7,
+      "notes": "Task-aware embeddings. Requires HF token + local cache.",
+      "migration_to": null
+    }
+  }
+}

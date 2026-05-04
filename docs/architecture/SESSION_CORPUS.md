@@ -106,7 +106,7 @@ ingestedAt      TEXT
 | G6 | view | — | ✅ done | L4 | session_ranked + hot_files + memory_chain views | G8b, G7.0 | d1509972 |
 | G8b | enrich | b | ✅ done | L4 | Entity DDL + cross-session tracking | entity MCP | d1509972 |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native drain | vampire:* | 82c60dd7 |
-| G7 | satellite | — | ⬜ pending | L0 | sqlite-vec + nomic embeddings | semantic search | — |
+| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + all-MiniLM-L6-v2 384d (offline baseline; see embed.py MODEL PROVENANCE for upgrade path) | semantic search | 525ad245 |
 | G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `sessions.intent` auto-populate | intent queries | after G7 |
 | G8c | view | c | ⬜ pending | L0 | Cross-session derived views (trend, velocity) | G9 | after G8a |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE multi-satellite merge | full federation | after G8c |

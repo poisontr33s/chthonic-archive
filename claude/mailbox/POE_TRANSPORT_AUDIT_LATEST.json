@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-05-04T05:24:35Z",
+  "control_model": "claude-sonnet-4.5",
+  "target_bot": "app-creator",
+  "openai_max_tokens": 1,
+  "accounts": [
+    {
+      "account": "1",
+      "openai_control": {
+        "rc": 1,
+        "ok": false,
+        "status": "subscription_required",
+        "text_preview": null,
+        "error": "HTTP 402: The model claude-sonnet-4.5 requires an active Poe subscription for API access."
+      },
+      "openai_app_creator": {
+        "rc": 1,
+        "ok": false,
+        "status": "subscription_required",
+        "text_preview": null,
+        "error": "HTTP 402: The model app-creator requires an active Poe subscription for API access."
+      },
+      "sdk_control": {
+        "rc": 1,
+        "ok": false,
+        "status": "subscription_required",
+        "text_preview": null,
+        "error": "{\"text\": \"The model claude-sonnet-4.5 requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
+      },
+      "sdk_app_creator": {
+        "rc": 1,
+        "ok": false,
+        "status": "subscription_required",
+        "text_preview": null,
+        "error": "{\"text\": \"The model app-creator requires an active Poe subscription for API access.\", \"allow_retry\": false, \"error_type\": \"subscription_required\"}"
+      },
+      "openai_models_count": 382,
+      "openai_has_app_creator": false
+    },
+    {
+      "account": "2",
+      "openai_control": {
+        "rc": 0,
+        "ok": true,
+        "status": "callable",
+        "text_preview": "OK",
+        "error": null
+      },
+      "openai_app_creator": {
+        "rc": 0,
+        "ok": true,
+        "status": "callable",
+        "text_preview": "OK\n\n\n\nhttps://pfst.cf2.poecdn.net/base/application/e4abc3a3dbabb5cdf7bac5ccef2fc362cfa8931bac429282655845548e60a1cb",
+        "error": null
+      },
+      "sdk_control": {
+        "rc": 0,
+        "ok": true,
+        "status": "callable",
+        "text_preview": "OK",
+        "error": null
+      },
+      "sdk_app_creator": {
+        "rc": 0,
+        "ok": true,
+        "status": "callable",
+        "text_preview": "\u2819 **Running**...\n\u2839 **Running**...\n\u2838 **Running**...\n\u283c **Running**...\n\u2826 **Running**...\n\u2827 **Running**...\n\u2807 **Running**...\n\u280b **Running**...\n\u2819 **Running**...\n\u2839 **Running**...\n\u2838 **Running**...\n\u2834 **Running**...\n\u2826 **Running**...\n\u2827 **Running**...\n\u2807 **Running**...\n\u280b **Running**...\n\u2819 **Running**...\n\u2839 **Running",
+        "error": null
+      },
+      "openai_models_count": 382,
+      "openai_has_app_creator": false
+    }
+  ],
+  "recommendation": "openai-compatible",
+  "rationale": "Both lanes can access App-Creator; OpenAI-compatible is better for portability."
+}

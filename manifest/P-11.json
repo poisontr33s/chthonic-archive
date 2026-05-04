@@ -1,0 +1,70 @@
+{
+  "probe": "P-11",
+  "gate": "G7-prereq",
+  "run_at": "2026-05-04T05:10:13Z",
+  "python_version": "3.14.4 (main, Apr  7 2026, 20:48:46) [MSC v.1944 64 bit (AMD64)]",
+  "hf_token_present": true,
+  "backends": {
+    "sentence_transformers": {
+      "id": "sentence_transformers",
+      "available": true,
+      "cuda_available": true,
+      "device": "cuda",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "load_ms": 189.2,
+      "single_ms": 126.9,
+      "dims": 384,
+      "first3": [
+        -0.010012,
+        0.045673,
+        0.000432
+      ],
+      "batch_10_ms": 65.8,
+      "batch_per_item_ms": 6.6,
+      "status": "admitted"
+    },
+    "ollama_http": {
+      "id": "ollama_http",
+      "available": true,
+      "dims": 768,
+      "first3": [
+        -0.137448,
+        0.069227,
+        -3.471337
+      ],
+      "single_ms": 2077.2,
+      "model": "nomic-embed-text:latest",
+      "batch_10_ms": 20533.8,
+      "batch_per_item_ms": 2053.4,
+      "note": "sequential only \u2014 no native batch endpoint",
+      "status": "admitted"
+    },
+    "llama_cpp_python": {
+      "id": "llama_cpp_python",
+      "available": false,
+      "status": "skipped",
+      "reason": "no GGUF embedding model found in HF cache \u2014 would require download",
+      "checked_path": "C:\\Users\\eldno\\.cache\\huggingface\\hub"
+    },
+    "transformers_direct": {
+      "id": "transformers_direct",
+      "available": false,
+      "device": "cuda",
+      "error": "We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.\nCheck your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.",
+      "status": "failed"
+    }
+  },
+  "sqlite_vec": {
+    "available": false,
+    "status": "not_installed",
+    "install_cmd": "uv add sqlite-vec"
+  },
+  "recommendation": {
+    "backend": "sentence_transformers",
+    "reason": "GPU-native CUDA backend \u2014 384d, single=126.9ms, batch/item=6.6ms",
+    "g7_integration": "Bun.spawn(['uv', 'run', 'scripts/embed.py', '--text', '...']) \u2192 stdout float32 LE bytes",
+    "alternatives": [
+      "ollama_http"
+    ]
+  }
+}

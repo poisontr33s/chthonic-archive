@@ -49,6 +49,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# Shared vcvars fixture — bypasses Win11 cmd file-association Open-with trap
+. "$PSScriptRoot\lib\Invoke-VcVars.ps1"
+
 # ═══════════════════════════════════════════════════════════════════════════
 # CONFIGURATION
 # ═══════════════════════════════════════════════════════════════════════════
@@ -111,16 +114,8 @@ function Initialize-VCEnvironment {
         throw "vcvars64.bat not found at: $vcvars"
     }
     
-    # Run vcvars64.bat and capture environment
-    $envOutput = cmd /c "`"$vcvars`" >nul 2>&1 && set"
-    
-    foreach ($line in $envOutput) {
-        if ($line -match '^([^=]+)=(.*)$') {
-            $varName = $matches[1]
-            $varValue = $matches[2]
-            [Environment]::SetEnvironmentVariable($varName, $varValue, "Process")
-        }
-    }
+    # Run vcvars64.bat and capture environment via shared fixture
+    Invoke-VcVars64 -VcVarsPath $vcvars
     
     # Verify cl.exe is now available
     $cl = Get-Command cl.exe -ErrorAction SilentlyContinue

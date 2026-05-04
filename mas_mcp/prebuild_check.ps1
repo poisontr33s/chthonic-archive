@@ -11,6 +11,9 @@
 
 $ErrorActionPreference = "Stop"
 
+# Shared vcvars fixture — bypasses Win11 cmd file-association Open-with trap
+. "$PSScriptRoot\lib\Invoke-VcVars.ps1"
+
 Write-Host @"
 
   ╔═══════════════════════════════════════════════════════════════
@@ -97,7 +100,7 @@ Check-Item "MSVC cl.exe" "$vsPath\VC\Tools\MSVC" -Required
 Write-Host "`n  Testing MSVC environment initialization..."
 $vcvars = "$vsPath\VC\Auxiliary\Build\vcvars64.bat"
 if (Test-Path $vcvars) {
-    $testCmd = cmd /c "`"$vcvars`" >nul 2>&1 && where cl.exe 2>nul"
+    $testCmd = Test-VcVarsInit -VcVarsPath $vcvars
     if ($testCmd) {
         Write-Host "  ✅ MSVC compiler can be initialized"
         Write-Host "     └─ $($testCmd | Select-Object -First 1)" -ForegroundColor DarkGray

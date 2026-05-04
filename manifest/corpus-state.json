@@ -1,0 +1,23 @@
+{
+  "schema_version": 3,
+  "ingest_ts": "2026-05-04T05:56:06.985Z",
+  "sessions": 13,
+  "entities": 1073,
+  "entity_occurrences": 16637,
+  "gate_ladder": {
+    "G0": true,
+    "G1a": true,
+    "G1b": true,
+    "G2": true,
+    "G5": true,
+    "G6": true,
+    "G8b": true,
+    "G7": true,
+    "G8a": false,
+    "G8c": false
+  },
+  "vec_count": 13,
+  "vec_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "vec_dims": 384,
+  "satellites": []
+}

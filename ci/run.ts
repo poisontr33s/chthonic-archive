@@ -104,6 +104,13 @@ const CHECKS: Check[] = [
     speed: "fast",
     description: "GitHub Actions run health membrane (reads manifest/gh_runs/index.json — exits 0 if absent)",
   },
+  {
+    name: "ankh-triple-abstraction",
+    script: "ci/checks/ankh-triple-abstraction.ts",
+    scope: "always",
+    speed: "fast",
+    description: "ANKH triple abstraction probe (WHR:MAX conformance + entity topology + compression ratio)",
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

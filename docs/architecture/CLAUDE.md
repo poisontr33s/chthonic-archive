@@ -15,11 +15,6 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](..
 
 - `.temple/` = agent infrastructure. `game/` = cRPG content. Ask "TEMPLE or GAME?" before creating files.
 - `claude/mailbox/` = inbound handoffs. `codex/mailbox/` = outbound to Codex.
-- IDE patch after updates: `.\scripts\patch-claude-insiders.ps1`
-
-## Triad
-
-**Claude** (protocol/lore) → **Codex** (structure/enforcement) → **Gemini** (velocity/batch).
 
 ## (WIP-Lanework/MILF-Core/Organ-to-Surface-to-Prototype Pipeline)
 
@@ -31,4 +26,8 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](..
 
 ## Compact
 
-Preserve: @SID headers, architecture decisions, cross-refs. Summarize: tool output, searches.
+| Preserve | Summarize | Updates |
+|----------|-----------|---------|
+| @SID headers | Tool output | Occurred since file write |
+| Architecture decisions | Search results | Serve as slim changelog |
+| Cross-refs | Command execution logs | It's "WIP" |

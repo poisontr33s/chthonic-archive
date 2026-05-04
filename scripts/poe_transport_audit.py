@@ -312,12 +312,9 @@ def probe_openai(
     max_tokens: int = 1,
 ) -> ProbeResult:
     requested_tokens = max(1, int(max_tokens))
+    account_slot = normalize_account(account)
     try:
-        acct_int = int(account) if account and str(account).isdigit() else None
-    except (TypeError, ValueError):
-        acct_int = None
-    try:
-        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+        resolution = _poe_lane.resolve_poe_credentials(account_slot)
     except Exception as e:
         return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error=str(e)[:600])
     if not resolution.token:
@@ -352,12 +349,9 @@ def probe_openai(
 
 
 def probe_sdk(account: str, bot: str, prompt: str, effort: str = "") -> ProbeResult:
+    account_slot = normalize_account(account)
     try:
-        acct_int = int(account) if account and str(account).isdigit() else None
-    except (TypeError, ValueError):
-        acct_int = None
-    try:
-        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+        resolution = _poe_lane.resolve_poe_credentials(account_slot)
     except Exception as e:
         return ProbeResult(rc=2, ok=False, status="missing_key", text_preview=None, error=str(e)[:600])
     if not resolution.token:
@@ -373,12 +367,9 @@ def probe_sdk(account: str, bot: str, prompt: str, effort: str = "") -> ProbeRes
 
 
 def list_openai_models(account: str, limit: int) -> tuple[list[str], str | None]:
+    account_slot = normalize_account(account)
     try:
-        acct_int = int(account) if account and str(account).isdigit() else None
-    except (TypeError, ValueError):
-        acct_int = None
-    try:
-        resolution = _poe_lane.resolve_poe_credentials(acct_int)
+        resolution = _poe_lane.resolve_poe_credentials(account_slot)
     except Exception as e:
         return [], str(e)[:600]
     if not resolution.token:
