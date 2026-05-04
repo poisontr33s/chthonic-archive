@@ -17,6 +17,8 @@ The stability of any digital "world"—whether a simulation, a testing environme
 
 ### **2.1. The Bun-Playwright Compatibility Paradox on Windows**
 
+> **⚡ RESOLUTION — 2026-04-09 (Bun v1.3.12):** This paradox is fully resolved. `Bun.WebView` ships natively in Bun v1.3.12, launching Chrome/Chromium via DevTools Protocol **internally** — no `child_process.spawn()`, no Named Pipes IPC, no `@playwright/test` npm package required. The recommendation in §2.2.1 (use `node tests/playwright_suite.js`) is obsolete. The chthonic-archive gating pipeline (`scripts/hf_gate_playwright.ts`) was rewritten to `Bun.WebView` at commit `efdce1e4`. Key API: `await using view = new Bun.WebView({ backend: "chrome" })` — cookie injection via `view.cdp("Network.setCookie", {...})`, button detection via `view.evaluate(...)` or `view.click(selector)` (CSS selector, auto-waits for actionability). The historical analysis below is preserved as provenance of the problem that drove the Bun.WebView feature.
+
 Bun, designed as a drop-in replacement for Node.js, boasts significant performance improvements in startup time and memory usage due to its JavaScriptCore engine (written in Zig) rather than the V8 engine used by Node.1 However, the integration with Playwright—a premier browser automation tool utilized for rendering and testing the "macro-world's" interfaces—is fraught with instability on Windows platforms.
 
 #### **2.1.1. The Mechanism of Failure: IPC and Named Pipes**
@@ -62,8 +64,8 @@ For development within this environment, the "Bun for Visual Studio Code" extens
 | Feature | Bun Runtime (Windows) | Node.js Runtime (Windows) | Recommendation for Project |
 | :---- | :---- | :---- | :---- |
 | **Startup Speed** | Extremely Fast (Zig-based) | Moderate (V8-based) | Use Bun for tooling/scripts |
-| **IPC Stability** | Experimental/Flaky (Named Pipes) | Mature/Stable (libuv) | Use Node for Playwright execution |
-| **Browser Launch** | Prone to Hangs (ENOENT) | Reliable | Use Node or MCP Server wrapper |
+| **IPC Stability** | ✅ RESOLVED — `Bun.WebView` (v1.3.12) bypasses `child_process` / Named Pipes entirely via internal DevTools Protocol | Mature/Stable (libuv) | Use `Bun.WebView` for browser automation |
+| **Browser Launch** | ✅ RESOLVED — `new Bun.WebView({ backend: "chrome" })` launches Chrome directly, no ENOENT hang | Reliable | Use `Bun.WebView` natively (Bun v1.3.12+) |
 | **Package Mgmt** | Fast (Global Cache) | Slower (NPM/Yarn) | Use Bun (bun install) |
 | **Debugging** | WebKit Inspector Protocol | V8 Inspector Protocol | Use VS Code \+ Bun Ext |
 

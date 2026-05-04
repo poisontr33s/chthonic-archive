@@ -1,7 +1,8 @@
 # Bun-First Playwright Extension Validation Study
 
-> **ASC Classification**: `📦 ENGINEERING_SPEC` | **Epistemic Confidence**: High
+> **ASC Classification**: `📦 ENGINEERING_SPEC` | **Epistemic Confidence**: High (Historical)
 > **Generated**: 2025-01-XX | **Runtime**: Bun 1.x → Playwright 1.x
+> **STATUS — ✅ SUPERSEDED**: Bun v1.3.12 (2026-04-09) ships `Bun.WebView` natively. The browser-automation use case this document validates has been replaced by a zero-dependency native approach. Live implementation: `scripts/hf_gate_playwright.ts` (commit `efdce1e4`). The Windows Named Pipes / IPC paradox documented in §5 is architecturally resolved — `Bun.WebView` launches Chrome via DevTools Protocol internally, bypassing `child_process` entirely. This document is preserved as historical provenance.
 
 ## Executive Summary
 
@@ -1010,6 +1011,9 @@ await runValidation();
 
 ### 8.3 Recommendation
 
+> **2026 UPDATE — Use `Bun.WebView` instead:**
+> Bun v1.3.12 ships `Bun.WebView` natively. `new Bun.WebView({ backend: "chrome" })` launches Chrome via DevTools Protocol directly — no `@playwright/test`, no Named Pipes, no `child_process` IPC. The `node:inspector` blocker in §8.2 is irrelevant for `Bun.WebView`. For cookie injection use `view.cdp("Network.setCookie", {...})`, for button detection use `view.evaluate("...")` or `view.click(selector)`. See `scripts/hf_gate_playwright.ts` for the reference implementation.
+
 **Proceed with Bun-first Playwright** for:
 - CI/CD pipelines
 - Headless test execution
@@ -1020,6 +1024,11 @@ await runValidation();
 - VS Code debugger integration
 - Inspector-based tooling
 - Legacy scripts requiring node:inspector
+
+**Prefer `Bun.WebView` (v1.3.12+)** for:
+- Any new browser automation in this repo
+- HF gate acceptance (gating pipeline Tier 3)
+- Any script that previously used `playwright` npm via Bun
 
 ### 8.4 Migration Path
 

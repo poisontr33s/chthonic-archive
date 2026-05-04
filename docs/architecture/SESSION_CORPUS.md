@@ -30,7 +30,9 @@
 | `scripts/session-watcher.ts` | **MIRROR** — Copilot Chat dir → manifest/sessions/ | `bun run session:watch` |
 | `scripts/embed.py` | **EMBED** — stdin JSON-lines → sentence-transformers → sqlite-vec | called by `session:corpus:embed` |
 | `scripts/embed_doctor.py` | **PREFLIGHT** — validates HF cache + schema compatibility | auto-runs before `--embed` |
-| `scripts/embed_model_registry.json` | **REGISTRY** — active model contract (dims, schema_version_required) | read by doctor + embed.py |
+| `scripts/embed_model_registry.json` | **REGISTRY** — active model contract (dims, schema_version_required, gated status) | read by doctor + embed.py + embed_gate_accept.py |
+| `scripts/embed_gate_accept.py` | **GATE** — HF gated model acceptance (Tier 0 registry guard → Tier 1 REST API → Tier 3 Bun.WebView form; G7-REDUX) | `uv run scripts/embed_gate_accept.py` |
+| `scripts/hf_gate_playwright.ts` | **WEBVIEW** — Tier 3 Bun.WebView headless form-gate acceptor (Bun v1.3.12+ native, no npm/playwright dep; `efdce1e4`) | called by `embed_gate_accept.py --allow-playwright` |
 | `ci/checks/federation-contract-validate.ts` | **GATE** — satellite.json contract check | `bun run vampire:validate` |
 
 **Data flow:**
@@ -38,6 +40,7 @@
 GitHub.copilot-chat/transcripts/<sid>.jsonl
   → session-watcher.ts      (mirror to manifest/sessions/)
   → session-corpus.ts       (ingest to manifest/corpus.sqlite)
+      └→ embed_gate_accept.py  (HF gating: Tier 0 registry guard → Tier 1 REST API → Tier 3 Bun.WebView; skips if gated:false)
       └→ embed_doctor.py    (pre-flight: HF cache + schema compat)
       └→ embed.py           (sentence-transformers → vec_embeddings FLOAT[1024])
   → vampire-copilot-chat.ts (drain to manifest/sessions/*/drain.json + session_blood.json)
@@ -112,13 +115,49 @@ ingestedAt      TEXT
 | G6 | view | — | ✅ done | L4 | session_ranked + hot_files + memory_chain views | G8b, G7.0 | d1509972 |
 | G8b | enrich | b | ✅ done | L4 | Entity DDL + cross-session tracking | entity MCP | d1509972 |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native drain | vampire:* | 82c60dd7 |
-| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (Apache-2.0, 32k ctx, CUDA, schema v4 — upgraded 2026-05-04 from all-MiniLM-L6-v2 384d, pipeline hardened `13089647`) | semantic search | 72954168 |
+| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (Apache-2.0, 32k ctx, CUDA, schema v4 — upgraded 2026-05-04 from all-MiniLM-L6-v2 384d; pipeline hardened `13089647`; gated automation `ca14e308`; Bun.WebView Tier 3 `efdce1e4`) | semantic search | 72954168 |
 | G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `sessions.intent` auto-populate | intent queries | after G7 |
 | G8c | view | c | ⬜ pending | L0 | Cross-session derived views (trend, velocity) | G9 | after G8a |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE multi-satellite merge | full federation | after G8c |
 
 **Gate check:** `bun run ci/checks/inference-gate-smoke.ts --report`  
 **Corpus state:** `bun run session:query --status` → reads `manifest/corpus-state.json`
+
+---
+
+## G7-REDUX: HF Gated Model Acceptance Pipeline
+
+> **Context:** Introduced at `ca14e308`–`efdce1e4` (2026-05-04/05). Solves the problem of programmatically accepting HF model gates so a future switch to a gated embedding model (e.g. `google/embeddinggemma-300m`) requires zero manual HF Hub UI interaction.
+
+The ladder is tried in order, stops at first success:
+
+| Tier | Name | Mechanism | Fires when | Key commit |
+|------|------|-----------|------------|-----------|
+| 0 | **Registry guard** | Read `embed_model_registry.json#models[id].gated` — if `false`, exit 0 immediately | Always first; `Qwen3-Embedding-0.6B` takes this path | `ca14e308` |
+| 1 | **HF REST API** | `POST /api/models/{id}/agree-terms` via stdlib `urllib` (zero deps) — HTTP 200 = accepted, 400 = already accepted | `gated: "auto"` (Gemma, Mistral, nomic, etc.) | `ca14e308` |
+| 2 | *(none)* | No HF CLI binary provides gate acceptance; agree-terms IS the CLI path | — | — |
+| 3 | **Bun.WebView** | `bun run scripts/hf_gate_playwright.ts` — Bun.WebView native (v1.3.12+), Chrome backend via DevTools Protocol, `isTrusted: true` OS-level events, no npm/playwright dep, no Named Pipes IPC | `gated: "form"` (Meta Llama, some Mistral) or Tier 1 403; only when `--allow-playwright` passed | `efdce1e4` |
+
+**Active model shortcut:** `Qwen/Qwen3-Embedding-0.6B` has `gated: false` → Tier 0 fast-exit; Tier 3 is dormant until a form-gated model is set as `active_model_id`.
+
+**Extra wins from Bun.WebView (vs old playwright):**
+- No `@playwright/test` npm dep — transitive playwright install eliminated
+- No `child_process.spawn` Named Pipes IPC layer — zero `\\.\pipe\wrapper-*` ENOENT risk
+- No zombie `chrome.exe` on timeout — `Symbol.asyncDispose` / `await using` guarantees cleanup
+- OS-level `isTrusted: true` events pass bot-detection heuristics that synthetic playwright events fail
+
+**Output contract (JSON to stdout):**
+```json
+{
+  "model_id": "some/model",
+  "gated": "auto",
+  "status": "accepted_now",
+  "method": "hf_api",
+  "detail": "Accepted (HTTP 200)",
+  "pass": true
+}
+```
+`method` values: `"none"` · `"hf_api"` · `"bun_webview"` · `"bun_webview_unavailable"` · `"check_only"`
 
 ---
 
@@ -181,6 +220,15 @@ bun run session:corpus -- --embed           # embed all non-embedded sessions (d
 bun run session:corpus -- --embed --dry-run # doctor pre-flight only — no embedding
 bun run session:corpus:rebuild              # full rebuild (drop + ingest + no embed)
 . .\scripts\api_pool.ps1 -Quiet; bun run scripts/session-corpus.ts --rebuild --embed  # full rebuild + embed in one pass
+
+# HF GATE ACCEPTANCE (G7-REDUX — run before --embed when switching to a gated model)
+# Tier 0: registry guard  — gated:false → exit 0, zero network (Qwen3-Embedding-0.6B is gated:false; fast-exit)
+# Tier 1: HF REST API     — POST /api/models/{id}/agree-terms (gated="auto": Gemma, nomic, etc.)
+# Tier 3: Bun.WebView     — headless Chromium form submission (gated="form": Meta Llama, some Mistral)
+uv run scripts/embed_gate_accept.py                       # accept for active_model_id (Tier 0 fast-exit if not gated)
+uv run scripts/embed_gate_accept.py --check-only          # status only, no acceptance
+uv run scripts/embed_gate_accept.py --model-id some/model # target a specific model
+uv run scripts/embed_gate_accept.py --allow-playwright    # enable Tier 3 Bun.WebView for form-gated models
 
 # EMBED PRE-FLIGHT
 uv run scripts/embed_doctor.py --current-schema-version 4  # standalone doctor check

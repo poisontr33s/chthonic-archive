@@ -147,7 +147,7 @@ Drain-relevant slice of the full G0–G9 ladder. Columns — **Type:** `infra` �
 | G6 | view | — | ✅ done | L4 | `session_ranked` view — blood score computable without re-parse |
 | G8b | enrich | b | ✅ done | L4 | Entity tables — `--extract` entity mode available |
 | G7.0 | satellite | .0 | ✅ done | L4 | `vampire-copilot-chat.ts` — corpus-native, `_corpus_ref` identity locked |
-| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (schema v4, upgraded 2026-05-04 from all-MiniLM-L6-v2 384d) — semantic drain (query by meaning) |
+| G7 | satellite | — | ✅ done | L4 | sqlite-vec 0.1.9 + Qwen3-Embedding-0.6B 1024d Matryoshka (schema v4, upgraded 2026-05-04 from all-MiniLM-L6-v2 384d; REDUX hardened: gated automation `ca14e308`, Bun.WebView Tier 3 `efdce1e4`) — semantic drain (query by meaning) |
 | G8a | enrich | a | ⬜ pending | L0 | LLM summaries → `drain.json.sessionIntent` auto-populated |
 | G9 | federation | — | ⬜ pending | L0 | ATTACH DATABASE — sidecar satellite DBs federated into corpus |
 
@@ -169,7 +169,7 @@ Drain-relevant slice of the full G0–G9 ladder. Columns — **Type:** `infra` �
 - SQLite: `manifest/corpus.sqlite` (federation hub — satellite writes here directly, not to a sidecar)
 - Tables: `sessions`, `turns`, `file_edits`, `terminal_cmds`, `code_blocks`, `entities`, `entity_occurrences`, `memory_snapshots`, `vec_embeddings` (1024d, sqlite-vec, G7, Qwen3-Embedding-0.6B)
 - Schema owner: `scripts/session-corpus.ts` DDL constants
-- Embed pipeline: `scripts/embed_model_registry.json` (active model) → `scripts/embed_doctor.py` (pre-flight) → `scripts/embed.py` (Python stdin/stdout bridge) → `vec_embeddings` virtual table
+**Embed pipeline:** `scripts/embed_model_registry.json` (active model + `gated` field) → `scripts/embed_gate_accept.py` (G7-REDUX: Tier 0 registry guard → Tier 1 REST API → Tier 3 Bun.WebView form; `ca14e308`/`efdce1e4`) → `scripts/embed_doctor.py` (pre-flight) → `scripts/embed.py` (Python stdin/stdout bridge) → `vec_embeddings` virtual table
 
 **Federation key**
 - `sessionId` (UUID from transcript filename) + `ts` (turn timestamp ISO8601)
@@ -412,6 +412,11 @@ This document is a **parallel ladder** to the **FAF** plan, not part of *G6–G9
 |--------|--------|
 | `vampire-copilot-chat` rebase (G7.0) — renamed from `session-vampire.ts`, corpus-native, `_corpus_ref` locked | `82c60dd7` |
 | `ci/checks/federation-contract-validate.ts` — satellite contract CI gate | present |
+| G7 pipeline hardening — rebuild/embed ordering, vec_model provenance, schema defaults | `13089647` |
+| Registry upgrade → Qwen3-Embedding-0.6B schema v4 (1024d Matryoshka, Apache-2.0, 32k ctx) | `72954168` + `c4143487` |
+| G7-REDUX: gated model automation — registry `gated` fields, `embed_gate_accept.py`, doctor `gated_status` | `ca14e308` |
+| G7-REDUX: Tier 3 Playwright → `Bun.WebView` (v1.3.12 native, no npm/IPC, `hf_gate_playwright.ts`) | `efdce1e4` |
+| Twin pair playwright-paradox docs — Named Pipes resolution + Zone_1_REDUX SSOT update | `1ee42ffd` |
 
 ### Pending
 

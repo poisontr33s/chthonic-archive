@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # @SID: embed_doctor — pre-flight validation for session-corpus --embed
 # Protocol: reads embed_model_registry.json, validates HF token + model cache,
-#           checks schema compatibility; exits 0 on pass, 1 on hard fail.
+#           checks schema compatibility, checks gated status (G7-REDUX);
+#           exits 0 on pass, 1 on hard fail.
 # Output:   JSON to stdout — always. Caller (session-corpus.ts) parses this.
 # Usage:    uv run scripts/embed_doctor.py [--current-schema-version N]
-#           uv run scripts/embed_doctor.py --json   # same (JSON is always emitted to stdout)
+#           uv run scripts/embed_doctor.py --accept-gated  # auto-accept gate then re-check
+#           uv run scripts/embed_doctor.py --accept-gated --allow-playwright  # + Playwright fallback
 #
 # Output schema:
 #   {
@@ -13,6 +15,8 @@
 #     "dims": int,
 #     "context_tokens": int,
 #     "license": str,
+#     "gated": false | "auto" | "form",         # from registry
+#     "gated_status": "not_gated" | "accepted" | "pending" | "unknown",
 #     "cached": bool,                            # model weights present in HF_HOME cache
 #     "hf_token_format_valid": bool | null,      # null=no token found; True=hf_ prefix only — NOT network-verified
 #     "hf_token_network_verified": bool,         # always False (doctor never makes network calls)
@@ -110,6 +114,18 @@ def main():
         dest="current_schema_version",
         help="Current corpus schema_version from the DB (default: 4)",
     )
+    parser.add_argument(
+        "--accept-gated",
+        action="store_true",
+        dest="accept_gated",
+        help="Auto-accept HF gate for active model before pre-flight check (calls embed_gate_accept.py)",
+    )
+    parser.add_argument(
+        "--allow-playwright",
+        action="store_true",
+        dest="allow_playwright",
+        help="When --accept-gated is set, allow Playwright fallback for form-gated models",
+    )
     args = parser.parse_args()
 
     hard_failures: list[str] = []
@@ -144,6 +160,25 @@ def main():
     required_schema = model_info["schema_version_required"]
     current_schema = args.current_schema_version
     notes = model_info.get("notes", "")
+    model_gated = model_info.get("gated", False)
+
+    # 0. Gate acceptance (optional — only if --accept-gated passed)
+    if args.accept_gated and model_gated is not False:
+        import subprocess
+        accept_cmd = [sys.executable, str(Path(__file__).parent / "embed_gate_accept.py"),
+                      "--model-id", active_id]
+        if args.allow_playwright:
+            accept_cmd.append("--allow-playwright")
+        try:
+            result_proc = subprocess.run(accept_cmd, capture_output=True, text=True, timeout=60)
+            try:
+                gate_result = json.loads(result_proc.stdout)
+            except json.JSONDecodeError:
+                gate_result = {"pass": False, "detail": result_proc.stdout[:300]}
+            if not gate_result.get("pass"):
+                warnings.append(f"Gate acceptance attempt: {gate_result.get('detail', 'unknown')}")
+        except Exception as e:
+            warnings.append(f"Gate acceptance subprocess failed: {e}")
 
     # 2. Check model cache
     cached = check_model_cached(active_id)
@@ -169,6 +204,27 @@ def main():
     else:
         # hf_valid=True means format check passed only; always surface the network-unverified caveat
         warnings.append(f"HF token: {hf_detail}")
+
+    # 3b. Gated status (registry-based — no network call in doctor)
+    #     Uses registry gated field; actual network check is in embed_gate_accept.py.
+    if model_gated is False:
+        gated_status = "not_gated"
+    elif not hf_valid:
+        gated_status = "unknown"  # can't verify without token
+        if model_gated:
+            warnings.append(
+                f"Model {active_id!r} is gated ({model_gated}) but no valid HF token — "
+                f"run: . .\\scripts\\api_pool.ps1 -Quiet; uv run scripts/embed_doctor.py --accept-gated"
+            )
+    else:
+        # Token present — assume accepted unless cache is missing (which gate check + accept will fix)
+        gated_status = "accepted" if cached else "pending"
+        if not cached and model_gated:
+            hard_failures.append(
+                f"Model {active_id!r} is gated ({model_gated}) and not cached. "
+                f"Run gate acceptance first: . .\\scripts\\api_pool.ps1 -Quiet; "
+                f"uv run scripts/embed_gate_accept.py --model-id {active_id}"
+            )
 
     # 4. Schema compatibility
     schema_compatible = required_schema == current_schema
@@ -197,6 +253,8 @@ def main():
         "dims": dims,
         "context_tokens": context_tokens,
         "license": license_,
+        "gated": model_gated,
+        "gated_status": gated_status,
         "cached": cached,
         "hf_token_format_valid": hf_valid,   # True = hf_ prefix present; NOT network-verified
         "hf_token_network_verified": False,  # always False — doctor never makes network calls
