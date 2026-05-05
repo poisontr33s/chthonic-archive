@@ -1390,6 +1390,18 @@ function Get-ChthonicCommandCatalog {
             )
         }
         [pscustomobject]@{
+            domain = "together"
+            mode = "canonical"
+            summary = "Together AI inference lane (OpenAI-compatible)"
+            preferred_surface = $null
+            claudine_passthrough = $true
+            actions = @(
+                [pscustomobject]@{ name = "models"; aliases = @(); summary = "list available models (supports --type filter)" }
+                [pscustomobject]@{ name = "probe"; aliases = @(); summary = "run transport probe + mailbox emission" }
+                [pscustomobject]@{ name = "chat"; aliases = @(); summary = "run a chat request" }
+            )
+        }
+        [pscustomobject]@{
             domain = "ide"
             mode = "canonical"
             summary = "IDE management"
@@ -6125,7 +6137,46 @@ switch ($Domain) {
             }
         }
     }
-    
+
+    # Together AI lane
+    "together" {
+        $togetherLaneScript = Join-Path $SCRIPT_DIR "together_lane.py"
+
+        switch ($Action) {
+            "models" {
+                if (-not (Test-Path -LiteralPath $togetherLaneScript)) {
+                    Write-Error "Missing script: $togetherLaneScript"
+                    exit 1
+                }
+                & uv run $togetherLaneScript --mode models @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "probe" {
+                if (-not (Test-Path -LiteralPath $togetherLaneScript)) {
+                    Write-Error "Missing script: $togetherLaneScript"
+                    exit 1
+                }
+                & uv run $togetherLaneScript --mode probe --emit-mailbox @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            "chat" {
+                if (-not (Test-Path -LiteralPath $togetherLaneScript)) {
+                    Write-Error "Missing script: $togetherLaneScript"
+                    exit 1
+                }
+                & uv run $togetherLaneScript --mode chat @RemainingArgs
+                exit $LASTEXITCODE
+            }
+            default {
+                Write-Host "chthonic together <action>"
+                Write-Host "  models [--limit 40] [--type chat|language|code|embedding|image]"
+                Write-Host "  probe [--model <model>] [--prompt <text>] [--emit-mailbox] [--mailboxes codex|claude|codex,claude] [--stream]"
+                Write-Host "  chat --model <model> --prompt <text> [--stream] [--temperature 0.7] [--max-tokens 512]"
+                exit 0
+            }
+        }
+    }
+
     # IDE Domain (nested commands)
     "ide" {
         switch ($Action) {
