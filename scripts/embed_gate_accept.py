@@ -102,12 +102,30 @@ def check_gate_status(model_id: str, token: str | None) -> dict:
         with urllib.request.urlopen(req, timeout=15) as resp:
             data = json.loads(resp.read())
     except urllib.error.HTTPError as e:
+        if e.code == 401:
+            # 401 = token missing or invalid; model may still exist
+            return {
+                "api_gated": "auto",          # conservative assumption
+                "user_accepted": False,
+                "detail": "401 from model API — authentication required (token missing or invalid)"
+            }
         if e.code == 403:
-            # 403 = gated and not accepted
+            # 403 = gated and not accepted by this user
             return {
                 "api_gated": "auto",          # conservative assumption
                 "user_accepted": False,
                 "detail": "403 from model API — gated and not yet accepted"
+            }
+        if e.code == 404:
+            # 404 = model path does not exist on HF at all; no gating to accept
+            return {
+                "api_gated": "not_found",
+                "user_accepted": None,
+                "detail": (
+                    f"404 from model API — '{model_id}' does not exist on HuggingFace. "
+                    "The org may have been renamed, the model may have been deleted, "
+                    "or it was never published. There is no gate to accept."
+                )
             }
         return {
             "api_gated": None,
@@ -326,6 +344,18 @@ def _do_accept(
         )
 
     gate_status = check_gate_status(model_id, token)
+
+    # Hard stop: model does not exist on HF (404). No gating to accept.
+    if gate_status["api_gated"] == "not_found":
+        return (
+            {
+                "model_id": model_id, "gated": registry_gated, "status": "not_found",
+                "method": "none",
+                "detail": gate_status["detail"],
+                "pass": False,
+            },
+            1,
+        )
 
     if gate_status["user_accepted"] is True:
         return (
