@@ -66,6 +66,8 @@
     "teleport:dry:pnk": "bun run scripts/teleport.ts --from-github poisontr33s/PsychoNoir-Kontrapunkt --entity-mode --dry-run",
     "teleport:sibling:pnk": "bun run scripts/teleport.ts --from-sibling pnk --apply",
     "teleport:sibling:pnk:dry": "bun run scripts/teleport.ts --from-sibling pnk --dry-run",
+    "dashboard": "bun run scripts/milfological_dashboard.ts",
+    "dashboard:open": "bun run scripts/milfological_dashboard.ts --open",
     "todo:spin": "bun run scripts/todo_roulette.ts --spin",
     "todo:spin:dry": "bun run scripts/todo_roulette.ts --dry-run",
     "todo:add": "bun run scripts/todo_roulette.ts --add",
