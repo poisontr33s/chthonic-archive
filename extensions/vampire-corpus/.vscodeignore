@@ -1,0 +1,7 @@
+.vscodeignore
+src/
+tsconfig.json
+bun.lock
+node_modules/
+*.vsix
+install.ps1

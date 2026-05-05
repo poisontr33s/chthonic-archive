@@ -1,0 +1,172 @@
+{
+  "name": "vampire-corpus",
+  "displayName": "Vampire Corpus",
+  "description": "Corpus drain, session federation, and local extension registry for chthonic-archive development.",
+  "version": "0.1.0",
+  "publisher": "chthonic-archive",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poisontr33s/chthonic-archive"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vampire-corpus",
+          "title": "Vampire Corpus",
+          "icon": "resources/vampire.svg"
+        }
+      ]
+    },
+    "views": {
+      "vampire-corpus": [
+        {
+          "id": "vampire.corpusView",
+          "name": "Corpus & Gates",
+          "icon": "$(database)"
+        },
+        {
+          "id": "vampire.feedView",
+          "name": "Terminal Feed",
+          "icon": "$(terminal)"
+        },
+        {
+          "id": "vampire.localExtView",
+          "name": "Local Extensions",
+          "icon": "$(extensions)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vampire.refresh",
+        "title": "Vampire: Refresh All Views",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vampire.drain",
+        "title": "Vampire: Drain Session (vampire:drain)",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "vampire.terminalDrain",
+        "title": "Vampire: Drain Terminal History",
+        "icon": "$(terminal-bash)"
+      },
+      {
+        "command": "vampire.terminalWatch",
+        "title": "Vampire: Watch Terminal History (hot-reload)",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "vampire.federationValidate",
+        "title": "Vampire: Validate Federation Contracts",
+        "icon": "$(check-all)"
+      },
+      {
+        "command": "vampire.corpusStats",
+        "title": "Vampire: Show Corpus Stats",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "vampire.installLocalExt",
+        "title": "Install Extension",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "vampire.uninstallLocalExt",
+        "title": "Uninstall Extension",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "vampire.openExtFolder",
+        "title": "Open Extension Folder",
+        "icon": "$(folder-opened)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "vampire.refresh",
+          "when": "view == vampire.corpusView || view == vampire.feedView || view == vampire.localExtView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "vampire.drain",
+          "when": "view == vampire.corpusView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "vampire.federationValidate",
+          "when": "view == vampire.corpusView",
+          "group": "navigation@3"
+        },
+        {
+          "command": "vampire.terminalWatch",
+          "when": "view == vampire.feedView",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "vampire.installLocalExt",
+          "when": "viewItem == localExt.notInstalled",
+          "group": "inline@1"
+        },
+        {
+          "command": "vampire.uninstallLocalExt",
+          "when": "viewItem == localExt.installed",
+          "group": "inline@1"
+        },
+        {
+          "command": "vampire.openExtFolder",
+          "when": "viewItem == localExt.installed || viewItem == localExt.notInstalled",
+          "group": "inline@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Vampire Corpus",
+      "properties": {
+        "vampireCorpus.workspaceRoot": {
+          "type": "string",
+          "default": "",
+          "description": "Override workspace root for corpus path resolution. Auto-detected when empty."
+        },
+        "vampireCorpus.feedLines": {
+          "type": "number",
+          "default": 8,
+          "minimum": 3,
+          "maximum": 50,
+          "description": "Number of recent terminal commands shown in the Terminal Feed view."
+        },
+        "vampireCorpus.extensionsDir": {
+          "type": "string",
+          "default": "extensions",
+          "description": "Relative path to local extensions directory (scanned by Local Extensions view)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -watch -p tsconfig.json",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.5"
+  }
+}
