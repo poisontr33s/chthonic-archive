@@ -1,0 +1,44 @@
+{
+  "probe": "sdnext_g0",
+  "timestamp": "2026-05-05T06:39:33Z",
+  "python": "3.14.4",
+  "status": "pass",
+  "gates": [
+    {
+      "gate": "python_version",
+      "status": "admitted",
+      "level": 4,
+      "note": "Python 3.14.4"
+    },
+    {
+      "gate": "torch_cuda",
+      "status": "admitted",
+      "level": 4,
+      "note": "torch 2.11.0+cu128, NVIDIA GeForce RTX 4090, SM 8.9"
+    },
+    {
+      "gate": "rtx4090",
+      "status": "admitted",
+      "level": 4,
+      "note": "SM 8.9 confirmed (Ada Lovelace)"
+    },
+    {
+      "gate": "entity_registry",
+      "status": "admitted",
+      "level": 4,
+      "note": "7 entities loaded"
+    },
+    {
+      "gate": "prompt_transformer",
+      "status": "admitted",
+      "level": 4,
+      "note": "import OK, _rag_augment present"
+    },
+    {
+      "gate": "corpus_sqlite",
+      "status": "admitted",
+      "level": 4,
+      "note": "38924KB, 13 sessions, 15061 messages"
+    }
+  ]
+}
