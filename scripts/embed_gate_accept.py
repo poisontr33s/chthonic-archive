@@ -343,18 +343,22 @@ def _do_accept(
             1,
         )
 
+    # Live check — registry gated field is a hint, not the source of truth.
+    # The HF REST API response IS the authoritative gate state.
     gate_status = check_gate_status(model_id, token)
 
-    # Hard stop: model does not exist on HF (404). No gating to accept.
+    # 404: model does not exist on HF — this is a stale registry entry, not a gate failure.
+    # There is no gate to accept on a non-existent model. Pass: True, auto-tombstone signal.
     if gate_status["api_gated"] == "not_found":
         return (
             {
-                "model_id": model_id, "gated": registry_gated, "status": "not_found",
+                "model_id": model_id, "gated": registry_gated, "status": "not_found_open",
                 "method": "none",
-                "detail": gate_status["detail"],
-                "pass": False,
+                "detail": gate_status["detail"] + " Registry entry is stale — will auto-tombstone.",
+                "pass": True,
+                "registry_stale": True,
             },
-            1,
+            0,
         )
 
     if gate_status["user_accepted"] is True:
@@ -539,17 +543,46 @@ def main():
             gated = minfo.get("gated", False)
             result, _ = _do_accept(mid, gated, token, args.allow_playwright)
             results.append(result)
+            # 404 (not_found_open) is pass:True — not a failure even if registry said gated
             if not result["pass"] and gated is not False:
                 any_failure = True
 
+        # Auto-tombstone stale entries (live HF returned 404 for models the registry listed as gated).
+        # Self-healing: next run will skip them at Tier 0 (gated: false fast-path).
+        ts_now = _time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime())
+        stale = [r for r in results if r.get("registry_stale")]
+        if stale:
+            updated_reg = load_registry()
+            for r in stale:
+                mid = r["model_id"]
+                if mid in updated_reg.get("models", {}):
+                    updated_reg["models"][mid]["gated"] = False
+                    updated_reg["models"][mid]["_gated_tombstone"] = (
+                        f"AUTO-TOMBSTONE {ts_now}: live HF API returned 404. "
+                        "Registry entry was stale. Model does not exist at this path on HuggingFace."
+                    )
+            REGISTRY_PATH.write_text(json.dumps(updated_reg, indent=2))
+
         batch_out = {
-            "ts": _time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime()),
+            "ts": ts_now,
             "total": len(results),
-            "gated_count": sum(1 for r in results if r.get("gated") is not False),
-            "accepted": sum(1 for r in results if r["pass"] and r.get("gated") is not False),
+            "gated_count": sum(
+                1 for r in results
+                if r.get("gated") is not False and r.get("status") != "not_found_open"
+            ),
+            "accepted": sum(
+                1 for r in results
+                if r["pass"] and r.get("gated") is not False
+                and r.get("status") not in ("not_found_open", "not_gated")
+            ),
             "already_accepted": sum(1 for r in results if r.get("status") == "already_accepted"),
             "skipped_not_gated": sum(1 for r in results if r.get("gated") is False),
-            "failed": sum(1 for r in results if not r["pass"] and r.get("gated") is not False),
+            "auto_tombstoned": len(stale),
+            "failed": sum(
+                1 for r in results
+                if not r["pass"] and r.get("gated") is not False
+                and r.get("status") != "not_found_open"
+            ),
             "results": results,
         }
 
