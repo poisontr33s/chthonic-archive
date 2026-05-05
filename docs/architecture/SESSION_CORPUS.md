@@ -494,3 +494,116 @@ Scripts wired in `package.json`: `test:changed`, `test:parallel`.
 
 ### WebView status (for HF gating pipeline)
 `Bun.WebView` shipped in **v1.3.12** — Bun 1.3.13 contains no new WebView features. `scripts/hf_gate_playwright.ts` (Tier 3 browser automation) remains current.
+
+---
+
+## Hardware-Optimized Embedding Strategy — RTX 4090 / TensorRT Trainstop
+
+> **Strategic vantage** — the stable GOLD model target for this hardware platform. Documented once, referenced from `embed_model_registry.json#hardware_optimized`.
+
+### GOLD Model: `NVIDIA/NV-Embed-v2`
+
+| Property | Value |
+|----------|-------|
+| Architecture | Llama-3 7566M decoder, latent attention pooling, bidirectional |
+| Native dims | 4096d (schema v6) |
+| Schema v4 path | **TEI truncation → 1024d** — DDL_VEC `FLOAT[1024]` preserved, zero schema migration |
+| MTEB score | **69.32** — highest in registry |
+| VRAM (FP16) | ~15GB — fits RTX 4090 24GB comfortably at `bs=8` |
+| VRAM (TRT INT8) | ~8GB — with TEI TensorRT quantization backend |
+| Hardware advantage | Flash Attn 2 path · cuBLAS GEMM · TRT INT8 · designed for NVIDIA silicon |
+| Context | 32 768 tokens — captures multi-session composite texts |
+| License | NVIDIA NV-Community (non-commercial; commercial requires NVIDIA agreement) |
+| Gated | `false` (HF API confirmed 2026-05-04) — no agree-terms call needed |
+| Registry pointer | `scripts/embed_model_registry.json` → `hardware_optimized` field |
+
+### Activation Sequence (schema v4 path — zero rebuild cost)
+
+```powershell
+# 1. Load HF token
+. .\scripts\api_pool.ps1 -Quiet
+
+# 2. Switch active model (updates embed_model_registry.json + embed.py)
+bun run embed:switch NVIDIA/NV-Embed-v2
+
+# 3. Remove TRANSFORMERS_OFFLINE=1 from scripts/embed.py (first-time download)
+#    (only needed before initial model cache population)
+
+# 4. Run embed doctor pre-flight (validates model cache + schema compat)
+uv run scripts/embed_doctor.py --current-schema-version 4
+
+# 5. Embed all sessions
+bun run scripts/session-corpus.ts --embed
+
+# 6. Verify G7 admitted
+bun run session:query --status
+# → gate_ladder.G7 = true, vec_count > 0, vec_model = NVIDIA/NV-Embed-v2
+```
+
+**dim_truncation note:** When using NV-Embed-v2 with schema v4 (1024d), embed.py must slice the 4096d output to 1024d before writing to vec_embeddings. embed_doctor.py validates this. If `doctorResult.dims` reports 4096 against a schema v4 target, add explicit truncation:
+
+```python
+# scripts/embed.py — add after model.encode():
+if len(vec) > ACTIVE_VEC_DIMS:
+    vec = vec[:ACTIVE_VEC_DIMS]
+    # L2-renormalize after truncation
+    norm = sum(x*x for x in vec) ** 0.5
+    vec = [x / norm for x in vec] if norm > 0 else vec
+```
+
+### Why Not Qwen3-Embedding-8B?
+
+Qwen3-8B is the `recommended_next` in the registry and the clean Apache-2.0 alternative (same VRAM envelope, Matryoshka-native 1024d, no license review). If NV-Community terms are a blocker (commercial use), switch to `Qwen/Qwen3-Embedding-8B` — same activation sequence, no truncation needed at 1024d (Matryoshka native).
+
+| | NV-Embed-v2 | Qwen3-Embedding-8B |
+|--|-------------|---------------------|
+| License | NV-Community (non-commercial default) | Apache-2.0 |
+| MTEB | 69.32 | SOTA 2025-06 (competitive) |
+| Matryoshka | No (truncation only) | Yes (native 1024d) |
+| HW optimization | NVIDIA-native | General CUDA |
+| Task profile | `high_accuracy` | `max_accuracy` |
+
+---
+
+## corpus.sqlite Corruption Prevention
+
+> Root cause: Bun/VS Code abrupt process exit leaves WAL journal uncommitted → `SQLITE_CORRUPT` errno 11 on next open.
+
+### What is now hardened (as of 2026-05-05)
+
+All protections are implemented in `scripts/session-corpus.ts`:
+
+| Protection | Mechanism | Location in code |
+|-----------|-----------|-----------------|
+| WAL auto-checkpoint | `PRAGMA wal_autocheckpoint = 1000` — WAL self-truncates every 1000 pages | After `new Database()` |
+| Integrity check on open | `PRAGMA integrity_check` run before any operation (skipped in `--rebuild`) | After PRAGMAs |
+| Graceful exit handler | `process.on("exit/SIGINT/SIGTERM")` → `PRAGMA wal_checkpoint(TRUNCATE)` + `db.close()` | After `new Database()` |
+| Pre-rebuild backup | `PRAGMA wal_checkpoint(FULL)` + `Bun.write(corpusPath + ".bak")` before table drops | Start of `--rebuild` block |
+
+### Recovery procedure (if corruption still occurs)
+
+```powershell
+# Emergency: delete corrupt DB + WAL/SHM artifacts, full rebuild
+Remove-Item manifest\corpus.sqlite -Force
+Remove-Item manifest\corpus.sqlite-wal -Force -ErrorAction SilentlyContinue
+Remove-Item manifest\corpus.sqlite-shm -Force -ErrorAction SilentlyContinue
+bun run session:corpus:rebuild
+
+# Then re-embed with GOLD model
+. .\scripts\api_pool.ps1 -Quiet
+bun run scripts/session-corpus.ts --embed
+
+# Check backup is present (auto-created before each rebuild)
+Get-Item manifest\corpus.sqlite.bak
+```
+
+### WAL mode semantics (reference)
+
+```
+PRAGMA journal_mode = WAL       → writers do not block readers; parallel reads safe
+PRAGMA synchronous = NORMAL     → WAL header fsynced; no full fsync per commit; crash-safe
+PRAGMA wal_autocheckpoint = 1000 → after 1000 WAL pages, background checkpoint runs automatically
+PRAGMA wal_checkpoint(TRUNCATE) → at clean exit: truncates WAL to zero, main DB is sole source
+```
+
+`synchronous = NORMAL` is crash-safe under WAL mode (main DB file is never written mid-transaction). The only corruption vector is an abrupt kill where the WAL has uncommitted data — the graceful exit handler eliminates this for normal operation.

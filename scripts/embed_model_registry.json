@@ -7,6 +7,9 @@
   "recommended_next": "Qwen/Qwen3-Embedding-8B",
   "active_since": "2026-05-04",
   "schema_version": 4,
+  "hardware_optimized": "NVIDIA/NV-Embed-v2",
+  "hardware_optimized_rationale": "RTX 4090 24GB + TensorRT strategic vantage: NV-Embed-v2 is built on NVIDIA hardware primitives — Flash Attn 2, cuBLAS GEMM, TRT INT8 quantization (~8GB working set). Best absolute MTEB in registry: 69.32. 4096d native; TEI dim-truncation to 1024d preserves schema v4 — zero rebuild cost. Designed specifically for NVIDIA inference backends. When G7 re-embed is run on hardware with TensorRT available, NV-Embed-v2 is the trainstop model. Switch with: bun run embed:switch NVIDIA/NV-Embed-v2. If staying on schema v4, set dim_truncation: 1024 in TEI server config.",
+  "schema_v4_dim_truncation_path": "TEI: --pooling lasttoken --dtype float16 with truncation dim=1024. sentence-transformers: model.encode(texts, normalize_embeddings=True)[:, :1024]. DDL_VEC FLOAT[1024] preserved.",
   "task_profiles": {
     "default":              "Qwen/Qwen3-Embedding-0.6B",
     "code_retrieval":       "ibm-granite/granite-embedding-small-english-r2",
@@ -204,7 +207,9 @@
       "architecture": "llama3 decoder finetuned bidirectional (latent attention)",
       "matryoshka": false,
       "_rtx4090_note": "~15GB VRAM FP16; TEI TRT backend quantizes to INT8 at ~8GB. RTX 4090 24GB runs FP16 comfortably with bs=8. Designed specifically for NVIDIA hardware — Flash Attn 2 path, cuBLAS GEMM. Best MTEB score of any model in registry (69.32 as of 2026-05-04).",
-      "notes": "GATED (agree-terms). SOTA MTEB as of 2026-05. 7B Llama-3 decoder with latent attention pooling. 4096d native (use Matryoshka-style truncation to 1024d via TEI dim truncation for schema v4). 32k ctx — captures full multi-session texts. NVIDIA hardware advantage: TRT backend, Flash Attn 2, cuBLAS. Best accuracy pick when VRAM budget allows. task_profile: high_accuracy.",
+      "_strategic_vantage": "HARDWARE_OPTIMIZED_TRAINSTOP — see top-level hardware_optimized + hardware_optimized_rationale. This is the designated G7 GOLD model for RTX 4090 + TensorRT systems.",
+      "_schema_v4_compat": "Dim-truncation path available: NV-Embed-v2 4096d output can be truncated to 1024d at inference time (TEI truncation or manual slice). DDL_VEC FLOAT[1024] and schema_version=4 are preserved. Native 4096d requires schema_version_required=6 and DDL_VEC FLOAT[4096]. Recommend schema v4 truncation path for zero-rebuild-cost activation.",
+      "notes": "HARDWARE-OPTIMIZED TRAINSTOP. SOTA MTEB 69.32 (highest in registry). 7B Llama-3 decoder with latent attention pooling. 4096d native; schema v4 compatible via 1024d TEI truncation (see _schema_v4_compat). 32k ctx — captures full multi-session texts. NVIDIA hardware advantage: TRT backend, Flash Attn 2, cuBLAS GEMM, INT8 quantization. task_profile: high_accuracy. Switch: bun run embed:switch NVIDIA/NV-Embed-v2. Remove TRANSFORMERS_OFFLINE=1 from embed.py before first download.",
       "migration_to": null
     }
   }

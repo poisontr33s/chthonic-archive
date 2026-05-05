@@ -718,11 +718,49 @@ if (!existsSync(sessionsDir)) {
 }
 
 const db = new Database(corpusPath, { create: true });
-db.exec("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON;");
+db.exec("PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA foreign_keys = ON; PRAGMA wal_autocheckpoint = 1000;");
+
+// ─── Corruption guard ───────────────────────────────────────────────────────
+// WAL + dirty shutdown can leave corpus.sqlite in an unreadable state.
+// Detect this early and surface a clear recovery instruction.
+if (!rebuildMode && existsSync(corpusPath)) {
+  try {
+    const _ic = db.query<{ integrity_check: string }, []>("PRAGMA integrity_check").get();
+    if (_ic?.integrity_check !== "ok") {
+      console.error(`\n⛔  corpus.sqlite integrity check failed: ${_ic?.integrity_check}`);
+      console.error(`    Recovery: remove manifest/corpus.sqlite (+ .sqlite-wal / .sqlite-shm), then re-run with --rebuild.\n`);
+      db.close(); process.exit(1);
+    }
+  } catch (_e) {
+    console.error(`\n⛔  corpus.sqlite could not be opened cleanly: ${_e}`);
+    console.error(`    Recovery: remove manifest/corpus.sqlite (+ .sqlite-wal / .sqlite-shm), then re-run with --rebuild.\n`);
+    db.close(); process.exit(1);
+  }
+}
+
+// ─── Graceful WAL checkpoint on every exit ──────────────────────────────────
+// Prevents WAL journal accumulation that causes corruption on dirty shutdown.
+// TRUNCATE clears the WAL journal file — main DB file is the sole source after exit.
+function _gracefulClose() {
+  try { db.exec("PRAGMA wal_checkpoint(TRUNCATE)"); } catch { /* ignore — DB may already be closed */ }
+  try { db.close(); } catch { /* ignore */ }
+}
+process.on("exit",   _gracefulClose);
+process.on("SIGINT",  () => { _gracefulClose(); process.exit(130); });
+process.on("SIGTERM", () => { _gracefulClose(); process.exit(143); });
+
 // G7: load sqlite-vec extension
 try { loadSqliteVec(db); } catch (e) { console.warn("⚠️  sqlite-vec load failed:", e); }
 
 if (rebuildMode) {
+  // Checkpoint + backup corpus.sqlite before any destructive drop
+  if (existsSync(corpusPath)) {
+    try {
+      db.exec("PRAGMA wal_checkpoint(FULL)");
+      await Bun.write(corpusPath + ".bak", Bun.file(corpusPath));
+      console.log(`📦  Pre-rebuild backup → manifest/corpus.sqlite.bak`);
+    } catch (_e) { console.warn(`⚠️  Backup failed (continuing): ${_e}`); }
+  }
   console.log("⚡ Rebuild: dropping all tables and views...");
   for (const v of ["entity_cooccurrence", "session_ranked", "session_timeline", "memory_chain", "hot_files"])
     db.exec(`DROP VIEW IF EXISTS ${v}`);

@@ -404,6 +404,22 @@ This document is a **parallel ladder** to the **FAF** plan, not part of *G6–G9
 
 ---
 
+## Hardware Embedding Strategy — RTX 4090 / TensorRT Vantage
+
+> Cross-reference: `SESSION_CORPUS.md § Hardware-Optimized Embedding Strategy` for full activation sequence. Registry: `scripts/embed_model_registry.json#hardware_optimized`.
+
+The corpus federation hub (`chthonic-archive`) uses a **GOLD embedding model** designated for the RTX 4090 + TensorRT hardware stack. Satellites do not embed — they drain structured artifacts. The embedding layer is sovereign to the hub. Satellites interact with vec_embeddings only via the `corpus_semantic_search` MCP tool (read-only query).
+
+| Stratum | Owner | Model |
+|---------|-------|-------|
+| Vector embeddings (`vec_embeddings`) | corpus hub | `NVIDIA/NV-Embed-v2` (GOLD trainstop) or `Qwen/Qwen3-Embedding-8B` (Apache-2.0 alt) |
+| Drain artifacts (`drain.json`) | satellite | No embedding — structured JSONL only |
+| Semantic search API | corpus hub MCP | `corpus_semantic_search` tool — available to all consumers |
+
+**Satellite invariant:** A satellite's `satellite.json` `capabilities` array MUST NOT include `"embedding"`. Embedding is a hub-only operation. A satellite that embeds its own drain artifacts violates the fault-isolation invariant.
+
+---
+
 ## Next Build Actions
 
 ### Completed
