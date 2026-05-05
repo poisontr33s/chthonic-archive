@@ -228,7 +228,7 @@ CREATE VIRTUAL TABLE IF NOT EXISTS fts_cmds USING fts5(
 const DDL_VEC = `
 CREATE VIRTUAL TABLE IF NOT EXISTS vec_embeddings USING vec0(
   session_id TEXT PRIMARY KEY,
-  content_embedding FLOAT[1024]
+  content_embedding FLOAT[${ACTIVE_VEC_DIMS}]
 );
 `;
 

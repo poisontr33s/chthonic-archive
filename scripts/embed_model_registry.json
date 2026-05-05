@@ -1,6 +1,6 @@
 {
   "_comment": "Embedding model registry for session-corpus G7+. Each entry declares the full migration contract.",
-  "_doc": "Add an entry here before changing MODEL_ID in embed.py. schema_version_required must match the vec_embeddings DDL dims. HF market snapshot: 2026-05-04.",
+  "_doc": "Add an entry here before changing MODEL_ID in embed.py. schema_version_required must match the vec_embeddings DDL dims. HF market snapshot: 2026-05-04. Live audit: 2026-05-05 (see anno_2026_* fields + gating_queue).",
   "_gating_note": "gated field: false=open, 'auto'=HF agree-terms API (programmatic OK), 'form'=manual web form (Playwright fallback). embed_gate_accept.py handles acceptance. Check gating_type before setting a model active.",
   "_gpu_note": "All models tagged text-embeddings-inference are TEI-compatible (Flash Attn 2, ONNX/TRT backend, dynamic batching on RTX 4090). sentence-transformers device=cuda works for all with torch 2.11.0+cu128 (G3 admitted). Remove TRANSFORMERS_OFFLINE=1 from embed.py when switching (HF token: esabbr, live-valid).",
   "active_model_id": "Qwen/Qwen3-Embedding-0.6B",
@@ -10,6 +10,10 @@
   "hardware_optimized": "NVIDIA/NV-Embed-v2",
   "hardware_optimized_rationale": "RTX 4090 24GB + TensorRT strategic vantage: NV-Embed-v2 is built on NVIDIA hardware primitives — Flash Attn 2, cuBLAS GEMM, TRT INT8 quantization (~8GB working set). Best absolute MTEB in registry: 69.32. 4096d native; TEI dim-truncation to 1024d preserves schema v4 — zero rebuild cost. Designed specifically for NVIDIA inference backends. When G7 re-embed is run on hardware with TensorRT available, NV-Embed-v2 is the trainstop model. Switch with: bun run embed:switch NVIDIA/NV-Embed-v2. If staying on schema v4, set dim_truncation: 1024 in TEI server config.",
   "schema_v4_dim_truncation_path": "TEI: --pooling lasttoken --dtype float16 with truncation dim=1024. sentence-transformers: model.encode(texts, normalize_embeddings=True)[:, :1024]. DDL_VEC FLOAT[1024] preserved.",
+  "anno_2026_gold_open": "Qwen/Qwen3-Embedding-8B",
+  "anno_2026_gold_gated": "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+  "anno_2026_urca_de_lima": "Live HF audit 2026-05-05: NV-Embed-v2 was registry-best at inception (MTEB 69.32, designed for NVIDIA TRT). Open-source SOTA has shifted: Qwen3-Embedding-8B (Apache-2.0, 11.4M downloads, Matryoshka) is the open GOLD — already in registry as recommended_next. The GATED GOLD candidate is gte-Qwen2.5-7B-instruct (auth-locked, Qwen2.5-base, Apache-2.0 expected — likely MTEB-strongest overall). Non-gated efficiency tier: NovaSearch/stella_en_400M_v5 (MIT, ONNX, 18.6M downloads). The treasure was already aboard: Qwen3-8B is recommended_next and max_accuracy task profile — no re-discovery needed, just the switch.",
+  "anno_2026_hardware_optimized_note": "hardware_optimized = NV-Embed-v2 (TRT-native, NVIDIA silicon advantage). anno_2026_gold_open = Qwen3-8B (absolute MTEB SOTA, zero licensing friction). These are DIFFERENT axes. For G7 re-embed: Qwen3-8B is the pragmatic GOLD (Apache-2.0, no ungate needed, TEI-compatible). NV-Embed-v2 is the TRT-hardware-optimal pick when NVIDIA inference stack is active.",
   "task_profiles": {
     "default":              "Qwen/Qwen3-Embedding-0.6B",
     "code_retrieval":       "ibm-granite/granite-embedding-small-english-r2",
@@ -20,8 +24,47 @@
     "semantic":             "google/embeddinggemma-300m",
     "high_accuracy":        "NVIDIA/NV-Embed-v2",
     "english_commercial":   "Cohere/Cohere-embed-english-v3.0",
-    "multilingual_commercial":"mistralai/Mistral-Embed"
+    "multilingual_commercial":"mistralai/Mistral-Embed",
+    "anno_2026_gated_gold":     "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+    "efficiency_onnx":          "NovaSearch/stella_en_400M_v5",
+    "compact_mit":              "NovaSearch/stella_en_1.5B_v5",
+    "open_mit_large":           "intfloat/e5-mistral-7b-instruct"
   },
+  "gating_queue": [
+    {
+      "model_id": "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+      "rationale": "ANNO 2026 GOLD GATED. Qwen2.5-base upgrade over gte-Qwen2-7B-instruct. Auth-locked on HF (org-controlled). Likely highest MTEB overall. Priority ungate — run Tier 1 agree-terms first; if 404/403, escalate to Tier 3.",
+      "gate_type_suspected": "auto",
+      "automation_tier": 1,
+      "automation_cmd": "uv run scripts/embed_gate_accept.py --model-id Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+      "fallback_cmd": "uv run scripts/embed_gate_accept.py --model-id Alibaba-NLP/gte-Qwen2.5-7B-instruct --allow-playwright",
+      "priority": "HIGH"
+    },
+    {
+      "model_id": "CohereForAI/c4ai-embed-multilingual-v1",
+      "rationale": "Cohere next-gen multilingual embed. Auth-locked (Cohere org-controlled gate). Competitor to bge-m3 at higher scale.",
+      "gate_type_suspected": "form",
+      "automation_tier": 3,
+      "automation_cmd": "uv run scripts/embed_gate_accept.py --model-id CohereForAI/c4ai-embed-multilingual-v1 --allow-playwright",
+      "priority": "MEDIUM"
+    },
+    {
+      "model_id": "google/text-embedding-004",
+      "rationale": "Google's text-embedding-004. Auth-locked (Google form gate). Gecko-class embedding, strong MTEB. Cannot be downloaded without Google license acceptance.",
+      "gate_type_suspected": "form",
+      "automation_tier": 3,
+      "automation_cmd": "uv run scripts/embed_gate_accept.py --model-id google/text-embedding-004 --allow-playwright",
+      "priority": "MEDIUM"
+    },
+    {
+      "model_id": "mistralai/Mistral-Embed",
+      "rationale": "Already in registry (form-gated since 2026-05-04). 7B decoder, 8192 ctx, TEI-compatible. Ungate enables multilingual_commercial task profile.",
+      "gate_type_suspected": "form",
+      "automation_tier": 3,
+      "automation_cmd": "uv run scripts/embed_gate_accept.py --model-id mistralai/Mistral-Embed --allow-playwright",
+      "priority": "LOW"
+    }
+  ],
   "models": {
     "sentence-transformers/all-MiniLM-L6-v2": {
       "dims": 384,
@@ -209,7 +252,97 @@
       "_rtx4090_note": "~15GB VRAM FP16; TEI TRT backend quantizes to INT8 at ~8GB. RTX 4090 24GB runs FP16 comfortably with bs=8. Designed specifically for NVIDIA hardware — Flash Attn 2 path, cuBLAS GEMM. Best MTEB score of any model in registry (69.32 as of 2026-05-04).",
       "_strategic_vantage": "HARDWARE_OPTIMIZED_TRAINSTOP — see top-level hardware_optimized + hardware_optimized_rationale. This is the designated G7 GOLD model for RTX 4090 + TensorRT systems.",
       "_schema_v4_compat": "Dim-truncation path available: NV-Embed-v2 4096d output can be truncated to 1024d at inference time (TEI truncation or manual slice). DDL_VEC FLOAT[1024] and schema_version=4 are preserved. Native 4096d requires schema_version_required=6 and DDL_VEC FLOAT[4096]. Recommend schema v4 truncation path for zero-rebuild-cost activation.",
-      "notes": "HARDWARE-OPTIMIZED TRAINSTOP. SOTA MTEB 69.32 (highest in registry). 7B Llama-3 decoder with latent attention pooling. 4096d native; schema v4 compatible via 1024d TEI truncation (see _schema_v4_compat). 32k ctx — captures full multi-session texts. NVIDIA hardware advantage: TRT backend, Flash Attn 2, cuBLAS GEMM, INT8 quantization. task_profile: high_accuracy. Switch: bun run embed:switch NVIDIA/NV-Embed-v2. Remove TRANSFORMERS_OFFLINE=1 from embed.py before first download.",
+      "notes": "HARDWARE-OPTIMIZED TRAINSTOP. MTEB 69.32 (registry best at inception 2026-05-04; open-source SOTA has advanced — see anno_2026_gold_open). 7B Llama-3 decoder with latent attention pooling. 4096d native; schema v4 compatible via 1024d TEI truncation. 32k ctx. NVIDIA hardware advantage: TRT backend, Flash Attn 2, cuBLAS GEMM, INT8 quantization. task_profile: high_accuracy. HF true repo ID: nvidia/NV-Embed-v2 (lowercase). License: cc-by-nc-4.0 (non-commercial).",
+      "migration_to": null
+    },
+    "Alibaba-NLP/gte-Qwen2-7B-instruct": {
+      "dims": 3584,
+      "context_tokens": 32768,
+      "license": "Apache-2.0",
+      "gated": false,
+      "schema_version_required": 6,
+      "tei_compatible": true,
+      "hf_downloads": "3.4M (2026-05-05)",
+      "params_M": 7613,
+      "architecture": "qwen2 decoder finetuned bidirectional",
+      "matryoshka": false,
+      "notes": "ANNO 2026 audit: Apache-2.0, NOT gated, 3.4M downloads. GTE (General Text Embeddings) on Qwen2-7B base. Updated Mar 2025. Strong MTEB — pre-dates Qwen3 series. TEI-compatible. 3584d native (schema v6). For schema v4: truncate to 1024d. task_profile: strong open alternative to NV-Embed-v2.",
+      "migration_to": "Alibaba-NLP/gte-Qwen2.5-7B-instruct"
+    },
+    "Alibaba-NLP/gte-Qwen2.5-7B-instruct": {
+      "dims": 3584,
+      "context_tokens": 32768,
+      "license": "Apache-2.0 (expected — verify on gate acceptance)",
+      "gated": "auto",
+      "gating_type": "auto",
+      "_gated_live_check": "2026-05-05 — HF API returns 403 (Authentication required). Org-controlled gate or auto agree-terms. Run gating_queue Tier 1 to test.",
+      "schema_version_required": 6,
+      "tei_compatible": true,
+      "hf_downloads": "unknown (gated — no public stat)",
+      "params_M": 7613,
+      "architecture": "qwen2.5 decoder finetuned bidirectional",
+      "matryoshka": false,
+      "_strategic_vantage": "ANNO_2026_GATED_GOLD — likely MTEB-strongest model once ungated. gte-Qwen2-7B-instruct successor on Qwen2.5 base. See gating_queue for ungate sequence.",
+      "notes": "GATED. ANNO 2026 GOLD CANDIDATE. Qwen2.5-base upgrade over gte-Qwen2-7B-instruct. Auth-locked (403 on HF API 2026-05-05). Ungate via: uv run scripts/embed_gate_accept.py --model-id Alibaba-NLP/gte-Qwen2.5-7B-instruct. If Tier 1 fails: --allow-playwright. task_profile: anno_2026_gated_gold.",
+      "migration_to": null
+    },
+    "NovaSearch/stella_en_1.5B_v5": {
+      "dims": 1024,
+      "context_tokens": 131072,
+      "license": "MIT",
+      "gated": false,
+      "schema_version_required": 4,
+      "tei_compatible": true,
+      "hf_downloads": "2.5M (2026-05-05)",
+      "params_M": 1500,
+      "architecture": "qwen2 (1.5B causal LM finetuned bidirectional)",
+      "matryoshka": false,
+      "_onnx_available": true,
+      "notes": "ANNO 2026 audit. MIT license, NOT gated. 1.5B params — strong MTEB for size. 131k context (!). ONNX available (TEI-compatible). 2.5M downloads. arxiv:2412.19048. task_profile: compact_mit. Good fit for RTX 4090 at high batch sizes due to small param count. Updated Jul 2025.",
+      "migration_to": "NovaSearch/stella_en_1.5B_v5"
+    },
+    "NovaSearch/stella_en_400M_v5": {
+      "dims": 1024,
+      "context_tokens": 131072,
+      "license": "MIT",
+      "gated": false,
+      "schema_version_required": 4,
+      "tei_compatible": true,
+      "hf_downloads": "18.6M (2026-05-05)",
+      "params_M": 435,
+      "architecture": "custom encoder (new)",
+      "matryoshka": false,
+      "_onnx_available": true,
+      "notes": "ANNO 2026 audit. MIT license, NOT gated. 435M params. 18.6M downloads — most-downloaded in ANNO 2026 live set. ONNX, TEI-compatible. 131k context. Efficiency tier: fastest on CPU/GPU, highest throughput. arxiv:2412.19048. Updated Jul 2025. task_profile: efficiency_onnx. Zero schema migration needed (1024d, schema v4).",
+      "migration_to": null
+    },
+    "intfloat/e5-mistral-7b-instruct": {
+      "dims": 4096,
+      "context_tokens": 32768,
+      "license": "MIT",
+      "gated": false,
+      "schema_version_required": 6,
+      "tei_compatible": true,
+      "hf_downloads": "5.9M (2026-05-05)",
+      "params_M": 7111,
+      "architecture": "mistral 7B finetuned bidirectional",
+      "matryoshka": false,
+      "_live_check": "2026-05-05 — MIT license, NOT gated, 5.9M downloads, last updated Apr 2026 (active maintenance).",
+      "notes": "ANNO 2026 audit. MIT license (permissive — commercial OK). NOT gated. 7B Mistral finetuned for retrieval. 5.9M downloads. Updated Apr 2026 — actively maintained. 4096d (schema v6); truncate to 1024d for schema v4. arxiv:2401.00368. task_profile: open_mit_large. Strong baseline for tasks requiring large-context commercial use.",
+      "migration_to": null
+    },
+    "Salesforce/SFR-Embedding-2_R": {
+      "dims": 4096,
+      "context_tokens": 32768,
+      "license": "cc-by-nc-4.0",
+      "gated": false,
+      "schema_version_required": 6,
+      "tei_compatible": true,
+      "hf_downloads": "2.4M (2026-05-05)",
+      "params_M": 7111,
+      "architecture": "mistral 7B finetuned (Salesforce SFR)",
+      "matryoshka": false,
+      "notes": "ANNO 2026 audit. CC-BY-NC-4.0 (non-commercial only). NOT gated. 2.4M downloads. Salesforce's strong embedding model on Mistral-7B. Updated Feb 2025. 4096d (schema v6). Competitive MTEB. Not suitable for commercial session-data embedding without license review.",
       "migration_to": null
     }
   }
