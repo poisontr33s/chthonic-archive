@@ -144,7 +144,10 @@
     "truncate:gpu:score": "uv run probes/python/session_gpu_scorer.py",
     "embed:explore": "uv run probes/python/embedding_explorer.py",
     "embed:explore:onnx": "uv run probes/python/embedding_explorer.py --backend onnx",
-    "embed:explore:trt": "uv run probes/python/embedding_explorer.py --backend trt"
+    "embed:explore:trt": "uv run probes/python/embedding_explorer.py --backend trt",
+    "embed:explore:bge": "uv run probes/python/embedding_explorer.py --model BAAI/bge-large-en-v1.5",
+    "embed:explore:minilm": "uv run probes/python/embedding_explorer.py --model sentence-transformers/all-MiniLM-L6-v2",
+    "embed:explore:scan": "uv run probes/python/embedding_explorer.py --help"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
