@@ -66,6 +66,7 @@ embeddings = [
     "uvicorn[standard]>=0.34,<1",
     "accelerate>=1.0,<2",
     "gradio>=5.0.0,<6",
+    "optimum[onnxruntime-gpu]>=1.23,<2",
 ]
 
 poe = [
