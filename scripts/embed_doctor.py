@@ -7,6 +7,7 @@
 # Usage:    uv run scripts/embed_doctor.py [--current-schema-version N]
 #           uv run scripts/embed_doctor.py --accept-gated  # auto-accept gate then re-check
 #           uv run scripts/embed_doctor.py --accept-gated --allow-playwright  # + Playwright fallback
+#           uv run scripts/embed_doctor.py --allow-download  # if model not cached, fetch it (temporarily unsets OFFLINE)
 #
 # Output schema:
 #   {
@@ -126,6 +127,12 @@ def main():
         dest="allow_playwright",
         help="When --accept-gated is set, allow Playwright fallback for form-gated models",
     )
+    parser.add_argument(
+        "--allow-download",
+        action="store_true",
+        dest="allow_download",
+        help="If model weights are not in HF cache, attempt to download them (temporarily unsets TRANSFORMERS_OFFLINE)",
+    )
     args = parser.parse_args()
 
     hard_failures: list[str] = []
@@ -182,11 +189,43 @@ def main():
 
     # 2. Check model cache
     cached = check_model_cached(active_id)
-    if not cached:
+    if not cached and args.allow_download:
+        # Self-healing: temporarily go online, attempt download, re-check cache
+        import subprocess as _subproc
+        old_offline = os.environ.pop("TRANSFORMERS_OFFLINE", None)
+        old_hf_offline = os.environ.pop("HF_DATASETS_OFFLINE", None)
+        warnings.append(f"Model {active_id!r} not cached — attempting download (--allow-download). This may take several minutes.")
+        try:
+            dl_result = _subproc.run(
+                [sys.executable, "-c",
+                 f"from sentence_transformers import SentenceTransformer; "
+                 f"SentenceTransformer({active_id!r}, trust_remote_code=True); print('download_ok')"],
+                capture_output=True, text=True, timeout=600,
+            )
+            if "download_ok" in dl_result.stdout:
+                cached = check_model_cached(active_id)
+                if cached:
+                    warnings.append(f"Download succeeded — {active_id!r} now in HF cache.")
+                else:
+                    hard_failures.append(f"Download subprocess reported success but cache still empty for {active_id!r}.")
+            else:
+                hard_failures.append(
+                    f"Download attempt failed for {active_id!r}. stderr: {dl_result.stderr[:400]}"
+                )
+        except Exception as _dl_exc:
+            hard_failures.append(f"Download subprocess raised: {_dl_exc}")
+        finally:
+            # Restore offline guards
+            if old_offline is not None:
+                os.environ["TRANSFORMERS_OFFLINE"] = old_offline
+            if old_hf_offline is not None:
+                os.environ["HF_DATASETS_OFFLINE"] = old_hf_offline
+    elif not cached:
         hard_failures.append(
             f"Model weights not found in HF cache for {active_id!r}. "
-            f"Run: HF_TOKEN=<valid> python -c \"from sentence_transformers import SentenceTransformer; SentenceTransformer('{active_id}')\" "
-            f"to populate the cache, or set active_model_id to an already-cached model."
+            f"Run with --allow-download to fetch automatically, or: "
+            f"HF_TOKEN=<valid> python -c \"from sentence_transformers import SentenceTransformer; SentenceTransformer('{active_id}', trust_remote_code=True)\" "
+            f"to populate the cache manually. Alternatively, set active_model_id to an already-cached model."
         )
 
     # 3. Check HF token (soft gate — only hard-fail if model is not cached)

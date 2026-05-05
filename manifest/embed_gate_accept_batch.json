@@ -1,10 +1,11 @@
 {
-  "ts": "2026-05-05T02:52:58Z",
+  "ts": "2026-05-05T03:02:01Z",
   "total": 22,
   "gated_count": 1,
   "accepted": 1,
   "already_accepted": 1,
   "skipped_not_gated": 21,
+  "auto_tombstoned": 0,
   "failed": 0,
   "results": [
     {
