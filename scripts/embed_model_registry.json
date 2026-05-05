@@ -240,33 +240,33 @@
       "notes": "NEW 2026-04-29. Pruned from 311m-r2 (22→12 layers, 262K→180K vocab). Highest MTEB multilingual retrieval of any open model under 100M params (59.6 vs next-best multilingual-e5-small 50.9 = +8.7). 52 enhanced languages + code retrieval. Flash Attn 2, ONNX + OpenVINO. ~2,900 docs/sec on H100 — RTX 4090 throughput similarly excellent. Apache-2.0. schema v3 (384d = zero schema change from baseline). task_profile: multilingual_granite_small. Best pick for latency-sensitive multilingual workloads.",
       "migration_to": null
     },
-    "Cohere/Cohere-embed-multilingual-v3.0": {
+    "CohereLabs/Cohere-embed-multilingual-v3.0": {
       "dims": 1024,
       "context_tokens": 512,
       "license": "cc-by-nc-4.0 (self-hosted) / commercial via Cohere API",
       "gated": false,
-      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms",
+      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms (post CohereLabs org rename)",
       "schema_version_required": 4,
       "tei_compatible": true,
       "hf_downloads": "21.3M (2026-05-04)",
       "params_M": 560,
       "architecture": "transformer encoder",
       "matryoshka": false,
-      "notes": "GATED (agree-terms). Leading multilingual embedding model — 100+ languages. 1024d. MTEB multilingual top-tier. TEI-compatible, ONNX export available. RTX 4090: ~2GB VRAM FP16, runs at very high batch size. Strong for code+prose cross-lingual retrieval. task_profile: multilingual_enhanced.",
+      "notes": "NOT gated (live check 2026-05-04 confirmed). Leading multilingual embedding model — 100+ languages. 1024d. MTEB multilingual top-tier. TEI-compatible, ONNX export available. RTX 4090: ~2GB VRAM FP16, runs at very high batch size. Strong for code+prose cross-lingual retrieval. task_profile: multilingual_enhanced. cc-by-nc-4.0 — non-commercial self-hosted or Cohere API for commercial.",
       "migration_to": null
     },
-    "Cohere/Cohere-embed-english-v3.0": {
+    "CohereLabs/cohere-embed-english-v3.0": {
       "dims": 1024,
       "context_tokens": 512,
       "license": "cc-by-nc-4.0 (self-hosted) / commercial via Cohere API",
       "gated": false,
-      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms",
+      "_gated_live_check": "2026-05-04 — HF API returns gated:false; openly accessible without agree-terms (post CohereLabs org rename)",
       "schema_version_required": 4,
       "tei_compatible": true,
       "hf_downloads": "14.2M (2026-05-04)",
       "params_M": 560,
       "architecture": "transformer encoder",
-      "notes": "GATED (agree-terms). English-focused sibling of multilingual v3. 1024d. MTEB English SOTA for encoder-only size class. Same VRAM profile as multilingual variant. task_profile: english_commercial.",
+      "notes": "NOT gated (live check 2026-05-04 confirmed). English-focused sibling of multilingual v3. 1024d. MTEB English SOTA for encoder-only size class. Same VRAM profile as multilingual variant. task_profile: english_commercial. cc-by-nc-4.0 — non-commercial self-hosted or Cohere API for commercial.",
       "migration_to": null
     },
     "mistralai/Mistral-Embed": {
