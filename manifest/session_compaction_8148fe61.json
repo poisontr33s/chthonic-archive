@@ -4,7 +4,7 @@
   "totalTurns": 0,
   "keptTurns": 0,
   "compressionRatio": 0,
-  "gpuAccelerated": false,
+  "gpuAccelerated": true,
   "structuralAnchors": 0,
   "signalTurns": 0,
   "noiseTurns": 0,
@@ -15,7 +15,7 @@
   "anchoredCmds": [],
   "highValueBlocks": [],
   "keptTurnNums": [],
-  "gpuScoreManifest": null,
-  "generatedAt": "2026-05-05T05:02:44.361Z",
+  "gpuScoreManifest": "C:\\Users\\eldno\\chthonic-archive\\manifest\\gpu_scores_8148fe61.json",
+  "generatedAt": "2026-05-05T05:34:34.087Z",
   "gateVersion": "G9.0"
 }

@@ -1,0 +1,370 @@
+# Session Warm-Start — 79682e02
+> Compacted 4629 turns → 1158 (25% kept)
+> GPU-accelerated: true  |  Generated: 2026-05-05T05:32:03.533Z
+
+## Session Intent
+theme-system
+
+## Commits This Session
+- `02154a54`
+- `05ac3081`
+- `0a072994`
+- `0b41e793`
+- `0cbbaab8`
+- `0ded971f`
+- `1000141000`
+- `1000366002`
+- `1000491002`
+- `1000491003`
+- `1091158`
+- `10974857`
+- `128e8d82`
+- `13f225ea`
+- `157ec7de`
+- `15a03dda`
+- `161264f0`
+- `173f07e5fc`
+- `176cb574`
+- `19e0cc0c`
+- `19e0fbd8`
+- `1d34de33`
+- `1d9ab8f2`
+- `1edc9e2d`
+- `20260421`
+- `223556219`
+- `257a4dc7`
+- `2993083d`
+- `29ea6fb6a`
+- `2a6d9701`
+- `2adb1b77`
+- `2baf1c7c`
+- `2e0e02b2`
+- `30c6f601`
+- `335e8997`
+- `336f26d1`
+- `348736599`
+- `351aea31`
+- `382e0177`
+- `38342752`
+- `397dcf26`
+- `3deecb68`
+- `3e0da69c`
+- `3e30721c`
+- `3e9f5552`
+- `41c91d3a`
+- `42f86a9f`
+- `444605c7`
+- `46a4ab63`
+- `48f05214`
+- `51b77113`
+- `523df0f1`
+- `528326d8`
+- `52af60af`
+- `57c88a07`
+- `5892537c`
+- `58fa8cd8`
+- `59807616e`
+- `5b299c1b`
+- `65950801c`
+- `65a2432d`
+- `66c1d1ef`
+- `66cf0b59`
+- `6705b93e`
+- `6e79d2b4`
+- `7099cf4a`
+- `7772a9c0`
+- `79682e02`
+- `798150e1`
+- `7ba5e61a`
+- `7ca40dc2`
+- `7f308a2e`
+- `80eb13f9`
+- `836513df`
+- `86013ced`
+- `86fd05ad`
+- `88a675b4`
+- `89cd4897`
+- `8b40191c`
+- `8bf21e3b`
+- `8c31b313`
+- `8ce1fb09`
+- `90ae7e8e`
+- `93d1cf40`
+- `96ed8107`
+- `984a6968`
+- `9c35a2a8`
+- `9de191f62f77`
+- `9e1d70c1`
+- `9fa2db01`
+- `a01857f0`
+- `a1a88b64`
+- `a21d5ca1`
+- `a3f7b91c`
+- `a5819db2`
+- `adeccadc`
+- `aed504ea`
+- `b311543b`
+- `b4af1774`
+- `bbf616eb`
+- `bc2189d0`
+- `be909709`
+- `c10d4460`
+- `c1623d88`
+- `c1678297`
+- `c37725d3`
+- `c3c2be3f`
+- `c603a2f7`
+- `c7cb9602`
+- `c9832116`
+- `cd039c25`
+- `d296e342`
+- `d8912727`
+- `d8c4e6a2`
+- `d937b8d8`
+- `daa0b3c4`
+- `dc3400ad`
+- `df2d4e9b`
+- `e408947bf`
+- `e598c732`
+- `e6ba3953`
+- `e9a9fc93`
+- `f156b249`
+- `f2d3ce0bd`
+- `f4b58a6b`
+- `f64f5c9b`
+- `f8082694`
+
+## Files Edited
+- `.github/agents/tessara.agent.md` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/.github/copilot-instructions.archive.md` (replace_string_in_file, multi_replace_string_in_file)
+- `gemini/mailbox/TESSARA_NAME_SPECIFICATION_RESEARCH_BRIEF.md` (create_file)
+- `gemini/mailbox/TESSARA_RESEARCH_KEY_EXCERPTS.md` (create_file)
+- `gemini/mailbox/HANDOFF_NOTE_TESSARA_RESEARCH.md` (create_file)
+- `mailbox/from_gemini_DR/TESSARA_NAME_SPECIFICATION_RESEARCH_REPORT.md` (create_file)
+- `gemini/mailbox/TESSARA_REVISION_IMPLEMENTATION_RECOMMENDATION.md` (create_file)
+- `claude/mailbox/SSOT_TASK_ROULETTE_20260416.md` (create_file, multi_replace_string_in_file)
+- `.github/agents/pentea.agent.md` (multi_replace_string_in_file, replace_string_in_file)
+- `.github/agents/Pentea.agent.md` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/nvidia_drs_tool.ps1` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/_npi_lookup.ps1` (create_file)
+- `chthonic-archive/scripts/_hdr_lookup.ps1` (create_file)
+- `chthonic-archive/scripts/_hdr_state.ps1` (create_file)
+- `chthonic-archive/scripts/_vulkan_probe.ps1` (create_file)
+- `chthonic-archive/scripts/_vulkan_ext_probe.ps1` (create_file)
+- `chthonic-archive/scripts/_vkjson_parse.ps1` (create_file)
+- `chthonic-archive/vulkan-lab/CMakeLists.txt` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/vulkan-lab/CMakePresets.json` (create_file)
+- `vulkan-lab/probes/vk_capability_probe.cpp` (create_file, replace_string_in_file)
+- `vulkan-lab/rust-lane/Cargo.toml` (create_file)
+- `rust-lane/src/main.rs` (create_file)
+- `vectors/coop_matrix/coop_matmul.comp` (create_file, replace_string_in_file)
+- `vectors/coop_matrix/main.cpp` (create_file, multi_replace_string_in_file)
+- `chthonic-archive/vulkan-lab/mise.toml` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `vectors/v3_video/main.cpp` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/vulkan-lab/CLAUDE.md` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/vulkan-lab/memory.md` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/vulkan-lab/DEPENDENCY_UPDATE_PLAN.md` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/rust-toolchain.toml` (replace_string_in_file)
+- `eldno/chthonic-archive/Cargo.toml` (replace_string_in_file)
+- `chthonic-archive/native/Cargo.toml` (multi_replace_string_in_file, replace_string_in_file)
+- `native/chthonic-daemon/Cargo.toml` (replace_string_in_file)
+- `chthonic-daemon/src/reactor.rs` (multi_replace_string_in_file)
+- `native/.cargo/config.toml` (replace_string_in_file)
+- `chthonic-archive/docs/SOLUTION_MATRIX_CLI_HARDENING.md` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/chthonic.ps1` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/claudine.ps1` (replace_string_in_file, multi_replace_string_in_file)
+- `tools/ankh-forge/Cargo.toml` (multi_replace_string_in_file)
+- `tools/chthonic-cai/Cargo.toml` (multi_replace_string_in_file)
+- `claude/mailbox/SCRIPTS_ROULETTE.md` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/SCRIPTS_README.md` (multi_replace_string_in_file, replace_string_in_file)
+- `skills/pentea-dispatch/SKILL.md` (create_file, replace_string_in_file)
+- `skills/pentea-dispatch/SKILL.md` (create_file, replace_string_in_file)
+- `pentea-dispatch/agents/openai.yaml` (create_file)
+- `pentea-dispatch/agents/openai.yaml` (create_file)
+- `pentea-dispatch/assets/pentea-dispatch-small.svg` (create_file)
+- `pentea-dispatch/assets/pentea-dispatch-large.svg` (create_file)
+- `pentea-dispatch/assets/pentea-dispatch-small.svg` (create_file)
+- `pentea-dispatch/assets/pentea-dispatch-large.svg` (create_file)
+- `.github/instructions/co-supplementary-methodology-opus46_x_sonnet46-instructions.md` (multi_replace_string_in_file)
+- `.github/instructions/technical-directives.instructions.md` (multi_replace_string_in_file, replace_string_in_file)
+- `.github/instructions/agent-priority-protocol.md` (multi_replace_string_in_file)
+- `.github/instructions/dcrp-operational-guide.md` (multi_replace_string_in_file)
+- `.github/instructions/python-scripting.instructions.md` (multi_replace_string_in_file)
+- `.github/instructions/pattern-nursery.instructions.md` (create_file, replace_string_in_file)
+- `.github/instructions/ssot-toolbox.instructions.md` (replace_string_in_file, multi_replace_string_in_file)
+- `.github/instructions/dev-conventions.reference.md` (multi_replace_string_in_file, replace_string_in_file)
+- `.github/instructions/magistra-logic.reference.md` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/.copilotignore` (replace_string_in_file)
+- `.github/instructions/project-workflow.instructions.md` (multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/zig-toolchain.toml` (replace_string_in_file)
+- `eldno/chthonic-archive/rproject.toml` (replace_string_in_file)
+- `chthonic-archive/docs/OXIDIZED_TOOLCHAIN_REFERENCE.md` (multi_replace_string_in_file)
+- `chthonic-archive/docs/OXIDIZED_CHEATSHEET.md` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/docs/OXIDIZED_POLYGLOT_SURFACE.md` (create_file)
+- `chthonic-archive/docs/OXIDIZED_TOOLCHAIN_RATIONALE.md` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/rv-r.ps1` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/AGENT_COMMON.md` (replace_string_in_file, multi_replace_string_in_file)
+- `.config/powershell/profile.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/chthonic-xp.ps1` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/nightly-scheduled.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/api_pool.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/mcp-filesystem.ts` (multi_replace_string_in_file)
+- `scripts/lib/ssot-paths.ts` (multi_replace_string_in_file)
+- `scripts/lib/ssot_paths.py` (multi_replace_string_in_file)
+- `scripts/lib/ssot-paths.ps1` (multi_replace_string_in_file)
+- `scripts/lib/shared.py` (multi_replace_string_in_file)
+- `scripts/lib/poe_auth.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/fortify_terminal.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/polyglot_env.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/pause_agents.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/api_pool_persist_user_env.ps1` (replace_string_in_file)
+- `chthonic-archive/scripts/api_key_gap_report.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/gemini-cli-wrapper.ps1` (replace_string_in_file)
+- `chthonic-archive/scripts/probe_toolchain_path.ps1` (replace_string_in_file)
+- `eldno/chthonic-archive/package.json` (multi_replace_string_in_file, replace_string_in_file)
+- `claude/mailbox/ROULETTE_STEWARD.md` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/claude_ide.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/desktop-clone-state.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/theme_contrast_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/theme-sync.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/git_snapshot.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/run_archaeology.ps1` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/run_overnight_daemon.ps1` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/mcp-asc-injector.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/local_refiner_v2.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf_refiner.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf_auth_doctor.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf_model_scout.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf_probe.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf_discovery.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/hf-model-ranker.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/poe_lane.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/poe_sdk_lane.py` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/pyproject.toml` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/poe_transport_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/poe_account.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/mistralrs_model_manager.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/mcp-chthonic-server.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/gemini-model-router.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/vscode_terminal_crash_doctor.ps1` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/vscode_insiders_matrix.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/vscode_settings_live_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/vscode_electron_hardener.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/vscode_error_autopsy.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/insiders-sync.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/update-claude-code.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/chthonic_new.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/chthonic_workflow.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/apply_canonize_uv.sh` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/siphon_to_dumpster_dive.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/zombie_consumer.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/zombie_forge_bridge.py` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/overnight_daemon.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_roulette.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_execute.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_feedback.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_inventory.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_ledger.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_plan.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_pool.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_render_spec.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_weights.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_cycle.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/skill_tensor_common.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/sfs.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/shell_capabilities.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/setup-gemini-claude.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/validate-triad-links.ps1` (multi_replace_string_in_file, create_file)
+- `chthonic-archive/scripts/build_epistemograph.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/shebang-guard.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/validate_script_headers.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/install-hooks.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/bun-practices-audit.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/ankhrc_validator.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/bun_compliance_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/handoff_loop.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/mailbox_handoff.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/mailbox_scribe.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/sfs_slabstone_baseline.py` (multi_replace_string_in_file)
+- `chthonic-archive/.vscode/tasks.json` (replace_string_in_file)
+- `scripts/__fixtures__/gemini-model-router-registry.ts` (create_file)
+- `chthonic-archive/scripts/gemini-model-router.test.ts` (replace_string_in_file)
+- `chthonic-archive/scripts/scm_triage.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/link_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/icon_scaffold_contract_audit.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/extension_universe_scanner.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/rootdir_health_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/health_report.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/map_codebase.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/compact_md.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/upcycle_audit.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/cross-critique.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/run_mcp_validation.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/milfographic-calculator.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/sentry_init.ts` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/mcp-browser.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/mcp-sentry-proxy.ts` (replace_string_in_file)
+- `chthonic-archive/scripts/embed_ore.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/chthonic.py` (replace_string_in_file)
+- `chthonic-archive/scripts/mailbox_polisher.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/mailbox_compactor.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/ssot_hash.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/ssot_structural_extractor.py` (replace_string_in_file)
+- `chthonic-archive/scripts/ankh_theme_reference.py` (replace_string_in_file)
+- `chthonic-archive/scripts/theme_parity.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/theme_sfs_transmute.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/theme_artcop.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/milf_scanner.py` (replace_string_in_file)
+- `chthonic-archive/scripts/theme_promote_master.py` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/theme_color_diversity.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/theme_token_coverage.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/generate-product-icon-font.mjs` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/build_skill_index.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/skill_health.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/skill_audit.py` (multi_replace_string_in_file)
+- `chthonic-archive/.meta/skill-health-rubric.json` (create_file)
+- `chthonic-archive/.meta/skill-audit-tools.json` (create_file)
+- `eldno/chthonic-archive/CLAUDE.md` (replace_string_in_file)
+- `chthonic-archive/scripts/claude_healthcheck.ps1` (create_file)
+- `chthonic-archive/scripts/claude_insiders_selfheal.ps1` (create_file)
+- `chthonic-archive/scripts/mcp_write_local.ps1` (create_file)
+- `chthonic-archive/scripts/build_epistemograph_v1.1.py` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/background_services.py` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/autonomous_coordinator.py` (replace_string_in_file)
+- `chthonic-archive/scripts/novia_cadaveris_embalmer.ps1` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/vscode-art-cop.ts` (replace_string_in_file)
+- `.github/instructions/ankh-workflow.instructions.md` (replace_string_in_file)
+- `eldno/chthonic-archive/PWSH_RULES.md` (multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/GEMINI.md` (replace_string_in_file)
+- `eldno/chthonic-archive/AGENTS.md` (multi_replace_string_in_file)
+- `chthonic-archive/.github/pathstofiles.md` (multi_replace_string_in_file)
+
+## Key Terminal Commands
+- `Get-Content ".github\agents\tessara.agent.md" | Measure-Object -Line -Word -Char # Compare size to original`
+- `Get-Content ".github\agents\tessara.agent.md" | Measure-Object -Line -Word -Char # Verify improvements`
+- `(Get-Content "c:\Users\eldno\chthonic-archive\.github\agents\tessara.agent.md" | # Verify file state`
+- `$file = "c:\Users\eldno\chthonic-archive\.github\agents\tessara.agent.md"; $cont # Verify file stats after MILFOLOGICAL framework addition`
+- `Get-Content "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archiv # Map SSOT structure`
+- `Get-Content "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archiv # Locate T1 specifications`
+- `Get-Content "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archiv # Locate T1 section`
+- `Get-Content "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archiv # Map complete SSOT`
+- `$ssot = "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md # Verify changes`
+- `git -C "c:\Users\eldno\chthonic-archive" diff --stat .github/copilot-instruction # Verify edits`
+- `git -C "c:\Users\eldno\chthonic-archive" add -A; git -C "c:\Users\eldno\chthonic # Archive changes`
+- `git -C "c:\Users\eldno\chthonic-archive" show --stat 8bf21e3b # Confirm git show-able proof`
+
+## High-Value Code Blocks
+- **** (1447L, turn 2137): FILE: scripts/api_pool.ps1↵TYPE: ps1↵STATUS: active↵PURPOSE: Loads all API token
+- **** (98L, turn 2163): FILE: c:\Users\eldno\chthonic-archive\SCRIPTS_README.md↵VERDICT: STALE↵REASON: c
+- **rust** (28L, turn 1988): // Line ~88 — set title bar↵execute!(stdout, SetTitle(format!("...")))↵↵// Line 
+- **markdown** (24L, turn 370): #### **Physical Manifestation - Relay Tier Corporeal Specification:**↵↵**Titles:
+- **json** (23L, turn 1926):   "infrastructure": {↵    "linker": {↵      "msvc_linker": "C:\\Program Files\\M
+- **** (20L, turn 2168): ## AGENT REGISTRY↵| Agent   | Mandate                         | Dispatch mode   
+
+## Tool Usage Pattern
+`read_file` · `run_in_terminal` · `grep_search` · `manage_todo_list` · `replace_string_in_file` · `multi_replace_string_in_file` · `execution_subagent` · `get_terminal_output`
+
+## Structural Breakdown
+- T0 Anchors: 587 (commits, edits, memory writes)
+- T1/T2 Signal: 3498 (code blocks, tool chains, commands)
+- T3 Noise filtered: 6 (retries, acks, failed calls)

@@ -232,5 +232,5 @@
   ],
   "embeddingModel": "Qwen/Qwen3-Embedding-0.6B (sentence-transformers)",
   "device": "cuda",
-  "durationMs": 9574
+  "durationMs": 9575
 }

@@ -1,0 +1,974 @@
+{
+  "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
+  "scoredTurns": [
+    {
+      "turn": 1,
+      "semanticScore": 3.971,
+      "clusterLabel": 0,
+      "cosineSimilarityToCentroid": 0.6656
+    },
+    {
+      "turn": 2,
+      "semanticScore": 0.44,
+      "clusterLabel": 1,
+      "cosineSimilarityToCentroid": 0.842
+    },
+    {
+      "turn": 3,
+      "semanticScore": 2.031,
+      "clusterLabel": 2,
+      "cosineSimilarityToCentroid": 0.7625
+    },
+    {
+      "turn": 4,
+      "semanticScore": 2.883,
+      "clusterLabel": 0,
+      "cosineSimilarityToCentroid": 0.72
+    },
+    {
+      "turn": 5,
+      "semanticScore": 3.443,
+      "clusterLabel": 3,
+      "cosineSimilarityToCentroid": 0.692
+    },
+    {
+      "turn": 6,
+      "semanticScore": 1.827,
+      "clusterLabel": 4,
+      "cosineSimilarityToCentroid": 0.7728
+    },
+    {
+      "turn": 7,
+      "semanticScore": 1.851,
+      "clusterLabel": 5,
+      "cosineSimilarityToCentroid": 0.7716
+    },
+    {
+      "turn": 8,
+      "semanticScore": 4.218,
+      "clusterLabel": 6,
+      "cosineSimilarityToCentroid": 0.6533
+    },
+    {
+      "turn": 9,
+      "semanticScore": 4.442,
+      "clusterLabel": 7,
+      "cosineSimilarityToCentroid": 0.6421
+    },
+    {
+      "turn": 10,
+      "semanticScore": 2.628,
+      "clusterLabel": 8,
+      "cosineSimilarityToCentroid": 0.7328
+    },
+    {
+      "turn": 11,
+      "semanticScore": 3.379,
+      "clusterLabel": 9,
+      "cosineSimilarityToCentroid": 0.6952
+    },
+    {
+      "turn": 12,
+      "semanticScore": 2.402,
+      "clusterLabel": 8,
+      "cosineSimilarityToCentroid": 0.744
+    },
+    {
+      "turn": 13,
+      "semanticScore": 1.577,
+      "clusterLabel": 10,
+      "cosineSimilarityToCentroid": 0.7852
+    },
+    {
+      "turn": 14,
+      "semanticScore": 2.883,
+      "clusterLabel": 0,
+      "cosineSimilarityToCentroid": 0.72
+    },
+    {
+      "turn": 15,
+      "semanticScore": 3.895,
+      "clusterLabel": 11,
+      "cosineSimilarityToCentroid": 0.6695
+    },
+    {
+      "turn": 16,
+      "semanticScore": 3.678,
+      "clusterLabel": 12,
+      "cosineSimilarityToCentroid": 0.6803
+    },
+    {
+      "turn": 17,
+      "semanticScore": 4.257,
+      "clusterLabel": 11,
+      "cosineSimilarityToCentroid": 0.6514
+    },
+    {
+      "turn": 18,
+      "semanticScore": 2.087,
+      "clusterLabel": 13,
+      "cosineSimilarityToCentroid": 0.7598
+    },
+    {
+      "turn": 19,
+      "semanticScore": 2.332,
+      "clusterLabel": 14,
+      "cosineSimilarityToCentroid": 0.7475
+    },
+    {
+      "turn": 20,
+      "semanticScore": 2.883,
+      "clusterLabel": 0,
+      "cosineSimilarityToCentroid": 0.72
+    },
+    {
+      "turn": 21,
+      "semanticScore": 3.448,
+      "clusterLabel": 15,
+      "cosineSimilarityToCentroid": 0.6918
+    },
+    {
+      "turn": 22,
+      "semanticScore": 2.508,
+      "clusterLabel": 16,
+      "cosineSimilarityToCentroid": 0.7387
+    },
+    {
+      "turn": 23,
+      "semanticScore": 1.18,
+      "clusterLabel": 17,
+      "cosineSimilarityToCentroid": 0.8051
+    },
+    {
+      "turn": 24,
+      "semanticScore": 4.594,
+      "clusterLabel": 18,
+      "cosineSimilarityToCentroid": 0.6345
+    },
+    {
+      "turn": 25,
+      "semanticScore": 3.949,
+      "clusterLabel": 19,
+      "cosineSimilarityToCentroid": 0.6667
+    },
+    {
+      "turn": 26,
+      "semanticScore": 1.675,
+      "clusterLabel": 20,
+      "cosineSimilarityToCentroid": 0.7804
+    },
+    {
+      "turn": 27,
+      "semanticScore": 1.553,
+      "clusterLabel": 21,
+      "cosineSimilarityToCentroid": 0.7865
+    },
+    {
+      "turn": 28,
+      "semanticScore": 3.0,
+      "clusterLabel": 22,
+      "cosineSimilarityToCentroid": 0.7142
+    },
+    {
+      "turn": 29,
+      "semanticScore": 2.476,
+      "clusterLabel": 23,
+      "cosineSimilarityToCentroid": 0.7403
+    },
+    {
+      "turn": 30,
+      "semanticScore": 2.313,
+      "clusterLabel": 24,
+      "cosineSimilarityToCentroid": 0.7485
+    },
+    {
+      "turn": 31,
+      "semanticScore": 2.185,
+      "clusterLabel": 25,
+      "cosineSimilarityToCentroid": 0.7549
+    },
+    {
+      "turn": 32,
+      "semanticScore": 4.552,
+      "clusterLabel": 26,
+      "cosineSimilarityToCentroid": 0.6366
+    },
+    {
+      "turn": 33,
+      "semanticScore": 3.32,
+      "clusterLabel": 27,
+      "cosineSimilarityToCentroid": 0.6982
+    },
+    {
+      "turn": 34,
+      "semanticScore": 2.006,
+      "clusterLabel": 28,
+      "cosineSimilarityToCentroid": 0.7638
+    },
+    {
+      "turn": 35,
+      "semanticScore": 2.006,
+      "clusterLabel": 28,
+      "cosineSimilarityToCentroid": 0.7638
+    },
+    {
+      "turn": 36,
+      "semanticScore": 2.006,
+      "clusterLabel": 28,
+      "cosineSimilarityToCentroid": 0.7638
+    },
+    {
+      "turn": 37,
+      "semanticScore": 4.38,
+      "clusterLabel": 29,
+      "cosineSimilarityToCentroid": 0.6452
+    },
+    {
+      "turn": 38,
+      "semanticScore": 4.091,
+      "clusterLabel": 30,
+      "cosineSimilarityToCentroid": 0.6597
+    },
+    {
+      "turn": 39,
+      "semanticScore": 1.988,
+      "clusterLabel": 31,
+      "cosineSimilarityToCentroid": 0.7647
+    },
+    {
+      "turn": 40,
+      "semanticScore": 2.269,
+      "clusterLabel": 32,
+      "cosineSimilarityToCentroid": 0.7507
+    },
+    {
+      "turn": 43,
+      "semanticScore": 4.124,
+      "clusterLabel": 33,
+      "cosineSimilarityToCentroid": 0.658
+    },
+    {
+      "turn": 44,
+      "semanticScore": 4.312,
+      "clusterLabel": 34,
+      "cosineSimilarityToCentroid": 0.6486
+    },
+    {
+      "turn": 45,
+      "semanticScore": 3.669,
+      "clusterLabel": 35,
+      "cosineSimilarityToCentroid": 0.6808
+    },
+    {
+      "turn": 46,
+      "semanticScore": 3.736,
+      "clusterLabel": 36,
+      "cosineSimilarityToCentroid": 0.6774
+    },
+    {
+      "turn": 47,
+      "semanticScore": 6.493,
+      "clusterLabel": 37,
+      "cosineSimilarityToCentroid": 0.5396
+    },
+    {
+      "turn": 48,
+      "semanticScore": 3.107,
+      "clusterLabel": 38,
+      "cosineSimilarityToCentroid": 0.7088
+    },
+    {
+      "turn": 49,
+      "semanticScore": 3.738,
+      "clusterLabel": 39,
+      "cosineSimilarityToCentroid": 0.6773
+    },
+    {
+      "turn": 50,
+      "semanticScore": 0.0,
+      "clusterLabel": 40,
+      "cosineSimilarityToCentroid": 0.864
+    },
+    {
+      "turn": 51,
+      "semanticScore": 0.0,
+      "clusterLabel": 40,
+      "cosineSimilarityToCentroid": 0.864
+    },
+    {
+      "turn": 52,
+      "semanticScore": 0.0,
+      "clusterLabel": 40,
+      "cosineSimilarityToCentroid": 0.864
+    },
+    {
+      "turn": 53,
+      "semanticScore": 0.0,
+      "clusterLabel": 40,
+      "cosineSimilarityToCentroid": 0.864
+    },
+    {
+      "turn": 54,
+      "semanticScore": 2.218,
+      "clusterLabel": 41,
+      "cosineSimilarityToCentroid": 0.7532
+    },
+    {
+      "turn": 55,
+      "semanticScore": 2.367,
+      "clusterLabel": 42,
+      "cosineSimilarityToCentroid": 0.7458
+    },
+    {
+      "turn": 56,
+      "semanticScore": 2.534,
+      "clusterLabel": 43,
+      "cosineSimilarityToCentroid": 0.7374
+    },
+    {
+      "turn": 57,
+      "semanticScore": 2.326,
+      "clusterLabel": 44,
+      "cosineSimilarityToCentroid": 0.7478
+    },
+    {
+      "turn": 58,
+      "semanticScore": 3.21,
+      "clusterLabel": 45,
+      "cosineSimilarityToCentroid": 0.7037
+    },
+    {
+      "turn": 59,
+      "semanticScore": 2.431,
+      "clusterLabel": 46,
+      "cosineSimilarityToCentroid": 0.7426
+    },
+    {
+      "turn": 60,
+      "semanticScore": 2.721,
+      "clusterLabel": 47,
+      "cosineSimilarityToCentroid": 0.7281
+    },
+    {
+      "turn": 61,
+      "semanticScore": 2.205,
+      "clusterLabel": 48,
+      "cosineSimilarityToCentroid": 0.7538
+    },
+    {
+      "turn": 62,
+      "semanticScore": 2.205,
+      "clusterLabel": 48,
+      "cosineSimilarityToCentroid": 0.7538
+    },
+    {
+      "turn": 63,
+      "semanticScore": 4.545,
+      "clusterLabel": 49,
+      "cosineSimilarityToCentroid": 0.637
+    },
+    {
+      "turn": 64,
+      "semanticScore": 7.611,
+      "clusterLabel": 50,
+      "cosineSimilarityToCentroid": 0.4838
+    },
+    {
+      "turn": 65,
+      "semanticScore": 4.543,
+      "clusterLabel": 51,
+      "cosineSimilarityToCentroid": 0.6371
+    },
+    {
+      "turn": 66,
+      "semanticScore": 4.277,
+      "clusterLabel": 52,
+      "cosineSimilarityToCentroid": 0.6503
+    },
+    {
+      "turn": 67,
+      "semanticScore": 2.283,
+      "clusterLabel": 53,
+      "cosineSimilarityToCentroid": 0.75
+    },
+    {
+      "turn": 68,
+      "semanticScore": 3.317,
+      "clusterLabel": 53,
+      "cosineSimilarityToCentroid": 0.6983
+    },
+    {
+      "turn": 69,
+      "semanticScore": 1.675,
+      "clusterLabel": 54,
+      "cosineSimilarityToCentroid": 0.7804
+    },
+    {
+      "turn": 70,
+      "semanticScore": 2.805,
+      "clusterLabel": 55,
+      "cosineSimilarityToCentroid": 0.7239
+    },
+    {
+      "turn": 71,
+      "semanticScore": 1.46,
+      "clusterLabel": 56,
+      "cosineSimilarityToCentroid": 0.7911
+    },
+    {
+      "turn": 72,
+      "semanticScore": 2.281,
+      "clusterLabel": 57,
+      "cosineSimilarityToCentroid": 0.7501
+    },
+    {
+      "turn": 73,
+      "semanticScore": 2.033,
+      "clusterLabel": 58,
+      "cosineSimilarityToCentroid": 0.7625
+    },
+    {
+      "turn": 74,
+      "semanticScore": 3.463,
+      "clusterLabel": 59,
+      "cosineSimilarityToCentroid": 0.691
+    },
+    {
+      "turn": 75,
+      "semanticScore": 4.587,
+      "clusterLabel": 60,
+      "cosineSimilarityToCentroid": 0.6349
+    },
+    {
+      "turn": 76,
+      "semanticScore": 3.003,
+      "clusterLabel": 61,
+      "cosineSimilarityToCentroid": 0.714
+    },
+    {
+      "turn": 77,
+      "semanticScore": 3.424,
+      "clusterLabel": 61,
+      "cosineSimilarityToCentroid": 0.693
+    },
+    {
+      "turn": 78,
+      "semanticScore": 4.457,
+      "clusterLabel": 62,
+      "cosineSimilarityToCentroid": 0.6414
+    },
+    {
+      "turn": 79,
+      "semanticScore": 2.318,
+      "clusterLabel": 63,
+      "cosineSimilarityToCentroid": 0.7482
+    },
+    {
+      "turn": 80,
+      "semanticScore": 3.791,
+      "clusterLabel": 64,
+      "cosineSimilarityToCentroid": 0.6747
+    },
+    {
+      "turn": 81,
+      "semanticScore": 2.004,
+      "clusterLabel": 65,
+      "cosineSimilarityToCentroid": 0.7639
+    },
+    {
+      "turn": 82,
+      "semanticScore": 0.849,
+      "clusterLabel": 66,
+      "cosineSimilarityToCentroid": 0.8216
+    },
+    {
+      "turn": 83,
+      "semanticScore": 2.818,
+      "clusterLabel": 67,
+      "cosineSimilarityToCentroid": 0.7232
+    },
+    {
+      "turn": 84,
+      "semanticScore": 1.13,
+      "clusterLabel": 68,
+      "cosineSimilarityToCentroid": 0.8076
+    },
+    {
+      "turn": 85,
+      "semanticScore": 3.201,
+      "clusterLabel": 69,
+      "cosineSimilarityToCentroid": 0.7041
+    },
+    {
+      "turn": 86,
+      "semanticScore": 3.501,
+      "clusterLabel": 70,
+      "cosineSimilarityToCentroid": 0.6891
+    },
+    {
+      "turn": 87,
+      "semanticScore": 3.761,
+      "clusterLabel": 71,
+      "cosineSimilarityToCentroid": 0.6762
+    },
+    {
+      "turn": 88,
+      "semanticScore": 3.108,
+      "clusterLabel": 71,
+      "cosineSimilarityToCentroid": 0.7088
+    },
+    {
+      "turn": 89,
+      "semanticScore": 3.069,
+      "clusterLabel": 39,
+      "cosineSimilarityToCentroid": 0.7107
+    },
+    {
+      "turn": 90,
+      "semanticScore": 6.232,
+      "clusterLabel": 72,
+      "cosineSimilarityToCentroid": 0.5527
+    },
+    {
+      "turn": 91,
+      "semanticScore": 3.181,
+      "clusterLabel": 39,
+      "cosineSimilarityToCentroid": 0.7051
+    },
+    {
+      "turn": 92,
+      "semanticScore": 1.496,
+      "clusterLabel": 73,
+      "cosineSimilarityToCentroid": 0.7893
+    },
+    {
+      "turn": 93,
+      "semanticScore": 1.496,
+      "clusterLabel": 73,
+      "cosineSimilarityToCentroid": 0.7893
+    },
+    {
+      "turn": 94,
+      "semanticScore": 3.392,
+      "clusterLabel": 74,
+      "cosineSimilarityToCentroid": 0.6946
+    },
+    {
+      "turn": 95,
+      "semanticScore": 3.981,
+      "clusterLabel": 75,
+      "cosineSimilarityToCentroid": 0.6651
+    },
+    {
+      "turn": 96,
+      "semanticScore": 3.192,
+      "clusterLabel": 76,
+      "cosineSimilarityToCentroid": 0.7045
+    },
+    {
+      "turn": 97,
+      "semanticScore": 2.461,
+      "clusterLabel": 39,
+      "cosineSimilarityToCentroid": 0.7411
+    },
+    {
+      "turn": 100,
+      "semanticScore": 3.394,
+      "clusterLabel": 77,
+      "cosineSimilarityToCentroid": 0.6945
+    },
+    {
+      "turn": 101,
+      "semanticScore": 3.603,
+      "clusterLabel": 78,
+      "cosineSimilarityToCentroid": 0.6841
+    },
+    {
+      "turn": 102,
+      "semanticScore": 4.511,
+      "clusterLabel": 79,
+      "cosineSimilarityToCentroid": 0.6387
+    },
+    {
+      "turn": 103,
+      "semanticScore": 3.908,
+      "clusterLabel": 79,
+      "cosineSimilarityToCentroid": 0.6688
+    },
+    {
+      "turn": 104,
+      "semanticScore": 4.806,
+      "clusterLabel": 79,
+      "cosineSimilarityToCentroid": 0.6239
+    },
+    {
+      "turn": 105,
+      "semanticScore": 3.919,
+      "clusterLabel": 80,
+      "cosineSimilarityToCentroid": 0.6683
+    },
+    {
+      "turn": 106,
+      "semanticScore": 3.349,
+      "clusterLabel": 77,
+      "cosineSimilarityToCentroid": 0.6967
+    },
+    {
+      "turn": 107,
+      "semanticScore": 4.062,
+      "clusterLabel": 81,
+      "cosineSimilarityToCentroid": 0.6611
+    },
+    {
+      "turn": 108,
+      "semanticScore": 3.923,
+      "clusterLabel": 82,
+      "cosineSimilarityToCentroid": 0.668
+    },
+    {
+      "turn": 109,
+      "semanticScore": 3.337,
+      "clusterLabel": 83,
+      "cosineSimilarityToCentroid": 0.6973
+    },
+    {
+      "turn": 110,
+      "semanticScore": 3.464,
+      "clusterLabel": 84,
+      "cosineSimilarityToCentroid": 0.691
+    },
+    {
+      "turn": 111,
+      "semanticScore": 3.419,
+      "clusterLabel": 85,
+      "cosineSimilarityToCentroid": 0.6932
+    },
+    {
+      "turn": 112,
+      "semanticScore": 4.232,
+      "clusterLabel": 86,
+      "cosineSimilarityToCentroid": 0.6526
+    },
+    {
+      "turn": 113,
+      "semanticScore": 4.589,
+      "clusterLabel": 87,
+      "cosineSimilarityToCentroid": 0.6348
+    },
+    {
+      "turn": 114,
+      "semanticScore": 4.758,
+      "clusterLabel": 88,
+      "cosineSimilarityToCentroid": 0.6264
+    },
+    {
+      "turn": 115,
+      "semanticScore": 4.553,
+      "clusterLabel": 89,
+      "cosineSimilarityToCentroid": 0.6366
+    },
+    {
+      "turn": 116,
+      "semanticScore": 2.561,
+      "clusterLabel": 90,
+      "cosineSimilarityToCentroid": 0.7361
+    },
+    {
+      "turn": 117,
+      "semanticScore": 3.203,
+      "clusterLabel": 91,
+      "cosineSimilarityToCentroid": 0.704
+    },
+    {
+      "turn": 118,
+      "semanticScore": 2.485,
+      "clusterLabel": 92,
+      "cosineSimilarityToCentroid": 0.7399
+    },
+    {
+      "turn": 119,
+      "semanticScore": 2.485,
+      "clusterLabel": 92,
+      "cosineSimilarityToCentroid": 0.7399
+    },
+    {
+      "turn": 120,
+      "semanticScore": 1.887,
+      "clusterLabel": 93,
+      "cosineSimilarityToCentroid": 0.7698
+    },
+    {
+      "turn": 121,
+      "semanticScore": 2.856,
+      "clusterLabel": 94,
+      "cosineSimilarityToCentroid": 0.7213
+    },
+    {
+      "turn": 122,
+      "semanticScore": 3.797,
+      "clusterLabel": 95,
+      "cosineSimilarityToCentroid": 0.6743
+    },
+    {
+      "turn": 123,
+      "semanticScore": 3.211,
+      "clusterLabel": 96,
+      "cosineSimilarityToCentroid": 0.7036
+    },
+    {
+      "turn": 124,
+      "semanticScore": 3.214,
+      "clusterLabel": 97,
+      "cosineSimilarityToCentroid": 0.7034
+    },
+    {
+      "turn": 125,
+      "semanticScore": 3.248,
+      "clusterLabel": 98,
+      "cosineSimilarityToCentroid": 0.7017
+    },
+    {
+      "turn": 126,
+      "semanticScore": 2.918,
+      "clusterLabel": 99,
+      "cosineSimilarityToCentroid": 0.7183
+    },
+    {
+      "turn": 127,
+      "semanticScore": 2.336,
+      "clusterLabel": 100,
+      "cosineSimilarityToCentroid": 0.7473
+    },
+    {
+      "turn": 128,
+      "semanticScore": 3.48,
+      "clusterLabel": 101,
+      "cosineSimilarityToCentroid": 0.6902
+    },
+    {
+      "turn": 129,
+      "semanticScore": 1.974,
+      "clusterLabel": 102,
+      "cosineSimilarityToCentroid": 0.7654
+    },
+    {
+      "turn": 130,
+      "semanticScore": 3.084,
+      "clusterLabel": 103,
+      "cosineSimilarityToCentroid": 0.7099
+    },
+    {
+      "turn": 131,
+      "semanticScore": 6.116,
+      "clusterLabel": 104,
+      "cosineSimilarityToCentroid": 0.5585
+    },
+    {
+      "turn": 132,
+      "semanticScore": 7.377,
+      "clusterLabel": 105,
+      "cosineSimilarityToCentroid": 0.4955
+    },
+    {
+      "turn": 133,
+      "semanticScore": 3.433,
+      "clusterLabel": 106,
+      "cosineSimilarityToCentroid": 0.6925
+    },
+    {
+      "turn": 134,
+      "semanticScore": 2.569,
+      "clusterLabel": 106,
+      "cosineSimilarityToCentroid": 0.7357
+    },
+    {
+      "turn": 135,
+      "semanticScore": 2.975,
+      "clusterLabel": 107,
+      "cosineSimilarityToCentroid": 0.7154
+    },
+    {
+      "turn": 136,
+      "semanticScore": 3.197,
+      "clusterLabel": 108,
+      "cosineSimilarityToCentroid": 0.7043
+    },
+    {
+      "turn": 137,
+      "semanticScore": 3.223,
+      "clusterLabel": 109,
+      "cosineSimilarityToCentroid": 0.703
+    },
+    {
+      "turn": 138,
+      "semanticScore": 2.412,
+      "clusterLabel": 110,
+      "cosineSimilarityToCentroid": 0.7435
+    },
+    {
+      "turn": 143,
+      "semanticScore": 8.661,
+      "clusterLabel": 111,
+      "cosineSimilarityToCentroid": 0.4314
+    },
+    {
+      "turn": 144,
+      "semanticScore": 6.058,
+      "clusterLabel": 112,
+      "cosineSimilarityToCentroid": 0.5614
+    },
+    {
+      "turn": 145,
+      "semanticScore": 6.058,
+      "clusterLabel": 112,
+      "cosineSimilarityToCentroid": 0.5614
+    },
+    {
+      "turn": 146,
+      "semanticScore": 6.058,
+      "clusterLabel": 112,
+      "cosineSimilarityToCentroid": 0.5614
+    },
+    {
+      "turn": 147,
+      "semanticScore": 5.305,
+      "clusterLabel": 112,
+      "cosineSimilarityToCentroid": 0.599
+    },
+    {
+      "turn": 148,
+      "semanticScore": 6.058,
+      "clusterLabel": 112,
+      "cosineSimilarityToCentroid": 0.5614
+    },
+    {
+      "turn": 151,
+      "semanticScore": 7.802,
+      "clusterLabel": 113,
+      "cosineSimilarityToCentroid": 0.4743
+    },
+    {
+      "turn": 152,
+      "semanticScore": 9.66,
+      "clusterLabel": 114,
+      "cosineSimilarityToCentroid": 0.3815
+    },
+    {
+      "turn": 153,
+      "semanticScore": 10.0,
+      "clusterLabel": 115,
+      "cosineSimilarityToCentroid": 0.3645
+    },
+    {
+      "turn": 154,
+      "semanticScore": 6.245,
+      "clusterLabel": 116,
+      "cosineSimilarityToCentroid": 0.5521
+    },
+    {
+      "turn": 157,
+      "semanticScore": 5.894,
+      "clusterLabel": 117,
+      "cosineSimilarityToCentroid": 0.5696
+    },
+    {
+      "turn": 158,
+      "semanticScore": 5.205,
+      "clusterLabel": 117,
+      "cosineSimilarityToCentroid": 0.604
+    },
+    {
+      "turn": 159,
+      "semanticScore": 5.774,
+      "clusterLabel": 117,
+      "cosineSimilarityToCentroid": 0.5756
+    },
+    {
+      "turn": 162,
+      "semanticScore": 3.899,
+      "clusterLabel": 118,
+      "cosineSimilarityToCentroid": 0.6692
+    },
+    {
+      "turn": 163,
+      "semanticScore": 7.497,
+      "clusterLabel": 119,
+      "cosineSimilarityToCentroid": 0.4895
+    },
+    {
+      "turn": 164,
+      "semanticScore": 4.156,
+      "clusterLabel": 120,
+      "cosineSimilarityToCentroid": 0.6564
+    },
+    {
+      "turn": 167,
+      "semanticScore": 2.987,
+      "clusterLabel": 121,
+      "cosineSimilarityToCentroid": 0.7148
+    },
+    {
+      "turn": 168,
+      "semanticScore": 3.887,
+      "clusterLabel": 122,
+      "cosineSimilarityToCentroid": 0.6699
+    },
+    {
+      "turn": 169,
+      "semanticScore": 5.716,
+      "clusterLabel": 123,
+      "cosineSimilarityToCentroid": 0.5785
+    },
+    {
+      "turn": 170,
+      "semanticScore": 6.332,
+      "clusterLabel": 124,
+      "cosineSimilarityToCentroid": 0.5477
+    },
+    {
+      "turn": 171,
+      "semanticScore": 5.111,
+      "clusterLabel": 123,
+      "cosineSimilarityToCentroid": 0.6087
+    },
+    {
+      "turn": 172,
+      "semanticScore": 5.598,
+      "clusterLabel": 125,
+      "cosineSimilarityToCentroid": 0.5844
+    },
+    {
+      "turn": 173,
+      "semanticScore": 5.364,
+      "clusterLabel": 123,
+      "cosineSimilarityToCentroid": 0.596
+    },
+    {
+      "turn": 174,
+      "semanticScore": 4.68,
+      "clusterLabel": 126,
+      "cosineSimilarityToCentroid": 0.6302
+    },
+    {
+      "turn": 175,
+      "semanticScore": 5.908,
+      "clusterLabel": 127,
+      "cosineSimilarityToCentroid": 0.5689
+    },
+    {
+      "turn": 149,
+      "semanticScore": 4.937,
+      "clusterLabel": 128,
+      "cosineSimilarityToCentroid": 0.6174
+    },
+    {
+      "turn": 155,
+      "semanticScore": 7.201,
+      "clusterLabel": 129,
+      "cosineSimilarityToCentroid": 0.5043
+    }
+  ],
+  "embeddingModel": "Qwen/Qwen3-Embedding-0.6B (sentence-transformers)",
+  "device": "cuda",
+  "durationMs": 9709
+}

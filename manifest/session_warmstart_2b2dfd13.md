@@ -1,0 +1,382 @@
+# Session Warm-Start — 2b2dfd13
+> Compacted 3980 turns → 995 (25% kept)
+> GPU-accelerated: true  |  Generated: 2026-05-05T05:32:23.701Z
+
+## Session Intent
+corpus-builder
+
+## Commits This Session
+- `0016a1156ea0`
+- `0042d5160c`
+- `00c8bf26`
+- `0109b459`
+- `02b758f92`
+- `03e7a901`
+- `050dcf0c`
+- `0645ab37`
+- `09dd2be7`
+- `0d112ec1bfc4`
+- `0e509e58`
+- `0e961dd9a`
+- `0eaffaa7`
+- `0f2e7d287e`
+- `111c17e136`
+- `16c0548d`
+- `17bf66d3d445`
+- `18722fea`
+- `1996a5d8`
+- `19f1aac9`
+- `1d34de33`
+- `1e2b21c6`
+- `1fb97f3e`
+- `202a2e5`
+- `212fd8bc`
+- `223556219`
+- `23cedfd8`
+- `2450ec9a`
+- `24f62975`
+- `25d7e7cf`
+- `26755072`
+- `281734ec`
+- `2850999`
+- `2850999b`
+- `29575b0d`
+- `2959d0f1`
+- `2b2dfd13`
+- `2c6d6dae6dc8`
+- `2e21d670`
+- `2e69a0d69ec7`
+- `2e9f774`
+- `2f88733c`
+- `308d0ff1`
+- `30ac60fa`
+- `3329f379`
+- `345220d6`
+- `34a7a947`
+- `357dd0f4`
+- `3d42673b`
+- `3edbf25c`
+- `40a2b63550d1`
+- `4111749`
+- `41bc9e10`
+- `41ece23ccc15`
+- `421fa5e2`
+- `46fe1ea2`
+- `493e8c17`
+- `49ad848308f8`
+- `4b45c45be048`
+- `4cc5dcd9e492`
+- `4e1e03dbc722`
+- `5112e73`
+- `52c0b99d`
+- `5468b64f`
+- `54cd9cad`
+- `558b9c71`
+- `55df25bc`
+- `55e28032`
+- `57069c076201`
+- `57372915a`
+- `59a2d42a`
+- `5cf8cd1a`
+- `5dadb441`
+- `5f8384a7`
+- `5f9e033e5`
+- `623867ac`
+- `62fada4`
+- `63b8f8cb`
+- `642788c0542b`
+- `65461839`
+- `66a6ffe6`
+- `68416b61`
+- `69235bc7`
+- `6b98630e`
+- `6b9a687e`
+- `6d1d913f`
+- `6ea325f0`
+- `6eb7f85a`
+- `6fc39cf96be9`
+- `6fd226b3ca87`
+- `710554437`
+- `7271b8d65c31`
+- `72de47ab`
+- `73af66d77e0d`
+- `7592984a`
+- `782d3b0`
+- `787cdd27`
+- `7961b8ed`
+- `79682e02`
+- `7a0a23a1`
+- `7eff53a3`
+- `7f04a0a3`
+- `7f786be66fe4`
+- `8148fe61`
+- `81b36b71`
+- `83c6741c`
+- `84f2b3c4cc77`
+- `85ece81f`
+- `869b351`
+- `870acaa3`
+- `870b5f4`
+- `8770393b82d7`
+- `87c9cb46`
+- `898c7571`
+- `8bb71fd98046`
+- `8c39a880`
+- `8c4f8aec`
+- `8cf704e1`
+- `8e10f8d4`
+- `8e15245c`
+- `900b564b`
+- `90306b24`
+- `939c1f2c`
+- `964b4806`
+- `96ddfb7ecde5`
+- `980f3d2d`
+- `9e818351`
+- `9ec91c4dc2a3`
+- `9edabd02b588`
+- `a082c8ff`
+- `a1ac64b8`
+- `a1b2c3d4`
+- `a35cec08`
+- `a7b8c9d0`
+- `a82e04c`
+- `aa4fe4b5`
+- `ab4967da`
+- `abed515e`
+- `ae91edfc6b3e`
+- `b0730ec6`
+- `b0878984`
+- `b0ac74f7`
+- `b268312a`
+- `b2c3d4e5`
+- `b30ce14`
+- `b4b7faa4`
+- `b4cd3468`
+- `b4d121b5`
+- `b7e8343a`
+- `b811b604`
+- `b8351760f4fe`
+- `b8c9d0e1`
+- `b93a81ccd0`
+- `ba8fc35d`
+- `baa42a23`
+- `bb586412`
+- `bc038d189294`
+- `bc78a3f1`
+- `bf859984`
+- `c00712e2`
+- `c0782e3b`
+- `c0c05000`
+- `c0c05001`
+- `c197067f`
+- `c3d4e5f6`
+- `c4732367`
+- `c521cfd4`
+- `c6250cb5`
+- `c7ee4b76`
+- `c8f93c3c`
+- `c9d0e1f2`
+- `caa56c03942c`
+- `cb33ffca`
+- `cb8be770`
+- `cbaae656`
+- `cc0957b9`
+- `cc9b1d03`
+- `cd11fcc4`
+- `cd7b8157`
+- `cdaeb5b1`
+- `ce8aeac5`
+- `d0a5555d`
+- `d135e3a1`
+- `d4dcfe4`
+- `d4e5f6a7`
+- `d535e01b`
+- `dc34681487c7`
+- `de6e60f4`
+- `dec32d8f`
+- `e04a3e0a`
+- `e0b3b5ca`
+- `e256d9a9`
+- `e27487a636d1`
+- `e2b7611778aa`
+- `e541a638`
+- `e5f6a7b8`
+- `eae0a7c1`
+- `eccd2ab`
+- `eccd2abd`
+- `ee2a8761fccb`
+- `eedd3263`
+- `ef54bace`
+- `ef54bace4`
+- `eff0cacf`
+- `f0b860582db9`
+- `f172af0b`
+- `f17c90ed`
+- `f28177ab`
+- `f283ca48`
+- `f3447c0f537a`
+- `f4ecd4a3`
+- `f6a7b8c9`
+- `f72cf3b`
+- `f7c9479793de`
+- `f7f276a9`
+- `f8d1131a`
+- `fbbf416b`
+- `fc61690e`
+- `fc61690e4`
+- `fded5784`
+- `fded57842`
+
+## Files Edited
+- `dev/dealogue-fayde/guidealoguebrowser.rb` (multi_replace_string_in_file, replace_string_in_file)
+- `dev/dealogue-fayde/FAYDEconfig.txt` (create_file)
+- `dev/dealogue-fayde/guidealoguebrowser.rb` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/.gitignore` (replace_string_in_file)
+- `cli-renderer/src/main.rs` (multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/.mcp.json` (replace_string_in_file)
+- `eldno/.cocoindex_code/global_settings.yml` (replace_string_in_file)
+- `chthonic-archive/.cocoindex_code/settings.yml` (replace_string_in_file)
+- `PsychoNoir-Kontrapunkt/.cocoindex_code/settings.yml` (replace_string_in_file, create_file)
+- `Roaming/.cocoindex_code/global_settings.yml` (replace_string_in_file)
+- `chthonic-archive/.cocoindex_code/settings.yml` (replace_string_in_file)
+- `snapshots/3c4b60807d71f79b43f3c4363786d9493691f8b1/modeling_hf_nomic_bert.py` (replace_string_in_file)
+- `models/nomic_bert/modeling_nomic_bert.py` (replace_string_in_file)
+- `chthonic-archive/scripts/chthonic-shell-hook.ps1` (multi_replace_string_in_file)
+- `docs/reference/FAF_COCOINDEX_SEMANTIC_SEARCH.md` (create_file)
+- `docs/reference/CLAUDINE_MD_TYPE_LEXICON.md` (create_file)
+- `docs/reference/STEWARDESS_PROTOCOL.md` (create_file)
+- `.github/instructions/pattern-nursery.instructions.md` (replace_string_in_file)
+- `docs/reference/SCAFFOLD_TRANSFORMERS_NOMIC_KWARGS_PATCH.md` (create_file)
+- `claude/stewardess/ACTIVE_2026-05-01.md` (create_file)
+- `claude/stewardess/.current` (create_file)
+- `docs/liminal/INVOCATION_GAP.md` (create_file)
+- `chthonic-archive/scripts/md_types_scan.ts` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/roulette_html_gen.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `.config/powershell/profile.ps1` (replace_string_in_file)
+- `cli-renderer/shaders/dirty_diff.comp.glsl` (create_file)
+- `vulkan-lab/cli-renderer/build.rs` (replace_string_in_file)
+- `chthonic-archive/scripts/todo_roulette.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `cli-renderer/shaders/ascii_dungeon.comp.glsl` (create_file)
+- `vulkan-lab/cli-renderer/GATE_WALK.md` (create_file)
+- `chthonic-archive/codex/NEXT.md` (replace_string_in_file, multi_replace_string_in_file)
+- `cli-renderer/shaders/iso_render.comp.glsl` (create_file)
+- `chthonic-archive/manifest/todo_roulette.json` (multi_replace_string_in_file, replace_string_in_file)
+- `vulkan-lab/cli-renderer/Cargo.toml` (replace_string_in_file)
+- `eldno/chthonic-archive/Cargo.toml` (replace_string_in_file)
+- `chthonic-archive/scripts/vs_battery.ts` (create_file, replace_string_in_file)
+- `eldno/chthonic-archive/package.json` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/cocos_probe.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/manifest/todo_meta.json` (create_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/CLAUDE.md` (multi_replace_string_in_file)
+- `chthonic-archive/.github/copilot-instructions.archive.md` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/pnk_archaeology.ts` (create_file)
+- `chthonic-archive/scripts/pnk_archaeology.ts` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/chthonic-archive.code-workspace` (multi_replace_string_in_file, replace_string_in_file)
+- `eldno/chthonic-archive/SATELLITE_REGISTRY.json` (multi_replace_string_in_file, replace_string_in_file)
+- `psychonoir-kontrapunkt-large-file-holder/scripts/district_scanner.py` (create_file, replace_string_in_file)
+- `psychonoir-kontrapunkt-large-file-holder/scripts/build_archive_db.py` (create_file)
+- `psychonoir-kontrapunkt-large-file-holder/scripts/query_archive.py` (create_file)
+- `psychonoir-kontrapunkt-large-file-holder/scripts/archaeology_mcp.py` (create_file, replace_string_in_file)
+- `chthonic-archive/.vscode/mcp.json` (replace_string_in_file)
+- `psychonoir-kontrapunkt-large-file-holder/scripts/overnight_archaeology.py` (create_file, multi_replace_string_in_file)
+- `claude/mailbox/COLD_START_ARCHAEOLOGY_2026-05-02.md` (create_file)
+- `chthonic-archive/scripts/embedding_server.py` (create_file)
+- `eldno/chthonic-archive/pyproject.toml` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/.copilotignore` (replace_string_in_file)
+- `chthonic-archive/.continue/config.json` (create_file)
+- `chthonic-archive/manifest/triton_gate.json` (create_file)
+- `chthonic-archive/manifest/xformers_gate.json` (create_file)
+- `chthonic-archive/manifest/formatron_patch_gate.json` (create_file, replace_string_in_file)
+- `probes/python/integration_stack_probe.py` (create_file)
+- `probes/python/_fmt_trace.py` (create_file)
+- `tabby-modern-gpu/patches/patch-formatron-escape.py` (replace_string_in_file)
+- `probes/python/_fix_json_rr.py` (create_file)
+- `ci/checks/inference-gate-smoke.ts` (multi_replace_string_in_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/claudine-cli/package.json` (replace_string_in_file, multi_replace_string_in_file)
+- `.github/workflows/release.yml` (multi_replace_string_in_file)
+- `.github/workflows/release.yml` (multi_replace_string_in_file)
+- `.github/workflows/test.yml` (multi_replace_string_in_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/claudine-cli/tsconfig.json` (multi_replace_string_in_file)
+- `src/core/logger.ts` (multi_replace_string_in_file)
+- `commands/config/wizard.ts` (multi_replace_string_in_file)
+- `commands/env/activate.ts` (multi_replace_string_in_file)
+- `commands/env/health.ts` (multi_replace_string_in_file)
+- `commands/env/versions.ts` (multi_replace_string_in_file)
+- `commands/project/browse.ts` (multi_replace_string_in_file)
+- `commands/project/create-interactive.ts` (multi_replace_string_in_file)
+- `commands/project/new.ts` (multi_replace_string_in_file)
+- `core/orchestrator/powershell-executor.ts` (multi_replace_string_in_file)
+- `core/plugin/manager.ts` (multi_replace_string_in_file)
+- `src/core/storage.ts` (multi_replace_string_in_file)
+- `core/ui/colors.ts` (multi_replace_string_in_file)
+- `core/ui/spinner.ts` (multi_replace_string_in_file)
+- `core/ui/prompt.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `src/utils/environment.ts` (multi_replace_string_in_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/scripts/ci-local.ps1` (create_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/scripts/release-local.ps1` (create_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/.vscode/tasks.json` (replace_string_in_file)
+- `eldno/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/biome.json` (replace_string_in_file)
+- `Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique/claudine-cli/biome.json` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/polyrepo-runner.ps1` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/chthonic-archive.code-workspace` (replace_string_in_file)
+- `chthonic-archive/manifest/polyrepo_archaeology_plan.md` (create_file)
+- `chthonic-archive/manifest/branch_archaeology.json` (create_file)
+- `chthonic-archive/manifest/polyrepo_full_census.json` (create_file)
+- `chthonic-archive/scripts/polyrepo-runner.ps1` (replace_string_in_file)
+- `servers/base/package.json` (multi_replace_string_in_file)
+- `packages/shared/package.json` (multi_replace_string_in_file)
+- `eldno/Restructure-MCP-Orchestration/tsconfig.json` (replace_string_in_file)
+- `vscode-extension/src/extension.ts` (replace_string_in_file)
+- `eldno/PsychoNoir-Kontrapunkt/tsconfig.json` (replace_string_in_file)
+- `chthonic-archive/.cargo/config.toml` (replace_string_in_file)
+- `chthonic-archive/scripts/_debug_toolchain.ps1` (create_file)
+- `eldno/chthonic-archive/uv.toml` (replace_string_in_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/pyproject.toml` (replace_string_in_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/uv.toml` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/_validate_tools.ps1` (create_file)
+- `chthonic-archive/scripts/session-viewer.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/session-index.ts` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-watcher.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-vampire.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `skills/session-vampire/SKILL.md` (create_file)
+- `chthonic-archive/scripts/session-corpus.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-query.ts` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-corpus.ts` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-query.ts` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/package.json` (replace_string_in_file)
+- `chthonic-archive/scripts/_wal_checkpoint.ts` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/corpus-mcp.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `docs/reference/CORPUS_COMPARATIVE_ANALYSIS.md` (create_file)
+- `docs/reference/CORPUS_ACHIEVEMENT_GATES.md` (create_file)
+- `chthonic-archive/scripts/memory-ingester.ts` (create_file)
+
+## Key Terminal Commands
+- `rv list 2>&1; Write-Host "---"; rv current 2>&1; Write-Host "---"; rv r 2>&1 # Diagnose rv ruby state`
+- `rv.exe list 2>&1; Write-Host "---"; rv.exe --version 2>&1; Write-Host "---"; Get # Diagnose rv state`
+- `rv.exe --help 2>&1 # Understand rv CLI surface`
+- `rv.exe ruby list 2>&1; Write-Host "---"; rv.exe ruby list --installed 2>&1 # See what ruby versions exist`
+- `rv.exe ruby list --installed-only 2>&1; Write-Host "---"; rv.exe r ruby -- --ver # Map current ruby state`
+- `$rvPath = "$env:APPDATA\rv\rubies\ruby-4.0.3"; Test-Path $rvPath; Get-ChildItem  # Verify ruby installation state on disk`
+- `$rb = "$env:APPDATA\rv\rubies\ruby-4.0.3\bin\ruby.exe"; Test-Path $rb; Write-Hos # Verify ruby binary health`
+- `Get-Content "$env:USERPROFILE\chthonic-archive\.ruby-version" 2>&1; Write-Host " # Find what version is pinned and why rv can't match it`
+- `Get-Content .ruby-version | Format-Hex | Select-Object -First 5 2>&1; Write-Host # Diagnose both issues`
+- `Get-Command rvw -ErrorAction SilentlyContinue 2>&1; Write-Host "---"; Get-Conten # Understand rv alias chain`
+- `Get-Content $PROFILE 2>&1 | Select-String "rv|Remove-Variable|ruby|alias" -CaseS # Find how rv alias is set up in profile`
+- `Get-Content $PROFILE 2>&1 | Select-Object -Last 50 # Find rv alias configuration`
+
+## High-Value Code Blocks
+- **json** (315L, turn 2136): [↵  {↵    "additions": 11,↵    "deletions": 2,↵    "filename": ".eslintrc.json",
+- **text** (80L, turn 3037): --- cmake ---↵exit: 0↵cmake version 3.31.5↵CMake suite maintained and supported 
+- **** (59L, turn 2981): === jlpm full output ===↵Traceback (most recent call last):↵  File "<frozen runp
+- **json** (51L, turn 2136): [↵  {↵    "additions": 128,↵    "deletions": 0,↵    "filename": ".github/gemini-
+- **text** (35L, turn 2118): BRANCH: copilot/add-gpu-accelerated-tfjs-package↵  ahead=0 behind=7 commits=0↵↵B
+- **json** (35L, turn 2183): [↵  {↵    "ref": "refs/heads/ai_main_1b463b74c4b1",↵    "sha": "167dbb5ca728e55e
+
+## Tool Usage Pattern
+`run_in_terminal` · `read_file` · `manage_todo_list` · `replace_string_in_file` · `grep_search` · `execution_subagent` · `list_dir` · `task_complete`
+
+## Structural Breakdown
+- T0 Anchors: 411 (commits, edits, memory writes)
+- T1/T2 Signal: 3152 (code blocks, tool chains, commands)
+- T3 Noise filtered: 10 (retries, acks, failed calls)

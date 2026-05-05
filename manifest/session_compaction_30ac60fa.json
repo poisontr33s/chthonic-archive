@@ -4,7 +4,7 @@
   "totalTurns": 135,
   "keptTurns": 34,
   "compressionRatio": 0.2518518518518518,
-  "gpuAccelerated": false,
+  "gpuAccelerated": true,
   "structuralAnchors": 12,
   "signalTurns": 103,
   "noiseTurns": 0,
@@ -336,7 +336,7 @@
     130,
     134
   ],
-  "gpuScoreManifest": null,
-  "generatedAt": "2026-05-05T05:02:44.357Z",
+  "gpuScoreManifest": "C:\\Users\\eldno\\chthonic-archive\\manifest\\gpu_scores_30ac60fa.json",
+  "generatedAt": "2026-05-05T05:33:51.940Z",
   "gateVersion": "G9.0"
 }

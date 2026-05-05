@@ -1,0 +1,330 @@
+# Session Warm-Start — 898c7571
+> Compacted 3598 turns → 900 (25% kept)
+> GPU-accelerated: true  |  Generated: 2026-05-05T05:32:42.455Z
+
+## Session Intent
+tabby-inference
+
+## Commits This Session
+- `01262f5a`
+- `016ea930`
+- `0445ced0`
+- `04898c04`
+- `0649545`
+- `07789bce1a7b`
+- `07c07c1a`
+- `0a625eec29f6`
+- `0b2191f6`
+- `0c7333cb`
+- `0d2a810b`
+- `0f1820d`
+- `0f25ba7d`
+- `0f512bd5`
+- `11b2039a`
+- `12533a27af81`
+- `12864c73`
+- `12937478`
+- `15994e6f`
+- `175eeb4f`
+- `1771278492`
+- `1a5db9de`
+- `223556219`
+- `2241ed22`
+- `2423ec22`
+- `24934808239`
+- `2a482383`
+- `2ae5465c`
+- `2bcba94a`
+- `3062c46dac1b`
+- `30684a40`
+- `309157ff`
+- `3190d5d1`
+- `31a200f7`
+- `3380874f`
+- `35a4ef0b`
+- `38d5bc7d`
+- `3a7976f6`
+- `3da49cd7`
+- `3e616e05`
+- `47b56e60`
+- `493cd179`
+- `49e6e33f`
+- `4a4d5d96`
+- `4a6f56b8`
+- `4af58f66`
+- `4d623a2c`
+- `5064ac55`
+- `5182779e`
+- `533ee1b4`
+- `54383b3e`
+- `564ede23`
+- `597dfe12`
+- `5a859978`
+- `5fb446e8`
+- `609a119e`
+- `61574546`
+- `67767baf`
+- `68e29f3a`
+- `68e29f3a7cad`
+- `6cbb5c97`
+- `6f0c9591`
+- `70ed1916`
+- `74642cdd`
+- `78780340`
+- `7b71913c8424`
+- `7b9cf547`
+- `7f39e6ee`
+- `801bad04`
+- `83af2aae`
+- `85ddef263a`
+- `87692a94`
+- `8a936e81`
+- `8b549b33`
+- `8b6cd7fe`
+- `8c3d19c4`
+- `8f5f10c9`
+- `92aac661`
+- `94086385`
+- `949c9c9d`
+- `953ca105`
+- `9577d9f`
+- `9618458a`
+- `965442e`
+- `966c8dbc`
+- `993227c1`
+- `9949ade7`
+- `998f5511`
+- `99b7c1bb`
+- `9b2a2d70`
+- `9db7237c`
+- `9fce4f08`
+- `a24cfa47`
+- `a59580ba`
+- `a7720e9fbcba`
+- `a7eae24f`
+- `a8e7c52d`
+- `abda31d2`
+- `ac2ad4dc`
+- `b85c5476`
+- `b912e4dc`
+- `bcdb8a0d`
+- `bfeb655b`
+- `c08013a3`
+- `c09b8a44`
+- `c4cba94fff24`
+- `ca9e38d1`
+- `d20c445a`
+- `d3ff1cd8`
+- `d708c687`
+- `d7ae56ae`
+- `d7c2d2de`
+- `d8098c3f`
+- `daa44ad5`
+- `db0f1807`
+- `dc42cac8`
+- `dfb63f02`
+- `dfe20185`
+- `e04e89c2`
+- `e136e251`
+- `e5345e3c`
+- `e5b8a003e9d1`
+- `e71e032e`
+- `eae0a7c1`
+- `ec010e03`
+- `ec689c9f`
+- `eea98a37`
+- `f03cf39d`
+- `f151a650`
+- `f31c7c86`
+- `f36442eb`
+- `f37f88b5`
+- `f68422ff`
+- `fb80ec29`
+
+## Files Edited
+- `toolchain-doctor/scripts/toolchain_doctor.py` (multi_replace_string_in_file)
+- `skills/toolchain-doctor/SKILL.md` (multi_replace_string_in_file, replace_string_in_file)
+- `toolchain-doctor/scripts/toolchain_doctor.py` (multi_replace_string_in_file)
+- `.chthonic/ruby/Gemfile` (replace_string_in_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/AGENT_COMMON.md` (replace_string_in_file, multi_replace_string_in_file)
+- `eldno/chthonic-archive/.gitignore` (multi_replace_string_in_file, replace_string_in_file)
+- `.chthonic/ruby/.rubocop.yml` (create_file, replace_string_in_file)
+- `.chthonic/ruby/lore.rb` (multi_replace_string_in_file)
+- `ruby/.bundle/config` (multi_replace_string_in_file)
+- `.chthonic/ruby/_oj_test.rb` (create_file)
+- `build/ruby-zjit/build.sh` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `build/ruby-zjit/launch.ps1` (create_file)
+- `build/ruby-zjit/preflight.sh` (create_file)
+- `build/ruby-zjit/build-wsl2.sh` (create_file)
+- `build/ruby-zjit/ruby-zjit.ps1` (create_file)
+- `ruby-zjit/shim/Cargo.toml` (create_file, replace_string_in_file)
+- `shim/src/main.rs` (create_file)
+- `build/ruby-zjit/patch-jit-win32.py` (create_file, replace_string_in_file)
+- `build/ruby-zjit/build-win32-native.ps1` (create_file, replace_string_in_file)
+- `build/ruby-zjit/patch-rust-win32.py` (create_file, replace_string_in_file)
+- `yjit/src/cruby.rs` (replace_string_in_file)
+- `zjit/src/cruby.rs` (replace_string_in_file)
+- `ruby-zjit-build/ruby-4.0.3/jit.c` (replace_string_in_file, multi_replace_string_in_file)
+- `.github/instructions/pattern-nursery.instructions.md` (replace_string_in_file, multi_replace_string_in_file)
+- `ruby-4.0.3/defs/jit.mk` (replace_string_in_file)
+- `.github/instructions/technical-directives.instructions.md` (replace_string_in_file)
+- `chthonic-archive/scripts/chthonic-xp.ps1` (replace_string_in_file, multi_replace_string_in_file)
+- `.chthonic/trail/2026-04-22.hot.ndjson` (create_file)
+- `skill-polisher/agents/openai.yaml` (create_file)
+- `decision-razor/agents/openai.yaml` (create_file)
+- `claude/mailbox/ROULETTE_CHECKPOINT_20260422_2326.md` (create_file)
+- `chthonic-archive/docs/README.md` (replace_string_in_file)
+- `chthonic-archive/scripts/chthonic.ps1` (multi_replace_string_in_file)
+- `src/polyglot/polyglotBroker.ts` (multi_replace_string_in_file)
+- `.config/powershell/profile.ps1` (replace_string_in_file)
+- `macro-prompt-world/sub-milfs/Sylvaris_Cythrex_The_Cytolytic_Blade.md` (create_file)
+- `codex-session-logs/archive/MILF-Core-Step5c-Sylvaris-Entity-Card.md` (create_file)
+- `lore/characters/sylvaris_cythrex.json` (create_file)
+- `chthonic-archive/.github/copilot-instructions.archive.md` (replace_string_in_file, multi_replace_string_in_file)
+- `codex-session-logs/archive/SSOT-Navigation-Beacons.md` (create_file, multi_replace_string_in_file)
+- `.github/agents/Pentea.agent.md` (multi_replace_string_in_file, replace_string_in_file)
+- `claude/mailbox/SCRIPTS_ROULETTE.md` (replace_string_in_file)
+- `claude/mailbox/ROULETTE_CHECKPOINT_20260423_0300.md` (create_file)
+- `build/ruby-zjit-podman/Containerfile` (create_file, replace_string_in_file)
+- `build/ruby-zjit-podman/build-verify.sh` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/ruby_podman_build.ps1` (create_file)
+- `.github/agents/_index.md` (create_file)
+- `ext/cuda_rb/extconf.rb` (create_file)
+- `ext/cuda_rb/cuda_rb.c` (create_file)
+- `ext/vk_rb/extconf.rb` (create_file)
+- `ext/vk_rb/vk_rb.c` (create_file)
+- `ext/trt_rb/extconf.rb` (create_file)
+- `ext/trt_rb/trt_rb.cpp` (create_file)
+- `chthonic-archive/scripts/ruby_zjit_ext_build.ps1` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `build/ruby-zjit-podman/REGISTRY.yaml` (create_file)
+- `build/ruby-zjit-podman/WIN32_PROFILE.yaml` (create_file)
+- `ruby-zjit/scripts/build_win32.ps1` (multi_replace_string_in_file)
+- `ruby-zjit/scripts/build_podman.ps1` (multi_replace_string_in_file)
+- `chthonic-archive/ruby-zjit/REGISTRY.yaml` (multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/ruby-zjit/WIN32_PROFILE.yaml` (multi_replace_string_in_file)
+- `ext/cuda_rb/extconf.rb` (multi_replace_string_in_file)
+- `ext/trt_rb/extconf.rb` (multi_replace_string_in_file)
+- `chthonic-archive/ruby-zjit/Containerfile` (replace_string_in_file, multi_replace_string_in_file)
+- `ext/cudnn_rb/extconf.rb` (create_file)
+- `ext/cudnn_rb/cudnn_rb.c` (create_file)
+- `ext/nvml_rb/extconf.rb` (create_file)
+- `ext/nvml_rb/nvml_rb.c` (create_file)
+- `ext/nvrtc_rb/extconf.rb` (create_file)
+- `ext/nvrtc_rb/nvrtc_rb.c` (create_file)
+- `ext/spirv_rb/extconf.rb` (create_file)
+- `ext/spirv_rb/spirv_rb.cpp` (create_file)
+- `chthonic-archive/ruby-zjit/build-verify.sh` (replace_string_in_file)
+- `ruby-zjit/tests/test_cuda_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_vk_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_trt_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_cudnn_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_nvml_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_nvrtc_rb.rb` (create_file, multi_replace_string_in_file)
+- `ruby-zjit/tests/test_spirv_rb.rb` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `ruby-zjit/scripts/test_win32.ps1` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/ruby-zjit/.ruby-version` (create_file)
+- `claude/mailbox/PENTEA_ROULETTE_STEWARDESS.md` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `src/trail/granite.rs` (multi_replace_string_in_file)
+- `src/trail/mod.rs` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/pentea_autoloop.ts` (create_file)
+- `chthonic-archive/.vscode/tasks.json` (replace_string_in_file)
+- `chthonic-archive/scripts/zombie_consumer.py` (replace_string_in_file)
+- `chthonic-archive/.github/copilot-instructions.md` (replace_string_in_file)
+- `chthonic-archive/scripts/install-git-hooks.ps1` (create_file)
+- `.github/workflows/pentea-cloud-dispatch.yml` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `codex-session-logs/archive/MILF-Core-Step6-Umeko-Entity-Card.md` (create_file)
+- `codex-session-logs/archive/MILF-Core-META.md` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `codex-session-logs/archive/MILF-Core-Step7-Lysandra-Entity-Card.md` (create_file)
+- `chthonic-archive/scripts/meta_sync.py` (create_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/pentea_family_relations.py` (create_file, multi_replace_string_in_file)
+- `ci/checks/uv-guard.ts` (create_file)
+- `chthonic-archive/ci/run.ts` (replace_string_in_file)
+- `eldno/chthonic-archive/SCRIPTS_README.md` (replace_string_in_file)
+- `chthonic-archive/scripts/toml_audit.py` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `ci/checks/blessing-gate.ts` (create_file)
+- `eldno/chthonic-archive/pyproject.toml` (replace_string_in_file, multi_replace_string_in_file)
+- `dev/tabbyAPI/pyproject.toml` (multi_replace_string_in_file, replace_string_in_file)
+- `tabbyAPI/update_scripts/update_deps.sh` (multi_replace_string_in_file)
+- `tabbyAPI/update_scripts/update_deps_and_pull.sh` (multi_replace_string_in_file)
+- `tabbyAPI/update_scripts/update_deps.bat` (multi_replace_string_in_file)
+- `tabbyAPI/update_scripts/update_deps_and_pull.bat` (multi_replace_string_in_file)
+- `dev/tabbyAPI/start.ps1` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `tabbyAPI/update_scripts/update_deps.ps1` (create_file)
+- `tabbyAPI/update_scripts/update_deps_and_pull.ps1` (create_file)
+- `tabbyAPI/tests/test_start_ps1.py` (create_file, multi_replace_string_in_file)
+- `dev/tabbyAPI/.python-version` (create_file, replace_string_in_file)
+- `mailbox/from_gemini_DR/FAF_Framing_As_Function_Ruby_Host_Challenge.md` (create_file)
+- `mailbox/from_gemini_DR/FAF_Framing_As_Function_tabbyAPI_Python314_Challenge.md` (create_file)
+- `docs/reference/FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md` (create_file)
+- `docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `probes/python/python_host_probe.py` (create_file)
+- `probes/python/torch_cuda_probe.py` (create_file)
+- `probes/python/exllamav2_cp314_probe.py` (create_file)
+- `probes/python/flash_attn_build_probe.py` (create_file)
+- `probes/python/vs2022_flash_attn_probe.py` (create_file, replace_string_in_file)
+- `probes/python/vcvars_diag.py` (create_file, replace_string_in_file)
+- `ci/checks/toolchain-smoke.ts` (create_file, multi_replace_string_in_file)
+- `ci/checks/inference-gate-smoke.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/chthonic-shell-hook.ps1` (create_file)
+- `chthonic-archive/scripts/terminal_session_query.ts` (create_file, replace_string_in_file)
+- `ci/checks/terminal-hook-smoke.ts` (create_file)
+- `chthonic-archive/scripts/gh_run_pull.ts` (create_file)
+- `ci/checks/gh-run-smoke.ts` (create_file)
+- `docs/reference/TABBY_MODERNIZATION_SCAFFOLD_DECISION.md` (create_file)
+- `mas_mcp/logic/pid_reader.py` (create_file, multi_replace_string_in_file)
+- `chthonic-archive/mas_mcp/server.py` (replace_string_in_file)
+- `chthonic-archive/mas_mcp/pyproject.toml` (multi_replace_string_in_file)
+- `probes/python/P-07.py` (create_file)
+- `build/tabby-modern-gpu/Containerfile` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `tabby-modern-gpu/patches/patch-formatron-escape.py` (create_file)
+- `chthonic-archive/scripts/tabby_podman_build.ps1` (create_file)
+- `probes/python/P-08.py` (create_file)
+- `.github/workflows/pentea-cloud-dispatch2.yml` (create_file, replace_string_in_file)
+- `apps/tabby-modern/pyproject.toml` (create_file, replace_string_in_file)
+- `apps/tabby-modern/config.yml` (create_file)
+- `src/tabby_modern/settings.py` (create_file)
+- `src/tabby_modern/app.py` (create_file)
+- `src/tabby_modern/state.py` (create_file, replace_string_in_file)
+- `src/tabby_modern/__init__.py` (create_file)
+- `src/tabby_modern/__main__.py` (create_file)
+- `tabby_modern/api/__init__.py` (create_file)
+- `tabby_modern/api/health.py` (create_file)
+- `tabby_modern/api/models.py` (create_file)
+- `tabby_modern/api/completions.py` (create_file)
+- `tabby_modern/api/chat.py` (create_file)
+- `src/tabby_modern/sampler.py` (create_file)
+- `probes/python/P-09.py` (create_file)
+- `probes/python/pre_g10a_api_fidelity.py` (create_file)
+- `probes/python/P-10.py` (create_file)
+- `probes/python/diag_exl3.py` (create_file)
+- `tabby-modern-gpu/patches/patch-flash-attn-cuda-optional.py` (create_file, replace_string_in_file)
+
+## Key Terminal Commands
+- `Get-ChildItem -Path "C:\Users\eldno\chthonic-archive" -Filter "toolchain_doctor. # Locate the 'toolchain_doctor.py' script.`
+- `Get-ChildItem -Path "C:\Users\eldno\chthonic-archive\.codex" -Filter "toolchain_ # Find toolchain_doctor.py in .codex folder.`
+- `rv ruby list; rv ruby pin 4.0.3; rv r ruby --version; rv r ridk version # Assess ruby 4.0.3 state`
+- `rv r ridk install --list # See what devkit components are available and which are installed`
+- `rv r ridk install # See ridk install component list`
+- `rv ruby pin 3.4.9; rv r gem list --no-verbose 2>$null # See what needs migrating to 4.0.3`
+- `rv ruby pin 4.0.3; rv r gem list --no-verbose 2>$null | Where-Object { $_ -notma # Understand migration scope`
+- `rv ruby pin 4.0.3 2>&1; rv r gem list 2>&1 | Select-String -NotMatch "default:" # See what 4.0.3 has vs 3.4.9`
+- `rv ruby pin 3.4.9; $gemHome = (rv r gem env gemhome 2>&1); Write-Host "GEM HOME: # See what's physically on disk under 3.4.9`
+- `rv ruby list; Write-Host "---"; Get-Content .ruby-version 2>$null; Write-Host "- # Map all ruby config in the repo`
+- `Get-Content extensions\chthonic-archive\.chthonic\ruby\Gemfile; Write-Host "---" # Understand ruby extension structure`
+- `Get-Content extensions\chthonic-archive\.chthonic\ruby\Gemfile.lock; Write-Host  # Understand current locked state`
+
+## High-Value Code Blocks
+- **json** (41L, turn 1661):   EMBALMED: dumpster-dive\forge\slag\claude_test.py → python/7feeab51c64ff52a_cl
+- **json** (41L, turn 1662):   EMBALMED: dumpster-dive\forge\slag\claude_test.py → python/7feeab51c64ff52a_cl
+- **bash** (22L, turn 2934): # From inside WSL2 (Ubuntu 22.04) — already confirmed podman + GPU works↵↵cd /mn
+- **text** (16L, turn 1661): ┌─────────────────────────── SLAG UPCYCLE DETECTOR ───────────────────────────┐↵
+- **text** (16L, turn 1662): ┌─────────────────────────── SLAG UPCYCLE DETECTOR ───────────────────────────┐↵
+- **** (13L, turn 1244): ruby-zjit/↵├── WIN32_PROFILE.yaml       ← machine baseline (i9-13900 + RTX 4090 
+
+## Tool Usage Pattern
+`run_in_terminal` · `read_file` · `manage_todo_list` · `replace_string_in_file` · `grep_search` · `get_terminal_output` · `create_file` · `list_dir`
+
+## Structural Breakdown
+- T0 Anchors: 485 (commits, edits, memory writes)
+- T1/T2 Signal: 2728 (code blocks, tool chains, commands)
+- T3 Noise filtered: 8 (retries, acks, failed calls)

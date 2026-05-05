@@ -1,6 +1,6 @@
 # Session Warm-Start — 54cd9cad
 > Compacted 1761 turns → 41 (2% kept)
-> GPU-accelerated: true  |  Generated: 2026-05-05T05:16:38.073Z
+> GPU-accelerated: true  |  Generated: 2026-05-05T05:32:53.085Z
 
 ## Session Intent
 ssot-governance
