@@ -1,0 +1,172 @@
+{
+  "sessionId": "cdaeb5b1-4c3a-437f-a7e1-49ad848308f8",
+  "sessionIntent": "ssot-governance",
+  "totalTurns": 83,
+  "keptTurns": 21,
+  "compressionRatio": 0.25301204819277107,
+  "gpuAccelerated": false,
+  "structuralAnchors": 7,
+  "signalTurns": 55,
+  "noiseTurns": 0,
+  "topFiles": [
+    "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+    "c:\\Users\\eldno\\chthonic-archive\\scripts\\fortify_terminal.ps1",
+    "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+    "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md"
+  ],
+  "topTools": [
+    "read_file",
+    "grep_search",
+    "run_in_terminal",
+    "file_search",
+    "manage_todo_list",
+    "list_dir",
+    "replace_string_in_file",
+    "multi_replace_string_in_file"
+  ],
+  "commits": [
+    "cb547621",
+    "cccc1488"
+  ],
+  "anchoredEdits": [
+    {
+      "turn": 14,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 56,
+      "file": "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 57,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\fortify_terminal.ps1",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 63,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 71,
+      "file": "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 71,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\fortify_terminal.ps1",
+      "tool": "multi_replace_string_in_file"
+    }
+  ],
+  "anchoredCmds": [
+    {
+      "turn": 8,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git status --short | Select-Object -First 30; echo \"---\"; uv run python --version 2>&1; echo \"---\"; Get-Content scripts/mcp-asc-injector.ts | Select-String \"error|Error|throw|TODO|FIXME|hack|HACK\" | Select-Object -First 20",
+      "goal": "Forensic read of what's actually broken"
+    },
+    {
+      "turn": 9,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git diff --stat HEAD; echo \"===\"; git diff scripts/mcp-asc-injector.ts | head -80",
+      "goal": "See what changed"
+    },
+    {
+      "turn": 10,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git diff .github/agents/tessara.agent.md | head -60; echo \"===ZOMBIE===\"; git diff docs/zombie/UPGRADE_LOG.md | head -60",
+      "goal": "Full picture of dirty working tree"
+    },
+    {
+      "turn": 49,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-Content $PROFILE -ErrorAction SilentlyContinue | Select-String \"PYTHONUTF8|UTF8|utf8|PYTHONIOENCODING|fortify_terminal|fortify\" | Select-Object -First 20; echo \"---PROFILE PATH---\"; $PROFILE",
+      "goal": "Audit current state"
+    },
+    {
+      "turn": 50,
+      "command": "Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\" | Select-String \"PYTHONUTF8|PYTHONIOENCODING|chthonic|fortify|UTF8\" | Select-Object -First 20; echo \"===\"; Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\" | Select-",
+      "goal": "Find insertion point"
+    },
+    {
+      "turn": 51,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Test-Path .env; Get-Content scripts/fortify_terminal.ps1 | Select-Object -First 50",
+      "goal": "Find best insertion points"
+    },
+    {
+      "turn": 52,
+      "command": "Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\" | Select-String -n \"UV_PYTHON_INSTALL_BIN\" | ForEach-Object { \"Line $($_.LineNumber): $($_.Line)\" }",
+      "goal": "Precise insertion point"
+    },
+    {
+      "turn": 53,
+      "command": "$lines = Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\"; $idx = 0; $lines | ForEach-Object { $idx++; if ($_ -match \"UV_PYTHON_INSTALL_BIN\") { \"Line ${idx}: $_\" } }",
+      "goal": "Locate insertion point"
+    },
+    {
+      "turn": 59,
+      "command": "\n# Validate profile change landed\n$profileContent = Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\" -Raw\nif ($profileContent -match 'PYTHONUTF8') { \"PROFILE: ✅ PYTHONUTF8 present\" } else { \"PROFILE: ❌ MISSING\" }\n\n# Validate fortify_terminal.ps1 change land",
+      "goal": "Confirm PYTHONUTF8=1 reaches Python"
+    },
+    {
+      "turn": 60,
+      "command": "$profileContent = Get-Content \"C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1\" -Raw; if ($profileContent -match 'PYTHONUTF8') { \"PROFILE: OK\" } else { \"PROFILE: MISSING\" }",
+      "goal": "Validate profile"
+    },
+    {
+      "turn": 61,
+      "command": "$env:PYTHONUTF8 = \"1\"; uv run python -c \"import sys; print('utf8_mode:', sys.flags.utf8_mode)\"",
+      "goal": "Confirm Python sees the flag"
+    },
+    {
+      "turn": 62,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; pwsh -NoProfile -File scripts/fortify_terminal.ps1 2>&1 | Select-String \"UTF8|utf8|PYTHONUTF8\"",
+      "goal": "Verify fortify path"
+    },
+    {
+      "turn": 64,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add scripts/fortify_terminal.ps1 claude/mailbox/SCRIPTS_ROULETTE.md; git commit -m \"qol(env): PYTHONUTF8=1 wired into profile + fortify_terminal.ps1\n\n- pwsh profile: PYTHONUTF8=1 set adjacent to UV_PYTHON_INSTALL_BIN=0\n  (PEP 540 UTF-8 mode, covers all uv run ",
+      "goal": "Land the commit"
+    },
+    {
+      "turn": 68,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; pwsh --version; echo \"---\"; $env:PYTHONUTF8; echo \"---\"; git log --oneline -5",
+      "goal": "Baseline read"
+    },
+    {
+      "turn": 72,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; pwsh -NoProfile -File scripts/fortify_terminal.ps1 2>&1; echo \"---\"; $env:PYTHONUTF8; $OutputEncoding.WebName",
+      "goal": "Validate both env vars land"
+    },
+    {
+      "turn": 73,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add scripts/fortify_terminal.ps1; git commit -m \"qol(env): add \\$OutputEncoding=UTF8 to fortify_terminal.ps1 + profile\n\n- fortify_terminal.ps1: \\$OutputEncoding = UTF8 (pwsh pipeline serialization)\n- profile: same, adjacent to PYTHONUTF8=1 block\n- Closes the p",
+      "goal": "Land commit"
+    }
+  ],
+  "highValueBlocks": [],
+  "keptTurnNums": [
+    8,
+    9,
+    10,
+    14,
+    49,
+    50,
+    51,
+    52,
+    53,
+    56,
+    57,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    66,
+    71,
+    73,
+    74
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.358Z",
+  "gateVersion": "G9.0"
+}

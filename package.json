@@ -134,7 +134,14 @@
     "embed:discover:top": "uv run scripts/embed_model_discover.py --sort-by mteb --min-downloads 50000",
     "embed:switch": "uv run scripts/embed_registry_switch.py",
     "embed:switch:list": "uv run scripts/embed_registry_switch.py --list",
-    "embed:switch:dry": "uv run scripts/embed_registry_switch.py --dry-run"
+    "embed:switch:dry": "uv run scripts/embed_registry_switch.py --dry-run",
+    "truncate": "bun run scripts/session-truncator.ts",
+    "truncate:top5": "bun run scripts/session-truncator.ts --top 5 --warmstart --verbose",
+    "truncate:session": "bun run scripts/session-truncator.ts --session",
+    "truncate:warmstart": "bun run scripts/session-truncator.ts --warmstart",
+    "truncate:nogpu": "bun run scripts/session-truncator.ts --no-gpu --warmstart",
+    "truncate:report": "bun run scripts/session-truncator.ts --report --no-gpu",
+    "truncate:gpu:score": "uv run probes/python/session_gpu_scorer.py"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

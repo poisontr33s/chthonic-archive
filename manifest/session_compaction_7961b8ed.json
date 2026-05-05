@@ -1,0 +1,78 @@
+{
+  "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
+  "sessionIntent": "ssot-governance",
+  "totalTurns": 55,
+  "keptTurns": 14,
+  "compressionRatio": 0.2545454545454545,
+  "gpuAccelerated": false,
+  "structuralAnchors": 3,
+  "signalTurns": 44,
+  "noiseTurns": 0,
+  "topFiles": [
+    "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md"
+  ],
+  "topTools": [
+    "read_file",
+    "grep_search",
+    "memory",
+    "run_in_terminal",
+    "manage_todo_list",
+    "replace_string_in_file",
+    "list_dir",
+    "file_search"
+  ],
+  "commits": [
+    "19e0fbd8"
+  ],
+  "anchoredEdits": [
+    {
+      "turn": 49,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 51,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "tool": "replace_string_in_file"
+    }
+  ],
+  "anchoredCmds": [
+    {
+      "turn": 12,
+      "command": "Get-Content \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" | Measure-Object -Line",
+      "goal": "Find the end of the file"
+    },
+    {
+      "turn": 18,
+      "command": "$f = \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $lines = Get-Content $f; $lines.Count; $lines[-80..-1] | Select-Object -Last 80",
+      "goal": "Find the end-of-file anchor"
+    }
+  ],
+  "highValueBlocks": [
+    {
+      "turn": 5,
+      "lang": "md",
+      "lines": 2,
+      "preview": "> **Canonical:** [SSOT §1 · Pentea-Vox-Internum](../copilot-instructions.archive"
+    }
+  ],
+  "keptTurnNums": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    12,
+    18,
+    25,
+    49,
+    51
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.360Z",
+  "gateVersion": "G9.0"
+}

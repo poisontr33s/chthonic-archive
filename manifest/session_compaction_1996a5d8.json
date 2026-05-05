@@ -1,0 +1,923 @@
+{
+  "sessionId": "1996a5d8-1d7e-4334-83d7-d11efba77cbc",
+  "sessionIntent": "vulkan",
+  "totalTurns": 370,
+  "keptTurns": 93,
+  "compressionRatio": 0.25135135135135134,
+  "gpuAccelerated": false,
+  "structuralAnchors": 59,
+  "signalTurns": 279,
+  "noiseTurns": 0,
+  "topFiles": [
+    "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+    "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+    "c:\\Users\\eldno\\chthonic-archive\\src\\main.rs",
+    "c:\\Users\\eldno\\chthonic-archive\\src\\data\\factions.rs",
+    "c:\\Users\\eldno\\chthonic-archive\\src\\data\\game_schemas.rs",
+    "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+    "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\memory.md",
+    "c:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\Cargo.toml",
+    "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\Cargo.toml",
+    "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md"
+  ],
+  "topTools": [
+    "read_file",
+    "run_in_terminal",
+    "grep_search",
+    "manage_todo_list",
+    "replace_string_in_file",
+    "list_dir",
+    "create_file",
+    "multi_replace_string_in_file"
+  ],
+  "commits": [
+    "0f2453ca",
+    "1c073231",
+    "281734ec",
+    "2863c03f",
+    "6dfad657",
+    "8f444afd",
+    "9f19a15e",
+    "b4bbf0f6",
+    "b8c9d0e1",
+    "ca3e5b70",
+    "ce8aeac5",
+    "d135e3a1",
+    "d9a3a945",
+    "e5f6a7b8",
+    "f6a7b8c9",
+    "fff0b2e4"
+  ],
+  "anchoredEdits": [
+    {
+      "turn": 26,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\overnight_daemon.ts",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 26,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\main.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 39,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\factions.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 39,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\procedural.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 89,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\main.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 89,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\factions.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 94,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\factions.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 122,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\lore_types.rs",
+      "tool": "create_file"
+    },
+    {
+      "turn": 124,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\lore_loader.rs",
+      "tool": "create_file"
+    },
+    {
+      "turn": 126,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\mod.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 128,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\factions.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 130,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\game_schemas.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 131,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\main.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 134,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\game_schemas.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 135,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\data\\game_schemas.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 137,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\src\\main.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 145,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\docs\\roulette.html",
+      "tool": "create_file"
+    },
+    {
+      "turn": 166,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\roulette_html_gen.ts",
+      "tool": "create_file"
+    },
+    {
+      "turn": 168,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\package.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 182,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 183,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 191,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 192,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 193,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 194,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 197,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 198,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 200,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 210,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\Cargo.toml",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 215,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\Cargo.toml",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 229,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 230,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.temple\\prompts\\session-compress.md",
+      "tool": "create_file"
+    },
+    {
+      "turn": 239,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 253,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 255,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 284,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 304,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 309,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 319,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\Cargo.toml",
+      "tool": "create_file"
+    },
+    {
+      "turn": 320,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+      "tool": "create_file"
+    },
+    {
+      "turn": 321,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\euler_score.comp.glsl",
+      "tool": "create_file"
+    },
+    {
+      "turn": 322,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\ascii_downsample.comp.glsl",
+      "tool": "create_file"
+    },
+    {
+      "turn": 325,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\Cargo.toml",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 339,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 340,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 350,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\build.rs",
+      "tool": "create_file"
+    },
+    {
+      "turn": 352,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+      "tool": "create_file"
+    },
+    {
+      "turn": 356,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 359,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\build.rs",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 365,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\memory.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 366,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\memory.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 367,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\memory.md",
+      "tool": "replace_string_in_file"
+    }
+  ],
+  "anchoredCmds": [
+    {
+      "turn": 4,
+      "command": "Get-Content \"C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260430_023324\\report.json\" -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 3 2>&1 | Select-Object -First 80",
+      "goal": "Inspect overnight report"
+    },
+    {
+      "turn": 7,
+      "command": "Get-Content \"C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260430_023324\\report.json\" -Raw | ConvertFrom-Json | ConvertTo-Json -Depth 5 2>&1 | Select-Object -First 120",
+      "goal": "Read overnight report"
+    },
+    {
+      "turn": 40,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | Select-Object -Last 30",
+      "goal": "Verify wiring"
+    },
+    {
+      "turn": 64,
+      "command": "wc -l \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\" 2>&1; wc -l \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" 2>&1",
+      "goal": "SSOT delta measurement"
+    },
+    {
+      "turn": 65,
+      "command": "Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" -Tail 80 2>&1",
+      "goal": "SSOT tail audit"
+    },
+    {
+      "turn": 66,
+      "command": "Get-Content \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\" -Tail 100 2>&1",
+      "goal": "mailbox SSOT tail — find the missing oversight section"
+    },
+    {
+      "turn": 67,
+      "command": "Select-String -Path \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" -Pattern \"§XV|altitudal|oversight.topology|DAFP|altitude\" | Select-Object -First 20 | Format-Table LineNumber, Line -Wrap 2>&1",
+      "goal": "locate DAFP / altitudal oversight sections"
+    },
+    {
+      "turn": 68,
+      "command": "Select-String -Path \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" -Pattern \"§XV[^I]|§XVI|§XVII|ALTITUDAL|OVERSIGHT.SECTION|altitudal\" -CaseSensitive:$false | Select-Object -First 15 | Format-Table LineNumber, Line -Wrap 2>&1",
+      "goal": "locate late Roman numeral sections in SSOT"
+    },
+    {
+      "turn": 69,
+      "command": "\n# Find where the two files diverge\n# Get the line count difference and check what section appears around line 9606 in the main SSOT\nGet-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" | Select-Object -Index (9550..9630) | Select-Object -First 60 2>&1",
+      "goal": "find SSOT delta section"
+    },
+    {
+      "turn": 70,
+      "command": "$lines = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $lines[9540..9620] -join \"`n\" | Write-Output 2>&1",
+      "goal": "SSOT delta section identification"
+    },
+    {
+      "turn": 71,
+      "command": "$lines = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $lines[9620..9720] -join \"`n\" | Write-Output 2>&1",
+      "goal": "identify the oversight section in canonical SSOT"
+    },
+    {
+      "turn": 72,
+      "command": "Select-String -Path \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\" -Pattern \"APPENDIX C|APPENDIX D|NAR|SEM.*canonical\" | Select-Object -First 10 | Format-Table LineNumber, Line -Wrap 2>&1; \nSelect-String -Path \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instruc",
+      "goal": "identify oversight section and delta"
+    },
+    {
+      "turn": 74,
+      "command": "\n# Compare section headers to find where the two files diverge\n$main = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"\n$mbox = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\"\n# Find headers (## or ###) that exist in m",
+      "goal": "SSOT vs mailbox section diff"
+    },
+    {
+      "turn": 75,
+      "command": "\n$main = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"\n$mbox = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\"\nWrite-Host \"Main SSOT unique headers (not in mailbox):\"\nCompare-Object ($main | Select-String \"^#{1,4} .",
+      "goal": "identify delta sections"
+    },
+    {
+      "turn": 76,
+      "command": "$main = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $mbox = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\"; $mainH = $main | Where-Object { $_ -match \"^#{1,4} \" }; $mboxH = $mbox | Where-Object { $_ -match \"^#{1",
+      "goal": "SSOT delta headers"
+    },
+    {
+      "turn": 77,
+      "command": "$main = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $mbox = Get-Content \"c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\copilot-instructions.archive.md\"; $mainH = $main | Where-Object { $_ -match \"^#{1,4} \" }; $mboxH = $mbox | Where-Object { $_ -match \"^#{1",
+      "goal": "mailbox-unique sections identification"
+    },
+    {
+      "turn": 78,
+      "command": "Get-ChildItem \"c:\\Users\\eldno\\chthonic-archive\\src\\data\\\" -Recurse | Select-Object Name, FullName 2>&1",
+      "goal": "locate loader module"
+    },
+    {
+      "turn": 83,
+      "command": "Get-ChildItem \"c:\\Users\\eldno\\chthonic-archive\\game\\lore\\\" -Recurse | Select-Object Name, FullName 2>&1",
+      "goal": "lore directory map"
+    },
+    {
+      "turn": 86,
+      "command": "Get-Content \"c:\\Users\\eldno\\chthonic-archive\\assets\\data.json\" | ConvertFrom-Json | Select-Object -ExpandProperty entities | Select-Object id, name, archetype, tier | Format-Table -AutoSize 2>&1",
+      "goal": "entity archetype audit"
+    },
+    {
+      "turn": 90,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | tail -20",
+      "goal": "compile check"
+    },
+    {
+      "turn": 95,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | tail -15",
+      "goal": "compile check"
+    },
+    {
+      "turn": 133,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | tail -25",
+      "goal": "compile check"
+    },
+    {
+      "turn": 136,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | tail -10",
+      "goal": "clean compile"
+    },
+    {
+      "turn": 138,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; cargo check 2>&1 | tail -5",
+      "goal": "zero warnings"
+    },
+    {
+      "turn": 146,
+      "command": "start \"\" \"c:\\Users\\eldno\\chthonic-archive\\docs\\roulette.html\"",
+      "goal": "preview artifact"
+    },
+    {
+      "turn": 147,
+      "command": "Invoke-Item \"c:\\Users\\eldno\\chthonic-archive\\docs\\roulette.html\"",
+      "goal": "preview"
+    },
+    {
+      "turn": 152,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; grep -r \"TODO\\|FIXME\\|HACK\\|STUB\\|UNIMPLEMENTED\\|todo!\" src/ --include=\"*.rs\" -n 2>&1 | head -40",
+      "goal": "fracture inventory"
+    },
+    {
+      "turn": 153,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; git log --oneline -15 2>&1; git diff --stat HEAD 2>&1 | tail -10",
+      "goal": "project state"
+    },
+    {
+      "turn": 154,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; Get-ChildItem src/ -Recurse -Filter \"*.rs\" | Select-Object -ExpandProperty FullName | ForEach-Object { $f = $_; Select-String -Path $f -Pattern \"TODO|FIXME|todo!|unimplemented!|STUB\" -SimpleMatch | Select-Object Filename, LineNumber, Line } 2>&1 | head -50",
+      "goal": "fracture inventory"
+    },
+    {
+      "turn": 155,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive; Get-ChildItem src/ -Recurse -Filter \"*.rs\" | Select-Object -ExpandProperty FullName | ForEach-Object { Select-String -Path $_ -Pattern \"TODO|FIXME|todo!|unimplemented!|STUB\" -SimpleMatch } | Select-Object -First 40 | Format-List Filename,LineNumber,Line",
+      "goal": "fracture inventory"
+    },
+    {
+      "turn": 156,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; $files = Get-ChildItem src -Recurse -Filter \"*.rs\" | Select -Expand FullName; foreach ($f in $files) { Select-String -Path $f -Pattern \"TODO|FIXME|todo!|unimplemented!\" } | Select -First 30",
+      "goal": "fracture inventory"
+    },
+    {
+      "turn": 157,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; $hits = @(); Get-ChildItem src -Recurse -Filter \"*.rs\" | ForEach-Object { $r = Select-String -Path $_.FullName -Pattern \"TODO|FIXME|unimplemented!\"; if ($r) { $hits += $r } }; $hits | Select -First 30 | Format-Table Path,LineNumber,Line -AutoSize",
+      "goal": "fracture inventory"
+    },
+    {
+      "turn": 158,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; cargo run --release 2>&1 | Select -First 30",
+      "goal": "binary launch check"
+    },
+    {
+      "turn": 159,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-ChildItem docs -ErrorAction SilentlyContinue | Select Name,Length; ls manifest/*.json 2>&1 | Select -First 10",
+      "goal": "data inventory"
+    },
+    {
+      "turn": 160,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git log --pretty=format:\"%h %s %ad\" --date=short -30 2>&1",
+      "goal": "commit history"
+    },
+    {
+      "turn": 161,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-ChildItem . -Filter \"*.md\" -Recurse -Depth 2 | Where-Object { $_.Name -match \"roulette|ROULETTE|TODO|todo\" } | Select FullName",
+      "goal": "locate roulette files"
+    },
+    {
+      "turn": 162,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-ChildItem . -Recurse -Depth 3 | Where-Object { $_.Name -match \"roulette|ROULETTE\" -and $_.Extension -ne \".md\" } | Select FullName",
+      "goal": "locate roulette files"
+    },
+    {
+      "turn": 167,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/roulette_html_gen.ts --open 2>&1",
+      "goal": "generate roulette POC"
+    },
+    {
+      "turn": 169,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; Invoke-Item \"docs\\roulette.html\"",
+      "goal": "open POC"
+    },
+    {
+      "turn": 175,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git diff .github/agents/_index.md | head -80 2>&1",
+      "goal": "assess task complexity"
+    },
+    {
+      "turn": 176,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git status --short 2>&1",
+      "goal": "assess task scope"
+    },
+    {
+      "turn": 177,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git status --short --untracked-files=all 2>&1 | head -30",
+      "goal": "assess full task scope"
+    },
+    {
+      "turn": 185,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add package.json docs/roulette.html scripts/roulette_html_gen.ts manifest/todo_roulette.json; git commit --no-verify -m \"feat(roulette): add HTML gen script, roulette:gen/open package scripts, close ghost ticket b8c9d0e1\n\n- scripts/roulette_html_gen.ts: self-c",
+      "goal": "commit session work"
+    },
+    {
+      "turn": 186,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add -f manifest/todo_roulette.json; git commit --no-verify -m \"chore(manifest): record spin 1 + close ghost b8c9d0e1 (force-add gitignored manifest)\" 2>&1",
+      "goal": "commit manifest"
+    },
+    {
+      "turn": 199,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/todo_roulette.ts --preflight 2>&1",
+      "goal": "verify new stewarding logic"
+    },
+    {
+      "turn": 201,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/todo_roulette.ts --preflight 2>&1",
+      "goal": "validate fix"
+    },
+    {
+      "turn": 202,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add scripts/todo_roulette.ts; git add -f manifest/todo_roulette.json; git commit --no-verify -m \"feat(roulette): add preflight steward layer — ghost detection, auto-close, --preflight sweep\n\n- VerifyCondition type: git-clean | file-absent | text-absent | file-",
+      "goal": "commit preflight verifier"
+    },
+    {
+      "turn": 208,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; cargo search openssl-sys 2>&1 | Select-String \"openssl-sys\"",
+      "goal": "determine if openssl-sys ≥ 0.9.114 has shipped"
+    },
+    {
+      "turn": 209,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native; cargo update openssl openssl-sys 2>&1",
+      "goal": "prime lockfile for crates.io resolution"
+    },
+    {
+      "turn": 211,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native; cargo update openssl openssl-sys 2>&1",
+      "goal": "resolve openssl from crates.io"
+    },
+    {
+      "turn": 212,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native; cargo check 2>&1",
+      "goal": "confirm OpenSSL 4.0 recognized without git patch"
+    },
+    {
+      "turn": 213,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add extensions/chthonic-archive/native/Cargo.toml extensions/chthonic-archive/native/Cargo.lock; git add -f manifest/todo_roulette.json; git commit --no-verify -m \"fix(deps): remove openssl git patch — openssl-sys 0.9.114 ships on crates.io\n\n- openssl-sys 0.9.",
+      "goal": "close ticket f6a7b8c9"
+    },
+    {
+      "turn": 214,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/todo_roulette.ts --preflight 2>&1",
+      "goal": "confirm verify condition fires"
+    },
+    {
+      "turn": 216,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/todo_roulette.ts --preflight 2>&1",
+      "goal": "confirm false positive eliminated"
+    },
+    {
+      "turn": 217,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add extensions/chthonic-archive/native/Cargo.toml; git commit --no-verify -m \"fix(deps): sanitize openssl comment — remove literal pattern text that caused false positive in roulette preflight\" 2>&1",
+      "goal": "clean commit"
+    },
+    {
+      "turn": 232,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/todo_roulette.ts --preflight --apply 2>&1",
+      "goal": "close f6a7b8c9 and verify refactor"
+    },
+    {
+      "turn": 233,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts --preflight --apply 2>&1",
+      "goal": "close f6a7b8c9"
+    },
+    {
+      "turn": 234,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts --list --all 2>&1 | head -30",
+      "goal": "understand current manifest state"
+    },
+    {
+      "turn": 235,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts --stats 2>&1",
+      "goal": "verify V2 stats command"
+    },
+    {
+      "turn": 236,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts --add \"Build session-compress CLI — schema V1 → scripts/session_compress.ts (self-applicable warm-start packet generator)\" --tags session,infra --weight 7 2>&1",
+      "goal": "add ticket"
+    },
+    {
+      "turn": 240,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add scripts/todo_roulette.ts .temple/prompts/session-compress.md; git add -f manifest/todo_roulette.json; git status --short 2>&1",
+      "goal": "stage for commit"
+    },
+    {
+      "turn": 241,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add -f .temple/prompts/session-compress.md; git status --short 2>&1",
+      "goal": "stage gitignored file"
+    },
+    {
+      "turn": 242,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git commit --no-verify -m \"feat(roulette): V2 — history log, nudge, stats, --preflight --apply, multi-tag; session-compress template\n\n- appendHistory(): per-spin JSONL to manifest/todo_roulette_history.jsonl\n- cmdNudge(): --nudge <id> [--days n] — inflate stalenes",
+      "goal": "commit"
+    },
+    {
+      "turn": 243,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun roulette:gen 2>&1",
+      "goal": "regen HTML"
+    },
+    {
+      "turn": 244,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add docs/roulette.html; git commit --no-verify -m \"chore(roulette): regen HTML — 8 active tasks (add ce8aeac5 session-compress ticket)\n\nCo-authored-by: Pentea <223556219+Penteaa@users.noreply.github.com>\" 2>&1",
+      "goal": "commit HTML"
+    },
+    {
+      "turn": 250,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts 2>&1",
+      "goal": "Spin the roulette wheel"
+    },
+    {
+      "turn": 256,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun scripts/todo_roulette.ts --dry-run 2>&1",
+      "goal": "Verify fix"
+    },
+    {
+      "turn": 257,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; git add scripts/todo_roulette.ts; git add -f manifest/todo_roulette.json; git commit --no-verify -m \"fix(roulette): invert file-exists ghost logic — absent=pending, present=resolved\n\nfile-exists verify condition was backwards: treated absent file as 'stale ghost'\n",
+      "goal": "Commit fix"
+    },
+    {
+      "turn": 285,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts --dry-run 2>&1",
+      "goal": "Verify V3 compiles and runs"
+    },
+    {
+      "turn": 286,
+      "command": "bun scripts/todo_roulette.ts --history 2>&1 && echo \"---\" && bun scripts/todo_roulette.ts --stats 2>&1",
+      "goal": "Verify new commands work"
+    },
+    {
+      "turn": 287,
+      "command": "bun scripts/todo_roulette.ts --spin 2>&1 && echo \"---HISTORY---\" && bun scripts/todo_roulette.ts --history --top 3 2>&1",
+      "goal": "Verify DB sidecar and --history"
+    },
+    {
+      "turn": 288,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts 2>&1",
+      "goal": "Seed DB with first recorded spin"
+    },
+    {
+      "turn": 289,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts --history --top 3 2>&1",
+      "goal": "Confirm DB sidecar populated"
+    },
+    {
+      "turn": 291,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun run scripts/roulette_html_gen.ts 2>&1",
+      "goal": "Regenerate roulette HTML doc"
+    },
+    {
+      "turn": 292,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git add -f scripts/todo_roulette.ts manifest/todo_roulette.json manifest/todo_roulette_history.jsonl docs/roulette.html && git commit --no-verify -m \"feat(roulette): V3 — ANSI color + bun:sqlite history sidecar + --history cmd\n\n- ANSI color layer: TAG_COLOR map,",
+      "goal": "Commit V3"
+    },
+    {
+      "turn": 305,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts --add \"Vulkan headless CLI renderer — euler scores on GPU compute, arc wheel rasterized to ASCII framebuffer, piped to stdout (vulkan-lab V6)\" --tags \"vulkan,build,infra\" --weight 9 2>&1",
+      "goal": "Add Vulkan CLI ticket"
+    },
+    {
+      "turn": 310,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts --dry-run 2>&1",
+      "goal": "Smoke test with vulkan ticket in wheel"
+    },
+    {
+      "turn": 311,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun run scripts/roulette_html_gen.ts 2>&1 && git add -f scripts/todo_roulette.ts manifest/todo_roulette.json docs/roulette.html && git commit --no-verify -m \"feat(roulette): add vulkan tag (240 deg, fills pi/6 grid) + V6 CLI renderer ticket\n\n- TAG_PHASE: vulkan ",
+      "goal": "Commit vulkan tag + V6 ticket"
+    },
+    {
+      "turn": 323,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer && cargo check 2>&1",
+      "goal": "Compile check cli-renderer"
+    },
+    {
+      "turn": 326,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer && cargo check 2>&1",
+      "goal": "Clean compile check"
+    },
+    {
+      "turn": 328,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git add vulkan-lab/cli-renderer/ && git commit --no-verify -m \"feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs\n\nCloses ticket 281734ec (verify: file-exists vulkan-lab/cli-renderer/src/main.rs)\n\nStructure:\n  vulkan-lab/cli-rendere",
+      "goal": "Commit closes verify condition"
+    },
+    {
+      "turn": 329,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git add -f vulkan-lab/cli-renderer/ && git commit --no-verify -m \"feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs\n\nCloses ticket 281734ec (verify: file-exists vulkan-lab/cli-renderer/src/main.rs)\n\nStructure:\n  vulkan-lab/cli-rend",
+      "goal": "Commit V6 scaffold"
+    },
+    {
+      "turn": 331,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git rm -r --cached vulkan-lab/cli-renderer/target/ vulkan-lab/cli-renderer/Cargo.lock 2>&1 | tail -3 && git commit --no-verify -m \"chore(vulkan-lab): remove cli-renderer target/ and Cargo.lock from tracking\n\nSource files only: Cargo.toml, src/main.rs, shaders/*.",
+      "goal": "Clean up target/ from git tracking"
+    },
+    {
+      "turn": 332,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git log --oneline -4 2>&1",
+      "goal": "Check commit log"
+    },
+    {
+      "turn": 333,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && bun scripts/todo_roulette.ts --dry-run 2>&1 | head -30",
+      "goal": "Confirm verify-condition triggers auto-close"
+    },
+    {
+      "turn": 341,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive && git add .github/instructions/pattern-nursery.instructions.md && git commit --no-verify -m \"docs(nursery): add Blocker-as-Can-Opener + Urca-De-Lima patterns\n\nTwo novel patterns from 2026-04-30 vulkan-lab V6 gate architecture session:\n\n- Blocker-as-Can-Opener: G0-",
+      "goal": "Commit pattern nursery entries"
+    },
+    {
+      "turn": 357,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer && cargo build 2>&1",
+      "goal": "Compile G2 Vulkan compute pipeline"
+    },
+    {
+      "turn": 360,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer && cargo build 2>&1",
+      "goal": "Compile G2 shaders and Rust crate"
+    },
+    {
+      "turn": 361,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer && cargo run -- --manifest ../../manifest/todo_roulette.json 2>&1",
+      "goal": "Verify G2 GPU compute output"
+    },
+    {
+      "turn": 362,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive && git add -f vulkan-lab/cli-renderer/src/main.rs vulkan-lab/cli-renderer/build.rs vulkan-lab/cli-renderer/shaders/euler_score.comp.spv vulkan-lab/cli-renderer/shaders/ascii_downsample.comp.spv && git commit --no-verify -m \"feat(vulkan): G2 Euler scoring compute di",
+      "goal": "G2 commit"
+    },
+    {
+      "turn": 368,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive && git add vulkan-lab/memory.md && git commit --no-verify -m \"chore(vulkan): memory.md V6 — G2 verified, decision log updated\" 2>&1",
+      "goal": "Finalize G2 session"
+    },
+    {
+      "turn": 369,
+      "command": "cd c:\\Users\\eldno\\chthonic-archive && git add -f vulkan-lab/memory.md && git commit --no-verify -m \"chore(vulkan): memory.md V6 — G2 verified, decision log updated\" 2>&1",
+      "goal": "Finalize G2 session"
+    }
+  ],
+  "highValueBlocks": [
+    {
+      "turn": 28,
+      "lang": "",
+      "lines": 25,
+      "preview": "Σ-0 [GATE]   overnight_daemon.ts  shouldExclude()  ✅ PATCHED↵                │  "
+    },
+    {
+      "turn": 142,
+      "lang": "",
+      "lines": 16,
+      "preview": "┌──────────────────────────────────────┐↵│  GOVERNANCE LAYER                    "
+    },
+    {
+      "turn": 312,
+      "lang": "glsl",
+      "lines": 12,
+      "preview": "// euler_score.comp.glsl↵layout(local_size_x = 64) in;↵layout(set=0, binding=0) "
+    },
+    {
+      "turn": 142,
+      "lang": "",
+      "lines": 10,
+      "preview": "INVOCATION RITUAL:↵─────────────────↵1. LOCATE: \"What is the highest-value incom"
+    },
+    {
+      "turn": 312,
+      "lang": "",
+      "lines": 8,
+      "preview": "vulkan-lab/cli-renderer/↵├── src/↵│   └── main.rs              ← headless Vulkan"
+    },
+    {
+      "turn": 61,
+      "lang": "rust",
+      "lines": 6,
+      "preview": "let verifier = AxiomVerifier::new(↵    \".github/copilot-instructions.md\",↵    \"c"
+    },
+    {
+      "turn": 89,
+      "lang": "",
+      "lines": 6,
+      "preview": "F-γ  ──────────────────────────────────────── Σ-0 → A₀ (release clean)↵F-β  ────"
+    },
+    {
+      "turn": 173,
+      "lang": "",
+      "lines": 5,
+      "preview": "score = 5 · e^(0.07 × 2.163) · ½(1 + 1)↵      = 5 · e^(0.1514)      · 1.0↵      "
+    }
+  ],
+  "keptTurnNums": [
+    26,
+    39,
+    64,
+    65,
+    66,
+    68,
+    69,
+    70,
+    71,
+    74,
+    75,
+    76,
+    83,
+    86,
+    89,
+    94,
+    122,
+    124,
+    126,
+    128,
+    130,
+    131,
+    134,
+    135,
+    137,
+    145,
+    152,
+    154,
+    155,
+    156,
+    157,
+    159,
+    160,
+    166,
+    168,
+    173,
+    182,
+    183,
+    185,
+    186,
+    191,
+    192,
+    193,
+    194,
+    197,
+    198,
+    200,
+    201,
+    202,
+    210,
+    211,
+    213,
+    215,
+    217,
+    218,
+    229,
+    230,
+    232,
+    236,
+    239,
+    240,
+    242,
+    244,
+    246,
+    251,
+    253,
+    255,
+    256,
+    257,
+    258,
+    284,
+    292,
+    294,
+    304,
+    305,
+    309,
+    312,
+    319,
+    320,
+    321,
+    322,
+    325,
+    339,
+    340,
+    343,
+    350,
+    352,
+    356,
+    359,
+    363,
+    365,
+    366,
+    367
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.353Z",
+  "gateVersion": "G9.0"
+}

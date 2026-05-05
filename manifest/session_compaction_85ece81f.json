@@ -1,0 +1,220 @@
+{
+  "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
+  "sessionIntent": "ssot-governance",
+  "totalTurns": 64,
+  "keptTurns": 16,
+  "compressionRatio": 0.25,
+  "gpuAccelerated": false,
+  "structuralAnchors": 10,
+  "signalTurns": 39,
+  "noiseTurns": 3,
+  "topFiles": [
+    "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+    "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+    "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\UPGRADE_LOG.md",
+    "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\CONVERGENCE_PLAN.md",
+    "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\README.md",
+    "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\mcp.json"
+  ],
+  "topTools": [
+    "read_file",
+    "run_in_terminal",
+    "replace_string_in_file",
+    "file_search",
+    "grep_search",
+    "mcp_asc-injector_inject_asc_context",
+    "multi_replace_string_in_file",
+    "tool_search"
+  ],
+  "commits": [],
+  "anchoredEdits": [
+    {
+      "turn": 1,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 10,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 23,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 23,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\UPGRADE_LOG.md",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 23,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\CONVERGENCE_PLAN.md",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 24,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\README.md",
+      "tool": "multi_replace_string_in_file"
+    },
+    {
+      "turn": 37,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 45,
+      "file": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\mcp.json",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 51,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 56,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 58,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 59,
+      "file": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file"
+    }
+  ],
+  "anchoredCmds": [
+    {
+      "turn": 19,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle 2>&1 | Select-Object -First 60",
+      "goal": "Verify A4 upcycle subcommand executes"
+    },
+    {
+      "turn": 34,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 30",
+      "goal": "Diagnose ASC injector failure"
+    },
+    {
+      "turn": 38,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 20",
+      "goal": "Confirm shebang fix resolves process exit 1"
+    },
+    {
+      "turn": 39,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; .\\scripts\\patch-claude-insiders.ps1 2>&1 | Select-Object -First 40",
+      "goal": "Restore ASC injector MCP registration"
+    },
+    {
+      "turn": 40,
+      "command": "Get-Content \"$env:APPDATA\\Code - Insiders\\User\\settings.json\" | Select-String -Pattern \"asc|mcp\" -Context 2 2>&1 | Select-Object -First 60",
+      "goal": "Locate MCP server registration"
+    },
+    {
+      "turn": 41,
+      "command": "Get-Content \"$env:APPDATA\\Code - Insiders\\User\\settings.json\" | Select-String -Pattern \"asc-injector|mcp.*server|mcpServers|copilot.*mcp\" -Context 3 2>&1 | Select-Object -First 60",
+      "goal": "Locate asc-injector registration"
+    },
+    {
+      "turn": 43,
+      "command": "Test-Path \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\"; if (Test-Path \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\") { Get-Content \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\" | Select-Object -First 60 }",
+      "goal": "Find where ASC injector is/was registered"
+    },
+    {
+      "turn": 52,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 5",
+      "goal": "Confirm no startup errors"
+    },
+    {
+      "turn": 57,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 3; Write-Host \"---\"; bun -e \"import { resolve } from 'path'; const d = import.meta.dir; console.log('dir:', d); console.log('root:', resolve(d, '..')); console.log('ssot:', resolve(d, '..'",
+      "goal": "Confirm SSOT path resolves correctly"
+    },
+    {
+      "turn": 60,
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 3",
+      "goal": "Confirm no ENOENT on startup"
+    },
+    {
+      "turn": 61,
+      "command": "Get-Process -Name \"bun\" -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like \"*mcp-asc-injector*\" } | Stop-Process -Force; Write-Host \"done\"",
+      "goal": "Force MCP server restart"
+    }
+  ],
+  "highValueBlocks": [
+    {
+      "turn": 11,
+      "lang": "",
+      "lines": 8,
+      "preview": "MISSING:    Primed injection for A4 (slag upcycle detector)↵REQUIRED:   ↵  1. Ta"
+    },
+    {
+      "turn": 25,
+      "lang": "",
+      "lines": 7,
+      "preview": "WRITTEN:    .github\\agents\\tessara.agent.md (description rewritten — register no"
+    },
+    {
+      "turn": 11,
+      "lang": "",
+      "lines": 4,
+      "preview": "WRITTEN:    c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md (~4."
+    },
+    {
+      "turn": 46,
+      "lang": "",
+      "lines": 4,
+      "preview": "WRITTEN:    scripts\\mcp-asc-injector.ts (shebang moved to line 1 — was line 2, b"
+    },
+    {
+      "turn": 62,
+      "lang": "",
+      "lines": 4,
+      "preview": "WRITTEN:    scripts\\mcp-asc-injector.ts (import.meta.url + fileURLToPath for una"
+    },
+    {
+      "turn": 31,
+      "lang": "",
+      "lines": 3,
+      "preview": "FAILED:     mcp_asc-injector_inject_asc_context — process exited with code 1↵COR"
+    },
+    {
+      "turn": 53,
+      "lang": "",
+      "lines": 3,
+      "preview": "WRITTEN:    scripts\\mcp-asc-injector.ts (SSOT_POINTER→SSOT_HOLDER, __dirname→imp"
+    },
+    {
+      "turn": 3,
+      "lang": "",
+      "lines": 2,
+      "preview": "WRITTEN:    c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md (~71"
+    }
+  ],
+  "keptTurnNums": [
+    1,
+    10,
+    19,
+    23,
+    24,
+    34,
+    37,
+    38,
+    45,
+    51,
+    52,
+    56,
+    57,
+    58,
+    59,
+    61
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.359Z",
+  "gateVersion": "G9.0"
+}

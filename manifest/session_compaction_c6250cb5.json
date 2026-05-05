@@ -1,0 +1,26 @@
+{
+  "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
+  "sessionIntent": "",
+  "totalTurns": 2,
+  "keptTurns": 1,
+  "compressionRatio": 0.5,
+  "gpuAccelerated": false,
+  "structuralAnchors": 0,
+  "signalTurns": 1,
+  "noiseTurns": 0,
+  "topFiles": [],
+  "topTools": [
+    "read_file",
+    "tool_search"
+  ],
+  "commits": [],
+  "anchoredEdits": [],
+  "anchoredCmds": [],
+  "highValueBlocks": [],
+  "keptTurnNums": [
+    1
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.360Z",
+  "gateVersion": "G9.0"
+}

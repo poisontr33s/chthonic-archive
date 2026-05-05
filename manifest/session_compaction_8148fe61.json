@@ -1,0 +1,21 @@
+{
+  "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
+  "sessionIntent": "",
+  "totalTurns": 0,
+  "keptTurns": 0,
+  "compressionRatio": 0,
+  "gpuAccelerated": false,
+  "structuralAnchors": 0,
+  "signalTurns": 0,
+  "noiseTurns": 0,
+  "topFiles": [],
+  "topTools": [],
+  "commits": [],
+  "anchoredEdits": [],
+  "anchoredCmds": [],
+  "highValueBlocks": [],
+  "keptTurnNums": [],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.361Z",
+  "gateVersion": "G9.0"
+}

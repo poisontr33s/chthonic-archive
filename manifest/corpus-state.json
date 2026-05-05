@@ -14,7 +14,8 @@
     "G8b": true,
     "G7": true,
     "G8a": true,
-    "G8c": true
+    "G8c": true,
+    "G9": true
   },
   "vec_count": 13,
   "vec_model": "Qwen/Qwen3-Embedding-0.6B",

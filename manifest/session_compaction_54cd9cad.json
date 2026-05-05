@@ -1,0 +1,204 @@
+{
+  "sessionId": "54cd9cad-bbd1-4759-9e5a-4e1e03dbc722",
+  "sessionIntent": "ssot-governance",
+  "totalTurns": 1761,
+  "keptTurns": 41,
+  "compressionRatio": 0.02328222600795003,
+  "gpuAccelerated": false,
+  "structuralAnchors": 7,
+  "signalTurns": 34,
+  "noiseTurns": 1,
+  "topFiles": [
+    "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
+    "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
+    "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+  ],
+  "topTools": [
+    "read_file",
+    "run_in_terminal",
+    "list_dir",
+    "grep_search",
+    "create_file",
+    "file_search",
+    "replace_string_in_file"
+  ],
+  "commits": [
+    "083ac5135",
+    "15ac51f",
+    "23658c44",
+    "3215c80"
+  ],
+  "anchoredEdits": [
+    {
+      "turn": 1751,
+      "file": "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
+      "tool": "create_file"
+    },
+    {
+      "turn": 1756,
+      "file": "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
+      "tool": "replace_string_in_file"
+    },
+    {
+      "turn": 1760,
+      "file": "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+      "tool": "create_file"
+    }
+  ],
+  "anchoredCmds": [
+    {
+      "turn": 1743,
+      "command": "Get-Item dependency_graph_production.json, genesis_output.json | Select-Object Name, Length",
+      "goal": "Identify massive files that might be bloating the context."
+    },
+    {
+      "turn": 1744,
+      "command": "dir",
+      "goal": "Identify context bloat sources."
+    },
+    {
+      "turn": 1747,
+      "command": "Get-ChildItem -Recurse -File dumpster-dive | Measure-Object | Select-Object Count",
+      "goal": "Assess file count overhead."
+    },
+    {
+      "turn": 1748,
+      "command": "Get-ChildItem -Recurse -File | Where-Object { $_.Length -gt 500KB } | Select-Object Name, Length, FullName | Format-Table -AutoSize",
+      "goal": "Identify large context consumers."
+    },
+    {
+      "turn": 1750,
+      "command": "Test-Path .claudeignore",
+      "goal": "Verify before creation."
+    },
+    {
+      "turn": 1754,
+      "command": "Get-Item .github/copilot-instructions.md | Select-Object Name, Length",
+      "goal": "See if the system prompt is bloated by a massive instruction file."
+    },
+    {
+      "turn": 1755,
+      "command": "Get-Content .copilotignore -ErrorAction SilentlyContinue",
+      "goal": "Verify if large files are being ignored by Copilot."
+    },
+    {
+      "turn": 1759,
+      "command": "Move-Item .github/copilot-instructions.md .github/copilot-instructions.archive.md",
+      "goal": "Reduce system context usage immediately."
+    }
+  ],
+  "highValueBlocks": [
+    {
+      "turn": 1373,
+      "lang": "markdown",
+      "lines": 43,
+      "preview": "# 🔬 THE AUTOPSY PROTOCOL: DEBT DECOMPOSITION↵↵## 1. STRATEGIC CONTEXT↵- **Objec"
+    },
+    {
+      "turn": 1723,
+      "lang": "python",
+      "lines": 27,
+      "preview": "#!/usr/bin/env python3↵# /// script↵# requires-python = \">=3.13\"↵# dependencies "
+    },
+    {
+      "turn": 1713,
+      "lang": "python",
+      "lines": 11,
+      "preview": "#!/usr/bin/env python3↵# /// script↵# requires-python = \">=3.13\"↵# dependencies "
+    },
+    {
+      "turn": 1371,
+      "lang": "typescript",
+      "lines": 10,
+      "preview": "// Updated anti-pattern detection in runOnce↵if (complexity.nestingDepth > 5) an"
+    },
+    {
+      "turn": 255,
+      "lang": "plaintext",
+      "lines": 6,
+      "preview": "STEP 6: Master Cross-Reference Index Generation↵✅ Master index written to: C:\\Us"
+    },
+    {
+      "turn": 486,
+      "lang": "powershell",
+      "lines": 4,
+      "preview": "cd error-classifier↵bun run ingest    # Scans logs and updates SQLite DB↵bun run"
+    },
+    {
+      "turn": 1752,
+      "lang": "bash",
+      "lines": 4,
+      "preview": "# Verify the fix by restarting the session↵exit↵# Then run your command again↵"
+    },
+    {
+      "turn": 946,
+      "lang": "",
+      "lines": 3,
+      "preview": "$validate${SSOT_purification}+$checkpoint${all}+$mode${strict}+$visual${minimal}"
+    },
+    {
+      "turn": 1121,
+      "lang": "powershell",
+      "lines": 3,
+      "preview": "./scripts/fortify_terminal.ps1↵bun run bun-playwright-poc/chthonic-crawler.ts \"Y"
+    },
+    {
+      "turn": 7,
+      "lang": "powershell",
+      "lines": 2,
+      "preview": "$validate${ASC_Framework_Injection}+$checkpoint${comprehensive}+$mode${strict}+$"
+    },
+    {
+      "turn": 1451,
+      "lang": "python",
+      "lines": 2,
+      "preview": "# All strands verified. The Qualia is functional.↵"
+    }
+  ],
+  "keptTurnNums": [
+    7,
+    255,
+    486,
+    523,
+    633,
+    946,
+    1121,
+    1247,
+    1300,
+    1371,
+    1373,
+    1451,
+    1713,
+    1723,
+    1730,
+    1731,
+    1732,
+    1733,
+    1734,
+    1736,
+    1737,
+    1738,
+    1739,
+    1740,
+    1741,
+    1742,
+    1743,
+    1744,
+    1745,
+    1746,
+    1747,
+    1748,
+    1749,
+    1750,
+    1751,
+    1752,
+    1754,
+    1755,
+    1756,
+    1759,
+    1760
+  ],
+  "gpuScoreManifest": null,
+  "generatedAt": "2026-05-05T05:02:44.351Z",
+  "gateVersion": "G9.0"
+}
