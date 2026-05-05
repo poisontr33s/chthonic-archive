@@ -1,6 +1,6 @@
 {
   "schema_version": 4,
-  "ingest_ts": "2026-05-04T21:48:59.685Z",
+  "ingest_ts": "2026-05-05T00:48:32.568Z",
   "sessions": 13,
   "entities": 1073,
   "entity_occurrences": 16637,
@@ -12,11 +12,11 @@
     "G5": true,
     "G6": true,
     "G8b": true,
-    "G7": false,
+    "G7": true,
     "G8a": true,
     "G8c": true
   },
-  "vec_count": 0,
+  "vec_count": 13,
   "vec_model": "Qwen/Qwen3-Embedding-0.6B",
   "vec_dims": 1024,
   "satellites": []
