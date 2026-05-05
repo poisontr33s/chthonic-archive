@@ -143,7 +143,8 @@
     "truncate:report": "bun run scripts/session-truncator.ts --report --no-gpu",
     "truncate:gpu:score": "uv run probes/python/session_gpu_scorer.py",
     "embed:explore": "uv run probes/python/embedding_explorer.py",
-    "embed:explore:onnx": "uv run probes/python/embedding_explorer.py --onnx"
+    "embed:explore:onnx": "uv run probes/python/embedding_explorer.py --backend onnx",
+    "embed:explore:trt": "uv run probes/python/embedding_explorer.py --backend trt"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
