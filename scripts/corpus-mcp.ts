@@ -8,22 +8,25 @@
  * query session history, search messages, inspect tool usage, etc.
  * without any manual CLI invocations.
  *
- * Tools (15):
- *   corpus_timeline        — session list ordered by time
- *   corpus_search          — FTS5 full-text search across all messages
- *   corpus_messages        — messages for a specific session
- *   corpus_hot_files       — most-edited files across all sessions
- *   corpus_tool_freq       — tool usage frequency ranking
- *   corpus_stats           — row counts per table
- *   corpus_sql             — raw SELECT-only SQL (sandboxed)
- *   corpus_classify        — sessions grouped by topic
- *   corpus_session_context — full resume-packet for one session
- *   corpus_tool_result     — G2: tool call details + full result content (lossless) by callId
- *   corpus_memories        — G2: memory snapshots (session + global)
- *   corpus_annotate        — G4: write topic/tags/note to a session record
- *   corpus_memory_write    — G4: inject a memory snapshot programmatically
- *   corpus_gate_ladder     — G5: read or persist the pipeline gate state into corpus memory
- *   corpus_resources_list  — G5: list all sessions as MCP Resources URIs
+ * Tools (18):
+ *   corpus_timeline          — session list ordered by time
+ *   corpus_search            — FTS5 full-text search across all messages
+ *   corpus_messages          — messages for a specific session
+ *   corpus_hot_files         — most-edited files across all sessions
+ *   corpus_tool_freq         — tool usage frequency ranking
+ *   corpus_stats             — row counts per table
+ *   corpus_sql               — raw SELECT-only SQL (sandboxed)
+ *   corpus_classify          — sessions grouped by topic
+ *   corpus_session_context   — full resume-packet for one session
+ *   corpus_tool_result       — G2: tool call details + full result content (lossless) by callId
+ *   corpus_memories          — G2: memory snapshots (session + global)
+ *   corpus_annotate          — G4: write topic/tags/note to a session record
+ *   corpus_memory_write      — G4: inject a memory snapshot programmatically
+ *   corpus_gate_ladder       — G5: read or persist the pipeline gate state into corpus memory
+ *   corpus_resources_list    — G5: list all sessions as MCP Resources URIs
+ *   corpus_semantic_search   — G7: vector similarity search across session embeddings (Qwen3-Embedding-0.6B)
+ *   corpus_federation_status — G9: list registered satellites + drain DB existence check
+ *   corpus_federation_query  — G9: cross-satellite SELECT via ATTACH DATABASE
  *
  * Resources:
  *   corpus://session/<sessionId>  — full session context as JSON (MCP Resources protocol)
@@ -40,8 +43,9 @@ import {
   ReadResourceRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { Database } from "bun:sqlite";
-import { existsSync } from "fs";
-import { join } from "path";
+import { existsSync, readdirSync, readFileSync } from "fs";
+import { join, resolve } from "path";
+import { load as loadSqliteVec } from "sqlite-vec";
 
 // ─────────────────────────────────────────────────────────────
 // DB setup
@@ -645,11 +649,127 @@ function toolMemories(sessionId: string | null, limit: number): unknown[] {
 }
 
 // ─────────────────────────────────────────────────────────────
+// G7 semantic search (vec0 KNN via sqlite-vec)
+// ─────────────────────────────────────────────────────────────
+
+async function toolSemanticSearch(query: string, limit: number): Promise<unknown[]> {
+  const pyScript = resolve(import.meta.dir, "embed.py");
+
+  // Embed the query text via embed.py subprocess
+  const proc = Bun.spawn(["uv", "run", pyScript], {
+    stdin:  "pipe",
+    stdout: "pipe",
+    stderr: "inherit",
+  });
+  const enc = new TextEncoder();
+  proc.stdin.write(enc.encode(JSON.stringify({ id: "query", text: query }) + "\n"));
+  proc.stdin.end();
+
+  const rawOut = await new Response(proc.stdout).text();
+  await proc.exited;
+
+  let queryVec: number[] | null = null;
+  for (const line of rawOut.split("\n")) {
+    if (!line.trim()) continue;
+    try {
+      const parsed = JSON.parse(line) as { id: string; vec: number[] };
+      if (parsed.id === "query") { queryVec = parsed.vec; break; }
+    } catch { /* skip malformed lines */ }
+  }
+  if (!queryVec) throw new Error("Embedding failed — embed.py produced no vector for query. Run: bun run session:corpus --embed first.");
+
+  const db = openDB();
+  loadSqliteVec(db);
+  try {
+    const vecBytes = new Uint8Array(new Float32Array(queryVec).buffer);
+    const rows = db.prepare(`
+      SELECT v.session_id AS sessionId,
+             v.distance,
+             s.topic,
+             s.startTime,
+             s.workspaceName
+      FROM vec_embeddings v
+      LEFT JOIN sessions s ON s.sessionId = v.session_id
+      WHERE v.content_embedding MATCH ?
+      ORDER BY v.distance ASC
+      LIMIT ?
+    `).all(vecBytes, limit) as Array<Record<string, unknown>>;
+    return rows;
+  } finally { db.close(); }
+}
+
+// ─────────────────────────────────────────────────────────────
+// G9 federation tools (ATTACH DATABASE multi-satellite)
+// ─────────────────────────────────────────────────────────────
+
+const SATELLITES_DIR = resolve(import.meta.dir, "..", "scripts", "satellites");
+
+function toolFederationStatus(): unknown {
+  const results: Array<Record<string, unknown>> = [];
+  if (!existsSync(SATELLITES_DIR)) {
+    return { satellites: [], scanned_at: new Date().toISOString(), warning: `satellites dir not found: ${SATELLITES_DIR}` };
+  }
+  for (const entry of readdirSync(SATELLITES_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const jsonPath = resolve(SATELLITES_DIR, entry.name, "satellite.json");
+    if (!existsSync(jsonPath)) continue;
+    let contract: Record<string, unknown>;
+    try { contract = JSON.parse(readFileSync(jsonPath, "utf8")); }
+    catch { results.push({ name: entry.name, error: "satellite.json parse failed" }); continue; }
+    const df = contract.drain_format as Record<string, unknown> | undefined;
+    const drainRelPath = (typeof df?.path === "string") ? df.path : null;
+    const drainAbsPath = drainRelPath ? resolve(import.meta.dir, "..", drainRelPath) : null;
+    results.push({
+      satellite_id:      contract.satellite_id,
+      version:           contract.version,
+      drain_path:        drainRelPath,
+      drain_exists:      drainAbsPath ? existsSync(drainAbsPath) : null,
+      tables:            df?.tables,
+      federation_keys:   contract.federation_keys,
+      outbound_network:  contract.outbound_network,
+      license:           contract.license,
+      corpus_schema_min: contract.corpus_schema_min,
+    });
+  }
+  return { satellites: results, count: results.length, scanned_at: new Date().toISOString() };
+}
+
+function toolFederationQuery(satelliteId: string, sql: string): unknown[] {
+  // Same SELECT-only sandbox as corpus_sql
+  const trimmed = sql.trim().toUpperCase();
+  if (!trimmed.startsWith("SELECT") && !trimmed.startsWith("WITH")) {
+    throw new Error("Only SELECT / WITH queries are allowed.");
+  }
+  for (const kw of ["DROP","DELETE","INSERT","UPDATE","CREATE","ALTER","PRAGMA","VACUUM"]) {
+    if (new RegExp(`\\b${kw}\\b`).test(trimmed)) throw new Error(`Blocked keyword: ${kw}`);
+  }
+
+  const jsonPath = resolve(SATELLITES_DIR, satelliteId, "satellite.json");
+  if (!existsSync(jsonPath)) throw new Error(`Satellite not registered: ${satelliteId}`);
+
+  const contract = JSON.parse(readFileSync(jsonPath, "utf8")) as Record<string, unknown>;
+  const df = contract.drain_format as Record<string, unknown> | undefined;
+  if (!df?.path) throw new Error(`satellite.json missing drain_format.path for satellite: ${satelliteId}`);
+
+  const drainPath = resolve(import.meta.dir, "..", df.path as string);
+  if (!existsSync(drainPath)) {
+    throw new Error(`Satellite DB not found: ${df.path}. Run the satellite drain script first.`);
+  }
+
+  const alias = satelliteId.replace(/-/g, "_");
+  const db = openDB();
+  try {
+    db.exec(`ATTACH DATABASE '${drainPath.replace(/'/g, "''")}' AS ${alias}`);
+    return db.prepare(sql).all();
+  } finally { db.close(); }
+}
+
+// ─────────────────────────────────────────────────────────────
 // MCP server
 // ─────────────────────────────────────────────────────────────
 
 const server = new Server(
-  { name: "corpus", version: "2.4.0" },
+  { name: "corpus", version: "2.7.0" },
   { capabilities: { tools: {}, resources: {} } }
 );
 
@@ -855,7 +975,37 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "corpus_resources_list",
       description: "G5: List all sessions as MCP Resources URIs (corpus://session/<sessionId>). Thin wrapper over ListResources for agent callers that prefer tool interface.",
-      inputSchema: { type: "object" as const, properties: {} }    }
+      inputSchema: { type: "object" as const, properties: {} }
+    },
+    {
+      name: "corpus_semantic_search",
+      description: "G7: Vector similarity search across session embeddings. Encodes the query via Qwen3-Embedding-0.6B (1024d), then runs a KNN cosine-distance search against vec_embeddings. Returns sessions ranked by semantic similarity with distance, topic, and startTime. Requires G7 embeddings to be present (run: bun run session:corpus --embed).",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          query: { type: "string",  description: "Natural language search query" },
+          limit: { type: "number",  description: "Max results (default 10)" }
+        },
+        required: ["query"]
+      }
+    },
+    {
+      name: "corpus_federation_status",
+      description: "G9: List all registered satellites under scripts/satellites/. For each satellite shows: satellite_id, version, drain_path, drain_exists (whether the sidecar DB file is present), federation_keys, and license.",
+      inputSchema: { type: "object" as const, properties: {} }
+    },
+    {
+      name: "corpus_federation_query",
+      description: "G9: Run a SELECT query against a satellite's sidecar SQLite DB (ATTACH DATABASE federation). The corpus tables are available as-is; the satellite's tables are available under the <satellite_id_underscored> alias (e.g. 'vampire_terminal_history.terminal_commands'). Only SELECT/WITH are permitted.",
+      inputSchema: {
+        type: "object" as const,
+        properties: {
+          satellite_id: { type: "string", description: "Satellite ID (kebab-case, e.g. 'vampire-terminal-history')" },
+          sql:          { type: "string", description: "SELECT query. Reference satellite tables as <alias>.<table> where alias = satellite_id with dashes replaced by underscores." }
+        },
+        required: ["satellite_id", "sql"]
+      }
+    }
   ]
 }));
 
@@ -948,6 +1098,15 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
           "SELECT sessionId, workspaceName, startTime, topic FROM sessions ORDER BY startTime DESC"
         ).all();
       } finally { db.close(); }
+    } else if (name === "corpus_semantic_search") {
+      if (!a.query) throw new Error("query is required");
+      result = await toolSemanticSearch(String(a.query), Number(a.limit ?? 10));
+    } else if (name === "corpus_federation_status") {
+      result = toolFederationStatus();
+    } else if (name === "corpus_federation_query") {
+      if (!a.satellite_id) throw new Error("satellite_id is required");
+      if (!a.sql)         throw new Error("sql is required");
+      result = toolFederationQuery(String(a.satellite_id), String(a.sql));
     } else {
       throw new Error(`Unknown tool: ${name}`);
     }

@@ -1,0 +1,30 @@
+{
+  "satellite_id": "vampire-terminal-history",
+  "version": "1.0.0",
+  "description": "Sidecar satellite: drains manifest/terminal_session.jsonl into manifest/terminal-history.db for federation into the corpus via ATTACH DATABASE.",
+  "source_contract": {
+    "host": "chthonic-shell-hook.ps1",
+    "platform": "win32",
+    "surfaces": [
+      "manifest/terminal_session.jsonl",
+      "manifest/terminal_pids.json"
+    ],
+    "trigger": "fs-watch on manifest/terminal_session.jsonl (Bun.file watch)",
+    "poll_interval_ms": 5000
+  },
+  "drain_format": {
+    "type": "sqlite",
+    "path": "manifest/terminal-history.db",
+    "schema_version": 1,
+    "tables": [
+      "terminal_sessions",
+      "terminal_commands",
+      "terminal_pids"
+    ]
+  },
+  "federation_keys": ["pid", "session_ts"],
+  "outbound_network": false,
+  "license": "Apache-2.0",
+  "corpus_schema_min": 4,
+  "notes": "Sidecar DB — federated into corpus via ATTACH DATABASE 'manifest/terminal-history.db' AS terminal_history. Use corpus_federation_query MCP tool to cross-join with sessions. Source: scripts/vampire-terminal-history.ts."
+}

@@ -24,7 +24,7 @@
   "drain_format": {
     "type": "sqlite",
     "path": "manifest/corpus.sqlite",
-    "schema_version": 2,
+    "schema_version": 4,
     "schema_doc": "docs/architecture/VAMPIRISM_SATELLITES.md#vampire-copilot-chat-promoted-from-session-vampirets",
     "tables": [
       "sessions",
@@ -34,7 +34,10 @@
       "tool_calls",
       "commit_refs",
       "memory_snapshots",
-      "messages"
+      "messages",
+      "entities",
+      "entity_occurrences",
+      "vec_embeddings"
     ],
     "artifact_outputs": [
       "manifest/sessions/*/drain.json",
@@ -43,7 +46,7 @@
     ]
   },
 
-  "federation_keys": ["sessionId", "startTime"],
+  "federation_keys": ["sessionId", "workspaceHash"],
   "corpus_frontmatter_anchor": "sessionId",
 
   "cross_reference_proof": {
@@ -62,5 +65,5 @@
 
   "outbound_network": false,
   "license": "Apache-2.0",
-  "corpus_schema_min": 2
+  "corpus_schema_min": 4
 }

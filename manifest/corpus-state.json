@@ -19,5 +19,8 @@
   "vec_count": 13,
   "vec_model": "Qwen/Qwen3-Embedding-0.6B",
   "vec_dims": 1024,
-  "satellites": []
+  "satellites": [
+    "scripts/satellites/vampire-copilot-chat/satellite.json",
+    "scripts/satellites/vampire-terminal-history/satellite.json"
+  ]
 }
