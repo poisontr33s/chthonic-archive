@@ -25,7 +25,9 @@
     "high_accuracy":        "NVIDIA/NV-Embed-v2",
     "english_commercial":   "CohereLabs/cohere-embed-english-v3.0",
     "multilingual_commercial":"mistralai/Mistral-Embed",
-    "anno_2026_gated_gold":     "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+    "_multilingual_commercial_note":"TOMBSTONE 2026-05-05: mistralai/Mistral-Embed returns 404 from HF API. Profile unresolved — switch to NovaSearch/stella_en_1.5B_v5 or BAAI/bge-m3 for multilingual commercial until resolved.",
+      "anno_2026_gated_gold":     "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+      "_anno_2026_gated_gold_note":"TOMBSTONE 2026-05-05: gte-Qwen2.5-7B-instruct returns 404 from HF API. Both 2026 gated-gold candidates confirmed non-existent at listed paths.",
     "multilingual_granite_large":"ibm-granite/granite-embedding-311m-multilingual-r2",
     "multilingual_granite_small":"ibm-granite/granite-embedding-97m-multilingual-r2",
     "efficiency_onnx":          "NovaSearch/stella_en_400M_v5",
@@ -35,13 +37,13 @@
   "gating_queue": [
     {
       "model_id": "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
-      "rationale": "DEFERRED 2026-05-05. HF public API returns 404 even with authenticated HF token (esabbr). Model may be org-private, temporarily withdrawn, or path incorrect. HF MCP tool returned 403/auth-required but embed_gate_accept.py checks confirm 404. Cannot ungate via Tier 1 or Tier 3 without direct Alibaba NLP org access.",
-      "gate_type_suspected": "org_private",
-      "path_status": "404_from_api_with_auth",
+      "rationale": "TOMBSTONE 2026-05-05 (upgraded from DEFERRED). batch accept confirmed 404. Not org-private — simply does not exist at this path on HF API. Path may never have been public or was removed.",
+      "gate_type_suspected": "dead_path",
+      "path_status": "404_confirmed_batch_accept_2026-05-05",
       "automation_tier": 0,
       "automation_cmd": null,
       "fallback_cmd": null,
-      "priority": "DEFERRED"
+      "priority": "TOMBSTONE"
     },
     {
       "model_id": "CohereForAI/c4ai-embed-multilingual-v1",
@@ -63,11 +65,12 @@
     },
     {
       "model_id": "mistralai/Mistral-Embed",
-      "rationale": "2026-05-05 re-verified: still auth-gated — HF MCP returns auth-required. All Mistral Embed variants (Mistral-Embed, Mistral-Embed-v1, Mistral-Embed-2025) are gated. Ungate enables multilingual_commercial task profile when available.",
-      "gate_type_suspected": "form",
-      "automation_tier": 3,
-      "automation_cmd": "uv run scripts/embed_gate_accept.py --model-id mistralai/Mistral-Embed --allow-playwright",
-      "priority": "LOW"
+      "rationale": "TOMBSTONE 2026-05-05 (upgraded from LOW). batch accept confirmed 404. HF MCP result (auth-required) was inconsistent with REST API (404). Model does not exist at this path. Mistral embedding may have been renamed or removed. multilingual_commercial task profile is unresolved.",
+      "gate_type_suspected": "dead_path",
+      "path_status": "404_confirmed_batch_accept_2026-05-05",
+      "automation_tier": 0,
+      "automation_cmd": null,
+      "priority": "TOMBSTONE"
     }
   ],
   "models": {
@@ -179,7 +182,7 @@
       "gated": "manual",
       "gating_type": "manual",
       "_user_accepted": true,
-      "_user_accepted_date": "2026-05-05 (verified via embed_gate_accept.py --check-only: user_accepted:true, already_accepted, 200 OK)",
+      "_user_accepted_date": "2026-05-05 (verified via embed_gate_accept.py --check-only: user_accepted:true, already_accepted, 200 OK — batch accept 2026-05-05 confirmed).",
       "schema_version_required": 4,
       "tei_compatible": true,
       "hf_downloads": "8.5M (2026-05-05)",
@@ -273,9 +276,9 @@
       "dims": 1024,
       "context_tokens": 8192,
       "license": "mistral-community (non-commercial allowed, commercial requires agreement)",
-      "gated": "form",
-      "gating_type": "form",
-      "_gated_live_check": "2026-05-04 — agree-terms API absent; org-controlled gate confirmed. Run --allow-playwright or visit HF Hub to request access.",
+      "gated": false,
+      "_gated_tombstone": "TOMBSTONE 2026-05-05. batch accept confirmed 404 from HF REST API. Model does not exist at mistralai/Mistral-Embed. May be renamed — check Mistral Hub for current embedding model path.",
+      "_gated_live_check": "2026-05-05 — REST API returns 404. Model not found at this path.",
       "schema_version_required": 4,
       "tei_compatible": true,
       "hf_downloads": "5.1M (2026-05-04)",
@@ -320,9 +323,9 @@
       "dims": 3584,
       "context_tokens": 32768,
       "license": "Apache-2.0 (expected — verify on gate acceptance)",
-      "gated": "auto",
-      "gating_type": "auto",
-      "_gated_live_check": "2026-05-05 — HF API returns 403 (Authentication required). Org-controlled gate or auto agree-terms. Run gating_queue Tier 1 to test.",
+      "gated": false,
+      "_gated_tombstone": "TOMBSTONE 2026-05-05. batch accept confirmed 404 from HF REST API. Model does not exist at Alibaba-NLP/gte-Qwen2.5-7B-instruct. Prior 403 from HF MCP was a false positive. Path may be private or removed.",
+      "_gated_live_check": "2026-05-05 — REST API returns 404 (batch accept confirmed). Model not found at this path.",
       "schema_version_required": 6,
       "tei_compatible": true,
       "hf_downloads": "unknown (gated — no public stat)",

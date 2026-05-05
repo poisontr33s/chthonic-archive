@@ -1,0 +1,187 @@
+{
+  "ts": "2026-05-05T02:52:58Z",
+  "total": 22,
+  "gated_count": 1,
+  "accepted": 1,
+  "already_accepted": 1,
+  "skipped_not_gated": 21,
+  "failed": 0,
+  "results": [
+    {
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "nomic-ai/nomic-embed-text-v1.5",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "BAAI/bge-m3",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Qwen/Qwen3-Embedding-0.6B",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Qwen/Qwen3-Embedding-4B",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Qwen/Qwen3-Embedding-8B",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "jinaai/jina-embeddings-v3",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "nvidia/llama-nemotron-embed-1b-v2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "google/embeddinggemma-300m",
+      "gated": "manual",
+      "status": "already_accepted",
+      "method": "hf_api_check",
+      "detail": "Gate already accepted \u2014 model is accessible",
+      "pass": true
+    },
+    {
+      "model_id": "ibm-granite/granite-embedding-small-english-r2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "ibm-granite/granite-embedding-311m-multilingual-r2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "ibm-granite/granite-embedding-97m-multilingual-r2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "CohereLabs/Cohere-embed-multilingual-v3.0",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "CohereLabs/cohere-embed-english-v3.0",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "mistralai/Mistral-Embed",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "NVIDIA/NV-Embed-v2",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Alibaba-NLP/gte-Qwen2-7B-instruct",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Alibaba-NLP/gte-Qwen2.5-7B-instruct",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "NovaSearch/stella_en_1.5B_v5",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "NovaSearch/stella_en_400M_v5",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "intfloat/e5-mistral-7b-instruct",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    },
+    {
+      "model_id": "Salesforce/SFR-Embedding-2_R",
+      "gated": false,
+      "status": "not_gated",
+      "method": "none",
+      "detail": "Model is not gated per registry \u2014 no acceptance needed",
+      "pass": true
+    }
+  ]
+}
