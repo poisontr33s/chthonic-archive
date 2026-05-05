@@ -5,7 +5,7 @@
 # GPU-ACCELERATED TURN SEMANTIC SCORER — Phase B of G9 truncation
 # ─────────────────────────────────────────────────────────────────────────────
 # Hardware: RTX 4090 (CUDA 12.8 / SM 8.9) via PyTorch + flash_attn
-# Embedding: Qwen/Qwen3-Embeddings (1024-dim) — same model already in corpus pipeline
+# Embedding: Qwen/Qwen3-Embedding-0.6B (1024-dim) — same model already in corpus pipeline
 # Algorithm:
 #   1. Pull all tool_calls.argsJson + resultSnippet for each turn in the session
 #   2. Build per-turn text chunks (truncated to 512 tokens)
@@ -44,7 +44,7 @@ parser = argparse.ArgumentParser(description="GPU-accelerated session turn score
 parser.add_argument("--session", required=True, help="Session ID to score")
 parser.add_argument("--corpus", default=None, help="Path to corpus.sqlite (default: manifest/corpus.sqlite)")
 parser.add_argument("--out", default=None, help="Output JSON path (default: manifest/gpu_scores_<prefix>.json)")
-parser.add_argument("--model", default="Qwen/Qwen3-Embeddings", help="Embedding model name")
+parser.add_argument("--model", default="Qwen/Qwen3-Embedding-0.6B", help="Embedding model name")
 parser.add_argument("--batch-size", type=int, default=32, help="GPU batch size")
 parser.add_argument("--max-tokens", type=int, default=512, help="Max tokens per turn chunk")
 parser.add_argument("--list-scores", action="store_true", help="Print scores table to stdout")
@@ -128,16 +128,21 @@ def build_turn_texts(session_id: str) -> dict[int, str]:
 # ─────────────────────────────────────────────────────────────
 # GPU embedding + scoring
 # ─────────────────────────────────────────────────────────────
-def score_turns_gpu(turn_texts: dict[int, str]) -> list[dict]:
-    import torch
-    import numpy as np
-
+def score_turns_gpu(turn_texts: dict[int, str]) -> tuple[list[dict], str, str, int]:
     t0 = time.perf_counter()
     turns = list(turn_texts.keys())
     texts = [turn_texts[t] for t in turns]
 
     if not texts:
-        return []
+        return [], "none", "none", 0
+
+    try:
+        import torch
+        import numpy as np
+    except ImportError as e:
+        print(f"WARNING: torch/numpy unavailable: {e}", file=sys.stderr)
+        results = [{"turn": t, "semanticScore": 0.0, "clusterLabel": 0, "cosineSimilarityToCentroid": 0.5} for t in turns]
+        return results, "none", "none", 0
 
     # ── Model loading ──────────────────────────────────────────
     device_name = "cuda" if torch.cuda.is_available() else "cpu"
@@ -145,7 +150,7 @@ def score_turns_gpu(turn_texts: dict[int, str]) -> list[dict]:
     use_flash = device_name == "cuda" and not args.no_flash_attn
 
     model_loaded = False
-    embeddings: Optional[np.ndarray] = None
+    embeddings = None  # type: ignore[var-annotated]
 
     # Try sentence-transformers first (clean API)
     try:

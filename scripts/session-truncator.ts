@@ -274,7 +274,7 @@ function runGpuScorer(sessionId: string, outPath: string): GpuScoreResult | null
     const result = spawnSync(
         "uv",
         ["run", gpuScorer, "--session", sessionId, "--corpus", corpusPath, "--out", outPath],
-        { encoding: "utf8", timeout: 120_000 },
+        { encoding: "utf8", timeout: 240_000 },
     );
     if (result.status !== 0) {
         if (verbose) console.warn("  [GPU] scorer failed:", result.stderr?.slice(0, 200));
@@ -409,8 +409,8 @@ async function truncateSession(db: Database, session: SessionRow): Promise<Compa
         if (gpuResult) {
             gpuAccelerated = true;
             gpuScoreManifest = gpuOutPath;
-            if (verbose) console.log(`  Phase B: GPU scored ${gpuResult.scoredTurns.length} turns via ${gpuResult.device}`);
-            // Merge GPU semantic scores
+            if (verbose) console.log(`  Phase B: GPU scored ${gpuResult.scoredTurns.length} turns via ${gpuResult.device} (model=${gpuResult.embeddingModel})`);
+            // Merge GPU semantic scores into existing structural entries
             for (const gs of gpuResult.scoredTurns) {
                 if (scores.has(gs.turn)) {
                     const s = scores.get(gs.turn)!;
@@ -418,6 +418,25 @@ async function truncateSession(db: Database, session: SessionRow): Promise<Compa
                     s.totalScore = s.structuralScore + s.semanticScore;
                 }
             }
+            // Admit semantic-only turns: high semantic score turns that have no structural signal
+            // These are typically rich user messages or unique reasoning turns with no tool calls
+            const SEMANTIC_ADMIT_THRESHOLD = 7.0;
+            let admittedSemanticOnly = 0;
+            for (const gs of gpuResult.scoredTurns) {
+                if (!scores.has(gs.turn) && gs.semanticScore >= SEMANTIC_ADMIT_THRESHOLD) {
+                    scores.set(gs.turn, {
+                        turn: gs.turn,
+                        tier: 2,  // T2 CONTEXT — semantically unique but no structural anchor
+                        structuralScore: 0,
+                        semanticScore: gs.semanticScore,
+                        totalScore: gs.semanticScore,
+                        signals: [`semantic_only: score=${gs.semanticScore.toFixed(2)}`],
+                    });
+                    admittedSemanticOnly++;
+                }
+            }
+            if (verbose && admittedSemanticOnly > 0)
+                console.log(`  Phase B: admitted ${admittedSemanticOnly} semantic-only turns (score ≥ ${SEMANTIC_ADMIT_THRESHOLD})`);
         }
     }
 
