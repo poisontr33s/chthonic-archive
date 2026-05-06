@@ -1,34 +1,42 @@
 {
+  "_corpus_ref": {
+    "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
+    "schema_version": 2,
+    "corpus_path": "manifest/corpus.sqlite",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "startTime": "2026-04-20T18:42:34.314Z",
+    "drainedAt": "2026-05-05T21:47:39.639Z"
+  },
   "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
-  "drainedAt": "2026-05-03T03:00:42.609Z",
+  "drainedAt": "2026-05-05T21:47:39.639Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\7961b8ed-3cd1-4253-b067-8f742e045f3f\\transcript.jsonl",
-  "sessionIntent": "* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women in the SSOT are Milfs/Sub-Milfs, as to structure the MILFOL",
+  "sessionIntent": "* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women in the SSOT are Milfs/Sub-Milfs, as to structure the MILFOLOGICAL Milf-Core variant of the \"world-bible\". *",
   "turns": 55,
   "userMessages": 4,
   "assistantMessages": 51,
   "fileEdits": [
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "tool": "replace_string_in_file",
       "turn": 49
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "tool": "replace_string_in_file",
       "turn": 51
     }
   ],
   "terminalCommands": [
     {
       "command": "Get-Content \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\" | Measure-Object -Line",
-      "explanation": "Get total line count of the SSOT",
       "goal": "Find the end of the file",
+      "explanation": "Get total line count of the SSOT",
       "turn": 12
     },
     {
       "command": "$f = \"C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md\"; $lines = Get-Content $f; $lines.Count; $lines[-80..-1] | Select-Object -Last 80",
-      "explanation": "Get total line count and the last 80 lines of the SSOT to find the anchor",
       "goal": "Find the end-of-file anchor",
+      "explanation": "Get total line count and the last 80 lines of the SSOT to find the anchor",
       "turn": 18
     }
   ],
@@ -41,16 +49,20 @@
     }
   ],
   "toolCallSummary": {
-    "read_file": 37,
-    "list_dir": 1,
-    "grep_search": 20,
     "file_search": 1,
-    "run_in_terminal": 2,
-    "memory": 4,
+    "grep_search": 20,
+    "list_dir": 1,
     "manage_todo_list": 2,
-    "replace_string_in_file": 2
+    "memory": 4,
+    "read_file": 37,
+    "replace_string_in_file": 2,
+    "run_in_terminal": 2
   },
   "commitRefs": [
     "19e0fbd8"
+  ],
+  "memoryFiles": [
+    "night-session-plan.md",
+    "pentea-agent-rewrite.md"
   ]
 }

@@ -1,230 +1,238 @@
 {
+  "_corpus_ref": {
+    "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
+    "schema_version": 2,
+    "corpus_path": "manifest/corpus.sqlite",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "startTime": "2026-04-15T09:09:31.802Z",
+    "drainedAt": "2026-05-05T21:47:39.626Z"
+  },
   "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
-  "drainedAt": "2026-05-03T03:00:42.479Z",
+  "drainedAt": "2026-05-05T21:47:39.626Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\30ac60fa-c5f9-4a3f-bdbd-8b17689ae312\\transcript.jsonl",
-  "sessionIntent": "All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Files (absolute paths) Only one file changes: c:\\Users\\",
+  "sessionIntent": "All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Files (absolute paths) Only one file changes: c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
   "turns": 135,
   "userMessages": 14,
   "assistantMessages": 121,
   "fileEdits": [
     {
-      "tool": "create_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "create_file",
       "turn": 25
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 29
     },
     {
-      "tool": "create_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\AGENTRY_AUDIT_20260415.md",
+      "tool": "create_file",
       "turn": 47
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\analyzeCode.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\crossReferenceSSOT.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\beautifySessionArchive.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\debugIssue.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\refactorCode.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\generateTests.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\documentCode.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\explainCode.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\improvePrompt.prompt.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 52
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\createComponent.prompt.md",
-      "turn": 52
-    },
-    {
       "tool": "multi_replace_string_in_file",
-      "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\researchFeatureJourney.prompt.md",
       "turn": 52
     },
     {
-      "tool": "replace_string_in_file",
+      "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\researchFeatureJourney.prompt.md",
+      "tool": "multi_replace_string_in_file",
+      "turn": 52
+    },
+    {
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "replace_string_in_file",
       "turn": 59
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
+      "tool": "replace_string_in_file",
       "turn": 76
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
+      "tool": "replace_string_in_file",
       "turn": 78
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
+      "tool": "replace_string_in_file",
       "turn": 80
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.claude\\agents\\tessara.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 107
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 107
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.claude\\agents\\tessara.md",
+      "tool": "replace_string_in_file",
       "turn": 134
     }
   ],
   "terminalCommands": [
     {
       "command": "uv run scripts/zombie_consumer.py upcycle",
-      "explanation": "Run the zombie_consumer script with the upcycle command.",
       "goal": "Execute the upcycle command in the zombie_consumer script.",
+      "explanation": "Run the zombie_consumer script with the upcycle command.",
       "turn": 83
     },
     {
       "command": "uv run scripts/zombie_consumer.py upcycle --json | Select-Object -First 50",
-      "explanation": "Run the zombie_consumer script with the upcycle command and --json flag, then take the first 50 lines.",
       "goal": "Execute the upcycle command with JSON output and retrieve the first 50 lines.",
+      "explanation": "Run the zombie_consumer script with the upcycle command and --json flag, then take the first 50 lines.",
       "turn": 84
     },
     {
       "command": "git add scripts/zombie_consumer.py",
-      "explanation": "Staging the zombie_consumer.py script for commit.",
       "goal": "Stage the changes for commit.",
+      "explanation": "Staging the zombie_consumer.py script for commit.",
       "turn": 88
     },
     {
-      "command": "git commit -m \"feat(zombie): A4 slag upcycle detector\n\nAdds `zombie upcycle` command that scans the slag forge stage for files\nwhose ore rating has risen since routing. Read-only — no files are moved.\n\n- scan_slag_for_upcycles(mem): iterates slag dir",
-      "explanation": "Committing the staged changes with a detailed message.",
+      "command": "git commit -m \"feat(zombie): A4 slag upcycle detector\n\nAdds `zombie upcycle` command that scans the slag forge stage for files\nwhose ore rating has risen since routing. Read-only — no files are moved.\n\n- scan_slag_for_upcycles(mem): iterates slag dir, calls bite(), looks up\n  original_ore from compa",
       "goal": "Commit the changes.",
+      "explanation": "Committing the staged changes with a detailed message.",
       "turn": 89
     },
     {
       "command": "git rev-parse HEAD",
-      "explanation": "Retrieving the full commit hash.",
       "goal": "Get the commit hash.",
+      "explanation": "Retrieving the full commit hash.",
       "turn": 90
     },
     {
       "command": "git add .github/agents/tessara.agent.md .claude/agents/tessara.md",
-      "explanation": "Stage the modified files for commit.",
       "goal": "Stage the changes.",
+      "explanation": "Stage the modified files for commit.",
       "turn": 111
     },
     {
       "command": "git add -f .github/agents/tessara.agent.md .claude/agents/tessara.md",
-      "explanation": "Force stage the files because one of them is ignored by .gitignore.",
       "goal": "Force stage the changes.",
+      "explanation": "Force stage the files because one of them is ignored by .gitignore.",
       "turn": 112
     },
     {
-      "command": "git commit -m \"fix(tessara): valid agent frontmatter for VS Code Copilot picker\n\n.claude/agents/tessara.md: remove invalid 'tools: >' prose scalar — Claude\nformat requires comma-separated tool names; VS Code reads this file too and\nthe invalid value ",
-      "explanation": "Commit the staged changes with a detailed message.",
+      "command": "git commit -m \"fix(tessara): valid agent frontmatter for VS Code Copilot picker\n\n.claude/agents/tessara.md: remove invalid 'tools: >' prose scalar — Claude\nformat requires comma-separated tool names; VS Code reads this file too and\nthe invalid value breaks tool mapping. Removing tools: omit = all to",
       "goal": "Create a commit.",
+      "explanation": "Commit the staged changes with a detailed message.",
       "turn": 113
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle 2>&1",
-      "explanation": "Run the upcycle command to verify table output",
       "goal": "Verify acceptance criteria: exits 0, renders Rich table with ≥1 candidate row",
+      "explanation": "Run the upcycle command to verify table output",
       "turn": 120
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle --json 2>&1",
-      "explanation": "Run the JSON mode to verify schema compliance",
       "goal": "Verify JSON schema, claude_test.py in items with delta>=1, zombie_bridge_probe.md absent",
+      "explanation": "Run the JSON mode to verify schema compliance",
       "turn": 121
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run pytest tests/ -q --tb=no 2>&1",
-      "explanation": "Confirm baseline test count unchanged — 13 collected, 0 passed, 3 pre-existing errors",
       "goal": "Verify no new test failures introduced",
+      "explanation": "Confirm baseline test count unchanged — 13 collected, 0 passed, 3 pre-existing errors",
       "turn": 122
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-ChildItem -Recurse -Filter \"pytest.ini\",\"pyproject.toml\",\"conftest.py\" -ErrorAction SilentlyContinue | Select-Object FullName -First 10; uv run pytest --collect-only -q 2>&1 | Select-Object -First 20",
-      "explanation": "Find test root and collect baseline",
       "goal": "Determine correct pytest invocation for baseline check",
+      "explanation": "Find test root and collect baseline",
       "turn": 123
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run pytest --collect-only -q 2>&1 | Select-Object -First 30",
-      "explanation": "Collect all tests from default discovery to establish baseline",
       "goal": "Confirm test baseline count",
+      "explanation": "Collect all tests from default discovery to establish baseline",
       "turn": 124
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; Get-ChildItem -Path mas_mcp -Filter \"test_*.py\" -Recurse | Select-Object FullName; uv run pytest mas_mcp/ -q --tb=no 2>&1 | Select-Object -Last 10",
-      "explanation": "Find mas_mcp tests and run baseline check",
       "goal": "Confirm 13 collected, 0 passed, 3 errors baseline",
+      "explanation": "Find mas_mcp tests and run baseline check",
       "turn": 125
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run pytest mas_mcp/ -q --tb=no --ignore=mas_mcp/.venv-py314-parked 2>&1 | tail -5",
-      "explanation": "Run mas_mcp tests ignoring parked venv, get summary line",
       "goal": "Confirm baseline test counts",
+      "explanation": "Run mas_mcp tests ignoring parked venv, get summary line",
       "turn": 127
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run pytest mas_mcp/ --ignore=mas_mcp/.venv-py314-parked -q --tb=no 2>&1 | Select-String -Pattern \"passed|failed|error|warning|collected\"",
-      "explanation": "Get the summary line from mas_mcp test run",
       "goal": "Confirm baseline unchanged",
+      "explanation": "Get the summary line from mas_mcp test run",
       "turn": 128
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run pytest mas_mcp/ --ignore=mas_mcp/.venv-py314-parked 2>&1 | Select-String -Pattern \"passed|failed|ERROR|warning|error\" | Select-Object -Last 5",
-      "explanation": "Get full mas_mcp test summary including errors",
       "goal": "Confirm baseline: 13 collected, 0 passed, 3 pre-existing errors",
+      "explanation": "Get full mas_mcp test summary including errors",
       "turn": 129
     },
     {
-      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle; Write-Host \"EXIT:$LASTEXITCODE\"; uv run scripts/zombie_consumer.py upcycle --json | ConvertFrom-Json | Select-Object slag_scanned,candidates,no_baseline,skipped_duplicate;",
-      "explanation": "Confirm both exit codes and validate JSON parses cleanly",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle; Write-Host \"EXIT:$LASTEXITCODE\"; uv run scripts/zombie_consumer.py upcycle --json | ConvertFrom-Json | Select-Object slag_scanned,candidates,no_baseline,skipped_duplicate; Write-Host \"EXIT:$LASTEXITCODE\"",
       "goal": "Binary exit code verification",
+      "explanation": "Confirm both exit codes and validate JSON parses cleanly",
       "turn": 130
     }
   ],
@@ -291,22 +299,23 @@
     }
   ],
   "toolCallSummary": {
-    "tool_search": 19,
-    "read_file": 53,
-    "manage_todo_list": 8,
+    "create_file": 2,
+    "execution_subagent": 3,
+    "fetch_webpage": 3,
     "file_search": 7,
     "grep_search": 1,
-    "create_file": 2,
+    "list_dir": 2,
+    "manage_todo_list": 8,
     "multi_replace_string_in_file": 3,
-    "runSubagent": 2,
-    "fetch_webpage": 3,
+    "read_file": 53,
     "replace_string_in_file": 5,
-    "execution_subagent": 3,
+    "runSubagent": 2,
     "run_in_terminal": 18,
-    "list_dir": 2
+    "tool_search": 19
   },
   "commitRefs": [
     "68416b61",
     "8066a443"
-  ]
+  ],
+  "memoryFiles": []
 }

@@ -9,6 +9,17 @@
 !.ruby-version
 !rproject.toml
 
+# Allow Birdcage AAI evidence chamber
+!birdcage/
+!birdcage/README.md
+!birdcage/pyproject.toml
+!birdcage/cage.toml
+!birdcage/.env.example
+!birdcage/.gitignore
+!birdcage/probes.py
+!birdcage/uv.lock
+!birdcage/runs.jsonl
+
 # Allow PR/patch suggestions
 !PR_SUGGESTION.md
 

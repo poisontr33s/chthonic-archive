@@ -1,0 +1,17 @@
+[project]
+name = "birdcage"
+version = "0.0.1"
+description = "First agentic chamber inside chthonic-archive."
+requires-python = ">=3.14" 
+dependencies = [
+    "openai>=1.50.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.1",
+]
+
+[tool.uv]
+# uv-native; no extras needed for v0.
+
+[tool.ruff]
+line-length = 100
+target-version = "py314" 

@@ -1,6 +1,14 @@
 {
+  "_corpus_ref": {
+    "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
+    "schema_version": 2,
+    "corpus_path": "manifest/corpus.sqlite",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "startTime": "2026-04-27T23:17:04.657Z",
+    "drainedAt": "2026-05-05T21:47:39.647Z"
+  },
   "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
-  "drainedAt": "2026-05-03T03:00:42.674Z",
+  "drainedAt": "2026-05-05T21:47:39.647Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\8148fe61-004d-42ac-9088-528edae4e92b\\transcript.jsonl",
   "sessionIntent": "",
   "turns": 0,
@@ -10,5 +18,6 @@
   "terminalCommands": [],
   "codeBlocks": [],
   "toolCallSummary": {},
-  "commitRefs": []
+  "commitRefs": [],
+  "memoryFiles": []
 }

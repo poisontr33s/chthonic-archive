@@ -1,138 +1,146 @@
 {
+  "_corpus_ref": {
+    "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
+    "schema_version": 2,
+    "corpus_path": "manifest/corpus.sqlite",
+    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "startTime": "2026-04-15T10:23:34.490Z",
+    "drainedAt": "2026-05-05T21:47:39.626Z"
+  },
   "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
-  "drainedAt": "2026-05-03T03:00:42.760Z",
+  "drainedAt": "2026-05-05T21:47:39.626Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\85ece81f-59d6-440f-8121-83f35563473d\\transcript.jsonl",
-  "sessionIntent": "* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruft - **'Agent'** *(needed for inhumanity i suppose)* ^^ - N",
+  "sessionIntent": "* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruft - **'Agent'** *(needed for inhumanity i suppose)* ^^ - No customalization, no creative or conceptual depth",
   "turns": 64,
   "userMessages": 10,
   "assistantMessages": 54,
   "fileEdits": [
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "replace_string_in_file",
       "turn": 1
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "replace_string_in_file",
       "turn": 10
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 23
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\UPGRADE_LOG.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 23
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\CONVERGENCE_PLAN.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 23
     },
     {
-      "tool": "multi_replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\README.md",
+      "tool": "multi_replace_string_in_file",
       "turn": 24
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file",
       "turn": 37
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\mcp.json",
+      "tool": "replace_string_in_file",
       "turn": 45
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file",
       "turn": 51
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file",
       "turn": 56
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file",
       "turn": 58
     },
     {
-      "tool": "replace_string_in_file",
       "filePath": "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "tool": "replace_string_in_file",
       "turn": 59
     }
   ],
   "terminalCommands": [
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; uv run scripts/zombie_consumer.py upcycle 2>&1 | Select-Object -First 60",
-      "explanation": "Run A4 slag upcycle detector to verify it's wired and working",
       "goal": "Verify A4 upcycle subcommand executes",
+      "explanation": "Run A4 slag upcycle detector to verify it's wired and working",
       "turn": 19
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 30",
-      "explanation": "Check what error the injector throws directly",
       "goal": "Diagnose ASC injector failure",
+      "explanation": "Check what error the injector throws directly",
       "turn": 34
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 20",
-      "explanation": "Verify injector parses and starts without crashing",
       "goal": "Confirm shebang fix resolves process exit 1",
+      "explanation": "Verify injector parses and starts without crashing",
       "turn": 38
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; .\\scripts\\patch-claude-insiders.ps1 2>&1 | Select-Object -First 40",
-      "explanation": "Re-wire the MCP server registration in VS Code Insiders",
       "goal": "Restore ASC injector MCP registration",
+      "explanation": "Re-wire the MCP server registration in VS Code Insiders",
       "turn": 39
     },
     {
       "command": "Get-Content \"$env:APPDATA\\Code - Insiders\\User\\settings.json\" | Select-String -Pattern \"asc|mcp\" -Context 2 2>&1 | Select-Object -First 60",
-      "explanation": "Find where the ASC injector MCP server is registered in VS Code settings",
       "goal": "Locate MCP server registration",
+      "explanation": "Find where the ASC injector MCP server is registered in VS Code settings",
       "turn": 40
     },
     {
       "command": "Get-Content \"$env:APPDATA\\Code - Insiders\\User\\settings.json\" | Select-String -Pattern \"asc-injector|mcp.*server|mcpServers|copilot.*mcp\" -Context 3 2>&1 | Select-Object -First 60",
-      "explanation": "Find MCP server block in VS Code settings",
       "goal": "Locate asc-injector registration",
+      "explanation": "Find MCP server block in VS Code settings",
       "turn": 41
     },
     {
       "command": "Test-Path \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\"; if (Test-Path \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\") { Get-Content \"$env:APPDATA\\Code - Insiders\\User\\mcp.json\" | Select-Object -First 60 }",
-      "explanation": "Check user-level mcp.json for MCP server registrations",
       "goal": "Find where ASC injector is/was registered",
+      "explanation": "Check user-level mcp.json for MCP server registrations",
       "turn": 43
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 5",
-      "explanation": "Verify injector starts cleanly after path fix",
       "goal": "Confirm no startup errors",
+      "explanation": "Verify injector starts cleanly after path fix",
       "turn": 52
     },
     {
-      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 3; Write-Host \"---\"; bun -e \"import { resolve } from 'path'; const d = import.meta.dir; console.log('dir:', d); console.log('root:', resol",
-      "explanation": "Verify server starts and test path resolution directly in Bun",
+      "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 3; Write-Host \"---\"; bun -e \"import { resolve } from 'path'; const d = import.meta.dir; console.log('dir:', d); console.log('root:', resolve(d, '..')); console.log('ssot:', resolve(d, '..'",
       "goal": "Confirm SSOT path resolves correctly",
+      "explanation": "Verify server starts and test path resolution directly in Bun",
       "turn": 57
     },
     {
       "command": "cd C:\\Users\\eldno\\chthonic-archive; echo '{}' | bun run scripts/mcp-asc-injector.ts 2>&1 | Select-Object -First 3",
-      "explanation": "Verify server starts with fileURLToPath fix",
       "goal": "Confirm no ENOENT on startup",
+      "explanation": "Verify server starts with fileURLToPath fix",
       "turn": 60
     },
     {
       "command": "Get-Process -Name \"bun\" -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like \"*mcp-asc-injector*\" } | Stop-Process -Force; Write-Host \"done\"",
-      "explanation": "Kill any stale bun MCP server process so VS Code spawns a fresh one",
       "goal": "Force MCP server restart",
+      "explanation": "Kill any stale bun MCP server process so VS Code spawns a fresh one",
       "turn": 61
     }
   ],
@@ -187,14 +195,15 @@
     }
   ],
   "toolCallSummary": {
-    "replace_string_in_file": 8,
-    "read_file": 20,
     "file_search": 6,
     "grep_search": 5,
-    "run_in_terminal": 11,
+    "mcp_asc-injector_inject_asc_context": 3,
     "multi_replace_string_in_file": 2,
-    "tool_search": 1,
-    "mcp_asc-injector_inject_asc_context": 3
+    "read_file": 20,
+    "replace_string_in_file": 8,
+    "run_in_terminal": 11,
+    "tool_search": 1
   },
-  "commitRefs": []
+  "commitRefs": [],
+  "memoryFiles": []
 }

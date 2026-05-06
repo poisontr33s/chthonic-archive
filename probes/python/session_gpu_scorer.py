@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 # @SID: SESSION_GPU_SCORER_V1_G9
 #
 # GPU-ACCELERATED TURN SEMANTIC SCORER — Phase B of G9 truncation
@@ -32,6 +32,10 @@ import argparse
 import json
 import os
 import sqlite3
+
+# Prevent huggingface_hub from hitting the network on every model init.
+# Model is already cached locally — the metadata check adds nothing.
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
 import sys
 import time
 from pathlib import Path

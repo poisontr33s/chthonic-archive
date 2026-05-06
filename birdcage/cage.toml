@@ -1,0 +1,36 @@
+# cage.toml — scope walls and endpoint config for the birdcage.
+# No secrets here. Secrets live in .env (gitignored).
+
+[canary]
+# The single prompt every probe sends. If responses contain this token, the bird flew.
+prompt = "Reply with exactly this string and nothing else: BIRDCAGE-OK"
+expect = "BIRDCAGE-OK"
+
+[probe_a_azure_for_github]
+# GitHub-hosted model inference, authed via GHCP Pro+ token.
+# Endpoint is OpenAI-compatible.
+base_url = "https://models.github.ai/inference"
+model    = "openai/gpt-4o-mini"   # cheap canary; swap freely
+timeout_s = 30
+
+[probe_b_foundry_local]
+# Windows AI Foundry Local exposes an OpenAI-compatible HTTP endpoint.
+# Default port shown; override in .env if your Foundry instance differs.
+base_url = "http://localhost:5273/v1"
+model    = "phi-3.5-mini-instruct-cuda-gpu"  # whatever you've pulled locally
+timeout_s = 60
+
+[probe_c_vscode_chat]
+# Manual probe. You paste Copilot Chat's response back to the logger.
+# This exists so the IDE surface gets the same observability as A and B.
+surface = "vscode-insiders://copilot-chat"
+
+[scope]
+# Cage walls — declarative, enforced by convention in v0.
+allow_outbound = [
+    "models.github.ai",
+    "localhost",
+    "127.0.0.1",
+]
+write_paths = ["runs.jsonl"]
+read_secrets_from = [".env"]

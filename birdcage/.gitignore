@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+# Keep runs.jsonl tracked? Decide per-archive policy.
+# Default: track it — the bird's tracks are part of the archive.
+# Uncomment to ignore:
+# runs.jsonl

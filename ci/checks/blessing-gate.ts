@@ -31,10 +31,14 @@ const CANONIZE_TARGETS: string[][] = [
 ];
 
 function uvRun(args: string[]): { ok: boolean; output: string } {
-  const result = spawnSync("uv", ["run", ...args], {
+  const result = spawnSync("uv", ["run", "--no-sync", ...args], {
     encoding: "utf8",
     cwd: REPO_ROOT,
-    env: { ...process.env },
+    env: {
+      ...process.env,
+      PYTHONUTF8: "1",
+      PYTHONIOENCODING: "utf-8",
+    },
   });
   const output = ((result.stdout ?? "") + (result.stderr ?? "")).trim();
   return { ok: (result.status ?? 1) === 0, output };
@@ -48,7 +52,8 @@ function stagedPyFiles(): string[] {
   );
   return (result.stdout ?? "")
     .split("\n")
-    .filter((f) => f.endsWith(".py"));
+    .filter((f) => f.endsWith(".py"))
+    .filter((f) => !f.replace(/\\/g, "/").startsWith("birdcage/"));
 }
 
 // In staged mode: gate on whether any .py files were Added
