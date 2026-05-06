@@ -19,7 +19,7 @@
  *
  * For .py files: checks that:
  *   - Line 1 is "#!/usr/bin/env python3" (if a shebang is present anywhere in first 3 lines)
- *   - Line 2 is "#-*- coding: utf-8 -*-" (when a shebang is on line 1)
+ *   - Line 2 is a UTF-8 coding declaration (with or without spacing around -*-)
  *
  * For .sh files: checks that:
  *   - Line 1 is a valid bash shebang (#!/usr/bin/env bash or #!/bin/bash)
@@ -117,7 +117,7 @@ const files: string[] = STAGED
 
 const TS_SHEBANG = "#!/usr/bin/env bun";
 const PY_SHEBANG = "#!/usr/bin/env python3";
-const PY_ENCODING = "#-*- coding: utf-8 -*-";
+const PY_ENCODING_RE = /^#\s*-\*-\s*coding:\s*utf-8\s*-\*-/;
 const SH_SHEBANGS = new Set(["#!/usr/bin/env bash", "#!/bin/bash", "#!/usr/bin/env sh", "#!/bin/sh"]);
 
 const violations: { path: string; line1: string; issue: string }[] = [];
@@ -145,7 +145,7 @@ for (const absPath of files) {
     if (hasPyShebangAnywhere) {
       if (line1 !== PY_SHEBANG && line2 === PY_SHEBANG) {
         violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: "displaced shebang (line 2)" });
-      } else if (line1 === PY_SHEBANG && line2 !== PY_ENCODING) {
+      } else if (line1 === PY_SHEBANG && !PY_ENCODING_RE.test(line2)) {
         violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: `missing encoding on line 2 (got: "${line2.slice(0, 40)}")` });
       }
     }

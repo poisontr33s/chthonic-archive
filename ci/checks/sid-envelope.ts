@@ -9,14 +9,14 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**
- * ci/checks/sid-envelope.ts — @SID presence check for new scripts.
+ * ci/checks/sid-envelope.ts — @SID presence check for staged infrastructure scripts.
  *
  * Every script committed to scripts/ or ci/ must carry a Semantic ID.
  * Format (TypeScript): // @SID: DOMAIN_NAME_V1
  * Format (Python):    // @SID: DOMAIN_NAME_V1  (inside docstring)
  *
  * Behavior:
- *   --staged  STRICT on Added .ts and .py files in scripts/ and ci/. (exit 1)
+ *   --staged  STRICT on Added/Copied/Modified .ts and .py files in scripts/ and ci/. (exit 1)
  *   (default) Advisory scan of all tracked scripts. (exit 0)
  *
  * Usage:
@@ -38,9 +38,9 @@ const SCRIPT_EXTS = new Set([".ts", ".py"]);
 const SID_RE = /@SID:\s*\S+/;
 const SCAN_LINES = 40; // Check first N lines for @SID
 
-function getStagedAddedScripts(): string[] {
+function getStagedChangedScripts(): string[] {
   try {
-    const out = execSync("git diff --cached --name-only --diff-filter=A", {
+    const out = execSync("git diff --cached --name-only --diff-filter=ACM", {
       encoding: "utf8",
       cwd: REPO_ROOT,
     });
@@ -91,17 +91,17 @@ function relPath(abs: string): string {
 }
 
 if (STAGED) {
-  const files = getStagedAddedScripts();
+  const files = getStagedChangedScripts();
   const missing = files.filter((f) => !hasSID(f)).map(relPath);
 
   if (missing.length === 0) {
     console.log(
-      `[sid-envelope] ✓ @SID present in ${files.length} new staged script(s)`
+      `[sid-envelope] ✓ @SID present in ${files.length} staged infrastructure script(s)`
     );
     process.exit(0);
   } else {
     console.error(
-      `[sid-envelope] ✗ ${missing.length} new script(s) missing @SID:`
+      `[sid-envelope] ✗ ${missing.length} staged infrastructure script(s) missing @SID:`
     );
     for (const f of missing) {
       console.error(`  ${f}`);

@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updated": "2026-05-02T00:00:00.000Z",
+  "updated": "2026-05-06T08:01:40.000Z",
   "manifest_ref": "manifest/todo_roulette.json",
   "_note": "Topology layer over todo_roulette.json. Does NOT duplicate entry content — references IDs only. Bilateral: roulette runner reads this for block/gate logic; agents read it for session orientation.",
 
@@ -21,7 +21,13 @@
     "infra": {
       "description": "Repo infrastructure, toolchain, debt — independently executable, no internal ordering constraint.",
       "type": "independent",
-      "entries": ["a1b2c3d4", "b2c3d4e5", "ce8aeac5", "c9d0e1f2"]
+      "entries": ["a1b2c3d4", "b2c3d4e5", "ce8aeac5", "c9d0e1f2", "e9c3b2f7", "b8de5508"]
+    },
+    "aai-birdcage": {
+      "description": "Project Birdcage AAI evidence lane — preserve failed/routed probes, provider surfaces, and budget gates as proof material rather than deleting failed POCs.",
+      "type": "independent",
+      "entries": ["5000b0e1", "21056e32"],
+      "layers": "birdcage/ + GitHub Copilot Chat/Claude 4.7 + GitHub Models + Foundry/Azure + HF/POE fallback lanes"
     },
     "lore": {
       "description": "External lore + media asset investigation — low-weight, spin-decides.",
@@ -50,7 +56,11 @@
       "b2c3d4e5",
       "c3d4e5f6",
       "a7b8c9d0",
-      "c9d0e1f2"
+      "c9d0e1f2",
+      "e9c3b2f7",
+      "b8de5508",
+      "5000b0e1",
+      "21056e32"
     ],
     "gate_self_closes": [
       "ce8aeac5",
@@ -81,7 +91,7 @@
     }
   },
 
-  "active_entry_count": 10,
-  "completed_entry_count": 3,
-  "highest_weight_unblocked": "c3d4e5f6"
+  "active_entry_count": 11,
+  "completed_entry_count": 6,
+  "highest_weight_unblocked": "b2c3d4e5"
 }

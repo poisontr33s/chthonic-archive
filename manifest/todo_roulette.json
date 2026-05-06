@@ -200,6 +200,62 @@
         "path": "manifest/cocos_build.json"
       },
       "completed": "2026-05-02T00:00:00.000Z"
+    },
+    {
+      "id": "e9c3b2f7",
+      "title": "Alchemize full Python header drift into stable UTF-8 canon",
+      "tags": [
+        "infra",
+        "ci",
+        "debt"
+      ],
+      "created": "2026-05-06T08:01:40.494Z",
+      "weight": 6,
+      "origin": "session",
+      "spin_count": 0,
+      "body": "Stabilization lane: preserve both accepted UTF-8 spacing variants, then remediate the remaining tracked files that lack any encoding line. Current full shebang scan reported probes/python/pre_g10a_api_fidelity.py, probes/python/sdnext_g0_probe.py, scripts/embed.py, scripts/embed_doctor.py, scripts/embed_gate_accept.py. WPTG rule: normalize headers only; do not delete or flatten evidence."
+    },
+    {
+      "id": "b8de5508",
+      "title": "Harden SID from presence check into infrastructure identity contract",
+      "tags": [
+        "infra",
+        "ci",
+        "ssot"
+      ],
+      "created": "2026-05-06T08:01:40.512Z",
+      "weight": 7,
+      "origin": "session",
+      "spin_count": 0,
+      "body": "Stabilization lane: current staged gate now checks Added/Copied/Modified scripts in scripts/ and ci/. Next hardening should validate structured SID shape, catch placeholder/descriptive prose SIDs, and report legacy drift as advisory until alchemized."
+    },
+    {
+      "id": "5000b0e1",
+      "title": "Preserve Birdcage version and budget-gate failures as AAI evidence",
+      "tags": [
+        "infra",
+        "debt",
+        "session"
+      ],
+      "created": "2026-05-06T08:01:40.513Z",
+      "weight": 8,
+      "origin": "session",
+      "spin_count": 0,
+      "body": "Birdcage remains a viable POC under WPTG: Claude/Copilot manual canary green, GitHub Models route reaches provider but budget-gated, py314 experiment succeeded locally but exposed ecosystem constraints. Task is to turn these into exam evidence, not erase them."
+    },
+    {
+      "id": "21056e32",
+      "title": "String AAI provider lanes into a routed evidence matrix",
+      "tags": [
+        "infra",
+        "handoff",
+        "session"
+      ],
+      "created": "2026-05-06T08:01:40.525Z",
+      "weight": 7,
+      "origin": "session",
+      "spin_count": 0,
+      "body": "High-level lane: define which surface proves what: Copilot Chat/Claude 4.7 as manual/interactive proof, GitHub Models as API-route proof, Foundry/Azure as local/cloud substrate proof, HF and POE as fallback provider lanes. Output should be a concise matrix before new probes are added."
     }
   ],
   "last_spun": "2026-05-03T00:58:20.651Z",
