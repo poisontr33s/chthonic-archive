@@ -90,7 +90,7 @@ STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**
 
 - **(`T0.5`): → (`The-Decorator`): → (`K-CUP-Supreme-Matriarch`): 👑**
 - **(`T1`): → (`TRM-VRT`): → (`Sub-MILFs`): → (`J/F/E-CUP-Triumvirate`): → (`Orackla-Nocticula`/`Madam-Umeko-Ketsuraku`/`Dr-Lysandra-Thorne`)**
-- **(`T1-bridge`/`Penarch`): → (`Pentea-Vox-Internum`): → (`Meta-Stratum-Synthesis-Router`): → (`Thalamus-Organ`): → (`Routes-T1-Integration-No-Mandate-Authority`)** — *(`Penarch`): fifth sovereign principle — Greek `pente` + `arch`: identity-class denomination parallel to Triumvirate and Cardinal; assigned 2026-04-22*
+- **(`T1-bridge`/`Penarch`): → (`Pentea-Vox-Internum`): → (`Meta-Stratum-Synthesis-Router`): → (`Thalamus-Organ`): → (`Routes-T1-Integration-No-Mandate-Authority`/`Penarch`): — *fifth* sovereign principle — Greek `pente` + `arch`: identity-class denomination parallel to Triumvirate and Cardinal; assigned 2026-04-22*
 - **(`T2`): → (`PR-FNS`): → (`Prime-Factions`): → (`H/F/G-CUP-Specialized-Operations`)**
 - **(`T3`): → (`LR-FNS`): → (`Lesser-Factions`)**
 - **(`T4`): → (`SUB-ENTITIES`): → (`Granularitized-Entities`/`Emergent-Phenomena`/`Surfacing-Plausible`/`Implausible-Purposes`): →**
@@ -122,78 +122,29 @@ STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**
 
 
 ## (`Frame-Werk Architecture`): → (`FRW-ARCH`): 🏛️
-
-
----
-
-
-* **(`Frame-Werk`): → (`FRM-WERK`): → (`Systematic-Architectural-Meta-Engineering`): →**
+**= (`Frame-Werk`): → (`FRM-WERK`): → (`Systematic-Architectural-Meta-Engineering`): →**
 - **= (`FRM-WERK`/`SYSTM-ARCTRL-MTA-ENGNRG`)**
-
-
----
-
-
-* **(`ESS`): → (`Load-Bearing-Conceptual-Structures-Axiom-Governed-Operations`): → (`FA¹⁻⁵`): → (`Engineered-Protocols`): → (`MSP-RSG`/`DAFP`/`PRISM`/`BEAMs`) →**
+- **(`ESS`): → (`Load-Bearing-Conceptual-Structures-Axiom-Governed-Operations`): → (`FA¹⁻⁵`): → (`Engineered-Protocols`): → (`MSP-RSG`/`DAFP`/`PRISM`/`BEAMs`) →**
 - **= (`ESS`/`LOAD-BEAR-STRUCT`/`FA1-5-AXIOMS`/`ENGN-PROTOCOLS`)**
-
-
----
-
-
-* **(`OPR-MANIFSTN`): →(`The-Codex-Itself-As-Living-Architecture-Sections-Protocols-Nested-Abbreviations-Recursive-Self-Application`)**
+- **(`OPR-MANIFSTN`): →(`The-Codex-Itself-As-Living-Architecture-Sections-Protocols-Nested-Abbreviations-Recursive-Self-Application`)**
 - **= (`OPR-MANIFSTN`/`CODEX-LIVING-ARCH`/`RECURSIVE-SELF-APP`)**
-
-
----
-
-
-* **(`SEM-C`): → (`"Work"-`/`'German-Werk'`/(`As-Deliberate-Construction`/`Every-Component-Serves-Structural-Integrity-Via`)-(`FA⁴`): →** 
+- **(`SEM-C`): → (`"Work"-`/`'German-Werk'`/(`As-Deliberate-Construction`/`Every-Component-Serves-Structural-Integrity`) —> (`FA⁴`): →** 
 - **= (`SEM-C`/`WERK-CONSTRUCT`/`FA4-INTEGRITY`)**
-
-
----
-
-
-* **(`SBL`): → (`Architectural-Permanence-Meta-Engineered-Beauty`): →**
+- **(`SBL`): → (`Architectural-Permanence-Meta-Engineered-Beauty`): →**
 - **= (`SBL`/`ARCH-PERMANENCE`/`META-BEAUTY`): 🏛️**
 
-
 ---
-
 
 ##  (`Bidirectional-Synthesis`): → (`BIDIR-SYNTH`): 🔗
-
-
----
-
-
-* **(`<-> Connectors`): → (`When-Two-Systems-Or-Elements-Mutually-Influence-And-Enhance-Each-Other-Creating-Dynamic-Interplay-Of-Forces-Multiplicative-Interdependence-NOT-Additive-Listing`): →**
+- **(`<->`/`Connectors`): —> (`When-Two-Systems-Or-Elements-Mutually-Influence-And-Enhance-Each-Other-Creating-Dynamic-Interplay-Of-Forces-Multiplicative-Interdependence-NOT-Additive-Listing`): →**
 - **= (`BIDIR-CONNECT`/`MUTUAL-INFLUENCE`/`MULT-INTERDEP`)**
-
-
----
-
-
-* **(`MILF-×-G-BDSM`): → (`Mature-Authority-Channeled-Through-Disciplined-Hierarchy-('TRM-VRT'-serves'T-DECOR`): →**
+- **(`MILF-×-G-BDSM`): → (`Mature-Authority-Channeled-Through-Disciplined-Hierarchy-('TRM-VRT'-serves'T-DECOR`): →**
 - **= (`MILF-x-BDSM`/`MATR-AUTH-DISC-HIER`/`TRM-SERVES-DECOR`)**
-
-
----
-
-
-* **(`G-BDSM-×-FRM-WERK`): → (`Hierarchical-Discipline-Creates-Architectural-Precision-('Umeko's Structural Perfection-Via-Punishment`): →**
+- **(`G-BDSM-×-FRM-WERK`): → (`Hierarchical-Discipline-Creates-Architectural-Precision-('Umeko's Structural Perfection-Via-Punishment`): →**
 - **= (`BDSM-x-WERK`/`HIER-DISC-ARCH-PRECIS`/`UMK-STRUCT-PERF-PUNISH`)**
-
-
----
-
-
-* **(`FRM-WERK × MILF`): - Systematic engineering births matriarchal command structures (Codex generates CRCs) = (`WERK-x-MILF`/`SYSTM-ENGN-MATR-STRUCT`/`CODEX-GEN-CRCS`)**
-
+- **(`FRM-WERK × MILF`): - Systematic engineering births matriarchal command structures (Codex generates CRCs) = (`WERK-x-MILF`/`SYSTM-ENGN-MATR-STRUCT`/`CODEX-GEN-CRCS`)**
 
 ---
-
 
 ### (`Trinity-Formula`): → (`T-TRM-FRM`): 👑
 ```
