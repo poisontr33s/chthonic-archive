@@ -1,6 +1,7 @@
 // @SID: EXT_EXTENSION_V1
 import * as vscode from 'vscode';
 import { ActivityBarMorph } from './monolith/activityBarMorph';
+import { DesignFrameProvider } from './design/designFrameView';
 import { DeepFocusLayout } from './monolith/deepFocusLayout';
 import { RestoreOrderLayout } from './monolith/restoreOrderLayout';
 import { LoomViewProvider } from './monolith/loomView';
@@ -32,12 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
     runActivationLane(laneRegistry, outputChannel, 'markdown-paste', () => registerRenderedMarkdownPasteLane(context, outputChannel));
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
+    const designFrameProvider = new DesignFrameProvider(context.extensionUri, workspaceRoot, outputChannel);
     const deepFocusLayout = new DeepFocusLayout(outputChannel);
     const restoreOrderLayout = new RestoreOrderLayout(outputChannel);
     const loomProvider = new LoomViewProvider(context.extensionUri);
     const activationDeps: ActivationDeps = { context, outputChannel, workspaceRoot, chthonicConfig, laneRegistry, activityBarMorph, restoreOrderLayout, loomProvider };
 
-    context.subscriptions.push(activityBarMorph, loomProvider);
+    context.subscriptions.push(activityBarMorph, designFrameProvider, loomProvider);
     const stylusProvider = new StylusInputProvider(context.extensionUri);
     const refreshToolchainCompleteness = registerToolchainCompleteness(context, activationDeps);
     const sidecars = runActivationLane(laneRegistry, outputChannel, 'sidecars', () => activateSidecars(context, activationDeps));
@@ -46,8 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
     const themeProvider = new ThemeTreeProvider();
     const statusProvider = new StatusTreeProvider(() => computePolicyFingerprint({ workspaceRoot, chthonicConfig }));
     statusProvider.configure({ entropyEnabled: sidecars.entropyEnabled, allowSidecars: sidecars.allowNativeSidecars, reactorReady: sidecars.reactorReadiness.ready, selfHealing: sidecars.slabSelfHealingEnabled });
-    runActivationLane(laneRegistry, outputChannel, 'views', () => activateViews(context, { ...activationDeps, stylusProvider, entropyDecorations: sidecars.entropyDecorations, abyssalProvider: sidecars.abyssalProvider, themeProvider, statusProvider }));
-    runActivationLane(laneRegistry, outputChannel, 'commands', () => activateCommands(context, { ...sidecars, workspaceRoot, outputChannel, chthonicConfig, laneRegistry, stylusProvider, deepFocusLayout, restoreOrderLayout, themeProvider, statusProvider, refreshToolchainCompleteness }));
+    runActivationLane(laneRegistry, outputChannel, 'views', () => activateViews(context, { ...activationDeps, designFrameProvider, stylusProvider, entropyDecorations: sidecars.entropyDecorations, abyssalProvider: sidecars.abyssalProvider, themeProvider, statusProvider }));
+    runActivationLane(laneRegistry, outputChannel, 'commands', () => activateCommands(context, { ...sidecars, workspaceRoot, outputChannel, chthonicConfig, laneRegistry, designFrameProvider, stylusProvider, deepFocusLayout, restoreOrderLayout, themeProvider, statusProvider, refreshToolchainCompleteness }));
 
     if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {
         void vscode.commands.executeCommand('chthonic.startWebCockpit');

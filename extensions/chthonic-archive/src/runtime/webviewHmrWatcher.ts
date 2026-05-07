@@ -4,7 +4,7 @@ import type { LaneRegistry } from './laneState';
 
 const DEBOUNCE_MS = 250;
 
-type HmrSurface = 'stylus' | 'loom' | 'ankh' | 'abyssal';
+type HmrSurface = 'stylus' | 'loom' | 'ankh' | 'abyssal' | 'design-frame';
 
 interface LoadedMessage {
     type: 'webviewHmr.loaded' | 'webviewHmr.reloadRequested';

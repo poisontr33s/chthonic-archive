@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{cspSource}} data:; frame-src {{cspSource}}; style-src 'unsafe-inline'; script-src 'nonce-{{nonce}}';">
+    <title>Claude Design Frame</title>
+    <style>
+        :root {
+            --bg: var(--vscode-editor-background);
+            --fg: var(--vscode-editor-foreground);
+            --muted: var(--vscode-descriptionForeground);
+            --panel: var(--vscode-sideBar-background);
+            --border: var(--vscode-panel-border);
+            --accent: var(--vscode-focusBorder);
+            --ok: var(--vscode-testing-iconPassed);
+            --warn: var(--vscode-testing-iconQueued);
+            --bad: var(--vscode-testing-iconFailed);
+            --input: var(--vscode-input-background);
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            margin: 0;
+            min-height: 100%;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: var(--vscode-font-family, Segoe UI, sans-serif);
+            font-size: var(--vscode-font-size, 13px);
+        }
+        body {
+            padding: 10px;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+            gap: 10px;
+        }
+        header {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 8px;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--panel);
+            padding: 8px;
+        }
+        h1, h2 {
+            margin: 0;
+            font-size: 11px;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+        h1 { color: var(--fg); }
+        h2 { color: var(--muted); }
+        .path {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            overflow-wrap: anywhere;
+        }
+        .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        button {
+            min-height: 28px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: var(--vscode-button-background);
+            color: var(--vscode-button-foreground);
+            padding: 4px 8px;
+            cursor: pointer;
+            font: inherit;
+        }
+        button.secondary {
+            background: var(--input);
+            color: var(--fg);
+        }
+        button:hover {
+            border-color: var(--accent);
+        }
+        main {
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(180px, 0.9fr) minmax(260px, 1.4fr);
+            gap: 10px;
+        }
+        .stack {
+            min-height: 0;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+            gap: 10px;
+        }
+        section {
+            min-width: 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--panel);
+            padding: 8px;
+            overflow: hidden;
+        }
+        .scroll {
+            min-height: 0;
+            overflow: auto;
+        }
+        .preview {
+            min-height: 260px;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+            gap: 8px;
+        }
+        .preview-frame {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--vscode-editor-background);
+        }
+        .preview-image {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--vscode-editor-background);
+        }
+        .empty {
+            border: 1px dashed var(--border);
+            border-radius: 4px;
+            padding: 16px;
+            color: var(--muted);
+        }
+        .gate-row, .token-row {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 8px;
+            align-items: baseline;
+            padding: 5px 0;
+            border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+        }
+        .gate-row:last-child, .token-row:last-child {
+            border-bottom: 0;
+        }
+        .badge {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 1px 6px;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .badge.admitted { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 55%, var(--border)); }
+        .badge.open { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 55%, var(--border)); }
+        .badge.blocked, .badge.degraded { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 55%, var(--border)); }
+        .mono {
+            font-family: var(--vscode-editor-font-family, Consolas, monospace);
+            font-size: 11px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        .contract {
+            max-height: 220px;
+            margin: 0;
+            color: var(--fg);
+        }
+        .errors {
+            color: var(--bad);
+            margin: 0;
+            padding-left: 18px;
+        }
+        @media (max-width: 760px) {
+            header, main {
+                grid-template-columns: 1fr;
+            }
+            .actions {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Claude Design Frame</h1>
+            <div id="selected-path" class="path">No export selected</div>
+        </div>
+        <div class="actions">
+            <button id="select">Select</button>
+            <button id="refresh" class="secondary">Refresh</button>
+            <button id="run-intake" class="secondary">Run Intake</button>
+            <button id="open-contract" class="secondary">Contract</button>
+            <button id="copy-handoff">Copy Handoff</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="stack">
+            <section>
+                <h2>Gates</h2>
+                <div id="gates"></div>
+            </section>
+            <section class="scroll">
+                <h2>Tokens</h2>
+                <div id="tokens"></div>
+            </section>
+        </div>
+        <div class="stack">
+            <section class="preview">
+                <h2>Preview</h2>
+                <div id="preview"></div>
+            </section>
+            <section class="scroll">
+                <h2>Handoff Contract</h2>
+                <pre id="contract" class="mono contract"></pre>
+                <ul id="errors" class="errors"></ul>
+            </section>
+        </div>
+    </main>
+
+    <script nonce="{{nonce}}">
+window.__DESIGN_FRAME_STATE__ = {{stateJson}};
+{{viewScript}}
+    </script>
+</body>
+</html>

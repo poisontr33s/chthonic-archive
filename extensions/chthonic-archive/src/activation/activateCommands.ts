@@ -7,6 +7,7 @@ import type { LedgerMode } from '../polyglot/ledgerBroker';
 import type { AnnoClient } from '../reactor/annoClient';
 import type { CockpitLayout } from '../reactor/cockpitLayout';
 import type { SynapseBridge } from '../reactor/synapseBridge';
+import type { DesignFrameProvider } from '../design/designFrameView';
 import type { DeepFocusLayout } from '../monolith/deepFocusLayout';
 import type { RestoreOrderLayout } from '../monolith/restoreOrderLayout';
 import type { SelfHealingLoop } from '../monolith/selfHealingLoop';
@@ -38,6 +39,7 @@ export interface ActivateCommandsDeps {
     readonly slabSelfHealingEnabled: boolean;
     readonly allowNativeSidecars: boolean;
     readonly laneRegistry: LaneRegistry;
+    readonly designFrameProvider: DesignFrameProvider;
     readonly stylusProvider: StylusInputProvider;
     readonly cockpitLayout: CockpitLayout;
     readonly deepFocusLayout: DeepFocusLayout;
@@ -58,6 +60,11 @@ export function activateCommands(context: vscode.ExtensionContext, deps: Activat
             void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
             void vscode.commands.executeCommand('chthonic.stylusView.focus');
             deps.stylusProvider.focus();
+        }),
+        vscode.commands.registerCommand('chthonic.openClaudeDesignFrame', () => {
+            void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
+            void vscode.commands.executeCommand('chthonic.designFrameView.focus');
+            void deps.designFrameProvider.selectExportRoot();
         }),
         vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
             if (!deps.workspaceRoot) {

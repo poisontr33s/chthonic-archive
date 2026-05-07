@@ -1,5 +1,6 @@
 // @SID: EXT_ACTIVATION_VIEWS_V1
 import * as vscode from 'vscode';
+import { DesignFrameProvider } from '../design/designFrameView';
 import { AbyssalPaneProvider } from '../entropy/archiveAbyssalView';
 import { EntropyDecorationProvider } from '../entropy/entropyDecorations';
 import { AnkhReferenceProvider } from '../monolith/ankhReferenceView';
@@ -11,6 +12,7 @@ export interface ActivateViewsDeps {
     readonly workspaceRoot: string | null;
     readonly outputChannel: vscode.OutputChannel;
     readonly laneRegistry: LaneRegistry;
+    readonly designFrameProvider: DesignFrameProvider;
     readonly loomProvider: LoomViewProvider;
     readonly stylusProvider: StylusInputProvider;
     readonly entropyDecorations: EntropyDecorationProvider;
@@ -25,6 +27,9 @@ export function activateViews(context: vscode.ExtensionContext, deps: ActivateVi
     );
     registerView(context, deps, 'loom-view', () =>
         vscode.window.registerWebviewViewProvider(LoomViewProvider.viewType, deps.loomProvider),
+    );
+    registerView(context, deps, 'design-frame-view', () =>
+        vscode.window.registerWebviewViewProvider(DesignFrameProvider.viewType, deps.designFrameProvider),
     );
     registerView(context, deps, 'stylus-view', () =>
         vscode.window.registerWebviewViewProvider(StylusInputProvider.viewType, deps.stylusProvider),

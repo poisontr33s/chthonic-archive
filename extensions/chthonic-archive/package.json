@@ -124,6 +124,11 @@
         "icon": "$(edit)"
       },
       {
+        "command": "chthonic.openClaudeDesignFrame",
+        "title": "Chthonic: Open Claude Design Frame",
+        "icon": "$(preview)"
+      },
+      {
         "command": "chthonic.deepFocus",
         "title": "Chthonic: Deep Focus Layout",
         "icon": "$(target)"
@@ -226,6 +231,13 @@
           "type": "webview",
           "name": "The Loom",
           "icon": "resources/loom.svg"
+        },
+        {
+          "id": "chthonic.designFrameView",
+          "type": "webview",
+          "name": "Design Frame",
+          "icon": "$(preview)",
+          "visibility": "collapsed"
         },
         {
           "id": "chthonic.stylusView",
