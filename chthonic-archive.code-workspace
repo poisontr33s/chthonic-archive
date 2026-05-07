@@ -65,7 +65,8 @@
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
     // Git: manage both repos independently in Source Control panel
     "git.openRepositoryInParentFolders": "always",
-    "claudeCode.allowDangerouslySkipPermissions": true
+    "claudeCode.allowDangerouslySkipPermissions": true,
+    "githubPullRequests.pullRequestDescription": "Copilot"
   },
   "extensions": {
     "recommendations": [
