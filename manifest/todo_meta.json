@@ -21,7 +21,7 @@
     "infra": {
       "description": "Repo infrastructure, toolchain, debt — independently executable, no internal ordering constraint.",
       "type": "independent",
-      "entries": ["a1b2c3d4", "b2c3d4e5", "ce8aeac5", "c9d0e1f2", "e9c3b2f7", "b8de5508"]
+      "entries": ["a1b2c3d4", "b2c3d4e5", "ce8aeac5", "c9d0e1f2", "e9c3b2f7", "b8de5508", "39381ea6", "864f2058"]
     },
     "aai-birdcage": {
       "description": "Project Birdcage AAI evidence lane — preserve failed/routed probes, provider surfaces, and budget gates as proof material rather than deleting failed POCs.",
@@ -60,7 +60,9 @@
       "e9c3b2f7",
       "b8de5508",
       "5000b0e1",
-      "21056e32"
+      "21056e32",
+      "39381ea6",
+      "864f2058"
     ],
     "gate_self_closes": [
       "ce8aeac5",
@@ -91,7 +93,7 @@
     }
   },
 
-  "active_entry_count": 11,
-  "completed_entry_count": 6,
+  "active_entry_count": 12,
+  "completed_entry_count": 7,
   "highest_weight_unblocked": "b2c3d4e5"
 }

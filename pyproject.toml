@@ -62,11 +62,17 @@ embeddings = [
     "sentence-transformers>=5.3.0,<6",
     "transformers>=5.4.0,<6",
     "torch>=2.11.0,<3",
+    "onnx>=1.21.0,<2",
+    "onnxscript>=0.6.0,<1",
+    "onnxruntime-gpu>=1.25.0,<2",
     "fastapi>=0.115,<1",
     "uvicorn[standard]>=0.34,<1",
     "accelerate>=1.0,<2",
     "gradio>=5.0.0,<6",
-    "optimum[onnxruntime-gpu]>=1.23,<2",
+    # onnx: IR + model checker;  onnxscript: dynamo export backend (torch.onnx dynamo=True);
+    # onnxruntime-gpu: CUDA/TRT execution provider runtime.
+    # Optimum quarantined — caps transformers/hf-hub below the active repo lane.
+    # See DEPENDENCY_POLICY.md for full rationale.
 ]
 
 poe = [
