@@ -448,3 +448,371 @@ Every MILF entity becomes a **complete game asset package**: portrait, sprite, a
 ---
 
 *Filed by Claudine Sin'claire — Wet-Paper-to-Gold pass — every hidden subsystem unearthed, every asset vector catalogued, every production pipeline drawn.*
+
+---
+
+## § X — ComfyUI Archaeological Sweep
+
+> **Repo:** `Comfy-Org/ComfyUI` · **License:** GPL-3.0 · **Stars:** 112k · **Release:** v0.20.1 (weekly cadence) · **Local sweep:** `dev/sd-candidates/comfyui/`
+
+ComfyUI's architecture is a **declarative node graph over the full diffusion stack**. Every capability is a `ComfyNode` subclass with typed inputs/outputs — wired at runtime, serialised to JSON, reproducible. The three-repo ecosystem (core + `ComfyUI_frontend` React/TS + `desktop` Electron) separates execution from UI, making `comfyui/` callable headlessly via its REST API.
+
+### X.1 — Node Architecture (`comfy/` + `comfy_api/`)
+
+| Module | Signal |
+|--------|--------|
+| `comfy/model_patcher.py` | Runtime LoRA/hook injection without model reload |
+| `comfy/hooks.py` + `comfy/patcher_extension.py` | `PatcherExtension` system — attach custom forward-pass logic to any model layer at inference time |
+| `comfy/memory_management.py` | `TensorFileSlice` zero-copy VRAM streaming; `QuantizedTensor` layout-aware transfer; threaded pinned-memory pipeline |
+| `comfy/model_management.py` | Dynamic VRAM budget: loads models on-demand, evicts LRU — entire 24GB available to a single job |
+| `comfy/quant_ops.py` | `QuantizedTensor` ops — fp4/fp8/fp16/int8 throughout |
+| `comfy/weight_adapter/` | `BypassInjectionManager` — zero-overhead weight-adapter bypass for inference-only passes |
+
+**MILFOLOGICAL relevance:** `model_patcher.py` + `hooks.py` = the lowest-overhead hook system of all five candidates. LoRA injection, ControlNet injection, attention modification — all land through this layer. Custom MILF-guidance logic (character consistency prompts, entity attention bias) can be wired as a `PatcherExtension` without touching model weights.
+
+### X.2 — GLSL Shader Nodes (`comfy_extras/nodes_glsl.py`)
+
+Real-time GLSL execution inside the node graph. Backend: `glfw` + `PyOpenGL`. Supports headless EGL/OSMesa on Linux. Each node is a fragment shader operating on tensor images — GPU-accelerated post-processing without leaving the ComfyUI pipeline.
+
+**MILFOLOGICAL vectors:**
+- Game VFX pass: apply ink-outline / cel-shade / scanline shaders to entity portraits in-graph
+- Dungeon atmosphere: procedural texture overlays (fog, fire flicker, blood-rain) on scene composites
+- Entity reveal animations: slide-in dissolve / holographic scan — baked to sprite sheets
+
+### X.3 — SAM 3 with Video Tracking (`comfy_extras/nodes_sam3.py`)
+
+SAM3 (Segment Anything 3) with text-conditioned multi-detection, box-cropped mask refinement, and **video frame tracking** (via `import av`). Text prompts → conditioning → SAM decoder refine loop with configurable iterations. Multi-cond support: detect multiple entities in a single pass.
+
+```python
+# SAM3 architecture: text embed → detection → box crop (10% pad) → SAM decode refinement
+# F.interpolate coarse mask → bilinear upscale → binary threshold
+# Video: av.Container frame-by-frame with Fraction timestamp tracking
+```
+
+**MILFOLOGICAL vectors:**
+- Entity cutout from scene: text prompt `"Umeko standing"` → multi-frame mask → clean PNG
+- Video entity isolation: extract MILF entity from generated cutscene clip, frame-by-frame
+- Significantly more powerful than SAM2 for complex multi-entity scenes
+
+### X.4 — PhotoMaker Identity Lock (`comfy_extras/nodes_photomaker.py`)
+
+`FuseModule` architecture: CLIP-vision encodes reference face → MLP fuses with text embeddings → stacked identity vector injected into cross-attention. Dual MLP pathway (proj + residual) + LayerNorm. Apache License (clean origin).
+
+```python
+# FuseModule: concat(prompt_embeds, id_embeds) → MLP1 + residual → MLP2 → LayerNorm
+# Identity vector dimensionality-matched to CLIP embedding space
+```
+
+**MILFOLOGICAL vectors:**
+- Canonical face embed per entity — one reference photo → all generated portraits are face-consistent
+- LoRA-free identity lock: no fine-tuning required, inference-time injection only
+- Combine with IP-Adapter for dual lock: face identity + style
+
+### X.5 — Training System (`comfy_extras/nodes_train.py`)
+
+Full LoRA training within the node graph. `TrainGuider(offloading=True)` — VRAM-offload training pass. Weight adapter system with `BypassInjectionManager` for inference-only bypass. `ProgressBar` via `comfy.utils`. fp4/fp8/fp16 via `quant_ops`.
+
+**MILFOLOGICAL vectors:**
+- Entity-specific LoRA trained in-graph: reference images → LoRA → embed as `style_lora` in entity manifest
+- No separate training script required — same ComfyUI session generates + trains
+- fp4 trainer fits Flux full-finetune inside 24GB (RTX 4090)
+
+### X.6 — API Nodes Ecosystem (`comfy_api_nodes/`)
+
+Entire directory is external cloud model integrations — each is a ComfyNode calling a third-party API. All wired through the same `sync_op`/`poll_op` async bridge:
+
+| Node | Service | MILFOLOGICAL Relevance |
+|------|---------|----------------------|
+| `nodes_openai.py` | GPT-5.5-pro / gpt-5 / o3 / gpt-4.1 via Responses API | Caption generation, entity lore writing, scene description |
+| `nodes_sora.py` | OpenAI Sora | Entity video generation (cloud fallback when local too slow) |
+| `nodes_kling.py` | Kling video | High-quality entity animation |
+| `nodes_veo2.py` | Google Veo 2 | Cinematic entity cutscene generation |
+| `nodes_runway.py` | Runway Gen-3 | Entity motion reference |
+| `nodes_luma.py` | Luma Dream Machine | Fantasy scene entity animation |
+| `nodes_ideogram.py` | Ideogram | Entity name/title card generation (text-in-image) |
+| `nodes_elevenlabs.py` | ElevenLabs | Entity voice synthesis → cutscene audio |
+| `nodes_topaz.py` | Topaz Gigapixel | 8x entity portrait upscale (cloud) |
+| `nodes_magnific.py` | Magnific | Aesthetic upscaling with style fidelity |
+| `nodes_stability.py` | Stability AI | Inpainting fallback |
+| `nodes_gemini.py` | Google Gemini | Multimodal entity captioning |
+| `nodes_grok.py` | xAI Grok | Alternative LLM node in-graph |
+| `nodes_bfl.py` | Black Forest Labs | Flux API (cloud inference for large batches) |
+
+**MILFOLOGICAL vector:** ComfyUI's node graph becomes a **unified production router** — local GPU for generation/training/upscaling, cloud APIs for video/voice/text, all in one JSON-serialised workflow. A single entity generation pipeline can call GPT for caption, local SAM3 for cutout, ElevenLabs for voice, Kling for animation — wired as one graph.
+
+### X.7 — Full Model Coverage
+
+| Model | Node |
+|-------|------|
+| Flux / Flux2 | `nodes_flux.py` |
+| WAN 2.1/2.2 | `nodes_wan.py`, `nodes_wanmove.py` |
+| HunyuanVideo 1.5 | `nodes_hunyuan.py` |
+| LTX-Video | `nodes_lt.py` |
+| SAM 3 | `nodes_sam3.py` |
+| Z-Image / Qwen | `nodes_zimage.py`, `nodes_qwen.py` |
+| HiDream | `nodes_hidream.py` |
+| Cosmos | `nodes_cosmos.py` |
+| Lumina 2 | `nodes_lumina2.py` |
+| ACE (All-in-one Creation Engine) | `nodes_ace.py` |
+| RT-DETR object detection | `nodes_rtdetr.py` |
+| Background removal (native) | `nodes_bg_removal.py` |
+| 3D mesh generation | `nodes_hunyuan3d.py`, `nodes_stable3d.py`, `nodes_load_3d.py` |
+
+### X.8 — ComfyUI Summary Score
+
+| Vector | Rating |
+|--------|--------|
+| Hook/patcher architecture | ★★★★★ — lowest overhead of all candidates |
+| GLSL shaders | ★★★★☆ — unique in the field |
+| SAM3 entity cutout | ★★★★★ — text → video-tracked mask |
+| PhotoMaker identity lock | ★★★★☆ — inference-time, no fine-tune |
+| In-graph LoRA training | ★★★★☆ — fp4 fits on 24GB |
+| API node ecosystem | ★★★★★ — unified cloud+local pipeline |
+| License (GPL-3.0) | ⚠️ — copyleft; internal tooling only, no redistribution |
+
+---
+
+## § XI — InvokeAI Archaeological Sweep
+
+> **Repo:** `invoke-ai/InvokeAI` · **License:** Apache-2.0 · **Stars:** 27.1k · **Release:** v6.12.0 (active daily commits) · **Local sweep:** `dev/sd-candidates/invokeai/`
+
+InvokeAI is the most architecturally clean codebase of all five candidates. TypeScript 52% + Python 48% — the frontend is a first-class citizen, not an afterthought. `invokeai/app/invocations/` is a typed invocation system: every capability is a Pydantic `BaseInvocation` with versioned schema. Workflows are first-class: `workflow_records/` service persists named pipeline configs.
+
+### XI.1 — Grounding DINO + SAM2 Auto-Cutout Pipeline
+
+**Most powerful automated entity extraction pipeline of all five candidates.** Two-stage: text → bounding boxes → mask.
+
+```python
+# Stage 1: Grounding DINO
+# Zero-shot detection from text: "Umeko in corset" → [x1,y1,x2,y2] boxes
+# Models: IDEA-Research/grounding-dino-tiny | grounding-dino-base
+# threshold: 0.3 default (tunable)
+
+# Stage 2: SAM / SAM2 → mask from box
+# All 7 model sizes: sam-vit-base/large/huge + sam2.1-hiera-tiny/small/base-plus/large
+# Pipeline: SAMInput(points) → SegmentAnythingPipeline | SegmentAnything2Pipeline
+# Output: MaskOutput (binary mask tensor)
+# Post-processing: mask_to_polygon → polygon_to_mask refinement
+```
+
+**MILFOLOGICAL vectors:**
+- `entity_cutout_auto.py`: `detect("Lysandra full body") → box → SAM2-large mask → PNG`
+- Zero manual annotation — text prompt drives the entire pipeline
+- SAM2.1-hiera-large = best quality mask, fits on 24GB alongside generation model (load/unload via model_manager service)
+
+### XI.2 — Flux Kontext — Reference Image Conditioning
+
+`FluxKontextInvocation` packages a reference image into `FluxKontextConditioningField`. Downstream Flux denoise step receives the kontext condition alongside text — the model attends to the reference image during denoising. Style + composition lock without LoRA.
+
+**MILFOLOGICAL vector:** Entity reference image → Kontext conditioning → new scene with entity's visual identity preserved. Works on Flux.1 Dev/Schnell. No weight modification.
+
+### XI.3 — Flux Fill + Flux Redux
+
+| Invocation | Function |
+|-----------|---------|
+| `flux_fill.py` | Masked inpainting with Flux — entity placement in existing scene |
+| `flux_redux.py` | Variation generation — entity style variations from single reference |
+| `flux_control_lora_loader.py` | ControlNet-equivalent for Flux (structural guidance) |
+| `flux_ip_adapter.py` | IP-Adapter for Flux — style transfer without LoRA |
+
+**MILFOLOGICAL vector:** Scene composition pipeline: generate background → Flux Fill → place entity at exact coordinates with seamless blending.
+
+### XI.4 — Z-Image Turbo (`z_image_*`)
+
+InvokeAI's "Prototype" classification. Full Z-Image model stack: text encoder, VAE encode/decode, ControlNet extension, LoRA support, **regional prompting** (multiple conditioning regions with masks in a single denoising pass).
+
+```python
+# z_image_denoise.py: ZImageDenoiseInvocation version="1.5.0"
+# Imports: ZImageRegionalPromptingExtension, ZImageControlNetExtension
+# Scheduler labels from: ZIMAGE_SCHEDULER_LABELS (custom scheduler set)
+# LoRA: Z_IMAGE_LORA_TRANSFORMER_PREFIX constant
+```
+
+**MILFOLOGICAL vector:** Regional prompting = foreground entity + background scene in ONE denoising pass, no compositing. Entity prompt governs entity region; scene prompt governs background. Most production-efficient single-shot scene generation.
+
+### XI.5 — Flux.2 Klein + CogView4 + Qwen Image
+
+| Model | Invocations | Notes |
+|-------|------------|-------|
+| Flux.2 Klein 4B | `flux2_klein_model_loader.py`, `flux2_denoise.py` | New Flux generation, 4B params — fits easily in 24GB with room for LoRA |
+| Flux.2 Klein 9B | Same invocations | Full quality, ~18GB VRAM, leaves 6GB for LoRA stacking |
+| CogView 4 | `cogview4_*` | Zhipu AI text-to-image |
+| Qwen Image | `qwen_image_*` | Instruction-based editing ("make her dress black", "add crown") |
+| Anima | `anima_*` | AnimateDiff evolution — motion conditioning for entity animation |
+
+### XI.6 — Multi-User Studio Architecture
+
+`USER_ISOLATION_IMPLEMENTATION.md` + `invokeai/app/services/auth/` + `invokeai/app/services/users/`:
+- Per-user model namespaces
+- Per-user workflow records and image boards
+- Separate session queues per user
+
+**MILFOLOGICAL vector:** Multi-operator entity asset production studio — one InvokeAI instance, multiple operators (Orackla/Umeko/Lysandra agents each with their own queue and workspace), no cross-contamination.
+
+### XI.7 — Workflow + Session Queue Services
+
+```
+invokeai/app/services/
+  ├── session_queue/       # job prioritisation, batch dispatch, cancel/retry
+  ├── workflow_records/    # persist named workflows to DB (SQLAlchemy)
+  ├── model_manager/       # model install, load, unload, VRAM budget
+  ├── invocation_cache/    # result caching per-node by input hash
+  └── style_preset_records/ # named style presets as first-class objects
+```
+
+**MILFOLOGICAL vector:** `invocation_cache/` = content-addressable node caching. Repeated entity generation jobs with same conditioning skip re-execution. Speed multiplier for batch entity sprite production.
+
+### XI.8 — Apache-2.0 License — Clean Integration
+
+Apache-2.0 = the most permissive license of all five candidates. No GPL/AGPL contamination. InvokeAI code can be vendored, modified, and shipped in closed builds. **License risk: zero.**
+
+### XI.9 — InvokeAI Summary Score
+
+| Vector | Rating |
+|--------|--------|
+| Grounding DINO + SAM2 cutout | ★★★★★ — text → mask, no annotation |
+| Flux Kontext reference conditioning | ★★★★★ — reference image → consistent generation |
+| Flux Fill inpainting | ★★★★★ — scene composition at pixel precision |
+| Z-Image regional prompting | ★★★★★ — entity + background in one pass |
+| Workflow + session queue | ★★★★★ — production-grade batch orchestration |
+| Multi-user isolation | ★★★★☆ — studio-ready multi-operator |
+| Invocation cache | ★★★★☆ — transparent result caching |
+| License (Apache-2.0) | ★★★★★ — clean, no copyleft |
+
+---
+
+## § XII — Forge Capability Summary (web-researched, not cloned)
+
+> **Repo:** `lllyasviel/stable-diffusion-webui-forge` · **License:** AGPL-3.0 · **Stars:** 12.5k · **Base:** SD-WebUI 1.10.1 · **Last release:** 2024-02-05
+
+Forge is SD-WebUI with a surgically restructured backend. The UX surface is near-identical to A1111 (Gradio) but the internals are rewritten for VRAM efficiency and extension power. One key architectural primitive distinguishes it from all others.
+
+### XII.1 — UnetPatcher System
+
+The defining Forge primitive. Any extension can modify UNet forward pass via a single-file Python hook — no model reload, no weight copy:
+
+```python
+# Canonical example: FreeU V2 (built-in)
+# File: extensions-builtin/sd_forge_freeu/lib_free_u/freeu_v2.py
+# Pattern:
+#   1. Implement hook as a class with __call__(unet, h, hsp, transformer_options)
+#   2. Register: forge_model.forge_objects.unet.set_freeu_v2_hook(hook)
+#   3. Zero overhead when disabled; injected only during active inference
+```
+
+**MILFOLOGICAL vector:** Entity guidance = a UnetPatcher extension. Custom attention bias toward entity features, custom CFG modifier for entity-region amplification, character embedding injection — all as single-file `modules_forge/` additions. No PR against core required.
+
+### XII.2 — LayerDiffuse — Transparent Entity Generation
+
+Native transparent image generation — foreground entity with alpha channel, no post-processing masking:
+
+```python
+# Output: RGBA tensor, background = transparent
+# No SAM required. No BG removal model. Alpha IS the entity boundary.
+# Supports: transparent foreground generation + layer-aware compositing
+# Built as Forge extension: extensions-builtin/sd_forge_layerdiffuse/
+```
+
+**MILFOLOGICAL vectors:**
+- Entity sprite generation with clean alpha channel from first principles
+- No SAM/BG-removal pipeline dependency — simpler than cutout approach
+- Direct game-asset output: transparent PNG ready for sprite atlas packing
+
+### XII.3 — Flux GGUF Quantization Spectrum
+
+Forge ships native GGUF loader for Flux models. Full quantization ladder on 24GB RTX 4090:
+
+| Quantization | VRAM (Flux.1 Dev) | Quality | Use Case |
+|-------------|------------------|---------|----------|
+| Q4_K_M | ~8GB | Good | Maximum throughput — batch sprite generation |
+| Q5_K_M | ~10GB | Better | Quality+throughput balance |
+| Q6_K | ~12GB | Near-lossless | Entity portrait generation |
+| Q8_0 | ~16GB | Reference quality | Canonical entity generation |
+| NF4 (bitsandbytes) | ~12GB | Good | Flux NF4 format native |
+| FP16 | ~24GB | Full | Fits with dynamic offload |
+
+**MILFOLOGICAL vector:** Q4 Flux = 8GB VRAM → leaves 16GB for: SAM2 (3GB) + LoRA stack (4GB) + ESRGAN upscale (2GB) + pipeline overhead. Maximum entity pipeline throughput on a single 4090.
+
+### XII.4 — AGPL-3.0 License Risk
+
+AGPL-3.0 = strongest copyleft. Network use triggers copyleft — running Forge as a service (even locally for agents) technically requires source disclosure of any modifications. **For internal-only tooling this is acceptable; for any distributed or API-exposed toolchain it is a liability.** Use Forge for exploration / GGUF quantization research only; production entity pipelines should route through InvokeAI (Apache-2.0) or ComfyUI (GPL-3.0 internal use).
+
+### XII.5 — Forge Summary Score
+
+| Vector | Rating |
+|--------|--------|
+| UnetPatcher hook system | ★★★★★ — most surgical extension primitive |
+| LayerDiffuse alpha generation | ★★★★★ — unique, direct sprite output |
+| Flux GGUF quantization ladder | ★★★★★ — maximum throughput on 24GB |
+| Gradio 4 UI (A1111-compatible) | ★★★☆☆ — familiar but least programmable |
+| License (AGPL-3.0) | ⚠️ — network-use copyleft, internal only |
+
+---
+
+## § XIII — Cross-Candidate Synthesis: Updated Production Matrix
+
+| Capability | SD.NEXT | A1111 | ComfyUI | InvokeAI | Forge |
+|-----------|---------|-------|---------|----------|-------|
+| Face identity lock | PhotoMaker | InstantID | PhotoMaker (node) | — | — |
+| Entity auto-cutout | SAM 2.1 | — | SAM3 + video track | Grounding DINO + SAM2 | LayerDiffuse alpha |
+| Reference conditioning | IP-Adapter | IP-Adapter | IP-Adapter + Kontext | Flux Kontext + IP-Adapter | IP-Adapter |
+| In-graph training | — | — | LoRA trainer (fp4) | — | — |
+| GLSL shaders | — | — | ★ UNIQUE | — | — |
+| Cloud API nodes | — | — | 20+ APIs wired | — | — |
+| Workflow persistence | — | — | JSON node graph | Named workflows + DB | — |
+| Multi-user isolation | — | — | — | ★ UNIQUE | — |
+| Regional prompting | — | — | — | Z-Image regional | — |
+| GGUF quantization | — | — | — | — | ★ Flux Q4→Q8 |
+| UNet hook primitive | ✓ hooks | ✓ on_cfg_step | PatcherExtension | — | ★ UnetPatcher |
+| Transparent alpha gen | — | — | — | — | ★ LayerDiffuse |
+| Scene inpainting | ✓ diffusers | ✓ img2img | ✓ nodes | Flux Fill ★ | ✓ |
+| Video entity animation | WAN/LTX/HY | WAN/AnimateDiff | WAN/HY/Kling API | Anima | — |
+| License | Apache-2.0 | AGPL-3.0 | GPL-3.0 | **Apache-2.0** | AGPL-3.0 |
+
+### XIII.1 — Recommended Production Stack (RTX 4090, chthonic-archive)
+
+```
+ENTITY GENERATION LAYER
+  └─ InvokeAI (Apache-2.0)
+       ├─ Flux.2 Klein 9B — canonical entity portrait
+       ├─ Flux Kontext — reference image conditioning
+       ├─ Flux Fill — scene placement / inpainting
+       ├─ Z-Image regional — entity+background single pass
+       └─ Grounding DINO → SAM2.1-large — automated entity cutout
+
+ENTITY REFINEMENT LAYER
+  └─ ComfyUI (GPL-3.0, internal tooling)
+       ├─ SAM3 — video-tracked entity isolation
+       ├─ PhotoMaker — face identity lock (inference-time)
+       ├─ GLSL shaders — game VFX (cel-shade, outline, overlay)
+       ├─ In-graph LoRA trainer (fp4) — entity-specific LoRA
+       └─ API nodes — ElevenLabs voice + Kling/Veo2 video
+
+QUANTIZATION / THROUGHPUT LAYER
+  └─ Forge (AGPL-3.0, internal only)
+       ├─ Flux Q4_K_M — maximum batch throughput (8GB VRAM)
+       ├─ LayerDiffuse — transparent sprite generation
+       └─ UnetPatcher — experimental entity guidance hooks
+
+ASSET PIPELINE
+  └─ extensions/milfological/ (chthonic-archive)
+       ├─ auto_caption.py    [Tier 1 — SD.NEXT JoyCaption]
+       ├─ entity_cutout.py   [Tier 1 — InvokeAI Grounding DINO + SAM2]
+       └─ entity_pixelart.py [Tier 1 — SD.NEXT img_to_pixelart]
+```
+
+### XIII.2 — Revised Priority Queue
+
+| Priority | Module | Source | VRAM | Value |
+|---------|--------|--------|------|-------|
+| **P1** | `entity_cutout_auto.py` | InvokeAI Grounding DINO + SAM2 | 3GB | Text prompt → entity PNG. Zero annotation. |
+| **P1** | `auto_caption.py` | SD.NEXT JoyCaption | 8GB | Caption all generated assets → manifest |
+| **P1** | `entity_pixelart.py` | SD.NEXT img_to_pixelart | — | Portrait → game sprite |
+| **P2** | `face_embed.py` | ComfyUI PhotoMaker | 4GB | Face embed per entity → style lock |
+| **P2** | `entity_glsl_vfx.py` | ComfyUI GLSL nodes | GPU | In-graph VFX shader for dungeon atmosphere |
+| **P3** | `entity_lora_trainer.py` | ComfyUI in-graph trainer | 20GB | Entity LoRA from reference set |
+| **P3** | `entity_video.py` | InvokeAI Anima / ComfyUI Kling API | varies | Entity animation for cutscenes |
+
+---
+
+*Addendum filed by Claudine Sin'claire — ComfyUI archaeological sweep (SAM3 + GLSL + PhotoMaker + training + 20 API nodes), InvokeAI sweep (Grounding DINO + SAM2, Flux Kontext/Fill, Z-Image regional, Flux.2 Klein, multi-user, Apache-2.0), Forge summary (UnetPatcher + LayerDiffuse + GGUF ladder). Five-candidate matrix complete.*
