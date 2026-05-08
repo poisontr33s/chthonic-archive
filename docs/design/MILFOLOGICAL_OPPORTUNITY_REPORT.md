@@ -815,4 +815,226 @@ ASSET PIPELINE
 
 ---
 
-*Addendum filed by Claudine Sin'claire — ComfyUI archaeological sweep (SAM3 + GLSL + PhotoMaker + training + 20 API nodes), InvokeAI sweep (Grounding DINO + SAM2, Flux Kontext/Fill, Z-Image regional, Flux.2 Klein, multi-user, Apache-2.0), Forge summary (UnetPatcher + LayerDiffuse + GGUF ladder). Five-candidate matrix complete.*
+## §XIV — Forge py3.12 Branch: Live State (2025)
+
+### XIV.1 — Branch Status
+
+| Field | Value |
+|-------|-------|
+| Branch | `py3.12` (Panchovix fork) |
+| Status | 2 commits ahead of main; active maintenance |
+| Latest bundle | `cu124_torch24` (Feb 2024) — **NO cu128 bundle published** |
+| Python | 3.12 (official branch target) |
+| Torch | Requirements pin 2.4.x+cu124; cu128 requires manual torch install |
+| License | AGPL-3.0 |
+
+### XIV.2 — CUDA 12.8 Gap + Resolution Path
+
+The py3.12 branch does not ship a cu128 bundle. Resolution sequence:
+
+1. Source-install from py3.12 branch
+2. `pip install torch==2.11.0+cu128 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128`
+3. bitsandbytes cu128: PR `modules_forge/#2712` (adds CUDA 12.8 support)
+4. Remaining deps from `requirements_versions.txt`
+
+### XIV.3 — Known Status Gaps
+
+| Feature | Status |
+|---------|--------|
+| Flux ControlNet | Not implemented in py3.12 branch |
+| Union ControlNet | Not implemented |
+| OFT LoRAs | Broken (py3.12 branch regression) |
+| bitsandbytes CUDA 12.8 | Available via PR #2712 (modules_forge) |
+
+### XIV.4 — UnetPatcher Hook API (unet.py, 763 lines)
+
+**`transformer_options["patches"]`** — additive modifier dicts:
+
+```python
+patches["attn1"]                          # pre-attention modifier
+patches["attn1_output_patch"]             # post-attention modifier
+patches["attn2_patch"]                    # cross-attn (text→image)
+patches["attn2_output_patch"]             # post-cross-attn modifier
+patches["middle_patch"]                   # UNet middle block
+patches["input_block_patch"]              # encoder block (before skip)
+patches["input_block_patch_after_skip"]   # encoder block (after skip)
+patches["output_block_patch"]             # decoder block modifier
+```
+
+**`transformer_options["patches_replace"]`** — full attention replacement (key = `(block_type, layer, idx)` tuple):
+
+```python
+patches_replace[(block[0], block[1], block_index)] = custom_attn_fn
+```
+
+**`transformer_options["block_modifiers"]`** — block-level hook:
+```python
+# Signature: modifier(h, phase, transformer_options) → h
+# phase: 'before' | 'after'
+```
+
+**`transformer_options["block_inner_modifiers"]`** — per-layer modifier.
+**`transformer_options["group_norm_wrapper"]`** — GroupNorm override.
+
+**Extension entry pattern:**
+```python
+patcher = model_management.get_model_object(model, "model").clone()
+patcher.set_model_output_block_patch(my_output_fn)
+# or directly:
+patcher.model_options["transformer_options"]["patches"]["attn1"] = [my_hook]
+```
+
+---
+
+## §XV — Python Version Ladder + uv Strategy
+
+### XV.1 — Backend Support Matrix
+
+| Backend | Official Python Support | Notes |
+|---------|------------------------|-------|
+| Forge (py3.12 branch) | **3.12** | xformers/triton block cp313+ |
+| ComfyUI | 3.10–3.12 (recommended) | 3.12 reported stable by community |
+| InvokeAI | 3.10–3.12 | pyproject.toml pinned |
+| tabbyAPI | **3.10 \| 3.11 \| 3.12** | Latest: cp312 FA2 wheel fix (4d ago). cp314 = **unsupported upstream** |
+| oobabooga/textgen | 3.9+ | CI on 3.10, 3.11, 3.12 |
+| TensorRT-LLM | 3.10+ | No cp313/cp314 wheels; Docker primary |
+| KoboldCpp | N/A (C++ binary) | Python launcher only |
+| SD.NEXT | 3.10–3.12 | pip-based install |
+
+**Critical:** System Python 3.14 is **not usable** for any of the above inference backends. cp314 wheels do not exist for the GPU extension stack (xformers, triton, bitsandbytes, flash_attn upstream).
+
+### XV.2 — Correction: tabbyAPI cp314
+
+Prior local session built flash_attn 2.8.3 from source for cp314. This is a **user-side workaround only** — not upstream support. tabbyAPI badge = `3.10 | 3.11 | 3.12` (confirmed 2025-05-09 live sweep). The cp314 local build has no upstream wheel and no CI coverage in tabbyAPI; will require rebuilding after each dependency update.
+
+**Recommendation:** `uv python 3.12` for all inference-adjacent venvs. Reserve system cp314 for repo tooling, probes, and custom scripts.
+
+### XV.3 — uv Per-Project Pin Strategy
+
+```bash
+# SD venv: Python 3.12
+cd dev/sd-candidates/forge && echo "3.12" > .python-version
+uv venv && uv pip install -r requirements_versions.txt
+
+# tabbyAPI: Python 3.11 (safest FA2 wheel coverage)
+cd dev/tabbyAPI && echo "3.11" > .python-version
+uv sync
+
+# Repo tooling: stays on 3.14 (system default, no .python-version at root)
+```
+
+`uv python install 3.12` pulls a standalone build from python-standalone-builds — no conflict with system 3.14. Each project directory is self-contained.
+
+---
+
+## §XVI — LLM Frontend + TensorRT Survey
+
+### XVI.1 — Five-Tool Candidate Summary
+
+| Tool | Lang | Stars | LLM Backend | TensorRT | Image Gen | API Surface |
+|------|------|-------|-------------|----------|-----------|-------------|
+| **SillyTavern v1.18.0** | Node.js (JS 86%) | 27.2k | External API calls only | ❌ | ❌ | Consumer |
+| **oobabooga/textgen v4.8** | Python | 47k | llama.cpp · ExLlamaV3 · Transformers · **TensorRT-LLM** | ✅ native | Z-Image-Turbo tab | OpenAI + Anthropic compat |
+| **TensorRT-LLM v1.2.1** | Python/C++/CUDA | 13.6k | Core inference library | ✅ (is TRT) | Diffusion models (added 2025-04-03) | NVIDIA Dynamo / Triton |
+| **KoboldCpp v1.112.2** | C++ (93%) | 10.5k | GGUF / llama.cpp | ❌ CUDA/Vulkan only | SD1.5/SDXL/SD3/Flux/Z-Image/Klein | A1111Forge + ComfyUI + OpenAI + Ollama |
+| **tabbyAPI (rolling)** | Python | 1.2k | ExLlamaV2 + ExLlamaV3 | ❌ | ❌ | OpenAI compat |
+
+### XVI.2 — TensorRT-LLM (NVIDIA/TensorRT-LLM)
+
+- **v1.2.1** (stable, 3 weeks ago) / **v1.3.0rc15** (main, 2 days ago) / 13.6k stars / 466 contributors
+- Python 3.10+ minimum — **no cp313/cp314**
+- Architecture: PyTorch-native (since release/1.1) — high-level Python API over CUDA kernels
+- **Visual generation:** diffusion model support added 2025-04-03
+- Integration targets: NVIDIA Dynamo, Triton Inference Server, NeMo
+- Deployment: Docker primary (Linux); Windows via WSL2/Docker Desktop
+- **Verdict:** Production backend library, not a standalone UI server. Best path = oobabooga/textgen as the frontend dispatching to TRT-LLM as its backend. Direct TRT-LLM usage requires a Docker/Linux environment.
+
+### XVI.3 — KoboldCpp (Dark Horse — Single Binary)
+
+Single-file executable (no Python env) with the broadest multimodal coverage of any local tool:
+
+| Capability | Status |
+|-----------|--------|
+| LLM inference | ✅ GGUF (llama.cpp) |
+| Image gen | ✅ SD1.5 / SDXL / SD3 / Flux / Z-Image-Turbo / Klein |
+| Video gen | ✅ WAN 2.2 |
+| TTS | ✅ XTTS |
+| STT | ✅ Whisper |
+| Music gen | ✅ |
+| Vision (image input) | ✅ |
+| MCP server | ✅ |
+| GPU | CUDA (`--usecuda`) or Vulkan (`--usevulkan`) |
+| TensorRT | ❌ |
+
+API endpoints: KoboldCppApi, OpenAiApi, OllamaApi, **A1111ForgeApi**, **ComfyUiApi**, WhisperTranscribeApi, XttsApi.
+
+The A1111Forge-compatible API means existing scripts written for Forge/A1111 can route to KoboldCpp with zero code changes.
+
+**Verdict:** Optimal for minimal-infrastructure deployments (one binary, one process). Not suitable for fine-tuned MILFOLOGICAL image pipelines requiring ControlNet, LoRA, custom samplers — those belong to Forge/ComfyUI. Useful as a sidecar for GGUF LLM inference without a separate Python backend.
+
+### XVI.4 — oobabooga/textgen v4.8 (Best TensorRT Path)
+
+- v4.8 (latest commit: yesterday). Python 3.9+. 47k stars. Former name: text-generation-webui.
+- **Backends:** llama.cpp, ik_llama.cpp (optimized fork), Transformers, ExLlamaV3, **TensorRT-LLM** (native integration)
+- Image gen: Z-Image-Turbo tab with 4-bit/8-bit quant
+- Electron desktop app + OpenAI/Anthropic-compatible API server + MCP servers
+- **Verdict for this stack:** Primary LLM frontend recommendation. TRT-LLM backend gives RTX 4090 optimal throughput for supported models. Pairs with tabbyAPI via OpenAI API when ExLlama-format models are needed.
+
+### XVI.5 — DLSS/DLAA Scope Boundary
+
+DLSS and DLAA are game engine rendering technologies operating through NVAPI, Unreal/Unity plugins, or `VK_NV_optical_flow`. **Not applicable to Python inference stacks.** Scope: vulkan-lab cli-renderer (G4+ optical flow diff pass, separate architectural track) and future cRPG renderer in game/.
+
+---
+
+## §XVII — A1111 → Forge Hook Bridge Reference
+
+### XVII.1 — Hook Parity Map
+
+| A1111 Hook | Forge Equivalent | Scope |
+|-----------|-----------------|-------|
+| `on_cfg_denoised(params)` | `transformer_options["patches"]["attn1"]` | Post-denoiser step |
+| `on_cfg_step(params)` | `transformer_options["block_modifiers"]` | Per-step modifier |
+| `Script.process_batch()` | `UnetPatcher.clone()` + patch dict | Batch-level injection |
+| `Script.postprocess_image()` | Extension callback after decode | Post-processing |
+| `Script.ui(is_img2img)` | Same (Forge inherits A1111 Script API) | UI panel |
+| `CFGDenoiser` subclass | `patches_replace[(block, layer, idx)]` | Full attention replacement |
+
+Forge inherits the A1111 Script API surface. Extensions using `Script.ui()`, `Script.process()`, `Script.postprocess_image()` are forward-compatible with Forge without modification.
+
+### XVII.2 — ControlNet API Parity
+
+| Operation | A1111 API | Forge API | Notes |
+|-----------|-----------|-----------|-------|
+| Preprocessor call | `Processor(name)(image)` | Same | Preprocessor registry preserved |
+| ControlNet unit injection | `ControlNetUnit(model, weight, ...)` | Same dataclass | Direct port |
+| Multi-ControlNet | `list[ControlNetUnit]` | Same | No API change |
+| IP-Adapter | Separate extension | Forge built-in `ip_adapter` module | Forge consolidates |
+
+### XVII.3 — Face Restoration Interface
+
+| Tool | A1111 | Forge | Notes |
+|------|-------|-------|-------|
+| GFPGAN | `modules.gfpgan_model` | Inherited | Same API surface |
+| CodeFormer | `modules.codeformer_model` | Inherited | Same |
+| Registration | `postprocessing.register_script()` | Same | Forge uses A1111 Script system |
+
+### XVII.4 — Upscaler Registration
+
+Both A1111 and Forge use the same upscaler registration pattern (forward-compatible):
+
+```python
+from modules.upscaler import Upscaler, UpscalerData
+
+class MyUpscaler(Upscaler):
+    def __init__(self, dirname):
+        self.name = "MyUpscaler"
+        self.scalers = [UpscalerData("MyUpscaler 4x", "path/to/model.pth", self)]
+
+    def do_upscale(self, img, selected_model):
+        # img is PIL.Image
+        return upscaled_pil_image
+```
+
+---
+
+*Addendum filed by Claudine Sin'claire — ComfyUI archaeological sweep (SAM3 + GLSL + PhotoMaker + training + 20 API nodes), InvokeAI sweep (Grounding DINO + SAM2, Flux Kontext/Fill, Z-Image regional, Flux.2 Klein, multi-user, Apache-2.0), Forge summary (UnetPatcher + LayerDiffuse + GGUF ladder). Five-candidate matrix complete. §XIV–§XVII addendum: Forge py3.12 live state + CUDA 12.8 gap, Python version ladder (tabbyAPI cp314 correction), LLM frontend + TensorRT-LLM survey (oobabooga/textgen/KoboldCpp/tabbyAPI), A1111→Forge hook bridge reference.*
