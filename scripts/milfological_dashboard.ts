@@ -41,11 +41,35 @@ interface EntitySnap {
 
 // ── A1111 / SD.NEXT API probe ─────────────────────────────────────────────────
 
+type SDEngine = "sdnext" | "a1111" | "unknown";
+
 interface A1111Status {
   live: boolean;
   url: string;
   model: string | null;
+  engine: SDEngine;
   error: string | null;
+}
+
+/** Detect whether the running server is SD.NEXT or A1111.
+ *  SD.NEXT exposes /sdapi/v1/platform; A1111 returns 404 for that path.
+ *  Fallback: check X-App-Id header or version string keywords. */
+async function detectEngine(url: string, signal: AbortSignal): Promise<SDEngine> {
+  try {
+    const r = await fetch(`${url}/sdapi/v1/platform`, { signal });
+    if (r.ok) return "sdnext";
+    if (r.status === 404) {
+      // Try version endpoint — SD.NEXT includes "SD.Next" in the version string
+      const vr = await fetch(`${url}/sdapi/v1/version`, { signal });
+      if (vr.ok) {
+        const vj = await vr.json() as Record<string, unknown>;
+        const ver = String(vj.version ?? "").toLowerCase();
+        if (ver.includes("sd.next") || ver.includes("sdnext") || ver.includes("next")) return "sdnext";
+      }
+      return "a1111";
+    }
+  } catch { /* no-op */ }
+  return "unknown";
 }
 
 async function probeA1111(): Promise<A1111Status> {
@@ -55,13 +79,18 @@ async function probeA1111(): Promise<A1111Status> {
     const tid = setTimeout(() => ctrl.abort(), 2500);
     const r = await fetch(`${url}/sdapi/v1/options`, { signal: ctrl.signal });
     clearTimeout(tid);
-    if (!r.ok) return { live: false, url, model: null, error: `HTTP ${r.status}` };
+    if (!r.ok) return { live: false, url, model: null, engine: "unknown", error: `HTTP ${r.status}` };
     const opts = await r.json() as Record<string, unknown>;
     const model = (opts.sd_model_checkpoint as string | undefined) ?? null;
-    return { live: true, url, model, error: null };
+    // Engine detection on a fresh controller (options already fetched — server is live)
+    const ctrl2 = new AbortController();
+    const tid2 = setTimeout(() => ctrl2.abort(), 1500);
+    const engine = await detectEngine(url, ctrl2.signal);
+    clearTimeout(tid2);
+    return { live: true, url, model, engine, error: null };
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : String(e);
-    return { live: false, url, model: null, error: msg.includes("abort") ? "timeout" : msg.slice(0, 60) };
+    return { live: false, url, model: null, engine: "unknown", error: msg.includes("abort") ? "timeout" : msg.slice(0, 60) };
   }
 }
 
@@ -252,9 +281,16 @@ function buildHtml(
     return `<div class="ext-row"><span>${icon}</span><span class="ext-label" style="color:${col}">${esc(f.label)}</span></div>`;
   }).join("");
 
-  // ── A1111 status badge
+  // ── A1111 status badge (with engine identity)
+  const engineLabel: Record<string, string> = { sdnext: "SD.NEXT", a1111: "A1111", unknown: "???" };
+  const engineColor: Record<string, string> = { sdnext: "#9b59b6", a1111: "#2980b9", unknown: "#888" };
+  const engName = engineLabel[a1111.engine] ?? "???";
+  const engColor = engineColor[a1111.engine] ?? "#888";
+  const engineTag = a1111.live
+    ? `<span style="background:${engColor};color:#fff;font-size:9px;padding:1px 5px;border-radius:2px;letter-spacing:.1em">${engName}</span>`
+    : "";
   const a1111Badge = a1111.live
-    ? `<span class="a1111-live">● LIVE</span> <span class="a1111-model">${esc(a1111.model ?? "model unknown")}</span>`
+    ? `<span class="a1111-live">● LIVE</span> ${engineTag} <span class="a1111-model">${esc(a1111.model ?? "model unknown")}</span>`
     : `<span class="a1111-dead">● OFFLINE</span> <span class="a1111-err">${esc(a1111.error ?? "unreachable")}</span>`;
 
   // ── Media type capability matrix
