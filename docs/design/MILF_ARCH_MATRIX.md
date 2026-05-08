@@ -13,6 +13,8 @@ description: Architecture-layer mine-state across 5 SD backends. NOT a capabilit
 >
 > **Mine pass 1 source:** `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. 🔍 MINE marks cells that need a direct filesystem sweep.
 >
+> **Clone state + task sequencing:** `docs/design/SD_CANDIDATE_REGISTRY.md` — ground truth for what is cloned, what has been swept, what is pending, and what each stub depends on. Read before editing this matrix or creating new stubs.
+>
 > **Feeds:** `extensions/milfological/src/milfological/protocols.py` — a provisional interface surface derived from SHARED rows. It is not the architecture — it is the current best read of the convergence. It grows.
 
 ## Soft-Lock Dynamic Frame
