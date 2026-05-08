@@ -30,6 +30,8 @@ from pathlib import Path
 import httpx
 from PIL import Image
 
+from milfological.backends.invokeai import InvokeAIAdapter
+
 
 INVOKEAI_DEFAULT_URL = "http://127.0.0.1:9090"
 
@@ -82,9 +84,11 @@ def cutout_entity(
     Raises:
         NotImplementedError: Stub — implementation pending.
     """
-    raise NotImplementedError(
-        "entity_cutout: background removal not yet implemented."
-    )
+    img = Image.open(image_path)
+    cutout: Image.Image = InvokeAIAdapter(base_url=api_url).cutout(img, prompt)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    cutout.save(str(output_path), format="PNG")
+    return output_path
 
 
 def main() -> None:

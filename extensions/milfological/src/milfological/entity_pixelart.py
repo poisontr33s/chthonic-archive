@@ -36,6 +36,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from milfological.backends.sdnext import SDNextAdapter
+
 
 SDNEXT_DEFAULT_URL = "http://127.0.0.1:7860"
 
@@ -81,10 +83,12 @@ def pixelart_entity(
     Raises:
         NotImplementedError: Stub — implementation pending.
     """
-    raise NotImplementedError(
-        "entity_pixelart: SD.NEXT img2img pixel-art pipeline not yet implemented. "
-        "See §VII.5 of MILFOLOGICAL_OPPORTUNITY_REPORT.md."
-    )
+    img = Image.open(cutout_path)
+    sprite: Image.Image = SDNextAdapter(base_url=api_url).pixelart(img, block_size=tile_size)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / f"{cutout_path.stem}_sprite_{tile_size}px.png"
+    sprite.save(str(output_path), format="PNG")
+    return output_path
 
 
 def pack_sprite_sheet(

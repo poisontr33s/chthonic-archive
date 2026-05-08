@@ -42,7 +42,7 @@ cross-refs:
 | C6 | KoboldCpp | LostRuins/koboldcpp | `dev/sd-candidates/koboldcpp/` | ✅ | ⚠️ web-research only | §XVI.3 |
 | C7 | oobabooga/textgen | oobabooga/text-generation-webui | `dev/sd-candidates/textgen/` | ✅ | ⚠️ web-research only | §XVI.4 |
 
-### Extended Candidates (5 candidates — mine pass 1 web-research; see §6 for full profiles)
+### Extended Candidates (mine pass 1 web-research; see §6 for full profiles)
 
 | ID | Candidate | Repo | Status | API | Clone | Priority |
 |----|-----------|------|--------|-----|-------|---------|
@@ -51,6 +51,16 @@ cross-refs:
 | C10 | sd.cpp | leejet/stable-diffusion.cpp | ACTIVE | CLI/webui (no sdapi) | Candidate | HIGH (GGUF lane) |
 | C11 | forge-ll | lllyasviel/stable-diffusion-webui-forge | MAINTENANCE (11mo) | /sdapi/v1/ | DEFERRED | HIGH (LayerDiffuse) |
 | C12 | Easy Diffusion | easydiffusion/easydiffusion | ACTIVE v3.0.16 | None (sdkit) | ❌ Rejected | ❌ SKIP |
+
+### Niche Source-Code Candidates (mine-value axis — see §7 for classification frame + profiles)
+
+| ID | Candidate | Repo | Mine Class | Clone | Priority |
+|----|-----------|------|------------|-------|----------|
+| C13 | Draw Things | drawthings-community/draw-things-community | TRANSLATE (Metal→Vulkan tiling) | ❌ Not needed | LOW |
+| C14 | Pinokio | pinokio-computer/pinokio | SCHEMA (workflow topology) | ❌ Not needed | REFERENCE |
+| C15 | Diffusion Bee | divamgupta/diffusionbee-stable-diffusion-ui | THIN-SHELL (→ C10 sd.cpp) | ❌ See [B6] | LOW |
+| C16 | IREE-Turbine | iree-org/iree-turbine | PORTABLE (Vulkan SPIR-V via IREE) | `pip install` | MEDIUM |
+| C17 | diffusion-rs | pykeio/diffusion-rs | PORTABLE (Rust binding → sd.cpp) | `cargo add` | MEDIUM |
 
 ---
 
@@ -164,7 +174,7 @@ UNBLOCKED NOW — all sweep prerequisites met:
   [S3]  Create backends/a1111.py            ← C2 swept
   [S4]  Create backends/invokeai.py         ← C4 swept
   [S5]  Create backends/comfyui.py          ← C3 swept
-  [S6]  Refactor 3 Tier 1 stubs            ← after [S1] + relevant backend exists
+  [S6]  Refactor 3 Tier 1 stubs            ← DONE — wired to backend adapters (2026-05-09)
 
 BLOCKED — pending filesystem sweeps:
   [B1]  Sweep C5 modules_forge/unet_patcher.py   → then [B2]
@@ -188,6 +198,16 @@ EXTENDED CANDIDATES — blocked on prioritization decision:
         → sweep modules_forge/unet_patcher.py canonical form
         → backends/forge_ll.py (LayerDiffuse + UnetPatcher)
         Trigger: sprite alpha pipeline or UnetPatcher hook prioritized
+
+NICHE SOURCE-CODE CANDIDATES (§7) — source mine, no integration clone:
+  [O3]  C13 Draw Things — read TiledDiffusion.swift; extract tiling algorithm for Vulkan compute
+        Trigger: VRAM-constrained high-res generation is prioritized
+  [O4]  C14 Pinokio — archaeology pass on app manifest corpus; reference only
+  [O5]  C15 Diffusion Bee — read diffusion_bee/backend/ Python scripts; feeds [B6] design
+  [O6]  C16 IREE-Turbine — install + sweep turbine_models/; Vulkan SPIR-V SD export
+        Trigger: Vulkan compute inference (vulkan-lab/cli-renderer/) prioritized
+  [O7]  C17 diffusion-rs — read src/lib.rs; Rust API surface reference for vulkan-lab Cargo stack
+        Trigger: Rust-native SD inference in vulkan-lab/ is prioritized
 
 REJECTED — not worth further investment:
   [R1]  Fooocus (C8) — GPL-3.0 + stale + SDXL-only + no HTTP API
@@ -334,3 +354,113 @@ Research date: 2026-05-09. No filesystem sweeps performed. All data from GitHub 
 | Python 3.14 compat | Unknown — sdkit dependency; likely not tested on 3.14 |
 | MINE priority | ❌ SKIP — non-standard license risk + non-standard API (no sdkit → protocols.py bridge path) |
 | Clone | ❌ Not cloned — license incompatibility blocks integration into MILFOLOGICAL pipeline |
+
+---
+
+## §7 — Niche Source-Code Candidates (Mine-Value Axis: Source Code, Not Runtime OS)
+
+> **Classification axis correction (2026-05-09):**
+> Prior triage dismissed macOS-native and niche candidates based on runtime OS portability.
+> That framing is wrong for mining purposes. The correct question is not *"can we run this app?"* but *"does the source code contain patterns worth extracting?"* Whether a candidate's code is relevant depends on: (1) what algorithmic or architectural patterns are embedded in the source; (2) whether those patterns translate to the MILFOLOGICAL pipeline — directly (PORTABLE) or via translation work (TRANSLATE); (3) whether the codebase expands the total mine surface. Even outlandish or OS-bound approaches contribute to the scope and quality of the batch. The runtime is a deployment detail. The source is the mine.
+>
+> **The rule:** *"whether it is OS relevant is dependent on how we use the underlying code and scope of it all, not the runtime."*
+
+### Source Code Mine Classification
+
+| Class | Meaning | Action |
+|-------|---------|--------|
+| **PORTABLE** | OS-independent at source — patterns directly usable or minimally ported | Clone/install; sweep for protocol patterns and inference graph topology |
+| **TRANSLATE** | OS-bound bindings (Metal, Core ML, ANE) but portable algorithmic core — tiling, scheduling, quantization logic translates to Vulkan/CUDA | Read source; extract algorithm, ignore runtime bindings |
+| **SCHEMA** | No inference code — value is in configuration topology, workflow definitions, or app registry patterns | Archaeology pass only; do not clone |
+| **THIN-SHELL** | App wrapper over a known backend candidate — mine value routes entirely to the parent backend entry | Cross-reference parent; no independent clone needed |
+| **REJECT** | No extractable patterns, or license blocks extraction | Skip |
+
+---
+
+### C13 — Draw Things
+
+| Field | Value |
+|-------|-------|
+| Repo | drawthings-community/draw-things-community |
+| Status | **ACTIVE** — Apple Seed program, continuous updates |
+| License | MIT-compatible (check distribution clauses for model weights) |
+| Stars | 6.5k+ |
+| Stack | Swift 80%, Objective-C 12%, Metal (inline compute shaders) |
+| Runtime | macOS / iOS — Core ML + Apple Neural Engine |
+| Mine class | **TRANSLATE** — OS-bound at bindings layer, portable at algorithm layer |
+| Key source patterns | (1) **Tiled inference** — `TiledDiffusion` splits high-res generation into overlapping tiles, denoises per-tile with seam blending; translates to VRAM-efficient Vulkan compute tiling. (2) **LoRA merge at inference time** — weight-merge approach (not A1111 patch-style); different tradeoff surface. (3) **Metal compute shaders** for attention — FlashAttention-equivalent in Metal; topology translates to Vulkan GLSL or CUDA. (4) **Core ML model pipeline** — .safetensors → .mlpackage compilation; packaging approach is reference for any model-to-native-runtime conversion. |
+| Mine priority | LOW — tiling pattern is the extractable gold; Core ML bindings are noise |
+| Clone | ❌ Not needed — read source via GitHub; key files: `Sources/DataModels/`, `Libraries/SwiftDiffusion/` |
+| Axis note | "macOS only" is a runtime fact, not a mine fact. The tiling algorithm in `TiledDiffusion.swift` is architecture-neutral. |
+
+---
+
+### C14 — Pinokio
+
+| Field | Value |
+|-------|-------|
+| Repo | pinokio-computer/pinokio |
+| Status | **ACTIVE** — v3.x, continuously updated |
+| License | CC0 (launcher code); individual app scripts vary |
+| Stars | 13k+ |
+| Stack | JavaScript / Node.js / Electron |
+| Runtime | macOS, Windows, Linux (cross-platform Electron) |
+| Mine class | **SCHEMA** — no inference code; value is in ecosystem topology |
+| Key source patterns | (1) **Pinokio app manifest format** (`.pinokio` JSON) — declarative spec for AI app install/configure/run chains. 200+ apps registered. (2) **Workflow topology corpus** — each app's manifest describes how to sequence downloads, conda/venv setup, backend start, and API endpoint exposure. This is a structured corpus of AI deployment patterns. (3) **Multi-backend routing** — some app manifests chain SD + LLM + ControlNet. Reference for integration topology. |
+| Mine priority | REFERENCE — no inference code to mine; topology archaeology only. The manifest corpus is a secondary reference when designing MILFOLOGICAL's workflow orchestration layer. |
+| Clone | ❌ Not needed — manifests readable via GitHub. Core inference value: nil. |
+| Axis note | "App runner, limited relevance" is only true for the runner code itself. The manifest ecosystem is a topology database. |
+
+---
+
+### C15 — Diffusion Bee
+
+| Field | Value |
+|-------|-------|
+| Repo | divamgupta/diffusionbee-stable-diffusion-ui |
+| Status | **ACTIVE** — v3.x updates |
+| License | Custom (check before any redistribution) |
+| Stars | 7.5k+ |
+| Stack | Swift (UI shell) + Python backend scripts + sd.cpp (C++ binary) |
+| Runtime | macOS only |
+| Mine class | **THIN-SHELL** — Swift UI wraps Python scripts that wrap sd.cpp binary |
+| Key source patterns | (1) **Python invocation scripts** in `diffusion_bee/backend/` — show how sd.cpp is called programmatically from Python: subprocess management, progress parsing, model path resolution. Directly informs [B6] `backends/sd_cpp.py` design. (2) **CLI argument schema** — the set of flags passed to sd.cpp via Python; cross-references C10's CLI surface. |
+| Mine priority | LOW — value routes entirely to C10. Read `diffusion_bee/backend/` when implementing [B6]; do not clone repo. |
+| Clone | ❌ Not needed — cross-reference C10 (sd.cpp) [B6]. Python backend scripts readable via GitHub. |
+| Axis note | "macOS only" describes the UI shell. The Python backend scripts have zero macOS-specific code. |
+
+---
+
+### C16 — IREE-Turbine
+
+| Field | Value |
+|-------|-------|
+| Repo | iree-org/iree-turbine |
+| Status | **ACTIVE** — IREE project / Google Research |
+| License | Apache 2.0 |
+| Stars | 800+ |
+| Stack | Python 78%, C++ (IREE runtime) |
+| Runtime | Cross-platform — Linux, macOS, Windows; compute: CUDA, Vulkan, Metal, CPU |
+| Mine class | **PORTABLE** — purely Python API; OS-independent |
+| Key source patterns | (1) **IREE compiler** — lowers PyTorch `nn.Module` graphs to MLIR → compiles to Vulkan SPIR-V, CUDA PTX, or CPU. This is a model-to-Vulkan-shader compilation pipeline, directly aligned with the Vulkan GPU lane in this repo. (2) **`turbine_models/`** — pre-built IREE export pipelines for SD models (SDXL, SD3, FLUX). The export scripts show how to extract a computation graph from a diffusers model and lower it to hardware-specific kernels. (3) **Vulkan command graph patterns** — IREE's Vulkan HAL generates synchronization-correct command buffers; reference for multi-pass Vulkan compute pipelines. |
+| Mine priority | MEDIUM — Vulkan SPIR-V generation for SD models aligns with `vulkan-lab/`. No HTTP API; not an inference server. Mine value is at the GPU compute / shader compilation layer, not at the backend adapter layer. |
+| Clone | `pip install iree-turbine` (PyPI) or `git clone --depth=1 https://github.com/iree-org/iree-turbine` when Vulkan compute inference is prioritized. |
+| Axis note | No OS dependency at source. Directly portable to any platform with a Vulkan driver. |
+
+---
+
+### C17 — diffusion-rs
+
+| Field | Value |
+|-------|-------|
+| Repo | pykeio/diffusion-rs |
+| Status | **ACTIVE** — Rust crate, crates.io published |
+| License | Apache 2.0 |
+| Stars | 700+ |
+| Stack | Rust 95%, GLSL shaders |
+| Runtime | Cross-platform — Windows, Linux, macOS; Vulkan, CUDA, Metal backends |
+| Mine class | **PORTABLE** — pure Rust; OS-independent |
+| Key source patterns | (1) **Rust API over sd.cpp** — wraps the sd.cpp C library with a safe Rust interface; `DiffusionModel::new()` / `generate()` / `img2img()`. This is the Rust equivalent of the Python `stable-diffusion-cpp-python` binding — directly relevant if `backends/sd_cpp.py` [B6] has a Rust counterpart in `vulkan-lab/`. (2) **GLSL compute shaders** included — custom Vulkan shader pipeline for image processing steps. (3) **Cross-backend dispatch** (Vulkan / Metal / CPU) via sd.cpp's backend enum; the dispatch architecture is reference for `vulkan-lab/` multi-backend design. |
+| Mine priority | MEDIUM — directly relevant to `vulkan-lab/cli-renderer/` Cargo stack + [B6] sd.cpp lane. `cargo add diffusion-rs` is the integration path; no repo clone needed. |
+| Clone | `cargo add diffusion-rs` — not a source clone. Read crate docs + `src/lib.rs` via GitHub for API surface. |
+| Axis note | Pure Rust, zero OS-specific code at the library layer. Vulkan and Metal are selectable backends, not requirements. |

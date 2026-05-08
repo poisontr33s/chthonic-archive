@@ -31,6 +31,8 @@ from pathlib import Path
 import httpx
 from PIL import Image
 
+from milfological.backends.sdnext import SDNextAdapter
+
 
 SDNEXT_DEFAULT_URL = "http://127.0.0.1:7860"
 JOYCAPTION_MODEL = "joycaption-alpha-two"
@@ -56,10 +58,8 @@ def caption_image(image_path: Path, api_url: str = SDNEXT_DEFAULT_URL) -> str:
     Raises:
         NotImplementedError: Stub — implementation pending.
     """
-    raise NotImplementedError(
-        "auto_caption: SD.NEXT JoyCaption integration not yet implemented. "
-        "See §VII.3 of MILFOLOGICAL_OPPORTUNITY_REPORT.md for API spec."
-    )
+    img = Image.open(image_path)
+    return SDNextAdapter(base_url=api_url).interrogate(img, model=JOYCAPTION_MODEL)
 
 
 def caption_batch(
