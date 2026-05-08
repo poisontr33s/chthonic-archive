@@ -1,6 +1,6 @@
 # Overnight Refactor Mode — Core Contract
 
-A deterministic, creative, self-tooling workflow for GPT-5.2 inside this repository.
+A deterministic, creative, self-tooling workflow inside this repository.
 
 This document defines how GitHub Copilot (GPT-5.2) operates inside this repository.
 It blends creativity, rationality, and deterministic micro-iteration into a single continuous workflow.

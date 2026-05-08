@@ -170,6 +170,14 @@
             margin: 0;
             padding-left: 18px;
         }
+        .status {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--input);
+            color: var(--fg);
+            padding: 8px;
+            overflow-wrap: anywhere;
+        }
         @media (max-width: 760px) {
             header, main {
                 grid-template-columns: 1fr;
@@ -187,6 +195,8 @@
             <div id="selected-path" class="path">No export selected</div>
         </div>
         <div class="actions">
+            <button id="open-claude" class="secondary">Open Claude Design</button>
+            <button id="import-capture">Import Capture</button>
             <button id="select">Select</button>
             <button id="refresh" class="secondary">Refresh</button>
             <button id="run-intake" class="secondary">Run Intake</button>
@@ -194,6 +204,8 @@
             <button id="copy-handoff">Copy Handoff</button>
         </div>
     </header>
+
+    <div id="status" class="status" hidden></div>
 
     <main>
         <div class="stack">

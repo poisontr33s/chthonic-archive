@@ -337,3 +337,7 @@ This order reflects mine pass 1 findings. It is not fixed — if a 🔍 MINE swe
 ---
 
 *Mine pass 1 filed by Claudine Sin'claire — sourced from `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. No direct filesystem sweep on candidates performed yet. 🔍 MINE markers are invitations, not blockers — each is a potential gold vein waiting for the next pass.*
+
+---
+
+### NOTE Batch mining and architectures are iterative. This matrix is a living document that tracks the current state of the mine across 5 SD backends. It is not a static contract — it evolves with each sweep, revealing new convergence, new divergence, and new gold. The goal is to navigate this landscape strategically, prioritizing high-value targets while remaining adaptable to new findings. The architecture emerges from the mine — it is not a pre-defined blueprint.

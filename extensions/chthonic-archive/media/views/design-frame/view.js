@@ -4,6 +4,8 @@ const reloadCount = Number(sessionStorage.getItem(hmrKey) || '0');
 const state = window.__DESIGN_FRAME_STATE__ || {};
 
 document.getElementById('select').addEventListener('click', () => vscode.postMessage({ type: 'selectExport' }));
+document.getElementById('open-claude').addEventListener('click', () => vscode.postMessage({ type: 'openClaudeDesign' }));
+document.getElementById('import-capture').addEventListener('click', () => vscode.postMessage({ type: 'importCapture' }));
 document.getElementById('refresh').addEventListener('click', () => vscode.postMessage({ type: 'refresh' }));
 document.getElementById('run-intake').addEventListener('click', () => vscode.postMessage({ type: 'runIntake' }));
 document.getElementById('open-contract').addEventListener('click', () => vscode.postMessage({ type: 'openContract' }));
@@ -39,6 +41,18 @@ function render() {
     renderPreview();
     renderContract();
     renderErrors();
+    renderStatus();
+}
+
+function renderStatus() {
+    const status = document.getElementById('status');
+    if (!state.statusMessage) {
+        status.hidden = true;
+        status.textContent = '';
+        return;
+    }
+    status.hidden = false;
+    status.textContent = state.statusMessage;
 }
 
 function renderGates() {

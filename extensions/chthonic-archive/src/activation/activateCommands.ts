@@ -71,6 +71,14 @@ export function activateCommands(context: vscode.ExtensionContext, deps: Activat
             void vscode.commands.executeCommand('chthonic.designFrameView.focus');
             void deps.designFrameProvider.selectExportRoot();
         }),
+        vscode.commands.registerCommand('chthonic.openClaudeDesignInBrowser', () => {
+            void deps.designFrameProvider.openClaudeDesign();
+        }),
+        vscode.commands.registerCommand('chthonic.importClaudeDesignCapture', () => {
+            void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
+            void vscode.commands.executeCommand('chthonic.designFrameView.focus');
+            void deps.designFrameProvider.importCapture();
+        }),
         vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
             if (!deps.workspaceRoot) {
                 void vscode.window.showWarningMessage('Workspace root is required to refresh workspace health.');
