@@ -2,18 +2,28 @@
 type: strategy
 category: architecture
 created: 2026-05-09
-source: MILFOLOGICAL_OPPORTUNITY_REPORT.md (§I–§XVII)
-status: seed — populated from report, no new sweeping
-description: Architecture-layer convergence matrix across 5 SD backends. NOT a capability matrix (§XIII already covers that). This file answers where the Backend protocol interface line draws.
+mine-pass: 1 (MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII)
+lock: soft — provisional groupings; expands with each subsequent sweep
+description: Architecture-layer mine-state across 5 SD backends. NOT a capability matrix (§XIII covers that). This file maps the current mine state — where convergence has been found, where unique gold lives, and where the ground is uncharted. No backend is out of scope.
 ---
 
 # MILF Architecture Convergence Matrix
 
-> **Purpose:** Identify SHARED rows (abstraction targets for `protocols.py`), VARIANT rows (per-candidate adapters), and UNIQUE rows (first-class mining signal — must NOT be collapsed).
+> **Purpose:** Track the current mine state across 5 SD inference backends. Group rows by convergence (SHARED), divergence (VARIANT), and unique gold (UNIQUE). All groupings are provisional — they reflect what mine pass 1 found, not what will remain fixed. Each subsequent sweep against any backend can promote a 🔍 MINE cell, split a SHARED row, or elevate a UNIQUE into a new protocol dimension.
 >
-> **Source of truth:** All entries sourced from `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. Citation markers reference sections. Gaps where filesystem sweep is still needed are marked `🔍 MINE`.
+> **Mine pass 1 source:** `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. 🔍 MINE marks cells that need a direct filesystem sweep.
 >
-> **Feeds:** `extensions/milfological/src/milfological/protocols.py` (not yet created — this matrix is its spec).
+> **Feeds:** `extensions/milfological/src/milfological/protocols.py` — a provisional interface surface derived from SHARED rows. It is not the architecture — it is the current best read of the convergence. It grows.
+
+## Soft-Lock Dynamic Frame
+
+This matrix operates on a **soft-lock**: provisional groupings derived from mine pass 1, open to revision as any backend is swept more deeply. No backend is out of scope. No interface is frozen.
+
+The `/sdapi/v1/` lineage (SD.NEXT + A1111 + Forge) shares a surface because they share **history** — not because that surface is the canonical standard. InvokeAI and ComfyUI are not deviants from a standard. They are distinct architectural families with their own gold veins — some of which (Grounding DINO+SAM2, SAM3 video track, Flux Kontext, GLSL shader nodes, fp4 in-graph LoRA trainer, 20+ API nodes) are **richer than anything in the `/sdapi/v1/` lineage**.
+
+The UNIQUE rows table is the primary value output of this matrix — those are the openers, not afterthoughts. SHARED rows define the provisional convergence surface; UNIQUE rows define the next modules. Both matter equally.
+
+**Mine-pass upgrade path:** When a 🔍 MINE cell is filled via filesystem sweep, update this file in place. If the fill reveals a new UNIQUE capability: add it to the UNIQUE table and create the target module stub. If it reveals convergence across backends: promote the row to SHARED and add it to the provisional interface. The interface grows forward — it does not lock.
 
 ---
 
@@ -29,7 +39,7 @@ description: Architecture-layer convergence matrix across 5 SD backends. NOT a c
 | Sampler list | `GET /sdapi/v1/samplers` | Same | Same | Per workflow | `GET /object_info` | **VARIANT** |
 | Progress/status | `GET /sdapi/v1/progress` | Same | Same | `GET /api/v1/queue/` | WebSocket stream | **VARIANT** |
 
-**Key insight:** SD.NEXT + A1111 + Forge share the full `/sdapi/v1/` surface. KoboldCpp exposes `A1111ForgeApi` endpoint — covers all three without modification (§XVI). InvokeAI and ComfyUI require dedicated adapters. **One `SdnextAdapter` covers 4 of 5 backends for txt2img + img2img + interrogate.**
+**Mine-pass 1 finding:** SD.NEXT + A1111 + Forge share the full `/sdapi/v1/` surface due to shared lineage. KoboldCpp exposes `A1111ForgeApi` — covers all three without modification (§XVI). InvokeAI uses `/api/v1/` + named workflows; ComfyUI uses `/api/` + WebSocket + JSON node graph. These are not deviations — they are different architectural philosophies that require different adapters. **One thin adapter covers the `/sdapi/v1/`-lineage family; InvokeAI and ComfyUI adapters unlock distinct gold that the lineage family does not have.**
 
 ---
 
@@ -46,7 +56,7 @@ description: Architecture-layer convergence matrix across 5 SD backends. NOT a c
 | GroupNorm override | 🔍 MINE | 🔍 MINE | `transformer_options["group_norm_wrapper"]` | No primitive | 🔍 MINE | **UNIQUE to Forge** |
 | Middle block hook | 🔍 MINE | 🔍 MINE | `patches["middle_patch"]` | No primitive | 🔍 MINE | **UNIQUE to Forge** |
 
-**Key insight:** Forge's `UnetPatcher` is architecturally the deepest hook system (§XIV.4 — 8 distinct patch keys + `patches_replace` + 3 modifier types). InvokeAI has **no UNet hook primitive** — all customisation is graph-level. This means `protocols.py` cannot provide a UNet hook interface that covers all 5 — it must expose it only where available. **MILFOLOGICAL hooks that require `attn1` injection should run on Forge; InvokeAI is used for its graph capabilities, not UNet hooks.**
+**Mine-pass 1 finding:** Forge's `UnetPatcher` is architecturally the deepest hook system found (§XIV.4 — 8 distinct patch keys + `patches_replace` + 3 modifier types). InvokeAI has no UNet hook primitive — customisation is graph-level instead, which is a different architecture not a limitation. `protocols.py` does not need to provide a uniform hook interface across all 5 — hooks are UNIQUE to the backend that has them. Forge gets a dedicated hook surface; InvokeAI's graph architecture is its own opener (Grounding DINO, Flux Kontext, Z-Image). 🔍 MINE: SD.NEXT and A1111 block-level hooks remain uncharted — medium priority sweep.
 
 ---
 
@@ -164,11 +174,11 @@ description: Architecture-layer convergence matrix across 5 SD backends. NOT a c
 
 ---
 
-## Convergence Summary
+## Mine-State Summary (Soft-Lock Provisional)
 
-### SHARED rows (→ `protocols.py` interface)
+### Provisional convergence surface (→ first-pass `protocols.py`)
 
-These are the abstraction targets. A single `Backend` protocol method can cover the shared surface:
+Rows where mine pass 1 found alignment across ≥3 backends. A thin shared surface exists here. This list grows with each sweep — it is not closed:
 
 | Protocol method | Coverage | Adapter complexity |
 |----------------|----------|--------------------|
@@ -180,7 +190,7 @@ These are the abstraction targets. A single `Backend` protocol method can cover 
 | `controlnet_unit(model, weight) → Unit` | SD.NEXT + A1111 + Forge | Trivial — same dataclass |
 | `lora_activate(name, weight)` | SD.NEXT + A1111 + Forge (prompt syntax shared) | Low |
 
-### VARIANT rows (→ per-candidate adapters)
+### Divergent surface (→ per-backend adapters — equal-weight mining targets)
 
 | Concern | Adapter strategy |
 |---------|-----------------|
@@ -190,7 +200,9 @@ These are the abstraction targets. A single `Backend` protocol method can cover 
 | Model folder casing (ComfyUI lowercase) | `model_path()` implementation per backend |
 | Sampler selection | Same JSON key, different valid values — adapter holds sampler map |
 
-### UNIQUE rows (→ DO NOT abstract — exploit directly)
+### Gold veins — primary mine targets (exploit directly, do not collapse)
+
+These are the richest finds from mine pass 1. Each is a first-class capability with no equivalent elsewhere. These are not edge cases — they are the reason the sweep was worth running.
 
 | Capability | Backend | MILFOLOGICAL target module |
 |-----------|---------|---------------------------|
@@ -211,9 +223,9 @@ These are the abstraction targets. A single `Backend` protocol method can cover 
 
 ---
 
-## `protocols.py` Interface Sketch
+## `protocols.py` — Provisional Interface (Mine Pass 1)
 
-Derived from the SHARED rows above. This is the interface the stub refactor targets.
+Derived from the provisional convergence surface above. This interface reflects what mine pass 1 found — it is not a fixed contract. It grows as sweeps deepen. New SHARED rows become new protocol methods; new UNIQUE rows become new Protocol classes or dedicated module surfaces.
 
 ```python
 # extensions/milfological/src/milfological/protocols.py
@@ -222,9 +234,10 @@ from PIL import Image
 
 class SDBackend(Protocol):
     """
-    Minimal shared surface across SD.NEXT / A1111 / Forge / KoboldCpp.
-    InvokeAI and ComfyUI require dedicated adapters — they do NOT implement this protocol directly.
-    See backends/invokeai.py and backends/comfyui.py for their adapters.
+    Provisional convergence surface for the /sdapi/v1/-lineage family
+    (SD.NEXT, A1111, Forge, KoboldCpp). Methods reflect mine pass 1 findings.
+    This interface grows — each sweep may add methods as new SHARED rows are confirmed.
+    InvokeAI and ComfyUI have their own adapters with their own gold (see backends/).
     """
 
     def txt2img(self, prompt: str, **params) -> Image.Image: ...
@@ -238,8 +251,9 @@ class SDBackend(Protocol):
 class SegmentationBackend(Protocol):
     """
     Text-prompt → entity segmentation mask.
-    Implemented by: InvokeAI (Grounding DINO + SAM2), ComfyUI (SAM3).
-    NOT implemented by SD.NEXT / A1111 / Forge.
+    Mine pass 1: InvokeAI (Grounding DINO + SAM2), ComfyUI (SAM3) both implement this surface.
+    SD.NEXT has SAM 2.1 — its integration contract is 🔍 MINE for a future sweep.
+    This Protocol may split or grow when SD.NEXT SAM is fully mapped.
     """
 
     def segment(self, image: Image.Image, prompt: str) -> Image.Image: ...  # returns mask
@@ -249,7 +263,8 @@ class SegmentationBackend(Protocol):
 class PixelArtBackend(Protocol):
     """
     GPU-accelerated DCT pixel art postprocessor.
-    Implemented by: SD.NEXT only (modules/postprocess/pixelart.py).
+    Mine pass 1: SD.NEXT only (modules/postprocess/pixelart.py).
+    Remains unique until another backend implements an equivalent DCT path.
     """
 
     def pixelart(
@@ -281,9 +296,9 @@ extensions/milfological/src/milfological/
 
 ---
 
-## Mining Gaps (🔍 MINE — needs filesystem sweep to fill)
+## Uncharted Territory (🔍 MINE — next sweep targets)
 
-These cells were not covered in the report sweep. They are low-priority for the current ceiling-raise — fill opportunistically when working against that backend.
+These cells were not resolved in mine pass 1. They are not low-value — they are simply uncharted. Any of them could reveal a new UNIQUE gold vein or extend the convergence surface. Priority reflects how likely the fill changes current module decisions.
 
 | Gap | Backend | Layer | Priority |
 |-----|---------|-------|----------|
@@ -301,7 +316,9 @@ These cells were not covered in the report sweep. They are low-priority for the 
 
 ---
 
-## Work Queue (ceiling-raise order)
+## Work Queue (current ceiling-raise pass — soft-lock order)
+
+This order reflects mine pass 1 findings. It is not fixed — if a 🔍 MINE sweep on ComfyUI or InvokeAI reveals a higher-value opener, that step moves up. Steps 5–6 are deliberately unordered (equal weight).
 
 | Step | Artifact | What it unlocks |
 |------|----------|-----------------|
@@ -317,4 +334,4 @@ These cells were not covered in the report sweep. They are low-priority for the 
 
 ---
 
-*Seed filed by Claudine Sin'claire — populated entirely from `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. No new filesystem sweep performed. 🔍 MINE markers flag the remaining gaps.*
+*Mine pass 1 filed by Claudine Sin'claire — sourced from `MILFOLOGICAL_OPPORTUNITY_REPORT.md §I–§XVII`. No direct filesystem sweep on candidates performed yet. 🔍 MINE markers are invitations, not blockers — each is a potential gold vein waiting for the next pass.*
