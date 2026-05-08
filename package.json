@@ -40,7 +40,6 @@
     "cross:critique": "bun run scripts/cross-critique.ts",
     "artcop:vscode": "bun run scripts/vscode-art-cop.ts",
     "review:ai": "bun run hf:rank --limit 80 && bun run artcop:vscode --images-dir bun-playwright-poc --max-images 4 --no-llm",
-    "design:intake": "bun run scripts/claude-design-intake.ts",
     "bus:spec-enforcer": "bun run extensions/spec-enforcer/src/index.ts",
     "bus:spec-enforcer:once": "bun run extensions/spec-enforcer/src/index.ts --once",
     "reflex:guard": "uv run extensions/reflex-guard/.chthonic/reflex_guard.py --staged",
