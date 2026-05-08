@@ -64,6 +64,11 @@ export function activateCommands(context: vscode.ExtensionContext, deps: Activat
         vscode.commands.registerCommand('chthonic.openClaudeDesignFrame', () => {
             void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
             void vscode.commands.executeCommand('chthonic.designFrameView.focus');
+            deps.designFrameProvider.refresh();
+        }),
+        vscode.commands.registerCommand('chthonic.selectClaudeDesignFrameExport', () => {
+            void vscode.commands.executeCommand('workbench.view.extension.chthonic-archive');
+            void vscode.commands.executeCommand('chthonic.designFrameView.focus');
             void deps.designFrameProvider.selectExportRoot();
         }),
         vscode.commands.registerCommand('chthonic.entropyRefresh', () => {
