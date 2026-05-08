@@ -36,7 +36,47 @@ interface EntitySnap {
   prism: string; district: string; whr: number | null;
   visual_descriptor_count: number; aesthetic_tag_count: number;
   aesthetic_tags: string[]; color_palette: string[];
-  positive_prefix: string; default_weight: number;
+  positive_prefix: string; negative_suffix: string; default_weight: number;
+}
+
+// ── A1111 / SD.NEXT API probe ─────────────────────────────────────────────────
+
+interface A1111Status {
+  live: boolean;
+  url: string;
+  model: string | null;
+  error: string | null;
+}
+
+async function probeA1111(): Promise<A1111Status> {
+  const url = "http://localhost:7860";
+  try {
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), 2500);
+    const r = await fetch(`${url}/sdapi/v1/options`, { signal: ctrl.signal });
+    clearTimeout(tid);
+    if (!r.ok) return { live: false, url, model: null, error: `HTTP ${r.status}` };
+    const opts = await r.json() as Record<string, unknown>;
+    const model = (opts.sd_model_checkpoint as string | undefined) ?? null;
+    return { live: true, url, model, error: null };
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return { live: false, url, model: null, error: msg.includes("abort") ? "timeout" : msg.slice(0, 60) };
+  }
+}
+
+// ── Extension file health ─────────────────────────────────────────────────────
+
+const EXT_FILES: Array<{ label: string; rel: string }> = [
+  { label: "entity_registry.py",      rel: "dev/sd-candidates/sdnext/extensions/milfological/entity_registry.py" },
+  { label: "prompt_transformer.py",   rel: "dev/sd-candidates/sdnext/extensions/milfological/prompt_transformer.py" },
+  { label: "milfological_hook.py",    rel: "dev/sd-candidates/sdnext/extensions/milfological/scripts/milfological_hook.py" },
+  { label: "extra_network_milf.py",   rel: "dev/sd-candidates/sdnext/extensions/milfological/extra_network_milf.py" },
+  { label: "metadata.ini",            rel: "dev/sd-candidates/sdnext/extensions/milfological/metadata.ini" },
+];
+
+function checkExtensionFiles(): Array<{ label: string; present: boolean }> {
+  return EXT_FILES.map(f => ({ label: f.label, present: existsSync(join(ROOT, f.rel)) }));
 }
 
 function loadEntities(): EntitySnap[] {
@@ -88,6 +128,8 @@ function buildHtml(
   entities: EntitySnap[],
   g0: Record<string, unknown> | null,
   roulette: Record<string, unknown> | null,
+  a1111: A1111Status,
+  extFiles: Array<{ label: string; present: boolean }>,
 ): string {
   const now = new Date().toISOString();
   const g0Status = (g0?.status as string | undefined) ?? "unknown";
@@ -183,6 +225,53 @@ function buildHtml(
 
   const activeRows = active.slice(0,12).map(e => taskRow(e, false)).join("");
   const doneRows = done.map(e => taskRow(e, true)).join("");
+
+  // ── Prototypal anchorage — entity generation tokens
+  const genCards = entities.map(e => {
+    const prismColor = PRISM_HEX[e.prism] ?? "#888";
+    const token = `&lt;milf:${e.entity_id}:${e.default_weight.toFixed(2)}&gt;`;
+    const pos = esc(e.positive_prefix);
+    const neg = esc(e.negative_suffix || "—");
+    return `
+    <div class="gen-card" style="--prism:${prismColor}">
+      <div class="gen-card-header">
+        <span class="gen-name" style="color:${prismColor}">${esc(e.display_name)}</span>
+        <span class="gen-token">${token}</span>
+      </div>
+      <div class="gen-label">POS</div>
+      <div class="gen-prompt">${pos}</div>
+      <div class="gen-label neg-label">NEG</div>
+      <div class="gen-prompt gen-neg">${neg}</div>
+    </div>`;
+  }).join("\n");
+
+  // ── Extension file health rows
+  const extRows = extFiles.map(f => {
+    const icon = f.present ? "✅" : "❌";
+    const col = f.present ? "#2ecc71" : "#e74c3c";
+    return `<div class="ext-row"><span>${icon}</span><span class="ext-label" style="color:${col}">${esc(f.label)}</span></div>`;
+  }).join("");
+
+  // ── A1111 status badge
+  const a1111Badge = a1111.live
+    ? `<span class="a1111-live">● LIVE</span> <span class="a1111-model">${esc(a1111.model ?? "model unknown")}</span>`
+    : `<span class="a1111-dead">● OFFLINE</span> <span class="a1111-err">${esc(a1111.error ?? "unreachable")}</span>`;
+
+  // ── Media type capability matrix
+  const mediaMatrix = [
+    { type: "Character Portrait",    cap: "✅ Full",   note: "positive_prefix → full-body or bust prompt, WHR-anchored" },
+    { type: "Scene / Environment",   cap: "✅ Full",   note: "district tag + aesthetic_tags → setting injection" },
+    { type: "Style Transfer",        cap: "✅ Full",   note: "color_palette + aesthetic_tags → LoRA-style guidance" },
+    { type: "Psycho-Noir Composite", cap: "✅ Partial",note: "Iron Maiden + Claudine cross-entity (multi-milf token)" },
+    { type: "Inpainting / Variant",  cap: "⚠️ Manual", note: "requires A1111 img2img endpoint + entity mask overlay" },
+    { type: "Video / AnimateDiff",   cap: "⚠️ Planned",note: "G8+ hook: AnimateDiff sampler hook not yet wired" },
+    { type: "ControlNet Pose",       cap: "⚠️ Partial",note: "WHR data maps to body proportion guide — ControlNet not wired" },
+    { type: "SDXL / FLUX",           cap: "⚠️ Probe",  note: "SD.NEXT model-agnostic; entity prompts are format-neutral" },
+  ].map(m => `<div class="media-row">
+    <span class="media-type">${esc(m.type)}</span>
+    <span class="media-cap">${m.cap}</span>
+    <span class="media-note">${esc(m.note)}</span>
+  </div>`).join("");
 
   // Corpus stats from gate
   const corpusGate = gates.find(g => g.gate === "corpus_sqlite");
@@ -320,6 +409,33 @@ function buildHtml(
 
   /* ── Footer ── */
   .footer { padding: 12px 24px; color: var(--text-dim); font-size: 9px; letter-spacing: 0.1em; text-align: center; }
+
+  /* ── Prototypal Anchorage ── */
+  .anchorage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .anchorage-grid { grid-template-columns: 1fr; } }
+  .anchorage-panel { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 14px; }
+  .anchorage-panel-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+  .a1111-live { color: #2ecc71; font-weight: bold; font-size: 11px; }
+  .a1111-dead { color: #e74c3c; font-weight: bold; font-size: 11px; }
+  .a1111-model { color: var(--gold); font-size: 10px; margin-left: 6px; }
+  .a1111-err { color: #e74c3c; font-size: 10px; margin-left: 6px; }
+  .ext-row { display: flex; align-items: center; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .ext-row:last-child { border-bottom: none; }
+  .ext-label { font-size: 10px; font-family: var(--font); }
+  .media-row { display: grid; grid-template-columns: 180px 90px 1fr; gap: 8px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 10px; }
+  .media-row:last-child { border-bottom: none; }
+  .media-type { color: #c8c8d8; font-weight: bold; }
+  .media-cap { font-size: 9px; }
+  .media-note { color: var(--text-dim); }
+  .gen-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-top: 4px; }
+  .gen-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--prism, #888); border-radius: 3px; padding: 12px; display: flex; flex-direction: column; gap: 5px; }
+  .gen-card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .gen-name { font-size: 13px; font-weight: bold; }
+  .gen-token { font-family: var(--font); font-size: 10px; background: var(--bg3); padding: 2px 6px; border-radius: 2px; color: var(--gold); border: 1px solid var(--border); }
+  .gen-label { font-size: 9px; letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase; margin-top: 4px; }
+  .neg-label { color: #e74c3c66; }
+  .gen-prompt { font-size: 10px; color: var(--text); line-height: 1.6; font-style: italic; }
+  .gen-neg { color: var(--text-dim); }
 </style>
 </head>
 <body>
@@ -332,6 +448,34 @@ function buildHtml(
   <div class="header-right">
     SD.NEXT G0: ${g0Overall}<br>
     <span style="color:var(--text-dim)">probe: ${esc(g0Time.slice(0,10))}</span>
+  </div>
+</div>
+
+<!-- ── PROTOTYPAL ANCHORAGE ─────────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">PROTOTYPAL ANCHORAGE — SD.NEXT × A1111 Integration State</div>
+  <div class="anchorage-grid">
+    <div class="anchorage-panel">
+      <div class="anchorage-panel-title">⚙ SD.NEXT / A1111 API (localhost:7860)</div>
+      <div style="padding:6px 0">${a1111Badge}</div>
+      <div style="font-size:9px;color:var(--text-dim);margin-top:4px">Start SD.NEXT: <span style="color:#a0a0c0">python webui.py --xformers --api</span></div>
+    </div>
+    <div class="anchorage-panel">
+      <div class="anchorage-panel-title">☽ Extension Files</div>
+      ${extRows}
+    </div>
+  </div>
+  <div style="margin-top:16px">
+    <div class="anchorage-panel-title" style="color:var(--gold);margin-bottom:8px">▸ MEDIA TYPE CAPABILITY MATRIX</div>
+    ${mediaMatrix}
+  </div>
+</div>
+
+<!-- ── ENTITY GENERATION TOKENS ──────────────────────────────────────── -->
+<div class="section">
+  <div class="section-title">ENTITY GENERATION TOKENS — positive + negative prompt seeds</div>
+  <div class="gen-cards-grid">
+    ${genCards}
   </div>
 </div>
 
@@ -402,7 +546,7 @@ function getEntities(): EntitySnap[] {
 
 const server = Bun.serve({
   port: PORT,
-  fetch(req) {
+  async fetch(req) {
     const url = new URL(req.url);
     if (url.pathname === "/refresh") {
       entities = null; // force reload
@@ -411,7 +555,8 @@ const server = Bun.serve({
     const ents = getEntities();
     const g0 = readJson<Record<string, unknown>>("manifest/sdnext_g0.json");
     const roulette = readJson<Record<string, unknown>>("manifest/todo_roulette.json");
-    const html = buildHtml(ents, g0, roulette);
+    const [a1111, extFiles] = await Promise.all([probeA1111(), Promise.resolve(checkExtensionFiles())]);
+    const html = buildHtml(ents, g0, roulette, a1111, extFiles);
     return new Response(html, { headers: { "Content-Type": "text/html;charset=utf-8" } });
   },
 });

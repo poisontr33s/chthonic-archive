@@ -45,6 +45,7 @@ for e in registry.all():
         "aesthetic_tags": e.aesthetic_tags[:6],
         "color_palette": e.color_palette[:4],
         "positive_prefix": e.positive_prefix[:120],
+        "negative_suffix": getattr(e, "negative_suffix", "")[:120],
         "default_weight": e.default_weight,
     })
 
