@@ -42,6 +42,16 @@ cross-refs:
 | C6 | KoboldCpp | LostRuins/koboldcpp | `dev/sd-candidates/koboldcpp/` | ✅ | ⚠️ web-research only | §XVI.3 |
 | C7 | oobabooga/textgen | oobabooga/text-generation-webui | `dev/sd-candidates/textgen/` | ✅ | ⚠️ web-research only | §XVI.4 |
 
+### Extended Candidates (5 candidates — mine pass 1 web-research; see §6 for full profiles)
+
+| ID | Candidate | Repo | Status | API | Clone | Priority |
+|----|-----------|------|--------|-----|-------|---------|
+| C8 | Fooocus | lllyasviel/Fooocus | STALE (Aug 2024) | None | ❌ Rejected | ❌ SKIP |
+| C9 | SwarmUI | mcmonkeyprojects/SwarmUI | ACTIVE v0.9.8-Beta | ComfyUI WS | ❌ Rejected | LOW |
+| C10 | sd.cpp | leejet/stable-diffusion.cpp | ACTIVE | CLI/webui (no sdapi) | Candidate | HIGH (GGUF lane) |
+| C11 | forge-ll | lllyasviel/stable-diffusion-webui-forge | MAINTENANCE (11mo) | /sdapi/v1/ | DEFERRED | HIGH (LayerDiffuse) |
+| C12 | Easy Diffusion | easydiffusion/easydiffusion | ACTIVE v3.0.16 | None (sdkit) | ❌ Rejected | ❌ SKIP |
+
 ---
 
 ## §2 — Sweep Coverage per Candidate
@@ -169,7 +179,20 @@ OPTIONAL — C7 textgen sweep:
 
 DEFERRED:
   - Gradio 4 frontend (gr.Blocks over protocols.py)
-  - lllyasviel/forge clone for LayerDiffuse (if sprite alpha pipeline is prioritized)
+
+EXTENDED CANDIDATES — blocked on prioritization decision:
+  [B6]  Clone sd.cpp → sweep Python binding (stable-diffusion-cpp-python)  → backends/sd_cpp.py
+        Trigger: GGUF lane or Vulkan compute inference prioritized
+  [B7]  Clone forge-ll (lllyasviel/stable-diffusion-webui-forge)
+        → sweep extensions-builtin/sd_forge_layerdiffuse/
+        → sweep modules_forge/unet_patcher.py canonical form
+        → backends/forge_ll.py (LayerDiffuse + UnetPatcher)
+        Trigger: sprite alpha pipeline or UnetPatcher hook prioritized
+
+REJECTED — not worth further investment:
+  [R1]  Fooocus (C8) — GPL-3.0 + stale + SDXL-only + no HTTP API
+  [R2]  SwarmUI (C9) — C# frontend, Python hard-capped at 3.12
+  [R3]  Easy Diffusion (C12) — CreativeML RAIL-M license + no HTTP API
 ```
 
 ---
@@ -194,3 +217,120 @@ After any `pull`, re-verify:
 
 Mine pass counter: increment after each systematic sweep of a new candidate.
 Current mine pass: **1** (SD.NEXT, A1111, ComfyUI, InvokeAI: fully swept; Forge partial; KoboldCpp/textgen: web-research).
+
+---
+
+## §6 — Extended Candidate Assessment (Mine Pass 1 — Web-Research Only)
+
+Research date: 2026-05-09. No filesystem sweeps performed. All data from GitHub metadata.
+
+### API Pattern Taxonomy (updated after extended sweep)
+
+| Pattern | Used By |
+|---------|---------|
+| A1111 `/sdapi/v1/` REST | SD.NEXT, A1111, Forge (both), KoboldCpp |
+| ComfyUI WebSocket + JSON graph | ComfyUI, SwarmUI (as backend) |
+| InvokeAI `/api/v1/` named workflows | InvokeAI |
+| CLI subprocess / embedded webui | sd.cpp |
+| sdkit direct (no HTTP API) | Fooocus, Easy Diffusion |
+
+---
+
+### C8 — Fooocus
+
+| Field | Value |
+|-------|-------|
+| Repo | lllyasviel/Fooocus |
+| Status | **STALE — LTS/bug-fix-only** |
+| Last active release | v2.5.5 — August 2024 |
+| License | GPL-3.0 |
+| Stars | 48.4k |
+| Stack | Python |
+| Models | SDXL only |
+| HTTP API | ❌ None — ldm_patched direct, no `/sdapi/v1/` |
+| DSLs | Wildcards `__color__`, array `[[red,green]]`, inline LoRA `<lora:name:1.2>`, JSON presets |
+| MINE priority | ❌ SKIP — GPL-3.0 contamination risk + stale + SDXL-only + no HTTP API |
+| Clone | ❌ Not cloned — waste of depth-1 bandwidth |
+
+---
+
+### C9 — SwarmUI
+
+| Field | Value |
+|-------|-------|
+| Repo | mcmonkeyprojects/SwarmUI |
+| Status | **ACTIVELY MAINTAINED** — v0.9.8-Beta, commit 3 days ago |
+| License | MIT |
+| Stars | 4.1k |
+| Stack | C# 54.6%, JS 32.1%, Python 4.0% |
+| Runtime | DotNET 8 SDK + Python 3.10–3.12 (NOT 3.13/3.14) |
+| Port | localhost:7801 |
+| Primary backend | ComfyUI (auto-installed) — optionally A1111 |
+| HTTP API | Wraps ComfyUI WebSocket API; own HTTP layer on top |
+| DSLs | `<segment:yolo-...>` YOLO segmentation syntax |
+| Python 3.14 compat | ❌ Hard cap at 3.12 |
+| MINE priority | LOW — C# frontend, no direct Python library surface; reference value only for multi-backend routing pattern |
+| Clone | ❌ Not cloned — C# frontend outside Python asset pipeline scope |
+
+---
+
+### C10 — stable-diffusion.cpp
+
+| Field | Value |
+|-------|-------|
+| Repo | leejet/stable-diffusion.cpp |
+| Status | **ACTIVELY MAINTAINED** — 450 releases, last commit 2 days ago |
+| License | MIT |
+| Stars | 6k |
+| Stack | C++ 100% |
+| Interface | CLI (`sd-cli` binary) + embedded webui (sdcpp-webui, added PR #1408 April 2026) |
+| Compute backends | CPU, CUDA, Vulkan, Metal, OpenCL, SYCL |
+| Models | SD1.x/2.x, SDXL, SD3/3.5, FLUX.1/2, Chroma, Wan, Qwen, Z-Image, Ovis, Anima, ERNIE |
+| Formats | `.ckpt`, `.safetensors`, `.gguf` — converts to GGUF internally |
+| HTTP API | ❌ CLI only by default; embedded webui via `--listen` (NOT `/sdapi/v1/`) |
+| Python binding | `william-murray1204/stable-diffusion-cpp-python` (separate repo) |
+| Rust binding | `diffusion-rs` |
+| Used by | KoboldCpp (as SD backend for image generation) |
+| MINE priority | **HIGH** — GGUF support + Vulkan backend aligns with repo's GPU lane; Python binding enables `backends/sd_cpp.py` |
+| Clone | ✅ Candidate for `dev/sd-candidates/sd-cpp/` — clone when GGUF lane is prioritized |
+| Task ID | [B6] — see §4 update |
+
+---
+
+### C11 — forge-ll (lllyasviel/stable-diffusion-webui-forge)
+
+| Field | Value |
+|-------|-------|
+| Repo | lllyasviel/stable-diffusion-webui-forge |
+| Status | **MAINTENANCE MODE** — last commit 11 months ago (Aug 2024) |
+| License | AGPL-3.0 |
+| Stars | 12.5k |
+| Stack | Python 94.2%, JavaScript 2.0%, CUDA 1.7% |
+| Base | SD-WebUI 1.10.1 (syncs every 90 days) |
+| HTTP API | ✅ `/sdapi/v1/` compatible — "Normal" per Forge Status table |
+| UnetPatcher | ✅ Canonical `modules_forge/unet_patcher.py` — 8 patch keys + `patches_replace` |
+| LayerDiffuse | ✅ `extensions-builtin/sd_forge_layerdiffuse/` — PRESENT (unlike Panchovix fork C5) |
+| GGUF support | ✅ `packages_3rdparty/` — BF16 + GGUF Q8/Q5/Q4 with NF4 BitsandBytes |
+| DSLs | Inherited from A1111 base (schedules, LoRA inline `<lora:name:1.0>`) |
+| MINE priority | **HIGH** — canonical LayerDiffuse source for sprite alpha pipeline; canonical UnetPatcher |
+| Clone | DEFERRED → `dev/sd-candidates/forge-ll/` — clone when LayerDiffuse or UnetPatcher hook is prioritized |
+| Task ID | [B7] — see §4 update (was previously DEFERRED without ID) |
+
+---
+
+### C12 — Easy Diffusion
+
+| Field | Value |
+|-------|-------|
+| Repo | easydiffusion/easydiffusion |
+| Status | **ACTIVE** — v3.0.16 Mar 2026, last commit 2 weeks ago |
+| License | **CreativeML Open RAIL-M** — custom restricted license (NOT standard OSS) |
+| Stars | 10.4k |
+| Stack | JavaScript 68.3%, Python 16.5% |
+| Backend | sdkit library (internal) — NOT A1111 API compatible |
+| HTTP API | ❌ No `/sdapi/v1/` — sdkit direct only |
+| Models | SDXL, SD2.1, Z-Image, FLUX 1/2 (v3.5/v4 engines), quantized |
+| DSLs | `+`/`-` attention, `(word)2.4` weights, `\|` prompt matrix, `{moon,earth}` prompt set |
+| Python 3.14 compat | Unknown — sdkit dependency; likely not tested on 3.14 |
+| MINE priority | ❌ SKIP — non-standard license risk + non-standard API (no sdkit → protocols.py bridge path) |
+| Clone | ❌ Not cloned — license incompatibility blocks integration into MILFOLOGICAL pipeline |
