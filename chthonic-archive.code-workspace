@@ -7,15 +7,12 @@
   //     remotes, commit flow). Neither absorbs the other.
   //   - VS Code multi-root creates a contextual binding: Copilot, search, and
   //     the editor see both repos simultaneously without repo coupling.
-  //   - NTFS junctions in workspace root are the canonical access layer:
-  //       pnk-live       → ../PsychoNoir-Kontrapunkt
-  //       rmco-live      → ../Restructure-MCP-Orchestration
-  //       csb-live       → ../Claudine_Supreme-Polyglot-...
-  //       git-dump-live  → ../git-dump-lfs-holder-we-it-takes
-  //       pnk-lfh-live   → ../psychonoir-kontrapunkt-large-file-holder
-  //   - All folder entries use junction-relative paths — no ../traversal.
-  //     VS Code resolves junctions transparently; each satellite's .git/ is
-  //     intact inside the junction, so Source Control works per-repo.
+  //   - Two-layer satellite access:
+  //       folders[] use ../paths  → VS Code git engine resolves .git/ correctly
+  //       scripts/mcp.json use junctions → process spawning via workspace-root
+  //     NTFS junctions (pnk-live, rmco-live, csb-live, git-dump-live, pnk-lfh-live)
+  //     are script/MCP access paths; VS Code's git does NOT follow junctions for
+  //     repo discovery, so workspace folders must use direct ../traversal.
   //   - SATELLITE_REGISTRY.json is the machine-readable satellite map — the
   //     SSOT for which siblings are in orbit and their governance metadata.
   //   - teleport.ts --from-sibling <alias> resolves via the registry, making
@@ -29,23 +26,23 @@
       "name": "⚡ chthonic-archive [primary]"
     },
     {
-      "path": "pnk-live",
+      "path": "../PsychoNoir-Kontrapunkt",
       "name": "🌀 PsychoNoir-Kontrapunkt [satellite]"
     },
     {
-      "path": "rmco-live",
+      "path": "../Restructure-MCP-Orchestration",
       "name": "🔧 Restructure-MCP-Orchestration [satellite]"
     },
     {
-      "path": "csb-live",
+      "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
     },
     {
-      "path": "git-dump-live",
+      "path": "../git-dump-lfs-holder-we-it-takes",
       "name": "📦 git-dump-lfs-holder [satellite]"
     },
     {
-      "path": "pnk-lfh-live",
+      "path": "../psychonoir-kontrapunkt-large-file-holder",
       "name": "📦 pnk-large-file-holder [satellite]"
     }
   ],
