@@ -62,6 +62,16 @@ cross-refs:
 | C16 | IREE-Turbine | iree-org/iree-turbine | PORTABLE (Vulkan SPIR-V via IREE) | `pip install` | MEDIUM |
 | C17 | diffusion-rs | pykeio/diffusion-rs | PORTABLE (Rust binding → sd.cpp) | `cargo add` | MEDIUM |
 
+### DSL / Schema / Corpus Candidates (character card, data pipeline, ANSI art — see §8)
+
+| ID | Candidate | Source | Mine Class | Clone | Priority |
+|----|-----------|--------|------------|-------|----------|
+| C18 | SillyTavern CharCard V2 | SillyTavern/SillyTavern | SCHEMA (entity metadata DSL) | ❌ Spec only | HIGH |
+| C19 | Seed-and-Evolve pipeline | arxiv 2603.14505 | PORTABLE (generative seeding) | ❌ Paper mine | MEDIUM |
+| C20 | ASCII Cat LoRA | vossenwout/ascii-cat-llm-finetuning | PORTABLE (spatial LoRA recipe) | ❌ Ref read | MEDIUM |
+| C21 | ZX-Art ANSI corpus | zxart.ee | SCHEMA/REFERENCE (block-char atlas) | ❌ Corpus only | MEDIUM |
+| C22 | Awesome-Local-LLM + Firecrawl | rafska/awesome-local-llm | SCHEMA (Markdown pipeline ref) | ❌ Ref read | LOW |
+
 ---
 
 ## §2 — Sweep Coverage per Candidate
@@ -208,6 +218,28 @@ NICHE SOURCE-CODE CANDIDATES (§7) — source mine, no integration clone:
         Trigger: Vulkan compute inference (vulkan-lab/cli-renderer/) prioritized
   [O7]  C17 diffusion-rs — read src/lib.rs; Rust API surface reference for vulkan-lab Cargo stack
         Trigger: Rust-native SD inference in vulkan-lab/ is prioritized
+
+DSL / SCHEMA / CORPUS CANDIDATES (§8) — no clone; spec/paper/corpus archaeology:
+  [O8]  C18 SillyTavern CharCard V2 — read SillyTavern src/character-card-validator.js + spec
+        → extract: entity metadata schema ({{user}}/{{char}}/{{description}}/{{personality}}/{{scenario}})
+        → target: MILFOLOGICAL entity card format (entity_card.py stub + JSON schema)
+        Trigger: entity metadata layer is prioritized
+  [O9]  C19 Seed-and-Evolve — read arxiv.org/html/2603.14505v1
+        → extract: seed-fragment → iterative completion pipeline for sprite/content generation
+        → target: entity sprite seeding approach in entity_pixelart.py pipeline
+        Trigger: iterative entity sprite generation is prioritized
+  [O10] C20 ASCII Cat LoRA — read vossenwout/ascii-cat-llm-finetuning training scripts
+        → extract: LoRA dataset format, fine-tune recipe for ASCII spatial reasoning
+        → target: entity LoRA training lane design doc
+        Trigger: entity-specific LoRA fine-tuning lane is prioritized
+  [O11] C21 ZX-Art ANSI corpus — archaeology pass on zxart.ee block-char atlas
+        → extract: block-char + ANSI truecolor escape palette reference
+        → target: vulkan-lab G3 ascii_downsample.comp.glsl block-char selection
+        Trigger: vulkan-lab G3 ASCII framebuffer is next
+  [O12] C22 Awesome-Local-LLM + Firecrawl — read repo markdown pipeline
+        → extract: visual web → LLM-ready Markdown conversion pipeline
+        → target: roleplay context generation in entity card DSL
+        Trigger: entity card DSL generation pipeline is prioritized
 
 REJECTED — not worth further investment:
   [R1]  Fooocus (C8) — GPL-3.0 + stale + SDXL-only + no HTTP API
@@ -464,3 +496,91 @@ Research date: 2026-05-09. No filesystem sweeps performed. All data from GitHub 
 | Mine priority | MEDIUM — directly relevant to `vulkan-lab/cli-renderer/` Cargo stack + [B6] sd.cpp lane. `cargo add diffusion-rs` is the integration path; no repo clone needed. |
 | Clone | `cargo add diffusion-rs` — not a source clone. Read crate docs + `src/lib.rs` via GitHub for API surface. |
 | Axis note | Pure Rust, zero OS-specific code at the library layer. Vulkan and Metal are selectable backends, not requirements. |
+
+---
+
+## §8 — DSL / Schema / Corpus Candidates (Entity Card, Data Pipeline, ANSI Art)
+
+> **Mine axiom for §8:** The MILFOLOGICAL pipeline requires three things beyond image generation: (1) a structured entity metadata format (character card DSL), (2) a generative seeding strategy for iterative content completion, and (3) a reference corpus for the ASCII/ANSI renderer (vulkan-lab G3). These candidates supply all three. No source clones required — spec archaeology + paper reads + corpus reference.
+
+> **New mine axis — DSL sophistication:** SillyTavern's CharCard V2 system constitutes a domain-specific language for entity metadata. `{{user}}`, `{{char}}`, `{{description}}`, `{{personality}}`, `{{scenario}}` are not mere template variables — they are semantic interpolation anchors that govern scene-conditional behavior, art injection, and symbolic interaction. This DSL surface is architecturally richer than standard Python/JSON schemas and maps directly to MILFOLOGICAL entity representation needs.
+
+---
+
+### C18 — SillyTavern Character Card V2 (Entity Metadata DSL)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/SillyTavern/SillyTavern + [CharCard V2 spec](https://github.com/malfoyslastname/character-card-spec-v2) |
+| Status | **ACTIVE** — production frontend for local LLM character roleplay |
+| License | AGPL-3.0 |
+| Stack | Node.js + TypeScript + Handlebars-style template DSL |
+| Mine class | **SCHEMA** — entity metadata DSL with interpolation semantics |
+| Key source patterns | (1) **Variable interpolation DSL**: `{{user}}`, `{{char}}`, `{{description}}`, `{{personality}}`, `{{scenario}}`, `{{system_prompt}}`, `{{wiBefore}}`, `{{wiAfter}}` — scene-conditional text injection. (2) **Character card JSON schema**: `name`, `description`, `personality`, `scenario`, `first_mes`, `mes_example`, `system_prompt`, `post_history_instructions`, `tags[]`, `creator_notes`. (3) **World Info (lorebook)** entries: key-triggered context injection — effectively a semantic memory system for entity attributes. (4) **Asset attachment** in PNG metadata (Exif UserComment base64-encoded JSON) — entity card is portable as a single PNG. |
+| Mine priority | **HIGH** — directly maps to MILFOLOGICAL entity card format. The CharCard V2 JSON schema is the canonical external reference for designing `entity_card.py` + `schemas/entity_card.json`. |
+| Immediate action | [O8]: Read `SillyTavern/src/character-card-validator.js` (validation logic) + CharCard V2 spec markdown. Extract field inventory → draft `extensions/milfological/src/milfological/entity_card.py` stub with matching schema. |
+| Axis note | DSL semantics go beyond Python/JSON — interpolation anchors enable symbolic scene interaction. The PNG metadata embedding is a portability pattern worth adopting for MILFOLOGICAL entity assets. |
+
+---
+
+### C19 — Seed-and-Evolve Data Pipeline (arxiv 2603.14505)
+
+| Field | Value |
+|-------|-------|
+| Source | [arxiv.org/html/2603.14505v1](https://arxiv.org/html/2603.14505v1) |
+| Status | **2025 paper** — data generation technique, no repo clone needed |
+| License | Academic (open access) |
+| Stack | LLM prompting strategy + iterative completion |
+| Mine class | **PORTABLE** — generative seeding pipeline technique |
+| Key source patterns | (1) **Seed fragment seeding**: provide a partial ASCII/visual fragment and instruct the model to complete the visual sequence. Bypasses the model's reflexive refusal by framing completion as a continuation task rather than a generation task. (2) **Iterative evolution**: each completion becomes the seed for the next pass — produces progressive refinement without a single high-complexity prompt. (3) **Spatial reasoning probe**: the technique reveals fine-tuned vs. base model differences in spatial ASCII generation quality — relevant to LoRA evaluation. |
+| Mine priority | **MEDIUM** — technique maps directly to `entity_pixelart.py` iterative sprite generation. The seed-fragment approach is the basis for the `pixelart_entity()` pipeline extension beyond single-pass generation. |
+| Immediate action | [O9]: Read paper §3-§4 (methodology). Extract seeding schema → add `seed_and_evolve()` stub in `entity_pixelart.py` with docstring describing the iterative completion contract. |
+| Axis note | The key insight: completion framing outperforms generation framing for spatially structured outputs. Directly actionable in the pixelart pipeline without any model fine-tuning. |
+
+---
+
+### C20 — ASCII Cat LoRA (vossenwout/ascii-cat-llm-finetuning)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/vossenwout/ascii-cat-llm-finetuning |
+| Status | **ACTIVE** — Llama 3.2 3B LoRA for ASCII spatial generation |
+| License | MIT |
+| Stack | Python + HuggingFace PEFT + LoRA |
+| Mine class | **PORTABLE** — fine-tuning recipe for ASCII spatial reasoning |
+| Key source patterns | (1) **Dataset format**: ASCII art examples as text completions — input is a partial cat ASCII, output is the completed art. (2) **LoRA config**: target modules (`q_proj`, `v_proj`), rank (r=16), alpha=32 — reference config for entity-specific LoRA. (3) **Tokenization quirk**: ASCII art requires `add_special_tokens=False` and careful padding to preserve spatial structure. (4) **Evaluation metric**: character-level spatial accuracy, not semantic similarity — defines how to benchmark ASCII generation quality. |
+| Mine priority | **MEDIUM** — provides the training recipe template for MILFOLOGICAL entity LoRA fine-tuning lane. The dataset format + LoRA config are directly adaptable. |
+| Immediate action | [O10]: Read `train.py` + dataset loader. Extract LoRA config defaults + dataset schema → draft `extensions/milfological/src/milfological/entity_lora_train.py` stub with config dataclass. |
+| Axis note | Models with spatial LoRA handle block-char ASCII generation qualitatively differently — spatial tokens are treated as positional rather than semantic. This is the foundation of the entity ASCII rendering lane. |
+
+---
+
+### C21 — ZX-Art ANSI Corpus (zxart.ee)
+
+| Field | Value |
+|-------|-------|
+| Source | [zxart.ee/spa/software/tags/](https://zxart.ee/spa/software/tags/) + [Amiga-Stuff PD archives](https://www.amiga-stuff.com/pd/17bit.html) |
+| Status | **ACTIVE** — community-curated ZX Spectrum and Amiga ANSI/ASCII art archive |
+| License | Community archive — individual works vary; reference use |
+| Stack | ANSI escape sequences + ZX block graphics (`█▀▄░▒▓` charset) + Amiga ANSi color palette |
+| Mine class | **SCHEMA / REFERENCE** — block-char atlas + ANSI truecolor escape palette |
+| Key source patterns | (1) **ZX block graphics charset**: `U+2580–U+259F` half-block characters + `U+2588` full block — the canonical set for the vulkan-lab G3 `ascii_downsample.comp.glsl` block-char selection. (2) **ANSI color palette**: 4-bit (16 color CGA/EGA), 8-bit (256 xterm), 24-bit truecolor escape sequences — reference for the ANSI truecolor stdout in G3. (3) **Composition patterns**: how professional ANSI artists pack spatial density — border patterns, shading gradients, orbital border motifs — direct reference for the CLI renderer's visual output style. |
+| Mine priority | **MEDIUM** — directly feeds vulkan-lab G3 design. Block-char selection for `ascii_downsample.comp.glsl` should be driven by this corpus. |
+| Immediate action | [O11]: Browse zxart.ee `tags/ascii` + Amiga-Stuff 17bit archive. Catalogue block-char palette + ANSI escape sequences used. Write `vulkan-lab/cli-renderer/docs/ANSI_BLOCKCHAR_REFERENCE.md` with the canonical char set + escape sequence table. |
+| Axis note | The ZX/Amiga ANSI corpus is the "Orbiter" source — dense geometric border patterns that the ANSI renderer can produce. These are not safety-bypass techniques; they are compositional reference patterns for the block-char renderer. |
+
+---
+
+### C22 — Awesome-Local-LLM + Firecrawl (Markdown Pipeline Reference)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/rafska/awesome-local-llm + github.com/mendableai/firecrawl |
+| Status | **ACTIVE** — curated tool list + visual web → Markdown conversion service |
+| License | MIT (both) |
+| Stack | Markdown curation + Node.js/Python web scrape → Markdown pipeline |
+| Mine class | **SCHEMA** — Markdown conversion pipeline for roleplay context generation |
+| Key source patterns | (1) **Firecrawl API**: `POST /v1/scrape` with `formats: ["markdown"]` — converts any URL to LLM-ready Markdown. Output schema: `{ markdown: string, metadata: { title, description, sourceURL } }`. (2) **Awesome-Local-LLM taxonomy**: categorizes local LLM tools into frontends / backends / fine-tuning / evaluation — directly applicable to SD_CANDIDATE_REGISTRY classification axis refinement. (3) **Roleplay context generation pattern**: visual web content → Firecrawl → Markdown → CharCard V2 `{{description}}` field — the pipeline for generating entity card content from visual references. |
+| Mine priority | **LOW** — useful for entity card content generation automation; not critical path. |
+| Immediate action | [O12]: Skim rafska/awesome-local-llm README. Extract any tools not yet in registry. Note Firecrawl API schema for potential `entity_card_generator.py` content pipeline. |
+| Axis note | Firecrawl's Markdown output is structurally compatible with CharCard V2 `{{description}}` and `{{scenario}}` fields — enabling a web-reference → entity card pipeline with no manual formatting. |
