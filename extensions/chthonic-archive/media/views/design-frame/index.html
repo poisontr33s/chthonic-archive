@@ -232,7 +232,7 @@
     </main>
 
     <script nonce="{{nonce}}">
-window.__DESIGN_FRAME_STATE__ = {{stateJson}};
+window.__DESIGN_FRAME_STATE__ = JSON.parse('{{stateJson}}');
 {{viewScript}}
     </script>
 </body>
