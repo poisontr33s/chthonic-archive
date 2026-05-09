@@ -38,12 +38,10 @@
       "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
     },
     {
-      // git-disabled: pure LFS dump, no active commit workflow
       "path": "../git-dump-lfs-holder-we-it-takes",
       "name": "📦 git-dump-lfs-holder [satellite]"
     },
     {
-      // git-disabled: pure LFS dump, no active commit workflow
       "path": "../psychonoir-kontrapunkt-large-file-holder",
       "name": "📦 pnk-large-file-holder [satellite]"
     }
@@ -74,8 +72,11 @@
     "git.autoFetch": false,
     "git.autoFetchPeriod": 180,
     "git.statusDecorationColors": true,
-    // Suppress git SCM for pure LFS dump satellites (no active commit workflow)
+    // Suppress git SCM for ALL satellites — primary repo is the only commit surface
     "git.ignoredRepositories": [
+      "../PsychoNoir-Kontrapunkt",
+      "../Restructure-MCP-Orchestration",
+      "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "../git-dump-lfs-holder-we-it-takes",
       "../psychonoir-kontrapunkt-large-file-holder"
     ],
