@@ -66,19 +66,18 @@
     },
     // Copilot workspace context: both repo roots visible
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-    // Git: manage both repos independently in Source Control panel
-    "git.openRepositoryInParentFolders": "always",
-    // Throttle git polling — reduces config spam from multi-root satellite repos
+    // Git: satellites are in folders[] for search/Copilot context only — no parent scan
+    "git.openRepositoryInParentFolders": "never",
     "git.autoFetch": false,
     "git.autoFetchPeriod": 180,
     "git.statusDecorationColors": true,
-    // Suppress git SCM for ALL satellites — primary repo is the only commit surface
+    // Suppress git SCM for ALL satellites — absolute paths required by VS Code
     "git.ignoredRepositories": [
-      "../PsychoNoir-Kontrapunkt",
-      "../Restructure-MCP-Orchestration",
-      "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-      "../git-dump-lfs-holder-we-it-takes",
-      "../psychonoir-kontrapunkt-large-file-holder"
+      "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+      "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+      "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder"
     ],
     "claudeCode.allowDangerouslySkipPermissions": true,
     "githubPullRequests.pullRequestDescription": "Copilot"
