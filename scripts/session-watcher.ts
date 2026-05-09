@@ -233,9 +233,106 @@ function allTranscripts(): Array<{ path: string; mtime: number }> {
 }
 
 // ──────────────────────────────────────────────────────────────
+//  Auto-migration: user-land fix for VS Code issue #283714
+//
+//  When VS Code switches from folder-open to workspace-file-open
+//  (or vice versa), it creates a NEW workspaceStorage hash and
+//  only migrates the chat index — NOT the .jsonl transcript files.
+//  This causes sessions to silently disappear from the SESSIONS
+//  panel. We detect and copy them on every pass.
+// ──────────────────────────────────────────────────────────────
+
+/** Find the hash whose workspace.json references the .code-workspace file for this repo. */
+function findWorkspaceFileHash(): string | null {
+  if (!existsSync(wsRoot)) return null;
+  for (const hash of readdirSync(wsRoot)) {
+    const wjPath = join(wsRoot, hash, "workspace.json");
+    if (!existsSync(wjPath)) continue;
+    try {
+      const wj = JSON.parse(readFileSync(wjPath, "utf8")) as Record<string, string>;
+      const uri = String(wj["workspace"] ?? "");
+      if (uri.toLowerCase().includes("chthonic-archive.code-workspace")) return hash;
+    } catch { /* skip */ }
+  }
+  return null;
+}
+
+/** Find all hashes whose workspace.json references the chthonic-archive repo (any form). */
+function findChthonicHashes(): string[] {
+  if (!existsSync(wsRoot)) return [];
+  const out: string[] = [];
+  for (const hash of readdirSync(wsRoot)) {
+    const wjPath = join(wsRoot, hash, "workspace.json");
+    if (!existsSync(wjPath)) continue;
+    try {
+      const wj = JSON.parse(readFileSync(wjPath, "utf8")) as Record<string, string>;
+      const uri = String(wj["folder"] ?? wj["workspace"] ?? "");
+      if (uri.toLowerCase().includes("chthonic-archive")) out.push(hash);
+    } catch { /* skip */ }
+  }
+  return out;
+}
+
+/** Copy a debug-logs/<sessionId>/ directory from one hash to another (skip if already exists). */
+function migrateDebugLog(srcHash: string, dstHash: string, sessionId: string): void {
+  const srcDir = join(wsRoot, srcHash, "GitHub.copilot-chat", "debug-logs", sessionId);
+  const dstDir = join(wsRoot, dstHash, "GitHub.copilot-chat", "debug-logs", sessionId);
+  if (!existsSync(srcDir) || existsSync(dstDir)) return;
+  try {
+    mkdirSync(dstDir, { recursive: true });
+    for (const f of readdirSync(srcDir)) {
+      try { copyFileSync(join(srcDir, f), join(dstDir, f)); } catch { /* skip */ }
+    }
+  } catch { /* skip */ }
+}
+
+/**
+ * Copy any transcripts (and their debug-logs) that live in old folder-open hashes
+ * but are missing from the current workspace-file hash.
+ * Returns the number of sessions migrated.
+ */
+function migrateOrphanedSessions(): number {
+  const targetHash = findWorkspaceFileHash();
+  if (!targetHash) { vlog("migration: no workspace-file hash found — skipping"); return 0; }
+
+  const targetTDir = join(wsRoot, targetHash, "GitHub.copilot-chat", "transcripts");
+  mkdirSync(targetTDir, { recursive: true });
+
+  const existing = new Set(
+    readdirSync(targetTDir).filter(f => f.endsWith(".jsonl")).map(f => f.replace(".jsonl", ""))
+  );
+
+  const srcHashes = findChthonicHashes().filter(h => h !== targetHash);
+  let migrated = 0;
+
+  for (const src of srcHashes) {
+    const srcTDir = join(wsRoot, src, "GitHub.copilot-chat", "transcripts");
+    if (!existsSync(srcTDir)) continue;
+    for (const f of readdirSync(srcTDir)) {
+      if (!f.endsWith(".jsonl")) continue;
+      const uuid = f.replace(".jsonl", "");
+      if (existing.has(uuid)) continue;
+      try {
+        copyFileSync(join(srcTDir, f), join(targetTDir, f));
+        existing.add(uuid);
+        migrated++;
+        log(`🔄 auto-migrated ${uuid} (${src.slice(0, 8)} → ${targetHash.slice(0, 8)})`);
+        migrateDebugLog(src, targetHash, uuid);
+      } catch (err) {
+        log(`⚠️  migration failed for ${uuid}: ${String(err)}`);
+      }
+    }
+  }
+
+  if (migrated > 0) log(`🔄 Auto-migration: ${migrated} orphaned session(s) copied to workspace-file hash.`);
+  return migrated;
+}
+
+// ──────────────────────────────────────────────────────────────
 //  Snapshot all (--once mode or initial sync)
 // ──────────────────────────────────────────────────────────────
 function snapshotAll(): number {
+  migrateOrphanedSessions(); // fix VS Code #283714: copy orphaned transcripts before scanning
   const files = allTranscripts();
   if (files.length === 0) { log("No transcripts found."); return 0; }
   const livePath = files[0].path;
