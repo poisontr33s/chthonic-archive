@@ -56,6 +56,17 @@
       "git-dump-live": true,
       "pnk-lfh-live": true
     },
+    // Prevent file watcher from traversing NTFS junctions into satellite .git/ dirs
+    // Without this, ReadDirectoryChangesW follows junctions and triggers git status polling
+    "files.watcherExclude": {
+      "pnk-live/**": true,
+      "rmco-live/**": true,
+      "csb-live/**": true,
+      "git-dump-live/**": true,
+      "pnk-lfh-live/**": true
+    },
+    // Belt-and-suspenders: stop git discovery walk from entering junction dirs
+    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live"],
     // Search: include PNK satellite by default (both repos in Ctrl+Shift+F scope)
     "search.useIgnoreFiles": true,
     "search.exclude": {
