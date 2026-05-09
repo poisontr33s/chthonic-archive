@@ -892,16 +892,13 @@
 				"--once"
 			],
 			"group": "test",
-			"runOptions": {
-				"runOn": "folderOpen"
-			},
 			"presentation": {
 				"reveal": "silent",
 				"panel": "shared",
 				"close": true
 			},
 			"problemMatcher": [],
-			"detail": "Auto-mirrors Copilot Chat sessions on workspace open. Runs once, silently."
+			"detail": "Manual one-shot mirror for Copilot Chat sessions. Runs once, silently."
 		},
 		{
 			"label": "Chthonic: Session Corpus (ingest)",

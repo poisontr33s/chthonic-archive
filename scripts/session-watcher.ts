@@ -13,7 +13,7 @@
 //   bun run scripts/session-watcher.ts --once                # one poll pass, then exit
 //   bun run scripts/session-watcher.ts --once --push         # one pass + commit + push, then exit
 //
-// VS Code task "Session: Watch + Push" has runOn: folderOpen — starts automatically.
+// VS Code task "Session: Watch + Push" is manual-only; do not auto-start on folder open.
 
 import { readFileSync, existsSync, writeFileSync, statSync, readdirSync, mkdirSync, copyFileSync } from "fs";
 import { join, basename } from "path";

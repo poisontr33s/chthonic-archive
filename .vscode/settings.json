@@ -40,11 +40,36 @@
 
     // === GIT / SCM THERMAL CONTAINMENT ===
     // 1.37 GiB repo, 2463 tracked files — default polling is a laptop-killer.
+    "git.autoRepositoryDetection": "subFolders",
+    "git.openRepositoryInParentFolders": "never",
+    "git.repositoryScanMaxDepth": 0,
+    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live"],
     "git.autorefresh": false,
     "git.autofetch": false,
+    "git.confirmSync": true,
     "git.decorations.enabled": false,
+    "git.enableStatusBarSync": false,
+    "git.showProgress": false,
     "git.statusLimit": 500,
+    "git.untrackedChanges": "hidden",
+    "git.countBadge": "tracked",
+    "git.pullTags": false,
+    "git.postCommitCommand": "none",
+    "git.commandsToLog": [],
+    "git.showActionButton": {
+        "commit": true,
+        "publish": false,
+        "sync": false
+    },
     "scm.diffDecorations": "none",
+    "git.ignoredRepositories": [
+        "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+        "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+        "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+        "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
+        "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder",
+        "C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"
+    ],
 
     // === FILE ASSOCIATIONS ===
     "files.associations": {
@@ -237,7 +262,7 @@
     "chat.useAgentSkills": true,
     "chat.useAgentsMdFile": false,
     "chat.checkpoints.enabled": true,
-    "chat.checkpoints.showFileChanges": true,
+    "chat.checkpoints.showFileChanges": false,
     // Unsupported in the current Chat build; preserved for future revalidation.
     // "chat.todoListTool.descriptionField": true,
     // Unsupported in the current Chat build; preserved for future revalidation.
