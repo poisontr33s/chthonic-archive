@@ -5,10 +5,10 @@
     "corpus_path": "manifest/corpus.sqlite",
     "workspaceHash": "710554437afe84ae817dd8a105e496f6",
     "startTime": "2026-04-22T17:25:48.017Z",
-    "drainedAt": "2026-05-05T21:47:39.645Z"
+    "drainedAt": "2026-05-09T00:34:29.163Z"
   },
   "sessionId": "898c7571-8c50-4e43-b6ef-a124473bb012",
-  "drainedAt": "2026-05-05T21:47:39.645Z",
+  "drainedAt": "2026-05-09T00:34:29.163Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\898c7571-8c50-4e43-b6ef-a124473bb012\\transcript.jsonl",
   "sessionIntent": "[XP] Lv.6 Master [██████░░░░] 438 XP (+52 -> Lv.7) [T] [E] [P] [D] [G] PS C:\\Users\\eldno\\chthonic-archive> uv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --rv --apply",
   "turns": 3598,

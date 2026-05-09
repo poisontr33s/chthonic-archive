@@ -70,11 +70,8 @@
       "cwd": "${workspaceFolder}"
     },
     "io.github.upstash/context7": {
-      "type": "stdio",
-      "command": "bunx",
-      "args": [
-        "@upstash/context7-mcp@1.0.31"
-      ]
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
     },
     "pnk-archaeology": {
       "type": "stdio",
@@ -84,9 +81,9 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "cwd": "${workspaceFolder}/pnk-lfh-live",
       "env": {
-        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder"
+        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-lfh-live"
       }
     },
     "pnk-public-archaeology": {
@@ -97,9 +94,9 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "cwd": "${workspaceFolder}/pnk-lfh-live",
       "env": {
-        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/../PsychoNoir-Kontrapunkt"
+        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-live"
       }
     },
     "chthonic-archaeology": {
@@ -110,7 +107,7 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/../psychonoir-kontrapunkt-large-file-holder",
+      "cwd": "${workspaceFolder}/pnk-lfh-live",
       "env": {
         "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
       }
@@ -118,6 +115,11 @@
     "huggingface": {
       "type": "http",
       "url": "https://huggingface.co/mcp"
+    },
+    "workiq": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": ["-y", "@microsoft/workiq@latest", "mcp"]
     }
   }
 }

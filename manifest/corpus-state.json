@@ -1,9 +1,9 @@
 {
   "schema_version": 4,
-  "ingest_ts": "2026-05-05T00:48:32.568Z",
-  "sessions": 13,
-  "entities": 1073,
-  "entity_occurrences": 16637,
+  "ingest_ts": "2026-05-09T01:23:59.234Z",
+  "sessions": 15,
+  "entities": 1271,
+  "entity_occurrences": 20983,
   "gate_ladder": {
     "G0": true,
     "G1a": true,
@@ -12,16 +12,12 @@
     "G5": true,
     "G6": true,
     "G8b": true,
-    "G7": true,
+    "G7": false,
     "G8a": true,
-    "G8c": true,
-    "G9": true
+    "G8c": true
   },
-  "vec_count": 13,
+  "vec_count": 0,
   "vec_model": "Qwen/Qwen3-Embedding-0.6B",
   "vec_dims": 1024,
-  "satellites": [
-    "scripts/satellites/vampire-copilot-chat/satellite.json",
-    "scripts/satellites/vampire-terminal-history/satellite.json"
-  ]
+  "satellites": []
 }

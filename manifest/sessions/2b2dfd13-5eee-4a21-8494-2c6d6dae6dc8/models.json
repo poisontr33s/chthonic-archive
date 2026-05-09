@@ -386,6 +386,10 @@
     "model_picker_enabled": true,
     "name": "GPT-5.4 mini",
     "object": "model",
+    "policy": {
+      "state": "enabled",
+      "terms": "Enable access to the latest GPT-5.4 mini model from OpenAI. [Learn more about how GitHub Copilot serves GPT-5.4 mini](https://gh.io/copilot-openai)."
+    },
     "preview": false,
     "supported_endpoints": [
       "/responses",
@@ -876,71 +880,6 @@
     "preview": false,
     "vendor": "Azure OpenAI",
     "version": "text-embedding-3-small"
-  },
-  {
-    "billing": {
-      "is_premium": true,
-      "multiplier": 1,
-      "restricted_to": [
-        "pro",
-        "pro_plus",
-        "max",
-        "business",
-        "enterprise"
-      ]
-    },
-    "capabilities": {
-      "family": "claude-sonnet-4",
-      "limits": {
-        "max_context_window_tokens": 216000,
-        "max_output_tokens": 16000,
-        "max_prompt_tokens": 127997,
-        "vision": {
-          "max_prompt_image_size": 3145728,
-          "max_prompt_images": 5,
-          "supported_media_types": [
-            "image/jpeg",
-            "image/png",
-            "image/webp"
-          ]
-        }
-      },
-      "object": "model_capabilities",
-      "supports": {
-        "max_thinking_budget": 32000,
-        "min_thinking_budget": 1024,
-        "parallel_tool_calls": true,
-        "streaming": true,
-        "tool_calls": true,
-        "vision": true
-      },
-      "tokenizer": "o200k_base",
-      "type": "chat"
-    },
-    "id": "claude-sonnet-4",
-    "info_messages": [
-      {
-        "code": "model_pending_deprecation",
-        "message": "Claude Sonnet 4 has a planned deprecation date of 2026-05-01."
-      }
-    ],
-    "is_chat_default": false,
-    "is_chat_fallback": false,
-    "model_picker_category": "versatile",
-    "model_picker_enabled": true,
-    "name": "Claude Sonnet 4",
-    "object": "model",
-    "policy": {
-      "state": "enabled",
-      "terms": "Enable access to the latest Claude Sonnet 4 model from Anthropic. [Learn more about how GitHub Copilot serves Claude Sonnet 4](https://docs.github.com/en/copilot/using-github-copilot/ai-models/using-claude-sonnet-in-github-copilot)."
-    },
-    "preview": false,
-    "supported_endpoints": [
-      "/chat/completions",
-      "/v1/messages"
-    ],
-    "vendor": "Anthropic",
-    "version": "claude-sonnet-4"
   },
   {
     "billing": {

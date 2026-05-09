@@ -5,10 +5,10 @@
     "corpus_path": "manifest/corpus.sqlite",
     "workspaceHash": "710554437afe84ae817dd8a105e496f6",
     "startTime": "2026-04-15T11:44:01.402Z",
-    "drainedAt": "2026-05-05T21:47:39.637Z"
+    "drainedAt": "2026-05-09T00:34:29.155Z"
   },
   "sessionId": "79682e02-d0ce-4b47-b9ce-9de191f62f77",
-  "drainedAt": "2026-05-05T21:47:39.637Z",
+  "drainedAt": "2026-05-09T00:34:29.155Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\79682e02-d0ce-4b47-b9ce-9de191f62f77\\transcript.jsonl",
   "sessionIntent": "* **->**: * [Let us look at the current changes and some manualized iterations to improve](C:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md) * Currently bleeds references that she m",
   "turns": 4629,

@@ -5,10 +5,10 @@
     "corpus_path": "manifest/corpus.sqlite",
     "workspaceHash": "710554437afe84ae817dd8a105e496f6",
     "startTime": "2026-04-15T10:57:32.050Z",
-    "drainedAt": "2026-05-05T21:47:39.627Z"
+    "drainedAt": "2026-05-09T00:34:29.145Z"
   },
   "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
-  "drainedAt": "2026-05-05T21:47:39.627Z",
+  "drainedAt": "2026-05-09T00:34:29.145Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\c6250cb5-8251-4198-bf6d-6c311bbcf016\\transcript.jsonl",
   "sessionIntent": "",
   "turns": 2,

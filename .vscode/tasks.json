@@ -881,5 +881,62 @@
 			},
 			"problemMatcher": [],
 			"detail": "Dry-run: shows what task would be dispatched without running SDK."
+		},
+		{
+			"label": "Chthonic: Session Watch (once)",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/session-watcher.ts",
+				"--once"
+			],
+			"group": "test",
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"presentation": {
+				"reveal": "silent",
+				"panel": "shared",
+				"close": true
+			},
+			"problemMatcher": [],
+			"detail": "Auto-mirrors Copilot Chat sessions on workspace open. Runs once, silently."
+		},
+		{
+			"label": "Chthonic: Session Corpus (ingest)",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/session-corpus.ts"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "silent",
+				"panel": "shared",
+				"close": true
+			},
+			"problemMatcher": [],
+			"detail": "Incremental ingest of mirrored sessions into corpus.sqlite."
+		},
+		{
+			"label": "Chthonic: Vampire Drain (blood)",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/vampire-copilot-chat.ts"
+			],
+			"group": "test",
+			"presentation": {
+				"reveal": "silent",
+				"panel": "shared",
+				"close": true
+			},
+			"problemMatcher": [],
+			"detail": "Drain all sessions from corpus into session_blood.json."
 		}
+
+	]
 }

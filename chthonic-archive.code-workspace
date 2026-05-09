@@ -7,9 +7,15 @@
   //     remotes, commit flow). Neither absorbs the other.
   //   - VS Code multi-root creates a contextual binding: Copilot, search, and
   //     the editor see both repos simultaneously without repo coupling.
-  //   - NTFS junction at chthonic-archive/pnk-live/ → ../PsychoNoir-Kontrapunkt
-  //     gives teleport.ts and scripts a live filesystem path into the satellite
-  //     without appearing in PNK's own git index.
+  //   - NTFS junctions in workspace root are the canonical access layer:
+  //       pnk-live       → ../PsychoNoir-Kontrapunkt
+  //       rmco-live      → ../Restructure-MCP-Orchestration
+  //       csb-live       → ../Claudine_Supreme-Polyglot-...
+  //       git-dump-live  → ../git-dump-lfs-holder-we-it-takes
+  //       pnk-lfh-live   → ../psychonoir-kontrapunkt-large-file-holder
+  //   - All folder entries use junction-relative paths — no ../traversal.
+  //     VS Code resolves junctions transparently; each satellite's .git/ is
+  //     intact inside the junction, so Source Control works per-repo.
   //   - SATELLITE_REGISTRY.json is the machine-readable satellite map — the
   //     SSOT for which siblings are in orbit and their governance metadata.
   //   - teleport.ts --from-sibling <alias> resolves via the registry, making
@@ -23,23 +29,23 @@
       "name": "⚡ chthonic-archive [primary]"
     },
     {
-      "path": "../PsychoNoir-Kontrapunkt",
+      "path": "pnk-live",
       "name": "🌀 PsychoNoir-Kontrapunkt [satellite]"
     },
     {
-      "path": "../Restructure-MCP-Orchestration",
+      "path": "rmco-live",
       "name": "🔧 Restructure-MCP-Orchestration [satellite]"
     },
     {
-      "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "path": "csb-live",
       "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
     },
     {
-      "path": "../git-dump-lfs-holder-we-it-takes",
+      "path": "git-dump-live",
       "name": "📦 git-dump-lfs-holder [satellite]"
     },
     {
-      "path": "../psychonoir-kontrapunkt-large-file-holder",
+      "path": "pnk-lfh-live",
       "name": "📦 pnk-large-file-holder [satellite]"
     }
   ],

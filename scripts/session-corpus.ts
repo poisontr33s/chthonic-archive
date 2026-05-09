@@ -329,12 +329,14 @@ function ingestSession(db: Database, sessionId: string): boolean {
   db.prepare("DELETE FROM terminal_cmds     WHERE sessionId = ?").run(sessionId);
   db.prepare("DELETE FROM file_edits        WHERE sessionId = ?").run(sessionId);
   db.prepare("DELETE FROM session_restarts  WHERE sessionId = ?").run(sessionId);
+  // G8b entity cleanup — must precede sessions delete (FK constraint)
+  try { db.prepare("DELETE FROM entity_occurrences WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
   db.prepare("DELETE FROM sessions          WHERE sessionId = ?").run(sessionId);
   // FTS5 cleanup (graceful — tables may not exist on schema migration)
   try { db.prepare("DELETE FROM fts_messages      WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
   try { db.prepare("DELETE FROM fts_cmds           WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
-  // G8b entity cleanup (graceful)
-  try { db.prepare("DELETE FROM entity_occurrences WHERE sessionId = ?").run(sessionId); } catch { /* ok */ }
+  // vec_embeddings cleanup (graceful — virtual table, no FK)
+  try { db.prepare("DELETE FROM vec_embeddings     WHERE session_id = ?").run(sessionId); } catch { /* ok */ }
 
   // Insert sessions row (turns + intent updated after transcript pass)
   db.prepare(`
