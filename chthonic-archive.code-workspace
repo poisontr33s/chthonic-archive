@@ -38,10 +38,12 @@
       "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
     },
     {
+      // git-disabled: pure LFS dump, no active commit workflow
       "path": "../git-dump-lfs-holder-we-it-takes",
       "name": "📦 git-dump-lfs-holder [satellite]"
     },
     {
+      // git-disabled: pure LFS dump, no active commit workflow
       "path": "../psychonoir-kontrapunkt-large-file-holder",
       "name": "📦 pnk-large-file-holder [satellite]"
     }
@@ -68,6 +70,15 @@
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
     // Git: manage both repos independently in Source Control panel
     "git.openRepositoryInParentFolders": "always",
+    // Throttle git polling — reduces config spam from multi-root satellite repos
+    "git.autoFetch": false,
+    "git.autoFetchPeriod": 180,
+    "git.statusDecorationColors": true,
+    // Suppress git SCM for pure LFS dump satellites (no active commit workflow)
+    "git.ignoredRepositories": [
+      "../git-dump-lfs-holder-we-it-takes",
+      "../psychonoir-kontrapunkt-large-file-holder"
+    ],
     "claudeCode.allowDangerouslySkipPermissions": true,
     "githubPullRequests.pullRequestDescription": "Copilot"
   },
