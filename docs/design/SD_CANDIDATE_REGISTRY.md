@@ -72,6 +72,14 @@ cross-refs:
 | C21 | ZX-Art ANSI corpus | zxart.ee | SCHEMA/REFERENCE (block-char atlas) | ❌ Corpus only | MEDIUM |
 | C22 | Awesome-Local-LLM + Firecrawl | rafska/awesome-local-llm | SCHEMA (Markdown pipeline ref) | ❌ Ref read | LOW |
 
+### Interactive Fiction Frontends (narrative loop, CharBook, multi-AI — see §9)
+
+| ID | Candidate | Repo | Mine Class | Clone | Priority |
+|----|-----------|------|------------|-------|----------|
+| C23 | agnaistic/agnai | agnaistic/agnai | PROTOCOL+SCHEMA (CharBook stacking, multi-AI, multi-tenant) | ❌ Web-research | HIGH |
+| C24 | agn-ai early fork | malfoyslastname/agn-ai | LINEAGE (design-philosophy baseline, pre-MongoDB optionality) | ❌ Diff ref only | LOW |
+| C25 | AIDungeon2 | latitudegames/AIDungeon | SCHEMA (narrative tree data pipeline, story-loop format) | ❌ Archived corpus | MEDIUM |
+
 ---
 
 ## §2 — Sweep Coverage per Candidate
@@ -240,6 +248,24 @@ DSL / SCHEMA / CORPUS CANDIDATES (§8) — no clone; spec/paper/corpus archaeolo
         → extract: visual web → LLM-ready Markdown conversion pipeline
         → target: roleplay context generation in entity card DSL
         Trigger: entity card DSL generation pipeline is prioritized
+
+INTERACTIVE FICTION CANDIDATES (§9) — multi-AI narrative frontends, CharBook schema:
+  [O13] C23 agnai — sweep agnaistic/agnai common/ + srv/ + web/
+        → extract: CharacterBook stacking (key-trigger semantics, priority weighting)
+        → extract: multi-AI service adapter contract (KoboldCpp, OpenAI, Claude, OpenRouter)
+        → extract: multi-tenant isolation (MongoDB-optional JSON storage fallback)
+        → target: entity_card.py CharacterBook + LoreEntry design refinement; adapter ref
+        Trigger: UNBLOCKED — entity card format stabilized (1b086bb1 committed)
+  [O14] C24 agn-ai early fork — read Design Goals section + early srv/ pre-MongoDB-optional state
+        → extract: "low-friction self-hosting, no native deps, no Docker" principle
+        → extract: diff vs agnai:dev to understand evolution trajectory (what was added in 953 commits)
+        → target: MILFOLOGICAL pipeline portability design philosophy
+        Trigger: self-host deployment design decision for MILFOLOGICAL inference stack
+  [O15] C25 AIDungeon2 — read story/story_manager.py + data/ JSON schema
+        → extract: story-tree format (tree_id / story_start / action_results nesting)
+        → extract: GPT-2 fine-tune text format (<|startoftext|> / action-result interleaving)
+        → target: narrative loop data format reference for entity roleplay pipeline
+        Trigger: narrative loop (interactive fiction engine) is prioritized above SD integration
 
 REJECTED — not worth further investment:
   [R1]  Fooocus (C8) — GPL-3.0 + stale + SDXL-only + no HTTP API
@@ -584,3 +610,179 @@ Research date: 2026-05-09. No filesystem sweeps performed. All data from GitHub 
 | Mine priority | **LOW** — useful for entity card content generation automation; not critical path. |
 | Immediate action | [O12]: Skim rafska/awesome-local-llm README. Extract any tools not yet in registry. Note Firecrawl API schema for potential `entity_card_generator.py` content pipeline. |
 | Axis note | Firecrawl's Markdown output is structurally compatible with CharCard V2 `{{description}}` and `{{scenario}}` fields — enabling a web-reference → entity card pipeline with no manual formatting. |
+
+---
+
+## §9 — Interactive Fiction Frontend Candidates (Narrative Loop, CharBook, Multi-AI)
+
+> **Mine axiom for §9:** The MILFOLOGICAL entity pipeline requires a narrative interaction surface — not just static metadata. Interactive fiction frontends (agnai, AI Dungeon lineage) supply three things the SD backend sweep did not: (1) CharacterBook stacking semantics (key-triggered context injection as a live memory system), (2) multi-AI service adapter contracts (how a frontend abstracts KoboldCpp vs. Claude vs. OpenAI into a unified inference call), and (3) narrative tree data schemas (how story state is represented, persisted, and forked). These are architectural inputs to the MILFOLOGICAL entity roleplay pipeline, not competitor systems.
+
+> **Lineage note — malfoyslastname:** `malfoyslastname/agn-ai` is the original fork that later merged back as contributor activity into `agnaistic/agnai`. The fork is 953 commits behind `agnaistic/agnai:dev` as of 2026-05. It is NOT a separate product — it is a **design-origin snapshot**. The CharCard V2 spec (`malfoyslastname/character-card-spec-v2`) is an independent, high-signal artifact from the same author. The fork's "Design Goals" section reveals the self-hosting philosophy that shaped agnai: low-friction, no Docker mandate, no native deps, JSON storage fallback. Mine value = design archaeology, not source integration.
+
+---
+
+### C23 — agnaistic/agnai (Interactive Fiction Frontend — Canonical)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/agnaistic/agnai |
+| Status | **ACTIVE** — last commit ~5 days ago (2026-05). 730 stars, 41 contributors, 136 forks. npm package `agnai`. |
+| License | AGPL-3.0 |
+| Stack | TypeScript 96.4% + SolidJS (frontend) + pnpm v8 (internally) + MongoDB (optional) + Redis (optional). No native addons — **bun-translatable**. |
+| Mine class | **PROTOCOL + SCHEMA** — CharBook stacking semantics, multi-AI adapter contract, multi-tenant isolation, sprite system, group conversation architecture |
+| Key source patterns | **(1) CharacterBook stacking**: `common/presets/` + lorebook handling — key-trigger semantics (regex/substring matching against dialogue → inject world-info entry into context window at configured priority). Multiple books stack additively. Priority weighting controls insertion order. Maps directly to `CharacterBook` / `LoreEntry` in `entity_card.py`. **(2) Multi-AI service adapter contract**: `srv/adapter/` — each AI service (KoboldCpp, Novel, AI Horde, OpenAI, Claude, Replicate, OpenRouter, Mancer, Goose) implements a common interface: `generate(opts: AdapterOpts): AsyncIterable<string>`. This is the canonical multi-AI abstraction surface. **(3) Multi-tenant isolation**: user-scoped character cards + chat histories, MongoDB-optional (JSON storage fallback for single-user self-hosting). Demonstrates how to scope entity metadata to a user session. **(4) Sprite system**: character image attachment (portrait + emote variants) tied to character card, displayed reactively via SolidJS signals on dialogue triggers. Architecture reference for MILFOLOGICAL avatar/sprite pipeline. **(5) Memory + summarization**: rolling context summarization to stay within token budget — reference for entity session memory management. |
+| Mine priority | **HIGH** — CharBook stacking semantics directly refine `entity_card.py` `CharacterBook`/`LoreEntry` design. Multi-AI adapter is the reference contract for a future `backends/agnai_adapter.py`. UNBLOCKED: entity_card.py committed (1b086bb1). |
+| Immediate action | [O13]: Web-sweep `agnaistic/agnai` `common/` (CharacterBook schema fields + stacking logic), `srv/adapter/` (adapter interface contract). Extract: (a) lorebook key-trigger regex semantics, (b) priority weighting scheme, (c) per-adapter generate() signature. Refine `entity_card.py` `LoreEntry` fields if gaps found. |
+| Axis note | agnai's bun-translatability is strategic: its frontend+backend can be rebuilt on bun without native module issues. The SolidJS reactive model maps cleanly to a Tauri+SolidJS desktop shell if a native MILFOLOGICAL client is ever needed. |
+
+---
+
+### C24 — malfoyslastname/agn-ai (Design-Origin Snapshot — LINEAGE REFERENCE)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/malfoyslastname/agn-ai |
+| Status | **FROZEN** — 953 commits behind `agnaistic/agnai:dev`. Last meaningful commit ~3 years ago. 0 stars, 1 fork. malfoyslastname is an active contributor to the upstream (agnaistic/agnai). |
+| License | AGPL-3.0 (inherited) |
+| Stack | Same as C23 at a much earlier stage — no MongoDB optionality, simpler adapter surface |
+| Mine class | **LINEAGE** — design philosophy origin, evolution diff baseline |
+| Key source patterns | **(1) Design Goals section** (README): "high quality codebase, low friction self-hosting, avoid native deps, avoid Docker mandate, JSON storage fallback as default" — the philosophical north star that shaped agnai's architecture. **(2) Pre-MongoDB-optional state**: early `srv/` shows what the system looked like before storage was abstracted — useful for understanding which abstractions were later-added vs. original. **(3) Diff signal**: 953-commit delta between agn-ai:main and agnai:dev shows the complete evolution of features (memory, group chat, multi-tenancy, image gen, sprite system, OpenRouter) — useful for understanding what the system gained over 3 years. |
+| Mine priority | **LOW** — no standalone clone needed. Reference only via diff archaeology (GitHub Compare UI). The CharCard V2 spec (`malfoyslastname/character-card-spec-v2`) is a higher-value artifact from the same author and is already captured in C18. |
+| Immediate action | [O14]: Read malfoyslastname/agn-ai README Design Goals section. Extract self-host philosophy principles → add to MILFOLOGICAL pipeline design docs as portability axioms. |
+| Axis note | The author's most durable contribution is the CharCard V2 spec (C18), not the fork. The fork is historical context. Mine accordingly — archaeology pass only, no clone. |
+
+---
+
+### C25 — latitudegames/AIDungeon (AIDungeon2 — Narrative Tree Archaeology)
+
+| Field | Value |
+|-------|-------|
+| Source | github.com/latitudegames/AIDungeon (archived Oct 2023, read-only) |
+| Status | **ARCHIVED** — 3.2k stars, 36 contributors, 546 forks. Python 87.7% + Jupyter 8.7%. MIT license. Last meaningful commit 7 years ago. Latitude's current product (aidungeon.io) is proprietary SaaS — this repo is the historical open-source artifact. |
+| License | MIT |
+| Stack | Python 3 + TensorFlow 1.15.2 + GPT-2 (gpt-2-simple wrapper) + requirements.txt |
+| Mine class | **SCHEMA** — narrative tree data format, interactive story loop architecture, GPT-2 fine-tune pipeline |
+| Key source patterns | **(1) Story-tree JSON schema**: `{ tree_id, story_start, action_results: [{ action, result, action_results: [...] }] }` — recursive action→result tree. This is the canonical data structure for branching interactive fiction. Maps to a `NarrativeNode` model in a MILFOLOGICAL entity interaction pipeline. **(2) Fine-tune text format**: `<\|startoftext\|>` / `> [action]\n[result]\n` interleaving pattern — the token format that teaches a model the action-response loop. Any MILFOLOGICAL entity fine-tune should adopt this interleaving convention. **(3) Story manager**: `story/story_manager.py` — manages context window budget (truncate from start, preserve recent context), action injection, result streaming. Reference for session memory management in entity roleplay. **(4) Data pipeline**: `data/build_training_data.py` — scrape → tree → flat-text pipeline. The flat-text format is LLM-agnostic and directly portable to modern fine-tuning scripts. **(5) Architecture**: `generator/`, `story/`, `data/`, `other/` separation — the boundary between generative core and narrative management layer is the key abstraction. |
+| Mine priority | **MEDIUM** — the story-tree schema + fine-tune text format are directly applicable to a MILFOLOGICAL entity interaction log format. The story manager's context truncation logic is a reference for entity session memory. |
+| Immediate action | [O15]: Read `story/story_manager.py` (context window management) + `data/build_training_data.py` (tree → flat-text). Extract: (a) story-tree JSON schema field definitions, (b) `<\|startoftext\|>` text format spec, (c) context truncation algorithm. Write `docs/reference/NARRATIVE_TREE_FORMAT.md` as a portable data format reference. |
+| Axis note | The AIDungeon2 architecture is the historical proof-of-concept that GPT-2-scale models can sustain coherent branching narratives via prompt engineering alone (no RLHF). The repo is MIT-licensed — schemas and format patterns are free to adopt directly. The Python/TF1.15 code is not portable, but the *data schemas and narrative loop logic* are implementation-agnostic. |
+
+---
+
+## §10 — Strategic Altitude Map (Sequencing + Stewardship Overview)
+
+> **Purpose:** This section answers: *given all active candidates, work-in-progress modules, and frontier projects — what order does the work happen in, and why?* It operates at three altitudes: **Vector** (6-month horizon, strategic direction), **Phase** (2-4 week sprints), and **Task** (day-scale, unblocked now). Update this section when a phase completes or a new blocker resolves.
+
+---
+
+### Altitude 1 — Strategic Vectors (6-month horizon)
+
+```
+VECTOR A — MILFOLOGICAL Entity Pipeline (Core Identity)
+  Purpose: Build the full entity lifecycle from CharCard V2 schema → image generation → entity card PNG export
+  North star: WHR:MAX prototype — entity with full MILFOLOGICAL metadata rendered via SD backend + entity card
+  Dependencies: SD backends (C1–C5), entity_card.py [DONE], entity_pixelart.py, entity_cutout.py, entity_unet_hook.py
+  Key external inputs: C23 agnai (CharBook stacking), C18 CharCard V2 spec (schema), C10 sd.cpp (GGUF inference)
+  Status: PIPELINE ACTIVE — entity_card.py committed (1b086bb1); backends/sdnext.py created; 3 Tier 1 stubs wired
+
+VECTOR B — Vulkan-Lab CLI Renderer (GPU-Native Output Surface)
+  Purpose: Produce ANSI/block-char terminal output via Vulkan compute — the visual output layer for MILFOLOGICAL entities
+  North star: G6 — unified --mode=polar (roulette arc) | --mode=dungeon (isometric cRPG) via same GPU pipeline
+  Dependencies: G2 ✅ (Euler scoring SSBO), G3 (fn transition_image_layout + ascii_downsample), G4 (GPU diff), G5 (SpinState), G6 (render modes)
+  Key external inputs: C21 ZX-Art ANSI corpus (block-char atlas for G3), C17 diffusion-rs (Rust-native SD for future G7+)
+  Status: G0–G2 ADMITTED — G3 pending (fn transition_image_layout() write is the unblocking action)
+
+VECTOR C — Narrative Interaction Layer (Interactive Fiction Engine)
+  Purpose: Enable entity roleplay sessions — entity card as character, user as player, LLM as narrator
+  North star: Entity interaction loop with lorebook injection + session memory + branching story tree
+  Dependencies: entity_card.py [DONE], C23 agnai [O13 pending], C25 AIDungeon2 [O15 pending], LLM backend (tabbyAPI / exllamav2)
+  Status: DEFERRED — no unblocked tasks yet; dependent on [O13] + [O15] archaeology completing first
+  Note: tabbyAPI gate ladder (G1–G6) provides the LLM inference host; exllamav2 EXL2 backend confirmed working (49e6e33f)
+```
+
+---
+
+### Altitude 2 — Phase Sequencing (2-4 week sprint bands)
+
+```
+PHASE 1 — FOUNDATION (COMPLETE ✅)
+  Git silence (5abcccb6) · protocols.py (46742297) · Tier 1 stubs (71359961) · entity_card.py (1b086bb1)
+  All SD backends web-researched. B1/B2/B3 Forge sweep deferred.
+
+PHASE 2 — ENTITY PIPELINE STABILIZATION (ACTIVE 🔄)
+  Unblocked:
+    [O13] agnai CharBook stacking sweep → refine entity_card.py LoreEntry design
+    [B1]  Forge unet_patcher.py filesystem sweep → [B2] backends/forge.py → [B3] entity_unet_hook.py
+    [O11] ZX-Art ANSI corpus → ANSI_BLOCKCHAR_REFERENCE.md (feeds Vulkan G3)
+  Sequencing:
+    [O13] first (no setup required, web sweep) → may revise entity_card.py fields
+    [B1] second (requires dev/sd-candidates/forge/ already cloned ✅) → unblocks entity_unet_hook.py
+    [O11] in parallel with [B1] — independent, feeds vulkan-lab not entity pipeline
+
+PHASE 3 — GPU RENDERING + HOOK INTEGRATION (NEXT)
+  Unblocked after Phase 2:
+    Vulkan G3: write fn transition_image_layout() + ascii_downsample.comp.glsl → ANSI stdout [BLOCKED on G3 start]
+    entity_unet_hook.py: UnetPatcher integration [BLOCKED on B3]
+  Sequencing:
+    G3 start is independent of [B3] — parallel execution possible
+    [O6] IREE-Turbine sweep in parallel if Vulkan compute inference is prioritized
+
+PHASE 4 — NARRATIVE LOOP + WHR:MAX (DEFERRED → future phase)
+  Gated on:
+    [O13] + [O15] archaeology complete → narrative data format spec
+    entity_card.py stable (no pending field revisions)
+    LLM inference host operational (tabbyAPI G1–G6 ladder)
+  Deliverable:
+    WHR:MAX prototype: full MILFOLOGICAL entity rendered as CharCard + SD-generated portrait + ANSI terminal display + lorebook injection
+    This is the convergence point of all three vectors (A + B + C)
+```
+
+---
+
+### Altitude 3 — Unblocked Task Queue (day-scale, execute now)
+
+```
+PRIORITY 1 — [O13] agnai CharBook sweep
+  Why now: entity_card.py just committed; this refines LoreEntry before downstream modules depend on it
+  Cost: 1 web-research pass, no setup
+  Output: potential entity_card.py LoreEntry field patch + doc note in CharacterBook docstring
+
+PRIORITY 2 — Vulkan G3 start: fn transition_image_layout()
+  Why now: G3 is the load-bearing blocker for G4-G6; fn is self-contained, ~80 lines
+  Cost: write one Rust function in vulkan-lab/cli-renderer/src/
+  Output: transition_image_layout() available → immediately enables ascii_downsample.comp.glsl pass
+
+PRIORITY 3 — [B1] Forge modules_forge/unet_patcher.py sweep
+  Why now: entity_unet_hook.py is the highest-capability module in the pipeline (per-step block modification)
+  Cost: filesystem read of already-cloned dev/sd-candidates/forge/
+  Output: full UnetPatcher map → [B2] backends/forge.py → [B3] entity_unet_hook.py
+
+PRIORITY 4 — [O11] ZX-Art ANSI corpus
+  Why: directly feeds G3 block-char selection; cheap archaeology pass
+  Cost: web browse zxart.ee/tags/ascii → write ANSI_BLOCKCHAR_REFERENCE.md
+  Output: canonical block-char set + escape table ready for shader use
+
+DEFERRED (not yet unblocked):
+  [O9]  Seed-and-Evolve paper read (after entity_pixelart.py work is next)
+  [O14] agn-ai Design Goals read (after portability decision is prioritized)
+  [O15] AIDungeon2 narrative tree read (after narrative loop enters Phase 4)
+  [B6]  sd.cpp clone (after GGUF lane or Vulkan inference prioritized)
+  [B7]  forge-ll clone (after LayerDiffuse or canonical UnetPatcher prioritized)
+```
+
+---
+
+### Candidate Classification Summary (all 25 entries)
+
+| Class | Candidates | Strategic Role |
+|-------|-----------|----------------|
+| **SD INFERENCE BACKEND** | C1–C5 | Image generation API surface — `backends/*.py` |
+| **LLM FRONTEND** | C6–C7 | SD API consumers — reference for API compatibility |
+| **EXTENDED SD** | C8–C12 | Specialty backends (GGUF, LayerDiffuse, Vulkan) |
+| **NICHE SOURCE** | C13–C17 | Translate / portable techniques (Metal→Vulkan, Rust, IREE) |
+| **DSL / SCHEMA / CORPUS** | C18–C22 | Entity metadata, seeding, block-char, markdown pipeline |
+| **INTERACTIVE FICTION** | C23–C25 | CharBook stacking, multi-AI adapter, narrative tree |
+
+**Total active mine operations:** [O1]–[O15] + [S1]–[S6] + [B1]–[B7]
+**Total rejected:** 3 (C8 Fooocus, C9 SwarmUI, C12 Easy Diffusion)
+**Convergence target:** WHR:MAX prototype — entity pipeline × Vulkan renderer × narrative loop
