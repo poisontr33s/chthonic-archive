@@ -66,6 +66,7 @@ author: chthonic-archive
 | uv | Python pkg mgr | **0.11.12** | Updated 2026-05-11 from 0.11.8 · `uv self update` |
 | rv / Ruby | Ruby mgr | rv **0.5.3** / Ruby **4.0.3** | rv at `.cargo/bin/rv.exe` · Ruby at `%APPDATA%\rv\rubies\ruby-4.0.3\` |
 | zv / Zig | Zig mgr | zv **0.13.0** / Zig **0.16.0** | Updated 2026-05-11 from zv 0.10.0 · `zv update` |
+| GCC / MSYS2 | UCRT64 toolchain | gcc **16.1.0-2** · MSYS2 pkg 14.0.0.r37 | Updated 2026-05-11 via `rv r ridk install 2` · path: `%APPDATA%\rv\rubies\ruby-4.0.3\msys64\ucrt64\bin\gcc.exe` |
 
 ### §0.3 Armory Crate Profile (2026-05-11)
 
