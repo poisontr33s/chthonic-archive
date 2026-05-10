@@ -15,6 +15,8 @@
 // ║   C-G2  cluster_analyze   manifest/claudine_clusters.json
 // ║   C-G3  dataset_format    manifest/claudine_dataset_meta.json
 // ║   C-G4  lora_train        manifest/claudine_train_run.json
+// ║   C-G5  unsloth_stack     manifest/claudine_unsloth_probe.json
+// ║   C-G4v2 lora_train_v2   manifest/claudine_train_run_v2.json  (optional)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 import { existsSync, readFileSync } from "fs";
@@ -192,12 +194,39 @@ function probeCG4v2(): GateResult {
   };
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
+function probeCG5(): GateResult {
+  const probe = readJson(resolve(MANIFEST_DIR, "claudine_unsloth_probe.json"));
+  if (!probe) {
+    return {
+      gate: "C-G5",
+      description: "unsloth_stack — torch+triton+flash_attn+Unsloth+trl on Win/Python 3.14",
+      status: "not_probed",
+      proof: "manifest/claudine_unsloth_probe.json missing",
+    };
+  }
+  const admitted = probe.gate === "C-G5" && probe.status === "admitted";
+  const checks = probe.checks as Record<string, Record<string, unknown>> | undefined;
+  return {
+    gate: "C-G5",
+    description: "unsloth_stack — torch+triton+flash_attn+Unsloth+trl on Win/Python 3.14",
+    status: admitted ? "admitted" : "failed",
+    proof: "manifest/claudine_unsloth_probe.json",
+    key_metrics: {
+      torch: checks?.torch?.version,
+      triton: checks?.triton?.version,
+      flash_attn: checks?.flash_attn?.version ?? checks?.flash_attn?.error,
+      unsloth: checks?.unsloth?.version,
+      trl: checks?.trl?.version,
+    },
+  };
+}
 
-// C-G1/G2/G3/G4 are required. C-G4v2 is optional (v2 upgrade path, not a blocker).
-const REQUIRED_GATES = ["C-G1", "C-G2", "C-G3", "C-G4"];
 
-const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4(), probeCG4v2()];
+
+// C-G1/G2/G3/G4/G5 are required. C-G4v2 is optional (v2 upgrade path, not a blocker).
+const REQUIRED_GATES = ["C-G1", "C-G2", "C-G3", "C-G4", "C-G5"];
+
+const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4(), probeCG5(), probeCG4v2()];
 
 const required = gates.filter((g) => REQUIRED_GATES.includes(g.gate));
 const allAdmitted = required.every((g) => g.status === "admitted");

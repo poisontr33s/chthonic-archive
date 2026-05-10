@@ -1,0 +1,30 @@
+{
+  "gate": "C-G5",
+  "probe": "P-05_unsloth_probe",
+  "timestamp": "2026-05-10T07:29:25Z",
+  "status": "admitted",
+  "checks": {
+    "torch": {
+      "version": "2.11.0+cu128",
+      "cuda": true,
+      "device": "NVIDIA GeForce RTX 4090"
+    },
+    "triton": {
+      "version": "3.6.0",
+      "target": "cuda:89 (sm_89)"
+    },
+    "flash_attn": {
+      "version": "2.8.3"
+    },
+    "xformers": {
+      "error": "No module named 'xformers'"
+    },
+    "unsloth": {
+      "version": "2026.5.2",
+      "fastlanguagemodel": true
+    },
+    "trl": {
+      "version": "1.4.0"
+    }
+  }
+}
