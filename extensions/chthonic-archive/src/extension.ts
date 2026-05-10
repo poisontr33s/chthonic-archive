@@ -33,6 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
     runActivationLane(laneRegistry, outputChannel, 'markdown-paste', () => registerRenderedMarkdownPasteLane(context, outputChannel));
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
+    context.subscriptions.push(
+        laneRegistry.onDidChange(() => activityBarMorph.updateLanes(laneRegistry.snapshot())),
+    );
     const designFrameProvider = new DesignFrameProvider(context.extensionUri, workspaceRoot, outputChannel);
     const deepFocusLayout = new DeepFocusLayout(outputChannel);
     const restoreOrderLayout = new RestoreOrderLayout(outputChannel);
@@ -46,7 +49,10 @@ export function activate(context: vscode.ExtensionContext) {
     if (!sidecars) return;
 
     const themeProvider = new ThemeTreeProvider();
-    const statusProvider = new StatusTreeProvider(() => computePolicyFingerprint({ workspaceRoot, chthonicConfig }));
+    const statusProvider = new StatusTreeProvider(
+        () => computePolicyFingerprint({ workspaceRoot, chthonicConfig }),
+        () => laneRegistry.snapshot(),
+    );
     statusProvider.configure({ entropyEnabled: sidecars.entropyEnabled, allowSidecars: sidecars.allowNativeSidecars, reactorReady: sidecars.reactorReadiness.ready, selfHealing: sidecars.slabSelfHealingEnabled });
     runActivationLane(laneRegistry, outputChannel, 'views', () => activateViews(context, { ...activationDeps, designFrameProvider, stylusProvider, entropyDecorations: sidecars.entropyDecorations, abyssalProvider: sidecars.abyssalProvider, themeProvider, statusProvider }));
     runActivationLane(laneRegistry, outputChannel, 'commands', () => activateCommands(context, { ...sidecars, workspaceRoot, outputChannel, chthonicConfig, laneRegistry, designFrameProvider, stylusProvider, deepFocusLayout, restoreOrderLayout, themeProvider, statusProvider, refreshToolchainCompleteness }));

@@ -3,12 +3,14 @@ import * as vscode from 'vscode';
 import type { RustificationReport, RustificationTier } from './rustificationScore';
 import { iconFileForTier } from './rustificationScore';
 import type { EntropyState } from '../reactor/types';
+import type { LaneSnapshot, RuntimeLaneState } from '../runtime/laneState';
 
 export class ActivityBarMorph implements vscode.Disposable {
     private readonly fallbackItem: vscode.StatusBarItem;
     private fallbackNoticeEmitted = false;
     private latestRustification: RustificationReport | null = null;
     private latestEntropy: EntropyState | null = null;
+    private latestLanes: RuntimeLaneState[] = [];
 
     constructor(
         private readonly extensionUri: vscode.Uri,
@@ -33,6 +35,11 @@ export class ActivityBarMorph implements vscode.Disposable {
         await vscode.commands.executeCommand('setContext', 'chthonic.decayStatus', state.status);
         await vscode.commands.executeCommand('setContext', 'chthonic.decayScore', Math.round(state.decay_score * 100));
         await this.apply();
+    }
+
+    updateLanes(snapshot: LaneSnapshot): void {
+        this.latestLanes = [...snapshot.lanes];
+        this.updateFallbackStatus();
     }
 
     dispose(): void {
@@ -76,9 +83,13 @@ export class ActivityBarMorph implements vscode.Disposable {
         const label = tierLabel(rust.tier);
         const decayPercent = entropy ? Math.round(entropy.decay_score * 100) : null;
         const decayLabel = entropy ? `${entropy.status} ${decayPercent}%` : 'unknown';
+        const laneSummary = summarizeLanes(this.latestLanes);
 
         const decayText = decayPercent !== null ? ` · Decay ${decayPercent}%` : '';
-        this.fallbackItem.text = `$(pulse) ${label} ${rust.score}%${decayText}`;
+        const laneText = laneSummary.total > 0
+            ? ` · ${laneSummary.active}/${laneSummary.total} lanes`
+            : '';
+        this.fallbackItem.text = `$(pulse) ${label} ${rust.score}%${decayText}${laneText}`;
         this.fallbackItem.tooltip = [
             `Toolchain completeness: ${rust.score}% (${rust.tier})`,
             `Present: ${rust.present.join(', ') || 'none'}`,
@@ -87,6 +98,8 @@ export class ActivityBarMorph implements vscode.Disposable {
             entropy && entropy.critical_tools.length > 0
                 ? `Critical tools: ${entropy.critical_tools.join(', ')}`
                 : undefined,
+            laneSummary.total > 0 ? `Runtime lanes: ${laneSummary.active}/${laneSummary.total} active` : undefined,
+            ...this.latestLanes.slice(0, 8).map((lane) => formatLaneTooltip(lane)),
         ].filter(Boolean).join('\n');
     }
 }
@@ -100,4 +113,20 @@ function tierLabel(tier: RustificationTier): string {
         default:
             return 'Gate';
     }
+}
+
+function summarizeLanes(lanes: readonly RuntimeLaneState[]): { total: number; active: number } {
+    let active = 0;
+    for (const lane of lanes) {
+        if (lane.state === 'READY' || lane.state === 'LIVE') {
+            active += 1;
+        }
+    }
+    return { total: lanes.length, active };
+}
+
+function formatLaneTooltip(lane: RuntimeLaneState): string {
+    return lane.reason
+        ? `${lane.name}=${lane.state} (${lane.reason})`
+        : `${lane.name}=${lane.state}`;
 }
