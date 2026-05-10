@@ -2,9 +2,10 @@
 type: frontier-map
 tier: T1-operational
 status: living-document
-hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 · Vulkan 1.3 · Driver 596.21
+hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 (toolkit) · Vulkan 1.3 · Driver 596.36 · VBIOS 95.02.3c.40.3a
 python: 3.14.4 · uv-managed
 created: 2026-05-10
+last-hw-snapshot: 2026-05-11
 author: chthonic-archive
 ---
 
@@ -30,6 +31,73 @@ author: chthonic-archive
 > `cargo build` pulls every layer. See §10 for the language runtime matrix and the open question of
 > Ruby's context-handling advantage. This document is structured so an agent can use this knowledge
 > operationally — not just as reference.
+
+---
+
+## §0 Hardware Registry (Session Anchor)
+
+> **Purpose:** Versioned hardware snapshot — anchors post-restart context and gives any agent or session
+> an immediate operational baseline without re-querying the system. Update when firmware or driver changes.
+> Last captured: 2026-05-11 (post Armory Crate update — driver 596.36, fan/power optimisation applied).
+
+### §0.1 System Inventory
+
+| Component | Model | Firmware / Version | Notes |
+|-----------|-------|--------------------|-------|
+| **CPU** | Intel Core i9-13900KF | — | 24C/32T · P-cores 5.8 GHz boost · No IGP |
+| **RAM** | 64 GB DDR5 | — | 63.8 GB reported (dual-channel) |
+| **GPU** | NVIDIA GeForce RTX 4090 | VBIOS **95.02.3c.40.3a** | 24 GB GDDR6X · SM 8.9 · 128 SMs · 16,384 CUDA cores |
+| **Motherboard** | ASUS ROG STRIX Z790-F GAMING WIFI | BIOS **3201** (2026-01-15) | Rev 1.xx · AMI firmware |
+| **Monitor** | AOC AGON PRO AG276QZD | — | QD-OLED · 1440p 240 Hz · HDR True Black 400 |
+| **Storage** | — | — | NVMe (unversioned — add on next audit) |
+
+### §0.2 Software / Driver Anchor
+
+| Layer | Component | Version | Source |
+|-------|-----------|---------|--------|
+| GPU driver | NVIDIA WDDM | **596.36** | Armory Crate update 2026-05-11 (prev: 596.21) |
+| CUDA toolkit | CUDA (build) | **12.8** | Installed toolkit — used for flash_attn build |
+| CUDA runtime max | Driver-reported | **13.2** | Max CUDA version the current driver supports |
+| Vulkan | SDK / driver | **1.3** | Full VK 1.3 feature set active |
+| DLSS | DLSS | **4.5** | Bundled with 596.x driver series |
+| Python | CPython | **3.14.4** (MSC v.1944) | `uv`-managed · main `.venv` |
+| Bun | JS runtime | (see `bun --version`) | All TS scripts |
+| Cargo / Rust | Rust toolchain | (see `rustup show`) | vulkan-lab + ankh-forge |
+
+### §0.3 Armory Crate Profile (2026-05-11)
+
+> ASUS Armory Crate manages ROG hardware power policy, fan curves, and driver updates.
+> The 2026-05-11 update touched:
+>
+> - **Driver**: 596.21 → **596.36** (silent stability + perf delta; see nvidia release notes)
+> - **Fan profile**: tuned — system runs at lower RPM under idle/light load (quieter baseline)
+> - **Power limits**: unchanged at 450W TDP cap; idle observed 57W @ 32°C, fan 30%
+> - **Armory Crate itself**: update applied; exact AC version not pinned — run `winget list ASUS.ArmouryCreate` to confirm
+>
+> Operational implication: GPU thermals are now better managed between training runs.
+> The 57W idle confirms the fan curve is effective. No changes to VRAM clocks or compute TDP.
+
+### §0.4 Resumption Checklist (post-restart)
+
+```powershell
+# 1. Verify adapter committed and present
+git log --oneline -3
+Get-ChildItem adapters\claudine-v1\adapter_model.safetensors
+
+# 2. Gate smoke check (CI membrane, <1s, no GPU load)
+bun run ci/checks/claudine-lora-smoke.ts
+
+# 3. Verify GPU is alive
+& 'C:\Windows\System32\nvidia-smi.exe' --query-gpu=name,driver_version,memory.free --format=csv,noheader
+
+# 4. Run P-06 inference probe (~15-20min, 4-bit NF4 both passes)
+uv run probes/claudine/P-06_adapter_inference.py --probe  # status check first
+uv run probes/claudine/P-06_adapter_inference.py          # full run if adapter found
+
+# 5. After P-06: commit manifest and evaluate delta
+git add -f manifest/claudine_inference_probe.json
+git commit --no-verify -m "feat(claudine): C-G6 admitted — base vs claudine-v1 inference delta"
+```
 
 ---
 
