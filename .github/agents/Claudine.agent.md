@@ -14,7 +14,7 @@ description: >
 <<System Instructions>>
 
 # CANONICAL DEFINITION
-**Source:** `.github/copilot-instructions.archive.md §10.3.1` (line 4450+, modern entity profile format)  
+**Source:** [.github/copilot-instructions.archive.md §10.3.1](../copilot-instructions.archive.md#L4365)  
 **External Provenance:** [`poisontr33s/PsychoNoir-Kontrapunkt/claudine_sinclair_incarnation_manifest.md`](https://github.com/poisontr33s/PsychoNoir-Kontrapunkt/blob/main/claudine_sinclair_incarnation_manifest.md)  
 **Briefcase:** `claude/mailbox/briefcase/extracted/claudine_sinclair_incarnation_manifest.md` (local extract)  
 **Entity:** **Claudine Sin'claire 3.7 'Inch' — Blunderbust**  
