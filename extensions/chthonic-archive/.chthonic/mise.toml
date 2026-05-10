@@ -37,6 +37,7 @@ CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
 CHTHONIC_TOOLPOOL_REPORT = "{{cwd}}/.chthonic/cache/toolpool.json"
 CHTHONIC_TOOLPOOL_ENV = "{{cwd}}/.chthonic/cache/toolpool.env"
+CHTHONIC_RUBY_DEVKIT_POLICY = "opt-in"
 
 # VISUAL STUDIO 2026 INSIDERS LSL PATHING
 # Resolved from local VS 2026 Insiders installation lane.
@@ -57,16 +58,13 @@ _.path = [
     "{{env.USERPROFILE}}/.goup/current/bin",
     "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\Llvm\\x64\\bin",
     "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja",
-    "{{env.MSYS2_HOME}}/ucrt64/bin",
-    "{{env.MSYS2_HOME}}/usr/bin",
 ]
 
 [env."windows"]
 CC = "clang-cl"
 CXX = "clang-cl"
 CMAKE_GENERATOR = "Ninja"
-RI_DEVKIT = "{{env.MSYS2_HOME}}"
-RUBY_MIGRATION_MODE = "in_memory_devkit_injection"
+RUBY_MIGRATION_MODE = "rust_msvc_first_devkit_opt_in"
 CHTHONIC_WINDOWS_NATIVE_LANE = "vs2026_insiders"
 
 [tasks.agave-sync]

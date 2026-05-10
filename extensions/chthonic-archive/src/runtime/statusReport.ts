@@ -35,6 +35,7 @@ export interface RuntimeStatusInput {
 export function collectRuntimeLaneStates(input: RuntimeStatusInput): RuntimeLaneState[] {
     const entropyWorkerPath = path.join(input.extensionPath, 'dist', 'entropy-worker.js');
     const entropyWorkerReady = fs.existsSync(entropyWorkerPath);
+    const polyglotActive = input.entropyEnabled && input.entropyPolyglotEnabled;
     const lanes: RuntimeLaneState[] = [];
 
     lanes.push({ name: 'workspace', state: input.workspaceRoot ? 'READY' : 'UNAVAILABLE' });
@@ -51,10 +52,22 @@ export function collectRuntimeLaneStates(input: RuntimeStatusInput): RuntimeLane
     });
     lanes.push({
         name: 'ledger-mode',
-        state: input.entropyEnabled && input.entropyPolyglotEnabled ? 'LIVE' : 'PARKED',
-        reason: input.entropyEnabled && input.entropyPolyglotEnabled
+        state: polyglotActive ? 'LIVE' : 'PARKED',
+        reason: polyglotActive
             ? input.entropyLedgerMode
             : `${input.entropyLedgerMode}, polyglot disabled`,
+    });
+    lanes.push({
+        name: 'entropy-settlement',
+        state: polyglotActive ? 'READY' : (input.entropyEnabled ? 'DISABLED' : 'PARKED'),
+        reason: polyglotActive ? 'awaiting entropy leaves' : 'polyglot sidecars disabled',
+    });
+    lanes.push({
+        name: 'solana-ledger',
+        state: polyglotActive ? 'READY' : (input.entropyEnabled ? 'DISABLED' : 'PARKED'),
+        reason: polyglotActive
+            ? (input.entropyLedgerMode === 'validator' ? 'validator backend configured' : 'bankrun simulation backend')
+            : 'polyglot sidecars disabled',
     });
     lanes.push({ name: 'self-healing', state: input.slabSelfHealingEnabled ? 'LIVE' : 'DISABLED' });
     lanes.push({

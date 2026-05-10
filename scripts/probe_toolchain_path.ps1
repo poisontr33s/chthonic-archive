@@ -26,7 +26,14 @@ param(
   [switch]$ApplyToSession,
 
   # Emit a VS Code settings snippet (does not modify repo settings by default).
-  [switch]$WriteVscodeSnippet
+  [switch]$WriteVscodeSnippet,
+
+  # Include RubyInstaller MSYS2 DevKit paths for Ruby native-gem work.
+  # Default stays Rust/MSVC-first and excludes MSYS2 gcc/pkg-config/link shadows.
+  [switch]$IncludeRubyDevKit,
+
+  # Include msys64\usr\bin as well. This exposes make/sh but can shadow MSVC link.exe.
+  [switch]$IncludeRubyMsysUsr
 )
 
 $ErrorActionPreference = 'Stop'
@@ -78,11 +85,14 @@ function Get-RubyDevKitPaths {
     return @()
   }
 
-  return @(
-    (Join-Path $root "bin"),
-    (Join-Path $root "msys64\ucrt64\bin"),
-    (Join-Path $root "msys64\usr\bin")
-  )
+  $paths = @((Join-Path $root "bin"))
+  if ($IncludeRubyDevKit) {
+    $paths += (Join-Path $root "msys64\ucrt64\bin")
+    if ($IncludeRubyMsysUsr) {
+      $paths += (Join-Path $root "msys64\usr\bin")
+    }
+  }
+  return $paths
 }
 
 $rubyDevkitPaths = Get-RubyDevKitPaths
@@ -168,9 +178,13 @@ $pathDirs = [System.Collections.Generic.List[string]]::new()
 # 2. Add Polyglot Paths (Config or Default)
 Log "Loading polyglot paths..."
 $polyglotPaths = Get-PolyglotConfig
-# Emit probe-miss if rv/rvw is unavailable (Ruby DevKit paths will be absent)
+# Emit probe-miss if rv/rvw is unavailable (Ruby lane paths will be absent)
 if (-not (Get-RvExePath)) {
-    Log "  [MISS] rv/rvw not found via PATH or cargo bin — Ruby DevKit paths unavailable"
+    Log "  [MISS] rv/rvw not found via PATH or cargo bin — Ruby lane paths unavailable"
+} elseif (-not $IncludeRubyDevKit) {
+    Log "  [INFO] Ruby MSYS2 DevKit excluded; pass -IncludeRubyDevKit for Ruby native-gem tooling"
+} elseif (-not $IncludeRubyMsysUsr) {
+    Log "  [INFO] Ruby msys64\\usr\\bin excluded; pass -IncludeRubyMsysUsr only when make/sh are needed"
 }
 foreach ($p in $polyglotPaths) {
     if (Test-Path $p) {

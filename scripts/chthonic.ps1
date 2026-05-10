@@ -252,20 +252,31 @@ function Get-MSVCLinkerPath {
     return $null
 }
 
+function Test-RubyDevKitPathEnabled {
+    return $env:CHTHONIC_ENABLE_RUBY_DEVKIT_PATH -in @("1", "true", "TRUE", "yes", "YES")
+}
+
+function Test-RubyMsysUsrPathEnabled {
+    return $env:CHTHONIC_ENABLE_RUBY_MSYS_USR_PATH -in @("1", "true", "TRUE", "yes", "YES")
+}
+
 function Get-DevKitPaths {
+    if (-not (Test-RubyDevKitPathEnabled)) {
+        return @()
+    }
+
     $root = Get-RubyDevKitRoot
     if (-not $root) { return @() }
 
     $paths = @(
-        (Join-Path $root "msys64\ucrt64\bin")   # gcc, make, pkg-config — always safe
+        (Join-Path $root "msys64\ucrt64\bin")   # gcc, make, pkg-config — Ruby native-gem lane only
     )
 
     # GUARD: msys64\usr\bin contains a Unix link.exe (hardlink utility) that fatally
-    # shadows MSVC's linker when both are on PATH. Only include usr\bin when MSVC
-    # toolchain is NOT present — otherwise Cargo builds fail with:
+    # shadows MSVC's linker when both are on PATH. Only include usr\bin behind a
+    # second explicit gate — otherwise Cargo builds fail with:
     #   /usr/bin/link: extra operand '...\symbols.o'
-    $msvcLinker = Get-MSVCLinkerPath
-    if (-not $msvcLinker) {
+    if (Test-RubyMsysUsrPathEnabled) {
         $paths += (Join-Path $root "msys64\usr\bin")
     }
 
@@ -405,13 +416,13 @@ function Get-LinkerShadowStatus {
             value  = $cargoEnvLinker
         }
     }
-    # M3 is structural — it's in Get-DevKitPaths. Report if MSVC is present (guard would activate).
-    if ($msvcLinker) {
+    # M3 is structural — Ruby/MSYS2 is excluded unless explicitly enabled.
+    if ($msvcLinker -and -not (Test-RubyDevKitPathEnabled)) {
         $mitigations += [pscustomobject]@{
             id     = "M3"
-            name   = "Get-DevKitPaths PATH guard"
+            name   = "Ruby/MSYS2 opt-in PATH guard"
             active = $true
-            value  = "usr\bin excluded when MSVC present"
+            value  = "MSYS2 DevKit excluded unless CHTHONIC_ENABLE_RUBY_DEVKIT_PATH=1"
         }
     }
 
@@ -993,11 +1004,12 @@ if ($rExePath) {
     $defaultPolyglotPaths += (Split-Path -Parent $rExePath)
 }
 
-# DevKit toolchain (gcc, make) from RubyInstaller's MSYS2
-$defaultPolyglotPaths += $devkitPaths
-
 # System registrations (Git, Azure CLI, Vulkan, VS native toolchain)
 $defaultPolyglotPaths += $systemRegistrationPaths
+
+# DevKit toolchain (gcc, make) from RubyInstaller's MSYS2; opt-in only.
+# Appended after VS so MSVC link.exe keeps precedence even when usr\bin is exposed.
+$defaultPolyglotPaths += $devkitPaths
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # FUNCTIONS
@@ -2861,15 +2873,20 @@ function Invoke-PolyglotActivation {
     if (Test-Path $goupCurrent) { $env:GOROOT = $goupCurrent }
     $env:GOPATH = "$env:USERPROFILE\go"
     
-    # Ruby DevKit (MSYS2 toolchain from RubyInstaller, used by rv's Ruby for native gems)
+    # Ruby DevKit (MSYS2 toolchain from RubyInstaller, used by rv's Ruby for native gems).
+    # Keep it off the ambient path unless explicitly requested; Rust/MSVC is the default native lane.
     $devkitRoot = Get-RubyDevKitRoot
-    if ($devkitRoot) {
+    if ((Test-RubyDevKitPathEnabled) -and $devkitRoot) {
         $msys2Root = Join-Path $devkitRoot "msys64"
         if (Test-Path $msys2Root) {
             $env:RI_DEVKIT = $msys2Root
             $env:RIDK_PREFIX = $msys2Root
             $env:MSYS2_HOME = $msys2Root
         }
+    } else {
+        Remove-Item Env:RI_DEVKIT -ErrorAction SilentlyContinue
+        Remove-Item Env:RIDK_PREFIX -ErrorAction SilentlyContinue
+        Remove-Item Env:MSYS2_HOME -ErrorAction SilentlyContinue
     }
     
     # OpenSSL (required for native Cargo builds with openssl-sys).

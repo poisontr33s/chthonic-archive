@@ -78,6 +78,7 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
             solanaLedgerHostBinaryPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaLedgerHostBinaryPath', '')),
             solanaWalletPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaWalletPath', '')),
             solanaIdlPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaIdlPath', '')),
+            laneRegistry: deps.laneRegistry,
         },
         (uris) => entropyDecorations?.enqueueExternalUpdates(uris),
     );
@@ -171,6 +172,25 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
             name: 'entropyLedgerHost',
             state: entropyPolyglotEnabled ? 'LIVE' : 'DISABLED',
             reason: entropyPolyglotEnabled ? entropyLedgerMode : 'polyglot sidecars disabled',
+        }),
+        new LaneOnlySupervisor({
+            name: 'polyglot-sidecars',
+            state: entropyEnabled ? (entropyPolyglotEnabled ? 'LIVE' : 'DISABLED') : 'PARKED',
+            reason: entropyEnabled
+                ? (entropyPolyglotEnabled ? 'polyglot entropy lane armed' : 'polyglot sidecars disabled')
+                : 'workspace-health disabled',
+        }),
+        new LaneOnlySupervisor({
+            name: 'entropy-settlement',
+            state: entropyPolyglotEnabled ? 'READY' : 'DISABLED',
+            reason: entropyPolyglotEnabled ? 'awaiting entropy leaves' : 'polyglot sidecars disabled',
+        }),
+        new LaneOnlySupervisor({
+            name: 'solana-ledger',
+            state: entropyPolyglotEnabled ? 'READY' : 'DISABLED',
+            reason: entropyPolyglotEnabled
+                ? (entropyLedgerMode === 'validator' ? 'validator backend configured' : 'bankrun simulation backend')
+                : 'polyglot sidecars disabled',
         }),
         new LaneOnlySupervisor({ name: 'entropyWorker', state: 'READY' }),
     ];

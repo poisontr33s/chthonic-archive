@@ -6,12 +6,14 @@ import { EntropyMerkleAccumulator } from './merkleAccumulator';
 import { PolyglotBroker } from './polyglotBroker';
 import { LedgerBroker, type LedgerMode } from './ledgerBroker';
 import type {
+    LedgerReceipt,
     LoreEvent,
     PolyglotScanReason,
     RuffFileSummary,
     RuffSummaryEvent,
 } from './types';
 import { EntropyWorkerClient } from '../entropy/entropyWorkerClient';
+import type { LaneRegistry, RuntimeLaneStateKind } from '../runtime/laneState';
 
 interface PolyglotEntropyOrchestratorOptions {
     enabled: boolean;
@@ -23,6 +25,7 @@ interface PolyglotEntropyOrchestratorOptions {
     solanaLedgerHostBinaryPath?: string;
     solanaWalletPath?: string;
     solanaIdlPath?: string;
+    laneRegistry?: LaneRegistry;
 }
 
 interface TooltipAugment {
@@ -72,12 +75,16 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
 
     async start(rootPath: string): Promise<void> {
         this.rootPath = rootPath;
+        this.emitPolyglotLane(this.options.enabled ? 'LIVE' : 'DISABLED', this.options.enabled ? 'polyglot entropy lane armed' : 'polyglot sidecars disabled');
+        this.emitSettlementLane(this.options.enabled ? 'READY' : 'DISABLED', this.options.enabled ? 'awaiting entropy leaves' : 'polyglot sidecars disabled');
+        this.emitLedgerLane(this.options.enabled ? 'READY' : 'DISABLED', initialLedgerReason(this.options));
         if (!this.options.enabled) {
             return;
         }
 
         this.broker.start(rootPath);
         await this.ledger.start(rootPath);
+        this.emitLedgerLane('READY', this.options.ledgerMode === 'validator' ? 'Rust validator backend initialized' : 'bankrun simulation initialized');
         this.broker.requestScan({
             type: 'scan',
             reason: 'manual',
@@ -108,6 +115,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         if (!this.rootPath || !this.options.enabled) {
             return;
         }
+        this.emitPolyglotLane('LIVE', 'manual scan requested');
         this.broker.requestScan({
             type: 'scan',
             reason: 'manual',
@@ -315,6 +323,11 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
             return;
         }
         this.pendingSettleReason = nextSettlementReason(this.pendingSettleReason, reason);
+        this.emitSettlementLane(
+            'LIVE',
+            `pending ${this.pendingSettleReason} settlement`,
+            `${Math.max(this.options.settleDebounceMs, 300)}ms debounce`,
+        );
         if (this.settleTimer) {
             clearTimeout(this.settleTimer);
         }
@@ -330,10 +343,32 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
 
         const settlement = this.merkle.settle(reason);
         if (!settlement) {
+            this.emitSettlementLane('READY', `no dirty Merkle leaves after ${reason}`);
             return;
         }
 
-        const receipt = await this.ledger.commitEntropy(settlement);
+        this.emitSettlementLane(
+            'LIVE',
+            `committing ${settlement.rootHash.slice(0, 16)}...`,
+            `${settlement.leafCount} leaves via ${this.options.ledgerMode}`,
+        );
+
+        let receipt: LedgerReceipt;
+        try {
+            receipt = await this.ledger.commitEntropy(settlement);
+        } catch (error) {
+            const detail = stringifyError(error);
+            this.emitSettlementLane('DEGRADED', `settlement failed: ${detail}`);
+            this.emitLedgerLane('DEGRADED', detail);
+            this.output.appendLine(`[polyglot] settlement failed: ${detail}`);
+            return;
+        }
+        this.emitSettlementLane(
+            'READY',
+            `settled ${settlement.rootHash.slice(0, 16)}... leaves=${settlement.leafCount}`,
+            receipt.txSignature ? `tx ${receipt.txSignature}` : receipt.detail,
+        );
+        this.emitLedgerReceipt(receipt);
         const message = [
             `[polyglot] settled Merkle root ${settlement.rootHash.slice(0, 16)}...`,
             `leaves=${settlement.leafCount}`,
@@ -344,6 +379,47 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         }
         message.push(`detail=${receipt.detail}`);
         this.output.appendLine(message.join(' '));
+    }
+
+    private emitPolyglotLane(state: RuntimeLaneStateKind, reason?: string, localAction?: string): void {
+        this.options.laneRegistry?.set({
+            name: 'polyglot-sidecars',
+            state,
+            reason,
+            localAction,
+        });
+    }
+
+    private emitSettlementLane(state: RuntimeLaneStateKind, reason?: string, localAction?: string): void {
+        this.options.laneRegistry?.set({
+            name: 'entropy-settlement',
+            state,
+            reason,
+            localAction,
+        });
+    }
+
+    private emitLedgerReceipt(receipt: LedgerReceipt): void {
+        switch (receipt.mode) {
+            case 'validator-rust':
+                this.emitLedgerLane('LIVE', receipt.txSignature ?? receipt.detail, receipt.detail);
+                return;
+            case 'bankrun':
+                this.emitLedgerLane('READY', receipt.txSignature ?? 'bankrun simulation accepted', receipt.detail);
+                return;
+            case 'offline':
+            default:
+                this.emitLedgerLane('DEGRADED', receipt.detail);
+        }
+    }
+
+    private emitLedgerLane(state: RuntimeLaneStateKind, reason?: string, localAction?: string): void {
+        this.options.laneRegistry?.set({
+            name: 'solana-ledger',
+            state,
+            reason,
+            localAction,
+        });
     }
 }
 
@@ -414,4 +490,20 @@ function reasonWeight(reason: PolyglotScanReason): number {
         default:
             return 1;
     }
+}
+
+function initialLedgerReason(options: PolyglotEntropyOrchestratorOptions): string {
+    if (!options.enabled) {
+        return 'polyglot sidecars disabled';
+    }
+    return options.ledgerMode === 'validator'
+        ? `validator backend ${options.solanaRpcUrl}`
+        : 'bankrun simulation backend';
+}
+
+function stringifyError(error: unknown): string {
+    if (error instanceof Error) {
+        return `${error.name}: ${error.message}`;
+    }
+    return String(error);
 }

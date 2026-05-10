@@ -298,7 +298,18 @@ const OVERSIGHT_GROUPS: Array<{ label: string; icon: string; names: string[] }> 
     {
         label: '3. Local Runtime',
         icon: 'server-process',
-        names: ['entropyWorker', 'workspace-health', 'native-sidecars', 'polyglot-sidecars', 'ledger-mode', 'entropyLedgerHost'],
+        names: [
+            'entropyWorker',
+            'entropy-worker',
+            'workspace-health',
+            'native-sidecars',
+            'polyglot-sidecars',
+            'entropy-settlement',
+            'solana-ledger',
+            'ledger-mode',
+            'entropyLedgerHost',
+            'self-healing',
+        ],
     },
     {
         label: '4. Reactor And Synapse',
