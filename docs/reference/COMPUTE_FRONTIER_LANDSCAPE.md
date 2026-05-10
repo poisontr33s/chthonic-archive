@@ -61,8 +61,11 @@ author: chthonic-archive
 | Vulkan | SDK / driver | **1.4.341.1** | SDK: `C:\VulkanSDK\1.4.341.1` · Instance 1.4.321 · Driver API 1.4.329 |
 | DLSS | DLSS | **4.5** | Bundled with 596.x driver series |
 | Python | CPython | **3.14.4** (MSC v.1944) | `uv`-managed · main `.venv` |
-| Bun | JS runtime | (see `bun --version`) | All TS scripts |
-| Cargo / Rust | Rust toolchain | (see `rustup show`) | vulkan-lab + ankh-forge |
+| Bun | JS runtime | **1.3.13** | All TS scripts · `bun upgrade` to update |
+| Cargo / Rust | Rust toolchain | **1.95.0** (stable) | vulkan-lab + ankh-forge |
+| uv | Python pkg mgr | **0.11.12** | Updated 2026-05-11 from 0.11.8 · `uv self update` |
+| rv / Ruby | Ruby mgr | rv **0.5.3** / Ruby **4.0.3** | rv at `.cargo/bin/rv.exe` · Ruby at `%APPDATA%\rv\rubies\ruby-4.0.3\` |
+| zv / Zig | Zig mgr | zv **0.13.0** / Zig **0.16.0** | Updated 2026-05-11 from zv 0.10.0 · `zv update` |
 
 ### §0.3 Armory Crate Profile (2026-05-11)
 
