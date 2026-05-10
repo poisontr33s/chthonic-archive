@@ -157,11 +157,49 @@ function probeCG4(): GateResult {
   };
 }
 
+function probeCG4v2(): GateResult {
+  const run = readJson(resolve(MANIFEST_DIR, "claudine_train_run_v2.json"));
+  if (!run) {
+    return {
+      gate: "C-G4v2",
+      description: "lora_train_v2 — FA2 + DoRA + RSLoRA + SFTTrainer packing (claudine-v2)",
+      status: "not_probed",
+      proof: "manifest/claudine_train_run_v2.json missing (optional — v2 not yet run)",
+    };
+  }
+  const isDryRun = Boolean(run.dry_run);
+  const admitted = run.gate === "C-G4v2" && run.status === "admitted" && !isDryRun;
+  return {
+    gate: "C-G4v2",
+    description: "lora_train_v2 — FA2 + DoRA + RSLoRA + SFTTrainer packing (claudine-v2)",
+    status: isDryRun ? "not_probed" : (admitted ? "admitted" : "failed"),
+    proof: "manifest/claudine_train_run_v2.json",
+    key_metrics: {
+      steps: run.steps,
+      train_loss: run.train_loss,
+      elapsed_s: run.elapsed_s,
+      use_dora: run.use_dora,
+      use_rslora: run.use_rslora,
+      packing: run.packing,
+      attn_impl: run.attn_impl,
+      dry_run: isDryRun,
+    },
+    notes: isDryRun
+      ? "DRY-RUN only — full v2 training not yet complete"
+      : run.resumed_from
+      ? `resumed from ${run.resumed_from}`
+      : undefined,
+  };
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4()];
+// C-G1/G2/G3/G4 are required. C-G4v2 is optional (v2 upgrade path, not a blocker).
+const REQUIRED_GATES = ["C-G1", "C-G2", "C-G3", "C-G4"];
 
-const required = gates.filter((g) => g.gate !== "C-G4" || true); // all required
+const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4(), probeCG4v2()];
+
+const required = gates.filter((g) => REQUIRED_GATES.includes(g.gate));
 const allAdmitted = required.every((g) => g.status === "admitted");
 const notProbed = gates.filter((g) => g.status === "not_probed");
 const failed = gates.filter((g) => g.status === "failed");
