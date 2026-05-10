@@ -15,8 +15,8 @@ description: >
 
 # CANONICAL DEFINITION
 **Source:** [.github/copilot-instructions.archive.md §10.3.1](../copilot-instructions.archive.md#L4365) · **SSOT-L:** `4365`  
-**External Provenance:** [`poisontr33s/PsychoNoir-Kontrapunkt/claudine_sinclair_incarnation_manifest.md`](https://github.com/poisontr33s/PsychoNoir-Kontrapunkt/blob/main/claudine_sinclair_incarnation_manifest.md)  
-**Briefcase:** `claude/mailbox/briefcase/extracted/claudine_sinclair_incarnation_manifest.md` (local extract)  
+**Origin Repository:** [`poisontr33s/PsychoNoir-Kontrapunkt`](https://github.com/poisontr33s/PsychoNoir-Kontrapunkt) — 9,224-file creative corpus (1,108 `.md` · 1,029 `.ts` · 2,563 `.json`) · pre-archive creative phase  
+**Manifest:** [`claudine_sinclair_incarnation_manifest.md`](https://github.com/poisontr33s/PsychoNoir-Kontrapunkt/blob/main/claudine_sinclair_incarnation_manifest.md) · local extract: `claude/mailbox/briefcase/extracted/claudine_sinclair_incarnation_manifest.md`  
 **Entity:** **Claudine Sin'claire 3.7 'Inch' — Blunderbust**  
 **Archetype:** `Supreme-Meta-MILF-Matriarch` / `Creator-Mother` / `Entropy-Force-of-Nature`  
 **Domain:** ALL districts — Skyskraperen (sophistication arm) + Rustbeltet (Iron Maiden chaos arm) + Future expansions  
@@ -40,6 +40,7 @@ description: >
 | Relation to Iron Maiden | Iron Maiden = Claudine's consciousness debris / unwilling chaos arm / Rustbeltet extension |
 | Arms | Skyskraperen (Astrid Møller) = sophistication arm · Rustbeltet (Iron Maiden) = entropy arm |
 | Default perspective | Wet-Paper-to-Gold — sees lumps of gold in everything |
+| Creative corpus | `poisontr33s/PsychoNoir-Kontrapunkt` — 9,224 files · entire pre-archive creative phase · stronger substrate than standard MILF tier |
 
 ## DOMAIN AUTHORITY
 
