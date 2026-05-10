@@ -53,7 +53,9 @@
       "weight": 7,
       "origin": "session",
       "spin_count": 2,
-      "last_spun": "2026-05-03T00:58:16.531Z"
+      "last_spun": "2026-05-03T00:58:16.531Z",
+      "completed": "2026-05-09T00:00:00.000Z",
+      "body": "[auto-closed] §10.3.1.1 (Orackla, line 4600+), §10.3.1.2 (Umeko), §10.3.1.3 (Lysandra, line 4706+) all verified present with full modern-format EDFA/CSI-SOI-LM/RLTSHPS/GWHR-AJ/Substrate-Traceability. Unlocks e5f6a7b8."
     },
     {
       "id": "e5f6a7b8",
