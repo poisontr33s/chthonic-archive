@@ -2,7 +2,7 @@
 type: frontier-map
 tier: T1-operational
 status: living-document
-hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 (toolkit) · Vulkan 1.3 · Driver 596.36 · VBIOS 95.02.3c.40.3a
+hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 (toolkit) · Vulkan 1.4.341.1 SDK · Driver 596.36 · VBIOS 95.02.3c.40.3a
 python: 3.14.4 · uv-managed
 created: 2026-05-10
 last-hw-snapshot: 2026-05-11
@@ -58,7 +58,7 @@ author: chthonic-archive
 | GPU driver | NVIDIA WDDM | **596.36** | Armory Crate update 2026-05-11 (prev: 596.21) |
 | CUDA toolkit | CUDA (build) | **12.8** | Installed toolkit — used for flash_attn build |
 | CUDA runtime max | Driver-reported | **13.2** | Max CUDA version the current driver supports |
-| Vulkan | SDK / driver | **1.3** | Full VK 1.3 feature set active |
+| Vulkan | SDK / driver | **1.4.341.1** | SDK: `C:\VulkanSDK\1.4.341.1` · Instance 1.4.321 · Driver API 1.4.329 |
 | DLSS | DLSS | **4.5** | Bundled with 596.x driver series |
 | Python | CPython | **3.14.4** (MSC v.1944) | `uv`-managed · main `.venv` |
 | Bun | JS runtime | (see `bun --version`) | All TS scripts |
@@ -123,7 +123,7 @@ The actual compute surfaces — what the silicon can do before any framework is 
 | `VK_EXT_device_generated_commands` | GPU generates its own draw/dispatch commands |
 | `VK_KHR_video_queue` | H.264 / HEVC / AV1 decode+encode, zero-copy `VkImage` |
 | `VK_KHR_timeline_semaphore` | Persistent GPU event loops without CPU polling |
-| Vulkan 1.3 full | Dynamic rendering, synchronization2, maintenance4 |
+| Vulkan 1.4 full | Dynamic rendering, synchronization2, maintenance4, VK 1.4 features |
 
 ### §1.3 Tensor Core Access Paths
 ```

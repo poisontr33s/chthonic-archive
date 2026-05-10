@@ -91,8 +91,21 @@ function log(msg: string): void {
 // PATH RESOLUTION — Win11 Global Polyglot Paths
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// rv-managed rubies (rv.dev — Rust-based rbenv replacement, installs to %APPDATA%\rv\rubies\)
+const RV_RUBIES_BASE = process.env.APPDATA ? `${process.env.APPDATA}\\rv\\rubies` : null;
+const RV_RUBY_ROOTS: string[] = RV_RUBIES_BASE
+  ? [
+      `${RV_RUBIES_BASE}\\ruby-4.0.3`,
+      `${RV_RUBIES_BASE}\\ruby-4.0.2`,
+      `${RV_RUBIES_BASE}\\ruby-3.4.9`,
+      `${RV_RUBIES_BASE}\\ruby-3.3.11`,
+      `${RV_RUBIES_BASE}\\ruby-3.2.11`,
+    ]
+  : [];
+
 const RUBY_ROOT_CANDIDATES = [
   process.env.RUBY_ROOT,
+  ...RV_RUBY_ROOTS,
   "C:\\Ruby40-x64",
   "D:\\Ruby40-x64",
   "C:\\Ruby35-x64",
