@@ -1,0 +1,14 @@
+{
+  "gate": "C-G3",
+  "status": "admitted",
+  "probe": "P-03_dataset_format",
+  "dry_run": false,
+  "corpus_root": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+  "num_examples": 1963,
+  "total_chars": 3186270,
+  "avg_chars": 1623,
+  "min_chars_filter": 120,
+  "format": "completion",
+  "jsonl_path": "C:\\Users\\eldno\\chthonic-archive\\manifest\\claudine_train.jsonl",
+  "elapsed_s": 0.36
+}

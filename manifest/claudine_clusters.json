@@ -1,0 +1,5707 @@
+{
+  "gate": "C-G2",
+  "status": "admitted",
+  "probe": "P-02_cluster_analyze",
+  "elapsed_s": 20.89,
+  "num_chunks": 4171,
+  "num_clusters": 158,
+  "noise_chunks": 813,
+  "umap_params": {
+    "n_neighbors": 15,
+    "n_components": 2,
+    "metric": "cosine"
+  },
+  "hdbscan_params": {
+    "min_cluster_size": 8
+  },
+  "clusters": [
+    {
+      "cluster_id": -1,
+      "is_noise": true,
+      "n_chunks": 813,
+      "n_files": 385,
+      "centroid_2d": [
+        -0.6351159811019897,
+        0.44896596670150757
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 18
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\utils.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\executables.md",
+          "chunks": 11
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 10
+        },
+        {
+          "file": ".github\\copilot-instructions_off..md",
+          "chunks": 9
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 9
+        },
+        {
+          "file": "LVL2_KOMPLETT_REKONSTRUKSJON.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\ffi.md",
+          "chunks": 9
+        },
+        {
+          "file": "data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\redis.md",
+          "chunks": 8
+        }
+      ]
+    },
+    {
+      "cluster_id": 0,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 3,
+      "centroid_2d": [
+        -3.9044172763824463,
+        -15.05221176147461
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\istanbul-lib-source-maps\\node_modules\\source-map\\CHANGELOG.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\jest-runner\\node_modules\\source-map-support\\node_modules\\source-map\\CHANGELOG.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\source-map-support\\node_modules\\source-map\\CHANGELOG.md",
+          "chunks": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 1,
+      "is_noise": false,
+      "n_chunks": 54,
+      "n_files": 7,
+      "centroid_2d": [
+        12.655024528503418,
+        -1.6673725843429565
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\semver\\README.md",
+          "chunks": 13
+        },
+        {
+          "file": "node_modules\\@babel\\core\\node_modules\\semver\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\@babel\\helper-compilation-targets\\node_modules\\semver\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\semver.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 17,
+      "centroid_2d": [
+        1.8668837547302246,
+        -10.909130096435547
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\balanced-match\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@bcoe\\v8-coverage\\dist\\lib\\LICENSE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@bcoe\\v8-coverage\\LICENSE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\balanced-match\\LICENSE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\brace-expansion\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\debug\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\dedent\\LICENSE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\get-caller-file\\LICENSE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\imurmurhash\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\jest-pnp-resolver\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 7,
+      "centroid_2d": [
+        -10.93152141571045,
+        4.323479175567627
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\@babel\\core\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-compilation-targets\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\semver\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 3,
+      "centroid_2d": [
+        1.2431031465530396,
+        -1.976656198501587
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@jridgewell\\trace-mapping\\README.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\@jridgewell\\sourcemap-codec\\README.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\@jridgewell\\gen-mapping\\README.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 3,
+      "centroid_2d": [
+        -2.2712998390197754,
+        -0.4760843515396118
+      ],
+      "top_files": [
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\passive-observer\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\runner-logging\\passive-observer\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovery_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "is_noise": false,
+      "n_chunks": 37,
+      "n_files": 37,
+      "centroid_2d": [
+        0.708500862121582,
+        -8.672433853149414
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@babel\\code-frame\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\compat-data\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\core\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\generator\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-compilation-targets\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-globals\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-module-imports\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-module-transforms\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-plugin-utils\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-string-parser\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 1,
+      "centroid_2d": [
+        -1.981257677078247,
+        -0.8418049812316895
+      ],
+      "top_files": [
+        {
+          "file": ".file_recovery_archaeology\\recovery_report.md",
+          "chunks": 16
+        }
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        -1.7198432683944702,
+        -1.1741652488708496
+      ],
+      "top_files": [
+        {
+          "file": ".github\\jules\\CACHE_STRATEGY.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\jules\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "jules-cache-analysis.md",
+          "chunks": 1
+        },
+        {
+          "file": "jules-validation-report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 9,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 3,
+      "centroid_2d": [
+        -0.3964974582195282,
+        -8.95456600189209
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\lru-cache\\README.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\@babel\\helper-compilation-targets\\node_modules\\lru-cache\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\yocto-queue\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 10,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 2,
+      "centroid_2d": [
+        2.051417112350464,
+        5.438150882720947
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_perpetual_necromancy_upcycler_cpython_312_pyc_mf1jkant.preserved.md",
+          "chunks": 7
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_perpetual_necromancy_upcycler_py_mf1jkah2.preserved.md",
+          "chunks": 7
+        }
+      ]
+    },
+    {
+      "cluster_id": 11,
+      "is_noise": false,
+      "n_chunks": 24,
+      "n_files": 2,
+      "centroid_2d": [
+        1.2340643405914307,
+        10.89605712890625
+      ],
+      "top_files": [
+        {
+          "file": "forrige sesjonslogg.md",
+          "chunks": 13
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\forrige sesjonslogg.md",
+          "chunks": 11
+        }
+      ]
+    },
+    {
+      "cluster_id": 12,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 2,
+      "centroid_2d": [
+        1.9249022006988525,
+        4.85085391998291
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_bum_engine_ts_mf1jkagy.preserved.md",
+          "chunks": 5
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_functional_anthropomorphism_engine_ts_mf1jkahh.preserved.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 13,
+      "is_noise": false,
+      "n_chunks": 26,
+      "n_files": 10,
+      "centroid_2d": [
+        -4.544262409210205,
+        6.829567909240723
+      ],
+      "top_files": [
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\INTELLIGENCE_SYSTEM_README.md",
+          "chunks": 6
+        },
+        {
+          "file": ".github\\runner-logging\\INTELLIGENCE_SYSTEM_README.md",
+          "chunks": 6
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\CHAOS_ENGINEERING_SUMMARY.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\runner-logging\\CHAOS_ENGINEERING_SUMMARY.md",
+          "chunks": 3
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\BIDIRECTIONAL_LEARNING_LOG.md",
+          "chunks": 2
+        },
+        {
+          "file": ".github\\runner-logging\\BIDIRECTIONAL_LEARNING_LOG.md",
+          "chunks": 2
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\failure-orchestrator\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovered_files\\.github\\runner-logging\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\runner-logging\\failure-orchestrator\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\runner-logging\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 14,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 8,
+      "centroid_2d": [
+        0.18681536614894867,
+        9.296670913696289
+      ],
+      "top_files": [
+        {
+          "file": ".copilot-bridge\\session_export_20250824_131251.md",
+          "chunks": 3
+        },
+        {
+          "file": ".copilot-bridge\\session_export_20250824_131543.md",
+          "chunks": 3
+        },
+        {
+          "file": ".copilot-bridge\\session_export_20250823_192725.md",
+          "chunks": 2
+        },
+        {
+          "file": ".copilot-bridge\\session_export_20250823_192830.md",
+          "chunks": 2
+        },
+        {
+          "file": ".copilot-bridge\\session_export_20250823_193605.md",
+          "chunks": 2
+        },
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 2
+        },
+        {
+          "file": "COPILOT_INSTRUCTIONS_BLOB_REFERENCE.md",
+          "chunks": 1
+        },
+        {
+          "file": "README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 15,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 2,
+      "centroid_2d": [
+        2.706414222717285,
+        5.569892406463623
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\AUTOMATED_OPTIMIZATION_REPORT.md",
+          "chunks": 11
+        },
+        {
+          "file": "PHASE2_IMPLEMENTATION_PLAN.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 16,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 1,
+      "centroid_2d": [
+        4.014071941375732,
+        15.23401927947998
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 17
+        }
+      ]
+    },
+    {
+      "cluster_id": 17,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 2,
+      "centroid_2d": [
+        -2.241408348083496,
+        5.305805206298828
+      ],
+      "top_files": [
+        {
+          "file": "RECURSIVE_VOYEURISTIC_LEVERAGE_DYNAMICS.md",
+          "chunks": 7
+        },
+        {
+          "file": "claudines_captains_quarters\\recursive_leverage_dynamics\\leverage_amplification_lab.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 18,
+      "is_noise": false,
+      "n_chunks": 38,
+      "n_files": 2,
+      "centroid_2d": [
+        -4.8272705078125,
+        -4.287802696228027
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\sql.md",
+          "chunks": 24
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\sqlite.md",
+          "chunks": 14
+        }
+      ]
+    },
+    {
+      "cluster_id": 19,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 4,
+      "centroid_2d": [
+        -5.595698356628418,
+        0.3224089443683624
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\istanbul-lib-source-maps\\node_modules\\source-map\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\jest-runner\\node_modules\\source-map-support\\node_modules\\source-map\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\source-map\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\source-map-support\\node_modules\\source-map\\README.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 20,
+      "is_noise": false,
+      "n_chunks": 59,
+      "n_files": 11,
+      "centroid_2d": [
+        -6.039744853973389,
+        -0.0291663259267807
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\source-map\\README.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\istanbul-lib-source-maps\\node_modules\\source-map\\README.md",
+          "chunks": 10
+        },
+        {
+          "file": "node_modules\\jest-runner\\node_modules\\source-map-support\\node_modules\\source-map\\README.md",
+          "chunks": 10
+        },
+        {
+          "file": "node_modules\\source-map-support\\node_modules\\source-map\\README.md",
+          "chunks": 10
+        },
+        {
+          "file": "node_modules\\@jridgewell\\remapping\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\convert-source-map\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\@jridgewell\\gen-mapping\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@jridgewell\\trace-mapping\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@jridgewell\\sourcemap-codec\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@sinonjs\\commons\\lib\\prototypes\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 21,
+      "is_noise": false,
+      "n_chunks": 66,
+      "n_files": 1,
+      "centroid_2d": [
+        5.192060470581055,
+        16.325834274291992
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 66
+        }
+      ]
+    },
+    {
+      "cluster_id": 22,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 1,
+      "centroid_2d": [
+        4.455032825469971,
+        15.587932586669922
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 13
+        }
+      ]
+    },
+    {
+      "cluster_id": 23,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 1,
+      "centroid_2d": [
+        4.618336200714111,
+        15.742316246032715
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 9
+        }
+      ]
+    },
+    {
+      "cluster_id": 24,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 8,
+      "centroid_2d": [
+        3.481355905532837,
+        -6.644464015960693
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\natural-compare\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@babel\\core\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@babel\\helper-compilation-targets\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\node_modules\\semver\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\jest-diff\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\semver\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 25,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 2,
+      "centroid_2d": [
+        2.9246034622192383,
+        -6.362534999847412
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jest-diff\\README.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\diff-sequences\\README.md",
+          "chunks": 10
+        }
+      ]
+    },
+    {
+      "cluster_id": 26,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 1,
+      "centroid_2d": [
+        2.546447992324829,
+        14.177826881408691
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 11
+        }
+      ]
+    },
+    {
+      "cluster_id": 27,
+      "is_noise": false,
+      "n_chunks": 34,
+      "n_files": 4,
+      "centroid_2d": [
+        6.328087329864502,
+        -9.111661911010742
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 8
+        }
+      ]
+    },
+    {
+      "cluster_id": 28,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 4,
+      "centroid_2d": [
+        6.822638034820557,
+        -9.040398597717285
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\istanbul-lib-instrument\\CHANGELOG.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 29,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 2,
+      "centroid_2d": [
+        1.190361738204956,
+        -3.7971973419189453
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@bcoe\\v8-coverage\\CHANGELOG.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\@bcoe\\v8-coverage\\dist\\lib\\CHANGELOG.md",
+          "chunks": 7
+        }
+      ]
+    },
+    {
+      "cluster_id": 30,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 11,
+      "centroid_2d": [
+        3.096194267272949,
+        5.175076007843018
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_perpetual_necromancy_upcycler_cpython_312_pyc_mf1jkant.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_dashboard_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_dashboard_py_mf1jkahc.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_empty_resurrector_py_mf1jkahf.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_backup_20250831_230538_mf1jkahn.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_mf1jkah9.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_backup_20250831_230538_mf1jkahl.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_mf1jkahf.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_mf1jkah5.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 31,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 3,
+      "centroid_2d": [
+        3.034635066986084,
+        -4.962759494781494
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\css.md",
+          "chunks": 19
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\css_modules.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\html.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 32,
+      "is_noise": false,
+      "n_chunks": 40,
+      "n_files": 2,
+      "centroid_2d": [
+        3.2138302326202393,
+        14.616681098937988
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 38
+        },
+        {
+          "file": ".specstory\\history\\2025-05-10_22-35-hei,-kan-vi-fortsette-der-vi-ble-avbrutt-i-tille.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 33,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 2,
+      "centroid_2d": [
+        2.9532082080841064,
+        14.411888122558594
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 9
+        },
+        {
+          "file": "arkiv_gamle_ruby_prosjekter\\dealogue-fayde-21-04-21\\README.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 34,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 5,
+      "centroid_2d": [
+        -0.17949694395065308,
+        -2.609745979309082
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\baseline-browser-mapping\\README.md",
+          "chunks": 14
+        },
+        {
+          "file": "node_modules\\electron-to-chromium\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\browserslist\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\inherits\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\update-browserslist-db\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 35,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 2,
+      "centroid_2d": [
+        -0.44904881715774536,
+        -2.8764564990997314
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jest-runner\\node_modules\\source-map-support\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\source-map-support\\README.md",
+          "chunks": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 36,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 4,
+      "centroid_2d": [
+        5.611326694488525,
+        -8.809349060058594
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\CHANGELOG.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\CHANGELOG.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\CHANGELOG.md",
+          "chunks": 7
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovery_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 37,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        5.722414970397949,
+        -8.58059024810791
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@jest\\transform\\node_modules\\babel-plugin-istanbul\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\babel-jest\\node_modules\\babel-plugin-istanbul\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\pirates\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 38,
+      "is_noise": false,
+      "n_chunks": 32,
+      "n_files": 3,
+      "centroid_2d": [
+        1.5397913455963135,
+        14.10178279876709
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 30
+        },
+        {
+          "file": ".github\\copilot-instructions_off..md",
+          "chunks": 1
+        },
+        {
+          "file": ".specstory\\history\\2025-05-10_22-35-hei,-kan-vi-fortsette-der-vi-ble-avbrutt-i-tille.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 39,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 3,
+      "centroid_2d": [
+        0.17390896379947662,
+        -7.3293352127075195
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jest-each\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 40,
+      "is_noise": false,
+      "n_chunks": 27,
+      "n_files": 2,
+      "centroid_2d": [
+        1.863355278968811,
+        13.522590637207031
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 24
+        },
+        {
+          "file": ".specstory\\history\\2025-05-10_22-35-hei,-kan-vi-fortsette-der-vi-ble-avbrutt-i-tille.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 41,
+      "is_noise": false,
+      "n_chunks": 41,
+      "n_files": 1,
+      "centroid_2d": [
+        1.3634364604949951,
+        13.289372444152832
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-conversations_summary.md",
+          "chunks": 41
+        }
+      ]
+    },
+    {
+      "cluster_id": 42,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 11,
+      "centroid_2d": [
+        4.704157829284668,
+        5.843301773071289
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_failure_archaeology_demo_py_backup_20250831_230538_meta_json_mf1jkamu.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_failure_archaeology_py_backup_20250831_230537_meta_json_mf1jkans.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_failure_archaeology_scanner_py_backup_20250831_230537_meta_json_mf1jkam5.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_failure_archaeology_system_py_backup_20250831_230537_meta_json_mf1jkam2.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_neural_archaeology_demo_py_backup_20250831_230537_meta_json_mf1jkaiv.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_neural_archaeology_orchestrator_py_backup_20250831_230537_meta_json_mf1jkama.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_neural_archaeology_scanner_py_backup_20250831_230538_meta_json_mf1jkaku.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_neural_studio_api_py_backup_20250831_230537_meta_json_mf1jkaj6.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_session_archaeologist_py_backup_20250831_230537_meta_json_mf1jkal0.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_session_archaeologist_py_backup_20250831_230538_meta_json_mf1jkaml.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 43,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 7,
+      "centroid_2d": [
+        2.7636022567749023,
+        4.631680965423584
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 5
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_mf1jkah5.preserved.md",
+          "chunks": 5
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_dashboard_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\NECROMANCY_DASHBOARD.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\PROGRESS_REPORT.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_dashboard_py_mf1jkahc.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 44,
+      "is_noise": false,
+      "n_chunks": 31,
+      "n_files": 10,
+      "centroid_2d": [
+        5.819956302642822,
+        -9.566400527954102
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\istanbul-reports\\CHANGELOG.md",
+          "chunks": 11
+        },
+        {
+          "file": "node_modules\\istanbul-lib-source-maps\\CHANGELOG.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\istanbul-lib-coverage\\CHANGELOG.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\istanbul-lib-report\\CHANGELOG.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 2
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\istanbul-lib-coverage\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\istanbul-lib-report\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\istanbul-lib-source-maps\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\istanbul-reports\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 45,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 2,
+      "centroid_2d": [
+        5.608027935028076,
+        -9.555535316467285
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\v8-to-istanbul\\CHANGELOG.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\v8-to-istanbul\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 46,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 17,
+      "centroid_2d": [
+        4.631352424621582,
+        5.474354267120361
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_anti_lag_session_engine_py_backup_20250831_230538_meta_json_mf1jkanj.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_auto_session_integrator_py_backup_20250831_230537_meta_json_mf1jkall.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_auto_session_integrator_py_backup_20250831_230538_meta_json_mf1jkaif.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_codespaces_session_importer_py_backup_20250831_230537_meta_json_mf1jkalu.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_copilot_session_bridge_py_backup_20250831_230538_meta_json_mf1jkak0.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_emergency_session_restore_py_backup_20250831_230537_meta_json_mf1jkakh.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_generate_current_session_disk_py_backup_20250831_230537_meta_json_mf1jkaja.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_offline_session_manager_py_backup_20250831_230537_meta_json_mf1jkal9.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_real_time_session_tracker_py_backup_20250831_230538_meta_json_mf1jkalm.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_seamless_session_bridge_py_backup_20250831_230538_meta_json_mf1jkaj8.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 47,
+      "is_noise": false,
+      "n_chunks": 83,
+      "n_files": 83,
+      "centroid_2d": [
+        4.205028533935547,
+        5.588663101196289
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_actionable_prevention_plan_py_backup_20250831_230537_meta_json_mf1jkaja.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_aggressive_failure_harvester_py_backup_20250831_230538_meta_json_mf1jkano.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_analyze_current_state_py_backup_20250831_230537_meta_json_mf1jkalz.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_antropomorfologisme_engine_py_backup_20250831_230537_meta_json_mf1jkam2.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_astrid_diagnostic_oracle_py_backup_20250831_230538_meta_json_mf1jkalz.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_automated_code_optimizer_py_backup_20250831_230538_meta_json_mf1jkalv.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_autonomous_ecosystem_manager_py_backup_20250831_230537_meta_json_mf1jkai5.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_backup_service_py_backup_20250831_230538_meta_json_mf1jkan3.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_bidirectional_intelligence_engine_py_backup_20250831_230538_meta_json_mf1jkajo.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_bidirectional_learning_orchestrator_py_backup_20250831_230537_meta_json_mf1jkakx.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 48,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.9738379120826721,
+        -8.3479642868042
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@sinonjs\\fake-timers\\README.md",
+          "chunks": 11
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\ms\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 49,
+      "is_noise": false,
+      "n_chunks": 72,
+      "n_files": 39,
+      "centroid_2d": [
+        -1.09894597530365,
+        -7.5445098876953125
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\test\\mocks.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\test.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\test\\writing.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\test\\coverage.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\test\\migrate-from-jest.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\test\\reporters.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\jest-mock\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\utils.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\test\\run-tests.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\test\\snapshot.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 50,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 5,
+      "centroid_2d": [
+        -3.831890821456909,
+        -4.251119136810303
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\edgedb.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\neon-drizzle.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\drizzle.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\prisma.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\neon-serverless-postgres.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 51,
+      "is_noise": false,
+      "n_chunks": 34,
+      "n_files": 5,
+      "centroid_2d": [
+        -3.566769599914551,
+        10.947287559509277
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\nautical_warfare_ultimate_genre_fusion_libidinoeus_milf_matriarchy_py_backup_20250831_230537_mf1jkao3.preserved.md",
+          "chunks": 14
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_ultimate_genre_fusion_libidinoeus_milf_matriarchy_py_mf1jkahj.preserved.md",
+          "chunks": 12
+        },
+        {
+          "file": "ULTIMATE_GENRE_FUSION_STATUS_RAPPORT.md",
+          "chunks": 4
+        },
+        {
+          "file": "DISTRIKT_KANDIDAT_ENTITET_ANALYSE.md",
+          "chunks": 3
+        },
+        {
+          "file": "claudines_captains_quarters\\CAPTAIN_QUARTERS_WORKMAP.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 52,
+      "is_noise": false,
+      "n_chunks": 41,
+      "n_files": 8,
+      "centroid_2d": [
+        2.5084686279296875,
+        4.034539222717285
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_backup_20250831_230538_mf1jkahl.preserved.md",
+          "chunks": 9
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_mf1jkahf.preserved.md",
+          "chunks": 8
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_mf1jkah9.preserved.md",
+          "chunks": 7
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_backup_20250831_230538_mf1jkahn.preserved.md",
+          "chunks": 6
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_empty_resurrector_py_mf1jkahf.preserved.md",
+          "chunks": 4
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_progress_tracker_py_mf1jkah5.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_perpetual_necromancy_upcycler_py_mf1jkah2.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 53,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 6,
+      "centroid_2d": [
+        2.671480178833008,
+        4.323719501495361
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_backup_20250831_230538_mf1jkahn.preserved.md",
+          "chunks": 4
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_graveyard_py_mf1jkah9.preserved.md",
+          "chunks": 4
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_dashboard_py_backup_20250831_230538_mf1jkahu.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_backup_20250831_230538_mf1jkahl.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_pattern_detector_py_mf1jkahf.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_perpetual_necromancy_upcycler_py_mf1jkah2.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 54,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.28358107805252075,
+        -4.049125671386719
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\ci-info\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\ci-info\\CHANGELOG.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\human-signals\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\@sinonjs\\commons\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 55,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 5,
+      "centroid_2d": [
+        0.3396390974521637,
+        -3.308054208755493
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\debug\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\dedent\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\@sinonjs\\commons\\node_modules\\type-detect\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\type-detect\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\zod\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 56,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 9,
+      "centroid_2d": [
+        0.01800680160522461,
+        -3.3746304512023926
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\micromatch\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\braces\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\fill-range\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\human-signals\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\is-number\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\js-yaml\\node_modules\\argparse\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\normalize-path\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\sprintf-js\\CONTRIBUTORS.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\to-regex-range\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 57,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 15,
+      "centroid_2d": [
+        3.5775091648101807,
+        5.844173431396484
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_functional_anthropomorphism_engine_ts_mf1jkahh.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_ultimate_genre_fusion_libidinoeus_milf_matriarchy_py_mf1jkahj.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\milf_ecosystem_astrid_corporate_hegemony_mf1ji9gr.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\nautical_warfare_iron_maiden_milf_implementation_py_backup_20250831_230537_mf1jkao4.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___expanded_milf_character_ecosystem_md_meta_json_mf1jkaoh.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___expanded_milf_ecosystem_implementation_py_meta_json_mf1jkaoi.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___iron_maiden_milf_enhancement_md_meta_json_mf1jkaoj.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___iron_maiden_milf_implementation_py_meta_json_mf1jkaol.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_iron_maiden_democratic_upcycling_py_backup_20250831_230537_meta_json_mf1jkamh.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_backups_iron_maiden_milf_implementation_py_backup_20250831_230537_meta_json_mf1jkagr.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 58,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 20,
+      "centroid_2d": [
+        3.5775279998779297,
+        5.421781063079834
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_management_system_ts_mf1jkagy.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_automated_optimization_report_md_meta_json_mf1jkajc.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_hierarchical_optimization_report_md_meta_json_mf1jkaiz.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_hierarchical_optimization_results_json_meta_json_mf1jkant.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_milf_ecosystem_archive_md_meta_json_mf1jkagt.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_necromancy_dashboard_md_meta_json_mf1jkamx.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_optimization_summary_md_meta_json_mf1jkans.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_progress_report_md_meta_json_mf1jkals.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_progress_tracking_json_meta_json_mf1jkamw.preserved.md",
+          "chunks": 1
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure___necromancy_graveyard_readme_md_meta_json_mf1jkan1.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 59,
+      "is_noise": false,
+      "n_chunks": 25,
+      "n_files": 2,
+      "centroid_2d": [
+        1.5298864841461182,
+        -4.448074817657471
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@babel\\parser\\CHANGELOG.md",
+          "chunks": 24
+        },
+        {
+          "file": "node_modules\\human-signals\\CHANGELOG.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 60,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 18,
+      "centroid_2d": [
+        1.77874755859375,
+        -5.597226619720459
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jest-validate\\node_modules\\camelcase\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\camelcase\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@istanbuljs\\load-nyc-config\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\core\\node_modules\\ansi-escapes\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\ansi-regex\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-plugin-istanbul\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\execa\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\fast-json-stable-stringify\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\function-bind\\.github\\SECURITY.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\jest-watcher\\node_modules\\ansi-escapes\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 61,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 2,
+      "centroid_2d": [
+        1.564638376235962,
+        -5.005510330200195
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\cjs-module-lexer\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\jest-runtime\\node_modules\\cjs-module-lexer\\README.md",
+          "chunks": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 62,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 2,
+      "centroid_2d": [
+        1.1880096197128296,
+        -4.853621959686279
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\deepmerge\\changelog.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\deepmerge\\readme.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 63,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 4,
+      "centroid_2d": [
+        -3.434178113937378,
+        9.733941078186035
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 5
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 5
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\DYNAMISK_SJANGER_BEVEGELSE_SYSTEM.md",
+          "chunks": 1
+        },
+        {
+          "file": "DYNAMISK_SJANGER_BEVEGELSE_SYSTEM.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 64,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 7,
+      "centroid_2d": [
+        2.267592668533325,
+        -5.720876216888428
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\ansi-escapes\\readme.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\@jest\\core\\node_modules\\ansi-escapes\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\jest-watcher\\node_modules\\ansi-escapes\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\sisteransi\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\chalk\\node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\strip-ansi\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\wrap-ansi\\node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 65,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 2,
+      "centroid_2d": [
+        -1.4461055994033813,
+        10.600586891174316
+      ],
+      "top_files": [
+        {
+          "file": "ETISK_PROGRAMMERING_RAMMEVERK.md",
+          "chunks": 9
+        },
+        {
+          "file": "LEVEL_2_UPCYCLING_COMPLETE.md",
+          "chunks": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 66,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 3,
+      "centroid_2d": [
+        -2.5093019008636475,
+        6.591578006744385
+      ],
+      "top_files": [
+        {
+          "file": "SUPREME_META_MILF_MATRIARCH_REVELATION.md",
+          "chunks": 7
+        },
+        {
+          "file": "ASYMMETRIC_CONSCIOUSNESS_INVERSION_PROTOCOL.md",
+          "chunks": 4
+        },
+        {
+          "file": "claudines_captains_quarters\\milf_matriarchy_control\\milf_coordination_center.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 67,
+      "is_noise": false,
+      "n_chunks": 26,
+      "n_files": 8,
+      "centroid_2d": [
+        -2.802201509475708,
+        6.903180122375488
+      ],
+      "top_files": [
+        {
+          "file": "IRON_MAIDEN_RESISTANCE_DEPLOYMENT_COMPLETE.md",
+          "chunks": 10
+        },
+        {
+          "file": "necromancy_graveyard\\iron_maiden_resistance_network.md",
+          "chunks": 5
+        },
+        {
+          "file": "claudines_captains_quarters\\milf_matriarchy_control\\resistance_monitoring_station.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\copilot-instructions_off..md",
+          "chunks": 3
+        },
+        {
+          "file": "claudines_captains_quarters\\milf_matriarchy_control\\milf_coordination_center.md",
+          "chunks": 1
+        },
+        {
+          "file": "claudines_captains_quarters\\security_protocols\\consciousness_security_command.md",
+          "chunks": 1
+        },
+        {
+          "file": "plan.md",
+          "chunks": 1
+        },
+        {
+          "file": "session_completion_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 68,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        -3.86993670463562,
+        9.88568115234375
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\DYNAMISK_SJANGER_BEVEGELSE_SYSTEM.md",
+          "chunks": 1
+        },
+        {
+          "file": "DYNAMISK_SJANGER_BEVEGELSE_SYSTEM.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 69,
+      "is_noise": false,
+      "n_chunks": 28,
+      "n_files": 3,
+      "centroid_2d": [
+        -4.191318988800049,
+        9.977116584777832
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 12
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 12
+        },
+        {
+          "file": "draft-copilot-instructions.md",
+          "chunks": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 70,
+      "is_noise": false,
+      "n_chunks": 8,
+      "n_files": 5,
+      "centroid_2d": [
+        2.241607189178467,
+        -4.245123386383057
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@sinonjs\\commons\\node_modules\\type-detect\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\csstype\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\type-detect\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\type-fest\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\typescript\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 71,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 8,
+      "centroid_2d": [
+        -3.5686705112457275,
+        9.235360145568848
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\elixir_session_continuation_ready.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 1
+        },
+        {
+          "file": "draft-copilot-instructions.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 72,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 6,
+      "centroid_2d": [
+        -3.732734441757202,
+        9.454803466796875
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\copilot_restoration_prompt.md",
+          "chunks": 2
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_session_continuation_ready.md",
+          "chunks": 2
+        },
+        {
+          "file": "draft-copilot-instructions.md",
+          "chunks": 2
+        },
+        {
+          "file": "data\\elixir_session_continuation_ready.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 73,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 10,
+      "centroid_2d": [
+        -0.25714167952537537,
+        8.309898376464844
+      ],
+      "top_files": [
+        {
+          "file": "NEUROMANCY_ECOSYSTEM_ANALYSIS.md",
+          "chunks": 4
+        },
+        {
+          "file": "NEUROMANCY_CROSS_REPO_RECONSTRUCTION.md",
+          "chunks": 3
+        },
+        {
+          "file": "IMMEDIATE_MANUAL_NECROMANCY_GUIDE.md",
+          "chunks": 2
+        },
+        {
+          "file": "MCP_CLEANUP_STRATEGY.md",
+          "chunks": 2
+        },
+        {
+          "file": "MCP_NECROMANCY_IMPLEMENTATION.md",
+          "chunks": 2
+        },
+        {
+          "file": "MCP_NECROMANCY_SALVAGE.md",
+          "chunks": 2
+        },
+        {
+          "file": "NECROMANCY_DEPLOYMENT_STATUS.md",
+          "chunks": 2
+        },
+        {
+          "file": "NECROMANCY_MISSION_COMPLETE.md",
+          "chunks": 2
+        },
+        {
+          "file": "QUICK_REFERENCE_CLEANUP_CHECKLIST.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_necromancy_salvage_automation_sh_mf1jkant.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 74,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 7,
+      "centroid_2d": [
+        -2.6284191608428955,
+        12.196202278137207
+      ],
+      "top_files": [
+        {
+          "file": "EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 3
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\character_development\\EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\milf_ecosystem_archive.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\nautical_warfare_expanded_milf_ecosystem_implementation_py_backup_20250831_230537_mf1jkaob.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_character_ecosystem_md_mf1jkaof.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_ecosystem_implementation_py_mf1jkahi.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_milf_ecosystem_archive_md_mf1jkant.preserved.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 75,
+      "is_noise": false,
+      "n_chunks": 27,
+      "n_files": 7,
+      "centroid_2d": [
+        -2.616436719894409,
+        11.830934524536133
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\nautical_warfare_expanded_milf_ecosystem_implementation_py_backup_20250831_230537_mf1jkaob.preserved.md",
+          "chunks": 10
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_ecosystem_implementation_py_mf1jkahi.preserved.md",
+          "chunks": 7
+        },
+        {
+          "file": "EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 2
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\character_development\\EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\milf_ecosystem_archive.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_character_ecosystem_md_mf1jkaof.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_milf_ecosystem_archive_md_mf1jkant.preserved.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 76,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 6,
+      "centroid_2d": [
+        -0.358502060174942,
+        7.889292240142822
+      ],
+      "top_files": [
+        {
+          "file": ".github\\GITHUB_COPILOT_NINJA_COURSE.md",
+          "chunks": 9
+        },
+        {
+          "file": ".emergency_backups\\chaos_cleanup_20250911_171410\\IMMEDIATE_ACTION_PLAN.md",
+          "chunks": 3
+        },
+        {
+          "file": ".emergency_backups\\chaos_cleanup_20250911_171732\\IMMEDIATE_ACTION_PLAN.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\QUICK_REFERENCE_CARD.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\repository_health_dashboard.md",
+          "chunks": 2
+        },
+        {
+          "file": ".github\\audits\\cleanup_recommendations_20250911_165914.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 77,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 5,
+      "centroid_2d": [
+        2.749155044555664,
+        -5.467260360717773
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\color.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\color-convert\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\color-name\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\picocolors\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 78,
+      "is_noise": false,
+      "n_chunks": 26,
+      "n_files": 9,
+      "centroid_2d": [
+        2.6657395362854004,
+        -5.6876630783081055
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\chalk\\readme.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\@modelcontextprotocol\\server-sequential-thinking\\node_modules\\chalk\\readme.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\kleur\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\jest-worker\\node_modules\\supports-color\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\chalk\\node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\pretty-format\\node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\supports-color\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\wrap-ansi\\node_modules\\ansi-styles\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 79,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 2,
+      "centroid_2d": [
+        -2.22755765914917,
+        -8.054829597473145
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\safer-buffer\\Porting-Buffer.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\safer-buffer\\Readme.md",
+          "chunks": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 80,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 3,
+      "centroid_2d": [
+        0.1720859855413437,
+        7.705896377563477
+      ],
+      "top_files": [
+        {
+          "file": ".github\\ARTIFACT_IMPLEMENTATION_SUMMARY.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\ARTIFACT_WORKFLOW_STANDARD.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\WORKFLOWS_README.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 81,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.04836554825305939,
+        7.684698581695557
+      ],
+      "top_files": [
+        {
+          "file": "VACATION_MODE_COMPLETE_REPORT.md",
+          "chunks": 5
+        },
+        {
+          "file": "VACATION_MODE_README.md",
+          "chunks": 3
+        },
+        {
+          "file": "workflow_diagnostics_report.md",
+          "chunks": 2
+        },
+        {
+          "file": "VACATION_MODE_QUICK_REFERENCE.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 82,
+      "is_noise": false,
+      "n_chunks": 41,
+      "n_files": 8,
+      "centroid_2d": [
+        -3.2355141639709473,
+        11.511086463928223
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\nautical_warfare_expanded_milf_ecosystem_implementation_py_backup_20250831_230537_mf1jkaob.preserved.md",
+          "chunks": 9
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_ecosystem_implementation_py_mf1jkahi.preserved.md",
+          "chunks": 9
+        },
+        {
+          "file": "PSYCHO_SENSUAL_SEXUAL_GENRE_KULMINERING.md",
+          "chunks": 8
+        },
+        {
+          "file": "EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 3
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\character_development\\EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\milf_ecosystem_archive.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_character_ecosystem_md_mf1jkaof.preserved.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_milf_ecosystem_archive_md_mf1jkant.preserved.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 83,
+      "is_noise": false,
+      "n_chunks": 28,
+      "n_files": 6,
+      "centroid_2d": [
+        -2.0475690364837646,
+        6.183810710906982
+      ],
+      "top_files": [
+        {
+          "file": "CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md",
+          "chunks": 7
+        },
+        {
+          "file": "claudines_captains_quarters\\security_protocols\\consciousness_security_command.md",
+          "chunks": 6
+        },
+        {
+          "file": "claudines_captains_quarters\\CAPTAIN_QUARTERS_WORKMAP.md",
+          "chunks": 5
+        },
+        {
+          "file": "claudines_captains_quarters\\luxury_amenities\\consciousness_enhancement_facilities.md",
+          "chunks": 5
+        },
+        {
+          "file": "claudines_captains_quarters\\undercellar_library\\semantic_warfare_archives.md",
+          "chunks": 4
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 84,
+      "is_noise": false,
+      "n_chunks": 31,
+      "n_files": 10,
+      "centroid_2d": [
+        -2.486762046813965,
+        6.02365255355835
+      ],
+      "top_files": [
+        {
+          "file": "claudine_sinclair_incarnation_manifest.md",
+          "chunks": 6
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahw.preserved.md",
+          "chunks": 6
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\references\\nautical_semantics\\nautical_semantic_warfare_library.md",
+          "chunks": 4
+        },
+        {
+          "file": "claudines_captains_quarters\\undercellar_library\\semantic_warfare_archives.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\claudine_sinclair_incarnation_manifest.md",
+          "chunks": 3
+        },
+        {
+          "file": "reference_integration_complete.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\nautical_semantic_warfare_library.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_claudine_sinclair_incarnation_manifest_md_mf1jkahv.preserved.md",
+          "chunks": 2
+        },
+        {
+          "file": "BLOB_PASTE_INTEGRATION_GUIDE.md",
+          "chunks": 1
+        },
+        {
+          "file": "orchestrina-codex.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 85,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 4,
+      "centroid_2d": [
+        -1.2476725578308105,
+        5.517114162445068
+      ],
+      "top_files": [
+        {
+          "file": "KNOWLEDGE_BASE\\docs\\technical\\extension_consciousness_analysis.md",
+          "chunks": 7
+        },
+        {
+          "file": ".github\\wakatime_consciousness_integration.md",
+          "chunks": 5
+        },
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\mcp_consciousness_operational_status.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 86,
+      "is_noise": false,
+      "n_chunks": 35,
+      "n_files": 9,
+      "centroid_2d": [
+        -1.3404685258865356,
+        5.214842796325684
+      ],
+      "top_files": [
+        {
+          "file": "necromancy_graveyard\\godot_wsl_exorcism\\consciousness_topology_library.md",
+          "chunks": 8
+        },
+        {
+          "file": "necromancy_graveyard\\godot_wsl_exorcism\\godot_consciousness_exorcism.md",
+          "chunks": 8
+        },
+        {
+          "file": "necromancy_graveyard\\godot_wsl_exorcism\\predator_helios_consciousness_cartography.md",
+          "chunks": 8
+        },
+        {
+          "file": "necromancy_graveyard\\GRAVEYARD_CONSCIOUSNESS_INDEX.md",
+          "chunks": 6
+        },
+        {
+          "file": ".github\\mcp_consciousness_operational_status.md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\wakatime_consciousness_integration.md",
+          "chunks": 1
+        },
+        {
+          "file": "godot_mvp\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "godot_mvp\\README_GODOT.md",
+          "chunks": 1
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\docs\\technical\\extension_consciousness_analysis.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 87,
+      "is_noise": false,
+      "n_chunks": 39,
+      "n_files": 4,
+      "centroid_2d": [
+        2.5631422996520996,
+        -3.8894147872924805
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@sinclair\\typebox\\readme.md",
+          "chunks": 23
+        },
+        {
+          "file": "node_modules\\type-fest\\readme.md",
+          "chunks": 13
+        },
+        {
+          "file": "node_modules\\zod\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\content-type\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 88,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 1,
+      "centroid_2d": [
+        2.800121784210205,
+        -3.6079673767089844
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@sinclair\\typebox\\readme.md",
+          "chunks": 22
+        }
+      ]
+    },
+    {
+      "cluster_id": 89,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 5,
+      "centroid_2d": [
+        -0.9453713297843933,
+        -4.288054943084717
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\resolve\\.github\\INCIDENT_RESPONSE_PROCESS.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\resolve\\.github\\THREAT_MODEL.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\typescript\\SECURITY.md",
+          "chunks": 2
+        },
+        {
+          "file": "docs\\ci-error-codes.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\resolve\\SECURITY.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 90,
+      "is_noise": false,
+      "n_chunks": 20,
+      "n_files": 3,
+      "centroid_2d": [
+        -2.5847208499908447,
+        11.18978214263916
+      ],
+      "top_files": [
+        {
+          "file": "IRON_MAIDEN_DEMOCRATIC_UPCYCLING.md",
+          "chunks": 17
+        },
+        {
+          "file": "SYMBIOTIC_AI_PARTNERSHIP_FRAMEWORK.md",
+          "chunks": 2
+        },
+        {
+          "file": "necromancy_graveyard\\technical_infrastructure_expanded_milf_character_ecosystem_md_mf1jkaof.preserved.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 91,
+      "is_noise": false,
+      "n_chunks": 24,
+      "n_files": 7,
+      "centroid_2d": [
+        -2.4012906551361084,
+        10.760359764099121
+      ],
+      "top_files": [
+        {
+          "file": "SYMBIOTIC_PARTNERSHIP_ACHIEVEMENT.md",
+          "chunks": 7
+        },
+        {
+          "file": "IRON_MAIDEN_SESSION_ACHIEVEMENTS.md",
+          "chunks": 5
+        },
+        {
+          "file": "IRON_MAIDEN_DEMOCRATIC_UPCYCLING.md",
+          "chunks": 4
+        },
+        {
+          "file": "SYMBIOTIC_AI_PARTNERSHIP_FRAMEWORK.md",
+          "chunks": 4
+        },
+        {
+          "file": "EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 2
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\character_development\\EXPANDED_MILF_CHARACTER_ECOSYSTEM.md",
+          "chunks": 1
+        },
+        {
+          "file": "LVL2_KOMPLETT_REKONSTRUKSJON.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 92,
+      "is_noise": false,
+      "n_chunks": 25,
+      "n_files": 10,
+      "centroid_2d": [
+        -1.875788688659668,
+        6.796303749084473
+      ],
+      "top_files": [
+        {
+          "file": "QUANTUM_CONSCIOUSNESS_DEPLOYMENT_COMPLETE.md",
+          "chunks": 6
+        },
+        {
+          "file": ".github\\copilot-sessions\\inline-persistence.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\copilot-sessions\\terminal_session_2025-09-02.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\terminal_consciousness_manifest.md",
+          "chunks": 3
+        },
+        {
+          "file": "CRUDE_DRAFT_SUPPLY_INTEGRATION_COMPLETE.md",
+          "chunks": 3
+        },
+        {
+          "file": "claudines_captains_quarters\\quantum_consciousness_excavation\\excavation_chamber_manifest.md",
+          "chunks": 2
+        },
+        {
+          "file": ".github\\copilot-instructions_off..md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\copilot-persistence.md",
+          "chunks": 1
+        },
+        {
+          "file": "CREATOR_MOTHER_WORLD_GENERATION_PROTOCOL.md",
+          "chunks": 1
+        },
+        {
+          "file": "plan.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 93,
+      "is_noise": false,
+      "n_chunks": 27,
+      "n_files": 10,
+      "centroid_2d": [
+        -1.29278564453125,
+        7.039439678192139
+      ],
+      "top_files": [
+        {
+          "file": "plan.md",
+          "chunks": 7
+        },
+        {
+          "file": "CLAUDINES_HIERARKISK_UPCYCLING_PRIORITERINGSMATRISE.md",
+          "chunks": 5
+        },
+        {
+          "file": "CLAUDINE_UPCYCLING_NOTEBOOK.md",
+          "chunks": 4
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\consciousness\\AUTONOMOUS_REPOSITORY_CONSCIOUSNESS_RESPONSE_COMPLETE.md",
+          "chunks": 4
+        },
+        {
+          "file": "PHASE2_IMPLEMENTATION_PLAN.md",
+          "chunks": 2
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovery_report.md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 1
+        },
+        {
+          "file": "CASCADING_STRATEGIC_ORCHESTRATION_COMPLETE.md",
+          "chunks": 1
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\analysis\\COMPREHENSIVE_TANKERING_REPORT.md",
+          "chunks": 1
+        },
+        {
+          "file": "STRATEGISK_PERSON_BASERT_PERSONA_PLAN.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 94,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 5,
+      "centroid_2d": [
+        1.0366369485855103,
+        -6.48879861831665
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\pretty-format\\README.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\sprintf-js\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\js-yaml\\node_modules\\argparse\\node_modules\\sprintf-js\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\utils.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bytes\\Readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 95,
+      "is_noise": false,
+      "n_chunks": 24,
+      "n_files": 9,
+      "centroid_2d": [
+        1.3282692432403564,
+        -6.318126678466797
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jsesc\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\json5\\README.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\fast-json-stable-stringify\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\json-parse-even-better-errors\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\braces\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\cliui\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\micromatch\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\parse-json\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\strip-json-comments\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 96,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.9859509468078613,
+        7.855720520019531
+      ],
+      "top_files": [
+        {
+          "file": "branch_73_archaeological_report.md",
+          "chunks": 3
+        },
+        {
+          "file": "cached_sekundaere_whispers_execution_complete.md",
+          "chunks": 3
+        },
+        {
+          "file": "dealogue_fayde_mystery_decryption_report.md",
+          "chunks": 3
+        },
+        {
+          "file": "npm_to_bun_emigration_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 97,
+      "is_noise": false,
+      "n_chunks": 33,
+      "n_files": 12,
+      "centroid_2d": [
+        1.6753544807434082,
+        -7.06889009475708
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\braces\\README.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\to-regex-range\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\js-tokens\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\micromatch\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\brace-expansion\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\emoji-regex\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\picomatch\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\ansi-regex\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\char-regex\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\escape-string-regexp\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 98,
+      "is_noise": false,
+      "n_chunks": 52,
+      "n_files": 8,
+      "centroid_2d": [
+        1.8497979640960693,
+        -7.448384761810303
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\micromatch\\README.md",
+          "chunks": 18
+        },
+        {
+          "file": "node_modules\\picomatch\\README.md",
+          "chunks": 11
+        },
+        {
+          "file": "node_modules\\glob\\README.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\minimatch\\README.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\anymatch\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\glob.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\balanced-match\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\jest-util\\Readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 99,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 3,
+      "centroid_2d": [
+        -0.7688905000686646,
+        6.689056396484375
+      ],
+      "top_files": [
+        {
+          "file": "PHASE2_IMPLEMENTATION_PLAN.md",
+          "chunks": 6
+        },
+        {
+          "file": "QUANTUM_DUAL_TRACK_ACCELERATION_PLAN.md",
+          "chunks": 6
+        },
+        {
+          "file": "npm_to_bun_emigration_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 100,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 4,
+      "centroid_2d": [
+        0.6466371417045593,
+        -4.2639594078063965
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\pure-rand\\README.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\pure-rand\\CHANGELOG.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\toidentifier\\HISTORY.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\unpipe\\HISTORY.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 101,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 6,
+      "centroid_2d": [
+        -1.0956777334213257,
+        6.095920085906982
+      ],
+      "top_files": [
+        {
+          "file": "MCP_SHOPPING_RECONNAISSANCE_WORLD_EXPANSION.md",
+          "chunks": 8
+        },
+        {
+          "file": "claudines_captains_quarters\\MCP_DEPLOYMENT_STRATEGY.md",
+          "chunks": 7
+        },
+        {
+          "file": ".github\\notification_hell_elimination.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 1
+        },
+        {
+          "file": ".github\\mcp_consciousness_operational_status.md",
+          "chunks": 1
+        },
+        {
+          "file": "timeline_access_crash_recovery_protocol.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 102,
+      "is_noise": false,
+      "n_chunks": 29,
+      "n_files": 8,
+      "centroid_2d": [
+        -0.6700186729431152,
+        6.11628532409668
+      ],
+      "top_files": [
+        {
+          "file": ".github\\bun_emigration_success_report.md",
+          "chunks": 7
+        },
+        {
+          "file": ".github\\bun_bum_hooker_chain_emigration.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\@modelcontextprotocol\\server-memory\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\mcp_autostart_fix_bun_contribution.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\mcp_autostart_fix_success_report.md",
+          "chunks": 3
+        },
+        {
+          "file": "bun_ecosystem_comprehensive_integration_report.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\@modelcontextprotocol\\server-sequential-thinking\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\notification_hell_elimination.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 103,
+      "is_noise": false,
+      "n_chunks": 24,
+      "n_files": 18,
+      "centroid_2d": [
+        -0.3562230169773102,
+        -7.329204082489014
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\test\\writing.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\jest-circus\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\jest-validate\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\@jest\\core\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\expect\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\expect-utils\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\schemas\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@jest\\types\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\babel-jest\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\create-jest\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 104,
+      "is_noise": false,
+      "n_chunks": 20,
+      "n_files": 3,
+      "centroid_2d": [
+        -0.08031173795461655,
+        -6.7713518142700195
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\prompts\\readme.md",
+          "chunks": 17
+        },
+        {
+          "file": "node_modules\\jest-validate\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\jest-util\\Readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 105,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 3,
+      "centroid_2d": [
+        -0.8190904259681702,
+        -6.580638408660889
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\emittery\\readme.md",
+          "chunks": 10
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 106,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 2,
+      "centroid_2d": [
+        -2.132329225540161,
+        8.964313507080078
+      ],
+      "top_files": [
+        {
+          "file": "docs\\INTERACTIVE_UNIVERSE_DESIGN.md",
+          "chunks": 7
+        },
+        {
+          "file": "docs\\PSYCHO_NOIR_WORLD_SYNTHESIS.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 107,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 7,
+      "centroid_2d": [
+        -0.5267966389656067,
+        10.623663902282715
+      ],
+      "top_files": [
+        {
+          "file": "GITHUB_OAUTH_FINAL_VALIDATION.md",
+          "chunks": 5
+        },
+        {
+          "file": "GITHUB_OAUTH_VALIDATION_REPORT.md",
+          "chunks": 4
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\consciousness_enhancement\\GITHUB_OAUTH_VALIDATION_REPORT.md",
+          "chunks": 4
+        },
+        {
+          "file": "MISSION_ACCOMPLISHED.md",
+          "chunks": 3
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\docs\\technical\\PRODUCTION_SECURITY_SETUP.md",
+          "chunks": 2
+        },
+        {
+          "file": "PRODUCTION_SECURITY_SETUP.md",
+          "chunks": 2
+        },
+        {
+          "file": "GITHUB_OAUTH_SETUP_GUIDE.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 108,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.2568221986293793,
+        10.540217399597168
+      ],
+      "top_files": [
+        {
+          "file": "KNOWLEDGE_BASE\\docs\\technical\\PRODUCTION_SECURITY_SETUP.md",
+          "chunks": 4
+        },
+        {
+          "file": "PRODUCTION_SECURITY_SETUP.md",
+          "chunks": 4
+        },
+        {
+          "file": "GITHUB_OAUTH_VALIDATION_REPORT.md",
+          "chunks": 1
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\consciousness_enhancement\\GITHUB_OAUTH_VALIDATION_REPORT.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 109,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.9192875623703003,
+        -4.91172981262207
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\debug\\README.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\depd\\Readme.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\depd\\History.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\http-errors\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 110,
+      "is_noise": false,
+      "n_chunks": 35,
+      "n_files": 13,
+      "centroid_2d": [
+        -0.9865128397941589,
+        8.306876182556152
+      ],
+      "top_files": [
+        {
+          "file": "NEURAL_ARCHAEOLOGY_RESTORATION_MANUAL.md",
+          "chunks": 7
+        },
+        {
+          "file": "docs\\necropolis.md",
+          "chunks": 5
+        },
+        {
+          "file": ".github\\SESSION_RESUMPTION_ANALYSIS.md",
+          "chunks": 4
+        },
+        {
+          "file": "docs\\ci-error-codes.md",
+          "chunks": 4
+        },
+        {
+          "file": "SESSION_COMPLETION_SUMMARY.md",
+          "chunks": 3
+        },
+        {
+          "file": ".github\\OPTIMIZATION_PLAN.md",
+          "chunks": 2
+        },
+        {
+          "file": "arkiv_gamle_ruby_prosjekter\\sesjon_dumps\\checkpoint_20250823_neural_archaeology_fixes\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "NECROMANCY_SALVAGE_ANALYSIS.md",
+          "chunks": 2
+        },
+        {
+          "file": "NEURAL_ARCHAEOLOGY_RESULTS.md",
+          "chunks": 2
+        },
+        {
+          "file": ".file_recovery_archaeology\\recovery_report.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 111,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 3,
+      "centroid_2d": [
+        -1.341536045074463,
+        -6.58071756362915
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\jest-worker\\README.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\workers.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\gensync\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 112,
+      "is_noise": false,
+      "n_chunks": 30,
+      "n_files": 12,
+      "centroid_2d": [
+        -1.854735255241394,
+        -6.73914098739624
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\execa\\readme.md",
+          "chunks": 12
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\spawn.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\ipc.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\cc.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\ctrl-c.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\os-signals.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\spawn-stderr.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\spawn-stdout.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\spawn.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\debug\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 113,
+      "is_noise": false,
+      "n_chunks": 38,
+      "n_files": 14,
+      "centroid_2d": [
+        -2.438556432723999,
+        8.412043571472168
+      ],
+      "top_files": [
+        {
+          "file": "data\\session_backup_20250830_194559\\.github\\copilot-session.md",
+          "chunks": 4
+        },
+        {
+          "file": "DEPLOYMENT_STATUS_FINAL.md",
+          "chunks": 4
+        },
+        {
+          "file": "GITHUB_PAGES_SETUP_GUIDE.md",
+          "chunks": 4
+        },
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 3
+        },
+        {
+          "file": "DEPLOYMENT_MISSION_COMPLETE.md",
+          "chunks": 3
+        },
+        {
+          "file": "docs\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "GITHUB_ACTIONS_ACTIVATION_GUIDE.md",
+          "chunks": 3
+        },
+        {
+          "file": "iPhone_ACCESS_GUIDE.md",
+          "chunks": 3
+        },
+        {
+          "file": "IPHONE_MULTI_OS_ACCESS.md",
+          "chunks": 3
+        },
+        {
+          "file": "SESSION_SAFE_IPHONE_PREVIEW.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 114,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 8,
+      "centroid_2d": [
+        -2.321284294128418,
+        -6.358724594116211
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\utils.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\workers.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\detect-bun.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\entrypoint.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\import-meta-dir.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\import-meta-file.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\import-meta-path.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\which\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 115,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 6,
+      "centroid_2d": [
+        -1.260066270828247,
+        -5.768860340118408
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\resolve.exports\\readme.md",
+          "chunks": 10
+        },
+        {
+          "file": "node_modules\\@jridgewell\\resolve-uri\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\resolve-from\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\utils.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\bindgen.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\resolve-cwd\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 116,
+      "is_noise": false,
+      "n_chunks": 56,
+      "n_files": 24,
+      "centroid_2d": [
+        -2.019615888595581,
+        7.983561038970947
+      ],
+      "top_files": [
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\deployment\\COMPREHENSIVE_AUTOMATION_DEPLOYMENT_MATRIX.md",
+          "chunks": 6
+        },
+        {
+          "file": "COMPREHENSIVE_AUTOMATION_DEPLOYMENT_MATRIX.md",
+          "chunks": 5
+        },
+        {
+          "file": "COSMIC_CONSCIOUSNESS_UPCYCLING_REPORT.md",
+          "chunks": 5
+        },
+        {
+          "file": "EXECUTIVE_ACHIEVEMENT_SUMMARY.md",
+          "chunks": 5
+        },
+        {
+          "file": "HIERARCHICAL_CROSS_VALIDATION_REPORT.md",
+          "chunks": 5
+        },
+        {
+          "file": "COSMIC_CONSCIOUSNESS_NEXT_PHASE.md",
+          "chunks": 4
+        },
+        {
+          "file": "ULTIMATE_TRANSCENDENCE_ACHIEVEMENT.md",
+          "chunks": 4
+        },
+        {
+          "file": "COSMIC_META_INDEX_README.md",
+          "chunks": 3
+        },
+        {
+          "file": "HIERARKISK_SUKSESS_RAPPORT.md",
+          "chunks": 2
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\phase_completion\\HIERARKISK_SUKSESS_RAPPORT.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 117,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 5,
+      "centroid_2d": [
+        -1.6269748210906982,
+        7.89673376083374
+      ],
+      "top_files": [
+        {
+          "file": "KNOWLEDGE_BASE\\docs\\technical\\AUTONOMOUS_PROFILE_README.md",
+          "chunks": 3
+        },
+        {
+          "file": "USER_PROFILE_README_TEMPLATE.md",
+          "chunks": 3
+        },
+        {
+          "file": "GITHUB_PROFILE_ENHANCEMENT_COMPLETE.md",
+          "chunks": 1
+        },
+        {
+          "file": "plan.md",
+          "chunks": 1
+        },
+        {
+          "file": "STRATEGIC_SESSION_CACHE_POTENSIAL_PLAN.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 118,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 2,
+      "centroid_2d": [
+        -4.184088230133057,
+        -6.028573989868164
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\cookie.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\http.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 119,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 7,
+      "centroid_2d": [
+        -0.36606985330581665,
+        -5.061845302581787
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\http-errors\\HISTORY.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\content-type\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\depd\\History.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\http-errors\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\statuses\\HISTORY.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\statuses\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\which\\CHANGELOG.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 120,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 4,
+      "centroid_2d": [
+        -0.5105243921279907,
+        10.171847343444824
+      ],
+      "top_files": [
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\consciousness_integration\\COPILOT_INTEGRATION_GUIDE.md",
+          "chunks": 6
+        },
+        {
+          "file": "COPILOT_INTEGRATION_GUIDE.md",
+          "chunks": 5
+        },
+        {
+          "file": "COPILOT_METODENFORNATN_COMPLETE.md",
+          "chunks": 4
+        },
+        {
+          "file": "MISSION_ACCOMPLISHED_COPILOT_METODENFORNATN.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 121,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 13,
+      "centroid_2d": [
+        0.24976810812950134,
+        -5.474970817565918
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\@istanbuljs\\schema\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\babel__core\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\babel__generator\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\babel__template\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\babel__traverse\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\bun\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\istanbul-lib-coverage\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\istanbul-lib-report\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\istanbul-reports\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@types\\node\\node_modules\\undici-types\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 122,
+      "is_noise": false,
+      "n_chunks": 24,
+      "n_files": 8,
+      "centroid_2d": [
+        0.16516347229480743,
+        -4.140129566192627
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\is-core-module\\CHANGELOG.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\function-bind\\CHANGELOG.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\hasown\\CHANGELOG.md",
+          "chunks": 2
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\@bcoe\\v8-coverage\\dist\\lib\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\es-errors\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\supports-preserve-symlinks-flag\\CHANGELOG.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 123,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 12,
+      "centroid_2d": [
+        -0.09078430384397507,
+        -4.632187366485596
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\es-errors\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\supports-preserve-symlinks-flag\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\co\\Readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\depd\\Readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\function-bind\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\has-flag\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\hasown\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\http-errors\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\is-core-module\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\statuses\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 124,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 8,
+      "centroid_2d": [
+        0.11415182054042816,
+        -5.932102680206299
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\iconv-lite\\README.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\raw-body\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\esprima\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\normalize-path\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\slash\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\test-exclude\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 125,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 7,
+      "centroid_2d": [
+        -0.31645330786705017,
+        -6.317960262298584
+      ],
+      "top_files": [
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\p-limit\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\p-locate\\node_modules\\p-limit\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\p-locate\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\p-try\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\yocto-queue\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 126,
+      "is_noise": false,
+      "n_chunks": 14,
+      "n_files": 7,
+      "centroid_2d": [
+        -1.5990692377090454,
+        -5.351691722869873
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\yaml.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\js-yaml\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\loaders.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\import-yaml.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\get-package-type\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\globals\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\import-local\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 127,
+      "is_noise": false,
+      "n_chunks": 9,
+      "n_files": 9,
+      "centroid_2d": [
+        0.3013564348220825,
+        -4.497367858886719
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\argparse\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\es-errors\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\function-bind\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\get-package-type\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\hasown\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\is-core-module\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\js-yaml\\node_modules\\argparse\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\json-parse-even-better-errors\\CHANGELOG.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\supports-preserve-symlinks-flag\\CHANGELOG.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 128,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 2,
+      "centroid_2d": [
+        -3.8074493408203125,
+        -6.867731094360352
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\s3.md",
+          "chunks": 15
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\fetch.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 129,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 9,
+      "centroid_2d": [
+        -0.6775725483894348,
+        -5.639656066894531
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\error-ex\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\stack-utils\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\debugger.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\callsites\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\get-caller-file\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\is-generator-fn\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\is-number\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\isexe\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\makeerror\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 130,
+      "is_noise": false,
+      "n_chunks": 20,
+      "n_files": 12,
+      "centroid_2d": [
+        -0.46138086915016174,
+        -5.952742099761963
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\escalade\\readme.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\find-up\\readme.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\locate-path\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\make-dir\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\npm-run-path\\readme.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\is-number\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\normalize-path\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\path-exists\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\path-is-absolute\\readme.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\path-key\\readme.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 131,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 16,
+      "centroid_2d": [
+        -2.940509080886841,
+        -7.235422611236572
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\binary-data.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\file-io.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\read-file\\buffer.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\node-readable-to-arraybuffer.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\node-readable-to-blob.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\node-readable-to-json.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\node-readable-to-string.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\node-readable-to-uint8array.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\to-array.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\streams\\to-arraybuffer.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 132,
+      "is_noise": false,
+      "n_chunks": 49,
+      "n_files": 33,
+      "centroid_2d": [
+        -2.9024364948272705,
+        -7.6503190994262695
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\binary-data.md",
+          "chunks": 15
+        },
+        {
+          "file": "node_modules\\yallist\\README.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bser\\README.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\ffi.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\file-io.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\streams.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\binary\\arraybuffer-to-array.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\binary\\arraybuffer-to-blob.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\binary\\arraybuffer-to-buffer.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\binary\\arraybuffer-to-string.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 133,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 7,
+      "centroid_2d": [
+        -2.5774407386779785,
+        -6.8843584060668945
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\hashing.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\spawn.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\process\\stdin.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\hash-a-password.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\write-file-atomic\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 134,
+      "is_noise": false,
+      "n_chunks": 17,
+      "n_files": 15,
+      "centroid_2d": [
+        -2.853402853012085,
+        -6.863257884979248
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\file-io.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\read-file\\exists.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\read-file\\string.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\delete-directory.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\delete-file.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\write-file\\basic.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\write-file\\blob.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\write-file\\cat.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\write-file\\file-cp.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\write-file\\filesink.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 135,
+      "is_noise": false,
+      "n_chunks": 25,
+      "n_files": 8,
+      "centroid_2d": [
+        0.4599185287952423,
+        -4.893233299255371
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\yargs-parser\\CHANGELOG.md",
+          "chunks": 11
+        },
+        {
+          "file": "node_modules\\y18n\\CHANGELOG.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 2
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\cliui\\CHANGELOG.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\js-yaml\\node_modules\\argparse\\CHANGELOG.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\yargs\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\yargs-parser\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 136,
+      "is_noise": false,
+      "n_chunks": 8,
+      "n_files": 3,
+      "centroid_2d": [
+        0.5891135931015015,
+        -5.257802963256836
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\js-yaml\\node_modules\\argparse\\README.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\yargs-parser\\README.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\argparse\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 137,
+      "is_noise": false,
+      "n_chunks": 15,
+      "n_files": 6,
+      "centroid_2d": [
+        -1.0064715147018433,
+        9.821185111999512
+      ],
+      "top_files": [
+        {
+          "file": "docs\\NEURAL_STUDIO_BLUEPRINT.md",
+          "chunks": 5
+        },
+        {
+          "file": "docs\\ULTIMATE_NEURAL_STUDIO_SUMMARY.md",
+          "chunks": 4
+        },
+        {
+          "file": "GITHUB_COPILOT_CONNECTOR_SUCCESS.md",
+          "chunks": 2
+        },
+        {
+          "file": "GITHUB_OAUTH_MISSION_ACCOMPLISHED.md",
+          "chunks": 2
+        },
+        {
+          "file": "ARCHITECTURAL_HONESTY_REPORT.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 138,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 13,
+      "centroid_2d": [
+        -1.5628718137741089,
+        8.750752449035645
+      ],
+      "top_files": [
+        {
+          "file": "archives\\ROGBIV_CREATIVE_FREEDOM_ARCHIVE.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 2
+        },
+        {
+          "file": "ETERNAL_SADHANA_PROGRESSION_REPORT.md",
+          "chunks": 2
+        },
+        {
+          "file": "MOBILE_SESSION_SUMMARY.md",
+          "chunks": 2
+        },
+        {
+          "file": ".github\\pull_request_template.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\ORIGINAL_SESSION_RESTORATION_PROMPT.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 139,
+      "is_noise": false,
+      "n_chunks": 11,
+      "n_files": 9,
+      "centroid_2d": [
+        -3.3236753940582275,
+        -4.021518230438232
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\install\\azure-artifacts.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\npmrc.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\bun-install.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\install\\custom-registry.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\install\\jfrog-artifactory.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\install\\registry-scope.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\registries.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\security-scanner-api.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\bunfig.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 140,
+      "is_noise": false,
+      "n_chunks": 13,
+      "n_files": 5,
+      "centroid_2d": [
+        -2.3717617988586426,
+        -4.731046199798584
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\shell.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\shell.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\building-windows.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\bunfig.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\v8-to-istanbul\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 141,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 7,
+      "centroid_2d": [
+        -1.6507306098937988,
+        9.308771133422852
+      ],
+      "top_files": [
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 6
+        },
+        {
+          "file": "data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 5
+        },
+        {
+          "file": "data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\.github\\copilot-session.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\elixir_conversation_reconstruction_20250830_193934.md",
+          "chunks": 1
+        },
+        {
+          "file": "DEPLOYMENT_SUCCESS.md",
+          "chunks": 1
+        },
+        {
+          "file": "docs\\PSYCHO_NOIR_WORLD_SYNTHESIS.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 142,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 7,
+      "centroid_2d": [
+        -1.7902814149856567,
+        9.663211822509766
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-instructions_off..md",
+          "chunks": 7
+        },
+        {
+          "file": "data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\missing_content_recovery_prompt_20250830_193146.md",
+          "chunks": 4
+        },
+        {
+          "file": "data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\data\\auto_integration_prompt_7d58c41c.md",
+          "chunks": 2
+        },
+        {
+          "file": "docs\\PSYCHO_NOIR_WORLD_SYNTHESIS.md",
+          "chunks": 1
+        },
+        {
+          "file": "STRATEGISK_PERSON_BASERT_PERSONA_PLAN.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 143,
+      "is_noise": false,
+      "n_chunks": 21,
+      "n_files": 15,
+      "centroid_2d": [
+        -3.108762502670288,
+        -5.166619300842285
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\init.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\astro.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\discordjs.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\qwik.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\remix.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\sveltekit.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\bun-create.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\mongoose.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\nextjs.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\nuxt.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 144,
+      "is_noise": false,
+      "n_chunks": 12,
+      "n_files": 5,
+      "centroid_2d": [
+        -1.2164890766143799,
+        9.4951753616333
+      ],
+      "top_files": [
+        {
+          "file": ".github\\MARKDOWN_DESIGN_SYSTEM.md",
+          "chunks": 5
+        },
+        {
+          "file": "HIERARKISK_INFRASTRUKTUR_PLAN.md",
+          "chunks": 4
+        },
+        {
+          "file": "ARCHITECTURAL_HONESTY_REPORT.md",
+          "chunks": 1
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\.github\\copilot-session.md",
+          "chunks": 1
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\guides\\consciousness_integration\\COPILOT_PRO_PLUS_INTEGRATION_GUIDE.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 145,
+      "is_noise": false,
+      "n_chunks": 22,
+      "n_files": 6,
+      "centroid_2d": [
+        -2.4435904026031494,
+        -5.9507904052734375
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\plugins.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\plugins.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\hmr.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\test\\svelte-test.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\cc.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\vs-esbuild.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 146,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 4,
+      "centroid_2d": [
+        -1.1120421886444092,
+        9.279845237731934
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 3
+        },
+        {
+          "file": "necromancy_graveyard\\OPTIMIZATION_SUMMARY.md",
+          "chunks": 3
+        },
+        {
+          "file": "PERPETUAL_NECROMANCY_INTEGRATION.md",
+          "chunks": 3
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\.github\\copilot-session.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 147,
+      "is_noise": false,
+      "n_chunks": 38,
+      "n_files": 17,
+      "centroid_2d": [
+        -0.8116276860237122,
+        9.03945255279541
+      ],
+      "top_files": [
+        {
+          "file": ".github\\copilot-session.md",
+          "chunks": 5
+        },
+        {
+          "file": "data\\session_backup_20250830_194559\\.github\\copilot-session.md",
+          "chunks": 5
+        },
+        {
+          "file": "KNOWLEDGE_BASE\\reports\\phase_completion\\NECROMANCY_IMPLEMENTATION_COMPLETE.md",
+          "chunks": 3
+        },
+        {
+          "file": "NECROMANCY_IMPLEMENTATION_COMPLETE.md",
+          "chunks": 3
+        },
+        {
+          "file": "NECROMANCY_SALVAGE_ANALYSIS.md",
+          "chunks": 3
+        },
+        {
+          "file": "REPO_ECOSYSTEM_ANALYSIS.md",
+          "chunks": 3
+        },
+        {
+          "file": "SALVAGE_IMPLEMENTATION_PLAN.md",
+          "chunks": 3
+        },
+        {
+          "file": "NEXT_OPTIMAL_STEPS.md",
+          "chunks": 2
+        },
+        {
+          "file": "POISONTR33S_ECOSYSTEM_OPTIMIZATION.md",
+          "chunks": 2
+        },
+        {
+          "file": "SECURITY_OVERLAP_ANALYSIS.md",
+          "chunks": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 148,
+      "is_noise": false,
+      "n_chunks": 16,
+      "n_files": 12,
+      "centroid_2d": [
+        -2.8956449031829834,
+        -5.589068412780762
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\index.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\index.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\intro.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\CLAUDE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\executables.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\run.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\ecosystem\\elysia.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\ssr-react.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\benchmarking.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\licensing.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 149,
+      "is_noise": false,
+      "n_chunks": 10,
+      "n_files": 3,
+      "centroid_2d": [
+        -3.4046244621276855,
+        -5.605769157409668
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\html-rewriter.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\html-rewriter\\extract-links.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\html-rewriter\\extract-social-meta.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 150,
+      "is_noise": false,
+      "n_chunks": 20,
+      "n_files": 7,
+      "centroid_2d": [
+        -3.1631627082824707,
+        -5.639441013336182
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\fullstack.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\html.md",
+          "chunks": 6
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\http.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\loaders.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\CLAUDE.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\html-rewriter\\extract-social-meta.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\index.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 151,
+      "is_noise": false,
+      "n_chunks": 32,
+      "n_files": 11,
+      "centroid_2d": [
+        -4.010375022888184,
+        -6.367702960968018
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\websockets.md",
+          "chunks": 10
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\http.md",
+          "chunks": 7
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\tcp.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\udp.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\websocket\\context.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\dns.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\fetch.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\http\\tls.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\websocket\\compression.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\websocket\\pubsub.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 152,
+      "is_noise": false,
+      "n_chunks": 19,
+      "n_files": 11,
+      "centroid_2d": [
+        -2.812704086303711,
+        -4.380131244659424
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\installation.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\contributing.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\project\\building-windows.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\executables.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\bun-upgrade.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\install.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\contributing\\upgrading-webkit.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\cicd.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\util\\version.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\index.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 153,
+      "is_noise": false,
+      "n_chunks": 79,
+      "n_files": 37,
+      "centroid_2d": [
+        -2.708388090133667,
+        -3.889500379562378
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\bun-install.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\install.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\install\\from-npm-install-to-bun-install.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\catalogs.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\install\\isolated.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\autoimport.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\add.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\filter.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\publish.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\cli\\update.md",
+          "chunks": 3
+        }
+      ]
+    },
+    {
+      "cluster_id": 154,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 6,
+      "centroid_2d": [
+        -3.229980945587158,
+        -6.506102085113525
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\nodejs-apis.md",
+          "chunks": 8
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\globals.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\index.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\web-apis.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\benchmarks.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\http\\file-uploads.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 155,
+      "is_noise": false,
+      "n_chunks": 28,
+      "n_files": 18,
+      "centroid_2d": [
+        -3.4705026149749756,
+        -6.168115139007568
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\http.md",
+          "chunks": 9
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\file-system-router.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\debugger.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\dns.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\fetch.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\benchmarks.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\ecosystem\\express.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\ecosystem\\express.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\http\\cluster.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\http\\fetch-unix.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 156,
+      "is_noise": false,
+      "n_chunks": 18,
+      "n_files": 5,
+      "centroid_2d": [
+        -2.2976670265197754,
+        -5.318334102630615
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\index.md",
+          "chunks": 13
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\guides\\runtime\\define-constant.md",
+          "chunks": 2
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\loaders.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\macros.md",
+          "chunks": 1
+        },
+        {
+          "file": "node_modules\\bun-types\\README.md",
+          "chunks": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 157,
+      "is_noise": false,
+      "n_chunks": 45,
+      "n_files": 19,
+      "centroid_2d": [
+        -2.2001116275787354,
+        -5.627240180969238
+      ],
+      "top_files": [
+        {
+          "file": "node_modules\\bun-types\\docs\\api\\transpiler.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\macros.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\modules.md",
+          "chunks": 5
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\vs-esbuild.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\jsx.md",
+          "chunks": 4
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\index.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bundler\\loaders.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\loaders.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\runtime\\typescript.md",
+          "chunks": 3
+        },
+        {
+          "file": "node_modules\\bun-types\\docs\\bun-flavored-toml.md",
+          "chunks": 1
+        }
+      ]
+    }
+  ]
+}
