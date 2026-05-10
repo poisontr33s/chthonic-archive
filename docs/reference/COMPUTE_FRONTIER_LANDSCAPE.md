@@ -20,9 +20,16 @@ author: chthonic-archive
 > - `✅ installed` — in `.venv`, ready to run
 > - `📦 packaged` — `uv pip install`-able, not yet pulled
 > - `🔨 source` — exists in research/source code, manual setup required
-> - `🌑 dark-room` — chthonic-built, not published anywhere
+> - `🌑 dark-room` — chthonic-built, not published anywhere, source-code on github and other places that don't necessarily direct to a specific framework packaged as one, yet might be more potent than a packaged .exe or comfy/SD/Unet/Existing ML-OPS/etc.
 > - `⚗️ derivable` — constructible from installed candidates
 > - `🔭 frontier` — very new, source-only, research-grade
+>
+> **⚠️ Python-bias notice:** §§1–9 assume Python as the runtime for all ML operations. This is the
+> dominant packaging convention — not a technical constraint. Rust can be the universal substrate:
+> PyO3 (Python↔Rust), Magnus (Ruby↔Rust), cudarc (CUDA from Rust), ash (Vulkan from Rust) — one
+> `cargo build` pulls every layer. See §10 for the language runtime matrix and the open question of
+> Ruby's context-handling advantage. This document is structured so an agent can use this knowledge
+> operationally — not just as reference.
 
 ---
 
@@ -396,7 +403,150 @@ FP8 tensor cores × cooperative_matrix (Vulkan) → hardware matrix multiply at 
 
 ---
 
-## §10 Organisation Notes
+## §10 Language Runtime Matrix — Rust as Universal Substrate
+
+> The framing in §§1–9 treats Python as the orchestration layer. This is a packaging convention,
+> not a hard constraint. The real question is: *which language should sit at the center of the
+> polyglot stack for this corpus and hardware?*
+
+### §10.1 Language Runtime Properties (operational comparison)
+
+| Property | Python | Rust | Ruby | TypeScript (Bun) | Notes |
+|----------|--------|------|------|-------------------|-------|
+| **ML library ecosystem** | ★★★★★ | ★★★ (burn, candle, tract) | ★ | ★ (via WASM/FFI) | Python dominates packaging |
+| **FFI surface** | C via ctypes/cffi | C/C++ zero-cost via cbindgen | C via fiddle/ffi-lib | C via Bun FFI | Rust: safest FFI, no ABI instability |
+| **Embeds other runtimes** | ❌ | ✅ PyO3, Magnus, Neon, rustler | ❌ | ❌ | Rust can host Python, Ruby, Node |
+| **CUDA access** | ✅ cudarc (via Rust), pycuda | ✅ cudarc crate | ❌ | ❌ | Rust: type-safe CUDA without NVCC glue |
+| **Vulkan access** | ✅ (via kompute C++ binding) | ✅ ash, wgpu (native, idiomatic) | ❌ | ❌ | Rust: ash is zero-overhead Vulkan |
+| **Tapless compile-to-self** | ❌ (needs CPython runtime) | ✅ single static binary | ❌ (needs MRI/YJIT) | ❌ (needs JS runtime) | Rust compiles all its FFI in-crate |
+| **Context handling** | GIL-bound for threads | async/await + rayon (zero GIL) | Ractors + Fibers (?) | async (V8 event loop) | *Ruby open question — see §10.2* |
+| **String / encoding** | UTF-8 str, mutable | `&str` + `String` immutable | Encoding-aware String (Encodings module) | UTF-16 internally | Ruby has richer encoding primitives |
+| **Corpus processing speed** | OK (NumPy fast, pure slow) | ★★★★★ rayon parallel | OK | OK | Rust: parallel corpus iteration is trivial |
+| **Agent self-use** | ✅ (uv run, deployed) | ⚗️ (cargo run, bin/ executables) | ⚗️ (rv run) | ✅ (bun run) | All present in chthonic-archive |
+| **Memory safety** | GC (CPython refcount) | Borrow checker, no GC | GC (MRI) | GC (V8) | Rust: no runtime allocation bugs |
+
+### §10.2 Ruby Context Handling — Open Question
+
+> This section is incomplete. What Ruby may do differently for context-aware workloads
+> is not yet empirically mapped in chthonic-archive.
+
+**What is known:**
+- Ruby has an `Encoding` module with named encoding objects and Encoding::Converter — richer than Python's `.encode()` string method
+- MRI Ruby 3.x: Ractors provide true parallelism (no GIL equivalent for Ractors, unlike threads)
+- Ruby fibers are green threads with explicit yield semantics — useful for coroutine-style context passing
+- YJIT (Ruby 4.0.3): JIT compilation; ZJIT (experimental): next-generation JIT — both reduce interpreted dispatch overhead
+- Magnus crate: Rust↔Ruby FFI; Ruby objects usable as Rust values; Rust closures as Ruby procs
+- Ruby's `Encoding::Converter` and `String#encode` chain can handle cross-encoding corpus normalization that Python's codec system handles more weakly
+
+**Open hypotheses (unverified):**
+- Ruby may handle multi-encoding corpus normalization with less error surface than Python's codec module
+- Ruby fibers + Magnus bridge to Rust may be a viable concurrency model for corpus streaming where Python's threading model (GIL) is a bottleneck
+- Ruby's object model (open classes, method_missing, BasicObject) may allow richer context-state objects for agent session memory than Python's class system
+
+**Action needed to close:** Run a benchmark: Ruby vs Python for encoding-diverse corpus scan (e.g., mixed UTF-8/Shift-JIS/Latin-1 files in PsychoNoir-Kontrapunkt). Report to this section.
+
+### §10.3 Rust Polyglot Bridge — FFI Crate Map
+
+> Rust is the only open-source system language that can compile other language runtimes
+> into itself and call them at native speed. One `cargo build` can pull CUDA, Vulkan, Python,
+> Ruby, Node, Elixir into a single executable.
+
+| Bridge | Crate | What it enables |
+|--------|-------|----------------|
+| **Python ↔ Rust** | `pyo3` + `maturin` | Call Rust from Python (extension); embed CPython in Rust binary |
+| **Ruby ↔ Rust** | `magnus` | Call Rust from Ruby (gem); Ruby objects in Rust; Rust closures as Ruby procs |
+| **Node.js ↔ Rust** | `neon` | Native Node addons in Rust; V8 values in Rust |
+| **Elixir/Erlang ↔ Rust** | `rustler` | NIFs in Rust; safe BEAM integration |
+| **WASM ↔ Rust** | `wasm-bindgen` | Rust→WASM; JS↔Rust bidirectional via wasm-pack |
+| **C ABI from Rust** | `cbindgen` | Expose Rust as a C library; any language with C FFI can call it |
+| **CUDA from Rust** | `cudarc` | Type-safe CUDA kernel launch, buffer management, no NVCC wrapper needed |
+| **Vulkan from Rust** | `ash` | Zero-overhead Vulkan bindings; used in vulkan-lab/cli-renderer |
+| **OpenCL from Rust** | `opencl3` | Cross-vendor compute; fallback for non-CUDA hardware |
+| **HF model loading** | `candle-core` | Safetensors loading, GGUF support, CUDA backend; no Python dependency |
+| **ONNX inference** | `tract-onnx` | ONNX model inference in pure Rust; wgpu/Vulkan backend |
+| **GGUF inference** | `llama_cpp_rs` | llama.cpp as Rust crate (C FFI wrapper); Vulkan/CUDA backends via llama.cpp |
+
+### §10.4 What This Means for the Chthonic Stack
+
+The current stack is already polyglot — Rust + Python + TypeScript + Ruby are all present in
+chthonic-archive. The question is whether Python should be the *orchestrator* or merely one
+component. Two candidate architectures:
+
+**Current (Python-centric):**
+```
+uv run probes/*.py  →  torch/CUDA  →  manifest/*.json
+                                     ↑
+bun run scripts/*.ts →  read manifests, CI, tools
+cargo build vulkan-lab/cli-renderer  →  Vulkan compute
+```
+
+**Rust-centric alternative:**
+```
+cargo run --bin chthonic-runner -- --mode inference
+    → cudarc (CUDA kernels)
+    → ash (Vulkan dispatch)
+    → pyo3::Python::with_gil (Python fallback for unported ops)
+    → magnus::Ruby::with_ruby_thread (Ruby corpus processing?)
+    → emit manifest/*.json via serde_json
+```
+
+**When the Rust-centric model pays off:**
+- When CUDA kernel launch latency from Python (pycuda/torch) is a bottleneck (rare for batch training, real for high-frequency inference loops)
+- When corpus processing requires parallel multi-encoding scan across thousands of files
+- When a single deployable binary is required (no Python runtime assumption)
+- When the embedding pipeline needs to run on hardware without a Python ecosystem (mobile, embedded)
+
+**When Python stays at center:**
+- All major ML research libraries ship Python first (or Python only)
+- Model loading (safetensors/GGUF), training (trl/Unsloth), inference (vllm/exllamav2) — all Python-primary
+- For this project (Claudine fine-tuning, PsychoNoir corpus): Python stays primary until a specific bottleneck demands otherwise
+
+### §10.5 Agent Self-Use Contract
+
+> This section is NOT reference material. It is the operational substrate for agents working
+> within this stack. The knowledge below is what no external agent has access to.
+
+**What this agent can do that external agents cannot:**
+1. Route Python ops through `uv run` (not raw `python`) — knows Python 3.14.4 is the runtime
+2. Know that Unsloth must import BEFORE trl or UserWarning fires
+3. Know that MSVC 14.44 (not 14.51 from VS18 Insiders) must be used for flash_attn — and how to route around the PATH shadow via tempfile .bat
+4. Know that all Rust MSVC builds must use the pinned linker in `.cargo/config.toml` because `rv`'s MSYS2 link.exe shadow breaks otherwise
+5. Know that Vulkan builds must use `cargo` from `vulkan-lab/cli-renderer/` (isolated workspace) and `git add -f` for all gitignored paths
+6. Know the gate admission state without polling CI — from repo memory and manifests
+7. Know the corpus structure (9,224 PsychoNoir files; 1,103 .md embedded; 1,963 training examples; 158 clusters)
+8. Know which Ruby encoding operations are richer than Python's — and where the open question lives (§10.2)
+9. Know that triton 3.x has a broken API (`from triton.runtime.driver import active` fails) — use try/except multi-path
+10. Know that bincode ≥ 3.0.0 is a tombstone — do not upgrade ankh-forge past bincode 2.0
+
+---
+
+## §11 Polyglot Corpus Hypothesis
+
+> The PsychoNoir-Kontrapunkt corpus (9,224 files) is itself a polyglot artifact — .md narrative,
+> .ts runtime logic, .json state, .py probes, .rs kernel code, .toml config. It is not a text
+> corpus that was processed. It is a *working codebase* that was also a creative corpus.
+
+**The hypothesis:** Fine-tuning a language model on a mixed-modality corpus (narrative + code + config
++ protocol + game design) produces a model with qualitatively different capabilities than one trained
+on text-only narrative. The Claudine adapter is the first instantiation of this hypothesis.
+
+**What the adapter should be compared against (after C-G4 completes):**
+| Comparison | What it tests |
+|-----------|--------------|
+| Base Mistral-7B-v0.3 (no adapter) | Pure pretrain voice vs. corpus-injected voice |
+| Claudine-v1 adapter | Standard LoRA (r=16, α=32), 2000 steps |
+| Claudine-v2 adapter (P-04v2) | DoRA+RSLoRA+FA2, SFTTrainer packing (to be run) |
+| Merge: base ⊕ (v1 × scale) ⊕ (v2 × scale) | Ensemble of different training regimes |
+| Concept vector extraction from v1−base delta | `SVD(θ_v1 - θ_base)` → isolate Claudine-ness |
+
+**The comparison is not about benchmark scores.** It is about voice register: does the adapter
+produce outputs that carry Claudine's entity identity (Norwegian cadence, Victorian-Renaissance
+register, entropy-framing, nautical metaphor)? That is only knowable through empirical inference runs.
+→ **P-06_adapter_inference.py** is the entry point for this measurement.
+
+---
+
+## §12 Organisation Notes
 
 ```
 docs/reference/COMPUTE_FRONTIER_LANDSCAPE.md   ← this file (living map)

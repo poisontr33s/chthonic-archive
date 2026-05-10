@@ -16,6 +16,7 @@
 // ║   C-G3  dataset_format    manifest/claudine_dataset_meta.json
 // ║   C-G4  lora_train        manifest/claudine_train_run.json
 // ║   C-G5  unsloth_stack     manifest/claudine_unsloth_probe.json
+// ║   C-G6  adapter_inference manifest/claudine_inference_probe.json  (optional until run)
 // ║   C-G4v2 lora_train_v2   manifest/claudine_train_run_v2.json  (optional)
 // ╚════════════════════════════════════════════════════════════════════════════
 
@@ -223,10 +224,38 @@ function probeCG5(): GateResult {
 
 
 
-// C-G1/G2/G3/G4/G5 are required. C-G4v2 is optional (v2 upgrade path, not a blocker).
+function probeCG6(): GateResult {
+  const probe = readJson(resolve(MANIFEST_DIR, "claudine_inference_probe.json"));
+  if (!probe) {
+    return {
+      gate: "C-G6",
+      description: "adapter_inference — prototype run, base vs. claudine-v1 side-by-side",
+      status: "not_probed",
+      proof: "manifest/claudine_inference_probe.json missing (run P-06 after C-G4 full run)",
+    };
+  }
+  const admitted = probe.gate === "C-G6" && probe.status === "admitted";
+  const perf = probe.performance as Record<string, unknown> | undefined;
+  const samples = (probe.adapter_samples as unknown[]) ?? [];
+  return {
+    gate: "C-G6",
+    description: "adapter_inference — prototype run, base vs. claudine-v1 side-by-side",
+    status: admitted ? "admitted" : "failed",
+    proof: "manifest/claudine_inference_probe.json",
+    key_metrics: {
+      num_prompts: samples.length,
+      base_avg_tps: perf?.base_avg_tps,
+      adapter_avg_tps: perf?.adapter_avg_tps,
+      vram_after_adapter_gb: perf?.vram_after_adapter_gb,
+      adapter_path: probe.adapter_path,
+    },
+  };
+}
+
+// C-G1..G5 are required. C-G6 is optional until adapter run completes. C-G4v2 is optional (v2 upgrade).
 const REQUIRED_GATES = ["C-G1", "C-G2", "C-G3", "C-G4", "C-G5"];
 
-const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4(), probeCG5(), probeCG4v2()];
+const gates: GateResult[] = [probeCG1(), probeCG2(), probeCG3(), probeCG4(), probeCG5(), probeCG6(), probeCG4v2()];
 
 const required = gates.filter((g) => REQUIRED_GATES.includes(g.gate));
 const allAdmitted = required.every((g) => g.status === "admitted");
