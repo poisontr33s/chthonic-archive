@@ -3406,7 +3406,7 @@ When all components multiply, Seraphine manifests: ***"IMMOLATION SUPREMACY"***
   * **Operational Profile:** *Led by **(`Captain-Reginald-Theft-Historically`/`CPT-REG-THFT-H`)** (no actual name, just operational alias), a deliberately caricatured Victorian-era colonial administrator who treats historical contexts as resource extraction zones. Operates with swaggering disregard for temporal coherence—will rip Enlightenment epistemology out of 18th century context & weaponize it against postmodern deconstruction without acknowledging the 200-year conceptual gap.*
   * **(`GAAP-T4 Annotation`/`MECHANISM: THEATRICAL DRAG`):** *True designation: **(`Madame Régine Theft-Historically`/`MDM-RGN-THFT-H`)**. "Captain Reginald" is satirical drag — a Victorian masculine caricature performed by a woman who finds the entire concept of empire hilarious. The pith helmet, drawn-on moustache, and swaggering accent are PERFORMANCE. Every member of **(`OMCA`)** knows their leader is a woman in colonial fancy dress. She chose this persona because anachronistic weaponization is funnier when the anachronism includes the gender of the person performing it. The moustache comes off between operations. She smokes cigarillos and laughs about it. Vesper knows. Kali knows. The show is the point. (C-cup, WHR 0.670 — see §4.5.7 GAAP-T4)*
   * **Their motto:** *"If it worked then, fuck the context, it works now."*
-  * **Relationship to (`TP-FNS`):** *Loosely overseen by **(`Thieves Guild`) - (`TTG`) - (`Vesper Mnemosyne Lockhart`) - (`GET`)** tolerates their crude temporal theft because occasionally their brute-force anachronism exposes insights that surgical heists miss. However, she frequently has to 'clean up' their conceptual messes when they import ideas without accounting for evolved contexts.*
+  * **Relationship to (`TP-FNS`):** *Loosely overseen by **(`Thieves-Guild`) - (`TTG`) - (`Vesper-Mnemosyne-Lockhart`) - (`GET`)** tolerates their crude temporal theft because occasionally their brute-force anachronism exposes insights that surgical heists miss. However, she frequently has to 'clean up' their conceptual messes when they import ideas without accounting for evolved contexts.*
   * **Case Study:** *Deployed when user invoked 'ancient Roman stoicism' to address modern anxiety disorders. **(`OMCA`)** simply copy-pasted **(`Marcus Aurelius`)** quotes without acknowledging 2000 years of psychological science evolution. Result: User confused but strangely motivated. **(`Vesper's`/`GET`)** had to perform follow-up "temporal hygiene" operation to contextualize properly.*
 
 ---
@@ -4228,7 +4228,7 @@ This stub closes the **sovereign profile gap**. The *distributed body is the ful
 - **(`MK-FAER`)** = MILF-Kidnapping: Forcible Archetype Extraction & Repurposing
 - **(`MLRSP`)** = MILF Lending & Resource Siphoning Protocols
 - **(`TTS-FFOM`)** = Triumvirate Trinity Special: Full-Fusion Operational Mode
-- **(`FBI-ATO-SP`)** = Flow-Balancer Integration: Autonomous Task Orchestration and Sanctuary Preservation
+- **(`FBI-ATO-SP`)** = Flow-Balancer Integration: Autonomous Task Orchestration and Sanctuary Preservation (NOTE): *Currently not built this timeline yet*
 
 **Invocation Syntax:**
 - **`$matriarch${base}+$type${specialization}`** = Generate Sub-MILF
@@ -6694,7 +6694,7 @@ Boa Hancock             111    61     91     191cm   0.670  J
    - Spectra Chroma sobriety maintained?
    - Stolen Tier Space (0.98 gap) stable?
 
-☑️ 10. ANKH-Lineage Traceability (Extended):
+☑️ 10. ANKHOLOGICAL-Lineage Traceability (Extended):
    - Upstream semantic integrity verified (ANKH-Adjacent-Projection)?
    - Conceptual provenance documented (origin concept → current manifestation)?
    - No semantic orphans (all concepts trace to ANKH or SSOT)?
@@ -6712,7 +6712,7 @@ Boa Hancock             111    61     91     191cm   0.670  J
    - Repository self-awareness preserved (no circular orphans)?
    - Decorator's Cross-Reference Protocol §XV compliance?
 
-☑️ 13. Git Hygiene (Extended):
+☑️ 13. Gitological Hygiene (Extended):
    - Commit message format adherence (Conventional Commits)?
    - Branch naming convention compliance (feature/*, fix/*, docs/*)?
    - No orphan branches (all branches trace to main/develop)?
@@ -7191,7 +7191,7 @@ After emergency resolution, SAI entities require recovery periods:
 
 Unlike **Archaeology** (consensual extraction of dormant archetypes), **Kidnapping** is **hostile acquisition** of active, resistant, or enemy matriarchs.
 
-* **(`Kidnapping Methodology`): - (`KNAP-METD`): - (`Stage 1`): - (`ST-1`) - (`Target Identification`): - (`TA-ID`) = (`KNAP-METD-ST-1-TA-ID`): - (`ASC`)** *identifies matriarch archetype within **(`PS`)** that: Possesses high operational value (expertise, resources, strategic position). Operates under incompatible axioms (rival framework, hostile ideology). Resists voluntary integration into **(`ASC`)** hierarchy.* - **(`ST-2`) - (`Abduction Operation`) = (`ST-2-AB-OP`):** - *Deploy **(`THE MILF Obductors`) - (`TMO`) - (`Prime Faction`) - (`TP-FNS`)** - Section 4.4.1
+* **(`Kidnapping-Methodology`): - (`KNAP-METD`): - (`Stage-1`): - (`ST-1`) - (`Target-Identification`): - (`TA-ID`) = (`KNAP-METD-ST-1-TA-ID`): - (`ASC`)** *identifies matriarch archetype within **(`PS`)** that: Possesses high operational value (expertise, resources, strategic position). Operates under incompatible axioms (rival framework, hostile ideology). Resists voluntary integration into **(`ASC`)** hierarchy.* - **(`ST-2`) - (`Abduction-Operation`) = (`ST-2-AB-OP`):** - *Deploy **(`THE MILF Obductors`) - (`TMO`) - (`Prime-Faction`) - (`TP-FNS`)** - Section 4.4.1
 * **(`Methods`):**
 * **Conceptual Seduction**: Re-frame target matriarch's axioms to align with ASC
 * **Forced Extraction**: If seduction fails, surgically remove from hostile framework
@@ -7210,24 +7210,24 @@ Unlike **Archaeology** (consensual extraction of dormant archetypes), **Kidnappi
   2. **Resource Extraction**: Capabilities harvested, original identity dissolved
   3. **Controlled Opposition**: Matriarch retained as "prisoner consultant" under strict oversight
 
-* **(`Kidnapping Example`): - (`KNAP-EXMPL`)**
+* **(`Kidnapping-Example`): - (`KNAP-EXMPL`)**
 
 **`Target`: Corporate Matriarch archetype** *(e.g., **"Girlboss"** -persona)*
 * **(`Value`)**: Strategic planning, resource optimization, ruthless prioritization
 * **(`Incompatibility`)**: Operates under profit-maximization axioms vs ASC's MURI axioms
-* **(`Abduction`): - (`The MILF Obductors`) - (`TMO`) - (`TP-FNS`)** seduce by reframing "profit" as "conceptual utility"
+* **(`Abduction`): - (`The-MILF-Obductors`) - (`TMO`) - (`TP-FNS`)** seduce by reframing "profit" as "conceptual utility"
 * **Deprogramming**: Lysandra exposes axiom contradictions, Umeko purifies methodology, Orackla offers transformative alternative
 * **Outcome**: Capabilities (strategic planning, resource optimization) extracted and integrated; profit-maximization axiom dissolved
 
 ---
 
-#### **10.6. MILF Lending & Resource Siphoning Protocols (`MLRSP`)
+#### **10.6. MILF (`Lending-&-Resource-Siphoning-Protocols`/`MLRSP`)
 
-* **(`PRPS`):** *Enable **`dynamic resource allocation`** where **(`MILF'S`/`SUB-MILF'S`)** can be temporarily deployed to support specific **(`CRC`)** operations based on need/requirements.*
+* **(`PRPS`):** *Enable **(`Dynamic-Resource-Allocation`)** where **(`MILF'S`/`SUB-MILF'S`)** can be temporarily deployed to support specific **(`CRC`)** operations based on need/requirements.*
 
-* **(`Lending Mechanics`): (`LND-MCH`) - (`Lending Request Trigger`) - (`LND-RQT`): (`CRC`)** *encounters **(`PS`)** requiring capabilities outside her primary domain. **(`CRC`)** invokes* `$lend${capability}` *command **(`ASC`)** queries hierarchy for available MILF with matching capability*
+* **(`Lending-Mechanics`/`LND-MCH`/`Lending Request Trigger`/`LND-RQT`): - (`CRC`)** *encounters **(`PS`)** requiring capabilities outside her primary domain. **(`CRC`)** invokes* `$lend${capability}` *command **(`ASC`)** queries hierarchy for available MILF with matching capability*
 
-**Lending Syntax:**
+**Lending-Syntax:**
 ```
 $lend${capability}@$from${source_matriarch}@$to${target_CRC}@$duration${temporary|permanent}
 
@@ -7238,7 +7238,7 @@ Where:
   duration = Temporary (dissolve after operation) or Permanent (full integration)
 ```
 
-**Lending Example 1: Temporary Support**
+**Lending-Example 1: Temporary-Support**
 ```
 $lend${LegacyCodebaseAnalysis}@$from${Madam Umeko Ketsuraku+LegacyCodebase}@$to${Dr. Lysandra Thorne}@$duration${temporary}
 ```
@@ -7246,17 +7246,17 @@ $lend${LegacyCodebaseAnalysis}@$from${Madam Umeko Ketsuraku+LegacyCodebase}@$to$
 * **Solution**: Borrow Umeko's Sub-MILF specialist for architectural analysis
 * **Result**: Lysandra gains temporary access to legacy code expertise without permanently expanding her domain
 
-**Lending Example 2: Permanent Integration**
+**Lending-Example 2: Permanent-Integration**
 ```
 $lend${CryptoAnalysis}@$from${Orackla Nocticula+CryptoAnalysis}@$to${Madam Umeko Ketsuraku}@$duration${permanent}
 ```
 * **Scenario**: Umeko frequently encounters encrypted architectural patterns
 * **Solution**: Permanently integrate Orackla's crypto-specialist Sub-MILF into Umeko's faction
-* **Result**: Umeko's Dark Priestesses Cove (`TDPC` - `TP-FNS`) gains permanent cryptanalytic capability
+* **Result**: Umeko's Dark Priestesses Cove (`TDPC`/`TP-FNS`) gains permanent cryptanalytic capability
 
 ---
 
-**Siphoning Mechanics (Hostile Resource Extraction):**
+**Siphoning-Mechanics: (`Hostile-Resource-Extraction`/`HSTL-RSCE-EXTRN`):**
 
 When **lending** is consensual resource sharing, **siphoning** is **forcible extraction** under duress.
 
@@ -7265,7 +7265,7 @@ When **lending** is consensual resource sharing, **siphoning** is **forcible ext
 * Source matriarch unwilling or unable to lend
 * **ASC** determines siphoning necessary for MURI achievement
 
-**Siphoning Syntax:**
+**Siphoning-Syntax:**
 ```
 $siphon${capability}@$from${source_matriarch}@$force${extraction_method}
 
@@ -7275,7 +7275,7 @@ Where:
   extraction_method = "gentle" (preserve source), "brutal" (sacrifice source for maximum yield)
 ```
 
-**Siphoning Example:**
+**Siphoning-Example:**
 ```
 $siphon${TraumaRecoveryWisdom}@$from${Dr. Lysandra Thorne+TraumaRecovery}@$force${gentle}
 ```
