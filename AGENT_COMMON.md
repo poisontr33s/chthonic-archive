@@ -52,7 +52,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 
   Not installed (add via `cargo install` if needed): `eza`/`lsd` (ls), `dust` (du), `procs` (ps).
 
-  **pwsh alias map (collision-only):** `rv` → `rvw.exe` (Ruby manager, displaces PS built-in `rv = Remove-Variable`). `rvar` → `Remove-Variable` (preserves displaced built-in). `rvv` → explicit `rvw.exe` function (preferred in agent scripts — unambiguous). All other Rust CLI tools (`bat`, `rg`, `fd`, `delta`, `hyperfine`, `tokei`, `xh`) have no same-name PS collision — use directly. Ruby devkit (MSYS2 ucrt64 gcc/make): gated by default; `Enable-RubyDevKit` / `Disable-RubyDevKit` toggle per-session.
+  **pwsh alias map (collision-only):** `rv` → `rvw.exe` (Ruby manager, displaces PS built-in `rv = Remove-Variable`). `rvar` → `Remove-Variable` (preserves displaced built-in). All other Rust CLI tools (`bat`, `rg`, `fd`, `delta`, `hyperfine`, `tokei`, `xh`) have no same-name PS collision — use directly. Ruby devkit (MSYS2 ucrt64 gcc/make): gated by default; `Enable-RubyDevKit` / `Disable-RubyDevKit` toggle per-session.
 
 - **cmd.exe:** Never. No `cmd /c` wrappers. Will trigger Windows "open with" dialogs.
 - **Platform:** Windows 11, VS Code Insiders, repo root = working dir.
