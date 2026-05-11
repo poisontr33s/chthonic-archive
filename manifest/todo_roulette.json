@@ -360,7 +360,9 @@
       "created": "2026-05-02T08:00:00.000Z",
       "weight": 8,
       "origin": "overnight-autopilot",
-      "spin_count": 0,
+      "spin_count": 1,
+      "completed": "2026-05-11T08:00:00.000Z",
+      "body": "Full entity relationship map written from MILF_PSYCHOGRAPHIC_PROFILE_SCAN_REPORT.md (2224 lines). Corpus: 415 profiles total — T0=3 (Claudine/Kompilerings-Spøkelse/Morticia Necrosis), T1=6 canonical district rulers, T2=12 canonical specialists across 6 districts (Skyskraperen/Rustbeltet/Havsdominansen/Nekrokronoriket/Virtualitetshelgedommen/Føydalitetsdualitetslenken). Supervision chains + district assignments written to manifest/pnk_entity_relationship_map.json + docs/world-building/PNK_ENTITY_RELATIONSHIP_MAP.md.",
       "next_in_chain": "pnk00003",
       "blocked_until_chain": "pnk00001",
       "verify": {
