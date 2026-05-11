@@ -150,11 +150,13 @@
       "created": "2026-04-30T04:38:34.363Z",
       "weight": 7,
       "origin": "manual",
-      "spin_count": 0,
+      "spin_count": 1,
       "verify": {
         "type": "file-exists",
         "path": "scripts/session_compress.ts"
-      }
+      },
+      "completed": "2026-05-11T03:48:13.065Z",
+      "body": "[auto-closed] file-exists: scripts/session_compress.ts created — bun TS stream parser, schema V1, self-applied to current 24MB transcript (6835 turns, 6645 tool calls, 241h session). Outputs: JSON + optional --md markdown. manifest/session_warmstart.json + manifest/session_warmstart.md generated as proof artifacts."
     },
     {
       "id": "281734ec",

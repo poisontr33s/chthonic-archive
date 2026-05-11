@@ -1,6 +1,5 @@
 {
   "version": "1",
-  "updated": "2026-05-11T03:43:02.484Z",
   "manifest_ref": "manifest/todo_roulette.json",
   "_note": "Topology layer over todo_roulette.json. Does NOT duplicate entry content — references IDs only. Bilateral: roulette runner reads this for block/gate logic; agents read it for session orientation.",
 
@@ -93,7 +92,8 @@
     }
   },
 
-  "active_entry_count": 8,
-  "completed_entry_count": 11,
-  "highest_weight_unblocked": "b8de5508"
+  "active_entry_count": 7,
+  "completed_entry_count": 12,
+  "highest_weight_unblocked": "5000b0e1",
+  "updated": "2026-05-11T03:48:13.065Z"
 }

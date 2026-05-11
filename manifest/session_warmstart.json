@@ -1,0 +1,892 @@
+{
+  "schema": "session-compress/v1",
+  "generated_at": "2026-05-11T03:47:39.092Z",
+  "session": {
+    "id": "2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8",
+    "started": "2026-05-01T02:18:30.076Z",
+    "ended": "2026-05-11T03:47:38.733Z",
+    "duration_ms": 869348657,
+    "producer": "copilot-agent",
+    "copilot_version": "0.47.2026043005",
+    "vscode_version": "1.119.0-insider"
+  },
+  "stats": {
+    "total_turns": 6835,
+    "user_messages": 318,
+    "tool_calls": 6645,
+    "tool_call_failures": 190,
+    "duration_human": "241h 29m"
+  },
+  "tool_inventory": [
+    {
+      "name": "run_in_terminal",
+      "count": 2577
+    },
+    {
+      "name": "read_file",
+      "count": 1505
+    },
+    {
+      "name": "manage_todo_list",
+      "count": 512
+    },
+    {
+      "name": "grep_search",
+      "count": 408
+    },
+    {
+      "name": "replace_string_in_file",
+      "count": 342
+    },
+    {
+      "name": "execution_subagent",
+      "count": 220
+    },
+    {
+      "name": "list_dir",
+      "count": 172
+    },
+    {
+      "name": "task_complete",
+      "count": 160
+    },
+    {
+      "name": "multi_replace_string_in_file",
+      "count": 135
+    },
+    {
+      "name": "create_file",
+      "count": 132
+    },
+    {
+      "name": "get_terminal_output",
+      "count": 88
+    },
+    {
+      "name": "file_search",
+      "count": 69
+    },
+    {
+      "name": "memory",
+      "count": 64
+    },
+    {
+      "name": "tool_search",
+      "count": 31
+    },
+    {
+      "name": "fetch_webpage",
+      "count": 29
+    },
+    {
+      "name": "send_to_terminal",
+      "count": 28
+    },
+    {
+      "name": "mcp_huggingface_hub_repo_search",
+      "count": 24
+    },
+    {
+      "name": "kill_terminal",
+      "count": 19
+    },
+    {
+      "name": "mcp_bun-docs_query_docs_filesystem_bun",
+      "count": 15
+    },
+    {
+      "name": "mcp_huggingface_hub_repo_details",
+      "count": 13
+    },
+    {
+      "name": "mcp_github_get_file_contents",
+      "count": 10
+    },
+    {
+      "name": "mcp_github_create_or_update_file",
+      "count": 10
+    },
+    {
+      "name": "mcp_github_list_branches",
+      "count": 8
+    },
+    {
+      "name": "mcp_chthonic-v3_bash",
+      "count": 7
+    },
+    {
+      "name": "get_errors",
+      "count": 7
+    },
+    {
+      "name": "mcp_github_search_pull_requests",
+      "count": 6
+    },
+    {
+      "name": "mcp_bun-docs_search_bun",
+      "count": 6
+    },
+    {
+      "name": "terminal_last_command",
+      "count": 4
+    },
+    {
+      "name": "mcp_github_list_releases",
+      "count": 4
+    },
+    {
+      "name": "vscode_askQuestions",
+      "count": 4
+    },
+    {
+      "name": "mcp_huggingface_paper_search",
+      "count": 4
+    },
+    {
+      "name": "mcp_corpus_corpus_sql",
+      "count": 3
+    },
+    {
+      "name": "runSubagent",
+      "count": 3
+    },
+    {
+      "name": "mcp_mas-mcp_mas_pid_reader",
+      "count": 2
+    },
+    {
+      "name": "semantic_search",
+      "count": 2
+    },
+    {
+      "name": "mcp_github_list_tags",
+      "count": 2
+    },
+    {
+      "name": "mcp_chthonic-v3_ruby",
+      "count": 1
+    },
+    {
+      "name": "mcp_filesystem_write_file",
+      "count": 1
+    },
+    {
+      "name": "mcp_chthonic-v3_chthonic_status",
+      "count": 1
+    },
+    {
+      "name": "mcp_github_search_repositories",
+      "count": 1
+    },
+    {
+      "name": "mcp_github_search_issues",
+      "count": 1
+    },
+    {
+      "name": "mcp_github_issue_write",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_stats",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_timeline",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_classify",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_hot_files",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_tool_freq",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_memories",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_search",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_session_context",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_tool_result",
+      "count": 1
+    },
+    {
+      "name": "mcp_corpus_corpus_messages",
+      "count": 1
+    },
+    {
+      "name": "mcp_huggingface_hf_whoami",
+      "count": 1
+    },
+    {
+      "name": "mcp_huggingface_gr1_z_image_turbo_generate",
+      "count": 1
+    },
+    {
+      "name": "mcp_huggingface_space_search",
+      "count": 1
+    },
+    {
+      "name": "mcp_chthonic-v3_polyglot_versions",
+      "count": 1
+    }
+  ],
+  "turns": [
+    {
+      "turn_index": 0,
+      "turn_start": "2026-05-01T02:18:41.102Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "file_search",
+        "tool_search"
+      ],
+      "tool_count": 2
+    },
+    {
+      "turn_index": 1,
+      "turn_start": "2026-05-01T02:18:48.068Z",
+      "user_prompt": null,
+      "assistant_summary": "So `rv` is not recognized as a function/alias in the current shell - the user removed the `Remove-Variable rv` workaround for PowerShell's built-in `rv` alias. Let me check what the actual issue is. The `rv.exe` works fine but the PowerShell alias `rv` (which normally aliases `Remove-Variable`) seem…",
+      "tools": [
+        "mcp_mas-mcp_mas_pid_reader",
+        "run_in_terminal"
+      ],
+      "tool_count": 2
+    },
+    {
+      "turn_index": 2,
+      "turn_start": "2026-05-01T02:19:08.848Z",
+      "user_prompt": null,
+      "assistant_summary": "Now I can see the issue more clearly: 1. `rv` (the alias) is still present but not recognized as a function - it seems to be an empty alias or points to nothing 2. `rv.exe` works but `rv list` doesn't work either 3. There's `rv 0.5.3` installed Let me look at the actual rv.exe behavior and the list …",
+      "tools": [
+        "read_file",
+        "run_in_terminal"
+      ],
+      "tool_count": 2
+    },
+    {
+      "turn_index": 3,
+      "turn_start": "2026-05-01T02:19:15.391Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 4,
+      "turn_start": "2026-05-01T02:19:19.752Z",
+      "user_prompt": null,
+      "assistant_summary": "Okay so we have `ruby-4.0.3` installed at `~\\AppData\\Roaming\\rv\\rubies\\ruby-4.0.3\\bin\\ruby.exe`. The user says they wiped the index where the ruby version installed everything and built the gems needed. Let me check what's at that path, what gems are installed, and what the rproject.toml says. Let m…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 5,
+      "turn_start": "2026-05-01T02:19:28.315Z",
+      "user_prompt": null,
+      "assistant_summary": "There's the problem. `ruby-4.0.3` shows as installed in the list, but when trying to run it, there's `NoMatchingRuby` error. This suggests the binary is registered in the index but the actual files are gone or broken. Let me check if the ruby binary actually exists at the path.",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 6,
+      "turn_start": "2026-05-01T02:19:34.431Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 7,
+      "turn_start": "2026-05-01T02:19:39.504Z",
+      "user_prompt": null,
+      "assistant_summary": "Interesting! The ruby binary itself works fine - `ruby 4.0.3 (2026-04-21 revision 85ddef263a) +PRISM [x64-mingw-ucrt]`. And there are gems installed (rails, bundle, bundler-audit, rake, etc.). The issue is that `rv.exe r ruby -- --version` fails with `NoMatchingRuby`. This means the problem is with …",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 8,
+      "turn_start": "2026-05-01T02:19:47.428Z",
+      "user_prompt": null,
+      "assistant_summary": "Found the core issue. The `.ruby-version` file contains just `list` (likely a corrupted `rv ruby list` command output that got redirected there). Let me fix both problems:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 9,
+      "turn_start": "2026-05-01T02:20:02.749Z",
+      "user_prompt": null,
+      "assistant_summary": "Now I understand the full picture: 1. **`.ruby-version` is corrupted** — it contains just `list` (4 bytes: 6C 69 73 74), which is garbage data. Someone likely ran `rv ruby list > .ruby-version` or something similar. The fix: write `ruby-4.0.3` to it. 2. **`rv` alias points to `rvw`** — PowerShell's …",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 10,
+      "turn_start": "2026-05-01T02:20:11.008Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 11,
+      "turn_start": "2026-05-01T02:20:15.628Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 12,
+      "turn_start": "2026-05-01T02:20:19.742Z",
+      "user_prompt": null,
+      "assistant_summary": "Clear picture now. Two separate issues: 1. **`.ruby-version` is corrupted** — contains `list` (4 bytes), not a version string 2. **`rv` alias → `rvw`** not `rv.exe` — the built-in `Remove-Variable` alias was removed but now resolves wrong The good news: **ruby-4.0.3 installation is intact** — the bi…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 13,
+      "turn_start": "2026-05-01T02:20:49.530Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 14,
+      "turn_start": "2026-05-01T02:20:54.406Z",
+      "user_prompt": null,
+      "assistant_summary": "Hmm, `rv.exe r ruby -- --version` is passing `--version` as an argument to `ruby.exe` script, not as a flag directly to ruby. The `--` separator isn't needed or is being misinterpreted. Let me try the correct syntax. Also `rv.exe r gem -- list` returned 23 gems. Let me check the correct way to invok…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 15,
+      "turn_start": "2026-05-01T02:21:01.203Z",
+      "user_prompt": null,
+      "assistant_summary": "rv is back — 129 gems intact, `ruby 4.0.3` resolves. Now fix the alias chain:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 16,
+      "turn_start": "2026-05-01T02:21:11.129Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 17,
+      "turn_start": "2026-05-01T02:21:14.855Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 18,
+      "turn_start": "2026-05-01T02:21:19.029Z",
+      "user_prompt": null,
+      "assistant_summary": "I see - the `rv shell init powershell` script doesn't define any `rv` function, it just hooks the `prompt` function. The alias `rv` → `rvw` was already there. The intended way to use rv in PowerShell is to use `rvw` or `rv.exe`, not `rv` directly. The user said they removed `Remove-Variable rv` from…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 19,
+      "turn_start": "2026-05-01T02:21:25.855Z",
+      "user_prompt": null,
+      "assistant_summary": "`rvw` works perfectly. The asterisk `*` shows `ruby-4.0.3` is now correctly recognized as the pinned version. Now, the user wants to use `rv` instead of `rvw` in their pwsh. The current state is `rv` → `rvw`. But `rv` in the terminal doesn't work. Let me see what's happening... Actually - I think th…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 20,
+      "turn_start": "2026-05-01T02:21:32.644Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 21,
+      "turn_start": "2026-05-01T02:21:36.563Z",
+      "user_prompt": null,
+      "assistant_summary": "`rv` works now. Let me verify the original failing command:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 22,
+      "turn_start": "2026-05-01T02:21:42.766Z",
+      "user_prompt": null,
+      "assistant_summary": "Everything is working. Summary of what happened and what was fixed: --- **Root cause:** `.ruby-version` contained the literal string `list` — it was corrupted, likely by a shell redirect mishap (`rv ruby list > .ruby-version` or similar). rv reads that file to resolve the version pin, couldn't match…",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 23,
+      "turn_start": "2026-05-01T02:25:53.131Z",
+      "user_prompt": "* I added: ruby-4.0.3 ehere I accidentally just did uv r ruby pin list or was it uv r pin list/ nonetheless, the purpose was to rebuild it from the updated state, from where it drifted from the noise I spectacled while learning ruby via rust oxidized tooling inspired by uv for python-land. * I'll tr…",
+      "assistant_summary": "The user wants to: 1. Fix an old Ruby script `guidealoguebrowser.rb` that's failing because `File.exists?` was removed in Ruby 3.2+ (renamed to `File.exist?`) 2. Get it running with rv ruby-4.0.3 The error is clear: `File.exists?` was deprecated in Ruby 2.x and removed in Ruby 3.2+. The fix is strai…",
+      "tools": [],
+      "tool_count": 0
+    },
+    {
+      "turn_index": 24,
+      "turn_start": "2026-05-01T02:26:03.737Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 25,
+      "turn_start": "2026-05-01T02:26:09.286Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 26,
+      "turn_start": "2026-05-01T02:26:17.648Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 27,
+      "turn_start": "2026-05-01T02:26:23.164Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 28,
+      "turn_start": "2026-05-01T02:26:31.620Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 29,
+      "turn_start": "2026-05-01T02:26:36.459Z",
+      "user_prompt": null,
+      "assistant_summary": "The path with spaces is tripping up the terminal chaining. Let me copy it first, then audit:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 30,
+      "turn_start": "2026-05-01T02:26:42.559Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 31,
+      "turn_start": "2026-05-01T02:26:48.908Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 32,
+      "turn_start": "2026-05-01T02:26:53.314Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 33,
+      "turn_start": "2026-05-01T02:26:58.033Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 34,
+      "turn_start": "2026-05-01T02:27:03.043Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 35,
+      "turn_start": "2026-05-01T02:27:07.378Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "grep_search"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 36,
+      "turn_start": "2026-05-01T02:27:10.827Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "grep_search"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 37,
+      "turn_start": "2026-05-01T02:27:17.188Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "grep_search"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 38,
+      "turn_start": "2026-05-01T02:27:22.065Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "grep_search"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 39,
+      "turn_start": "2026-05-01T02:27:28.534Z",
+      "user_prompt": null,
+      "assistant_summary": "Good picture. Only one Ruby compat issue: `File.exists?` (removed in 3.2, two occurrences). The `tk` and `sqlite3` gems are the other risk. Let me fix the code first, then probe the gem state:",
+      "tools": [
+        "read_file"
+      ],
+      "tool_count": 3
+    },
+    {
+      "turn_index": 40,
+      "turn_start": "2026-05-01T02:27:45.325Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "multi_replace_string_in_file"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 41,
+      "turn_start": "2026-05-01T02:27:50.721Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 42,
+      "turn_start": "2026-05-01T02:27:55.636Z",
+      "user_prompt": null,
+      "assistant_summary": "Both present. Now test if tk can actually load (requires Tcl/Tk runtime):",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 43,
+      "turn_start": "2026-05-01T02:28:01.345Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 44,
+      "turn_start": "2026-05-01T02:28:05.629Z",
+      "user_prompt": null,
+      "assistant_summary": "Both load. Try running it:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 45,
+      "turn_start": "2026-05-01T02:28:10.928Z",
+      "user_prompt": null,
+      "assistant_summary": null,
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 46,
+      "turn_start": "2026-05-01T02:28:26.873Z",
+      "user_prompt": null,
+      "assistant_summary": "The terminal doesn't have rv.exe on PATH. Use the full path:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 47,
+      "turn_start": "2026-05-01T02:28:44.341Z",
+      "user_prompt": null,
+      "assistant_summary": "The `Set-Location` is being blocked by the shell hook. Pass the absolute path directly:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 48,
+      "turn_start": "2026-05-01T02:29:07.889Z",
+      "user_prompt": null,
+      "assistant_summary": "Invoke ruby directly — bypass rv entirely:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    },
+    {
+      "turn_index": 49,
+      "turn_start": "2026-05-01T02:29:37.019Z",
+      "user_prompt": null,
+      "assistant_summary": "The `^U` suggests shell hook interference on multiline. Use single-statement with hardcoded path:",
+      "tools": [
+        "run_in_terminal"
+      ],
+      "tool_count": 1
+    }
+  ],
+  "artifacts": {
+    "files_read": [
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01ATvkhqmvwerk35FzAGaf5N__vscode-1777600464430\\content.json",
+      "c:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde\\guidealoguebrowser.rb",
+      "C:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde\\guidealoguebrowser.rb",
+      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
+      "c:\\Users\\eldno\\chthonic-archive\\.ruby-version",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\Cargo.toml",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\ascii_downsample.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\build.rs",
+      "c:\\Users\\eldno\\chthonic-archive\\.mcp.json",
+      "C:\\Users\\eldno\\.cocoindex_code\\global_settings.yml",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01G2fymBLWnKd5xin2tdTeeJ__vscode-1777600464735\\content.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\.cocoindex_code\\settings.yml",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_013jJiY2xgrs7yS9jZ6dwwsW__vscode-1777600464756\\content.txt",
+      "c:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\.cocoindex_code\\settings.yml",
+      "C:\\Users\\eldno\\chthonic-archive\\.cocoindex_code\\settings.yml",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01TVVyLv6XQHadwfGrcHCh2j__vscode-1777600464812\\content.txt",
+      "C:\\Users\\eldno\\.cache\\huggingface\\hub\\models--nomic-ai--CodeRankEmbed\\snapshots\\3c4b60807d71f79b43f3c4363786d9493691f8b1\\modeling_hf_nomic_bert.py",
+      "C:\\Users\\eldno\\AppData\\Roaming\\uv\\tools\\cocoindex-code\\Lib\\site-packages\\transformers\\models\\nomic_bert\\modeling_nomic_bert.py",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_015csjREBfAuuR1oDctzkVgJ__vscode-1777600464933\\content.txt",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01MTbzduEro3aqYLXX3y3u6gTf__vscode-1777600464938\\content.txt",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01MTbzduEro3aqYLXX3u6gTf__vscode-1777600464938\\content.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\memory.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\FAF_FRAMING_AS_FUNCTION_METHODOLOGY.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\chthonic-shell-hook.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\TABBY_MODERNIZATION_SCAFFOLD_DECISION.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\roulette_html_gen.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\euler_score.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\chthonic-xp.ps1",
+      "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "C:\\Users\\eldno\\.config\\powershell\\profile.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\ascii_dungeon.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\codex\\NEXT.md",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\iso_render.comp.glsl",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_01EVS23f4j4r1Nt2qdNEifnQ__vscode-1777668783216\\content.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\Cargo.toml",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_015YHdvLNCkw4M29Fq3WT8EW__vscode-1777668783236\\content.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\package.json",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\cocos_probe.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\CLAUDE.md",
+      "c:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\workspaceStorage\\eccd2abdbb1acd0697631505bd88f668\\GitHub.copilot-chat\\chat-session-resources\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\toolu_bdrk_011nPxoLAaWFvDoSHfkwqNSn__vscode-1777676616840\\content.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_meta.json",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\teleport.ts",
+      "c:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\claudine_sinclair_incarnation_manifest.md"
+    ],
+    "files_written": [
+      "C:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde\\FAYDEconfig.txt",
+      "c:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde\\guidealoguebrowser.rb",
+      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
+      "c:\\Users\\eldno\\chthonic-archive\\.mcp.json",
+      "C:\\Users\\eldno\\.cocoindex_code\\global_settings.yml",
+      "c:\\Users\\eldno\\chthonic-archive\\.cocoindex_code\\settings.yml",
+      "c:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\.cocoindex_code\\settings.yml",
+      "c:\\Users\\eldno\\AppData\\Roaming\\.cocoindex_code\\global_settings.yml",
+      "C:\\Users\\eldno\\chthonic-archive\\.cocoindex_code\\settings.yml",
+      "C:\\Users\\eldno\\.cache\\huggingface\\hub\\models--nomic-ai--CodeRankEmbed\\snapshots\\3c4b60807d71f79b43f3c4363786d9493691f8b1\\modeling_hf_nomic_bert.py",
+      "C:\\Users\\eldno\\AppData\\Roaming\\uv\\tools\\cocoindex-code\\Lib\\site-packages\\transformers\\models\\nomic_bert\\modeling_nomic_bert.py",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\FAF_COCOINDEX_SEMANTIC_SEARCH.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\CLAUDINE_MD_TYPE_LEXICON.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\STEWARDESS_PROTOCOL.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\SCAFFOLD_TRANSFORMERS_NOMIC_KWARGS_PATCH.md",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\stewardess\\ACTIVE_2026-05-01.md",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\stewardess\\.current",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\liminal\\INVOCATION_GAP.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\md_types_scan.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\roulette_html_gen.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\src\\main.rs",
+      "C:\\Users\\eldno\\.config\\powershell\\profile.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\dirty_diff.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\build.rs",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\ascii_dungeon.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\GATE_WALK.md",
+      "c:\\Users\\eldno\\chthonic-archive\\codex\\NEXT.md",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\shaders\\iso_render.comp.glsl",
+      "c:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer\\Cargo.toml",
+      "c:\\Users\\eldno\\chthonic-archive\\Cargo.toml",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\vs_battery.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\package.json",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\cocos_probe.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_meta.json",
+      "c:\\Users\\eldno\\chthonic-archive\\manifest\\todo_roulette.json",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\todo_roulette.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\pnk_archaeology.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\SATELLITE_REGISTRY.json",
+      "c:\\Users\\eldno\\chthonic-archive\\chthonic-archive.code-workspace",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder\\scripts\\district_scanner.py",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder\\scripts\\build_archive_db.py",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder\\scripts\\query_archive.py",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder\\scripts\\archaeology_mcp.py",
+      "C:\\Users\\eldno\\chthonic-archive\\.vscode\\mcp.json",
+      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder\\scripts\\overnight_archaeology.py",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\COLD_START_ARCHAEOLOGY_2026-05-02.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\embedding_server.py",
+      "c:\\Users\\eldno\\chthonic-archive\\.copilotignore",
+      "c:\\Users\\eldno\\chthonic-archive\\.continue\\config.json"
+    ],
+    "terminal_commands": [
+      "rv list 2>&1; Write-Host \"---\"; rv current 2>&1; Write-Host \"---\"; rv r 2>&1",
+      "rv.exe list 2>&1; Write-Host \"---\"; rv.exe --version 2>&1; Write-Host \"---\"; Get-Command rv -All 2>&1 | Format-Table Com",
+      "rv.exe --help 2>&1",
+      "rv.exe ruby list 2>&1; Write-Host \"---\"; rv.exe ruby list --installed 2>&1",
+      "rv.exe ruby list --installed-only 2>&1; Write-Host \"---\"; rv.exe r ruby -- --version 2>&1; Write-Host \"---\"; rv.exe r ge",
+      "$rvPath = \"$env:APPDATA\\rv\\rubies\\ruby-4.0.3\"; Test-Path $rvPath; Get-ChildItem $rvPath -ErrorAction SilentlyContinue | ",
+      "$rb = \"$env:APPDATA\\rv\\rubies\\ruby-4.0.3\\bin\\ruby.exe\"; Test-Path $rb; Write-Host \"---\"; & \"$env:APPDATA\\rv\\rubies\\ruby-",
+      "Get-Content \"$env:USERPROFILE\\chthonic-archive\\.ruby-version\" 2>&1; Write-Host \"---\"; Get-Content \"$env:USERPROFILE\\chth",
+      "Get-Content .ruby-version | Format-Hex | Select-Object -First 5 2>&1; Write-Host \"---\"; $alias = Get-Alias rv -ErrorActi",
+      "Get-Command rvw -ErrorAction SilentlyContinue 2>&1; Write-Host \"---\"; Get-Content $PROFILE -ErrorAction SilentlyContinue",
+      "Get-Content $PROFILE 2>&1 | Select-String \"rv|Remove-Variable|ruby|alias\" -CaseSensitive:$false | Select-Object -First 3",
+      "Get-Content $PROFILE 2>&1 | Select-Object -Last 50",
+      "# Fix 1: write correct version to .ruby-version\nSet-Content -Path .ruby-version -Value \"ruby-4.0.3\" -NoNewline; Write-Ho",
+      "Get-Content .ruby-version; Write-Host \"---\"; rv.exe r ruby -- --version 2>&1; Write-Host \"---\"; rv.exe r gem -- list --n",
+      "rv.exe r ruby --version 2>&1; Write-Host \"---\"; rv.exe r gem list --no-versions 2>&1 | Select-Object -First 30; Write-Ho",
+      "rvw.exe --version 2>&1; Write-Host \"---\"; rv.exe shell pwsh 2>&1 | Select-Object -First 20",
+      "rv.exe shell powershell 2>&1",
+      "& \"C:\\Users\\eldno\\.cargo\\bin\\rv.exe\" shell init powershell 2>&1",
+      "rvw r ruby --version 2>&1; Write-Host \"---\"; rvw ruby list --installed-only 2>&1",
+      "# Test rv alias chain\n$a = Get-Alias rv; Write-Host \"rv alias -> '$($a.Definition)' (Options: $($a.Options))\"; Write-Hos",
+      "rv r ruby --version 2>&1; Write-Host \"EXIT: $LASTEXITCODE\"",
+      "rv r ridk --help 2>&1 | Select-Object -First 10",
+      "$src = \"C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML\\arkiv_gamle_ruby_prosjekter\\dealogue-fayde-",
+      "Get-Content \"C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML\\arkiv_gamle_ruby_prosjekter\\dealogue-f",
+      "$f = \"C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML\\arkiv_gamle_ruby_prosjekter\\dealogue-fayde-21",
+      "$f = 'C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML\\arkiv_gamle_ruby_prosjekter\\dealogue-fayde-21",
+      "$dst = 'C:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde'; New-Item -ItemType Directory -Path $dst -Force | Out-Null; ",
+      "Set-Location C:\\Users\\eldno\\chthonic-archive\\dev\\dealogue-fayde\n$lines = Get-Content guidealoguebrowser.rb\nWrite-Host \"L",
+      "$lines.Count; $lines | Select-String 'File\\.exists\\?' | ForEach-Object { \"L$($_.LineNumber): $($_.Line.Trim())\" }",
+      "$lines | Select-String 'tainted|untaint' | ForEach-Object { \"L$($_.LineNumber): $($_.Line.Trim())\" }\n$lines | Select-Str"
+    ],
+    "commits": [
+      "900b564",
+      "223556219",
+      "e5f6a7b8"
+    ]
+  }
+}
