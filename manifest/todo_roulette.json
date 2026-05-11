@@ -239,8 +239,9 @@
       "created": "2026-05-06T08:01:40.512Z",
       "weight": 7,
       "origin": "session",
-      "spin_count": 0,
-      "body": "Stabilization lane: current staged gate now checks Added/Copied/Modified scripts in scripts/ and ci/. Next hardening should validate structured SID shape, catch placeholder/descriptive prose SIDs, and report legacy drift as advisory until alchemized."
+      "spin_count": 1,
+      "completed": "2026-05-11T03:54:18.915Z",
+      "body": "sid-envelope.ts promoted from V1 (presence only) to V2 (shape contract). Validates: ALL_CAPS_DOMAIN_V1 pattern, version suffix mandatory, placeholder keywords caught (TODO/STUB/FIXME etc.), lowercase/prose SIDs flagged as malformed. Three result categories: missing | malformed | valid. Advisory mode: exit 0 + categorized report. Staged mode: exit 1 on any issue. --report flag emits JSON. Legacy drift (28 malformed + 4 missing) reported as advisory until alchemized. 217/249 tracked scripts already valid."
     },
     {
       "id": "5000b0e1",
