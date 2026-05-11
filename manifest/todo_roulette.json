@@ -138,7 +138,9 @@
       "weight": 5,
       "origin": "session",
       "spin_count": 1,
-      "last_spun": "2026-05-03T00:58:20.651Z"
+      "last_spun": "2026-05-03T00:58:20.651Z",
+      "completed": "2026-05-11T04:15:19.613Z",
+      "body": "RESOLVED — path A (EXL2 corpus confirmed). state.py already updated at commit 49e6e33f: module docstring reads 'exllamav2 container lifecycle / Backend: exllamav2 (EXL2 quantized models)' with v0.1→v0.2 backend history inline. exllamav3-native framing deprecated. DEV-G10-03 in FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md updated to resolved (2026-05-11). exllamav3 path dormant until EXL3 corpus available. G11 unblocked. No logic deleted (WPTG)."
     },
     {
       "id": "ce8aeac5",
