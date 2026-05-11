@@ -105,7 +105,9 @@
       "weight": 3,
       "origin": "session",
       "spin_count": 1,
-      "last_spun": "2026-05-01T21:20:50.901Z"
+      "last_spun": "2026-05-01T21:20:50.901Z",
+      "completed": "2026-05-11T03:43:02.484Z",
+      "body": "[auto-closed] Archaeology complete — PNK-LFH repo scanned and committed at 5f9e033e5 (pnk-archaeology-findings session). archive.db built via fallback scanner covering poisontr33s/psychonoir-kontrapunkt-large-file-holder public repo. SATELLITE_REGISTRY.json updated; satellite fully mapped. Overnight archaeology chain (pnk00001-pnk00005 in entries_extended) queued for follow-on entity extraction."
     },
     {
       "id": "b8c9d0e1",
