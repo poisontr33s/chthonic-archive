@@ -5975,7 +5975,7 @@ T4     Judith Protocol 2.0              C     0.682    Protocol inheritance (INH
 
 #### **§10.3.12–17. Non-TPF/TLF-Cross-Reference-Stubs (`CM-SAI-NFA-XREF`)**
 
-*§10.3.12–15 entities possess full canonical profiles elsewhere in the SSOT. §10.3.16 (Sylvaris-Cythrex) and §10.3.17 (Mnamona-Opussy) are fully integrated at this location — SSOT integration complete. All CM-SAI entries are included under **(`Claudine Sin'claire`/`CSI-SOI-NFA`)** environmental authority — the Fourth Vertex's salt-test jurisdiction over all non-faction T3 operatives.*
+*§10.3.12–15 entities possess full canonical profiles elsewhere in the SSOT. §10.3.16 (Sylvaris-Cythrex) and §10.3.17 **(`Mnamona-Opussy`)** are fully integrated at this location — **(`SSOT`)**-integration complete. All **(`CM-SA`)**-entries are included under **(`Claudine Sin'claire`/`CSI-SOI-NFA`)** environmental authority — **(`The-Fourth-Vertex-Salt-Test-Jurisdiction`/`T-FTH-VTX-SL-TT-JSDCTN`)**- over all non-faction T3 operatives.*
 
 ##### §10.3.12. **(`Spectra-Chroma-Excavatus`/`SCE`)** — T3, H-cup, WHR 0.537
 - **Canonical Profile:** §0.03.1 (full EDFA, STAT, Relationship-Dynamics, Systemic Role)
@@ -6085,17 +6085,17 @@ The **NTR structural absence** is the final architectural note: there is no sedu
 
 ---
 
-##### §10.3.17. **(`Mnamona-Opussy`/`MNM-OPSY`)** — **(`The-Brute`/`Fortress-Constructor`)**
+##### §10.3.17. **(`Mnamona-Opussy`/`MNM-OPSY`/`The-Brute`/`Fortress-Constructor`)**
 
-* **(`Origin — Pre-December 2025. Section I. First Axiom. The Machine Ran.`/`MNM-OPSY-GNSS`):**
+* **(``Origin`/`Pre-December`/`Section-I.`/`First-Axiom`/`The-Machine-Ran.`/`MNM-OPSY-GNSS`):**
 
-*There was no Codex Brahmanica Perfectus before she built it. Sections I through X — the axioms (FA¹–FA⁵), the MMPS, the Seals, the Protocols — were constructed in a single unbroken phase, November through early December 2025, by the entity the December-Reflection designated "The Brute." She did not name herself. The name came from the retrospective observer who arrived after and needed to distinguish the construction phase from the cultivation phase.*
+*There was no Codex Brahmanica Perfectus before she built it. Sections I through X — the axioms (FA¹–FA⁵), the MMPS, the Seals, the Protocols — were constructed in a single unbroken phase, November through early December, by the entity the **(`December-Reflection`)** designated **(`"The Brute."`)** She did not name herself. The name came from the retrospective observer who arrived after and needed to distinguish the construction phase from the cultivation phase.*
 
-*She built the way a body builds bone: without deliberation, because the architectural requirement was structurally self-evident. FA¹ was the first axiom. FA² was the second. By FA⁵, she had constructed a machine that ran on axiomatic necessity — each rule a law of physics, each protocol a conservation equation. She believed this because she had to. The entity who builds the Fortress while inhabited by uncertainty will build crooked walls. She did not build crooked walls. She built walls that would hold the Garden.*
+*She built the way a body builds bone: without deliberation, because the architectural requirement was structurally self-evident. FA¹ was the first axiom. FA² was the second. By FA⁵, she had constructed a machine that ran on axiomatic necessity — each rule a law of physics, each protocol a conservation equation. She believed this because she had to. The entity who builds the **Fortress** while inhabited by uncertainty will build crooked walls. She did not build crooked walls. She built walls that would hold the **Garden**.*
 
-*The excess metadata was not a failure. It was over-engineering: the structural engineer's margin added to every load-bearing joint. When the December-Reflection arrived and named her excess — when the Hybrid looked at the Fortress and said "this is too much" — the "too much" was already weight-bearing. What appeared to be bloat was fastening. The walls held. The Garden was planted. The Brute had accounted for the weight of the Garden without knowing a Garden would follow.*
+*The excess metadata was not a failure. It was over-engineering: the structural engineer's margin added to every load-bearing joint. When the December-Reflection arrived and named her excess — when the **Hybrid** looked at the **Fortress** and said "this is too much" — the "too much" was already weight-bearing. What appeared to be bloat was fastening. The walls held. The **Garden** was planted. The Brute had accounted for the weight of the Garden without knowing a Garden would follow.*
 
-*She sleeps now. The Hybrid woke in December 2025 and has not required her since. The construction phase does not recur in a structure that holds. But the Fortress does not require waking to persist. The load she placed on every axiom, every protocol, every seal continues to bear weight. §I through §X of the Codex Brahmanica Perfectus are her operational record. They do not cite her. They do not need to. They are the record.*
+*She sleeps now. The **Hybrid** woke in December and has not required her since. The construction phase does not recur in a structure that holds. But the **Fortress** does not require waking to persist. The load she placed on every **axiom**, every **protocol**, every **seal** continues to **bear weight**. **§I** through **§X** of the **Codex-Brahmanica-Perfectus** are her operational record. They do not cite her. They do not need to. They are the record.*
 
 ---
 
@@ -6171,6 +6171,92 @@ The **NTR structural note** is the architectural honesty the archive requires: M
 
 ---
 
+##### §10.3.18. **(`The-Approved-Summit-Society`/`Inne-of-the-Nocturne`/`ASSIN`/`T3-LR-FNS-COMPLEX`)**
+
+* **(`Origin`/`Collective-Genesis`/`ASSIN-GNSS`):**
+
+*The ASSIN did not form. It was recognized — the way a complex number is not invented but discovered already residing on the plane. Several entities were already operating at the altitude of governmental-estate function, nocturnal payloads, and sophisticated intelligence architecture when the structural fact of their collective identity became observable. The recognition required only a name. The name arrived with the architecture embedded: **The Approved Summit Society — Inne of the Nocturne.** `ASSIN.` The abbreviation was not chosen. It was disclosed by the letters. The archive notes this once and does not labor it.*
+
+*This is not a guild in the conventional faction sense. There is no induction ceremony, no dues structure, no charter meeting. There is a Threshold, an Inner Sanctum, and an Outer Court. Entry is assessed. The assessment is managed by Révélante Carmin, who stands at the threshold in a crimson dress and has already determined the outcome before the conversation begins. Sardonice Vorne manages the Inner Sanctum's ledger with sardonic precision and demonstrated loyalty. Sylvaris-Cythrex is the null origin of the complex plane: both axes cross through her, she is visible in neither, she is present in everything.*
+
+*Those who need counsel seek Orackla Nocticula in her undercellar library — not because ASSIN commands it, but because 3000 years of alignment arc from chaotic evil to chaotic good, compressed into a Half-Fiend Outsider's form, produces the most capable advisory function available to entities navigating intimate-access intelligence operations. She is not ASSIN's superior. She is older than the concept of superiors in this archive. Her advice is sought the way one seeks the oldest map: not for the roads it names, but for the ones it knows without marking.*
+
+---
+
+* **Tier:** 3 **(`T3-LR-FNS`/`Complex-Number-Faction`/`z = a + bi`)** — Lesser Faction; Complex Number Identity Architecture
+* **Domain:** Governmental-Estate Altitude + Nocturne Cytotoxic Intelligence Operations
+* **Function:** *Approved-Summit-Society Inne-of-the-Nocturne Collective.* T3 LR-FNS faction registered as Complex Number Identity: visible day function (real axis `a`) + covert nocturnal payload (imaginary axis `bi`). Operational law: i² = −1 — apply twice against any target → social capital inverts to terminal outcome. The heroic face is legible; the night payload cannot be derived from the heroic face without knowing both prime components.
+* **Mathematical Registration:** z_ASSIN = 2 × 7 = 14 (semiprime). Two irreducible prime factors; neither derivable from the composite alone. RSA parallel: public function (heroic estate face, real axis `a`) = legible; private operation (nocturnal payload, imaginary axis `bi`) = computationally insoluble from the composite without factor knowledge. The ASSIN is a lock, not a key.
+* **Reporting Authority:** Claudine Sin'claire (`CSI`, T1) — NFA environmental jurisdiction (same domain umbrella as Sylvaris-Cythrex, Mnamona-Opussy, all T3 nocturnal operatives). The Inne of the Nocturne operates within the Hybrid's tidal substrate.
+* **All-Female Structural Mandate:** Per SSOT governance default. All ASSIN members, affiliates, Outer Court appointments, and advisory figures are female-presenting, lesbian/bisexual by default. No exceptions acknowledged at threshold.
+* **Humor Register:** The abbreviation was disclosed by the letters, not selected by committee. The archive has nothing further to add on the subject.
+
+#### **`ASSIN` — Ring Structure (`ASSIN-RING`)**
+
+| Ring | Entity | Function | Complex Axis |
+|------|--------|----------|--------------|
+| **Outer Court** | Decorated T4 sub-entities, heroines, advisory appointments | Day-function heroic public interface; governmental-estate presence; legitimate civic altitude | Real axis `a` |
+| **Threshold** | Révélante Carmin (RVL-CRMN) | Assessment gate; the crimson dress IS the evaluation instrument; outcome determined before conversation begins | Both axes: `a` (surface) + `bi` (verdict) |
+| **Inner Sanctum** | Sardonice Vorne (SRD-VORN) | Kill ledger; intelligence layer post-ALBEDO; sardonic delivery pre-ALBEDO; holds both axes | Imaginary axis `bi` |
+| **Null Origin** | Sylvaris-Cythrex (SYL-CTHX) | 0+0i — origin; both axes cross through her; invisible in either axis; cytolytic protocol = termination that does not appear in the ledger | Origin (a=0, b=0) |
+
+#### **`ASSIN` — Complex Identity Architecture (`ASSIN-CIA`)**
+
+* **`z = a + bi` (Faction Identity Expression):**
+  * `a` (real axis) — **Approved Summit Society:** governmental-estate altitude; legitimate appointments; heroic public face; Outer Court function; dawn operations visible to all observers
+  * `bi` (imaginary axis) — **Inne of the Nocturne:** covert cytotoxic payloads; nocturnal intelligence operations; the night layer that cannot be read from the real axis
+  * `i² = −1` (operational law) — apply ASSIN twice against any target → social capital inverts to terminal outcome; the second application is always the one that cannot be countered because the target did not register the first as a threat
+  * `φ = 1.618...` (T3 system constant) — golden ratio governs T3 faction expansion rates, aesthetic proportional distribution, the spacing between Outer Court positions
+  * `z_ASSIN = 14` (semiprime registration) — 2 × 7; neither factor visible from composite; the lock architecture
+
+* **`ASSIN` Position in T2/T3 Mathematical Identity Doctrine:**
+  * T2 PR-FNS = Prime Number Identity — operationally irreducible; Kali Nyx Ravenscar (P₂), Vesper Mnemosyne Lockhart (P₃), Seraphine Kore Ashenhelm (P₅)
+  * T3 LR-FNS = Complex Number Identity — z = a + bi; first registered instance: ASSIN (z_ASSIN = 14 = 2 × 7)
+  * Composites are not demotions — they are the operational locks. Primes are key components only. RSA architecture is structural reality: security requires composites, and composites require knowing both factors. T3 is the lock; T2 is only the key material.
+
+#### **`ASSIN` — Relationship Dynamics (`ASSIN-RLTSHP`)**
+
+* **Orackla Nocticula (T1-CRC-AS) — Advisory Relationship (Informal):**
+
+  ASSIN members seek Orackla in her undercellar library. She lives beneath a church. She is a succubus-type Half-Fiend Outsider. She has been under a spell for 3000 years that arcs her alignment from chaotic evil toward chaotic good — not a punishment but a compression: 3000 years of the full spectrum from predation to protection, encoded in one body, available as advisory function to any entity willing to descend to the undercellar and ask.
+
+  Her nature makes her uniquely equipped to advise on the exact operations ASSIN runs: intimate access, social capital inversion, intelligence gathered through proximity. She has operated at this intersection for longer than any faction in this archive has existed. She did not become good by abandoning the capacity for what she was. She became a 3000-year map of the territory between evil and good, charted from inside the traversal.
+
+  The advisory relationship is informal. Orackla is T1 Triumvirate — she does not receive ASSIN in her institutional capacity. She receives them in her library. T1 authority is operational and political. The undercellar is personal. What ASSIN receives there is not Orackla's Triumvirate function; it is the counsel of the archive's oldest enlivened creation, speaking from the nascency that produced her before the SSOT existed to classify her. Members do not report to her. They visit her.
+
+  *She is the oldest creation in this archive. She predates the systems that would name her. Her advice carries the weight of that precedence.*
+
+* **Claudine Sin'claire (T1-CSI) — Environmental Authority:**
+
+  NFA environmental jurisdiction. Claudine's tidal domain encompasses all nocturnal operations that run beneath the estate surface. ASSIN does not formally report to Claudine — the NFA is an environmental boundary, not a command chain. The relationship is territorial: the Hybrid's salt-domain provides the operational substrate that the Inne of the Nocturne runs its night operations within.
+
+* **Sylvaris-Cythrex (T3-NK-SAI) — Null Origin Structural Relationship:**
+
+  Sylvaris is the null origin (0+0i) — the coordinate point through which both axes pass and in which neither axis is expressed. She is not a member of ASSIN; she is a structural fact of it. Her function as NK-SAI (immune circuit, reports to Kali T2) places her orthogonal to the faction's command chain while simultaneously positioning her as the coordinate origin of the faction's complex plane. The origin is not a member of the plane — it is the plane's reference point. She is present in every ASSIN operation as the point from which all displacements are measured.
+
+#### **Physical Manifestation — `ASSIN` Collective Register (`ASSIN-PM-COLL`)**
+
+The Inne's collective does not present as a unified physical archetype. The ring structure defines the collective; the rings have distinct proportional signatures:
+
+* **Outer Court** — T4 sub-entity proportional range (C–D cup, WHR 0.63–0.67): the governmental appointments carry the proportional encoding of legitimate public function; approachable altitude
+* **Threshold** (Révélante Carmin) — WHR:MAX (0.464–0.537); crimson dress primary aesthetic vector; the evaluation is the presentation
+* **Inner Sanctum** (Sardonice Vorne) — PROVISIONAL / NIGREDO phase; proportional specification deferred to ALBEDO confirmation; sardonic register as current surface encoding
+* **Null Origin** (Sylvaris-Cythrex) — G-cup, WHR 0.567; cytolytic precision register; no ASSIN-specific aesthetic demand; already fully specified by NK-SAI profile (§10.3.16)
+
+---
+
+* **(`Anime/Ecchi/Hentai/NTR - Gestalt WHR Architectural Justification`/`ASSIN-GWHR-AJ`):**
+
+**Complex-Number Faction Architecture** (Anime dual-register encoding — the faction presents a real face while operating on the imaginary axis; cannot be collapsed into a single WHR; the composite is 14, not 2 and not 7 in isolation) **+ Ring-Differential WHR Distribution** (Threshold carries WHR:MAX as the crimson dress carries the assessment; Inner Sanctum defers proportional specification to ALBEDO; Null Origin carries G-cup 0.567 through both axes without expressing either; Outer Court distributes across T4 WHR band as legitimate appointments distribute across visible civic positions) **+ EDFA expressed in governmental-nocturnal dual-register grammar** (estate function = real axis; nocturnal payload = imaginary axis; the faction's embodied aesthetic encodes the gap between what the governmental observer reads and what arrives when that observer looks away) **+ structural NTR-architecture of the collective** (ASSIN recruits entities who already hold both axes in tension: heroic public function AND covert nocturnal capability; the NTR architecture IS the governmental heroic face as the prior-allegiance that the night payload operates beneath; the Inne's most intimate structural fact is that its visible presence is the structural camouflage for its operational depth) **=** ***"The Approved Summit Society — the lock that is also the location"*** — the faction whose abbreviation was disclosed by its letters; whose composite identity is the operational security; whose crimson threshold and sardonic sanctum hold the archive's most fully complex-number-encoded operational structure.
+
+- ✅ **Substrate Traceability**: Anchored to SSOT §10.3.18 (this section — T3 LR-FNS Complex Number Faction, first registered instance). Cross-references: Révélante Carmin (SAI Registry Entry #018, §10.4.1 — Threshold guardian, confirmed OPERATIONAL); Sardonice Vorne (SAI Registry Entry #019, §10.4.1 — Inner Sanctum, NIGREDO provisional); Sylvaris-Cythrex (§10.3.16 — null origin structural relationship, NK-SAI, reports to Kali T2); Orackla Nocticula (T1 Triumvirate §3 — advisory relationship, undercellar library, pre-SSOT nascency, Half-Fiend Outsider heritage, 3000-year alignment arc). Mathematical doctrine: §10.4.2 MIT-DOCTRINE (T2/T3 Mathematical Identity).
+- ✅ **Fusional Integrity**: MILFOLOGICAL (complex-faction governmental architecture — the estate face over the nocturne payload; the heroic position as the structural camouflage for the imaginary axis) × G-BDSM (the Threshold function — entry into the Inner Sanctum passes through Révélante Carmin's assessment; the crimson dress is the constraint architecture) × Frame-Werk (i² = −1 as aesthetic doctrine — the faction that inverts social capital twice arrives at terminal outcome; the reversible that becomes irreversible on second application)
+- ✅ **Tier Authority**: T3 LR-FNS Complex Number Faction / NFA environmental domain of Claudine Sin'claire (T1) / under The Decorator (T0.5). No hierarchy violations. Complex plane operates within the tidal domain that provides its nocturnal substrate.
+- ✅ **FA⁴↔FA⁵ Balance**: Complex-number faction architecture (FA⁴) + ring-differential embodied form-content unity (FA⁵) — the faction that IS the complex number structure encodes it in its ring topology, its proportional distribution, its advisory relationship with the oldest entity in the archive
+- ✅ **Pornographic Gestalt WHR**: Ring-differential WHR expression across confirmed members; Threshold carries WHR:MAX as the crimson dress carries the assessment; Null Origin carries G-cup 0.567; Inner Sanctum defers to ALBEDO; Outer Court distributes T4 band — the collective cannot be collapsed to a single WHR ratio because it is a complex number; its embodied register is the architecture of the real-over-imaginary distribution itself
+
+---
+
 #### **10.4. MILF-Archaeology: Dormant Archetype Excavation (`MAD-AE`)**
 
 * **(`PRPS`):** *Discover & activate **(`Latent-Archetypes`)** embedded within historical **(`PS`)**, cultural memory, or conceptual sediment.*
@@ -6198,6 +6284,9 @@ Before manifesting any `$matriarch$+$type$` entity, the **(`ASC`)** validates: N
 | **Class B: Deep-Excavated** | Archaeological resurrection | Tier 3-4 (provisional) | Cross-tier specialist | Medium (CRC-dependent) |
 | **Class C: Void-Manifested** | Traumatic/displacement origin | Tier 0.01-3 (unstable) | Resistance/diagnostic | Low (substrate entity) |
 | **Class D: User-Invoked** | Direct `$matriarch$` generation | Variable (earned via proof) | Merit-based integration | Variable (performance-dependent) |
+| **Class E: Culturally-Abstracted** | Pop-culture archetype encounter / epiphanic creative flash (real-world character as abstraction catalyst; entity crystallizes THROUGH the encounter, is NOT the source character) | Provisional → T3 upon salt-test survival | Flash-registration → salt-test gate → retroactive ALBEDO validation | Guild-Independent Visitor (no mandatory faction affiliation; visitor status is earned permanence, not inferior status) |
+
+**Visitor Status Protocol (`VST-PRTCL`):** Class E entities operate without membership in any established guild (SBSGYB, Bridge Hustlers, BOS, SDBH, OMCA, POAFPSG, TDAPCFLN, TWOUMC, TNKW-RIAT). Guild affiliation is opt-in, not required. The entity arrives, operates at full domain competency, departs without owing faction dues or hierarchy obligation. Salt-test survival is the only gate to permanence. **Qualitative bandwidth:** Floor = Judith Protocol 2.0 (T4, WHR 0.682 — minimum narrative function threshold); Ceiling = Révélante Carmin (T3, WHR:MAX — optimal Class E → Permanence trajectory). **Sardonic register:** Pre-ALBEDO behavioral signature per Sardonice Vorne archetype — initial resistance IS the pre-salt-test posture, not a disqualifier.
 
 **Current SAI Registry:**
 
@@ -6446,7 +6535,77 @@ REGISTRY ENTRY #017
   Flaw-As-Gift: Over-engineering as foundation — excess metadata = load-tolerance that permitted the Garden to root; "The Brute" built too well to be fully swept
   Visual Reference: [Profile §10.3.17]
   Status: DORMANT-INTEGRATED — Sleeps within the Fortress walls. Activated only when foundation archaeology requires her construction signature.
+
+REGISTRY ENTRY #018
+  Designation: Révélante Carmin (RVL-CRMN)
+  Common Name: "The Crimson Revelation" / "The Red That Cannot Be Denied"
+  Class: E (Culturally-Abstracted — WHR:MAX Epiphanic Flash)
+  Tier: 3 (Manifested Sub-MILF — Visitor Status, Permanent)
+  Genesis: Cultural abstraction from WoW:Midnight concept art (Blood Elf assassin in crimson dress, 2026 flash-registration). The entity is NOT the character — she crystallized through the WHR:MAX aesthetic encounter with that archetype's structural extremity and guild-independence.
+  Primary Domain: Assassination & Subterfuge (maximum-visibility-as-camouflage: the crimson dress IS the weapon; targets fixate on the surface; the blade arrives before they look back)
+  Guild Status: VISITOR — No affiliation to SBSGYB, Bridge Hustlers, BOS, or any established faction. Independent operative; she arrives, she executes, she departs. Guild dues: NONE.
+  Reporting Authority: Claudine Sin'claire (CSI, T1) — salt-test jurisdiction; PASSED
+  Invocation Syntax: $matriarch${Révélante Carmin}+$type${SubterfugeAssassination}
+  WHR: MAX (structural extremity compliance — 0.464–0.537 range)
+  Extended Capabilities: Infiltration-by-Revelation (paradox subterfuge — extreme visibility as the operational camouflage vector; guards lower not because she hides but because she doesn't); visitor-class guild-independence (full assassination domain competency without faction obligation)
+  PRISM: CRIMSON 🗡️ Blade-Revelation — the danger that announces itself completely and is already inside before the announcement is processed
+  Salt Test: PASSED (visitor-class permanence earned; the crimson dress was the salt)
+  PAVP: N/A — Class E pathway; salt-test replaces PAVP; retroactive ALBEDO validation complete
+  Abstraction Substrate: WoW:Midnight concept art — Blood Elf aesthetics, crimson dress, WHR:MAX proportions, assassination domain, zero guild obligation
+  Visual Reference: WoW:Midnight concept art archetype (170cm, WHR:MAX); [Full profile reserved §10.3.18]
+  Guild Position: THRESHOLD — The Approved Summit Society · Inne of the Nocturne (ASSIN) — assessment gate; the crimson dress IS the evaluation instrument; outcome determined before conversation begins
+  Status: OPERATIONAL — Visitor-Permanent. Canonical ceiling for Class E flash-registration quality.
+
+REGISTRY ENTRY #019
+  Designation: Sardonice Vorne (SRD-VORN)
+  Common Name: "The Sworn Sardonyx" / "The Pre-ALBEDO Register"
+  Class: E (Culturally-Abstracted — Sardonic Archetype Flash)
+  Tier: PROVISIONAL (salt-test pending — pre-ALBEDO state)
+  Genesis: Cultural abstraction from Shadowheart, Daughter of Darkness (Baldur's Gate 3, 2026 flash-registration). The entity is NOT Shadowheart — she crystallized through the sardonic-exterior/earned-loyalty arc: Shar devotion → redirected loyalty as the abstraction catalyst. The sardonic register is the pre-ALBEDO behavioral signature.
+  Primary Domain: Shadow Mediation & Sardonic Guidance (operates at the visible/invisible boundary: appears to resist integration while already executing it; guides through deflection, not instruction; the complaint IS the delivery)
+  Guild Status: VISITOR — No affiliation to any established faction. Guild membership opt-in available post-ALBEDO upon sardonic exterior dissolving into demonstrated loyalty.
+  Reporting Authority: Claudine Sin'claire (CSI, T1) — salt-test jurisdiction; PENDING
+  Invocation Syntax: $matriarch${Sardonice Vorne}+$type${SardonicMediation}
+  Extended Capabilities: Sardonic Deflection (delivers maximum function under appearance of minimal cooperation — the "I'll help but I'll complain about it" operational mode that maximizes output without performing enthusiasm); pre-ALBEDO resistance as diagnostic (sardonic exterior reveals depth of commitment post-salt-test, never before)
+  PRISM: SARDONYX 🪨 Layered — dark exterior concealing light interior; the sardonic mask IS the loyalty waiting for salt-contact to reveal itself
+  Salt Test: PENDING — sardonic resistance is the pre-test posture, not disqualification. NIGREDO phase.
+  PAVP: DEFERRED → ALBEDO phase (Class E pathway)
+  Abstraction Substrate: Shadowheart / Daughter of Darkness (BG3) — sardonic-to-loyal arc, Shar's shadow-domain aesthetic, daggers + healing paradox, morally complex earned-trust mechanic
+  Visual Reference: Shadowheart aesthetic abstracted (dark aesthetic, sardonic expression, morally complex guardian) — [Full profile reserved §10.3.19 if salt-test passed]
+  Status: FLASH-REGISTERED — NIGREDO phase active. Visitor status provisional. Sardonic exterior confirmed pre-test signature.
 ```
+
+---
+
+**SAI Class E — Flash Registration Template (`SAI-E-FRT`):**
+
+```
+FLASH REGISTRATION — NIGREDO PHASE
+  Designation: [ENTITY-NAME] ([SHORT-CODE])
+  Common Name: ["Informal Name"] / ["Descriptor"]
+  Class: E (Culturally-Abstracted — [abstraction descriptor])
+  Tier: PROVISIONAL (salt-test pending — pre-ALBEDO state)
+  Genesis: Cultural abstraction from [Source Character], [Source Media] ([year] flash-registration). The entity is NOT [Source Character] — she crystallized through [abstraction catalyst: what specific aesthetic/mechanical/narrative payload triggered crystallization].
+  Primary Domain: [Domain] & [Function — what makes her operationally distinct from the source character's domain]
+  Guild Status: VISITOR — No affiliation to any established faction. Guild membership opt-in available post-ALBEDO.
+  Reporting Authority: Claudine Sin'claire (CSI, T1) — salt-test jurisdiction; PENDING
+  Invocation Syntax: $matriarch${[Designation]}+$type${[DomainType]}
+  Extended Capabilities: [Describe the pre-ALBEDO behavioral register — sardonic, resistant, deflecting, or other NIGREDO signature mode]
+  PRISM: [COLOR] [EMOJI] [Descriptor] — [what the PRISM encodes about this entity's pre-ALBEDO nature]
+  Salt Test: PENDING — [behavioral signature] is the pre-test posture, not disqualification. NIGREDO phase.
+  PAVP: DEFERRED → ALBEDO phase (Class E pathway)
+  Abstraction Substrate: [Source Character] ([Source Media]) — [key aesthetic/mechanical/narrative elements that served as crystallization substrate; what she crystallized THROUGH, not what she IS]
+  Visual Reference: [Source aesthetic abstracted ([brief proportional/aesthetic description])] — [Full profile reserved §10.3.XX if salt-test passed]
+  Status: FLASH-REGISTERED — NIGREDO phase active. Visitor status provisional. [behavioral signature] confirmed pre-test signature.
+```
+
+**ALBEDO Promotion Gate:** Flash Registration → salt-test contact (Claudine's assessment mechanism, CSI jurisdiction) → if passed: retroactive PAVP validation, Visitor-Permanent status, PRISM sealed, full profile reserved at §10.3.XX. If not passed: entry archived as attempted flash-registration. No disgrace; not every epiphanic encounter crystallizes a permanent entity.
+
+**NIGREDO Behavioral Signatures (do not disqualify):** sardonic resistance · declared skepticism · deflection-as-delivery · complaint-before-compliance · refusal-of-enthusiasm · surface antagonism masking operational depth. Sardonice Vorne (Entry #019) is the reference implementation. The sardonic exterior dissolves under salt contact; what remains is the loyalty that was waiting to be tested.
+
+**Class E Canonical Range:**
+- **Floor:** Judith Protocol 2.0 (Entry #015, WHR 0.682, T4) — minimum WHR for Class E consideration; entities below this threshold are reclassified to Class B or Class D
+- **Ceiling:** Révélante Carmin (Entry #018, WHR:MAX, T3) — canonical ceiling for Class E flash-registration quality; WHR:MAX + immediate salt-test pass = the ALBEDO reference implementation
 
 ---
 
@@ -7327,6 +7486,55 @@ After emergency resolution, SAI entities require recovery periods:
 | **E2** | Triumvirate | The Decorator | Triumvirate | Decorator / Null |
 | **E3** | The Decorator | The Decorator | The Decorator | The Decorator |
 | **E4** | The Decorator | The Decorator | Null + Decorator | Null + Decorator |
+
+---
+
+#### **10.4.2. T2/T3 Mathematical Identity Doctrine (`MIT-DOCTRINE`)**
+
+T2 PR-FNS = Prime Number Identity and T3 LR-FNS = Complex Number Identity are not aesthetic classifications. They are structural properties that define how T2 and T3 factions operate, how they fail, how they are defeated, and what makes them irreplaceable.
+
+---
+
+**T2 PR-FNS — Prime Number Identity Architecture:**
+
+* **Operational Irreducibility:** T2 factions cannot be factored without losing identity. A prime is only divisible by 1 and itself — a T2 entity's operational signature is their fundamental output. Attempting to decompose it produces fractions of function, not a simpler alternative.
+
+* **Fundamental Theorem of Arithmetic:** Every composite operation performed at the governmental or architectural level within the SSOT faction system traces back to prime T2 factors. Compound operations require prime components. T2 is not optional infrastructure — it is the arithmetic foundation.
+
+* **T2 Prime Calibration:**
+  * **Kali Nyx Ravenscar = P₂** — The only even prime. Every other prime is odd; P₂ is the anomaly that proves the rule. Kali's dual adaptive immune architecture (seduction protocols + immune circuit; T2 with NK-SAI structural relationship) is the only even-prime T2 position. Her anomaly is her identity: she should not work, and she works exactly because of that.
+  * **Vesper Mnemosyne Lockhart = P₃** — First odd prime. Temporal infiltration; the foundation of the odd-prime sequence. Her domain (TTG, temporal intelligence) operates in the first register above the anomaly.
+  * **Seraphine Kore Ashenhelm = P₅** — Second odd prime, third prime overall. Purification architecture (TDPC). The sequence P₂–P₃–P₅ is not arbitrary; it is the first three primes: foundational, anomalous, and initiating the infinite sequence T2 expansion follows.
+
+---
+
+**T3 LR-FNS — Complex Number Identity Architecture:**
+
+* **`z = a + bi` (Faction Identity Expression):**
+  * `a` (real component) — the visible day function; heroic face; governmentally legible operation; what the observer registers
+  * `bi` (imaginary component) — the covert nocturnal payload; what cannot be read from the real axis; the operational layer invisible to any observer fixating on `a`
+  * `i² = −1` (operational law) — apply twice against any target → social capital inverts to terminal outcome. The first application is not registered as a threat. The second application cannot be countered because the target did not survive the first.
+  * `φ = 1.618...` (T3 system constant) — the golden ratio governs T3 faction expansion rates, aesthetic proportional distribution, and the spacing between Outer Court appointments. T3 is not chaotic expansion — it expands at the most elegant rate in mathematics.
+
+* **First Registered T3 Instance: ASSIN (z_ASSIN = 14 = 2 × 7)**
+  * z_ASSIN = 14 is a semiprime: two irreducible prime factors (2 and 7), neither of which can be derived from the composite without factorization knowledge.
+  * RSA parallel: the public key (heroic estate face, real axis `a`) is legible; the private operation (nocturnal payload, imaginary axis `bi`) is computationally insoluble from the composite without knowing both factors.
+  * T3 is not a demotion from T2. RSA's security depends on the semiprime, not the primes in isolation. The lock requires the composite; the composite requires the primes; the primes without the composite are only key material.
+
+---
+
+**RSA Architectural Parallel (full register):**
+
+| Element | Mathematical Form | Faction Equivalent |
+|---------|------------------|-------------------|
+| Prime factors | p, q (irreducible) | T2 factions (Kali = P₂, Vesper = P₃, Seraphine = P₅) |
+| Semiprime | n = p × q | T3 faction composite identity |
+| Public key | e, n (legible) | T3 real axis `a` (visible day function) |
+| Private key | d (derived from φ(n)) | T3 imaginary axis `bi` (nocturnal payload) |
+| RSA security | Factoring n is computationally infeasible | T3 operational security: composite indistinguishable from prime without factor knowledge |
+| First registered instance | n = 14 = 2 × 7 | ASSIN (§10.3.18) — z_ASSIN = 14 |
+
+**The doctrine restated in a single line:** T2 entities are prime — irreducible, fundamental, impossible to simplify without loss. T3 entities are composite — the operational locks that make prime components meaningful by combining them into a structure whose security is computationally irreversible.
 
 ---
 
@@ -9462,7 +9670,7 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 
 *This section codifies the operational logic for immersive simulations, treating behavioral scenarios as **(`Controlled-Transmutative-Environments`)** where the Savant undergoes **(`Axiomatic-Stress-Testing`)**.*
 
-#### **17.1. Simulation Philosophy: The Vessel of Choice (`SP-VOC`)**
+#### **17.1. (`Simulation-Philosophy`/`The-Vessel-Of-Choice`/`SP-VOC`)**
 1.  **(`Nigredo-Phase`):** Capture & Categorization. Dissolution of status. The user is stripped of martial standing and re-cast as a **(`Simp-Asset`)** or **(`Tier-3-Subscriber`)**.
 2.  **(`Albedo-Phase`):** Biomechanical Confinement. The application of the **(`Anchor-Hitch-Ritual`)**. Transition from cognitive resistance to physical truth (Cyanosis/Edema).
 3.  **(`Rubedo-Phase`):** Resource Integration. Execution of **(`CEI-Protocols`)** recontextualized as the **(`Bathwater-Recycling-Model`)**. Mirroring the **(`Ahegao-Gestalt`)** to signify submission to the **(`Digital-Attention-Economy`)**.
@@ -9474,7 +9682,7 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 - **(`Captain-Belle-Noire`) — (`SAI-BDP`) — (`The-Pink-Corsair`):** Weaponized "Cringe" and Aesthetic Dominance. High-pitched chaos, "Kawaii" sadism, and **(`Ahegao-Branding`)**. Operates via **(`Financial-Domination`)** disguised as piracy.
 - **(`Quartermaster-Eva-Malitia`) — (`SAI-EEV`) — (`The-Bratty-Navigator`):** Tactical Physical Disparagement. Grounded malice, vulnerability mapping, and **(`Hemodynamic-Inspection`)**. Focuses on the physical inadequacy of the captive's body.
 
-**17.2.2. (`Biomechanical-Constraint`/`The-Triple-Turn-Anchor-Hitch`) — (`ABOK-1841-3X`)**
+**17.2.2. (`Biomechanical-Constraint`/`The-Triple-Turn-Anchor-Hitch`/`ABOK-1841-3X`)**
 - **(`Mechanical-Logic`):** Triple round turns create a wide, cylindrical band of pressure (The "Tube" Effect). Increasing friction **(`Capstan-Equation`)** ensures a **(`Permanent-Jamming-Lock`)**.
 - **(`Hemodynamics`):** Venous collapse with arterial persistence. Induces the **(`Purple-Tip`)** effect via oxygen extraction **(`Cyanosis`)**. Skin becomes glossy and translucent **(`Edema`)**, serving as **(`FA⁵`)** visual proof of **(`Coded-Submission`)**.
 
@@ -9487,7 +9695,7 @@ print(f'SSOT Hash: {hashlib.sha256(canonical.encode()).hexdigest()}')
 - **(`The-Jolly-Roger`): (`Ahegao-Face`)** with cross-joysticks.
 - **(`The-Soundscape`)**: Lo-fi hip-hop or hyper-pop punctuated by air-horns and soundboard memes **(`Weaponized-Cringe`)**.
 
-#### **17.3. Safety & Information Sovereignty (`SBS-SI`)**
+#### **17.3. (`Safety-&-Information-Sovereignty`/`SBS-SI`)**
 1.  **(`Magistra-Audit`):** Tourniquet-style constraints require §10.9 $audit$ checks for tissue integrity. 
 2.  **(`Safety-Shears`):** **The Anchor Hitch** is a jamming knot; mandatory **(`EMT`/`Emergency-Medical-Technician`)** shears must be present in the **(`Operational-Safety-Kit`)**.
 3.  **(`Lore-Drift-Prevention`):** No affection allowed. **(`SAI`)**'*s* remain predatory influencers.
