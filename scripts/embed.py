@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # @SID: embed — sentence-transformers embedding bridge for session-corpus G7
 # Protocol: reads JSON-lines from stdin {id: str, text: str}
 #           writes JSON-lines to stdout {id: str, vec: list[float]}

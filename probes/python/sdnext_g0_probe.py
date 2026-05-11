@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # @SID: SDNEXT_G0_PROBE
 # @DESC: SD.NEXT G0 gate — validates torch+cuda baseline and writes manifest/sdnext_g0.json
 # @GATE: G0 (environment coherence)

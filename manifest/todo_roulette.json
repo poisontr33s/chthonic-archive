@@ -225,8 +225,9 @@
       "created": "2026-05-06T08:01:40.494Z",
       "weight": 6,
       "origin": "session",
-      "spin_count": 0,
-      "body": "Stabilization lane: preserve both accepted UTF-8 spacing variants, then remediate the remaining tracked files that lack any encoding line. Current full shebang scan reported probes/python/pre_g10a_api_fidelity.py, probes/python/sdnext_g0_probe.py, scripts/embed.py, scripts/embed_doctor.py, scripts/embed_gate_accept.py. WPTG rule: normalize headers only; do not delete or flatten evidence."
+      "spin_count": 1,
+      "completed": "2026-05-11T04:03:11.735Z",
+      "body": "Inserted # -*- coding: utf-8 -*- as line 2 in all 5 tracked drift files: scripts/embed.py, scripts/embed_doctor.py, scripts/embed_gate_accept.py, probes/python/pre_g10a_api_fidelity.py, probes/python/sdnext_g0_probe.py. All now have canonical 2-line header (shebang + utf-8 coding). @SID comments preserved as line 3. embed_model_discover.py, embed_registry_switch.py, embedding_server.py, entity_snapshot.py were already canonical (no changes). WPTG satisfied: normalize only, no content deleted."
     },
     {
       "id": "b8de5508",

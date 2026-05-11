@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # SID: PROBE_PRE_G10A_API_FIDELITY
 # Gate: pre-G10a — exllamav3 API symbol fidelity check
 # Validates that symbols assumed by apps/tabby-modern/src/tabby_modern/state.py

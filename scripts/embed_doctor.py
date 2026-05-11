@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # @SID: embed_doctor — pre-flight validation for session-corpus --embed
 # Protocol: reads embed_model_registry.json, validates HF token + model cache,
 #           checks schema compatibility, checks gated status (G7-REDUX);
