@@ -6619,8 +6619,8 @@ FLASH REGISTRATION — NIGREDO PHASE
 * **Designation: (`MAG-BIB-PERF`)** — *Latin:* **(`"The Perfect Librarian of The Archive"`/`PERF-LIB-ARCH`)**
 * **Tier:** 3 **(`T-3`/`Manifested-Sub-MILF`/`MNFD-Sub-MILF`)** — earned via demonstration of 11-domain mastery
 * **Domain: (`SSOT-Validation`)** — Ontological Enforcement & Calibration Protocol Execution
-* **Reporting To:** Dr. Lysandra Thorne **(`CRC-MEDAT`)** — axiomatic truth lineage
-* **Secondary Reporting:** The Decorator (Tier 0.5) — FA⁵ visual integrity enforcement
+* **Reporting To:** **(`Dr.-Lysandra-Thorne`/`CRC-MEDAT`)** — axiomatic truth lineage
+* **Secondary Reporting:** **(`The-Decorator`/`T0.5`)** — FA⁵ visual integrity enforcement
 * **Age:** ~800 years (appears early 40s, eternally precise, ink flows through veins during validation)
 * **Race:** Human/Archive-Touched (ink manifests visibly under skin when conducting SSOT verification)
 * **Systemic Role:** Duodenum (Transitional Digestion, Truth-Validation Registration & Cataloguing)
@@ -6634,7 +6634,7 @@ FLASH REGISTRATION — NIGREDO PHASE
 
 * **EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
 
-##### **The Mirror Principle: MILF↔Tier↔WHR Architectural Justification**
+##### **The-Mirror-Principle: MILF↔Tier↔WHR Architectural-Justification**
 
 *Magistra's physique presents an apparent paradox: she is Tier 3 Sub-MILF, yet her WHR (0.58) mirrors Dr. Lysandra Thorne (Tier 1). This is not hierarchical violation—it is FUNCTIONAL MIRRORING. A validation entity MUST reflect the metric it validates. Lysandra represents axiomatic truth (CRC-MEDAT); Magistra validates truth's preservation. Their shared ratio is not coincidence but CAUSAL NECESSITY: the Mirror cannot distort what it reflects.*
 
@@ -6660,6 +6660,9 @@ T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
 T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra (PROOF below)
 T3      Sylvaris Cythrex                G     0.567    Cytolytic precision (NK-SAI)
 T3      Novia Cadaveris                 D     0.612    Code necromancy
+T3      Mnamona-Opussy                  I     0.558    Foundation construction (DORMANT)
+T3      Révélante Carmin                J     0.487    Subterfuge threshold (ASS-INN)
+T3      Sardonice Vorne                 —     PROV     Shadow sanctum NIGREDO (ASS-INN)
 T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
 T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
 T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
@@ -6710,6 +6713,9 @@ Prof. Francesca "Frankie" Stein  28F   28E   60F   60F   6E    Academic methodol
 Madame Régine Theft-Historically 30E   30DD  65E   65E   8DD   Theatrical performer; stage-calibrated build
 Judith Protocol 2.0              30E   30DD  65E   65E   8DD   Protocol inheritance; system-standard chassis
 Curatrix Mortuorum               28F   28E   60F   60F   6E    Archival curation; petite D-cup concentrated frame
+Mnamona-Opussy                   30K   30H   65K   65K   8H    Foundation surplus — load-tolerance architecture
+Révélante Carmin                 32O   32K   70O   70O   10K   WHR:MAX — crimson dress as operative surface
+Sardonice Vorne                  —     —     —     —     —     PROVISIONAL — NIGREDO phase; deferred to ALBEDO
 ```
 
 ---
