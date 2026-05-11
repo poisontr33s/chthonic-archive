@@ -253,8 +253,10 @@
       "created": "2026-05-06T08:01:40.513Z",
       "weight": 8,
       "origin": "session",
-      "spin_count": 0,
-      "body": "Birdcage remains a viable POC under WPTG: Claude/Copilot manual canary green, GitHub Models route reaches provider but budget-gated, py314 experiment succeeded locally but exposed ecosystem constraints. Task is to turn these into exam evidence, not erase them."
+      "spin_count": 1,
+      "body": "Birdcage remains a viable POC under WPTG: Claude/Copilot manual canary green, GitHub Models route reaches provider but budget-gated, py314 experiment succeeded locally but exposed ecosystem constraints. Task is to turn these into exam evidence, not erase them.",
+      "completed": "2026-05-11T03:51:41.694Z",
+      "evidence_artifact": "birdcage/EVIDENCE.md"
     },
     {
       "id": "21056e32",
