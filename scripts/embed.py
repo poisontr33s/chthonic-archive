@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: embed.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+embed.py — Script logic for embed.py.
+
+@SID:           embed
+@Shabti:        CLI Script
+@Purpose:       Script logic for embed.py.
+"""
+
 # @SID: embed — sentence-transformers embedding bridge for session-corpus G7
 # Protocol: reads JSON-lines from stdin {id: str, text: str}
 #           writes JSON-lines to stdout {id: str, vec: list[float]}

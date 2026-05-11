@@ -1,0 +1,84 @@
+{
+  "teleport_sibling_validation": {
+    "satellite_resolved": "PsychoNoir-Kontrapunkt @ C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+    "briefcase_target": "claude/mailbox/briefcase/",
+    "categories": {
+      "entity-manifest": 7,
+      "world-protocol": 2,
+      "consciousness-protocol": 2,
+      "entity-revelation": 1
+    },
+    "files_scanned": 12,
+    "command": "bun run scripts/teleport.ts --from-sibling pnk --dry-run",
+    "no_write_fixture": "--dry-run flag prints inventory and writes nothing (DRY RUN — no files written)",
+    "verdict": "PASS",
+    "exit_code": 0,
+    "entity_mode_auto_applied": true
+  },
+  "ticket": "39381ea6",
+  "active_queue_state": {
+    "highest_score_task": "864f2058",
+    "active_entries": [
+      {
+        "staleness_days": 4.83,
+        "score": 8.41,
+        "id": "864f2058",
+        "spin_count": 0,
+        "weight": 6
+      },
+      {
+        "staleness_days": 8.13,
+        "score": 6.63,
+        "id": "c9d0e1f2",
+        "spin_count": 1,
+        "weight": 5
+      },
+      {
+        "staleness_days": 4.83,
+        "score": 6.31,
+        "id": "39381ea6",
+        "spin_count": 0,
+        "weight": 6
+      }
+    ],
+    "report_active_count": 3
+  },
+  "overall_verdict": "PASS",
+  "rng_validation": {
+    "note": "Task selection (weighted roulette) requires distribution fairness, not cryptographic security. Math.random is correct for this use case.",
+    "selection_bias": "Higher-weight + older (more stale) tasks have larger arc shares. Observed: c9d0e1f2 w5 8.13d staleness won 2/3 spins vs 39381ea6 w6 4.83d — staleness term dominates at s>5d.",
+    "euler_score_formula": "score = w * e^(kappa*s) * 0.5 * (1 + sin(phi))",
+    "is_cryptographic": false,
+    "method": "weightedRandom (Math.random V8 xorshift128+)",
+    "kappa": 0.07,
+    "verdict": "PASS",
+    "is_correct_for_purpose": true,
+    "dry_run_passes": [
+      {
+        "score": 6.31,
+        "weight": 6,
+        "arc_pct": 29.6,
+        "pass": 1,
+        "selected_id": "39381ea6",
+        "verdict": "PASS"
+      },
+      {
+        "score": 6.62,
+        "weight": 5,
+        "arc_pct": 31.0,
+        "pass": 2,
+        "selected_id": "c9d0e1f2",
+        "verdict": "PASS"
+      },
+      {
+        "score": 6.62,
+        "weight": 5,
+        "arc_pct": 31.0,
+        "pass": 3,
+        "selected_id": "c9d0e1f2",
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "generated": "2026-05-11T04:09:42.577Z"
+}

@@ -1,13 +1,28 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: ENTITY_SNAPSHOT_PY
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: entity_snapshot.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Dump chthonic entity registry to JSON on stdout.
 Used by milfological_dashboard.ts at startup.
 
 Usage:
     uv run scripts/entity_snapshot.py
+
+@SID:           ENTITY_SNAPSHOT_PY
+@Shabti:        CLI Script
+@Purpose:       Dump chthonic entity registry to JSON on stdout.
 """
+
+# @SID: ENTITY_SNAPSHOT_PY
 import sys
 import json
 import re

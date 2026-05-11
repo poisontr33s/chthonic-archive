@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: embed_doctor.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+embed_doctor.py — Script logic for embed_doctor.py.
+
+@SID:           embed_doctor
+@Shabti:        CLI Script
+@Purpose:       Script logic for embed_doctor.py.
+"""
+
 # @SID: embed_doctor — pre-flight validation for session-corpus --embed
 # Protocol: reads embed_model_registry.json, validates HF token + model cache,
 #           checks schema compatibility, checks gated status (G7-REDUX);

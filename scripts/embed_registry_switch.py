@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: embed_registry_switch.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+embed_registry_switch.py — Script logic for embed_registry_switch.py.
+
+@SID:           embed_registry_switch
+@Shabti:        CLI Script
+@Purpose:       Script logic for embed_registry_switch.py.
+"""
+
 # @SID: embed_registry_switch — switch the active embedding model in the corpus stack
 #
 # Safely updates three surfaces in one atomic pass:

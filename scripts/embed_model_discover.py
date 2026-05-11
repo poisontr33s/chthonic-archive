@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: embed_model_discover.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+embed_model_discover.py — Script logic for embed_model_discover.py.
+
+@SID:           embed_model_discover
+@Shabti:        CLI Script
+@Purpose:       Script logic for embed_model_discover.py.
+"""
+
 # @SID: embed_model_discover — HF Hub embedding model discovery + gating classification
 #
 # Scans HF Hub for top feature-extraction / sentence-similarity models, classifies gating
