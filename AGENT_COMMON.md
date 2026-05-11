@@ -38,6 +38,22 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
     ```
   - **Lint:** `bun run lint:shebang` checks all tracked `.ts` files. Run before committing new scripts.
 - **Rust:** `cargo build`
+- **Polyglot CLI extras (Rust-native, `~/.cargo/bin`):** Prefer these over legacy equivalents in agent commands:
+
+  | Tool | Replaces | Notes |
+  |------|----------|-------|
+  | `rg` (ripgrep) | `grep` / `Select-String` | gitignore-aware, no alias needed |
+  | `bat` / `catt` | `cat` | `catt` = pwsh alias; `bat --style=plain` for raw output in scripts |
+  | `fd` | `find` | `fd <pattern>` from cwd by default |
+  | `delta` | `diff` | syntax-highlighted pager; set as git pager |
+  | `hyperfine` | `time` | `hyperfine 'cmd1' 'cmd2'` |
+  | `tokei` | `cloc` | `tokei .` — LOC by language |
+  | `xh` | `curl`/`httpie` | `xh GET https://...`; HTTPie-compatible syntax |
+
+  Not installed (add via `cargo install` if needed): `eza`/`lsd` (ls), `dust` (du), `procs` (ps).
+
+  **pwsh alias map:** `rv` → `rvw.exe` (Ruby manager). `rvar` → `Remove-Variable`. `rvv` → explicit `rvw.exe` alias (preferred in agent scripts — unambiguous). `catt` → `bat`. Ruby devkit (MSYS2 ucrt64 gcc/make): gated by default; `Enable-RubyDevKit` / `Disable-RubyDevKit` toggle per-session.
+
 - **cmd.exe:** Never. No `cmd /c` wrappers. Will trigger Windows "open with" dialogs.
 - **Platform:** Windows 11, VS Code Insiders, repo root = working dir.
 - **Git EOL:** LF via `.gitattributes`. `core.autocrlf=false`.
