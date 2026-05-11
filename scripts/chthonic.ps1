@@ -2394,10 +2394,18 @@ function Show-StatusBanner {
         Write-Host "$REPO_ROOT" -ForegroundColor $W
         Write-Host ("="*72) -ForegroundColor $D
 
-        # rv -> Ruby
-        $rubyVer = ver { ruby -e "print RUBY_VERSION" }
+        # rv -> Ruby (rvw-first: ruby is not on User/Machine registry PATH, must resolve via rvw ruby find)
+        $rubyExe = $null
+        try { $rubyExe = (& rvw ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        if (-not $rubyExe -or -not (Test-Path $rubyExe)) { $rubyExe = $null }
+        $rubyVer = $null
+        if ($rubyExe) { try { $rubyVer = (& $rubyExe -e "print RUBY_VERSION" 2>$null) } catch {} }
+        if (-not $rubyVer) { $rubyVer = ver { ruby -e "print RUBY_VERSION" } }
         $rubyJitTag = $null
-        try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { $rubyJitTag = '+zjit' } } catch {}
+        if ($rubyExe -and $rubyExe -match 'zjit') { $rubyJitTag = '+zjit' }
+        if (-not $rubyJitTag) {
+            try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { $rubyJitTag = '+zjit' } } catch {}
+        }
         $rvwVer = ver { rvw --version }; if ($rvwVer -match '(\d+\.\d+\.\d+)') { $rvwVer = $matches[1] } else { $rvwVer = $null }
         $rvMeta = Get-CommandResolution -Name "rv"
         $rvVer = $null
@@ -3848,8 +3856,15 @@ function Get-InstalledVersion {
                 return $null
             }
             "ruby"       {
-                $v = ruby -e "print RUBY_VERSION" 2>$null
-                try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { return "$v+zjit" } } catch {}
+                $rubyExe = $null
+                try { $rubyExe = (& rvw ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+                if (-not $rubyExe -or -not (Test-Path $rubyExe)) { $rubyExe = $null }
+                $v = if ($rubyExe) { try { & $rubyExe -e "print RUBY_VERSION" 2>$null } catch {} } else { try { ruby -e "print RUBY_VERSION" 2>$null } catch {} }
+                $zjitTag = if ($rubyExe -and $rubyExe -match 'zjit') { "+zjit" } else { $null }
+                if (-not $zjitTag) {
+                    try { $rubyCmd = Get-Command ruby -ErrorAction SilentlyContinue; if ($rubyCmd -and $rubyCmd.Source -match 'zjit') { $zjitTag = "+zjit" } } catch {}
+                }
+                if ($zjitTag) { return "$v$zjitTag" }
                 return $v
             }
             "python"     {
@@ -4901,10 +4916,15 @@ function Invoke-RubyVersions {
         $activePath = $null
         $activeVersion = $null
         $managerVersion = $null
-        try { $activePath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
-        try { $activeVersion = (& ruby -e "print RUBY_VERSION" 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        try { $activePath = (& rvw ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        if ($activePath -and (Test-Path $activePath)) {
+            try { $activeVersion = (& $activePath -e "print RUBY_VERSION" 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        }
+        if (-not $activeVersion) {
+            try { $activeVersion = (& ruby -e "print RUBY_VERSION" 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+        }
         try {
-            $rvOut = (rv --version 2>$null)
+            $rvOut = (rvw --version 2>$null)
             if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $managerVersion = $matches[1] }
         } catch {}
 
@@ -4919,7 +4939,7 @@ function Invoke-RubyVersions {
         return
     }
 
-    & rv ruby list
+    & rvw ruby list
 }
 
 function Invoke-RubyTools {
@@ -4934,7 +4954,7 @@ function Invoke-RubyTools {
         return
     }
 
-    & rv tool list
+    & rvw tool list
 }
 
 function Invoke-RubyLane {
@@ -4942,13 +4962,13 @@ function Invoke-RubyLane {
 
     $rvVersion = $null
     try {
-        $rvOut = (rv --version 2>$null)
+        $rvOut = (rvw --version 2>$null)
         if (($rvOut -join "`n") -match '(\d+\.\d+\.\d+)') { $rvVersion = $matches[1] }
     } catch {}
 
     $rubyVersion = Get-InstalledVersion "ruby"
     $rubyPath = $null
-    try { $rubyPath = (& rv ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
+    try { $rubyPath = (& rvw ruby find 2>$null | Select-Object -First 1).ToString().Trim() } catch {}
 
     $gccVersion = $null
     try {
