@@ -43,7 +43,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
   | Tool | Replaces | Notes |
   |------|----------|-------|
   | `rg` (ripgrep) | `grep` / `Select-String` | gitignore-aware, no alias needed |
-  | `bat` / `catt` | `cat` | `catt` = pwsh alias; `bat --style=plain` for raw output in scripts |
+  | `bat` | `cat` | `bat --style=plain` for raw output in scripts; no PS name collision |
   | `fd` | `find` | `fd <pattern>` from cwd by default |
   | `delta` | `diff` | syntax-highlighted pager; set as git pager |
   | `hyperfine` | `time` | `hyperfine 'cmd1' 'cmd2'` |
@@ -52,7 +52,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 
   Not installed (add via `cargo install` if needed): `eza`/`lsd` (ls), `dust` (du), `procs` (ps).
 
-  **pwsh alias map:** `rv` → `rvw.exe` (Ruby manager). `rvar` → `Remove-Variable`. `rvv` → explicit `rvw.exe` alias (preferred in agent scripts — unambiguous). `catt` → `bat`. Ruby devkit (MSYS2 ucrt64 gcc/make): gated by default; `Enable-RubyDevKit` / `Disable-RubyDevKit` toggle per-session.
+  **pwsh alias map (collision-only):** `rv` → `rvw.exe` (Ruby manager, displaces PS built-in `rv = Remove-Variable`). `rvar` → `Remove-Variable` (preserves displaced built-in). `rvv` → explicit `rvw.exe` function (preferred in agent scripts — unambiguous). All other Rust CLI tools (`bat`, `rg`, `fd`, `delta`, `hyperfine`, `tokei`, `xh`) have no same-name PS collision — use directly. Ruby devkit (MSYS2 ucrt64 gcc/make): gated by default; `Enable-RubyDevKit` / `Disable-RubyDevKit` toggle per-session.
 
 - **cmd.exe:** Never. No `cmd /c` wrappers. Will trigger Windows "open with" dialogs.
 - **Platform:** Windows 11, VS Code Insiders, repo root = working dir.
