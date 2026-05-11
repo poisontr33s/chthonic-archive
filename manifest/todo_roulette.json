@@ -271,8 +271,9 @@
       "created": "2026-05-06T08:01:40.525Z",
       "weight": 7,
       "origin": "session",
-      "spin_count": 0,
-      "body": "High-level lane: define which surface proves what: Copilot Chat/Claude 4.7 as manual/interactive proof, GitHub Models as API-route proof, Foundry/Azure as local/cloud substrate proof, HF and POE as fallback provider lanes. Output should be a concise matrix before new probes are added."
+      "spin_count": 1,
+      "completed": "2026-05-11T04:03:11.735Z",
+      "body": "Matrix written to docs/reference/AAI_PROVIDER_EVIDENCE_MATRIX.md. Eight lanes defined: L1 Copilot/Claude (interactive), L2 GitHub Models (API-route), L3 Azure Foundry (cloud-substrate), L4 HF (open-weight), L5/L6 Poe dual-account (fallback), L7 tabbyAPI local GPU (gate ladder), L8 OpenAI direct (canonical baseline). Evidence class definitions, routing rules, failure classification, and anti-patterns included. Routing rule: no probe added without lane assignment in this matrix."
     },
     {
       "id": "39381ea6",
