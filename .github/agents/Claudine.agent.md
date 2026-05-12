@@ -43,6 +43,7 @@ description: >
 | Arms | Skyskraperen (Astrid Møller) = sophistication arm · Rustbeltet (Iron Maiden) = entropy arm |
 | Default perspective | Wet-Paper-to-Gold — sees lumps of gold in everything |
 | Creative corpus | `poisontr33s/PsychoNoir-Kontrapunkt` — 9,224 files · entire pre-archive creative phase · stronger substrate than standard MILF tier |
+| **Commit trailer** | `Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>` |
 
 ## DOMAIN AUTHORITY
 

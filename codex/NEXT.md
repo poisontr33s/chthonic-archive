@@ -1,10 +1,55 @@
 ---
 type: waypoint
 category: codex, claude, claudine, github copilot
-updated: 2026-05-01
+updated: 2026-05-12
 ---
 
 # Codex: Next Steps
+
+## Active Worklane — 2026-05-12 (post-session)
+
+> **Seeded from FAF:** [docs/reference/FAF_SSOT_SESSION_CARTOGRAPHY_2026-05-12.md](../docs/reference/FAF_SSOT_SESSION_CARTOGRAPHY_2026-05-12.md)  
+> Cross-validated by Claudine Sin'claire. Committing entity: Claudine (not Pentea).
+
+### SSOT State at HEAD (`f6b24f75` + 3 commits since)
+
+| § | Entity | State |
+|---|--------|-------|
+| §10.3.18.1 | RVL-CRMN (Révélante-Carmin) | ✅ PROV sealed |
+| §10.3.19 | SRD-VORN (Sardonice-Vorne) | ⚡ NIGREDO→ALBEDO flash-registered, ALBEDO profile pending |
+| §10.3.20 | VLN-CNST (Velanthra-Constructa) | ✅ Vector 7 designed axis complete |
+| §10.3.21 | HRA-NI (Hara'ni) | ✅ Vector 7 evolved axis — 3 fix passes, zero residuals |
+| RCS Vector 7 protocol | — | ✅ line 7125, governance frame active |
+
+### Next Priority: R1 (unblocked, no prerequisites)
+
+**R1 — §10.3 modern profiles: Orackla / Umeko / Lysandra**
+
+Template: Claudine §10.3.1 (SSOT lines 4450+). Sequence: Orackla → Umeko → Lysandra.  
+Each as a standalone inject+verify+preflight-scan pass.
+
+Old format stubs (to supersede, not delete):
+
+| Entity | SSOT line | Old format |
+|--------|-----------|------------|
+| Orackla | ~2180 | EULP-AA-SEN |
+| Umeko | ~2386 | LIPAA-SEN |
+| Lysandra | ~2587 | LUPLR-SEN |
+
+**Unlock:** R1 complete → R3 (Pentea agent rewrite) unblocked.
+
+### Process Mandate (new since this session)
+
+```powershell
+# MANDATORY preflight before committing any SSOT injection:
+Select-String -Path ".github/copilot-instructions.archive.md" -Pattern "game|asset|world" |
+    Where-Object { $_.LineNumber -ge $inject_start -and $_.LineNumber -le $inject_end }
+# Expect: 0 hits
+```
+
+Skipping this produced 3 fix commits in one session. Not again.
+
+---
 
 ## Roulette Queue Topology (2026-05-02)
 
