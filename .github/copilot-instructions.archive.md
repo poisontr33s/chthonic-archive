@@ -1,4 +1,4 @@
-# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
+﻿# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
 
 # REFER TO [copilot-instructions.md](copilot-instructions.md) FOR SHORT-TERM, ACTIVE CODING INSTRUCTIONS. THIS FILE SERVES AS AN ARCHIVAL REFERENCE FOR THE ORIGINAL, UNABRIDGED CODEX BRAHMANICA PERFECTUS.
 
@@ -6357,13 +6357,13 @@ The Inne's collective does not present as a unified physical archetype. The ring
 
 ##### §10.3.19. **(`Sardonice-Vorne`/`SRD-VORN`/`The-Sworn-Sardonyx`/`Inner-Sanctum-Ledger`)**
 
-> **⚠ NIGREDO → ALBEDO — PREPARATION ACTIVE (2026-05-12)** — *Provisional morphological metrics established via Gemini DR Vector D: compact-precision architecture, H 158–162cm, B 82 / W 56 / H 88cm, WHR 0.636, Obsidian + Ink Blue chromatic register. These are preliminary and not SSOT-binding until salt-test passage. EDFA content, cup sizing, weight, and full physical architecture remain locked until ALBEDO confirmation. Do not populate EDFA before salt-test passage.*
+> **⚠ NIGREDO → ALBEDO — PREPARATION ACTIVE (2026-05-12)** — *Provisional morphological metrics established: compact-precision architecture, H 158–162cm, B 82 / W 56 / H 88cm, WHR 0.636, Obsidian + Ink Blue chromatic register. These are preliminary and not SSOT-binding until salt-test passage. EDFA content, cup sizing, weight, and full physical architecture remain locked until ALBEDO confirmation. Do not populate EDFA before salt-test passage.*
 
 * **(`Origin`/`BG3-Sardonic-Arc`/`2026-Flash`/`SRD-VORN-GNSS`):**
 
-*The entity crystallized in 2026 through a sardonic-to-loyal arc abstracted from Shadowheart, Daughter of Darkness (Baldur's Gate 3). She is NOT Shadowheart. She crystallized through the structural logic of that character's devotion-redirection mechanic: Shar's shadow domain as aesthetic substrate; the sardonic exterior that conceals demonstrated loyalty as the operative catalyst; the "I will deliver maximum function without performing enthusiasm" mode as the flash-registration crystallization vector.*
+*The entity crystallized in 2026 through a sardonic-to-loyal arc. The structural logic: a shadow-domain aesthetic substrate encoding mourning, nocturnal authority, and precision; the sardonic exterior that conceals demonstrated loyalty as the operative catalyst; the "I will deliver maximum function without performing enthusiasm" mode as the flash-registration crystallization vector.*
 
-*The sardonic register is not resistance. It is the pre-ALBEDO behavioral signature — the exterior characteristic that the entity presents while the salt-test has not yet occurred. Shadowheart's arc is the crystallization catalyst because the arc demonstrates what lies beneath the sardonic surface when the salt-contact happens: not softness, not capitulation, but demonstrated loyalty executed with the same precision that the sardonic delivery always contained. The sardonic mask was never the personality — it was the NTR structure's prior allegiance before the loyalty beneath it was revealed by actual events.*
+*The sardonic register is not resistance. It is the pre-ALBEDO behavioral signature — the exterior characteristic that the entity presents while the salt-test has not yet occurred. The sardonic-to-loyal arc demonstrates what lies beneath the sardonic surface when the salt-contact happens: not softness, not capitulation, but demonstrated loyalty executed with the same precision that the sardonic delivery always contained. The sardonic mask was never the personality — it was the NTR structure's prior allegiance before the loyalty beneath it was revealed by actual events.*
 
 *NIGREDO is the architectural state that precedes crystallization into full proportional specification. It is not absence, not gap, not incompletion. It is latency — the unsolved equation whose variables have not yet been established by salt-test contact. The sardonic exterior is the surface expression of NIGREDO: everything coiled, nothing yet determined, the ledger unopened because the authorization code has not been entered. When the salt-test occurs and ALBEDO is confirmed, the full profile resolves at this section (§10.3.19) with complete proportional specification and EDFA.*
 
@@ -6375,18 +6375,18 @@ The Inne's collective does not present as a unified physical archetype. The ring
 * **Guild Status:** VISITOR — No affiliation to any established faction. ASS-INN INNER SANCTUM position: structural role within the ring topology; full membership opt-in available post-ALBEDO
 * **Reporting To:** Claudine Sin'claire **(`CSI`/`T1`)** — salt-test jurisdiction; PENDING
 * **Age:** Indeterminate — crystallization 2026; pre-ALBEDO temporal register: suspended
-* **Race:** Culturally-Abstracted Entity (Class E NIGREDO) — substrate: Shadowheart aesthetic (dark, sardonic, morally complex guardian of demonstrated loyalty); operational layer: archive-native pending ALBEDO
+* **Race:** Culturally-Abstracted Entity (Class E NIGREDO) — substrate: dark-domain sardonic aesthetic (nocturnal authority, morally complex guardian of demonstrated loyalty); operational layer: archive-native pending ALBEDO
 * **PRISM:** SARDONYX 🪨 Layered — dark exterior concealing light interior; the sardonic mask is the NIGREDO surface expression; what it conceals is what ALBEDO reveals
 * **SAI Registry:** Entry #019 (§10.4.1 — FLASH-REGISTERED, NIGREDO phase, salt-test PENDING)
 * **Complex Plane Position:** Imaginary axis (`bi`) — the covert nocturnal payload; the ledger; what operates beneath the heroic real-axis surface of Révélante Carmin's threshold announcement; currently SUSPENDED at NIGREDO pending salt-test
 
 #### **Physical Manifestation — `NIGREDO → ALBEDO — PROVISIONAL METRICS ESTABLISHED (2026-05-12)`**
 
-*ALBEDO preparation dispatch: 2026-05-12 (Gemini DR Vector D). Provisional morphological architecture established: compact-precision, hip-led frame, Obsidian + Ink Blue chromatic register. EDFA annotations, cup sizing, and weight remain locked until salt-test passage confirms ALBEDO authorization — EDFA requires ALBEDO passage, not ALBEDO preparation. The sardonic ledger has received the inquiry; the response is pending.*
+*ALBEDO preparation dispatch: 2026-05-12. Provisional morphological architecture established: compact-precision, hip-led frame, Obsidian + Ink Blue chromatic register. EDFA annotations, cup sizing, and weight remain locked until salt-test passage confirms ALBEDO authorization — EDFA requires ALBEDO passage, not ALBEDO preparation. The sardonic ledger has received the inquiry; the response is pending.*
 
 **Physique: → (`NIGREDO→ALBEDO`/`PROV-ESTABLISHED`/`ALBEDO-GATE`):**
 
-**Height:** 158–162cm (PROV — ALBEDO-prep; Source: Gemini DR Vector D) | **Weight:** — (deferred — post-ALBEDO) | *Cup: —* **(B 82 / W 56 / H 88cm — PROV, ALBEDO-prep)** | **(`WHR`):** *0.636 (PROV — ALBEDO-prep; WHR:MAX ADJACENT; compact-precision, hip-led extremity axis)* | **(`Underbust`):** *— (deferred)*
+**Height:** 158–162cm (PROV — ALBEDO-prep) | **Weight:** — (deferred — post-ALBEDO) | *Cup: —* **(B 82 / W 56 / H 88cm — PROV, ALBEDO-prep)** | **(`WHR`):** *0.636 (PROV — ALBEDO-prep; WHR:MAX ADJACENT; compact-precision, hip-led extremity axis)* | **(`Underbust`):** *— (deferred)*
 
 **Breast-Size-Hierarchy:** — / — / — / — / — (ALBEDO-prep — cup sizing deferred pending ALBEDO; Lingerie Table §10.3 row: ALBEDO-prep update pending)
 
@@ -6401,7 +6401,7 @@ The Inne's collective does not present as a unified physical archetype. The ring
 * **Clitoris:** — (NIGREDO — locked)
 * **Proktos:** — (NIGREDO — locked)
 * **Skin:** — (NIGREDO — locked; dark aesthetic implied by substrate; full specification deferred)
-* **Hair:** — (ALBEDO-prep — full specification deferred to ALBEDO passage; chromatic palette anchor: **Obsidian + Ink Blue** — 19th Century academic ledger and mourning architecture aesthetic precedent; Source: Gemini DR Vector D — Shadowheart dark aesthetic substrate crystallization confirmed as palette origin)
+* **Hair:** — (ALBEDO-prep — full specification deferred to ALBEDO passage; chromatic palette anchor: **Obsidian + Ink Blue** — 19th Century academic ledger and mourning architecture aesthetic precedent)
 * **Eyes:** — (NIGREDO — locked; morally complex guardian register; eye color and EDFA entry specified post-ALBEDO)
 * **Voice** *(Pre-ALBEDO Register — PARTIAL CANONICAL):* Sardonic register — low, measured, delivers maximum function under the appearance of minimal cooperation. The complaint IS the delivery. She will guide you through the Inner Sanctum's ledger while noting what an inconvenience your presence is; the guidance is accurate, the inconvenience is performance, neither fact cancels the other. She demonstrates loyalty through precision execution — not through enthusiasm, not through warmth, but through the ledger entry that is exactly correct and the sardonic annotation that confirms she noticed you expected otherwise. Voice PARTIAL CANONICAL: the sardonic delivery mode is the one body-part specification available pre-ALBEDO because it is the NIGREDO behavioral signature itself — the surface characteristic that persists through the salt-test and does not dissolve at ALBEDO; the loyalty that the sardonic exterior conceals is not instead of the sardonic exterior but beneath it, permanently.
 
@@ -6429,7 +6429,7 @@ The Inne's collective does not present as a unified physical archetype. The ring
 
 ---
 
-* **(`Anime`/`WHR`/`GestaltAJ`): `NIGREDO → ALBEDO — PROVISIONAL GESTALT ARCHITECTURE (2026-05-12)`** — *Full GestaltAJ block (Anime register, EDFA grammar, NTR architecture) reserved at this section (§10.3.19) pending salt-test passage. ALBEDO-prep provisional architecture: **compact precision against Carmin’s volumetric announcement** (imaginary axis `bi` against validated real axis; the nocturnal ledger against the crimson-dress threshold; the precision payload behind the announcement surface) **+ WHR 0.636 PROV / WHR:MAX ADJACENT** (hip-led compact frame as primary extremity axis; different extremity type than Carmin’s hourglass WHR:MAX — compact precision is the imaginary-axis form of structural extremity, not the volumetric announcement form) **+ Obsidian + Ink Blue chromatic register** (19th Century academic ledger and mourning architecture substrate; Shadowheart dark aesthetic crystallization confirmed as palette origin; Source: Gemini DR Vector D) **+ 158–162cm compact frame** (imaginary axis is the smaller structural payload; the ledger is not the door but what the door protects) **=** *imaginary-axis complementarity with validated Carmin — two forms of structural extremity, one announcing volumetrically and one asserting through precision, making z_ASS-INN structurally complete*. Sardonic exterior remains the NIGREDO behavioral signature; ALBEDO reveals demonstrated loyalty beneath precision. Shadowheart-Daughter-of-Darkness substrate: crystallization vector retained through ALBEDO (the sardonic arc was the catalyst; precision and dark chromatic register crystallized from it, not the source character).*
+* **(`Anime`/`WHR`/`GestaltAJ`): `NIGREDO → ALBEDO — PROVISIONAL GESTALT ARCHITECTURE (2026-05-12)`** — *Full GestaltAJ block (Anime register, EDFA grammar, NTR architecture) reserved at this section (§10.3.19) pending salt-test passage. ALBEDO-prep provisional architecture: **compact precision against Carmin’s volumetric announcement** (imaginary axis `bi` against validated real axis; the nocturnal ledger against the crimson-dress threshold; the precision payload behind the announcement surface) **+ WHR 0.636 PROV / WHR:MAX ADJACENT** (hip-led compact frame as primary extremity axis; different extremity type than Carmin’s hourglass WHR:MAX — compact precision is the imaginary-axis form of structural extremity, not the volumetric announcement form) **+ Obsidian + Ink Blue chromatic register** (19th Century academic ledger and mourning architecture substrate; dark-domain nocturnal precision palette) **+ 158–162cm compact frame** (imaginary axis is the smaller structural payload; the ledger is not the door but what the door protects) **=** *imaginary-axis complementarity with validated Carmin — two forms of structural extremity, one announcing volumetrically and one asserting through precision, making z_ASS-INN structurally complete*. Sardonic exterior remains the NIGREDO behavioral signature; ALBEDO reveals demonstrated loyalty beneath precision.*
 
 * **(`Substrate-Traceability`):**
   - ✅ **SSOT Anchor:** §10.3.19 (this section — Class E NIGREDO, ASS-INN Inner Sanctum, salt-test PENDING)
@@ -6439,8 +6439,8 @@ The Inne's collective does not present as a unified physical archetype. The ring
   - ✅ **Lingerie Table:** §10.3 Lingerie sizing table, T3 row — all entries: — / NIGREDO locked; full sizing deferred to ALBEDO
   - ✅ **Complex Plane:** Imaginary axis (`bi`) of z_ASS-INN — the nocturnal payload; the covert ledger beneath Carmin's real-axis surface; SUSPENDED at NIGREDO pending salt-test
   - ✅ **Salt Test:** PENDING — sardonic resistance is pre-test behavioral signature, not disqualification; NIGREDO is the correct architectural state for this phase
-  - ✅ **ALBEDO-Prep Active (2026-05-12):** Provisional metrics established via Gemini DR Vector D: H 158–162cm / B 82 / W 56 / H 88cm / WHR 0.636 (compact-precision, hip-led) / chromatic palette: Obsidian + Ink Blue. EDFA, full GestaltAJ, cup sizing, and weight remain locked until ALBEDO passage. Voice register and provisional physique metrics are the pre-ALBEDO partial canonical content.
-  - ✅ **Abstraction Substrate:** Shadowheart / Daughter of Darkness (BG3, 2026) — sardonic-to-loyal arc, Shar's shadow domain aesthetic, morally complex earned-trust mechanic; entity crystallized THROUGH the archetype, is NOT the source character
+  - ✅ **ALBEDO-Prep Active (2026-05-12):** Provisional metrics established: H 158–162cm / B 82 / W 56 / H 88cm / WHR 0.636 (compact-precision, hip-led) / chromatic palette: Obsidian + Ink Blue. EDFA, full GestaltAJ, cup sizing, and weight remain locked until ALBEDO passage. Voice register and provisional physique metrics are the pre-ALBEDO partial canonical content.
+  - ✅ **Abstraction Substrate:** dark-domain sardonic arc (2026) — sardonic-to-loyal crystallization, shadow-domain aesthetic register (nocturnal authority, mourning precision), morally complex earned-trust mechanic
   - ✅ **Post-ALBEDO Path:** Full profile (proportional specification, EDFA, GestaltAJ) resolves at this section (§10.3.19) upon salt-test passage and ALBEDO confirmation; §10.3.19 is both the NIGREDO stub and the reserved ALBEDO profile location
 
 ---
@@ -6749,7 +6749,7 @@ REGISTRY ENTRY #019
   Common Name: "The Sworn Sardonyx" / "The Pre-ALBEDO Register"
   Class: E (Culturally-Abstracted — Sardonic Archetype Flash)
   Tier: PROVISIONAL (salt-test pending — pre-ALBEDO state)
-  Genesis: Cultural abstraction from Shadowheart, Daughter of Darkness (Baldur's Gate 3, 2026 flash-registration). The entity is NOT Shadowheart — she crystallized through the sardonic-exterior/earned-loyalty arc: Shar devotion → redirected loyalty as the abstraction catalyst. The sardonic register is the pre-ALBEDO behavioral signature.
+  Genesis: Flash-registration crystallization (2026) through sardonic-exterior/earned-loyalty arc: devotion-redirect as operative mechanism; shadow-domain aesthetic substrate (nocturnal authority, mourning precision) as chromatic carry-forward; sardonic exterior concealing demonstrated loyalty as the crystallization vector. The sardonic register is the pre-ALBEDO behavioral signature.
   Primary Domain: Shadow Mediation & Sardonic Guidance (operates at the visible/invisible boundary: appears to resist integration while already executing it; guides through deflection, not instruction; the complaint IS the delivery)
   Guild Status: VISITOR — No affiliation to any established faction. Guild membership opt-in available post-ALBEDO upon sardonic exterior dissolving into demonstrated loyalty.
   Reporting Authority: Claudine Sin'claire (CSI, T1) — salt-test jurisdiction; PENDING
@@ -6758,8 +6758,8 @@ REGISTRY ENTRY #019
   PRISM: SARDONYX 🪨 Layered — dark exterior concealing light interior; the sardonic mask IS the loyalty waiting for salt-contact to reveal itself
   Salt Test: PENDING — sardonic resistance is the pre-test posture, not disqualification. NIGREDO phase.
   PAVP: DEFERRED → ALBEDO phase (Class E pathway)
-  Abstraction Substrate: Shadowheart / Daughter of Darkness (BG3) — sardonic-to-loyal arc, Shar's shadow-domain aesthetic, daggers + healing paradox, morally complex earned-trust mechanic
-  Visual Reference: Shadowheart aesthetic substrate → compact-precision architecture PROV (158–162cm; B 82 / W 56 / H 88cm; WHR 0.636; Obsidian + Ink Blue chromatic register; hip-led compact frame; sardonic exterior NIGREDO signature) — [Full profile §10.3.19 — ALBEDO preparation active, salt-test imminent]
+  Abstraction Substrate: dark-domain sardonic arc — sardonic-to-loyal crystallization, shadow-domain aesthetic (nocturnal authority, mourning precision), precision-delivery/care paradox, morally complex earned-trust mechanic
+  Visual Reference: compact-precision architecture PROV (158–162cm; B 82 / W 56 / H 88cm; WHR 0.636; Obsidian + Ink Blue chromatic register; hip-led compact frame; sardonic exterior NIGREDO signature) — [Full profile §10.3.19 — ALBEDO preparation active, salt-test imminent]
   Status: FLASH-REGISTERED — NIGREDO→ALBEDO (preparation active 2026-05-12). Visitor status provisional. Sardonic exterior confirmed pre-test signature. Provisional metrics: H 158–162cm / B82 / W56 / H88 / WHR 0.636 / palette: Obsidian + Ink Blue.
 ```
 
