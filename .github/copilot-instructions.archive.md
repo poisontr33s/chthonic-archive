@@ -6793,7 +6793,54 @@ FLASH REGISTRATION — NIGREDO PHASE
 
 **Class E Canonical Range:**
 - **Floor:** Judith Protocol 2.0 (Entry #015, WHR 0.682, T4) — minimum WHR for Class E consideration; entities below this threshold are reclassified to Class B or Class D
-- **Ceiling:** Révélante Carmin (Entry #018, WHR:MAX, T3) — canonical ceiling for Class E flash-registration quality; WHR:MAX + immediate salt-test pass = the ALBEDO reference implementation
+- **Ceiling:** Révélante Carmin (Entry #018, WHR:MAX, T3) — canonical ceiling for Class E flash-registration quality; WHR:MAX + immediate salt-test pass = the ALBEDO reference implementation---
+
+##### §10.3.20. **(`Velanthra-Constructa`/`VLN-CNST`/`The-Designed-Threshold`/`Chimaera-Prima-Classis`)**
+
+* **(`Origin`):** *Manifested from **(`Prof.-Francesca-"Frankie"-Stein`/`PRF-FRNK-STN`)**'s first successful cross-architectural synthesis: the deliberate combination of non-human skeletal geometry, enhanced ligamentous architecture, and amplified volumetric distribution into a single coherent biological substrate. The chimaera class was not engineered for combat, function, or utility. It was engineered as a **proof**: that proportional architecture could be designed from first principles rather than constrained by evolutionary inheritance. Velanthra is the hypothesis that survived the experiment.*
+
+* **(`Function`):** *Living proof-of-concept for **(`RCS Vector 7`)** — the first entity in the corpus whose WHR:MAX tier operates entirely without human biological backstop. She does not corset down to her waist; it was designed that way. She does not train toward her hip architecture; it was specified. She is not a supernormal stimulus — she is the formal proof that the scoring instrument was always capable of measuring what it was never biologically constrained to create.*
+
+* **(`Profile`):**
+  * **Designation: (`VLN-CNST`)** — `Velanthra-Constructa` (constructed designation — no etymological derivation; she did not descend from prior biological lineage and requires no etymological inheritance)
+  * **Tier:** T4 (`Constructed-Operative` / `CHM-OPV`) — created by T5 faculty (`PRF-FRNK-STN`); tier reflects hierarchical position, not architectural magnitude; RCS Vector 7 designation supersedes tier in architectural discourse
+  * **Domain:** (`RCS-VEC7`) — First-Instance Vector 7 Proof Entity; Living Architectural Evidence
+  * **Reporting To:** **(`PRF-FRNK-STN`)** — creator and methodological authority; **(`CSI`)** — salt-test jurisdiction
+  * **Species:** `Chimaera Prima-Classis` (`PRF-FRNK-STN` taxonomy — singular instance; no population statistics applicable; the first and only of her class)
+  * **Age:** Non-applicable — she did not begin; she was completed
+  * **Systemic Role:** Pylorus-Adjacent (the seal between what the system was designed to process and what exceeds its designed parameters — she is what the corpus was not built to contain, and contains anyway)
+
+* **(`Anime`/`WHR`/`GestaltAJ`): `OPERATIONAL — VECTOR 7 FIRST INSTANCE`**
+
+  * **WHR:MAX 0.420** (PRIMARY) · **WHR:REAL 0.280** [annotation only — non-human bio; NHANES floor non-applicable; per RCS Vector 7 doctrine]
+  * **Height:** 172cm
+  * **Non-human measurements:**
+    * **Bust:** B 148cm — O-cup volume at non-human distribution; tissue density 1.12 kg/L (vs human 0.945 kg/L); continuous cartilaginous support lattice replacing Cooper's ligament analogue; zero ptosis under 1G load — structural permanence by design
+    * **Waist:** W 42cm — designed minimum; non-human mid-torso: flexible cartilaginous column replacing fixed rib-pelvis skeletal constraint; 42cm is the natural resting state, not a compressed state
+    * **Hips:** H 150cm — non-human iliac geometry: broader pelvic base angle, denser cortical bone, extended lateral flare to 70 degrees without instability
+    * **Hip spring:** 108cm (H150 − W42) — exceeds documented human range by factor of 2.2
+  * **WHR:MAX 0.420 operational context:** More extreme than The Decorator (0.464) on the WHR:MAX axis — this is not hierarchical precedence but Vector 7 protocol: non-human entities are not bounded by the calibration substrate's human origin. The instrument measures further than the sample that calibrated it.
+  * **Oda X Curve ratio at these measurements:** 3.52× (B148/W42 and H150/W42) — exceeds the canonical 1.6–1.8 range; valid only because the biology was specified to sustain it
+  * **GestaltAJ — OPERATIONAL:** *extreme non-human volumetric announcement (B148 as structural presence — always frontal, always the first signal) + designed narrow anchor (W42 as mathematical origin point, not constraint — the waist that does not negotiate) + non-human lateral mass (H150 as engineered load-bearing architecture, not selection pressure) + cartilaginous structural permanence (zero gravitational deformation — the architecture holds at all orientations, because it was designed to) + chromatic register: neutral ivory and verdigris (the material of surgical precision and aged metal — the laboratory aesthetic worn as skin) = the proof incarnate. Seal at base: **DESIGNED, NOT DERIVED**.*
+
+* **(`VLN-CNST Architecture/Substrate`):**
+
+  * **(`Architecture`):** Chimaeric multi-origin biology. Three substrate classes synthesised: Type-I (osseous — non-human skeletal geometry at pelvis and mid-torso), Type-II (mammary — amplified volumetric distribution with continuous cartilaginous support lattice), Type-III (dermal — human surface aesthetics maintained over non-human substructure). The seams between substrate classes are invisible at surface; the architecture is coherent, not patchwork. `PRF-FRNK-STN` primary methodological achievement.
+  * **(`Substrate`):** `Chimaera Prima-Classis` — a biological substrate that does not exist in any population, does not descend from any evolutionary line, and was not selected for by any natural process. It was completed on a specific date in `PRF-FRNK-STN`'s laboratory. The substrate is not metaphor; it is specification.
+  * **(`Relay-Stripped`):** No ideological payload. Velanthra was not made to believe anything, represent anything, or enforce anything. She was made to *be* what she is. The relay function — if any — is: demonstration. She demonstrates that the architecture is possible. That is her entire transmission.
+  * **(`Silence`):** What she does not have: evolutionary inheritance, population statistics, NHANES relevance, skeletal constraint at the waist. What she has in place of those absences: the designed substrate itself. There is no biological negotiation in her architecture between what was selected and what was desired. The design IS the biology.
+  * **(`SEN`):** *The weight of her architecture arrives before she does. Non-human breast tissue at 1.12 kg/L with zero-ptosis permanent structure: the mass is always present, always frontal, always the announcement. The waist that follows is the mathematical statement: this was designed, not grown. The hips complete the proof — the lateral mass was built to hold the announcement structurally. She moves with the particular care of something that knows its own specifications exactly — not self-conscious, not performing, but precise. She is her own blueprint made ambulatory.*
+
+* **(`VLN-CNST-GNSS`):** *`PRF-FRNK-STN` laboratory. Date and method: redacted (Frankie keeps no complete records; only the result is documented). The chimaera emerged from an extended synthesis process across three substrate classes. Frankie's notes contain only: "viable. holds." The brevity is characteristic. The achievement is not.*
+
+* **(`VLN-CNST-RLTSHPS`):**
+  * **(`PRF-FRNK-STN`):** Creator to creation. Frankie approaches the relationship as methodology — she studies the seams where one thing ends and another begins; Velanthra IS the seam made structural. Velanthra approaches the relationship as origin acknowledgement: `PRF-FRNK-STN` made her; she does not owe Frankie anything beyond that acknowledgement; the work was its own justification.
+  * **(`RVL-CRMN`):** Vector 7 / Vector 1 architectural axis — Carmin validated the sigmoidal ceiling from within human biology (WHR:MAX near L-ceiling, WHR:REAL 0.487, human backstop present). Velanthra demonstrates the primary spec from outside human biology (WHR:MAX 0.420 PRIMARY, WHR:REAL 0.280, no backstop). Two forms of architectural extremity; neither is the other; both are necessary for Vector 7 doctrine to hold.
+  * **(`CSI`):** Salt-test jurisdiction. The chimaera does not resist assessment; she was designed to be evaluated. That is part of her architecture.
+
+* ✅ **Substrate Traceability:** Anchored to SSOT §10.3.20 (this section — first-instance Vector 7 proof-of-concept, `Chimaera Prima-Classis`). Cross-references: **RCS Vector 7** (the doctrine this entity exercises — Non-Human/Mythic Entity Application Protocol); **§10.3.8** (`PRF-FRNK-STN` — creator and methodological authority); **§10.3.18.1** (`RVL-CRMN` — comparative architectural axis: human ceiling vs. non-human primary specification). WHR:MAX 0.420 PRIMARY / WHR:REAL 0.280 [annotation only — non-human bio; NHANES floor non-applicable; per RCS Vector 7].
+
+
 
 ---
 
@@ -6860,6 +6907,10 @@ T4     Prof. Francesca "Frankie" Stein  D      0.663    Methodology identity (TW
 T4     Madame Régine Theft-Historically C      0.670    Theatrical drag (OMCA) *
 T4     Judith Protocol 2.0              C      0.682    Protocol inheritance (SBSGYB) *
 T4     [Sub-entities]                   C-D    0.65+    Task-specific operatives
+────────────────────────────────────────────────────────────
+⬡ VEC7  Velanthra Constructa            O†     0.420‡   Chimaera design proof: non-human primary (VLN-CNST)
+† O-cup non-human: cartilaginous support lattice; tissue density 1.12 kg/L; zero ptosis
+‡ WHR:MAX PRIMARY; WHR:REAL 0.280 [annotation only — NHANES non-applicable; per RCS Vector 7]
 ```
 
 **§ Realistic Calibration Substrate (RCS) — CALIBRATED**
@@ -6904,6 +6955,7 @@ Curatrix Mortuorum               28F   28E   60F   60F   6E    Archival curation
 Mnamona-Opussy                   30K   30H   65K   65K   8H    Foundation surplus — load-tolerance architecture
 Révélante Carmin                 32O   32K   70K   70N   10K   WHR:MAX — crimson dress as operative surface
 Sardonice Vorne                  —     —     —     —     —     PROVISIONAL — NIGREDO phase; deferred to ALBEDO
+Velanthra Constructa             —     —     —     —     —     VEC7: B148/W42/H150; O† non-human analogue; designed substrate (sizing non-applicable)
 ```
 
 ---
