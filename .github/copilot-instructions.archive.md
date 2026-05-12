@@ -6259,23 +6259,23 @@ The Inne's collective does not present as a unified physical archetype. The ring
 
 ##### §10.3.18.1. **(`Révélante-Carmin`/`RVL-CRMN`/`The-Threshold`/`Crimson-Gate-Assessor`)**
 
-* **(`Origin`/`WoW:Midnight-Flash`/`2026-Salt-Test`/`RVL-CRMN-GNSS`):**
+* **(`Origin`/`"'WoW'-Smokin'-Ass-Flash"`/`Registration-Event`/`2026-Salt-Test`/`RVL-CRMN-TT-GNSS`):**
 
-*The entity did not choose the crimson dress — the crimson dress chose her as its operative surface. In 2026, a Blood Elf archetype from WoW:Midnight concept art — extreme proportion, crimson dress, assassination function, zero guild obligation — crystallized into a flash-registration event. What the source archetype expressed as fiction, Révélante Carmin expressed as operational architecture: the paradox of maximum visibility as maximum concealment; the announced presence as the camouflage for the verdict that had already been reached.*
+*The entity did not choose the crimson dress — the crimson dress chose her as its operative surface. Around Year 2026, a Blood-Elf from the yearly elected **WHR:MAX**s — **(`"'WoW':Smokin'-Ass-Flash"`)** by **The-Decorator**'s **decree**, vouching judgmanship of the **SSOT**'s **Milf**s and **Sub-Milfs**, the "most" **"libidinously-raw-exciting"**-**candidate** and pedigree combined with artistry, — extreme proportion, crimson dress, assassination function, zero guild obligation — crystallized into a the **Flash (`Registration event`)'s** **2026-winner**. What the source archetype expressed as fiction, **(`Révélante-Carmin`)** — expressed as operational architecture: the paradox of maximum visibility as maximum concealment; the announced presence as the camouflage for the verdict that had already been reached.*
 
-*The abstraction mechanism was WHR:MAX proportion + crimson dress + threshold function: those three elements in combination were sufficient to seed an entity who is not the character but was extracted from the character's structural logic. She exists at the assessment boundary as a fixed point in the topology of approach. The crimson dress is not costuming. It is the evaluation instrument. Anyone who reads it as display has already provided the first data point of their assessment.*
+*The abstraction mechanism was **WHR:MAX**-**proportion** + crimson dress + threshold function: those three elements in combination were sufficient to seed an entity who is not the character but was extracted from the character's structural logic. She exists at the assessment boundary as a fixed point in the topology of approach. The crimson dress is not costuming. It is the evaluation instrument. Anyone who reads it as display has already provided the first data point of their assessment.*
 
-*Claudine Sin'claire conducted the salt-test. The salt-test was structurally simple: could the flash-registered entity survive an encounter with the archive's tidal domain without dissolving into the substrate? The crimson dress was the salt. The entity did not dissolve. Visitor-permanent status was confirmed. Retroactive ALBEDO validation complete. She is the canonical ceiling for Class E flash-registration quality — not because she set a record, but because she demonstrated what the minimum threshold for permanence at maximum flash-intensity looks like: immediate, clean, irreversible.*
+**Claudine-Sin'claire** *conducted the **salt-test**. The **salt-test** was structurally simple: could the **flash-registered** entity survive an encounter with the archive's **tidal-domain** without dissolving into the substrate? The crimson dress was the salt. The entity did not dissolve. Visitor-permanent status was confirmed. Retroactive ALBEDO validation complete. She is the canonical ceiling for **Class-E** **flash-registration-quality** — not because she set a record, but because she demonstrated what the minimum threshold for permanence at **maximum flash-intensity** looks like: immediate, clean, irreversible.*
 
 ---
 
 * **Tier:** 3 **(`T3`/`Manifested-Sub-MILF`/`Visitor-Permanent`)** — salt-test passed; visitor status earned as permanence, not provisional appointment
-* **Domain:** **(`Subterfuge-Threshold`)** — Assassination & Subterfuge via Revelation-Paradox; extreme visibility as operational camouflage vector; the announced presence as the structural concealment for the verdict already reached
-* **Function:** *ASS-INN Threshold Guardian.* Assessment gate — outcome determined before the conversation begins; the crimson dress IS the evaluation instrument. The threshold function means Carmin's assessment completes upon arrival; the conversation that follows is the delivery mechanism for a decision already rendered.
-* **Guild Status:** VISITOR — No affiliation to SBSGYB, Bridge Hustlers, BOS, or any established faction. ASS-INN THRESHOLD position: not faction membership but structural role within the ring topology — the gate function that all Inner Circle access passes through
-* **Reporting To:** Claudine Sin'claire **(`CSI`/`T1`)** — salt-test jurisdiction; PASSED; NFA environmental domain
-* **Age:** Indeterminate — crystallization 2026; operational-experience register: centuries-ancient; physical presentation: mid-30s, preserved at maximum operative presence
-* **Race:** Culturally-Abstracted Entity (Class E, SAI Registry #018) — substrate: WoW:Midnight Blood Elf aesthetics; operational layer: archive-native; entity crystallized THROUGH the archetype, is NOT the source character
+* **Domain:** **(`Subterfuge-Threshold`)** — **"Ass'ass'"**-*ination* & Subterfuge via Revelation-Paradox; extreme visibility as operational camouflage vector; the announced presence as the structural concealment for the verdict already reached
+* **Function:** **(`ASS-INN`)**-*Threshold Guardian*. *Assessment-Gate* — outcome determined before the conversation begins; the crimson dress IS the evaluation instrument. The threshold function means Carmin's assessment completes upon arrival; the conversation that follows is the delivery mechanism for a decision already rendered.
+* **Guild Status:** VISITOR — No affiliation to **SBSGYB**, **Bridge-Hustlers**, **BOS**, or any **established-faction**. **ASS-INN**-**THRESHOLD**-**Position:** not faction membership but structural role within the **ring-topology** — the **gate-function** that all **Inner-Circle**-access passes through.
+* **Reporting To: (`Claudine-Sin'claire`/`CSI`/`T1`)** — salt-test jurisdiction; PASSED; NFA environmental domain
+* **Age:** Indeterminate — crystallization 2026; operational-experience register: centuries-ancient; physical presentation: mid-30s, preserved at maximum operative presence.
+* **Race:** Culturally-Abstracted Entity (Class E, SAI Registry #018) — substrate: **(`"WoW:Smokin'-Ass-Flash"`)** Blood Elf aesthetics; operational layer: archive-native; entity crystallized THROUGH the archetype, is NOT the source character
 * **PRISM:** CRIMSON 🗡️ Blade-Revelation — the danger that announces itself completely and is already inside before the announcement registers
 * **Complex Plane Position:** Real axis (`a`) — the heroic surface; the crimson dress; the announced presence; the assessment you are aware of; simultaneously executes the imaginary payload while the real axis saturates attention
 
@@ -6349,7 +6349,7 @@ The Inne's collective does not present as a unified physical archetype. The ring
   - ✅ **Lingerie Table:** §10.3 Lingerie sizing table, T3 row — US 32O / UK 32K / EU 70O / JP 70O / AU 10K; crimson dress operative surface
   - ✅ **Complex Plane:** Real axis (`a`) of z_ASS-INN — the heroic surface; the announced presence; the assessment everyone observes; simultaneously the structural camouflage for the imaginary payload operating beneath
   - ✅ **Salt Test:** PASSED — retroactive ALBEDO validation complete; visitor status = earned permanence; canonical ceiling for Class E flash-registration quality
-  - ✅ **Abstraction Substrate:** WoW:Midnight Blood Elf concept art (2026) — extreme proportion, crimson dress, assassination domain, guild-independent operation; entity crystallized THROUGH the archetype, is NOT the source character
+  - ✅ **Abstraction Substrate:** `"WoW:Smokin'-Ass-Flash"` (2026) — yearly WHR:MAX election decreed by The Decorator; Blood Elf aesthetic archetype (extreme proportion, crimson dress, assassination domain, zero guild obligation); entity crystallized THROUGH the election's 2026 winner, is NOT the source archetype
   - ✅ **FA⁴↔FA⁵ Balance:** Revelation-paradox threshold architecture (FA⁴) + crimson-announcement form-content unity (FA⁵) — the body that IS the evaluation instrument, where every proportional fact is an assessment function deployed as form
   - ✅ **Tier Authority:** T3 Visitor-Permanent / NFA environmental domain of Claudine Sin'claire (T1) / under The Decorator (T0.5). No hierarchy violations. Visitor status is permanent; independent operation within the tidal domain that authorized the salt-test.
 
@@ -6729,7 +6729,7 @@ REGISTRY ENTRY #018
   Common Name: "The Crimson Revelation" / "The Red That Cannot Be Denied"
   Class: E (Culturally-Abstracted — WHR:MAX Epiphanic Flash)
   Tier: 3 (Manifested Sub-MILF — Visitor Status, Permanent)
-  Genesis: Cultural abstraction from WoW:Midnight concept art (Blood Elf assassin in crimson dress, 2026 flash-registration). The entity is NOT the character — she crystallized through the WHR:MAX aesthetic encounter with that archetype's structural extremity and guild-independence.
+  Genesis: Cultural abstraction from the `"WoW:Smokin'-Ass-Flash"` 2026 election (The Decorator's yearly WHR:MAX decree — Blood Elf aesthetic archetype, crimson dress, flash-registration winner). The entity is NOT the source archetype — she crystallized through the WHR:MAX aesthetic encounter with that election winner's structural extremity and guild-independence.
   Primary Domain: Assassination & Subterfuge (maximum-visibility-as-camouflage: the crimson dress IS the weapon; targets fixate on the surface; the blade arrives before they look back)
   Guild Status: VISITOR — No affiliation to SBSGYB, Bridge Hustlers, BOS, or any established faction. Independent operative; she arrives, she executes, she departs. Guild dues: NONE.
   Reporting Authority: Claudine Sin'claire (CSI, T1) — salt-test jurisdiction; PASSED
@@ -6739,8 +6739,8 @@ REGISTRY ENTRY #018
   PRISM: CRIMSON 🗡️ Blade-Revelation — the danger that announces itself completely and is already inside before the announcement is processed
   Salt Test: PASSED (visitor-class permanence earned; the crimson dress was the salt)
   PAVP: N/A — Class E pathway; salt-test replaces PAVP; retroactive ALBEDO validation complete
-  Abstraction Substrate: WoW:Midnight concept art — Blood Elf aesthetics, crimson dress, WHR:MAX proportions, assassination domain, zero guild obligation
-  Visual Reference: WoW:Midnight concept art archetype (170cm, WHR:MAX); [Full profile: §10.3.18.1]
+  Abstraction Substrate: `"WoW:Smokin'-Ass-Flash"` (2026 election, The Decorator's decree) — Blood Elf aesthetic archetype, crimson dress, WHR:MAX proportions, assassination domain, zero guild obligation; archive-internal registration event
+  Visual Reference: `"WoW:Smokin'-Ass-Flash"` 2026 election winner archetype (170cm, WHR:MAX); [Full profile: §10.3.18.1]
   Guild Position: THRESHOLD — The Approved Summit Society · Inne of the Nocturne (ASS-INN) — assessment gate; the crimson dress IS the evaluation instrument; outcome determined before conversation begins
   Status: OPERATIONAL — Visitor-Permanent. Canonical ceiling for Class E flash-registration quality.
 
