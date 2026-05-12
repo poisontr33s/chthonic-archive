@@ -7025,6 +7025,40 @@ Boa Hancock             111    61     91     191cm   0.670  J
 
 ---
 
+**RCS Vector 7: Non-Human / Mythic Entity Application Protocol**
+
+**The calibration substrate (Vectors 1–6) is the tool's origin, not its ceiling.**
+
+Vectors 1–6 ground the WHR:MAX scoring system in human biomechanics, population statistics, and biological constraints. This grounding was architecturally deliberate: a scoring function requires calibration against known empirical data to achieve mathematical coherence. The NHANES percentile anchors, Singh attractiveness data, Cathie Jung corsetry records, INTERHEART cardiovascular markers, and Oda X Curve statistics are the calibration origin — the substrate from which the sigmoidal transformation was derived.
+
+For entities operating outside human biology, this substrate governs the tool's **derivation**, not its **application**.
+
+**WHR:MAX tier is PRIMARY structural specification for non-human / mythic entities.**
+
+| Entity class | WHR:MAX tier | WHR:REAL |
+|---|---|---|
+| Human-derived | Primary spec | Valid empirical cross-check — NHANES floor applies |
+| Non-human / mythic | **Primary spec** | Annotation only — NHANES floor non-applicable |
+| Goddess / transcendent | **Primary spec** | Annotation only or omitted — biological realism non-binding |
+
+For non-human entities, WHR:REAL if present is derived **backward** from the designed architecture: the entity's geometry is specified first at WHR:MAX tier, and WHR:REAL is a secondary annotation stating what that geometry would map to if projected onto human coordinate space. It carries no normative weight. A WHR:REAL value that falls below the 1st NHANES percentile is geometrically valid for a non-human entity whose biology defines its own proportional distribution.
+
+**Annotation format for non-human entity WHR blocks:**
+```
+WHR:MAX [Tier X] · WHR:REAL [annotation only — non-human bio; NHANES floor non-applicable]
+```
+
+**Why both factors coexist without destroying each other:**
+
+Human calibration gave the scoring function mathematical coherence. That coherence then applies to entities who transcend the sample. The calibration origin does not retroactively constrain entities who were never subject to the population constraints that produced the original data. The corpus is almost entirely mythic and goddess entities — none of them are NHANES subjects. The RCS substrate's human anchor is the **measuring instrument**, not the **architectural constraint**.
+
+Proof-of-concept already in the corpus: Révélante Carmin (§10.3.18) — WHR:MAX score ≈ 0.85 at the sigmoidal ceiling, WHR:REAL 0.487 back-computed as annotation. The scoring function operates correctly at the extreme. The human floor was used to build the ruler; the ruler then measures entities the floor was never calibrated for.
+
+**The Shadowheart contamination was the structural inversion of this principle:** importing an external IP identity as shorthand implies the original entity requires an external reference to be legible. No entity in this corpus does. They are mythic, obscure, idealized, original. None of them sound like anything else. That is the correct state.
+
+**Open entity slot — thick non-human mythic:** The corpus has no entity where WHR:MAX tier is the PRIMARY structural specification without any human biological backstop. Such an entity carries extreme volumetric proportions — voluminous non-human breast architecture, extreme hip mass, dramatic waist geometry — all valid because the entity's biology defines the geometry, not the reverse. This is the proof-of-concept for Vector 7 doctrine: the first entity the calibration substrate cannot contain, and was designed not to. Prof. Francesca "Frankie" Stein would call it a chimaera. It is. It belongs here.
+
+---
 **RCS Integration Complete.** Deep Research artifacts archived at `gemini/mailbox/from_gemini_DR/`. Embalm snapshot taken before injection. Per-entity RCS annotations available via the international sizing matrix above.
 
 **Why Magistra ≠ Tier 1 Despite WHR 0.58:**
