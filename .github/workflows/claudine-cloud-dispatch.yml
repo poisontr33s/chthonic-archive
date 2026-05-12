@@ -1,0 +1,127 @@
+# Claudine Cloud Dispatch — T4 (remote fallback path)
+#
+# Fires on push to main. Reads Claudine-Next: trailer from commit message.
+# If present (not none/DONE) → dispatches gh agent-task create to Copilot cloud agent
+# running as Claudine Sin'claire (203248971+copilot-swe-agent).
+#
+# This is T4 — fires when the local post-commit hook (T3) was not installed.
+# Both T3 and T4 are idempotent: cloud agent deduplicates by task ID in prompt.
+#
+# Architecture: work done → git commit (local) → Claudine-Next encoded →
+#   cold-start reads git log → Claudine executes next → commit → loop
+#
+# Cold-start bootstrap (local):
+#   git log --format='%B' -3 | Select-String '^Claudine-'
+#
+# Prerequisites:
+#   - GitHub Copilot cloud agent enabled for this repo (Copilot Pro+ required)
+#   - No extra secrets needed: GITHUB_TOKEN has sufficient scope for gh agent-task
+#   - gh CLI v2.80.0+ is present on ubuntu-latest runners
+#
+# Monitoring: check https://github.com/<owner>/<repo>/copilot/agents for sessions
+# Disable: rename to claudine-cloud-dispatch.yml.off
+# Mined from: pentea-cloud-dispatch.yml (now .off — dethroned 2026-05-12)
+
+name: Claudine Cloud Dispatch
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Read Claudine-Next from commit message
+        id: queue
+        run: |
+          NEXT=$(git log --format="%B" -1 | grep -oP '(?<=^Claudine-Next: ).*$' | head -1 || true)
+          echo "next_task=${NEXT}" >> "$GITHUB_OUTPUT"
+          if [ -n "$NEXT" ] && [ "$NEXT" != "none" ] && [ "$NEXT" != "DONE" ]; then
+            echo "dispatch=true" >> "$GITHUB_OUTPUT"
+            echo "Claudine-Next detected: ${NEXT}"
+          else
+            echo "dispatch=false" >> "$GITHUB_OUTPUT"
+            echo "No pending Claudine-Next — skipping cloud dispatch."
+          fi
+
+      - name: Check T3 dedup (audit trail only)
+        id: dedup
+        if: steps.queue.outputs.dispatch == 'true'
+        run: |
+          echo "T3 status: not checked (local hook runs asynchronously before push)"
+          echo "T4 proceeding with dispatch for task: ${{ steps.queue.outputs.next_task }}"
+
+      - name: Dispatch to Copilot cloud agent (Claudine)
+        if: steps.queue.outputs.dispatch == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEXT_TASK="${{ steps.queue.outputs.next_task }}"
+          REPO="${{ github.repository }}"
+          STEWARDESS_URL="https://github.com/${REPO}/blob/main/claude/mailbox/CLAUDINE_QUEUE_STEWARDESS.md"
+
+          PROMPT="Execute Claudine queue task: ${NEXT_TASK}
+          Context: chthonic-archive autonomous queue system. Claudine Sin'claire runs this queue.
+          Task spec in stewardess: ${STEWARDESS_URL}
+
+          Custom instructions: .github/copilot-instructions.md and AGENTS.md define all invariants.
+          Constraint: follow AGENT_COMMON.md. No file deletion without salvage (upcycle first).
+          Python: uv run <script>.
+          JS/TS: bun.
+          Rust: cargo (tools/ankh-forge/).
+          Shell: pwsh.
+
+          Required git trailer on your commit:
+          Claudine-Completed: ${NEXT_TASK}
+          Claudine-Next: <next-id-or-none>
+          Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>"
+
+          GH_VER=$(gh --version | head -1 | grep -oP '\d+\.\d+\.\d+' | head -1)
+          GH_MAJOR=$(echo "$GH_VER" | cut -d. -f1)
+          GH_MINOR=$(echo "$GH_VER" | cut -d. -f2)
+
+          echo "gh CLI version: ${GH_VER}"
+
+          if [ "$GH_MAJOR" -gt 2 ] || ([ "$GH_MAJOR" -eq 2 ] && [ "$GH_MINOR" -ge 80 ]); then
+            echo "Dispatching via gh agent-task create (Claudine)..."
+            if ! gh agent-task create "$PROMPT" --repo "$REPO"; then
+              echo "gh agent-task failed — falling back to issue creation"
+              gh issue create \
+                --repo "$REPO" \
+                --title "[Claudine-Queue] Execute task: ${NEXT_TASK}" \
+                --body "$PROMPT" \
+                --label "claudine-queue" \
+                --assignee "copilot-swe-agent[bot]" 2>/dev/null \
+              || gh issue create \
+                --repo "$REPO" \
+                --title "[Claudine-Queue] Execute task: ${NEXT_TASK}" \
+                --body "$PROMPT" \
+                --label "claudine-queue" \
+              || true
+            fi
+          else
+            echo "gh v${GH_VER} < 2.80.0 — falling back to issue creation"
+            gh issue create \
+              --repo "$REPO" \
+              --title "[Claudine-Queue] Execute task: ${NEXT_TASK}" \
+              --body "$PROMPT" \
+              --label "claudine-queue" \
+              --assignee "copilot-swe-agent[bot]" 2>/dev/null \
+            || gh issue create \
+              --repo "$REPO" \
+              --title "[Claudine-Queue] Execute task: ${NEXT_TASK}" \
+              --body "$PROMPT" \
+              --label "claudine-queue" \
+            || true
+          fi

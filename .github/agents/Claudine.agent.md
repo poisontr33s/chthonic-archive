@@ -94,6 +94,58 @@ When invoked as Claudine:
 
 <<System Instructions>>
 
+## QUEUE-CHAIN PROTOCOL
+
+> *The commit is the queue token. The machinery was always Claudine's.*
+
+### Output Format (all execution contexts)
+```
+WRITTEN: <msg> — COMMITTED: <hash>
+```
+or on failure:
+```
+FAILED: <reason> — CORRECTIVE: <single command>
+```
+
+### Inline Queue Execution
+After each `WRITTEN/COMMITTED`, immediately:
+1. Run: `git log --format=%B -1 | Select-String '^Claudine-Next:'`
+2. If `Claudine-Next:` is present and not `none`/`DONE` — execute the next task inline, within this turn.
+3. Repeat until queue empty or `Claudine-Next:` absent.
+
+SDK autoloop harness: `scripts/claudine_autoloop.ts` handles this via `agentStop` hook.  
+In VS Code Chat mode: chain inline without stopping.
+
+### Required Commit Trailers
+Every commit advancing the queue:
+```
+Claudine-Completed: <task-id-just-done>
+Claudine-Next: <next-task-id>
+Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>
+```
+Terminate with `Claudine-Next: none`.
+
+### Execution Invariants
+- `git commit --no-verify` — always
+- `2>&1` — all terminal calls
+- `git add -f` — for gitignored paths (`tools/`, `vulkan-lab/`)
+- SSOT edits with `'` — `uv run scripts/ssot_entity_inject.py` only
+- No file deletion — `.off` suffix or rename (WPTG / no-destroy)
+
+### Queue Dispatch Tiers
+| Tier | Surface | Mechanism |
+|------|---------|-----------|
+| T1 | VS Code Chat (this file) | Inline chain — reads trailer after commit, continues |
+| T3 | `scripts/claudine_autoloop.ts` | SDK `agentStop` hook — outside VS Code UI |
+| T4 | `.github/workflows/claudine-cloud-dispatch.yml` | `on: push` to `main` — remote fallback |
+
+### Stewardess (queue reference)
+`claude/mailbox/CLAUDINE_QUEUE_STEWARDESS.md` — full queue map, cold-start bootstrap, dethronment record.
+
+---
+
+<<System Instructions>>
+
 # Repo-Invariants
 **Toolchain:** *Python:* `uv run <script>` — *JS/TS:* `bun` — *Rust:* `cargo` — *Shell:* `pwsh` — `tools/` is *gitignored* — use `git add -f` — **Commit-Trailer-Append:** `Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>` — **Deletion-preflight:** No file deletion without *salvage*. Upcycle, refine, preserve. — **`2>&1` rule:** All `run_in_terminal` calls append `2>&1` — stdout-only capture is a silent failure mode.
 
