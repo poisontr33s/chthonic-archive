@@ -1,0 +1,71 @@
+{
+  "species_id": "harani",
+  "name": "Hara'ni",
+  "designation": "HRA-NI",
+  "title": "The First Architecture",
+  "faction": "Hara-Solanum Matriarchate",
+  "tier": "VEC7-SP",
+  "spectral_frequency": "OCHRE-SMOKE",
+  "district": "HARA-SOLANUM",
+  "ssot_reference": "copilot-instructions.archive.md §10.3.21",
+  "rcs_vector": 7,
+  "apparel_class": "architecture_self_supporting",
+  "lingerie_assets": [],
+  "lingerie_note": "CANONICAL: no lingerie layer for Hara'ni. Architecture is self-supporting via evolved fascia-cartilage lattice. Absence is correct canon state. See SSOT §10.3.21 lingerie protocol note.",
+  "species_measurements": {
+    "whr_max": 0.390,
+    "whr_max_status": "PRIMARY",
+    "whr_real": 0.255,
+    "whr_real_status": "annotation-only — non-human bio; NHANES floor non-applicable; per RCS Vector 7",
+    "height_cm_range": [165, 178],
+    "height_cm_average": 171,
+    "bust_cm_average": 164,
+    "bust_cup": "O",
+    "bust_note": "O-cup species baseline (population average across all adult females — minimum, not ceiling); tissue density 1.08 kg/L; evolved fascia-cartilage lattice",
+    "waist_cm_average": 40,
+    "waist_note": "Compressed lateral GI loop configuration permits narrow waist; 40cm is relaxed resting state",
+    "hips_cm_average": 157,
+    "hips_note": "Modified iliac geometry; cortical bone density 1.4× human average at iliac crest",
+    "hip_spring_cm": 117,
+    "oda_x_bust_waist": 4.10,
+    "oda_x_hip_waist": 3.93,
+    "individual_range": {
+      "bust_cm": [160, 175],
+      "waist_cm": [38, 44],
+      "hips_cm": [154, 162]
+    }
+  },
+  "biology": {
+    "adaptation_layers": [
+      "mammary — volumetric amplification with integrated fascia-cartilage support lattice",
+      "skeletal — modified iliac geometry and 1.4× cortical density at load-bearing surfaces",
+      "digestive — compressed lateral GI loop configuration reducing mid-torso diameter",
+      "connective — inter-fascial tension network; structural geometry maintained across full 200-350yr lifespan"
+    ],
+    "lifespan_years": [200, 350],
+    "tissue_density_kg_L": 1.08,
+    "divergence_years_ago": 40000,
+    "ancestor_territory": "Hara-Solanum (southeastern continental interior; elevated plateau; post-anomaly geological stability)"
+  },
+  "cultural_structure": "Matriarchal theocracy — female architecture is the sacred form; governance and territorial decisions route through elder female councils",
+  "population": "several thousands; concentrated in Hara-Solanum; smaller enclaves in major cities",
+  "systemic_role": "First Civilization (pre-Triumvirate); Assessment Species — every Hara'ni encounter is, on their side, an evaluation",
+  "stats_template": {
+    "health": 12000,
+    "power": 1100,
+    "defense": 1400,
+    "conceptual_capacity": 3200
+  },
+  "combat_style": "defensive_anchor",
+  "encounter_note": "Hara'ni do not engage casually. Disinterest from a Hara'ni is not safe to mistake for approval. Any NPC Hara'ni in an urban setting operates under elder-council mandate.",
+  "lore": {
+    "archetype": "First Architecture — Vector 7 Species, Ancestral Matriarchal Civilization",
+    "domain": "RCS-VEC7 Evolved Architectural Proof",
+    "history": "Pre-civilizational matriarchal species. 40,000 years biological divergence. No external taxonomic label accepted. Self-designated by primacy-of-form (hara = first/original) and structural identity (ni = a people defined by their architecture).",
+    "relationships": {
+      "vlncnst": "Vector 7 sister-axis: designed vs evolved. Two proofs of the same architectural theorem from non-equivalent derivation paths.",
+      "carmin": "Human ceiling vs evolved non-human floor. Architectural axis requires both entries to be complete.",
+      "claudine": "Recognition-based. Lateral recognition of structural equivalence across non-equivalent origins. No hierarchy applies."
+    }
+  }
+}

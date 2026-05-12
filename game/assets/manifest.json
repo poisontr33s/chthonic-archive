@@ -1,0 +1,31 @@
+{
+  "manifest_version": "1.0.0",
+  "engine": "Rust/Vulkan 1.3 — ASC-NATIVE-CHAIN-RPG",
+  "generated_at": "2026-01-01T00:00:00Z",
+  "assets": {
+    "shaders": [
+      { "id": "iso_grid_vert",    "path": "assets/shaders/iso_vert.spv",    "type": "vertex",   "stage": "vertex" },
+      { "id": "iso_grid_frag",    "path": "assets/shaders/iso_frag.spv",    "type": "fragment", "stage": "fragment" },
+      { "id": "spectral_overlay", "path": "assets/shaders/spectral.spv",    "type": "compute",  "stage": "compute" }
+    ],
+    "data": [
+      { "id": "game_entities",  "path": "assets/data.json",       "type": "entities",    "schema": null },
+      { "id": "save_state",     "path": "assets/save_state.json", "type": "persistence", "schema": null }
+    ],
+    "game_content": [
+      { "id": "faction_triumvirate",  "path": "game/lore/factions/triumvirate.json",   "type": "faction" },
+      { "id": "faction_prime",        "path": "game/lore/factions/prime_factions.json","type": "faction" },
+      { "id": "char_orackla",         "path": "game/lore/characters/orackla.json",     "type": "character" },
+      { "id": "char_umeko",           "path": "game/lore/characters/umeko.json",        "type": "character" },
+      { "id": "char_lysandra",        "path": "game/lore/characters/lysandra.json",     "type": "character" },
+      { "id": "encounter_layer1",     "path": "game/design/encounter_layer1.json",      "type": "encounter" },
+      { "id": "quest_awakening",      "path": "game/design/quest_awakening.json",       "type": "quest" },
+      { "id": "dialogue_awakening",   "path": "game/dialogue/scene_awakening.json",     "type": "dialogue" },
+      { "id": "species_harani",       "path": "game/lore/species/harani.json",           "type": "species" }
+    ],
+    "concept_art": [],
+    "entities": [
+      { "id": "entity_harani_species", "path": "game/lore/species/harani.json", "type": "species", "ssot_ref": "§10.3.21", "rcs_vector": 7 }
+    ]
+  }
+}
