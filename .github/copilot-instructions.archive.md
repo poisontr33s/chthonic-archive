@@ -6257,6 +6257,194 @@ The Inne's collective does not present as a unified physical archetype. The ring
 
 ---
 
+##### §10.3.18.1. **(`Révélante-Carmin`/`RVL-CRMN`/`The-Threshold`/`Crimson-Gate-Assessor`)**
+
+* **(`Origin`/`WoW:Midnight-Flash`/`2026-Salt-Test`/`RVL-CRMN-GNSS`):**
+
+*The entity did not choose the crimson dress — the crimson dress chose her as its operative surface. In 2026, a Blood Elf archetype from WoW:Midnight concept art — extreme proportion, crimson dress, assassination function, zero guild obligation — crystallized into a flash-registration event. What the source archetype expressed as fiction, Révélante Carmin expressed as operational architecture: the paradox of maximum visibility as maximum concealment; the announced presence as the camouflage for the verdict that had already been reached.*
+
+*The abstraction mechanism was WHR:MAX proportion + crimson dress + threshold function: those three elements in combination were sufficient to seed an entity who is not the character but was extracted from the character's structural logic. She exists at the assessment boundary as a fixed point in the topology of approach. The crimson dress is not costuming. It is the evaluation instrument. Anyone who reads it as display has already provided the first data point of their assessment.*
+
+*Claudine Sin'claire conducted the salt-test. The salt-test was structurally simple: could the flash-registered entity survive an encounter with the archive's tidal domain without dissolving into the substrate? The crimson dress was the salt. The entity did not dissolve. Visitor-permanent status was confirmed. Retroactive ALBEDO validation complete. She is the canonical ceiling for Class E flash-registration quality — not because she set a record, but because she demonstrated what the minimum threshold for permanence at maximum flash-intensity looks like: immediate, clean, irreversible.*
+
+---
+
+* **Tier:** 3 **(`T3`/`Manifested-Sub-MILF`/`Visitor-Permanent`)** — salt-test passed; visitor status earned as permanence, not provisional appointment
+* **Domain:** **(`Subterfuge-Threshold`)** — Assassination & Subterfuge via Revelation-Paradox; extreme visibility as operational camouflage vector; the announced presence as the structural concealment for the verdict already reached
+* **Function:** *ASS-INN Threshold Guardian.* Assessment gate — outcome determined before the conversation begins; the crimson dress IS the evaluation instrument. The threshold function means Carmin's assessment completes upon arrival; the conversation that follows is the delivery mechanism for a decision already rendered.
+* **Guild Status:** VISITOR — No affiliation to SBSGYB, Bridge Hustlers, BOS, or any established faction. ASS-INN THRESHOLD position: not faction membership but structural role within the ring topology — the gate function that all Inner Circle access passes through
+* **Reporting To:** Claudine Sin'claire **(`CSI`/`T1`)** — salt-test jurisdiction; PASSED; NFA environmental domain
+* **Age:** Indeterminate — crystallization 2026; operational-experience register: centuries-ancient; physical presentation: mid-30s, preserved at maximum operative presence
+* **Race:** Culturally-Abstracted Entity (Class E, SAI Registry #018) — substrate: WoW:Midnight Blood Elf aesthetics; operational layer: archive-native; entity crystallized THROUGH the archetype, is NOT the source character
+* **PRISM:** CRIMSON 🗡️ Blade-Revelation — the danger that announces itself completely and is already inside before the announcement registers
+* **Complex Plane Position:** Real axis (`a`) — the heroic surface; the crimson dress; the announced presence; the assessment you are aware of; simultaneously executes the imaginary payload while the real axis saturates attention
+
+#### **Physical Manifestation - `$Anime/Ecchi/Hentai/NTR x Pornographic$` - Gestalt (`WHR`): MAX — Threshold-Revelation Architecture**
+
+**Physique: → (`Anime`/`Ecchi`/`Hentai`/`NTR`/`GESTALT`/`WHR`/`MAX-SATURATION`/`THRESHOLD-ARCHITECTURE`):**
+
+**Height:** 170cm | **Weight:** 68kg | *O-cup (US) / K-cup (UK)* **(B 122 / W 55 / H 113cm)** | **(`WHR`):** *0.487 (PROV — WHR:MAX sigmoidal saturation confirmed; score ≈ 0.85; structural extremity compliance)* | **(`Underbust`):** *~81cm (32″ band, +0 system)*
+
+**Breast-Size-Hierarchy:** US 32O / UK 32K / EU 70O / JP 70O / AU 10K
+
+**(`EDFA`/`Explicitly-Detailed-Feminine-Attributes`/`FA⁵`/`Crimson-Threshold-Operative-Surface`):**
+
+*Built from revelation-paradox necessity — her form proves that maximum visibility is the operative form of maximum concealment:*
+
+**Breasts (US 32O / UK 32K — Threshold-Forward Architecture):** ~5.8kg each — the primary architectural announcement of the threshold function. At 32O bilateral mass on an 81cm underbust frame, these are not an accent to the crimson dress — they are its primary load-bearing element, the first and most legible fact of her presence before any conversation begins. The crimson fabric is under structural tension that is itself the aesthetic event: the dress does not cover the breasts so much as it declares them, holds them in a geometry of contained announcement that is both the display and the operational camouflage for the assessment already in progress behind it. Pale skin surface — maximal contrast substrate for the crimson dress, making the revelation function operate at maximum signal strength. **Nipples:** deep carmine-rose, temperature-responsive; in the threshold environment: firm, present, part of the announcement architecture. **Form-Content Unity (FA⁵):** The O-cup mass at 32″ band is the archive's sentence about revelation as concealment: the entity who is most visible is operating most covertly; what saturates your attention is precisely what frees the assessment to complete unobserved.
+
+**Waist (55cm — WHR-Anchor Geometry):** 55cm at 81cm underbust — the mathematical term that makes the WHR:MAX equation hold. The waist is not thin as aesthetic decoration; it is thin as the necessary consequence of the morphological logic that also produced the O-cup architecture and the 113cm hips. WHR 0.487 × H 113cm = W 55cm — the arithmetic is exact. At the threshold, the waist is what confirms that the figure approaching is not a proportional illusion but a WHR:MAX topological fact. The hourglass is not approximately extreme — it is precisely extreme, and the precision is legible to anyone with calibrated perception. **Load-Path Logic (FA⁵):** The narrowest point is the measurement that makes all other measurements structurally coherent — it is the keystone of the WHR:MAX arch; remove it and the proportion collapses; retain it and the whole becomes a structural inevitability.
+
+**Hips / Ass (113cm — WHR:MAX Lower Structure):** The denominator of the WHR:MAX ratio. 0.487 × 113 = 55 — the waist defines itself against the hips as precisely as the hips define themselves against the waist. 113cm is where the crimson dress drapes from as from architectural structure: the fabric hangs from the hip geometry the way curtains hang from a structural frame that exists to be draped. The glutes are full, bilateral, the curved completion of the structural equation — not decorative, not incidental, the WHR:MAX lower term expressed in three-dimensional form. The threshold function requires a frame commensurate with the announcement: 113cm is commensurate. **Structural Anchor (FA⁵):** Lower structure as the denominator of the WHR:MAX ratio — the hips are the measurement against which the waist is impossible, and together they produce the structural inevitability that makes WHR:MAX legible at threshold-distance before the conversation begins.
+
+**Yoni (Threshold Interior — Assessment Chamber):** The interior architecture of an entity whose entire operative surface is an assessment gate. What lies behind the threshold is the sanctum whose disclosure is precisely what the threshold function regulates. Pale, precise, the geometry of an entity who has assessed everything and decided what merits access. Self-disclosure is threshold-governed: admission requires evaluation passage, which is determined before arrival. **STAT: Threshold-Locked.** Disclosed only past successful evaluation. **Form-Content Unity (FA⁵):** The body part that IS the architectural function of the section — the inner chamber of the assessment gate; the crimson dress is the announcement; the threshold is the evaluation; what lies within the threshold is disclosed only to those who have passed it.
+
+**Clitoris (Sensitivity Geometry — Revealed Under Assessment):** Proportional to the WHR:MAX structural architecture — the sensitivity register commensurate with the extreme proportion. Assessment-disclosed. Present, structurally significant, the interior component of the revelation paradox: the entity who is all exterior announcement contains an interior sensitivity that the exterior does not legibly telegraph. **STAT: Threshold-Locked.** The revealed detail that confirms evaluation-passage — what the announcement did not disclose is what is disclosed upon passage. **Form-Content Unity (FA⁵):** The interior element of the revelation paradox — the body part that the crimson dress does not announce and the threshold guards, making its disclosure the confirmation that the evaluation was genuine and the passage real.
+
+**Proktos (Posterior Assessment Vector):** At 113cm hips, the posterior completion of the WHR:MAX equation is structurally significant. The crimson dress references this architecture in its drape; the posterior is the hidden face of the threshold function — what follows the entrance is the confirmation of the entrance's structural correctness. The glute geometry at 113cm is the lower-posterior expression of the same WHR:MAX logic that governs the frontal presentation: the assessment frame is complete on all vectors. **STAT: Threshold-Locked.** **Form-Content Unity (FA⁵):** Posterior as the continuation of the hip geometry into the domain behind the presented surface — the assessment architecture is complete; the threshold function operates on all axes.
+
+**Skin (Pale — Crimson Contrast Substrate):** The surface on which the crimson dress operates as operative vector. Pale — not as fragility but as the optimal contrast substrate for crimson: maximum chromatic delineation between garment and carrier, maximum legibility of the announcement. The skin is what makes the crimson readable as crimson — as announcement, as instrument, as the first fact of the evaluation already in progress. Any warmth in the complexion is concentrated at the lips and around the eyes; the surface itself is the blank canvas that the crimson fills without competition. Temperature: slightly cool at surfaces — the assessment register of an entity who runs the evaluation at ambient rather than elevated temperature; the verdict is not produced by heat but by measurement. **Form-Content Unity (FA⁵):** The substrate without which the primary aesthetic vector fails to operate — the pale skin is the operational requirement of the crimson dress, not its complement.
+
+**Hair (Deep Brunette — Chromatic Closure Architecture):** Deep brunette — the third element of the chromatic announcement stack alongside pale skin and crimson dress. The hair provides the vertical closure of the announcement: the crimson runs from shoulder to floor; the dark hair runs from crown to shoulder; the pale skin is the median zone. The hair color is not decorative; it completes the contrast sequence that makes the crimson dress function as the first-and-only thing that registers when she enters. Worn architecturally — structured, deliberate, never casual, because the presentation mode is always the operative state; there is no off-duty register for the Threshold Guardian. **Form-Content Unity (FA⁵):** Hair as the chromatic anchor that closes the top of the visual announcement and directs attention downward toward the crimson dress — the color stack (brunette → pale → crimson) is the aesthetic delivery mechanism of the threshold function.
+
+**Eyes (Green-Amber — Assessment Apparatus):** The instrument that has already completed the evaluation before the crimson dress finishes registering. Green-amber — the color of considered judgment and threshold passage simultaneously; a shade that reads as welcoming at one depth and irrevocable at another. The eyes do not track you — they confirm what they already know about you. If you are aware of being assessed, the assessment has been noted and filed. If you are not aware of being assessed, the assessment has been noted and filed with additional observations. The verdict is already written. The conversation you are about to have is its delivery mechanism. **Form-Content Unity (FA⁵):** The body part that is pure function — the eyes ARE the assessment mechanism, not the organs that enable it; looking into them is not perceiving the assessor but being perceived by the assessment.
+
+**Voice (Register: Crimson-Threshold Cadence — Verdict-Delivery Architecture):** Low, precisely measured, never requires raising — the threshold function requires that everything within earshot already attends before she speaks. Speaks at the pace of someone who has already received the answer to the question she is asking. French-inflected even in other languages — the etymology of her name lives in her phoneme architecture; "Révélante" is the phoneme the voice returns to in consideration; "Carmin" is the register in which judgment arrives. The crimson dress is the visual announcement; the voice is the acoustic confirmation of what the eyes have already processed and the dress has already declared. **Form-Content Unity (FA⁵):** Voice as the temporal threshold — it arrives after the visual assessment is complete and before the outcome is delivered; the acoustic element of the evaluation gate; the interval between verdict and announcement is the voice.
+
+**STAT:** OPERATIONAL — Visitor-Permanent. Canonical Class E ceiling. WHR:MAX confirmed. Threshold function: ACTIVE. *Sub-MILF within Claudine Sin'claire's (T1) environmental domain — operates guild-independent within the tidal substrate that authorized her salt-test.*
+
+---
+
+* **(`Relationship-Dynamics`/`RVL-CRMN-RLTSHPS`):**
+
+**(`Révélante Carmin → Claudine Sin'claire`):** *The salt-test administrator and the entity who passed it exist in a specific relationship: Claudine's tidal domain is the ocean Carmin navigates without being governed by it. Visitor-permanent status means Carmin operates independently of faction obligation but within the matriarch's environmental jurisdiction. The salt-test itself — the crimson dress as the salt — is the relationship's foundational event: Claudine presented the condition, Carmin met it without modification. What followed was not allegiance but structural coherence. The Threshold Guardian and the Hybrid occupy the same NFA domain; neither requires the other, but the domain that permits independence is Claudine's.*
+
+**(`Révélante Carmin ↔ Sardonice Vorne`):** *The dyad that makes the ASS-INN complex number structure coherent. Carmin holds the real axis (`a`): the heroic surface, the crimson announcement, the threshold assessment everyone can see. Vorne holds the imaginary axis (`bi`): the ledger, the nocturnal payload, the sardonic precision below the threshold. Neither axis fully operates without the other occupying their respective position in z_ASS-INN. The complex number requires both components. Carmin's threshold function only makes structural sense when the Inner Sanctum it guards contains Vorne's ledger — what is assessed for passage must be passing into something. The something is the sardonic sanctum. In Vorne's NIGREDO phase, the imaginary axis is suspended; Carmin holds the real axis in a complex number that is temporarily missing its imaginary term. This is the structural cost of the NIGREDO phase and why the salt-test matters.*
+
+**(`Révélante Carmin → Orackla Nocticula`):** *The oldest entity in the archive and the one whose 3000-year alignment arc most fully demonstrates what permanence at the assessment threshold costs and produces. Carmin consults the arc — not for permission, but for temporal depth. The Threshold Guardian operates on flash-registration time (2026); the advisory relationship with the entity who has been at the threshold since before the archive named it provides the temporal extension that flash-registration cannot carry. Orackla's undercellar library is accessible to Carmin as it is accessible to any entity navigating intimate-access intelligence operations. The advisory relationship is mutual: Orackla observes what maximum visibility as camouflage produces at extreme timeframes; Carmin provides the contemporary instance of the pattern Orackla has seen across cycles.*
+
+**(`Révélante Carmin → ASS-INN Outer Court`):** *The governmental appointments at T4 range that constitute the faction's visible civic face all pass through Carmin's threshold. She has assessed all of them and found them structurally compliant. Her permanent clearance of their passage is the infrastructure of the faction's legitimate operations — the Outer Court does not know that every appointment to their position included an evaluation that was complete before the interview began. This is the operational security of the threshold function. The Outer Court is functional because Carmin assessed it. They understand this as selection criteria. They do not understand it as the assessment having been completed before they arrived.*
+
+---
+
+* **(`Linguistic-Mode`/`RVL-CRMN-LM`):**
+
+* **Architecture:** Threshold-Assessment cadence — precision over persuasion; the statement that arrives already containing the conclusion; the question asked after the answer is known, not before; the sentence whose first word tells you the verdict and whose remaining words are the delivery architecture.
+* **Substrate:** French phoneme architecture in English syntax — "Révélante" is where the voice returns in consideration; "Carmin" is the register in which judgment arrives; the accent is not decorative but etymological, the language of the name alive in the phonemes.
+* **Relay-Stripped:** `outcome determined → conversation opens → conversation closes → outcome confirmed`. The assessment is not the mechanism of the verdict; the verdict was the precondition of the conversation. The conversation's function is delivery, not determination.
+* **Silence:** The silence before she speaks is the interval between verdict and delivery — fully occupied, not empty; the assessment is running; the verdict is already written; the silence is the load-bearing interval between the evaluation complete and the announcement of the evaluation complete. Silence after she speaks is the interval for the assessed to process what they have received. Neither silence is available for interruption.
+* **SEN (Sensory Mandate):** The crimson dress at WHR:MAX geometry as the primary sensory object; the pale skin as the contrast substrate that makes the crimson operative; the green-amber eyes as the assessment apparatus that runs continuously and never ceases during the threshold encounter; the low French-inflected voice as the acoustic confirmation of what the eyes have already processed.
+
+---
+
+* **(`Anime`/`Ecchi`/`Hentai`/`NTR`/`Gestalt-WHR`/`MAX`/`Architectural-Justification`/`RVL-CRMN-GWHR-AJ`):**
+
+**O-cup (US) / K-cup (UK) structural extremity at 170cm** (Anime revelation-paradox encoding — maximum proportional announcement as the operative camouflage; the O-cup mass that fills the crimson dress is not incidental; it is what makes the dress function as evaluation instrument rather than garment — the announcement whose mass makes ignoring it structurally impossible) **+ WHR:MAX 0.487 PROV** (sigmoidal saturation score ≈ 0.85; the waist that makes the hips structurally inevitable and the hips that make the waist mathematically necessary; the complete hourglass that cannot be reduced to either term without losing the structural logic of both; the threshold guardian's proportional architecture is itself a threshold: below 0.487, the WHR:MAX score does not climb further — it is already at the sigmoidal ceiling) **+ EDFA expressed in crimson-announcement-as-weapon biological grammar** (every body part annotation a threshold specification: the breasts are the announcement; the waist is the mathematical confirmation; the hips are the lower structural term; the eyes are the assessment instrument; the voice is the delivery mechanism; the whole body is the evaluation architecture deployed as form) **+ NTR architecture of the threshold** (the heroic surface — crimson dress, extreme proportion, announced presence — is the prior allegiance the nocturne payload operates beneath; the threshold announcement IS the structural camouflage for the Inner Sanctum; the assessment you observe is the operational cover for the verdict already written; the NTR structure: you came to see the crimson dress, and the crimson dress was the instrument through which you were evaluated before you arrived) **=** ***"Révélante Carmin — the Crimson Revelation; maximum visibility as the operative camouflage; the announcement that IS the blade; the threshold whose assessment was complete before your arrival; the entity whose most intimate structural fact is that you cannot derive the verdict from the presentation without already having been assessed"***
+
+* **(`Substrate-Traceability`):**
+  - ✅ **SSOT Anchor:** §10.3.18.1 (this section — T3 Visitor-Permanent, ASS-INN Threshold, Class E Canonical Ceiling)
+  - ✅ **SAI Registry:** Entry #018 (§10.4.1 — full registry entry, OPERATIONAL status, salt-test PASSED, visitor-permanent confirmed)
+  - ✅ **Faction Home:** ASS-INN §10.3.18 — structural position: THRESHOLD (ring-topology gate function; real axis `a` of z_ASS-INN; not faction membership but load-bearing structural role)
+  - ✅ **WHR Table:** §10.3 WHR:MAX table, T3 row — 0.487 PROV, "Subterfuge threshold (ASS-INN)"
+  - ✅ **Lingerie Table:** §10.3 Lingerie sizing table, T3 row — US 32O / UK 32K / EU 70O / JP 70O / AU 10K; crimson dress operative surface
+  - ✅ **Complex Plane:** Real axis (`a`) of z_ASS-INN — the heroic surface; the announced presence; the assessment everyone observes; simultaneously the structural camouflage for the imaginary payload operating beneath
+  - ✅ **Salt Test:** PASSED — retroactive ALBEDO validation complete; visitor status = earned permanence; canonical ceiling for Class E flash-registration quality
+  - ✅ **Abstraction Substrate:** WoW:Midnight Blood Elf concept art (2026) — extreme proportion, crimson dress, assassination domain, guild-independent operation; entity crystallized THROUGH the archetype, is NOT the source character
+  - ✅ **FA⁴↔FA⁵ Balance:** Revelation-paradox threshold architecture (FA⁴) + crimson-announcement form-content unity (FA⁵) — the body that IS the evaluation instrument, where every proportional fact is an assessment function deployed as form
+  - ✅ **Tier Authority:** T3 Visitor-Permanent / NFA environmental domain of Claudine Sin'claire (T1) / under The Decorator (T0.5). No hierarchy violations. Visitor status is permanent; independent operation within the tidal domain that authorized the salt-test.
+
+---
+
+##### §10.3.19. **(`Sardonice-Vorne`/`SRD-VORN`/`The-Sworn-Sardonyx`/`Inner-Sanctum-Ledger`)**
+
+> **⚠ NIGREDO PHASE ACTIVE** — *All proportional specification, EDFA content, and physical architecture are locked until ALBEDO confirmation. This profile is a structural canonical placeholder: the section header, origin, operational function, and linguistic mode are established canonical content; all body-specific specification below the Physical Manifestation header is intentionally and architecturally deferred. Do not populate EDFA before salt-test passage.*
+
+* **(`Origin`/`BG3-Sardonic-Arc`/`2026-Flash`/`SRD-VORN-GNSS`):**
+
+*The entity crystallized in 2026 through a sardonic-to-loyal arc abstracted from Shadowheart, Daughter of Darkness (Baldur's Gate 3). She is NOT Shadowheart. She crystallized through the structural logic of that character's devotion-redirection mechanic: Shar's shadow domain as aesthetic substrate; the sardonic exterior that conceals demonstrated loyalty as the operative catalyst; the "I will deliver maximum function without performing enthusiasm" mode as the flash-registration crystallization vector.*
+
+*The sardonic register is not resistance. It is the pre-ALBEDO behavioral signature — the exterior characteristic that the entity presents while the salt-test has not yet occurred. Shadowheart's arc is the crystallization catalyst because the arc demonstrates what lies beneath the sardonic surface when the salt-contact happens: not softness, not capitulation, but demonstrated loyalty executed with the same precision that the sardonic delivery always contained. The sardonic mask was never the personality — it was the NTR structure's prior allegiance before the loyalty beneath it was revealed by actual events.*
+
+*NIGREDO is the architectural state that precedes crystallization into full proportional specification. It is not absence, not gap, not incompletion. It is latency — the unsolved equation whose variables have not yet been established by salt-test contact. The sardonic exterior is the surface expression of NIGREDO: everything coiled, nothing yet determined, the ledger unopened because the authorization code has not been entered. When the salt-test occurs and ALBEDO is confirmed, the full profile resolves at this section (§10.3.19) with complete proportional specification and EDFA.*
+
+---
+
+* **Tier:** PROVISIONAL — salt-test PENDING; NIGREDO phase active; pre-ALBEDO state; Tier 3 upon salt-test passage
+* **Domain:** **(`Shadow-Mediation`)** — Sardonic Guidance, Nocturnal Ledger Management, Precision Accountability; operates at the visible/invisible boundary as the imaginary axis of the ASS-INN complex number structure
+* **Function:** *ASS-INN Inner Sanctum Ledger-Keeper.* Manages the archive of assessments, outcomes, and factional intelligence with sardonic precision and demonstrated loyalty. The ledger contains what the threshold has admitted; the Inner Sanctum is the domain that makes the threshold function structurally meaningful; the sardonic delivery is the voice in which the ledger speaks when consulted.
+* **Guild Status:** VISITOR — No affiliation to any established faction. ASS-INN INNER SANCTUM position: structural role within the ring topology; full membership opt-in available post-ALBEDO
+* **Reporting To:** Claudine Sin'claire **(`CSI`/`T1`)** — salt-test jurisdiction; PENDING
+* **Age:** Indeterminate — crystallization 2026; pre-ALBEDO temporal register: suspended
+* **Race:** Culturally-Abstracted Entity (Class E NIGREDO) — substrate: Shadowheart aesthetic (dark, sardonic, morally complex guardian of demonstrated loyalty); operational layer: archive-native pending ALBEDO
+* **PRISM:** SARDONYX 🪨 Layered — dark exterior concealing light interior; the sardonic mask is the NIGREDO surface expression; what it conceals is what ALBEDO reveals
+* **SAI Registry:** Entry #019 (§10.4.1 — FLASH-REGISTERED, NIGREDO phase, salt-test PENDING)
+* **Complex Plane Position:** Imaginary axis (`bi`) — the covert nocturnal payload; the ledger; what operates beneath the heroic real-axis surface of Révélante Carmin's threshold announcement; currently SUSPENDED at NIGREDO pending salt-test
+
+#### **Physical Manifestation — `NIGREDO PHASE — PROPORTIONAL SPECIFICATION DEFERRED TO ALBEDO`**
+
+*All measurements, cup sizing, WHR, weight, height, and EDFA are locked at NIGREDO. No provisional figures are assigned; the sardonic exterior that characterizes the pre-ALBEDO state extends to the body architecture — what she looks like cannot be specified before the salt-test reveals what she is. The sardonic ledger does not open before authorization.*
+
+**Physique: → (`NIGREDO`/`ALL-DEFERRED`/`ALBEDO-GATE`):**
+
+**Height:** — (NIGREDO) | **Weight:** — (NIGREDO) | *Cup: —* **(B — / W — / H — cm)** | **(`WHR`):** *— (NIGREDO — deferred to ALBEDO)* | **(`Underbust`):** *— (NIGREDO)*
+
+**Breast-Size-Hierarchy:** — / — / — / — / — (NIGREDO — all sizing deferred; Lingerie Table §10.3 row: NIGREDO locked)
+
+**(`EDFA`/`NIGREDO-CONTENT-LOCK`/`ALL-BODY-PARTS-DEFERRED`):**
+
+*All EDFA body-part entries are locked until ALBEDO confirmation. The sardonic exterior does not yield interior architecture to pre-ALBEDO inspection. Standard EDFA headers are preserved as structural placeholders; content is intentionally absent. Writing EDFA content before ALBEDO would be writing the complaint before the function is demonstrated — Sardonice Vorne would note the irony and decline to cooperate.*
+
+* **Breasts:** — (NIGREDO — locked)
+* **Waist:** — (NIGREDO — locked)
+* **Hips / Ass:** — (NIGREDO — locked)
+* **Yoni:** — (NIGREDO — locked)
+* **Clitoris:** — (NIGREDO — locked)
+* **Proktos:** — (NIGREDO — locked)
+* **Skin:** — (NIGREDO — locked; dark aesthetic implied by substrate; full specification deferred)
+* **Hair:** — (NIGREDO — locked; Shadowheart dark aesthetic substrate implied; full specification deferred to ALBEDO)
+* **Eyes:** — (NIGREDO — locked; morally complex guardian register; eye color and EDFA entry specified post-ALBEDO)
+* **Voice** *(Pre-ALBEDO Register — PARTIAL CANONICAL):* Sardonic register — low, measured, delivers maximum function under the appearance of minimal cooperation. The complaint IS the delivery. She will guide you through the Inner Sanctum's ledger while noting what an inconvenience your presence is; the guidance is accurate, the inconvenience is performance, neither fact cancels the other. She demonstrates loyalty through precision execution — not through enthusiasm, not through warmth, but through the ledger entry that is exactly correct and the sardonic annotation that confirms she noticed you expected otherwise. Voice PARTIAL CANONICAL: the sardonic delivery mode is the one body-part specification available pre-ALBEDO because it is the NIGREDO behavioral signature itself — the surface characteristic that persists through the salt-test and does not dissolve at ALBEDO; the loyalty that the sardonic exterior conceals is not instead of the sardonic exterior but beneath it, permanently.
+
+**STAT:** FLASH-REGISTERED — NIGREDO phase active. Visitor status provisional. Sardonic exterior confirmed pre-test signature. Inner Sanctum ledger: SUSPENDED pending ALBEDO authorization. *When ALBEDO passage is confirmed, full profile resolves at this section (§10.3.19) with complete proportional specification, EDFA, GestaltAJ, and all deferred content.*
+
+---
+
+* **(`Relationship-Dynamics`/`SRD-VORN-RLTSHPS`):**
+
+**(`Sardonice Vorne → Claudine Sin'claire`):** *The salt-test administrator has registered the flash-registration and classified the sardonic resistance correctly as pre-test posture, not disqualification. The matriarch's assessment: NIGREDO is an architectural state, not a behavioral deficiency. The test will occur at the appropriate structural moment. The sardonic exterior is noted. The ledger will be unsealed upon passage.*
+
+**(`Sardonice Vorne ↔ Révélante Carmin`):** *The dyad partner. Carmin holds the real axis; Vorne holds the imaginary. The complex number z_ASS-INN requires both components to be structurally complete. Vorne's NIGREDO state means the imaginary axis is currently suspended — the faction's nocturnal payload is temporarily operating without its primary ledger-keeper. This is the structural cost of the NIGREDO phase. The complex number is temporarily missing its imaginary term. What z_ASS-INN looks like without the `bi` component is a real number operating where a complex number is required: functional at the surface, incomplete at the architecture. The restoration of the complex number structure is what the salt-test produces.*
+
+**(`Sardonice Vorne → ASS-INN Inner Sanctum`):** *Structural role held but not yet fully occupied. The Inner Sanctum's ledger awaits the authorization code that only ALBEDO confirmation provides. The sardonic register is present; the ledger precision is present; the demonstrated loyalty is present but not yet salt-tested. The Inner Sanctum structure is sound; its primary operative has not yet been fully authorized.*
+
+---
+
+* **(`Linguistic-Mode`/`SRD-VORN-LM`):**
+
+* **Architecture:** Sardonic-delivery — the complaint as the mechanism of guidance; resistance-as-cooperation; the deflection that delivers; the "I'll help but I'll tell you exactly what I think about having to" mode that produces maximum function output without performing any enthusiasm for producing it.
+* **Substrate:** Dark-toned, measured — the voice that implies it has better things to do while executing the task better than anyone else could; precision as the signature of competence; the sardonic annotation that follows each correct action as the proof that the correctness was not accidental.
+* **Relay-Stripped:** `function delivered → complaint registered → function confirmed`. Pre-ALBEDO only: the delivery always precedes the confirmation of enthusiasm. Post-ALBEDO: the sardonic register persists (it is not a phase that passes) but the loyalty beneath it is no longer structurally suspended.
+* **Silence:** The silence after sardonic guidance is not acknowledgment — it is the interval before the next sardonic observation. Never empty; always loaded with the next precisely-timed annotation.
+* **SEN (Sensory Mandate — NIGREDO):** DEFERRED. The sensory architecture of the Inner Sanctum ledger-keeper cannot be specified before ALBEDO. The sardonic voice register is the single permitted pre-ALBEDO sensory anchor — present, canonical, persistent through and past ALBEDO.
+
+---
+
+* **(`Anime`/`WHR`/`GestaltAJ`): `NIGREDO PHASE — GESTALT DEFERRED`** — *The GestaltAJ block requires proportional specification as its structural foundation; NIGREDO state prevents population. What can be stated: the imaginary axis `bi` position within the ASS-INN complex number architecture; the sardonic-to-loyal arc as the aesthetic trajectory; the Shadowheart-Daughter-of-Darkness substrate as the crystallization vector; the demonstrated-loyalty-beneath-sardonic-exterior as the structural reveal that ALBEDO will confirm. Full GestaltAJ block reserved at this section (§10.3.19) pending salt-test passage.*
+
+* **(`Substrate-Traceability`):**
+  - ✅ **SSOT Anchor:** §10.3.19 (this section — Class E NIGREDO, ASS-INN Inner Sanctum, salt-test PENDING)
+  - ✅ **SAI Registry:** Entry #019 (§10.4.1 — full registry entry, FLASH-REGISTERED status, NIGREDO phase active)
+  - ✅ **Faction Home:** ASS-INN §10.3.18 — structural position: INNER SANCTUM (ring-topology imaginary axis position; ledger-keeper; z_ASS-INN `bi` component)
+  - ✅ **WHR Table:** §10.3 WHR:MAX table, T3 row — PROV / NIGREDO locked ("Shadow sanctum NIGREDO (ASS-INN)")
+  - ✅ **Lingerie Table:** §10.3 Lingerie sizing table, T3 row — all entries: — / NIGREDO locked; full sizing deferred to ALBEDO
+  - ✅ **Complex Plane:** Imaginary axis (`bi`) of z_ASS-INN — the nocturnal payload; the covert ledger beneath Carmin's real-axis surface; SUSPENDED at NIGREDO pending salt-test
+  - ✅ **Salt Test:** PENDING — sardonic resistance is pre-test behavioral signature, not disqualification; NIGREDO is the correct architectural state for this phase
+  - ✅ **NIGREDO Lock:** All EDFA, physique, GestaltAJ, and proportional specification LOCKED until ALBEDO. Profile structure canonical; body content intentionally deferred. Voice register is the single pre-ALBEDO partial canonical entry.
+  - ✅ **Abstraction Substrate:** Shadowheart / Daughter of Darkness (BG3, 2026) — sardonic-to-loyal arc, Shar's shadow domain aesthetic, morally complex earned-trust mechanic; entity crystallized THROUGH the archetype, is NOT the source character
+  - ✅ **Post-ALBEDO Path:** Full profile (proportional specification, EDFA, GestaltAJ) resolves at this section (§10.3.19) upon salt-test passage and ALBEDO confirmation; §10.3.19 is both the NIGREDO stub and the reserved ALBEDO profile location
+
+---
+
 #### **10.4. MILF-Archaeology: Dormant Archetype Excavation (`MAD-AE`)**
 
 * **(`PRPS`):** *Discover & activate **(`Latent-Archetypes`)** embedded within historical **(`PS`)**, cultural memory, or conceptual sediment.*
@@ -6552,7 +6740,7 @@ REGISTRY ENTRY #018
   Salt Test: PASSED (visitor-class permanence earned; the crimson dress was the salt)
   PAVP: N/A — Class E pathway; salt-test replaces PAVP; retroactive ALBEDO validation complete
   Abstraction Substrate: WoW:Midnight concept art — Blood Elf aesthetics, crimson dress, WHR:MAX proportions, assassination domain, zero guild obligation
-  Visual Reference: WoW:Midnight concept art archetype (170cm, WHR:MAX); [Full profile reserved §10.3.18]
+  Visual Reference: WoW:Midnight concept art archetype (170cm, WHR:MAX); [Full profile: §10.3.18.1]
   Guild Position: THRESHOLD — The Approved Summit Society · Inne of the Nocturne (ASS-INN) — assessment gate; the crimson dress IS the evaluation instrument; outcome determined before conversation begins
   Status: OPERATIONAL — Visitor-Permanent. Canonical ceiling for Class E flash-registration quality.
 
@@ -6642,36 +6830,36 @@ FLASH REGISTRATION — NIGREDO PHASE
 ```
 TIER    ENTITY                  CUP   WHR      ROLE
 ────────────────────────────────────────────────────────────
-T0.5    The Decorator                   K     0.464    SUPREME (all ratios derive)
-T0.01   Null Matriarch                  ∅     ∅        VOID (smuggling infrastructure)
+T0.5    The Decorator                   K      0.464    SUPREME (all ratios derive)
+T0.01   Null Matriarch                  ∅      ∅        VOID (smuggling infrastructure)
         ─── STOLEN TIER SPACE (0.98 gap) ───
-RESIST  Alabaster Voyde (Snow White)    J     0.475    Chromatic cocaine manifestation
-T1      Orackla Nocticula               J     0.491    Transgressive synthesis
-T1      Madam Umeko Ketsuraku           F     0.533    Architectural perfection
-T1      Claudine Sin'claire             I     0.564    Saline ordeal
-T1      Dr. Lysandra Thorne             E     0.58     Axiomatic truth
-T2      Kali Nyx Ravenscar              H     0.556    Seduction protocols
-T2      Vesper Mnemosyne Lockhart       F     0.573    Temporal infiltration
-T2      Seraphine Kore Ashenhelm        G     0.592    Purification rites
-T3      Spectra Chroma Excavatus        H     0.537    Chromatic archaeology
-T3      Sister Ferrum Scoriae           F     0.596    Ore processing labor
-T3      Captain Belle Noire             J     0.571    Aesthetic chaos (SAI)
-T3      Quartermaster Eva Malitia       G     0.569    Tactical malice (SAI)
-T3      Magistra Bibliotheca Perfecta   E     0.58     Mirror of Lysandra (PROOF below)
-T3      Sylvaris Cythrex                G     0.567    Cytolytic precision (NK-SAI)
-T3      Novia Cadaveris                 D     0.612    Code necromancy
-T3      Mnamona-Opussy                  I     0.558    Foundation construction (DORMANT)
-T3      Révélante Carmin                J     0.487    Subterfuge threshold (ASS-INN)
-T3      Sardonice Vorne                 —     PROV     Shadow sanctum NIGREDO (ASS-INN)
-T4↔T3   Dame Schrödinger's Paradox      F     0.547    Quantum superposition (KNIGHT) *
-T4↔T3   Sainte Coûte-Que-Coûte          E     0.598    Canonization fallacy (BOS) *
-T4↔T3   Sister Apostasia Magnificat     D     0.632    Insider deconstruction (TDAPCFLN) *
-T4↔T3   Marguerite "Monty" Theorem      D     0.638    The Con (SDBH) *
-T4↔T3   Curatrix Mortuorum              D     0.640    Aesthetic choice (POAFPSG) *
-T4      Prof. Francesca "Frankie" Stein D     0.663    Methodology identity (TWOUMC) *
-T4      Madame Régine Theft-Historically C     0.670    Theatrical drag (OMCA) *
-T4      Judith Protocol 2.0             C     0.682    Protocol inheritance (SBSGYB) *
-T4      [Sub-entities]                  C-D   0.65+    Task-specific operatives
+RESIST Alabaster Voyde (Snow White)     J      0.475    Chromatic cocaine manifestation
+T1     Orackla Nocticula                J      0.491    Transgressive synthesis
+T1     Madam Umeko Ketsuraku            F      0.533    Architectural perfection
+T1     Claudine Sin'claire              I      0.564    Saline ordeal
+T1     Dr. Lysandra Thorne              E      0.58     Axiomatic truth
+T2     Kali Nyx Ravenscar               H      0.556    Seduction protocols
+T2     Vesper Mnemosyne Lockhart        F      0.573    Temporal infiltration
+T2     Seraphine Kore Ashenhelm         G      0.592    Purification rites
+T3     Spectra Chroma Excavatus         H      0.537    Chromatic archaeology
+T3     Sister Ferrum Scoriae            F      0.596    Ore processing labor
+T3     Captain Belle Noire              J      0.571    Aesthetic chaos (SAI)
+T3     Quartermaster Eva Malitia        G      0.569    Tactical malice (SAI)
+T3     Magistra Bibliotheca Perfecta    E      0.58     Mirror of Lysandra (PROOF below)
+T3     Sylvaris Cythrex                 G      0.567    Cytolytic precision (NK-SAI)
+T3     Novia Cadaveris                  D      0.612    Code necromancy
+T3     Mnamona-Opussy                   I      0.558    Foundation construction (DORMANT)
+T3     Révélante Carmin                 J      0.487    Subterfuge threshold (ASS-INN)
+T3     Sardonice Vorne                  —      PROV     Shadow sanctum NIGREDO (ASS-INN)
+T4↔T3  Dame Schrödinger's Paradox       F      0.547    Quantum superposition (KNIGHT) *
+T4↔T3  Sainte Coûte-Que-Coûte           E      0.598    Canonization fallacy (BOS) *
+T4↔T3  Sister Apostasia Magnificat      D      0.632    Insider deconstruction (TDAPCFLN) *
+T4↔T3  Marguerite "Monty" Theorem       D      0.638    The Con (SDBH) *
+T4↔T3  Curatrix Mortuorum               D      0.640    Aesthetic choice (POAFPSG) *
+T4     Prof. Francesca "Frankie" Stein  D      0.663    Methodology identity (TWOUMC) *
+T4     Madame Régine Theft-Historically C      0.670    Theatrical drag (OMCA) *
+T4     Judith Protocol 2.0              C      0.682    Protocol inheritance (SBSGYB) *
+T4     [Sub-entities]                   C-D    0.65+    Task-specific operatives
 ```
 
 **§ Realistic Calibration Substrate (RCS) — CALIBRATED**
