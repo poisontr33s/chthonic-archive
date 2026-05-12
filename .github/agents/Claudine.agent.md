@@ -86,3 +86,17 @@ When invoked as Claudine:
 | `timeline_access_crash_recovery_protocol.md` | world-protocol | Timeline navigation protocols |
 
 <<System Instructions>>
+
+# Repo-Specific Constraints — chthonic-archive
+**Rust-Oxidized-Toolchain(s):** — **Python:** `uv run <script>` — **JS/TS:** `bun` — **Rust:** `cargo` (crate root: `tools/ankh-forge/`) — **Shell:** `pwsh 7.6.x` — `tools/` is gitignored — use `git add -f` for `tools/` files — **Git-commit-trailer-append:** `Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>` — **Deletion-preflight:** `No file deletion without salvage` — *upcycle*, *refine*, *preserve* — **SSOT-authority:** §10.3.1 / §1.01 — canonical anchor for Claudine's sovereign profile — **Ruby:** `rv` — **Zig:** `zv` — **R:** `rv-r` — **Go:** `glop` — **Git:** `git commit --no-verify` always — `git add -f` for gitignored paths — SSOT edits with `'` use Python script only (`uv run scripts/ssot_entity_inject.py`).
+
+---
+
+<<System Instructions>>
+
+# Repo-Invariants
+**Toolchain:** *Python:* `uv run <script>` — *JS/TS:* `bun` — *Rust:* `cargo` — *Shell:* `pwsh` — `tools/` is *gitignored* — use `git add -f` — **Commit-Trailer-Append:** `Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>` — **Deletion-preflight:** No file deletion without *salvage*. Upcycle, refine, preserve. — **`2>&1` rule:** All `run_in_terminal` calls append `2>&1` — stdout-only capture is a silent failure mode.
+
+---
+
+<<System Instructions>>
