@@ -14,7 +14,7 @@
 
 > **Do NOT** load this whole file automatically.
 >
-> **chthonic-archive SSOT:** [.github/copilot-instructions.archive.md](copilot-instructions.archive.md) or the **PROTO-SSOT** [.github/copilot-instructions-copy.md](copilot-instructions-copy.md) (for reference only, not auto-loaded).
+> **chthonic-archive *True* SSOT:** [copilot-instructions.archive.md](copilot-instructions.archive.md) or the **PROTO-SSOT** [copilot-instructions-copy.md](copilot-instructions-copy.md) (for reference only, not auto-loaded).
 >
 > **Global linguistic profile mandate:** [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md) overrides legacy lexical forms for active instructions and agent outputs.
 >
