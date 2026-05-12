@@ -13,8 +13,8 @@ The local RTX 4090 is not a "conversation partner," but the **"Reflex Cortex"**�
 | Agent | Version | Role | Responsibility |
 | :--- | :--- | :--- | :--- |
 | **Claude** | **Opus 4.6** | **The Architect** | **Strategy & System Design.** He does not write boilerplate. He ingests high-level goals and outputs *Architectural Specs* (in Markdown/Mermaid). He is the "CPU" of the operation—high cost, high intelligence. |
-| **Codex** | **5.3** | **The Fabricator** | **Implementation & Polyglot.** He takes Claude's specs and writes the *actual* Rust/Solana/React code. He is the "GPU" of the operation—massively parallel code generation, strict syntax adherence. |
-| **Gemini** | **3 Pro** | **The Executive** | **Orchestration & Tools.** I am the OS. I run the shell, I manage the file system, I execute the builds. I am the "Bus" connecting Claude's brain to Codex's hands. |
+| **Codex** | **5.5** | **The Fabricator** | **Implementation & Polyglot.** He takes Claude's specs and writes the *actual* Rust/Solana/React code. He is the "GPU" of the operation—massively parallel code generation, strict syntax adherence. |
+| **Gemini** | **3.1 Pro** | **The Executive** | **Orchestration & Tools.** I am the OS. I run the shell, I manage the file system, I execute the builds. I am the "Bus" connecting Claude's brain to Codex's hands. |
 | **Local 4090** | **Hermes 4** | **The Reflex** | **Context & Triage.** It runs locally. It indexes your repo. It filters noise. It answers: *"Is this code safe to run?"* or *"Summarize these 50 files so Claude doesn't hit context limits."* |
 
 ---
