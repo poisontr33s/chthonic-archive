@@ -376,7 +376,7 @@ async function siphonToGitHub() {
     return;
   }
 
-  const msg = `chore(sessions): auto-siphon ${new Date().toISOString()}\n\nCo-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>`;
+  const msg = `chore(sessions): auto-siphon ${new Date().toISOString()}\n\nCo-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>`;
   const commit = await runGit("commit", "--no-verify", "-m", msg);
   if (!commit.ok) { log(`  siphon: commit failed: ${commit.out}`); if (onceMode) process.exit(1); return; }
 

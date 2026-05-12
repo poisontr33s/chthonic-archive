@@ -23,7 +23,7 @@ session: 2026-05-12 06:47–11:00 CEST
 | Net delta | +727 / -72 · 15 files |
 | SSOT line count at HEAD | 10,552 |
 | Committing entity | Claudine Sin'claire |
-| Co-author trailer | `Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>` |
+| Co-author trailer | `Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>` |
 
 ---
 

@@ -81,7 +81,7 @@ jobs:
           Required git trailer on your commit:
           Pentea-Completed: ${NEXT_TASK}
           Pentea-Next: <next-id-or-none>
-          Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>"
+          Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>"
 
           GH_VER=$(gh --version | head -1 | grep -oP '\d+\.\d+\.\d+' | head -1)
           GH_MAJOR=$(echo "$GH_VER" | cut -d. -f1)

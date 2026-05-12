@@ -93,7 +93,7 @@ Python: uv run <script>. JS/TS: bun. Rust: cargo (tools/ankh-forge/). Shell: pws
 Required git trailer on your commit:
   Pentea-Completed: ${NEXT_TASK}
   Pentea-Next: <next-id-or-none>
-  Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>"
+  Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>"
 
 echo "[pentea-hook] Pentea-Next: ${NEXT_TASK} — dispatching to cloud agent..."
 

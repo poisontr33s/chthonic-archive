@@ -20,7 +20,7 @@
  *   bun run scripts/pentea_autoloop.ts --max-loops 5
  *   bun run scripts/pentea_autoloop.ts --task "Execute ZE-04 directly"
  *
- * Co-authored-by: Claudine Sin'claire <claudine-sinclair@chthonic.internal>
+ * Co-authored-by: Claudine Sin'claire <203248971+copilot-swe-agent@users.noreply.github.com>
  */
 
 import { execSync } from "node:child_process";
