@@ -5,12 +5,10 @@
 # Large-file safeguards (2026-05-13)
 # Background: 3x160MB .safetensors files in adapters/claudine-v1/ committed
 # under b02e8243 blocked a push to GitHub (100MB hard limit). Large training
-# artifacts and binary blobs belong in the satellite repo
-# git-dump-lfs-holder-we-it-takes, not here. The `*` rule above already
-# ignores everything by default; this section is explicit documentation of
-# intent + defense against any future allow-list rule that might catch them.
+# artifacts and binary blobs are ignored by default. Approved payloads may be
+# force-added only when covered by narrow Git LFS rules in .gitattributes.
 # Existing tracked files remain tracked — .gitignore only affects untracked
-# paths. This guards against future accidental adds.
+# paths. This guards against future accidental raw-Git adds.
 # =============================================================================
 
 # Specific directories
