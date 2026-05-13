@@ -1,6 +1,24 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: PATCH-HARANI-R2-001
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: patch_harani_round2.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+patch_harani_round2.py — Script logic for patch_harani_round2.py.
+
+@SID:           PATCH_HARANI_R2_V1
+@Shabti:        CLI Script
+@Purpose:       Script logic for patch_harani_round2.py.
+"""
+
+# @SID: PATCH_HARANI_R2_V1
 # Round 2 targeted patch for §10.3.21 Hara'ni.
 #
 # SSOT fixes:

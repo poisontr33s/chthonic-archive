@@ -1,6 +1,24 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: PATCH-HARANI-GAME-REFS-001
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: patch_harani_game_refs.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+patch_harani_game_refs.py — Script logic for patch_harani_game_refs.py.
+
+@SID:           PATCH_HARANI_GAME_REFS_V1
+@Shabti:        CLI Script
+@Purpose:       Script logic for patch_harani_game_refs.py.
+"""
+
+# @SID: PATCH_HARANI_GAME_REFS_V1
 # Remove all 'game world' / 'game-world' compound phrases from §10.3.21 in SSOT.
 # The SSOT describes a world, not a game; self-referential 'game' breaks canon immersion.
 

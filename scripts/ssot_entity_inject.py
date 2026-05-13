@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
-# @SID: ssot-entity-inject
-# @SCOPE: SSOT injection utility — persistent, parameterized, reusable
-# @VERSION: 1.0.0
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: ssot_entity_inject.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 SSOT Entity Injection Tool
 --------------------------
@@ -24,7 +32,15 @@ Design notes:
   - Content file is inserted after the anchor line's newline, preceded by a blank line
   - Safe for any entity content block containing non-ASCII characters
   - Designed for chthonic-archive SSOT §10.3.xx entity injection workflow
+
+@SID:           SSOT_ENTITY_INJECT_V1
+@Shabti:        CLI Script
+@Purpose:       SSOT Entity Injection Tool
 """
+
+# @SID: SSOT_ENTITY_INJECT_V1
+# @SCOPE: SSOT injection utility — persistent, parameterized, reusable
+# @VERSION: 1.0.0
 
 import argparse
 import pathlib

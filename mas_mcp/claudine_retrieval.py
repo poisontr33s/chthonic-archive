@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: CLAUDINE_RETRIEVAL_MCP_V1
-# Run from repo root: uv run mas_mcp/claudine_retrieval.py
-# Requires: peft, transformers, torch, bitsandbytes (root .venv)
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: claudine_retrieval.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🏰 THE FORTRESS
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 mas_mcp/claudine_retrieval.py — Claudine LoRA Completion MCP Tool.
 
@@ -15,7 +22,15 @@ model completions. Returns adapter_status metadata until then.
 Usage:
     uv run mas_mcp/claudine_retrieval.py          # stdio MCP server
     uv run mas_mcp/claudine_retrieval.py --probe  # status check only
+
+@SID:           CLAUDINE_RETRIEVAL_MCP_V1
+@Shabti:        CLI Script
+@Purpose:       mas_mcp/claudine_retrieval.py — Claudine LoRA Completion MCP Tool.
 """
+
+# @SID: CLAUDINE_RETRIEVAL_MCP_V1
+# Run from repo root: uv run mas_mcp/claudine_retrieval.py
+# Requires: peft, transformers, torch, bitsandbytes (root .venv)
 
 import json
 import sys

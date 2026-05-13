@@ -1,6 +1,24 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: PATCH-HARANI-STAGING-001
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: patch_harani_staging.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+patch_harani_staging.py — Script logic for patch_harani_staging.py.
+
+@SID:           PATCH_HARANI_STAGING_V1
+@Shabti:        CLI Script
+@Purpose:       Script logic for patch_harani_staging.py.
+"""
+
+# @SID: PATCH_HARANI_STAGING_V1
 # Apply same game-world removals to the harani_ssot_block.md staging file.
 
 import sys
