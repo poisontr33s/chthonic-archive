@@ -1,3 +1,12 @@
+---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Uncurated session log — 328 broken/ambiguous link references
+  (hotspot #3 in rot index, ~15% of all repo rot). Preserved as
+  historical attempt; excluded from active rot scanning.
+---
+
 # Task handover for Claude Opus 4.5 (Bun‑compatible Playwright extension) — validation scope:
 
 **Goal:** Determine if a Bun‑first Playwright extension can replace Node‑based Playwright CLI + VS Code extension workflows without breaking real‑browser automation.

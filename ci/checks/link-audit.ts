@@ -21,7 +21,7 @@
  * GitHub/GFM URL shape checks are offline; live issue/asset checks stay opt-in.
  */
 
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 import { spawnSync } from "child_process";
 
@@ -44,10 +44,42 @@ function isMarkdownPath(rel: string): boolean {
   return rel.toLowerCase().endsWith(".md");
 }
 
+function isTombstone(rel: string): boolean {
+  // Honor `lifecycle: tombstone` in YAML frontmatter. Tombstones are
+  // acknowledged-dead artifacts (see manifest/git_rot_index.md hotspots);
+  // they stay in the repo but are excluded from active link auditing.
+  // The frontmatter sits in the first ~30 lines if present.
+  try {
+    const abs = resolve(REPO_ROOT, rel);
+    const head = readFileSync(abs, { encoding: "utf8" }).split("\n").slice(0, 30);
+    let inFrontmatter = false;
+    for (const line of head) {
+      if (line.trim() === "---") {
+        if (inFrontmatter) return false;
+        inFrontmatter = true;
+        continue;
+      }
+      if (inFrontmatter && /^\s*lifecycle\s*:\s*tombstone\b/.test(line)) {
+        return true;
+      }
+    }
+  } catch {
+    // Unreadable file: don't claim tombstone, let audit handle it.
+  }
+  return false;
+}
+
 function existingMarkdown(paths: string[]): string[] {
   return paths
     .filter(isMarkdownPath)
-    .filter((rel) => existsSync(resolve(REPO_ROOT, rel)));
+    .filter((rel) => existsSync(resolve(REPO_ROOT, rel)))
+    .filter((rel) => {
+      if (isTombstone(rel)) {
+        console.log(`[pathfinder] skipping tombstone: ${rel}`);
+        return false;
+      }
+      return true;
+    });
 }
 
 function hasStagedRenames(): boolean {

@@ -1,3 +1,14 @@
+---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Agent-generated improvement proposal — 767 broken/ambiguous link
+  references (top hotspot in rot index, 36% of all repo rot).
+  Preserved as historical attempt; excluded from active rot scanning.
+  The work it describes was never integrated; nothing here is currently
+  load-bearing. Treat as graveyard, not roadmap.
+---
+
 ## ZONE_X_REDUX Operational Nucleus: COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL
 
 ### Document Lineage: [ZONE_1_REDUX_ZOMBIE_DUMPSTER_BRIDGE_GOVERNANCE_NUCLEUS.md](../../claude/ZONES_X_REDUX/ZONE_1_REDUX_ZOMBIE_DUMPSTER_BRIDGE_GOVERNANCE_NUCLEUS.md) → [COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md](COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md)

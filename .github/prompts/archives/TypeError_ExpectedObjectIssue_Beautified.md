@@ -1,4 +1,10 @@
 ---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Agent-"beautified" problem report — 593 broken/ambiguous link
+  references (hotspot #2 in rot index, ~28% of all repo rot).
+  Preserved as historical attempt; excluded from active rot scanning.
 title: "Typeerror Expectedobjectissue"
 processed_at: "2026-01-22T18:52:27.955970"
 algorithm: "/saveprompt v1.0"
