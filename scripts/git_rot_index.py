@@ -239,21 +239,24 @@ def file_signals_batch(paths: list[Path]) -> dict[str, dict]:
     }
 
 
-def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path], Optional[str]]:
+def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path], Optional[str], Optional[str]]:
     """
-    Return (cleaned_target_str, resolved_path_or_None, would_be_repo_relpath).
-    The third element is the repo-relative path the link WOULD point to —
-    populated even when the file doesn't exist, so git can be asked
-    whether it ever existed historically.
+    Return (cleaned_target_str, resolved_path_or_None, would_be_repo_relpath, fragment).
+    The fragment is everything after `#` if present (e.g. `section-name` or `L42`).
+    Used by L3 ANCHOR detection (ROT-006/007).
     """
     tgt = raw_target.strip()
     if tgt.startswith(("http://", "https://", "mailto:", "#")):
-        return ("external", None, None)
+        return ("external", None, None, None)
     if re.match(r"^[A-Za-z]:[/\\]", tgt):
-        return ("absolute_winpath", None, None)
-    tgt_clean = tgt.split("#")[0].split("?")[0].strip()
+        return ("absolute_winpath", None, None, None)
+    fragment = None
+    if "#" in tgt:
+        tgt, fragment = tgt.split("#", 1)
+        fragment = fragment.split("?")[0]
+    tgt_clean = tgt.split("?")[0].strip()
     if not tgt_clean:
-        return ("empty", None, None)
+        return ("empty", None, None, fragment)
     if tgt_clean.startswith("/"):
         resolved = REPO_ROOT / tgt_clean[1:]
     else:
@@ -261,8 +264,64 @@ def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path], Optio
     try:
         would_be = resolved.relative_to(REPO_ROOT).as_posix()
     except ValueError:
-        would_be = None  # path escapes repo root
-    return (tgt_clean, resolved if resolved.exists() else None, would_be)
+        would_be = None
+    return (tgt_clean, resolved if resolved.exists() else None, would_be, fragment)
+
+
+# GFM heading -> anchor cache, keyed on resolved file path.
+# Avoid re-reading the same target file once per link that points at it.
+_HEADING_CACHE: dict[Path, set[str]] = {}
+_LINE_COUNT_CACHE: dict[Path, int] = {}
+
+
+def _gfm_anchor(text: str) -> str:
+    """
+    GitHub Flavored Markdown anchor normalization (approximate).
+    Lowercase, strip leading `#` markers, replace whitespace with `-`,
+    keep alphanumerics + hyphens + underscores. Good enough for most cases.
+    """
+    text = text.strip().lower()
+    # Drop leading `#`s and trailing trailing colon/punct often used in headings
+    text = re.sub(r"^#+\s*", "", text)
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"\s+", "-", text)
+    return text.strip("-")
+
+
+def _headings_for(path: Path) -> set[str]:
+    if path in _HEADING_CACHE:
+        return _HEADING_CACHE[path]
+    anchors: set[str] = set()
+    try:
+        in_fence = False
+        for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+            stripped = line.strip()
+            if stripped.startswith("```") or stripped.startswith("~~~"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+            m = re.match(r"^(#{1,6})\s+(.+)$", stripped)
+            if m:
+                anchors.add(_gfm_anchor(m.group(2)))
+    except OSError:
+        pass
+    _HEADING_CACHE[path] = anchors
+    return anchors
+
+
+def _line_count(path: Path) -> int:
+    if path in _LINE_COUNT_CACHE:
+        return _LINE_COUNT_CACHE[path]
+    try:
+        n = path.read_text(encoding="utf-8", errors="replace").count("\n") + 1
+    except OSError:
+        n = 0
+    _LINE_COUNT_CACHE[path] = n
+    return n
+
+
+LINE_ANCHOR_RE = re.compile(r"^[Ll]?(\d+)(?:-[Ll]?(\d+))?$")
 
 
 def basename_index(all_md: list[Path]) -> dict[str, list[str]]:
@@ -308,7 +367,7 @@ def classify_link(
     rename_map: dict[str, str], basenames: dict[str, list[str]],
     file_sig: dict, ever_existed: set[str],
 ) -> Optional[dict]:
-    cleaned, resolved, would_be = resolve_link(src, raw_target)
+    cleaned, resolved, would_be, fragment = resolve_link(src, raw_target)
     if cleaned in ("external", "absolute_winpath", "empty"):
         return None
 
@@ -333,7 +392,40 @@ def classify_link(
         }
 
     if resolved is not None:
-        # Resolves fine. Check if basename is ambiguous repo-wide.
+        # File resolves. Check fragment if present (L3 ANCHOR detection).
+        if fragment:
+            line_m = LINE_ANCHOR_RE.match(fragment)
+            if line_m:
+                # Line anchor: #L42 or #L42-L51 or #42
+                start = int(line_m.group(1))
+                end = int(line_m.group(2)) if line_m.group(2) else start
+                file_lines = _line_count(resolved)
+                if file_lines and (start > file_lines or end > file_lines):
+                    return {
+                        **base_entry,
+                        "category": "line_anchor_stale",
+                        "code": "ROT-007",
+                        "resolved_to": str(resolved.relative_to(REPO_ROOT).as_posix()),
+                        "fragment": fragment,
+                        "file_lines": file_lines,
+                        "priority": "medium",
+                    }
+            else:
+                # Heading anchor: must match a GFM-normalized heading in target.
+                want = _gfm_anchor(fragment)
+                anchors = _headings_for(resolved)
+                if want and want not in anchors:
+                    return {
+                        **base_entry,
+                        "category": "anchor_missing",
+                        "code": "ROT-006",
+                        "resolved_to": str(resolved.relative_to(REPO_ROOT).as_posix()),
+                        "fragment": fragment,
+                        "want_anchor": want,
+                        "priority": "medium",
+                    }
+
+        # No fragment problem. Check basename ambiguity (existing L2 logic).
         bname = Path(cleaned).name
         candidates = basenames.get(bname, [])
         if len(candidates) > 1:

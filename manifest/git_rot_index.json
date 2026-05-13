@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T07:39:17.601668+00:00",
+  "generated_at": "2026-05-13T07:55:05.915475+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -42,24 +42,28 @@
   "summary": {
     "tracked_md_files": 1112,
     "tombstone_files_excluded": 7,
-    "rot_entries": 38,
+    "rot_entries": 66,
     "categories": {
       "broken_no_known_target": 12,
+      "line_anchor_stale": 23,
       "ambig_truly_ambiguous": 16,
+      "anchor_missing": 5,
       "placeholder_literal": 10
     },
     "codes": {
       "ROT-001": 12,
+      "ROT-007": 23,
       "ROT-002": 16,
+      "ROT-006": 5,
       "ROT-008": 10
     },
     "priorities": {
-      "medium": 18,
+      "medium": 46,
       "low": 20
     },
     "rename_history_size": 757,
     "cluster_count": 1,
-    "false_positives_suppressed": 123
+    "false_positives_suppressed": 104
   },
   "tombstones": [
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
@@ -88,6 +92,10 @@
       "rot_count": 6
     },
     {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "rot_count": 6
+    },
+    {
       "source": ".github/instructions/reference-appendix.reference.md",
       "rot_count": 5
     },
@@ -105,10 +113,6 @@
     },
     {
       "source": "dumpster-dive/forge/quench/README.md",
-      "rot_count": 4
-    },
-    {
-      "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
       "rot_count": 4
     }
   ],
@@ -145,6 +149,244 @@
       "priority": "medium",
       "id": "5d0b503630e0",
       "level": "L1"
+    },
+    {
+      "source": ".github/instructions/agent-priority-protocol.md",
+      "line": 4,
+      "raw_target": "../copilot-instructions.md#L6812",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6812",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "15bc1cdec2c7",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/agent-priority-protocol.md",
+      "line": 10,
+      "raw_target": "../copilot-instructions.md#L6812",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6812",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "8f2080b4118b",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/asc-entity-generation.reference.md",
+      "line": 47,
+      "raw_target": "../copilot-instructions.md#L2443",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L2443",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "364ab2d4f363",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/behavioral-scenarios.reference.md",
+      "line": 17,
+      "raw_target": "../copilot-instructions.md#L3789",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L3789",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "2cb6acb70d6f",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/dcrp-operational-guide.md",
+      "line": 3,
+      "raw_target": "../copilot-instructions.md#L6643",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6643",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "2bdde53cd7b3",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/dcrp-operational-guide.md",
+      "line": 9,
+      "raw_target": "../copilot-instructions.md#L6643",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6643",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "a77fffe443e3",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/dev-conventions.reference.md",
+      "line": 17,
+      "raw_target": "../copilot-instructions.md#L6634",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6634",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "6d31e3d9a187",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/magistra-logic.reference.md",
+      "line": 17,
+      "raw_target": "../copilot-instructions.md#L4780",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L4780",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "1712b4482555",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/magistra-logic.reference.md",
+      "line": 18,
+      "raw_target": "../copilot-instructions.md#L6500",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6500",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "ad1ac2d39f53",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 18,
+      "raw_target": "../copilot-instructions.md#L6991",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L6991",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "d6c044539cd2",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 35,
+      "raw_target": "../copilot-instructions.md#L7130",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L7130",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "d67beabc34a9",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 47,
+      "raw_target": "../copilot-instructions.md#L7220",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L7220",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "f6da5f941131",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 56,
+      "raw_target": "../copilot-instructions.md#L7279",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L7279",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "9abe44f3a0e3",
+      "level": "L3"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 64,
+      "raw_target": "../copilot-instructions.md#L7331",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L7331",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "1b6f397b9c96",
+      "level": "L3"
     },
     {
       "source": "claude/mailbox/copilot-instructions.archive.md",
@@ -286,6 +528,23 @@
       "level": "L1"
     },
     {
+      "source": "docs/architecture/SESSION_CORPUS.md",
+      "line": 304,
+      "raw_target": "VAMPIRISM_SATELLITES.md#nightly-escapades",
+      "git": {
+        "source_last_touched": "2026-05-05T02:32:12+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "anchor_missing",
+      "code": "ROT-006",
+      "resolved_to": "docs/architecture/VAMPIRISM_SATELLITES.md",
+      "fragment": "nightly-escapades",
+      "want_anchor": "nightly-escapades",
+      "priority": "medium",
+      "id": "b129a7ad37c2",
+      "level": "L3"
+    },
+    {
       "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
       "line": 639,
       "raw_target": "../../.claude/skills/sfa/SKILL.md",
@@ -305,6 +564,40 @@
       "priority": "medium",
       "id": "3f8a22c51722",
       "level": "L1"
+    },
+    {
+      "source": "docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md",
+      "line": 110,
+      "raw_target": "./ANKH_FOUNDATIONAL_AXIOMS.md#dynamic-altitude-focal-point-dafp--the-alchemists-scope",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "anchor_missing",
+      "code": "ROT-006",
+      "resolved_to": "docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md",
+      "fragment": "dynamic-altitude-focal-point-dafp--the-alchemists-scope",
+      "want_anchor": "dynamic-altitude-focal-point-dafp--the-alchemists-scope",
+      "priority": "medium",
+      "id": "6650da934393",
+      "level": "L3"
+    },
+    {
+      "source": "docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md",
+      "line": 123,
+      "raw_target": "./ANKH_FOUNDATIONAL_AXIOMS.md#prism--prismatic-reflection-illuminating-spectral-metamorphosis",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "anchor_missing",
+      "code": "ROT-006",
+      "resolved_to": "docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md",
+      "fragment": "prism--prismatic-reflection-illuminating-spectral-metamorphosis",
+      "want_anchor": "prism--prismatic-reflection-illuminating-spectral-metamorphosis",
+      "priority": "medium",
+      "id": "0949070dce2c",
+      "level": "L3"
     },
     {
       "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
@@ -432,6 +725,108 @@
       "level": "L1"
     },
     {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 124,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L565",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L565",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "f10ba1ada512",
+      "level": "L3"
+    },
+    {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 124,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L641",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L641",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "5513f4f750f8",
+      "level": "L3"
+    },
+    {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 177,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L596",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L596",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "c1b8c7ce8b82",
+      "level": "L3"
+    },
+    {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 177,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L614",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L614",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "103c59e06295",
+      "level": "L3"
+    },
+    {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 188,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L741-L885",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L741-L885",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "a04c9a3fc3c4",
+      "level": "L3"
+    },
+    {
+      "source": "docs/reference/FAF_CHTHONIC_EXTENSION_PHASE3_HANDOFF.md",
+      "line": 217,
+      "raw_target": "/extensions/chthonic-archive/src/extension.ts#L445",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": "extensions/chthonic-archive/src/extension.ts",
+      "fragment": "L445",
+      "file_lines": 141,
+      "priority": "medium",
+      "id": "94903c636282",
+      "level": "L3"
+    },
+    {
       "source": "docs/reference/HANDOFF0001.md",
       "line": 44,
       "raw_target": "instructions/xyz.instructions.md",
@@ -446,6 +841,91 @@
       "priority": "medium",
       "id": "0b8aa64b87e7",
       "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 212,
+      "raw_target": "../../../.github/copilot-instructions.md#L2312",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L2312",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "69c53536798f",
+      "level": "L3"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 212,
+      "raw_target": "../../../.github/copilot-instructions.md#L1421",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L1421",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "b5975316a67b",
+      "level": "L3"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 212,
+      "raw_target": "../../../.github/copilot-instructions.md#L3377",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "line_anchor_stale",
+      "code": "ROT-007",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "L3377",
+      "file_lines": 83,
+      "priority": "medium",
+      "id": "32827752af53",
+      "level": "L3"
+    },
+    {
+      "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "line": 560,
+      "raw_target": "../../.github/copilot-instructions.md#section-4512",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "anchor_missing",
+      "code": "ROT-006",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "section-4512",
+      "want_anchor": "section-4512",
+      "priority": "medium",
+      "id": "9b286abccadd",
+      "level": "L3"
+    },
+    {
+      "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "line": 561,
+      "raw_target": "../../.github/copilot-instructions.md#section-4511",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "anchor_missing",
+      "code": "ROT-006",
+      "resolved_to": ".github/copilot-instructions.md",
+      "fragment": "section-4511",
+      "want_anchor": "section-4511",
+      "priority": "medium",
+      "id": "0bf68fc2bed3",
+      "level": "L3"
     },
     {
       "source": ".claude/skills/mailbox-handoff/SKILL.md",
