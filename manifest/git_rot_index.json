@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T08:01:49.546735+00:00",
+  "generated_at": "2026-05-13T09:42:04.309767+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -40,7 +40,7 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1112,
+    "tracked_md_files": 1109,
     "tombstone_files_excluded": 7,
     "rot_entries": 66,
     "categories": {
@@ -611,10 +611,10 @@
       "code": "ROT-002",
       "candidates": [
         ".github/prompts/README.md",
-        "adapters/claudine-v1/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-1500/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-2000/README.md",
-        "birdcage/README.md"
+        "birdcage/README.md",
+        "bun-playwright-poc/README.md",
+        "chthonic-golden/README.md",
+        "chthonic-golden/branding/README.md"
       ],
       "priority": "medium",
       "id": "07aea41819c6",
