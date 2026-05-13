@@ -1,3 +1,14 @@
+---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Uncurated agent session dump — 140 broken/ambiguous link references
+  (hotspot #4, surfaced after first three tombstones marked).
+  Filename itself ("session gone sterile / handover discernment /
+  disparate md documentation") is the diagnosis. Preserved as
+  historical attempt; excluded from active rot scanning.
+---
+
 Optimizing tool selection...
 Summarized conversation history
 I'll continue the systematic audit of the copilot-instructions.md file, proceeding with Task 4: Axiomatic Charter & Foundational Axioms. Let me read the relevant sections to assess what needs attention. 

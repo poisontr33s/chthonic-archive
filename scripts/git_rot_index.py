@@ -211,21 +211,30 @@ def file_signals_batch(paths: list[Path]) -> dict[str, dict]:
     }
 
 
-def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path]]:
-    """Return (cleaned_target_str, resolved_path_or_None)."""
+def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path], Optional[str]]:
+    """
+    Return (cleaned_target_str, resolved_path_or_None, would_be_repo_relpath).
+    The third element is the repo-relative path the link WOULD point to —
+    populated even when the file doesn't exist, so git can be asked
+    whether it ever existed historically.
+    """
     tgt = raw_target.strip()
     if tgt.startswith(("http://", "https://", "mailto:", "#")):
-        return ("external", None)
+        return ("external", None, None)
     if re.match(r"^[A-Za-z]:[/\\]", tgt):
-        return ("absolute_winpath", None)
+        return ("absolute_winpath", None, None)
     tgt_clean = tgt.split("#")[0].split("?")[0].strip()
     if not tgt_clean:
-        return ("empty", None)
+        return ("empty", None, None)
     if tgt_clean.startswith("/"):
         resolved = REPO_ROOT / tgt_clean[1:]
     else:
         resolved = (src.parent / tgt_clean).resolve()
-    return (tgt_clean, resolved if resolved.exists() else None)
+    try:
+        would_be = resolved.relative_to(REPO_ROOT).as_posix()
+    except ValueError:
+        would_be = None  # path escapes repo root
+    return (tgt_clean, resolved if resolved.exists() else None, would_be)
 
 
 def basename_index(all_md: list[Path]) -> dict[str, list[str]]:
@@ -269,9 +278,9 @@ def score_priority(category: str, signals: dict, repo_path: str) -> str:
 def classify_link(
     src: Path, raw_target: str, line_no: int,
     rename_map: dict[str, str], basenames: dict[str, list[str]],
-    file_sig: dict,
+    file_sig: dict, ever_existed: set[str],
 ) -> Optional[dict]:
-    cleaned, resolved = resolve_link(src, raw_target)
+    cleaned, resolved, would_be = resolve_link(src, raw_target)
     if cleaned in ("external", "absolute_winpath", "empty"):
         return None
 
@@ -339,10 +348,23 @@ def classify_link(
             "priority": score_priority("ambig_truly_ambiguous", base_entry["git"], src_rel),
         }
 
+    # ROT-001 enrichment: ask git what it knows about this target.
+    # ever_existed is the set of every path that appeared in any commit on
+    # any ref. If the would-be path is in there, the file existed once and
+    # was deleted (or git's rename heuristic missed a move). If not, the
+    # target was never in this repo — typo or hallucinated reference.
+    git_truth = "unknown"
+    if would_be:
+        if would_be in ever_existed:
+            git_truth = "existed_once"  # was committed, then deleted
+        else:
+            git_truth = "never_existed"  # typo or fictional reference
     return {
         **base_entry,
         "category": "broken_no_known_target",
         "code": "ROT-001",
+        "would_be_path": would_be,
+        "git_truth": git_truth,
         "priority": score_priority("broken_no_known_target", base_entry["git"], src_rel),
     }
 
@@ -364,16 +386,32 @@ def build_index(args) -> dict:
     print("[git_rot_index] indexing basenames ...", file=sys.stderr)
     basenames = basename_index(md_files)
 
+    # ever_existed = every path that ever appeared in any commit on any ref.
+    # This is the "git knows" set — broken ROT-001 entries get checked against
+    # it to distinguish "deleted file" from "never existed" (typo).
+    ever_existed: set[str] = set(file_sig.keys())
+
     entries: list[dict] = []
     for src in md_files:
         try:
             text = src.read_text(encoding="utf-8", errors="replace")
         except OSError:
             continue
+        # Skip fenced code blocks. Inside ``` or ~~~ blocks, lines that look
+        # like [label](target) are actually code (PowerShell conditionals,
+        # regex patterns like [^"']+, etc.) — not markdown links.
+        in_fence = False
         for line_no, line in enumerate(text.splitlines(), 1):
+            stripped = line.strip()
+            if stripped.startswith("```") or stripped.startswith("~~~"):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
             for m in LINK_RE.finditer(line):
                 entry = classify_link(
-                    src, m.group(2), line_no, rename_map, basenames, file_sig
+                    src, m.group(2), line_no, rename_map, basenames, file_sig,
+                    ever_existed,
                 )
                 if entry is not None:
                     entry["id"] = hashlib.sha1(

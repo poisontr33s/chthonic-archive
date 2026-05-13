@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T06:33:44.755260+00:00",
+  "generated_at": "2026-05-13T07:14:29.856344+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -21,47 +21,37 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1111,
-    "tombstone_files_excluded": 3,
-    "rot_entries": 463,
+    "tracked_md_files": 1112,
+    "tombstone_files_excluded": 5,
+    "rot_entries": 196,
     "categories": {
-      "ambig_resolves_fine": 266,
+      "ambig_resolves_fine": 123,
       "placeholder_literal": 10,
-      "broken_no_known_target": 88,
-      "ambig_truly_ambiguous": 99
+      "broken_no_known_target": 45,
+      "ambig_truly_ambiguous": 18
     },
     "codes": {
-      "ROT-003": 266,
+      "ROT-003": 123,
       "ROT-008": 10,
-      "ROT-001": 88,
-      "ROT-002": 99
+      "ROT-001": 45,
+      "ROT-002": 18
     },
     "priorities": {
-      "background": 266,
-      "low": 73,
-      "medium": 124
+      "background": 123,
+      "low": 40,
+      "medium": 33
     },
     "rename_history_size": 757,
-    "cluster_count": 8
+    "cluster_count": 4
   },
   "tombstones": [
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
     "claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md",
-    "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md"
+    "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
+    "docs/archive/reports/SUMMARY.md",
+    "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md"
   ],
   "hotspots_top10": [
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "rot_count": 140
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "rot_count": 85
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "rot_count": 20
-    },
     {
       "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
       "rot_count": 15
@@ -87,25 +77,23 @@
       "rot_count": 8
     },
     {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
+      "source": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
       "rot_count": 6
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "rot_count": 5
+    },
+    {
+      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
+      "rot_count": 4
+    },
+    {
+      "source": "dumpster-dive/CIRCULATION_DIAGRAM.md",
+      "rot_count": 4
     }
   ],
   "clusters": [
-    {
-      "code": "CLUSTER-001",
-      "kind": "source_hotspot",
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "rot_count": 140,
-      "verdict": "agent dump candidate — consider archive or delint exclusion"
-    },
-    {
-      "code": "CLUSTER-001",
-      "kind": "source_hotspot",
-      "source": "docs/archive/reports/SUMMARY.md",
-      "rot_count": 85,
-      "verdict": "agent dump candidate — consider archive or delint exclusion"
-    },
     {
       "code": "CLUSTER-002",
       "kind": "orphan_target",
@@ -117,20 +105,6 @@
         "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
         "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
         "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md"
-      ],
-      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
-    },
-    {
-      "code": "CLUSTER-002",
-      "kind": "orphan_target",
-      "target": "[^\"\\']+",
-      "ref_count": 6,
-      "referenced_from_sample": [
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md"
       ],
       "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
     },
@@ -172,18 +146,6 @@
         "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md"
       ],
       "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
-    },
-    {
-      "code": "CLUSTER-002",
-      "kind": "orphan_target",
-      "target": "[^\\'\"]+",
-      "ref_count": 3,
-      "referenced_from_sample": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md"
-      ],
-      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
     }
   ],
   "entries": [
@@ -197,6 +159,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "5d0b503630e0"
     },
@@ -332,1291 +296,6 @@
       "id": "3f59b18c7a3f"
     },
     {
-      "source": "docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md",
-      "line": 9825,
-      "raw_target": "./The_Chthonic_Archive_World.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/from-github/macro-prompt-world/The_Chthonic_Archive_World.md",
-        "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/The_Chthonic_Archive_World.md"
-      ],
-      "priority": "medium",
-      "id": "8b4cb89b5946"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 3,
-      "raw_target": "README.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        ".github/prompts/README.md",
-        "adapters/claudine-v1/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-1500/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-2000/README.md",
-        "birdcage/README.md"
-      ],
-      "priority": "medium",
-      "id": "1eda09c4fec8"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 7,
-      "raw_target": "DEVELOPMENT_STATE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/archive/sessions/DEVELOPMENT_STATE.md"
-      ],
-      "priority": "medium",
-      "id": "7ea26e8523a5"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 10,
-      "raw_target": "architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/architecture/CHTHONIC_ARCHIVE_WORLD_TPEF.md"
-      ],
-      "priority": "medium",
-      "id": "336a9b572ef0"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 11,
-      "raw_target": "architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md"
-      ],
-      "priority": "medium",
-      "id": "3135c467f860"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 15,
-      "raw_target": "design/GENRE_EXTRACTION.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/design/GENRE_EXTRACTION.md"
-      ],
-      "priority": "medium",
-      "id": "523ee8c6e190"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 22,
-      "raw_target": "EXECUTION_CONTRACT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/EXECUTION_CONTRACT.md"
-      ],
-      "priority": "medium",
-      "id": "8c101f6d4bc1"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 23,
-      "raw_target": "PROBE_CONTRACT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/PROBE_CONTRACT.md"
-      ],
-      "priority": "medium",
-      "id": "e4f1899ea12f"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 24,
-      "raw_target": "PWSH_RULES.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "PWSH_RULES.md"
-      ],
-      "priority": "medium",
-      "id": "8d4af66e9c5f"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 25,
-      "raw_target": "CLI_EDITING_POLICY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/CLI_EDITING_POLICY.md"
-      ],
-      "priority": "medium",
-      "id": "d6ee415f513a"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 26,
-      "raw_target": "SSOTIFICATION_METHODOLOGY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/SSOTIFICATION_METHODOLOGY.md"
-      ],
-      "priority": "medium",
-      "id": "7698dae10500"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 30,
-      "raw_target": "protocols/ANCHOR_SIGNAL_PROTOCOL.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/ANCHOR_SIGNAL_PROTOCOL.md"
-      ],
-      "priority": "medium",
-      "id": "3336f271c1d1"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 31,
-      "raw_target": "protocols/CROSS_REFERENCE_TRIPTYCH.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/CROSS_REFERENCE_TRIPTYCH.md"
-      ],
-      "priority": "medium",
-      "id": "988a7abf9b51"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 32,
-      "raw_target": "protocols/CROSS_TIER_MATRIX.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/CROSS_TIER_MATRIX.md"
-      ],
-      "priority": "medium",
-      "id": "8b53be52b197"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 33,
-      "raw_target": "protocols/TEA_EXAMPLES.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/TEA_EXAMPLES.md"
-      ],
-      "priority": "medium",
-      "id": "b9f933fc1de7"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 35,
-      "raw_target": "protocols/LATEST_STABLE_POLICY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/LATEST_STABLE_POLICY.md"
-      ],
-      "priority": "medium",
-      "id": "5d3b26ca1cda"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 39,
-      "raw_target": "DCRP_SYNTHESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/DCRP_SYNTHESIS.md"
-      ],
-      "priority": "medium",
-      "id": "2c4644df8886"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 43,
-      "raw_target": "MCP_AUTONOMOUS_PREREQUISITES.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/MCP_AUTONOMOUS_PREREQUISITES.md"
-      ],
-      "priority": "medium",
-      "id": "9aed753ea99f"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 44,
-      "raw_target": "MCP_SERVER_TEMPLATE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/MCP_SERVER_TEMPLATE.md"
-      ],
-      "priority": "medium",
-      "id": "127d6eb3f745"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 45,
-      "raw_target": "MCP_USER_WORKFLOWS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/MCP_USER_WORKFLOWS.md"
-      ],
-      "priority": "medium",
-      "id": "6dd3632fee17"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 46,
-      "raw_target": "SESSION_BOOTSTRAP_SPEC.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/archive/sessions/SESSION_BOOTSTRAP_SPEC.md"
-      ],
-      "priority": "medium",
-      "id": "1bccf37e349c"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 47,
-      "raw_target": "CLAUDE_CODE_REGISTRATION.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/CLAUDE_CODE_REGISTRATION.md"
-      ],
-      "priority": "medium",
-      "id": "55cf036ad86e"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 48,
-      "raw_target": "CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/CLAUDE_CODE_REGISTRATION_VERIFICATION_PROOF.md"
-      ],
-      "priority": "medium",
-      "id": "7e0064611bd7"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 49,
-      "raw_target": "COPILOT_SESSION_PERSISTENCE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/COPILOT_SESSION_PERSISTENCE.md"
-      ],
-      "priority": "medium",
-      "id": "b74beddbab0a"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 53,
-      "raw_target": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md"
-      ],
-      "priority": "medium",
-      "id": "d34404c106c6"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 54,
-      "raw_target": "MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md"
-      ],
-      "priority": "medium",
-      "id": "d023de8daf76"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 55,
-      "raw_target": "STAGE_1_MIGRATION_PLAN.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/STAGE_1_MIGRATION_PLAN.md"
-      ],
-      "priority": "medium",
-      "id": "6b21cac47c84"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 70,
-      "raw_target": "frameworks/AUTONOMOUS_COORDINATOR_QUICKREF.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/AUTONOMOUS_COORDINATOR_QUICKREF.md"
-      ],
-      "priority": "medium",
-      "id": "55fa67d70809"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 71,
-      "raw_target": "frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/AUTONOMOUS_ORCHESTRATION_FRAMEWORK.md"
-      ],
-      "priority": "medium",
-      "id": "6962ab5e7e60"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 72,
-      "raw_target": "frameworks/SESSION_3_ORCHESTRATION_QUICKREF.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/SESSION_3_ORCHESTRATION_QUICKREF.md"
-      ],
-      "priority": "medium",
-      "id": "82efebba8e07"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 73,
-      "raw_target": "frameworks/SESSION_3_TYPESCRIPT_QUICKREF.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/SESSION_3_TYPESCRIPT_QUICKREF.md"
-      ],
-      "priority": "medium",
-      "id": "439d2559c5e0"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 74,
-      "raw_target": "frameworks/ankh/ANKH_README.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/ankh/ANKH_README.md"
-      ],
-      "priority": "medium",
-      "id": "db4dffa974b2"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 75,
-      "raw_target": "frameworks/ankh/ankh.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/ankh/ankh.md"
-      ],
-      "priority": "medium",
-      "id": "ff93067c421b"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 76,
-      "raw_target": "frameworks/ankh/ANKHOLOGY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/ankh/ANKHOLOGY.md"
-      ],
-      "priority": "medium",
-      "id": "63db4f7b8798"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 77,
-      "raw_target": "frameworks/ankh/INDEXING_BEACON.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/frameworks/ankh/INDEXING_BEACON.md"
-      ],
-      "priority": "medium",
-      "id": "d438de8502fe"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 83,
-      "raw_target": "../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md"
-      ],
-      "priority": "medium",
-      "id": "2c65eb033606"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 84,
-      "raw_target": "../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md"
-      ],
-      "priority": "medium",
-      "id": "6ba9dd1ca3f2"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 85,
-      "raw_target": "SESSION_2026_01_17_META_REVIEW.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/archive/sessions/SESSION_2026_01_17_META_REVIEW.md"
-      ],
-      "priority": "medium",
-      "id": "6d64b0c31366"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 86,
-      "raw_target": "SESSION_2026_01_17_TRUTH_STEWARDSHIP.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/archive/sessions/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md"
-      ],
-      "priority": "medium",
-      "id": "d9bc5ec9c9ec"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 87,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md"
-      ],
-      "priority": "medium",
-      "id": "4a67eb27d924"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 88,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_2_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_2_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "f2034a843523"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 89,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_2026-01-01.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_2026-01-01.md"
-      ],
-      "priority": "medium",
-      "id": "fe36572099c8"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 90,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "8f9ea0b7aac0"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 91,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_DEEP_DIVE_SYNTHESIS.md"
-      ],
-      "priority": "medium",
-      "id": "a9ae3d33e5f5"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 92,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_DEEP_RESEARCH.md"
-      ],
-      "priority": "medium",
-      "id": "00c3ef9e6326"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 93,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_EXECUTION_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "da2eb3435188"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 94,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "378775bda159"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 95,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md"
-      ],
-      "priority": "medium",
-      "id": "24d4ebc5748b"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 96,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_4_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_4_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "8965f93888c7"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 97,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_5_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_5_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "a1a56cf48da2"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 98,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_5_MISSION_REPORT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_5_MISSION_REPORT.md"
-      ],
-      "priority": "medium",
-      "id": "af455f60ccf2"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 99,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_7_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_7_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "02a4bc085aca"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 100,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_STATUS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_STATUS.md"
-      ],
-      "priority": "medium",
-      "id": "f63190d08f7e"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 101,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/DELIVERABLES_20251230.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/DELIVERABLES_20251230.md"
-      ],
-      "priority": "medium",
-      "id": "2388c14adec2"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 102,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/SESSION_2026_01_04_EPISTEMOGRAPH_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "c8a6b3707137"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 103,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/THE_DECORATOR_AUTONOMOUS_SYNTHESIS.md"
-      ],
-      "priority": "medium",
-      "id": "eaeda3e3c3a3"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 104,
-      "raw_target": "../dumpster-dive/archive/sessions_2026-01/ALGORITHMIC_EMERGENCE_CATALOG.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/sessions_2026-01/ALGORITHMIC_EMERGENCE_CATALOG.md"
-      ],
-      "priority": "medium",
-      "id": "7d0d8f431fa5"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 110,
-      "raw_target": "lore/RESISTANCE_TRIUMVIRATE_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/lore/RESISTANCE_TRIUMVIRATE_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "14aec9a86f6a"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 115,
-      "raw_target": "HANDOFF_TO_CLAUDE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/handoffs/HANDOFF_TO_CLAUDE.md"
-      ],
-      "priority": "medium",
-      "id": "b54c9cce1457"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 116,
-      "raw_target": "handoffs/CLAUDE_HANDOFF_CHROMA_GENESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/handoffs/CLAUDE_HANDOFF_CHROMA_GENESIS.md"
-      ],
-      "priority": "medium",
-      "id": "d0b0f9b18914"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 117,
-      "raw_target": "handoffs/GEMINI_HANDOFF_CACHE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/handoffs/GEMINI_HANDOFF_CACHE.md"
-      ],
-      "priority": "medium",
-      "id": "f017bcc2ca57"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 118,
-      "raw_target": "handoffs/GEMINI_HANDOFF_PHASE_11_5.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/handoffs/GEMINI_HANDOFF_PHASE_11_5.md"
-      ],
-      "priority": "medium",
-      "id": "922143295692"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 122,
-      "raw_target": "reference/CLAUDE_CODE_INTEGRATION_SUMMARY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/CLAUDE_CODE_INTEGRATION_SUMMARY.md"
-      ],
-      "priority": "medium",
-      "id": "3814aeb8de65"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 123,
-      "raw_target": "reference/CURRICULUM_CORE_V1.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/CURRICULUM_CORE_V1.md"
-      ],
-      "priority": "medium",
-      "id": "fca798ecc15e"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 124,
-      "raw_target": "reference/DAEMON_CLASSIFICATION_ENHANCEMENTS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/DAEMON_CLASSIFICATION_ENHANCEMENTS.md"
-      ],
-      "priority": "medium",
-      "id": "5a89c2ebda38"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 125,
-      "raw_target": "reference/LOSSLESS_COMPRESSION_CROSS_REFERENCE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/LOSSLESS_COMPRESSION_CROSS_REFERENCE.md"
-      ],
-      "priority": "medium",
-      "id": "e17f844b8fc4"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 126,
-      "raw_target": "reference/PYTHON_LANES.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/PYTHON_LANES.md"
-      ],
-      "priority": "medium",
-      "id": "07ba71fde207"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 127,
-      "raw_target": "reference/SENTRY_MCP_VSCODE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/SENTRY_MCP_VSCODE.md"
-      ],
-      "priority": "medium",
-      "id": "82cf9c6254db"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 128,
-      "raw_target": "reference/TEST_FILE_DOCUMENTATION_RESTORED.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/TEST_FILE_DOCUMENTATION_RESTORED.md"
-      ],
-      "priority": "medium",
-      "id": "3ba466487923"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 129,
-      "raw_target": "reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md"
-      ],
-      "priority": "medium",
-      "id": "e37fd33b3678"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 130,
-      "raw_target": "reference/VSCODE_GUI_ENHANCEMENT_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/VSCODE_GUI_ENHANCEMENT_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "1e77460a409e"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 131,
-      "raw_target": "reference/PR_SUGGESTION.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/PR_SUGGESTION.md"
-      ],
-      "priority": "medium",
-      "id": "ffb7218124d8"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 134,
-      "raw_target": "reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/bun-playwright/BUN_PLAYWRIGHT_IT_SUMMARY.md"
-      ],
-      "priority": "medium",
-      "id": "398d7cf8a7db"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 135,
-      "raw_target": "reference/bun-playwright/BUN_PLAYWRIGHT_VALIDATION.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/bun-playwright/BUN_PLAYWRIGHT_VALIDATION.md"
-      ],
-      "priority": "medium",
-      "id": "4eed4e746ec1"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 136,
-      "raw_target": "reference/bun-playwright/BUN_COMPLIANCE_COMPLETE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/bun-playwright/BUN_COMPLIANCE_COMPLETE.md"
-      ],
-      "priority": "medium",
-      "id": "0cc018331dc1"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 137,
-      "raw_target": "reference/bun-playwright/AGENT_COORDINATION_WIN11.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/bun-playwright/AGENT_COORDINATION_WIN11.md"
-      ],
-      "priority": "medium",
-      "id": "1081683d6dd7"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 138,
-      "raw_target": "reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/bun-playwright/WIN11_BUN_PLAYWRIGHT_TRAJECTORY.md"
-      ],
-      "priority": "medium",
-      "id": "25e5f37edd36"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 139,
-      "raw_target": "reference/epistemograph/EPISTEMOGRAPH_CUSTODY_V1_1_1.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/epistemograph/EPISTEMOGRAPH_CUSTODY_V1_1_1.md"
-      ],
-      "priority": "medium",
-      "id": "df975a6eb31b"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 140,
-      "raw_target": "reference/epistemograph/EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/epistemograph/EPISTEMOGRAPH_TO_CURRICULUM_SUMMARY.md"
-      ],
-      "priority": "medium",
-      "id": "59c3b62812b0"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 141,
-      "raw_target": "reference/epistemograph/SCANNER_FREEZE_V1_1_1.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/reference/epistemograph/SCANNER_FREEZE_V1_1_1.md"
-      ],
-      "priority": "medium",
-      "id": "0938d960d75d"
-    },
-    {
       "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
       "line": 639,
       "raw_target": "../../.claude/skills/sfa/SKILL.md",
@@ -1706,58 +385,6 @@
       "id": "3ab0b0edf502"
     },
     {
-      "source": "docs/protocols/SOLUTION_MATRIX_CLI_HARDENING.md",
-      "line": 146,
-      "raw_target": "$dir -and (Test-Path $dir",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "3e1f9da20380"
-    },
-    {
-      "source": "docs/protocols/SOLUTION_MATRIX_CLI_HARDENING.md",
-      "line": 147,
-      "raw_target": "$libDir -and (Test-Path $libDir",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "bbf5b4b26d56"
-    },
-    {
-      "source": "docs/protocols/SOLUTION_MATRIX_CLI_HARDENING.md",
-      "line": 148,
-      "raw_target": "$incDir -and (Test-Path $incDir",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "bd184b63f4fb"
-    },
-    {
-      "source": "docs/protocols/SOLUTION_MATRIX_CLI_HARDENING.md",
-      "line": 149,
-      "raw_target": "[Environment]::GetEnvironmentVariable('OPENSSL_DIR', 'User'",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "05accd42f20b"
-    },
-    {
       "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
       "line": 13,
       "raw_target": "../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
@@ -1767,6 +394,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "fd59537e76f7"
     },
@@ -1780,6 +409,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "c5f2693595e4"
     },
@@ -1793,6 +424,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude-codex-gemini/triadic-session-context",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "da8c941b04e4"
     },
@@ -1806,6 +439,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "6b947e53fc69"
     },
@@ -1819,6 +454,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "610276865904"
     },
@@ -1832,6 +469,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "f3670a978dea"
     },
@@ -1845,6 +484,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "ea1d54a85c9b"
     },
@@ -1858,6 +499,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "c036b14eecda"
     },
@@ -1871,6 +514,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/mas_mcp/logic/ssot_manifest.py",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "4b1f0711bbe4"
     },
@@ -1884,6 +529,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/mas_mcp/logic/ssot_binding.py",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "49d640112aac"
     },
@@ -1897,6 +544,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/scripts/lib/ssot_paths.py",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "f3d374976a8a"
     },
@@ -1910,6 +559,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/mas_mcp/tests/test_ssot_binding.py",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "c3944487282f"
     },
@@ -1939,6 +590,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/anti-patterns/codekiller.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "f209eb9c1f54"
     },
@@ -2017,103 +670,10 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/reference/instructions/xyz.instructions.md",
+      "git_truth": "never_existed",
       "priority": "medium",
       "id": "0b8aa64b87e7"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 80,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "fbc9b2adef91"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 83,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "c27ed7632aff"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 86,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "0a514a5241a0"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 89,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "61f3467337cc"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 92,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "721203f44c6f"
-    },
-    {
-      "source": "docs/reference/TYPESCRIPT_INTELLIGENCE_ENHANCEMENT.md",
-      "line": 95,
-      "raw_target": "[^\"\\']+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "medium",
-      "id": "4bc2e1f3caae"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 426,
-      "raw_target": "BLACKSMITH_MATRIARCH.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/BLACKSMITH_MATRIARCH.md",
-        "dumpster-dive/from-github/BLACKSMITH_MATRIARCH.md"
-      ],
-      "priority": "medium",
-      "id": "32e15b50fc3c"
     },
     {
       "source": ".claude/agents/tessara.md",
@@ -2926,21 +1486,6 @@
       "id": "345ed67ccf81"
     },
     {
-      "source": "docs/fixtures/link_audit/benchmark_torture.md",
-      "line": 38,
-      "raw_target": "../../README.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 36,
-      "resolved_to": "docs/README.md",
-      "priority": "background",
-      "id": "55db8629ee09"
-    },
-    {
       "source": "docs/frameworks/ankh/ANKH_CRC_REGISTRY.md",
       "line": 3,
       "raw_target": "../../../.github/copilot-instructions.archive.md",
@@ -3646,2016 +2191,6 @@
       "id": "e250ccd1b3ca"
     },
     {
-      "source": "dumpster-dive/from-github/macro-prompt-world/The_Chthonic_Archive_World.md",
-      "line": 9819,
-      "raw_target": "./The_Chthonic_Archive_World.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": "dumpster-dive/from-github/macro-prompt-world/The_Chthonic_Archive_World.md",
-      "priority": "background",
-      "id": "a8a1c75e6a37"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 5,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "adaca4d207ed"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 7,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "00dedf434faa"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 11,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0228ee9d5218"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 17,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d38e868600b1"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 31,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "82d7bfc07f23"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 35,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0f7b2e87b9ef"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 71,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "c798528c3420"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 91,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "aa5586e297e3"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 105,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d6fc05bcae52"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 109,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "6f3f06d5bb03"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 121,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "446c3ea30a65"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 125,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f9e1bcb743ef"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 141,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "c274116efe4b"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 153,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "8409ca848537"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 157,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "b8460928fdac"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 161,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f80b9a349448"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 229,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "67e16554952d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 262,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "4a6208023a31"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 309,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "7bc7a034d967"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 311,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "db8a84275649"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 313,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "3bef64bedff6"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 317,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "eac67f23826a"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 349,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "9dd16337bece"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 353,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f8df8d8bf14b"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 361,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "e3551d477f8b"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 373,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f76a948e184a"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 377,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "7be3cc40f4af"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 391,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d99f54c37ee4"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 401,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "932522e2e876"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 433,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "84bb06e67cf7"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 468,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0da0e0458fe2"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 472,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "dd45d6558c95"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 482,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "ca7ca2a9b3da"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 502,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "91a6cb94c3d0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 552,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "38d4004cac6c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 556,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "4aa0b686c809"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 572,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "85ee98212748"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 576,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "6e316bde0468"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 837,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "a805eec69cad"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 852,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "7ba423429afb"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 872,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "68c0900367ec"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 888,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "c3fe52abc66e"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 900,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "579bed6944fe"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 904,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "286d8fc1b511"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 920,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "04b644a35926"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 957,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "2c44b9487a87"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 961,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "e77c5998ff9f"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 963,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "ed46f00067c7"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 965,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d0066896e36e"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 988,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "78c1ecfc0622"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 996,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "b3f971175188"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1018,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "414509d446e1"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1020,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "23a23633b9ba"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1028,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "c84e26592cd0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1048,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "79be95890821"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1115,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "e384ebd052bb"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1125,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "8174b9b73ce6"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1137,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "527d5b5a7134"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1139,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "6c80ca5a8537"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1141,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f883f39a075f"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1157,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0df8dbbe1923"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1159,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "e0dd67ecff13"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1161,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "3f9a222165f9"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1163,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "9884f40b7125"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1167,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "c19ebcba7dbc"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1171,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "9fdc4dc89bcd"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1187,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "1c4aea722564"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1189,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "b17c5534825d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1191,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "85519ca70047"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1203,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "3044b0ca2313"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1205,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "aa0e8af62f20"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1229,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "7a0e4447574c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1231,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d85601c74682"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1233,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f592bcbb6f73"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1235,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "b694cfbf39f7"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1247,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "45ea0f4a9fa0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1249,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "88ba558d80ae"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1261,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "926905fcffdd"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1291,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0f5e83eb021c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1295,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "a0f9e7db2ef8"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1297,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "ce376d7385e8"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1309,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "5d1971b1744c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1317,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d024b55e0df2"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1327,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "047fc0c75d94"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1329,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d56faf95fe90"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1331,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "7f1d19dd08c0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1341,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "a4b18559c962"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1343,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "858ba303ebf0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1353,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "97d2ce488e1e"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1363,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "03d1cd2c5bf4"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1365,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "8da87957ec2b"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1367,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "bb1a852fa8ce"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1381,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "1547c69b7f49"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1391,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "3d483ce18266"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1393,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "31701b01d77d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1395,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "a6a9136a5475"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1411,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "69f6e6c878a6"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1423,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "da6dae642ee3"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1425,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "29b0e567b6cd"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1508,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "77790e3a511d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1510,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "203d99831f8d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1512,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "6ccb32ff015a"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1514,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0993f58576a7"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1516,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "04d30dd51dc9"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1518,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "2084d87196e1"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1549,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d8d4db9e207c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1569,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "03d56d5e24ab"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1579,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "ce1e4a65f888"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1597,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "b09117a523e4"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1607,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "46b9d220c3ae"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1617,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "1508d3e5c135"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1627,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "733c65538640"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1637,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "aec7930c5522"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1647,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0c6fd6c4f70f"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1673,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "97dc6c665ed9"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1683,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "dba6c5d67238"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1693,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f1c474085a0e"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1723,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "d9c11573c0ba"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1725,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f4f7f5f065e0"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1757,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f583ab3030f9"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1761,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0a0b8c97a4e4"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1773,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "84cad3fc8d47"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1785,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "81148b0eb1f5"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1943,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "5dc0623ec835"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1972,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "265cc8db9acc"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1995,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "0436629a53cd"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2033,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f8789fc143fd"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2076,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "443fa3b8a38c"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2096,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "daab9a9dc095"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2108,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "acb4e1aa9595"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2196,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "062072915071"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2210,
-      "raw_target": "../../../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "6595836fbc21"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/The_Chthonic_Archive_World.md",
-      "line": 9819,
-      "raw_target": "./The_Chthonic_Archive_World.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": "dumpster-dive/from-github/macro-prompt-world/macro-prompt-world-v2/archive-world/The_Chthonic_Archive_World.md",
-      "priority": "background",
-      "id": "47c6f9af7b6c"
-    },
-    {
       "source": "dumpster-dive/from-github/meta-audit-artifacts/SESSION_RESUME.md",
       "line": 1,
       "raw_target": "../../../.github/copilot-instructions.md",
@@ -5912,126 +2447,6 @@
     },
     {
       "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 77,
-      "raw_target": "../../.github/copilot-instructions.md#section-xy",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "f2c91686c848"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 168,
-      "raw_target": "../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "59d993ea3693"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 174,
-      "raw_target": "../../.github/copilot-instructions.md#section-4512-qmr-protocol",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "987d20dc25dd"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 182,
-      "raw_target": "../README.md#ore-quality-rating-system",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 36,
-      "resolved_to": "dumpster-dive/README.md",
-      "priority": "background",
-      "id": "fa9e98c718ae"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 315,
-      "raw_target": "../BLACKSMITH_MATRIARCH.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": "dumpster-dive/BLACKSMITH_MATRIARCH.md",
-      "priority": "background",
-      "id": "d2c9a43f8559"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 318,
-      "raw_target": "../README.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 36,
-      "resolved_to": "dumpster-dive/README.md",
-      "priority": "background",
-      "id": "358132137f55"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 327,
-      "raw_target": "../../.github/copilot-instructions.md#section-4512",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "e4fd3cd2376d"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 436,
-      "raw_target": "../../.github/copilot-instructions.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_resolves_fine",
-      "code": "ROT-003",
-      "candidate_count": 2,
-      "resolved_to": ".github/copilot-instructions.md",
-      "priority": "background",
-      "id": "1d9817abe3ec"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
       "line": 500,
       "raw_target": "../README.md",
       "git": {
@@ -6158,84 +2573,6 @@
       "id": "4f0d0759446c"
     },
     {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 153,
-      "raw_target": "FORMS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "6b2a84124220"
-    },
-    {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 154,
-      "raw_target": "REFERENCE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "c331ac61e0fc"
-    },
-    {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 155,
-      "raw_target": "EXAMPLES.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "f6c1e523de29"
-    },
-    {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 198,
-      "raw_target": "DOCX-JS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "be279b434884"
-    },
-    {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 204,
-      "raw_target": "REDLINING.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "a2e114abe90a"
-    },
-    {
-      "source": ".gemini/extensions/chthonic-archive-sync/skills/.system/skill-creator/SKILL.md",
-      "line": 205,
-      "raw_target": "OOXML.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "e92edebfa0e9"
-    },
-    {
       "source": ".gemini/extensions/chthonic-archive-sync/skills/mailbox-handoff/mailbox-handoff/SKILL.md",
       "line": 222,
       "raw_target": "path",
@@ -6284,6 +2621,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "claude/mailbox/archive/extensions/chthonic-archive/package.json",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "930b228936b0"
     },
@@ -6297,6 +2636,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "claude/mailbox/archive/.vscode/settings.json",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "c5f2687ce3ce"
     },
@@ -6310,6 +2651,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "b2fbf10c1daa"
     },
@@ -6323,6 +2666,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "2c8aa3fafcc0"
     },
@@ -6336,6 +2681,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "450cb7a9ff44"
     },
@@ -6349,6 +2696,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/scripts/decorator_cross_ref_maximum.py",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "19139c3472fd"
     },
@@ -6362,86 +2711,10 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "codex/codex-session-logs/data/graphs/dependency_graph.json",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "38cf26e5da77"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 12,
-      "raw_target": "architecture/topology_map.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "ee3fe6771784"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 13,
-      "raw_target": "architecture/topology_summary.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "1a8ad164f1b4"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 109,
-      "raw_target": "lore/Alabaster_Voyde_Snow_White.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "2d71734b149a"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 111,
-      "raw_target": "lore/Spectra_Chroma_Excavatus.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "c8d354213254"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 132,
-      "raw_target": "reference/handoff0001.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "8b30386b1525"
-    },
-    {
-      "source": "docs/archive/reports/SUMMARY.md",
-      "line": 133,
-      "raw_target": "reference/handoff001.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "48b67222b7a6"
     },
     {
       "source": "docs/archive/reports/TRUE_MISSING_FILES_REVIEW.md",
@@ -6453,6 +2726,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/archive/reports/docs/FILE.md",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "ab04e8c82bac"
     },
@@ -6492,6 +2767,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "docs/archive/logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "abb86491c72e"
     },
@@ -6509,45 +2786,6 @@
       "id": "3a534a8a323c"
     },
     {
-      "source": "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-      "line": 143,
-      "raw_target": "[^\\'\"]+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "655cc7771146"
-    },
-    {
-      "source": "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-      "line": 144,
-      "raw_target": "[^\\'\"]+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "8f34b1890c2a"
-    },
-    {
-      "source": "dumpster-dive/archive/sessions_2026-01/AUTONOMOUS_SESSION_3_MISSION_REPORT.md",
-      "line": 145,
-      "raw_target": "[^\\'\"]+",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "b11d6aafb34b"
-    },
-    {
       "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
       "line": 64,
       "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
@@ -6557,6 +2795,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "cea3c73638c7"
     },
@@ -6570,6 +2810,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "7b6456a8fb32"
     },
@@ -6583,6 +2825,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "b5b26901a12f"
     },
@@ -6596,6 +2840,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "1a327801930c"
     },
@@ -6609,6 +2855,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "f0900c6b9ae3"
     },
@@ -6622,6 +2870,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "5d4a55ba8f1d"
     },
@@ -6635,6 +2885,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "03eb71bccb97"
     },
@@ -6648,6 +2900,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "e55db43e3437"
     },
@@ -6661,6 +2915,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "984dc4494dd4"
     },
@@ -6674,6 +2930,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "4e60d13488d1"
     },
@@ -6687,6 +2945,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "fa492f953c29"
     },
@@ -6700,6 +2960,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "a7dbd04bafa3"
     },
@@ -6713,6 +2975,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "78d1980412dd"
     },
@@ -6726,6 +2990,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "b92bede76d15"
     },
@@ -6739,6 +3005,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "3867729ef2bf"
     },
@@ -6752,6 +3020,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "48acb58a839b"
     },
@@ -6765,6 +3035,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "673dfc9d861b"
     },
@@ -6778,6 +3050,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "d7a8114a741a"
     },
@@ -6791,6 +3065,8 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "7b724fdaf56e"
     },
@@ -6804,112 +3080,10 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
+      "git_truth": "existed_once",
       "priority": "low",
       "id": "3f0f672eb764"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1070,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/M-P-W-ENHANCEMENT-VALIDATION-REPORT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "5b321f2ca906"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1855,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/settings.json#1-1",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "e0ded23eaaad"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1857,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/settings.json#200-200",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "dca7c1429db6"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1939,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "599f36a4713d"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 1968,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "114eb53ec943"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2041,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/COPILOT_OPERATIONAL_INSTRUCTIONS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "9b24429e055e"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2192,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "850fc1ac9c71"
-    },
-    {
-      "source": "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md",
-      "line": 2194,
-      "raw_target": "file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "fda917f3637f"
     },
     {
       "source": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md",
@@ -6921,138 +3095,10 @@
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
+      "would_be_path": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/frameworks/nextjs.md",
+      "git_truth": "never_existed",
       "priority": "low",
       "id": "ec5f70beb862"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 65,
-      "raw_target": "path/to/file.ext",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "9c2d469b1542"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 66,
-      "raw_target": "path/to/another.json",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "ad40c7759e2b"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 69,
-      "raw_target": "path/to/consumer.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "dcefbf7ee693"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 70,
-      "raw_target": "path/to/other.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "a6dcf29794b4"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 73,
-      "raw_target": "path/to/sibling.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "833112b97c37"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 74,
-      "raw_target": "path/to/complement.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "0df6e3eb5e64"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 78,
-      "raw_target": "../../src/module.rs",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "8482612b6100"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 196,
-      "raw_target": "path/to/new.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "3b5256e68f6d"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 197,
-      "raw_target": "MIGRATION.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "881c7d51e093"
-    },
-    {
-      "source": "dumpster-dive/protocols/CROSS_REFERENCE_STANDARD.md",
-      "line": 447,
-      "raw_target": "../mas_mcp/",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "priority": "low",
-      "id": "00394b4658d9"
     }
   ]
 }

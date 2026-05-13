@@ -1,3 +1,13 @@
+---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Pre-existing archive index for a docs/ structure that was consolidated
+  away (see commit dc42cac8 "docs: consolidate documentation sprawl").
+  85 broken refs (hotspot #5). File lives in /archive/reports/ already;
+  this just makes the lifecycle explicit so the indexer skips it.
+---
+
 # Summary
 
 [Introduction](README.md)
