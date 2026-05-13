@@ -1,31 +1,31 @@
 # Git rot index digest
 
-Generated: 2026-05-13T07:14:29.856344+00:00
+Generated: 2026-05-13T07:18:11.275000+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
-- Tracked markdown files: 1112
-- Rot entries: 196
+- Tracked markdown files: 1110
+- Rot entries: 176
 - Historical renames in repo: 757
 
 ### By category
 
 - `ambig_resolves_fine`: 123
-- `broken_no_known_target`: 45
+- `broken_no_known_target`: 25
 - `ambig_truly_ambiguous`: 18
 - `placeholder_literal`: 10
 
 ### By priority
 
 - `background`: 123
-- `low`: 40
 - `medium`: 33
+- `low`: 20
 
 ### By code
 
 - `ROT-003` (123): target_ambig_resolves — basename ambiguous but link resolves (false positive)
-- `ROT-001` (45): target_missing — no candidate file exists anywhere
+- `ROT-001` (25): target_missing — no candidate file exists anywhere
 - `ROT-002` (18): target_ambig_broken — basename matches multiple, link broken
 - `ROT-008` (10): placeholder_literal — target is literal 'path'/'url'/template residue
 
@@ -34,18 +34,16 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md` — 15 entries
 - `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md` — 12 entries
 - `dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md` — 11 entries
-- `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md` — 10 entries
-- `dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md` — 10 entries
 - `codex/codex-session-logs/archive/copilot-instructions-copy.archived.md` — 8 entries
 - `WET_PAPER_TO_GOLD_METHODOLOGY.md` — 6 entries
 - `.github/instructions/reference-appendix.reference.md` — 5 entries
 - `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md` — 4 entries
 - `dumpster-dive/CIRCULATION_DIAGRAM.md` — 4 entries
+- `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md` — 4 entries
+- `dumpster-dive/forge/quench/README.md` — 4 entries
 
 ## Clusters (derived patterns)
 
-- `CLUSTER-002` target `../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md` — 20 refs. missing file referenced widely — confirm intent (typo? deleted?)
-  sample: `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md`, `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md`, `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md`, `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md`, `dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md`
 - `CLUSTER-002` target `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md` — 4 refs. missing file referenced widely — confirm intent (typo? deleted?)
   sample: `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`
 - `CLUSTER-002` target `copilot-instructions.md` — 3 refs. missing file referenced widely — confirm intent (typo? deleted?)

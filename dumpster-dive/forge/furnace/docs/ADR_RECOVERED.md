@@ -1,4 +1,12 @@
 ---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  References overnight-intelligence/2026-02-11T02-19-33/report.md as one
+  of its source_files 10 times. That report was deleted from the repo;
+  this document was an attempt to recover ADRs from that intake, which
+  can no longer be re-grounded. The work it documents is preserved here
+  as historical attempt. Excluded from active rot scanning.
 sid: FORGE_ADR_RECOVERED_V1
 title: Recovered Architecture Decisions
 created: 2026-03-05T19:27:19+00:00

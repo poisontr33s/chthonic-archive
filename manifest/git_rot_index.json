@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T07:14:29.856344+00:00",
+  "generated_at": "2026-05-13T07:18:11.275000+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -21,34 +21,36 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1112,
-    "tombstone_files_excluded": 5,
-    "rot_entries": 196,
+    "tracked_md_files": 1110,
+    "tombstone_files_excluded": 7,
+    "rot_entries": 176,
     "categories": {
       "ambig_resolves_fine": 123,
       "placeholder_literal": 10,
-      "broken_no_known_target": 45,
+      "broken_no_known_target": 25,
       "ambig_truly_ambiguous": 18
     },
     "codes": {
       "ROT-003": 123,
       "ROT-008": 10,
-      "ROT-001": 45,
+      "ROT-001": 25,
       "ROT-002": 18
     },
     "priorities": {
       "background": 123,
-      "low": 40,
+      "low": 20,
       "medium": 33
     },
     "rename_history_size": 757,
-    "cluster_count": 4
+    "cluster_count": 3
   },
   "tombstones": [
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
     "claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md",
     "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
     "docs/archive/reports/SUMMARY.md",
+    "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
+    "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
     "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md"
   ],
   "hotspots_top10": [
@@ -63,14 +65,6 @@
     {
       "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
       "rot_count": 11
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "rot_count": 10
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "rot_count": 10
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -91,23 +85,17 @@
     {
       "source": "dumpster-dive/CIRCULATION_DIAGRAM.md",
       "rot_count": 4
+    },
+    {
+      "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+      "rot_count": 4
+    },
+    {
+      "source": "dumpster-dive/forge/quench/README.md",
+      "rot_count": 4
     }
   ],
   "clusters": [
-    {
-      "code": "CLUSTER-002",
-      "kind": "orphan_target",
-      "target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "ref_count": 20,
-      "referenced_from_sample": [
-        "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-        "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-        "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-        "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-        "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md"
-      ],
-      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
-    },
     {
       "code": "CLUSTER-002",
       "kind": "orphan_target",
@@ -2784,306 +2772,6 @@
       "code": "ROT-008",
       "priority": "low",
       "id": "3a534a8a323c"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 64,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "cea3c73638c7"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 70,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "7b6456a8fb32"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 76,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "b5b26901a12f"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 82,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "1a327801930c"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 88,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "f0900c6b9ae3"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 94,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "5d4a55ba8f1d"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 100,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "03eb71bccb97"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 106,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "e55db43e3437"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 112,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "984dc4494dd4"
-    },
-    {
-      "source": "dumpster-dive/forge/furnace/docs/ADR_RECOVERED.md",
-      "line": 118,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "4e60d13488d1"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 64,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "fa492f953c29"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 70,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "a7dbd04bafa3"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 76,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "78d1980412dd"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 82,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "b92bede76d15"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 88,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "3867729ef2bf"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 94,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "48acb58a839b"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 100,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "673dfc9d861b"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 106,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "d7a8114a741a"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 112,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "7b724fdaf56e"
-    },
-    {
-      "source": "dumpster-dive/forge/tempered/docs/ADR_RECOVERED.md",
-      "line": 118,
-      "raw_target": "../../../intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git": {
-        "source_last_touched": "2026-05-13T07:12:29+02:00",
-        "source_author": "erdnorddd@gmail.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "dumpster-dive/intake/overnight-intelligence/2026-02-11T02-19-33/report.md",
-      "git_truth": "existed_once",
-      "priority": "low",
-      "id": "3f0f672eb764"
     },
     {
       "source": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md",

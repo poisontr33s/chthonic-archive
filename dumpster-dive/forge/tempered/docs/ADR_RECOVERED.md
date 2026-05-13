@@ -1,4 +1,10 @@
 ---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-13
+tombstone_reason: |
+  Tempered-stage copy of forge/furnace/docs/ADR_RECOVERED.md. References
+  the same deleted overnight-intelligence/2026-02-11T02-19-33/report.md.
+  Preserved as historical attempt; excluded from active rot scanning.
 sid: FORGE_ADR_RECOVERED_V1
 title: Recovered Architecture Decisions
 created: 2026-03-05T19:27:19+00:00
