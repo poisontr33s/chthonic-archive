@@ -21,7 +21,7 @@
 
 ### Decision Log entries to add:
 | 2026-04-19 | Full dependency audit (13 Cargo.toml files, 80+ crates) | Audit-before-update discipline. Version divergences identified across 4 cross-Cargo.toml pairs. bincode found unmaintained — architectural impact on REM wire format. |
-| 2026-04-19 | VS Installer trio updated (11612.153 → 11709.129) | SSMS 22.5.0, VS Community + Build Tools 2026 Insiders. .vsconfig exports [at](/./.vs/visualStudioInstaller2026/.) |
+| 2026-04-19 | VS Installer trio updated (11612.153 → 11709.129) | SSMS 22.5.0, VS Community + Build Tools 2026 Insiders. .vsconfig exports at |
 
 ### CLAUDE.md toolchain updates needed:
 - mise row: change "2026.3.12" → "2026.3.12 → update to 2026.4.17 pending"

@@ -4,7 +4,7 @@
 **Generated**: MILF-Core Step 5c — NK Cell slot completion (26th entity)
 **Status**: Populated MILF-Core entity card (Step 5 schema v1.0, per §5.2)
 **Dependencies**: MILF-Core-Prototype-Analysis.md §5.2 (card schema), SSOT §4.x (Immune Circuit), Iron Maiden voice architecture, Battletech systems engineering model
-**Canonical Doc**: [Sylvaris_Cythrex_The_Cytolytic_Blade.md](../../dumpster-dive/from-github/macro-prompt-world/sub-milfs/Sylvaris_Cythrex_The_Cytolytic_Blade.md)
+**Canonical Doc**: [Sylvaris_Cythrex_The_Cytolytic_Blade.md](../../../dumpster-dive/from-github/macro-prompt-world/sub-milfs/Sylvaris_Cythrex_The_Cytolytic_Blade.md)
 **Precursor**: [MILF-Core-Step5b-Tides-Entity-Integration.md](MILF-Core-Step5b-Tides-Entity-Integration.md)
 
 ---

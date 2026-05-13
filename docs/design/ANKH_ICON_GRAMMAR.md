@@ -369,7 +369,7 @@ not a casual local variation.
 | [SFS_WPTG_ITERATION_PLAN.md](SFS_WPTG_ITERATION_PLAN.md) | WPTG stage gates, icon-pipeline stages (0.0→3.0), KCP metadata |
 | [SFS_SLABSTONE_BASELINE.md](SFS_SLABSTONE_BASELINE.md) | Generated reproducibility anchor linking canon prose to live SFS theme/icon assets |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction, top-level ANKH bridge |
-| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+| SFA_CROSS_REFERENCE_SCAN.md | Motif balance audit, motif-to-palette lineage |
 
 ### Methodology
 

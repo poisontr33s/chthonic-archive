@@ -6,9 +6,9 @@ Last Updated: 2026-03-27
 
 ### Canonical Links
 
-- Blueprint: [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md)
-- Steward Audit: [claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md](../../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md)
-- Forge Dev Plan: [claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)
+- Blueprint: [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](../../docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md)
+- Steward Audit: claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md
+- Forge Dev Plan: claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md
 - Zone 1 Research Source: [Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md](Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md)
 - Session Nucleus (Triadic): [COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md](../../claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md)
 - SSOT Canon: [.github/copilot-instructions.archive.md](../../.github/copilot-instructions.archive.md)

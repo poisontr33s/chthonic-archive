@@ -221,7 +221,7 @@ Every file here represents **work done**. Even failures teach. The forge doesn't
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Programmatic tracking system
 - [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual reference
 - [HARVEST_REGISTRY.md (dumpster-dive)](HARVEST_REGISTRY.md) — Completed harvest tracking
-- [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md) — Harvest methodology (Claude Code)
+- [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../WET_PAPER_TO_GOLD_METHODOLOGY.md) — Harvest methodology (Claude Code)
 
 ### External References
 - SSOT: Multiple sections (see individual protocol docs)

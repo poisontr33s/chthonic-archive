@@ -228,9 +228,9 @@ All commands retain `--json` for machine-readable output.
 
 ## Cross-References (from handoff findings)
 
-- **Handoff:** [HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md](HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md) — delegated investigation of forge/embalmer/Dame Schrödinger sync
-- **Findings:** [SFS_QML_BRIDE_SYNC_FINDINGS_20260323.md](../../codex/mailbox/SFS_QML_BRIDE_SYNC_FINDINGS_20260323.md) — Codex response, A1-A4 executed, A5 ✅, A6 ✅, A7-A8 open
-- **A5 complete:** [HANDOFF_A5_COMPLETE_20260323.md](HANDOFF_A5_COMPLETE_20260323.md) — forge bridge built, 49 files routed, feedback loop live
+- **Handoff:** HANDOFF_SFS_QML_BRIDE_SYNC_20260323.md — delegated investigation of forge/embalmer/Dame Schrödinger sync
+- **Findings:** SFS_QML_BRIDE_SYNC_FINDINGS_20260323.md — Codex response, A1-A4 executed, A5 ✅, A6 ✅, A7-A8 open
+- **A5 complete:** HANDOFF_A5_COMPLETE_20260323.md — forge bridge built, 49 files routed, feedback loop live
 - **Novia Cadaveris axis:** Zombie extracts *intelligence* (imports, SIDs, patterns). Novia's EMBALM extracts *provenance* (sha256, lineage, deltas). Orthogonal axes that compose — forge bridge (A5) should read both when routing
 - **Routing table confirmed** (from [CIRCULATION_DIAGRAM.md](../../dumpster-dive/CIRCULATION_DIAGRAM.md)):
 

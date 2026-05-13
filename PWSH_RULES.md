@@ -277,8 +277,8 @@ bash -lc "command here"
 **Authority Hierarchy (top-down):**
 1. **Runtime Reality:** OS + shell behavior (Win11 + pwsh)
 2. **Repository Doctrine:** [.github/copilot-instructions.md](.github/copilot-instructions.md) (SSOT - 313KB)
-3. **Session Bootstrap:** [SESSION_BOOTSTRAP_SPEC.md](docs/SESSION_BOOTSTRAP_SPEC.md) v1.1
-4. **Editing Policy:** [CLI_EDITING_POLICY.md](docs/CLI_EDITING_POLICY.md) (mechanical edits only)
+3. **Session Bootstrap:** [SESSION_BOOTSTRAP_SPEC.md](docs/archive/sessions/SESSION_BOOTSTRAP_SPEC.md) v1.1
+4. **Editing Policy:** [CLI_EDITING_POLICY.md](docs/ops/CLI_EDITING_POLICY.md) (mechanical edits only)
 5. **This Document:** [PWSH_RULES.md (repo-root)](PWSH_RULES.md) v1.0
 
 <!-- NOTE: ARBITRAGE-BRIDGE.md planned but not yet created. Multi-agent shell preference negotiation is documented in AGENT_COMMON.md -->
@@ -292,10 +292,10 @@ bash -lc "command here"
 **Location:** [shell_capabilities.ps1](scripts/shell_capabilities.ps1)
 **Purpose:** Minimal, ABI-stable environment probe for Claude Code and other AI agents
 **Canonical Hash:** `934B9E30F4C30F65E4229055E2CCE41B99E99E792450D8A6B63EFC5F880B5E82`
-**Contract:** See [PROBE_CONTRACT.md](docs/PROBE_CONTRACT.md) for full ABI specification
+**Contract:** See [PROBE_CONTRACT.md](docs/ops/PROBE_CONTRACT.md) for full ABI specification
 
 **Requirements:**
-See [PROBE_CONTRACT.md](docs/PROBE_CONTRACT.md) for complete ABI contract. Key invariants:
+See [PROBE_CONTRACT.md](docs/ops/PROBE_CONTRACT.md) for complete ABI contract. Key invariants:
 - ✅ MUST output pure JSON to stdout (no text/logging)
 - ✅ MUST NOT contain logic, branching, validation, or side-effects
 - ✅ Validated by `scripts/validate_shell_probe.ps1` (hard gate)

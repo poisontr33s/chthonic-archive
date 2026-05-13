@@ -23,17 +23,17 @@ SEMANTIC IDENTITY (Anchor & Signal Protocol)
 
 | @SID | Type | Path (Current) | Purpose |
 |------|------|----------------|---------|
-| `TOOL_SESSION_EXTRACTOR_V1` | Script | [`scripts/extract_session_value.py`](../../../scripts/extract_session_value.py) | Session JSONL extractor |
+| `TOOL_SESSION_EXTRACTOR_V1` | Script | [`scripts/extract_session_value.py`](../../../scripts/.deprecated/extract_session_value.py) | Session JSONL extractor |
 | `TOOL_ROOT_AUDIT_V1` | Script | [`scripts/../scripts/rootdir_health_audit.py`](../../../scripts/rootdir_health_audit.py) | Root directory auditor |
 | `TOOL_SID_RESOLVER_V1` | Script | `scripts/resolve_sid.py` | Semantic ID resolver |
 | `TOOL_CODEBASE_MAPPER_V1` | Script | [`scripts/../scripts/map_codebase.py`](../../../scripts/map_codebase.py) | Cartography tool |
 | `SESSION_DOC_2026_01_17_CLEANUP` | SessionDoc | [`docs/SESSION_2026-01-17_CLEANUP.md`](./SESSION_2026-01-17_CLEANUP.md) | This session map |
-| `STATE_ROOTDIR_HEALTH` | State | [`docs/ROOTDIR_HEALTH.md`](../../../docs/ROOTDIR_HEALTH.md) | Health audit output |
-| `REPORT_TRUTH_STEWARDSHIP_2026_01_17` | Report | [`docs/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md`](../../../docs/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md) | Truth validation log |
-| `STATE_CODEBASE_INVENTORY` | State | [`docs/CODEBASE_INVENTORY.md`](../../../docs/CODEBASE_INVENTORY.md) | Inventory & proposal |
+| `STATE_ROOTDIR_HEALTH` | State | [`docs/ROOTDIR_HEALTH.md`](../../../docs/archive/reports/ROOTDIR_HEALTH.md) | Health audit output |
+| `REPORT_TRUTH_STEWARDSHIP_2026_01_17` | Report | [`docs/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md`](../../../docs/archive/sessions/SESSION_2026_01_17_TRUTH_STEWARDSHIP.md) | Truth validation log |
+| `STATE_CODEBASE_INVENTORY` | State | [`docs/CODEBASE_INVENTORY.md`](../../../docs/archive/reports/CODEBASE_INVENTORY.md) | Inventory & proposal |
 | `DOC_SRC_README` | Documentation | `src/README.md` | Source directory readme |
 | `DOC_SCRIPTS_README` | Documentation | `scripts/README.md` | Scripts directory readme |
-| `REPORT_META_REVIEW_2026_01_17` | Report | [`docs/SESSION_2026_01_17_META_REVIEW.md`](../../../docs/SESSION_2026_01_17_META_REVIEW.md) | Validation certificate |
+| `REPORT_META_REVIEW_2026_01_17` | Report | [`docs/SESSION_2026_01_17_META_REVIEW.md`](../../../docs/archive/sessions/SESSION_2026_01_17_META_REVIEW.md) | Validation certificate |
 
 ### Cross-Reference Graph (SID-Based)
 

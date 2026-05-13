@@ -69,7 +69,7 @@ This file provides guidance to Google Gemini CLI when working with code in this 
 |--------|-----------|
 | **Temple** ([.temple/](.temple/)) | Velocity tasks, batch migrations |
 | **Game** ([game/](game/)) | Batch content generation, parallel ops |
-| **Bifurcation** ([bifurcation/](bifurcation/)) | Experimental or divergent workflows |
+| **Bifurcation** (bifurcation/) | Experimental or divergent workflows |
 
 **Before creating anything, ask:** "Is this *TEMPLE*, *GAME* or *BIFURCATIONS*?"
 

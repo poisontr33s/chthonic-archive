@@ -6,13 +6,13 @@ Last Updated: 2026-03-27
 
 ### Canonical Links
 
-- Blueprint: [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](../../docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md)
-- Steward Audit: [claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md](../../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md)
-- Forge Dev Plan: [claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)
+- Blueprint: [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](../../docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md)
+- Steward Audit: claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md
+- Forge Dev Plan: claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md
 - Zombie Consumer Implementation: [scripts/zombie_consumer.py](../../scripts/zombie_consumer.py)
 - Zombie Bridge (Forge): [scripts/zombie_forge_bridge.py](../../scripts/zombie_forge_bridge.py)
 - Dumpster-Dive Circulation: [dumpster-dive/CIRCULATION_DIAGRAM.md](../../dumpster-dive/CIRCULATION_DIAGRAM.md)
-- Corpse Reviver (Embalmer): [.codex/skills/corpse-reviver/scripts/corpse_reviver.py](.codex/skills/corpse-reviver/scripts/corpse_reviver.py)
+- Corpse Reviver (Embalmer): [.codex/skills/corpse-reviver/scripts/corpse_reviver.py](../../.codex/skills/corpse-reviver/scripts/corpse_reviver.py)
 - Session Nucleus (Triadic): [COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md](../../claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md)
 - Session Nucleus (Zone 1): [ZONE_1_REDUX_GOVERNANCE_NUCLEUS.md](ZONE_1_REDUX_GOVERNANCE_NUCLEUS.md)
 - SSOT Canon: [.github/copilot-instructions.archive.md](../../.github/copilot-instructions.archive.md)

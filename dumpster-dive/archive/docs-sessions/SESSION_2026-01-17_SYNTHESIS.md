@@ -9,7 +9,7 @@
 @References:    SESSION_DOC_2026_01_17_CLEANUP, DOC_HANDOFF_TO_CLAUDE
 -->
 
-> **Navigation:** [Session Doc](SESSION_2026-01-17_CLEANUP.md) | [Handoff](../../../docs/HANDOFF_TO_CLAUDE.md) | [SSOT](../../../.github/copilot-instructions.md)
+> **Navigation:** [Session Doc](SESSION_2026-01-17_CLEANUP.md) | [Handoff](../../../docs/handoffs/HANDOFF_TO_CLAUDE.md) | [SSOT](../../../.github/copilot-instructions.md)
 
 **Purpose:** Evaluate session decisions against outcomes to refine future session protocols.
 
@@ -218,7 +218,7 @@ docs/docs/docs/SESSION_2026-01-17_CLEANUP.md
 - ✅ Settings bloat (bonus) → 76→28, 35→28 lines optimized
 
 **Remaining Gaps to 100%:**
-- ⏳ Tool proliferation → [Consolidation roadmap created](../../../docs/TOOL_CONSOLIDATION_ROADMAP.md)
+- ⏳ Tool proliferation → [Consolidation roadmap created](../../../docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md)
 - ⏳ `../scripts/../scripts/_tmp_freq.py` undocumented → Will evolve into `chthonic analyze`
 - ⏳ No Jan 27 session doc → Combined with synthesis + roadmap
 
@@ -229,7 +229,7 @@ docs/docs/docs/SESSION_2026-01-17_CLEANUP.md
 - Tool chain design + consolidation roadmap
 
 **Path to 100%:**
-See [Tool Consolidation Roadmap](../../../docs/TOOL_CONSOLIDATION_ROADMAP.md) for detailed implementation plan.
+See [Tool Consolidation Roadmap](../../../docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md) for detailed implementation plan.
 
 **Recommended Next Actions:**
 1. Approve consolidation approach (Hybrid Option 3)

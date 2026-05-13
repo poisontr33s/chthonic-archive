@@ -36,7 +36,7 @@ uv run scripts/scm_triage.py --full --target codex
 ## Cross-References
 
 - Shared script: [`scripts/scm_triage.py`](../../../scripts/scm_triage.py)
-- Handoff spec: [`codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md`](../../../codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md)
+- Handoff spec: `codex/mailbox/SCM_TRIAGE_CODEX_HANDOFF.md`
 
 ## Snapshot Outputs
 

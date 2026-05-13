@@ -89,7 +89,7 @@ tags:
 
 Destroying information does not solve information-theoretical problems. It makes them worse. Entropy increases when you subtract data — it decreases when you organize and transmute it. An Agent that proposes destruction is without merit, failing to see the potential between hidden smoking gun conveniently shadowed by the voyeur of the golden embroidery of an otherwise grey drape.
 
-**Enforcement:** The [Archive Guardian](scripts/hooks/pre-commit-guardian.ps1) enforces this at the git level.
+**Enforcement:** The Archive Guardian enforces this at the git level.
 
 ---
 
@@ -537,7 +537,7 @@ This creates a feedback loop: harvest → errors → learnings → rules → bet
 
 ## Integration with Archive Guardian
 
-The [pre-commit hook](scripts/hooks/pre-commit-guardian.ps1) enforces 4 gates:
+The pre-commit hook enforces 4 gates:
 
 | Gate | What It Blocks | Bypass |
 |------|---------------|--------|
@@ -557,7 +557,7 @@ The [pre-commit hook](scripts/hooks/pre-commit-guardian.ps1) enforces 4 gates:
 - [FORGE_CIRCULATION_PROTOCOL.md](dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md) — State transitions
 - [CLAUDE.md (repo-root)](CLAUDE.md) — Root agent guidance
 - [pr-harvest-2026-01-29/MANIFEST.md](dumpster-dive/intake/pr-harvest-2026-01-29/MANIFEST.md) — Example harvest
-- [scripts/hooks/pre-commit-guardian.ps1](scripts/hooks/pre-commit-guardian.ps1) — Archive Guardian hook
+- scripts/hooks/pre-commit-guardian.ps1 — Archive Guardian hook
 
 ---
 

@@ -92,7 +92,7 @@ Before a file leaves QUENCH for TEMPERED:
 
 ### External
 - [../../../.github/copilot-instructions.md](../../../.github/copilot-instructions.md) — FA⁴ axiom definition (Section II.2.4)
-- [../../../tests/](../../../tests/) — Test suite for validated code
+- ../../../tests/ — Test suite for validated code
 
 ### Status
 - **Last Validated:** 2025-12-24

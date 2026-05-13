@@ -195,7 +195,10 @@ def invoke_link_audit(repo_root: Path, files: list[str], extra: list[str]) -> in
     if not files:
         return 0
 
-    base_cmd = ["uv", "run", "scripts/link_audit.py", "scan", "--dry-run", "--paths"]
+    mode_flag = "--fix" if "--apply-fixes" in extra else "--dry-run"
+    cleaned_extra = [a for a in extra if a != "--apply-fixes"]
+    base_cmd = ["uv", "run", "scripts/link_audit.py", "scan", mode_flag, "--paths"]
+    extra = cleaned_extra
     fixed_len = sum(len(part) + 1 for part in base_cmd) + sum(len(x) + 1 for x in extra)
     max_cmdline = 28000  # conservative ceiling vs the 32767 Windows limit
 
@@ -242,6 +245,8 @@ def main() -> int:
                         help="Bypass the .git/info/author-map.json cache")
     parser.add_argument("--pass-through", action="append", default=[],
                         help="Extra arg to forward to link_audit.py (repeatable)")
+    parser.add_argument("--apply-fixes", action="store_true",
+                        help="Run link_audit.py with --fix instead of --dry-run (writes .bak backups)")
     args = parser.parse_args()
 
     try:
@@ -292,7 +297,10 @@ def main() -> int:
         summary["exitCode"] = 0
         return 0
 
-    rc = invoke_link_audit(repo_root, filtered, args.pass_through)
+    extra_args = list(args.pass_through)
+    if args.apply_fixes:
+        extra_args.append("--apply-fixes")
+    rc = invoke_link_audit(repo_root, filtered, extra_args)
     summary["linkAuditExitCode"] = rc
     if args.report:
         args.report.write_text(json.dumps(summary, indent=2), encoding="utf-8")

@@ -46,7 +46,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 **Disposition:** PRs closed with harvest references
 
-**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 
@@ -69,7 +69,7 @@ Tracking completed data harvests from PRs, sessions, and other sources.
 
 **Disposition:** Canonical path remains in `scripts/` (operational). Historical sources copied here for audit/mining.
 
-**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../claude/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+**Methodology:** [WET_PAPER_TO_GOLD_METHODOLOGY.md (claude)](../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 
 ---
 

@@ -138,4 +138,4 @@ When spawning sub-agents for file operations:
 
 **Session:** 2026-01-29
 **Errors Analyzed:** 3
-**[PWSH_RULES.md (docs)](../../../docs/PWSH_RULES.md) Lines Referenced:** 35, 38, 154
+**[PWSH_RULES.md (docs)](../../../PWSH_RULES.md) Lines Referenced:** 35, 38, 154
