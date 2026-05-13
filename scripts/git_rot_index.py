@@ -559,9 +559,37 @@ def main() -> int:
     p.add_argument("--no-md", action="store_true", help="skip markdown digest")
     p.add_argument("--out-json", default="manifest/git_rot_index.json")
     p.add_argument("--out-md", default="manifest/git_rot_index.md")
+    p.add_argument("--include-false-positives", action="store_true",
+                   help="Include ROT-003 (ambig_resolves_fine) in output. "
+                   "Off by default — these are known false positives where "
+                   "the basename is ambiguous but the link resolves correctly. "
+                   "Set this flag for diagnostic dives.")
     args = p.parse_args()
 
     index = build_index(args)
+
+    # Default: drop ROT-003 false positives from the persisted output.
+    # The signal-to-noise ratio of the index improves dramatically — the
+    # remaining entries are actual work-list items, not warnings about
+    # basename ambiguities that resolve fine in practice.
+    if not args.include_false_positives:
+        before = len(index["entries"])
+        index["entries"] = [e for e in index["entries"] if e.get("code") != "ROT-003"]
+        dropped = before - len(index["entries"])
+        if dropped:
+            index["summary"]["false_positives_suppressed"] = dropped
+            index["summary"]["rot_entries"] = len(index["entries"])
+            # Rebuild category/code counts to match the filtered set.
+            from collections import Counter as _C
+            cats = _C(e["category"] for e in index["entries"])
+            codes = _C(e.get("code", "UNCODED") for e in index["entries"])
+            pris = _C(e["priority"] for e in index["entries"])
+            index["summary"]["categories"] = dict(cats)
+            index["summary"]["codes"] = dict(codes)
+            index["summary"]["priorities"] = dict(pris)
+            print(f"[git_rot_index] suppressed {dropped} ROT-003 false positives "
+                  f"(use --include-false-positives to keep them)", file=sys.stderr)
+
     out_json = REPO_ROOT / args.out_json
     out_json.parent.mkdir(parents=True, exist_ok=True)
     out_json.write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")

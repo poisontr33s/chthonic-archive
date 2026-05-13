@@ -1,30 +1,27 @@
 # Git rot index digest
 
-Generated: 2026-05-13T07:25:12.998976+00:00
+Generated: 2026-05-13T07:26:23.800288+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
-- Tracked markdown files: 1110
-- Rot entries: 161
+- Tracked markdown files: 1112
+- Rot entries: 38
 - Historical renames in repo: 757
 
 ### By category
 
-- `ambig_resolves_fine`: 123
 - `ambig_truly_ambiguous`: 16
 - `broken_no_known_target`: 12
 - `placeholder_literal`: 10
 
 ### By priority
 
-- `background`: 123
 - `low`: 20
 - `medium`: 18
 
 ### By code
 
-- `ROT-003` (123): target_ambig_resolves — basename ambiguous but link resolves (false positive)
 - `ROT-002` (16): target_ambig_broken — basename matches multiple, link broken
 - `ROT-001` (12): target_missing — no candidate file exists anywhere
 - `ROT-008` (10): placeholder_literal — target is literal 'path'/'url'/template residue
@@ -155,74 +152,62 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - Target: `instructions/xyz.instructions.md`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.claude/agents/tessara.md:L21`
+### [LOW / ROT-008 / placeholder_literal] `.claude/skills/mailbox-handoff/SKILL.md:L213`
 
-- Target: `../../.github/copilot-instructions.archive.md`
-- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/INTEGRATION_MAP.md:L1`
+### [LOW / ROT-008 / placeholder_literal] `.claude/skills/mailbox-handoff/mailbox-handoff/SKILL.md:L222`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/SESSION_RESUME.md:L1`
+### [LOW / ROT-008 / placeholder_literal] `.codex/skills/mailbox-handoff/SKILL.md:L222`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md:L387`
+### [LOW / ROT-008 / placeholder_literal] `.gemini/TRIAD_SYNC_2026_02_01.md:L29`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/STRUCTURAL_INTEGRITY_ANALYSIS.md:L1`
+### [LOW / ROT-008 / placeholder_literal] `.gemini/extensions/chthonic-archive-sync/skills/mailbox-handoff/mailbox-handoff/SKILL.md:L222`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/VALIDATION_REPORT.md:L1`
+### [LOW / ROT-008 / placeholder_literal] `.github/copilot-instructions.md:L70`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/ENTITY_PROFILES.md:L3`
-
-- Target: `../copilot-instructions.archive.md`
-- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/MMPS_GENERATION.md:L3`
-
-- Target: `../copilot-instructions.archive.md`
-- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/VALIDATION_PROTOCOLS.md:L3`
-
-- Target: `../copilot-instructions.archive.md`
-- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L3`
-
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Target: `path`
 - Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L10`
+### [LOW / ROT-008 / placeholder_literal] `.github/instructions/ssot-toolbox.instructions.md:L128`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
-- Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com
+- Target: `path`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L12`
+### [LOW / ROT-001 / broken_no_known_target] `claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md:L48`
 
-- Target: `copilot-instructions.md`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
-- Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com
+- Target: `../../extensions/chthonic-archive/package.json`
+- Source last touched: 2026-05-13T07:12:29+02:00 by erdnorddd@gmail.com
+
+### [LOW / ROT-001 / broken_no_known_target] `claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md:L57`
+
+- Target: `../../.vscode/settings.json`
+- Source last touched: 2026-05-13T07:12:29+02:00 by erdnorddd@gmail.com
+
+### [LOW / ROT-001 / broken_no_known_target] `codex/codex-session-logs/archive/MILF-Core-META.md:L120`
+
+- Target: `The-Iron-Maiden-(SSOT`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `codex/codex-session-logs/archive/MILF-Core-META.md:L121`
+
+- Target: `The-Iron-Maiden-(SSOT`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `codex/codex-session-logs/archive/copilot-instructions-copy.archived.md:L2`
+
+- Target: `../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
