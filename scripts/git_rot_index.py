@@ -268,33 +268,45 @@ def resolve_link(src: Path, raw_target: str) -> tuple[str, Optional[Path], Optio
     return (tgt_clean, resolved if resolved.exists() else None, would_be, fragment)
 
 
-# GFM heading -> anchor cache, keyed on resolved file path.
-# Avoid re-reading the same target file once per link that points at it.
-_HEADING_CACHE: dict[Path, set[str]] = {}
-_LINE_COUNT_CACHE: dict[Path, int] = {}
+# Unified target-structure lookaside cache: one entry per target file,
+# carries everything L3 detection needs in a single read.
+#   structure_cache[Path] = {"total_lines": int, "valid_slugs": set[str]}
+# Built lazily — populated only when a link actually resolves to that target.
+_STRUCTURE_CACHE: dict[Path, dict] = {}
 
 
 def _gfm_anchor(text: str) -> str:
     """
-    GitHub Flavored Markdown anchor normalization (approximate).
-    Lowercase, strip leading `#` markers, replace whitespace with `-`,
-    keep alphanumerics + hyphens + underscores. Good enough for most cases.
+    GitHub Flavored Markdown anchor normalization.
+    Sequence (matches user 2026-05-13 spec):
+      1. Strip leading/trailing whitespace.
+      2. Lowercase entire string.
+      3. Strip leading `#` markers (heading sigils).
+      4. Remove punctuation (everything not alphanumeric / underscore / whitespace / hyphen).
+      5. Replace whitespace runs with single hyphen.
+      6. Strip leading/trailing hyphens.
+
+    Duplicate-suffix logic (heading collisions like two `## Introduction`)
+    is applied at the file level in _build_structure, NOT here — this
+    function returns the base slug only.
     """
     text = text.strip().lower()
-    # Drop leading `#`s and trailing trailing colon/punct often used in headings
     text = re.sub(r"^#+\s*", "", text)
     text = re.sub(r"[^\w\s-]", "", text)
     text = re.sub(r"\s+", "-", text)
     return text.strip("-")
 
 
-def _headings_for(path: Path) -> set[str]:
-    if path in _HEADING_CACHE:
-        return _HEADING_CACHE[path]
-    anchors: set[str] = set()
+def _build_structure(path: Path) -> dict:
+    """Read a target file once, return everything L3 needs."""
+    valid_slugs: set[str] = set()
+    total_lines = 0
     try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        total_lines = text.count("\n") + 1
+        seen_counts: dict[str, int] = {}
         in_fence = False
-        for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        for line in text.splitlines():
             stripped = line.strip()
             if stripped.startswith("```") or stripped.startswith("~~~"):
                 in_fence = not in_fence
@@ -302,23 +314,29 @@ def _headings_for(path: Path) -> set[str]:
             if in_fence:
                 continue
             m = re.match(r"^(#{1,6})\s+(.+)$", stripped)
-            if m:
-                anchors.add(_gfm_anchor(m.group(2)))
+            if not m:
+                continue
+            base = _gfm_anchor(m.group(2))
+            if not base:
+                continue
+            # GFM duplicate-suffix rule: first occurrence is bare, subsequent
+            # ones get -1, -2, -3 appended.
+            n = seen_counts.get(base, 0)
+            slug = base if n == 0 else f"{base}-{n}"
+            valid_slugs.add(slug)
+            seen_counts[base] = n + 1
     except OSError:
         pass
-    _HEADING_CACHE[path] = anchors
-    return anchors
+    return {"total_lines": total_lines, "valid_slugs": valid_slugs}
 
 
-def _line_count(path: Path) -> int:
-    if path in _LINE_COUNT_CACHE:
-        return _LINE_COUNT_CACHE[path]
-    try:
-        n = path.read_text(encoding="utf-8", errors="replace").count("\n") + 1
-    except OSError:
-        n = 0
-    _LINE_COUNT_CACHE[path] = n
-    return n
+def _structure(path: Path) -> dict:
+    cached = _STRUCTURE_CACHE.get(path)
+    if cached is not None:
+        return cached
+    built = _build_structure(path)
+    _STRUCTURE_CACHE[path] = built
+    return built
 
 
 LINE_ANCHOR_RE = re.compile(r"^[Ll]?(\d+)(?:-[Ll]?(\d+))?$")
@@ -399,7 +417,8 @@ def classify_link(
                 # Line anchor: #L42 or #L42-L51 or #42
                 start = int(line_m.group(1))
                 end = int(line_m.group(2)) if line_m.group(2) else start
-                file_lines = _line_count(resolved)
+                struct = _structure(resolved)
+                file_lines = struct["total_lines"]
                 if file_lines and (start > file_lines or end > file_lines):
                     return {
                         **base_entry,
@@ -411,10 +430,12 @@ def classify_link(
                         "priority": "medium",
                     }
             else:
-                # Heading anchor: must match a GFM-normalized heading in target.
+                # Heading anchor: fragment may itself include a duplicate
+                # suffix (e.g. `#introduction-1`). _structure carries the
+                # full set of canonicalized slugs including those suffixes.
                 want = _gfm_anchor(fragment)
-                anchors = _headings_for(resolved)
-                if want and want not in anchors:
+                struct = _structure(resolved)
+                if want and want not in struct["valid_slugs"]:
                     return {
                         **base_entry,
                         "category": "anchor_missing",
