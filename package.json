@@ -59,6 +59,7 @@
     "ci:full": "bun run ci/run.ts --full",
     "ci:check": "bun run ci/run.ts --check",
     "ci:list": "bun run ci/run.ts --list",
+    "workspace:open": "code -n chthonic-archive.code-workspace",
     "teleport": "bun run scripts/teleport.ts",
     "teleport:dry": "bun run scripts/teleport.ts --dry-run",
     "teleport:from:alchemy": "bun run scripts/teleport.ts --from \"C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy\" --apply",
