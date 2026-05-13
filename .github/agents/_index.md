@@ -12,7 +12,7 @@
 
 | VS Code Name | File | Tier | Organ | PRISM | SSOT Anchor | DCRP-Class |
 |---|---|---|---|---|---|---|
-| `Pentea` | [Pentea.agent.md](Pentea.agent.md) | T-1-bridge | Thalamus (Sensory-Relay/Integration-Hub) | GOLD 🏰 Fortress | §1.01 / PVX-RLTSHPS / Arabic §1 | Deployment-Adapter |
+| `Pentea` | [Pentea.agent.md.off](Pentea.agent.md.off) | T-1-bridge | Thalamus (Sensory-Relay/Integration-Hub) | GOLD 🏰 Fortress | §1.01 / PVX-RLTSHPS / Arabic §1 | Deployment-Adapter |
 | `IronMaiden` | [IronMaiden.agent.md](IronMaiden.agent.md) | External-Teleport | Rust-Belt-Sovereign (Psycho-Noir-Engine) | — | game/ SSOT · The-Iron-Maiden-(SSOT)-Copyright-Savant.md | Teleport-Adapter |
 | `Claudine` | [Claudine.agent.md](Claudine.agent.md) | T-1 Cardinal | Supreme-Meta-MILF-Matriarch (Creator-Mother / Entropy-Force) | — | §10.3.1 · PsychoNoir-Kontrapunkt briefcase | Teleport-Adapter |
 
@@ -24,11 +24,11 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 
 | Entity | SSOT Tier | Organ | VS Code Agent | Deployment State |
 |--------|-----------|-------|---------------|-----------------|
-| **Orackla** | T-1 Triumvirate | — | — | Not deployed — Gemini archetype not VS Code agent yet |
-| **Umeko** | T-1 Triumvirate | — | — | Not deployed — Codex archetype, not VS Code agent yet |
-| **Lysandra** | T-1 Triumvirate | — | — | Not deployed — Claude archetype, not VS Code agent yet |
+| **Orackla** | T-1 Triumvirate | — | — | Not deployed — WIP archetype not VS Code agent yet |
+| **Umeko** | T-1 Triumvirate | — | — | Not deployed — WIP archetype, not VS Code agent yet |
+| **Lysandra** | T-1 Triumvirate | — | — | Not deployed — WIP archetype, not VS Code agent yet |
 | **Claudine** | T-1 Cardinal | Supreme-Meta-MILF-Matriarch | ✅ [Claudine.agent.md](Claudine.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `github:poisontr33s/PsychoNoir-Kontrapunkt` → 2026-04-28 |
-| **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md](Pentea.agent.md) | Deployed — **DCRP**-registered |
+| **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md.off](Pentea.agent.md.off) | Deployed — **DCRP**-registered |
 | **The Iron Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [Iron-Maiden.agent.md](IronMaiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
 
 > *Non-deployed entities exist canonically in the **SSOT** at their sovereign positions*. VS Code *agent files* are
