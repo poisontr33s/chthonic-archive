@@ -185,12 +185,43 @@ def filter_by_author(
 
 
 def invoke_link_audit(repo_root: Path, files: list[str], extra: list[str]) -> int:
-    """Call link_audit.py scan with the narrowed file set."""
+    """
+    Call link_audit.py scan with the narrowed file set.
+
+    Windows CreateProcess caps the command line at 32,767 chars; passing ~1000
+    paths in one shot overflows it (WinError 206). Batch into chunks that stay
+    well under the cap and aggregate the worst exit code.
+    """
     if not files:
         return 0
-    cmd = ["uv", "run", "scripts/link_audit.py", "scan", "--dry-run", "--paths", *files, *extra]
-    result = subprocess.run(cmd, cwd=str(repo_root))
-    return result.returncode
+
+    base_cmd = ["uv", "run", "scripts/link_audit.py", "scan", "--dry-run", "--paths"]
+    fixed_len = sum(len(part) + 1 for part in base_cmd) + sum(len(x) + 1 for x in extra)
+    max_cmdline = 28000  # conservative ceiling vs the 32767 Windows limit
+
+    batches: list[list[str]] = []
+    current: list[str] = []
+    current_len = fixed_len
+    for f in files:
+        addition = len(f) + 1
+        if current and current_len + addition > max_cmdline:
+            batches.append(current)
+            current = [f]
+            current_len = fixed_len + addition
+        else:
+            current.append(f)
+            current_len += addition
+    if current:
+        batches.append(current)
+
+    worst_rc = 0
+    for i, batch in enumerate(batches, 1):
+        print(f"[link_audit_author] batch {i}/{len(batches)} - {len(batch)} files")
+        cmd = [*base_cmd, *batch, *extra]
+        result = subprocess.run(cmd, cwd=str(repo_root))
+        if result.returncode > worst_rc:
+            worst_rc = result.returncode
+    return worst_rc
 
 
 def main() -> int:
