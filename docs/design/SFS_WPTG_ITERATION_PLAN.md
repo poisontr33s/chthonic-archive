@@ -629,7 +629,7 @@ Codex's structural enforcement role supports the WPTG by validating that:
 | [WET_PAPER_TO_GOLD_METHODOLOGY.md (.)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | WPTG foundational axioms plus the dry-lane contract for script/skill dumpster-diving |
 | [ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md](../reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md) | Codex ET-S research: BCE toolform archaeology for `tools` glyph (adze-tupu hybrid, Direction B) |
 | [ANKH_README.md (ankh)](../frameworks/ankh/ANKH_README.md) | 50/50 Egyptological × Andean abstraction |
-| [SFA_CROSS_REFERENCE_SCAN.md](../../claude/mailbox/SFA_CROSS_REFERENCE_SCAN.md) | Motif balance audit, motif-to-palette lineage |
+| SFA_CROSS_REFERENCE_SCAN.md | Motif balance audit, motif-to-palette lineage |
 | [ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md](../../claude-codex-gemini/ANKH_EGYPTOLOGY_SOUTH_AMERICAN/ANKH_UNIFYING_REPOSITORY_METADATA_STANDARDS.md) | Gemini research: Khipu-Cartouche Protocol |
 
 ### Skills

@@ -28,7 +28,7 @@ The lane is now simple:
 
 ### Governance / Canon
 
-- [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
+- [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](../../../../../WET_PAPER_TO_GOLD_METHODOLOGY.md)
 - [docs/design/SFS_WPTG_ITERATION_PLAN.md](../../../../../docs/design/SFS_WPTG_ITERATION_PLAN.md)
 - [docs/design/ANKH_THEME_REFERENCE.md](../../../../../docs/design/ANKH_THEME_REFERENCE.md)
 - [docs/design/ANKH_ICON_GRAMMAR.md](../../../../../docs/design/ANKH_ICON_GRAMMAR.md)
@@ -38,7 +38,7 @@ The lane is now simple:
 
 ### Session / Validation / Research
 
-- [claude/mailbox/BCE_TRIO_VALIDATION_AUDIT.md](../../../BCE_TRIO_VALIDATION_AUDIT.md)
+- claude/mailbox/BCE_TRIO_VALIDATION_AUDIT.md
 - [docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md](../../../../../docs/reference/ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE.md)
 - [.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md](../../../../../.temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md)
 - [.vscode/SETTINGS_LIVE_AUDIT.md](../../../../../.vscode/SETTINGS_LIVE_AUDIT.md)

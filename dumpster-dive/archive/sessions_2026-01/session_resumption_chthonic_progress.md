@@ -16,7 +16,7 @@
 - Emergency quick reference
 
 ### 📋 Full Context (2 minutes)
-→ **[`DEVELOPMENT_STATE.md`](../../../docs/DEVELOPMENT_STATE.md)**
+→ **[`DEVELOPMENT_STATE.md`](../../../docs/archive/sessions/DEVELOPMENT_STATE.md)**
 - Complete file path map
 - Architecture overview
 - Development conventions
@@ -50,7 +50,7 @@
 
 ### Core Documentation
 - **[SESSION_RESUME.md (.github)](../../../.github/SESSION_RESUME.md)** - Point-blank session recovery (3.5K chars)
-- **[DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md)** - Full development context (13.5K chars)
+- **[DEVELOPMENT_STATE.md](../../../docs/archive/sessions/DEVELOPMENT_STATE.md)** - Full development context (13.5K chars)
 - **[copilot-instructions.md](../../../.github/copilot-instructions.md)** - SSOT (89K lines)
 
 ### Project-Specific Documentation
@@ -134,7 +134,7 @@ bun run build        # Production build
 - Created session resumption documentation
 - Diagnostic build deployed
 
-**View Full Log**: [DEVELOPMENT_STATE.md → Change Log](../../../docs/DEVELOPMENT_STATE.md)
+**View Full Log**: [DEVELOPMENT_STATE.md → Change Log](../../../docs/archive/sessions/DEVELOPMENT_STATE.md)
 
 ---
 
@@ -178,7 +178,7 @@ bun run build        # Production build
 
 **If context completely lost:**
 1. Load [SESSION_RESUME.md (.github)](../../../.github/SESSION_RESUME.md) (30-sec orientation)
-2. Load [DEVELOPMENT_STATE.md](../../../docs/DEVELOPMENT_STATE.md) (full context)
+2. Load [DEVELOPMENT_STATE.md](../../../docs/archive/sessions/DEVELOPMENT_STATE.md) (full context)
 3. Check `git status` for uncommitted work
 4. Check `git log --oneline -10` for recent activity
 

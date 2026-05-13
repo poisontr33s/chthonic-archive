@@ -211,7 +211,7 @@ A successful extraction is admitted only when the smoke gate (`bun run test:e2e`
 ### Gate G — Cockpit lane-state fetch
 **Question:** Can `apps/chthonic-next/app/page.tsx` replace its hardcoded "hot/warm/stable" pills with a live read of the LaneRegistry snapshot?
 
-**Targets:** [apps/chthonic-next/app/page.tsx](/apps/chthonic-next/app/page.tsx) (the Rust Reactor / Solana Stream / Policy Oracle pills); the snapshot file at `${globalStorage}/lane-state.json` (already written by Phase 2).
+**Targets:** [apps/chthonic-next/app/page.tsx](../../apps/chthonic-next/app/page.tsx) (the Rust Reactor / Solana Stream / Policy Oracle pills); the snapshot file at `${globalStorage}/lane-state.json` (already written by Phase 2).
 
 **Required artifacts:**
 - **Probe:** A Next API route at `apps/chthonic-next/app/api/lane-state/route.ts` that reads the snapshot path via an env var (`CHTHONIC_LANE_STATE_PATH`, set by the extension when it spawns `bun run web:dev` in [extension.ts:445](/extensions/chthonic-archive/src/extension.ts#L445)). Returns the snapshot JSON. The page hits `/api/lane-state` with revalidation = 1s.
@@ -219,12 +219,12 @@ A successful extraction is admitted only when the smoke gate (`bun run test:e2e`
 - **Impossible-Currently:** If the Next dev server is launched outside the extension (user runs `bun run web:dev` manually without the extension running), the env var is absent. Record this as `impossible_currently_boundary` with `minimum_condition_to_reopen = "extension is running and has emitted at least one lane-state snapshot"`. The page must render a "no snapshot yet" placeholder rather than crashing.
 - **Membrane:** No `fetch('file://...')` from the browser. The Node API route is the only filesystem reader.
 
-**Closure condition:** Page renders three pills whose colors and labels are derived from `lanes['chthonicDaemon']`, `lanes['entropyLedgerHost']`, `lanes['policyOracle']` (or whichever names the snapshot uses; reconcile with the lane set in [src/runtime/statusReport.ts](/extensions/chthonic-archive/src/runtime/statusReport.ts)).
+**Closure condition:** Page renders three pills whose colors and labels are derived from `lanes['chthonicDaemon']`, `lanes['entropyLedgerHost']`, `lanes['policyOracle']` (or whichever names the snapshot uses; reconcile with the lane set in src/runtime/statusReport.ts).
 
 ---
 
 ### Gate H — JSONL fallback transport
-**Question:** Can the disabled `transport=jsonl` branch at [extensions/chthonic-archive/src/reactor/synapseBridge.ts:33-35](/extensions/chthonic-archive/src/reactor/synapseBridge.ts#L33-L35) be replaced with a real stdio JSONL reader against `chthonic-daemon`?
+**Question:** Can the disabled `transport=jsonl` branch at extensions/chthonic-archive/src/reactor/synapseBridge.ts:33-35 be replaced with a real stdio JSONL reader against `chthonic-daemon`?
 
 **Current state:** The shared-memory transport is admitted (Phase 5). The JSONL branch is a stub: it logs `[synapse] disabled by transport=jsonl` and returns. There is no daemon-side stdio JSONL emitter.
 
@@ -254,7 +254,7 @@ A successful extraction is admitted only when the smoke gate (`bun run test:e2e`
 **Question:** Can the paste-lane shape be captured as a single-page template that future lanes (e.g. a hypothetical `policyOracleLane`) can follow without ceremony?
 
 **Required artifacts:**
-- **Binding:** `extensions/chthonic-archive/docs/LANE_TEMPLATE.md` referencing the four existing exemplars: [src/markdownPaste/register.ts](/extensions/chthonic-archive/src/markdownPaste/register.ts) (the gold-standard pattern), [src/runtime/devAutoReload.ts](/extensions/chthonic-archive/src/runtime/devAutoReload.ts), [src/runtime/laneState.ts](/extensions/chthonic-archive/src/runtime/laneState.ts), [src/runtime/statusReport.ts](/extensions/chthonic-archive/src/runtime/statusReport.ts).
+- **Binding:** `extensions/chthonic-archive/docs/LANE_TEMPLATE.md` referencing the four existing exemplars: src/markdownPaste/register.ts (the gold-standard pattern), src/runtime/devAutoReload.ts, src/runtime/laneState.ts, src/runtime/statusReport.ts.
 - **Required sections:** (1) lane shape (export a `register<LaneName>(context, deps)` function), (2) lane state contract (publish to `LaneRegistry` on every state transition), (3) test contract (smoke-runner expectedCommands entry, plus optional dedicated probe), (4) what NOT to do (no `vscode.workspace.onDidChange*` polling when an event source exists; no module-level mutable state).
 
 **Closure condition:** Doc exists, ≤ 1 page, each section ≤ 5 lines.
@@ -287,7 +287,7 @@ A successful extraction is admitted only when the smoke gate (`bun run test:e2e`
 
 | Membrane | Purpose | Current State |
 |----------|---------|---------------|
-| `RuntimeLaneState` enum | Single vocabulary for lane status across views, status bar, snapshot | Active — defined in [src/runtime/laneState.ts](/extensions/chthonic-archive/src/runtime/laneState.ts) |
+| `RuntimeLaneState` enum | Single vocabulary for lane status across views, status bar, snapshot | Active — defined in src/runtime/laneState.ts |
 | `LaneRegistry.bindSnapshotFile` | Debounced JSON flush guards against tearing reads | Active — 250 ms debounce |
 | `chthonic.security.allowNativeSidecars` default `false` | Master kill-switch; sidecars never auto-start | Active — [package.json:388](/extensions/chthonic-archive/package.json#L388) |
 | `.vscodeignore` allowlist for `native/dist/**` | Native artifacts ship deterministically, not by accident | Active — [.vscodeignore](/extensions/chthonic-archive/.vscodeignore) |

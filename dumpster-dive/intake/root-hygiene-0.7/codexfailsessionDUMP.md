@@ -57,7 +57,7 @@ I have enough to answer cleanly. One last docs fetch for advanced config is wort
 
 ---Final message---
 
-I checked your live global config [config.toml](C:/Users/eldno/.codex/config.toml), the workspace override [config.toml (.codex)](.codex/config.toml), your installed CLI surface, and the current Codex docs.
+I checked your live global config [config.toml](C:/Users/eldno/.codex/config.toml), the workspace override [config.toml (.codex)](../../../.codex/config.toml), your installed CLI surface, and the current Codex docs.
 
 **What The “Mystery” Actually Is**
 - Your setup mixes three different things in one file: real behavior knobs, deprecated no-op flags, and experimental features.
@@ -170,7 +170,7 @@ Yes. The screenshots explain the mismatch.
 
 - The Codex panel is using the extension-bundled binary at codex.exe. That is why the UI can show newer context/subagent behavior even when your shell has no `codex` command.
 - Your user setting `chatgpt.cliExecutable` is empty in [settings.json](C:/Users/eldno/AppData/Roaming/Code - Insiders/User/settings.json#L17), and the extension manifest marks that setting as development-only in [package.json](C:/Users/eldno/.vscode-insiders/extensions/openai.chatgpt-26.5313.41514-win32-x64/package.json#L113).
-- Your workspace terminal PATH block starts in [settings.json (.vscode)](.vscode/settings.json#L132). It does not include the OpenAI extension’s `bin/windows-x86_64` folder, so `codex` is not resolvable in the integrated terminal.
+- Your workspace terminal PATH block starts in [settings.json (.vscode)](../../../.vscode/settings.json#L132). It does not include the OpenAI extension’s `bin/windows-x86_64` folder, so `codex` is not resolvable in the integrated terminal.
 - My shell earlier did resolve `codex` because this Codex runner had the extension bin injected into `PATH`. Your VS Code terminal does not.
 
 So the contradiction is only apparent: the panel has its own bundled Codex; the terminal is just a normal PowerShell session.
@@ -205,7 +205,7 @@ I aligned the settings to the same bundled Codex binary the IDE panel is already
 
 Changed:
 - [settings.json](C:/Users/eldno/AppData/Roaming/Code%20-%20Insiders/User/settings.json#L17): `chatgpt.cliExecutable` now points directly to `C:\Users\eldno\.vscode-insiders\extensions\openai.chatgpt-26.5313.41514-win32-x64\bin\windows-x86_64\codex.exe`
-- [settings.json (.vscode)](.vscode/settings.json#L132): workspace terminal `PATH` now prepends the matching bundled `bin\windows-x86_64` directory, so `codex` in the integrated terminal resolves to the same executable
+- [settings.json (.vscode)](../../../.vscode/settings.json#L132): workspace terminal `PATH` now prepends the matching bundled `bin\windows-x86_64` directory, so `codex` in the integrated terminal resolves to the same executable
 
 Validation:
 - The user setting parses cleanly and resolves to the expected bundled `codex.exe`
