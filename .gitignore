@@ -237,6 +237,10 @@ extensions/*/bun.lock
 !manifest/daemon_jsonl_*.json
 !manifest/webview_hmr_*.json
 !manifest/failures.jsonl
+!manifest/git_rot_index.json
+!manifest/git_rot_index.md
+!manifest/dependabot_index.json
+!manifest/dependabot_index.md
 
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
