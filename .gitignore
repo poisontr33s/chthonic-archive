@@ -1,6 +1,15 @@
 # Ignore everything
 *
 
+# Large training artifacts belong in the satellite repo
+# git-dump-lfs-holder-we-it-takes, not here. The `*` rule above already
+# ignores them by default; this section is explicit documentation of
+# intent to keep adapter/checkpoint files out of chthonic-archive.
+# (Existing tracked files in adapters/ remain tracked — gitignore only
+# affects untracked paths. This guards against future accidental adds.)
+adapters/
+**/checkpoints/
+
 # Allow git metadata
 !.gitignore
 !.copilotignore
