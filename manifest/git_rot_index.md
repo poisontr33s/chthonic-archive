@@ -1,6 +1,6 @@
 # Git rot index digest
 
-Generated: 2026-05-13T07:26:23.800288+00:00
+Generated: 2026-05-13T07:39:17.601668+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
@@ -20,11 +20,14 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - `low`: 20
 - `medium`: 18
 
-### By code
+### By code (grouped by gitological level)
+
+**L1 — SURFACE  — raw symptoms visible at the link site**
 
 - `ROT-002` (16): target_ambig_broken — basename matches multiple, link broken
 - `ROT-001` (12): target_missing — no candidate file exists anywhere
 - `ROT-008` (10): placeholder_literal — target is literal 'path'/'url'/template residue
+
 
 ## Hotspots (top 10 files by rot count)
 

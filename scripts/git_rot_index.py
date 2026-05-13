@@ -79,6 +79,34 @@ CATEGORY_TO_CODE = {
     "broken_fixable_via_rename": "ROT-004",
 }
 
+# Gitological Taxonomy Ladder — depth model the user named on 2026-05-13.
+# Codes describe symptoms at different depths of git's reality. Each level
+# represents a kind of question being asked about the artifact:
+#   L1 SURFACE  — does this link work right now? (raw symptoms)
+#   L2 VIRTUAL  — is the namespace clean? (resolution-layer concerns)
+#   L3 ANCHOR   — does the positional reference still align? (semantic)
+#   L4 LINEAGE  — what historical structure created this state? (causational)
+# Tombstone lifecycle marker is orthogonal — it cuts across all levels.
+LEVELS: dict[str, str] = {
+    "L1": "SURFACE  — raw symptoms visible at the link site",
+    "L2": "VIRTUAL  — namespace and resolution-layer concerns",
+    "L3": "ANCHOR   — positional / semantic reference alignment",
+    "L4": "LINEAGE  — structural / causational, derived from git history",
+}
+CODE_TO_LEVEL: dict[str, str] = {
+    "ROT-001": "L1",  # target_missing
+    "ROT-002": "L1",  # target_ambig_broken
+    "ROT-005": "L1",  # empty_label
+    "ROT-008": "L1",  # placeholder_literal
+    "ROT-003": "L2",  # target_ambig_resolves (suppressed by default)
+    "ROT-004": "L2",  # target_renamed (auto-fixable)
+    "ROT-006": "L3",  # anchor_missing (detector pending)
+    "ROT-007": "L3",  # line_anchor_stale (detector pending)
+    "ROOT-001": "L4",  # mass_rename_legacy (detector pending)
+    "CLUSTER-001": "L4",  # source_hotspot
+    "CLUSTER-002": "L4",  # orphan_target
+}
+
 PLACEHOLDER_LITERALS = {"path", "url", "link", "target", "file", "TODO", "FIXME"}
 SKIP_DIRS = {
     ".git", "node_modules", "target", "__pycache__", ".venv",
@@ -417,6 +445,7 @@ def build_index(args) -> dict:
                     entry["id"] = hashlib.sha1(
                         f"{entry['source']}:{entry['line']}:{entry['raw_target']}".encode()
                     ).hexdigest()[:12]
+                    entry["level"] = CODE_TO_LEVEL.get(entry.get("code", ""), "L1")
                     entries.append(entry)
 
     summary = Counter(e["category"] for e in entries)
@@ -435,6 +464,7 @@ def build_index(args) -> dict:
         if n > 50:
             clusters.append({
                 "code": "CLUSTER-001",
+                "level": "L4",
                 "kind": "source_hotspot",
                 "source": src,
                 "rot_count": n,
@@ -445,6 +475,7 @@ def build_index(args) -> dict:
             sources = [e["source"] for e in entries if e["raw_target"] == tgt][:5]
             clusters.append({
                 "code": "CLUSTER-002",
+                "level": "L4",
                 "kind": "orphan_target",
                 "target": tgt,
                 "ref_count": n,
@@ -461,6 +492,8 @@ def build_index(args) -> dict:
         "code_taxonomy": {
             "rot": ROT_CODES,
             "cluster": CLUSTER_CODES,
+            "levels": LEVELS,
+            "code_to_level": CODE_TO_LEVEL,
         },
         "summary": {
             "tracked_md_files": len(md_files),
@@ -509,11 +542,22 @@ def write_md_digest(index: dict, top_n: int = 30) -> str:
     for pri, n in sorted(s["priorities"].items(), key=lambda kv: -kv[1]):
         lines.append(f"- `{pri}`: {n}")
 
-    lines += ["", "### By code", ""]
+    lines += ["", "### By code (grouped by gitological level)", ""]
     code_counts = s.get("codes", {})
+    # Bucket counts by level
+    by_level: dict[str, list[tuple[str, int]]] = {"L1": [], "L2": [], "L3": [], "L4": []}
     for code, n in sorted(code_counts.items(), key=lambda kv: -kv[1]):
-        desc = index.get("code_taxonomy", {}).get("rot", {}).get(code, "")
-        lines.append(f"- `{code}` ({n}): {desc}")
+        lvl = CODE_TO_LEVEL.get(code, "L1")
+        by_level.setdefault(lvl, []).append((code, n))
+    for lvl in ("L1", "L2", "L3", "L4"):
+        if not by_level.get(lvl):
+            continue
+        lines.append(f"**{lvl} — {LEVELS[lvl]}**")
+        lines.append("")
+        for code, n in by_level[lvl]:
+            desc = index.get("code_taxonomy", {}).get("rot", {}).get(code, "")
+            lines.append(f"- `{code}` ({n}): {desc}")
+        lines.append("")
 
     lines += ["", "## Hotspots (top 10 files by rot count)", ""]
     for h in index["hotspots_top10"]:

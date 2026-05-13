@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T07:26:23.800288+00:00",
+  "generated_at": "2026-05-13T07:39:17.601668+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -18,6 +18,25 @@
       "CLUSTER-001": "source_hotspot — one file holds >50 rot entries (agent dump candidate)",
       "CLUSTER-002": "orphan_target — one missing target referenced from >=3 sources",
       "ROOT-001": "mass_rename_legacy — N rot entries trace to single historical commit"
+    },
+    "levels": {
+      "L1": "SURFACE  — raw symptoms visible at the link site",
+      "L2": "VIRTUAL  — namespace and resolution-layer concerns",
+      "L3": "ANCHOR   — positional / semantic reference alignment",
+      "L4": "LINEAGE  — structural / causational, derived from git history"
+    },
+    "code_to_level": {
+      "ROT-001": "L1",
+      "ROT-002": "L1",
+      "ROT-005": "L1",
+      "ROT-008": "L1",
+      "ROT-003": "L2",
+      "ROT-004": "L2",
+      "ROT-006": "L3",
+      "ROT-007": "L3",
+      "ROOT-001": "L4",
+      "CLUSTER-001": "L4",
+      "CLUSTER-002": "L4"
     }
   },
   "summary": {
@@ -96,6 +115,7 @@
   "clusters": [
     {
       "code": "CLUSTER-002",
+      "level": "L4",
       "kind": "orphan_target",
       "target": "copilot-instructions.md",
       "ref_count": 3,
@@ -123,7 +143,8 @@
       "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
       "git_truth": "never_existed",
       "priority": "medium",
-      "id": "5d0b503630e0"
+      "id": "5d0b503630e0",
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/copilot-instructions.archive.md",
@@ -140,7 +161,8 @@
         "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md"
       ],
       "priority": "medium",
-      "id": "e1b552362a9d"
+      "id": "e1b552362a9d",
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/copilot-instructions.archive.md",
@@ -157,7 +179,8 @@
         "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md"
       ],
       "priority": "medium",
-      "id": "0ced0ef830af"
+      "id": "0ced0ef830af",
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/copilot-instructions.archive.md",
@@ -174,7 +197,8 @@
         "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md"
       ],
       "priority": "medium",
-      "id": "5e1ae68ea357"
+      "id": "5e1ae68ea357",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -190,7 +214,8 @@
         "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md"
       ],
       "priority": "medium",
-      "id": "55584be90b46"
+      "id": "55584be90b46",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -206,7 +231,8 @@
         ".github/instructions/mathematical-engines.reference.md"
       ],
       "priority": "medium",
-      "id": "ea2d1216922f"
+      "id": "ea2d1216922f",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -222,7 +248,8 @@
         "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md"
       ],
       "priority": "medium",
-      "id": "7cec80696918"
+      "id": "7cec80696918",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -238,7 +265,8 @@
         ".github/instructions/technical-directives.instructions.md"
       ],
       "priority": "medium",
-      "id": "d4ec03ef5fa5"
+      "id": "d4ec03ef5fa5",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -254,7 +282,8 @@
         "docs/protocols/CROSS_REFERENCE_TRIPTYCH.md"
       ],
       "priority": "medium",
-      "id": "3f59b18c7a3f"
+      "id": "3f59b18c7a3f",
+      "level": "L1"
     },
     {
       "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
@@ -274,7 +303,8 @@
         ".claude/skills/decision-razor/SKILL.md"
       ],
       "priority": "medium",
-      "id": "3f8a22c51722"
+      "id": "3f8a22c51722",
+      "level": "L1"
     },
     {
       "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
@@ -294,7 +324,8 @@
         "birdcage/README.md"
       ],
       "priority": "medium",
-      "id": "07aea41819c6"
+      "id": "07aea41819c6",
+      "level": "L1"
     },
     {
       "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
@@ -310,7 +341,8 @@
         "docs/archive/reports/PHASE_3_TEST_REPORT.md"
       ],
       "priority": "medium",
-      "id": "28f105fe626a"
+      "id": "28f105fe626a",
+      "level": "L1"
     },
     {
       "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
@@ -326,7 +358,8 @@
         "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md"
       ],
       "priority": "medium",
-      "id": "cb9ef745c7e2"
+      "id": "cb9ef745c7e2",
+      "level": "L1"
     },
     {
       "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
@@ -343,7 +376,8 @@
         "docs/architecture/CLAUDE.md"
       ],
       "priority": "medium",
-      "id": "3ab0b0edf502"
+      "id": "3ab0b0edf502",
+      "level": "L1"
     },
     {
       "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
@@ -359,7 +393,8 @@
         "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md"
       ],
       "priority": "medium",
-      "id": "50da90524412"
+      "id": "50da90524412",
+      "level": "L1"
     },
     {
       "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
@@ -375,7 +410,8 @@
         "docs/handoffs/HANDOFF_TO_CLAUDE.md"
       ],
       "priority": "medium",
-      "id": "35ae8504ea0e"
+      "id": "35ae8504ea0e",
+      "level": "L1"
     },
     {
       "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
@@ -392,7 +428,8 @@
         "docs/architecture/CLAUDE.md"
       ],
       "priority": "medium",
-      "id": "e365a56179bd"
+      "id": "e365a56179bd",
+      "level": "L1"
     },
     {
       "source": "docs/reference/HANDOFF0001.md",
@@ -407,7 +444,8 @@
       "would_be_path": "docs/reference/instructions/xyz.instructions.md",
       "git_truth": "never_existed",
       "priority": "medium",
-      "id": "0b8aa64b87e7"
+      "id": "0b8aa64b87e7",
+      "level": "L1"
     },
     {
       "source": ".claude/skills/mailbox-handoff/SKILL.md",
@@ -420,7 +458,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "30a7ef6190c3"
+      "id": "30a7ef6190c3",
+      "level": "L1"
     },
     {
       "source": ".claude/skills/mailbox-handoff/mailbox-handoff/SKILL.md",
@@ -433,7 +472,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "c4d1c7fe7ed7"
+      "id": "c4d1c7fe7ed7",
+      "level": "L1"
     },
     {
       "source": ".codex/skills/mailbox-handoff/SKILL.md",
@@ -446,7 +486,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "4663afa06b7f"
+      "id": "4663afa06b7f",
+      "level": "L1"
     },
     {
       "source": ".gemini/TRIAD_SYNC_2026_02_01.md",
@@ -459,7 +500,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "4f0d0759446c"
+      "id": "4f0d0759446c",
+      "level": "L1"
     },
     {
       "source": ".gemini/extensions/chthonic-archive-sync/skills/mailbox-handoff/mailbox-handoff/SKILL.md",
@@ -472,7 +514,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "0e4240348af8"
+      "id": "0e4240348af8",
+      "level": "L1"
     },
     {
       "source": ".github/copilot-instructions.md",
@@ -485,7 +528,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "76cc8a809d8b"
+      "id": "76cc8a809d8b",
+      "level": "L1"
     },
     {
       "source": ".github/instructions/ssot-toolbox.instructions.md",
@@ -498,7 +542,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "49e416fb5031"
+      "id": "49e416fb5031",
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md",
@@ -513,7 +558,8 @@
       "would_be_path": "claude/mailbox/archive/extensions/chthonic-archive/package.json",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "930b228936b0"
+      "id": "930b228936b0",
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md",
@@ -528,7 +574,8 @@
       "would_be_path": "claude/mailbox/archive/.vscode/settings.json",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "c5f2687ce3ce"
+      "id": "c5f2687ce3ce",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/MILF-Core-META.md",
@@ -543,7 +590,8 @@
       "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "b2fbf10c1daa"
+      "id": "b2fbf10c1daa",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/MILF-Core-META.md",
@@ -558,7 +606,8 @@
       "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "2c8aa3fafcc0"
+      "id": "2c8aa3fafcc0",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -573,7 +622,8 @@
       "would_be_path": "codex/codex-session-logs/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "450cb7a9ff44"
+      "id": "450cb7a9ff44",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -588,7 +638,8 @@
       "would_be_path": "codex/codex-session-logs/scripts/decorator_cross_ref_maximum.py",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "19139c3472fd"
+      "id": "19139c3472fd",
+      "level": "L1"
     },
     {
       "source": "codex/codex-session-logs/archive/copilot-instructions-copy.archived.md",
@@ -603,7 +654,8 @@
       "would_be_path": "codex/codex-session-logs/data/graphs/dependency_graph.json",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "38cf26e5da77"
+      "id": "38cf26e5da77",
+      "level": "L1"
     },
     {
       "source": "docs/archive/reports/TRUE_MISSING_FILES_REVIEW.md",
@@ -618,7 +670,8 @@
       "would_be_path": "docs/archive/reports/docs/FILE.md",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "ab04e8c82bac"
+      "id": "ab04e8c82bac",
+      "level": "L1"
     },
     {
       "source": "docs/archive/reports/VALIDATION_COMPLETION_REPORT.md",
@@ -631,7 +684,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "9b2ee1caae07"
+      "id": "9b2ee1caae07",
+      "level": "L1"
     },
     {
       "source": "docs/archive/reports/VALIDATION_COMPLETION_REPORT.md",
@@ -644,7 +698,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "176138039dd4"
+      "id": "176138039dd4",
+      "level": "L1"
     },
     {
       "source": "docs/archive/sessions/DEVELOPMENT_STATE.md",
@@ -659,7 +714,8 @@
       "would_be_path": "docs/archive/logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "abb86491c72e"
+      "id": "abb86491c72e",
+      "level": "L1"
     },
     {
       "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
@@ -672,7 +728,8 @@
       "category": "placeholder_literal",
       "code": "ROT-008",
       "priority": "low",
-      "id": "3a534a8a323c"
+      "id": "3a534a8a323c",
+      "level": "L1"
     },
     {
       "source": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md",
@@ -687,7 +744,8 @@
       "would_be_path": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/frameworks/nextjs.md",
       "git_truth": "never_existed",
       "priority": "low",
-      "id": "ec5f70beb862"
+      "id": "ec5f70beb862",
+      "level": "L1"
     }
   ]
 }
