@@ -342,6 +342,154 @@ def _structure(path: Path) -> dict:
 LINE_ANCHOR_RE = re.compile(r"^[Ll]?(\d+)(?:-[Ll]?(\d+))?$")
 
 
+# ============================================================================
+# L4 LINEAGE: ROOT-001 mass-rename / mass-delete ancestry attribution.
+#
+# For each ROT-001 entry (truly-missing target), ask git when its
+# would_be_path stopped existing. Groups by parent directory first so we
+# can ask git about many paths in one subprocess call. The sentinel-format
+# parser matches the build_rename_map / file_signals_batch patterns
+# already used in this file (deterministic core-state sync).
+# ============================================================================
+
+def parse_root_stream(stdout: str) -> list[dict]:
+    """
+    Parse output of:
+      git log --diff-filter=D --name-only --format=__C__%H%n%aI%n%s -- <paths>
+
+    Each `__C__<sha>` line starts a commit block. Following two lines are
+    ISO date and subject. Subsequent non-empty lines are deleted paths
+    until the next sentinel.
+    """
+    commits: list[dict] = []
+    cur: Optional[dict] = None
+    phase = "sentinel"  # sentinel | date | subject | paths
+    for line in stdout.splitlines():
+        if line.startswith("__C__"):
+            if cur is not None:
+                commits.append(cur)
+            cur = {"sha": line[5:].strip(), "date": "", "subject": "", "deleted_paths": []}
+            phase = "date"
+            continue
+        if cur is None:
+            continue
+        if phase == "date":
+            cur["date"] = line.strip()
+            phase = "subject"
+            continue
+        if phase == "subject":
+            cur["subject"] = line.strip()
+            phase = "paths"
+            continue
+        if line.strip():
+            cur["deleted_paths"].append(line.strip())
+    if cur is not None:
+        commits.append(cur)
+    return commits
+
+
+def compute_root_attribution(entries: list[dict]) -> list[dict]:
+    """
+    For ROT-001 entries (broken_no_known_target with would_be_path),
+    group by parent directory, then run one `git log` per group to find
+    the deletion commit(s). Attach `root_commit` / `root_subject` /
+    `root_date` to each matched entry IN PLACE, and return a list of
+    ROOT-001 cluster summaries (one per breaking commit).
+
+    The git_truth=='existed_once' entries are the prime candidates;
+    'never_existed' targets won't be found in deletion history.
+    """
+    rot001 = [
+        e for e in entries
+        if e.get("code") == "ROT-001"
+        and e.get("would_be_path")
+        and e.get("git_truth") == "existed_once"
+    ]
+    if not rot001:
+        return []
+
+    # Group by parent directory of would_be_path.
+    by_parent: dict[str, list[dict]] = defaultdict(list)
+    for e in rot001:
+        parent = str(Path(e["would_be_path"]).parent.as_posix())
+        by_parent[parent].append(e)
+
+    # For each parent group, query git for deletion events affecting any of
+    # the would_be_paths in that group. One subprocess per parent.
+    by_commit: dict[str, dict] = {}  # sha -> {sha, subject, date, broken_paths: set, entry_ids: set}
+
+    for parent, group_entries in by_parent.items():
+        paths_in_group = list({e["would_be_path"] for e in group_entries})
+        if not paths_in_group:
+            continue
+        try:
+            out = git(
+                "log", "--diff-filter=D", "--name-only",
+                "--format=__C__%H%n%aI%n%s", "--all", "--",
+                *paths_in_group, check=False,
+            )
+        except (RuntimeError, OSError):
+            continue
+        commits = parse_root_stream(out)
+        # For each entry in this group, find the most recent commit that
+        # deleted its would_be_path.
+        deleted_at: dict[str, dict] = {}  # path -> commit dict
+        for c in commits:
+            for p in c["deleted_paths"]:
+                if p in deleted_at:
+                    continue  # we walk newest-first, keep the first hit
+                deleted_at[p] = c
+
+        for e in group_entries:
+            wbp = e["would_be_path"]
+            hit = deleted_at.get(wbp)
+            if not hit:
+                continue
+            e["root_commit"] = hit["sha"]
+            e["root_subject"] = hit["subject"]
+            e["root_date"] = hit["date"]
+            sha = hit["sha"]
+            if sha not in by_commit:
+                by_commit[sha] = {
+                    "code": "ROOT-001",
+                    "level": "L4",
+                    "kind": "mass_delete_ancestry",
+                    "sha": sha,
+                    "subject": hit["subject"],
+                    "date": hit["date"],
+                    "broken_paths": set(),
+                    "entry_ids": set(),
+                    "parent_dirs": set(),
+                }
+            by_commit[sha]["broken_paths"].add(wbp)
+            by_commit[sha]["entry_ids"].add(e["id"])
+            by_commit[sha]["parent_dirs"].add(parent)
+
+    # Materialize sets to sorted lists for JSON.
+    roots: list[dict] = []
+    for sha, info in by_commit.items():
+        roots.append({
+            "code": info["code"],
+            "level": info["level"],
+            "kind": info["kind"],
+            "sha": sha,
+            "subject": info["subject"],
+            "date": info["date"],
+            "broken_path_count": len(info["broken_paths"]),
+            "affected_entry_count": len(info["entry_ids"]),
+            "parent_dirs": sorted(info["parent_dirs"])[:5],
+            "broken_paths_sample": sorted(info["broken_paths"])[:5],
+            "verdict": (
+                "single historical commit broke N L1 entries — "
+                "decide: revert restore, accept deletion + prune referrers, "
+                "or stub-create the deleted targets."
+            ),
+        })
+    # Sort by impact (most-broken first).
+    roots.sort(key=lambda r: -r["broken_path_count"])
+    return roots
+
+
 def basename_index(all_md: list[Path]) -> dict[str, list[str]]:
     idx: dict[str, list[str]] = defaultdict(list)
     for p in all_md:
@@ -596,6 +744,14 @@ def build_index(args) -> dict:
                 "verdict": "missing file referenced widely — confirm intent (typo? deleted?)",
             })
 
+    # L4 ROOT-001: trace ROT-001 entries to historical commits that deleted
+    # their would_be_path. Groups by parent directory first (cheap clustering),
+    # then a single `git log --diff-filter=D` per cluster identifies the
+    # deletion commit(s). Each L1 ROT-001 entry whose path was deleted in a
+    # discoverable commit gets a `root_commit` annotation. Each unique commit
+    # that broke multiple paths becomes a ROOT-001 cluster summary.
+    roots = compute_root_attribution(entries)
+
     hotspots = source_counts.most_common(10)
 
     return {
@@ -621,6 +777,7 @@ def build_index(args) -> dict:
         "tombstones": tombstones,
         "hotspots_top10": [{"source": s, "rot_count": n} for s, n in hotspots],
         "clusters": clusters,
+        "roots": roots,
         "entries": sorted(
             entries,
             key=lambda e: (
