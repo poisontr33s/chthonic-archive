@@ -13,7 +13,18 @@ switched lanes to Claude Code. From there we worked the redux.
 
 ## What's live now (with commit SHAs)
 
-The work is real and committed; you can `git show <SHA>` to see any of these.
+> **2026-05-13 late-session note:** Codex performed a `git filter-repo`
+> later in the day to strip three 160MB `.safetensors` files from
+> history (they were blocking the push to GitHub). The filter rewrote
+> every commit SHA in the chain. The SHAs listed below are the
+> ORIGINAL ones; they exist only in local reflog and backup refs now.
+> The current `main` chain has different SHAs but the same content.
+> Full translation table at
+> [CODEX_RESPONSE_SHA_RECONCILIATION_2026_05_13.md](CODEX_RESPONSE_SHA_RECONCILIATION_2026_05_13.md).
+> Use `git show <new-sha>` for current chain inspection. `git show <old-sha>`
+> still works against the local backup refs until they're pruned.
+
+The work is real and committed; the table below lets you trace what landed when.
 
 | Commit | What landed |
 |---|---|
@@ -116,6 +127,43 @@ L1 SURFACE   raw symptoms (ROT-001/002/005/008)    ← where indexer lives now
 
 Tombstone lifecycle is orthogonal — cuts across all levels.
 
+## The late-session slugger and its resolution (2026-05-13 PM)
+
+After the morning lane completed, the SCM Graph in VS Code started
+running ~3-second `git diff` operations on every panel refresh. Cause:
+64 unpushed local commits containing 655MB of binary adapter files
+(three 160MB `.safetensors`, two 81MB `optimizer.pt`) committed in
+`b02e8243` from 2026-05-11. Every panel refresh recomputed similarity
+across all those binaries.
+
+Discovery sequence: user thought they had been auto-pushing to
+origin/main all along, hit "fix it" — push got rejected by GitHub's
+100MB hard limit. The 64 outgoing commits revealed the actual HODL
+state had been operating silently. Two-step fix attempted first
+(copy adapters to satellite + gitignore defensive rules) which
+addressed prevention but not the existing block. User raised the
+"size-based gitignore" question stake-aware to widen prevention.
+
+Codex took the bolder path: created three backup refs first
+(`backup/main-before-lfs-migrate-...`, `backup/main-pre-filter-with-gitignore-...`,
+`backup/main-filterrepo-overwide-...`), then ran `git filter-repo` to
+strip the large files from history, then verified content preservation
+via four `git diff --exit-code` checks against the original commit
+SHAs. Pushed cleanly. Wrote a handoff note documenting the SHA
+translation.
+
+What I (Claude) got right: refusing to run the history rewrite myself
+without explicit consent when backup refs didn't yet exist. What I got
+wrong: when system-reminder snippets later showed apparently-reverted
+content, I raised an alarm based on misread stale snapshots instead of
+checking actual disk state first. Codex's all-clear was correct; my
+panic was unfounded. Lesson: verify against disk, not against
+snapshot streams, when the situation is in flux.
+
+Lesson encoded as durable feedback memory: history-rewrite operations
+are only safe when backup refs exist first. With backup refs, bold
+action is appropriate; without them, defer until they exist.
+
 ## What's burning right now (open threads)
 
 - 38 real entries in the default rot index, all L1 SURFACE. Per-file
@@ -132,6 +180,15 @@ Tombstone lifecycle is orthogonal — cuts across all levels.
 - Iron Maiden / Pentea work was alive in WIP at session start; the
   in-flight changes had already landed in `27a21d7f` and `ad2e28a2`.
   No remaining WIP from that lane.
+- Claudine adapter POC (655MB of model weights from `b02e8243`) now
+  lives in the `git-dump-lfs-holder-we-it-takes` satellite at
+  `adapters/claudine-v1/`. Not yet committed/pushed to that satellite
+  — when you're ready to commit there, the satellite's
+  `.gitattributes` needs `*.safetensors` and `*.pt` filter=lfs lines
+  added first so git-lfs catches the big files.
+- Repo is fully synced with origin/main as of late session. The HODL
+  state ended cleanly: rewrite happened with backup refs as safety
+  net, content preserved end-to-end, pushed.
 
 ## What I'm carrying forward
 
