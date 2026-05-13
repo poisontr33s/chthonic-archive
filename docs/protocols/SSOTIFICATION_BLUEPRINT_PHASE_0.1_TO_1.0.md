@@ -10,9 +10,9 @@
 > **Governance:** WPTG "Every file is gold" · No-Destroy · Upcycle-only
 >
 > **Cross-references:**
-> - Structural audit: [`claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — Phase 4 maps back here; Phase 1.5 → Forge Dev Plan
-> - Forge pipeline plan: [`claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md) — L0–L6 ✅ complete (2026-03-25), ~85% compliance
-> - Session context: [`claude-codex-gemini/triadic-session-context/`](../claude-codex-gemini/triadic-session-context/) — entropy survey, Zone_1 provenance, nascent ANKH archaeology, Redux source nucleus (`COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md`)
+> - Structural audit: [`claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`](../../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — Phase 4 maps back here; Phase 1.5 → Forge Dev Plan
+> - Forge pipeline plan: [`claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md) — L0–L6 ✅ complete (2026-03-25), ~85% compliance
+> - Session context: [`claude-codex-gemini/triadic-session-context/`](../../claude-codex-gemini/triadic-session-context/) — entropy survey, Zone_1 provenance, nascent ANKH archaeology, Redux source nucleus (`COMPREHENSIVE IMPROVEMENT PLAN PROPOSAL.md`)
 
 ---
 
@@ -289,8 +289,8 @@ $Script:SSOT_PROTO = ".github/copilot-instructions-copy.md"
 
 **Partial progress (2026-03-25):**
 - ✅ `.temple/methodology/AGENT_COMMON.md` → redirect pointer to root `AGENT_COMMON.md`
-- ❌ `docs/PWSH_RULES.md` v1.1/v1.2 reconciliation — pending (see [Steward Audit finding I](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md))
-- ✅ `.temple/skills/` (9 stale skills) — embalm-before-edit CLI now shipped ([Dev Plan L0](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)), embalm gate available for deletion
+- ❌ `docs/PWSH_RULES.md` v1.1/v1.2 reconciliation — pending (see [Steward Audit finding I](../../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md))
+- ✅ `.temple/skills/` (9 stale skills) — embalm-before-edit CLI now shipped ([Dev Plan L0](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)), embalm gate available for deletion
 
 | Config File | Current State | Target |
 |-------------|---------------|--------|
@@ -305,7 +305,7 @@ $Script:SSOT_PROTO = ".github/copilot-instructions-copy.md"
 ### Phase 0.6 — Documentation Cascade + .ankhrc Genesis
 **Goal:** The SSOT metadata/governance docs reference the cascade, not hardcoded paths.
 
-> **Note:** Phase 0.6 was downstream of the forge pipeline work ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)). All forge dependencies resolved: L0–L6 complete (2026-03-25), Phase 0.9.1 corpus verification complete (2026-03-27).
+> **Note:** Phase 0.6 was downstream of the forge pipeline work ([FORGE_PIPELINE_DEV_PLAN.md](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)). All forge dependencies resolved: L0–L6 complete (2026-03-25), Phase 0.9.1 corpus verification complete (2026-03-27).
 
 #### Stage 01: Create `.ankhrc`
 The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hub" with `[paths]`, `[ssot_ified]`, `[state_files]` etc. — but **it was never created**. This is Phase 0.6's primary deliverable.
@@ -360,7 +360,7 @@ The SSOTIFICATION_METHODOLOGY.md defines `.ankhrc` as the "bidirectional SSOT hu
 
 ## 3. Relationship to Forge Pipeline
 
-This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ensuring no consumer hardcodes a path. The forge pipeline ([FORGE_PIPELINE_DEV_PLAN.md](../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)) built the **SFS×NOV-CAD×Bridge code** that the cascade serves. Both are now substantially complete (L0–L6 ✅, ~85% compliance):
+This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ensuring no consumer hardcodes a path. The forge pipeline ([FORGE_PIPELINE_DEV_PLAN.md](../../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md)) built the **SFS×NOV-CAD×Bridge code** that the cascade serves. Both are now substantially complete (L0–L6 ✅, ~85% compliance):
 
 | This Blueprint | Forge Dev Plan |
 |---|---|
@@ -371,7 +371,7 @@ This blueprint wires the **SSOT cascade** — the Python/TS/PS1 import chain ens
 
 **Sequencing (resolved):** All blueprint phases 0.2.1–0.9.1 and forge L0–L6 are complete. Phase 1.0 (bidirectional amendment protocol) is the remaining structural work.
 
-**Steward Audit:** [BOUNTY_00000031_STEWARD_AUDIT.md](../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — canon-first gap analysis. Phase 4 → this blueprint (0.2.1–0.4). Phase 1.5 → forge dev plan (L0–L6, all complete). Addendum A → SFS/NOV-CAD compliance matrix validated by Phase 0.9.1.
+**Steward Audit:** [BOUNTY_00000031_STEWARD_AUDIT.md](../../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md) — canon-first gap analysis. Phase 4 → this blueprint (0.2.1–0.4). Phase 1.5 → forge dev plan (L0–L6, all complete). Addendum A → SFS/NOV-CAD compliance matrix validated by Phase 0.9.1.
 
 ---
 
@@ -571,12 +571,12 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 
 | Artifact | Path | Phase Created |
 |----------|------|---------------|
-| SSOT Manifest | [mas_mcp/logic/ssot_manifest.py](../mas_mcp/logic/ssot_manifest.py) | Pre-0.1 (V5) |
-| SSOT Binding | [mas_mcp/logic/ssot_binding.py](../mas_mcp/logic/ssot_binding.py) | Pre-0.1 (V5) |
-| Python Bridge | [scripts/lib/ssot_paths.py](../scripts/lib/ssot_paths.py) | 0.1 |
-| Binding Tests | [mas_mcp/tests/test_ssot_binding.py](../mas_mcp/tests/test_ssot_binding.py) | Pre-0.1, expanded 0.1 |
-| WPTG Methodology | [WET_PAPER_TO_GOLD_METHODOLOGY.md](../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Pre-0.1 |
+| SSOT Manifest | [mas_mcp/logic/ssot_manifest.py](../../mas_mcp/logic/ssot_manifest.py) | Pre-0.1 (V5) |
+| SSOT Binding | [mas_mcp/logic/ssot_binding.py](../../mas_mcp/logic/ssot_binding.py) | Pre-0.1 (V5) |
+| Python Bridge | [scripts/lib/ssot_paths.py](../../scripts/lib/ssot_paths.py) | 0.1 |
+| Binding Tests | [mas_mcp/tests/test_ssot_binding.py](../../mas_mcp/tests/test_ssot_binding.py) | Pre-0.1, expanded 0.1 |
+| WPTG Methodology | [WET_PAPER_TO_GOLD_METHODOLOGY.md](../../WET_PAPER_TO_GOLD_METHODOLOGY.md) | Pre-0.1 |
 | SSOTIFICATION Methodology | [SSOTIFICATION_METHODOLOGY.md](SSOTIFICATION_METHODOLOGY.md) | Pre-0.1 |
 | This Blueprint | [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) | 0.1 (Anno Baseline) |
-| Codekiller Anti-Pattern | [anti-patterns/codekiller.md](../anti-patterns/codekiller.md) | Pre-0.1 |
-| Harvest Registry | [HARVEST_REGISTRY.md](../HARVEST_REGISTRY.md) | Pre-0.1 |
+| Codekiller Anti-Pattern | [anti-patterns/codekiller.md](../../anti-patterns/codekiller.md) | Pre-0.1 |
+| Harvest Registry | [HARVEST_REGISTRY.md](../../HARVEST_REGISTRY.md) | Pre-0.1 |

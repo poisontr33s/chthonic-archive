@@ -1,37 +1,36 @@
 # Git rot index digest
 
-Generated: 2026-05-13T07:18:11.275000+00:00
+Generated: 2026-05-13T07:25:12.998976+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
 - Tracked markdown files: 1110
-- Rot entries: 176
+- Rot entries: 161
 - Historical renames in repo: 757
 
 ### By category
 
 - `ambig_resolves_fine`: 123
-- `broken_no_known_target`: 25
-- `ambig_truly_ambiguous`: 18
+- `ambig_truly_ambiguous`: 16
+- `broken_no_known_target`: 12
 - `placeholder_literal`: 10
 
 ### By priority
 
 - `background`: 123
-- `medium`: 33
 - `low`: 20
+- `medium`: 18
 
 ### By code
 
 - `ROT-003` (123): target_ambig_resolves — basename ambiguous but link resolves (false positive)
-- `ROT-001` (25): target_missing — no candidate file exists anywhere
-- `ROT-002` (18): target_ambig_broken — basename matches multiple, link broken
+- `ROT-002` (16): target_ambig_broken — basename matches multiple, link broken
+- `ROT-001` (12): target_missing — no candidate file exists anywhere
 - `ROT-008` (10): placeholder_literal — target is literal 'path'/'url'/template residue
 
 ## Hotspots (top 10 files by rot count)
 
-- `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md` — 15 entries
 - `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md` — 12 entries
 - `dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md` — 11 entries
 - `codex/codex-session-logs/archive/copilot-instructions-copy.archived.md` — 8 entries
@@ -41,15 +40,12 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - `dumpster-dive/CIRCULATION_DIAGRAM.md` — 4 entries
 - `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md` — 4 entries
 - `dumpster-dive/forge/quench/README.md` — 4 entries
+- `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md` — 4 entries
 
 ## Clusters (derived patterns)
 
-- `CLUSTER-002` target `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md` — 4 refs. missing file referenced widely — confirm intent (typo? deleted?)
-  sample: `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`
 - `CLUSTER-002` target `copilot-instructions.md` — 3 refs. missing file referenced widely — confirm intent (typo? deleted?)
   sample: `.github/INTEGRATION_MAP.md`, `.github/SESSION_RESUME.md`, `.github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md`, `.github/STRUCTURAL_INTEGRITY_ANALYSIS.md`, `.github/VALIDATION_REPORT.md`
-- `CLUSTER-002` target `../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md` — 3 refs. missing file referenced widely — confirm intent (typo? deleted?)
-  sample: `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`, `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md`
 
 ## Top 30 entries by priority
 
@@ -136,85 +132,97 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - Candidate matches: `CLAUDE.md`, `docs/architecture/CLAUDE.md`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L13`
-
-- Target: `../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L14`
-
-- Target: `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L15`
-
-- Target: `../claude-codex-gemini/triadic-session-context/`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L292`
-
-- Target: `../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L293`
-
-- Target: `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L308`
-
-- Target: `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L363`
-
-- Target: `../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L374`
-
-- Target: `../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L574`
-
-- Target: `../mas_mcp/logic/ssot_manifest.py`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L575`
-
-- Target: `../mas_mcp/logic/ssot_binding.py`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L576`
-
-- Target: `../scripts/lib/ssot_paths.py`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L577`
-
-- Target: `../mas_mcp/tests/test_ssot_binding.py`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L578`
-
-- Target: `../WET_PAPER_TO_GOLD_METHODOLOGY.md`
-- Candidate matches: `WET_PAPER_TO_GOLD_METHODOLOGY.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-001 / broken_no_known_target] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L581`
-
-- Target: `../anti-patterns/codekiller.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md:L582`
-
-- Target: `../HARVEST_REGISTRY.md`
-- Candidate matches: `dumpster-dive/HARVEST_REGISTRY.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
 ### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
 
 - Target: `../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md`
 - Candidate matches: `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
+
+- Target: `HANDOFF_TO_CLAUDE.md`
+- Candidate matches: `docs/handoffs/HANDOFF_TO_CLAUDE.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
+
+- Target: `../CLAUDE.md`
+- Candidate matches: `CLAUDE.md`, `docs/architecture/CLAUDE.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [MEDIUM / ROT-001 / broken_no_known_target] `docs/reference/HANDOFF0001.md:L44`
+
+- Target: `instructions/xyz.instructions.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.claude/agents/tessara.md:L21`
+
+- Target: `../../.github/copilot-instructions.archive.md`
+- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/INTEGRATION_MAP.md:L1`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/SESSION_RESUME.md:L1`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md:L387`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/STRUCTURAL_INTEGRITY_ANALYSIS.md:L1`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/VALIDATION_REPORT.md:L1`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/ENTITY_PROFILES.md:L3`
+
+- Target: `../copilot-instructions.archive.md`
+- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/MMPS_GENERATION.md:L3`
+
+- Target: `../copilot-instructions.archive.md`
+- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/codex-satellites/VALIDATION_PROTOCOLS.md:L3`
+
+- Target: `../copilot-instructions.archive.md`
+- Resolves to: `.github/copilot-instructions.archive.md` (false positive — link works)
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L3`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L10`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com
+
+### [BACKGROUND / ROT-003 / ambig_resolves_fine] `.github/copilot-instructions.archive.md:L12`
+
+- Target: `copilot-instructions.md`
+- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Source last touched: 2026-05-13T06:41:43+02:00 by erdnorddd@gmail.com

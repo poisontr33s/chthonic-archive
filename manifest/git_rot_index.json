@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-13T07:18:11.275000+00:00",
+  "generated_at": "2026-05-13T07:25:12.998976+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -23,26 +23,26 @@
   "summary": {
     "tracked_md_files": 1110,
     "tombstone_files_excluded": 7,
-    "rot_entries": 176,
+    "rot_entries": 161,
     "categories": {
       "ambig_resolves_fine": 123,
       "placeholder_literal": 10,
-      "broken_no_known_target": 25,
-      "ambig_truly_ambiguous": 18
+      "broken_no_known_target": 12,
+      "ambig_truly_ambiguous": 16
     },
     "codes": {
       "ROT-003": 123,
       "ROT-008": 10,
-      "ROT-001": 25,
-      "ROT-002": 18
+      "ROT-001": 12,
+      "ROT-002": 16
     },
     "priorities": {
       "background": 123,
       "low": 20,
-      "medium": 33
+      "medium": 18
     },
     "rename_history_size": 757,
-    "cluster_count": 3
+    "cluster_count": 1
   },
   "tombstones": [
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
@@ -54,10 +54,6 @@
     "dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/session_gone_sterile_issue_Handover_discernment.md"
   ],
   "hotspots_top10": [
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "rot_count": 15
-    },
     {
       "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
       "rot_count": 12
@@ -93,22 +89,13 @@
     {
       "source": "dumpster-dive/forge/quench/README.md",
       "rot_count": 4
+    },
+    {
+      "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
+      "rot_count": 4
     }
   ],
   "clusters": [
-    {
-      "code": "CLUSTER-002",
-      "kind": "orphan_target",
-      "target": "../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "ref_count": 4,
-      "referenced_from_sample": [
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md"
-      ],
-      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
-    },
     {
       "code": "CLUSTER-002",
       "kind": "orphan_target",
@@ -120,18 +107,6 @@
         ".github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md",
         ".github/STRUCTURAL_INTEGRITY_ANALYSIS.md",
         ".github/VALIDATION_REPORT.md"
-      ],
-      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
-    },
-    {
-      "code": "CLUSTER-002",
-      "kind": "orphan_target",
-      "target": "../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "ref_count": 3,
-      "referenced_from_sample": [
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-        "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md"
       ],
       "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
     }
@@ -371,233 +346,6 @@
       ],
       "priority": "medium",
       "id": "3ab0b0edf502"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 13,
-      "raw_target": "../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "fd59537e76f7"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 14,
-      "raw_target": "../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "c5f2693595e4"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 15,
-      "raw_target": "../claude-codex-gemini/triadic-session-context/",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude-codex-gemini/triadic-session-context",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "da8c941b04e4"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 292,
-      "raw_target": "../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "6b947e53fc69"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 293,
-      "raw_target": "../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "610276865904"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 308,
-      "raw_target": "../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "f3670a978dea"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 363,
-      "raw_target": "../claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/FORGE_PIPELINE_DEV_PLAN.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "ea1d54a85c9b"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 374,
-      "raw_target": "../claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/claude/mailbox/BOUNTY_00000031_STEWARD_AUDIT.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "c036b14eecda"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 574,
-      "raw_target": "../mas_mcp/logic/ssot_manifest.py",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/mas_mcp/logic/ssot_manifest.py",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "4b1f0711bbe4"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 575,
-      "raw_target": "../mas_mcp/logic/ssot_binding.py",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/mas_mcp/logic/ssot_binding.py",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "49d640112aac"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 576,
-      "raw_target": "../scripts/lib/ssot_paths.py",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/scripts/lib/ssot_paths.py",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "f3d374976a8a"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 577,
-      "raw_target": "../mas_mcp/tests/test_ssot_binding.py",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/mas_mcp/tests/test_ssot_binding.py",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "c3944487282f"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 578,
-      "raw_target": "../WET_PAPER_TO_GOLD_METHODOLOGY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
-      ],
-      "priority": "medium",
-      "id": "231add3e2305"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 581,
-      "raw_target": "../anti-patterns/codekiller.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "broken_no_known_target",
-      "code": "ROT-001",
-      "would_be_path": "docs/anti-patterns/codekiller.md",
-      "git_truth": "never_existed",
-      "priority": "medium",
-      "id": "f209eb9c1f54"
-    },
-    {
-      "source": "docs/protocols/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md",
-      "line": 582,
-      "raw_target": "../HARVEST_REGISTRY.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/HARVEST_REGISTRY.md"
-      ],
-      "priority": "medium",
-      "id": "e5f02c06efeb"
     },
     {
       "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
