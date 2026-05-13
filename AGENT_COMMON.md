@@ -103,8 +103,14 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `cargo build` | Rust build |
 | `$env:PYTHONIOENCODING = 'utf-8'; uv run <script>` | Python execution (preferred — Unicode-safe on Windows) |
 | `uv run <script>` | Python execution (bare form — use when output is ASCII-only) |
+| `bun run ci:staged` | Local pre-commit gate: shebang, script metadata, uv usage, blessing, Markdown links, and offline GitHub/GFM URL shapes |
 | `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
+| `bun run links:audit` | Markdown link audit for files changed vs HEAD |
+| `bun run links:fix` | Markdown link auto-fix for files changed vs HEAD |
+| `bun run pathfinder:audit` | Alias for the upgraded Markdown path/heading-anchor/line-link audit |
+| `bun run pathfinder:gfm` | Pathfinder audit including same-repo GitHub/GFM HTTP URL shapes, bare GitHub URLs, and README media refs |
+| `bun run pathfinder:gfm:online` | Pathfinder GitHub/GFM audit with live HTTP checks for GitHub pages/issues/assets |
 | `uv run scripts/link_audit.py backticks <file> --fix` | Upgrade inert backtick refs to links |
 | `rv ruby list` | Ruby lane health (lists installed + active version) |
 | `rv ci` | Install ruby deps from lockfile, frozen (= `uv sync --frozen`) |
@@ -128,6 +134,8 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 
 - **User owns the commit lifecycle.** Agents edit files; user commits and pushes via SCM UI.
 - Agents do NOT run `git commit` or `git push` unless explicitly asked or announcing an atomic multi-file batch first.
+- Before a commit, run `bun run ci:staged` or install hooks with `bun run hooks:install`; `pathfinder` is wired into that staged gate, including offline GitHub/GFM URL shape checks.
+- Use `bun run pathfinder:gfm` for GitHub-rendered README/link sweeps; use `bun run pathfinder:gfm:online` only when network-backed issue/asset checks are intentionally needed.
 - If user pushes mid-operation, agent continues working — edits land in the next commit.
 
 ### Codekiller Addendum (Shared)
@@ -152,7 +160,7 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 
 Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), `rv-r` (R --tool uses 'rv'- **prefix**, ***is*** altered to: -> **rv-r** -> since the `Rust Oxidized` -tooling equal same name-scheme, that'd cause -- **both** `remove-variable` in `pwsh 7.x.x` **series** + resolve language(s) -- with smallest change as workaround to avoid collision + 'confucious'), `brush` (bash/posix shell), + `bun` (Node/JS/TS/React/Next.js/Vercel/Biome/LightningCSS/TailwindCSS/etc. -- a non dependent npm/node drop-in replacement written in zig). `Zg` (Zig). 
 All follow the same pattern as `uv` — canonical version/runtime manager for their language. No global installs outside of these tools. No `pip install`, no `gem install`, no `npm install -g`. All dependencies are project-local and invoked via the respective tool. This ensures consistent environments, reproducible builds, and clear ownership of runtimes, context and dependencies. No `cmd.exe` or `cmd /c` wrappers — will trigger Windows "open with" dialogs and are not cross-platform. PowerShell 7.6.x (`pwsh`) is the primary shell for interactive use and scripting; `brush` is the sanctioned bash-compatible companion when needed (installed via `cargo install --locked brush-shell`). See [PWSH_RULES.md (repo-root)](PWSH_RULES.md) for usage guidelines.
-- Polyglot toolchain surface (reference + cheatsheet + meta-CLI sync): [docs/OXIDIZED_POLYGLOT_SURFACE.md](docs/OXIDIZED_POLYGLOT_SURFACE.md)
+- Polyglot toolchain surface (reference + cheatsheet + meta-CLI sync): [docs/reference/OXIDIZED_POLYGLOT_SURFACE.md](docs/reference/OXIDIZED_POLYGLOT_SURFACE.md)
 
 Rust core. `src/` = Rust core.
 
@@ -216,6 +224,7 @@ Format differences per SDK are correct by design. Coverage should be equivalent 
 - Gemini skills: `.gemini/extensions/chthonic-archive-sync/skills/`
 
 Agent-specific skills (e.g., Gemini `triad-velocity-lane`) are acceptable where the agent has a unique capability. Document deliberate asymmetry in the relevant AGENTS.md or GEMINI.md.
+Market context for external skill patterns is tracked in [docs/reference/AGENT_SKILLS_MARKET_SURVEY.md](docs/reference/AGENT_SKILLS_MARKET_SURVEY.md); it is reference material, not a replacement for local skill-creator rules.
 
 ### Bun 1.3.12 Notable Features (runtime baseline)
 

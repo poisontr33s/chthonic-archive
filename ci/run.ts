@@ -34,6 +34,7 @@ type CheckSpeed = "fast" | "slow";
 
 type Check = {
   name: string;
+  aliases?: string[];
   script: string;
   scope: CheckScope;
   speed: CheckSpeed;
@@ -75,6 +76,14 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "Script envelope drift (canonize_blessing) + radiance cross-ref validation",
+  },
+  {
+    name: "pathfinder",
+    aliases: ["link-audit"],
+    script: "ci/checks/link-audit.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Markdown paths, heading/line anchors, offline GitHub/GFM URL shapes, and staged renames",
   },
   {
     name: "bun-audit",
@@ -131,7 +140,7 @@ if (LIST) {
 
 function selectChecks(): Check[] {
   if (SINGLE) {
-    const found = CHECKS.find((c) => c.name === SINGLE);
+    const found = CHECKS.find((c) => c.name === SINGLE || c.aliases?.includes(SINGLE));
     if (!found) {
       console.error(`[ci] ✗ Unknown check: "${SINGLE}". Run --list for available checks.`);
       process.exit(1);

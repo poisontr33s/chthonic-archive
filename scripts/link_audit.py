@@ -26,9 +26,13 @@ Usage:
     uv run scripts/link_audit.py check <file>              # audit one file
     uv run scripts/link_audit.py check <file> --fix        # audit + rewrite fixes
     uv run scripts/link_audit.py check <file> --dry-run    # show fixes without writing
+    uv run scripts/link_audit.py check <file> --github-links
+    uv run scripts/link_audit.py check <file> --github-online
     uv run scripts/link_audit.py scan                       # audit ALL markdown files in repo
     uv run scripts/link_audit.py scan --dry-run             # preview repo-wide fixes
     uv run scripts/link_audit.py scan --fix                 # apply repo-wide fixes
+    uv run scripts/link_audit.py scan --github-links        # include GitHub/GFM URL shapes
+    uv run scripts/link_audit.py scan --github-online       # also check GitHub pages/assets live
     uv run scripts/link_audit.py backticks <file>           # scan for inert backtick file/path refs
     uv run scripts/link_audit.py backticks <file> --dry-run # preview inert backtick upgrades
     uv run scripts/link_audit.py backticks <file> --fix     # rewrite fixable backticks as links
@@ -37,6 +41,14 @@ Usage:
     uv run scripts/link_audit.py renames --staged --fix
     uv run scripts/link_audit.py collisions                 # list all basename collisions in repo
     uv run scripts/link_audit.py collisions --json          # JSON output
+
+Line anchors are validated when present:
+    [label](path/to/file.md#L100)
+    [label](path/to/file.md#l100)
+    [label](path/to/file.md#L100-L120)
+    [label](path/to/file.md#100)
+
+GitHub/GFM mode also recognizes bare GitHub URLs and HTML href/src targets.
 """
 
 from __future__ import annotations
@@ -48,7 +60,11 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import unquote as _url_unquote
+from urllib.parse import quote as _url_quote
+from urllib.parse import urlparse, urlunparse
+from urllib.request import Request, urlopen
 
 # sys.path guard: ensure repo root is importable regardless of invocation CWD
 _REPO_ROOT_CANDIDATE = Path(__file__).resolve().parent.parent
@@ -61,8 +77,8 @@ from scripts.lib.shared import configure_utf8_output, find_repo_root, setup_logg
 # Constants
 # =============================================================================
 
-# Matches markdown links: [label](target)
-# Captures: group(1)=full match, group(2)=label, group(3)=target
+# Legacy simple matcher for narrow call sites. Main extraction below uses a
+# small parser so balanced destinations like foo-(SSOT).md are not truncated.
 RE_MD_LINK = re.compile(r"(\[([^\]]*)\]\(([^)]+)\))")
 
 # Paths that are never internal file references
@@ -70,6 +86,20 @@ EXTERNAL_PREFIXES = (
     "http://", "https://", "mailto:", "tel:", "ftp://",
     "file:///",  # absolute filesystem URIs from VS Code session dumps
 )
+
+GITHUB_HOSTS = {"github.com", "www.github.com"}
+GITHUB_RAW_HOSTS = {"raw.githubusercontent.com"}
+GITHUB_ASSET_HOSTS = {
+    "objects.githubusercontent.com",
+    "private-user-images.githubusercontent.com",
+    "user-images.githubusercontent.com",
+}
+GITHUB_PAGE_SEGMENTS = {
+    "actions", "branches", "commit", "commits", "compare", "deployments",
+    "discussions", "fork", "graphs", "issues", "network", "packages",
+    "projects", "pull", "pulse", "releases", "security", "settings",
+    "stargazers", "tags", "watchers", "wiki",
+}
 
 # Directories to skip during scanning and collision indexing.
 # Includes build artifacts, vendored third-party content, and directories
@@ -94,6 +124,12 @@ RE_FILEISH_EXT = re.compile(r"\.(md|py|svg|json|ts|js|toml|yaml|yml|ps1|sh)$")
 RE_WINDOWS_ABS = re.compile(r"^[A-Za-z]:[\\/]")
 RE_GENERIC_DOTTED_NAME = re.compile(r"^[^`\s\\/]+(?:\.[A-Za-z0-9_-]{1,24})+$")
 RE_MD_HEADING = re.compile(r"^(#{1,6})\s+(.+?)\s*$")
+RE_GITHUBISH_URL = re.compile(
+    r"https?://(?:www\.)?(?:github\.com|raw\.githubusercontent\.com|"
+    r"objects\.githubusercontent\.com|private-user-images\.githubusercontent\.com|"
+    r"user-images\.githubusercontent\.com)/[^\s<>\]\)\"']+"
+)
+RE_HTML_LINK_ATTR = re.compile(r"""(?i)\b(?:href|src)=["']([^"']+)["']""")
 
 
 # =============================================================================
@@ -167,6 +203,249 @@ def _safe_relative_path(p: Path, repo_root: Path) -> str:
 
 
 # =============================================================================
+# GitHub / GFM URL Helpers
+# =============================================================================
+
+_current_github_repo_cache: dict[str, tuple[str, str] | None] = {}
+_default_ref_cache: dict[str, str] = {}
+_http_status_cache: dict[str, tuple[bool, str]] = {}
+
+
+def _strip_dotgit(repo: str) -> str:
+    return repo[:-4] if repo.endswith(".git") else repo
+
+
+def _quote_url_path(path: str) -> str:
+    return "/".join(_url_quote(part) for part in path.split("/"))
+
+
+def _run_git_text(repo_root: Path, args: list[str]) -> str | None:
+    try:
+        proc = subprocess.run(
+            ["git", *args],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+        )
+    except FileNotFoundError:
+        return None
+    if proc.returncode != 0:
+        return None
+    text = proc.stdout.strip()
+    return text or None
+
+
+def current_github_repo(repo_root: Path) -> tuple[str, str] | None:
+    """Return (owner, repo) from origin when this checkout is a GitHub repo."""
+    key = str(repo_root)
+    if key in _current_github_repo_cache:
+        return _current_github_repo_cache[key]
+
+    remote = _run_git_text(repo_root, ["remote", "get-url", "origin"])
+    if not remote:
+        _current_github_repo_cache[key] = None
+        return None
+
+    owner_repo: tuple[str, str] | None = None
+    if remote.startswith("git@github.com:"):
+        rest = remote.split(":", 1)[1]
+        parts = rest.split("/")
+        if len(parts) >= 2:
+            owner_repo = (parts[0], _strip_dotgit(parts[1]))
+    else:
+        parsed = urlparse(remote)
+        host = (parsed.hostname or "").lower()
+        if host in GITHUB_HOSTS:
+            parts = [p for p in parsed.path.split("/") if p]
+            if len(parts) >= 2:
+                owner_repo = (parts[0], _strip_dotgit(parts[1]))
+
+    if owner_repo:
+        owner_repo = (owner_repo[0].lower(), owner_repo[1].lower())
+    _current_github_repo_cache[key] = owner_repo
+    return owner_repo
+
+
+def default_git_ref(repo_root: Path) -> str:
+    """Best-effort default ref for GitHub URL fixes."""
+    key = str(repo_root)
+    if key in _default_ref_cache:
+        return _default_ref_cache[key]
+
+    ref = _run_git_text(repo_root, ["symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD"])
+    if ref and "/" in ref:
+        ref = ref.split("/", 1)[1]
+    if not ref:
+        ref = _run_git_text(repo_root, ["branch", "--show-current"])
+    _default_ref_cache[key] = ref or "main"
+    return _default_ref_cache[key]
+
+
+def _githubish_host(host: str) -> bool:
+    return host in GITHUB_HOSTS or host in GITHUB_RAW_HOSTS or host in GITHUB_ASSET_HOSTS
+
+
+def is_githubish_url(target: str) -> bool:
+    parsed = urlparse(target)
+    host = (parsed.hostname or "").lower()
+    return _githubish_host(host)
+
+
+def parse_github_url(target: str) -> dict | None:
+    """Parse GitHub, raw.githubusercontent.com, and GitHub asset URLs."""
+    parsed = urlparse(target)
+    host = (parsed.hostname or "").lower()
+    if not _githubish_host(host):
+        return None
+
+    parts = [_url_unquote(p) for p in parsed.path.split("/") if p]
+
+    if host in GITHUB_RAW_HOSTS:
+        if len(parts) < 3:
+            return {"kind": "raw_host_malformed", "parsed": parsed, "host": host}
+        return {
+            "kind": "raw_host",
+            "parsed": parsed,
+            "host": host,
+            "owner": parts[0],
+            "repo": _strip_dotgit(parts[1]),
+            "segments": parts[2:],
+        }
+
+    if host in GITHUB_ASSET_HOSTS:
+        return {"kind": "asset", "parsed": parsed, "host": host}
+
+    # github.com/user-attachments/assets/<id> is not a repository route.
+    if len(parts) >= 2 and parts[0] == "user-attachments" and parts[1] == "assets":
+        return {"kind": "asset", "parsed": parsed, "host": host}
+
+    if len(parts) < 2:
+        return {"kind": "github_page", "parsed": parsed, "host": host}
+
+    owner = parts[0]
+    repo = _strip_dotgit(parts[1])
+    rest = parts[2:]
+    if not rest:
+        kind = "repo"
+    elif rest[0] in {"blob", "tree", "raw"}:
+        kind = rest[0]
+    elif rest[0] in GITHUB_PAGE_SEGMENTS:
+        kind = "page"
+    else:
+        kind = "maybe_missing_blob"
+
+    return {
+        "kind": kind,
+        "parsed": parsed,
+        "host": host,
+        "owner": owner,
+        "repo": repo,
+        "segments": rest[1:] if kind in {"blob", "tree", "raw"} else rest,
+        "page": rest[0] if rest else None,
+    }
+
+
+def _same_github_repo(info: dict, repo_root: Path) -> bool:
+    current = current_github_repo(repo_root)
+    if not current or "owner" not in info or "repo" not in info:
+        return False
+    return (info["owner"].lower(), info["repo"].lower()) == current
+
+
+def _resolve_github_ref_path(
+    segments: list[str],
+    repo_root: Path,
+    want_dir: bool = False,
+) -> tuple[str, str, Path] | None:
+    """Split GitHub <ref>/<path> segments by finding the local path portion."""
+    if len(segments) < 2:
+        return None
+
+    for split_at in range(1, len(segments)):
+        ref = "/".join(segments[:split_at])
+        rel = "/".join(segments[split_at:])
+        if not rel:
+            continue
+        candidate = (repo_root / rel).resolve()
+        if want_dir and candidate.is_dir():
+            return ref, rel, candidate
+        if not want_dir and candidate.is_file():
+            return ref, rel, candidate
+    return None
+
+
+def _infer_missing_blob_target(
+    rest: list[str],
+    repo_root: Path,
+) -> tuple[str, str, Path, str] | None:
+    """Infer a missing /blob/<ref>/ or /tree/<ref>/ route for same-repo URLs."""
+    if not rest:
+        return None
+
+    default_ref = default_git_ref(repo_root)
+    candidates: list[tuple[str, str]] = []
+    if len(rest) >= 2 and rest[0] in {default_ref, "main", "master", "trunk"}:
+        candidates.append((rest[0], "/".join(rest[1:])))
+    candidates.append((default_ref, "/".join(rest)))
+
+    seen: set[tuple[str, str]] = set()
+    for ref, rel in candidates:
+        if not rel or (ref, rel) in seen:
+            continue
+        seen.add((ref, rel))
+        candidate = (repo_root / rel).resolve()
+        if candidate.is_file():
+            return ref, rel, candidate, "blob"
+        if candidate.is_dir():
+            return ref, rel, candidate, "tree"
+    return None
+
+
+def _github_fix_url(parsed, owner: str, repo: str, mode: str, ref: str, rel: str) -> str:
+    path = f"/{owner}/{repo}/{mode}/{_quote_url_path(ref)}/{_quote_url_path(rel)}"
+    return urlunparse((parsed.scheme, parsed.netloc, path, "", parsed.query, parsed.fragment))
+
+
+def _format_target_fix(link: dict, fixed_target: str) -> str:
+    if link.get("syntax", "inline") == "inline":
+        return f"[{link['label']}]({fixed_target})"
+    return fixed_target
+
+
+def _http_link_status(url: str, timeout: float) -> tuple[bool, str]:
+    if url in _http_status_cache:
+        return _http_status_cache[url]
+
+    headers = {"User-Agent": "chthonic-pathfinder-link-audit/1.0"}
+    try:
+        req = Request(url, method="HEAD", headers=headers)
+        with urlopen(req, timeout=timeout) as resp:
+            code = getattr(resp, "status", resp.getcode())
+    except HTTPError as exc:
+        if exc.code in {405, 403}:
+            try:
+                req = Request(url, method="GET", headers=headers)
+                with urlopen(req, timeout=timeout) as resp:
+                    code = getattr(resp, "status", resp.getcode())
+            except (HTTPError, URLError, TimeoutError) as inner:
+                result = (False, f"HTTP check failed: {inner}")
+            else:
+                result = (200 <= int(code) < 400, f"HTTP {code}")
+        else:
+            result = (False, f"HTTP {exc.code}")
+    except (URLError, TimeoutError) as exc:
+        result = (False, f"HTTP check failed: {exc}")
+    else:
+        result = (200 <= int(code) < 400, f"HTTP {code}")
+
+    _http_status_cache[url] = result
+    return result
+
+
+# =============================================================================
 # Collision Index
 # =============================================================================
 
@@ -202,7 +481,144 @@ def get_collisions(index: dict[str, list[Path]]) -> dict[str, list[Path]]:
 # Link Extraction & Resolution
 # =============================================================================
 
-def extract_links(text: str) -> list[dict]:
+def _mask_inline_code(line: str) -> str:
+    """Mask inline code spans while preserving [`code`](target) link labels."""
+    chars = list(line)
+    i = 0
+    while i < len(chars):
+        if chars[i] != "`":
+            i += 1
+            continue
+        end = line.find("`", i + 1)
+        if end == -1:
+            break
+        is_code_link_label = (
+            i > 0
+            and line[i - 1] == "["
+            and end + 2 < len(line)
+            and line[end + 1] == "]"
+            and line[end + 2] == "("
+        )
+        if not is_code_link_label:
+            for j in range(i, end + 1):
+                chars[j] = " "
+        i = end + 1
+    return "".join(chars)
+
+
+def _find_closing_bracket(line: str, start: int) -> int | None:
+    """Find the closing ']' for a markdown label starting after '['."""
+    depth = 1
+    i = start
+    while i < len(line):
+        ch = line[i]
+        if ch == "\\" and i + 1 < len(line):
+            i += 2
+            continue
+        if ch == "[":
+            depth += 1
+        elif ch == "]":
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    return None
+
+
+def _find_link_target_bounds(line: str, start: int) -> tuple[int, int, int] | None:
+    """Return (target_start, target_end, close_paren) for a markdown target.
+
+    The target range excludes the closing ')'. Balanced parentheses are allowed
+    inside the target, and angle-bracket targets are handled as a single unit.
+    """
+    i = start
+    while i < len(line) and line[i].isspace():
+        i += 1
+    if i >= len(line):
+        return None
+
+    if line[i] == "<":
+        j = i + 1
+        while j < len(line):
+            if line[j] == "\\" and j + 1 < len(line):
+                j += 2
+                continue
+            if line[j] == ">":
+                target_end = j + 1
+                k = target_end
+                while k < len(line) and line[k].isspace():
+                    k += 1
+                if k < len(line) and line[k] == ")":
+                    return i, target_end, k
+                return None
+            j += 1
+        return None
+
+    depth = 0
+    j = i
+    while j < len(line):
+        ch = line[j]
+        if ch == "\\" and j + 1 < len(line):
+            j += 2
+            continue
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            if depth == 0:
+                return i, j, j
+            depth -= 1
+        j += 1
+    return None
+
+
+def _normalize_link_target(raw_target: str) -> str:
+    target = raw_target.strip()
+    if target.startswith("<") and target.endswith(">"):
+        target = target[1:-1]
+    return target
+
+
+def _is_external_target(target: str) -> bool:
+    return any(target.startswith(p) for p in EXTERNAL_PREFIXES)
+
+
+def _split_link_target(target: str) -> tuple[str | None, str | None]:
+    if "#" in target:
+        path_part, fragment = target.split("#", 1)
+    else:
+        path_part, fragment = target, None
+    return path_part if path_part else None, fragment
+
+
+def _link_record(
+    lineno: int,
+    full: str,
+    label: str,
+    target: str,
+    syntax: str,
+) -> dict:
+    path_part, fragment = _split_link_target(target)
+    return {
+        "line": lineno,
+        "full_match": full,
+        "label": label,
+        "target": target,
+        "path_part": path_part,
+        "fragment": fragment,
+        "external": _is_external_target(target),
+        "syntax": syntax,
+    }
+
+
+def _span_contains(spans: list[tuple[int, int]], pos: int) -> bool:
+    return any(start <= pos < end for start, end in spans)
+
+
+def _trim_bare_url(raw: str) -> str:
+    return raw.rstrip(".,;:")
+
+
+def extract_links(text: str, include_external: bool = False) -> list[dict]:
     """Extract all markdown links from text with line numbers.
 
     Skips links inside fenced code blocks (``` ... ```).
@@ -216,32 +632,63 @@ def extract_links(text: str) -> list[dict]:
             continue
         if in_fence:
             continue
-        # Strip inline code spans before scanning for links, but preserve
-        # backticks that are part of a markdown link label: [`file`](path)
-        scanline = re.sub(r"(?<!\[)`[^`]+`(?!\]\()", "", line)
-        for match in RE_MD_LINK.finditer(scanline):
-            full, label, target = match.group(1), match.group(2), match.group(3)
-            # Skip external links (but NOT Windows absolute paths — resolve_link handles those)
-            if any(target.startswith(p) for p in EXTERNAL_PREFIXES):
+        scanline = _mask_inline_code(line)
+        cursor = 0
+        inline_spans: list[tuple[int, int]] = []
+        while cursor < len(scanline):
+            start = scanline.find("[", cursor)
+            if start == -1:
+                break
+            label_end = _find_closing_bracket(scanline, start + 1)
+            if label_end is None:
+                break
+            if label_end + 1 >= len(scanline) or scanline[label_end + 1] != "(":
+                cursor = start + 1
                 continue
-            # Split target into path and fragment parts
-            if "#" in target:
-                path_part, fragment = target.split("#", 1)
-            else:
-                path_part, fragment = target, None
-            # Pure anchor links ([foo](#bar)) — path_part is empty, fragment is set
-            results.append({
-                "line": lineno,
-                "full_match": full,
-                "label": label,
-                "target": target,
-                "path_part": path_part if path_part else None,
-                "fragment": fragment,
-            })
+            bounds = _find_link_target_bounds(scanline, label_end + 2)
+            if bounds is None:
+                cursor = label_end + 1
+                continue
+            target_start, target_end, close_paren = bounds
+            full = line[start:close_paren + 1]
+            label = line[start + 1:label_end]
+            target = _normalize_link_target(line[target_start:target_end])
+            is_external = _is_external_target(target)
+            # Skip external links (but NOT Windows absolute paths — resolve_link handles those)
+            if is_external and not include_external:
+                cursor = close_paren + 1
+                continue
+            inline_spans.append((start, close_paren + 1))
+            results.append(_link_record(lineno, full, label, target, "inline"))
+            cursor = close_paren + 1
+
+        if not include_external:
+            continue
+
+        # GFM also renders bare URLs, and README media often uses HTML src/href.
+        emitted_spans: list[tuple[int, int]] = []
+        for m in RE_HTML_LINK_ATTR.finditer(line):
+            target = m.group(1)
+            if not is_githubish_url(target) or _span_contains(inline_spans, m.start(1)):
+                continue
+            emitted_spans.append((m.start(1), m.end(1)))
+            results.append(_link_record(lineno, target, target, target, "html_attr"))
+
+        for m in RE_GITHUBISH_URL.finditer(line):
+            if _span_contains(inline_spans, m.start()) or _span_contains(emitted_spans, m.start()):
+                continue
+            target = _trim_bare_url(m.group(0))
+            if not target:
+                continue
+            results.append(_link_record(lineno, target, target, target, "bare"))
     return results
 
 
 _heading_slug_cache: dict[str, set[str]] = {}
+_line_count_cache: dict[str, int] = {}
+
+RE_LINE_FRAGMENT = re.compile(r"^[Ll]?(\d+)(?:-[Ll]?(\d+))?$")
+RE_INCOMPLETE_LINE_FRAGMENT = re.compile(r"^[Ll]$", re.IGNORECASE)
 
 
 def _get_heading_slugs(target_path: Path) -> set[str]:
@@ -256,29 +703,95 @@ def _get_heading_slugs(target_path: Path) -> set[str]:
     return _heading_slug_cache[key]
 
 
+def _get_line_count(target_path: Path) -> int:
+    """Return text line count for a target file, with caching."""
+    key = str(target_path)
+    if key not in _line_count_cache:
+        try:
+            text = target_path.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            _line_count_cache[key] = 0
+        else:
+            _line_count_cache[key] = len(text.splitlines()) if text else 0
+    return _line_count_cache[key]
+
+
+def _validate_line_fragment(fragment: str, target: Path) -> dict | None:
+    """Validate GitHub/VS Code-style line fragments such as #L10 or #L10-L20."""
+    if RE_INCOMPLETE_LINE_FRAGMENT.match(fragment):
+        return {
+            "status": "broken_line",
+            "resolved_path": target,
+            "fix": None,
+            "reason": "Line fragment '#L' is missing a line number",
+        }
+
+    match = RE_LINE_FRAGMENT.match(fragment)
+    if not match:
+        return None
+
+    start = int(match.group(1))
+    end = int(match.group(2) or start)
+    if start < 1 or end < 1:
+        return {
+            "status": "broken_line",
+            "resolved_path": target,
+            "fix": None,
+            "reason": f"Line fragment '#{fragment}' must use 1-based line numbers",
+        }
+    if end < start:
+        return {
+            "status": "broken_line",
+            "resolved_path": target,
+            "fix": None,
+            "reason": f"Line range '#{fragment}' ends before it starts",
+        }
+
+    if not target.is_file():
+        return None
+
+    line_count = _get_line_count(target)
+    if end > line_count:
+        return {
+            "status": "broken_line",
+            "resolved_path": target,
+            "fix": None,
+            "reason": (
+                f"Line fragment '#{fragment}' points past end of file "
+                f"({target.name} has {line_count} line(s))"
+            ),
+        }
+
+    return {"status": "ok_line", "resolved_path": target, "fix": None, "reason": None}
+
+
 def _validate_fragment(
     fragment: str | None,
     resolved_path: Path | None,
     file_path: Path,
     link: dict,
 ) -> dict | None:
-    """Check a #fragment against heading slugs. Returns issue dict or None if ok.
+    """Check a #fragment against line refs or heading slugs.
 
-    Works for both same-file anchors (resolved_path=file_path) and cross-file.
-    Only validates .md files (fragment anchors in non-md files are ignored).
+    Works for both same-file anchors (resolved_path=file_path) and cross-file:
+    - #L10, #l10, #10, #L10-L20, and #10-20 are validated against file length.
+    - Markdown heading anchors are validated only for .md files.
     """
     if not fragment:
         return None
     # Determine which file contains the headings
     target = resolved_path if resolved_path is not None else file_path
-    if not str(target).lower().endswith(".md"):
-        return None  # can't validate headers in non-markdown files
     if not target.is_file():
         return None  # file doesn't exist — already handled by path resolution
+
+    line_issue = _validate_line_fragment(fragment, target)
+    if line_issue is not None:
+        return None if line_issue["status"] == "ok_line" else line_issue
+
+    if not str(target).lower().endswith(".md"):
+        return None  # can't validate heading anchors in non-markdown files
+
     slugs = _get_heading_slugs(target)
-    # Skip line-reference fragments: #1-1, #45-45, #L6812, #L1 (VS Code / GitHub editor refs)
-    if re.match(r"^L?\d+(-L?\d+)?$", fragment):
-        return None  # numeric line ref, not a heading anchor
     # Case-insensitive comparison (GitHub renders anchors lowercase,
     # but browsers resolve them case-insensitively)
     fragment_lower = fragment.lower()
@@ -292,6 +805,107 @@ def _validate_fragment(
     }
 
 
+def resolve_github_link(
+    link: dict,
+    file_path: Path,
+    repo_root: Path,
+    github_online: bool = False,
+    http_timeout: float = 10.0,
+) -> dict:
+    """Validate a GitHub/GFM HTTP link.
+
+    Same-repo blob/tree/raw URLs are validated against the local checkout.
+    Other GitHub pages/assets are checked only when --github-online is enabled.
+    """
+    target = link["target"]
+    info = parse_github_url(target)
+    if info is None:
+        return {"status": "ok", "resolved_path": None, "fix": None, "reason": None}
+
+    kind = info["kind"]
+
+    if kind == "raw_host_malformed":
+        return {
+            "status": "broken_github",
+            "resolved_path": None,
+            "fix": None,
+            "reason": "raw.githubusercontent.com URL is missing owner/repo/ref/path",
+        }
+
+    def online_result() -> dict:
+        if not github_online:
+            return {
+                "status": "ok",
+                "resolved_path": None,
+                "fix": None,
+                "reason": "GitHub URL shape recognized; live HTTP check not requested",
+            }
+        ok, reason = _http_link_status(target, http_timeout)
+        return {
+            "status": "ok" if ok else "broken_github",
+            "resolved_path": None,
+            "fix": None,
+            "reason": None if ok else reason,
+        }
+
+    if kind in {"repo", "page", "github_page", "asset"}:
+        return online_result()
+
+    if kind in {"blob", "raw", "raw_host", "tree"}:
+        if not _same_github_repo(info, repo_root):
+            return online_result()
+
+        want_dir = kind == "tree"
+        resolved = _resolve_github_ref_path(info.get("segments", []), repo_root, want_dir=want_dir)
+        if resolved is None:
+            return {
+                "status": "broken_github",
+                "resolved_path": None,
+                "fix": None,
+                "reason": f"Same-repo GitHub {kind} URL does not resolve to a local {'directory' if want_dir else 'file'}",
+            }
+
+        _ref, _rel, local_path = resolved
+        if local_path.is_file():
+            anchor_issue = _validate_fragment(link.get("fragment"), local_path, file_path, link)
+            if anchor_issue is not None:
+                return anchor_issue
+        return {"status": "ok", "resolved_path": local_path, "fix": None, "reason": None}
+
+    if kind == "maybe_missing_blob":
+        if not _same_github_repo(info, repo_root):
+            return online_result()
+
+        inferred = _infer_missing_blob_target(info.get("segments", []), repo_root)
+        if inferred is None:
+            if github_online:
+                return online_result()
+            return {
+                "status": "broken_github",
+                "resolved_path": None,
+                "fix": None,
+                "reason": (
+                    "Same-repo GitHub URL is not a known page and is missing "
+                    "'/blob/<ref>/', '/tree/<ref>/', or '/raw/<ref>/'"
+                ),
+            }
+
+        ref, rel, local_path, mode = inferred
+        fixed_url = _github_fix_url(info["parsed"], info["owner"], info["repo"], mode, ref, rel)
+        fix = _format_target_fix(link, fixed_url)
+        return {
+            "status": "broken_github",
+            "resolved_path": local_path,
+            "fix": fix,
+            "reason": (
+                f"GitHub URL points at a same-repo {mode} path but is missing "
+                f"'/{mode}/{ref}/'"
+            ),
+        }
+
+    return online_result()
+
+
 def resolve_link(
     link: dict,
     file_path: Path,
@@ -301,7 +915,7 @@ def resolve_link(
     """Resolve a single link and return a diagnostic record.
 
     Returns a dict with:
-        status: "ok" | "broken" | "ambiguous" | "empty_label" | "collision_unlabeled" | "broken_anchor"
+        status: "ok" | "broken" | "ambiguous" | "empty_label" | "collision_unlabeled" | "broken_anchor" | "broken_line"
         resolved_path: the resolved Path (or None)
         fix: suggested replacement string (or None)
         reason: human-readable explanation
@@ -549,17 +1163,31 @@ def audit_file(
     file_path: Path,
     repo_root: Path,
     collision_index: dict[str, list[Path]],
+    github_links: bool = False,
+    github_online: bool = False,
+    github_timeout: float = 10.0,
 ) -> dict:
     """Audit all internal markdown links in a file.
 
     Returns a summary dict with diagnostics per link.
     """
     text = file_path.read_text(encoding="utf-8", errors="replace")
-    links = extract_links(text)
+    links = extract_links(text, include_external=github_links or github_online)
     results = []
 
     for link in links:
-        diag = resolve_link(link, file_path, repo_root, collision_index)
+        if link.get("external"):
+            if not is_githubish_url(link["target"]):
+                continue
+            diag = resolve_github_link(
+                link,
+                file_path,
+                repo_root,
+                github_online=github_online,
+                http_timeout=github_timeout,
+            )
+        else:
+            diag = resolve_link(link, file_path, repo_root, collision_index)
         results.append({
             "line": link["line"],
             "original": link["full_match"],
@@ -569,7 +1197,7 @@ def audit_file(
         })
 
     ok = [r for r in results if r["status"] == "ok"]
-    broken = [r for r in results if r["status"] in ("broken", "broken_anchor")]
+    broken = [r for r in results if r["status"] in ("broken", "broken_anchor", "broken_line", "broken_github")]
     ambiguous = [r for r in results if r["status"] == "ambiguous"]
     empty_label = [r for r in results if r["status"] == "empty_label"]
     unlabeled = [r for r in results if r["status"] == "collision_unlabeled"]
@@ -947,6 +1575,12 @@ def main() -> int:
                          help="Show what --fix would do without writing")
     p_check.add_argument("--no-backup", action="store_true",
                          help="Skip .bak backup before in-place rewrite")
+    p_check.add_argument("--github-links", action="store_true",
+                         help="Also audit GitHub/GFM HTTP URL shapes")
+    p_check.add_argument("--github-online", action="store_true",
+                         help="Also perform live HTTP checks for GitHub pages/assets")
+    p_check.add_argument("--github-timeout", type=float, default=10.0,
+                         help="Timeout in seconds for --github-online checks (default: 10)")
 
     # collisions
     p_coll = sub.add_parser("collisions", help="List all basename collisions in the repo")
@@ -976,6 +1610,12 @@ def main() -> int:
     p_scan.add_argument("--paths", nargs="*", type=Path, metavar="FILE",
                         help="Only scan these specific files")
     p_scan.add_argument("--json", action="store_true", help="JSON output")
+    p_scan.add_argument("--github-links", action="store_true",
+                        help="Also audit GitHub/GFM HTTP URL shapes")
+    p_scan.add_argument("--github-online", action="store_true",
+                        help="Also perform live HTTP checks for GitHub pages/assets")
+    p_scan.add_argument("--github-timeout", type=float, default=10.0,
+                        help="Timeout in seconds for --github-online checks (default: 10)")
 
     # renames
     p_renames = sub.add_parser("renames", help="Audit markdown links against staged renames")
@@ -1183,8 +1823,16 @@ def main() -> int:
         log.info("Scanning %d markdown files ...", len(md_files))
 
         all_results = []
+        github_links = args.github_links or args.github_online
         for md_file in md_files:
-            result = audit_file(md_file, repo_root, index)
+            result = audit_file(
+                md_file,
+                repo_root,
+                index,
+                github_links=github_links,
+                github_online=args.github_online,
+                github_timeout=args.github_timeout,
+            )
             if result["issues"]:
                 all_results.append(result)
 
@@ -1231,6 +1879,8 @@ def main() -> int:
                 tag = {
                     "broken": "BROKEN",
                     "broken_anchor": "ANCHOR",
+                    "broken_line": "LINE",
+                    "broken_github": "GITHUB",
                     "ambiguous": "AMBIG",
                     "empty_label": "EMPTY",
                     "collision_unlabeled": "LABEL",
@@ -1272,7 +1922,15 @@ def main() -> int:
         log.info("Building file index ...")
         index = build_collision_index(repo_root)
 
-        result = audit_file(file_path, repo_root, index)
+        github_links = args.github_links or args.github_online
+        result = audit_file(
+            file_path,
+            repo_root,
+            index,
+            github_links=github_links,
+            github_online=args.github_online,
+            github_timeout=args.github_timeout,
+        )
 
         if args.json and not args.dry_run and not args.fix:
             # Strip non-serializable Path objects
@@ -1303,6 +1961,8 @@ def main() -> int:
             status_icon = {
                 "broken": "BROKEN",
                 "broken_anchor": "ANCHOR",
+                "broken_line": "LINE",
+                "broken_github": "GITHUB",
                 "ambiguous": "AMBIG",
                 "empty_label": "EMPTY",
                 "collision_unlabeled": "LABEL",
@@ -1318,7 +1978,7 @@ def main() -> int:
             return 1 if issues else 0
 
         if args.fix and fixable:
-            applied = apply_fixes(file_path, issues)
+            applied = apply_fixes(file_path, issues, backup=not no_backup)
             print(f"\nApplied {applied} fix(es) to {result['file']}")
             return 0 if applied == len(fixable) else 1
 

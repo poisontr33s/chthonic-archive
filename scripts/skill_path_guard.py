@@ -143,6 +143,8 @@ def resolve_token(raw: str, source_file: Path, repo_root: Path, index: dict[str,
         repo_candidate = (repo_root / Path(cleaned)).resolve()
         if repo_candidate.exists():
             replacement = replacement_style(cleaned, repo_candidate, source_file, repo_root)
+            if replacement.replace("\\", "/") == cleaned:
+                return "ok", None, None
             return "fixable", replacement, "resolved to repo-root target instead of local skill-relative path"
         return "broken", None, "local skill-relative target does not exist"
 
@@ -164,6 +166,10 @@ def resolve_token(raw: str, source_file: Path, repo_root: Path, index: dict[str,
     matches = index.get(basename, [])
     if len(matches) == 1:
         replacement = replacement_style(raw, matches[0], source_file, repo_root)
+        cleaned_replacement = replacement.replace("\\", "/")
+        cleaned_raw = raw.strip().strip("`'\"").rstrip(",:;.)]").replace("\\", "/")
+        if cleaned_replacement == cleaned_raw:
+            return "ok", None, None
         return "fixable", replacement, f"unique basename match: {matches[0].relative_to(repo_root).as_posix()}"
     if len(matches) > 1:
         return "ambiguous", None, f"multiple basename matches for {basename}"

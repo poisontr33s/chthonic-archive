@@ -1,7 +1,7 @@
 #!/bin/sh
 # Chthonic Archive — pre-commit hook (source)
 # Installed to .git/hooks/pre-commit by: bun run hooks:install
-# Runs local CI checks in staged mode: shebang, python-headers, sid-envelope.
+# Runs local CI checks in staged mode via ci/run.ts, including shebang and pathfinder.
 # Absolute bun path ensures VS Code git UI (stripped PATH) can find it.
 
 BUN="${HOME}/.bun/bin/bun"
