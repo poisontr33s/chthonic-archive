@@ -77,3 +77,73 @@ The metadata orchestra cleanup. Big, separate work. Not until 1–4 are done and
 Move 1. Tuning AMBIG in `ci/run.ts`. Then I'll show you the diff before staging it. After that, ask whether to proceed to Move 2 (rename-aware fixer) or pause.
 
 The 8 unstaged `.md` files stay where they are until Move 1 lands — at that point they become commitable without the AMBIG block.
+
+---
+
+## Addendum — what actually happened (written 2026-05-13, end of session)
+
+The redux above is the plan I wrote at the start. Recording what diverged
+and why, so future-me/future-Claude reads both and learns from the gap.
+
+### What landed in order
+
+- Move 1 went smoothly. `cbb41515` softened AMBIG; 8 blocked files
+  immediately became commitable.
+- Move 4 landed early — the scope contract template, including the
+  Stakes section that the user's "melatonin without consequence" metaphor
+  made non-negotiable. Receiving agents must echo the contract before
+  starting; no echo, no execution.
+- Move 2 (rename-aware fixer) and Move 3 (orientation doc) collapsed
+  into a single richer artifact: the git-rot index. The user named the
+  shape: "use all the types of ROT to develop structured data, categorize
+  them to error code numbers and relationships." That became
+  `scripts/git_rot_index.py` plus the ROT-/CLUSTER-/ROOT- taxonomy. The
+  index found that 78% of rot lived in three agent-generated hotspots —
+  which we then marked `lifecycle: tombstone`, dropping the living-repo
+  rot count from 2151 to 463.
+
+### The hour-long hang (preserved as learning, not glossed)
+
+Between schema v1 and schema v2 I introduced a balanced-paren regex
+to handle parens-in-URLs (the IronMaiden case). It passed quick local
+tests on the biggest files. It then hung the indexer for ~one hour
+of wall-clock with zero output, on the first file of the actual
+corpus. The user named it: "It's been an hour since it started. Can
+we be sure that we are doing this the best way?"
+
+What went wrong: I declared a tool "done" without a smoke test on
+the real corpus. Catastrophic regex backtracking is exactly the kind
+of failure that local testing on cherry-picked inputs misses.
+
+What saved it: the user's patience to ask the question, my willingness
+to admit the runaway and kill it instead of "letting it finish." The
+fix was a one-line revert to the simpler regex. End-to-end wall time
+went from "hour with no result" to 4.4 seconds.
+
+Pattern to encode forever: **smoke-test on real data before declaring
+done.** Run the new tool against the actual corpus with progress output.
+If it doesn't print progress within the first few seconds, it's hung
+or in pathological territory. Don't wait an hour to find out.
+
+### What changed in how I work (saved as memory)
+
+Two durable feedback rules saved this session, both addressed to
+future-Claude reading this:
+
+1. `feedback/stakes-language-not-rule-language` — agents need
+   consequence to internalize architecture. Rules alone don't land.
+   The scope contract's Stakes section is the canonical example.
+
+2. `feedback/declare-next-dont-ask` — never "if you want me to..."
+   The user trusts initiative; option menus read as exhaustion. Declare
+   the next move in the imperative; the user adjusts or overrides.
+
+### Where to pick up next session
+
+- Open `claude/mailbox/SESSION_2026_05_13_LANDING.md` first — that's
+  the re-entry doc.
+- Next operational move: extend rot taxonomy with GIT-001 (zero-history
+  tracked files) and ROOT-001 (mass-rename root commits). Both are
+  natural extensions of the existing index.
+- 88 ROT-001 + 99 ROT-002 entries await human-judgment triage when
+  ready. Not urgent; the rot index keeps surfacing them on each run.
