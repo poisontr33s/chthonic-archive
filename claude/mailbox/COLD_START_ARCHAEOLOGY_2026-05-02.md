@@ -14,7 +14,7 @@ subject: PNK-LFH archaeology extraction — morning queue wired
 
 ## What Happened Overnight
 
-Built env-driven multi-repo archaeology MCP system. Ran full extraction pass on `psychonoir-kontrapunkt-large-file-holder` (PNK-LFH). Found **507 entities, 945 files, 12 GEN3-FULLDEPTH, 101 GEN1-RAW, 117 unread Gen1+ files**.
+Built env-driven multi-repo archaeology MCP system. Ran full extraction pass on `psychonoir-kontrapunkt-large-file-holder` (PNK-LFH). Found **507 entities, 945 files, 12 GEN3-FULLDEPTH, 101 GEN1-RAW, 117 unread Gen1+ files**
 
 The scripts ran. The digests exist. The task chain is queued.
 
