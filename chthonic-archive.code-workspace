@@ -85,7 +85,7 @@
     "git.autorefresh": false,
     "git.autofetch": false,
     "git.autofetchPeriod": 180,
-    "git.confirmSync": true,
+    "git.confirmSync": false,
     "git.decorations.enabled": false,
     "git.enableStatusBarSync": false,
     "git.showProgress": false,
