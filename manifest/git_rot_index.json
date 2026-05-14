@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-14T04:55:25.630916+00:00",
+  "generated_at": "2026-05-14T05:35:50.924394+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -42,26 +42,26 @@
   "summary": {
     "tracked_md_files": 1116,
     "tombstone_files_excluded": 11,
-    "rot_entries": 34,
+    "rot_entries": 24,
     "categories": {
       "broken_no_known_target": 9,
-      "line_anchor_stale": 12,
+      "line_anchor_stale": 9,
       "anchor_missing": 5,
-      "ambig_truly_ambiguous": 8
+      "ambig_truly_ambiguous": 1
     },
     "codes": {
       "ROT-001": 9,
-      "ROT-007": 12,
+      "ROT-007": 9,
       "ROT-006": 5,
-      "ROT-002": 8
+      "ROT-002": 1
     },
     "priorities": {
-      "medium": 27,
+      "medium": 17,
       "low": 7
     },
     "rename_history_size": 757,
     "cluster_count": 0,
-    "false_positives_suppressed": 84
+    "false_positives_suppressed": 88
   },
   "tombstones": [
     ".github/copilot-instructions.archive.md",
@@ -83,7 +83,7 @@
     },
     {
       "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
-      "rot_count": 11
+      "rot_count": 8
     },
     {
       "source": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
@@ -92,10 +92,6 @@
     {
       "source": ".github/instructions/reference-appendix.reference.md",
       "rot_count": 5
-    },
-    {
-      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "rot_count": 4
     },
     {
       "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
@@ -114,7 +110,11 @@
       "rot_count": 3
     },
     {
-      "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
+      "source": "dumpster-dive/CIRCULATION_DIAGRAM.md",
+      "rot_count": 3
+    },
+    {
+      "source": "dumpster-dive/README.md",
       "rot_count": 3
     }
   ],
@@ -363,131 +363,6 @@
       "level": "L3"
     },
     {
-      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "line": 395,
-      "raw_target": "../scripts/README.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        ".github/prompts/README.md",
-        "adapters/claudine-v1/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-1500/README.md",
-        "adapters/claudine-v1/checkpoints/checkpoint-2000/README.md",
-        "birdcage/README.md"
-      ],
-      "priority": "medium",
-      "id": "07aea41819c6",
-      "level": "L1"
-    },
-    {
-      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "line": 396,
-      "raw_target": "PHASE_3_TEST_REPORT.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/archive/reports/PHASE_3_TEST_REPORT.md"
-      ],
-      "priority": "medium",
-      "id": "28f105fe626a",
-      "level": "L1"
-    },
-    {
-      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "line": 397,
-      "raw_target": "TOOL_CONSOLIDATION_ROADMAP.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md"
-      ],
-      "priority": "medium",
-      "id": "cb9ef745c7e2",
-      "level": "L1"
-    },
-    {
-      "source": "docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md",
-      "line": 398,
-      "raw_target": "../CLAUDE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "CLAUDE.md",
-        "docs/architecture/CLAUDE.md"
-      ],
-      "priority": "medium",
-      "id": "3ab0b0edf502",
-      "level": "L1"
-    },
-    {
-      "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
-      "line": 11,
-      "raw_target": "../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md"
-      ],
-      "priority": "medium",
-      "id": "50da90524412",
-      "level": "L1"
-    },
-    {
-      "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
-      "line": 11,
-      "raw_target": "HANDOFF_TO_CLAUDE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "docs/handoffs/HANDOFF_TO_CLAUDE.md"
-      ],
-      "priority": "medium",
-      "id": "35ae8504ea0e",
-      "level": "L1"
-    },
-    {
-      "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
-      "line": 11,
-      "raw_target": "../CLAUDE.md",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "ambig_truly_ambiguous",
-      "code": "ROT-002",
-      "candidates": [
-        "CLAUDE.md",
-        "docs/architecture/CLAUDE.md"
-      ],
-      "priority": "medium",
-      "id": "e365a56179bd",
-      "level": "L1"
-    },
-    {
       "source": "docs/reference/HANDOFF0001.md",
       "line": 44,
       "raw_target": "instructions/xyz.instructions.md",
@@ -502,57 +377,6 @@
       "priority": "medium",
       "id": "0b8aa64b87e7",
       "level": "L1"
-    },
-    {
-      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
-      "line": 212,
-      "raw_target": "../../../.github/copilot-instructions.md#L2312",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L2312",
-      "file_lines": 83,
-      "priority": "medium",
-      "id": "69c53536798f",
-      "level": "L3"
-    },
-    {
-      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
-      "line": 212,
-      "raw_target": "../../../.github/copilot-instructions.md#L1421",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L1421",
-      "file_lines": 83,
-      "priority": "medium",
-      "id": "b5975316a67b",
-      "level": "L3"
-    },
-    {
-      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
-      "line": 212,
-      "raw_target": "../../../.github/copilot-instructions.md#L3377",
-      "git": {
-        "source_last_touched": "2026-04-28T05:23:27+02:00",
-        "source_author": "vscode@users.noreply.github.com"
-      },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L3377",
-      "file_lines": 83,
-      "priority": "medium",
-      "id": "32827752af53",
-      "level": "L3"
     },
     {
       "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",

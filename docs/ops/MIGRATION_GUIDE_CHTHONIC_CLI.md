@@ -392,10 +392,10 @@ uv run scripts/resolve_sid.py --version
 
 ## Additional Resources
 
-- **CLI Documentation:** [scripts/README.md](../scripts/README.md) (see "Chthonic CLI" section)
-- **Test Report:** [docs/PHASE_3_TEST_REPORT.md](PHASE_3_TEST_REPORT.md)
-- **Roadmap:** [TOOL_CONSOLIDATION_ROADMAP.md](TOOL_CONSOLIDATION_ROADMAP.md)
-- **Agent Guidance:** [CLAUDE.md (repo-root)](../CLAUDE.md)
+- **CLI Documentation:** [scripts/README.md](../../scripts/README.md) (see "Chthonic CLI" section)
+- **Test Report:** [docs/archive/reports/PHASE_3_TEST_REPORT.md](../archive/reports/PHASE_3_TEST_REPORT.md)
+- **Roadmap:** [TOOL_CONSOLIDATION_ROADMAP.md](../protocols/TOOL_CONSOLIDATION_ROADMAP.md)
+- **Agent Guidance:** [CLAUDE.md (repo-root)](../../CLAUDE.md)
 
 ---
 

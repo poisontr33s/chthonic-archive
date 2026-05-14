@@ -1,24 +1,24 @@
 # Git rot index digest
 
-Generated: 2026-05-14T04:55:25.630916+00:00
+Generated: 2026-05-14T05:35:50.924394+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
 - Tracked markdown files: 1116
-- Rot entries: 34
+- Rot entries: 24
 - Historical renames in repo: 757
 
 ### By category
 
-- `line_anchor_stale`: 12
 - `broken_no_known_target`: 9
-- `ambig_truly_ambiguous`: 8
+- `line_anchor_stale`: 9
 - `anchor_missing`: 5
+- `ambig_truly_ambiguous`: 1
 
 ### By priority
 
-- `medium`: 27
+- `medium`: 17
 - `low`: 7
 
 ### By code (grouped by gitological level)
@@ -26,26 +26,26 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 **L1 — SURFACE  — raw symptoms visible at the link site**
 
 - `ROT-001` (9): target_missing — no candidate file exists anywhere
-- `ROT-002` (8): target_ambig_broken — basename matches multiple, link broken
+- `ROT-002` (1): target_ambig_broken — basename matches multiple, link broken
 
 **L3 — ANCHOR   — positional / semantic reference alignment**
 
-- `ROT-007` (12): line_anchor_stale — #LNNN out of range for current file
+- `ROT-007` (9): line_anchor_stale — #LNNN out of range for current file
 - `ROT-006` (5): anchor_missing — file exists, #anchor doesn't
 
 
 ## Hotspots (top 10 files by rot count)
 
 - `dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md` — 11 entries
-- `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md` — 11 entries
+- `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md` — 8 entries
 - `WET_PAPER_TO_GOLD_METHODOLOGY.md` — 6 entries
 - `.github/instructions/reference-appendix.reference.md` — 5 entries
-- `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md` — 4 entries
 - `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md` — 4 entries
 - `dumpster-dive/forge/quench/README.md` — 4 entries
 - `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md` — 4 entries
 - `docs/design/SFS_WPTG_ITERATION_PLAN.md` — 3 entries
-- `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md` — 3 entries
+- `dumpster-dive/CIRCULATION_DIAGRAM.md` — 3 entries
+- `dumpster-dive/README.md` — 3 entries
 
 ## Top 30 entries by priority
 
@@ -132,69 +132,9 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - Resolves to: `docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md` (false positive — link works)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md:L395`
-
-- Target: `../scripts/README.md`
-- Candidate matches: `.github/prompts/README.md`, `adapters/claudine-v1/README.md`, `adapters/claudine-v1/checkpoints/checkpoint-1500/README.md`, `adapters/claudine-v1/checkpoints/checkpoint-2000/README.md`, `birdcage/README.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md:L396`
-
-- Target: `PHASE_3_TEST_REPORT.md`
-- Candidate matches: `docs/archive/reports/PHASE_3_TEST_REPORT.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md:L397`
-
-- Target: `TOOL_CONSOLIDATION_ROADMAP.md`
-- Candidate matches: `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/ops/MIGRATION_GUIDE_CHTHONIC_CLI.md:L398`
-
-- Target: `../CLAUDE.md`
-- Candidate matches: `CLAUDE.md`, `docs/architecture/CLAUDE.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
-
-- Target: `../dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md`
-- Candidate matches: `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
-
-- Target: `HANDOFF_TO_CLAUDE.md`
-- Candidate matches: `docs/handoffs/HANDOFF_TO_CLAUDE.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md:L11`
-
-- Target: `../CLAUDE.md`
-- Candidate matches: `CLAUDE.md`, `docs/architecture/CLAUDE.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
 ### [MEDIUM / ROT-001 / broken_no_known_target] `docs/reference/HANDOFF0001.md:L44`
 
 - Target: `instructions/xyz.instructions.md`
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-007 / line_anchor_stale] `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md:L212`
-
-- Target: `../../../.github/copilot-instructions.md#L2312`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-007 / line_anchor_stale] `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md:L212`
-
-- Target: `../../../.github/copilot-instructions.md#L1421`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
-- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
-
-### [MEDIUM / ROT-007 / line_anchor_stale] `dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md:L212`
-
-- Target: `../../../.github/copilot-instructions.md#L3377`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-006 / anchor_missing] `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md:L560`
@@ -222,4 +162,24 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 ### [LOW / ROT-001 / broken_no_known_target] `codex/codex-session-logs/archive/MILF-Core-META.md:L120`
 
 - Target: `The-Iron-Maiden-(SSOT`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `codex/codex-session-logs/archive/MILF-Core-META.md:L121`
+
+- Target: `The-Iron-Maiden-(SSOT`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `docs/archive/reports/TRUE_MISSING_FILES_REVIEW.md:L229`
+
+- Target: `docs/FILE.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `docs/archive/sessions/DEVELOPMENT_STATE.md:L350`
+
+- Target: `../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`
+- Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
+
+### [LOW / ROT-001 / broken_no_known_target] `dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md:L130`
+
+- Target: `../frameworks/nextjs.md`
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
