@@ -1,11 +1,11 @@
 # Git rot index digest
 
-Generated: 2026-05-14T04:44:00.342893+00:00
+Generated: 2026-05-14T04:49:22.100320+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
-- Tracked markdown files: 1115
+- Tracked markdown files: 1117
 - Rot entries: 34
 - Historical renames in repo: 757
 

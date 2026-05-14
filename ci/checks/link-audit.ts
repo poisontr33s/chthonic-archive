@@ -44,11 +44,20 @@ function isMarkdownPath(rel: string): boolean {
   return rel.toLowerCase().endsWith(".md");
 }
 
+// Lifecycle values that exclude a file from active link auditing.
+// - tombstone: dead artifact, preserved for history
+// - ssot-canon: macro-prompt-world / frozen unabridged source from which
+//   slimmed downstream files are derived. Scanning refs on the SSOT
+//   itself inverts the dependency direction (downstream inherits from
+//   here; the SSOT does not depend on them).
+const EXCLUDED_LIFECYCLES = new Set(["tombstone", "ssot-canon"]);
+
 function isTombstone(rel: string): boolean {
-  // Honor `lifecycle: tombstone` in YAML frontmatter. Tombstones are
-  // acknowledged-dead artifacts (see manifest/git_rot_index.md hotspots);
-  // they stay in the repo but are excluded from active link auditing.
-  // The frontmatter sits in the first ~30 lines if present.
+  // Honor `lifecycle: <value>` in YAML frontmatter for any value in
+  // EXCLUDED_LIFECYCLES. Name kept for backwards compatibility — the
+  // predicate now covers both tombstones (dead) and ssot-canon (frozen
+  // macro-prompt source). See manifest/git_rot_index.md for the taxonomy.
+  // Frontmatter sits in the first ~30 lines if present.
   try {
     const abs = resolve(REPO_ROOT, rel);
     const head = readFileSync(abs, { encoding: "utf8" }).split("\n").slice(0, 30);
@@ -59,12 +68,15 @@ function isTombstone(rel: string): boolean {
         inFrontmatter = true;
         continue;
       }
-      if (inFrontmatter && /^\s*lifecycle\s*:\s*tombstone\b/.test(line)) {
-        return true;
+      if (inFrontmatter) {
+        const m = line.match(/^\s*lifecycle\s*:\s*([\w-]+)/);
+        if (m && EXCLUDED_LIFECYCLES.has(m[1])) {
+          return true;
+        }
       }
     }
   } catch {
-    // Unreadable file: don't claim tombstone, let audit handle it.
+    // Unreadable file: don't claim excluded, let audit handle it.
   }
   return false;
 }

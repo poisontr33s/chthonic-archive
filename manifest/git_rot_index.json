@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-14T04:44:00.342893+00:00",
+  "generated_at": "2026-05-14T04:49:22.100320+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -40,7 +40,7 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1115,
+    "tracked_md_files": 1117,
     "tombstone_files_excluded": 10,
     "rot_entries": 34,
     "categories": {

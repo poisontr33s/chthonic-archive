@@ -156,11 +156,21 @@ def build_rename_map() -> dict[str, str]:
     return resolved
 
 
+# Lifecycle values that exclude a file from active rot scanning.
+# - tombstone: file is dead, preserved for history
+# - ssot-canon: file is the macro-prompt-world / unabridged source from
+#   which downstream slimmed references are derived. Scanning broken refs
+#   on the SSOT itself inverts the dependency direction (downstream files
+#   inherit from here; the SSOT does not depend on them).
+EXCLUDED_LIFECYCLES = {"tombstone", "ssot-canon"}
+
+
 def is_tombstone(path: Path) -> bool:
     """
-    A file is a tombstone if its frontmatter declares lifecycle: tombstone.
-    Tombstones are kept in the repo but excluded from active rot scanning —
-    they are acknowledged dead artifacts, not living references.
+    A file is excluded from active rot scanning if its frontmatter declares
+    a lifecycle in EXCLUDED_LIFECYCLES. Name kept for backwards compatibility;
+    the predicate covers both tombstones (dead) and ssot-canon (frozen
+    macro-prompt source).
     """
     try:
         head = path.read_text(encoding="utf-8", errors="replace").splitlines()[:20]
@@ -173,8 +183,10 @@ def is_tombstone(path: Path) -> bool:
                 return False
             in_fm = True
             continue
-        if in_fm and re.match(r"^\s*lifecycle\s*:\s*tombstone\b", line):
-            return True
+        if in_fm:
+            m = re.match(r"^\s*lifecycle\s*:\s*([\w-]+)", line)
+            if m and m.group(1) in EXCLUDED_LIFECYCLES:
+                return True
     return False
 
 
@@ -667,7 +679,7 @@ def build_index(args) -> dict:
     md_files, tombstones = tracked_markdown()
     print(f"[git_rot_index] {len(md_files)} living markdown files in scope", file=sys.stderr)
     if tombstones:
-        print(f"[git_rot_index] {len(tombstones)} tombstone files excluded (lifecycle: tombstone)", file=sys.stderr)
+        print(f"[git_rot_index] {len(tombstones)} files excluded (lifecycle: tombstone or ssot-canon)", file=sys.stderr)
 
     print("[git_rot_index] collecting per-file git signals ...", file=sys.stderr)
     file_sig = file_signals_batch(md_files)

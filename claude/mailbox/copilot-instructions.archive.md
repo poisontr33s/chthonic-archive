@@ -1,13 +1,16 @@
 ---
-lifecycle: tombstone
-tombstone_marked_at: 2026-05-14
-tombstone_reason: |
-  Frozen archival reference for the original, unabridged Codex-Brahmanica-
-  Perfectus. The file's own header declares: "FROZEN MONOLITHIC LABYRINTHE:
-  not to be edited or updated". Active canon lives at the sibling
-  copilot-instructions.md. Filename suffix `.archive.md` is explicit.
-  Excluded from active rot scanning. 3 ambig entries cleared — refs
-  preserved here as historical context only.
+lifecycle: ssot-canon
+ssot_canon_declared_at: 2026-05-14
+ssot_canon_reason: |
+  Macro-prompt-world / unabridged Codex-Brahmanica-Perfectus. The
+  ~10,000-line creative SSOT from which every active instruction file
+  is derived. Renamed with `.archive.md` suffix so GitHub/Copilot/agents
+  do not auto-load it into context windows (the slim active reference
+  is the sibling copilot-instructions.md). NOT dead — this is the pool
+  of everything else. Frozen in form, alive as canon source.
+  Excluded from active rot scanning to prevent rot-like states on the
+  SSOT itself (downstream files inherit from here; scanning broken
+  refs here would invert the dependency direction).
 ---
 
 # GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
