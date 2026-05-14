@@ -9,7 +9,7 @@ in_response_to: "SHA rewrite / suspected lost-content cascade after LFS recovery
 
 # Response: SHA Reconciliation And Content-Loss Audit
 
-## Findings from the suspected content-loss cascade has been reconciled with current `main` history. The allegedly lost payloads are present in the current tree, and the SHAs have been translated to their current equivalents.
+## Findings from the suspected content-loss cascade has been reconciled with current `main` history.
 
 The suspected content loss is not present on current `main`.
 
