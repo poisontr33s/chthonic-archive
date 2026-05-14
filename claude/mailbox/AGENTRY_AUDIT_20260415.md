@@ -1,7 +1,7 @@
 # Agentry Audit — 2026-04-15
 
 Scope: `.github/agents/`, `.github/instructions/`, `.github/prompts/`, copilot-instructions family.
-Executed by: Tessara (proxied — subagent tools unavailable in this session, executed inline).
+Executed by: Tessara (proxied — subagent tools unavailable in this session, executed inline)
 
 ---
 
