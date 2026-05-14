@@ -192,6 +192,21 @@ def is_tombstone(path: Path) -> bool:
     return False
 
 
+# Memoized target-side lifecycle check. Same canon target is linked from
+# many sources (the SSOT alone receives 14 inbound refs in current state);
+# reading its frontmatter once per scan beats once per link.
+_TARGET_LIFECYCLE_CACHE: dict[Path, bool] = {}
+
+
+def _target_excluded(path: Path) -> bool:
+    cached = _TARGET_LIFECYCLE_CACHE.get(path)
+    if cached is not None:
+        return cached
+    excluded = is_tombstone(path)
+    _TARGET_LIFECYCLE_CACHE[path] = excluded
+    return excluded
+
+
 def tracked_markdown() -> tuple[list[Path], list[str]]:
     out = git("ls-files", "*.md", "*.MD", "*.markdown")
     paths: list[Path] = []
@@ -574,6 +589,16 @@ def classify_link(
     if resolved is not None:
         # File resolves. Check fragment if present (L3 ANCHOR detection).
         if fragment:
+            # Target-side lifecycle guard: skip L3 ANCHOR detection when the
+            # resolved target carries an EXCLUDED_LIFECYCLES marker.
+            #   tombstone   = dead-and-preserved (no positional contract)
+            #   ssot-canon  = alive-and-frozen macro-prompt source; line/
+            #                 anchor refs into it are GitHub-style markers,
+            #                 not load-bearing structural contracts.
+            # Same predicate that excludes tombstoned sources at the walk
+            # layer, now propagated to the target side at classification.
+            if _target_excluded(resolved):
+                return None
             line_m = LINE_ANCHOR_RE.match(fragment)
             if line_m:
                 # Line anchor: #L42 or #L42-L51 or #42
@@ -873,7 +898,12 @@ def write_md_digest(index: dict, top_n: int = 30) -> str:
             cands = ", ".join(f"`{c}`" for c in e["candidates"])
             lines.append(f"- Candidate matches: {cands}")
         if e.get("resolved_to"):
-            lines.append(f"- Resolves to: `{e['resolved_to']}` (false positive — link works)")
+            # For ROT-006/007, the file resolves but the anchor doesn't —
+            # that's why the entry fires. The old "(false positive — link
+            # works)" annotation was misleading (the *file* part works; the
+            # *anchor* part is the genuine miss). State it correctly.
+            note = "file resolves; anchor missing/stale" if e.get("code") in ("ROT-006", "ROT-007") else "file resolves"
+            lines.append(f"- Resolves to: `{e['resolved_to']}` ({note})")
         sig = e.get("git", {})
         if sig.get("source_last_touched"):
             lines.append(f"- Source last touched: {sig['source_last_touched']} by {sig.get('source_author', '?')}")

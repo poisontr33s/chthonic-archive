@@ -1,11 +1,11 @@
 # Git rot index digest
 
-Generated: 2026-05-14T05:43:27.941069+00:00
+Generated: 2026-05-14T06:10:14.285596+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
-- Tracked markdown files: 1116
+- Tracked markdown files: 1117
 - Rot entries: 24
 - Historical renames in repo: 757
 
@@ -57,61 +57,61 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/agent-priority-protocol.md:L4`
 
 - Target: `../copilot-instructions.md#L6812`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/agent-priority-protocol.md:L10`
 
 - Target: `../copilot-instructions.md#L6812`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/asc-entity-generation.reference.md:L47`
 
 - Target: `../copilot-instructions.md#L2443`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/behavioral-scenarios.reference.md:L17`
 
 - Target: `../copilot-instructions.md#L3789`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/dcrp-operational-guide.md:L3`
 
 - Target: `../copilot-instructions.md#L6643`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/dcrp-operational-guide.md:L9`
 
 - Target: `../copilot-instructions.md#L6643`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/dev-conventions.reference.md:L17`
 
 - Target: `../copilot-instructions.md#L6634`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/magistra-logic.reference.md:L17`
 
 - Target: `../copilot-instructions.md#L4780`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-007 / line_anchor_stale] `.github/instructions/magistra-logic.reference.md:L18`
 
 - Target: `../copilot-instructions.md#L6500`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-006 / anchor_missing] `docs/architecture/SESSION_CORPUS.md:L304`
 
 - Target: `VAMPIRISM_SATELLITES.md#nightly-escapades`
-- Resolves to: `docs/architecture/VAMPIRISM_SATELLITES.md` (false positive — link works)
+- Resolves to: `docs/architecture/VAMPIRISM_SATELLITES.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-05-05T02:32:12+02:00 by erdnorddd@gmail.com
 
 ### [MEDIUM / ROT-002 / ambig_truly_ambiguous] `docs/design/SFS_WPTG_ITERATION_PLAN.md:L639`
@@ -123,13 +123,13 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 ### [MEDIUM / ROT-006 / anchor_missing] `docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md:L110`
 
 - Target: `./ANKH_FOUNDATIONAL_AXIOMS.md#dynamic-altitude-focal-point-dafp--the-alchemists-scope`
-- Resolves to: `docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md` (false positive — link works)
+- Resolves to: `docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-006 / anchor_missing] `docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md:L123`
 
 - Target: `./ANKH_FOUNDATIONAL_AXIOMS.md#prism--prismatic-reflection-illuminating-spectral-metamorphosis`
-- Resolves to: `docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md` (false positive — link works)
+- Resolves to: `docs/frameworks/ankh/ANKH_FOUNDATIONAL_AXIOMS.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-001 / broken_no_known_target] `docs/reference/HANDOFF0001.md:L44`
@@ -140,13 +140,13 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 ### [MEDIUM / ROT-006 / anchor_missing] `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md:L560`
 
 - Target: `../../.github/copilot-instructions.md#section-4512`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [MEDIUM / ROT-006 / anchor_missing] `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md:L561`
 
 - Target: `../../.github/copilot-instructions.md#section-4511`
-- Resolves to: `.github/copilot-instructions.md` (false positive — link works)
+- Resolves to: `.github/copilot-instructions.md` (file resolves; anchor missing/stale)
 - Source last touched: 2026-04-28T05:23:27+02:00 by vscode@users.noreply.github.com
 
 ### [LOW / ROT-001 / broken_no_known_target] `claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md:L48`
