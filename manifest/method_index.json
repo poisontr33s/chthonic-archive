@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-14T04:31:13.489895+00:00",
+  "since": "2026-03-15T04:30:38.706427+00:00",
+  "since_days": 60,
+  "summary": {
+    "total_commits_scanned": 763,
+    "total_methodful_commits": 95,
+    "unclassified_commits": 668,
+    "by_method": {
+      "uv-lock-upgrade": 7,
+      "anchor-correction": 33,
+      "stub-creation": 1,
+      "tombstone-mark": 4,
+      "path-rename-followup": 5,
+      "python-constraint-bump": 21,
+      "npm-constraint-bump": 9,
+      "rust-constraint-bump": 14,
+      "cargo-update": 1
+    },
+    "method_classes_seen": 9
+  },
+  "methods": [
+    {
+      "name": "anchor-correction",
+      "frequency": 33,
+      "confidence_avg": 0.64,
+      "last_used_at": "2026-05-13T12:34:03+02:00",
+      "noise_class": "rot/L3-anchor",
+      "suggested_invocation": "fix link path or anchor (e.g., `../` -> `../../`)",
+      "example_commits": [
+        {
+          "sha": "145254a9",
+          "subject": "feat(rot-index): L4 LINEAGE detector — ROOT-001 mass-delete ancestry"
+        },
+        {
+          "sha": "770829a2",
+          "subject": "fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache"
+        },
+        {
+          "sha": "f8c05ab9",
+          "subject": "feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale"
+        }
+      ]
+    },
+    {
+      "name": "python-constraint-bump",
+      "frequency": 21,
+      "confidence_avg": 0.77,
+      "last_used_at": "2026-05-10T09:30:51+02:00",
+      "noise_class": "dependabot/pip-direct-pinned",
+      "suggested_invocation": "edit pyproject.toml dependency cap, then uv lock",
+      "example_commits": [
+        {
+          "sha": "38410a7f",
+          "subject": "feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8"
+        },
+        {
+          "sha": "dca3cb67",
+          "subject": "fix(embedding_explorer): address GHPR review comments"
+        },
+        {
+          "sha": "1d594d4f",
+          "subject": "G7+G0: sdnext_g0_probe, manifest, pyproject optimum update"
+        }
+      ]
+    },
+    {
+      "name": "rust-constraint-bump",
+      "frequency": 14,
+      "confidence_avg": 0.83,
+      "last_used_at": "2026-05-02T00:00:04+02:00",
+      "noise_class": "dependabot/rust-direct-pinned",
+      "suggested_invocation": "edit Cargo.toml dependency version, then cargo update",
+      "example_commits": [
+        {
+          "sha": "b4cd3468",
+          "subject": "feat(vs_battery): add script for Visual Studio battery management and auditing"
+        },
+        {
+          "sha": "f8d1131a",
+          "subject": "V9: raw terminal mode (crossterm) + Ω-3 XP trail write"
+        },
+        {
+          "sha": "1c073231",
+          "subject": "feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs"
+        }
+      ]
+    },
+    {
+      "name": "npm-constraint-bump",
+      "frequency": 9,
+      "confidence_avg": 0.64,
+      "last_used_at": "2026-05-08T08:13:07+02:00",
+      "noise_class": "dependabot/npm-direct-pinned",
+      "suggested_invocation": "edit package.json dependency version, then bun update",
+      "example_commits": [
+        {
+          "sha": "64ce45cf",
+          "subject": "fix: update GPU specifications in epoch reference document"
+        },
+        {
+          "sha": "827eae89",
+          "subject": "feat: update version to 0.2.7 and add new command for selecting Claude Design Export"
+        },
+        {
+          "sha": "144a1557",
+          "subject": "fix: update version to 0.2.6 in package.json"
+        }
+      ]
+    },
+    {
+      "name": "uv-lock-upgrade",
+      "frequency": 7,
+      "confidence_avg": 1.0,
+      "last_used_at": "2026-05-14T06:13:41+02:00",
+      "noise_class": "dependabot/pip-transitive",
+      "suggested_invocation": "uv lock --upgrade-package <pkg>",
+      "example_commits": [
+        {
+          "sha": "150c7b10",
+          "subject": "feat(workspace): add api_pool.ps1 script loading to launch workflow"
+        },
+        {
+          "sha": "685a4311",
+          "subject": "Refactor code structure and remove redundant sections for improved readability and maintainability"
+        },
+        {
+          "sha": "b7746613",
+          "subject": "feat(tools): add tool validation script and update toolchain reports"
+        }
+      ]
+    },
+    {
+      "name": "path-rename-followup",
+      "frequency": 5,
+      "confidence_avg": 0.8,
+      "last_used_at": "2026-05-13T07:12:29+02:00",
+      "noise_class": "rot/L4-lineage",
+      "suggested_invocation": "batch-update broken refs across multiple files (one logical move)",
+      "example_commits": [
+        {
+          "sha": "af3cd781",
+          "subject": "tune(pathfinder): AMBIG severity = warning, not error"
+        },
+        {
+          "sha": "ab572948",
+          "subject": "fix(pathfinder): apply link-rot auto-fixes across 28 markdown files"
+        },
+        {
+          "sha": "dc42cac8",
+          "subject": "docs: consolidate documentation sprawl — 80 files reorganized"
+        }
+      ]
+    },
+    {
+      "name": "tombstone-mark",
+      "frequency": 4,
+      "confidence_avg": 1.0,
+      "last_used_at": "2026-05-13T09:19:06+02:00",
+      "noise_class": "rot/L1-surface-cluster",
+      "suggested_invocation": "add `lifecycle: tombstone` to file frontmatter",
+      "example_commits": [
+        {
+          "sha": "97096a6a",
+          "subject": "fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report"
+        },
+        {
+          "sha": "5c60170c",
+          "subject": "feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment"
+        },
+        {
+          "sha": "077302b2",
+          "subject": "docs(session): landing page + redux addendum (hour-to-4s postmortem)"
+        }
+      ]
+    },
+    {
+      "name": "stub-creation",
+      "frequency": 1,
+      "confidence_avg": 1.0,
+      "last_used_at": "2026-05-13T09:25:44+02:00",
+      "noise_class": "rot/ROT-001-phantom-target",
+      "suggested_invocation": "create new file with `lifecycle: stub` frontmatter",
+      "example_commits": [
+        {
+          "sha": "9105bbe7",
+          "subject": "fix(rot): SSOTIFICATION depth-bug fully resolved (15 broken -> 0)"
+        }
+      ]
+    },
+    {
+      "name": "cargo-update",
+      "frequency": 1,
+      "confidence_avg": 1.0,
+      "last_used_at": "2026-04-30T07:38:07+02:00",
+      "noise_class": "dependabot/rust-transitive",
+      "suggested_invocation": "cargo update -p <pkg> (in directory of Cargo.lock)",
+      "example_commits": [
+        {
+          "sha": "b4bbf0f6",
+          "subject": "chore(vulkan-lab): remove cli-renderer target/ and Cargo.lock from tracking"
+        }
+      ]
+    }
+  ]
+}

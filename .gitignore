@@ -241,6 +241,10 @@ extensions/*/bun.lock
 !manifest/git_rot_index.md
 !manifest/dependabot_index.json
 !manifest/dependabot_index.md
+!manifest/github_activity_index.json
+!manifest/github_activity_index.md
+!manifest/method_index.json
+!manifest/method_index.md
 
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts

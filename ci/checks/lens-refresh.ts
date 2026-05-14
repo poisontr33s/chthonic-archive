@@ -20,11 +20,16 @@
  * Runs under `bun run ci --full` or `bun run ci --check lens-refresh`.
  *
  * Currently wired:
- *   - git_rot_index.py     (link rot, anchor misses, deletion ancestry)
- *   - dependabot_index.py  (CVE alerts; needs gh auth)
+ *   - git_rot_index.py           (link rot, anchor misses, deletion ancestry)
+ *   - dependabot_index.py        (CVE alerts; needs gh auth)
+ *   - github_activity_index.py   (PRs/Issues/Branches by actor type; needs gh auth)
+ *   - method_index.py            (meta-lens: methods that cleared prior lenses)
  *
- * If gh auth is missing, dependabot_index is skipped with a warning, not
- * a failure — the rot lens stands alone.
+ * gh-dependent lenses (dependabot_index, github_activity_index) are
+ * skipped — not failed — when gh auth is missing, so a missing token
+ * doesn't break CI. The git-only lenses (git_rot_index, method_index)
+ * fail hard when their dependency is missing, since `git` is invariant
+ * in any environment this CI runs in; absence indicates real breakage.
  */
 
 import { spawnSync } from "child_process";
@@ -51,6 +56,20 @@ const LENSES: Lens[] = [
     script: "scripts/dependabot_index.py",
     needs: ["gh"],
     skipOnMissing: true, // gh might not be authenticated; don't break CI
+  },
+  {
+    name: "github-activity-index",
+    script: "scripts/github_activity_index.py",
+    needs: ["gh"],
+    skipOnMissing: true,
+  },
+  {
+    name: "method-index",
+    script: "scripts/method_index.py",
+    needs: ["git"],
+    // git is invariant in every environment this CI runs in; if it's
+    // absent something is genuinely wrong, so fail hard rather than skip.
+    skipOnMissing: false,
   },
 ];
 

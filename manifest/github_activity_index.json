@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-14T04:30:38.408059+00:00",
+  "repo": "poisontr33s/chthonic-archive",
+  "summary": {
+    "prs": {
+      "total": 14,
+      "by_state": {
+        "merged": 9,
+        "closed": 5
+      },
+      "by_actor_type": {
+        "human": 6,
+        "dependabot": 4,
+        "copilot": 4
+      }
+    },
+    "issues": {
+      "total": 1,
+      "by_state": {
+        "closed": 1
+      },
+      "by_actor_type": {
+        "human": 1
+      }
+    },
+    "branches": {
+      "total": 3,
+      "by_actor_type": {
+        "copilot": 1,
+        "human": 2
+      }
+    }
+  },
+  "signals": {
+    "stale_open_prs": 0,
+    "bot_branches": 1,
+    "dependabot_prs": 4,
+    "copilot_branches": 1
+  },
+  "pulls": [
+    {
+      "number": 15,
+      "title": "Phase 4 Webview HMR",
+      "state": "merged",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-04-29T00:27:22Z",
+      "updated_at": "2026-04-29T00:40:12Z",
+      "merged_at": "2026-04-29T00:40:08Z",
+      "closed_at": "2026-04-29T00:40:08Z",
+      "days_stale": 15,
+      "labels": [],
+      "draft": false,
+      "head_ref": "webview-hmr-phase4",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/15"
+    },
+    {
+      "number": 14,
+      "title": "Close Gate H JSONL synapse fallback",
+      "state": "merged",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-04-28T22:35:42Z",
+      "updated_at": "2026-04-29T00:25:19Z",
+      "merged_at": "2026-04-28T23:19:39Z",
+      "closed_at": "2026-04-28T23:19:39Z",
+      "days_stale": 15,
+      "labels": [],
+      "draft": false,
+      "head_ref": "gate-h-jsonl-fallback",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/14"
+    },
+    {
+      "number": 13,
+      "title": "build(deps): bump the uv group across 1 directory with 4 updates",
+      "state": "merged",
+      "actor": "dependabot[bot]",
+      "actor_type": "dependabot",
+      "created_at": "2026-04-25T18:17:27Z",
+      "updated_at": "2026-04-28T23:32:55Z",
+      "merged_at": "2026-04-28T23:32:46Z",
+      "closed_at": "2026-04-28T23:32:46Z",
+      "days_stale": 15,
+      "labels": [
+        "dependencies",
+        "python:uv"
+      ],
+      "draft": false,
+      "head_ref": "dependabot/uv/uv-08ee80f559",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/13"
+    },
+    {
+      "number": 12,
+      "title": "chore(deps): bump the uv group across 1 directory with 5 updates",
+      "state": "closed",
+      "actor": "dependabot[bot]",
+      "actor_type": "dependabot",
+      "created_at": "2026-04-25T01:48:48Z",
+      "updated_at": "2026-04-25T18:17:17Z",
+      "merged_at": null,
+      "closed_at": "2026-04-25T18:17:15Z",
+      "days_stale": 18,
+      "labels": [
+        "dependencies",
+        "python:uv"
+      ],
+      "draft": false,
+      "head_ref": "dependabot/uv/uv-f6d1eaaa88",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/12"
+    },
+    {
+      "number": 11,
+      "title": "chore(deps-dev): bump @google/gemini-cli from 0.38.2 to 0.39.1 in the npm_and_yarn group across 1 directory",
+      "state": "merged",
+      "actor": "dependabot[bot]",
+      "actor_type": "dependabot",
+      "created_at": "2026-04-24T19:31:44Z",
+      "updated_at": "2026-04-28T23:34:27Z",
+      "merged_at": "2026-04-28T23:34:21Z",
+      "closed_at": "2026-04-28T23:34:21Z",
+      "days_stale": 15,
+      "labels": [
+        "dependencies",
+        "javascript"
+      ],
+      "draft": false,
+      "head_ref": "dependabot/npm_and_yarn/npm_and_yarn-bf6f0f5742",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/11"
+    },
+    {
+      "number": 10,
+      "title": "CI: switch Python runtime to uv, add submodule diagnostics, add apply helper",
+      "state": "closed",
+      "actor": "Copilot",
+      "actor_type": "copilot",
+      "created_at": "2026-03-24T01:20:41Z",
+      "updated_at": "2026-03-24T20:20:47Z",
+      "merged_at": null,
+      "closed_at": "2026-03-24T20:20:47Z",
+      "days_stale": 50,
+      "labels": [],
+      "draft": true,
+      "head_ref": "copilot/update-ci-to-use-uv-cli",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/10"
+    },
+    {
+      "number": 9,
+      "title": "chore(deps): bump json from 2.18.1 to 2.19.2 in /extensions/chthonic-archive/.chthonic/ruby in the bundler group across 1 directory",
+      "state": "merged",
+      "actor": "dependabot[bot]",
+      "actor_type": "dependabot",
+      "created_at": "2026-03-19T12:53:37Z",
+      "updated_at": "2026-03-24T20:47:45Z",
+      "merged_at": "2026-03-24T20:47:36Z",
+      "closed_at": "2026-03-24T20:47:36Z",
+      "days_stale": 50,
+      "labels": [
+        "dependencies",
+        "ruby"
+      ],
+      "draft": false,
+      "head_ref": "dependabot/bundler/extensions/chthonic-archive/dot-chthonic/ruby/bundler-3a1337c73c",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/9"
+    },
+    {
+      "number": 8,
+      "title": "Harden chthonic-archive with safe defaults and improved layout management",
+      "state": "merged",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-02-23T01:58:40Z",
+      "updated_at": "2026-02-23T02:34:10Z",
+      "merged_at": "2026-02-23T02:27:36Z",
+      "closed_at": "2026-02-23T02:27:36Z",
+      "days_stale": 80,
+      "labels": [],
+      "draft": false,
+      "head_ref": "copilot-worktree-2026-02-21T01-36-59",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/8"
+    },
+    {
+      "number": 7,
+      "title": "Add markdown link fixer + copilotignore",
+      "state": "merged",
+      "actor": "Copilot",
+      "actor_type": "copilot",
+      "created_at": "2026-02-04T01:31:57Z",
+      "updated_at": "2026-02-04T13:27:55Z",
+      "merged_at": "2026-02-04T13:24:18Z",
+      "closed_at": "2026-02-04T13:24:18Z",
+      "days_stale": 98,
+      "labels": [],
+      "draft": false,
+      "head_ref": "copilot/find-and-replace-md-linkages",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/7"
+    },
+    {
+      "number": 5,
+      "title": "Add SSOT_Canon.md - canonical governance document",
+      "state": "closed",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-01-26T20:39:02Z",
+      "updated_at": "2026-02-04T12:36:12Z",
+      "merged_at": null,
+      "closed_at": "2026-01-29T07:13:15Z",
+      "days_stale": 98,
+      "labels": [],
+      "draft": false,
+      "head_ref": "claude/fetch-copilot-instructions-KGF55",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/5"
+    },
+    {
+      "number": 4,
+      "title": "Add Claude Code GitHub Workflow",
+      "state": "merged",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-01-05T03:47:11Z",
+      "updated_at": "2026-01-05T03:49:03Z",
+      "merged_at": "2026-01-05T03:47:23Z",
+      "closed_at": "2026-01-05T03:47:23Z",
+      "days_stale": 129,
+      "labels": [],
+      "draft": false,
+      "head_ref": "add-claude-github-actions-1767584822087",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/4"
+    },
+    {
+      "number": 3,
+      "title": "Add Claude Code GitHub Workflow",
+      "state": "merged",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-01-05T03:44:48Z",
+      "updated_at": "2026-01-05T03:48:24Z",
+      "merged_at": "2026-01-05T03:44:57Z",
+      "closed_at": "2026-01-05T03:44:57Z",
+      "days_stale": 129,
+      "labels": [],
+      "draft": false,
+      "head_ref": "add-claude-github-actions-1767584661398",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/3"
+    },
+    {
+      "number": 2,
+      "title": "Establish ANKH semantic lineage framework and correct tool governance drift",
+      "state": "closed",
+      "actor": "Copilot",
+      "actor_type": "copilot",
+      "created_at": "2025-12-28T07:21:07Z",
+      "updated_at": "2026-02-04T12:35:38Z",
+      "merged_at": null,
+      "closed_at": "2026-01-29T07:13:11Z",
+      "days_stale": 98,
+      "labels": [],
+      "draft": true,
+      "head_ref": "copilot/correct-ankh-understanding",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/2"
+    },
+    {
+      "number": 1,
+      "title": "Copilot Pro VS Code Setup Research Report",
+      "state": "closed",
+      "actor": "Copilot",
+      "actor_type": "copilot",
+      "created_at": "2025-12-01T15:26:09Z",
+      "updated_at": "2026-02-04T12:35:56Z",
+      "merged_at": null,
+      "closed_at": "2025-12-01T19:26:43Z",
+      "days_stale": 98,
+      "labels": [],
+      "draft": false,
+      "head_ref": "copilot/research-github-copilot-pro-features",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/1"
+    }
+  ],
+  "issues": [
+    {
+      "number": 6,
+      "title": "Need a robust rootDIR repo/workspace script for .md files that finds [filename](relative/path/to/filename)- even if they have changed placement, that finds & replaces broken .md linkages.",
+      "state": "closed",
+      "actor": "poisontr33s",
+      "actor_type": "human",
+      "created_at": "2026-02-04T01:31:52Z",
+      "updated_at": "2026-02-04T01:36:47Z",
+      "closed_at": "2026-02-04T01:36:47Z",
+      "days_stale": 99,
+      "labels": [
+        "root dir/workspace enhancement"
+      ],
+      "url": "https://github.com/poisontr33s/chthonic-archive/issues/6"
+    }
+  ],
+  "branches": [
+    {
+      "name": "copilot/update-ci-to-use-uv-cli",
+      "sha": "eeda1e6123ce9570b86de0573dc06a65e32a3c69",
+      "actor_type": "copilot",
+      "protected": false,
+      "is_default": false
+    },
+    {
+      "name": "feature/ssot-section-0.03-chromatic-pathology",
+      "sha": "c45e6c9e347f1fca0363e1ad8bb7ff39412ccf6a",
+      "actor_type": "human",
+      "protected": false,
+      "is_default": false
+    },
+    {
+      "name": "main",
+      "sha": "150c7b100fc632ac6c5238a55adc6a24ad7ec8fa",
+      "actor_type": "human",
+      "protected": false,
+      "is_default": true
+    }
+  ]
+}
