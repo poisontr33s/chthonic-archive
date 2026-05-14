@@ -17,7 +17,7 @@
 
 [CmdletBinding()]
 param(
-    [ValidateSet('all', 'rot', 'dep', 'activity', 'method')]
+    [ValidateSet('all', 'rot', 'dep', 'activity', 'method', 'route')]
     [string]$Lens = 'all'
 )
 
@@ -40,6 +40,10 @@ try {
         'method' {
             Write-Host "[refresh-lenses] method_index only"
             uv run scripts/method_index.py
+        }
+        'route' {
+            Write-Host "[refresh-lenses] route_index only"
+            uv run scripts/route_index.py
         }
         default {
             Write-Host "[refresh-lenses] firing all lenses via ci/run.ts orchestrator"

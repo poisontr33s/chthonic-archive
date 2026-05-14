@@ -1,0 +1,595 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-14T05:44:07.031321+00:00",
+  "routes": [
+    {
+      "method": "rust-constraint-bump",
+      "noise_class": "dependabot/rust-direct-pinned",
+      "suggested_invocation": "edit Cargo.toml dependency version, then cargo update",
+      "frequency_prior": 14,
+      "auto_applicable": false,
+      "items": [
+        {
+          "kind": "dependabot",
+          "package": "gix",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.83.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 55
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.83.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 54
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.83.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 52
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.83.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 51
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix-fs",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.21.1",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 69
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix-pack",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.69.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 53
+        },
+        {
+          "kind": "dependabot",
+          "package": "openssl",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.10.79",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 56
+        },
+        {
+          "kind": "dependabot",
+          "package": "quinn-proto",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.11.14",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 11
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.103.13",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 34
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "high",
+          "fixed_in": "0.103.13",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 33
+        },
+        {
+          "kind": "dependabot",
+          "package": "curve25519-dalek",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "4.1.3",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 6
+        },
+        {
+          "kind": "dependabot",
+          "package": "rand",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.8.6",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 27
+        },
+        {
+          "kind": "dependabot",
+          "package": "rand",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.9.3",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 26
+        },
+        {
+          "kind": "dependabot",
+          "package": "rand",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.9.3",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 25
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.103.12",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 24
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.103.12",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 23
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.103.12",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 22
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": "0.103.12",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 21
+        },
+        {
+          "kind": "dependabot",
+          "package": "atty",
+          "ecosystem": "rust",
+          "severity": "low",
+          "fixed_in": null,
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 4
+        },
+        {
+          "kind": "dependabot",
+          "package": "ed25519-dalek",
+          "ecosystem": "rust",
+          "severity": "medium",
+          "fixed_in": "2.0.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 5
+        },
+        {
+          "kind": "dependabot",
+          "package": "gix-transport",
+          "ecosystem": "rust",
+          "severity": "medium",
+          "fixed_in": "0.56.0",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 50
+        },
+        {
+          "kind": "dependabot",
+          "package": "openssl",
+          "ecosystem": "rust",
+          "severity": "medium",
+          "fixed_in": "0.10.79",
+          "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+          "alert_number": 70
+        },
+        {
+          "kind": "dependabot",
+          "package": "rustls-webpki",
+          "ecosystem": "rust",
+          "severity": "medium",
+          "fixed_in": "0.103.10",
+          "manifest_path": "tools/ankh-forge/Cargo.lock",
+          "alert_number": 18
+        }
+      ]
+    },
+    {
+      "method": "anchor-correction",
+      "noise_class": "rot/L3-anchor",
+      "suggested_invocation": "fix link path or anchor (e.g., `../` -> `../../`)",
+      "frequency_prior": 36,
+      "auto_applicable": false,
+      "items": [
+        {
+          "kind": "rot",
+          "source": ".github/instructions/agent-priority-protocol.md",
+          "line": 4,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6812"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/agent-priority-protocol.md",
+          "line": 10,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6812"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/asc-entity-generation.reference.md",
+          "line": 47,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L2443"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/behavioral-scenarios.reference.md",
+          "line": 17,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L3789"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/dcrp-operational-guide.md",
+          "line": 3,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6643"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/dcrp-operational-guide.md",
+          "line": 9,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6643"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/dev-conventions.reference.md",
+          "line": 17,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6634"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/magistra-logic.reference.md",
+          "line": 17,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L4780"
+        },
+        {
+          "kind": "rot",
+          "source": ".github/instructions/magistra-logic.reference.md",
+          "line": 18,
+          "code": "ROT-007",
+          "raw_target": "../copilot-instructions.md#L6500"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/architecture/SESSION_CORPUS.md",
+          "line": 304,
+          "code": "ROT-006",
+          "raw_target": "VAMPIRISM_SATELLITES.md#nightly-escapades"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+          "line": 639,
+          "code": "ROT-002",
+          "raw_target": "../../.claude/skills/sfa/SKILL.md"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md",
+          "line": 110,
+          "code": "ROT-006",
+          "raw_target": "./ANKH_FOUNDATIONAL_AXIOMS.md#dynamic-altitude-focal-point-dafp--the-alchemists-scope"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md",
+          "line": 123,
+          "code": "ROT-006",
+          "raw_target": "./ANKH_FOUNDATIONAL_AXIOMS.md#prism--prismatic-reflection-illuminating-spectral-metamorphosis"
+        },
+        {
+          "kind": "rot",
+          "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
+          "line": 560,
+          "code": "ROT-006",
+          "raw_target": "../../.github/copilot-instructions.md#section-4512"
+        },
+        {
+          "kind": "rot",
+          "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
+          "line": 561,
+          "code": "ROT-006",
+          "raw_target": "../../.github/copilot-instructions.md#section-4511"
+        }
+      ]
+    },
+    {
+      "method": "stub-creation-or-tombstone",
+      "noise_class": "rot/ROT-001-phantom-target",
+      "suggested_invocation": "create new file with `lifecycle: stub` frontmatter",
+      "frequency_prior": 1,
+      "auto_applicable": false,
+      "items": [
+        {
+          "kind": "rot",
+          "source": ".github/agents/IronMaiden.agent.md",
+          "line": 19,
+          "code": "ROT-001",
+          "raw_target": "../../codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/reference/HANDOFF0001.md",
+          "line": 44,
+          "code": "ROT-001",
+          "raw_target": "instructions/xyz.instructions.md"
+        },
+        {
+          "kind": "rot",
+          "source": "claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md",
+          "line": 48,
+          "code": "ROT-001",
+          "raw_target": "../../extensions/chthonic-archive/package.json"
+        },
+        {
+          "kind": "rot",
+          "source": "claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md",
+          "line": 57,
+          "code": "ROT-001",
+          "raw_target": "../../.vscode/settings.json"
+        },
+        {
+          "kind": "rot",
+          "source": "codex/codex-session-logs/archive/MILF-Core-META.md",
+          "line": 120,
+          "code": "ROT-001",
+          "raw_target": "The-Iron-Maiden-(SSOT"
+        },
+        {
+          "kind": "rot",
+          "source": "codex/codex-session-logs/archive/MILF-Core-META.md",
+          "line": 121,
+          "code": "ROT-001",
+          "raw_target": "The-Iron-Maiden-(SSOT"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/archive/reports/TRUE_MISSING_FILES_REVIEW.md",
+          "line": 229,
+          "code": "ROT-001",
+          "raw_target": "docs/FILE.md"
+        },
+        {
+          "kind": "rot",
+          "source": "docs/archive/sessions/DEVELOPMENT_STATE.md",
+          "line": 350,
+          "code": "ROT-001",
+          "raw_target": "../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md"
+        },
+        {
+          "kind": "rot",
+          "source": "dumpster-dive/from-github/macro-prompt-world/even-more-disparate-extranerrous-md-documentation/in-a-possible-future-when-other-stuff-is-done/README.md",
+          "line": 130,
+          "code": "ROT-001",
+          "raw_target": "../frameworks/nextjs.md"
+        }
+      ]
+    },
+    {
+      "method": "python-constraint-bump",
+      "noise_class": "dependabot/pip-direct-pinned",
+      "suggested_invocation": "edit pyproject.toml dependency cap, then uv lock",
+      "frequency_prior": 21,
+      "auto_applicable": false,
+      "items": [
+        {
+          "kind": "dependabot",
+          "package": "gradio",
+          "ecosystem": "pip",
+          "severity": "high",
+          "fixed_in": "6.6.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 62
+        },
+        {
+          "kind": "dependabot",
+          "package": "gradio",
+          "ecosystem": "pip",
+          "severity": "high",
+          "fixed_in": "6.7.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 60
+        },
+        {
+          "kind": "dependabot",
+          "package": "gradio",
+          "ecosystem": "pip",
+          "severity": "low",
+          "fixed_in": "6.6.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 59
+        },
+        {
+          "kind": "dependabot",
+          "package": "flask-cors",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "6.0.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 49
+        },
+        {
+          "kind": "dependabot",
+          "package": "flask-cors",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "6.0.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 48
+        },
+        {
+          "kind": "dependabot",
+          "package": "flask-cors",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "6.0.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 47
+        },
+        {
+          "kind": "dependabot",
+          "package": "gradio",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "6.6.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 61
+        }
+      ]
+    },
+    {
+      "method": "uv-lock-upgrade",
+      "noise_class": "dependabot/pip-transitive",
+      "suggested_invocation": "uv lock --upgrade-package <pkg>",
+      "frequency_prior": 7,
+      "auto_applicable": true,
+      "items": [
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "high",
+          "fixed_in": "12.2.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 67
+        },
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "high",
+          "fixed_in": "12.2.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 63
+        },
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "high",
+          "fixed_in": "12.1.1",
+          "manifest_path": "uv.lock",
+          "alert_number": 58
+        },
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "12.2.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 66
+        },
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "12.2.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 65
+        },
+        {
+          "kind": "dependabot",
+          "package": "pillow",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": "12.2.0",
+          "manifest_path": "uv.lock",
+          "alert_number": 64
+        },
+        {
+          "kind": "dependabot",
+          "package": "diskcache",
+          "ecosystem": "pip",
+          "severity": "medium",
+          "fixed_in": null,
+          "manifest_path": "uv.lock",
+          "alert_number": 37
+        }
+      ]
+    },
+    {
+      "method": "npm-constraint-bump",
+      "noise_class": "dependabot/npm-direct-pinned",
+      "suggested_invocation": "edit package.json dependency version, then bun update",
+      "frequency_prior": 9,
+      "auto_applicable": false,
+      "items": [
+        {
+          "kind": "dependabot",
+          "package": "postcss",
+          "ecosystem": "npm",
+          "severity": "medium",
+          "fixed_in": "8.5.10",
+          "manifest_path": "mas_mcp/frontend/package.json",
+          "alert_number": 36
+        },
+        {
+          "kind": "dependabot",
+          "package": "postcss",
+          "ecosystem": "npm",
+          "severity": "medium",
+          "fixed_in": "8.4.31",
+          "manifest_path": "mas_mcp/frontend/package.json",
+          "alert_number": 9
+        },
+        {
+          "kind": "dependabot",
+          "package": "postcss",
+          "ecosystem": "npm",
+          "severity": "medium",
+          "fixed_in": "7.0.36",
+          "manifest_path": "mas_mcp/frontend/package.json",
+          "alert_number": 8
+        }
+      ]
+    }
+  ],
+  "applied": [],
+  "summary": {
+    "route_count": 6,
+    "items_routed": 64,
+    "auto_applicable_count": 1,
+    "applied_count": 0
+  }
+}

@@ -24,6 +24,7 @@
  *   - dependabot_index.py        (CVE alerts; needs gh auth)
  *   - github_activity_index.py   (PRs/Issues/Branches by actor type; needs gh auth)
  *   - method_index.py            (meta-lens: methods that cleared prior lenses)
+ *   - route_index.py             (sub-lens: compound router; runs last)
  *
  * gh-dependent lenses (dependabot_index, github_activity_index) are
  * skipped — not failed — when gh auth is missing, so a missing token
@@ -70,6 +71,16 @@ const LENSES: Lens[] = [
     // git is invariant in every environment this CI runs in; if it's
     // absent something is genuinely wrong, so fail hard rather than skip.
     skipOnMissing: false,
+  },
+  {
+    name: "route-index",
+    script: "scripts/route_index.py",
+    // Sub-lens — consumes other lens manifests. No external deps, but
+    // upstream manifests may be missing if gh-dependent lenses skipped.
+    // The script handles missing inputs gracefully and emits an empty
+    // routing manifest rather than failing.
+    needs: [],
+    skipOnMissing: true,
   },
 ];
 
