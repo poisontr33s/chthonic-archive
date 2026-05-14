@@ -96,7 +96,7 @@
     "git.smartCommitChanges": "tracked",
     "git.suggestSmartCommit": false,
     "git.pullTags": false,
-    "git.postCommitCommand": "none",
+    "git.postCommitCommand": "sync",
     "git.commandsToLog": [],
     "git.blame.editorDecoration.enabled": false,
     "git.blame.statusBarItem.enabled": false,
