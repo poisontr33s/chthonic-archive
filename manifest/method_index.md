@@ -1,6 +1,6 @@
 # Method index digest
 
-Generated: 2026-05-14T04:31:13.489895+00:00
+Generated: 2026-05-14T05:44:06.770661+00:00
 Window: last 60 days (since 2026-03-15)
 Source: `manifest/method_index.json` (regenerate via `uv run scripts/method_index.py`)
 
@@ -9,34 +9,34 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
 
 ## Summary
 
-- Commits scanned: 763
-- Methodful commits: 95
-- Unclassified: 668
+- Commits scanned: 771
+- Methodful commits: 100
+- Unclassified: 671
 - Distinct method classes seen: 9
 
 ### By method (frequency)
 
-- `anchor-correction`: 33
+- `anchor-correction`: 36
 - `python-constraint-bump`: 21
 - `rust-constraint-bump`: 14
 - `npm-constraint-bump`: 9
 - `uv-lock-upgrade`: 7
+- `tombstone-mark`: 6
 - `path-rename-followup`: 5
-- `tombstone-mark`: 4
 - `stub-creation`: 1
 - `cargo-update`: 1
 
 ## Methods (priority: most-used first)
 
-### `anchor-correction` — used 33x (conf 0.64)
+### `anchor-correction` — used 36x (conf 0.64)
 
 - Noise class: `rot/L3-anchor`
-- Last used: 2026-05-13
+- Last used: 2026-05-14
 - Invocation: `fix link path or anchor (e.g., `../` -> `../../`)`
 - Examples:
-  - `145254a9` — feat(rot-index): L4 LINEAGE detector — ROOT-001 mass-delete ancestry
-  - `770829a2` — fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache
-  - `f8c05ab9` — feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale
+  - `29c6a752` — fix(rot): triage 3 clusters via method-index routing (-10 entries, 34 -> 24)
+  - `87913bc5` — docs(session): May 14 PM continuation — 4-lens stack + rot triage + SSOT canon
+  - `cd2bc1fd` — fix(rot): correct SSOT mis-tombstone — introduce lifecycle: ssot-canon
 
 ### `python-constraint-bump` — used 21x (conf 0.77)
 
@@ -78,6 +78,16 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
   - `685a4311` — Refactor code structure and remove redundant sections for improved readability and maintainability
   - `b7746613` — feat(tools): add tool validation script and update toolchain reports
 
+### `tombstone-mark` — used 6x (conf 1.0)
+
+- Noise class: `rot/L1-surface-cluster`
+- Last used: 2026-05-14
+- Invocation: `add `lifecycle: tombstone` to file frontmatter`
+- Examples:
+  - `a8f9d6f2` — fix(rot): true SSOT canon — .github/copilot-instructions.archive.md
+  - `8bf359ee` — fix(rot): triage cluster — 3 tombstones + anchor-correction + ROT-008 suppression
+  - `97096a6a` — fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report
+
 ### `path-rename-followup` — used 5x (conf 0.8)
 
 - Noise class: `rot/L4-lineage`
@@ -87,16 +97,6 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
   - `af3cd781` — tune(pathfinder): AMBIG severity = warning, not error
   - `ab572948` — fix(pathfinder): apply link-rot auto-fixes across 28 markdown files
   - `dc42cac8` — docs: consolidate documentation sprawl — 80 files reorganized
-
-### `tombstone-mark` — used 4x (conf 1.0)
-
-- Noise class: `rot/L1-surface-cluster`
-- Last used: 2026-05-13
-- Invocation: `add `lifecycle: tombstone` to file frontmatter`
-- Examples:
-  - `97096a6a` — fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report
-  - `5c60170c` — feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment
-  - `077302b2` — docs(session): landing page + redux addendum (hour-to-4s postmortem)
 
 ### `stub-creation` — used 1x (conf 1.0)
 

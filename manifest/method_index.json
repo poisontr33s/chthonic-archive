@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T04:31:13.489895+00:00",
-  "since": "2026-03-15T04:30:38.706427+00:00",
+  "generated_at": "2026-05-14T05:44:06.770661+00:00",
+  "since": "2026-03-15T05:43:32.007539+00:00",
   "since_days": 60,
   "summary": {
-    "total_commits_scanned": 763,
-    "total_methodful_commits": 95,
-    "unclassified_commits": 668,
+    "total_commits_scanned": 771,
+    "total_methodful_commits": 100,
+    "unclassified_commits": 671,
     "by_method": {
+      "anchor-correction": 36,
+      "tombstone-mark": 6,
       "uv-lock-upgrade": 7,
-      "anchor-correction": 33,
       "stub-creation": 1,
-      "tombstone-mark": 4,
       "path-rename-followup": 5,
       "python-constraint-bump": 21,
       "npm-constraint-bump": 9,
@@ -23,23 +23,23 @@
   "methods": [
     {
       "name": "anchor-correction",
-      "frequency": 33,
+      "frequency": 36,
       "confidence_avg": 0.64,
-      "last_used_at": "2026-05-13T12:34:03+02:00",
+      "last_used_at": "2026-05-14T07:36:09+02:00",
       "noise_class": "rot/L3-anchor",
       "suggested_invocation": "fix link path or anchor (e.g., `../` -> `../../`)",
       "example_commits": [
         {
-          "sha": "145254a9",
-          "subject": "feat(rot-index): L4 LINEAGE detector — ROOT-001 mass-delete ancestry"
+          "sha": "29c6a752",
+          "subject": "fix(rot): triage 3 clusters via method-index routing (-10 entries, 34 -> 24)"
         },
         {
-          "sha": "770829a2",
-          "subject": "fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache"
+          "sha": "87913bc5",
+          "subject": "docs(session): May 14 PM continuation — 4-lens stack + rot triage + SSOT canon"
         },
         {
-          "sha": "f8c05ab9",
-          "subject": "feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale"
+          "sha": "cd2bc1fd",
+          "subject": "fix(rot): correct SSOT mis-tombstone — introduce lifecycle: ssot-canon"
         }
       ]
     },
@@ -132,6 +132,28 @@
       ]
     },
     {
+      "name": "tombstone-mark",
+      "frequency": 6,
+      "confidence_avg": 1.0,
+      "last_used_at": "2026-05-14T06:55:40+02:00",
+      "noise_class": "rot/L1-surface-cluster",
+      "suggested_invocation": "add `lifecycle: tombstone` to file frontmatter",
+      "example_commits": [
+        {
+          "sha": "a8f9d6f2",
+          "subject": "fix(rot): true SSOT canon — .github/copilot-instructions.archive.md"
+        },
+        {
+          "sha": "8bf359ee",
+          "subject": "fix(rot): triage cluster — 3 tombstones + anchor-correction + ROT-008 suppression"
+        },
+        {
+          "sha": "97096a6a",
+          "subject": "fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report"
+        }
+      ]
+    },
+    {
       "name": "path-rename-followup",
       "frequency": 5,
       "confidence_avg": 0.8,
@@ -150,28 +172,6 @@
         {
           "sha": "dc42cac8",
           "subject": "docs: consolidate documentation sprawl — 80 files reorganized"
-        }
-      ]
-    },
-    {
-      "name": "tombstone-mark",
-      "frequency": 4,
-      "confidence_avg": 1.0,
-      "last_used_at": "2026-05-13T09:19:06+02:00",
-      "noise_class": "rot/L1-surface-cluster",
-      "suggested_invocation": "add `lifecycle: tombstone` to file frontmatter",
-      "example_commits": [
-        {
-          "sha": "97096a6a",
-          "subject": "fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report"
-        },
-        {
-          "sha": "5c60170c",
-          "subject": "feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment"
-        },
-        {
-          "sha": "077302b2",
-          "subject": "docs(session): landing page + redux addendum (hour-to-4s postmortem)"
         }
       ]
     },

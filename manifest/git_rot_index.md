@@ -1,6 +1,6 @@
 # Git rot index digest
 
-Generated: 2026-05-14T05:35:50.924394+00:00
+Generated: 2026-05-14T05:43:27.941069+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
