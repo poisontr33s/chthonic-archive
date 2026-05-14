@@ -1,4 +1,27 @@
-﻿# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
+﻿---
+lifecycle: ssot-canon
+ssot_canon_declared_at: 2026-05-14
+ssot_canon_reason: |
+  THE macro-prompt-world / unabridged Codex-Brahmanica-Perfectus —
+  the ~10K-line frozen monolithic labyrinthe from which every active
+  instruction file in the chthonic-archive is derived. Renamed with
+  .archive.md suffix purely to prevent GitHub/Copilot/Codex/Claude- and agents from auto-loading it into context windows; the slim active reference is
+  the sibling .github/copilot-instructions.md.
+
+  NOT dead — this is the file-first-authority SSOT, frozen in form,
+  alive as the canon source ("the only original, unabridged heritage
+  for everything else"). The two variant copies
+  (claude/mailbox/copilot-instructions.archive.md and
+  codex/codex-session-logs/archive/copilot-instructions-copy.archived.md)
+  drifted from this canon over time and are tombstoned as rot, not
+  preserved as canon.
+
+  Excluded from active rot scanning to prevent rot-like states on the
+  SSOT itself (downstream files inherit from here; scanning broken refs
+  here would invert the dependency direction).
+---
+
+# GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
 
 # REFER TO [copilot-instructions.md (.github)](copilot-instructions.md) FOR SHORT-TERM, ACTIVE CODING INSTRUCTIONS. THIS FILE SERVES AS AN ARCHIVAL REFERENCE FOR THE ORIGINAL, UNABRIDGED CODEX BRAHMANICA PERFECTUS.
 

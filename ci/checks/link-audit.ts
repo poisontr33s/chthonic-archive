@@ -63,13 +63,15 @@ function isTombstone(rel: string): boolean {
     const head = readFileSync(abs, { encoding: "utf8" }).split("\n").slice(0, 30);
     let inFrontmatter = false;
     for (const line of head) {
-      if (line.trim() === "---") {
+      // Strip UTF-8 BOM if present (some files are saved with BOM by editors).
+      const clean = line.replace(/^﻿/, "");
+      if (clean.trim() === "---") {
         if (inFrontmatter) return false;
         inFrontmatter = true;
         continue;
       }
       if (inFrontmatter) {
-        const m = line.match(/^\s*lifecycle\s*:\s*([\w-]+)/);
+        const m = clean.match(/^\s*lifecycle\s*:\s*([\w-]+)/);
         if (m && EXCLUDED_LIFECYCLES.has(m[1])) {
           return true;
         }

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-14T04:49:22.100320+00:00",
+  "generated_at": "2026-05-14T04:55:25.630916+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -40,8 +40,8 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1117,
-    "tombstone_files_excluded": 10,
+    "tracked_md_files": 1116,
+    "tombstone_files_excluded": 11,
     "rot_entries": 34,
     "categories": {
       "broken_no_known_target": 9,
@@ -61,9 +61,10 @@
     },
     "rename_history_size": 757,
     "cluster_count": 0,
-    "false_positives_suppressed": 87
+    "false_positives_suppressed": 84
   },
   "tombstones": [
+    ".github/copilot-instructions.archive.md",
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
     "claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md",
     "claude-codex-gemini/triadic-session-context/SSOTI_FIED_SESSION_LOG.md",
@@ -109,11 +110,11 @@
       "rot_count": 4
     },
     {
-      "source": ".github/copilot-instructions.archive.md",
+      "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
       "rot_count": 3
     },
     {
-      "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
+      "source": "docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md",
       "rot_count": 3
     }
   ],

@@ -1,11 +1,11 @@
 # Git rot index digest
 
-Generated: 2026-05-14T04:49:22.100320+00:00
+Generated: 2026-05-14T04:55:25.630916+00:00
 Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_index.py`)
 
 ## Summary
 
-- Tracked markdown files: 1117
+- Tracked markdown files: 1116
 - Rot entries: 34
 - Historical renames in repo: 757
 
@@ -44,8 +44,8 @@ Source: `manifest/git_rot_index.json` (regenerate via `uv run scripts/git_rot_in
 - `dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md` — 4 entries
 - `dumpster-dive/forge/quench/README.md` — 4 entries
 - `dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md` — 4 entries
-- `.github/copilot-instructions.archive.md` — 3 entries
 - `docs/design/SFS_WPTG_ITERATION_PLAN.md` — 3 entries
+- `docs/protocols/TOOL_CONSOLIDATION_ROADMAP.md` — 3 entries
 
 ## Top 30 entries by priority
 

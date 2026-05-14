@@ -1,16 +1,13 @@
 ---
-lifecycle: ssot-canon
-ssot_canon_declared_at: 2026-05-14
-ssot_canon_reason: |
-  Macro-prompt-world / unabridged Codex-Brahmanica-Perfectus. The
-  ~10,000-line creative SSOT from which every active instruction file
-  is derived. Renamed with `.archive.md` suffix so GitHub/Copilot/agents
-  do not auto-load it into context windows (the slim active reference
-  is the sibling copilot-instructions.md). NOT dead — this is the pool
-  of everything else. Frozen in form, alive as canon source.
-  Excluded from active rot scanning to prevent rot-like states on the
-  SSOT itself (downstream files inherit from here; scanning broken
-  refs here would invert the dependency direction).
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-14
+tombstone_reason: |
+  Variant copy of the Codex-Brahmanica-Perfectus that drifted from the
+  TRUE SSOT at .github/copilot-instructions.archive.md. Contains content
+  not reconciled back to the chthonic-archive canon, so it bulks up rot
+  rather than preserving it. Tombstoned to exclude from active rot
+  scanning while remaining in repo for historical reference. For
+  canon-source content consult the .github file instead.
 ---
 
 # GLOBAL OVERRIDE (ACTIVE): For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.

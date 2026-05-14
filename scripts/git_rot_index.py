@@ -178,13 +178,15 @@ def is_tombstone(path: Path) -> bool:
         return False
     in_fm = False
     for line in head:
-        if line.strip() == "---":
+        # Strip UTF-8 BOM if present (some files are saved with BOM by editors).
+        clean = line.lstrip("﻿").strip()
+        if clean == "---":
             if in_fm:
                 return False
             in_fm = True
             continue
         if in_fm:
-            m = re.match(r"^\s*lifecycle\s*:\s*([\w-]+)", line)
+            m = re.match(r"^\s*lifecycle\s*:\s*([\w-]+)", line.lstrip("﻿"))
             if m and m.group(1) in EXCLUDED_LIFECYCLES:
                 return True
     return False
