@@ -199,3 +199,115 @@ rungs are the natural extensions.
 You don't need to remember any of this to re-enter. Just open this file.
 
 The adventure continues.
+
+---
+
+# Continuation — 2026-05-14 (same session, next day)
+
+Written as proactive synthesis before auto-compact fires. Honest 90/10
+postmortem so the next session inherits the lessons, not the noise.
+
+## What actually worked (the durable 10%)
+
+- L3 ANCHOR detectors landed in `git_rot_index.py` (ROT-006 anchor_missing,
+  ROT-007 line_anchor_stale). Surfaced 28 new entries we couldn't see before
+  — mostly stale line anchors into `.github/copilot-instructions.md` which
+  shrank from ~6000 lines to 83. GFM duplicate-suffix handling + unified
+  `target_structure_cache` shipped as correctness banking.
+- L4 LINEAGE detector (ROOT-001 mass-rename ancestry) landed in
+  `145254a9`. Single sentinel-stream parser, cluster-grouping driver
+  groups L1 ROT-001 by parent dir, single `git log --diff-filter=D`
+  subprocess per cluster. Completes the Gitological Ladder L1..L4.
+- Dependabot lens (`scripts/dependabot_index.py`) shipped. 68 alerts
+  structurized, 94% fixable. Same data-plane / render-plane envelope as
+  `git_rot_index`. Compound cross-lens query was demonstrated inline (zero
+  intersection — proves the lenses are orthogonal, complementary not
+  redundant).
+- Lens-refresh wiring: registered in `ci/run.ts` as `scope:always`,
+  `scripts/refresh-lenses.ps1` as one-stop orchestrator.
+- LFS recovery via Codex's filter-repo: 64 unpushed local commits
+  (including 655MB of `.safetensors`) made it to origin/main. Backup
+  refs preserved as safety net. Claudine adapter POC moved to satellite.
+- Auto-push post-commit hook: tool-agnostic fix for the
+  `git.postCommitCommand` flow problem. Every commit (VS Code, Copilot,
+  terminal) now pushes automatically. Cloud-agent dispatch stripped from
+  the hook explicitly (no SWE-bot coupling — feedback memory saved).
+
+## What was noise (the 90%)
+
+Honest naming so this doesn't repeat:
+
+- Hours of chasing `git.postCommitCommand` workspace setting variations
+  in VS Code Insiders. Setting wouldn't fire reliably from the Copilot
+  commit path. Multiple attempts at progressively more aggressive
+  settings (`postCommitCommand:"sync"`, then also `confirmSync:false`,
+  then cold restart) all in the same mechanism class. Should have
+  pivoted to git hook after attempt 2; instead pivoted only after
+  attempt 3 + user frustration. Lesson saved as
+  `feedback_pivot_mechanism_after_2_failures.md`.
+- Premature alarm about "lost content" during the LFS-recovery
+  reconciliation. Read system-reminder snippets as on-disk state when
+  they were intermediate/stale snapshots. Codex's filter-repo had
+  actually preserved everything; my alarm was wrong. Should have
+  verified against disk before raising. Lesson encoded in
+  `feedback_history_rewrite_needs_backup_refs.md`.
+- Silently preserving the Pentea cloud-dispatch hook when assembling
+  the combined post-commit hook. "It was already there" is not consent;
+  should have surfaced the existing behavior and asked. Lesson saved as
+  `feedback_no_commit_cloud_coupling.md`.
+- The hour-long indexer hang from yesterday (regex catastrophic
+  backtracking on adversarial input). Already encoded in the original
+  postmortem section above.
+
+## Where the lane drifted
+
+Original lane intent (2026-05-13 morning):
+- Build orientation infrastructure (rot index → lens pattern → ladder)
+- Apply lens to dependabot signal
+- Complete L1..L4 detectors
+
+Drift (2026-05-13 PM → 2026-05-14 AM):
+- LFS push block surfaced → recovery (Codex did right thing)
+- VS Code SCM panel sluggishness → diagnosed correctly as the 655MB diff
+- "VS Code commit flow broken" investigation → spent hours in wrong
+  mechanism class (settings) before pivoting to git hook
+- Pentea cloud-coupling cleanup → tech debt, removed
+
+The orientation lane completed successfully. The plumbing lane (SCM
+flow + LFS + commit hook) consumed disproportionate time. The pivot
+from "fix the settings" to "install a hook" was the breakthrough; that
+should have happened earlier.
+
+## Anchor commits (current SHAs)
+
+| Commit | What landed |
+|---|---|
+| `145254a9` | L4 LINEAGE detector (ROOT-001) — Gitological Ladder complete |
+| `9d9db598` | Lens automation in ci/run.ts + scripts/refresh-lenses.ps1 |
+| `dependabot_index commit` | Dependabot lens shipped |
+| `22c1d774` | Combined post-commit hook (later stripped) |
+| `eeeb6d11` | Cloud-coupling stripped; post-commit is push-only |
+
+## What's still actually open
+
+- Backlog: 47 open dependabot alerts (lens at `manifest/dependabot_index.md`)
+  — user-driven triage, no urgency.
+- Backlog: per-file triage of remaining ROT-001/002/008 entries in
+  `manifest/git_rot_index.md` — manual judgment, no urgency.
+- Optional next: GitHub Actions workflow for cloud-side scheduled lens
+  refresh — deferred, needs HODL-aware decision.
+
+## Memory rules saved this session (cross-session inheritance)
+
+- `feedback_lens_pattern.md` — Gitological Noise As Structured Data
+- `feedback_no_commit_cloud_coupling.md` — commits stay local-scoped
+- `feedback_proactive_session_synthesis.md` — pre-compact synthesis hygiene
+- `feedback_pivot_mechanism_after_2_failures.md` — two failures = pivot, not third try
+- `feedback_history_rewrite_needs_backup_refs.md` — backups before bold ops
+
+Future-me reads MEMORY.md first when re-entering. These five rules
+encode the durable behavior from this session arc.
+
+The lane has converged for real now. Next session opens this file,
+checks for new dependabot or rot entries, and decides where the user
+wants to spend energy.
