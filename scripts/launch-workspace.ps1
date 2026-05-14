@@ -22,6 +22,7 @@ $ErrorActionPreference = 'Stop'
 
 $CodeExe = "$env:LOCALAPPDATA\Programs\Microsoft VS Code Insiders\Code - Insiders.exe"
 $Workspace = (Join-Path $PSScriptRoot '..\chthonic-archive.code-workspace' | Resolve-Path).Path
+$ApiPoolScript = Join-Path $PSScriptRoot 'api_pool.ps1'
 
 if (-not (Test-Path $CodeExe)) {
     Write-Error "Code - Insiders.exe not found at expected path: $CodeExe"
@@ -42,6 +43,10 @@ $Flags = @(
     '--enable-gpu-rasterization'
     '--enable-native-gpu-memory-buffers'
 )
+
+if (Test-Path -LiteralPath $ApiPoolScript) {
+    & $ApiPoolScript -Load -Quiet
+}
 
 Write-Host "Launching VS Code Insiders with chthonic-archive workspace ..."
 Write-Host "  Exe:       $CodeExe"

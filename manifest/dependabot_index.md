@@ -1,6 +1,6 @@
 # Dependabot index digest
 
-Generated: 2026-05-13T10:54:51.430086+00:00
+Generated: 2026-05-14T04:11:36.673636+00:00
 Repo: `poisontr33s/chthonic-archive`
 Source: `manifest/dependabot_index.json` (regenerate via `uv run scripts/dependabot_index.py`)
 
