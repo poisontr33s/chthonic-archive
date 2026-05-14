@@ -311,3 +311,85 @@ encode the durable behavior from this session arc.
 The lane has converged for real now. Next session opens this file,
 checks for new dependabot or rot entries, and decides where the user
 wants to spend energy.
+
+---
+
+# Continuation — 2026-05-14 PM (method_index meta-lens + rot triage + SSOT canon)
+
+Written in place; no new SESSION_2026_05_14_*.md file. The substrate
+gets fewer files, more compound — per the no-more-layers rule.
+
+## What landed (4 commits, all pushed to origin)
+
+| Commit | What landed |
+|---|---|
+| `3a6a1350` | activity + method meta-lens — full Gitological 4-lens stack |
+| `8bf359ee` | rot triage — 3 tombstones + anchor-correction + ROT-008 suppression |
+| `cd2bc1fd` | (later corrected) introduced lifecycle: ssot-canon |
+| `a8f9d6f2` | true SSOT canon is .github/copilot-instructions.archive.md; BOM tolerance |
+| `9770db8c` | propagate EXCLUDED_LIFECYCLES into the canonical scripts/link_audit.py |
+
+## The 4-lens stack (final shape)
+
+- `git_rot_index` — link rot, L1..L4 depth
+- `dependabot_index` — CVE alerts
+- `github_activity_index` — PRs/Issues/Branches by actor type
+- `method_index` — meta-lens; observes methods that cleared prior lenses
+
+Cross-lens compound query result: 47/47 open dependabot alerts route to a
+known method-class. No noise without a method.
+
+Method catalog (11 entries) maps each noise class to its working
+invocation: `uv-lock-upgrade`, `python-constraint-bump`, `cargo-update`,
+`rust-constraint-bump`, `bun-update`, `npm-constraint-bump`,
+`tombstone-mark`, `stub-creation`, `anchor-correction`,
+`path-rename-followup`, `code-fence-fix`.
+
+## Rot drop: 66 → 34 (−48%)
+
+- 11 cleared by 2 archive tombstones (`copilot-instructions-copy.archived.md`
+  in codex, plus initial-but-corrected mailbox file)
+- 6 cleared by FAF Phase 3 handoff tombstone (work is shipped:
+  `extensions/chthonic-archive/src/activation/` holds ~1500 lines extracted)
+- 5 cleared by anchor-correction on `reference-appendix.reference.md`
+  (dropped stale #L6991..#L7331 anchors — target file shrank ~7000 → 56 lines)
+- 10 cleared by default-suppressing ROT-008 placeholder_literal (universal
+  `[label](path)` doc syntax, not real rot)
+
+## SSOT canon distinction (this is the load-bearing taxonomy update)
+
+Three archive-suffixed files needed different lifecycle markers:
+
+| File | Lifecycle | Reason |
+|---|---|---|
+| `.github/copilot-instructions.archive.md` | `ssot-canon` | THE 10K-line frozen macro-prompt-world — pool of everything else |
+| `claude/mailbox/copilot-instructions.archive.md` | `tombstone` | Drifted variant, bulks rot |
+| `codex/codex-session-logs/archive/copilot-instructions-copy.archived.md` | `tombstone` | Drifted variant, bulks rot |
+
+`ssot-canon` is alive-and-frozen; `tombstone` is dead-and-preserved. Both
+exclude from active rot/link scanning, but semantically distinct.
+
+## The compounding-method principle (what the user articulated mid-arc)
+
+> Same instances on different tasks that use the same method or lifecycle
+> should work — wherever the method travels, the prior "didn't work" data
+> compounds back into the method.
+
+Applied: BOM tolerance was added to `is_tombstone()` after the .github SSOT
+(saved with BOM) was missed. Then the predicate was propagated from two
+sites (rot-index + CI wrapper) into the third (canonical `link_audit.py`)
+so every direct invocation, satellite wrapper, and author-filtered wrapper
+inherits the exclusion. Now `EXCLUDED_LIFECYCLES = {tombstone, ssot-canon}`
+travels with the method.
+
+## What is open (no urgency)
+
+- 34 scattered rot entries — small clusters, top file has 4
+- 40 open dependabot alerts — all routed to a method class; user-driven decision on which to act
+- (Deferred) automated-review noise siphon — fifth lens candidate, not started
+
+## What is settled (do not re-touch)
+
+The methodology is locked. Future noise of known classes auto-routes via
+`manifest/method_index.md`. Re-entry path: this file + `~/.claude/plans/1-i-have-enumerated-plum.md`
++ `MEMORY.md`.
