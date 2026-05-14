@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T05:44:07.031321+00:00",
+  "generated_at": "2026-05-14T06:23:25.623615+00:00",
   "routes": [
     {
       "method": "rust-constraint-bump",

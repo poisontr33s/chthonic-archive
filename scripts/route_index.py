@@ -37,11 +37,16 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Shared subprocess E2E contract. Sub-lenses that wrap methods import this
+# so the next rung's lens can consume runs as data, not bytes. See
+# feedback_subprocess_e2e_logging_contract in memory for the rule.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lens_runner import result_envelope, run_method_capture  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 MANIFEST_DIR = REPO_ROOT / "manifest"
@@ -153,42 +158,27 @@ def build_invocation_uv_lock(packages: list[str]) -> list[str]:
 
 
 def apply_route(route: dict, dry_run: bool = True) -> dict:
-    """Execute (or dry-run) a single auto-applicable route."""
+    """Execute (or dry-run) a single auto-applicable route.
+
+    Returns a lens-subprocess envelope (see scripts/lens_runner.py).
+    """
     method = route["method"]
     packages = sorted({i["package"] for i in route["items"] if i.get("package")})
-    result = {
-        "method": method,
-        "package_count": len(packages),
-        "packages": packages,
-        "executed": False,
-        "dry_run": dry_run,
-        "command": None,
-        "exit_code": None,
-        "stdout_tail": None,
-        "stderr_tail": None,
-    }
+    extra = {"package_count": len(packages), "packages": packages}
 
     if method == "uv-lock-upgrade":
-        cmd = build_invocation_uv_lock(packages)
-        result["command"] = " ".join(cmd)
-        if dry_run:
-            print(f"[route_index] dry-run: {result['command']}")
-            return result
-        print(f"[route_index] applying: {result['command']}")
-        proc = subprocess.run(cmd, cwd=str(REPO_ROOT),
-                              capture_output=True, text=True, encoding="utf-8",
-                              errors="replace")
-        result["executed"] = True
-        result["exit_code"] = proc.returncode
-        result["stdout_tail"] = proc.stdout[-2000:] if proc.stdout else None
-        result["stderr_tail"] = proc.stderr[-2000:] if proc.stderr else None
-        if proc.returncode != 0:
-            print(f"[route_index] FAILED: {proc.stderr[:500]}", file=sys.stderr)
-        return result
+        return run_method_capture(
+            method=method,
+            command=build_invocation_uv_lock(packages),
+            cwd=REPO_ROOT,
+            dry_run=dry_run,
+            log_prefix="route_index",
+            extra_fields=extra,
+        )
 
     # Other methods are propose-only.
     print(f"[route_index] {method} is not auto-applicable (propose-only)")
-    return result
+    return result_envelope(method, extra)
 
 
 def write_md(index: dict) -> str:

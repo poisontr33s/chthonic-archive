@@ -1,6 +1,6 @@
 # Route index digest
 
-Generated: 2026-05-14T05:44:07.031321+00:00
+Generated: 2026-05-14T06:23:25.623615+00:00
 Source: `manifest/route_index.json` (regenerate via `uv run scripts/route_index.py`)
 
 Sub-lens: compound router over the 4 observation lenses.
