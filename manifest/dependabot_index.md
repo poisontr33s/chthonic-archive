@@ -1,6 +1,6 @@
 # Dependabot index digest
 
-Generated: 2026-05-14T04:11:36.673636+00:00
+Generated: 2026-05-14T04:30:35.588001+00:00
 Repo: `poisontr33s/chthonic-archive`
 Source: `manifest/dependabot_index.json` (regenerate via `uv run scripts/dependabot_index.py`)
 
@@ -12,8 +12,8 @@ Source: `manifest/dependabot_index.json` (regenerate via `uv run scripts/dependa
 
 ### By state
 
-- `open`: 47
-- `fixed`: 21
+- `open`: 40
+- `fixed`: 28
 
 ### By severity
 
@@ -92,27 +92,6 @@ Sort key: open before non-open, severity rank, fix-available, direct over transi
 - manifest: `uv.lock`
 - view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/58
 
-### [HIGH / open] `pip/python-multipart` (transitive, fix:0.0.27)
-
-- python-multipart has Denial of Service via unbounded multipart part headers
-- CVE-2026-42561 · GHSA-pp6c-gr5w-3c5g
-- manifest: `uv.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/68
-
-### [HIGH / open] `pip/urllib3` (transitive, fix:2.7.0)
-
-- urllib3: Sensitive headers forwarded across origins in proxied low-level redirects
-- CVE-2026-44431 · GHSA-qccp-gfcp-xxvc
-- manifest: `uv.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/72
-
-### [HIGH / open] `pip/urllib3` (transitive, fix:2.7.0)
-
-- urllib3: Decompression-bomb safeguards bypassed in parts of the streaming API
-- CVE-2026-44432 · GHSA-mf9v-mfxr-j63j
-- manifest: `uv.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/71
-
 ### [HIGH / open] `rust/gix` (unknown, fix:0.83.0)
 
 - gix and gitoxide: unvalidated submodule name traverses out of .git/modules and redirects state() / open() to another repository
@@ -183,13 +162,6 @@ Sort key: open before non-open, severity rank, fix-available, direct over transi
 - manifest: `uv.lock`
 - view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/59
 
-### [LOW / open] `pip/Pygments` (transitive, fix:2.20.0)
-
-- Pygments has Regular Expression Denial of Service (ReDoS) due to Inefficient Regex for GUID Matching
-- CVE-2026-4539 · GHSA-5239-wwwm-4pmq
-- manifest: `uv.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/38
-
 ### [LOW / open] `rust/curve25519-dalek` (unknown, fix:4.1.3)
 
 - curve25519-dalek has timing variability in `curve25519-dalek`'s `Scalar29::sub`/`Scalar52::sub`
@@ -220,3 +192,27 @@ Sort key: open before non-open, severity rank, fix-available, direct over transi
 - webpki: Name constraints for URI names were incorrectly accepted
 - manifest: `tools/ankh-forge/Cargo.lock`
 - view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/24
+
+### [LOW / open] `rust/rustls-webpki` (unknown, fix:0.103.12)
+
+- webpki: Name constraints were accepted for certificates asserting a wildcard name
+- manifest: `tools/ankh-forge/Cargo.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/23
+
+### [LOW / open] `rust/rustls-webpki` (unknown, fix:0.103.12)
+
+- webpki: Name constraints were accepted for certificates asserting a wildcard name
+- manifest: `extensions/chthonic-archive/native/Cargo.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/22
+
+### [LOW / open] `rust/rustls-webpki` (unknown, fix:0.103.12)
+
+- webpki: Name constraints for URI names were incorrectly accepted
+- manifest: `extensions/chthonic-archive/native/Cargo.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/21
+
+### [LOW / open] `rust/atty` (unknown, no-fix-yet)
+
+- atty potential unaligned read
+- manifest: `extensions/chthonic-archive/native/Cargo.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/4

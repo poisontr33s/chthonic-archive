@@ -1,3 +1,17 @@
+---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-14
+tombstone_reason: |
+  Phase 3 modularization handoff frame, filed 2026-04-28. The work it
+  specified has landed: extensions/chthonic-archive/src/activation/
+  now contains activateViews.ts (414 lines), activateCommands.ts (349),
+  activateSidecars.ts (443), activateCockpit.ts (178), activateStatus.ts
+  (176), types.ts (16) — ~1500 lines extracted from the monolithic
+  extension.ts. The 6 line_anchor_stale entries pointed at the original
+  monolithic line positions that no longer exist. Preserved as historical
+  record of the handoff frame; excluded from active rot scanning.
+---
+
 # FAF Application: Chthonic Archive Extension — Phase 3 Modularization + Lane Closure
 
 <!--

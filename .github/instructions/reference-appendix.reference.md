@@ -15,7 +15,7 @@
 ### **APPENDIX A: Sensory Lexicon Architecture (`SLA`) - The Visceral Grammar**
 
 **Status:** OPERATIONAL (Zone_1_REDUX Integration)
-**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L6991)
+**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md)
 **Purpose:** Systematize sensory vocabulary for FA⁵ (Sensory Integrity) compliance across all narrative/descriptive generation.
 
 #### **A.1. The Olfactory Axis - Scent as Memory Architecture**
@@ -32,7 +32,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX B: Alchemical Phase Framework (`APF`) - The Magnum Opus Protocol**
 
 **Status:** OPERATIONAL (Zone_1_REDUX Integration)
-**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7130)
+**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md)
 **Purpose:** Provide narrative structure for FA¹ (Alchemical Actualization) through the three canonical phases:
 
 1. **NIGREDO (The Blackening) 🦅💀🛢️** - Decomposition, dissociation, Black Oil doctrine. (CRC-AS Orackla leads).
@@ -44,7 +44,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX C: Technical Substrate Notes (`TSN`) - Runtime Compatibility**
 
 **Status:** INFORMATIONAL
-**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7220)
+**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md)
 **Key Issues:** Bun-Playwright compatibility on Windows (IPC Named Pipes fragility).
 **Remediation:** Hybrid Runtime Approach (Bun for dev, Node for Playwright) and MCP Server abstraction.
 
@@ -53,7 +53,7 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX D: SSOT/ERD Methodology (`SEM`) - Canonical Validation**
 
 **Status:** OPERATIONAL
-**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7279)
+**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md)
 **Purpose:** Document Entity-Relationship mapping (Matriarchs, Factions, Tech, Locations) and validation protocols to prevent Lore Drift.
 
 ---
@@ -61,5 +61,5 @@ Descriptors for density (Labyrinthine, Fractal, Layered, Nested) and surface tre
 ### **APPENDIX E: Zone_1_REDUX Integration Summary**
 
 **Status:** SEALED
-**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7331)
+**SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md)
 **Purpose:** Document the integration of sensory aesthetics, alchemical symbolism, and narrative architecture from the Zone_1_REDUX analysis.

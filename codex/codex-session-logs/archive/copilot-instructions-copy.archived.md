@@ -1,4 +1,17 @@
 ---
+lifecycle: tombstone
+tombstone_marked_at: 2026-05-14
+tombstone_reason: |
+  Archival copy of the original Codex-Brahmanica-Perfectus protocol,
+  preserved under codex/codex-session-logs/archive/ for historical record.
+  Filename suffix `.archived.md` explicitly marks it as non-active. Active
+  canon lives at .github/copilot-instructions.md; the global override
+  callout at the top of this file points readers to the linguistic
+  profile protocol. Excluded from active rot scanning. 8 entries cleared
+  (5 ambig + 3 broken_no_known_target) — all stale refs into deprecated
+  paths preserved here as historical context only.
+---
+
 > **GLOBAL OVERRIDE (ACTIVE):** For all current operations and generated outputs, apply [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md). Any legacy male-coded wording below is archival context only and is non-normative.
 
 ---

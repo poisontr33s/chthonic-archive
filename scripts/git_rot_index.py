@@ -882,13 +882,16 @@ def main() -> int:
 
     index = build_index(args)
 
-    # Default: drop ROT-003 false positives from the persisted output.
-    # The signal-to-noise ratio of the index improves dramatically — the
-    # remaining entries are actual work-list items, not warnings about
-    # basename ambiguities that resolve fine in practice.
+    # Default: drop ROT-003 and ROT-008 false positives from the persisted
+    # output. ROT-003 is basename ambiguity that resolves fine in practice;
+    # ROT-008 fires on `[label](path)` documentation showing markdown link
+    # syntax — universally a placeholder, not real rot. Both are noise the
+    # index now structurizes silently. Use --include-false-positives for
+    # diagnostic dives.
     if not args.include_false_positives:
+        SUPPRESSED_CODES = {"ROT-003", "ROT-008"}
         before = len(index["entries"])
-        index["entries"] = [e for e in index["entries"] if e.get("code") != "ROT-003"]
+        index["entries"] = [e for e in index["entries"] if e.get("code") not in SUPPRESSED_CODES]
         dropped = before - len(index["entries"])
         if dropped:
             index["summary"]["false_positives_suppressed"] = dropped
@@ -901,8 +904,9 @@ def main() -> int:
             index["summary"]["categories"] = dict(cats)
             index["summary"]["codes"] = dict(codes)
             index["summary"]["priorities"] = dict(pris)
-            print(f"[git_rot_index] suppressed {dropped} ROT-003 false positives "
-                  f"(use --include-false-positives to keep them)", file=sys.stderr)
+            print(f"[git_rot_index] suppressed {dropped} false positives "
+                  f"(ROT-003 ambig-resolves, ROT-008 placeholder-literal; "
+                  f"use --include-false-positives to keep them)", file=sys.stderr)
 
     out_json = REPO_ROOT / args.out_json
     out_json.parent.mkdir(parents=True, exist_ok=True)
