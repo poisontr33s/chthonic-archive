@@ -5,7 +5,7 @@ Executed by: Tessara (proxied — subagent tools unavailable in this session, ex
 
 ---
 
-## tessara.agent.md
+## tessara.agent.md (stale)
 
 | Check | Result | Finding |
 |-------|--------|---------|
