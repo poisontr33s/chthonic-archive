@@ -1249,8 +1249,46 @@ def load_staged_renames(repo_root: Path) -> list[dict]:
     return renames
 
 
+# Lifecycle values that exclude a file from active link auditing.
+# - tombstone: file is dead, preserved for history
+# - ssot-canon: file is the macro-prompt-world / unabridged source from
+#   which downstream slimmed references are derived. Scanning broken refs
+#   on the SSOT itself inverts the dependency direction.
+# Mirrors EXCLUDED_LIFECYCLES in scripts/git_rot_index.py and
+# ci/checks/link-audit.ts so the method travels consistently wherever
+# link auditing happens.
+EXCLUDED_LIFECYCLES = {"tombstone", "ssot-canon"}
+
+
+def is_lifecycle_excluded(path: Path) -> bool:
+    """
+    True when the file's YAML frontmatter declares lifecycle: <value>
+    where <value> is in EXCLUDED_LIFECYCLES. BOM-tolerant.
+    """
+    try:
+        head = path.read_text(encoding="utf-8", errors="replace").splitlines()[:20]
+    except OSError:
+        return False
+    in_fm = False
+    for line in head:
+        # Strip UTF-8 BOM if present (some files are saved with BOM by editors).
+        clean = line.lstrip("﻿").strip()
+        if clean == "---":
+            if in_fm:
+                return False
+            in_fm = True
+            continue
+        if in_fm:
+            m = re.match(r"^\s*lifecycle\s*:\s*([\w-]+)", line.lstrip("﻿"))
+            if m and m.group(1) in EXCLUDED_LIFECYCLES:
+                return True
+    return False
+
+
 def scan_repo_markdown(repo_root: Path) -> list[Path]:
-    """Collect markdown files in the repo, skipping generated/heavy dirs."""
+    """Collect markdown files in the repo, skipping generated/heavy dirs
+    and files marked with EXCLUDED_LIFECYCLES (tombstone / ssot-canon).
+    """
     files: list[Path] = []
     root_str = str(repo_root)
     for dirpath, dirnames, filenames in os.walk(root_str):
@@ -1260,7 +1298,10 @@ def scan_repo_markdown(repo_root: Path) -> list[Path]:
         ]
         for fname in filenames:
             if fname.lower().endswith(".md") and not RE_SKIP_BASENAME.match(fname):
-                files.append(Path(dirpath) / fname)
+                p = Path(dirpath) / fname
+                if is_lifecycle_excluded(p):
+                    continue
+                files.append(p)
     return sorted(files)
 
 
