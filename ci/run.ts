@@ -120,6 +120,13 @@ const CHECKS: Check[] = [
     speed: "fast",
     description: "ANKH triple abstraction probe (WHR:MAX conformance + entity topology + compression ratio)",
   },
+  {
+    name: "lens-refresh",
+    script: "ci/checks/lens-refresh.ts",
+    scope: "always",
+    speed: "slow",
+    description: "Refresh all data-plane lenses (git_rot_index, dependabot_index) — Gitological Noise As Structured Data",
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");
