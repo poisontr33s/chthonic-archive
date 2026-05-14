@@ -237,16 +237,13 @@ extensions/*/bun.lock
 !manifest/daemon_jsonl_*.json
 !manifest/webview_hmr_*.json
 !manifest/failures.jsonl
-!manifest/git_rot_index.json
-!manifest/git_rot_index.md
-!manifest/dependabot_index.json
-!manifest/dependabot_index.md
-!manifest/github_activity_index.json
-!manifest/github_activity_index.md
-!manifest/method_index.json
-!manifest/method_index.md
-!manifest/route_index.json
-!manifest/route_index.md
+# Lens manifests follow the naming convention <name>_index.{json,md}.
+# Glob allows any current or future lens to auto-track without per-lens
+# edits — convention is the contract. Files that don't follow the
+# convention (experiments, drafts) stay gitignored by default, which is
+# the right safety posture.
+!manifest/*_index.json
+!manifest/*_index.md
 
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
