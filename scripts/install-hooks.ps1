@@ -23,6 +23,7 @@ fi
 
 $hooks = @{
     "pre-commit" = Join-Path $PSScriptRoot "pre-commit-hook.sh"
+    "post-commit" = Join-Path $PSScriptRoot "post-commit-hook.sh"
 }
 
 $inlineHooks = @{
