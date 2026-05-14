@@ -117,7 +117,8 @@
       "C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"
     ],
     "claudeCode.allowDangerouslySkipPermissions": true,
-    "githubPullRequests.pullRequestDescription": "Copilot"
+    "githubPullRequests.pullRequestDescription": "Copilot",
+    "workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)"
   },
   "extensions": {
     "recommendations": [
