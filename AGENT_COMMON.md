@@ -127,6 +127,15 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `bun upgrade` | Upgrade bun itself (self-hosted, no winget needed) |
 | `chthonic gemini update` | Update Gemini CLI + self-heal audit in both scopes (canonical path) |
 
+## Gitignore Allowlist Discipline
+
+The root `.gitignore` is an allowlist: it starts with `*`, then re-opens approved source lanes with `!` rules. Git visibility is authoritative; VS Code and VS Code Insiders follow Git rather than overriding it.
+
+- When creating a new source lane, add the matching `.gitignore` parent-directory and file-pattern exceptions in the same change.
+- Run `bun run ignore:audit` after creating files or directories that should be tracked.
+- If a file is present on disk but missing from source control, inspect it with `git check-ignore -v <path>`.
+- Canonical convention: [docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md](docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md).
+
 ## File Governance
 
 Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOLD_METHODOLOGY.md (repo-root)](WET_PAPER_TO_GOLD_METHODOLOGY.md) (`WPTG`).
