@@ -12,6 +12,7 @@ import { LaneRegistry } from './runtime/laneState';
 import { registerDevAutoReload } from './runtime/devAutoReload';
 import { registerWebviewHmrWatcher } from './runtime/webviewHmrWatcher';
 import { activateCommands } from './activation/activateCommands';
+import { FluxService } from './flux/fluxService';
 import { activateStatus, computePolicyFingerprint } from './activation/activateStatus';
 import { activateViews, StatusTreeProvider, ThemeTreeProvider } from './activation/activateViews';
 import { activateSidecars } from './activation/activateSidecars';
@@ -56,6 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
     statusProvider.configure({ entropyEnabled: sidecars.entropyEnabled, allowSidecars: sidecars.allowNativeSidecars, reactorReady: sidecars.reactorReadiness.ready, selfHealing: sidecars.slabSelfHealingEnabled });
     runActivationLane(laneRegistry, outputChannel, 'views', () => activateViews(context, { ...activationDeps, designFrameProvider, stylusProvider, entropyDecorations: sidecars.entropyDecorations, abyssalProvider: sidecars.abyssalProvider, themeProvider, statusProvider }));
     runActivationLane(laneRegistry, outputChannel, 'commands', () => activateCommands(context, { ...sidecars, workspaceRoot, outputChannel, chthonicConfig, laneRegistry, designFrameProvider, stylusProvider, deepFocusLayout, restoreOrderLayout, themeProvider, statusProvider, refreshToolchainCompleteness }));
+    runActivationLane(laneRegistry, outputChannel, 'flux', () => new FluxService(context, outputChannel, workspaceRoot).register());
 
     if (workspaceRoot && chthonicConfig.get<boolean>('webCockpit.autoStart', false)) {
         void vscode.commands.executeCommand('chthonic.startWebCockpit');

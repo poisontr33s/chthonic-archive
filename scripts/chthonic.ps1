@@ -311,12 +311,16 @@ function Get-OpenSSLStatus {
     $envPersisted = [bool]([Environment]::GetEnvironmentVariable('OPENSSL_DIR', 'User'))
 
     # Mitigation chain for OpenSSL version gap (E2) and env drift (E3).
-    # M1: [patch.crates-io] openssl-sys git override in Cargo.toml
+    # M1: OpenSSL 4 support from either a temporary openssl-sys git override or
+    #     crates.io openssl-sys >= 0.9.114.
     # M2: OPENSSL env vars persisted to User scope
     # M3: Invoke-PolyglotActivation auto-set (session fallback)
     $mitigations = @()
     $cargoTomlPath = Join-Path $REPO_ROOT "extensions\chthonic-archive\native\Cargo.toml"
+    $cargoLockPath = Join-Path $REPO_ROOT "extensions\chthonic-archive\native\Cargo.lock"
     $hasCargoPatch = $false
+    $opensslSysVersion = $null
+    $hasOpenSslSysCompat = $false
     if (Test-Path $cargoTomlPath) {
         $cargoContent = Get-Content $cargoTomlPath -Raw
         if ($cargoContent -match 'openssl-sys\s*=\s*\{.*git') {
@@ -327,6 +331,23 @@ function Get-OpenSSLStatus {
                 active = $true
                 value  = "master branch (pre-0.9.114)"
             }
+        }
+    }
+    if (Test-Path $cargoLockPath) {
+        try {
+            $cargoLockContent = Get-Content $cargoLockPath -Raw
+            if ($cargoLockContent -match '(?ms)^\[\[package\]\]\s*name = "openssl-sys"\s*version = "([^"]+)"') {
+                $opensslSysVersion = $matches[1]
+                $hasOpenSslSysCompat = ([version]$opensslSysVersion).CompareTo([version]"0.9.114") -ge 0
+            }
+        } catch {}
+    }
+    if ((-not $hasCargoPatch) -and $hasOpenSslSysCompat) {
+        $mitigations += [pscustomobject]@{
+            id     = "M1"
+            name   = "openssl-sys OpenSSL 4 support"
+            active = $true
+            value  = "crates.io $opensslSysVersion"
         }
     }
     if ($envPersisted) {
@@ -348,10 +369,11 @@ function Get-OpenSSLStatus {
     }
 
     $needsPatch = $major -ge 4
+    $hasOpenSslSourceSupport = $hasCargoPatch -or $hasOpenSslSysCompat
     $mitigated = (-not $needsPatch) -or (($mitigations | Where-Object { $_.active }).Count -gt 0)
     $effective = if (-not $needsPatch) { "compatible" }
-                elseif ($hasCargoPatch -and $envPersisted) { "fully mitigated" }
-                elseif ($hasCargoPatch) { "patched (env drift risk)" }
+                elseif ($hasOpenSslSourceSupport -and $envPersisted) { "fully mitigated" }
+                elseif ($hasOpenSslSourceSupport) { "patched (env drift risk)" }
                 elseif ($envPersisted) { "env set (no cargo patch)" }
                 else { "vulnerable" }
 
@@ -366,6 +388,8 @@ function Get-OpenSSLStatus {
         inc_dir_exists = [bool]($incDir -and (Test-Path $incDir))
         env_persisted  = $envPersisted
         has_cargo_patch = $hasCargoPatch
+        openssl_sys_version = $opensslSysVersion
+        has_openssl_sys_compat = $hasOpenSslSysCompat
         mitigations    = $mitigations
         mitigated      = $mitigated
         effective      = $effective
@@ -4008,8 +4032,8 @@ function Compare-Versions {
 #   Go/Rust/Bun: implicit pin (goup install auto-defaults, rustup stays stable, bun is single binary)
 $global:DoctorFixMap = @{
     ruby   = @{
-        Upgrade = { param($ver) rv ruby install $ver; rv ruby pin $ver }; UpgradeDesc = "rv ruby install && pin"
-        Install = { param($ver) if (-not (Get-Command rvw -ErrorAction SilentlyContinue)) { irm https://rv.dev/install.ps1 | iex }; rv ruby install $ver; rv ruby pin $ver }; InstallDesc = "install rv.dev (if missing) && rv ruby install && pin"
+        Upgrade = { param($ver) rvw ruby install $ver; rvw ruby pin $ver }; UpgradeDesc = "rvw ruby install && pin"
+        Install = { param($ver) if (-not (Get-Command rvw -ErrorAction SilentlyContinue)) { irm https://rv.dev/install.ps1 | iex }; rvw ruby install $ver; rvw ruby pin $ver }; InstallDesc = "install rv.dev (if missing) && rvw ruby install && pin"
     }
     python = @{
         Upgrade = {
@@ -4402,6 +4426,18 @@ function Invoke-Doctor {
                             $fixTarget = $null
                         }
                     }
+                    # endoflife.date can publish a patch before rv/RubyInstaller has
+                    # a matching asset. Suppress non-actionable Ruby patch advice until
+                    # the manager can actually install the target.
+                    if ($check.Name -eq "ruby" -and $fixTarget) {
+                        try {
+                            $rvCatalog = (rvw ruby list --all 2>$null) -join "`n"
+                            if ($rvCatalog -and $rvCatalog -notmatch "ruby-$([regex]::Escape($fixTarget))(\s|$)") {
+                                $badge = "current"
+                                $fixTarget = $null
+                            }
+                        } catch {}
+                    }
                 } else {
                     $badge = "current"
                 }
@@ -4424,6 +4460,14 @@ function Invoke-Doctor {
             optional = [bool]$check.Optional
         }
 
+        $fixInfo = $global:DoctorFixMap[$check.Name]
+        $isMissing = -not $installed
+        if ($isMissing -and $fixInfo -and $fixInfo.InstallDesc) {
+            $fixable += @{ Tool = $check.Name; Target = $latest; Mode = "install"; FixInfo = $fixInfo }
+        } elseif ($fixTarget -and $fixInfo) {
+            $fixable += @{ Tool = $check.Name; Target = $fixTarget; Mode = "upgrade"; FixInfo = $fixInfo }
+        }
+
         # Display line
         if ($Json) { continue }
         $mgr = $check.Manager.PadRight(6)
@@ -4444,14 +4488,10 @@ function Invoke-Doctor {
         }
 
         # Show fix/install command hint
-        $fixInfo = $global:DoctorFixMap[$check.Name]
-        $isMissing = -not $installed
         if ($isMissing -and $fixInfo -and $fixInfo.InstallDesc) {
             Write-Host "  -> $($fixInfo.InstallDesc)" -ForegroundColor DarkGray
-            $fixable += @{ Tool = $check.Name; Target = $latest; Mode = "install"; FixInfo = $fixInfo }
         } elseif ($fixTarget -and $fixInfo) {
             Write-Host "  -> $($fixInfo.UpgradeDesc) $fixTarget" -ForegroundColor DarkGray
-            $fixable += @{ Tool = $check.Name; Target = $fixTarget; Mode = "upgrade"; FixInfo = $fixInfo }
         } elseif ($badge -ne "current" -and $badge -ne "no API data") {
             Write-Host ""
         }
@@ -6456,8 +6496,6 @@ switch ($Domain) {
         }
     }
 }
-
-
 
 
 

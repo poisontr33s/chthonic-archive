@@ -197,6 +197,23 @@
         "command": "chthonic.pasteRenderedAiMarkdown",
         "title": "Chthonic: Paste Rendered AI HTML as Markdown",
         "icon": "$(markdown)"
+      },
+      {
+        "command": "chthonic.flux.openPanel",
+        "title": "Chthonic FLUX: Open Panel",
+        "icon": "$(symbol-color)"
+      },
+      {
+        "command": "chthonic.flux.startBackend",
+        "title": "Chthonic FLUX: Start Backend"
+      },
+      {
+        "command": "chthonic.flux.stopBackend",
+        "title": "Chthonic FLUX: Stop Backend"
+      },
+      {
+        "command": "chthonic.flux.rotateSecret",
+        "title": "Chthonic FLUX: Rotate Master Secret"
       }
     ],
     "menus": {
@@ -478,7 +495,7 @@
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/test-web": "^0.0.80",
-    "@vscode/vsce": "^3.7.1",
+    "@vscode/vsce": "^3.9.1",
     "@types/turndown": "5.0.6",
     "markdown-it": "14.1.1",
     "openai": "^6.32.0",

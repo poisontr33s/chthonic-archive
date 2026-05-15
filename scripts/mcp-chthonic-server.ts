@@ -95,6 +95,7 @@ function log(msg: string): void {
 const RV_RUBIES_BASE = process.env.APPDATA ? `${process.env.APPDATA}\\rv\\rubies` : null;
 const RV_RUBY_ROOTS: string[] = RV_RUBIES_BASE
   ? [
+      `${RV_RUBIES_BASE}\\ruby-4.0.4`,
       `${RV_RUBIES_BASE}\\ruby-4.0.3`,
       `${RV_RUBIES_BASE}\\ruby-4.0.2`,
       `${RV_RUBIES_BASE}\\ruby-3.4.9`,

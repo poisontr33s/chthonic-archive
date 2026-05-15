@@ -205,7 +205,7 @@ try {
     $rubyExe = Get-Command ruby -ErrorAction SilentlyContinue
     if ($rubyExe -and $rubyExe.Source) {
         if ($rubyExe.Source -match '\\rubies\\ruby-([^\\]+)\\bin\\ruby') {
-            $rubyEnvTag = $matches[1]           # e.g. "4.0.3-zjit" — from rv path
+            $rubyEnvTag = $matches[1]           # e.g. "4.0.4-zjit" — from rv path
             $zjitActive = [bool]($rubyEnvTag -match 'zjit')
         }
     }

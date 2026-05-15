@@ -107,6 +107,32 @@ function Get-PreferredIdeProductId {
     return $null
 }
 
+function Resolve-VsConfigPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Root,
+        [Parameter(Mandatory = $true)]
+        [string[]]$Folders,
+        [Parameter()]
+        [string[]]$LegacyPaths
+    )
+
+    foreach ($folder in $Folders) {
+        $candidate = Join-Path (Join-Path $Root $folder) ".vsconfig"
+        if (Test-Path -LiteralPath $candidate) {
+            return $candidate
+        }
+    }
+
+    foreach ($candidate in @($LegacyPaths)) {
+        if ($candidate -and (Test-Path -LiteralPath $candidate)) {
+            return $candidate
+        }
+    }
+
+    return $null
+}
+
 function Get-MissingComponents {
     param(
         [Parameter(Mandatory = $true)]
@@ -189,7 +215,8 @@ function Wait-InstallerIdle {
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 $setupExe = "C:\Program Files (x86)\Microsoft Visual Studio\Installer\setup.exe"
-$configRoot = Join-Path $repoRoot ".codex\visualStudioInstaller2006"
+$configRoot = Join-Path $repoRoot ".vs\visualStudioInstaller"
+$legacyConfigRoot = Join-Path $repoRoot ".codex\visualStudioInstaller2006"
 $mailboxDir = Join-Path $repoRoot "codex\mailbox"
 
 if (-not (Test-Path $setupExe)) {
@@ -212,21 +239,61 @@ $ideInstallPath = Get-InstanceInstallPath -ProductId $ideProductId -Prerelease
 if (-not $ideInstallPath) {
     $ideInstallPath = "C:\Program Files\Microsoft Visual Studio\18\Insiders"
 }
-$legacyIdeConfigPath = Join-Path $configRoot "visualStudio2026Insiders_11506.43\.vsconfig"
-$professionalIdeConfigPath = Join-Path $configRoot "visualStudio2026InsidersProfessional_11506.43\.vsconfig"
-$ideConfigPath = $legacyIdeConfigPath
-if (
-    $ideProductId -eq "Microsoft.VisualStudio.Product.Professional" -and
-    (Test-Path $professionalIdeConfigPath)
-) {
-    $ideConfigPath = $professionalIdeConfigPath
+$ideConfigFolders = switch ($ideProductId) {
+    "Microsoft.VisualStudio.Product.Professional" {
+        @(
+            "Visual_Studio_2026_Insiders_Professional",
+            "Visual_Studio_2026_Insiders_Community",
+            "Visual_Studio_2026_Insiders_Enterprise"
+        )
+    }
+    "Microsoft.VisualStudio.Product.Community" {
+        @(
+            "Visual_Studio_2026_Insiders_Community",
+            "Visual_Studio_2026_Insiders_Professional",
+            "Visual_Studio_2026_Insiders_Enterprise"
+        )
+    }
+    "Microsoft.VisualStudio.Product.Enterprise" {
+        @(
+            "Visual_Studio_2026_Insiders_Enterprise",
+            "Visual_Studio_2026_Insiders_Community",
+            "Visual_Studio_2026_Insiders_Professional"
+        )
+    }
+    default {
+        @(
+            "Visual_Studio_2026_Insiders_Community",
+            "Visual_Studio_2026_Insiders_Professional",
+            "Visual_Studio_2026_Insiders_Enterprise"
+        )
+    }
 }
+$legacyIdeConfigPath = Join-Path $legacyConfigRoot "visualStudio2026Insiders_11506.43\.vsconfig"
+$professionalIdeConfigPath = Join-Path $legacyConfigRoot "visualStudio2026InsidersProfessional_11506.43\.vsconfig"
+$ideConfigPath = Resolve-VsConfigPath `
+    -Root $configRoot `
+    -Folders $ideConfigFolders `
+    -LegacyPaths @($professionalIdeConfigPath, $legacyIdeConfigPath)
 $ideLaneName = switch ($ideProductId) {
     "Microsoft.VisualStudio.Product.Professional" { "professional" }
     "Microsoft.VisualStudio.Product.Community"   { "community" }
     "Microsoft.VisualStudio.Product.Enterprise"  { "enterprise" }
     default { "ide" }
 }
+
+$buildToolsInstallPath = Get-InstanceInstallPath -ProductId "Microsoft.VisualStudio.Product.BuildTools" -Prerelease
+if (-not $buildToolsInstallPath) {
+    $buildToolsInstallPath = "C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools"
+}
+$buildToolsConfigPath = Resolve-VsConfigPath `
+    -Root $configRoot `
+    -Folders @("Visual_Studio_2026_Insiders_Build_Tools") `
+    -LegacyPaths @((Join-Path $legacyConfigRoot "visualStudio2026InsidersBuildtools_11506.43\.vsconfig"))
+$ssmsConfigPath = Resolve-VsConfigPath `
+    -Root $configRoot `
+    -Folders @("SQL_Server_2026_Management_Studio") `
+    -LegacyPaths @((Join-Path $legacyConfigRoot "SQLServerManagementStudio22_23.3.0\.vsconfig"))
 
 $lanes = @(
     @{
@@ -240,8 +307,8 @@ $lanes = @(
         Name = "buildtools_insiders"
         ProductId = "Microsoft.VisualStudio.Product.BuildTools"
         Prerelease = $true
-        InstallPath = "C:\Program Files (x86)\Microsoft Visual Studio\18\Insiders"
-        ConfigPath = Join-Path $configRoot "visualStudio2026InsidersBuildtools_11506.43\.vsconfig"
+        InstallPath = $buildToolsInstallPath
+        ConfigPath = $buildToolsConfigPath
         InstallIfMissing = $true
         ChannelId = "VisualStudio.18.Preview"
     },
@@ -250,7 +317,7 @@ $lanes = @(
         ProductId = "Microsoft.VisualStudio.Product.Ssms"
         Prerelease = $false
         InstallPath = "C:\Program Files\Microsoft SQL Server Management Studio 22\Release"
-        ConfigPath = Join-Path $configRoot "SQLServerManagementStudio22_23.3.0\.vsconfig"
+        ConfigPath = $ssmsConfigPath
         Optional = $true
         AllowComponentDrift = $true
     }
@@ -262,16 +329,23 @@ $hasFailures = $false
 foreach ($lane in $lanes) {
     Write-Log ("Lane start: {0}" -f $lane.Name)
 
-    if (-not (Test-Path $lane.ConfigPath)) {
+    if (-not $lane.ConfigPath -or -not (Test-Path -LiteralPath $lane.ConfigPath)) {
         Write-Log ("Config missing: {0}" -f $lane.ConfigPath)
+        $status = "config_missing"
+        if ($lane.ContainsKey("Optional") -and $lane.Optional) {
+            $status = "skipped_missing_optional_config"
+        }
         $results += [pscustomobject]@{
             lane = $lane.Name
-            status = "config_missing"
+            status = $status
+            config_path = $lane.ConfigPath
             pre_missing_count = $null
             post_missing_count = $null
             exit_code = $null
         }
-        $hasFailures = $true
+        if ($status -ne "skipped_missing_optional_config") {
+            $hasFailures = $true
+        }
         continue
     }
 
@@ -296,6 +370,7 @@ foreach ($lane in $lanes) {
             $results += [pscustomobject]@{
                 lane = $lane.Name
                 status = "install_failed"
+                config_path = $lane.ConfigPath
                 pre_missing_count = $null
                 post_missing_count = $null
                 exit_code = $installExit
@@ -316,6 +391,7 @@ foreach ($lane in $lanes) {
         $results += [pscustomobject]@{
             lane = $lane.Name
             status = $status
+            config_path = $lane.ConfigPath
             pre_missing_count = $null
             post_missing_count = $null
             exit_code = $null
@@ -351,6 +427,7 @@ foreach ($lane in $lanes) {
     $results += [pscustomobject]@{
         lane = $lane.Name
         status = $status
+        config_path = $lane.ConfigPath
         pre_missing_count = $preMissing.Count
         post_missing_count = $postMissing.Count
         exit_code = $exitCode

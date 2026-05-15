@@ -45,6 +45,14 @@
         "CHTHONIC_ROOT": "${workspaceFolder}"
       }
     },
+    "workiq": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "@microsoft/workiq@latest",
+        "mcp"
+      ]
+    },
     "mas-mcp": {
       "type": "stdio",
       "command": "uv",
@@ -65,7 +73,12 @@
       "args": [
         "run",
         "scripts/mcp-filesystem.ts",
-        "${workspaceFolder}/mcp_fs_root"
+        "${workspaceFolder}",
+        "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+        "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+        "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+        "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
+        "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder"
       ],
       "cwd": "${workspaceFolder}"
     },
@@ -114,12 +127,17 @@
     },
     "huggingface": {
       "type": "http",
-      "url": "https://huggingface.co/mcp"
+      "url": "https://huggingface.co/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:HUGGINGFACE_API_KEY}"
+      }
     },
-    "workiq": {
-      "type": "stdio",
-      "command": "bunx",
-      "args": ["-y", "@microsoft/workiq@latest", "mcp"]
+    "replicate": {
+      "type": "http",
+      "url": "https://api.replicate.com/v1/mcp",
+      "headers": {
+        "Authorization": "Token ${env:REPLICATE_API_KEY}"
+      }
     }
   }
 }

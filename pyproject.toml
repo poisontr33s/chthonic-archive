@@ -41,6 +41,8 @@ only-include = [
 members = [
     "mas_mcp",
     "ankh_atlas",
+    "apps/flux-engine-forge",
+    "apps/flux-satellite",
 ]
 
 [[tool.uv.index]]
@@ -50,6 +52,8 @@ explicit = true
 
 [tool.uv.sources]
 mas-mcp = { workspace = true }
+flux-engine-forge = { workspace = true }
+flux-satellite = { workspace = true }
 torch = [{ index = "pytorch-cu128" }]
 
 [tool.uv]

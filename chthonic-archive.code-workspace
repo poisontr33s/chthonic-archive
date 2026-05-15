@@ -118,7 +118,10 @@
     ],
     "claudeCode.allowDangerouslySkipPermissions": true,
     "githubPullRequests.pullRequestDescription": "Copilot",
-    "workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)"
+    "workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+    "workbench.iconTheme": "chthonic-file-icons",
+    "editor.fontFamily": "'Cascadia Mono', 'Fira Code', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
   },
   "extensions": {
     "recommendations": [

@@ -279,6 +279,12 @@ scripts/_*.py
 !.vscode/
 !.vscode/SETTINGS_LIVE_AUDIT.md
 
+# Allow method-level Visual Studio Installer exports
+!.vs/
+!.vs/visualStudioInstaller/
+!.vs/visualStudioInstaller/*/
+!.vs/visualStudioInstaller/*/.vsconfig
+
 # Allow mistral.rs UI
 !apps/
 !apps/mistralrs-ui/

@@ -35,6 +35,22 @@ function Get-VsInstance {
     return $parsed
 }
 
+function Get-VsIdeInstance {
+    param([Parameter(Mandatory = $true)][string]$VsWhere)
+
+    foreach ($productId in @(
+        'Microsoft.VisualStudio.Product.Professional',
+        'Microsoft.VisualStudio.Product.Community',
+        'Microsoft.VisualStudio.Product.Enterprise'
+    )) {
+        $instance = Get-VsInstance -VsWhere $VsWhere -ProductId $productId
+        if ($instance) {
+            return $instance
+        }
+    }
+    return $null
+}
+
 function Get-InstalledPackageSet {
     param(
         [Parameter(Mandatory = $true)][string]$InstanceId
@@ -63,7 +79,7 @@ function Get-ConfigComponents {
 
 function Get-MissingComponents {
     param(
-        [Parameter(Mandatory = $true)][string[]]$Required,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$Required,
         [Parameter(Mandatory = $true)][System.Collections.Generic.HashSet[string]]$Installed
     )
 
@@ -136,24 +152,78 @@ function Test-Binary {
     }
 }
 
-$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
-$cfgRoot = Join-Path $repoRoot '.codex\visualStudioInstaller2026'
-$proCfgPath = Join-Path $cfgRoot 'vs2026_pro_insiders.vsconfig'
-$btCfgPath = Join-Path $cfgRoot 'vs2026_buildtools_lsl.vsconfig'
+function Resolve-VsConfigPath {
+    param(
+        [Parameter(Mandatory = $true)][string]$Root,
+        [Parameter(Mandatory = $true)][string[]]$Folders,
+        [Parameter()][string]$LegacyPath
+    )
 
-if (-not (Test-Path $proCfgPath)) {
-    throw "Missing config: $proCfgPath"
+    foreach ($folder in $Folders) {
+        $candidate = Join-Path (Join-Path $Root $folder) '.vsconfig'
+        if (Test-Path -LiteralPath $candidate) {
+            return $candidate
+        }
+    }
+
+    if ($LegacyPath -and (Test-Path -LiteralPath $LegacyPath)) {
+        return $LegacyPath
+    }
+
+    return $null
 }
-if (-not (Test-Path $btCfgPath)) {
-    throw "Missing config: $btCfgPath"
+
+function Get-VsConfigInventory {
+    param([Parameter(Mandatory = $true)][string]$Root)
+
+    if (-not (Test-Path -LiteralPath $Root)) {
+        return @()
+    }
+
+    $entries = @()
+    foreach ($folder in Get-ChildItem -LiteralPath $Root -Directory | Sort-Object Name) {
+        $configPath = Join-Path $folder.FullName '.vsconfig'
+        if (-not (Test-Path -LiteralPath $configPath)) {
+            continue
+        }
+
+        $item = Get-Item -LiteralPath $configPath
+        $components = @(Get-ConfigComponents -ConfigPath $configPath)
+        $entries += [pscustomobject]@{
+            folder = $folder.Name
+            path = $configPath
+            lastWriteTime = $item.LastWriteTime.ToString('o')
+            length = $item.Length
+            componentCount = $components.Count
+        }
+    }
+
+    return @($entries)
 }
+
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$methodCfgRoot = Join-Path $repoRoot '.vs\visualStudioInstaller'
+$legacyCfgRoot = Join-Path $repoRoot '.codex\visualStudioInstaller2026'
+$proCfgPath = Resolve-VsConfigPath `
+    -Root $methodCfgRoot `
+    -Folders @(
+        'Visual_Studio_2026_Insiders_Professional',
+        'Visual_Studio_2026_Insiders_Community',
+        'Visual_Studio_2026_Insiders_Enterprise'
+    ) `
+    -LegacyPath (Join-Path $legacyCfgRoot 'vs2026_pro_insiders.vsconfig')
+$btCfgPath = Resolve-VsConfigPath `
+    -Root $methodCfgRoot `
+    -Folders @('Visual_Studio_2026_Insiders_Build_Tools') `
+    -LegacyPath (Join-Path $legacyCfgRoot 'vs2026_buildtools_lsl.vsconfig')
+$vsConfigInventory = @(Get-VsConfigInventory -Root $methodCfgRoot)
 
 $vswhere = Resolve-VsWherePath
-$proInstance = Get-VsInstance -VsWhere $vswhere -ProductId 'Microsoft.VisualStudio.Product.Professional'
+$proInstance = Get-VsIdeInstance -VsWhere $vswhere
 $btInstance = Get-VsInstance -VsWhere $vswhere -ProductId 'Microsoft.VisualStudio.Product.BuildTools'
 
 if (-not $proInstance) {
-    throw 'Visual Studio Professional Insiders instance not found.'
+    throw 'Visual Studio 2026 IDE instance not found.'
 }
 if (-not $btInstance) {
     throw 'Visual Studio Build Tools Insiders instance not found.'
@@ -162,8 +232,14 @@ if (-not $btInstance) {
 $proInstalled = Get-InstalledPackageSet -InstanceId ([string]$proInstance.instanceId)
 $btInstalled = Get-InstalledPackageSet -InstanceId ([string]$btInstance.instanceId)
 
-$proRequired = Get-ConfigComponents -ConfigPath $proCfgPath
-$btRequired = Get-ConfigComponents -ConfigPath $btCfgPath
+$proRequired = @()
+if ($proCfgPath -and (Test-Path -LiteralPath $proCfgPath)) {
+    $proRequired = @(Get-ConfigComponents -ConfigPath $proCfgPath)
+}
+$btRequired = @()
+if ($btCfgPath -and (Test-Path -LiteralPath $btCfgPath)) {
+    $btRequired = @(Get-ConfigComponents -ConfigPath $btCfgPath)
+}
 
 $proMissing = Get-MissingComponents -Required $proRequired -Installed $proInstalled
 $btMissing = Get-MissingComponents -Required $btRequired -Installed $btInstalled
@@ -190,16 +266,27 @@ $missingBinaryCount = Get-SafeCount -Value $missingBinaries
 
 $report = [pscustomobject]@{
     timestamp = (Get-Date).ToString('o')
+    configInventory = [pscustomobject]@{
+        methodRoot = $methodCfgRoot
+        legacyRoot = $legacyCfgRoot
+        exports = @($vsConfigInventory)
+    }
     professional = [pscustomobject]@{
         instanceId = [string]$proInstance.instanceId
+        productId = [string]$proInstance.productId
+        displayName = [string]$proInstance.displayName
         installationPath = [string]$proInstance.installationPath
         installationVersion = [string]$proInstance.installationVersion
+        configPath = $proCfgPath
         missingRequiredComponents = @($proMissingItems)
     }
     buildTools = [pscustomobject]@{
         instanceId = [string]$btInstance.instanceId
+        productId = [string]$btInstance.productId
+        displayName = [string]$btInstance.displayName
         installationPath = [string]$btInstance.installationPath
         installationVersion = [string]$btInstance.installationVersion
+        configPath = $btCfgPath
         missingRequiredComponents = @($btMissingItems)
     }
     binaries = $binaryChecks
@@ -214,10 +301,15 @@ $report = [pscustomobject]@{
 if ($Json) {
     $report | ConvertTo-Json -Depth 8
 } else {
+    $ideConfigText = if ($report.professional.configPath) { $report.professional.configPath } else { '<none>' }
+    $btConfigText = if ($report.buildTools.configPath) { $report.buildTools.configPath } else { '<none>' }
     Write-Host "VS 2026 audit @ $($report.timestamp)"
-    Write-Host "Professional: $($report.professional.installationVersion) @ $($report.professional.installationPath)"
+    Write-Host "Config root : $($report.configInventory.methodRoot)"
+    Write-Host "IDE       : $($report.professional.displayName) $($report.professional.installationVersion) @ $($report.professional.installationPath)"
     Write-Host "BuildTools : $($report.buildTools.installationVersion) @ $($report.buildTools.installationPath)"
-    Write-Host "Missing required components (Professional): $(@($proMissingItems).Count)"
+    Write-Host "IDE config : $ideConfigText"
+    Write-Host "BT config  : $btConfigText"
+    Write-Host "Missing required components (IDE): $(@($proMissingItems).Count)"
     Write-Host "Missing required components (BuildTools): $(@($btMissingItems).Count)"
     Write-Host "Missing critical binaries: $($report.summary.missingBinaryCount)"
     if ($report.summary.missingBinaryCount -gt 0) {
