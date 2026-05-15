@@ -7,7 +7,7 @@
     "bun": ">=1.3.13"
   },
   "scripts": {
-    "postinstall": "pwsh -NoProfile -File scripts/gemini-cli-wrapper.ps1 -v || true",
+    "postinstall": "pwsh -NoProfile -File scripts/postinstall.ps1",
     "audit": "bun audit --ignore GHSA-26pp-8wgv-hjvm --ignore GHSA-r5rp-j6wh-rvv4 --ignore GHSA-xpcf-pg52-r92g --ignore GHSA-xf4j-xp2r-rqqx --ignore GHSA-wmmm-f939-6g9c",
     "audit:full": "bun audit",
     "doctor": "bun run dumpster-dive/forge/extension-archaeology/doctor.ts",
@@ -58,6 +58,8 @@
     "ignore:audit": "bun run ci/checks/ignored-source.ts",
     "ignore:audit:report": "bun run ci/checks/ignored-source.ts --report",
     "hooks:install": "pwsh -NoProfile -File scripts/install-hooks.ps1",
+    "hooks:precommit": "pwsh -NoProfile -File scripts/ensure-precommit-hook.ps1 -Force",
+    "hooks:verify": "pwsh -NoProfile -File scripts/ensure-precommit-hook.ps1 -VerifyOnly",
     "ci": "bun run ci/run.ts",
     "ci:staged": "bun run ci/run.ts --staged",
     "ci:full": "bun run ci/run.ts --full",

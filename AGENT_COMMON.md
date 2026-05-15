@@ -105,6 +105,7 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `uv run <script>` | Python execution (bare form — use when output is ASCII-only) |
 | `bun run ci:staged` | Local pre-commit gate: shebang, script metadata, uv usage, blessing, Markdown links, and offline GitHub/GFM URL shapes |
 | `bun run ignore:audit` | Detect source-shaped files hidden by allowlist `.gitignore` rules |
+| `bun run hooks:verify` | Confirm Git pre-commit hook is installed and points at `ci/run.ts --staged` |
 | `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
 | `bun run links:audit` | Markdown link audit for files changed vs HEAD |
@@ -133,6 +134,7 @@ The root `.gitignore` is an allowlist: it starts with `*`, then re-opens approve
 
 - When creating a new source lane, add the matching `.gitignore` parent-directory and file-pattern exceptions in the same change.
 - Run `bun run ignore:audit` after creating files or directories that should be tracked.
+- Commit automation: `bun install` refreshes the pre-commit hook through `scripts/postinstall.ps1`; verify with `bun run hooks:verify`.
 - If a file is present on disk but missing from source control, inspect it with `git check-ignore -v <path>`.
 - Canonical convention: [docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md](docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md).
 
