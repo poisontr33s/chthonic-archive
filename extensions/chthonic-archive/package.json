@@ -2,7 +2,7 @@
   "name": "chthonic-archive",
   "displayName": "Chthonic Archive",
   "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and policy tools.",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "publisher": "chthonic-archive",
   "icon": "icons/mandala.png",
   "repository": {
@@ -204,6 +204,21 @@
         "icon": "$(symbol-color)"
       },
       {
+        "command": "chthonic.flux.focusLauncher",
+        "title": "Chthonic FLUX: Focus Gate",
+        "icon": "$(layout-sidebar-left)"
+      },
+      {
+        "command": "chthonic.flux.verifyPresence",
+        "title": "Chthonic FLUX: Verify Extension Presence",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "chthonic.flux.showOutput",
+        "title": "Chthonic FLUX: Show Output",
+        "icon": "$(output)"
+      },
+      {
         "command": "chthonic.flux.startBackend",
         "title": "Chthonic FLUX: Start Backend"
       },
@@ -231,6 +246,23 @@
           "when": "editorLangId == markdown",
           "group": "navigation"
         }
+      ],
+      "view/title": [
+        {
+          "command": "chthonic.flux.openPanel",
+          "when": "view == chthonic.fluxLauncherView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "chthonic.flux.verifyPresence",
+          "when": "view == chthonic.fluxLauncherView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "chthonic.flux.showOutput",
+          "when": "view == chthonic.fluxLauncherView",
+          "group": "navigation@3"
+        }
       ]
     },
     "viewsContainers": {
@@ -244,6 +276,12 @@
     },
     "views": {
       "chthonic-archive": [
+        {
+          "id": "chthonic.fluxLauncherView",
+          "type": "webview",
+          "name": "FLUX Gate",
+          "icon": "$(zap)"
+        },
         {
           "id": "chthonic.chatView",
           "type": "webview",
@@ -456,6 +494,26 @@
           "type": "boolean",
           "default": false,
           "description": "Auto-start the Bun/Next cockpit dev server when Chthonic Archive activates."
+        },
+        "chthonic.flux.showPresenceOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a visible FLUX activation notification on startup with actions to open the panel, focus the gate, or reveal output."
+        },
+        "chthonic.flux.bridgePath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to the FLUX native bridge addon."
+        },
+        "chthonic.flux.uvPath": {
+          "type": "string",
+          "default": "uv",
+          "description": "Executable path used to launch the uv-managed FLUX satellite."
+        },
+        "chthonic.flux.ditPipeName": {
+          "type": "string",
+          "default": "\\\\.\\pipe\\chthonic-flux-dit",
+          "description": "Windows named pipe used for the FLUX DiT bridge."
         }
       }
     }

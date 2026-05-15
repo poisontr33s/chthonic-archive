@@ -104,6 +104,7 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `$env:PYTHONIOENCODING = 'utf-8'; uv run <script>` | Python execution (preferred — Unicode-safe on Windows) |
 | `uv run <script>` | Python execution (bare form — use when output is ASCII-only) |
 | `bun run ci:staged` | Local pre-commit gate: shebang, script metadata, uv usage, blessing, Markdown links, and offline GitHub/GFM URL shapes |
+| `bun run ignore:audit` | Detect source-shaped files hidden by allowlist `.gitignore` rules |
 | `uv run scripts/link_audit.py check <file> --dry-run` | Markdown link audit (dry-run) |
 | `uv run scripts/link_audit.py check <file> --fix` | Markdown link auto-fix |
 | `bun run links:audit` | Markdown link audit for files changed vs HEAD |
@@ -235,4 +236,3 @@ Market context for external skill patterns is tracked in [docs/reference/AGENT_S
 | `using` / `await using` | TC39 Explicit Resource Management — native in JSC; use in new TS code |
 | `Bun.Glob.scan()` Windows | Kernel-level `NtQueryDirectoryFile` filtering — 2.4× faster glob patterns |
 | `bun upgrade` | Self-upgrade command (no winget required) |
-

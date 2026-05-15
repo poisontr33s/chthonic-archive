@@ -71,6 +71,14 @@ const CHECKS: Check[] = [
     description: "No bare python/python3 invocations — use uv run",
   },
   {
+    name: "ignored-source",
+    aliases: ["autoignore", "gitignore"],
+    script: "ci/checks/ignored-source.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Ignored source-shaped files in managed roots (allowlist .gitignore drift)",
+  },
+  {
     name: "blessing-gate",
     script: "ci/checks/blessing-gate.ts",
     scope: "staged",

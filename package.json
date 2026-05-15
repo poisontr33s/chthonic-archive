@@ -55,6 +55,8 @@
     "biome:version": "bunx @biomejs/biome --version",
     "lint:shebang": "bun run scripts/shebang-guard.ts",
     "lint:shebang:staged": "bun run scripts/shebang-guard.ts --staged",
+    "ignore:audit": "bun run ci/checks/ignored-source.ts",
+    "ignore:audit:report": "bun run ci/checks/ignored-source.ts --report",
     "hooks:install": "pwsh -NoProfile -File scripts/install-hooks.ps1",
     "ci": "bun run ci/run.ts",
     "ci:staged": "bun run ci/run.ts --staged",
