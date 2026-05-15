@@ -122,6 +122,11 @@
     "workbench.iconTheme": "chthonic-file-icons",
     "editor.fontFamily": "'Cascadia Mono', 'Fira Code', Consolas, 'Courier New', monospace",
     "editor.fontLigatures": true,
+    "workbench.productIconTheme": "chthonic-product-icons",
+    "workbench.preferredHighContrastColorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+    "workbench.preferredHighContrastLightColorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+    "workbench.preferredLightColorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+    "notebook.defaultFormatter": "GitHub.copilot-chat",
   },
   "extensions": {
     "recommendations": [
