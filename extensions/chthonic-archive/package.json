@@ -214,6 +214,14 @@
       {
         "command": "chthonic.flux.rotateSecret",
         "title": "Chthonic FLUX: Rotate Master Secret"
+      },
+      {
+        "command": "chthonic.flux.setMasterSecret",
+        "title": "Chthonic FLUX: Set Master Secret (paste existing)"
+      },
+      {
+        "command": "chthonic.flux.revealMasterSecret",
+        "title": "Chthonic FLUX: Reveal Master Secret (copy to clipboard)"
       }
     ],
     "menus": {
