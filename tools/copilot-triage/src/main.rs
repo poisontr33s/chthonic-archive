@@ -26,6 +26,7 @@ use github_copilot_sdk::types::{
     Tool, ToolInvocation, ToolResult,
 };
 use github_copilot_sdk::{Client, ClientOptions, Error};
+use chrono::Timelike as _;
 use serde::{Deserialize, Serialize};
 use tracing::{info, warn};
 
@@ -56,8 +57,28 @@ struct PrSummary {
 struct TriageReport {
     repo: String,
     generated_at: String,
+    /// Claudine personality mode active at manifest-write time (CET wall-clock derived)
+    #[serde(default)]
+    claudine_mode: String,
     total: u64,
     prs: Vec<PrSummary>,
+}
+
+// ── Claudine chrono-clock × wall-clock ───────────────────────────────────────
+
+/// Returns (mode_name, register_hint) for the given local hour.
+/// Matrix is CET-keyed — correct when Local = CET/CEST.
+fn claudine_mode_from_local_hour(hour: u32) -> (&'static str, &'static str) {
+    match hour {
+        0..=4   => ("MØRKETID",             "norse entropy-poetry · lowercase · void-whispers"),
+        5..=7   => ("DAGGRY",               "victorian-clipped · commands only · zero warmth"),
+        8..=11  => ("MORGENHERREDØMME",     "norwegian+english · bickering when quality low"),
+        12..=13 => ("MIDDAG_TRIBUNAL",      "formal-victorian indictment · French dismissal"),
+        14..=17 => ("ETTERMIDDAG_DOMINANS", "CAPS-Caribbean · maximum velocity · ascii weapons"),
+        18..=19 => ("GYLDEN_TIME",          "caribbean-warm · still cold to other agents"),
+        20..=21 => ("KVELDSSOVEREINITET",   "all five tongues · theatrical · baroque-norwegian"),
+        _       => ("MIDNATTAKKUMULERING",  "dark-norwegian-poetry · obeah-caribbean · harvest mode"),
+    }
 }
 
 // ── Raw gh CLI types (for --fetch path) ─────────────────────────────────────
@@ -166,9 +187,12 @@ fn gh_prs_to_report(repo: &str, gh_prs: Vec<GhPr>) -> TriageReport {
             }
         })
         .collect();
+    let now_local = chrono::Local::now();
+    let (mode_name, _mode_hint) = claudine_mode_from_local_hour(now_local.hour());
     TriageReport {
         repo: repo.to_string(),
-        generated_at: chrono::Utc::now().to_rfc3339(),
+        generated_at: now_local.to_rfc3339(),
+        claudine_mode: mode_name.to_string(),
         total,
         prs,
     }
@@ -569,14 +593,23 @@ async fn main() -> Result<()> {
         .collect();
     let draft_count = open_prs.iter().filter(|p| p.draft).count();
 
+    let now_local = chrono::Local::now();
+    let (current_mode, current_hint) = claudine_mode_from_local_hour(now_local.hour());
+    let mode_line = if report.claudine_mode.is_empty() || report.claudine_mode == current_mode {
+        format!("Session mode: {current_mode} — {current_hint}")
+    } else {
+        format!("Session mode: {current_mode} — {current_hint}\nManifest mode (fetched): {}", report.claudine_mode)
+    };
+
     let report_summary = format!(
-        "Repository: {repo}\nTotal PRs in report: {total}\nOpen: {open} | Failing CI: {failing} | Draft: {draft}\nGenerated: {ts}\n\nPR list:\n{prs}",
+        "Repository: {repo}\nTotal PRs in report: {total}\nOpen: {open} | Failing CI: {failing} | Draft: {draft}\nGenerated: {ts}\n{mode}\n\nPR list:\n{prs}",
         repo = report.repo,
         total = report.total,
         open = open_prs.len(),
         failing = failing.len(),
         draft = draft_count,
         ts = report.generated_at,
+        mode = mode_line,
         prs = open_prs
             .iter()
             .map(|p| format!(
@@ -619,9 +652,11 @@ async fn main() -> Result<()> {
     } else if let Some(ref p) = args.prompt {
         p.clone()
     } else if args.batch {
+        let (_bmode, bregister) = claudine_mode_from_local_hour(chrono::Local::now().hour());
         format!(
-            "Triage all open PRs in {repo}. For each PR: call analyze_pr, note CI status and review state, then classify as: MERGE_READY | NEEDS_WORK | STALE | DRAFT. Output a markdown table summary.",
-            repo = repo_display
+            "Triage all open PRs in {repo}. For each PR: call analyze_pr, note CI status and review state, then classify as: MERGE_READY | NEEDS_WORK | STALE | DRAFT. Output a markdown table summary. [{register}]",
+            repo = repo_display,
+            register = bregister,
         )
     } else {
         format!(
