@@ -12,7 +12,7 @@
 // Hooks: PreToolUse gate on comment_pr (requires explicit user approval)
 // ============================================================
 
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
 use anyhow::{Context, Result};
@@ -26,12 +26,12 @@ use github_copilot_sdk::types::{
     Tool, ToolInvocation, ToolResult,
 };
 use github_copilot_sdk::{Client, ClientOptions, Error};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 use tracing::{info, warn};
 
 // ── Manifest types ────────────────────────────────────────────────────────────
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 struct PrSummary {
     number: u64,
     title: String,
@@ -52,12 +52,126 @@ struct PrSummary {
     url: String,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 struct TriageReport {
     repo: String,
     generated_at: String,
     total: u64,
     prs: Vec<PrSummary>,
+}
+
+// ── Raw gh CLI types (for --fetch path) ─────────────────────────────────────
+
+#[derive(Debug, Deserialize)]
+struct GhAuthor {
+    login: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct GhLabel {
+    name: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct GhCheck {
+    /// CheckRun: "COMPLETED" | "IN_PROGRESS" | "QUEUED" | "WAITING"
+    #[serde(default)]
+    status: String,
+    /// StatusContext: "SUCCESS" | "FAILURE" | "PENDING" | "ERROR"
+    #[serde(default)]
+    state: String,
+    conclusion: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+struct GhPr {
+    number: u64,
+    title: String,
+    author: GhAuthor,
+    #[serde(rename = "headRefName")]
+    head_ref: String,
+    #[serde(rename = "baseRefName")]
+    base_ref: String,
+    #[serde(rename = "isDraft")]
+    is_draft: bool,
+    #[serde(rename = "createdAt")]
+    created_at: String,
+    #[serde(rename = "updatedAt")]
+    updated_at: String,
+    #[serde(default)]
+    labels: Vec<GhLabel>,
+    #[serde(rename = "statusCheckRollup", default)]
+    checks: Vec<GhCheck>,
+    #[serde(default)]
+    url: String,
+}
+
+fn gh_prs_to_report(repo: &str, gh_prs: Vec<GhPr>) -> TriageReport {
+    let total = gh_prs.len() as u64;
+    let prs = gh_prs
+        .into_iter()
+        .map(|g| {
+            let passed = g
+                .checks
+                .iter()
+                .filter(|c| {
+                    (c.status == "COMPLETED"
+                        && c.conclusion.as_deref() == Some("SUCCESS"))
+                        || c.state == "SUCCESS"
+                })
+                .count() as u64;
+            let failed = g
+                .checks
+                .iter()
+                .filter(|c| {
+                    matches!(
+                        c.conclusion.as_deref(),
+                        Some("FAILURE") | Some("TIMED_OUT") | Some("CANCELLED")
+                    ) || matches!(c.state.as_str(), "FAILURE" | "ERROR")
+                })
+                .count() as u64;
+            let pending = g
+                .checks
+                .iter()
+                .filter(|c| {
+                    c.status != "COMPLETED"
+                        && !matches!(c.state.as_str(), "SUCCESS" | "FAILURE" | "ERROR")
+                        && !c.state.is_empty()
+                        || (c.status == "IN_PROGRESS" || c.status == "QUEUED" || c.status == "WAITING")
+                })
+                .count() as u64;
+            let (cp, cf, cpe) = if g.checks.is_empty() {
+                (None, None, None)
+            } else {
+                (Some(passed), Some(failed), Some(pending))
+            };
+            PrSummary {
+                number: g.number,
+                title: g.title,
+                state: "open".to_string(),
+                draft: g.is_draft,
+                author: g.author.login,
+                head_branch: g.head_ref,
+                base_branch: g.base_ref,
+                created_at: g.created_at,
+                updated_at: g.updated_at,
+                mergeable: None,
+                labels: g.labels.into_iter().map(|l| l.name).collect(),
+                review_count: 0,
+                comment_count: 0,
+                checks_passed: cp,
+                checks_failed: cf,
+                checks_pending: cpe,
+                url: g.url,
+            }
+        })
+        .collect();
+    TriageReport {
+        repo: repo.to_string(),
+        generated_at: chrono::Utc::now().to_rfc3339(),
+        total,
+        prs,
+    }
 }
 
 // ── Tool parameter types ──────────────────────────────────────────────────────
@@ -331,6 +445,9 @@ struct Args {
     repo: Option<String>,
     pr_number: Option<u64>,
     batch: bool,
+    /// Re-fetch PR list via `gh pr list` and overwrite manifest before running.
+    /// Also triggered automatically when the manifest file does not exist.
+    fetch: bool,
     manifest_path: PathBuf,
     prompt: Option<String>,
 }
@@ -341,6 +458,7 @@ impl Args {
         let mut repo = None;
         let mut pr_number = None;
         let mut batch = false;
+        let mut fetch = false;
         let mut manifest_path = PathBuf::from("manifest/pr_triage_report.json");
         let mut prompt = None;
 
@@ -349,6 +467,7 @@ impl Args {
                 "--repo" => repo = args.next(),
                 "--pr" => pr_number = args.next().and_then(|s| s.parse().ok()),
                 "--batch" => batch = true,
+                "--fetch" => fetch = true,
                 "--manifest" => {
                     manifest_path = args
                         .next()
@@ -360,8 +479,46 @@ impl Args {
             }
         }
 
-        Self { repo, pr_number, batch, manifest_path, prompt }
+        Self { repo, pr_number, batch, fetch, manifest_path, prompt }
     }
+}
+
+// ── Manifest fetch (Layer A seam closer) ────────────────────────────────────
+
+async fn fetch_and_write_manifest(repo: &str, manifest_path: &Path) -> Result<TriageReport> {
+    info!("Fetching PRs from {repo} via gh CLI...");
+    let output = std::process::Command::new("gh")
+        .args([
+            "pr", "list",
+            "--repo", repo,
+            "--state", "open",
+            "--json",
+            "number,title,author,headRefName,baseRefName,isDraft,\
+ createdAt,updatedAt,labels,statusCheckRollup,url",
+            "--limit", "100",
+        ])
+        .output()
+        .context("`gh pr list` failed — ensure gh is in PATH and authenticated")?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        anyhow::bail!("gh pr list exited non-zero: {stderr}");
+    }
+
+    let gh_prs: Vec<GhPr> =
+        serde_json::from_slice(&output.stdout).context("Failed to parse gh pr list output")?;
+
+    let report = gh_prs_to_report(repo, gh_prs);
+
+    let json = serde_json::to_string_pretty(&report).context("Failed to serialize report")?;
+    if let Some(parent) = manifest_path.parent() {
+        tokio::fs::create_dir_all(parent).await.ok();
+    }
+    tokio::fs::write(manifest_path, &json)
+        .await
+        .with_context(|| format!("Failed to write manifest to {manifest_path:?}"))?;
+    info!("Manifest written to {:?} ({} PRs)", manifest_path, report.total);
+    Ok(report)
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -379,19 +536,27 @@ async fn main() -> Result<()> {
 
     let args = Args::parse();
 
-    // Load triage report from manifest
-    let report_bytes = tokio::fs::read(&args.manifest_path)
-        .await
-        .with_context(|| {
-            format!(
-                "Could not read triage report from {:?}. Run the github-archaeology MCP tool \
-                 `github_archaeology_report` first to generate it.",
-                args.manifest_path
-            )
-        })?;
-
-    let report: TriageReport =
-        serde_json::from_slice(&report_bytes).context("Failed to parse pr_triage_report.json")?;
+    // Load or auto-fetch triage report.
+    // --fetch forces a live `gh pr list` run and overwrites the manifest.
+    // If the manifest doesn't exist yet, fetch is triggered automatically.
+    let report: TriageReport = if args.fetch || !args.manifest_path.exists() {
+        let repo = args
+            .repo
+            .as_deref()
+            .unwrap_or("poisontr33s/Restructure-MCP-Orchestration");
+        fetch_and_write_manifest(repo, &args.manifest_path).await?
+    } else {
+        let report_bytes = tokio::fs::read(&args.manifest_path)
+            .await
+            .with_context(|| {
+                format!(
+                    "Could not read triage report from {:?}. Pass --fetch to generate it.",
+                    args.manifest_path
+                )
+            })?;
+        serde_json::from_slice(&report_bytes)
+            .context("Failed to parse pr_triage_report.json")?
+    };
 
     let repo_display: String = args.repo.clone().unwrap_or_else(|| report.repo.clone());
     info!("Loaded triage report: repo={} prs={}", report.repo, report.total);

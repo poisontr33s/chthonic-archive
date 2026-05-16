@@ -116,6 +116,18 @@
         "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-live"
       }
     },
+    "github-archaeology": {
+      "type": "stdio",
+      "command": "bun",
+      "args": [
+        "run",
+        "scripts/mcp-github-archaeology.ts"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "ARCHAEOLOGY_REPO": "poisontr33s/Restructure-MCP-Orchestration"
+      }
+    },
     "chthonic-archaeology": {
       "type": "stdio",
       "command": "uv",
