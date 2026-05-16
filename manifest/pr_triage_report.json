@@ -1,0 +1,200 @@
+{
+  "repo": "poisontr33s/Restructure-MCP-Orchestration",
+  "generated_at": "2026-05-16T13:43:36Z",
+  "total": 25,
+  "summary": {
+    "action_items": [
+      "Close PR #228 (superseded by #278)",
+      "Coordinate major bumps #278+#257 into a single rebase batch",
+      "Review #283 rebase feasibility — large harvest merge",
+      "Merge #286 security fix ASAP"
+    ],
+    "stale_superseded": 1,
+    "draft_wip": 3,
+    "needs_review": 8,
+    "needs_work": 1,
+    "top_priority": [
+      "PR #286 — security fix (prompt injection), HIGH — merge immediately after spot-check",
+      "PR #283 — needs rebase (CONFLICTING), large harvest PR",
+      "PR #278 — vite 8 major bump — coordinate with #257 (plugin-react-swc 4.x) as a pair"
+    ],
+    "merge_ready": 9
+  },
+  "triage": [
+    {
+      "verdict": "MERGE_READY",
+      "priority": "HIGH",
+      "reason": "Security fix for prompt injection CVE, MERGEABLE, CI passed (4 COMPLETED). No review yet but critical fix.",
+      "pr": 286,
+      "title": "security: fix GitHub Actions prompt injection (#263)"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "MED",
+      "reason": "Automated test generation PR. MERGEABLE, CI clean. Needs human review of test quality.",
+      "pr": 288,
+      "title": "CodeRabbit Generated Unit Tests"
+    },
+    {
+      "verdict": "NEEDS_WORK",
+      "priority": "MED",
+      "reason": "CONFLICTING mergebase — must rebase against main. CI ran (6 COMPLETED + 1 pending). Large harvest PR.",
+      "pr": 283,
+      "title": "[Harvest] M365/Google agents + auth package"
+    },
+    {
+      "verdict": "DRAFT_WIP",
+      "priority": "LOW",
+      "reason": "DRAFT. Active WIP — Java21 port scope is substantial. Not ready.",
+      "pr": 285,
+      "title": "harvest: MCP v2 protocol spec + Java21 port"
+    },
+    {
+      "verdict": "DRAFT_WIP",
+      "priority": "LOW",
+      "reason": "DRAFT. Large infra addition. Not ready for review.",
+      "pr": 284,
+      "title": "harvest: 19 Claude agents + consciousness-bridge"
+    },
+    {
+      "verdict": "DRAFT_WIP",
+      "priority": "LOW",
+      "reason": "DRAFT.",
+      "pr": 282,
+      "title": "[Harvest] Gemini Code Assist + Guthilda update"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Dependabot group bump. MERGEABLE. CI clean (3 COMPLETED).",
+      "pr": 287,
+      "title": "Bump npm_and_yarn group (4 packages)"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "MED",
+      "reason": "Major version bump. Requires manual CI verification and changelog review.",
+      "pr": 278,
+      "title": "Bump vite 7.1.3 → 8.0.10 (MAJOR)"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "MED",
+      "reason": "Major version bump on AI SDK. Breaking changes likely — needs explicit testing.",
+      "pr": 267,
+      "title": "Bump @ai-sdk/google 2.0.11 → 3.0.64 (MAJOR)"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "MED",
+      "reason": "Major Vite plugin bump. Check compatibility with vite 8 bump (#278).",
+      "pr": 257,
+      "title": "Bump @vitejs/plugin-react-swc 3.x → 4.x (MAJOR)"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor within v5. Dependabot, can auto-merge after CI.",
+      "pr": 281,
+      "title": "Bump @tanstack/react-query 5.87.4 → 5.100.5"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "LOW",
+      "reason": "Major version. Verify no CLI output regressions.",
+      "pr": 280,
+      "title": "Bump ora 8.2.0 → 9.4.0"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Patch/minor, safe bump.",
+      "pr": 279,
+      "title": "Bump tailwindcss 4.1.11 → 4.2.4"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Type sync, safe.",
+      "pr": 277,
+      "title": "Bump react-dom + @types/react-dom"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor bump, security/perf improvement.",
+      "pr": 276,
+      "title": "Bump express-rate-limit 8.0.1 → 8.4.1"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "LOW",
+      "reason": "Major version in CLI package.",
+      "pr": 275,
+      "title": "Bump ora in /packages/cli"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "LOW",
+      "reason": "Major version. CLI interaction API may have changed.",
+      "pr": 274,
+      "title": "Bump inquirer 12 → 13"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "LOW",
+      "reason": "Major types version. May introduce type errors.",
+      "pr": 269,
+      "title": "Bump @types/node 24 → 25"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor CSS tooling bump, safe.",
+      "pr": 268,
+      "title": "Bump autoprefixer 10.4.21 → 10.5.0"
+    },
+    {
+      "verdict": "NEEDS_REVIEW",
+      "priority": "LOW",
+      "reason": "Same as #274, possibly superseded by it.",
+      "pr": 266,
+      "title": "Bump inquirer 12 → 13 in /packages/cli"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor within v5, safe.",
+      "pr": 254,
+      "title": "Bump @tanstack/react-query in /packages/monitor"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor, safe.",
+      "pr": 253,
+      "title": "Bump @tailwindcss/postcss in /packages/monitor"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor, safe.",
+      "pr": 252,
+      "title": "Bump autoprefixer in /packages/monitor"
+    },
+    {
+      "verdict": "MERGE_READY",
+      "priority": "LOW",
+      "reason": "Minor within v5, safe.",
+      "pr": 251,
+      "title": "Bump zustand 5.0.6 → 5.0.11 in /packages/monitor"
+    },
+    {
+      "verdict": "STALE_SUPERSEDED",
+      "priority": "LOW",
+      "reason": "Superseded by #278 (vite 8.0.10 bump). Should be closed.",
+      "pr": 228,
+      "title": "Bump vite 7.1.3 → 7.3.1 in /packages/monitor"
+    }
+  ]
+}
