@@ -161,7 +161,7 @@ impl ChthonicContext {
              Generated: {gen}\nSessions indexed: {total}\n{mode}\n\n\
              **Top {n} sessions by composite score (recency × semantic × activity):**\n{sessions}\n\n\
              Use `query_corpus`, `get_session_warmstart`, `gpu_gate_status`, `lens_query`, \
-             or `todo_roulette_next` to interrogate the archive.",
+             `todo_roulette_next`, or `chrono_clock_status` to interrogate the archive.",
             gen = self.ranked_index.generated_at,
             total = self.ranked_index.session_count,
             mode = mode_line,
@@ -210,6 +210,11 @@ struct LensQueryParams {
 #[derive(Debug, Deserialize, JsonSchema)]
 struct TodoRouletteNextParams {
     // no parameters — returns next unblocked highest-weight todo
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct ChronoClockStatusParams {
+    // no parameters — returns chrono_clock.json status and sleep rhythm profile
 }
 
 // ── Tool handlers ─────────────────────────────────────────────────────────────
@@ -411,7 +416,7 @@ impl ToolHandler for LensQueryTool {
             .with_description(
                 "Read a named manifest lens file (JSON). Available lenses: \
                  'session_ranked_index', 'pr_triage_report', 'todo_roulette', 'todo_meta', \
-                 'session_blood', 'polyrepo_gate', 'terminal_hook_validation', 'mcp_github_archaeology'. \
+                 'session_blood', 'polyrepo_gate', 'terminal_hook_validation', 'mcp_github_archaeology', 'chrono_clock'. \
                  Provide just the stem (without .json). Optionally provide a dot-path filter.",
             )
             .with_parameters(schema_for::<LensQueryParams>())
@@ -574,7 +579,97 @@ impl ToolHandler for TodoRouletteNextTool {
         }
     }
 }
+struct ChronoClockStatusTool {
+    ctx: Arc<ChthonicContext>,
+}
 
+#[async_trait]
+impl ToolHandler for ChronoClockStatusTool {
+    fn tool(&self) -> Tool {
+        Tool::new("chrono_clock_status")
+            .with_description(
+                "Return the current Claudine chrono-clock state and the user's inferred sleep rhythm \
+                 profile from manifest/chrono_clock.json. Shows current CET mode, user presence \
+                 probability, sanctuary_mode flag (safe for autonomous runs), and the inferred \
+                 sleep window derived from historical corpus activity patterns. \
+                 Re-run scripts/chrono-clock.ts to refresh the profile.",
+            )
+            .with_parameters(schema_for::<ChronoClockStatusParams>())
+    }
+
+    async fn call(&self, _inv: ToolInvocation) -> Result<ToolResult, Error> {
+        let clock_path = self.ctx.manifest_dir.join("chrono_clock.json");
+
+        if !clock_path.exists() {
+            return Ok(ToolResult::Text(
+                "chrono_clock.json not found in manifest directory. \
+                 Run: bun run scripts/chrono-clock.ts"
+                    .to_string(),
+            ));
+        }
+
+        let value = match self.ctx.read_manifest_json("chrono_clock.json") {
+            Ok(v) => v,
+            Err(e) => return Ok(ToolResult::Text(format!("Failed to read chrono_clock.json: {e}"))),
+        };
+
+        let current_mode = value.get("current_mode").and_then(|v| v.as_str()).unwrap_or("unknown");
+        let current_hour = value.get("current_hour_cet").and_then(|v| v.as_u64()).unwrap_or(0);
+        let presence = value.get("user_presence_probability").and_then(|v| v.as_f64()).unwrap_or(0.0);
+        let sanctuary = value.get("sanctuary_mode").and_then(|v| v.as_bool()).unwrap_or(false);
+        let most_active = value.get("most_active_mode").and_then(|v| v.as_str()).unwrap_or("unknown");
+        let generated_at = value.get("generated_at").and_then(|v| v.as_str()).unwrap_or("unknown");
+        let total_turns = value.get("total_user_turns").and_then(|v| v.as_u64()).unwrap_or(0);
+
+        let sleep_window_line = if let Some(sw) = value.get("sleep_window") {
+            let s = sw.get("start_hour_cet").and_then(|v| v.as_u64()).unwrap_or(0);
+            let e = sw.get("end_hour_cet").and_then(|v| v.as_u64()).unwrap_or(0);
+            let dur = sw.get("duration_hours").and_then(|v| v.as_u64()).unwrap_or(0);
+            let conf = sw.get("confidence").and_then(|v| v.as_f64()).unwrap_or(0.0);
+            format!("Inferred sleep window: CET {s:02}:00 – {e:02}:59 ({dur}h, {:.0}% confidence)", conf * 100.0)
+        } else {
+            "Sleep window: insufficient data".to_string()
+        };
+
+        let mode_activity: Vec<String> = if let Some(abm) = value.get("activity_by_mode").and_then(|v| v.as_object()) {
+            let mut pairs: Vec<(&String, u64)> = abm
+                .iter()
+                .filter_map(|(k, v)| v.as_u64().map(|n| (k, n)))
+                .collect();
+            pairs.sort_by(|a, b| b.1.cmp(&a.1));
+            pairs.iter().map(|(k, n)| format!("  {k}: {n} turns")).collect()
+        } else {
+            vec![]
+        };
+
+        let summary = format!(
+            r#"Chrono-clock status (generated {generated_at}):
+
+Current CET hour: {current_hour:02}:xx → {current_mode}
+User presence probability: {presence:.0}%
+Sanctuary mode (safe for autonomous run): {sanctuary}
+
+Most active mode: {most_active}
+{sleep_window_line}
+
+Activity by mode ({total_turns} total user turns):
+{mode_lines}
+
+Tools: run `bun run scripts/chrono-clock.ts` to refresh this profile."#,
+            generated_at = generated_at,
+            current_hour = current_hour,
+            current_mode = current_mode,
+            presence = presence * 100.0,
+            sanctuary = if sanctuary { "YES — low historical activity at this hour" } else { "NO — user likely present" },
+            most_active = most_active,
+            sleep_window_line = sleep_window_line,
+            total_turns = total_turns,
+            mode_lines = mode_activity.join("\n"),
+        );
+
+        Ok(ToolResult::Text(summary))
+    }
+}
 // ── Session handler ───────────────────────────────────────────────────────────
 
 struct ChthonicSessionHandler;
@@ -765,6 +860,7 @@ async fn main() -> Result<()> {
         Box::new(GpuGateStatusTool        { ctx: Arc::clone(&ctx) }),
         Box::new(LensQueryTool            { ctx: Arc::clone(&ctx) }),
         Box::new(TodoRouletteNextTool     { ctx: Arc::clone(&ctx) }),
+        Box::new(ChronoClockStatusTool    { ctx: Arc::clone(&ctx) }),
     ];
     let router = ToolHandlerRouter::new(tools, Arc::new(ChthonicSessionHandler));
     let tool_defs = router.tools();
