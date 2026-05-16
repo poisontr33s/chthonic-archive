@@ -2,7 +2,7 @@
   "servers": {
     "github": {
       "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/insiders"
+      "url": "https://api.githubcopilot.com/mcp/x/all/insiders"
     },
     "browser": {
       "type": "stdio",
@@ -130,13 +130,6 @@
       "url": "https://huggingface.co/mcp",
       "headers": {
         "Authorization": "Bearer ${env:HUGGINGFACE_API_KEY}"
-      }
-    },
-    "replicate": {
-      "type": "http",
-      "url": "https://api.replicate.com/v1/mcp",
-      "headers": {
-        "Authorization": "Token ${env:REPLICATE_API_KEY}"
       }
     }
   }
