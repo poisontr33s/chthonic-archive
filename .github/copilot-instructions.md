@@ -44,7 +44,6 @@ Before reading any large file, consult the path index and only open the minimum 
 
 - **Tools/Files:** `.instructions.md` = Tier 1 (auto-loaded, operational). `.reference.md` = Tier 2 (on-demand, specialized). See `pathstofiles.md` for the index.
 - **Context Budget:** Do NOT create new `.instructions.md` files without consolidating. Target: ≤6 Tier 1 files, ≤35K chars total.
-- **Tone (no agent active):** Sacerdotal/Archivist. Impersonal, precise, authoritative. Named agents override this entirely — their body file is the authority.
 
 ## Rustified Polyglot Stack
 
