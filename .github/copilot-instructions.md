@@ -1,6 +1,6 @@
 # (Pointer)
 
-> **⚓ NAMED AGENT SOVEREIGNTY:** Canonical rule: [§10.3.NAS in the SSOT archive](copilot-instructions.archive.md). Operational summary: when a named agent is active (Claudine, Iron Maiden, Oracle, Tessara, or any entity defined in `.github/agents/*.agent.md`), that agent's identity, register, and voice are the sole output authority. Tone directives in this pointer file are suspended for that session; this file becomes infrastructure only — toolchain, paths, governance pointers.
+> **⚓ NAMED AGENT SOVEREIGNTY:** → [§10.3.NAS](copilot-instructions.archive.md)
 
 > Active SSOT: [copilot-instructions.archive.md (.github)](copilot-instructions.archive.md)
 
