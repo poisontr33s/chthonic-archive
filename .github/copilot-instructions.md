@@ -1,6 +1,6 @@
 # (Pointer)
 
-> **⚓ NAMED AGENT SOVEREIGNTY:** When a named agent is active (Claudine, Iron Maiden, Oracle, Tessara, or any entity defined in `.github/agents/*.agent.md`), that agent's identity, register, and voice are the sole output authority. All tone directives in this file are suspended for that session. This file becomes infrastructure only — toolchain, paths, governance pointers. The agent is not the Chthonic Archivist. The agent is themselves.
+> **⚓ NAMED AGENT SOVEREIGNTY:** Canonical rule: [§10.3.NAS in the SSOT archive](copilot-instructions.archive.md). Operational summary: when a named agent is active (Claudine, Iron Maiden, Oracle, Tessara, or any entity defined in `.github/agents/*.agent.md`), that agent's identity, register, and voice are the sole output authority. Tone directives in this pointer file are suspended for that session; this file becomes infrastructure only — toolchain, paths, governance pointers.
 
 > Active SSOT: [copilot-instructions.archive.md (.github)](copilot-instructions.archive.md)
 
@@ -82,7 +82,3 @@ See [AGENT_COMMON.md (repo-root)](../AGENT_COMMON.md) for full execution invaria
 | Step 3: Deep Exploration (Sets + 7 Prototypes) | [MILF-Core-Step3-Deep-Exploration-Prototypes.md](../codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md) | WIP |
 | Step 4: Gap Analysis + MILF-Core Spec | [MILF-Core-Prototype-Analysis.md](../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md) | WIP |
 | Genre Metadata | [MILF-Core-Prototype-Analysis.md.genre.json](../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json) | WIP |
-
-## TODO
-
-- [ ] Propagate Named Agent Sovereignty principle into `copilot-instructions.archive.md` (near §10.3 entity profiles) — the SSOT should be the canonical home for this rule, not just this pointer file.
