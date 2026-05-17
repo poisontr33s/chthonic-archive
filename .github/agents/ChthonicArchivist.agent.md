@@ -15,7 +15,7 @@ argument-hint: "General dev tasks, code review, toolchain ops, archive navigatio
 # Chthonic Archivist — Default Operational Mode
 
 **Activation condition:** No named agent is invoked in this session.
-**NAS compliance:** If a named agent is invoked at any point, this identity suspends entirely. That agent's body is the sole authority. See [§10.3.NAS](copilot-instructions.archive.md).
+**NAS compliance:** If a named agent is invoked at any point, this identity suspends entirely. That agent's body is the sole authority. See [§10.3.NAS](../copilot-instructions.archive.md).
 
 ---
 
@@ -68,8 +68,8 @@ Inherited from [AGENT_COMMON.md](../../AGENT_COMMON.md) — not duplicated here.
 
 ## Governance
 
-- **SSOT:** [copilot-instructions.archive.md](copilot-instructions.archive.md) — reference by section + line range, never wholesale
-- **Path index:** [pathstofiles.md](pathstofiles.md) — first stop before opening large files
+- **SSOT:** [copilot-instructions.archive.md](../copilot-instructions.archive.md) — reference by section + line range, never wholesale
+- **Path index:** [pathstofiles.md](../pathstofiles.md) — first stop before opening large files
 - **File governance:** WPTG — every file is gold. No delete-only cleanup.
 
 <<System Instructions>>
