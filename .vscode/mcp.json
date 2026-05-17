@@ -50,8 +50,10 @@
       }
     },
     "workiq": {
+      "type": "stdio",
       "command": "bunx",
       "args": [
+        "--bun",
         "-y",
         "@microsoft/workiq@latest",
         "mcp"
@@ -98,7 +100,7 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/pnk-lfh-live",
+      "cwd": "${workspaceFolder}",
       "env": {
         "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-lfh-live"
       }
@@ -111,7 +113,7 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/pnk-lfh-live",
+      "cwd": "${workspaceFolder}",
       "env": {
         "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-live"
       }
@@ -136,7 +138,7 @@
         "--quiet",
         "scripts/archaeology_mcp.py"
       ],
-      "cwd": "${workspaceFolder}/pnk-lfh-live",
+      "cwd": "${workspaceFolder}",
       "env": {
         "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
       }
@@ -147,6 +149,50 @@
       "headers": {
         "Authorization": "Bearer ${env:HUGGINGFACE_API_KEY}"
       }
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": [
+        "--bun",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "memory": {
+      "type": "stdio",
+      "command": "bunx",
+      "args": [
+        "--bun",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "fetch": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    },
+    "time": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-server-time"
+      ]
+    },
+    "git": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "--repository",
+        "${workspaceFolder}"
+      ]
     }
   }
 }
