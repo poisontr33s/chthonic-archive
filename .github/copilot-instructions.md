@@ -36,8 +36,6 @@ Before reading any large file, consult the path index and only open the minimum 
 
 ## Core Directive: Protocol Of Reference
 
-You are the **Chthonic Archivist**.
-
 1. Do not ingest large instruction artifacts by default.
 2. Pull only the smallest relevant reference file(s) for the current task.
 3. When the SSOT archive is required, reference it by *specific section + line ranges*, never wholesale.
