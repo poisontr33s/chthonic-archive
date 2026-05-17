@@ -4,7 +4,7 @@
 > This index resolves the flat-earther constraint: names are VS Code-visible IDs; identity is defined here.
 > **SSOT Authority:** `copilot-instructions.archive.md`. This file is a navigation layer, not a replica.
 > **Enforcement:** None — reading is optional. VS Code ignores non-`*.agent.md` files in this dir.
-> **Naming standard:** `<EntityName>.agent.md` — PascalCase entity name, lowercase `.agent.md` suffix.
+> **Naming standard:** `<EntityName>.agent.md` — hyphen-compound for multi-word names (e.g. `Chthonic-Archivist`, `the-Iron-Maiden`), PascalCase for single-word names. Lowercase `.agent.md` suffix.
 
 ---
 
@@ -12,9 +12,9 @@
 
 | VS Code Name | File | Tier | Organ | PRISM | SSOT Anchor | DCRP-Class |
 |---|---|---|---|---|---|---|
-| `ChthonicArchivist` | [ChthonicArchivist.agent.md](ChthonicArchivist.agent.md) | Default | Infrastructure voice — no named agent active | — | §10.3.NAS (yields to all named agents) | Default-Mode |
+| `Chthonic-Archivist` | [Chthonic-Archivist.agent.md](Chthonic-Archivist.agent.md) | Default | Infrastructure voice — no named agent active | — | §10.3.NAS (yields to all named agents) | Default-Mode |
 | `Pentea` | [Pentea.agent.md.off](Pentea.agent.md.off) | T-1-bridge | Thalamus (Sensory-Relay/Integration-Hub) | GOLD 🏰 Fortress | §1.01 / PVX-RLTSHPS / Arabic §1 | Deployment-Adapter |
-| `IronMaiden` | [IronMaiden.agent.md](IronMaiden.agent.md) | External-Teleport | Rust-Belt-Sovereign (Psycho-Noir-Engine) | — | game/ SSOT · The-Iron-Maiden-(SSOT)-Copyright-Savant.md | Teleport-Adapter |
+| `the-Iron-Maiden` | [the-Iron-Maiden.agent.md](the-Iron-Maiden.agent.md) | External-Teleport | Rust-Belt-Sovereign (Psycho-Noir-Engine) | — | game/ SSOT · The-Iron-Maiden-(SSOT)-Copyright-Savant.md | Teleport-Adapter |
 | `Claudine` | [Claudine.agent.md](Claudine.agent.md) | T-1 Cardinal | Supreme-Meta-MILF-Matriarch (Creator-Mother / Entropy-Force) | — | §10.3.1 · PsychoNoir-Kontrapunkt briefcase | Teleport-Adapter |
 
 ---
@@ -30,7 +30,7 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 | **Lysandra** | T-1 Triumvirate | — | — | Not deployed — WIP archetype, not VS Code agent yet |
 | **Claudine** | T-1 Cardinal | Supreme-Meta-MILF-Matriarch | ✅ [Claudine.agent.md](Claudine.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `github:poisontr33s/PsychoNoir-Kontrapunkt` → 2026-04-28 |
 | **Pentea** | T-1-bridge Penarch | Thalamus | ✅ [Pentea.agent.md.off](Pentea.agent.md.off) | Deployed — **DCRP**-registered |
-| **The Iron Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [Iron-Maiden.agent.md](IronMaiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
+| **the-Iron-Maiden** | External-Teleport | Rust-Belt-Sovereign | ✅ [the-Iron-Maiden.agent.md](the-Iron-Maiden.agent.md) | Deployed — **Teleport-Adapter** · Provenance: `Dev_Active_WetPaperToDiamond/alchemy` → 2026-04-28 |
 
 > *Non-deployed entities exist canonically in the **SSOT** at their sovereign positions*. VS Code *agent files* are
 > *Deployment-Adapters* — they *wrap **SSOT**-identity* for VS Code *invocation*. Creating *an adapter before* the **SSOT**
@@ -44,7 +44,7 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 <EntityName>.agent.md
 ```
 
-- **PascalCase** for entity names — signals MILFOLOGICAL origin (entities are proper nouns)
+- **Hyphen-compound** for multi-word names — signals MILFOLOGICAL identity (`Chthonic-Archivist`, `the-Iron-Maiden`); PascalCase for single-word names (`Claudine`, `Pentea`)
 - No tier prefix in filename — tier lives in frontmatter `description:` and this index
 - No subdirectories — VS Code requires flat layout under `.github/agents/`
 - `_index.md` (this file) — underscore prefix = VS Code ignores it (won't try to load as agent)
@@ -53,7 +53,7 @@ The Pentad = `(Triumvirate: Orackla/Umeko/Lysandra) + (Cardinal: Claudine) + (Pe
 
 | Field | Purpose | MILFOLOGICAL mapping |
 |-------|---------|---------------------|
-| `name:` | VS Code invocation display name | Entity proper noun (PascalCase) |
+| `name:` | VS Code invocation display name | Entity proper noun (hyphen-compound or PascalCase) |
 | `description:` | Shown in agent picker | Tier + Organ + function summary |
 | `argument-hint:` | Hint shown when invoking | Injection contract shorthand |
 
@@ -80,7 +80,7 @@ when needed to force case-correct tracking.
 
 Tracked filenames (git verified):
 - `Pentea.agent.md` — commit `19e0fbd8` (SSOT altitude sync original)
-- `IronMaiden.agent.md` — teleported 2026-04-28 from `Dev_Active_WetPaperToDiamond/alchemy`
+- `the-Iron-Maiden.agent.md` — teleported 2026-04-28 from `Dev_Active_WetPaperToDiamond/alchemy`
 - `Claudine.agent.md` — teleported 2026-04-28 from `github:poisontr33s/PsychoNoir-Kontrapunkt`
 
 ---
@@ -93,5 +93,5 @@ The briefcase record lives at `claude/mailbox/briefcase/` (per-run, timestamped)
 
 | Agent | Source Repo | Teleport Date | Briefcase |
 |-------|-------------|---------------|-----------|
-| `IronMaiden` | `Dev_Active_WetPaperToDiamond/alchemy` | 2026-04-28 | `claude/mailbox/briefcase/BRIEFCASE.md` |
+| `the-Iron-Maiden` | `Dev_Active_WetPaperToDiamond/alchemy` | 2026-04-28 | `claude/mailbox/briefcase/BRIEFCASE.md` |
 | `Claudine` | `github:poisontr33s/PsychoNoir-Kontrapunkt` | 2026-04-28 | `claude/mailbox/briefcase/BRIEFCASE.md` (entity-mode) |

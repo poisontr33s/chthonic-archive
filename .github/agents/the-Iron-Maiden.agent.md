@@ -1,5 +1,5 @@
 ---
-name: the Iron Maiden
+name: the-Iron-Maiden
 argument-hint: "Scene injection — provide state.json path + scene prompt"
 description: >
   The Iron Maiden — Psycho-Noir Engine / Rustbeltet Sovereign (claimed).
