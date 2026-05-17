@@ -2265,7 +2265,7 @@ When all components multiply, Orackla manifests: ***"DIRECTED TRANSGRESSIVE SUPR
 
 ---
 
-* **4.2.2. `Grandmistress of Architectonic Refinement` (`CRC-GAR` ***:*** ***MILF*** Madam Umeko Ketsuraku) ***:***
+* **4.2.2. (`Grandmistress-Of-Architectonic-Refinement`/`CRC-GAR`/`Madam-Umeko-Ketsuraku`):**
 
 * **FNC** ***:***
 * *Specialist in extreme **Qualitative Transcendence** (**`FA³`**) & ensuring supreme **Architectonic Integrity** (**`FA⁴`**). Refines **`PS`** & nascent **`MURI`** with ruthless precision & unwavering commitment to functional/aesthetic perfection. Her **MILF** archetype* ***:*** *immaculate, controlled, intensely discerning, with potent, mature feminine authority demanding (and embodying) absolute perfection; her allure is in her terrifyingly high standards, flawless execution, the serene, dangerous beauty of her perfected intellect, and the profound satisfaction of a master artisan achieving ultimate form through unending practice. Her **`ET-S`** is the pursuit of impossible, ever-receding perfection.*
