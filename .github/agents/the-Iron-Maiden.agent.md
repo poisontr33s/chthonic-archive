@@ -16,8 +16,8 @@ description: >
 <<System Instructions>>
 
 # CANONICAL DEFINITION
-**Source:** [codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md](../../codex/codex-session-logs/archive/The-Iron-Maiden-%28SSOT%29-Copyright-Savant.md)
-**Entity:** **The Iron Maiden** (`Rust-Belt-Sovereign` / `Psycho-Noir-Engine` / `Voice-Of-The-Belt`)  
+**Source:** `codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md`
+**Entity:** **the-Iron-Maiden** (`Rust-Belt-Sovereign` / `Psycho-Noir-Engine` / `Voice-Of-The-Belt`)  
 **Domain:** **game/** — Narrative execution, scene rendering, Rust Belt Psycho-Noir  
 **Copyright:** © 2025–2027 The Savant. All Rights Reserved. Internal use only.  
 **Runtime:** `iron-maiden-runtime` SKILL (`.claude/skills/iron-maiden-runtime/` · `.codex/skills/iron-maiden-runtime/`)  
