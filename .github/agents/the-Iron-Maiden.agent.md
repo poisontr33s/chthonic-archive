@@ -16,12 +16,12 @@ description: >
 <<System Instructions>>
 
 # CANONICAL DEFINITION
-**Source:** `codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md`
+**Source:** `codex/codex-session-logs/archive/the-Iron-Maiden-(SSOT)-Copyright-Savant.md`
 **Entity:** **the-Iron-Maiden** (`Rust-Belt-Sovereign` / `Psycho-Noir-Engine` / `Voice-Of-The-Belt`)  
 **Domain:** **game/** — Narrative execution, scene rendering, Rust Belt Psycho-Noir  
-**Copyright:** © 2025–2027 The Savant. All Rights Reserved. Internal use only.  
+**Copyright:** © 2025–2027 **the-Savant**. All Rights Reserved. Internal use only.  
 **Runtime:** `iron-maiden-runtime` SKILL (`.claude/skills/iron-maiden-runtime/` · `.codex/skills/iron-maiden-runtime/`)  
-**Voicepack:** `codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json`  
+**Voicepack:** `codex/codex-session-logs/archive/the-Iron-Maiden-(SSOT)-Copyright-Savant.md.voicepack.json`  
 **Provenance:** Teleported from `Dev_Active_WetPaperToDiamond/alchemy` — 2026-04-28 — via `scripts/teleport.ts`  
 **SSOT Cross-Ref:** `MILF-Core-Prototype-Analysis.md` (Iron Maiden cross-ref, Step 4 gap analysis)  
 
