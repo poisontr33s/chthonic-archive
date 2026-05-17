@@ -31,6 +31,22 @@ if [ -z "$UPSTREAM" ]; then
     exit 0
 fi
 
+# --- CI gate: pathfinder link-audit ---
+# Runs even when commit used --no-verify (which only bypasses pre-commit).
+# post-commit always fires, so agent lane commits get link validation here.
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+echo "[post-commit:ci] pathfinder — checking tracked markdown ..." >&2
+( cd "$REPO_ROOT" && bun run ci/run.ts --check pathfinder )
+CI_EXIT=$?
+if [ $CI_EXIT -ne 0 ]; then
+    echo "" >&2
+    echo "[post-commit:ci] ✗ pathfinder FAILED — push blocked" >&2
+    echo "[post-commit:ci]   repair broken links, then: git push" >&2
+    exit 0
+fi
+echo "[post-commit:ci] ✓ pathfinder clean" >&2
+# --- end CI gate ---
+
 echo "[post-commit] pushing $BRANCH -> $UPSTREAM ..." >&2
 git push origin "$BRANCH" >&2
 if [ $? -eq 0 ]; then
