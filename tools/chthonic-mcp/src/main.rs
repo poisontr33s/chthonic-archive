@@ -90,6 +90,7 @@ struct SessionRankedIndex {
     sessions: Vec<RankedSession>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize)]
 struct TodoEntry {
     id: String,
@@ -101,6 +102,7 @@ struct TodoEntry {
     blocked_until_chain: Option<String>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize, Serialize)]
 struct TodoRoulette {
     entries: Option<Vec<TodoEntry>>,
