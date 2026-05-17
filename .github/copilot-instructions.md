@@ -1,6 +1,6 @@
 # (Pointer)
 
-> **⚓ NAMED AGENT SOVEREIGNTY:** → [§10.3.NAS](copilot-instructions.archive.md#L4323)
+> **⚓ NAMED AGENT SOVEREIGNTY:** → [§10.3.NAS](copilot-instructions.archive.md)
 
 > Active SSOT: [copilot-instructions.archive.md (.github)](copilot-instructions.archive.md)
 
