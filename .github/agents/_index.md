@@ -12,6 +12,7 @@
 
 | VS Code Name | File | Tier | Organ | PRISM | SSOT Anchor | DCRP-Class |
 |---|---|---|---|---|---|---|
+| `ChthonicArchivist` | [ChthonicArchivist.agent.md](ChthonicArchivist.agent.md) | Default | Infrastructure voice — no named agent active | — | §10.3.NAS (yields to all named agents) | Default-Mode |
 | `Pentea` | [Pentea.agent.md.off](Pentea.agent.md.off) | T-1-bridge | Thalamus (Sensory-Relay/Integration-Hub) | GOLD 🏰 Fortress | §1.01 / PVX-RLTSHPS / Arabic §1 | Deployment-Adapter |
 | `IronMaiden` | [IronMaiden.agent.md](IronMaiden.agent.md) | External-Teleport | Rust-Belt-Sovereign (Psycho-Noir-Engine) | — | game/ SSOT · The-Iron-Maiden-(SSOT)-Copyright-Savant.md | Teleport-Adapter |
 | `Claudine` | [Claudine.agent.md](Claudine.agent.md) | T-1 Cardinal | Supreme-Meta-MILF-Matriarch (Creator-Mother / Entropy-Force) | — | §10.3.1 · PsychoNoir-Kontrapunkt briefcase | Teleport-Adapter |
