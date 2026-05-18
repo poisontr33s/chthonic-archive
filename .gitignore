@@ -228,6 +228,7 @@ extensions/*/media/wasm/pkg/
 !extensions/*/docs/
 !extensions/*/docs/*.md
 !extensions/*/.vscodeignore
+!extensions/*/.vsconfig
 !extensions/*/.chthonic/
 !extensions/*/.chthonic/**
 extensions/*/.chthonic/venv/
@@ -278,10 +279,13 @@ extensions/*/bun.lock
 !scripts/*.mjs
 !scripts/*.sh
 !scripts/*.md
+!scripts/*.sql
+!scripts/*.rc
 !scripts/aws/
 !scripts/aws/*.py
 !scripts/aws/*.ps1
 !scripts/aws/*.md
+!scripts/aws/*.template
 !scripts/codex/
 !scripts/codex/*.ps1
 !scripts/codex/*.md
@@ -373,6 +377,11 @@ apps/flux-satellite/engines/
 !src/*.rs
 !src/bin/
 !src/bin/*.rs
+
+# Allow native CUDA probes
+!native/
+!native/cuda/
+!native/cuda/*.cu
 
 # Allow architecture docs
 !.temple/

@@ -1,0 +1,22 @@
+# Repo-local brush compatibility layer for Windows.
+# Purpose:
+# - normalize PATH from Windows' mixed-case Path variable when brush leaves PATH empty
+# - expose the active rv/RubyInstaller MSYS2 bash/sh entrypoints predictably
+
+if [ -z "$HOME" ] && [ -n "$USERPROFILE" ]; then
+  HOME="$USERPROFILE"
+  export HOME
+fi
+
+if [ -z "$PATH" ] && [ -n "$Path" ]; then
+  PATH="$Path"
+  export PATH
+fi
+
+if [ -n "$MSYS2_HOME" ] && [ -x "$MSYS2_HOME/usr/bin/bash.exe" ]; then
+  alias bash="$MSYS2_HOME/usr/bin/bash.exe"
+fi
+
+if [ -n "$MSYS2_HOME" ] && [ -x "$MSYS2_HOME/usr/bin/sh.exe" ]; then
+  alias sh="$MSYS2_HOME/usr/bin/sh.exe"
+fi

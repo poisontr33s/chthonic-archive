@@ -1,0 +1,14 @@
+# Copy this file to: %USERPROFILE%\.aws\config
+
+[default]
+region = us-east-1
+output = json
+
+[profile my-sso]
+region = us-east-1
+output = json
+# Fill these with your org values if using SSO:
+# sso_start_url = https://YOUR_SSO_START_URL
+# sso_region = us-east-1
+# sso_account_id = 123456789012
+# sso_role_name = YourRoleName
