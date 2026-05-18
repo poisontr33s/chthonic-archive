@@ -152,14 +152,17 @@ public:
 
     void Execute() override {
         try {
+            // Gating-As-Ungating: the empty-slot predicate that used to reject
+            // is now the lane router. Empty slot => plain lane (no secret to
+            // pass through; SpawnSatelliteWithSecret accepts an empty buffer
+            // and just closes the satellite's stdin immediately, which the
+            // satellite drains via _drain_stdin_if_piped). Non-empty slot =>
+            // sealed lane (legacy stdin pass-through preserved for parity).
             auto secret = chthonic::SecretSlot::Instance().CopyOut();
-            if (secret.empty()) {
-                SetError("ERR_FLUX_UNAUTHENTICATED: master secret not set");
-                return;
-            }
+            const bool plain_lane = secret.empty();
             auto handles = chthonic::SpawnSatelliteWithSecret(
                 uv_path_, args_, cwd_, secret);
-            ::SecureZeroMemory(secret.data(), secret.size());
+            if (!plain_lane) ::SecureZeroMemory(secret.data(), secret.size());
 
             std::lock_guard<std::mutex> lock(State().mu);
             chthonic::CloseSatelliteHandles(State().handles);
