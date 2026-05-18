@@ -1,0 +1,10 @@
+build/
+prebuilds/
+node_modules/
+scratch/
+*.log
+*.tlog
+*.obj
+*.lib
+*.exp
+*.pdb

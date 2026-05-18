@@ -343,6 +343,10 @@ apps/chthonic-next/node_modules/
 !apps/chthonic-tensor-bridge/package.json
 !apps/chthonic-tensor-bridge/index.js
 !apps/chthonic-tensor-bridge/index.d.ts
+!apps/chthonic-tensor-bridge/CMakeLists.txt
+!apps/chthonic-tensor-bridge/src/
+!apps/chthonic-tensor-bridge/src/*.cc
+!apps/chthonic-tensor-bridge/src/*.h
 !apps/chthonic-tensor-bridge/scripts/
 !apps/chthonic-tensor-bridge/scripts/*.js
 apps/chthonic-tensor-bridge/build/

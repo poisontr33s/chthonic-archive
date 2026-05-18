@@ -1,0 +1,36 @@
+{
+  "name": "chthonic-tensor-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "description": "N-API native addon: secure master-secret slot, NVML/registry hardware fingerprint, CreateProcessW stdin redirection, zero-copy MMF image transport for the Chthonic FLUX satellite.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "os": ["win32"],
+  "cpu": ["x64"],
+  "gypfile": false,
+  "scripts": {
+    "install": "bunx cmake-js compile",
+    "build": "bunx cmake-js compile",
+    "build:debug": "bunx cmake-js compile --debug",
+    "build:electron": "bunx cmake-js compile --runtime=electron --runtime-version=%ELECTRON_VERSION%",
+    "rebuild": "bunx cmake-js rebuild",
+    "clean": "bunx cmake-js clean",
+    "smoke": "bun run scripts/smoke.js"
+  },
+  "engines": {
+    "bun": ">=1.3.0"
+  },
+  "dependencies": {
+    "node-addon-api": "^8.2.2"
+  },
+  "devDependencies": {
+    "cmake-js": "^7.3.0"
+  },
+  "binary": {
+    "napi_versions": [9]
+  },
+  "cmake-js": {
+    "runtime": "node",
+    "runtimeVersion": "20.18.0"
+  }
+}
