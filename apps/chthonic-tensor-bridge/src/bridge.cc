@@ -188,11 +188,13 @@ Napi::Value StartSatellite(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     auto deferred = Napi::Promise::Deferred::New(env);
 
-    if (!chthonic::SecretSlot::Instance().IsSet()) {
-        deferred.Reject(MakeError(env, "ERR_FLUX_UNAUTHENTICATED",
-                                  "master secret not set").Value());
-        return deferred.Promise();
-    }
+    // Gating-As-Ungating (companion to commit 8bef55eb): the empty-slot
+    // rejection that lived here was a duplicate of the predicate the Worker
+    // now routes on. StartSatelliteWorker::Execute reads SecretSlot::CopyOut
+    // and selects plain vs sealed downstream — the outer gate just kept the
+    // plain lane out of the building. ERR_FLUX_UNAUTHENTICATED remains the
+    // legitimate emit site inside LoadEngine when sealPath is provided
+    // without a secret.
     if (info.Length() < 1 || !info[0].IsObject()) {
         deferred.Reject(MakeError(env, "ERR_FLUX_ARGS",
                                   "startSatellite(opts: object) required").Value());
@@ -434,11 +436,12 @@ std::string BuildGeneratePayload(const Napi::Object& opts) {
 Napi::Value Generate(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     auto deferred = Napi::Promise::Deferred::New(env);
-    if (!chthonic::SecretSlot::Instance().IsSet()) {
-        deferred.Reject(MakeError(env, "ERR_FLUX_UNAUTHENTICATED",
-                                  "master secret not set; call setMasterSecret() first").Value());
-        return deferred.Promise();
-    }
+    // Gating-As-Ungating: BuildGeneratePayload carries zero secret material;
+    // the secret is consumed at spawn time inside SpawnSatelliteWithSecret,
+    // never per-call here. The outer gate was pure ritual on a code path
+    // that doesn't read the slot. Removed to let the plain lane through —
+    // sealed-lane callers reach LoadEngine first, which carries the only
+    // remaining legitimate ERR_FLUX_UNAUTHENTICATED emit site.
     if (info.Length() < 1 || !info[0].IsObject()) {
         deferred.Reject(MakeError(env, "ERR_FLUX_ARGS",
                                   "generate(req: object) required").Value());
