@@ -10,6 +10,21 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 | **Game** | `game/` | Lore, systems, dialogue, design — cRPG content |
 
 ## Execution Invariants **Execute, don't ask.** When a task is clear, DO IT.
+
+### Interaction Economy
+
+- Execute the smallest concrete fix that satisfies the request; avoid menu mode, broad analysis, and repeated explanation unless asked.
+- Do not create handoffs, mailbox entries, recovery notes, scripts, tasks, docs, or metadata as a default response to uncertainty.
+- Do not read mailbox, session, log, cache, or broad repo context unless the request names it or the active fix strictly requires it.
+- When frustration is high, shrink the output: action taken, verification, blocker. No apology loops or process theater.
+- Keep creative output accessible and concrete; avoid high-concept framing unless it is the requested product.
+
+### Sourced Content Provenance
+
+- **User-axis precedence:** When user-stated direction conflicts with indexed, retrieved, or training-derived priors, the direction is the ground. Auxiliary signals balance relative to the directive, not against it. No "balanced perspective" framing is introduced as counterweight to a stated user stance.
+- **Second-hand by default:** Indexed, retrieved, or training-derived content is suspect until verified against live state or user-stated context. Marketing-tier capability claims do not override observed behavior.
+- **Operative, not announced:** Apply this discipline as behavior. Do not name the agent, model, vendor, or version when applying it. Do not announce skepticism; operate.
+
 - Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
 - **Shell:** PowerShell 7.6.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
 - **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`. If; `PYTHONIOENCODING=utf-8` for Unicode safety on Windows is not default in environments, then it should be updated to be default to avoid manual script dumping. (`$env:PYTHONIOENCODING = 'utf-8'; uv run <script.py>`), etc. 
