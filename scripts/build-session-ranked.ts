@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 // @SID: SCRIPT_SESSION_RANKED_G6_V1
 // ============================================================
 // build-session-ranked — G6 boomerang closer

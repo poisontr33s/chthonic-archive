@@ -27,7 +27,7 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 
 - Oxidized "Rustified" language-tooling stack: `uv` (Python), `rv` (Ruby), `goup` (Go), `brush` (bash-compatible shell).
 - **Shell:** PowerShell 7.6.x (`pwsh`) is primary. `brush` (`brush.exe` via `cargo install --locked brush-shell`) is the sanctioned bash-compatible companion when needed — not Git Bash, not WSL. See [PWSH_RULES.md (repo-root)](PWSH_RULES.md).
-- **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`. If; `PYTHONIOENCODING=utf-8` for Unicode safety on Windows is not default in environments, then it should be updated to be default to avoid manual script dumping. (`$env:PYTHONIOENCODING = 'utf-8'; uv run <script.py>`), etc. 
+- **Python:** `uv` is the default Python lane (`uv run <script.py>`). Never raw `python` or `pip`. On Windows, `stdout.encoding` defaults to `cp1252` even when the console is UTF-8 (`chcp 65001`) — console encoding does NOT propagate to spawned Python ≤ 3.14. Unicode-printing scripts need an env var or they silently corrupt output (em-dash `—` → `�`) or crash on chars cp1252 can't represent (æøå, Greek). **Preferred:** `$env:PYTHONUTF8='1'; uv run <script.py>` — full UTF-8 mode (PEP 540), covers stdio + filesystem + `open()` defaults. **Narrow alternative:** `$env:PYTHONIOENCODING='utf-8'; uv run <script.py>` — stdio only. PEP 686 makes UTF-8 mode default in Python 3.15; env var becomes redundant on bump. E2E verified 2026-05-23 on Py 3.14.4 / uv 0.11.14 via `scripts/theme_artcop.py --help`.
 - All Python dependencies must be declared in `pyproject.toml` and installed via `uv pip install (example) --require-virtualenv <package>`.
 
 - **Ruby:** use `rv` for runtime and gem/tool isolation.
@@ -116,8 +116,9 @@ Hidden mailbox dirs (`.codex/mailbox`, `.claude/mailbox`) are non-canonical — 
 | `bun run audit` | Filtered audit — ignores known false-positives (preferred) |
 | `bun run audit:full` | Unfiltered audit — shows everything including boundary-bug false-positives |
 | `cargo build` | Rust build |
-| `$env:PYTHONIOENCODING = 'utf-8'; uv run <script>` | Python execution (preferred — Unicode-safe on Windows) |
-| `uv run <script>` | Python execution (bare form — use when output is ASCII-only) |
+| `$env:PYTHONUTF8='1'; uv run <script>` | Python execution (preferred — full UTF-8 mode, PEP 540; covers stdio + filesystem) |
+| `$env:PYTHONIOENCODING='utf-8'; uv run <script>` | Python execution (narrow alternative — stdio UTF-8 only) |
+| `uv run <script>` | Python execution (bare form — use when output is ASCII-only and no Unicode filenames) |
 | `bun run ci:staged` | Local pre-commit gate: shebang, script metadata, uv usage, blessing, Markdown links, and offline GitHub/GFM URL shapes |
 | `bun run ignore:audit` | Detect source-shaped files hidden by allowlist `.gitignore` rules |
 | `bun run hooks:verify` | Confirm Git pre-commit hook is installed and points at `ci/run.ts --staged` |
