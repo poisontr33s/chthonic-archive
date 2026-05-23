@@ -67,12 +67,8 @@
         "sync": false
     },
     "scm.diffDecorations": "none",
+    // Keep only external/plugin repos suppressed; satellite repos should remain visible in Source Control.
     "git.ignoredRepositories": [
-        "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
-        "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
-        "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-        "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
-        "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder",
         "C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"
     ],
 

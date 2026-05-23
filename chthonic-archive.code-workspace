@@ -78,8 +78,7 @@
     },
     // Copilot workspace context: both repo roots visible
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-    // Git: satellites are in folders[] for search/Copilot context only — no parent scan.
-    // Keep SCM quiet unless explicitly invoked; transcript siphons are manual tasks below.
+    // Git: satellites are first-class multi-root repos; each keeps separate SCM state.
     "git.autoRepositoryDetection": "subFolders",
     "git.openRepositoryInParentFolders": "never",
     "git.autorefresh": false,
@@ -107,13 +106,8 @@
     },
     "scm.diffDecorations": "none",
     "git.statusDecorationColors": false,
-    // Suppress git SCM for ALL satellites — absolute paths required by VS Code
+    // Keep only external/plugin repos suppressed; satellite repos must stay visible in Source Control.
     "git.ignoredRepositories": [
-      "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
-      "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
-      "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-      "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
-      "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder",
       "C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"
     ],
     "claudeCode.allowDangerouslySkipPermissions": true,
