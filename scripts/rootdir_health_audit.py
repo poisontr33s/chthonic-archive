@@ -36,6 +36,12 @@ Usage:
 
 from __future__ import annotations
 
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import sys
 import io
 # if sys.platform == 'win32' and __name__ == '__main__':

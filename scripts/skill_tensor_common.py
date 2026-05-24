@@ -21,14 +21,13 @@ Each probe imports `load_latest` and `section` from here, then slices its view.
 @Purpose:       Skill Tensor Probe Hub — reads LATEST.json and dispatches stage diagnostics.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
-
-
 from __future__ import annotations
+
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 import json
 import sys

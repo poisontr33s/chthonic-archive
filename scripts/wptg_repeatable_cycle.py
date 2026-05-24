@@ -18,14 +18,13 @@ Repeatable WPTG cycle orchestrator.
 @Purpose:       Execute a reusable Phase 0 -> Part 4 WPTG cycle, persist cycle memory, and emit reverse-rarity-first baseline views.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
-
-
 from __future__ import annotations
+
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 import argparse
 import json

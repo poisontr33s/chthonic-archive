@@ -19,12 +19,11 @@ code_taste.py — Gustatory Validation: Commit Quality as Flavor Profiles
                 to gustatory (flavor) descriptors for commit quality.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 import subprocess
 import sys

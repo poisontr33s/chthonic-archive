@@ -18,12 +18,11 @@ patch_harani_round2.py — Script logic for patch_harani_round2.py.
 @Purpose:       Script logic for patch_harani_round2.py.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 # @SID: PATCH_HARANI_R2_V1
 # Round 2 targeted patch for §10.3.21 Hara'ni.

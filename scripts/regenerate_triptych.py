@@ -28,6 +28,12 @@ Usage: python scripts/regenerate_triptych.py [--dry-run]
 @Purpose:       regenerate_triptych.py — Regenerate CROSS_REFERENCE_TRIPTYCH.md for the current repo.
 """
 
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import ast
 import os
 import re

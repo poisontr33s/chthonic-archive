@@ -18,12 +18,11 @@ embed_registry_switch.py — Script logic for embed_registry_switch.py.
 @Purpose:       Script logic for embed_registry_switch.py.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 # @SID: embed_registry_switch — switch the active embedding model in the corpus stack
 #

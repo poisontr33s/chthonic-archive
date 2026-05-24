@@ -18,12 +18,11 @@ patch_claude_webview_2143.py — Script logic for patch_claude_webview_2143.py.
 @Purpose:       Script logic for patch_claude_webview_2143.py.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 # Patch Claude Code 2.1.143 webview bundle — replace stream-fatal throws with log+return
 # SID: PATCH_CLAUDE_WEBVIEW_2143

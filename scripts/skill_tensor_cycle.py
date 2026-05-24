@@ -18,14 +18,13 @@ Single-file authority for the skill tensor cycle and stage compatibility shims.
 @Purpose:       Single-file authority for the skill tensor cycle and stage compatibility shims.
 """
 
-import sys
-import io
-if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
-
-
 from __future__ import annotations
+
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 import argparse
 import ast

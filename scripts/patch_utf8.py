@@ -13,9 +13,16 @@
 """
 patch_utf8.py — Apply in-script UTF-8 stdio wrapper to CLI scripts.
 
-Inserts a `sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')`
-block into Python CLI scripts so they render Unicode correctly on Windows
-without requiring the caller to set $env:PYTHONUTF8='1' or PYTHONIOENCODING.
+Inserts a `sys.stdout.reconfigure(encoding='utf-8')` block into Python CLI
+scripts so they render Unicode correctly on Windows without requiring the
+caller to set $env:PYTHONUTF8='1' or PYTHONIOENCODING. The reconfigure
+pattern (Python 3.7+) mutates the existing text stream in place, unlike
+TextIOWrapper(sys.stdout.buffer, ...) which creates a fragile wrapper that
+can close the underlying buffer on GC.
+
+The insertion point walks past shebang, encoding line, decorative comment
+header, module docstring, and any `from __future__ ...` imports — so the
+wrapper lands BELOW __future__ as Python's compile-time rule requires.
 
 CLI detection mirrors ci/checks/python-headers.ts:isCliScript:
     Library (skip):  __init__.py OR path under */src/*
@@ -23,8 +30,9 @@ CLI detection mirrors ci/checks/python-headers.ts:isCliScript:
                      OR has `def main(`
 
 Idempotent: a file already containing the wrapper is skipped.
+Self-aware: this tool's own source is skipped to avoid recursive matching.
 
-@SID:           TOOL_PATCH_UTF8_V2
+@SID:           TOOL_PATCH_UTF8_V3
 @Shabti:        CLI Script
 @Purpose:       UTF-8 stdio defense-in-depth across CLI scripts.
 """
@@ -36,19 +44,20 @@ import re
 from pathlib import Path
 
 UTF8_FIX = """import sys
-import io
 if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 """
 
-WRAPPER_MARKER = "sys.stdout = io.TextIOWrapper"
+WRAPPER_MARKER = "sys.stdout.reconfigure(encoding='utf-8')"
 
 UTF8_FIX_BLOCK_RE = re.compile(
-    r"\n?import sys\nimport io\nif sys\.platform == 'win32':\n"
-    r"    sys\.stdout = io\.TextIOWrapper\(sys\.stdout\.buffer, encoding='utf-8'\)\n"
-    r"    sys\.stderr = io\.TextIOWrapper\(sys\.stderr\.buffer, encoding='utf-8'\)\n+"
+    r"\n?import sys\nif sys\.platform == 'win32':\n"
+    r"    sys\.stdout\.reconfigure\(encoding='utf-8'\)\n"
+    r"    sys\.stderr\.reconfigure\(encoding='utf-8'\)\n+"
 )
+
+SELF_NAME = "patch_utf8.py"
 
 
 def is_cli_script(path: Path, content: str) -> bool:
@@ -72,7 +81,6 @@ def is_cli_script(path: Path, content: str) -> bool:
         re.search(r"^if\s+__name__\s*==\s*['\"]__main__['\"]", content, re.MULTILINE)
     )
 
-    # scripts/lib/* — helper library, skip unless explicit entry point
     if re.search(r"(?:^|/)scripts/lib/", parts_posix):
         return has_main_block
 
@@ -90,7 +98,8 @@ def find_insertion_point(content: str) -> int:
     """Locate the byte offset where the UTF-8 wrapper should be inserted.
 
     Walks past shebang, encoding declaration, decorative # comment header,
-    and module docstring. Inserts before the first real code statement.
+    module docstring, and any `from __future__ ...` imports. Inserts before
+    the first non-__future__ executable statement.
     """
     lines = content.split("\n")
     insert_idx = 0
@@ -123,12 +132,27 @@ def find_insertion_point(content: str) -> int:
             after = ds_end + 3
             nl = content.find("\n", after)
             insert_idx = (nl + 1) if nl != -1 else after
+            cursor = insert_idx
+
+    while cursor < len(content):
+        nl = content.find("\n", cursor)
+        if nl == -1:
+            break
+        line = content[cursor:nl]
+        stripped = line.strip()
+        if stripped == "" or stripped.startswith("from __future__"):
+            cursor = nl + 1
+            insert_idx = cursor
+            continue
+        break
 
     return insert_idx
 
 
 def patch_python_file(path: Path, dry_run: bool = False) -> str:
     """Patch one file. Returns outcome label."""
+    if path.name == SELF_NAME:
+        return "skipped-self"
     try:
         content = path.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):
@@ -151,6 +175,8 @@ def patch_python_file(path: Path, dry_run: bool = False) -> str:
 
 def revert_python_file(path: Path, dry_run: bool = False) -> str:
     """Strip the UTF-8 wrapper block from a previously-patched file."""
+    if path.name == SELF_NAME:
+        return "skipped-self"
     try:
         content = path.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):

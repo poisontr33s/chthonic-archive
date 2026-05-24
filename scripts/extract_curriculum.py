@@ -19,11 +19,11 @@ Ordered by epistemic seniority: authority tier > score > signal diversity
 @Purpose:       Extract curriculum core from epistemograph v1.1.1
 """
 
+
 import sys
-import io
 if sys.platform == 'win32':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
 
 import sqlite3
 import json

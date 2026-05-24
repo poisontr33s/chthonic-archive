@@ -23,6 +23,12 @@ decorator_cross_ref_maximum.py — Unified Decorator Cross-Reference Protocol (D
                 Usage: uv run python scripts/decorator_cross_ref_maximum.py [--inject]
 """
 
+
+import sys
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import ast  # For Python AST analysis (from enhanced.py)
 import json
 import re
