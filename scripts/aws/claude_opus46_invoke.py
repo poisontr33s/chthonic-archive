@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+
+# @SID:      SCRIPT_CLAUDE_OPUS46_INVOKE_V1
+# @Purpose: Example script to invoke Claude Opus 4.6 via AWS Bedrock Runtime API. Demonstrates basic setup and response handling.
+# @Shabti:   Example Script
+# @Context:  Standalone Example
+# Example script to invoke Claude Opus 4.6 via AWS Bedrock Runtime API. # Demonstrates basic setup and response handling.
+# Usage:
+#     uv run scripts/aws/claude_opus46_invoke.py
+
+
 """
-@SID:      SCRIPT_CLAUDE_OPUS46_INVOKE_V1@Purpose:     
-@Shabti:   Example Script
-@Context:  Standalone Example
-Example script to invoke Claude Opus 4.6 via AWS Bedrock Runtime API. Demonstrates basic setup and response handling
-
-
-
 Example script to invoke Claude Opus 4.6 via AWS Bedrock Runtime API. Demonstrates basic setup and response handling.
 """
 
