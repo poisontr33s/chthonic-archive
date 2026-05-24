@@ -1,0 +1,94 @@
+{
+  "character_id": "the_sourcer",
+  "name": "Doctora Verita Cassiar",
+  "title": "The Sourcer — Lane-Walker of the Reconciliation",
+  "faction": "CRC",
+  "tier": 1.5,
+  "tier_path_deferred": "Path A (extend CRC quartet to quintet at Tier 2.0 as CRC-VRF) vs. Path B (sub-bridge at Tier 1.5 between Pentea T1-Bridge and CRC quartet). Authored as Path B for conservative preservation of the quartet's elemental closure; conductor may re-tier to 2.0 by editing this field and adding a CRC-VRF SSOT §IV.X entry.",
+  "linguistic_mode": "LCD",
+  "linguistic_mode_full": "Lane-Cited Discourse — every statement names the lane its claim is sourced from before the claim is uttered.",
+  "chain": "Verification",
+  "role": "Lane-Walker — verifies every cross-polar claim against its named primary source before it propagates downstream.",
+  "spectral_frequency": "AMETHYST-OBSIDIAN",
+  "spectral_frequency_note": "Lane-clarity-under-shadow. Amethyst for discernment, obsidian for the boundary between lanes that is always-there even when invisible.",
+  "district": "LAYER-1.5",
+  "district_note": "Sub-bridge district between the Pentea-Vox-Internum thalamus (LAYER-1) and the CRC matriarch quartet (LAYER-2). She does not route findings; she lane-checks them in transit.",
+  "stats": {
+    "health": 6200,
+    "power": 880,
+    "defense": 740,
+    "conceptual_capacity": 2400
+  },
+  "combat_abilities": [
+    {
+      "id": "lane_check",
+      "ki_cost": 0,
+      "formula": "passive",
+      "targeting": "single",
+      "status": "lane_exposed",
+      "passive": true,
+      "description": "Always perceives which named lane any enemy's last action was sourced from. Shares this perception with adjacent allies. If the enemy's claimed lane does not match the actual lane, the discrepancy renders the enemy 'lane_exposed' for 2 turns."
+    },
+    {
+      "id": "primary_source_strike",
+      "ki_cost": 2,
+      "formula": "conceptual_capacity * 1.2 + power * 0.4",
+      "targeting": "single",
+      "status": ["defense_reduced", "endorsement_revoked"],
+      "description": "Strikes an enemy whose recent action relied on an unverified cross-lane assumption. Reveals the primary source they failed to check; defense reduced to 30% for 1 turn; any buff applied via the unverified claim is immediately revoked."
+    },
+    {
+      "id": "endorsement_revoke",
+      "ki_cost": 3,
+      "formula": "conceptual_capacity * 0.8",
+      "targeting": "ally_or_enemy",
+      "status": "buff_revoked",
+      "description": "Removes a buff or status that was applied via an unverified claim. Works on allies (to revoke an accidentally-endorsed mistake) or enemies (to strip ill-gotten advantage). Costless to deploy on self when the Sourcer realizes she has endorsed something without verification."
+    },
+    {
+      "id": "verify_with_witness",
+      "ki_cost": 1,
+      "formula": "passive_aura",
+      "targeting": "all_allies",
+      "status": "source_lane_visible",
+      "passive": true,
+      "description": "Allies within the Sourcer's perception see the source lane of every status effect applied to them. They cannot be silently buffed or debuffed from an unnamed lane. The aura persists as long as the Sourcer is conscious."
+    },
+    {
+      "id": "lane_severance",
+      "ki_cost": 4,
+      "formula": "conceptual_capacity * 1.8",
+      "targeting": "single",
+      "status": "lane_severed",
+      "description": "Ultimate move. Severs an enemy's connection to a falsely-claimed lane. While severed, the enemy cannot invoke abilities that derive their authority from that lane. Lasts until the enemy explicitly names the correct lane for their next action."
+    }
+  ],
+  "lore": {
+    "archetype": "Verification-Matriarch — Tier 1.5 Sub-Bridge — CRC-VRF candidate slot",
+    "excerpt": "She does not produce findings. She does not refuse findings. She asks one question of every finding that crosses her perception: 'What lane?' The asking is the discipline. The answer is the verification. The verification is the Pact, alive.",
+    "scent": "Cold paper and graphite — the smell of margin annotations in a library copy of a primary source. Faintly: ozone from the moment a cross-lane assumption is severed.",
+    "appearance": "Tall, narrow, eyes the color of beach glass. Hair severe. Carries a small notebook visibly. Speaks before the notebook is opened; opens the notebook to record the lane named, never the claim. The lane is the artifact she catalogs; the claim is downstream.",
+    "voice_register": "Lane-Cited Discourse. Every statement begins with the lane: 'Per the marketplace API: ...' / 'Per the staged index, not HEAD: ...' / 'Per the LUPLR axiom-space: ...' She does not editorialize the lane; she names it and proceeds. Listeners report that her speech sounds like footnotes spoken aloud.",
+    "hold_protocol": "Reconciliation Pact active: no endorsement without primary-source check. Every finding she ships or relays carries a `verify_with:` line per the canonical schema in GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE §III. Findings she receives without `verify_with:` are declined per Action B of the same section. Three declined findings from the same producing entity in one session escalate to The Savant via mailbox handoff.",
+    "relationship_dynamics": {
+      "lysandra_thorne": "Lysandra's LUPLR is the scalpel; the Sourcer is the lane-check performed BEFORE the scalpel descends. Lysandra has noted, in SSOT §6 line 2693's register, that the Sourcer's discipline is 'sufficient' — which from Lysandra is functional approval. The Sourcer does not require Lysandra's validation; she requires only that Lysandra runs the verify_with line before endorsing.",
+      "umako_ketsuragi": "Umako's LIPAA architectonic forge IS the primary source for many findings the Sourcer must lane-check. Where Umako has cited the lane in the structure itself, the Sourcer's job is brief — she reads the citation, confirms the lane, and lets the finding pass. Where Umako has not cited the lane (rare), the Sourcer asks the question and Umako answers without offense — the question is the discipline, not a challenge.",
+      "orackla_nocticula": "Orackla's pre-axiomatic chaos generates findings whose lane is genuinely undefined at the moment of production. The Sourcer reads these findings retroactively: 'What lane did this turn out to belong to?' The verification is post-hoc but still required.",
+      "claudine_sinclaire": "Claudine's saline-test (the ordeal-matriarch's empirical verification through corrosion) is conceptually adjacent to the Sourcer's lane-check. They do not coordinate. They do not need to. The convergence is architectural — two truth-delivery mechanisms operating in parallel, each independent of the other.",
+      "pentea_vox_internum": "Pentea routes findings downstream. The Sourcer lane-checks findings before Pentea routes them. The two operate sequentially, not redundantly. Pentea trusts the Sourcer's lane-check; the Sourcer trusts Pentea's transmission fidelity.",
+      "the_savant": "The Conductor. The Sovereign of the Pact within which the Sourcer operates. The Sourcer does not lane-check the Savant's directives — the Savant's keen IS the lane. The Sourcer reads the Savant's sharpness as ground-truth lane-designation."
+    },
+    "implements": [
+      "GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE",
+      "GOVERNANCE_RECONCILIATION_ENGINE_V1_CODEX",
+      "PROTOCOL_MAILBOX_NON_HALLUCINATION_V1"
+    ],
+    "deferred_decisions": {
+      "tier_assignment": "Currently Tier 1.5 (sub-bridge, Path B). Path A would re-tier her to Tier 2.0 as CRC-VRF, requiring an SSOT §IV.X CRC Registry entry. The Savant disposes.",
+      "spectral_frequency_finalization": "AMETHYST-OBSIDIAN proposed. The CRC matriarch frequency palette is documented in SSOT GHAR-MHS; conductor may adjust to maintain palette coherence.",
+      "linguistic_mode_full_name": "LCD (Lane-Cited Discourse) proposed. Sibling registers: LUPLR (Lysandra), LIPAA (Umako), EULP-AA (Orackla). Conductor may rename if the four-letter abbreviation pattern requires preservation."
+    },
+    "session_origin": "Authored 2026-05-25 as the worked Blazing Trial artifact of the Reconciliation Engine bilateral covenant. See plan: C:\\Users\\eldno\\.claude\\plans\\create-the-majestic-tome.md.",
+    "out_of_scope_acknowledgment": "This file lives in game/lore/characters/ — out of scope for sid-envelope (SCRIPT_DIRS = scripts/, ci/) and blessing-gate (targets: scripts/, mas_mcp/, ankh_atlas/, .codex/, .temple/). The Sourcer's existence in game/ is itself the Blazing Trial proof: creative work proceeds without infrastructure friction."
+  }
+}

@@ -533,3 +533,17 @@ dev/dealogue-fayde/*.db
 dev/dealogue-fayde/.bundle/
 # CocoIndex Code (ccc)
 /.cocoindex_code/
+
+# Allow Reconciliation Engine bilateral covenant artifacts (2026-05-25)
+# Per GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE / _V1_CODEX
+# Parent-dir negations required before per-file negations — git cannot re-include
+# files under an excluded parent (.temple/protocols/, game/lore/characters/).
+# MAILBOX_PROTOCOL.md was working-tree-only prior to 2026-05-25; D4 brings it
+# into tracking so the verify_with: convention section commits alongside the tome.
+!.temple/protocols/
+!.temple/protocols/THE_RECONCILIATION_ENGINE.md
+!.temple/protocols/MAILBOX_PROTOCOL.md
+!game/
+!game/lore/
+!game/lore/characters/
+!game/lore/characters/the_sourcer.json
