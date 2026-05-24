@@ -19,6 +19,13 @@ Uses networkx to analyze graph structure
 @Purpose:       Cycle Detection - Identify Circular Dependencies in Topology Graph
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 import json
 import networkx as nx
 from pathlib import Path

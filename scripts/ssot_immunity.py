@@ -40,6 +40,8 @@ State Files:
 @Purpose:       🔐 SSOT HASH IMMUNITY PROTOCOL
 """
 
+from __future__ import annotations
+
 import sys
 import io
 if sys.platform == 'win32':
@@ -47,7 +49,6 @@ if sys.platform == 'win32':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 
-from __future__ import annotations
 from pathlib import Path
 import hashlib
 import json

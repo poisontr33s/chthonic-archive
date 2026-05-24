@@ -194,17 +194,12 @@ CREATE VIEW IF NOT EXISTS session_timeline AS
   FROM sessions s
   ORDER BY s.startTime DESC;
 
-CREATE VIEW IF NOT EXISTS session_ranked AS
-SELECT
-  st.*,
-  (julianday('now') - julianday(st.startTime))                              AS daysSince,
-  EXP(-((julianday('now') - julianday(st.startTime)) * 0.1))               AS recencyScore,
-  (
-    MIN(CAST(st.turns    AS REAL) / 200.0, 1.0) * 0.4 +
-    MIN(CAST(st.editCount AS REAL) / 50.0,  1.0) * 0.3 +
-    MIN(CAST(st.commitCount AS REAL) / 10.0, 1.0) * 0.3
-  )                                                                          AS signalScore
-FROM session_timeline st;
+-- session_ranked VIEW is built by scripts/build-session-ranked.ts (G6 production
+-- builder) with lambda = ln(2)/7 recency decay and composite = recency * semantic_blend.
+-- See scripts/build-session-ranked.ts:232-256. The earlier inline stub here
+-- (lambda=0.1, signalScore from turns/edits/commits) was obsolete and removed
+-- 2026-05-23 to eliminate drift — execution order between this file and the
+-- production builder no longer determines which definition wins.
 `;
 
 const DDL_FTS5 = `

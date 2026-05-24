@@ -546,12 +546,38 @@ if (targetSession) {
         process.exit(1);
     }
     sessions = [row];
+} else if (topN !== null && Number.isInteger(topN) && topN > 0) {
+    // G6 loop closure: --top mode prefers composite ranking from session_ranked_data
+    // (recency * semantic_blend, lambda=ln(2)/7 — built by scripts/build-session-ranked.ts).
+    // Falls back to raw turn-count ordering when the ranking table is empty/unbuilt.
+    let rankedSessions: SessionRow[] = [];
+    try {
+        rankedSessions = queryCorpus<SessionRow>(
+            db,
+            `SELECT s.sessionId, s.startTime, s.turns, s.intent, s.topic, s.ingestedAt
+             FROM sessions s
+             JOIN session_ranked_data sd USING (sessionId)
+             ORDER BY sd.rank ASC
+             LIMIT ?`,
+            [topN],
+        );
+    } catch {
+        rankedSessions = [];
+    }
+    if (rankedSessions.length > 0) {
+        sessions = rankedSessions;
+    } else {
+        sessions = queryCorpus<SessionRow>(
+            db,
+            "SELECT sessionId, startTime, turns, intent, topic, ingestedAt FROM sessions ORDER BY turns DESC",
+        );
+        sessions = sessions.slice(0, topN);
+    }
 } else {
     sessions = queryCorpus<SessionRow>(
         db,
         "SELECT sessionId, startTime, turns, intent, topic, ingestedAt FROM sessions ORDER BY turns DESC",
     );
-    if (topN !== null) sessions = sessions.slice(0, topN);
 }
 
 if (sessions.length === 0) {

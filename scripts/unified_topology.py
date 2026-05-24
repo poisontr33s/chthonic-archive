@@ -32,6 +32,8 @@ Usage:
 @Purpose:       🌐 UNIFIED TOPOLOGY BUILDER
 """
 
+from __future__ import annotations
+
 import sys
 import io
 if sys.platform == 'win32':
@@ -41,7 +43,6 @@ if sys.platform == 'win32':
 sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent.parent))
 from scripts.lib.ssot_paths import SSOT_POINTER
 
-from __future__ import annotations
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Literal, Dict, List, Optional, Set, Any

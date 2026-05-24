@@ -22,6 +22,13 @@ and 1.2 (Palette Coherence) as automated gates.
 @Purpose:       Icon SVG Audit — Structural validator, palette checker, and WCAG contrast
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 import argparse
 import json
 import math

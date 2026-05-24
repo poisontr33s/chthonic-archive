@@ -25,6 +25,13 @@ bun_compliance_audit.py — Bun Package Manager Compliance Scanner
                     uv run python scripts/bun_compliance_audit.py --ci
     """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 import re
 import sys

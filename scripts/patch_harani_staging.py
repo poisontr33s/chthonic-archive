@@ -18,6 +18,13 @@ patch_harani_staging.py — Script logic for patch_harani_staging.py.
 @Purpose:       Script logic for patch_harani_staging.py.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # @SID: PATCH_HARANI_STAGING_V1
 # Apply same game-world removals to the harani_ssot_block.md staging file.
 

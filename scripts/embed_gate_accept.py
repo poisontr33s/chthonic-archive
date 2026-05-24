@@ -18,6 +18,13 @@ embed_gate_accept.py — Script logic for embed_gate_accept.py.
 @Purpose:       Script logic for embed_gate_accept.py.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # @SID: embed_gate_accept — HF gated model acceptance (3-tier CLI-first escalation ladder)
 # Protocol: G7-REDUX — programmatic gate acceptance so gated embedding models can be used NOTE: BUN LATEST VERSION RESOLVES PLAYWRIGHT automation via —> 1.3.13 (!) — no separate playwright install needed
 #           without manual HF Hub UI interaction. Metadta may be stale (e.g. gated status can change), so script checks live API status and escalates through multiple acceptance methods if needed.

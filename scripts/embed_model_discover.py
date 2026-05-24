@@ -18,6 +18,13 @@ embed_model_discover.py — Script logic for embed_model_discover.py.
 @Purpose:       Script logic for embed_model_discover.py.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # @SID: embed_model_discover — HF Hub embedding model discovery + gating classification
 #
 # Scans HF Hub for top feature-extraction / sentence-similarity models, classifies gating

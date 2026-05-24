@@ -37,8 +37,16 @@ Usage:
 @Purpose:       Meta-lens that observes successful methods per noise class.
 """
 
-# @SID: METHOD_INDEX_V1
 from __future__ import annotations
+
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
+# @SID: METHOD_INDEX_V1
 
 import argparse
 import json

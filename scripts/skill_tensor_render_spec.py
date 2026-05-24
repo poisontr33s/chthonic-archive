@@ -19,6 +19,13 @@ Validates that docs/ops/SKILL_TENSOR_ROULETTE_SPEC.md reflects current state.
 @Purpose:       RENDER-SPEC PROBE — Spec freshness check, phase status, artifact coherence.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 import re
 import sys
 from pathlib import Path

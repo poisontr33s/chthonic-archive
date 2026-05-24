@@ -203,6 +203,13 @@ function writeToDb(ranked: RankedSession[]): void {
     )
   `);
 
+  // G6 perf: indexes for warmstart-selection queries (ORDER BY composite DESC / rank).
+  // Without these, session-truncator.ts --top mode scans linearly.
+  db.run(`CREATE INDEX IF NOT EXISTS session_ranked_data_composite_idx
+            ON session_ranked_data(composite DESC)`);
+  db.run(`CREATE INDEX IF NOT EXISTS session_ranked_data_rank_idx
+            ON session_ranked_data(rank)`);
+
   // Upsert all ranked rows
   const upsert = db.prepare(`
     INSERT OR REPLACE INTO session_ranked_data

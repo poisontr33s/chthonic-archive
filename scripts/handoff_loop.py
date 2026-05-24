@@ -41,6 +41,13 @@ Usage:
     uv run scripts/handoff_loop.py link-audit <f> --fix   # fix broken/ambiguous links in-place
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 
 import argparse

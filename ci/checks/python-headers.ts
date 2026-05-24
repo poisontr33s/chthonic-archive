@@ -69,6 +69,25 @@ function getTrackedPyFiles(): string[] {
   }
 }
 
+// Distinguishes CLI scripts (need shebang + encoding) from importable library modules
+// (no shebang expected — invoked via `python -m pkg` or `import`). Heuristic:
+//   - Library (false): __init__.py OR path contains /src/ (package source root)
+//   - CLI by convention (true): path under scripts/ or probes/
+//   - CLI by signal (true): has `if __name__ == "__main__":` block
+//   - Default when ambiguous: treat as CLI (conservative — flag potential drift)
+function isCliScript(absPath: string, content: string): boolean {
+  const normalized = absPath.replace(/\\/g, "/");
+  const basename = normalized.split("/").pop() ?? "";
+
+  if (basename === "__init__.py") return false;
+  if (/\/src\//.test(normalized)) return false;
+
+  if (/\/(scripts|probes)\//.test(normalized)) return true;
+  if (/^if\s+__name__\s*==\s*['"]__main__['"]/m.test(content)) return true;
+
+  return true;
+}
+
 function checkFile(absPath: string): string[] {
   let content: string;
   try {
@@ -83,13 +102,28 @@ function checkFile(absPath: string): string[] {
   const line2 = lines[1] ?? "";
   const issues: string[] = [];
 
-  if (line1 !== EXPECTED_SHEBANG) {
-    issues.push(`Line 1: expected '${EXPECTED_SHEBANG}', got '${line1.slice(0, 70)}'`);
-  }
-  if (!ENCODING_RE.test(line2)) {
-    issues.push(
-      `Line 2: expected encoding declaration, got '${line2.slice(0, 70)}'`
-    );
+  const isCli = isCliScript(absPath, content);
+
+  // Library modules (e.g. __init__.py, files in */src/*) are exempt from
+  // shebang + encoding enforcement — they're imported, not executed.
+  // Exception: if a library carries a partial encoding declaration, flag malformations.
+  if (isCli) {
+    if (line1 !== EXPECTED_SHEBANG) {
+      issues.push(`Line 1: expected '${EXPECTED_SHEBANG}', got '${line1.slice(0, 70)}'`);
+    }
+    if (!ENCODING_RE.test(line2)) {
+      issues.push(
+        `Line 2: expected encoding declaration, got '${line2.slice(0, 70)}'`
+      );
+    }
+  } else {
+    const top5 = lines.slice(0, 5);
+    const encLine = top5.find((l) => l.startsWith("#") && /coding/.test(l));
+    if (encLine && !ENCODING_RE.test(encLine)) {
+      issues.push(
+        `Encoding declaration malformed (library): got '${encLine.slice(0, 70)}'`
+      );
+    }
   }
   return issues;
 }
@@ -142,6 +176,9 @@ if (STAGED) {
     }
     console.error(
       `\n  Fix: Line 1 = '#!/usr/bin/env python3'  |  Line 2 = '# -*- coding: utf-8 -*-'`
+    );
+    console.error(
+      `  Library modules (__init__.py, *.py inside */src/*) are exempt from the shebang check.`
     );
     process.exit(1);
   }

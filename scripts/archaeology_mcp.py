@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @SID: ARCHAEOLOGY_MCP_MULTI
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: archaeology_mcp.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
 """
 Archaeology MCP Server — repo-agnostic, env-configurable.
 
@@ -27,7 +36,20 @@ Registration pattern (mcp.json):
   "pnk-archaeology":        { cwd: .../psychonoir-kontrapunkt-large-file-holder }           — specialized
   "pnk-public-archaeology": { env: ARCHAEOLOGY_REPO_ROOT=.../PsychoNoir-Kontrapunkt }       — fallback scanner
   "chthonic-archaeology":   { env: ARCHAEOLOGY_REPO_ROOT=.../chthonic-archive }              — fallback scanner
+
+@SID:           ARCHAEOLOGY_MCP_MULTI
+@Shabti:        CLI Script
+@Purpose:       Archaeology MCP Server — repo-agnostic, env-configurable.
 """
+
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
+# @SID: ARCHAEOLOGY_MCP_MULTI
 
 import json
 import os

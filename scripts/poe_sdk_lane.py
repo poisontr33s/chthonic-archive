@@ -21,6 +21,13 @@ poe_sdk_lane.py — Poe SDK lane helper (fastapi_poe transport).
                 Usage: uv run --with fastapi-poe scripts/poe_sdk_lane.py --account 1 --bot app-creator
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 
 import argparse

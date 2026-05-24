@@ -18,6 +18,13 @@ embed.py — Script logic for embed.py.
 @Purpose:       Script logic for embed.py.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # @SID: embed — sentence-transformers embedding bridge for session-corpus G7
 # Protocol: reads JSON-lines from stdin {id: str, text: str}
 #           writes JSON-lines to stdout {id: str, vec: list[float]}

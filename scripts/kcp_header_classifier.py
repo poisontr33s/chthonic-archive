@@ -13,6 +13,13 @@ kcp_header_classifier.py - Classify KCP header state for source files.
                 canonical regex patterns from KCP_PROTOCOL_ONTOLOGY.md §8.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 
 import argparse

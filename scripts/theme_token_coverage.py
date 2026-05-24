@@ -21,6 +21,13 @@ theme_token_coverage.py — SFS Token Scope Coverage Audit (Stage 4.0).
                 and per-language specializations.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 import json
 import sys
 from pathlib import Path

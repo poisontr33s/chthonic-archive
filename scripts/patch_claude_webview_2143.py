@@ -1,5 +1,30 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ THE DECORATOR'S BLESSING: patch_claude_webview_2143.py
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ Wedjat-Quipu Spectrum: WHITE
+# ║ Temple-Ayllu Zone: 🌿 THE GARDEN
+# ║ Ogdoad-Ceque Radiance:
+# ║   └─◄ (Standalone)
+# ╚════════════════════════════════════════════════════════════════════════════
+
+"""
+patch_claude_webview_2143.py — Script logic for patch_claude_webview_2143.py.
+
+@SID:           TOOL_PATCH_CLAUDE_WEBVIEW_2143_V1
+@Shabti:        CLI Script
+@Purpose:       Script logic for patch_claude_webview_2143.py.
+"""
+
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # Patch Claude Code 2.1.143 webview bundle — replace stream-fatal throws with log+return
 # SID: PATCH_CLAUDE_WEBVIEW_2143
 import pathlib

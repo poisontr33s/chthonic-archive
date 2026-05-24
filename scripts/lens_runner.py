@@ -39,8 +39,16 @@ Unbounded raw bytes defeat that.
 @Purpose:       Enforce the subprocess E2E logging contract for sub-lenses.
 """
 
-# @SID: LENS_RUNNER_V1
 from __future__ import annotations
+
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
+# @SID: LENS_RUNNER_V1
 
 import subprocess
 import sys

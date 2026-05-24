@@ -18,6 +18,8 @@ Data Rewiring - Identify scripts/docs for narrative-functional balance adjustmen
 @Purpose:       Data Rewiring - Identify scripts/docs for narrative-functional balance adjustment
 """
 
+from __future__ import annotations
+
 import sys
 import io
 if sys.platform == 'win32':
@@ -25,7 +27,6 @@ if sys.platform == 'win32':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 
-from __future__ import annotations
 from pathlib import Path
 import re
 

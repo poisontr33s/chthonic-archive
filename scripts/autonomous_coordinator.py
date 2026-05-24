@@ -22,6 +22,13 @@ autonomous_coordinator.py - Metabolic cycle coordinator for topology, SSOT, and 
 Metabolizes with cross-referential WIP-`scripts/pleasure_protocol.py/github_voice.py`
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 import subprocess
 import json
 import datetime

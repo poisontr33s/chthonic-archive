@@ -41,6 +41,13 @@ Usage:
     uv run scripts/vscode_error_autopsy.py --emit claude/mailbox/VSCODE_ERROR_AUTOPSY_LATEST.md
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 
 import argparse

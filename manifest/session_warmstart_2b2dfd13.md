@@ -1,41 +1,61 @@
 # Session Warm-Start — 2b2dfd13
-> Compacted 3980 turns → 995 (25% kept)
-> GPU-accelerated: true  |  Generated: 2026-05-05T05:32:23.701Z
+> Compacted 6328 turns → 1582 (25% kept)
+> GPU-accelerated: false  |  Generated: 2026-05-23T21:52:32.503Z
 
 ## Session Intent
-corpus-builder
+tabby-inference
 
 ## Commits This Session
 - `0016a1156ea0`
+- `001fce34`
 - `0042d5160c`
 - `00c8bf26`
 - `0109b459`
 - `02b758f92`
 - `03e7a901`
+- `04db5b2e`
 - `050dcf0c`
+- `05f41e2a`
 - `0645ab37`
+- `06e5cce8`
 - `09dd2be7`
+- `0a109f422b47`
+- `0a5ce48b`
+- `0abcda07f1c1`
+- `0b86ff78`
 - `0d112ec1bfc4`
 - `0e509e58`
 - `0e961dd9a`
 - `0eaffaa7`
 - `0f2e7d287e`
+- `100d6b0`
 - `111c17e136`
+- `11ff6eb4`
+- `12581b3c`
+- `13089647`
 - `16c0548d`
 - `17bf66d3d445`
 - `18722fea`
 - `1996a5d8`
 - `19f1aac9`
+- `1c073231`
 - `1d34de33`
+- `1d594d4f`
 - `1e2b21c6`
+- `1ee42ffd`
+- `1f223b6a`
 - `1fb97f3e`
+- `2026042905`
 - `202a2e5`
 - `212fd8bc`
 - `223556219`
+- `22ca2385`
 - `23cedfd8`
 - `2450ec9a`
+- `249bc317`
 - `24f62975`
 - `25d7e7cf`
+- `26035d45`
 - `26755072`
 - `281734ec`
 - `2850999`
@@ -43,6 +63,7 @@ corpus-builder
 - `29575b0d`
 - `2959d0f1`
 - `2b2dfd13`
+- `2bfe37fd`
 - `2c6d6dae6dc8`
 - `2e21d670`
 - `2e69a0d69ec7`
@@ -54,53 +75,85 @@ corpus-builder
 - `345220d6`
 - `34a7a947`
 - `357dd0f4`
+- `35a887fa`
+- `3be4d598`
+- `3c0440ba`
+- `3c57e457`
+- `3d27a56e`
 - `3d42673b`
 - `3edbf25c`
+- `3ffe4907`
 - `40a2b63550d1`
 - `4111749`
 - `41bc9e10`
+- `41c83052`
 - `41ece23ccc15`
 - `421fa5e2`
+- `45549c63`
+- `46742297`
 - `46fe1ea2`
 - `493e8c17`
 - `49ad848308f8`
+- `49e6e33f`
 - `4b45c45be048`
 - `4cc5dcd9e492`
 - `4e1e03dbc722`
 - `5112e73`
+- `51e44d9f`
+- `525ad245`
+- `528edae4e92b`
 - `52c0b99d`
 - `5468b64f`
 - `54cd9cad`
 - `558b9c71`
 - `55df25bc`
 - `55e28032`
+- `562f9cb2`
+- `567de61b`
 - `57069c076201`
 - `57372915a`
+- `5806010f`
+- `58294bb1`
 - `59a2d42a`
+- `5bbb3a61`
 - `5cf8cd1a`
+- `5d86cf02c977`
 - `5dadb441`
 - `5f8384a7`
 - `5f9e033e5`
+- `612ac370`
+- `619c1cb7`
 - `623867ac`
 - `62fada4`
 - `63b8f8cb`
 - `642788c0542b`
 - `65461839`
+- `655e4328`
 - `66a6ffe6`
 - `68416b61`
 - `69235bc7`
 - `6b98630e`
 - `6b9a687e`
+- `6c311bbcf016`
+- `6c7a4436`
 - `6d1d913f`
+- `6e20ba3e`
 - `6ea325f0`
 - `6eb7f85a`
 - `6fc39cf96be9`
 - `6fd226b3ca87`
+- `7060411`
+- `70604116`
+- `708b32e4`
 - `710554437`
+- `71359961`
 - `7271b8d65c31`
+- `72954168`
 - `72de47ab`
 - `73af66d77e0d`
+- `7492fb9a`
 - `7592984a`
+- `76ce2daf`
 - `782d3b0`
 - `787cdd27`
 - `7961b8ed`
@@ -109,35 +162,52 @@ corpus-builder
 - `7eff53a3`
 - `7f04a0a3`
 - `7f786be66fe4`
+- `802c9373`
 - `8148fe61`
 - `81b36b71`
+- `82c60dd7`
 - `83c6741c`
+- `83f35563473d`
 - `84f2b3c4cc77`
 - `85ece81f`
 - `869b351`
+- `86a52b7f`
 - `870acaa3`
 - `870b5f4`
 - `8770393b82d7`
 - `87c9cb46`
 - `898c7571`
+- `8b17689ae312`
 - `8bb71fd98046`
 - `8c39a880`
 - `8c4f8aec`
+- `8c612b1`
 - `8cf704e1`
+- `8d75874`
 - `8e10f8d4`
 - `8e15245c`
+- `8f742e045f3f`
 - `900b564b`
 - `90306b24`
 - `939c1f2c`
 - `964b4806`
 - `96ddfb7ecde5`
 - `980f3d2d`
+- `99756c8e`
+- `9de191f62f77`
 - `9e818351`
 - `9ec91c4dc2a3`
 - `9edabd02b588`
 - `a082c8ff`
+- `a0f88964`
+- `a124473bb012`
 - `a1ac64b8`
 - `a1b2c3d4`
+- `a20ade1f`
+- `a21868b`
+- `a21868b4`
+- `a2b8e273`
+- `a30d8424`
 - `a35cec08`
 - `a7b8c9d0`
 - `a82e04c`
@@ -148,9 +218,11 @@ corpus-builder
 - `b0730ec6`
 - `b0878984`
 - `b0ac74f7`
+- `b25e1c5d`
 - `b268312a`
 - `b2c3d4e5`
 - `b30ce14`
+- `b3278fec`
 - `b4b7faa4`
 - `b4cd3468`
 - `b4d121b5`
@@ -161,37 +233,55 @@ corpus-builder
 - `b93a81ccd0`
 - `ba8fc35d`
 - `baa42a23`
+- `bb3170bd`
 - `bb586412`
 - `bc038d189294`
 - `bc78a3f1`
+- `be0330b0`
+- `be463814`
 - `bf859984`
 - `c00712e2`
 - `c0782e3b`
 - `c0c05000`
 - `c0c05001`
+- `c1404a2a`
 - `c197067f`
 - `c3d4e5f6`
+- `c4143487`
+- `c425f2f7`
 - `c4732367`
 - `c521cfd4`
 - `c6250cb5`
 - `c7ee4b76`
 - `c8f93c3c`
 - `c9d0e1f2`
+- `ca14e308`
+- `ca59e4d7`
 - `caa56c03942c`
+- `caef0de1`
 - `cb33ffca`
 - `cb8be770`
 - `cbaae656`
 - `cc0957b9`
+- `cc326c85`
 - `cc9b1d03`
 - `cd11fcc4`
+- `cd29cf40`
 - `cd7b8157`
 - `cdaeb5b1`
 - `ce8aeac5`
 - `d0a5555d`
+- `d11efba77cbc`
 - `d135e3a1`
+- `d1509972`
+- `d2bff2ae`
+- `d3036c75`
 - `d4dcfe4`
 - `d4e5f6a7`
 - `d535e01b`
+- `d5c59a49`
+- `d82b7a05`
+- `d98e363b`
 - `dc34681487c7`
 - `de6e60f4`
 - `dec32d8f`
@@ -200,25 +290,34 @@ corpus-builder
 - `e256d9a9`
 - `e27487a636d1`
 - `e2b7611778aa`
+- `e41a731e`
 - `e541a638`
 - `e5f6a7b8`
+- `e687fe99`
+- `e8477bb1`
+- `ea217fba`
 - `eae0a7c1`
 - `eccd2ab`
 - `eccd2abd`
+- `ece079ab`
 - `ee2a8761fccb`
 - `eedd3263`
 - `ef54bace`
 - `ef54bace4`
+- `efdce1e4`
 - `eff0cacf`
 - `f0b860582db9`
+- `f169312e`
 - `f172af0b`
 - `f17c90ed`
 - `f28177ab`
 - `f283ca48`
+- `f2d3ce0bd`
 - `f3447c0f537a`
 - `f4ecd4a3`
 - `f6a7b8c9`
 - `f72cf3b`
+- `f7c48e23`
 - `f7c9479793de`
 - `f7f276a9`
 - `f8d1131a`
@@ -227,6 +326,7 @@ corpus-builder
 - `fc61690e4`
 - `fded5784`
 - `fded57842`
+- `ff62cc60`
 
 ## Files Edited
 - `dev/dealogue-fayde/guidealoguebrowser.rb` (multi_replace_string_in_file, replace_string_in_file)
@@ -282,7 +382,7 @@ corpus-builder
 - `psychonoir-kontrapunkt-large-file-holder/scripts/overnight_archaeology.py` (create_file, multi_replace_string_in_file)
 - `claude/mailbox/COLD_START_ARCHAEOLOGY_2026-05-02.md` (create_file)
 - `chthonic-archive/scripts/embedding_server.py` (create_file)
-- `eldno/chthonic-archive/pyproject.toml` (multi_replace_string_in_file)
+- `eldno/chthonic-archive/pyproject.toml` (multi_replace_string_in_file, replace_string_in_file)
 - `eldno/chthonic-archive/.copilotignore` (replace_string_in_file)
 - `chthonic-archive/.continue/config.json` (create_file)
 - `chthonic-archive/manifest/triton_gate.json` (create_file)
@@ -341,7 +441,7 @@ corpus-builder
 - `chthonic-archive/scripts/session-vampire.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
 - `skills/session-vampire/SKILL.md` (create_file)
 - `chthonic-archive/scripts/session-corpus.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
-- `chthonic-archive/scripts/session-query.ts` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/session-query.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
 - `chthonic-archive/scripts/session-corpus.ts` (multi_replace_string_in_file, replace_string_in_file)
 - `chthonic-archive/scripts/session-query.ts` (multi_replace_string_in_file)
 - `eldno/chthonic-archive/package.json` (replace_string_in_file)
@@ -350,6 +450,74 @@ corpus-builder
 - `docs/reference/CORPUS_COMPARATIVE_ANALYSIS.md` (create_file)
 - `docs/reference/CORPUS_ACHIEVEMENT_GATES.md` (create_file)
 - `chthonic-archive/scripts/memory-ingester.ts` (create_file)
+- `chthonic-archive/scripts/_verify_g6g8b.ts` (create_file)
+- `.claude/plans/faf-packet-buzzing-wolf.md` (replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/check-toolchain.ps1` (create_file, replace_string_in_file)
+- `docs/architecture/VAMPIRISM_SATELLITES.md` (replace_string_in_file, multi_replace_string_in_file)
+- `ci/checks/federation-contract-validate.ts` (create_file)
+- `chthonic-archive/scripts/vampire-copilot-chat.ts` (create_file)
+- `satellites/vampire-copilot-chat/satellite.json` (create_file, multi_replace_string_in_file)
+- `docs/architecture/SESSION_CORPUS.md` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `probes/python/P-11.py` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/embed.py` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/embed_model_registry.json` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/scripts/embed_doctor.py` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `chthonic-archive/.vscode/mcp.json` (replace_string_in_file)
+- `chthonic-archive/scripts/embed_gate_accept.py` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `chthonic-archive/scripts/hf_gate_playwright.ts` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `reference/bun-playwright/BUN_PLAYWRIGHT_VALIDATION.md` (multi_replace_string_in_file)
+- `claude/ZONES_X_REDUX/Zone_1_REDUX_implementation_ripe_for_SSOT_canon.md` (multi_replace_string_in_file)
+- `chthonic-archive/scripts/embed_model_discover.py` (create_file)
+- `chthonic-archive/scripts/embed_registry_switch.py` (create_file, replace_string_in_file)
+- `C:/Temp/rebase-squash.ps1` (create_file)
+- `C:/Temp/rebase-squash-v2.ps1` (create_file)
+- `C:/Temp/rebase-squash-v3.ps1` (create_file, replace_string_in_file)
+- `C:/Temp/rebase-squash-v4.ps1` (create_file)
+- `scripts/lib/together_auth.py` (create_file)
+- `chthonic-archive/scripts/together_lane.py` (create_file)
+- `chthonic-archive/scripts/chthonic.ps1` (replace_string_in_file, multi_replace_string_in_file)
+- `satellites/vampire-terminal-history/satellite.json` (create_file)
+- `chthonic-archive/scripts/vampire-terminal-history.ts` (create_file)
+- `chthonic-archive/manifest/corpus-state.json` (replace_string_in_file)
+- `extensions/vampire-corpus/package.json` (create_file, replace_string_in_file)
+- `extensions/vampire-corpus/tsconfig.json` (create_file)
+- `vampire-corpus/resources/vampire.svg` (create_file)
+- `vampire-corpus/src/extension.ts` (create_file)
+- `src/providers/CorpusTreeProvider.ts` (create_file)
+- `src/providers/TerminalFeedProvider.ts` (create_file, replace_string_in_file)
+- `src/providers/LocalExtProvider.ts` (create_file)
+- `extensions/vampire-corpus/install.ps1` (create_file)
+- `extensions/vampire-corpus/.vscodeignore` (create_file)
+- `chthonic-archive/scripts/session-truncator.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `probes/python/session_gpu_scorer.py` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `ci/checks/session-truncation-gate.ts` (create_file)
+- `probes/python/embedding_explorer.py` (create_file, replace_string_in_file)
+- `docs/design/MILFOLOGICAL_DIFFUSION_SPEC.md` (create_file)
+- `extensions/milfological/metadata.ini` (create_file)
+- `extensions/milfological/entity_registry.py` (create_file, replace_string_in_file)
+- `extensions/milfological/extra_network_milf.py` (create_file, replace_string_in_file)
+- `extensions/milfological/prompt_transformer.py` (create_file, replace_string_in_file)
+- `milfological/scripts/milfological_hook.py` (create_file, replace_string_in_file)
+- `eldno/chthonic-archive/tmp_g7_debug.py` (create_file)
+- `eldno/chthonic-archive/tmp_g7_trace.py` (create_file)
+- `probes/python/sdnext_g0_probe.py` (create_file)
+- `chthonic-archive/scripts/entity_snapshot.py` (create_file, replace_string_in_file)
+- `chthonic-archive/scripts/milfological_dashboard.ts` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `docs/design/MILFOLOGICAL_OPPORTUNITY_REPORT.md` (create_file, replace_string_in_file)
+- `extensions/milfological/README.md` (create_file)
+- `extensions/milfological/pyproject.toml` (create_file)
+- `src/milfological/__init__.py` (create_file, replace_string_in_file)
+- `src/milfological/auto_caption.py` (create_file, multi_replace_string_in_file)
+- `src/milfological/entity_cutout.py` (create_file, multi_replace_string_in_file)
+- `src/milfological/entity_pixelart.py` (create_file, multi_replace_string_in_file)
+- `docs/design/MILF_ARCH_MATRIX.md` (create_file, multi_replace_string_in_file, replace_string_in_file)
+- `docs/design/SD_CANDIDATE_REGISTRY.md` (create_file, replace_string_in_file, multi_replace_string_in_file)
+- `src/milfological/protocols.py` (create_file)
+- `milfological/backends/__init__.py` (create_file)
+- `milfological/backends/sdnext.py` (create_file)
+- `milfological/backends/a1111.py` (create_file)
+- `milfological/backends/invokeai.py` (create_file)
+- `milfological/backends/comfyui.py` (create_file)
 
 ## Key Terminal Commands
 - `rv list 2>&1; Write-Host "---"; rv current 2>&1; Write-Host "---"; rv r 2>&1 # Diagnose rv ruby state`
@@ -367,16 +535,16 @@ corpus-builder
 
 ## High-Value Code Blocks
 - **json** (315L, turn 2136): [↵  {↵    "additions": 11,↵    "deletions": 2,↵    "filename": ".eslintrc.json",
+- **json** (188L, turn 5369): {↵  "ts": "2026-05-05T02:50:50Z",↵  "total": 22,↵  "gated_count": 3,↵  "accepted
+- **json** (124L, turn 4967): {↵  "ts": "2026-05-04T22:07:10Z",↵  "total": 14,↵  "gated_count": 5,↵  "accepted
+- **json** (124L, turn 4968): {↵  "ts": "2026-05-04T22:07:10Z",↵  "total": 14,↵  "gated_count": 5,↵  "accepted
+- **sql** (101L, turn 5601): === sessions ===↵ 0 sessionId TEXT↵ 1 startTime TEXT↵ 2 workspaceHash TEXT↵ 3 wo
 - **text** (80L, turn 3037): --- cmake ---↵exit: 0↵cmake version 3.31.5↵CMake suite maintained and supported 
-- **** (59L, turn 2981): === jlpm full output ===↵Traceback (most recent call last):↵  File "<frozen runp
-- **json** (51L, turn 2136): [↵  {↵    "additions": 128,↵    "deletions": 0,↵    "filename": ".github/gemini-
-- **text** (35L, turn 2118): BRANCH: copilot/add-gpu-accelerated-tfjs-package↵  ahead=0 behind=7 commits=0↵↵B
-- **json** (35L, turn 2183): [↵  {↵    "ref": "refs/heads/ai_main_1b463b74c4b1",↵    "sha": "167dbb5ca728e55e
 
 ## Tool Usage Pattern
-`run_in_terminal` · `read_file` · `manage_todo_list` · `replace_string_in_file` · `grep_search` · `execution_subagent` · `list_dir` · `task_complete`
+`run_in_terminal` · `read_file` · `manage_todo_list` · `grep_search` · `replace_string_in_file` · `execution_subagent` · `list_dir` · `multi_replace_string_in_file`
 
 ## Structural Breakdown
-- T0 Anchors: 411 (commits, edits, memory writes)
-- T1/T2 Signal: 3152 (code blocks, tool chains, commands)
-- T3 Noise filtered: 10 (retries, acks, failed calls)
+- T0 Anchors: 710 (commits, edits, memory writes)
+- T1/T2 Signal: 4928 (code blocks, tool chains, commands)
+- T3 Noise filtered: 16 (retries, acks, failed calls)

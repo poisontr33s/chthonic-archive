@@ -18,6 +18,13 @@ patch_harani_game_refs.py — Script logic for patch_harani_game_refs.py.
 @Purpose:       Script logic for patch_harani_game_refs.py.
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 # @SID: PATCH_HARANI_GAME_REFS_V1
 # Remove all 'game world' / 'game-world' compound phrases from §10.3.21 in SSOT.
 # The SSOT describes a world, not a game; self-referential 'game' breaks canon immersion.

@@ -22,6 +22,13 @@ This script scans specified files in the repository to enforce Python execution 
 Usage: uv run scripts/check_python_policy.py [--repo-root <path>] [--paths <glob1> <glob2> ...] [--include-docs] [--proto-ssot-style]
 """
 
+import sys
+import io
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+
 from __future__ import annotations
 
 import argparse
