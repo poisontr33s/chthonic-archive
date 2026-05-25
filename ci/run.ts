@@ -474,11 +474,69 @@ function stagedFileLandscape(): { count: number; ext_summary: string; files: str
 }
 
 const staged = stagedFileLandscape();
+
+// V1.3 — also surface dirty-submodule and orphan-gitlink landscape.
+// Worked precedent: conductor saw 3 "M" entries in VS Code Source Control panel
+// (tabbyAPI, sd-candidates/a1111, sd-candidates/sdnext) but the gate reported
+// staged: 0 because those were modified-submodule-CONTENTS (` m ` in
+// git status -s --ignore-submodules=none), not staged-gitlink-POINTER-changes.
+// VS Code conflates the two; this banner separates them.
+function submoduleLandscape(): { dirty_count: number; orphan_count: number; entries: { path: string; orphan: boolean }[] } {
+  if (!STAGED) return { dirty_count: 0, orphan_count: 0, entries: [] };
+  const r = spawnSync("git", ["status", "-s", "--ignore-submodules=none"], {
+    encoding: "utf8",
+    cwd: REPO_ROOT,
+  });
+  // Parse ` m <path>` (lowercase m = modified submodule contents) entries
+  const lines = (r.stdout ?? "").split("\n").filter(Boolean);
+  const dirty_paths = lines
+    .filter((l) => /^\s[mM]\s/.test(l) && l.length > 3)
+    .map((l) => l.slice(3).trim());
+  if (dirty_paths.length === 0) return { dirty_count: 0, orphan_count: 0, entries: [] };
+  // Check .gitmodules for each — orphan if not registered
+  const gm = spawnSync("git", ["config", "-f", ".gitmodules", "-l"], {
+    encoding: "utf8",
+    cwd: REPO_ROOT,
+  });
+  const gm_content = gm.stdout ?? ""; // empty if .gitmodules missing
+  const entries = dirty_paths.map((p) => ({
+    path: p,
+    orphan: !gm_content.includes(`path=${p}`) && !gm_content.includes(`= ${p}`),
+  }));
+  return {
+    dirty_count: entries.length,
+    orphan_count: entries.filter((e) => e.orphan).length,
+    entries,
+  };
+}
+
+const submods = submoduleLandscape();
 const stagedBanner =
   STAGED && staged.count >= 0
     ? ` | staged: ${staged.count} file(s)${staged.ext_summary ? ` [${staged.ext_summary}]` : ""}`
     : "";
-console.log(`[ci] ${selected.length} check(s) | mode: ${modeLabel}${stagedBanner}\n`);
+const submodBanner =
+  STAGED && submods.dirty_count > 0
+    ? ` | dirty-submodules: ${submods.dirty_count}${submods.orphan_count > 0 ? ` (orphan-gitlinks: ${submods.orphan_count})` : ""}`
+    : "";
+console.log(`[ci] ${selected.length} check(s) | mode: ${modeLabel}${stagedBanner}${submodBanner}\n`);
+
+if (STAGED && staged.count === 0 && submods.dirty_count > 0) {
+  console.log(`[ci] ℹ Nothing staged at super-repo level, but ${submods.dirty_count} submodule(s) have uncommitted contents.`);
+  console.log(`[ci]   VS Code may show these as "M" in Source Control panel — that's modified-submodule-CONTENTS,`);
+  console.log(`[ci]   not a staged-gitlink-POINTER-change. They cannot be committed from this repo until either:`);
+  console.log(`[ci]     (a) inner submodule advances its commit: cd <submodule>; git commit; cd ..; git add <path>`);
+  console.log(`[ci]     (b) the gitlink is removed/replaced: git rm --cached <path> (if no longer a submodule)`);
+  if (submods.orphan_count > 0) {
+    console.log(`[ci]   ⚠ ${submods.orphan_count} of these are orphan-gitlinks (160000 mode in HEAD, but no .gitmodules entry):`);
+    for (const e of submods.entries.filter((x) => x.orphan)) {
+      console.log(`[ci]       - ${e.path}`);
+    }
+    console.log(`[ci]   Orphan gitlinks indicate a governance gap (submodule removed without .gitmodules cleanup,`);
+    console.log(`[ci]   or .gitmodules missing entirely). Conductor decision required: register or remove.`);
+  }
+  console.log();
+}
 
 const results = await Promise.all(selected.map(runCheck));
 
