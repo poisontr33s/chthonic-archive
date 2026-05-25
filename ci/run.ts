@@ -447,7 +447,38 @@ function runAutoFix(check: Check): AutoFixResult {
 
 const selected = selectChecks();
 const modeLabel = STAGED ? "--staged" : FULL ? "--full" : SINGLE ? `--check ${SINGLE}` : "default";
-console.log(`[ci] ${selected.length} check(s) | mode: ${modeLabel}\n`);
+
+// Surface the staged file landscape in the banner so vacuous passes are visible
+// (3 gitlink changes + 7 checks all "passing" with 0 files inspected = not a real pass).
+// Each registered check has a narrow file-type scope; if staged content doesn't match
+// any scope, the gate yawns silently. The breakdown below makes the gap obvious.
+function stagedFileLandscape(): { count: number; ext_summary: string; files: string[] } {
+  if (!STAGED) return { count: -1, ext_summary: "", files: [] };
+  const r = spawnSync("git", ["diff", "--cached", "--name-only", "--diff-filter=ACMRT"], {
+    encoding: "utf8",
+    cwd: REPO_ROOT,
+  });
+  const files = (r.stdout ?? "").split("\n").filter(Boolean);
+  const ext_counts: Record<string, number> = {};
+  for (const f of files) {
+    const dot = f.lastIndexOf(".");
+    const slash = Math.max(f.lastIndexOf("/"), f.lastIndexOf("\\"));
+    const ext = dot > slash ? f.slice(dot) : "(no-ext/gitlink)";
+    ext_counts[ext] = (ext_counts[ext] || 0) + 1;
+  }
+  const ext_summary = Object.entries(ext_counts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([e, c]) => `${e}:${c}`)
+    .join(" ");
+  return { count: files.length, ext_summary, files };
+}
+
+const staged = stagedFileLandscape();
+const stagedBanner =
+  STAGED && staged.count >= 0
+    ? ` | staged: ${staged.count} file(s)${staged.ext_summary ? ` [${staged.ext_summary}]` : ""}`
+    : "";
+console.log(`[ci] ${selected.length} check(s) | mode: ${modeLabel}${stagedBanner}\n`);
 
 const results = await Promise.all(selected.map(runCheck));
 
