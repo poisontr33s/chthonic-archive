@@ -55,6 +55,20 @@ type AutoFix = {
   description: string;
 };
 
+// Deliberate exclusion — check could theoretically have an auto-fix but doesn't,
+// for one of these reasons. Surfaced via --autofix-list so the conductor sees
+// the full landscape: what's fixable AND what's deliberately manual + why.
+type NoAutoFixReason = {
+  reason:
+    | "semantic"          // fix requires conductor judgment (SID naming, allowlist choice)
+    | "destructive"       // fix could break things (package upgrades, force-renames)
+    | "no_tool"           // no canonical fix tool exists in repo
+    | "wrong_layer"       // fix tooling exists but doesn't address this check's failure mode
+    | "read_only_health"; // check is read-only health probe; no fix concept applies
+  explanation: string;
+  manual_remediation?: string;
+};
+
 type Check = {
   name: string;
   aliases?: string[];
@@ -63,6 +77,7 @@ type Check = {
   speed: CheckSpeed;
   description: string;
   auto_fix?: AutoFix;
+  no_auto_fix?: NoAutoFixReason;
 };
 
 const CHECKS: Check[] = [
@@ -72,6 +87,11 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "Displaced shebangs in .ts files (bun SyntaxError guard)",
+    no_auto_fix: {
+      reason: "no_tool",
+      explanation: "No dedicated .ts shebang-relocator exists. scripts/fix_headers.py handles .py files only.",
+      manual_remediation: "Open the offending .ts file and move `#!/usr/bin/env bun` to line 1 (or remove if not an entry-point script).",
+    },
   },
   {
     name: "python-headers",
@@ -79,6 +99,13 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "Python canonical headers: shebang + UTF-8 encoding line",
+    auto_fix: {
+      command: "uv",
+      args: ["run", "scripts/fix_headers.py"],
+      env: { PYTHONUTF8: "1" },
+      safe_class: "narrow",
+      description: "Enforce canonical shebang (#!/usr/bin/env python3) + encoding line (# -*- coding: utf-8 -*-) on .py files via fix_headers.py. Defaults to repo-wide scan; prepends header if missing, shifts existing content down.",
+    },
   },
   {
     name: "sid-envelope",
@@ -86,6 +113,11 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "@SID presence in new scripts/*.ts and ci/**/*.ts (Added only)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "@SID values are semantic identities — each file's SID must be hand-chosen to encode its DOMAIN_NAME_V<n> shape (per ALL_CAPS regex at ci/checks/sid-envelope.ts:57). scripts/lib/stamp_sid.py exists but is PS1-only and stamps a SCRIPT_<UPPER>_V1 placeholder pattern — not appropriate for .py/.ts where SIDs encode meaningful domain classification (TOOL_*, CI_CHECK_*, LIB_*, etc.).",
+      manual_remediation: "For each missing-SID file: add `# @SID: <DOMAIN_NAME>_V1` on line 2 (.py/.sh/.ps1) or `// @SID: <DOMAIN_NAME>_V1` (.ts). For malformed SIDs: rename to match the ALL_CAPS_DOMAIN_V<n> regex AND update any cross-references via `chthonic resolve --list` to find downstream consumers.",
+    },
   },
   {
     name: "uv-guard",
@@ -93,6 +125,11 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "No bare python/python3 invocations — use uv run",
+    no_auto_fix: {
+      reason: "wrong_layer",
+      explanation: "scripts/uv_autofix.py exists but it auto-installs missing Python deps (opt-in via $env:CHTHONIC_UV_AUTOFIX=1) — different purpose. Mechanical prepending of `uv run` to bare `python` invocations is unsafe inside docstring usage examples (would corrupt the doc) and inside .sh/.ps1 shebang lines.",
+      manual_remediation: "Open the offending file at the reported line. If the bare `python` is in executable code, prefix with `uv run`. If it's in a docstring/comment usage example, prefix with `uv run` there too for consistency. The check is advisory for Modified files; only Added files block the commit.",
+    },
   },
   {
     name: "ignored-source",
@@ -101,6 +138,11 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "Ignored source-shaped files in managed roots (allowlist .gitignore drift)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "Resolution requires a conductor decision: either add a narrow `!path` allowlist entry to .gitignore (per docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md), move the file to an already-allowed source lane, OR confirm the file should genuinely stay ignored and delete it. Auto-adding allowlist entries silently broadens the gitignore contract.",
+      manual_remediation: "Run `git check-ignore -v <path>` to see which rule matches. Then either: (a) add narrow `!path` allowlist + any required parent-dir allowlists to .gitignore, (b) move the file into an existing allowlisted directory, or (c) delete the file if it's debris.",
+    },
   },
   {
     name: "blessing-gate",
@@ -137,6 +179,11 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "slow",
     description: "Dependency security audit via bun audit (slow — full mode only)",
+    no_auto_fix: {
+      reason: "destructive",
+      explanation: "Auto-fixing would require `bun update <pkg>` which can introduce breaking changes via SemVer minor/major bumps. Vulnerability remediation needs conductor judgment on which packages to upgrade vs. accept-risk vs. patch.",
+      manual_remediation: "Read the audit report. For high-severity issues, `bun update <pkg>` (single package) and run tests. For broader vulns, consider `bun update` repo-wide but verify nothing breaks. Dependabot PRs on the GitHub side often handle this automatically.",
+    },
   },
   {
     name: "inference-gates",
@@ -144,6 +191,10 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "fast",
     description: "Python 3.14 GPU inference gate ladder status (reads manifest/*.json)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only health probe reading manifest/*.json. Failures indicate upstream gate state changes; no in-repo fix concept applies.",
+    },
   },
   {
     name: "terminal-hook",
@@ -151,6 +202,10 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "fast",
     description: "Terminal session hook health (JSONL merge regression gate + stale _patch:true detector)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only health probe over session JSONL files. Failures indicate hook regression; remediation is in the hook source (not in this check's scope).",
+    },
   },
   {
     name: "gh-runs",
@@ -158,6 +213,10 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "fast",
     description: "GitHub Actions run health membrane (reads manifest/gh_runs/index.json — exits 0 if absent)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only health probe over CI run history. Failures indicate upstream workflow regressions; fix is in .github/workflows/ source.",
+    },
   },
   {
     name: "ankh-triple-abstraction",
@@ -165,6 +224,10 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "fast",
     description: "ANKH triple abstraction probe (WHR:MAX conformance + entity topology + compression ratio)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only conformance probe. Failures indicate entity-topology drift requiring semantic adjustment, not mechanical fix.",
+    },
   },
   {
     name: "lens-refresh",
@@ -172,6 +235,11 @@ const CHECKS: Check[] = [
     scope: "always",
     speed: "slow",
     description: "Refresh all data-plane lenses (git_rot_index, dependabot_index) — Gitological Noise As Structured Data",
+    no_auto_fix: {
+      reason: "wrong_layer",
+      explanation: "This check IS itself a refresh — there's no separate fix tool. To re-run, invoke `bun run ci/run.ts --check lens-refresh` directly. If it fails repeatedly, the underlying lens script (scripts/refresh-lenses.ps1 or scripts/<lens>_index.py) needs inspection.",
+      manual_remediation: "Run `bun run ci/run.ts --check lens-refresh` standalone. If it still fails, check scripts/refresh-lenses.ps1 and the individual scripts/*_index.py producers.",
+    },
   },
 ];
 
@@ -188,26 +256,96 @@ if (LIST) {
   for (const c of CHECKS) {
     const scope = c.scope.padEnd(7);
     const speed = c.speed.padEnd(5);
-    const fix = c.auto_fix ? " [autofix]" : "";
-    console.log(`  ${c.name.padEnd(18)} [${scope}/${speed}]${fix}  ${c.description}`);
+    let tag = "";
+    if (c.auto_fix) tag = " [autofix]";
+    else if (c.no_auto_fix) tag = ` [manual: ${c.no_auto_fix.reason}]`;
+    console.log(`  ${c.name.padEnd(24)} [${scope}/${speed}]${tag}  ${c.description}`);
+  }
+  console.log(`\nFlags:`);
+  console.log(`  --staged              Run only staged-scope checks (pre-commit mode)`);
+  console.log(`  --full                Include slow checks (bun-audit etc.)`);
+  console.log(`  --check <name>        Run a single check (by name or alias)`);
+  console.log(`  --autofix             On any failure with registered auto_fix, attempt the fix and report delta`);
+  console.log(`  --autofix-list        Show all checks: fix command if registered, or explanation if deliberately manual`);
+  console.log(`  --autofix-show <name> Show full registry detail for a single check`);
+  console.log(`  --list                This output`);
+  process.exit(0);
+}
+
+const AUTOFIX_SHOW_IDX = process.argv.indexOf("--autofix-show");
+const AUTOFIX_SHOW = AUTOFIX_SHOW_IDX !== -1 ? process.argv[AUTOFIX_SHOW_IDX + 1] : null;
+
+if (AUTOFIX_SHOW) {
+  const c = CHECKS.find((x) => x.name === AUTOFIX_SHOW || x.aliases?.includes(AUTOFIX_SHOW));
+  if (!c) {
+    console.error(`[ci] Unknown check: "${AUTOFIX_SHOW}". Run --list for available checks.`);
+    process.exit(1);
+  }
+  console.log(`[ci] ${c.name}\n`);
+  console.log(`  scope:       ${c.scope}`);
+  console.log(`  speed:       ${c.speed}`);
+  console.log(`  description: ${c.description}`);
+  console.log(`  script:      ${c.script}`);
+  if (c.auto_fix) {
+    console.log(`\n  AUTO-FIX REGISTERED [${c.auto_fix.safe_class}]`);
+    console.log(`    command: ${c.auto_fix.command} ${c.auto_fix.args.join(" ")}`);
+    if (c.auto_fix.env) console.log(`    env:     ${JSON.stringify(c.auto_fix.env)}`);
+    console.log(`    purpose: ${c.auto_fix.description}`);
+  } else if (c.no_auto_fix) {
+    console.log(`\n  NO AUTO-FIX (deliberate) [reason: ${c.no_auto_fix.reason}]`);
+    console.log(`    explanation: ${c.no_auto_fix.explanation}`);
+    if (c.no_auto_fix.manual_remediation) {
+      console.log(`    manual:      ${c.no_auto_fix.manual_remediation}`);
+    }
+  } else {
+    console.log(`\n  (no auto_fix and no no_auto_fix declared — registry gap)`);
   }
   process.exit(0);
 }
 
 if (AUTOFIX_LIST) {
-  console.log("[ci] Checks with registered auto-fix:\n");
   const withFix = CHECKS.filter((c) => c.auto_fix);
+  const withoutFix = CHECKS.filter((c) => c.no_auto_fix);
+  const unspecified = CHECKS.filter((c) => !c.auto_fix && !c.no_auto_fix);
+
+  console.log("[ci] Auto-fix registry — comprehensive view\n");
+
+  console.log(`=== AUTOMATIC (${withFix.length} check(s) — runnable via --autofix) ===\n`);
   if (withFix.length === 0) {
-    console.log("  (none)");
+    console.log("  (none registered)\n");
   } else {
     for (const c of withFix) {
       const af = c.auto_fix!;
-      console.log(`  ${c.name.padEnd(18)} [${af.safe_class}]`);
+      console.log(`  ${c.name.padEnd(24)} [${af.safe_class}]`);
       console.log(`    command: ${af.command} ${af.args.join(" ")}`);
       console.log(`    purpose: ${af.description}`);
       console.log();
     }
   }
+
+  console.log(`=== MANUAL ONLY (${withoutFix.length} check(s) — deliberate non-auto-fix) ===\n`);
+  if (withoutFix.length === 0) {
+    console.log("  (none classified)\n");
+  } else {
+    for (const c of withoutFix) {
+      const nf = c.no_auto_fix!;
+      console.log(`  ${c.name.padEnd(24)} [reason: ${nf.reason}]`);
+      console.log(`    ${nf.explanation}`);
+      if (nf.manual_remediation) {
+        console.log(`    Manual fix: ${nf.manual_remediation}`);
+      }
+      console.log();
+    }
+  }
+
+  if (unspecified.length > 0) {
+    console.log(`=== REGISTRY GAP (${unspecified.length} check(s) — no auto_fix and no no_auto_fix declared) ===\n`);
+    for (const c of unspecified) {
+      console.log(`  ${c.name}`);
+    }
+    console.log();
+  }
+
   process.exit(0);
 }
 
