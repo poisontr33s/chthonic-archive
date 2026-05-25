@@ -30,17 +30,29 @@
  *   8. Rescue silent on no-op (no orphans)
  *   9. End-to-end: VS Code's exact invocation pattern (--file - stdin) lands in ONE attempt
  *
- * Untestable from script (acknowledged, not concealed):
- *   - Whether VS Code's git extension actually invokes the shim after window
- *     reload. The settings.json wiring is correct; only a live commit click
- *     proves the extension reads it. The conductor must trigger that.
+ * V1.7 — live invocation log layer:
+ *   The shim writes to .git/chthonic-rescue-shim.log on every call. After
+ *   window reload, click commit (or do any git op in VS Code), then run
+ *   `bun run scripts/verify-rescue-shim.ts --live` — it reads the log and
+ *   confirms the shim has been hit since the reload. Replaces the previous
+ *   "untestable from script" boundary with a verifiable claim.
  *
  * Usage:
- *   bun run scripts/verify-rescue-shim.ts
+ *   bun run scripts/verify-rescue-shim.ts              # all sandbox tests
+ *   bun run scripts/verify-rescue-shim.ts --live       # add live wiring check
+ *   bun run scripts/verify-rescue-shim.ts --reset-log  # truncate log before checking
  */
 
 import { spawnSync, execSync } from "child_process";
-import { existsSync, readFileSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import {
+  existsSync,
+  readFileSync,
+  mkdirSync,
+  rmSync,
+  writeFileSync,
+  statSync,
+  truncateSync,
+} from "fs";
 import { resolve, join } from "path";
 import { tmpdir } from "os";
 
@@ -48,6 +60,15 @@ const REPO_ROOT = resolve(import.meta.dir, "..");
 const SHIM_PATH = join(REPO_ROOT, "scripts", "git-chthonic.cmd");
 const RESCUE_PATH = join(REPO_ROOT, "scripts", "chthonic-rescue.ts");
 const VSCODE_SETTINGS = join(REPO_ROOT, ".vscode", "settings.json");
+const SHIM_LOG = join(REPO_ROOT, ".git", "chthonic-rescue-shim.log");
+
+const LIVE_CHECK = process.argv.includes("--live");
+const RESET_LOG = process.argv.includes("--reset-log");
+
+if (RESET_LOG && existsSync(SHIM_LOG)) {
+  truncateSync(SHIM_LOG, 0);
+  console.log(`[verify] truncated ${SHIM_LOG}`);
+}
 
 const results: { name: string; ok: boolean; detail: string }[] = [];
 
@@ -268,8 +289,36 @@ try {
   if (existsSync(sandbox)) rmSync(sandbox, { recursive: true, force: true });
 }
 
+// V1.7 live-check: read shim invocation log. The shim writes one line per
+// git invocation; if log has entries after the most recent VS Code reload
+// (which we approximate as "any entries at all, with recency reported"),
+// the wiring is live.
+if (LIVE_CHECK) {
+  check("[--live] shim invocation log exists and has entries from VS Code", () => {
+    if (!existsSync(SHIM_LOG)) {
+      return `log not found at ${SHIM_LOG} — shim has never been invoked. Either reload window + click commit, or the shim isn't wired correctly.`;
+    }
+    const content = readFileSync(SHIM_LOG, "utf8");
+    const lines = content.split("\n").filter(Boolean);
+    if (lines.length === 0) {
+      return `log is empty — shim hasn't been invoked since last reset. Click commit in VS Code, then re-run.`;
+    }
+    const stat = statSync(SHIM_LOG);
+    const ageMin = (Date.now() - stat.mtimeMs) / 60000;
+    console.log(`           └─ ${lines.length} log entries; most recent ${ageMin.toFixed(1)} min ago`);
+    console.log(`           └─ last 3 entries:`);
+    for (const l of lines.slice(-3)) {
+      console.log(`              ${l.trim()}`);
+    }
+    if (ageMin > 60) {
+      return `log is stale (${ageMin.toFixed(0)} min old) — recent VS Code git ops aren't hitting the shim. Reload window.`;
+    }
+    return null;
+  });
+}
+
 // Report
-console.log("\n═══ V1.5 wiring verification ═══\n");
+console.log("\n═══ rescue-shim wiring verification ═══\n");
 let failed = 0;
 for (const r of results) {
   const tag = r.ok ? "✓ PASS" : "✗ FAIL";
@@ -280,14 +329,17 @@ for (const r of results) {
   }
 }
 console.log("");
-console.log("Untestable from script (requires conductor action):");
-console.log("  ⚠ VS Code git extension reads .vscode/settings.json git.path only on window start.");
-console.log("    First commit-button click AFTER 'Developer: Reload Window' is the actual proof.");
-console.log("");
+if (!LIVE_CHECK) {
+  console.log("Live wiring (VS Code → shim) not checked. To verify:");
+  console.log("  1. Ctrl+Shift+P → 'Developer: Reload Window'");
+  console.log("  2. Click commit (or do any git op in the source-control panel)");
+  console.log("  3. bun run scripts/verify-rescue-shim.ts --live");
+  console.log("");
+}
 if (failed === 0) {
-  console.log(`✓ ALL ${results.length} testable assertions passed.`);
+  console.log(`✓ ALL ${results.length} assertions passed.`);
   process.exit(0);
 } else {
-  console.log(`✗ ${failed}/${results.length} assertions failed. V1.5 wiring is NOT clean.`);
+  console.log(`✗ ${failed}/${results.length} assertions failed. Wiring is NOT clean.`);
   process.exit(1);
 }

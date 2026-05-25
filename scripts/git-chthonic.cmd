@@ -41,6 +41,17 @@ for %%a in (%*) do (
     if /i "%%~a"=="commit" set "IS_COMMIT=1"
 )
 
+:: V1.7 — invocation log. Append every call to .git/chthonic-rescue-shim.log
+:: so the conductor can prove VS Code is actually routing through this shim
+:: (previously "untestable" wiring layer). .git/ is auto-ignored by git;
+:: file grows append-only, conductor deletes when desired. Uses cmd builtins
+:: only (no powershell/bun) to keep per-invocation overhead near-zero — git
+:: status polls many times per second in VS Code's source control panel.
+set "LOG_FILE=%~dp0..\.git\chthonic-rescue-shim.log"
+:: Note: %2 isn't reliably the subcommand because VS Code prefixes with
+:: `-c <config> commit ...` — `commit` lands at %4. Just log full args.
+echo [%date% %time%] %* >> "%LOG_FILE%" 2>nul
+
 if defined IS_COMMIT (
     if exist "%BUN%" (
         "%BUN%" run "%~dp0chthonic-rescue.ts" --silent 2>nul
