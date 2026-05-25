@@ -101,10 +101,10 @@ const CHECKS: Check[] = [
     description: "Python canonical headers: shebang + UTF-8 encoding line",
     auto_fix: {
       command: "uv",
-      args: ["run", "scripts/fix_headers.py"],
+      args: ["run", "scripts/fix_headers.py", "scripts/"],
       env: { PYTHONUTF8: "1" },
       safe_class: "narrow",
-      description: "Enforce canonical shebang (#!/usr/bin/env python3) + encoding line (# -*- coding: utf-8 -*-) on .py files via fix_headers.py. Defaults to repo-wide scan; prepends header if missing, shifts existing content down.",
+      description: "Enforce canonical shebang + encoding on header-bearing files in scripts/ via fix_headers.py (handles .py / .ps1 / .sh by extension). V1.1 scope-correction: fix_headers.py default is repo-wide which over-fixes ~50 files in probes/apps/dumpster-dive/extensions/. Gate restricts to scripts/. For broader fixing, invoke fix_headers.py directly with desired paths.",
     },
   },
   {
