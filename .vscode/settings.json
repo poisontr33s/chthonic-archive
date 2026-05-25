@@ -40,6 +40,10 @@
 
     // === GIT / SCM THERMAL CONTAINMENT ===
     // 1.37 GiB repo, 2463 tracked files — default polling is a laptop-killer.
+    // git.path: V1.5 shim that runs chthonic-rescue.ts BEFORE `git commit`,
+    // pre-staging orphan-gitlink removal so commits land in ONE attempt.
+    // Pre-commit hook (ci/run.ts V1.4) retained as backstop for terminal commits.
+    "git.path": "${workspaceFolder}\\scripts\\git-chthonic.cmd",
     "git.autoRepositoryDetection": "subFolders",
     "git.openRepositoryInParentFolders": "never",
     "git.repositoryScanMaxDepth": 0,

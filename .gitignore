@@ -281,6 +281,7 @@ extensions/*/bun.lock
 !scripts/*.md
 !scripts/*.sql
 !scripts/*.rc
+!scripts/*.cmd
 !scripts/aws/
 !scripts/aws/*.py
 !scripts/aws/*.ps1
