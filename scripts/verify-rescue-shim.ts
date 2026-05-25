@@ -30,17 +30,25 @@
  *   8. Rescue silent on no-op (no orphans)
  *   9. End-to-end: VS Code's exact invocation pattern (--file - stdin) lands in ONE attempt
  *
- * V1.7 — live invocation log layer:
- *   The shim writes to .git/chthonic-rescue-shim.log on every call. After
- *   window reload, click commit (or do any git op in VS Code), then run
- *   `bun run scripts/verify-rescue-shim.ts --live` — it reads the log and
- *   confirms the shim has been hit since the reload. Replaces the previous
- *   "untestable from script" boundary with a verifiable claim.
+ * V1.8 — live mode is now exclusive (was a verifier false-positive):
+ *   V1.7's --live ran sandbox tests AND the log check. Problem: the sandbox
+ *   tests invoke the shim via `cmd /c shim ...` (to test arg-scanning, etc.),
+ *   which writes entries to the very log --live then reads. Result: --live
+ *   could PASS just from verifier-self-traffic, with the misleading label
+ *   "from VS Code." Now --live SKIPS the sandbox tests and only checks the
+ *   log — so a PASS in --live mode means entries came from SOMETHING that
+ *   wasn't this verifier (VS Code being the expected source).
  *
- * Usage:
- *   bun run scripts/verify-rescue-shim.ts              # all sandbox tests
- *   bun run scripts/verify-rescue-shim.ts --live       # add live wiring check
- *   bun run scripts/verify-rescue-shim.ts --reset-log  # truncate log before checking
+ * Three exclusive modes (per [[feedback-false-positive-avoidance]]):
+ *   bun run scripts/verify-rescue-shim.ts              # sandbox tests only
+ *   bun run scripts/verify-rescue-shim.ts --live       # log check only (no sandbox)
+ *   bun run scripts/verify-rescue-shim.ts --reset-log  # truncate log + exit
+ *
+ * Post-VS-Code-update verification procedure:
+ *   1. bun run scripts/verify-rescue-shim.ts --reset-log
+ *   2. Do any git op in VS Code (commit click, refresh source-control panel)
+ *   3. bun run scripts/verify-rescue-shim.ts --live
+ *   4. PASS with entries containing `-c user.useConfigOnly=true` → VS Code IS using shim
  */
 
 import { spawnSync, execSync } from "child_process";
@@ -65,9 +73,61 @@ const SHIM_LOG = join(REPO_ROOT, ".git", "chthonic-rescue-shim.log");
 const LIVE_CHECK = process.argv.includes("--live");
 const RESET_LOG = process.argv.includes("--reset-log");
 
-if (RESET_LOG && existsSync(SHIM_LOG)) {
-  truncateSync(SHIM_LOG, 0);
-  console.log(`[verify] truncated ${SHIM_LOG}`);
+// --reset-log is exclusive: truncate the log and exit. Running other tests
+// would re-pollute it with verifier-self-traffic and defeat the purpose.
+if (RESET_LOG) {
+  if (existsSync(SHIM_LOG)) {
+    truncateSync(SHIM_LOG, 0);
+    console.log(`[verify] truncated ${SHIM_LOG}`);
+  } else {
+    console.log(`[verify] log not present at ${SHIM_LOG} (nothing to reset)`);
+  }
+  console.log("Next: do any git op in VS Code, then `bun run scripts/verify-rescue-shim.ts --live`");
+  process.exit(0);
+}
+
+// --live is exclusive: read the log and report. Sandbox tests would pollute
+// the log with verifier-self-traffic and create false-positive PASSes (this
+// was V1.7's flaw — V1.8 makes the modes mutually exclusive).
+if (LIVE_CHECK) {
+  console.log("\n═══ shim invocation log (--live mode) ═══\n");
+  if (!existsSync(SHIM_LOG)) {
+    console.log(`✗ FAIL  log not found at ${SHIM_LOG}`);
+    console.log(`        Shim has never been invoked since this repo. Either:`);
+    console.log(`        - VS Code is using the default git binary (settings.json git.path not picked up)`);
+    console.log(`        - Or no git op has happened since the workspace opened`);
+    console.log(`        Try: reload VS Code window, do any git op, re-run --live.`);
+    process.exit(1);
+  }
+  const content = readFileSync(SHIM_LOG, "utf8");
+  const lines = content.split("\n").filter(Boolean);
+  if (lines.length === 0) {
+    console.log(`✗ FAIL  log is empty (was reset; nothing invoked since)`);
+    console.log(`        Click commit in VS Code, or refresh source-control panel, then re-run --live.`);
+    process.exit(1);
+  }
+  const stat = statSync(SHIM_LOG);
+  const ageMin = (Date.now() - stat.mtimeMs) / 60000;
+  // Filter for VS-Code-pattern entries (have -c user.useConfigOnly=true or
+  // are commit/status/log/etc subcommands typical of VS Code's git extension).
+  // Verifier's own entries DO match these patterns (which is the false-positive
+  // risk), but in --live mode the verifier has NOT polluted the log this run.
+  const vsCodePattern = lines.filter((l) => /-c\s+user\.useConfigOnly=true/.test(l));
+  console.log(`✓ PASS  ${lines.length} log entries; most recent ${ageMin.toFixed(1)} min ago`);
+  console.log(`        ${vsCodePattern.length} entries match VS Code's invocation pattern (-c user.useConfigOnly=true)`);
+  console.log(`        last 5 entries:`);
+  for (const l of lines.slice(-5)) {
+    console.log(`          ${l.trim()}`);
+  }
+  if (ageMin > 60) {
+    console.log(`\n⚠ WARNING  log is stale (${ageMin.toFixed(0)} min old) — recent git ops aren't hitting the shim.`);
+    process.exit(1);
+  }
+  if (vsCodePattern.length === 0) {
+    console.log(`\n⚠ WARNING  no entries match VS Code's invocation pattern. Either VS Code isn't using the shim,`);
+    console.log(`            or you haven't triggered a commit-class operation since the last reset.`);
+  }
+  process.exit(0);
 }
 
 const results: { name: string; ok: boolean; detail: string }[] = [];
@@ -289,33 +349,11 @@ try {
   if (existsSync(sandbox)) rmSync(sandbox, { recursive: true, force: true });
 }
 
-// V1.7 live-check: read shim invocation log. The shim writes one line per
-// git invocation; if log has entries after the most recent VS Code reload
-// (which we approximate as "any entries at all, with recency reported"),
-// the wiring is live.
-if (LIVE_CHECK) {
-  check("[--live] shim invocation log exists and has entries from VS Code", () => {
-    if (!existsSync(SHIM_LOG)) {
-      return `log not found at ${SHIM_LOG} — shim has never been invoked. Either reload window + click commit, or the shim isn't wired correctly.`;
-    }
-    const content = readFileSync(SHIM_LOG, "utf8");
-    const lines = content.split("\n").filter(Boolean);
-    if (lines.length === 0) {
-      return `log is empty — shim hasn't been invoked since last reset. Click commit in VS Code, then re-run.`;
-    }
-    const stat = statSync(SHIM_LOG);
-    const ageMin = (Date.now() - stat.mtimeMs) / 60000;
-    console.log(`           └─ ${lines.length} log entries; most recent ${ageMin.toFixed(1)} min ago`);
-    console.log(`           └─ last 3 entries:`);
-    for (const l of lines.slice(-3)) {
-      console.log(`              ${l.trim()}`);
-    }
-    if (ageMin > 60) {
-      return `log is stale (${ageMin.toFixed(0)} min old) — recent VS Code git ops aren't hitting the shim. Reload window.`;
-    }
-    return null;
-  });
-}
+// V1.8 live-check is exclusive: the sandbox tests above invoke the shim
+// (test #4 etc.) which pollutes the log — that pollution made the V1.7
+// --live PASS vacuously. So in --live mode we skip sandbox tests entirely
+// (the early-exit below is unreachable because --live is checked first;
+// retained as defensive guard).
 
 // Report
 console.log("\n═══ rescue-shim wiring verification ═══\n");
@@ -329,13 +367,11 @@ for (const r of results) {
   }
 }
 console.log("");
-if (!LIVE_CHECK) {
-  console.log("Live wiring (VS Code → shim) not checked. To verify:");
-  console.log("  1. Ctrl+Shift+P → 'Developer: Reload Window'");
-  console.log("  2. Click commit (or do any git op in the source-control panel)");
-  console.log("  3. bun run scripts/verify-rescue-shim.ts --live");
-  console.log("");
-}
+console.log("Live wiring (VS Code → shim) NOT checked by this mode. To verify:");
+console.log("  1. bun run scripts/verify-rescue-shim.ts --reset-log     # clean baseline");
+console.log("  2. Do any git op in VS Code (commit click, source-control refresh)");
+console.log("  3. bun run scripts/verify-rescue-shim.ts --live          # log-only check");
+console.log("");
 if (failed === 0) {
   console.log(`✓ ALL ${results.length} assertions passed.`);
   process.exit(0);
