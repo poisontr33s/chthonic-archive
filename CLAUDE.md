@@ -16,6 +16,10 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.t
 
 - **Reconciliation Engine `(CRC-LYS-UMK-COVENANT-V1)`:** [THE_RECONCILIATION_ENGINE.md](.temple/protocols/THE_RECONCILIATION_ENGINE.md) — bilateral covenant between Lysandra (Truth, this side) and Umako (Purification, Codex side); `verify_with:` finding convention; lane-naming discipline. Codex-side mirror: [codex/protocols/THE_RECONCILIATION_ENGINE.md](codex/protocols/THE_RECONCILIATION_ENGINE.md). Blazing Trial worked artifact: [game/lore/characters/the_sourcer.json](game/lore/characters/the_sourcer.json).
 
+## Session Retrospectives
+
+- **2026-05-24/25 REDUX:** [SESSION_2026_05_24_25_REDUX.md](.temple/protocols/SESSION_2026_05_24_25_REDUX.md) — chronological failure analysis (F1-F13), tiered hierarchy (Tier 0-5), compounding protocol (8 methodology shifts). Keystone learning: every claim ships with verifier OR is named out-of-scope; "hidden brittleness" / "not yet proven" / "untestable from script" are the false-positive tell. CI auto-fix gate V1→V1.7 sequence is the worked example. Read this if a session warrants its own retrospective (N ≥ 3 corrective iterations on the same surface).
+
 ## Workspace
 
 - `.temple/` = agent infrastructure. `game/` = cRPG content. Ask "TEMPLE or GAME?" before creating files.
