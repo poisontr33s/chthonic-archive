@@ -487,19 +487,39 @@ function submoduleLandscape(): { dirty_count: number; orphan_count: number; entr
     encoding: "utf8",
     cwd: REPO_ROOT,
   });
-  // Parse ` m <path>` (lowercase m = modified submodule contents) entries
+  // Parse ` m <path>` ONLY — lowercase-m is git's specific submodule-content-modified
+  // signal. Capital ` M ` matches any modified-in-working-tree file (NOT just submodules),
+  // and matching it caused a pre-ship test failure where ci/run.ts (a regular .ts file
+  // with working-tree changes) got captured as an "orphan gitlink" and rm-cached.
+  // Lowercase-m only + 160000-mode verification below = bounded to actual gitlinks.
   const lines = (r.stdout ?? "").split("\n").filter(Boolean);
   const dirty_paths = lines
-    .filter((l) => /^\s[mM]\s/.test(l) && l.length > 3)
+    .filter((l) => /^\sm\s/.test(l) && l.length > 3)
     .map((l) => l.slice(3).trim());
   if (dirty_paths.length === 0) return { dirty_count: 0, orphan_count: 0, entries: [] };
+
+  // Sanity check: verify each path is actually a gitlink (160000 mode in HEAD).
+  // Defends against any future regex drift or unexpected status code surfacing
+  // non-submodule paths through the lowercase-m filter.
+  const verified_paths: string[] = [];
+  for (const p of dirty_paths) {
+    const ls = spawnSync("git", ["ls-tree", "HEAD", p], {
+      encoding: "utf8",
+      cwd: REPO_ROOT,
+    });
+    if ((ls.stdout ?? "").trim().startsWith("160000 ")) {
+      verified_paths.push(p);
+    }
+  }
+  if (verified_paths.length === 0) return { dirty_count: 0, orphan_count: 0, entries: [] };
+
   // Check .gitmodules for each — orphan if not registered
   const gm = spawnSync("git", ["config", "-f", ".gitmodules", "-l"], {
     encoding: "utf8",
     cwd: REPO_ROOT,
   });
   const gm_content = gm.stdout ?? ""; // empty if .gitmodules missing
-  const entries = dirty_paths.map((p) => ({
+  const entries = verified_paths.map((p) => ({
     path: p,
     orphan: !gm_content.includes(`path=${p}`) && !gm_content.includes(`= ${p}`),
   }));
@@ -522,20 +542,52 @@ const submodBanner =
 console.log(`[ci] ${selected.length} check(s) | mode: ${modeLabel}${stagedBanner}${submodBanner}\n`);
 
 if (STAGED && staged.count === 0 && submods.dirty_count > 0) {
-  console.log(`[ci] ℹ Nothing staged at super-repo level, but ${submods.dirty_count} submodule(s) have uncommitted contents.`);
-  console.log(`[ci]   VS Code may show these as "M" in Source Control panel — that's modified-submodule-CONTENTS,`);
-  console.log(`[ci]   not a staged-gitlink-POINTER-change. They cannot be committed from this repo until either:`);
-  console.log(`[ci]     (a) inner submodule advances its commit: cd <submodule>; git commit; cd ..; git add <path>`);
-  console.log(`[ci]     (b) the gitlink is removed/replaced: git rm --cached <path> (if no longer a submodule)`);
-  if (submods.orphan_count > 0) {
-    console.log(`[ci]   ⚠ ${submods.orphan_count} of these are orphan-gitlinks (160000 mode in HEAD, but no .gitmodules entry):`);
-    for (const e of submods.entries.filter((x) => x.orphan)) {
-      console.log(`[ci]       - ${e.path}`);
+  const orphans = submods.entries.filter((x) => x.orphan);
+  const non_orphans = submods.entries.filter((x) => !x.orphan);
+
+  // V1.4 AUTO-RESCUE: when staged=0 AND there are orphan gitlinks (broken state:
+  // 160000 mode entries in HEAD with no .gitmodules registration), auto-`git rm
+  // --cached` them. This stages a deletion at the index layer (bypassing .gitignore
+  // which often also blocks these paths), giving the commit something to land.
+  // Working-tree directories are untouched. The orphan-gitlink governance gap is
+  // resolved as a side effect. Reversible via `git reset HEAD <path>` before commit.
+  // Per user intent (2026-05-25): "commit on my free will when files are adding up
+  // regardless what files they are." Narrow trigger — only fires when (a) nothing
+  // else is staged, (b) the dirty submodules are orphan (no .gitmodules). Proper
+  // submodules with .gitmodules are NEVER auto-rescued; they get guidance only.
+  if (orphans.length > 0) {
+    console.log(`[ci] AUTO-RESCUE: ${orphans.length} orphan-gitlink(s) detected with nothing else staged.`);
+    console.log(`[ci]   These have 160000-mode entries in HEAD but no .gitmodules registration — broken state.`);
+    console.log(`[ci]   Staging their removal from the index so the commit can land:`);
+    for (const e of orphans) {
+      console.log(`[ci]     - ${e.path}`);
     }
-    console.log(`[ci]   Orphan gitlinks indicate a governance gap (submodule removed without .gitmodules cleanup,`);
-    console.log(`[ci]   or .gitmodules missing entirely). Conductor decision required: register or remove.`);
+    const rm_result = spawnSync("git", ["rm", "--cached", ...orphans.map((x) => x.path)], {
+      encoding: "utf8",
+      cwd: REPO_ROOT,
+    });
+    if (rm_result.status === 0) {
+      console.log(`[ci]   ✓ Removed from index. Working-tree directories untouched.`);
+      console.log(`[ci]   Commit will proceed with the staged deletion(s) as content.`);
+      console.log(`[ci]   Undo this rescue before commit: git reset HEAD ${orphans.map((x) => x.path).join(" ")}`);
+    } else {
+      console.log(`[ci]   ✗ rm --cached failed (exit ${rm_result.status}):`);
+      console.log(((rm_result.stderr ?? "") + (rm_result.stdout ?? "")).trim());
+    }
+    console.log();
   }
-  console.log();
+
+  // Non-orphan dirty submodules (proper .gitmodules registration, just inner dirt):
+  // These can't be auto-rescued because the .gitmodules contract is intact and the
+  // inner work needs an inner commit to advance the gitlink. Print guidance only.
+  if (non_orphans.length > 0) {
+    console.log(`[ci] ℹ ${non_orphans.length} dirty submodule(s) cannot be auto-rescued (proper .gitmodules entries — governance is intact, inner work needs inner commit):`);
+    for (const e of non_orphans) {
+      console.log(`[ci]     - ${e.path}`);
+    }
+    console.log(`[ci]   To advance these gitlinks:  cd <submodule>; git commit; cd ..; git add <path>`);
+    console.log();
+  }
 }
 
 const results = await Promise.all(selected.map(runCheck));
