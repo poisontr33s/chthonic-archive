@@ -549,3 +549,13 @@ dev/dealogue-fayde/.bundle/
 !game/lore/
 !game/lore/characters/
 !game/lore/characters/the_sourcer.json
+
+# game/refs/ — form-vector reference imagery for the cRPG workspace.
+# pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
+# declared in .gitattributes. Engine asset caches under game/cocos-iso/
+# remain ignored — only the curated refs lane is opened here.
+!game/refs/
+!game/refs/**/
+!game/refs/**/*.md
+!game/refs/**/*.png
+!game/refs/**/*.json
