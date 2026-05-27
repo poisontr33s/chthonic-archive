@@ -121,12 +121,34 @@ parened_phrase = ${ "(" ~ phrase_id ~ ")" }
 // Phase 2 interpreter would distinguish prose from id_ref by rule label.
 bold_prose = ${ "**" ~ (!"**" ~ ANY)+ ~ "**" }
 
+// ─── Prose-in-parens fallback ───────────────────────────────────────────────
+// Smoke-driven addition 2026-05-27 iteration 5. The catalyst contains 2,007
+// prose_lowercase paren cases (28.3% of all paren constructs) like:
+//   (per SSOT line 4058)   (rare)   (which is what we always do)
+//   (default)              (spectral frequencies)
+//   (abstract hierarchy → embodied architecture)
+// plus 640 prose_mixed cases. None of the substrate paren rules (parened_id,
+// multi_alias, parened_phrase) match them — they correctly fall through
+// because the Title-Case discipline rejects lowercase-led content.
+//
+// Without prose_parens, the parser hangs at `(` because the `(` character is
+// not in prose_safe_char (prose_fragment can't consume it). One last-priority
+// fallback consumes any (...) that no substrate rule matched.
+//
+// Single-level only: nested parens (rare in catalyst) would require recursive
+// content rule; deferred to Phase 1 if observed at smoke time.
+//
+// Semantic note: prose_parens at Phase 0 is parsed-but-not-interpreted; the
+// rule label preserves the prose-ness for Phase 2 interpreter to handle.
+prose_parens = ${ "(" ~ (!")" ~ ANY)* ~ ")" }
+
 // All identifier forms in priority order (longest/most-marked first).
 // parened_phrase sits between multi_alias (most specific — slash-chained) and
-// parened_id (most general — single identifier). All three start with `(`;
+// parened_id (most general — single identifier). All start with `(`;
 // pest backtracks on failure of more-specific alternatives.
-// bold_prose sits after bold_parened_id — same `**` prefix, less specific content.
-id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | ticked_id | identifier }
+// bold_prose sits after bold_parened_id — same `**` prefix, less specific.
+// prose_parens is LAST — catches anything no substrate paren rule matched.
+id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | identifier }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
