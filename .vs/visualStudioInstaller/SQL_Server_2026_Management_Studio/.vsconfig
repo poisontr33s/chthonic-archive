@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "components": [
+    "Component.VisualStudio.GitHub.Copilot",
+    "Microsoft.Component.HelpViewer",
+    "Microsoft.NetCore.Component.Runtime.10.0",
+    "Microsoft.NetCore.Component.SDK",
+    "Microsoft.SqlServer.Workload.SSMS.AI",
+    "Microsoft.SqlServer.Workload.SSMS.BI",
+    "Microsoft.SqlServer.Workload.SSMS.CodeTools",
+    "Microsoft.SqlServer.Workload.SSMS.DevOps",
+    "Microsoft.SqlServer.Workload.SSMS.HybridAndMigration",
+    "Microsoft.SSMS.Component.AS",
+    "Microsoft.SSMS.Component.Core",
+    "Microsoft.SSMS.Component.DevOps",
+    "Microsoft.SSMS.Component.IS",
+    "Microsoft.SSMS.Component.MigrationAssistant",
+    "Microsoft.SSMS.Component.QueryHintTool",
+    "Microsoft.SSMS.Component.RS",
+    "Microsoft.VisualStudio.Component.CoreEditor",
+    "Microsoft.VisualStudio.Component.Roslyn.Compiler",
+    "Microsoft.VisualStudio.Component.Roslyn.LanguageServices",
+    "Microsoft.VisualStudio.Component.TeamExplorer.MinGit",
+    "Microsoft.VisualStudio.Workload.SSMSCore"
+  ],
+  "extensions": []
+}
