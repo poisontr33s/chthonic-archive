@@ -571,6 +571,7 @@ dev/dealogue-fayde/.bundle/
 !.chthonic/SSOT.md
 !.chthonic/grammar/
 !.chthonic/grammar/*.peg
+!.chthonic/grammar/*.json
 !.chthonic/ankh_seeds.yaml
 !.chthonic/REM_BLUEPRINT.md
 

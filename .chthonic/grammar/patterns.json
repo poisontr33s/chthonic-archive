@@ -1,0 +1,171 @@
+{
+  "$schema": "./patterns.schema.json",
+  "version": 1,
+  "description": "Catalyst pattern catalog — each entry is a (name, example, expected) triple drawn from observed SSOT.md content. The dsl-pattern-test binary verifies each pattern's example matches the expected grammar rule(s). Catalog grows by hand-curation (back-filled from iteration history) + auto-extraction (failures from full-SSOT smoke become new entries with status=failing).",
+  "patterns": [
+    {
+      "name": "bold_parened_id_simple",
+      "description": "Substrate concept wrapped in bold-paren-backtick: load-bearing concept declaration.",
+      "example": "**(`FA⁵`)**",
+      "expected_top_rule": "bold_parened_id",
+      "status": "working",
+      "since_iter": 0,
+      "source_line_ssot": 50,
+      "category": "substrate-wrapper"
+    },
+    {
+      "name": "bold_parened_id_multi_alias",
+      "description": "Bold-wrapped multi-alias chain with mixed-case backtick contents (catalyst convention). FAILING: ticked_id requires uppercase-only identifier; lowercase chars in `Codex-Brahmanica-Perfectus` fail identifier rule, so multi_alias fails, so bold_parened_id fails, so bold_prose catches it silently. The slice smoke didn't surface this because catalyst's heaviest multi-alias regions are inside code blocks (consumed by fenced_code_block).",
+      "example": "**(`Codex-Brahmanica-Perfectus`/`SSOT`/`Apex-Synthesis-Core`/`ASC`)**",
+      "expected_top_rule": "bold_parened_id",
+      "expected_inner_rules": ["multi_alias", "alias_chain"],
+      "status": "failing",
+      "since_iter": 1,
+      "source_line_ssot": 73,
+      "category": "architectural-decision",
+      "note": "Discovered 2026-05-27 via pattern catalog. Fix requires widening ticked_id to admit Title-Case content (or a separate ticked_phrase rule). Architectural choice waiting: widen identifier_char to admit lowercase, OR add ticked_phrase with Title-Case discipline, OR split ticked_id into strict (uppercase) + permissive variants.",
+      "first_failing_grammar_hash": "c2c8cfc4c65377e8"
+    },
+    {
+      "name": "ticked_id_titlecase_content",
+      "description": "FAILING — catalyst's primary backtick-id convention uses Title-Case content (`The-Savant`, `Apex-Synthesis-Core`, etc). Current ticked_id requires uppercase-only via identifier rule.",
+      "example": "`The-Savant`",
+      "expected_top_rule": "ticked_id",
+      "status": "failing",
+      "since_iter": "pattern-catalog-baseline",
+      "category": "architectural-decision",
+      "note": "Sibling failure to bold_parened_id_multi_alias. Same root cause: identifier_char excludes lowercase. Fix is the same architectural decision.",
+      "first_failing_grammar_hash": "c2c8cfc4c65377e8"
+    },
+    {
+      "name": "ticked_id_uppercase_only",
+      "description": "Backtick-id with uppercase-only content — current ticked_id rule matches this fine.",
+      "example": "`FA⁵`",
+      "expected_top_rule": "ticked_id",
+      "status": "working",
+      "since_iter": 0,
+      "category": "substrate-wrapper"
+    },
+    {
+      "name": "parened_phrase_titlecase",
+      "description": "Multi-word title-case phrase inside parens — phrase_id Title-Case discipline.",
+      "example": "(UNDER K-CUP SUPREMACY)",
+      "expected_top_rule": "parened_phrase",
+      "expected_inner_rules": ["phrase_id", "phrase_word"],
+      "status": "working",
+      "since_iter": 1,
+      "source_line_ssot": 96,
+      "category": "phrase-content"
+    },
+    {
+      "name": "parened_phrase_greek",
+      "description": "Phrase with Greek letters and comma delimiters.",
+      "example": "(Phases α, β, γ)",
+      "expected_top_rule": "parened_phrase",
+      "expected_inner_rules": ["phrase_id", "phrase_word", "greek_letter"],
+      "status": "working",
+      "since_iter": 1,
+      "source_line_ssot": 2002,
+      "category": "phrase-content"
+    },
+    {
+      "name": "parened_phrase_digit_plus",
+      "description": "Phrase with digit_token trailing-plus form (e.g., 'Section 0+').",
+      "example": "(Section 0+)",
+      "expected_top_rule": "parened_phrase",
+      "expected_inner_rules": ["phrase_id", "phrase_word", "digit_token"],
+      "status": "working",
+      "since_iter": 1,
+      "category": "phrase-content"
+    },
+    {
+      "name": "prose_lowercase_paren",
+      "description": "Lowercase-led parens — must be CONSUMED as prose_parens (not eaten as substrate).",
+      "example": "(rare)",
+      "expected_top_rule": "prose_parens",
+      "status": "working",
+      "since_iter": 5,
+      "category": "prose-fallback"
+    },
+    {
+      "name": "prose_parens_with_substrate",
+      "description": "Prose parens containing a substrate bold-id — recursive prose_parens must recognize the substrate WITHIN, not eat past it.",
+      "example": "(Each **(`CRC`)** detailed below)",
+      "expected_top_rule": "prose_parens",
+      "expected_inner_rules": ["bold_parened_id"],
+      "status": "working",
+      "since_iter": 6,
+      "category": "prose-fallback",
+      "iter_6_fix": "made prose_parens recursive via prose_parens_atom (silent)"
+    },
+    {
+      "name": "prose_parens_with_arrow",
+      "description": "Prose parens containing a Unicode arrow operator — bare substrate_marker must be recognized.",
+      "example": "(cellular → tissue → organ → system → organism)",
+      "expected_top_rule": "prose_parens",
+      "expected_inner_rules": ["substrate_marker", "op_project"],
+      "status": "working",
+      "since_iter": 6,
+      "source_line_ssot": 289,
+      "category": "prose-fallback"
+    },
+    {
+      "name": "fenced_code_block_python",
+      "description": "Markdown fenced code block with Python language identifier — content is opaque.",
+      "example": "```python\nhistory = Path('.x.json')\nresult = json.load(open(history))\n```",
+      "expected_top_rule": "fenced_code_block",
+      "status": "working",
+      "since_iter": 4,
+      "category": "structural-block"
+    },
+    {
+      "name": "trinity_formula_in_code_block",
+      "description": "Trinity Formula canonical declaration — appears INSIDE a code block in catalyst, consumed as opaque.",
+      "example": "```\nASC = MILFOLOGICAL × German BDSM × Frame-Werk (UNDER K-CUP SUPREMACY)\n```",
+      "expected_top_rule": "fenced_code_block",
+      "status": "working",
+      "since_iter": 4,
+      "source_line_ssot": 95,
+      "category": "structural-block",
+      "note": "Trinity Formula is in a code block in catalyst, so substrate-level composition rules don't need to handle it. Phase 1 may extract code_content separately."
+    },
+    {
+      "name": "bold_prose_label",
+      "description": "Bold prose used as label/heading — content is not substrate.",
+      "example": "**Purpose:**",
+      "expected_top_rule": "bold_prose",
+      "status": "working",
+      "since_iter": 3,
+      "category": "prose-fallback"
+    },
+    {
+      "name": "header_substrate_chain",
+      "description": "Header with chained substrate identifiers — observed pattern in §-section openings.",
+      "example": "## (`Execution-Invariants`): → (`Global`) → (`EXEC-INV-GLB`): →",
+      "expected_top_rule": "statement",
+      "expected_inner_rules": ["header"],
+      "status": "working",
+      "since_iter": 0,
+      "category": "structural-block"
+    },
+    {
+      "name": "l45_substrate_arrow_titlecase_prose",
+      "description": "FAILING — catalyst's loose-arrow pattern: substrate-bold then Unicode arrow then bare title-case word at statement level. Composition expects strict operand-op-operand; catalyst uses → as directional marker outside strict compositions.",
+      "example": "**(`SSOT`)** → Branch files reference **(`Never-Duplicate`)",
+      "expected_top_rule": "DEFERRED",
+      "status": "failing",
+      "since_iter": "full-ssot-baseline",
+      "source_line_ssot": 45,
+      "category": "architectural-decision",
+      "note": "Three design directions sketched in SESSION_2026_05_27_DSL_AUTONOMOUS_NIGHT.md handoff: (a) bare phrase_word as operand, (b) substrate_marker at statement level, (c) document-and-defer to Phase 1.",
+      "first_failing_grammar_hash": "c2c8cfc4c65377e8"
+    }
+  ],
+  "categories": {
+    "substrate-wrapper": "Substrate constructs wrapped in markdown emphasis or backticks (bold_parened_id, ticked_id, etc.)",
+    "phrase-content": "Title-Case multi-word phrases inside parens (parened_phrase / phrase_id)",
+    "prose-fallback": "Catch-all for content that isn't strict substrate (prose_parens, bold_prose)",
+    "structural-block": "Whole-block constructs (fenced_code_block, header, blockquote)",
+    "architectural-decision": "Failing patterns that require architectural choice, NOT a single grammar fix"
+  }
+}

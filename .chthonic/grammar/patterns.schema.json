@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chthonic-archive.local/.chthonic/grammar/patterns.schema.json",
+  "title": "Catalyst Pattern Catalog",
+  "description": "Schema for .chthonic/grammar/patterns.json — accumulated catalog of catalyst patterns the grammar should handle. Each entry is a tested input + expected parse outcome. Catalog grows by hand-curation (back-fill from iteration history) + auto-extraction (failures from full-SSOT smoke).",
+  "type": "object",
+  "required": ["version", "patterns"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "version": {"type": "integer", "minimum": 1},
+    "description": {"type": "string"},
+    "categories": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "example", "status", "category"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "Unique snake_case identifier for the pattern."
+          },
+          "description": {
+            "type": "string",
+            "description": "One-line explanation of what this pattern represents."
+          },
+          "example": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Actual text from catalyst (or constructed minimal example) that exhibits the pattern."
+          },
+          "expected_top_rule": {
+            "type": "string",
+            "description": "Top-level grammar rule the example should match (e.g., 'bold_parened_id'). Use 'DEFERRED' if the pattern is failing and the design is open."
+          },
+          "expected_inner_rules": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Inner rules that should appear in the parse tree of a successful match. The dsl-pattern-test binary checks these."
+          },
+          "status": {
+            "type": "string",
+            "enum": ["working", "failing", "deferred", "regressed"],
+            "description": "Current status against the grammar. working=passes, failing=catalyst pattern but grammar doesn't handle it, deferred=intentional Phase 0 gap, regressed=was working, now failing."
+          },
+          "since_iter": {
+            "oneOf": [
+              {"type": "integer", "minimum": 0},
+              {"type": "string"}
+            ],
+            "description": "Which iteration introduced this pattern (or 'full-ssot-baseline', etc. for non-iter origins)."
+          },
+          "source_line_ssot": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "OPTIONAL. Source line in .chthonic/SSOT.md where this pattern was observed."
+          },
+          "category": {
+            "type": "string",
+            "description": "Pattern category for grouping (must match a key in top-level categories map)."
+          },
+          "note": {
+            "type": "string",
+            "description": "OPTIONAL. Additional context (e.g., 'requires architectural decision')."
+          },
+          "iter_1_fix": {"type": "string", "description": "OPTIONAL. Free-form note about which iteration's fix enabled this pattern."},
+          "iter_2_fix": {"type": "string"},
+          "iter_3_fix": {"type": "string"},
+          "iter_4_fix": {"type": "string"},
+          "iter_5_fix": {"type": "string"},
+          "iter_6_fix": {"type": "string"},
+          "first_failing_grammar_hash": {
+            "type": "string",
+            "description": "OPTIONAL. Grammar hash at which this pattern was first observed to fail (for failing/regressed statuses)."
+          },
+          "last_verified_grammar_hash": {
+            "type": "string",
+            "description": "OPTIONAL. Grammar hash at which this pattern last passed. Updated by dsl-pattern-test."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

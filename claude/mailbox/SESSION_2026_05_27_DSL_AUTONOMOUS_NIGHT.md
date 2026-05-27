@@ -28,6 +28,23 @@ slices=6/6  shadows=0  full_ssot=FAIL@L45
 
 The 6-slice corpus + audit are both clean. The full-SSOT smoke surfaced what the 6-slice corpus missed.
 
+## Pattern catalog — and a significant catalog-revealed shadow
+
+Per your "Build the pattern catalog first" pick, landed `.chthonic/grammar/patterns.json` + schema + `dsl-pattern-test` binary + initial 15-pattern catalog. The catalog encodes "what worked vs didn't" as data — automatable, durable across sessions, regrowable from failures.
+
+**Immediate finding from the catalog**: a hidden shadow we didn't know about.
+
+The catalyst's PRIMARY backtick-id convention is `` `Title-Case-With-Hyphens` `` (e.g., `` `The-Savant` ``, `` `Codex-Brahmanica-Perfectus` ``, `` `Apex-Synthesis-Core` ``). Current `ticked_id` rule requires uppercase-only content via the `identifier` rule, so all Title-Case backtick-ids silently fall through to `bold_prose` when wrapped in `**`, or to `prose_fragment` outside it. The 6-slice smoke didn't surface this because catalyst's heaviest multi-alias regions (where backtick-id density is high) are inside fenced code blocks consumed by `fenced_code_block`.
+
+So the "6/6 + 0 shadows" slice result was true *for the slices tested*, but the catalyst at large has a structural misclassification.
+
+Pattern catalog test result: 12 PASS, 3 FAIL (expected) — three architectural-decision patterns waiting:
+- `bold_parened_id_multi_alias` — Title-Case backtick-ids inside multi-alias chains
+- `ticked_id_titlecase_content` — bare `` `Title-Case` `` (sibling failure, same root)
+- `l45_substrate_arrow_titlecase_prose` — the L45 finding from full-SSOT smoke
+
+The first two share ONE architectural fix (widen `identifier`/`ticked_id` to admit lowercase, OR add `ticked_phrase` with Title-Case discipline). The third is separate.
+
 ## The full-SSOT finding (the architectural decision waiting)
 
 Line 45 of SSOT.md:
@@ -54,19 +71,23 @@ I'd lean toward (2) — it matches how the catalyst actually uses arrows in flow
 
 ## Recommended next moves (for when you're back)
 
-Pick by appetite:
+Pick by appetite. The catalog now makes architectural-decision patterns explicit so each next move has a clear test target.
 
 | Option | What | Cost |
 |---|---|---|
-| A | Decide the full-SSOT L45 architectural question (substrate_marker at statement level vs bare phrase_word operand vs document-and-defer) | 1 grammar iteration under the new discipline |
-| B | Run `dsl-full-smoke` after the iter-7 fix to confirm full SSOT now parses (the real victory condition) | implicit in A |
+| A | Decide `ticked_id` Title-Case admission (fixes bold_parened_id_multi_alias + ticked_id_titlecase_content + a large class of catalyst content). Three sub-options: widen identifier_char, add ticked_phrase, or split into strict+permissive. | 1 grammar iteration, pattern catalog verifies 2 patterns flip from FAIL to PASS |
+| B | Decide L45 architectural question (substrate_marker at statement level vs bare phrase_word operand vs document-and-defer) | 1 iteration, catalog verifies l45_substrate_arrow_titlecase_prose flips |
 | C | Pivot to your originally-named next step — Phase 0 emoji grammar extraction as a separate module | 1-2 iterations |
-| D | Promote to Phase 1 — scaffold `tools/chthonic-dsl/` proper crate, PyO3 bindings | major scaffolding session |
-| E | Investigate ticked_phrase (spaces inside backticks like `` `The-ASC-As-Living-Organism - Physiological-Hierarchy` ``) — deferred from earlier | 1 iteration |
+| D | Reconsider Q1 framing (DSL vs substrate-extraction). The catalog now has ENOUGH data (15 patterns spanning 4 categories) that the right tool is visible — substrate-extraction is the lower-pain path. | architectural conversation |
+| E | Promote to Phase 1 — scaffold `tools/chthonic-dsl/` proper crate, PyO3 bindings | major scaffolding session |
+| F | Investigate ticked_phrase with internal spaces (`` `The-ASC-As-Living-Organism - Physiological-Hierarchy` ``) — adjacent to A | 1 iteration, add as a 4th catalog entry |
 
 ## How to use the new tooling
 
 ```powershell
+# Pattern catalog — verify each pattern parses as expected
+cargo run -p dsl-smoke --release --bin dsl-pattern-test
+
 # Run all smokes + audit + full-SSOT + capture state in ledger
 uv run scripts/dsl_iteration_check.py
 
@@ -81,6 +102,14 @@ cargo run -p dsl-smoke --release --bin dsl-smoke -- .chthonic/SSOT.md
 cargo run -p dsl-smoke --release --bin dsl-audit -- .chthonic/SSOT.md
 cargo run -p dsl-smoke --release --bin dsl-full-smoke -- .chthonic/SSOT.md
 ```
+
+## On your Q1 / Q2 questions
+
+**Q1 (DSL vs PL vs DSL→PL)** — I gave my honest take: the catalyst is prose with embedded structured constructs, closer to literate annotation than DSL. Substrate-extraction (tree-sitter / regex / pulldown-cmark + custom inline parsers) would have lower iteration pain. The pest grammar work isn't wasted; its rules become extraction patterns. You picked "build pattern catalog first, decide after" — the catalog now has 15 patterns + 3 architectural-decision blockers, enough data for the decision to be informed.
+
+**Q2 (automating "what worked vs didn't")** — the pattern catalog IS that automation. Each pattern is `{name, example, expected, status, since_iter}` — encoded knowledge of what the grammar should handle. The dsl-pattern-test binary compares actual parse-tree shape to expected, flagging Regression / Shadow / Improved / ConfirmedFail. Future failures become new catalog entries; future iterations test against ALL of them. The catalog grows monotonically.
+
+Concrete next: when you fix the ticked_id Title-Case admission, dsl-pattern-test will flip 2 patterns from FAIL to PASS automatically. No re-deriving "what worked" — the catalog remembers.
 
 ## State of the working tree
 
