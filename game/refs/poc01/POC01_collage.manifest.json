@@ -1,0 +1,1013 @@
+{
+  "tool": "TOOL_POC_COLLAGE_V3",
+  "generated_at": "2026-05-26T19:42:41+00:00",
+  "series": "POC01",
+  "source_dir": "game\\refs\\poc01",
+  "source_glob": "Example_POC*.png",
+  "source_count": 20,
+  "algorithm": {
+    "topology": "voronoi-cvt",
+    "lloyd_iterations": 40,
+    "seed_distribution": "halton-2-3",
+    "boundary_handling": "edge-mirror + canvas-intersect (shapely)"
+  },
+  "order_strategy": "salience",
+  "canvas": {
+    "w": 2560,
+    "h": 1440
+  },
+  "bg_hex": "#000000",
+  "sharpen": true,
+  "outputs": {
+    "png": {
+      "path": "POC01_collage.png",
+      "bytes": 6743823,
+      "sha256": "20d20fb554344dca4b8fc25becc4905b3ea4b7d88d80fed314f303d422ab45e7"
+    },
+    "webp": {
+      "path": "POC01_collage.webp",
+      "bytes": 5473706,
+      "sha256": "88a58f7b7607f7a05f63c583a2f5117c07470de881b33202b76196890c254a42"
+    },
+    "qoi": {
+      "path": "POC01_collage.qoi",
+      "bytes": 7805896,
+      "sha256": "13aba960e13de17a8139dd7d9b6dc3613538c096c0223f2a471a7aa500edd604"
+    },
+    "jxl": {
+      "path": "POC01_collage.jxl",
+      "bytes": 5231724,
+      "sha256": "3d157a362e16cef688b756bb746ed0f07fd1622b798769034b9d40fd79e63581"
+    }
+  },
+  "cells": [
+    {
+      "rendered": true,
+      "cell_bbox": [
+        0,
+        338,
+        524,
+        377
+      ],
+      "cell_area_px": 169408.0,
+      "downscale_ratio": 4.885,
+      "polygon_vertices": [
+        [
+          438.3,
+          715.3
+        ],
+        [
+          524.0,
+          496.1
+        ],
+        [
+          402.7,
+          338.0
+        ],
+        [
+          0.0,
+          376.1
+        ],
+        [
+          0.0,
+          707.8
+        ],
+        [
+          438.3,
+          715.3
+        ]
+      ],
+      "index": 0,
+      "source": "Example_POC00013.png",
+      "sort_key": 7.4486,
+      "seed_initial": [
+        320.0,
+        640.0
+      ],
+      "seed_final": [
+        243.43,
+        534.13
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1471,
+        964,
+        461,
+        476
+      ],
+      "cell_area_px": 163155.2,
+      "downscale_ratio": 5.553,
+      "polygon_vertices": [
+        [
+          1783.2,
+          964.3
+        ],
+        [
+          1521.6,
+          1020.1
+        ],
+        [
+          1470.6,
+          1440.0
+        ],
+        [
+          1931.6,
+          1440.0
+        ],
+        [
+          1783.2,
+          964.3
+        ]
+      ],
+      "index": 1,
+      "source": "Example_POC00020.png",
+      "sort_key": 7.3511,
+      "seed_initial": [
+        1600.0,
+        1120.0
+      ],
+      "seed_final": [
+        1683.71,
+        1235.38
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        839,
+        0,
+        431,
+        508
+      ],
+      "cell_area_px": 197833.0,
+      "downscale_ratio": 5.94,
+      "polygon_vertices": [
+        [
+          1269.8,
+          0.0
+        ],
+        [
+          838.5,
+          0.0
+        ],
+        [
+          839.1,
+          449.6
+        ],
+        [
+          921.4,
+          507.8
+        ],
+        [
+          1246.5,
+          434.8
+        ],
+        [
+          1269.8,
+          0.0
+        ]
+      ],
+      "index": 2,
+      "source": "Example_POC00011.png",
+      "sort_key": 7.1895,
+      "seed_initial": [
+        960.0,
+        320.0
+      ],
+      "seed_final": [
+        1044.05,
+        234.57
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        2116,
+        482,
+        444,
+        501
+      ],
+      "cell_area_px": 190548.5,
+      "downscale_ratio": 5.766,
+      "polygon_vertices": [
+        [
+          2221.5,
+          497.6
+        ],
+        [
+          2116.1,
+          867.9
+        ],
+        [
+          2246.2,
+          983.3
+        ],
+        [
+          2560.0,
+          979.1
+        ],
+        [
+          2560.0,
+          482.3
+        ],
+        [
+          2221.5,
+          497.6
+        ]
+      ],
+      "index": 3,
+      "source": "Example_POC00015.png",
+      "sort_key": 7.1667,
+      "seed_initial": [
+        2240.0,
+        800.0
+      ],
+      "seed_final": [
+        2365.5,
+        740.46
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        0,
+        1048,
+        415,
+        392
+      ],
+      "cell_area_px": 143579.4,
+      "downscale_ratio": 6.169,
+      "polygon_vertices": [
+        [
+          0.0,
+          1047.5
+        ],
+        [
+          0.0,
+          1440.0
+        ],
+        [
+          414.7,
+          1440.0
+        ],
+        [
+          365.4,
+          1093.4
+        ],
+        [
+          0.0,
+          1047.5
+        ]
+      ],
+      "index": 4,
+      "source": "Example_POC00008.png",
+      "sort_key": 7.0727,
+      "seed_initial": [
+        160.0,
+        1280.0
+      ],
+      "seed_final": [
+        191.01,
+        1259.12
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1247,
+        0,
+        463,
+        538
+      ],
+      "cell_area_px": 211975.0,
+      "downscale_ratio": 5.529,
+      "polygon_vertices": [
+        [
+          1246.5,
+          434.8
+        ],
+        [
+          1389.8,
+          537.9
+        ],
+        [
+          1701.8,
+          467.7
+        ],
+        [
+          1709.5,
+          457.2
+        ],
+        [
+          1652.3,
+          0.0
+        ],
+        [
+          1269.8,
+          0.0
+        ],
+        [
+          1246.5,
+          434.8
+        ]
+      ],
+      "index": 5,
+      "source": "Example_POC00001.png",
+      "sort_key": 7.0256,
+      "seed_initial": [
+        1440.0,
+        53.33
+      ],
+      "seed_final": [
+        1469.23,
+        257.38
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        438,
+        450,
+        493,
+        538
+      ],
+      "cell_area_px": 211133.5,
+      "downscale_ratio": 5.185,
+      "polygon_vertices": [
+        [
+          839.1,
+          449.6
+        ],
+        [
+          524.0,
+          496.1
+        ],
+        [
+          438.3,
+          715.3
+        ],
+        [
+          518.0,
+          927.5
+        ],
+        [
+          752.2,
+          987.4
+        ],
+        [
+          931.7,
+          895.3
+        ],
+        [
+          921.4,
+          507.8
+        ],
+        [
+          839.1,
+          449.6
+        ]
+      ],
+      "index": 6,
+      "source": "Example_POC00017.png",
+      "sort_key": 6.8174,
+      "seed_initial": [
+        800.0,
+        533.33
+      ],
+      "seed_final": [
+        704.37,
+        714.32
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1783,
+        868,
+        463,
+        572
+      ],
+      "cell_area_px": 187565.0,
+      "downscale_ratio": 5.529,
+      "polygon_vertices": [
+        [
+          2246.2,
+          983.3
+        ],
+        [
+          2116.1,
+          867.9
+        ],
+        [
+          1843.3,
+          894.0
+        ],
+        [
+          1783.2,
+          964.3
+        ],
+        [
+          1931.6,
+          1440.0
+        ],
+        [
+          2126.8,
+          1440.0
+        ],
+        [
+          2246.2,
+          983.3
+        ]
+      ],
+      "index": 7,
+      "source": "Example_POC00018.png",
+      "sort_key": 6.785,
+      "seed_initial": [
+        2080.0,
+        1013.33
+      ],
+      "seed_final": [
+        2019.2,
+        1130.69
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        0,
+        0,
+        450,
+        376
+      ],
+      "cell_area_px": 151863.8,
+      "downscale_ratio": 5.689,
+      "polygon_vertices": [
+        [
+          450.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          376.1
+        ],
+        [
+          402.7,
+          338.0
+        ],
+        [
+          450.5,
+          0.0
+        ]
+      ],
+      "index": 8,
+      "source": "Example_POC00016.png",
+      "sort_key": 6.7504,
+      "seed_initial": [
+        480.0,
+        213.33
+      ],
+      "seed_final": [
+        209.41,
+        175.2
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1343,
+        468,
+        501,
+        552
+      ],
+      "cell_area_px": 200625.8,
+      "downscale_ratio": 5.11,
+      "polygon_vertices": [
+        [
+          1389.8,
+          537.9
+        ],
+        [
+          1342.7,
+          908.9
+        ],
+        [
+          1521.6,
+          1020.1
+        ],
+        [
+          1783.2,
+          964.3
+        ],
+        [
+          1843.3,
+          894.0
+        ],
+        [
+          1701.8,
+          467.7
+        ],
+        [
+          1389.8,
+          537.9
+        ]
+      ],
+      "index": 9,
+      "source": "Example_POC00009.png",
+      "sort_key": 6.7487,
+      "seed_initial": [
+        1760.0,
+        693.33
+      ],
+      "seed_final": [
+        1581.84,
+        757.38
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        752,
+        895,
+        380,
+        545
+      ],
+      "cell_area_px": 183724.9,
+      "downscale_ratio": 6.737,
+      "polygon_vertices": [
+        [
+          752.2,
+          987.4
+        ],
+        [
+          774.9,
+          1440.0
+        ],
+        [
+          1126.1,
+          1440.0
+        ],
+        [
+          1132.2,
+          979.5
+        ],
+        [
+          931.7,
+          895.3
+        ],
+        [
+          752.2,
+          987.4
+        ]
+      ],
+      "index": 10,
+      "source": "Example_POC00012.png",
+      "sort_key": 6.7463,
+      "seed_initial": [
+        1120.0,
+        1173.33
+      ],
+      "seed_final": [
+        946.2,
+        1185.51
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        2104,
+        0,
+        456,
+        498
+      ],
+      "cell_area_px": 211218.5,
+      "downscale_ratio": 5.612,
+      "polygon_vertices": [
+        [
+          2560.0,
+          0.0
+        ],
+        [
+          2137.1,
+          0.0
+        ],
+        [
+          2104.3,
+          384.5
+        ],
+        [
+          2221.5,
+          497.6
+        ],
+        [
+          2560.0,
+          482.3
+        ],
+        [
+          2560.0,
+          0.0
+        ]
+      ],
+      "index": 11,
+      "source": "Example_POC00014.png",
+      "sort_key": 6.7013,
+      "seed_initial": [
+        2400.0,
+        373.33
+      ],
+      "seed_final": [
+        2343.0,
+        242.67
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        0,
+        708,
+        518,
+        386
+      ],
+      "cell_area_px": 167998.2,
+      "downscale_ratio": 4.942,
+      "polygon_vertices": [
+        [
+          365.4,
+          1093.4
+        ],
+        [
+          518.0,
+          927.5
+        ],
+        [
+          438.3,
+          715.3
+        ],
+        [
+          0.0,
+          707.8
+        ],
+        [
+          0.0,
+          1047.5
+        ],
+        [
+          365.4,
+          1093.4
+        ]
+      ],
+      "index": 12,
+      "source": "Example_POC00006.png",
+      "sort_key": 6.5295,
+      "seed_initial": [
+        80.0,
+        853.33
+      ],
+      "seed_final": [
+        237.4,
+        889.68
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1126,
+        909,
+        395,
+        531
+      ],
+      "cell_area_px": 180145.1,
+      "downscale_ratio": 6.481,
+      "polygon_vertices": [
+        [
+          1521.6,
+          1020.1
+        ],
+        [
+          1342.7,
+          908.9
+        ],
+        [
+          1132.2,
+          979.5
+        ],
+        [
+          1126.1,
+          1440.0
+        ],
+        [
+          1470.6,
+          1440.0
+        ],
+        [
+          1521.6,
+          1020.1
+        ]
+      ],
+      "index": 13,
+      "source": "Example_POC00005.png",
+      "sort_key": 6.196,
+      "seed_initial": [
+        1360.0,
+        1333.33
+      ],
+      "seed_final": [
+        1312.68,
+        1190.32
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        403,
+        0,
+        436,
+        496
+      ],
+      "cell_area_px": 191371.2,
+      "downscale_ratio": 5.872,
+      "polygon_vertices": [
+        [
+          839.1,
+          449.6
+        ],
+        [
+          838.5,
+          0.0
+        ],
+        [
+          450.5,
+          0.0
+        ],
+        [
+          402.7,
+          338.0
+        ],
+        [
+          524.0,
+          496.1
+        ],
+        [
+          839.1,
+          449.6
+        ]
+      ],
+      "index": 14,
+      "source": "Example_POC00003.png",
+      "sort_key": 6.1441,
+      "seed_initial": [
+        720.0,
+        106.67
+      ],
+      "seed_final": [
+        633.6,
+        235.12
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1702,
+        385,
+        520,
+        509
+      ],
+      "cell_area_px": 187191.7,
+      "downscale_ratio": 4.923,
+      "polygon_vertices": [
+        [
+          1843.3,
+          894.0
+        ],
+        [
+          2116.1,
+          867.9
+        ],
+        [
+          2221.5,
+          497.6
+        ],
+        [
+          2104.3,
+          384.5
+        ],
+        [
+          1709.5,
+          457.2
+        ],
+        [
+          1701.8,
+          467.7
+        ],
+        [
+          1843.3,
+          894.0
+        ]
+      ],
+      "index": 15,
+      "source": "Example_POC00002.png",
+      "sort_key": 6.1141,
+      "seed_initial": [
+        2000.0,
+        586.67
+      ],
+      "seed_final": [
+        1971.13,
+        628.17
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        365,
+        927,
+        410,
+        513
+      ],
+      "cell_area_px": 175186.6,
+      "downscale_ratio": 6.244,
+      "polygon_vertices": [
+        [
+          752.2,
+          987.4
+        ],
+        [
+          518.0,
+          927.5
+        ],
+        [
+          365.4,
+          1093.4
+        ],
+        [
+          414.7,
+          1440.0
+        ],
+        [
+          774.9,
+          1440.0
+        ],
+        [
+          752.2,
+          987.4
+        ]
+      ],
+      "index": 16,
+      "source": "Example_POC00019.png",
+      "sort_key": 6.046,
+      "seed_initial": [
+        400.0,
+        1066.67
+      ],
+      "seed_final": [
+        579.08,
+        1203.93
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        1652,
+        0,
+        485,
+        457
+      ],
+      "cell_area_px": 185561.9,
+      "downscale_ratio": 5.278,
+      "polygon_vertices": [
+        [
+          1709.5,
+          457.2
+        ],
+        [
+          2104.3,
+          384.5
+        ],
+        [
+          2137.1,
+          0.0
+        ],
+        [
+          1652.3,
+          0.0
+        ],
+        [
+          1709.5,
+          457.2
+        ]
+      ],
+      "index": 17,
+      "source": "Example_POC00007.png",
+      "sort_key": 5.8658,
+      "seed_initial": [
+        1680.0,
+        266.67
+      ],
+      "seed_final": [
+        1893.09,
+        204.32
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        921,
+        435,
+        468,
+        545
+      ],
+      "cell_area_px": 205078.7,
+      "downscale_ratio": 5.47,
+      "polygon_vertices": [
+        [
+          1246.5,
+          434.8
+        ],
+        [
+          921.4,
+          507.8
+        ],
+        [
+          931.7,
+          895.3
+        ],
+        [
+          1132.2,
+          979.5
+        ],
+        [
+          1342.7,
+          908.9
+        ],
+        [
+          1389.8,
+          537.9
+        ],
+        [
+          1246.5,
+          434.8
+        ]
+      ],
+      "index": 18,
+      "source": "Example_POC00004.png",
+      "sort_key": 5.6217,
+      "seed_initial": [
+        1040.0,
+        746.67
+      ],
+      "seed_final": [
+        1149.08,
+        702.42
+      ]
+    },
+    {
+      "rendered": true,
+      "cell_bbox": [
+        2127,
+        979,
+        433,
+        461
+      ],
+      "cell_area_px": 171236.2,
+      "downscale_ratio": 5.912,
+      "polygon_vertices": [
+        [
+          2560.0,
+          979.1
+        ],
+        [
+          2246.2,
+          983.3
+        ],
+        [
+          2126.8,
+          1440.0
+        ],
+        [
+          2560.0,
+          1440.0
+        ],
+        [
+          2560.0,
+          979.1
+        ]
+      ],
+      "index": 19,
+      "source": "Example_POC00010.png",
+      "sort_key": 5.5327,
+      "seed_initial": [
+        2320.0,
+        1226.67
+      ],
+      "seed_final": [
+        2371.99,
+        1222.91
+      ]
+    }
+  ]
+}
