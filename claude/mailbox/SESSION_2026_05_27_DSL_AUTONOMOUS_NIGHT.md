@@ -45,6 +45,37 @@ Pattern catalog test result: 12 PASS, 3 FAIL (expected) — three architectural-
 
 The first two share ONE architectural fix (widen `identifier`/`ticked_id` to admit lowercase, OR add `ticked_phrase` with Title-Case discipline). The third is separate.
 
+## Then you asked the meta-question (post-catalog)
+
+Your follow-up: *"to be doing this robustly. We log every instance of every working and not working, and classify it with verbosity? Then hook it with the DSL and the existing to improve it as we fail, succeed? So that we have the right tools to catch everything to the process to optimize it, itself? With what is done, and what isn't?"*
+
+Yes — exactly that shape. Landed `dsl-coverage` binary that logs EVERY paren occurrence in catalyst (7,092 of them) with `{line, col, content, inferred_category, grammar_top_rule_actually_matched, grammar_inner_rules, classification}`. Output: `manifest/dsl_coverage_paren_audit.json` (73K+ lines, full per-occurrence record).
+
+**Coverage baseline at grammar c2c8cfc4c65377e8: 77.47%** (5,494/7,092 paren occurrences matched the expected rule for their inferred category).
+
+Mismatch breakdown — exactly the data telling us where to look next:
+
+| Mismatch | Count | % | Fix |
+|---|---|---|---|
+| ticked_single → prose_parens (expected parened_id) | 1,086 | 15.3% | ticked_id Title-Case admission |
+| multi_alias_backtick → prose_parens (expected multi_alias) | 394 | 5.6% | same as above |
+| phrase_titlecase → prose_parens (expected parened_phrase) | 98 | 1.4% | 5 sub-gaps (see below) |
+| classifier-edge cases | 20 | 0.3% | classifier refinement, not grammar |
+
+**Top two rows share ONE fix.** Title-Case ticked_id admission flips 1,480 occurrences (20.9% of paren surface) at once. That's the single highest-leverage architectural change visible from the data.
+
+The 98 phrase_titlecase mismatches break into 5 distinct sub-gaps the coverage pass discovered automatically:
+
+1. **Colon as phrase_delim** — `(Eternal-Loop: Infinite Human Potential)` + ~30 others
+2. **Slash with spaces as phrase_delim** — `(Alabaster Voyde / Snow White)`
+3. **↔ without spaces** — `(Tier 4↔T3)` (current `" ↔ "` requires spaces)
+4. **Apostrophe in phrase_word** — `(Decorator's Resurrection)`
+5. **Measurement notation** — `(B 112/ W 58/ H 108cm)`
+
+Each is a one-line grammar widening. Coverage tool measures progress automatically as each lands.
+
+**This IS the answer to your meta-question**: catalog (sparse, hand-named) + coverage (dense, exhaustive) are complementary. Catalog encodes known patterns; coverage discovers unknown ones. Together: "what's done" (correctly classified) AND "what isn't" (still mismatched). The process optimizes itself because the data tells it where to look next. Same surface extends to bold spans, backtick spans, fenced blocks, headers — paren was the densest signal so I built it first.
+
 ## The full-SSOT finding (the architectural decision waiting)
 
 Line 45 of SSOT.md:
