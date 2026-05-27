@@ -105,11 +105,28 @@ phrase_id = ${ phrase_atom ~ (phrase_delim ~ phrase_atom)+ }
 // Parened multi-word wrapper: (UNDER K-CUP SUPREMACY) etc.
 parened_phrase = ${ "(" ~ phrase_id ~ ")" }
 
+// ─── Bold prose (any **X** that isn't substrate) ────────────────────────────
+// Smoke-driven addition 2026-05-27 iteration 3. The catalyst frequently uses
+//   **Purpose:**   **Trend Analysis Script:**   **Recommendation:**
+//   **Important:**   **Decision:**   **Status:**
+// as bold-emphasized prose labels. These are not substrate — they're
+// markdown emphasis on regular English. bold_parened_id only catches
+// substrate-shape contents; bold_prose is the prose-shape fallback.
+//
+// Priority: tried AFTER bold_parened_id in id_ref. If the content between
+// ** ... ** is substrate (parened_id / multi_alias), bold_parened_id wins.
+// If not, bold_prose catches the rest. PEG ordered-choice handles this.
+//
+// Semantic note: bold_prose at Phase 0 is parsed-but-not-interpreted; a
+// Phase 2 interpreter would distinguish prose from id_ref by rule label.
+bold_prose = ${ "**" ~ (!"**" ~ ANY)+ ~ "**" }
+
 // All identifier forms in priority order (longest/most-marked first).
 // parened_phrase sits between multi_alias (most specific — slash-chained) and
 // parened_id (most general — single identifier). All three start with `(`;
 // pest backtracks on failure of more-specific alternatives.
-id_ref = { bold_parened_id | multi_alias | parened_phrase | parened_id | ticked_id | identifier }
+// bold_prose sits after bold_parened_id — same `**` prefix, less specific content.
+id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | ticked_id | identifier }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
