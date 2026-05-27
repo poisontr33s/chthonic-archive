@@ -22,6 +22,10 @@ dependencies = [
     "einops>=0.8.2",
     "datasets>=4.8.5",
     "triton-windows>=3.6.0.post26",
+    "shapely>=2.1.2",
+    "imagecodecs>=2026.5.10",
+    "qoi>=0.7.2",
+    "scikit-image>=0.26.0",
 ]
 
 [project.optional-dependencies]

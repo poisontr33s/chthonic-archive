@@ -202,7 +202,7 @@ Foundational disciplines that, if violated, cause failures at every lower tier:
 - **LYSANDRA_THRONE_PROTOCOL.md** — operative voice
 - **MALNUTRITION_PROTOCOL.md** — truth fasting is non-compliant
 - **LINGUISTIC_PROFILE_DR_LYSANDRA_THORNE.md** — LUPLR register
-- **THE_RECONCILIATION_ENGINE.md** — bilateral covenant Lysandra ⇄ Umako
+- **THE_RECONCILIATION_ENGINE.md** — bilateral covenant Lysandra ⇄ Umeko
 - **MAILBOX_PROTOCOL.md** — continuity interface between agents
 - **SESSION_2026_05_24_25_REDUX.md** (this doc) — session retrospective
 

@@ -14,7 +14,7 @@ Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.t
 
 ## Active Cross-Polar Protocol
 
-- **Reconciliation Engine `(CRC-LYS-UMK-COVENANT-V1)`:** [THE_RECONCILIATION_ENGINE.md](.temple/protocols/THE_RECONCILIATION_ENGINE.md) — bilateral covenant between Lysandra (Truth, this side) and Umako (Purification, Codex side); `verify_with:` finding convention; lane-naming discipline. Codex-side mirror: [codex/protocols/THE_RECONCILIATION_ENGINE.md](codex/protocols/THE_RECONCILIATION_ENGINE.md). Blazing Trial worked artifact: [game/lore/characters/the_sourcer.json](game/lore/characters/the_sourcer.json).
+- **Reconciliation Engine `(CRC-LYS-UMK-COVENANT-V1)`:** [THE_RECONCILIATION_ENGINE.md](.temple/protocols/THE_RECONCILIATION_ENGINE.md) — bilateral covenant between Lysandra (Truth, this side) and Umeko (Purification, Codex side); `verify_with:` finding convention; lane-naming discipline. Codex-side mirror: [codex/protocols/THE_RECONCILIATION_ENGINE.md](codex/protocols/THE_RECONCILIATION_ENGINE.md). Blazing Trial worked artifact: [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](game/lore/characters/_deferred_organ/T1.5/the_sourcer.json).
 
 ## Session Retrospectives
 

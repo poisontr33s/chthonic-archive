@@ -241,6 +241,75 @@ const CHECKS: Check[] = [
       manual_remediation: "Run `bun run ci/run.ts --check lens-refresh` standalone. If it still fails, check scripts/refresh-lenses.ps1 and the individual scripts/*_index.py producers.",
     },
   },
+  // Lore canon membranes (2026-05-27) — methodizes the sample→extract→validate→surface
+  // pattern applied during the character JSON refinement lane. character-schema is the
+  // contract gate; lore-canon-paths enforces directory shape; organ-canon-citation
+  // anchors against SSOT §295-326; lore-canon-refs catches stale cross-references;
+  // canon-drift-snapshot writes the time-series memory.
+  {
+    name: "character-schema",
+    aliases: ["char-schema"],
+    script: "ci/checks/character-schema.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "JSON Schema validation for game/lore/characters/**/*.json against character.schema.json",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "Schema violations need human authoring — missing fields, type mismatches, and renamed keys all encode meaning. The schema is a contract, not a template; auto-filling would write semantically wrong content.",
+      manual_remediation: "Read the failing field-path from the output (e.g. 'at lore.relationship_dynamics'). Open the character JSON and either add the missing field with appropriate content OR (if the schema is wrong) update character.schema.json with rationale.",
+    },
+  },
+  {
+    name: "lore-canon-paths",
+    aliases: ["lore-paths"],
+    script: "ci/checks/lore-canon-paths.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Filesystem-shape membrane: <organ>/T<tier>/<character_id>.json matches file content",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "When path and content disagree, the resolution is a semantic judgment: was the file moved to the wrong dir (move it back) or was the content edited and not propagated (move the file to match new content)? Mechanical move could shadow real drift.",
+      manual_remediation: "Read the failure: it reports `expected_path` derived from the file's organ+tier+character_id fields. Either `git mv` the file to the expected path, or edit the file's organ/tier/character_id fields to match its actual location.",
+    },
+  },
+  {
+    name: "organ-canon-citation",
+    aliases: ["organ-citation"],
+    script: "ci/checks/organ-canon-citation.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Each character's organ field must be in SSOT §295-326 Organ-Level Entity Canon (or use _deferred_organ sentinel)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "Adding a new organ requires updating SSOT first (a semantic act — promoting an organ into the canonical table). Auto-allowing arbitrary organs would erode the SSOT anchor.",
+      manual_remediation: "Two options: (a) place the character at _deferred_organ/T<tier>/ until SSOT promotes the organ, OR (b) add a new row to SSOT §295-326's Organ-Level Entity Canon table under the appropriate tier, then re-run this check. Option (b) is a real canon change — keep it deliberate.",
+    },
+  },
+  {
+    name: "lore-canon-refs",
+    aliases: ["lore-refs"],
+    script: "ci/checks/lore-canon-refs.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Stale-path drift: flat game/lore/characters/<id>.json refs no longer valid after 2026-05-27 organ/tier reorg",
+    no_auto_fix: {
+      reason: "no_tool",
+      explanation: "V1 surfaces stale refs but does not rewrite them. Rewriting requires reading manifest/lore_canon_paths_audit.json (per-character canonical path) and applying it to each ref. Could be added in V2; deferred to keep V1 narrow.",
+      manual_remediation: "Each failure line reports `<file>:<line>  <stale-ref>`. Look up the canonical path in manifest/lore_canon_paths_audit.json (after lore-canon-paths runs) and replace. For most cases: `lysandra.json` → `stomach/T1/lysandra.json`, `the_sourcer.json` → `_deferred_organ/T1.5/the_sourcer.json`.",
+    },
+  },
+  {
+    name: "canon-drift-snapshot",
+    aliases: ["canon-history"],
+    script: "ci/checks/canon-drift-snapshot.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Memory tier — append a time-series row to manifest/canon_drift_history.ndjson summarizing membrane manifests",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only history writer. Reads the four membrane manifests, summarizes, appends one ndjson row. Cannot fail except on missing manifests (in which case the snapshot is partial and labeled so). Building the diary IS the work; there is no fix concept.",
+    },
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

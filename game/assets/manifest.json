@@ -15,9 +15,9 @@
     "game_content": [
       { "id": "faction_triumvirate",  "path": "game/lore/factions/triumvirate.json",   "type": "faction" },
       { "id": "faction_prime",        "path": "game/lore/factions/prime_factions.json","type": "faction" },
-      { "id": "char_orackla",         "path": "game/lore/characters/orackla.json",     "type": "character" },
-      { "id": "char_umeko",           "path": "game/lore/characters/umeko.json",        "type": "character" },
-      { "id": "char_lysandra",        "path": "game/lore/characters/lysandra.json",     "type": "character" },
+      { "id": "char_orackla",         "path": "game/lore/characters/heart/T1/orackla.json",            "type": "character" },
+      { "id": "char_umeko",           "path": "game/lore/characters/lungs/T1/umeko.json",              "type": "character" },
+      { "id": "char_lysandra",        "path": "game/lore/characters/stomach/T1/lysandra.json",         "type": "character" },
       { "id": "encounter_layer1",     "path": "game/design/encounter_layer1.json",      "type": "encounter" },
       { "id": "quest_awakening",      "path": "game/design/quest_awakening.json",       "type": "quest" },
       { "id": "dialogue_awakening",   "path": "game/dialogue/scene_awakening.json",     "type": "dialogue" },

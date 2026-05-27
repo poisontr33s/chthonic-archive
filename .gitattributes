@@ -53,7 +53,11 @@ adapters/claudine-v1/**/*.pt filter=lfs diff=lfs merge=lfs -text
 adapters/claudine-v1/**/*.pth filter=lfs diff=lfs merge=lfs -text
 adapters/claudine-v1/**/*.bin filter=lfs diff=lfs merge=lfs -text
 
-# POC form-vector reference imagery (Disco-Elysium-class screenshots, ~4.5MB each).
-# Narrowly scoped to game/refs/pocNN/ — does NOT catch game/cocos-iso/library/*.png
-# (Cocos Creator's auto-generated engine asset cache) or any other in-tree PNGs.
+# POC form-vector reference imagery (Disco-Elysium-class screenshots, ~4.5MB each
+# for originals; ~3MB for 2K collages). Narrowly scoped to game/refs/pocNN/ —
+# does NOT catch game/cocos-iso/library/*.png (Cocos Creator's auto-generated
+# engine asset cache) or any other in-tree binaries.
 game/refs/poc**/*.png filter=lfs diff=lfs merge=lfs -text
+game/refs/poc**/*.webp filter=lfs diff=lfs merge=lfs -text
+game/refs/poc**/*.jxl filter=lfs diff=lfs merge=lfs -text
+game/refs/poc**/*.qoi filter=lfs diff=lfs merge=lfs -text
