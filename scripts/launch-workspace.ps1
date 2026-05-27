@@ -53,4 +53,28 @@ Write-Host "  Exe:       $CodeExe"
 Write-Host "  Workspace: $Workspace"
 Write-Host "  Flags:     $($Flags -join ' ')"
 
-& $CodeExe @Flags $Workspace
+$SavedElectronRunAsNode = $env:ELECTRON_RUN_AS_NODE
+$SavedVsCodeDev = $env:VSCODE_DEV
+$LaunchExitCode = 0
+
+try {
+    # Agent/extension-host shells can inherit ELECTRON_RUN_AS_NODE=1. Clear it
+    # so Code - Insiders.exe launches the GUI instead of acting like node.exe.
+    Remove-Item Env:ELECTRON_RUN_AS_NODE -ErrorAction SilentlyContinue
+    Remove-Item Env:VSCODE_DEV -ErrorAction SilentlyContinue
+
+    $LaunchArgs = @($Flags + "`"$Workspace`"")
+    Start-Process -FilePath $CodeExe -ArgumentList $LaunchArgs -WorkingDirectory (Split-Path -Parent $Workspace) -WindowStyle Normal
+}
+finally {
+    if ($null -ne $SavedElectronRunAsNode) {
+        $env:ELECTRON_RUN_AS_NODE = $SavedElectronRunAsNode
+    }
+    if ($null -ne $SavedVsCodeDev) {
+        $env:VSCODE_DEV = $SavedVsCodeDev
+    }
+}
+
+if ($LaunchExitCode -ne 0) {
+    exit $LaunchExitCode
+}

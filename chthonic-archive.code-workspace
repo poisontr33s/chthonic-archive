@@ -10,7 +10,8 @@
   //   - Two-layer satellite access:
   //       folders[] use ../paths  → VS Code git engine resolves .git/ correctly
   //       scripts/mcp.json use junctions → process spawning via workspace-root
-  //     NTFS junctions (pnk-live, rmco-live, csb-live, git-dump-live, pnk-lfh-live)
+  //     NTFS junctions (pnk-live, rmco-live, csb-live, git-dump-live, pnk-lfh-live,
+  //     poisontr33s-live, eoai-live)
   //     are script/MCP access paths; VS Code's git does NOT follow junctions for
   //     repo discovery, so workspace folders must use direct ../traversal.
   //   - SATELLITE_REGISTRY.json is the machine-readable satellite map — the
@@ -24,6 +25,14 @@
     {
       "path": ".",
       "name": "⚡ chthonic-archive [primary]"
+    },
+    {
+      "path": "../poisontr33s",
+      "name": "👤 poisontr33s [profile satellite]"
+    },
+    {
+      "path": "../EOAI-PII-My-AI-IDEA",
+      "name": "🧠 EOAI-PII-My-AI-IDEA [satellite]"
     },
     {
       "path": "../PsychoNoir-Kontrapunkt",
@@ -54,7 +63,9 @@
       "rmco-live": true,
       "csb-live": true,
       "git-dump-live": true,
-      "pnk-lfh-live": true
+      "pnk-lfh-live": true,
+      "poisontr33s-live": true,
+      "eoai-live": true
     },
     // Prevent file watcher from traversing NTFS junctions into satellite .git/ dirs
     // Without this, ReadDirectoryChangesW follows junctions and triggers git status polling
@@ -63,10 +74,12 @@
       "rmco-live/**": true,
       "csb-live/**": true,
       "git-dump-live/**": true,
-      "pnk-lfh-live/**": true
+      "pnk-lfh-live/**": true,
+      "poisontr33s-live/**": true,
+      "eoai-live/**": true
     },
     // Belt-and-suspenders: stop git discovery walk from entering junction dirs
-    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live"],
+    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live", "poisontr33s-live", "eoai-live"],
     "git.repositoryScanMaxDepth": 0,
     // Search: include PNK satellite by default (both repos in Ctrl+Shift+F scope)
     "search.useIgnoreFiles": true,

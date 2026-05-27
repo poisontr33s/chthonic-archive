@@ -77,6 +77,32 @@
       "governance_class": "Satellite",
       "briefcase_last": null,
       "notes": "LFS asset holder for PsychoNoir-Kontrapunkt. Holds large binary files not tracked in the primary PNK repo. Junctioned as pnk-lfh-live."
+    },
+    {
+      "alias": "profile",
+      "name": "poisontr33s",
+      "github": "poisontr33s/poisontr33s",
+      "local_path": "C:\\Users\\eldno\\poisontr33s",
+      "junction": "poisontr33s-live",
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "GitHub profile repo / contributor automation / public profile surface",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "notes": "Promoted from nested chthonic-archive/poisontr33s to sibling satellite on 2026-05-28. Local modifications were preserved with the move."
+    },
+    {
+      "alias": "eoai",
+      "name": "EOAI-PII-My-AI-IDEA",
+      "github": "poisontr33s/EOAI-PII-My-AI-IDEA",
+      "local_path": "C:\\Users\\eldno\\EOAI-PII-My-AI-IDEA",
+      "junction": "eoai-live",
+      "clone_depth": 1,
+      "teleport_flags": [],
+      "domain": "Elements of AI / PII My AI Idea / AI coursework and ideation",
+      "governance_class": "Satellite",
+      "briefcase_last": null,
+      "notes": "Cloned as sibling satellite on 2026-05-28 after GitHub repo index showed it was missing from orbit."
     }
   ]
 }

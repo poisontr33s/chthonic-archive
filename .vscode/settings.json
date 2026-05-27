@@ -47,7 +47,7 @@
     "git.autoRepositoryDetection": "subFolders",
     "git.openRepositoryInParentFolders": "never",
     "git.repositoryScanMaxDepth": 0,
-    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live"],
+    "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live", "poisontr33s-live", "eoai-live"],
     "git.autorefresh": false,
     "git.autofetch": false,
     "git.confirmSync": true,
