@@ -1,0 +1,27 @@
+[package]
+name = "dsl-iteration-toolkit"
+version = "0.1.0"
+edition = "2024"
+description = "Generalized methodology toolkit for PEG-based DSL development. Catalog + Ledger + Coverage + Iteration Checker. Tools serve methodology; methodology compounds across iterations. First reference instance: the chthonic-archive catalyst grammar."
+license = "WTFPL"
+
+[lib]
+name = "dsl_iteration_toolkit"
+path = "src/lib.rs"
+
+[[bin]]
+name = "dsl-iter"
+path = "src/bin/dsl_iter.rs"
+
+[dependencies]
+pest = "2.7"
+pest_meta = "2.7"
+pest_vm = "2.7"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.9"
+regex = "1.10"
+clap = { version = "4.6", features = ["derive"] }
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+sha2 = "0.10"

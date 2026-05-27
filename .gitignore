@@ -588,6 +588,20 @@ dev/dealogue-fayde/.bundle/
 !tools/dsl-smoke/src/
 !tools/dsl-smoke/src/*.rs
 
+# tools/dsl-iteration-toolkit/ — generalized methodology layer (2026-05-27).
+# Cargo workspace member. Library + dsl-iter CLI. Uses pest_vm for runtime
+# grammar loading (no compile-time grammar binding).
+!tools/dsl-iteration-toolkit/
+!tools/dsl-iteration-toolkit/Cargo.toml
+!tools/dsl-iteration-toolkit/README.md
+!tools/dsl-iteration-toolkit/src/
+!tools/dsl-iteration-toolkit/src/*.rs
+!tools/dsl-iteration-toolkit/src/bin/
+!tools/dsl-iteration-toolkit/src/bin/*.rs
+
+# Per-project dsl-iter.toml config files (the chthonic instance).
+!.chthonic/dsl-iter.toml
+
 # game/refs/ — form-vector reference imagery for the cRPG workspace.
 # pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
 # declared in .gitattributes. Engine asset caches under game/cocos-iso/
