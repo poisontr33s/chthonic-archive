@@ -43,17 +43,69 @@ ticked_id = ${ "`" ~ identifier ~ "`" }
 // Observed: 1,510 parenthetical abbreviations across the SSOT.
 parened_id = ${ "(" ~ ("`" ~ identifier ~ "`" | identifier) ~ ")" }
 
-// Bold-paren form: **(`FA⁵`)**  or  **(FA⁵)**
+// Bold-paren form: **(`FA⁵`)**  or  **(FA⁵)**  or  **(`A`/`B`/`C`)**
 // Observed: e.g. line 50 — load-bearing-concept emphasis wrapping.
-bold_parened_id = ${ "**" ~ parened_id ~ "**" }
+// 2026-05-27 widening (smoke-driven): accept multi_alias inside, not just
+// single parened_id. The catalyst uses bold-wrapped multi-alias chains for
+// nearly every load-bearing concept declaration (Trinity Formula §0, K-CUP
+// hierarchy §0.5, organ canon §295-326).
+bold_parened_id = ${ "**" ~ (multi_alias | parened_id) ~ "**" }
 
 // Multi-alias identifier: (Codex-Brahmanica-Perfectus/SSOT/Apex-Synthesis-Core/ASC)
 // Observed: line 72-73 of SSOT — aliases for the same concept.
 alias_chain = { (ticked_id | identifier) ~ ("/" ~ (ticked_id | identifier))+ }
 multi_alias = ${ "(" ~ alias_chain ~ ")" }
 
+// ─── Phrase tokens (multi-word substrate inside parens) ─────────────────────
+// Smoke-driven addition 2026-05-27. Catalyst classification (7,098 paren
+// constructs sampled) identified 551 'phrase_titlecase' cases like:
+//   (UNDER K-CUP SUPREMACY)   (Phases α, β, γ)   (Section 0+)
+//   (Foundational Axioms)     (The Decorator)
+// that the existing parened_id / multi_alias rules don't catch.
+//
+// Title-Case discipline (Design A): every phrase_atom must start with one of
+//   uppercase letter | backtick | digit | Greek letter | <placeholder>
+// Lowercase-led tokens (per, which, the, are, ...) terminate the phrase
+// without consuming it; falls through to prose. Empirically this cleanly
+// rejects all 2,007 prose_lowercase paren cases in the same corpus.
+
+// Greek letters appearing in catalyst CRC codes (Phases α, β, γ, PEE β-γ).
+greek_letter = @{ 'α'..'ω' | 'Α'..'Ω' }
+
+// Placeholder convention: <Folder>, <X>, <SomeName>. Used in canonical paths.
+placeholder = ${ "<" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT)* ~ ">" }
+
+// Digit token: 0, 0.5, 0.1-0.7, 0+ (the "Section 0+" trailing-plus form).
+// Trailing unit-letters (cm, kg) deliberately NOT here — they need to attach
+// to the digit without a delimiter, which would require lowercase chars and
+// erode the Title-Case discipline. Annotation parens like (108cm) stay prose.
+digit_token = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? ~ ("-" ~ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)?)? ~ "+"? }
+
+// Title-Case word: uppercase-led, internal lowercase/digit/hyphen allowed.
+// Distinct from `identifier` (which is all-caps): phrase_word permits CamelCase
+// shapes like Foundational, Section, The, Eternal-Loop, MILFOLOGICAL.
+phrase_word = @{ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "-" | "_")* }
+
+// One well-typed substrate token, priority-ordered.
+phrase_atom = { ticked_id | placeholder | greek_letter | digit_token | phrase_word }
+
+// Phrase delimiters: space, comma+space, ampersand-with-spaces, plus-with-spaces.
+// Em-dash variant " - " deliberately NOT included — too prose-like; rare cases
+// that need it can be addressed by a separate em_dash_phrase rule later.
+phrase_delim = _{ " " | ", " | " & " | " + " }
+
+// Multi-token phrase: 2+ atoms separated by delimiters. Single-atom case is
+// already handled by parened_id (identifier or ticked_id alternatives).
+phrase_id = ${ phrase_atom ~ (phrase_delim ~ phrase_atom)+ }
+
+// Parened multi-word wrapper: (UNDER K-CUP SUPREMACY) etc.
+parened_phrase = ${ "(" ~ phrase_id ~ ")" }
+
 // All identifier forms in priority order (longest/most-marked first).
-id_ref = { bold_parened_id | multi_alias | parened_id | ticked_id | identifier }
+// parened_phrase sits between multi_alias (most specific — slash-chained) and
+// parened_id (most general — single identifier). All three start with `(`;
+// pest backtracks on failure of more-specific alternatives.
+id_ref = { bold_parened_id | multi_alias | parened_phrase | parened_id | ticked_id | identifier }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
