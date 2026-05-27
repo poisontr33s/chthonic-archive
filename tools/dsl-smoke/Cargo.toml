@@ -27,3 +27,7 @@ path = "src/bisect.rs"
 [[bin]]
 name = "dsl-probe"
 path = "src/probe.rs"
+
+[[bin]]
+name = "dsl-full-smoke"
+path = "src/full_smoke.rs"
