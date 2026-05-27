@@ -1,0 +1,17 @@
+[2026-05-15 06:03:32] Starting elevated VS/SSMS validation.
+[2026-05-15 06:03:32] SkipModify=True
+[2026-05-15 06:03:34] Lane start: community_insiders
+[2026-05-15 06:03:35] Pre-check missing count: 0
+[2026-05-15 06:03:35] Post-check missing count: 0
+[2026-05-15 06:03:35] Lane done: community_insiders
+[2026-05-15 06:03:35] Lane start: buildtools_insiders
+[2026-05-15 06:03:35] Pre-check missing count: 0
+[2026-05-15 06:03:35] Post-check missing count: 0
+[2026-05-15 06:03:35] Lane done: buildtools_insiders
+[2026-05-15 06:03:35] Lane start: ssms22
+[2026-05-15 06:03:36] Pre-check missing count: 1
+[2026-05-15 06:03:36] Post-check missing count: 1
+[2026-05-15 06:03:36] Lane done: ssms22
+[2026-05-15 06:04:04] Wrote JSON: C:\Users\eldno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.json
+[2026-05-15 06:04:04] Wrote MD: C:\Users\eldno\chthonic-archive\codex\mailbox\VS2026_ELEVATED_VALIDATION_LATEST.md
+[2026-05-15 06:04:04] Validation complete.

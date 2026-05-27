@@ -1,0 +1,49 @@
+{
+  "created": "2026-05-23T14:46:31.8093798+02:00",
+  "purpose": "Preserve VS Code Edit Session changes skipped after workspace identity mismatch; not applied to working tree.",
+  "sourceCacheFiles": [
+    "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\Cache\\Cache_Data\\f_0004df",
+    "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\Cache\\Cache_Data\\f_000449"
+  ],
+  "skippedEditSessionRef": "9c42c551-d20b-4d76-9cfa-499d56b52591",
+  "currentWorkspaceIdentity": "https://github.com/poisontr33s/chthonic-archive.git main ae4906b5e91eec0d4d5c40fb7763b56ea4ee612b",
+  "editSessionIdentity": "{\"remote\":\"https://github.com/poisontr33s/chthonic-archive.git\",\"ref\":\"main\",\"sha\":\"0e0ab1673b107ea2fbb7f14873589e38a5ad2961\"}",
+  "editSessionAbsoluteUri": "vscode-remote://tunnel%2Blaptop-draqgn8a/c%3A/Users/erdno/chthonic-archive",
+  "decodedFiles": [
+    {
+      "sourceRelativeFilePath": "../../../../c:/Users/erdno/chthonic-archive/.github/copilot-instructions.md",
+      "decodedPath": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31\\decoded\\.github\\copilot-instructions.md",
+      "bytes": 314070,
+      "type": 1,
+      "fileType": 1
+    },
+    {
+      "sourceRelativeFilePath": "../../../../c:/Users/erdno/chthonic-archive/.github/STRUCTURAL_INTEGRITY_ANALYSIS.md",
+      "decodedPath": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31\\decoded\\.github\\STRUCTURAL_INTEGRITY_ANALYSIS.md",
+      "bytes": 9123,
+      "type": 1,
+      "fileType": 1
+    },
+    {
+      "sourceRelativeFilePath": "../../../../c:/Users/erdno/chthonic-archive/.github/macro-prompt-world/DECORATOR-ASC-GENESIS.md",
+      "decodedPath": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31\\decoded\\.github\\macro-prompt-world\\DECORATOR-ASC-GENESIS.md",
+      "bytes": 26648,
+      "type": 1,
+      "fileType": 1
+    },
+    {
+      "sourceRelativeFilePath": "../../../../c:/Users/erdno/chthonic-archive/.vscode/settings.json",
+      "decodedPath": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31\\decoded\\.vscode\\settings.json",
+      "bytes": 8711,
+      "type": 1,
+      "fileType": 1
+    },
+    {
+      "sourceRelativeFilePath": "../../../../c:/Users/erdno/chthonic-archive/mcp/tools/preflightExecutionContext.test.json",
+      "decodedPath": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31\\decoded\\mcp\\tools\\preflightExecutionContext.test.json",
+      "bytes": 2018,
+      "type": 1,
+      "fileType": 1
+    }
+  ]
+}

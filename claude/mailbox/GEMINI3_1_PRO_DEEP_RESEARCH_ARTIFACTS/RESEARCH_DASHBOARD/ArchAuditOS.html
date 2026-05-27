@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArchAuditOS — Architecture Intelligence</title>
+  <style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,system-ui,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono,ui-monospace,Consolas,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.static{position:static}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-y-0{top:0;bottom:0}.left-0{left:0}.top-0{top:0}.z-10{z-index:10}.z-20{z-index:20}.z-30{z-index:30}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mt-0\.5{margin-top:.125rem}.flex{display:flex}.inline-flex{display:inline-flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-1\.5{height:.375rem}.h-2{height:.5rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1\.5{width:.375rem}.w-2{width:.5rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-\[268px\]{width:268px}.w-full{width:100%}.min-w-0{min-width:0}.max-w-\[860px\]{max-width:860px}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.-translate-x-full{--tw-translate-x:-100%}.-translate-x-full,.translate-x-0{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-0{--tw-translate-x:0px}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.space-y-0\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.125rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.125rem*var(--tw-space-y-reverse))}.space-y-10>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2.5rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.whitespace-nowrap{white-space:nowrap}.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-amber-500\/25{border-color:rgba(245,158,11,.25)}.border-blue-500\/20{border-color:rgba(59,130,246,.2)}.border-blue-500\/25{border-color:rgba(59,130,246,.25)}.border-emerald-500\/25{border-color:rgba(16,185,129,.25)}.border-transparent{border-color:transparent}.border-zinc-700\/50{border-color:rgba(63,63,70,.5)}.border-zinc-700\/60{border-color:rgba(63,63,70,.6)}.border-zinc-800{--tw-border-opacity:1;border-color:rgb(39 39 42/var(--tw-border-opacity,1))}.border-zinc-800\/40{border-color:rgba(39,39,42,.4)}.border-zinc-800\/50{border-color:rgba(39,39,42,.5)}.border-zinc-800\/60{border-color:rgba(39,39,42,.6)}.border-zinc-800\/70{border-color:rgba(39,39,42,.7)}.bg-amber-500\/10{background-color:rgba(245,158,11,.1)}.bg-black\/70{background-color:rgba(0,0,0,.7)}.bg-blue-400{--tw-bg-opacity:1;background-color:rgb(96 165 250/var(--tw-bg-opacity,1))}.bg-blue-500\/10{background-color:rgba(59,130,246,.1)}.bg-blue-500\/\[0\.03\]{background-color:rgba(59,130,246,.03)}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-emerald-500\/10{background-color:rgba(16,185,129,.1)}.bg-zinc-800{--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.bg-zinc-800\/80{background-color:rgba(39,39,42,.8)}.bg-zinc-800\/90{background-color:rgba(39,39,42,.9)}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.bg-zinc-900\/60{background-color:rgba(24,24,27,.6)}.bg-zinc-900\/90{background-color:rgba(24,24,27,.9)}.bg-zinc-950{--tw-bg-opacity:1;background-color:rgb(9 9 11/var(--tw-bg-opacity,1))}.bg-zinc-950\/80{background-color:rgba(9,9,11,.8)}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-6{padding:1.5rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\.5{padding-top:.875rem;padding-bottom:.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pb-1{padding-bottom:.25rem}.pb-4{padding-bottom:1rem}.pt-5{padding-top:1.25rem}.text-left{text-align:left}.text-right{text-align:right}.align-top{vertical-align:top}.font-mono{font-family:JetBrains Mono,ui-monospace,Consolas,monospace}.font-sans{font-family:Inter,system-ui,sans-serif}.text-\[0\.8125rem\]{font-size:.8125rem}.text-\[0\.8em\]{font-size:.8em}.text-\[0\.9375rem\]{font-size:.9375rem}.text-\[1\.0625rem\]{font-size:1.0625rem}.text-\[1\.1rem\]{font-size:1.1rem}.text-\[1\.875rem\]{font-size:1.875rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.not-italic{font-style:normal}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-\[1\.8\]{line-height:1.8}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.14em\]{letter-spacing:.14em}.tracking-\[0\.16em\]{letter-spacing:.16em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-300{--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36/var(--tw-text-opacity,1))}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-400\/80{color:rgba(96,165,250,.8)}.text-blue-500\/50{color:rgba(59,130,246,.5)}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182/var(--tw-text-opacity,1))}.text-zinc-100{--tw-text-opacity:1;color:rgb(244 244 245/var(--tw-text-opacity,1))}.text-zinc-200{--tw-text-opacity:1;color:rgb(228 228 231/var(--tw-text-opacity,1))}.text-zinc-300{--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.text-zinc-50{--tw-text-opacity:1;color:rgb(250 250 250/var(--tw-text-opacity,1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity,1))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-50{opacity:.5}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-black\/40{--tw-shadow-color:rgba(0,0,0,.4);--tw-shadow:var(--tw-shadow-colored)}.grayscale{--tw-grayscale:grayscale(100%)}.filter,.grayscale{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}.last\:border-0:last-child{border-width:0}.hover\:bg-zinc-800:hover{--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.hover\:bg-zinc-800\/20:hover{background-color:rgba(39,39,42,.2)}.hover\:bg-zinc-800\/40:hover{background-color:rgba(39,39,42,.4)}.hover\:text-zinc-200:hover{--tw-text-opacity:1;color:rgb(228 228 231/var(--tw-text-opacity,1))}.hover\:text-zinc-300:hover{--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}@media (min-width:768px){.md\:relative{position:relative}.md\:flex{display:flex}.md\:hidden{display:none}.md\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\:px-10{padding-left:2.5rem;padding-right:2.5rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}}</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script type="importmap">
+  {
+    "imports": {
+      "react":            "https://esm.sh/react@18.3.1",
+      "react/jsx-runtime":"https://esm.sh/react@18.3.1/jsx-runtime",
+      "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+      "htm":              "https://esm.sh/htm@3.1.1",
+      "lucide-react":     "https://esm.sh/lucide-react@0.441.0?external=react"
+    }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    :root { color-scheme: dark; }
+    body { margin: 0; padding: 0; background: #09090b; color: #fafafa; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .status-ping { animation: pulse-ring 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  </style>
+</head>
+<body class="dark font-sans">
+  <div id="root"></div>
+  <script type="module">
+    import { useState, createElement } from 'react';
+    import { createRoot } from 'react-dom/client';
+    import htm from 'htm';
+    const html = htm.bind(createElement);
+    import {
+      BookOpen, Eye, Activity, Database,
+      Menu, X, ChevronRight, ShieldCheck,
+      Network, Cpu, Zap, GitBranch
+    } from 'lucide-react';
+
+    const cn = (...args) => args.filter(Boolean).join(' ');
+
+    // ── Primitive Components ──────────────────────────────────────────────────
+
+    const Card = ({ children, className }) => html`
+      <div className=${cn('rounded-xl border border-zinc-800 bg-zinc-900/60 shadow-2xl shadow-black/40 overflow-hidden', className)}>
+        ${children}
+      </div>
+    `;
+
+    const CardHead = ({ title, subtitle, icon: Icon }) => html`
+      <div className="px-6 py-5 border-b border-zinc-800/70 flex items-start gap-4">
+        ${Icon && html`<div className="mt-0.5 p-2 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20 shrink-0"><${Icon} size=${17} /></div>`}
+        <div>
+          <div className="font-semibold text-zinc-100 text-[0.9375rem] leading-tight mb-1">${title}</div>
+          ${subtitle && html`<div className="text-xs text-zinc-500">${subtitle}</div>`}
+        </div>
+      </div>
+    `;
+
+    const CardBody = ({ children, className }) => html`
+      <div className=${cn('p-6', className)}>${children}</div>
+    `;
+
+    const Badge = ({ children, variant = 'default' }) => {
+      const map = {
+        default: 'bg-zinc-800/80 text-zinc-300 border-zinc-700/60',
+        primary: 'bg-blue-500/10 text-blue-300 border-blue-500/25',
+        success: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+        warning: 'bg-amber-500/10 text-amber-300 border-amber-500/25',
+      };
+      return html`<span className=${cn('inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium border', map[variant] ?? map.default)}>${children}</span>`;
+    };
+
+    const Mono = ({ children }) => html`
+      <code className="px-1.5 py-0.5 rounded bg-zinc-800 text-blue-300 text-[0.8em] font-mono border border-zinc-700/60 leading-none">${children}</code>
+    `;
+
+    const DataTable = ({ headers, rows }) => html`
+      <div className="overflow-x-auto rounded-xl border border-zinc-800">
+        <table className="w-full text-sm text-left border-collapse">
+          <thead>
+            <tr className="border-b border-zinc-800 bg-zinc-900/90">
+              ${headers.map((h, i) => html`<th key=${i} className="px-5 py-3.5 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">${h}</th>`)}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((row, i) => html`
+              <tr key=${i} className="border-b border-zinc-800/40 hover:bg-zinc-800/20 transition-colors last:border-0">
+                ${row.map((cell, j) => html`<td key=${j} className=${cn('px-5 py-4 text-zinc-400 leading-relaxed align-top', j === 0 && 'font-medium text-zinc-200 whitespace-nowrap')}>${cell}</td>`)}
+              </tr>
+            `)}
+          </tbody>
+        </table>
+      </div>
+    `;
+
+    const SectionLabel = ({ icon: Icon, children }) => html`
+      <div className="flex items-center gap-2 text-blue-400/80 text-[10px] font-bold uppercase tracking-[0.14em] mb-4">
+        ${Icon && html`<${Icon} size=${11} />`}
+        <span>${children}</span>
+      </div>
+    `;
+
+    const H2 = ({ children }) => html`
+      <h2 className="text-[1.875rem] font-bold tracking-tight text-zinc-50 leading-tight mb-3">${children}</h2>
+    `;
+
+    const Lead = ({ children }) => html`
+      <p className="text-[1.0625rem] text-zinc-400 leading-[1.8] mb-2">${children}</p>
+    `;
+
+    const H3 = ({ icon: Icon, children }) => html`
+      <h3 className="text-[0.9375rem] font-semibold text-zinc-200 flex items-center gap-2 mb-4">
+        ${Icon && html`<${Icon} size=${15} className="text-blue-400" />`}
+        ${children}
+      </h3>
+    `;
+
+    // ── Sections ──────────────────────────────────────────────────────────────
+
+    const SectionIntro = () => html`
+      <div className="space-y-10">
+        <div>
+          <${SectionLabel} icon=${Zap}>Research Report · Architecture Intelligence<//>
+          <${H2}>Introduction and Strategic Framing<//>
+          <${Lead}>
+            The rapid proliferation of large language models and autonomous agents within software
+            engineering has fundamentally altered how organizations approach repository maintenance,
+            program repair, and architectural governance.
+          <//>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <${Card}>
+            <${CardHead} icon=${Eye} title="Observation Pipelines" subtitle="Lexical baselines & lenses" />
+            <${CardBody}><p className="text-sm text-zinc-400 leading-relaxed">Evaluates the sequence of filtering noise through a structured lens into a method-index to drive compounding architectural action.</p><//>
+          <//>
+          <${Card}>
+            <${CardHead} icon=${Activity} title="Method-as-Data" subtitle="Meta-lens paradigms" />
+            <${CardBody}><p className="text-sm text-zinc-400 leading-relaxed">Assesses watching successful fixes and emitting them as suggested invocations. Identifies techniques in contextual-bandit policy learning.</p><//>
+          <//>
+          <${Card}>
+            <${CardHead} icon=${Database} title="Governance at Scale" subtitle="Polyrepo lifecycle markers" />
+            <${CardBody}><p className="text-sm text-zinc-400 leading-relaxed">Examines frontmatter governance at scale. Reconciles custom lifecycle vocabularies with canonical standards to establish a definitive schema.</p><//>
+          <//>
+        </div>
+
+        <div className="space-y-4 text-[0.9375rem] text-zinc-400 leading-[1.8]">
+          <p>As polyrepo and monorepo codebases scale to unprecedented complexities, the mechanisms by which systems observe structural states, apply historical remediations, and document architectural life cycles must evolve. Ad-hoc heuristics, binary confidence scoring, and unstructured documentation are no longer sufficient.</p>
+          <p>This report provides exhaustive analysis of three intersecting domains critical to the maturation of automated architecture auditing and repair, adhering strictly to a <strong className="text-zinc-200 font-semibold">"validate-and-compound"</strong> framework. Novelty is a side effect; compounding is the goal.</p>
+        </div>
+      </div>
+    `;
+
+    const SectionObservability = () => html`
+      <div className="space-y-10">
+        <div>
+          <${SectionLabel} icon=${Eye}>Domain Analysis<//>
+          <${H2}>The Architecture Observability Pipeline<//>
+          <${Lead}>Establishing whether the pipeline sequence represents an unmapped phenomenon or a specific implementation of an existing architectural pattern is the foundational step.<//>
+        </div>
+
+        <${H3} icon=${Network}>Code Observatories vs. Architecture Observability<//>
+        <div className="space-y-4 text-[0.9375rem] text-zinc-400 leading-[1.8]">
+          <p>An initial probe into the terminology of "code observatories" reveals a semantic misalignment. The term is predominantly utilized to describe hardware-software interfaces or ecological data platforms. The appropriate, standardized domain vocabulary is <strong className="text-zinc-200">Architecture Observability</strong>.</p>
+        </div>
+
+        <${Card} className="border-blue-500/20 bg-blue-500/[0.03]">
+          <${CardBody}>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
+              <span className="text-sm font-semibold text-zinc-200">The Semantic Lens Pattern</span>
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+              The specific pipeline sequence — <${Mono}>noise → structured-lens → method-index → compound<//>
+              — maps directly to the "Semantic Lens" pattern. It relies on a "Skill Index" and a "Self-Derived Loop" to ensure evaluations are mathematically independent.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <${Badge} variant="primary">Semantic Cohesion Principle<//>
+              <${Badge}>Lens Agent<//>
+              <${Badge}>Self-Derived Loop<//>
+            </div>
+          <//>
+        <//>
+
+        <${H3}>Structured Findings Aggregation: The SARIF Canon<//>
+        <div className="space-y-4 text-[0.9375rem] text-zinc-400 leading-[1.8]">
+          <p>The unquestioned canon for structured findings aggregation is the <strong className="text-zinc-200">Static Analysis Results Interchange Format (SARIF)</strong>.</p>
+        </div>
+
+        <${DataTable}
+          headers=${['SARIF Object', 'Schema Definition', 'Alignment with Methodology']}
+          rows=${[
+            [html`<${Mono}>run<//>`, "Top-level object representing a single invocation.", "Represents a complete execution cycle of the Semantic Lens across a boundary."],
+            [html`<${Mono}>invocations<//>`, "Details exact environment, CLI arguments, and execution success.", "Documents the context under which the method-index was generated."],
+            [html`<${Mono}>results<//>`, "Array of specific findings, anomalies, or defects detected.", "Contains specific instances of architectural drift or erosion identified."],
+            [html`<${Mono}>artifactLocation<//>`, "URI and index properties identifying the file containing the result.", "Maps finding back to the codebase for automated targeted remediation."],
+            [html`<${Mono}>fix<//>`, "Critical object specifying remediation (byte ranges to remove/add).", "Serves as payload for compounding action, supplying exact code transformation."],
+          ]}
+        />
+      </div>
+    `;
+
+    const SectionMethod = () => html`
+      <div className="space-y-10">
+        <div>
+          <${SectionLabel} icon=${Activity}>Learning Systems<//>
+          <${H2}>Method-as-Data: Contextual Bandits<//>
+          <${Lead}>Moving from static rulesets to dynamic, learned policies requires abandoning binary heuristics in favor of rigorous probabilistic models and contextual reinforcement.<//>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <${Card}>
+            <${CardHead} title="Pattern-Variant-Episode Schema" subtitle="Structuring Memory" />
+            <${CardBody}>
+              <ul className="space-y-4 text-sm">
+                <li className="flex gap-3 items-start">
+                  <span className="font-bold text-blue-400 font-mono text-[1.1rem] leading-none mt-0.5 shrink-0 w-6">Pᵢ</span>
+                  <div className="text-zinc-400"><strong className="text-zinc-200">Pattern: </strong>General reusable symptom and root-cause class.</div>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="font-bold text-emerald-400 font-mono text-[1.1rem] leading-none mt-0.5 shrink-0 w-6">Vᵢ</span>
+                  <div className="text-zinc-400"><strong className="text-zinc-200">Variant: </strong>Context-specific fix strategy (AST modifications).</div>
+                </li>
+                <li className="flex gap-3 items-start">
+                  <span className="font-bold text-amber-400 font-mono text-[1.1rem] leading-none mt-0.5 shrink-0 w-6">Eᵢ</span>
+                  <div className="text-zinc-400"><strong className="text-zinc-200">Episode: </strong>Concrete historical execution data and feedback.</div>
+                </li>
+              </ul>
+            <//>
+          <//>
+          <${Card}>
+            <${CardHead} title="Contextual-Bandit Policy" subtitle="Risk-sensitive control" />
+            <${CardBody}>
+              <p className="text-sm text-zinc-400 leading-relaxed mb-5">Framing suggestion as a risk-sensitive contextual bandit establishes a self-optimizing loop. False-positive memory injections are severely penalized, elevating <em className="text-zinc-300 not-italic font-medium">abstention</em> to a first-class safety action.</p>
+              <${Badge} variant="warning">Asymmetrical Reward Design<//>
+            <//>
+          <//>
+        </div>
+
+        <${H3}>Confidence Calibration: Superseding Binary Heuristics<//>
+        <div className="space-y-4 text-[0.9375rem] text-zinc-400 leading-[1.8]">
+          <p>Relying on a binary heuristic (0.5 or 1.0) creates degenerate feedback loops. Confidence scores must represent true frequentist probabilities.</p>
+        </div>
+
+        <${DataTable}
+          headers=${['Calibration Method', 'Mathematical Formulation', 'Applicability']}
+          rows=${[
+            [html`<strong className="text-zinc-200">Isotonic Regression</strong>`, "Non-parametric. Fits a free-form, piecewise constant, non-decreasing line.", "Highly flexible but requires massive data. Prone to severe overfitting."],
+            [html`<strong className="text-zinc-200">Platt Scaling</strong>`, "Parametric (logistic regression): P(y=1|X) = 1 / (1 + e^-(Aw + B))", "Minimal parameterization resistant to overfitting. Preferred for Automated Code Revision."],
+          ]}
+        />
+
+        <div className="rounded-xl bg-zinc-950 border border-zinc-800 p-6 overflow-x-auto">
+          <div className="text-[10px] text-zinc-600 uppercase tracking-widest font-mono mb-3">// Expected Calibration Error (ECE)</div>
+          <div className="font-mono text-sm text-zinc-300">
+            <span className="text-pink-400">ECE</span>
+            <span className="text-zinc-600"> = </span>
+            <span className="text-zinc-500">sum(k=1 to K)</span>
+            <span className="text-blue-400"> (n_k / N)</span>
+            <span className="text-zinc-600"> x | </span>
+            <span className="text-emerald-400">acc(B_k)</span>
+            <span className="text-zinc-600"> - </span>
+            <span className="text-amber-400">conf(B_k)</span>
+            <span className="text-zinc-600"> |</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const SectionLifecycle = () => html`
+      <div className="space-y-10">
+        <div>
+          <${SectionLabel} icon=${Database}>Standards and Governance<//>
+          <${H2}>Lifecycle Frontmatter Governance<//>
+          <${Lead}>To ensure interoperability, custom vocabulary must be systematically reconciled with canonical standards utilized by mature engineering organizations.<//>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <${Card}>
+            <${CardHead} icon=${ShieldCheck} title="Polyrepo Governance" subtitle="CODEOWNERS and Manifests" />
+            <${CardBody}><p className="text-sm text-zinc-400 leading-relaxed">The <${Mono}>CODEOWNERS<//>  file enforces write permissions based on lifecycle markers. Yarn Workspaces and integration manifests serve as strict execution boundaries, pinning components to immutable SHAs.</p><//>
+          <//>
+          <${Card}>
+            <${CardHead} icon=${BookOpen} title="ADRs and Catalogs" subtitle="Backstage and Diataxis" />
+            <${CardBody}><p className="text-sm text-zinc-400 leading-relaxed">ADRs provide an auditable history (Proposed, Accepted, Deprecated, Superseded). Spotify Backstage governs operational state via <${Mono}>catalog-info.yaml<//>  (Experimental, Production).</p><//>
+          <//>
+        </div>
+
+        <${H3}>Reconciling Custom Vocabularies<//>
+        <div className="space-y-4 text-[0.9375rem] text-zinc-400 leading-[1.8]">
+          <p>The term <strong className="text-zinc-200"><${Mono}>tombstone<//>
+          </strong> is a highly validated concept originating in distributed systems (LSM trees, Cassandra). It is semantically superior to "deleted" because it implies a persistent marker designed to prevent regression.</p>
+          <p>Conversely, <strong className="text-zinc-200"><${Mono}>ssot-canon<//>
+          </strong> should be refactored. The metadata schema must adopt a multi-dimensional approach: standard ADR vocabulary for lifecycle state, and a dedicated enforcement tag to capture the "canon" intent.</p>
+        </div>
+
+        <${Card}>
+          <${CardHead} title="Unified Frontmatter Schema" subtitle="Formalized interoperable standard" />
+          <${DataTable}
+            headers=${['Metadata Field', 'Allowed Values', 'Semantic Definition']}
+            rows=${[
+              [html`<${Mono}>status<//>`, html`<span className="text-zinc-500 font-mono text-xs">proposed, experimental, accepted, production, deprecated, superseded</span>`, "Primary temporal/operational state. Aligns identically with ADR and Backstage specifications."],
+              [html`<${Mono}>enforcement<//>`, html`<span className="text-zinc-500 font-mono text-xs">advisory, standard, ssot-canon</span>`, "Instructs the Semantic Lens on architectural constraint immutability. Deviations flagged as erosion."],
+              [html`<${Mono}>persistence<//>`, html`<span className="text-zinc-500 font-mono text-xs">active, tombstone</span>`, "Guarantees element is excluded from active audits while preserving historical context."],
+              [html`<${Mono}>audit_state<//>`, html`<span className="text-zinc-500 font-mono text-xs">compliant, drifted-variant</span>`, "Dynamic field updated by CI/CD. Flags when physical implementation drifts from SSOT-canon."],
+            ]}
+          />
+        <//>
+      </div>
+    `;
+
+    // ── App Shell ─────────────────────────────────────────────────────────────
+
+    function App() {
+      const [active, setActive] = useState('intro');
+      const [mob, setMob]       = useState(false);
+
+      const nav = [
+        { id: 'intro',         label: 'Introduction',           tag: '01', Icon: BookOpen  },
+        { id: 'observability', label: 'Observability Pipeline', tag: '02', Icon: Eye       },
+        { id: 'method',        label: 'Method-as-Data',         tag: '03', Icon: Activity  },
+        { id: 'lifecycle',     label: 'Lifecycle Governance',   tag: '04', Icon: Database  },
+      ];
+
+      const sections = {
+        intro:         SectionIntro,
+        observability: SectionObservability,
+        method:        SectionMethod,
+        lifecycle:     SectionLifecycle,
+      };
+
+      const Content   = sections[active];
+      const activeNav = nav.find(n => n.id === active);
+
+      return html`
+        <div className="min-h-screen bg-zinc-950 text-zinc-100 flex font-sans">
+
+          ${mob && html`
+            <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-20 md:hidden" onClick=${() => setMob(false)} />
+          `}
+
+          <aside className=${cn(
+            'fixed inset-y-0 left-0 z-30 w-[268px] flex flex-col bg-zinc-900 border-r border-zinc-800 transition-transform duration-300 ease-in-out',
+            mob ? 'translate-x-0' : '-translate-x-full',
+            'md:relative md:translate-x-0'
+          )}>
+            <div className="px-5 py-5 border-b border-zinc-800/60">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                  <${Cpu} size=${17} className="text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-[0.9375rem] font-bold text-zinc-100 tracking-tight">ArchAudit<span className="text-blue-400">OS</span></div>
+                  <div className="text-[10px] text-zinc-600 mt-0.5">Architecture Intelligence</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-4 pt-5 pb-1">
+              <div className="text-[9px] text-zinc-700 uppercase tracking-[0.16em] font-semibold px-2">Research Sections</div>
+            </div>
+
+            <nav className="flex-1 px-2 space-y-0.5 pb-4 overflow-y-auto">
+              ${nav.map(({ id, label, tag, Icon }) => {
+                const isActive = active === id;
+                return html`
+                  <button
+                    key=${id}
+                    onClick=${() => { setActive(id); setMob(false); }}
+                    className=${cn(
+                      'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[0.8125rem] font-medium transition-all text-left',
+                      isActive ? 'bg-zinc-800/90 text-zinc-100 border border-zinc-700/50' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/40 border border-transparent'
+                    )}
+                  >
+                    <span className=${cn('text-[10px] font-mono w-5 text-right shrink-0 tabular-nums', isActive ? 'text-blue-400' : 'text-zinc-700')}>${tag}</span>
+                    <${Icon} size=${14} className=${isActive ? 'text-blue-400' : 'text-zinc-600'} />
+                    <span className="flex-1">${label}</span>
+                    ${isActive && html`<${ChevronRight} size=${13} className="text-zinc-600 shrink-0" />`}
+                  </button>
+                `;
+              })}
+            </nav>
+
+            <div className="px-4 py-4 border-t border-zinc-800/60">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[10px] text-zinc-600 uppercase tracking-wider">Pipeline</span>
+                <span className="text-[10px] text-zinc-700 font-mono">v2.4.1</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="relative flex h-2 w-2 shrink-0">
+                  <span className="status-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </div>
+                <span className="text-[11px] text-emerald-400">Calibrated · Active</span>
+              </div>
+            </div>
+          </aside>
+
+          <div className="flex-1 flex flex-col min-w-0 min-h-screen">
+            <header className="sticky top-0 z-10 flex items-center justify-between px-4 md:px-8 py-3 bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-800/50">
+              <div className="flex items-center gap-3">
+                <button onClick=${() => setMob(!mob)} className="md:hidden p-1.5 rounded-md text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800 transition-colors">
+                  ${mob ? html`<${X} size=${18} />` : html`<${Menu} size=${18} />`}
+                </button>
+                <div className="md:hidden text-sm font-bold text-zinc-100">ArchAudit<span className="text-blue-400">OS</span></div>
+                <div className="hidden md:flex items-center gap-1.5 text-[11px] text-zinc-600">
+                  <${ShieldCheck} size=${12} className="text-blue-500/50" />
+                  <span>Architecture Maintenance</span>
+                  <${ChevronRight} size=${11} className="text-zinc-700" />
+                  <span className="text-zinc-400 font-medium">${activeNav?.label}</span>
+                </div>
+              </div>
+              <${Badge} variant="success">Prepared for the Savant<//>
+            </header>
+
+            <main className="flex-1 overflow-y-auto">
+              <div className="max-w-[860px] mx-auto px-5 py-10 md:px-10 md:py-14">
+                <${Content} />
+              </div>
+            </main>
+          </div>
+        </div>
+      `;
+    }
+
+    createRoot(document.getElementById('root')).render(html`<${App} />`);
+  </script>
+</body>
+</html>
