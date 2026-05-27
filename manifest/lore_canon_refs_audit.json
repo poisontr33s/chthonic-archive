@@ -1,8 +1,8 @@
 {
   "tool": "CI_CHECK_LORE_CANON_REFS_V1",
-  "generated_at": "2026-05-27T18:41:01.750Z",
+  "generated_at": "2026-05-27T19:33:51.783Z",
   "scope": "staged",
-  "files_scanned": 6,
+  "files_scanned": 2,
   "hit_count": 0,
   "hits": [],
   "excluded_dirs": [

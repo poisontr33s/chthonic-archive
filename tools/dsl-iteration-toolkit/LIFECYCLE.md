@@ -201,6 +201,98 @@ dsl-iter translate <natural-language-input>
 - How does the user override? `--accept` flag for manually-approved outputs
   that don't match an existing pattern (which then becomes a new catalog entry).
 
+## Loop C — Step-level rewindability (checkpoint mechanism)
+
+**Status**: built 2026-05-27, alongside the three-prospects architectural articulation.
+
+Loop C complements the two rewindability resolutions that already exist:
+
+| Resolution | Mechanism | Scope | Use-case |
+|---|---|---|---|
+| Commit-level | `git revert HEAD` | cross-session, durable | undoing a whole iteration that's been committed |
+| Run-level | Ledger regression detection (`dsl-iter check` exit 1) | between runs of the same phase | detecting that the LAST run regressed against the prior one |
+| **Step-level** | **Checkpoint snapshot** (Loop C) | individual mutation | **undoing one specific mutation without touching git or unrelated state** |
+
+Three resolutions stack so the conductor can move back at the granularity the situation warrants.
+
+### Mechanism
+
+Each stateful operation (currently: `dsl-iter check`; future: `pattern add`,
+`compile --build`, `interpret --effects-allowed`) snapshots the files it's
+about to mutate **before** the mutation runs. The snapshot is atomic (write
+to a fresh per-timestamp directory; never overwrite mid-write).
+
+State files snapshotted per check:
+- `manifest/<project>_iteration_history.ndjson` (the ledger)
+- `manifest/<project>_coverage_<surface>_audit.json` per configured surface
+
+When future phases land, they extend the snapshot list:
+- Phase 2 (compile): the generated parser source(s), the build cache
+- Phase 3 (interpret): the runtime state files declared in dsl-iter.toml's `data_sources`
+- Phase 4 (translate): the bias audit log
+
+Each snapshot is described by a `manifest.json` carrying:
+- `id` (ISO-timestamp)
+- `reason` (`pre-check`, `pre-pattern-add`, etc.)
+- `files[]` — list of `{original_path, snapshot_path, was_missing, size_bytes}`
+- `git_head`, `grammar_hash`, `project_name`
+
+### Storage
+
+Checkpoints live at `<manifest_dir>/.checkpoints/<id>/`. The `.checkpoints/`
+parent stays gitignored by the catch-all `*` rule — checkpoints are runtime
+state, not committed artifacts. (git tracks the COMMITTED state; Loop C tracks
+the WORKING-TREE state between commits.)
+
+### Retention
+
+Default: keep last 20 checkpoints, prune older. Configurable via dsl-iter.toml's
+future `checkpoint_retention` field (currently hardcoded to 20).
+
+### Subcommands
+
+```
+dsl-iter checkpoint-list                   # list available checkpoints (newest first)
+dsl-iter checkpoint-show <id>              # show one checkpoint's manifest
+dsl-iter revert [--to <id> | --last] [-y]  # restore state to checkpoint
+```
+
+Without `--to`, `revert` defaults to the most recent checkpoint. Without `-y`,
+revert prompts for confirmation (showing what files will be restored or deleted).
+
+### Was-missing semantics
+
+If a file didn't exist at checkpoint time but exists now (e.g., a new
+coverage manifest created by the current run), revert will DELETE it. This
+preserves the "exact state before the mutation" invariant. The manifest's
+`was_missing: true` flag distinguishes "file existed empty" from "file didn't
+exist at all" — both restore correctly.
+
+### Verification
+
+After this commit, the chthonic instance produced a 2.4MB checkpoint snapshot
+of the coverage manifest + 534-byte snapshot of the ledger, both stored
+atomically under `manifest/.checkpoints/<timestamp>/`. The CLI's
+`checkpoint-list` reports them; `revert` restores them; round-trip-verified.
+
+### Composition with Loops A and B
+
+The three loops compose by operating at different scopes:
+
+- **Loop A** edits the grammar (`.chthonic/grammar/chthonic.peg`) — git tracks this.
+- **Loop B** runs the toolkit (`dsl-iter check`) — modifies state files; Loop C snapshots these.
+- **Loop C** preserves and restores those snapshots.
+
+A typical workflow:
+1. Grammar edit (Loop A).
+2. `dsl-iter check` — Loop B runs; Loop C snapshots state pre-check; ledger appended; coverage manifest written.
+3. If results unexpected: `dsl-iter revert --to <previous-checkpoint>` restores prior state.
+4. Try a different grammar edit; re-check.
+
+This means individual experiments are cheap — bad ideas are reverted without
+polluting the ledger or coverage history. The committed state stays clean;
+only confirmed-good iterations get committed (Loop A → git).
+
 ## Cross-phase invariants
 
 Regardless of which phase is running, the toolkit enforces:

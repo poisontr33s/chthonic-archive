@@ -7,6 +7,7 @@ use std::fs;
 use std::path::PathBuf;
 
 use crate::catalog::{Catalog, PatternResult};
+use crate::checkpoint::{Checkpoint, DEFAULT_RETENTION};
 use crate::config::Config;
 use crate::coverage::{run_coverage, CoverageReport, ParenSurface, Surface};
 use crate::grammar::Grammar;
@@ -34,12 +35,34 @@ impl IterationChecker {
     }
 
     /// Run a full iteration check: grammar load + catalog test + coverage
-    /// (per configured surfaces) + ledger append.
+    /// (per configured surfaces) + ledger append. Checkpoints all state files
+    /// BEFORE mutating them so `dsl-iter revert` can roll back this exact run.
     pub fn check(&self) -> Result<CheckReport> {
         let grammar = Grammar::load(self.abs(&self.config.grammar_path))?;
         let corpus_path = self.abs(&self.config.corpus_path);
         let corpus = fs::read_to_string(&corpus_path)
             .with_context(|| format!("read corpus {}", corpus_path.display()))?;
+
+        // Checkpoint state files before any mutation. Loop C: step-level
+        // rewindability complementing git (commit-level) + ledger (run-level).
+        let manifest_dir = self.abs(&self.config.manifest_dir);
+        let ledger_path_for_ckpt = manifest_dir.join(format!(
+            "{}_iteration_history.ndjson", self.config.project_name));
+        let mut files_to_snapshot = vec![ledger_path_for_ckpt.clone()];
+        for surface_name in &self.config.coverage_surfaces {
+            files_to_snapshot.push(manifest_dir.join(format!(
+                "{}_coverage_{}_audit.json", self.config.project_name, surface_name)));
+        }
+        let checkpoint = Checkpoint::new(&manifest_dir);
+        let checkpoint_manifest = checkpoint.create(
+            &files_to_snapshot,
+            "pre-check",
+            git_head(&self.config_dir),
+            Some(grammar.hash()),
+            Some(&self.config.project_name),
+        )?;
+        // Prune to keep the checkpoint history bounded.
+        checkpoint.prune(DEFAULT_RETENTION).ok();
 
         // Pattern catalog test — always parse against the grammar's entry rule
         // ("program"), then check the parse tree for expected_top_rule appearing
@@ -131,6 +154,7 @@ impl IterationChecker {
             ledger_row: row,
             is_duplicate_of_last: is_dup,
             regressions,
+            checkpoint_id: checkpoint_manifest.id,
         })
     }
 }
@@ -152,4 +176,5 @@ pub struct CheckReport {
     pub ledger_row: LedgerRow,
     pub is_duplicate_of_last: bool,
     pub regressions: Vec<crate::ledger::Regression>,
+    pub checkpoint_id: String,
 }

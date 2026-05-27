@@ -19,6 +19,7 @@ pub mod coverage;
 pub mod checker;
 pub mod config;
 pub mod grammar;
+pub mod checkpoint;
 
 pub use catalog::{Catalog, Pattern, PatternResult};
 pub use ledger::{Ledger, LedgerRow, Regression};
@@ -26,3 +27,4 @@ pub use coverage::{CoverageReport, Occurrence, OccurrenceClassification};
 pub use checker::IterationChecker;
 pub use config::Config;
 pub use grammar::Grammar;
+pub use checkpoint::{Checkpoint, CheckpointManifest, CheckpointedFile, DEFAULT_RETENTION};
