@@ -1,0 +1,18 @@
+{
+  "tool": "CI_CHECK_LORE_CANON_REFS_V1",
+  "generated_at": "2026-05-27T00:25:16.941Z",
+  "scope": "staged",
+  "files_scanned": 73,
+  "hit_count": 0,
+  "hits": [],
+  "excluded_dirs": [
+    "claude/mailbox/GEMINI_POC_BACKBONE_BUNDLE_2026_05_26",
+    "claude/mailbox/GEMINI3_1_PRO_DEEP_RESEARCH_ARTIFACTS",
+    "claude/mailbox/GEMINI_POC_BACKBONE_RESEARCH_BRIEF_2026_05_26.md",
+    "dumpster-dive/",
+    "node_modules/",
+    "manifest/sessions/",
+    "manifest/lore_canon_refs_audit.json",
+    "ci/checks/lore-canon-refs.ts"
+  ]
+}

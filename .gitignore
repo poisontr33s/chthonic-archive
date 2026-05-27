@@ -263,6 +263,13 @@ extensions/*/bun.lock
 !manifest/*_index.json
 !manifest/*_index.md
 
+# CI membrane + memory manifests (2026-05-27). Audit snapshots from
+# ci/checks/*.ts and the time-series diary written by canon-drift-snapshot.
+# Same gitignore-as-contract pattern: <name>_audit.json glob auto-tracks any
+# future audit lens; *_history.ndjson glob tracks the diary tier.
+!manifest/*_audit.json
+!manifest/*_history.ndjson
+
 # Allow root-level MCP validation runner
 !run_mcp_validation.ts
 

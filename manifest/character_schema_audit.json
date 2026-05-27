@@ -1,0 +1,36 @@
+{
+  "tool": "CI_CHECK_CHARACTER_SCHEMA_V1",
+  "schema_path": "game/lore/characters/character.schema.json",
+  "generated_at": "2026-05-26T23:43:57.352Z",
+  "scope": "always",
+  "file_count": 5,
+  "pass_count": 5,
+  "fail_count": 0,
+  "results": [
+    {
+      "path": "game/lore/characters/heart/T1/orackla.json",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "path": "game/lore/characters/lungs/T1/umeko.json",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "path": "game/lore/characters/nk_cells/T3/sylvaris_cythrex.json",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "path": "game/lore/characters/stomach/T1/lysandra.json",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "path": "game/lore/characters/_deferred_organ/T1.5/the_sourcer.json",
+      "status": "PASS",
+      "error": null
+    }
+  ]
+}

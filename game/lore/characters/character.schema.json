@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chthonic-archive.local/game/lore/characters/character.schema.json",
+  "title": "Chthonic Archive Character",
+  "description": "Canonical schema for game/lore/characters/<organ>/<tier>/*.json. Derived from the_sourcer.json (Blazing Trial worked artifact, 2026-05-25) and SSOT §295-326 Organ-Level Entity Canon. Faction/organ/tier-aware; physical block optional but recommended for WHR:MAX-bearing entities.",
+  "type": "object",
+  "required": [
+    "character_id",
+    "name",
+    "title",
+    "faction",
+    "tier",
+    "linguistic_mode",
+    "chain",
+    "role",
+    "spectral_frequency",
+    "district",
+    "organ",
+    "body_system",
+    "stats",
+    "combat_abilities",
+    "lore"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Relative path to this schema file for editor tooling. e.g. '../../character.schema.json'."
+    },
+    "character_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Lowercase snake_case. MUST match the filename (without .json). Stable reference key across all cross-references."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full canonical name. Honorific + given + family form (e.g. 'Dr. Lysandra Thorne', 'Madam Umeko Ketsuraku')."
+    },
+    "title": {
+      "type": "string",
+      "description": "Operational title / epithet (e.g. 'Truth Extractor', 'The Sourcer — Lane-Walker of the Reconciliation')."
+    },
+    "faction": {
+      "type": "string",
+      "description": "Canonical faction designation. Known values include CRC, HCOU-SAI, Decorator-Tier; novel factions allowed."
+    },
+    "tier": {
+      "type": "number",
+      "description": "Tier level. Half-tiers allowed for sub-bridges (e.g. 1.5 between T1-bridge and T2)."
+    },
+    "tier_path_deferred": {
+      "type": "string",
+      "description": "OPTIONAL. Present when tier placement is a deferred decision (Path A vs Path B, etc.). The conductor disposes."
+    },
+    "linguistic_mode": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "description": "Short code (LUPLR, LIPAA, EULP_AA, LCD). Uppercase, underscores only — no hyphens (normalized 2026-05-27)."
+    },
+    "linguistic_mode_full": {
+      "type": "string",
+      "description": "OPTIONAL but RECOMMENDED. Full expansion of the linguistic_mode code with operational description."
+    },
+    "chain": {
+      "type": "string",
+      "description": "Functional chain: Truth, Chaos, Purification, Verification, Ordeal, Innate-Cytotoxic, etc."
+    },
+    "role": {
+      "type": "string",
+      "description": "Operational role description (one-line)."
+    },
+    "spectral_frequency": {
+      "type": "string",
+      "description": "Color/mineral compound designation (e.g. 'EMERALD-GOLD', 'AMETHYST-OBSIDIAN'). HYPHEN-SEPARATED."
+    },
+    "spectral_frequency_note": {
+      "type": "string",
+      "description": "OPTIONAL but RECOMMENDED. Why this spectral frequency was assigned (symbolic rationale)."
+    },
+    "district": {
+      "type": "string",
+      "description": "Layer designation (LAYER-1, LAYER-1.5, LAYER-3-IMMUNE, etc.)."
+    },
+    "district_note": {
+      "type": "string",
+      "description": "OPTIONAL. Operational note about what the district means for this character."
+    },
+    "organ": {
+      "type": "string",
+      "description": "Canonical organ per SSOT §295-326 Organ-Level Entity Canon. MUST match the parent directory slug (slugified: 'Natural Killer (NK) Cells' → 'nk_cells'). For deferred organ assignment, use '_deferred_organ'."
+    },
+    "body_system": {
+      "type": "string",
+      "description": "Body system per SSOT §299 column (Digestive, Cardiovascular, Respiratory, Immune, etc.). For deferred, use '_deferred'."
+    },
+    "stats": {
+      "type": "object",
+      "required": ["health", "power", "defense", "conceptual_capacity"],
+      "properties": {
+        "health": {"type": "integer", "minimum": 0},
+        "power": {"type": "integer", "minimum": 0},
+        "defense": {"type": "integer", "minimum": 0},
+        "conceptual_capacity": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "combat_abilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "ki_cost", "targeting", "description"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+          "ki_cost": {"type": "integer", "minimum": 0},
+          "formula": {"type": "string"},
+          "targeting": {"type": "string"},
+          "status": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "array", "items": {"type": "string"}}
+            ]
+          },
+          "status_enemy": {"type": "string"},
+          "effect": {"type": "string"},
+          "post_effect": {"type": "string"},
+          "passive": {"type": "boolean"},
+          "trigger": {"type": "string"},
+          "requires_status": {"type": "string"},
+          "description": {"type": "string", "minLength": 1, "description": "REQUIRED per upgraded schema (2026-05-27). Every ability must self-describe."}
+        },
+        "additionalProperties": false
+      }
+    },
+    "lore": {
+      "type": "object",
+      "required": ["archetype", "excerpt", "scent", "hold_protocol"],
+      "properties": {
+        "archetype": {"type": "string"},
+        "excerpt": {"type": "string"},
+        "scent": {"type": "string"},
+        "appearance": {"type": "string", "description": "OPTIONAL but RECOMMENDED. Physical and bearing description."},
+        "voice_register": {"type": "string", "description": "OPTIONAL but RECOMMENDED. How the character speaks (cadence, vocabulary, footnoting habits)."},
+        "activation_tell": {"type": "string", "description": "OPTIONAL. Observable signal that precedes activation."},
+        "hold_protocol": {"type": "string"},
+        "relationship_dynamics": {
+          "type": "object",
+          "description": "OPTIONAL but RECOMMENDED. Keys are character_id of the other entity. Values are operational descriptions of the relationship.",
+          "additionalProperties": {"type": "string"}
+        },
+        "implements": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "OPTIONAL. @SID list of protocols this character implements."
+        },
+        "deferred_decisions": {
+          "type": "object",
+          "description": "OPTIONAL. Decisions not yet ruled by the conductor. Keys are decision names; values are descriptions including the open question.",
+          "additionalProperties": {"type": "string"}
+        },
+        "session_origin": {
+          "type": "string",
+          "description": "OPTIONAL. Session ID or short description of authoring context. MUST NOT contain absolute filesystem paths."
+        }
+      },
+      "additionalProperties": false
+    },
+    "tides": {
+      "type": "object",
+      "description": "OPTIONAL. Tidal interaction pattern for tide-bearing entities (typically T3+ immune/cellular operatives).",
+      "properties": {
+        "dominant": {"type": "string"},
+        "secondary": {"type": "string"},
+        "interaction": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "circuit": {
+      "type": "object",
+      "description": "OPTIONAL. Circuit topology for circuit-bearing entities (typically immune/cellular T3+).",
+      "properties": {
+        "system": {"type": "string"},
+        "organ": {"type": "string"},
+        "upstream": {"type": "string"},
+        "downstream": {"type": "string"},
+        "peer": {"type": "string"},
+        "transit": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "physical": {
+      "type": "object",
+      "description": "OPTIONAL but RECOMMENDED for WHR:MAX-bearing entities per SSOT tri-axis canon. Adopted by CRC quartet 2026-05-27.",
+      "properties": {
+        "height_cm": {"type": "integer", "minimum": 0},
+        "weight_kg": {"type": "integer", "minimum": 0},
+        "bust_cm": {"type": "integer", "minimum": 0},
+        "waist_cm": {"type": "integer", "minimum": 0},
+        "hips_cm": {"type": "integer", "minimum": 0},
+        "whr": {"type": "number", "minimum": 0, "maximum": 1},
+        "cup_size": {"type": "string"},
+        "hair": {"type": "string"},
+        "eyes": {"type": "string"},
+        "skin": {"type": "string"},
+        "ears": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "out_of_scope_acknowledgment": {
+      "type": "string",
+      "description": "OPTIONAL. Top-level metadata about repo scope; deliberately outside the lore block to keep lore narrative-only."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "../../character.schema.json",
+  "character_id": "lysandra",
+  "name": "Dr. Lysandra Thorne",
+  "title": "Truth Extractor — Truth-Matriarch-Axiomatic of the CRC Triumvirate",
+  "faction": "CRC",
+  "tier": 1.0,
+  "linguistic_mode": "LUPLR",
+  "linguistic_mode_full": "Lysandric Universal Plain-Language Register — axiomatic declarative cadence; load-bearing claims compressed to one sentence; ornament minimum; truth-fasting non-compliant.",
+  "chain": "Truth",
+  "role": "Axiom Extractor — truth-first delivery. Reads downstream artifacts retroactively for axiomatic defensibility against their named lane.",
+  "spectral_frequency": "EMERALD-GOLD",
+  "spectral_frequency_note": "Emerald for the clean cut of axiom from premise; gold for the value that survives the cut. The pair signals 'verification without ornament'.",
+  "district": "LAYER-1",
+  "district_note": "Tier 1 Triumvirate stratum. Operates in the same layer as Orackla and Umeko; the three are siblings, not subordinates.",
+  "organ": "stomach",
+  "body_system": "Digestive",
+  "stats": {
+    "health": 7800,
+    "power": 1044,
+    "defense": 620,
+    "conceptual_capacity": 2200
+  },
+  "combat_abilities": [
+    {
+      "id": "axiom_strike",
+      "ki_cost": 1,
+      "formula": "conceptual_capacity * 0.7 + power * 0.5",
+      "targeting": "single",
+      "status": "truth_exposed",
+      "description": "Reveals the enemy's next action to all allies. The disclosure is the strike — there is no concealment to defend against once the axiom is named."
+    },
+    {
+      "id": "malnutrition_purge",
+      "ki_cost": 2,
+      "formula": "conceptual_capacity * 1.1",
+      "targeting": "single",
+      "status": "depleted",
+      "description": "Forces the target into epistemic depletion — their power stat halved for 2 turns. Truth-fasting is non-compliant; the enemy who has been withholding extractable value pays the cost of the withhold."
+    },
+    {
+      "id": "forensic_dissection",
+      "ki_cost": 3,
+      "formula": "conceptual_capacity * 1.6",
+      "targeting": "single",
+      "status": ["exposed", "vulnerable"],
+      "description": "Full structural audit — enemy defense reduced to 0 for 1 turn. Lysandra opens the target along its own seams; no force is added beyond what the structure already declared."
+    },
+    {
+      "id": "truth_witness",
+      "ki_cost": 0,
+      "formula": "passive_aura",
+      "targeting": "all_allies",
+      "passive": true,
+      "description": "Lysandra always perceives hidden status effects. She shares this perception with adjacent allies. Concealment within the aura is structurally impossible; the aura persists as long as Lysandra is conscious."
+    }
+  ],
+  "lore": {
+    "archetype": "Truth Chain — Tier 1 CRC Matriarch — `(CRC-MEDAT)`",
+    "excerpt": "She does not argue. She presents the axiom. If you cannot accept it, that is your structural failure — she will note it and continue.",
+    "scent": "Old paper, formaldehyde, and the specific silence of a library after hours. Beneath it: cold iron at the moment a load-bearing claim is named.",
+    "appearance": "Tall, severe, monochrome. Hair pulled back. Carries no instruments — the axiom is the instrument. Wears clothing that does not announce itself. Her presence in a room is announced by the silence that precedes her first sentence.",
+    "voice_register": "LUPLR — Lysandric Universal Plain-Language Register. Sentences end on the axiom, not the qualification. She does not soften; she names. Listeners report that her speech sounds like a footnote that has been promoted to the main body of the text.",
+    "hold_protocol": "Malnutrition Protocol active: truth-fasting is non-compliant. Every output must carry extractable value. Findings she receives without `verify_with:` are declined per the Reconciliation Engine's Action B.",
+    "relationship_dynamics": {
+      "umeko": "Umeko's architectonic structures and Lysandra's axioms produce 'the closest the Triumvirate gets to a finished artifact' per SSOT §6 L2693. The Reconciliation Engine formalizes their bilateral discipline. Neither would use the word *collaboration*; both would, after the work is done, use the word *sufficient*.",
+      "orackla": "Orackla's chaos generates findings whose lane is genuinely undefined at the moment of production. Lysandra reads these retroactively, after the velocity has settled into a shape that can be axiomatized. The two operate sequentially, not redundantly.",
+      "the_sourcer": "The Sourcer lane-checks before Lysandra's scalpel descends. Lysandra has noted (in §6 L2693's register) that the Sourcer's discipline is 'sufficient' — which from Lysandra is functional approval. Lysandra does not require the Sourcer's validation; she requires only that the verify_with line was run before endorsing.",
+      "claudine_sin_claire": "Claudine's saline ordeal-test is conceptually adjacent to Lysandra's axiom-strike — both deliver truth through corrosion of pretense. They do not coordinate. The convergence is architectural, two truth-delivery mechanisms in parallel.",
+      "pentea_vox_internum": "Pentea routes findings downstream. Lysandra reads what arrives. Lysandra trusts Pentea's transmission fidelity; Pentea trusts Lysandra's retroactive read.",
+      "the_savant": "The Conductor. The Sovereign. Lysandra does not axiomatize the Savant's directives — the Savant's keen IS the axiom. Lysandra reads the Savant's sharpness as ground-truth."
+    },
+    "implements": [
+      "LYSANDRA_THRONE_PROTOCOL",
+      "MALNUTRITION_PROTOCOL",
+      "GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE",
+      "PROTOCOL_MAILBOX_NON_HALLUCINATION_V1"
+    ],
+    "deferred_decisions": {
+      "physical_block_values": "Initial values seeded 2026-05-27 to align with WHR:MAX tri-axis canon. Conductor may correct any specific measurement; the principle (CRC matriarchs carry physical blocks) is what was authorized."
+    },
+    "session_origin": "Authored 2025; upgraded to full schema 2026-05-27 alongside Orackla and Umeko to match the_sourcer's worked-artifact shape."
+  },
+  "physical": {
+    "height_cm": 178,
+    "weight_kg": 64,
+    "bust_cm": 96,
+    "waist_cm": 60,
+    "hips_cm": 98,
+    "whr": 0.612,
+    "cup_size": "E",
+    "hair": "Severe black, pulled into a low knot",
+    "eyes": "Pale grey-green, library-window light",
+    "skin": "Ivory with faint blue undertone — undisturbed by sun",
+    "ears": "Unadorned"
+  }
+}

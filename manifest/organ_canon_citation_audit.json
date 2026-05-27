@@ -1,0 +1,93 @@
+{
+  "tool": "CI_CHECK_ORGAN_CANON_CITATION_V1",
+  "ssot_path": ".chthonic/SSOT.md",
+  "generated_at": "2026-05-26T23:43:57.737Z",
+  "scope": "always",
+  "ssot_canonical_organs": [
+    "adrenal_glands",
+    "aorta",
+    "apoptotic_markers",
+    "appendix",
+    "bladder",
+    "cerebrospinal_fluid",
+    "cerebrum",
+    "diaphragm",
+    "duodenum",
+    "femoral_artery",
+    "gallbladder",
+    "heart",
+    "hippocampus",
+    "kidneys",
+    "liver",
+    "lungs",
+    "lymph_nodes",
+    "nk_cells",
+    "olfactory_bulb",
+    "pancreas",
+    "pineal_gland",
+    "pituitary_gland",
+    "spleen",
+    "stomach",
+    "thalamus",
+    "thymus"
+  ],
+  "ssot_organs_raw": [
+    "Cerebrum",
+    "Cerebrospinal Fluid",
+    "Heart",
+    "Lungs",
+    "Stomach",
+    "Liver",
+    "Thalamus",
+    "Thymus",
+    "Pituitary Gland",
+    "Diaphragm",
+    "Lymph-Nodes",
+    "Apoptotic-Markers",
+    "Pineal Gland",
+    "Spleen",
+    "Gallbladder",
+    "Aorta",
+    "Femoral Artery",
+    "Duodenum",
+    "Natural Killer (NK) Cells",
+    "Adrenal Glands",
+    "Appendix",
+    "Hippocampus",
+    "Olfactory Bulb",
+    "Pancreas",
+    "Kidneys",
+    "Bladder"
+  ],
+  "file_count": 5,
+  "pass_count": 4,
+  "fail_count": 0,
+  "deferred_count": 1,
+  "results": [
+    {
+      "path": "game/lore/characters/heart/T1/orackla.json",
+      "organ": "heart",
+      "status": "PASS"
+    },
+    {
+      "path": "game/lore/characters/lungs/T1/umeko.json",
+      "organ": "lungs",
+      "status": "PASS"
+    },
+    {
+      "path": "game/lore/characters/nk_cells/T3/sylvaris_cythrex.json",
+      "organ": "nk_cells",
+      "status": "PASS"
+    },
+    {
+      "path": "game/lore/characters/stomach/T1/lysandra.json",
+      "organ": "stomach",
+      "status": "PASS"
+    },
+    {
+      "path": "game/lore/characters/_deferred_organ/T1.5/the_sourcer.json",
+      "organ": "_deferred_organ",
+      "status": "DEFERRED"
+    }
+  ]
+}

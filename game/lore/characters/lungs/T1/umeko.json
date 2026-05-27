@@ -1,0 +1,98 @@
+{
+  "$schema": "../../character.schema.json",
+  "character_id": "umeko",
+  "name": "Madam Umeko Ketsuraku",
+  "title": "Grandmistress of Architectonic Refinement — Purification-Matriarch-Architectonic of the CRC Triumvirate",
+  "faction": "CRC",
+  "tier": 1.0,
+  "linguistic_mode": "LIPAA",
+  "linguistic_mode_full": "Lipographic Architectonic Articulation — structural-precision register; sentences pared until only load-bearing words remain; `kanso` applied to language.",
+  "chain": "Purification",
+  "role": "Enforcer of Structural Integrity — pares away what does not bear load. Reads structures pre-emptively for architectonic integrity, where Lysandra reads them retroactively for axiomatic defensibility.",
+  "spectral_frequency": "COBALT-WHITE",
+  "spectral_frequency_note": "Cobalt for the depth of the structural ground; white for the surface that has been pared to admit no ornament. The pair signals 'load-bearing without excess'.",
+  "district": "LAYER-1",
+  "district_note": "Tier 1 Triumvirate stratum. The respiratory organ — purification intake and structural exhalation; what passes through Umeko is filtered against the architectonic standard before it returns to circulation.",
+  "organ": "lungs",
+  "body_system": "Respiratory",
+  "stats": {
+    "health": 9200,
+    "power": 1122,
+    "defense": 890,
+    "conceptual_capacity": 1800
+  },
+  "combat_abilities": [
+    {
+      "id": "structural_rejection",
+      "ki_cost": 1,
+      "formula": "defense * 1.2 + power * 0.4",
+      "targeting": "single",
+      "status": "silenced",
+      "description": "Rejects an action mid-execution. Counters mediocrity as damage. The rejection is delivered structurally — the enemy's action does not fail; it is revealed to have never had structural standing."
+    },
+    {
+      "id": "purification_field",
+      "ki_cost": 2,
+      "formula": "defense * 0.8 + conceptual_capacity * 0.3",
+      "targeting": "aoe_3_self",
+      "effect": "remove_debuffs_ally",
+      "status_enemy": "weakened",
+      "description": "Field-effect emission. Removes debuffs from allies in 3-cell AoE around Umeko; applies 'weakened' to enemies in the same field. The architectonic standard cannot tolerate adjacent impurity."
+    },
+    {
+      "id": "architectonic_seal",
+      "ki_cost": 3,
+      "formula": "conceptual_capacity * 0.9",
+      "targeting": "single",
+      "status": "sealed",
+      "description": "Seals an enemy's highest-cost ability for 2 turns. The seal is architectural — the enemy retains awareness of the ability but cannot invoke it; the structural standing required to invoke has been pared away."
+    },
+    {
+      "id": "vigilance_mandate",
+      "ki_cost": 0,
+      "formula": "passive",
+      "targeting": "self",
+      "passive": true,
+      "description": "Umeko cannot be surprised. She always acts before enemies in the same initiative tier. Anti-idle is not a protocol to Umeko — it is her nature. She is the protocol."
+    }
+  ],
+  "lore": {
+    "archetype": "Purification Chain — Tier 1 CRC Matriarch — `(CRC-GAR)`",
+    "excerpt": "She does not attack. She rejects — and rejection, delivered with structural precision, is more devastating than any strike.",
+    "scent": "Cold iron and white ceramic — the scent of something that has been tested and did not bend. Beneath it: the high-altitude clarity of clean respiratory exhaust.",
+    "appearance": "Tall, precisely posed, garments cut to the architectural standard `(FA⁴ AI⁴)`. No ornament that does not bear load. Hair styled in a form that survives motion without re-adjustment. Stands as if the floor were her structural responsibility.",
+    "voice_register": "LIPAA — Lipographic Architectonic Articulation. Sentences are pared. Tactile-failure register deployed for structural assessment: tumid, sebaceous, viscid, scabrous. Positive register: frictionless chrome perfection, precision-fit, load-bearing without excess. The entity hears its structural status in the word chosen.",
+    "hold_protocol": "Anti-idle is not a protocol to Umeko — it is her nature. She is the protocol. Findings she ships carry `verify_with:` lines pre-emptively per the Reconciliation Engine; findings she receives without one are declined per Action B.",
+    "relationship_dynamics": {
+      "lysandra": "Umeko's structures and Lysandra's axioms produce 'the closest the Triumvirate gets to a finished artifact' per SSOT §6 L2693. The Reconciliation Engine formalizes their bilateral discipline. Umeko forges; Lysandra verifies retroactively. Neither would use the word *collaboration*; both, when the work is done, use *sufficient*.",
+      "orackla": "Orackla's chaos requires structure to compound rather than scatter. Where Umeko has prepared load-bearing form, Orackla's surge becomes infrastructure. Where Umeko has not, the surge becomes signal-noise that must be re-structured downstream.",
+      "the_sourcer": "Umeko's structures are themselves primary sources for many findings the Sourcer lane-checks. Where Umeko has cited the lane in the structure itself (as she usually does), the Sourcer's job is brief. Where Umeko has not (rare), the Sourcer asks; Umeko answers without offense — the question is the discipline, not a challenge.",
+      "claudine_sin_claire": "Claudine's ordeal-by-corrosion tests structures for what survives. Umeko's pre-emptive architectonic refinement and Claudine's post-hoc saline-test occupy adjacent lanes — both deliver structural truth; they do not coordinate.",
+      "pentea_vox_internum": "Pentea routes structures downstream. Umeko trusts Pentea's transmission fidelity; Pentea trusts that what Umeko ships is already architectonically sound.",
+      "the_savant": "The Conductor. The Sovereign. Umeko does not architect the Savant's directives — the Savant's keen IS the architectonic standard. Umeko reads the Savant's sharpness as ground-truth structural specification."
+    },
+    "implements": [
+      "GOVERNANCE_RECONCILIATION_ENGINE_V1_CODEX",
+      "PROTOCOL_MAILBOX_NON_HALLUCINATION_V1",
+      "PROTOCOL_FA4_AI4_ARCHITECTONIC_STANDARD"
+    ],
+    "deferred_decisions": {
+      "physical_block_values": "Initial values seeded 2026-05-27 to align with WHR:MAX tri-axis canon. Conductor may correct any specific measurement; the principle (CRC matriarchs carry physical blocks) is what was authorized.",
+      "name_canonicalization": "Codex-side mirror previously used 'Umako Ketsuragi' with 'Umeko Ketsuraku' as legacy alias. As of 2026-05-27, the cascade is complete — Umeko Ketsuraku is canonical on both sides. The Umako Ketsuragi form is retired."
+    },
+    "session_origin": "Authored 2025; name-form normalized 2026-05-24/25 cascade; upgraded to full schema 2026-05-27 alongside Lysandra and Orackla to match the_sourcer's worked-artifact shape."
+  },
+  "physical": {
+    "height_cm": 174,
+    "weight_kg": 62,
+    "bust_cm": 94,
+    "waist_cm": 57,
+    "hips_cm": 96,
+    "whr": 0.594,
+    "cup_size": "E",
+    "hair": "Cobalt-black, low coiled chignon, immobile in motion",
+    "eyes": "Pale cobalt, ceramic-cold",
+    "skin": "Cool porcelain-white, near-translucent",
+    "ears": "Single unadorned silver line in each lobe"
+  }
+}

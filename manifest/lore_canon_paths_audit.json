@@ -1,0 +1,60 @@
+{
+  "tool": "CI_CHECK_LORE_CANON_PATHS_V1",
+  "generated_at": "2026-05-26T23:43:57.543Z",
+  "scope": "always",
+  "file_count": 5,
+  "pass_count": 5,
+  "fail_count": 0,
+  "results": [
+    {
+      "path": "game/lore/characters/heart/T1/orackla.json",
+      "status": "PASS",
+      "reasons": [],
+      "fields": {
+        "character_id": "orackla",
+        "organ": "heart",
+        "tier": 1
+      }
+    },
+    {
+      "path": "game/lore/characters/lungs/T1/umeko.json",
+      "status": "PASS",
+      "reasons": [],
+      "fields": {
+        "character_id": "umeko",
+        "organ": "lungs",
+        "tier": 1
+      }
+    },
+    {
+      "path": "game/lore/characters/nk_cells/T3/sylvaris_cythrex.json",
+      "status": "PASS",
+      "reasons": [],
+      "fields": {
+        "character_id": "sylvaris_cythrex",
+        "organ": "nk_cells",
+        "tier": 3
+      }
+    },
+    {
+      "path": "game/lore/characters/stomach/T1/lysandra.json",
+      "status": "PASS",
+      "reasons": [],
+      "fields": {
+        "character_id": "lysandra",
+        "organ": "stomach",
+        "tier": 1
+      }
+    },
+    {
+      "path": "game/lore/characters/_deferred_organ/T1.5/the_sourcer.json",
+      "status": "PASS",
+      "reasons": [],
+      "fields": {
+        "character_id": "the_sourcer",
+        "organ": "_deferred_organ",
+        "tier": 1.5
+      }
+    }
+  ]
+}
