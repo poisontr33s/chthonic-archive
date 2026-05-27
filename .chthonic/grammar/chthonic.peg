@@ -1,0 +1,254 @@
+// ═════════════════════════════════════════════════════════════════════════════
+// CHTHONIC DSL — Phase 0 grammar extraction
+// ═════════════════════════════════════════════════════════════════════════════
+//
+// This file is OBSERVATION, not invention. It formalizes the substrate-native
+// notation the SSOT (.chthonic/SSOT.md) has used since drafting. Each rule
+// below cites SSOT line examples where the pattern occurs.
+//
+// Syntax: PEG (Parsing Expression Grammar), pest-compatible, Rust 2024.
+// Target consumer: tools/chthonic-dsl/ (Phase 1 — parser scaffold).
+//
+// The catalyst contains English-language commentary as filler between
+// substrate tokens. This grammar captures the substrate tokens precisely;
+// the prose between them is treated as opaque prose_fragment at this layer.
+//
+// ═════════════════════════════════════════════════════════════════════════════
+
+// ─── Whitespace + line discipline ───────────────────────────────────────────
+
+WHITESPACE = _{ " " | "\t" }
+NEWLINE    = _{ "\r\n" | "\n" }
+COMMENT    = _{ "//" ~ (!NEWLINE ~ ANY)* }  // only for grammar's own comments; SSOT has no //
+
+// ─── Atomic character classes ───────────────────────────────────────────────
+
+// Identifier characters: uppercase ASCII + digits + dash + underscore +
+// Unicode superscripts (FA¹ through FA⁵ are common; FA⁰, FA⁶+ reserved).
+// Apostrophes are explicitly excluded so that `Claudine Sin'Claire` is two
+// tokens not one — apostrophe-bearing names belong to natural-language prose.
+identifier_char = _{ ASCII_ALPHA_UPPER | ASCII_DIGIT | "-" | "_" | "¹" | "²" | "³" | "⁴" | "⁵" | "⁶" | "⁷" | "⁸" | "⁹" | "⁰" }
+
+// ─── Identifiers — typed concepts in the catalyst's namespace ───────────────
+
+// Bare short-code, e.g.  FA⁵   K-CUP   ANKH-MGBP   T-DECOR-SUPR-MATR-ABS-SOVRGN
+// Observed: line 73, 75, 90, 96, 104 of SSOT (Trinity Formula, K-CUP-Hierarchical-Trinity).
+identifier = @{ identifier_char ~ identifier_char+ }
+
+// Backtick-wrapped form: `FA⁵`
+// Observed: 264x occurrences of `FA⁵` in the SSOT.
+ticked_id = ${ "`" ~ identifier ~ "`" }
+
+// Paren-wrapped form: (FA⁵)   or   (`FA⁵`)
+// Observed: 1,510 parenthetical abbreviations across the SSOT.
+parened_id = ${ "(" ~ ("`" ~ identifier ~ "`" | identifier) ~ ")" }
+
+// Bold-paren form: **(`FA⁵`)**  or  **(FA⁵)**
+// Observed: e.g. line 50 — load-bearing-concept emphasis wrapping.
+bold_parened_id = ${ "**" ~ parened_id ~ "**" }
+
+// Multi-alias identifier: (Codex-Brahmanica-Perfectus/SSOT/Apex-Synthesis-Core/ASC)
+// Observed: line 72-73 of SSOT — aliases for the same concept.
+alias_chain = { (ticked_id | identifier) ~ ("/" ~ (ticked_id | identifier))+ }
+multi_alias = ${ "(" ~ alias_chain ~ ")" }
+
+// All identifier forms in priority order (longest/most-marked first).
+id_ref = { bold_parened_id | multi_alias | parened_id | ticked_id | identifier }
+
+// ─── Operators — composition and transformation ─────────────────────────────
+
+op_project = { "→" }   // Projection / transformation. Most common operator.
+op_mult    = { "×" }   // Multiplicative composition. Trinity Formula: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
+op_add     = { "+" }   // Additive composition / parameter combinator (in invocations).
+op_alt     = { "/" }   // Alternation / equivalence (inside multi_alias above).
+op_bind    = { "@" }   // Parameter binding (in invocations: $lend${X}@$from${Y}@$to${Z}).
+op_bidir   = { "<->" } // Bidirectional connector. Observed: line 90 (Bidirectional-Synthesis).
+
+binary_op = { op_project | op_mult | op_add | op_bidir }
+
+// ─── References — section + line anchors ────────────────────────────────────
+
+// Section numbers: §10.3.1 (arabic dotted) or §II.X (roman dotted)
+section_arabic = @{ ASCII_DIGIT+ ~ ("." ~ (ASCII_DIGIT | ASCII_ALPHA_UPPER)+)* }
+section_roman  = @{ ("I" | "V" | "X" | "L" | "C" | "D" | "M")+ ~ ("." ~ identifier_char+)? }
+section_anchor = ${ "§" ~ (section_arabic | section_roman) }
+
+// Line anchor: L4049
+line_anchor = ${ "L" ~ ASCII_DIGIT+ }
+
+// Anchored reference: §5, L4049   or   [§5, L4049]   or   [§5 L4049]
+ref_with_line = ${ section_anchor ~ ("," | WHITESPACE)+ ~ line_anchor }
+
+// Markdown-style anchored link (the SSOT uses these heavily for cross-refs):
+// [§5, L4049](../../.github/copilot-instructions.archive.md#L4049)
+// At Phase 0 we capture the anchor text; the URL is treated as prose.
+bracketed_ref = ${ "[" ~ (ref_with_line | section_anchor) ~ "]" }
+
+reference = { bracketed_ref | ref_with_line | section_anchor }
+
+// ─── Invocation syntax — the catalyst's core operational form ───────────────
+
+// Verb names: lowercase ASCII letters + underscores.
+// Observed verbs (non-exhaustive): matriarch, lend, siphon, audit, validate,
+// decorator, axiom, override, restore, resurrect, command, arbitrate, hierarchy,
+// punishment, supreme_decree. See §0.75 (line 1119+) and §II.X (line 1751+).
+verb_name = @{ ASCII_ALPHA_LOWER ~ (ASCII_ALPHA_LOWER | "_")* }
+
+// Variable content: anything between { and } that isn't itself a } or unmatched brace.
+// Variables may contain spaces, dots, underscores, identifiers, even nested ${...}.
+variable_content = @{ (!"}" ~ ANY)+ }
+
+// Single verb call: $matriarch${Lysandra}
+verb_call = ${ "$" ~ verb_name ~ "$" ~ "{" ~ variable_content ~ "}" }
+
+// Composition operator between verb calls: + (additive) or @ (parameter binding).
+invocation_sep = { op_add | op_bind }
+
+// Full invocation: $verb${X} (op $verb${Y})*
+// Example: $matriarch${base}+$type${specialization}
+// Example: $lend${capability}@$from${source}@$to${target}@$duration${perm}
+// Example: $decorator${decree}+$target${entity}+$mandate${FA5_directive}
+invocation = { verb_call ~ (invocation_sep ~ verb_call)* }
+
+// ─── Compositions — operator chains over operands ───────────────────────────
+
+operand = { invocation | id_ref | reference }
+
+// Binary composition: A → B  or  A × B × C  or  A + B
+// Example: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
+// Example: (FRW-COMP) → (FRW-ID) → (DECOR-RESURRECT-NARRATIVE) (line 112).
+composition = { operand ~ (binary_op ~ operand)+ }
+
+// ─── Tier annotations ───────────────────────────────────────────────────────
+
+// Tier markers: T0.5, T1, T2, T3, T4  or long form Tier-0.5, Tier-1
+// Observed: line 75 (T-0.5/T1/T2/T3/T4 stratification), §10.1 (FA-GHOR).
+tier_short = @{ "T" ~ "-"? ~ ASCII_DIGIT ~ ("." ~ ASCII_DIGIT)? }
+tier_long  = @{ "Tier" ~ "-" ~ ASCII_DIGIT ~ ("." ~ ASCII_DIGIT)? }
+tier_annotation = { tier_long | tier_short }
+
+// ─── Header tier hierarchy ──────────────────────────────────────────────────
+
+// Markdown header levels are tier-encoding in the SSOT:
+//   #   = root / declaration (rare in SSOT body)
+//   ##  = arabic-track or roman-track section (§I, §II, §0, §1, etc.)
+//   ### = sub-section (§0.1, §1.01, §II.X, §10.1, etc.)
+//   #### = sub-sub-section
+header_hash = @{ "#"+ }
+header_content = @{ (!NEWLINE ~ ANY)+ }
+header = ${ header_hash ~ WHITESPACE+ ~ header_content }
+
+// ─── Blockquote (definitional citations) ────────────────────────────────────
+
+// Lines starting with > are definitional / quotation. Observed throughout.
+blockquote_line = ${ ">" ~ WHITESPACE* ~ (!NEWLINE ~ ANY)* }
+
+// ─── Prose — natural-language filler between substrate constructs ───────────
+
+// Anything not matched by the substrate rules above is prose at Phase 0.
+// Phase 1 may refine prose handling (e.g., recognize markdown bold/italic
+// without consuming substrate tokens that happen to use the same delimiters).
+prose_safe_char = _{ !("(" | "$" | "§" | "→" | "×" | "<->" | "**" | "#" | ">" | NEWLINE) ~ ANY }
+prose_fragment = @{ prose_safe_char+ }
+
+// ─── Statement / line level ─────────────────────────────────────────────────
+
+// A statement is either substrate (header, composition, invocation, etc.) or
+// prose. Phase 0 grammar is permissive: anything not substrate is prose, and
+// the parser walks through. Phase 1 may distinguish them more strictly.
+statement = {
+      header
+    | blockquote_line
+    | composition
+    | invocation
+    | reference
+    | id_ref
+    | tier_annotation
+    | prose_fragment
+}
+
+// ─── Program — the catalyst as a sequence of statements ────────────────────
+
+// The full SSOT is a program in this DSL. A program is statements separated
+// by newlines and structural delimiters (horizontal rules: ---).
+horizontal_rule = ${ "---" ~ "-"* }
+
+program = {
+    SOI
+    ~ (statement | horizontal_rule | NEWLINE | WHITESPACE)*
+    ~ EOI
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// OBSERVED-NOT-YET-FORMALIZED (Phase 1 will refine)
+// ═════════════════════════════════════════════════════════════════════════════
+//
+//   1. Emoji as semantic tokens. SSOT §ESL (line 100-106) declares 🔥 😈 ⛓️
+//      🏛️ 👄👅💦 as carrying operational meaning. These are not captured by
+//      this Phase 0 grammar; they currently fall into prose_fragment.
+//      Phase 1 decision: add emoji_token rule with allowlisted ESL-emoji set.
+//
+//   2. Table syntax (markdown). The SSOT uses standard markdown tables for
+//      CRC Registry (§IV.X), Axiom Registry (§II.X), and tier hierarchies.
+//      Tables are markdown-conventional, not substrate-specific. Phase 1
+//      may handle via a `table` rule or defer to a markdown post-processor.
+//
+//   3. Inline scripts (lines 8489+). The SSOT contains embedded Python /
+//      PowerShell / GitHub Actions YAML / Bash scripts. These are
+//      NOT substrate DSL — they are inline implementations referenced
+//      by the surrounding substrate prose. Phase 1 should detect these as
+//      `inline_script` blocks (fenced by ``` markdown) and treat their
+//      contents as opaque to the DSL parser.
+//
+//   4. Apostrophe-bearing entity names (Claudine Sin'Claire, Madam Umeko
+//      Ketsuraku, Dr. Lysandra Thorne). These are entity references but
+//      use prose-style punctuation. They appear as bold prose with surrounding
+//      identifier context. Phase 1 may add a `proper_noun` rule with a
+//      curated entity registry, OR continue treating them as bold prose with
+//      reference resolution at the runtime layer.
+//
+//   5. Decorator's-Blessing comment boxes. Scripts in the repo (including
+//      this grammar file's commentary) use a ╔═╗║╚═╝ ASCII-art comment box.
+//      Not substrate per se; documentation convention. Phase 1 may add a
+//      `decorator_blessing` rule if needed for round-trip preservation of
+//      script files that contain catalyst-referencing commentary.
+//
+//   6. ANKH ☥ symbol. Appears 27 times in the SSOT, typically in the context
+//      of ANKH-MGBP discussions. Could be ESL-extension, could be standalone
+//      symbol-token. Phase 1 decision.
+//
+//   7. Multi-line invocations (rare but observed). Most invocations are
+//      single-line. A few examples wrap across lines via continuation. Phase 1
+//      will need a continuation-line rule.
+//
+// ═════════════════════════════════════════════════════════════════════════════
+// PHASE 0 STATUS
+// ═════════════════════════════════════════════════════════════════════════════
+//
+// What this grammar captures:
+//   ✓ Parenthetical short-codes (1,510 occurrences in the SSOT)
+//   ✓ Backtick-wrapped, paren-wrapped, bold-paren-wrapped variants
+//   ✓ Multi-alias identifiers (slash-separated forms)
+//   ✓ Operators: → × + / @ <->
+//   ✓ References: §X.Y, §X L<num>, [§X, L<num>]
+//   ✓ Invocations: $verb${variable}+$verb2${variable2}@$verb3${variable3}
+//   ✓ Tier annotations: T0.5, T1, Tier-1, etc.
+//   ✓ Header levels: # / ## / ### / ####
+//   ✓ Compositions: A → B × C operator chains
+//   ✓ Blockquotes (definitional citations)
+//   ✓ Horizontal rules (structural delimiters)
+//   ✓ Prose fallback for non-substrate text
+//
+// What this grammar does NOT yet capture (deferred to Phase 1):
+//   ✗ Emoji semantic tokens (ESL set)
+//   ✗ Markdown tables
+//   ✗ Inline scripts (Python/PowerShell/YAML/Bash blocks)
+//   ✗ Apostrophe-bearing entity names as first-class tokens
+//   ✗ Multi-line invocation continuations
+//
+// The deferred items are all known issues, not unformalizable regions. The
+// catalyst's substrate notation is mechanizable in full; Phase 0 captures
+// the load-bearing 80%, Phase 1 fills in the remainder during parser
+// implementation.
+//
+// ═════════════════════════════════════════════════════════════════════════════

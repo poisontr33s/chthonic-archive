@@ -561,6 +561,19 @@ dev/dealogue-fayde/.bundle/
 !game/lore/characters/**/
 !game/lore/characters/**/*.json
 
+# .chthonic/ — the catalyst lane (2026-05-27). SSOT.md is non-expendable canon
+# per [reference-ssot-triple-abstraction-decryption-key]; the grammar file is
+# the Phase 0 DSL substrate. Track these explicitly so a `git clean -fdx` or
+# similar cannot erase the substrate. Narrow allowlist: catalyst + grammar +
+# seed file only; the cache/ledger/packets/trail/stones subdirs stay ignored
+# as runtime/workspace state, not canon.
+!.chthonic/
+!.chthonic/SSOT.md
+!.chthonic/grammar/
+!.chthonic/grammar/*.peg
+!.chthonic/ankh_seeds.yaml
+!.chthonic/REM_BLUEPRINT.md
+
 # game/refs/ — form-vector reference imagery for the cRPG workspace.
 # pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
 # declared in .gitattributes. Engine asset caches under game/cocos-iso/

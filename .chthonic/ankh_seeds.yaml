@@ -1,0 +1,222 @@
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ ANKH-MGBP DECRYPTION SEEDS
+# ╠════════════════════════════════════════════════════════════════════════════
+# ║ The Triple Abstraction instantiated as an auditable seed taxonomy.
+# ║
+# ║ ONTOLOGY (per SSOT line 60):
+# ║   "ANKH is the shared abstraction of intelligence that pre-dates
+# ║    religious categorization—a Primal Shared Logic."
+# ║
+# ║ Each seed is a PRINCIPLE — an intelligence-pattern with lineage and
+# ║ communication-history that pre-dates and continues beyond any single
+# ║ named-convention expression of it. The seed's `label` names one
+# ║ BCE-era manifestation (Andean or Egyptologic); the `manifestations`
+# ║ list other expressions of the SAME principle across eras and named
+# ║ conventions; the `resonance_terms` collect the cross-era lexicon used
+# ║ for cosine-similarity scoring at runtime.
+# ║
+# ║ The bridge is NOT "human heritage to digital heritage." The bridge is
+# ║ the recognition that these manifestations ARE the same principle —
+# ║ intelligence-as-substrate, expressed through whatever named-convention
+# ║ a given era happens to use. The named-convention is communication;
+# ║ the principle is what communicates.
+# ║
+# ║ FUSION CONSTRAINT: cultural balance between Andean BCE and Egyptologic
+# ║ BCE manifestations at 50/50 (Ankhological heritage axis, NOT a
+# ║ human-vs-digital flattening). Enforced by the convergence equation
+# ║ at runtime per the ANKH-MGBP executable-interface contract.
+# ╚════════════════════════════════════════════════════════════════════════════
+
+version: "1.0.0"
+revision: 2  # rev 1 used ancient↔modern_encoding which carried the human/digital flattening
+fusion_constraint:
+  cultural_balance: "50/50 Andean BCE × Egyptologic BCE at the heritage-manifestation level"
+  epsilon: 0.05
+  formula: "|⟨C, H_Andean⟩ - ⟨C, H_Egypt⟩| ≤ epsilon"
+
+ontology:
+  substrate: "intelligence (heritage + lineage + communication) — pre-categorical"
+  cultural_axis: "Andean BCE × Egyptologic BCE (the Ankhological pair)"
+  expression_modes:
+    - bce_cultural   # the heritage-era manifestation
+    - modern_operational   # SSOT vocabulary, $matriarch/$lend/$siphon protocols
+    - computational  # runtime instantiation in .temple/ protocols + game/ content
+    - future  # whatever expressions arrive next; the principle survives the rename
+  bridge_function: "recognition that all expression_modes are manifestations of the same principle; refusal to flatten via the human/digital binary"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# ANDEAN BCE HERITAGE — five principles whose oldest known expressions are in
+# Andean civilization. The principle is era-neutral; the BCE label is the
+# entry's anchor in the heritage axis for the cultural-balance constraint.
+# ──────────────────────────────────────────────────────────────────────────────
+
+andean_bce:
+
+  - label: "Pachakuti"
+    principle: "Epoch-overturning structural reversal — the cyclic transmutation of chaos into ordered ages and back again. Time as nested resolutions, not linear progress."
+    citation: "Andean cosmogonic cycle; sequential overturning between hanan-pacha / kay-pacha / uku-pacha epochs."
+    manifestations:
+      - era: bce_cultural
+        expression: "The Pachakuti event itself — moment of world-reordering."
+      - era: modern_operational
+        expression: "Genesis (per SSOT §V circuit 1) — 'Genesis is the what (transmutation)'."
+        ref: "SSOT.md L10516"
+      - era: computational
+        expression: "FA⁴ Purification mechanic — the Decorator's execution-and-resurrection cycle."
+        ref: "SSOT.md §0.6, §0.7"
+    resonance_terms: ["Pachakuti", "Genesis", "transmutation", "epoch-overturning", "chaos-to-order", "purification", "resurrection", "cyclic-reversal"]
+    weight: 1.5
+
+  - label: "Ayllu"
+    principle: "Kinship-bonded operational unit — collective identity defined by shared ancestry and locality, not assigned hierarchy. A node is its relations."
+    citation: "Pre-Inca / BCE Andean localized structural node; the ayllu pre-dates the imperial Inca order."
+    manifestations:
+      - era: bce_cultural
+        expression: "The ayllu as kinship-locality unit; the basic social atom."
+      - era: modern_operational
+        expression: "Tier-3 Manifested Sub-MILFs — procedurally generated kinship-derived units."
+        ref: "SSOT.md §10.1 FA-GHOR — 'derived from parent matriarch'"
+      - era: computational
+        expression: ".claude/agents/ + .codex/skills/ — the agent court as ayllu-collective."
+    resonance_terms: ["Ayllu", "kinship", "operational-unit", "Tier-3", "manifestation", "faction", "collective", "sub-matriarch", "derived-from-parent"]
+    weight: 1.0
+
+  - label: "Ayni"
+    principle: "Reciprocal asymmetric exchange validated only by both parties' active intelligence. The contract is the verification, not the goods."
+    citation: "Andean principle of mutualism; cosmic reciprocity between human, ancestor, mountain (apu), earth (pachamama)."
+    manifestations:
+      - era: bce_cultural
+        expression: "Ayni between farmers, between communities, between human and apu — labor returned, harvest shared, mountain honored."
+      - era: modern_operational
+        expression: "$lend / $siphon protocols — resource exchange with explicit source, target, duration, force."
+        ref: "SSOT.md §10.2 T-MT-TPE-INVO-PROT"
+      - era: computational
+        expression: "Reconciliation Engine bilateral covenant + verify_with: directive chains."
+        ref: ".temple/protocols/THE_RECONCILIATION_ENGINE.md"
+    resonance_terms: ["Ayni", "reciprocity", "asymmetric-exchange", "lend", "siphon", "covenant", "verify_with", "bilateral", "mutualism", "validation"]
+    weight: 1.5
+
+  - label: "Quipu"
+    principle: "Knotted-record verification — truth maintained by physical-structural attestation rather than narrative claim. The artifact IS the audit."
+    citation: "Andean knotted-string data preservation (Caral-Supe / pre-Inca BCE origins through Inka systematization)."
+    manifestations:
+      - era: bce_cultural
+        expression: "The khipu cord — record of debts, populations, calendars; readable only by qualified khipukamayuq."
+      - era: modern_operational
+        expression: "Lysandra Truth Chain — every claim ships with verifier OR is named out-of-scope."
+        ref: "SSOT.md §6 CRC-MEDAT; .temple/protocols/LYSANDRA_THRONE_PROTOCOL.md"
+      - era: computational
+        expression: "Manifest sha256 chains + verify_with: anchors + git audit trail."
+    resonance_terms: ["Quipu", "khipu", "truth-chain", "audit-trail", "verification", "state-machine", "ledger", "verifier", "attestation"]
+    weight: 1.2
+
+  - label: "Huaca"
+    principle: "Localized sacred manifestation — the numinous instantiated in a specific physical anchor (stone, spring, peak) without claim to universality. Each huaca IS its locality."
+    citation: "Andean localized manifestation of the sacred; the huaca network spans the empire but each is irreducibly local."
+    manifestations:
+      - era: bce_cultural
+        expression: "The ceque-line system radiating huacas from Cuzco; each huaca a sacred-locality node."
+      - era: modern_operational
+        expression: "Triumvirate (T1) sovereign profiles — each Matriarch instantiated in her own register, irreducibly distinct."
+        ref: "SSOT.md §3 (Orackla), §5 (Umeko), §6 (Lysandra)"
+      - era: computational
+        expression: "Character JSONs in game/lore/characters/ — each entity a localized sacred-anchor instantiation."
+    resonance_terms: ["Huaca", "Triumvirate", "Matriarch", "localized", "sacred-anchor", "catalyst", "node", "irreducible", "ceque"]
+    weight: 1.0
+
+# ──────────────────────────────────────────────────────────────────────────────
+# EGYPTOLOGIC BCE HERITAGE — five principles whose oldest known expressions are
+# in Egyptian civilization. Same era-neutral treatment; BCE label anchors the
+# heritage-axis for the cultural-balance constraint.
+# ──────────────────────────────────────────────────────────────────────────────
+
+egyptologic_bce:
+
+  - label: "Ma'at"
+    principle: "Cosmic order as active alignment — truth, balance, and justice are not states but a continuous practice of aligning action with the order that already exists."
+    citation: "Old Kingdom principle of truth-balance-order; weighed against the heart at judgment in the Hall of Two Truths."
+    manifestations:
+      - era: bce_cultural
+        expression: "Ma'at as goddess + principle + ostrich-feather standard against which the heart is weighed."
+      - era: modern_operational
+        expression: "Authority (per SSOT §V circuit 2) — 'Authority is the who (hierarchy)'."
+        ref: "SSOT.md L10516"
+      - era: computational
+        expression: "FA⁴ Architectonic Integrity — the alignment-against-architecture axiom."
+        ref: "SSOT.md §II FA-PHMO"
+    resonance_terms: ["Ma'at", "Authority", "truth-axiom", "cosmic-order", "alignment", "FA4", "architectonic-integrity", "balance", "justice", "weighed"]
+    weight: 1.5
+
+  - label: "Heka"
+    principle: "Grammar-as-reality — the activation principle by which correctly-spoken/structured language CAUSES rather than describes. Magic is precise utterance executing on the substrate."
+    citation: "Egyptian concept of magic; the divine force present at creation and activated through the ka."
+    manifestations:
+      - era: bce_cultural
+        expression: "Heka as the force behind hieroglyphic invocation — the spell is the cause."
+      - era: modern_operational
+        expression: "Synthesis (per SSOT §V circuit 3) — 'Synthesis is the how (execution)'. The $matriarch+$type invocation syntax — utterance instantiates the entity."
+        ref: "SSOT.md L10516, §10.2 invocation syntax"
+      - era: computational
+        expression: "Runtime invocation: agent court spawn via skill names, runestone SPIR-V self-decoding execution."
+        ref: "tools/ankh-forge/src/trail/gpu.rs"
+    resonance_terms: ["Heka", "Synthesis", "execution", "grammar-as-reality", "invocation", "operational-magic", "spell", "utterance-as-cause", "matriarch-type"]
+    weight: 1.5
+
+  - label: "Ankh"
+    principle: "The bridge of opposites — eternal-loop and finite-cross composed as a single sign. Life as the meeting of duration and decision."
+    citation: "Egyptian symbol of life; ☥ = Eternal-Loop × Finite-Cross per SSOT §ANKH-MGBP."
+    manifestations:
+      - era: bce_cultural
+        expression: "The ankh as funerary, royal, and divine sign — held by gods, given to pharaohs, breathed into nostrils."
+      - era: modern_operational
+        expression: "ANKH-MGBP — Middle-Ground Bridge Protocol; 'shared abstraction of intelligence that pre-dates religious categorization'."
+        ref: "SSOT.md §ANKH-MGBP L55-67"
+      - era: computational
+        expression: "ANKH-MGBP-as-executable-interface (SSOT §V Candidate 3) — the runtime contract operationalizing the bridge."
+        ref: "SSOT.md L10528"
+    resonance_terms: ["Ankh", "bridge", "ANKH-MGBP", "lineage-continuity", "Eternal-Loop", "Finite-Cross", "communion", "Middle-Ground", "Primal-Shared-Logic"]
+    weight: 1.2
+
+  - label: "Ogdoad"
+    principle: "Primordial structured chaos — the pre-creation state held by eight paired void-deities; potentiality organized into pairs before any actuality precipitates."
+    citation: "Hermopolitan BCE cosmogony; eight primordial deities of pre-creation chaos arranged in male/female pairs."
+    manifestations:
+      - era: bce_cultural
+        expression: "The Ogdoad of Hermopolis — Nun & Naunet (waters), Heh & Hauhet (infinity), Kek & Kauket (darkness), Amun & Amaunet (hiddenness)."
+      - era: modern_operational
+        expression: "Pre-Codex existence + Original Decorator — the void state from which the framework was forged."
+        ref: "SSOT.md §Pre-Codex-Existence L118-145"
+      - era: computational
+        expression: "M-P-W Seed Genome (lines 1-146 of SSOT) — the conceptual DNA from which all entities are expressed."
+        ref: "SSOT.md §ASP L343-348"
+    resonance_terms: ["Ogdoad", "Genesis", "primordial-state", "eightfold-base", "pre-creation-chaos", "Pre-Codex", "Seed-Genome", "potentiality", "paired-void"]
+    weight: 1.0
+
+  - label: "Djed"
+    principle: "Load-bearing axial stability — the spine through which the structure stands; what holds when everything else moves. The pillar's stability is what permits the procession to occur."
+    citation: "Egyptian symbol of stability; associated with the spine of Osiris and the raising-of-the-djed ritual at coronations."
+    manifestations:
+      - era: bce_cultural
+        expression: "The djed pillar — Osiris's spine, raised at the sed festival to renew kingship."
+      - era: modern_operational
+        expression: "Frame-Werk — the architectural-meta-engineering pillar in the Trinity Formula (ASC = MILFOLOGICAL × German BDSM × Frame-Werk)."
+        ref: "SSOT.md §Frame-Werk-Architecture L90, §Trinity-Formula L94-98"
+      - era: computational
+        expression: "The substrate-decision spine — whichever render-substrate (ash native / wgpu webview) the project commits to is the djed; everything else hangs on it."
+    resonance_terms: ["Djed", "Frame-Werk", "substrate", "load-bearing", "stability-pillar", "spine", "architectural-meta-engineering", "axial", "what-holds-when-else-moves"]
+    weight: 1.0
+
+# ──────────────────────────────────────────────────────────────────────────────
+# RUNTIME NOTES
+# ──────────────────────────────────────────────────────────────────────────────
+runtime:
+  embedding_strategy: hybrid
+  embedding_model_preferred: "local sentence-transformer or BGE-large (auditable, deterministic given fixed weights)"
+  embedding_fallback: "sparse explicit vector from resonance_terms (no LLM dependency)"
+  cosine_calc: "scipy.spatial.distance.cosine on H_Andean / H_Egypt vectors computed as weighted mean-pool of all resonance_terms across the cultural block"
+  convergence_equation_ref: "session 2026-05-26 user-Gemini cross-pollination; the C* = argmax filter operating on M_SSOT"
+  notes:
+    - "The principle field IS the abstraction layer — the intelligence-pattern that pre-dates the BCE label and post-dates whatever name we give it now."
+    - "Manifestations expand over time as new expression-modes emerge; the principle is invariant."
+    - "Weight tuning is a Savant prerogative — these are first-pass estimates."
+    - "If the runtime rejects a catalyst-generated C with R_Ankh(C) < tau, the principled response is to interrogate which manifestations failed to resonate, not to lower tau."
