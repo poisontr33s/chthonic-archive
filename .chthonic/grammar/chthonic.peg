@@ -225,13 +225,41 @@ blockquote_line = ${ ">" ~ WHITESPACE* ~ (!NEWLINE ~ ANY)* }
 prose_safe_char = _{ !("(" | "$" | "§" | "→" | "×" | "<->" | "**" | "#" | ">" | NEWLINE) ~ ANY }
 prose_fragment = @{ prose_safe_char+ }
 
+// ─── Fenced code blocks (inline scripts in the catalyst) ────────────────────
+// Smoke-driven addition 2026-05-27 iteration 4. The catalyst embeds inline
+// scripts (Python, PowerShell, YAML, Bash) for worked examples and operational
+// recipes. These are NOT substrate DSL — they're opaque implementation content
+// referenced by the surrounding substrate prose.
+//
+// Markdown shape:    ``` [optional lang] NEWLINE  content  NEWLINE ```
+// Examples seen:     ```python  ```powershell  ```bash  ```yaml  ``` (no lang)
+//
+// Without this rule, code like `history = Path('.x.json')` causes the parser
+// to interpret `(` as substrate paren and fail. Treating the fenced block as
+// opaque consumes the entire region without trying to parse its contents.
+//
+// Phase 1 may surface the language identifier + content for tooling that wants
+// to validate inline scripts; Phase 0 just consumes them as bounded chunks.
+fence_marker = _{ "```" }
+code_fence_lang = @{ (!NEWLINE ~ ANY)* }
+code_content = @{ (!(NEWLINE ~ "```") ~ ANY)* }
+fenced_code_block = ${
+    fence_marker ~ code_fence_lang ~ NEWLINE
+    ~ code_content
+    ~ NEWLINE ~ fence_marker
+}
+
 // ─── Statement / line level ─────────────────────────────────────────────────
 
 // A statement is either substrate (header, composition, invocation, etc.) or
 // prose. Phase 0 grammar is permissive: anything not substrate is prose, and
 // the parser walks through. Phase 1 may distinguish them more strictly.
+// fenced_code_block sits FIRST — it's the most structurally distinct
+// alternative and must be tried before backtick-based rules (ticked_id) would
+// see the opening fence's backticks.
 statement = {
-      header
+      fenced_code_block
+    | header
     | blockquote_line
     | composition
     | invocation
