@@ -1,0 +1,65 @@
+# ANNO Manifest -- Automated Native Node Orchestrator
+# Declares exclusive tool ownership per language binary.
+# The daemon generates this on first run; hand-edit to override.
+
+[meta]
+schema_version = 1
+
+# ─────────────────────────────────────────────────────────────
+# Tool Ownership
+# ─────────────────────────────────────────────────────────────
+# CRITICAL: Python should stay on uv to avoid shim races.
+# Ruby and Go use dedicated rustified owners (rv/goup), while
+# Node lane can be fnm/volta or bun depending on local policy.
+
+[ownership]
+python     = "uv"       # uv exclusively: python, python3, pip, pip3
+ruby       = "rv"       # rv exclusively: ruby, gem, bundle, irb, rake
+go         = "goup"     # goup runtime ownership
+javascript = "bun"      # Node ownership via bun
+typescript = "bun"      # Node ownership via bun
+rust       = "rustup"   # system rustup
+solana     = "mise"     # mise-managed (solana-cli, anchor)
+java       = "mise"     # mise-managed (if needed)
+
+# ─────────────────────────────────────────────────────────────
+# Shim Priority (PATH order)
+# ─────────────────────────────────────────────────────────────
+# Lower number = prepended earlier on PATH (wins shim conflicts).
+# uv at 0 guarantees its python/pip shims resolve first.
+
+[shim_priority]
+uv     = 0
+rv     = 1
+goup   = 3
+fnm    = 4
+bun    = 5
+mise   = 10
+volta  = 15
+system = 99
+
+# ─────────────────────────────────────────────────────────────
+# Constraints
+# ─────────────────────────────────────────────────────────────
+# Binaries that should not be claimed by mise when a dedicated
+# owner exists.
+
+[constraints]
+mise_exclude_binaries = [
+    "python",
+    "python3",
+    "pip",
+    "pip3",
+    "uvx",
+    "ruby",
+    "gem",
+    "bundle",
+    "bundler",
+    "irb",
+    "rake",
+    "go",
+    "gofmt",
+    "node",
+    "npm",
+    "npx",
+]

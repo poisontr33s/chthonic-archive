@@ -1,0 +1,109 @@
+{
+  "name": "GLSL",
+  "scopeName": "source.glsl",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#preprocessor" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#storage" },
+    { "include": "#types" },
+    { "include": "#qualifiers" },
+    { "include": "#keywords" },
+    { "include": "#builtins" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.glsl",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.glsl",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        {
+          "name": "meta.preprocessor.glsl",
+          "match": "^\\s*#\\s*(version|extension|pragma|define|undef|if|ifdef|ifndef|elif|else|endif|error|line)\\b.*$",
+          "captures": {
+            "0": { "name": "keyword.control.preprocessor.glsl" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.glsl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.glsl", "match": "\\\\." }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.glsl",
+          "match": "\\b(([0-9]+\\.?[0-9]*|\\.[0-9]+)([eE][+-]?[0-9]+)?[fFlLuU]?|0[xX][0-9a-fA-F]+[uU]?)\\b"
+        }
+      ]
+    },
+    "storage": {
+      "patterns": [
+        {
+          "name": "storage.type.glsl",
+          "match": "\\b(const|attribute|uniform|varying|buffer|shared|coherent|volatile|restrict|readonly|writeonly|layout|centroid|flat|smooth|noperspective|patch|sample|subroutine|in|out|inout)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.glsl",
+          "match": "\\b(void|bool|int|uint|float|double|vec[2-4]|dvec[2-4]|bvec[2-4]|ivec[2-4]|uvec[2-4]|mat[2-4]|mat[2-4]x[2-4]|dmat[2-4]|dmat[2-4]x[2-4]|sampler[123]D|samplerCube|sampler[12]DShadow|samplerCubeShadow|sampler[12]DArray|sampler[12]DArrayShadow|samplerCubeArray|samplerCubeArrayShadow|samplerBuffer|sampler2DMS|sampler2DMSArray|sampler2DRect|sampler2DRectShadow|isampler[123]D|isamplerCube|isampler[12]DArray|isamplerCubeArray|isamplerBuffer|isampler2DMS|isampler2DMSArray|isampler2DRect|usampler[123]D|usamplerCube|usampler[12]DArray|usamplerCubeArray|usamplerBuffer|usampler2DMS|usampler2DMSArray|usampler2DRect|image[123]D|imageCube|image[12]DArray|imageCubeArray|imageBuffer|image2DMS|image2DMSArray|image2DRect|iimage[123]D|iimageCube|iimage[12]DArray|iimageCubeArray|iimageBuffer|iimage2DMS|iimage2DMSArray|iimage2DRect|uimage[123]D|uimageCube|uimage[12]DArray|uimageCubeArray|uimageBuffer|uimage2DMS|uimage2DMSArray|uimage2DRect|struct)\\b"
+        }
+      ]
+    },
+    "qualifiers": {
+      "patterns": [
+        {
+          "name": "storage.modifier.glsl",
+          "match": "\\b(precision|highp|mediump|lowp|invariant|precise)\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.glsl",
+          "match": "\\b(break|case|continue|default|discard|do|else|for|if|return|switch|while)\\b"
+        },
+        {
+          "name": "constant.language.glsl",
+          "match": "\\b(true|false)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "variable.language.glsl",
+          "match": "\\b(gl_Position|gl_PointSize|gl_ClipDistance|gl_CullDistance|gl_VertexID|gl_InstanceID|gl_FragCoord|gl_FrontFacing|gl_PointCoord|gl_FragDepth|gl_SampleID|gl_SamplePosition|gl_SampleMaskIn|gl_SampleMask|gl_NumWorkGroups|gl_WorkGroupSize|gl_WorkGroupID|gl_LocalInvocationID|gl_GlobalInvocationID|gl_LocalInvocationIndex|gl_PrimitiveID|gl_InvocationID|gl_TessLevelOuter|gl_TessLevelInner|gl_TessCoord|gl_PatchVerticesIn|gl_Layer|gl_ViewportIndex)\\b"
+        },
+        {
+          "name": "support.function.glsl",
+          "match": "\\b(radians|degrees|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|asinh|acosh|atanh|pow|exp|log|exp2|log2|sqrt|inversesqrt|abs|sign|floor|trunc|round|roundEven|ceil|fract|mod|modf|min|max|clamp|mix|step|smoothstep|isnan|isinf|floatBitsToInt|floatBitsToUint|intBitsToFloat|uintBitsToFloat|fma|frexp|ldexp|packUnorm2x16|packSnorm2x16|packUnorm4x8|packSnorm4x8|unpackUnorm2x16|unpackSnorm2x16|unpackUnorm4x8|unpackSnorm4x8|packHalf2x16|unpackHalf2x16|packDouble2x32|unpackDouble2x32|length|distance|dot|cross|normalize|faceforward|reflect|refract|matrixCompMult|outerProduct|transpose|determinant|inverse|lessThan|lessThanEqual|greaterThan|greaterThanEqual|equal|notEqual|any|all|not|textureSize|textureQueryLod|textureQueryLevels|textureSamples|texture|textureProj|textureLod|textureOffset|texelFetch|texelFetchOffset|textureProjOffset|textureLodOffset|textureProjLod|textureProjLodOffset|textureGrad|textureGradOffset|textureProjGrad|textureProjGradOffset|textureGather|textureGatherOffset|textureGatherOffsets|barrier|memoryBarrier|memoryBarrierAtomicCounter|memoryBarrierBuffer|memoryBarrierShared|memoryBarrierImage|groupMemoryBarrier|imageLoad|imageStore|imageAtomicAdd|imageAtomicMin|imageAtomicMax|imageAtomicAnd|imageAtomicOr|imageAtomicXor|imageAtomicExchange|imageAtomicCompSwap|imageSize|imageSamples|atomicCounterIncrement|atomicCounterDecrement|atomicCounter|atomicCounterAdd|atomicCounterSubtract|atomicCounterMin|atomicCounterMax|atomicCounterAnd|atomicCounterOr|atomicCounterXor|atomicCounterExchange|atomicCounterCompSwap|atomicAdd|atomicMin|atomicMax|atomicAnd|atomicOr|atomicXor|atomicExchange|atomicCompSwap|EmitVertex|EndPrimitive|EmitStreamVertex|EndStreamPrimitive|dFdx|dFdy|dFdxFine|dFdyFine|dFdxCoarse|dFdyCoarse|fwidth|fwidthFine|fwidthCoarse|interpolateAtCentroid|interpolateAtSample|interpolateAtOffset|noise[1-4])\\b"
+        }
+      ]
+    }
+  }
+}
