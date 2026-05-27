@@ -89,10 +89,14 @@ phrase_word = @{ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "-" | "_")* }
 // One well-typed substrate token, priority-ordered.
 phrase_atom = { ticked_id | placeholder | greek_letter | digit_token | phrase_word }
 
-// Phrase delimiters: space, comma+space, ampersand-with-spaces, plus-with-spaces.
-// Em-dash variant " - " deliberately NOT included — too prose-like; rare cases
-// that need it can be addressed by a separate em_dash_phrase rule later.
-phrase_delim = _{ " " | ", " | " & " | " + " }
+// Phrase delimiters. CRITICAL: PEG is ordered-choice, no backtracking on
+// longer alternatives — LONGEST-FIRST ordering is mandatory. If " " (single
+// space) is tried first, it greedy-matches the leading space of " ↔ " and
+// the rule never reaches the longer delim. Order strictly by decreasing length.
+//
+// Title-Case stop-condition on phrase_atom prevents " - " or " ↔ " from
+// eating prose like `(A - some clause)` — the lowercase 'some' terminates.
+phrase_delim = _{ " ↔ " | " - " | " & " | " + " | ", " | " " }
 
 // Multi-token phrase: 2+ atoms separated by delimiters. Single-atom case is
 // already handled by parened_id (identifier or ticked_id alternatives).
@@ -109,14 +113,15 @@ id_ref = { bold_parened_id | multi_alias | parened_phrase | parened_id | ticked_
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
-op_project = { "→" }   // Projection / transformation. Most common operator.
-op_mult    = { "×" }   // Multiplicative composition. Trinity Formula: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
-op_add     = { "+" }   // Additive composition / parameter combinator (in invocations).
-op_alt     = { "/" }   // Alternation / equivalence (inside multi_alias above).
-op_bind    = { "@" }   // Parameter binding (in invocations: $lend${X}@$from${Y}@$to${Z}).
-op_bidir   = { "<->" } // Bidirectional connector. Observed: line 90 (Bidirectional-Synthesis).
+op_project = { "→" }         // Projection / transformation. Most common operator.
+op_mult    = { "×" }         // Multiplicative composition. Trinity Formula: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
+op_add     = { "+" }         // Additive composition / parameter combinator (in invocations).
+op_alt     = { "/" }         // Alternation / equivalence (inside multi_alias above).
+op_bind    = { "@" }         // Parameter binding (in invocations: $lend${X}@$from${Y}@$to${Z}).
+op_bidir   = { "<->" | "↔" } // Bidirectional connector. ASCII variant + Unicode glyph (line 90, line 2018 etc.).
+op_assign  = { "=" }         // Assignment / definition. Trinity Formula declaration: `ASC = ...`. Semantics deferred to runtime layer (different precedence than → × +).
 
-binary_op = { op_project | op_mult | op_add | op_bidir }
+binary_op = { op_project | op_mult | op_add | op_bidir | op_assign }
 
 // ─── References — section + line anchors ────────────────────────────────────
 
