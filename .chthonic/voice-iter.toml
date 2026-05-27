@@ -1,0 +1,49 @@
+project_name = "chthonic"
+
+[transport]
+type = "mcp"
+mcp_name = "voice-iter-chthonic"
+
+[stt]
+provider = "parakeet"
+model_path = "~/.cache/voice-iter/models/parakeet-tdt-v3"
+language = "en"
+silence_threshold_db = -50.0
+# Hotwords prime the STT to prefer these tokens — recognition rate goes up
+# substantially for project-specific vocabulary when listed here.
+hotwords = [
+    # CRC Triumvirate + Sourcer
+    "Lysandra", "Orackla", "Umeko", "Claudine", "Sourcer",
+    "Lysandra Thorne", "Orackla Nocticula", "Umeko Ketsuraku",
+    "Verita Cassiar", "Sylvaris Cythrex",
+    # Tier hierarchy + factions
+    "K-CUP", "FA-GHOR", "WHR:MAX", "CRC-MEDAT", "CRC-GAR", "CRC-AS",
+    "Tier 0.5", "Tier 1", "Tier 1.5", "T3",
+    # Operational vocabulary
+    "MILFOLOGICAL", "ANKHOLOGICAL", "EGYPTOLOGICAL",
+    "ANKH-MGBP", "Reconciliation Engine", "Triumvirate",
+    "Decorator", "Pact", "Sealed-In-Sadhana",
+    # Codex repo names
+    "chthonic-archive", "PsychoNoir-Kontrapunkt", "voice-iter",
+    "dsl-iter", "dsl-iteration-toolkit",
+    # Catalyst structure references
+    "SSOT", "catalyst", "substrate", "patterns.json", "ledger",
+]
+
+[tts]
+provider = "kokoro"
+voice = "af_bella"
+model_path = "~/.cache/voice-iter/models/kokoro-82m"
+speed = 1.1
+
+[corpus]
+test_corpus_path = "../tests/chthonic_voice_corpus.txt"
+
+[output]
+manifest_dir = "../manifest/voice"
+audio_artifacts_dir = "../manifest/voice/.audio_snapshots"
+ledger_path = "../manifest/voice/voice_iteration_history.ndjson"
+catalog_path = "../tests/voice_config_catalog.json"
+
+[checkpoint]
+retention = 20

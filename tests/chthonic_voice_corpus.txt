@@ -1,0 +1,61 @@
+# Chthonic voice test corpus — 50 lines covering 8 evaluation axes.
+# Generic TTS leaderboards miss our content's specific stresses.
+# Each non-comment, non-blank line is one eval utterance.
+#
+# Axes (see ARCHITECTURE.md):
+#   1. Backtick-id pronunciation
+#   2. Greek letters inline
+#   3. Code identifiers in spoken context
+#   4. NSFW++ vocabulary tolerance
+#   5. Long paren-dense substrate
+#   6. Character name disambiguation
+#   7. Spec citations
+#   8. Mixed-case CAS proper nouns
+
+# === Axis 1: Backtick-id pronunciation ===
+The catalyst declares the entity as `The-Savant`, conductor of the Pact.
+Codex-Brahmanica-Perfectus operates as the apex synthesis core.
+The Reconciliation Engine binds `CRC-MEDAT` to `CRC-GAR` bilaterally.
+Look up the entry under `Bun--Cwd-Folder` in the canonical shell config.
+
+# === Axis 2: Greek letters inline ===
+Perpetual Evolution Engine cycles through Phases alpha, beta, gamma.
+The Hessian curvature converges around lambda equals ln two over seven.
+Tier four maps to T3 via the superposition collapse at delta-omega.
+Iteration five regressed; iteration six recovered through Phase gamma.
+
+# === Axis 3: Code identifiers in spoken context ===
+Run dsl-iter check against the chthonic dot dsl-iter dot toml config.
+The grammar hash is c-two-c-eight-c-f-c-four-c-six-five-three-seven-seven-e-eight.
+Open scripts slash dsl-iteration-check dot py and check line two hundred.
+Voice-iter check runs corpus eval and appends to the iteration ledger.
+
+# === Axis 4: NSFW++ vocabulary tolerance ===
+The MILFOLOGICAL strand of the K-CUP Trinity Formula governs the archetype.
+Trinity Formula: ASC equals MILFOLOGICAL times German BDSM times Frame-Werk.
+The WHR colon MAX tri-axis canonicalizes feminine apex through point four six four.
+Dominatrix Rulae enforces constraint discipline under NSFW plus plus register.
+
+# === Axis 5: Long paren-dense substrate ===
+The Sourcer at Tier one point five sub-bridge handles lane-walker verification.
+Per SSOT section ten point three point one the Triumvirate co-signs the Pact.
+Madam Umeko Ketsuraku operates LIPAA architectonic refinement under cobalt-white.
+Doctora Verita Cassiar speaks in Lane-Cited Discourse with amethyst-obsidian frequency.
+
+# === Axis 6: Character name disambiguation ===
+Lysandra Thorne, Orackla Nocticula, and Umeko Ketsuraku form the CRC quartet.
+Lysandra extracts truth; Orackla generates chaos; Umeko purifies structure.
+Claudine Sin'claire runs the saline ordeal-matriarch test on Liver organ.
+Sylvaris Cythrex operates NK-cell cytolytic strike under T3 immune circuit.
+
+# === Axis 7: Spec citations ===
+Refer to section ten point three point one, line four thousand one hundred ninety one.
+The convergence formula at section eight, line four thousand fifty eight, declares ASC.
+Tier zero point five is the Decorator, per SSOT section zero, line ninety six.
+Phase zero grammar ships at dot chthonic slash grammar slash chthonic dot peg, 254 lines.
+
+# === Axis 8: Mixed-case CAS proper nouns ===
+FA-GHOR Tier one binds the CRC matriarch quartet under operational doctrine.
+WHR colon MAX governs the tri-axis canonicalization of feminine apex.
+K-CUP Hierarchical Trinity declares Decorator at Tier zero point five supremacy.
+ANKH-MGBP, the Middle-Ground Bridge Protocol, breathes life between two lineages.

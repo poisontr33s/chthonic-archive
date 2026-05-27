@@ -602,6 +602,29 @@ dev/dealogue-fayde/.bundle/
 # Per-project dsl-iter.toml config files (the chthonic instance).
 !.chthonic/dsl-iter.toml
 
+# tools/voice-iter/ — voice integration toolkit (2026-05-27).
+# Python project (voice ecosystem is Python-native). Polyrepo-aware:
+# generalized core + per-project voice-iter.toml. Models cached cross-project
+# at ~/.cache/voice-iter/models/ (outside repo, not gitignored relevant).
+!tools/voice-iter/
+!tools/voice-iter/pyproject.toml
+!tools/voice-iter/*.md
+!tools/voice-iter/src/
+!tools/voice-iter/src/voice_iter/
+!tools/voice-iter/src/voice_iter/*.py
+!tools/voice-iter/src/voice_iter/providers/
+!tools/voice-iter/src/voice_iter/providers/*.py
+!tools/voice-iter/examples/
+!tools/voice-iter/examples/*.toml
+
+# Per-project voice-iter.toml config (chthonic instance).
+!.chthonic/voice-iter.toml
+
+# Voice test corpus + expected outputs (per-project, lives in tests/).
+!tests/
+!tests/chthonic_voice_corpus.txt
+!tests/voice_config_catalog.json
+
 # game/refs/ — form-vector reference imagery for the cRPG workspace.
 # pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
 # declared in .gitattributes. Engine asset caches under game/cocos-iso/

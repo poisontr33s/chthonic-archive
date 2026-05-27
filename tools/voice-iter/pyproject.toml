@@ -1,0 +1,53 @@
+[project]
+name = "voice-iter"
+version = "0.1.0"
+description = "Voice integration toolkit — generalized layer + per-project config. Polyrepo-aware. Parakeet TDT V3 + Kokoro by default; OpenAI-compatible API path supported."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    # Core MCP transport
+    "mcp >= 1.0",
+    # Audio I/O
+    "sounddevice >= 0.4",
+    "soundfile >= 0.12",
+    "numpy >= 1.24",
+    # Config
+    "tomli >= 2.0",
+    "pydantic >= 2.0",
+    # Async
+    "anyio >= 4.0",
+]
+
+[project.optional-dependencies]
+stt-parakeet = [
+    "nemo-toolkit[asr] >= 2.0",   # NVIDIA NeMo for Parakeet
+    "torch >= 2.4",
+]
+stt-whisper = [
+    "faster-whisper >= 1.0",
+]
+tts-kokoro = [
+    "kokoro >= 0.9",               # Kokoro TTS pip package
+    "phonemizer >= 3.2",
+    "torch >= 2.4",
+]
+tts-fish-speech = [
+    "fish-audio-tts >= 1.0",       # Fish Audio Python client
+]
+openai-compat = [
+    "openai >= 1.50",              # for OpenAI-compatible API path
+]
+all-local = [
+    "voice-iter[stt-parakeet,stt-whisper,tts-kokoro]",
+]
+
+[project.scripts]
+voice-iter = "voice_iter.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voice_iter"]
