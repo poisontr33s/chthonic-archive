@@ -593,7 +593,7 @@ dev/dealogue-fayde/.bundle/
 # grammar loading (no compile-time grammar binding).
 !tools/dsl-iteration-toolkit/
 !tools/dsl-iteration-toolkit/Cargo.toml
-!tools/dsl-iteration-toolkit/README.md
+!tools/dsl-iteration-toolkit/*.md
 !tools/dsl-iteration-toolkit/src/
 !tools/dsl-iteration-toolkit/src/*.rs
 !tools/dsl-iteration-toolkit/src/bin/
