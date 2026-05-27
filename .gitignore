@@ -574,6 +574,19 @@ dev/dealogue-fayde/.bundle/
 !.chthonic/ankh_seeds.yaml
 !.chthonic/REM_BLUEPRINT.md
 
+# tools/dsl-smoke/ — Phase 0 grammar iteration tools (2026-05-27).
+# Cargo workspace member. build.rs copies .chthonic/grammar/chthonic.peg
+# into src/chthonic.pest at compile time (the .pest file stays ignored —
+# it's a build artifact). target/ and Cargo.lock also ignored.
+# Parent-dir admittance needed before child rules can apply.
+!tools/
+!tools/dsl-smoke/
+!tools/dsl-smoke/Cargo.toml
+!tools/dsl-smoke/build.rs
+!tools/dsl-smoke/README.md
+!tools/dsl-smoke/src/
+!tools/dsl-smoke/src/*.rs
+
 # game/refs/ — form-vector reference imagery for the cRPG workspace.
 # pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
 # declared in .gitattributes. Engine asset caches under game/cocos-iso/

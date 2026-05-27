@@ -1,0 +1,29 @@
+[package]
+name = "dsl-smoke"
+version = "0.1.0"
+edition = "2024"
+description = "Chthonic DSL Phase 0 grammar smoke + audit + bisect + probe tools. Iteration-loop driver for the .chthonic/grammar/chthonic.peg substrate. Reads the canonical grammar via build.rs (copied to src/chthonic.pest at compile time)."
+license = "WTFPL"
+
+[dependencies]
+pest = "2.7"
+pest_derive = "2.7"
+
+[build-dependencies]
+# build.rs uses no external deps; just std::fs
+
+[[bin]]
+name = "dsl-smoke"
+path = "src/main.rs"
+
+[[bin]]
+name = "dsl-audit"
+path = "src/audit.rs"
+
+[[bin]]
+name = "dsl-bisect"
+path = "src/bisect.rs"
+
+[[bin]]
+name = "dsl-probe"
+path = "src/probe.rs"
