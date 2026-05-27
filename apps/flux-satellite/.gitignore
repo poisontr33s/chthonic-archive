@@ -1,0 +1,9 @@
+engines/*.engine.enc
+engines/*.engine.plain
+engines/*.seal.json.bak
+logs/
+scratch/
+*.pid
+__pycache__/
+*.pyc
+.pytest_cache/

@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flux_satellite"]
+
+[project]
+name = "flux-satellite"
+version = "0.1.0"
+description = "Chthonic FLUX vision satellite — sealed TRT engine daemon (SM89 / FP8), suspended CUDA stream, Win32 named-pipe + MMF IPC."
+requires-python = ">=3.14"
+dependencies = [
+    # NO tensorrt — DiT inference is delegated to the C++ chthonic-tensor-bridge
+    # which links the native NVIDIA TensorRT SDK (nvinfer / nvonnxparser).
+    # Python satellite owns text encoders (T5-XXL + CLIP-L) + VAE decode only.
+    # See memory: project_trt_cp314_gap.md
+    "diffusers>=0.30",
+    "transformers>=5.4.0,<6",
+    "torch>=2.11.0",
+    "accelerate>=1.0,<2",
+    "nvidia-ml-py>=12.0.0",
+    "cryptography>=44.0.0",
+    "pywin32>=311 ; platform_system == 'Windows'",
+    "huggingface-hub>=1.8.0,<2",
+    "sentencepiece>=0.2.0",    # T5 tokenizer
+    "protobuf>=4.25.0",        # T5 tokenizer
+    "pillow>=11.0.0",
+    "numpy>=2.4.3,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0",
+    "flux-engine-forge",
+]
+
+[project.scripts]
+flux-satellite = "flux_satellite.__main__:main"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+flux-engine-forge = { workspace = true }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
