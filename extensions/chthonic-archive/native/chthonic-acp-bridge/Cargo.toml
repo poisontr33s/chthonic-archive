@@ -1,0 +1,28 @@
+[package]
+name        = "chthonic-acp-bridge"
+description = "Chthonic Archive bridge to the Agent Client Protocol. Sibling of chthonic-copilot-bridge; same v9-baseline crate conventions, ACP wire instead of the Copilot SDK's JSON-RPC. TS substrate at extensions/chthonic-archive/src/acp/ is the reference."
+version.workspace = true
+license.workspace = true
+
+# Override workspace edition (2021): canon for the bridge lane is edition 2024 to
+# match the github-copilot-sdk beta.9 SDK baseline. Both rails share this baseline.
+edition = "2024"
+rust-version = "1.94.0"
+
+[[bin]]
+name = "chthonic-acp-bridge"
+path = "src/main.rs"
+
+[dependencies]
+# Official Rust ACP crate (Zed's canonical implementation). 0.12 is current.
+# `unstable` feature mirrors Zed's own pin pattern — required while ACP is pre-1.0.
+agent-client-protocol = { version = "0.12", features = ["unstable"] }
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+# Local tokio: needs `full` for child-process + signal + stdio I/O. Workspace
+# dep is macros/rt only. Same override as chthonic-copilot-bridge.
+tokio = { version = "1.52", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { workspace = true }

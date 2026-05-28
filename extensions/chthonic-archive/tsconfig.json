@@ -6,5 +6,5 @@
     "types": ["node", "vscode"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["dist", "node_modules", "native", "wasm"]
+  "exclude": ["dist", "node_modules", "native", "wasm", "src/**/*.unused.off/**"]
 }

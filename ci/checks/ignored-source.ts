@@ -178,6 +178,11 @@ function isNoise(path: string): boolean {
   if (lower.includes("/.deprecated/") || lower.endsWith(".meta.json")) {
     return true;
   }
+  // Deliberate disabled-source quarantine. These files are preserved on disk
+  // while their active lane is removed from the extension build.
+  if (lower.endsWith(".unused.off") || lower.includes(".unused.off/")) {
+    return true;
+  }
   // scripts/_foo.* — underscore-prefix is the temp convention regardless of extension.
   if (/^scripts\/_[^/]+$/i.test(path)) {
     return true;

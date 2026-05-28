@@ -1,0 +1,25 @@
+[package]
+name        = "chthonic-copilot-bridge"
+description = "Chthonic Archive bridge to the GitHub Copilot SDK. Spawned by the VS Code extension; speaks the Copilot SDK toward the agent and exposes a smoke surface toward the TS shell."
+version.workspace = true
+license.workspace = true
+
+# Override workspace edition (2021): the GitHub Copilot SDK canon at v1.0.0-beta.9
+# targets edition 2024 + MSRV 1.94. Per-crate override is intentional alignment.
+edition = "2024"
+rust-version = "1.94.0"
+
+[[bin]]
+name = "chthonic-copilot-bridge"
+path = "src/main.rs"
+
+[dependencies]
+github-copilot-sdk = { version = "1.0.0-beta.9" }
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+# Local tokio: needs `full` for signal + stdio I/O. Workspace dep is macros/rt only.
+tokio = { version = "1.52", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { workspace = true }

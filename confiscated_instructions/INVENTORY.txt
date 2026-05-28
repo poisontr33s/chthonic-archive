@@ -1,0 +1,26 @@
+confiscated_instructions inventory
+
+Purpose:
+Confiscated instruction clutter.
+Files here are preserved for review, not active instruction.
+
+Kept out by boundary:
+Claude and Gemini surfaces were restored to their original paths.
+
+Current contents:
+- backup_20260528-194954_AGENT_COMMON.md
+- backup_20260528-194954_AGENTS.md
+- backup_20260528-194954_diary.md
+- global_dotcodex_AGENTS.md
+- global_dotcodex_instructions.md
+- palette_home_dotcodex_instructions.md
+- repo_codex_diary.md
+- repo_codex_NEXT.md
+- repo_dotcodex_instructions.md
+- repo_dotgithub_copilot-instructions.md
+- repo_root_AGENT_COMMON.md
+- repo_root_AGENTS.md
+
+Global TOML adjustment:
+C:\Users\eldno\.codex\config.toml was stripped of Markdown-manifest comments.
+child_agents_md is now false.

@@ -6,6 +6,8 @@ members = [
     "chthonic-daemon",
     "tensor-runtime-host",
     "synapse-node",
+    "chthonic-copilot-bridge",
+    "chthonic-acp-bridge",
     "../wasm/chthonic-loom",
     "xtask",
 ]
@@ -17,6 +19,8 @@ default-members = [
     "entropy-ledger-host",
     "chthonic-daemon",
     "tensor-runtime-host",
+    "chthonic-copilot-bridge",
+    "chthonic-acp-bridge",
     "xtask",
 ]
 

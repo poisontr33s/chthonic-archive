@@ -27,6 +27,7 @@ import { spawnSync } from "child_process";
 
 const STAGED = process.argv.includes("--staged");
 const REPO_ROOT = resolve(import.meta.dir, "../..");
+const PASSIVE_MARKDOWN_PREFIXES = ["confiscated_instructions/"];
 
 function gitLines(args: string[]): string[] {
   const result = spawnSync("git", args, {
@@ -42,6 +43,15 @@ function gitLines(args: string[]): string[] {
 
 function isMarkdownPath(rel: string): boolean {
   return rel.toLowerCase().endsWith(".md");
+}
+
+function normalizeRel(rel: string): string {
+  return rel.replace(/\\/g, "/");
+}
+
+function isPassiveMarkdown(rel: string): boolean {
+  const normalized = normalizeRel(rel);
+  return PASSIVE_MARKDOWN_PREFIXES.some((prefix) => normalized.startsWith(prefix));
 }
 
 // Lifecycle values that exclude a file from active link auditing.
@@ -88,6 +98,13 @@ function existingMarkdown(paths: string[]): string[] {
     .filter(isMarkdownPath)
     .filter((rel) => existsSync(resolve(REPO_ROOT, rel)))
     .filter((rel) => {
+      if (isPassiveMarkdown(rel)) {
+        console.log(`[pathfinder] skipping passive markdown: ${rel}`);
+        return false;
+      }
+      return true;
+    })
+    .filter((rel) => {
       if (isTombstone(rel)) {
         console.log(`[pathfinder] skipping tombstone: ${rel}`);
         return false;
@@ -97,7 +114,26 @@ function existingMarkdown(paths: string[]): string[] {
 }
 
 function hasStagedRenames(): boolean {
-  return gitLines(["diff", "--cached", "--name-status", "--diff-filter=R"]).length > 0;
+  const renames = gitLines(["diff", "--cached", "--name-status", "--diff-filter=R"]);
+  let actionable = 0;
+  let passive = 0;
+
+  for (const line of renames) {
+    const parts = line.split("\t");
+    if (parts.length < 3) continue;
+    const oldPath = normalizeRel(parts[1] ?? "");
+    const newPath = normalizeRel(parts[2] ?? "");
+    if (isPassiveMarkdown(oldPath) || isPassiveMarkdown(newPath)) {
+      passive += 1;
+    } else {
+      actionable += 1;
+    }
+  }
+
+  if (passive > 0) {
+    console.log(`[pathfinder] staged renames: ${passive} passive confiscation rename(s) ignored`);
+  }
+  return actionable > 0;
 }
 
 function runLinkAudit(label: string, args: string[]): boolean {

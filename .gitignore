@@ -43,6 +43,10 @@ adapters/
 !.ruby-version
 !rproject.toml
 
+# Allow confiscated instruction palettes
+!confiscated_instructions/
+!confiscated_instructions/**
+
 # Allow Birdcage AAI evidence chamber
 !birdcage/
 !birdcage/README.md

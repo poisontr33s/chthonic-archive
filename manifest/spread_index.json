@@ -1,0 +1,5454 @@
+{
+  "generated_at": "2026-05-28T04:35:20.615Z",
+  "root_dirs": [
+    "C:\\Users\\eldno"
+  ],
+  "project_count": 110,
+  "projects": [
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive",
+      "rel_path": "chthonic-archive",
+      "name": "chthonic-archive-root",
+      "languages": [
+        "node",
+        "rust",
+        "c/cpp",
+        "cuda",
+        "shaders"
+      ],
+      "node": {
+        "name": "chthonic-archive-root",
+        "version": "3.3.0",
+        "type": "module",
+        "package_manager": "bun",
+        "dep_count": 7,
+        "dev_dep_count": 7,
+        "scripts": [
+          "postinstall",
+          "audit",
+          "audit:full",
+          "doctor",
+          "verify",
+          "bun:audit",
+          "bun:audit:strict",
+          "web:dev",
+          "web:build",
+          "web:start",
+          "web:typecheck",
+          "ext:e2e",
+          "icons:surface:map",
+          "icons:scaffold:audit",
+          "theme:contrast:audit",
+          "theme:contrast:audit:strict",
+          "paths:naming:audit",
+          "ext:kits:check",
+          "ext:package:insiders",
+          "ext:sync:insiders",
+          "ext:sync:insiders:quick",
+          "ext:sync:insiders:package",
+          "ext:sync:insiders:full",
+          "uncensored:bench",
+          "uncensored:steward",
+          "uncensored:refresh",
+          "uncensored:serve:json",
+          "uncensored:serve:code",
+          "uncensored:serve:unrestricted",
+          "hf:rank",
+          "roulette:gen",
+          "roulette:open",
+          "cross:critique",
+          "artcop:vscode",
+          "review:ai",
+          "bus:spec-enforcer",
+          "bus:spec-enforcer:once",
+          "reflex:guard",
+          "gemini",
+          "gemini:install",
+          "gemini:model:sync",
+          "gemini:repair",
+          "gemini:update",
+          "gemini:version",
+          "biome:install",
+          "biome:version",
+          "lint:shebang",
+          "lint:shebang:staged",
+          "ignore:audit",
+          "ignore:audit:report",
+          "hooks:install",
+          "hooks:precommit",
+          "hooks:verify",
+          "ci",
+          "ci:staged",
+          "ci:full",
+          "ci:check",
+          "ci:list",
+          "workspace:open",
+          "links:audit",
+          "links:audit:all",
+          "links:gfm",
+          "links:gfm:online",
+          "links:fix",
+          "links:fix:all",
+          "links:renames:fix",
+          "pathfinder:audit",
+          "pathfinder:gfm",
+          "pathfinder:gfm:online",
+          "pathfinder:fix",
+          "pathfinder:ci",
+          "links:author",
+          "links:author:changed",
+          "links:author:report",
+          "links:satellites",
+          "links:satellites:full",
+          "teleport",
+          "teleport:dry",
+          "teleport:from:alchemy",
+          "teleport:from:pnk",
+          "teleport:dry:pnk",
+          "teleport:sibling:pnk",
+          "teleport:sibling:pnk:dry",
+          "dashboard",
+          "dashboard:open",
+          "todo:spin",
+          "todo:spin:dry",
+          "todo:add",
+          "todo:list",
+          "todo:list:all",
+          "todo:report",
+          "vs:battery",
+          "vs:battery:diff",
+          "vs:battery:components",
+          "vs:battery:install",
+          "cocos:probe",
+          "cocos:info",
+          "cocos:build",
+          "cocos:dashboard",
+          "test",
+          "test:changed",
+          "test:parallel",
+          "session:view",
+          "session:view:tail",
+          "session:view:full",
+          "session:archive",
+          "session:archive:closed",
+          "session:watch",
+          "session:watch:push",
+          "session:watch:once",
+          "session:index",
+          "session:search",
+          "session:failures",
+          "session:vampire",
+          "session:vampire:blood",
+          "session:vampire:edits",
+          "session:vampire:commands",
+          "vampire:drain",
+          "vampire:blood",
+          "vampire:nightly",
+          "vampire:extract:edits",
+          "vampire:extract:commands",
+          "vampire:extract:code",
+          "vampire:extract:memories",
+          "vampire:validate",
+          "vampire:terminal",
+          "vampire:terminal:watch",
+          "vampire:terminal:stats",
+          "session:corpus",
+          "session:corpus:rebuild",
+          "session:corpus:classify",
+          "session:corpus:stats",
+          "session:corpus:watch",
+          "session:corpus:mcp",
+          "session:corpus:memories",
+          "session:corpus:memories:dry",
+          "session:query",
+          "session:query:timeline",
+          "session:query:hot",
+          "session:query:tools",
+          "session:query:search",
+          "session:query:messages",
+          "embed:gate:list",
+          "embed:gate:check",
+          "embed:gate:accept",
+          "embed:gate:accept:all",
+          "embed:gate:accept:all:playwright",
+          "embed:discover",
+          "embed:discover:gated",
+          "embed:discover:open",
+          "embed:discover:top",
+          "embed:switch",
+          "embed:switch:list",
+          "embed:switch:dry",
+          "truncate",
+          "truncate:top5",
+          "truncate:session",
+          "truncate:warmstart",
+          "truncate:nogpu",
+          "truncate:report",
+          "truncate:gpu:score",
+          "embed:explore",
+          "embed:explore:onnx",
+          "embed:explore:trt",
+          "embed:explore:bge",
+          "embed:explore:minilm",
+          "embed:explore:scan"
+        ],
+        "framework_hints": [
+          "http-server"
+        ],
+        "workspace_root": false
+      },
+      "rust": {
+        "name": "chthonic-archive",
+        "version": "0.1.0",
+        "edition": "2024",
+        "license": "WTFPL",
+        "is_workspace": true,
+        "workspace_member_count": 6,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 5
+      },
+      "file_counts": {
+        ".toml": 33,
+        ".md": 784,
+        ".json": 604,
+        ".py": 1061,
+        ".yml": 39,
+        ".lock": 14,
+        ".css": 29,
+        ".tsx": 5,
+        ".ts": 112,
+        ".mjs": 5,
+        ".js": 139,
+        ".cc": 9,
+        ".h": 80,
+        ".html": 28,
+        ".hlsl": 2,
+        ".frag": 1,
+        ".vert": 1,
+        ".glsl": 1,
+        ".rs": 2,
+        ".yaml": 26,
+        ".go": 39,
+        ".rb": 1,
+        ".cpp": 75,
+        ".hpp": 1,
+        ".c": 3,
+        ".cu": 3
+      },
+      "line_counts": {
+        ".py": 299435,
+        ".tsx": 328,
+        ".ts": 20852,
+        ".mjs": 847,
+        ".js": 23382,
+        ".cc": 2057,
+        ".h": 19603,
+        ".hlsl": 57,
+        ".frag": 49,
+        ".vert": 38,
+        ".glsl": 108,
+        ".rs": 491,
+        ".go": 13197,
+        ".rb": 1334,
+        ".cpp": 97086,
+        ".hpp": 392,
+        ".c": 57598,
+        ".cu": 11985
+      },
+      "total_source_lines": 548839,
+      "config_files": [
+        "ankh_atlas\\pyproject.toml",
+        "apps\\chthonic-next\\tailwind.config.ts",
+        "apps\\chthonic-next\\tsconfig.json",
+        "apps\\chthonic-tensor-bridge\\CMakeLists.txt",
+        "apps\\flux-engine-forge\\pyproject.toml",
+        "apps\\flux-satellite\\pyproject.toml",
+        "apps\\renpy-uv-py314\\pyproject.toml",
+        "apps\\renpy-uv-py314\\vcpkg-overlay-ports\\ffmpeg-bin2c\\CMakeLists.txt",
+        "apps\\tabby-modern\\pyproject.toml",
+        "birdcage\\pyproject.toml",
+        "bunfig.toml",
+        "chthonic-archive\\requirements.txt",
+        "chthonic-vscode-extension\\tsconfig.json",
+        "CMakeLists.txt",
+        "csb-live\\biome.json",
+        "csb-live\\claudine-cli\\biome.json",
+        "csb-live\\claudine-cli\\bunfig.toml",
+        "csb-live\\claudine-cli\\tsconfig.json",
+        "csb-live\\pyproject.toml",
+        "csb-live\\research\\gemini-cli\\esbuild.config.js",
+        "csb-live\\research\\gemini-cli\\eslint.config.js",
+        "csb-live\\research\\gemini-cli\\integration-tests\\tsconfig.json",
+        "csb-live\\research\\gemini-cli\\integration-tests\\vitest.config.ts",
+        "csb-live\\research\\gemini-cli\\Makefile",
+        "csb-live\\research\\gemini-cli\\tsconfig.json",
+        "csb-live\\research\\gh-cli\\Makefile",
+        "csb-live\\tfjs-dwn-nav-v-gpu\\bunfig.toml",
+        "csb-live\\tfjs-dwn-nav-v-gpu\\tsconfig.json",
+        "csb-live\\tsconfig.json",
+        "dev\\sd-candidates\\a1111\\pyproject.toml",
+        "dev\\sd-candidates\\a1111\\requirements.txt",
+        "dev\\sd-candidates\\comfyui\\pyproject.toml",
+        "dev\\sd-candidates\\comfyui\\requirements.txt",
+        "dev\\sd-candidates\\comfyui\\tests-unit\\requirements.txt",
+        "dev\\sd-candidates\\forge\\k_diff\\pyproject.toml",
+        "dev\\sd-candidates\\forge\\k_diff\\requirements.txt",
+        "dev\\sd-candidates\\forge\\k_diff\\setup.py",
+        "dev\\sd-candidates\\forge\\pyproject.toml",
+        "dev\\sd-candidates\\forge\\requirements.txt",
+        "dev\\sd-candidates\\invokeai\\docs\\tsconfig.json",
+        "dev\\sd-candidates\\invokeai\\Makefile",
+        "dev\\sd-candidates\\invokeai\\pyproject.toml",
+        "dev\\sd-candidates\\koboldcpp\\CMakeLists.txt",
+        "dev\\sd-candidates\\koboldcpp\\gguf-py\\pyproject.toml",
+        "dev\\sd-candidates\\koboldcpp\\Makefile",
+        "dev\\sd-candidates\\koboldcpp\\requirements.txt",
+        "dev\\sd-candidates\\sdnext\\cli\\requirements.txt",
+        "dev\\sd-candidates\\sdnext\\eslint.config.mjs",
+        "dev\\sd-candidates\\sdnext\\pyproject.toml",
+        "dev\\sd-candidates\\sdnext\\requirements.txt",
+        "dev\\tabbyAPI\\pyproject.toml"
+      ],
+      "has_native_stack": true,
+      "files_capped": true,
+      "repurposability_score": 12,
+      "interesting_signals": [
+        "frameworks:http-server",
+        "scripts:167",
+        "rust-workspace:6",
+        "edition-2024",
+        "native:.cc+.h+.hlsl+.frag+.vert+.glsl",
+        "lines:548839",
+        "configs:51"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
+      "rel_path": "chthonic-archive\\extensions\\chthonic-archive",
+      "name": "chthonic-archive",
+      "languages": [
+        "node",
+        "shaders"
+      ],
+      "node": {
+        "name": "chthonic-archive",
+        "version": "0.2.9",
+        "description": "VS Code workspace extension for the Chthonic Archive — themes, status bar, sidebar, and policy tools.",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 2,
+        "dev_dep_count": 13,
+        "scripts": [
+          "postinstall",
+          "setup:oxidized",
+          "verify:host",
+          "verify:codex",
+          "precompile",
+          "prepublish:bundle",
+          "build:ledger",
+          "build:wasm",
+          "build:daemon",
+          "build:synapse",
+          "build:all",
+          "toolpool:scan",
+          "toolpool:scan:json",
+          "toolpool:wire",
+          "audit:vs2026",
+          "audit:vs2026:strict",
+          "sql:version",
+          "compile",
+          "test:markdown-paste",
+          "test:markdown-paste:stress",
+          "test:daemon-jsonl",
+          "test:webview-hmr",
+          "watch",
+          "watch:worker",
+          "test:e2e",
+          "verify:all",
+          "insiders:kits:check",
+          "insiders:package",
+          "insiders:run",
+          "insiders:dts:sync",
+          "insiders:restart:gate",
+          "insiders:post-restart:verify"
+        ],
+        "framework_hints": [
+          "vscode-extension",
+          "openai",
+          "openai-agents"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".toml": 13,
+        ".json": 20,
+        ".lock": 3,
+        ".md": 3,
+        ".html": 7,
+        ".js": 7,
+        ".ts": 72,
+        ".rs": 17,
+        ".comp": 1,
+        ".cjs": 2
+      },
+      "line_counts": {
+        ".js": 1728,
+        ".ts": 34769,
+        ".rs": 5355,
+        ".comp": 115,
+        ".cjs": 346
+      },
+      "total_source_lines": 42313,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": true,
+      "files_capped": false,
+      "repurposability_score": 10,
+      "interesting_signals": [
+        "frameworks:vscode-extension+openai+openai-agents",
+        "scripts:32",
+        "native:.comp",
+        "lines:42313"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\meta-ide",
+      "rel_path": "chthonic-archive\\meta-ide",
+      "name": "chthonic-sdk",
+      "languages": [
+        "node",
+        "c/cpp"
+      ],
+      "node": {
+        "name": "chthonic-sdk",
+        "version": "0.1.0",
+        "description": "Bun-native workspace wrapping the Copilot SDK engine. Oracle (reasoning) + Harness (tools).",
+        "type": "module",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [
+          "oracle",
+          "harness",
+          "test",
+          "test:auth"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 35,
+        ".js": 22,
+        ".yaml": 466,
+        ".md": 145,
+        ".ts": 122,
+        ".toml": 7,
+        ".yml": 53,
+        ".cs": 105,
+        ".go": 372,
+        ".java": 1,
+        ".py": 139,
+        ".mjs": 4,
+        ".rs": 94,
+        ".lock": 1,
+        ".cpp": 3,
+        ".h": 2,
+        ".css": 5,
+        ".html": 29
+      },
+      "line_counts": {
+        ".js": 774279,
+        ".ts": 98157,
+        ".cs": 55254,
+        ".go": 185555,
+        ".java": 42,
+        ".py": 65101,
+        ".mjs": 517,
+        ".rs": 66275,
+        ".cpp": 3857,
+        ".h": 41
+      },
+      "total_source_lines": 1249078,
+      "config_files": [
+        "copilot-sdk\\bunfig.toml",
+        "copilot-sdk-rust-v1.0.0-beta.9\\nodejs\\eslint.config.js",
+        "copilot-sdk-rust-v1.0.0-beta.9\\nodejs\\tsconfig.json",
+        "copilot-sdk-rust-v1.0.0-beta.9\\nodejs\\vitest.config.ts",
+        "copilot-sdk-rust-v1.0.0-beta.9\\python\\pyproject.toml",
+        "copilot-sdk-rust-v1.0.0-beta.9\\rust\\rust-toolchain.toml",
+        "copilot-sdk-rust-v1.0.0-beta.9\\scripts\\corrections\\tsconfig.json",
+        "copilot-sdk-rust-v1.0.0-beta.9\\test\\harness\\tsconfig.json",
+        "copilot-sdk-rust-v1.0.0-beta.9\\test\\harness\\vitest.config.ts",
+        "LocalAI-3.11.0\\backend\\cpp\\grpc\\Makefile",
+        "LocalAI-3.11.0\\backend\\cpp\\llama-cpp\\CMakeLists.txt",
+        "LocalAI-3.11.0\\backend\\cpp\\llama-cpp\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\huggingface\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\local-store\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\piper\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\silero-vad\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\stablediffusion-ggml\\CMakeLists.txt",
+        "LocalAI-3.11.0\\backend\\go\\stablediffusion-ggml\\Makefile",
+        "LocalAI-3.11.0\\backend\\go\\whisper\\CMakeLists.txt",
+        "LocalAI-3.11.0\\backend\\go\\whisper\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\ace-step\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\ace-step\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\chatterbox\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\chatterbox\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\coqui\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\coqui\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\diffusers\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\diffusers\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\faster-whisper\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\faster-whisper\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\kitten-tts\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\kitten-tts\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\kokoro\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\kokoro\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\mlx\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\mlx\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\mlx-audio\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\mlx-audio\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\mlx-vlm\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\mlx-vlm\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\moonshine\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\moonshine\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\nemo\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\nemo\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\neutts\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\neutts\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\outetts\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\outetts\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\pocket-tts\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\pocket-tts\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\qwen-asr\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\qwen-asr\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\qwen-tts\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\qwen-tts\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\rerankers\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\rerankers\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\rfdetr\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\rfdetr\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\transformers\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\transformers\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\vibevoice\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\vibevoice\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\vllm\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\vllm\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\vllm-omni\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\vllm-omni\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\voxcpm\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\voxcpm\\requirements.txt",
+        "LocalAI-3.11.0\\backend\\python\\whisperx\\Makefile",
+        "LocalAI-3.11.0\\backend\\python\\whisperx\\requirements.txt",
+        "LocalAI-3.11.0\\Makefile",
+        "LocalAI-3.11.0\\tests\\e2e\\mock-backend\\Makefile"
+      ],
+      "has_native_stack": true,
+      "files_capped": false,
+      "repurposability_score": 8,
+      "interesting_signals": [
+        "scripts:4",
+        "native:.cpp+.h",
+        "lines:1249078",
+        "configs:72"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\hermes\\hermes-agent\\web",
+      "rel_path": "AppData\\Local\\hermes\\hermes-agent\\web",
+      "name": "web",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "web",
+        "version": "0.0.0",
+        "type": "module",
+        "package_manager": "npm",
+        "dep_count": 20,
+        "dev_dep_count": 13,
+        "scripts": [
+          "sync-assets",
+          "predev",
+          "prebuild",
+          "dev",
+          "build",
+          "lint",
+          "preview"
+        ],
+        "framework_hints": [
+          "react",
+          "vite"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".html": 1,
+        ".json": 5,
+        ".md": 1,
+        ".mjs": 1,
+        ".tsx": 43,
+        ".ts": 43,
+        ".css": 1
+      },
+      "line_counts": {
+        ".js": 23,
+        ".mjs": 27,
+        ".tsx": 12544,
+        ".ts": 14376
+      },
+      "total_source_lines": 26970,
+      "config_files": [
+        "eslint.config.js",
+        "tsconfig.json",
+        "vite.config.ts"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 7,
+      "interesting_signals": [
+        "frameworks:react+vite",
+        "scripts:7",
+        "deps:rich",
+        "lines:26970"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\cli-renderer",
+      "rel_path": "chthonic-archive\\vulkan-lab\\cli-renderer",
+      "name": "cli-renderer",
+      "languages": [
+        "rust",
+        "shaders"
+      ],
+      "rust": {
+        "name": "cli-renderer",
+        "version": "0.1.0",
+        "edition": "2021",
+        "is_workspace": true,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 4
+      },
+      "file_counts": {
+        ".rs": 2,
+        ".lock": 1,
+        ".toml": 1,
+        ".md": 1,
+        ".glsl": 5,
+        ".spv": 5
+      },
+      "line_counts": {
+        ".rs": 1774,
+        ".glsl": 388
+      },
+      "total_source_lines": 2162,
+      "config_files": [],
+      "has_native_stack": true,
+      "files_capped": false,
+      "repurposability_score": 7,
+      "interesting_signals": [
+        "rust-workspace:0",
+        "native:.glsl",
+        "lines:2162"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\hermes\\hermes-agent\\ui-tui",
+      "rel_path": "AppData\\Local\\hermes\\hermes-agent\\ui-tui",
+      "name": "hermes-tui",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "hermes-tui",
+        "version": "0.0.1",
+        "type": "module",
+        "package_manager": "npm",
+        "dep_count": 7,
+        "dev_dep_count": 21,
+        "scripts": [
+          "dev",
+          "start",
+          "build",
+          "type-check",
+          "lint",
+          "lint:fix",
+          "fmt",
+          "fix",
+          "test",
+          "test:watch"
+        ],
+        "framework_hints": [
+          "react",
+          "esbuild"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".cjs": 1,
+        ".mjs": 3,
+        ".json": 6,
+        ".ts": 220,
+        ".js": 2,
+        ".tsx": 28,
+        ".md": 1
+      },
+      "line_counts": {
+        ".cjs": 15,
+        ".mjs": 293,
+        ".ts": 37835,
+        ".js": 2,
+        ".tsx": 11545
+      },
+      "total_source_lines": 49690,
+      "config_files": [
+        "eslint.config.mjs",
+        "tsconfig.json",
+        "vitest.config.ts"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "frameworks:react+esbuild",
+        "scripts:10",
+        "lines:49690"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\apps\\chthonic-tensor-bridge",
+      "rel_path": "chthonic-archive\\apps\\chthonic-tensor-bridge",
+      "name": "chthonic-tensor-bridge",
+      "languages": [
+        "node",
+        "c/cpp"
+      ],
+      "node": {
+        "name": "chthonic-tensor-bridge",
+        "version": "0.1.0",
+        "description": "N-API native addon: secure master-secret slot, NVML/registry hardware fingerprint, CreateProcessW stdin redirection, zero-copy MMF image transport for the Chthonic FLUX satellite.",
+        "main": "index.js",
+        "package_manager": "bun",
+        "dep_count": 1,
+        "dev_dep_count": 1,
+        "scripts": [
+          "install",
+          "build",
+          "build:debug",
+          "build:electron",
+          "rebuild",
+          "clean",
+          "smoke"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".ts": 1,
+        ".js": 2,
+        ".json": 1,
+        ".cc": 9,
+        ".h": 8
+      },
+      "line_counts": {
+        ".ts": 61,
+        ".js": 105,
+        ".cc": 2057,
+        ".h": 395
+      },
+      "total_source_lines": 2618,
+      "config_files": [
+        "CMakeLists.txt"
+      ],
+      "has_native_stack": true,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:7",
+        "native:.cc+.h",
+        "lines:2618"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\csb-live",
+      "rel_path": "chthonic-archive\\csb-live",
+      "name": "psychonoir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psychonoir-kontrapunkt",
+        "version": "1.0.0",
+        "description": "Caribbean Archipelagic Consciousness Development Environment",
+        "package_manager": "unknown",
+        "dep_count": 3,
+        "dev_dep_count": 3,
+        "scripts": [
+          "format",
+          "lint",
+          "fix",
+          "mcp",
+          "mcp:dev",
+          "forge",
+          "forge:check",
+          "theme:apply",
+          "orchestrate",
+          "ext:install",
+          "ext:build",
+          "ext:package",
+          "ext:dev",
+          "rust-lsp:install",
+          "rust-lsp:build",
+          "rust-lsp:build-prod",
+          "rust-lsp:package",
+          "rust-lsp:dev",
+          "python-lsp:install",
+          "python-lsp:build",
+          "python-lsp:build-prod",
+          "python-lsp:package",
+          "python-lsp:dev",
+          "ruby-lsp:install",
+          "ruby-lsp:build",
+          "ruby-lsp:build-prod",
+          "ruby-lsp:package",
+          "ruby-lsp:dev"
+        ],
+        "framework_hints": [
+          "anthropic-sdk"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 160,
+        ".yml": 80,
+        ".json": 38,
+        ".lock": 1,
+        ".toml": 4,
+        ".js": 35,
+        ".ts": 93,
+        ".mjs": 2,
+        ".py": 2,
+        ".go": 142
+      },
+      "line_counts": {
+        ".js": 5793,
+        ".ts": 14519,
+        ".mjs": 197,
+        ".py": 103,
+        ".go": 33833
+      },
+      "total_source_lines": 54445,
+      "config_files": [
+        "biome.json",
+        "claudine-cli\\biome.json",
+        "claudine-cli\\bunfig.toml",
+        "claudine-cli\\tsconfig.json",
+        "pyproject.toml",
+        "research\\gemini-cli\\esbuild.config.js",
+        "research\\gemini-cli\\eslint.config.js",
+        "research\\gemini-cli\\integration-tests\\tsconfig.json",
+        "research\\gemini-cli\\integration-tests\\vitest.config.ts",
+        "research\\gemini-cli\\Makefile",
+        "research\\gemini-cli\\packages\\a2a-server\\tsconfig.json",
+        "research\\gemini-cli\\packages\\a2a-server\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\cli\\tsconfig.json",
+        "research\\gemini-cli\\packages\\cli\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\core\\tsconfig.json",
+        "research\\gemini-cli\\packages\\core\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\test-utils\\tsconfig.json",
+        "research\\gemini-cli\\packages\\test-utils\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\vscode-ide-companion\\eslint.config.mjs",
+        "research\\gemini-cli\\packages\\vscode-ide-companion\\tsconfig.json",
+        "research\\gemini-cli\\scripts\\tests\\vitest.config.ts",
+        "research\\gemini-cli\\tsconfig.json",
+        "research\\gh-cli\\Makefile",
+        "tfjs-dwn-nav-v-gpu\\bunfig.toml",
+        "tfjs-dwn-nav-v-gpu\\tsconfig.json",
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "frameworks:anthropic-sdk",
+        "scripts:28",
+        "lines:54445",
+        "configs:26"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\git-dump-live",
+      "rel_path": "chthonic-archive\\git-dump-live",
+      "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+        "version": "3.7.0",
+        "description": "Sophisticated file-chaining system med universal compatibility",
+        "type": "module",
+        "main": "hooker_orchestrator.ts",
+        "license": "ISC",
+        "package_manager": "bun",
+        "dep_count": 187,
+        "dev_dep_count": 5,
+        "scripts": [
+          "init",
+          "setup-hooks",
+          "chain",
+          "mirror",
+          "validate",
+          "emigrate",
+          "dev",
+          "build",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 509,
+        ".js": 18,
+        ".json": 114,
+        ".yml": 8,
+        ".py": 281,
+        ".ts": 43,
+        ".rb": 1,
+        ".lock": 1,
+        ".toml": 1,
+        ".html": 13,
+        ".css": 3,
+        ".cs": 7
+      },
+      "line_counts": {
+        ".js": 7015,
+        ".py": 93183,
+        ".ts": 13303,
+        ".rb": 1333,
+        ".cs": 1365
+      },
+      "total_source_lines": 116199,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\python\\setup.py",
+        "backend\\requirements.txt",
+        "backups\\backup_20250902180621\\tsconfig.json",
+        "bunfig.toml",
+        "godot_mvp\\backend\\requirements.txt",
+        "tsconfig.json",
+        "vscode-extension\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:9",
+        "deps:rich",
+        "lines:116199",
+        "configs:8"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\pnk-live",
+      "rel_path": "chthonic-archive\\pnk-live",
+      "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+        "version": "3.7.0",
+        "description": "Sophisticated file-chaining system med universal compatibility",
+        "type": "module",
+        "main": "hooker_orchestrator.ts",
+        "license": "ISC",
+        "package_manager": "bun",
+        "dep_count": 187,
+        "dev_dep_count": 5,
+        "scripts": [
+          "init",
+          "setup-hooks",
+          "chain",
+          "mirror",
+          "validate",
+          "emigrate",
+          "dev",
+          "build",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 11,
+        ".md": 427,
+        ".js": 20,
+        ".json": 78,
+        ".py": 236,
+        ".ts": 31,
+        ".rb": 1,
+        ".lock": 1,
+        ".toml": 1,
+        ".html": 16,
+        ".css": 3,
+        ".cs": 7
+      },
+      "line_counts": {
+        ".js": 7153,
+        ".py": 74804,
+        ".ts": 10000,
+        ".rb": 1333,
+        ".cs": 1365
+      },
+      "total_source_lines": 94655,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\python\\setup.py",
+        "backend\\requirements.txt",
+        "backups\\backup_20250902180621\\tsconfig.json",
+        "bunfig.toml",
+        "godot_mvp\\backend\\requirements.txt",
+        "tsconfig.json",
+        "vscode-extension\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:9",
+        "deps:rich",
+        "lines:94655",
+        "configs:8"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "rel_path": "Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "name": "psychonoir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psychonoir-kontrapunkt",
+        "version": "1.0.0",
+        "description": "Caribbean Archipelagic Consciousness Development Environment",
+        "package_manager": "unknown",
+        "dep_count": 3,
+        "dev_dep_count": 3,
+        "scripts": [
+          "format",
+          "lint",
+          "fix",
+          "mcp",
+          "mcp:dev",
+          "forge",
+          "forge:check",
+          "theme:apply",
+          "orchestrate",
+          "ext:install",
+          "ext:build",
+          "ext:package",
+          "ext:dev",
+          "rust-lsp:install",
+          "rust-lsp:build",
+          "rust-lsp:build-prod",
+          "rust-lsp:package",
+          "rust-lsp:dev",
+          "python-lsp:install",
+          "python-lsp:build",
+          "python-lsp:build-prod",
+          "python-lsp:package",
+          "python-lsp:dev",
+          "ruby-lsp:install",
+          "ruby-lsp:build",
+          "ruby-lsp:build-prod",
+          "ruby-lsp:package",
+          "ruby-lsp:dev"
+        ],
+        "framework_hints": [
+          "anthropic-sdk"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 160,
+        ".yml": 80,
+        ".json": 38,
+        ".lock": 1,
+        ".toml": 4,
+        ".js": 35,
+        ".ts": 93,
+        ".mjs": 2,
+        ".py": 2,
+        ".go": 142
+      },
+      "line_counts": {
+        ".js": 5793,
+        ".ts": 14519,
+        ".mjs": 197,
+        ".py": 103,
+        ".go": 33833
+      },
+      "total_source_lines": 54445,
+      "config_files": [
+        "biome.json",
+        "claudine-cli\\biome.json",
+        "claudine-cli\\bunfig.toml",
+        "claudine-cli\\tsconfig.json",
+        "pyproject.toml",
+        "research\\gemini-cli\\esbuild.config.js",
+        "research\\gemini-cli\\eslint.config.js",
+        "research\\gemini-cli\\integration-tests\\tsconfig.json",
+        "research\\gemini-cli\\integration-tests\\vitest.config.ts",
+        "research\\gemini-cli\\Makefile",
+        "research\\gemini-cli\\packages\\a2a-server\\tsconfig.json",
+        "research\\gemini-cli\\packages\\a2a-server\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\cli\\tsconfig.json",
+        "research\\gemini-cli\\packages\\cli\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\core\\tsconfig.json",
+        "research\\gemini-cli\\packages\\core\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\test-utils\\tsconfig.json",
+        "research\\gemini-cli\\packages\\test-utils\\vitest.config.ts",
+        "research\\gemini-cli\\packages\\vscode-ide-companion\\eslint.config.mjs",
+        "research\\gemini-cli\\packages\\vscode-ide-companion\\tsconfig.json",
+        "research\\gemini-cli\\scripts\\tests\\vitest.config.ts",
+        "research\\gemini-cli\\tsconfig.json",
+        "research\\gh-cli\\Makefile",
+        "tfjs-dwn-nav-v-gpu\\bunfig.toml",
+        "tfjs-dwn-nav-v-gpu\\tsconfig.json",
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "frameworks:anthropic-sdk",
+        "scripts:28",
+        "lines:54445",
+        "configs:26"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt",
+      "rel_path": "Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt",
+      "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+        "version": "3.7.0",
+        "description": "Sophisticated file-chaining system med universal compatibility",
+        "type": "module",
+        "main": "hooker_orchestrator.ts",
+        "license": "ISC",
+        "package_manager": "bun",
+        "dep_count": 187,
+        "dev_dep_count": 5,
+        "scripts": [
+          "init",
+          "setup-hooks",
+          "chain",
+          "mirror",
+          "validate",
+          "emigrate",
+          "dev",
+          "build",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 10,
+        ".md": 427,
+        ".js": 20,
+        ".json": 78,
+        ".py": 236,
+        ".ts": 31,
+        ".rb": 1,
+        ".lock": 1,
+        ".toml": 1,
+        ".html": 16,
+        ".css": 3,
+        ".cs": 7
+      },
+      "line_counts": {
+        ".js": 7153,
+        ".py": 74369,
+        ".ts": 9987,
+        ".rb": 1333,
+        ".cs": 1365
+      },
+      "total_source_lines": 94207,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\python\\setup.py",
+        "backend\\requirements.txt",
+        "backups\\backup_20250902180621\\tsconfig.json",
+        "bunfig.toml",
+        "godot_mvp\\backend\\requirements.txt",
+        "tsconfig.json",
+        "vscode-extension\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:9",
+        "deps:rich",
+        "lines:94207",
+        "configs:8"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
+      "rel_path": "git-dump-lfs-holder-we-it-takes",
+      "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+        "version": "3.7.0",
+        "description": "Sophisticated file-chaining system med universal compatibility",
+        "type": "module",
+        "main": "hooker_orchestrator.ts",
+        "license": "ISC",
+        "package_manager": "bun",
+        "dep_count": 187,
+        "dev_dep_count": 5,
+        "scripts": [
+          "init",
+          "setup-hooks",
+          "chain",
+          "mirror",
+          "validate",
+          "emigrate",
+          "dev",
+          "build",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 509,
+        ".js": 18,
+        ".json": 114,
+        ".yml": 8,
+        ".py": 281,
+        ".ts": 43,
+        ".rb": 1,
+        ".lock": 1,
+        ".toml": 1,
+        ".html": 13,
+        ".css": 3,
+        ".cs": 7
+      },
+      "line_counts": {
+        ".js": 7015,
+        ".py": 93183,
+        ".ts": 13303,
+        ".rb": 1333,
+        ".cs": 1365
+      },
+      "total_source_lines": 116199,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\python\\setup.py",
+        "backend\\requirements.txt",
+        "backups\\backup_20250902180621\\tsconfig.json",
+        "bunfig.toml",
+        "godot_mvp\\backend\\requirements.txt",
+        "tsconfig.json",
+        "vscode-extension\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:9",
+        "deps:rich",
+        "lines:116199",
+        "configs:8"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+      "rel_path": "PsychoNoir-Kontrapunkt",
+      "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@psycho-noir-kontrapunkt/hooker-ecosystem",
+        "version": "3.7.0",
+        "description": "Sophisticated file-chaining system med universal compatibility",
+        "type": "module",
+        "main": "hooker_orchestrator.ts",
+        "license": "ISC",
+        "package_manager": "bun",
+        "dep_count": 187,
+        "dev_dep_count": 5,
+        "scripts": [
+          "init",
+          "setup-hooks",
+          "chain",
+          "mirror",
+          "validate",
+          "emigrate",
+          "dev",
+          "build",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 11,
+        ".md": 427,
+        ".js": 20,
+        ".json": 78,
+        ".py": 236,
+        ".ts": 31,
+        ".rb": 1,
+        ".lock": 1,
+        ".toml": 1,
+        ".html": 16,
+        ".css": 3,
+        ".cs": 7
+      },
+      "line_counts": {
+        ".js": 7153,
+        ".py": 74804,
+        ".ts": 10000,
+        ".rb": 1333,
+        ".cs": 1365
+      },
+      "total_source_lines": 94655,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\python\\setup.py",
+        "backend\\requirements.txt",
+        "backups\\backup_20250902180621\\tsconfig.json",
+        "bunfig.toml",
+        "godot_mvp\\backend\\requirements.txt",
+        "tsconfig.json",
+        "vscode-extension\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 6,
+      "interesting_signals": [
+        "scripts:9",
+        "deps:rich",
+        "lines:94655",
+        "configs:8"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dev\\sd-candidates\\sdnext",
+      "rel_path": "chthonic-archive\\dev\\sd-candidates\\sdnext",
+      "name": "@vladmandic/sdnext",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@vladmandic/sdnext",
+        "description": "SD.Next: All-in-one WebUI for AI generative image and video creation",
+        "license": "Apache-2.0",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 14,
+        "scripts": [
+          "venv",
+          "start",
+          "localize",
+          "packages",
+          "format",
+          "format-win",
+          "eslint",
+          "eslint-ui",
+          "eslint-kanvas",
+          "ruff",
+          "ruff-win",
+          "pylint",
+          "pylint-win",
+          "pyright",
+          "pyright-win",
+          "ty",
+          "ty-win",
+          "lint",
+          "lint-win",
+          "test",
+          "todo",
+          "debug"
+        ],
+        "framework_hints": [
+          "esbuild"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 25,
+        ".yml": 5,
+        ".yaml": 4,
+        ".py": 906,
+        ".js": 48,
+        ".json": 131,
+        ".mjs": 2,
+        ".html": 1,
+        ".css": 17,
+        ".toml": 1
+      },
+      "line_counts": {
+        ".py": 230434,
+        ".js": 9613,
+        ".mjs": 507
+      },
+      "total_source_lines": 240554,
+      "config_files": [
+        "cli\\requirements.txt",
+        "eslint.config.mjs",
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "frameworks:esbuild",
+        "scripts:22",
+        "lines:240554"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-mandala",
+      "rel_path": "chthonic-archive\\extensions\\chthonic-mandala",
+      "name": "chthonic-mandala",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chthonic-mandala",
+        "version": "0.1.0",
+        "description": "Compatibility bridge that maps legacy Mandala commands/views to Chthonic Archive lanes",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 8,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch",
+          "insiders:kits:check",
+          "insiders:package",
+          "insiders:run",
+          "insiders:dts:sync"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".md": 2,
+        ".json": 4,
+        ".ts": 3
+      },
+      "line_counts": {
+        ".ts": 21387
+      },
+      "total_source_lines": 21387,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "frameworks:vscode-extension",
+        "scripts:7",
+        "lines:21387"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-statusbar",
+      "rel_path": "chthonic-archive\\extensions\\chthonic-statusbar",
+      "name": "chthonic-statusbar",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chthonic-statusbar",
+        "version": "0.2.0",
+        "description": "Compatibility bridge that routes legacy statusbar commands into chthonic-archive runtime lanes",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 8,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch",
+          "insiders:kits:check",
+          "insiders:package",
+          "insiders:run",
+          "insiders:dts:sync"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".md": 2,
+        ".json": 2,
+        ".ts": 4
+      },
+      "line_counts": {
+        ".ts": 22166
+      },
+      "total_source_lines": 22166,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "frameworks:vscode-extension",
+        "scripts:7",
+        "lines:22166"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\mas_mcp\\frontend",
+      "rel_path": "chthonic-archive\\mas_mcp\\frontend",
+      "name": "mas-mcp-dashboard",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "mas-mcp-dashboard",
+        "version": "2.1.0",
+        "description": "Bun-native Genesis Dashboard for MAS-MCP monitoring",
+        "type": "module",
+        "license": "MIT",
+        "package_manager": "bun",
+        "dep_count": 9,
+        "dev_dep_count": 5,
+        "scripts": [
+          "dev",
+          "build",
+          "start",
+          "api",
+          "api:start",
+          "typecheck",
+          "lint",
+          "test",
+          "cycle"
+        ],
+        "framework_hints": [
+          "react",
+          "next"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".ts": 16,
+        ".lock": 1,
+        ".toml": 1,
+        ".tsx": 14,
+        ".js": 4,
+        ".json": 3,
+        ".html": 1,
+        ".css": 2,
+        ".md": 1
+      },
+      "line_counts": {
+        ".ts": 1969,
+        ".tsx": 1848,
+        ".js": 246
+      },
+      "total_source_lines": 4063,
+      "config_files": [
+        "bunfig.toml",
+        "postcss.config.js",
+        "tailwind.config.js",
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "frameworks:react+next",
+        "scripts:9",
+        "lines:4063"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\dsl-iteration-toolkit",
+      "rel_path": "chthonic-archive\\tools\\dsl-iteration-toolkit",
+      "name": "dsl-iteration-toolkit",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "dsl-iteration-toolkit",
+        "version": "0.1.0",
+        "edition": "2024",
+        "license": "WTFPL",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": true,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".toml": 1,
+        ".md": 2,
+        ".rs": 9
+      },
+      "line_counts": {
+        ".rs": 1293
+      },
+      "total_source_lines": 1293,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "rust-bin",
+        "rust-lib",
+        "edition-2024",
+        "lines:1293"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\salvaged_toptra_project\\src",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\salvaged_toptra_project\\src",
+      "name": "src",
+      "languages": [
+        "rust",
+        "cuda",
+        "shaders"
+      ],
+      "rust": {
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".rs": 82,
+        ".lock": 1,
+        ".toml": 3,
+        ".css": 2,
+        ".cu": 3,
+        ".comp": 3,
+        ".spv": 1,
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".rs": 4082,
+        ".cu": 171,
+        ".comp": 116,
+        ".js": 51
+      },
+      "total_source_lines": 4420,
+      "config_files": [
+        "tailwind.config.js"
+      ],
+      "has_native_stack": true,
+      "files_capped": false,
+      "repurposability_score": 5,
+      "interesting_signals": [
+        "native:.cu+.comp",
+        "lines:4420"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\hermes\\hermes-agent",
+      "rel_path": "AppData\\Local\\hermes\\hermes-agent",
+      "name": "hermes-agent",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "hermes-agent",
+        "version": "1.0.0",
+        "description": "An AI agent with advanced tool-calling capabilities, featuring a flexible toolsets system for organizing and managing tools.",
+        "license": "MIT",
+        "package_manager": "npm",
+        "dep_count": 2,
+        "dev_dep_count": 0,
+        "scripts": [
+          "postinstall"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 23,
+        ".md": 677,
+        ".py": 1668,
+        ".json": 46,
+        ".yaml": 77,
+        ".lock": 2,
+        ".html": 6,
+        ".mjs": 7,
+        ".rb": 1,
+        ".toml": 1,
+        ".js": 6,
+        ".cjs": 1,
+        ".ts": 193,
+        ".tsx": 71,
+        ".css": 4
+      },
+      "line_counts": {
+        ".py": 814523,
+        ".mjs": 562,
+        ".rb": 48,
+        ".js": 1021,
+        ".cjs": 15,
+        ".ts": 37778,
+        ".tsx": 22006
+      },
+      "total_source_lines": 875953,
+      "config_files": [
+        "hermes_cli\\setup.py",
+        "optional-skills\\finance\\dcf-model\\requirements.txt",
+        "pyproject.toml",
+        "skills\\productivity\\google-workspace\\scripts\\setup.py",
+        "ui-tui\\eslint.config.mjs",
+        "ui-tui\\tsconfig.json",
+        "ui-tui\\vitest.config.ts",
+        "web\\eslint.config.js",
+        "web\\tsconfig.json",
+        "web\\vite.config.ts",
+        "website\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "lines:875953",
+        "configs:11"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\hermes\\hermes-agent\\website",
+      "rel_path": "AppData\\Local\\hermes\\hermes-agent\\website",
+      "name": "website",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "website",
+        "version": "0.0.0",
+        "package_manager": "npm",
+        "dep_count": 9,
+        "dev_dep_count": 4,
+        "scripts": [
+          "docusaurus",
+          "prestart",
+          "start",
+          "prebuild",
+          "build",
+          "swizzle",
+          "deploy",
+          "clear",
+          "serve",
+          "write-translations",
+          "write-heading-ids",
+          "typecheck",
+          "lint:diagrams"
+        ],
+        "framework_hints": [
+          "react"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 156,
+        ".json": 12,
+        ".ts": 2,
+        ".py": 3,
+        ".mjs": 1,
+        ".tsx": 2,
+        ".css": 3
+      },
+      "line_counts": {
+        ".ts": 884,
+        ".py": 1424,
+        ".mjs": 70,
+        ".tsx": 945
+      },
+      "total_source_lines": 3323,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:react",
+        "scripts:13",
+        "lines:3323"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\apps\\chthonic-next",
+      "rel_path": "chthonic-archive\\apps\\chthonic-next",
+      "name": "chthonic-next",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chthonic-next",
+        "type": "module",
+        "package_manager": "bun",
+        "dep_count": 3,
+        "dev_dep_count": 9,
+        "scripts": [
+          "dev",
+          "build",
+          "start",
+          "typecheck"
+        ],
+        "framework_hints": [
+          "react",
+          "next"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".ts": 4,
+        ".css": 1,
+        ".tsx": 4,
+        ".lock": 1,
+        ".json": 2,
+        ".mjs": 1,
+        ".md": 1
+      },
+      "line_counts": {
+        ".ts": 123,
+        ".tsx": 197,
+        ".mjs": 6
+      },
+      "total_source_lines": 326,
+      "config_files": [
+        "tailwind.config.ts",
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:react+next",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\chthonic-vscode-extension",
+      "rel_path": "chthonic-archive\\chthonic-vscode-extension",
+      "name": "chthonic-assistant",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chthonic-assistant",
+        "version": "0.1.0",
+        "description": "ASC Framework MCP-powered sidepanel for VSCode",
+        "type": "commonjs",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 2,
+        "dev_dep_count": 6,
+        "scripts": [
+          "build",
+          "build:extension",
+          "build:webview",
+          "watch",
+          "watch:extension",
+          "watch:webview",
+          "package",
+          "dev"
+        ],
+        "framework_hints": [
+          "react",
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".md": 5,
+        ".json": 2,
+        ".ts": 1,
+        ".tsx": 1
+      },
+      "line_counts": {
+        ".ts": 309,
+        ".tsx": 131
+      },
+      "total_source_lines": 440,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:react+vscode-extension",
+        "scripts:8"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dev\\sd-candidates\\forge",
+      "rel_path": "chthonic-archive\\dev\\sd-candidates\\forge",
+      "name": "stable-diffusion-webui",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "stable-diffusion-webui",
+        "version": "0.0.0",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 1,
+        "scripts": [
+          "lint",
+          "fix"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 4,
+        ".md": 5,
+        ".yaml": 12,
+        ".js": 34,
+        ".py": 663,
+        ".css": 3,
+        ".html": 11,
+        ".json": 42,
+        ".toml": 3
+      },
+      "line_counts": {
+        ".js": 6017,
+        ".py": 164979
+      },
+      "total_source_lines": 170996,
+      "config_files": [
+        "extensions-builtin\\forge_legacy_preprocessors\\requirements.txt",
+        "extensions-builtin\\sd_forge_controlnet\\requirements.txt",
+        "k_diff\\pyproject.toml",
+        "k_diff\\requirements.txt",
+        "k_diff\\setup.py",
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "lines:170996",
+        "configs:7"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dev\\sd-candidates\\invokeai\\docs",
+      "rel_path": "chthonic-archive\\dev\\sd-candidates\\invokeai\\docs",
+      "name": "docs",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "docs",
+        "version": "0.0.1",
+        "type": "module",
+        "package_manager": "pnpm",
+        "dep_count": 13,
+        "dev_dep_count": 2,
+        "scripts": [
+          "dev",
+          "start",
+          "generate-docs-data",
+          "check-docs-data",
+          "build",
+          "preview",
+          "astro"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".mjs": 1,
+        ".json": 6,
+        ".md": 8,
+        ".yaml": 2,
+        ".ts": 2,
+        ".astro": 12,
+        ".css": 1
+      },
+      "line_counts": {
+        ".mjs": 177,
+        ".ts": 28,
+        ".astro": 1175
+      },
+      "total_source_lines": 1380,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "scripts:7",
+        "deps:rich",
+        "lines:1380"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\pnk-lfh-live",
+      "rel_path": "chthonic-archive\\pnk-lfh-live",
+      "name": "psychonoir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psychonoir-kontrapunkt",
+        "version": "1.0.0",
+        "description": "Caribbean Archipelagic Consciousness Development Environment",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [
+          "format",
+          "lint",
+          "fix"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 1376,
+        ".lock": 2,
+        ".json": 389,
+        ".ts": 85,
+        ".py": 453,
+        ".js": 10,
+        ".rb": 1,
+        ".toml": 2,
+        ".yml": 2,
+        ".html": 1
+      },
+      "line_counts": {
+        ".ts": 25250,
+        ".py": 185114,
+        ".js": 3625,
+        ".rb": 1333
+      },
+      "total_source_lines": 215322,
+      "config_files": [
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\biome.json",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\bunfig.toml",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\postcss.config.js",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\pyproject.toml",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\tailwind.config.js",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "lines:215322",
+        "configs:6"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live",
+      "rel_path": "chthonic-archive\\rmco-live",
+      "name": "mcp-orchestration-system",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "mcp-orchestration-system",
+        "version": "1.0.0",
+        "description": "Modern MCP Orchestration System for 2025",
+        "license": "MIT",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 15,
+        "scripts": [
+          "dev",
+          "build",
+          "test",
+          "lint",
+          "format",
+          "prepare",
+          "start",
+          "clean",
+          "clean:all",
+          "branch-manager",
+          "branch-manager:list",
+          "branch-manager:dry-run",
+          "branch-manager:cleanup",
+          "branch-manager:cleanup-force",
+          "branch-manager:copilot",
+          "branch-manager:copilot-cleanup",
+          "branch-creator",
+          "branch-creator:interactive",
+          "branch-creator:feature",
+          "branch-creator:bugfix",
+          "branch-creator:hotfix",
+          "branch-creator:types",
+          "create-branch",
+          "consolidation",
+          "consolidation:plan",
+          "consolidation:create",
+          "consolidation:status",
+          "consolidation:demo",
+          "dependencies:analyze",
+          "dependencies:batch",
+          "dependencies:consolidate",
+          "guthilda",
+          "guthilda:status",
+          "guthilda:auth",
+          "guthilda:orchestrate",
+          "guthilda:discover",
+          "guthilda:cleanup",
+          "guthilda:report",
+          "guthilda:claude-code",
+          "claude-code-check",
+          "claude-code-check:report",
+          "gemini:scout",
+          "gemini:cli",
+          "gemini:assistant",
+          "gemini:chat",
+          "gemini:analyze",
+          "gemini:code",
+          "gemini:liberate",
+          "ai:triad",
+          "ai:gemini",
+          "ai:gemini:full"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 8,
+        ".md": 30,
+        ".json": 21,
+        ".lock": 1,
+        ".html": 2,
+        ".ts": 20,
+        ".js": 4,
+        ".tsx": 6,
+        ".css": 1,
+        ".yaml": 2,
+        ".mjs": 2
+      },
+      "line_counts": {
+        ".ts": 2889,
+        ".js": 1716,
+        ".tsx": 470,
+        ".mjs": 824
+      },
+      "total_source_lines": 5899,
+      "config_files": [
+        "packages\\cli\\tsconfig.json",
+        "packages\\core\\tsconfig.json",
+        "packages\\guthilda\\tsconfig.json",
+        "packages\\monitor\\postcss.config.js",
+        "packages\\monitor\\tailwind.config.ts",
+        "packages\\monitor\\tsconfig.json",
+        "packages\\monitor\\vite.config.ts",
+        "packages\\servers\\base\\tsconfig.json",
+        "packages\\servers\\duckduckgo\\tsconfig.json",
+        "packages\\servers\\sequential-thinking\\tsconfig.json",
+        "packages\\shared\\tsconfig.json",
+        "tsconfig.json",
+        "turbo.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "scripts:51",
+        "lines:5899",
+        "configs:13"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\monitor",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\monitor",
+      "name": "@mcp/monitor",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/monitor",
+        "version": "1.0.0",
+        "description": "Modern React dashboard for MCP Orchestration",
+        "type": "module",
+        "package_manager": "unknown",
+        "dep_count": 9,
+        "dev_dep_count": 8,
+        "scripts": [
+          "dev",
+          "build",
+          "preview",
+          "lint"
+        ],
+        "framework_hints": [
+          "react",
+          "vite"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".html": 1,
+        ".json": 2,
+        ".js": 1,
+        ".ts": 4,
+        ".tsx": 6,
+        ".css": 1
+      },
+      "line_counts": {
+        ".js": 6,
+        ".ts": 165,
+        ".tsx": 470
+      },
+      "total_source_lines": 641,
+      "config_files": [
+        "postcss.config.js",
+        "tailwind.config.ts",
+        "tsconfig.json",
+        "vite.config.ts"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:react+vite",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\Claude-Design Vs-code-insider-Win11-official-beta-research-preview\\claude-design",
+      "rel_path": "Downloads\\Claude-Design Vs-code-insider-Win11-official-beta-research-preview\\claude-design",
+      "name": "claude-design",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "claude-design",
+        "version": "0.1.0",
+        "description": "The Scriptorium: Constellation, Marginalia, Vivarium. A sidecar surface for design work in VS Code, against the Claude Design meter.",
+        "main": "./dist/extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 3,
+        "scripts": [
+          "build",
+          "dev",
+          "package",
+          "test"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 13,
+        ".json": 2,
+        ".ts": 20
+      },
+      "line_counts": {
+        ".ts": 2924
+      },
+      "total_source_lines": 2924,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:vscode-extension",
+        "scripts:4",
+        "lines:2924"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt",
+      "name": "psycho-noir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psycho-noir-kontrapunkt",
+        "version": "0.1.0",
+        "description": "Psycho-Noir Kontrapunkt: Neural archaeology and dialogue analysis system",
+        "main": "frontend/scripts/script.js",
+        "license": "ISC",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "test",
+          "test:single",
+          "test:playwright",
+          "dev",
+          "docker:build",
+          "docker:dev",
+          "python:install",
+          "lint",
+          "clean"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 13,
+        ".py": 26,
+        ".rb": 1,
+        ".yml": 3,
+        ".html": 4,
+        ".js": 8,
+        ".css": 4,
+        ".json": 3
+      },
+      "line_counts": {
+        ".py": 6855,
+        ".rb": 1333,
+        ".js": 3665
+      },
+      "total_source_lines": 11853,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\requirements.txt",
+        "requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "scripts:9",
+        "lines:11853"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\Meta-Autonoma x Psyco-Noir-Kontraounkt\\Restructure-MCP-Orchestration",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\Meta-Autonoma x Psyco-Noir-Kontraounkt\\Restructure-MCP-Orchestration",
+      "name": "mcp-orchestration-system",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "mcp-orchestration-system",
+        "version": "1.0.0",
+        "description": "Modern MCP Orchestration System for 2025",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 9,
+        "scripts": [
+          "dev",
+          "build",
+          "test",
+          "lint",
+          "format",
+          "prepare",
+          "start",
+          "start:dev",
+          "clean"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 2,
+        ".json": 17,
+        ".ts": 18,
+        ".tsx": 6,
+        ".css": 1,
+        ".yaml": 1
+      },
+      "line_counts": {
+        ".ts": 1977,
+        ".tsx": 463
+      },
+      "total_source_lines": 2440,
+      "config_files": [
+        "packages\\cli\\tsconfig.json",
+        "packages\\core\\tsconfig.json",
+        "packages\\monitor\\postcss.config.ts",
+        "packages\\monitor\\tailwind.config.ts",
+        "packages\\monitor\\tsconfig.json",
+        "packages\\servers\\base\\tsconfig.json",
+        "packages\\servers\\duckduckgo\\tsconfig.json",
+        "packages\\servers\\sequential-thinking\\tsconfig.json",
+        "packages\\shared\\tsconfig.json",
+        "tsconfig.json",
+        "turbo.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "scripts:9",
+        "lines:2440",
+        "configs:11"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder",
+      "rel_path": "psychonoir-kontrapunkt-large-file-holder",
+      "name": "psychonoir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psychonoir-kontrapunkt",
+        "version": "1.0.0",
+        "description": "Caribbean Archipelagic Consciousness Development Environment",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [
+          "format",
+          "lint",
+          "fix"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 1376,
+        ".lock": 2,
+        ".json": 389,
+        ".ts": 85,
+        ".py": 453,
+        ".js": 10,
+        ".rb": 1,
+        ".toml": 2,
+        ".yml": 2,
+        ".html": 1
+      },
+      "line_counts": {
+        ".ts": 25250,
+        ".py": 185114,
+        ".js": 3625,
+        ".rb": 1333
+      },
+      "total_source_lines": 215322,
+      "config_files": [
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\biome.json",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\bunfig.toml",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\postcss.config.js",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\pyproject.toml",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\tailwind.config.js",
+        "necromancy_graveyard\\consciousness_archaeology\\upcycled_organization_backup_20250926_001237\\tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "lines:215322",
+        "configs:6"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+      "rel_path": "Restructure-MCP-Orchestration",
+      "name": "mcp-orchestration-system",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "mcp-orchestration-system",
+        "version": "1.0.0",
+        "description": "Modern MCP Orchestration System for 2025",
+        "license": "MIT",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 15,
+        "scripts": [
+          "dev",
+          "build",
+          "test",
+          "lint",
+          "format",
+          "prepare",
+          "start",
+          "clean",
+          "clean:all",
+          "branch-manager",
+          "branch-manager:list",
+          "branch-manager:dry-run",
+          "branch-manager:cleanup",
+          "branch-manager:cleanup-force",
+          "branch-manager:copilot",
+          "branch-manager:copilot-cleanup",
+          "branch-creator",
+          "branch-creator:interactive",
+          "branch-creator:feature",
+          "branch-creator:bugfix",
+          "branch-creator:hotfix",
+          "branch-creator:types",
+          "create-branch",
+          "consolidation",
+          "consolidation:plan",
+          "consolidation:create",
+          "consolidation:status",
+          "consolidation:demo",
+          "dependencies:analyze",
+          "dependencies:batch",
+          "dependencies:consolidate",
+          "guthilda",
+          "guthilda:status",
+          "guthilda:auth",
+          "guthilda:orchestrate",
+          "guthilda:discover",
+          "guthilda:cleanup",
+          "guthilda:report",
+          "guthilda:claude-code",
+          "claude-code-check",
+          "claude-code-check:report",
+          "gemini:scout",
+          "gemini:cli",
+          "gemini:assistant",
+          "gemini:chat",
+          "gemini:analyze",
+          "gemini:code",
+          "gemini:liberate",
+          "ai:triad",
+          "ai:gemini",
+          "ai:gemini:full"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 8,
+        ".md": 30,
+        ".json": 21,
+        ".lock": 1,
+        ".html": 2,
+        ".ts": 20,
+        ".js": 4,
+        ".tsx": 6,
+        ".css": 1,
+        ".yaml": 2,
+        ".mjs": 2
+      },
+      "line_counts": {
+        ".ts": 2889,
+        ".js": 1716,
+        ".tsx": 470,
+        ".mjs": 824
+      },
+      "total_source_lines": 5899,
+      "config_files": [
+        "packages\\cli\\tsconfig.json",
+        "packages\\core\\tsconfig.json",
+        "packages\\guthilda\\tsconfig.json",
+        "packages\\monitor\\postcss.config.js",
+        "packages\\monitor\\tailwind.config.ts",
+        "packages\\monitor\\tsconfig.json",
+        "packages\\monitor\\vite.config.ts",
+        "packages\\servers\\base\\tsconfig.json",
+        "packages\\servers\\duckduckgo\\tsconfig.json",
+        "packages\\servers\\sequential-thinking\\tsconfig.json",
+        "packages\\shared\\tsconfig.json",
+        "tsconfig.json",
+        "turbo.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "scripts:51",
+        "lines:5899",
+        "configs:13"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\monitor",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\monitor",
+      "name": "@mcp/monitor",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/monitor",
+        "version": "1.0.0",
+        "description": "Modern React dashboard for MCP Orchestration",
+        "type": "module",
+        "package_manager": "unknown",
+        "dep_count": 9,
+        "dev_dep_count": 8,
+        "scripts": [
+          "dev",
+          "build",
+          "preview",
+          "lint"
+        ],
+        "framework_hints": [
+          "react",
+          "vite"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".html": 1,
+        ".json": 2,
+        ".js": 1,
+        ".ts": 4,
+        ".tsx": 6,
+        ".css": 1
+      },
+      "line_counts": {
+        ".js": 6,
+        ".ts": 165,
+        ".tsx": 470
+      },
+      "total_source_lines": 641,
+      "config_files": [
+        "postcss.config.js",
+        "tailwind.config.ts",
+        "tsconfig.json",
+        "vite.config.ts"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 4,
+      "interesting_signals": [
+        "frameworks:react+vite",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno",
+      "rel_path": ".",
+      "name": "eldno",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "bun",
+        "dep_count": 5,
+        "dev_dep_count": 1,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 81,
+        ".lua": 1,
+        ".lock": 65,
+        ".yml": 2,
+        ".yaml": 1,
+        ".md": 19,
+        ".py": 22,
+        ".toml": 1,
+        ".js": 6
+      },
+      "line_counts": {
+        ".lua": 0,
+        ".py": 42246,
+        ".js": 1145
+      },
+      "total_source_lines": 43391,
+      "config_files": [
+        "AppData\\Local\\hermes\\hermes-agent\\pyproject.toml"
+      ],
+      "has_native_stack": false,
+      "files_capped": true,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:43391"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\GitHubDesktop\\app-3.5.8\\resources\\app",
+      "rel_path": "AppData\\Local\\GitHubDesktop\\app-3.5.8\\resources\\app",
+      "name": "desktop",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "desktop",
+        "version": "3.5.8",
+        "description": "Simple collaboration from your desktop",
+        "main": "./main.js",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 66,
+        ".css": 3,
+        ".html": 2,
+        ".json": 4,
+        ".md": 7,
+        ".yml": 1
+      },
+      "line_counts": {
+        ".js": 55215
+      },
+      "total_source_lines": 55215,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:55215"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Temp\\tmp.UEcQhWZoNP\\dsl-smoke",
+      "rel_path": "AppData\\Local\\Temp\\tmp.UEcQhWZoNP\\dsl-smoke",
+      "name": "dsl-smoke",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "dsl-smoke",
+        "version": "0.0.0",
+        "edition": "2024",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": false,
+        "dep_count": 2
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".toml": 1,
+        ".rs": 4
+      },
+      "line_counts": {
+        ".rs": 263
+      },
+      "total_source_lines": 263,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "rust-bin",
+        "edition-2024"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\bun-playwright-poc",
+      "rel_path": "chthonic-archive\\bun-playwright-poc",
+      "name": "bun-cdp",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "bun-cdp",
+        "version": "1.0.0",
+        "description": "Lightweight CDP (Chrome DevTools Protocol) driver for Bun - bypasses Playwright IPC incompatibility",
+        "type": "module",
+        "main": "src/index.ts",
+        "module": "src/index.ts",
+        "license": "MIT",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 3,
+        "scripts": [
+          "test",
+          "test:legacy",
+          "test:safety",
+          "test:all",
+          "install:browsers"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".ts": 37,
+        ".lock": 1,
+        ".md": 6,
+        ".json": 3
+      },
+      "line_counts": {
+        ".ts": 5995
+      },
+      "total_source_lines": 5995,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "scripts:5",
+        "lines:5995"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dev\\sd-candidates\\a1111",
+      "rel_path": "chthonic-archive\\dev\\sd-candidates\\a1111",
+      "name": "stable-diffusion-webui",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "stable-diffusion-webui",
+        "version": "0.0.0",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 1,
+        "scripts": [
+          "lint",
+          "fix"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".yml": 4,
+        ".md": 3,
+        ".yaml": 10,
+        ".js": 29,
+        ".py": 213,
+        ".css": 2,
+        ".html": 11,
+        ".json": 1,
+        ".toml": 2
+      },
+      "line_counts": {
+        ".js": 4970,
+        ".py": 44286
+      },
+      "total_source_lines": 49256,
+      "config_files": [
+        "pyproject.toml",
+        "requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:49256"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\Chtonic-rendered-ai-markdown-paste-flavoured",
+      "rel_path": "chthonic-archive\\extensions\\Chtonic-rendered-ai-markdown-paste-flavoured",
+      "name": "chtonic-rendered-ai-markdown-paste-flavoured",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chtonic-rendered-ai-markdown-paste-flavoured",
+        "version": "0.1.0",
+        "description": "Chthonic Archive flavoured paste provider that converts rendered AI HTML clipboard content into Markdown.",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 2,
+        "dev_dep_count": 4,
+        "scripts": [
+          "typecheck",
+          "compile",
+          "test",
+          "insiders:run",
+          "insiders:package"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".html": 1,
+        ".md": 2,
+        ".json": 2,
+        ".ts": 4
+      },
+      "line_counts": {
+        ".ts": 162
+      },
+      "total_source_lines": 162,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:vscode-extension",
+        "scripts:5"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\git-dump-live\\backups\\backup_20250902180621",
+      "rel_path": "chthonic-archive\\git-dump-live\\backups\\backup_20250902180621",
+      "name": "backup_20250902180621",
+      "languages": [],
+      "file_counts": {
+        ".json": 17,
+        ".py": 35,
+        ".ts": 4,
+        ".js": 3
+      },
+      "line_counts": {
+        ".py": 12527,
+        ".ts": 1801,
+        ".js": 296
+      },
+      "total_source_lines": 14624,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:14624"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\pnk-live\\backups\\backup_20250902180621",
+      "rel_path": "chthonic-archive\\pnk-live\\backups\\backup_20250902180621",
+      "name": "backup_20250902180621",
+      "languages": [],
+      "file_counts": {
+        ".json": 17,
+        ".py": 35,
+        ".ts": 4,
+        ".js": 3
+      },
+      "line_counts": {
+        ".py": 12527,
+        ".ts": 1801,
+        ".js": 296
+      },
+      "total_source_lines": 14624,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:14624"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\cli",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\cli",
+      "name": "@mcp/cli",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/cli",
+        "version": "1.0.0",
+        "description": "Command Line Interface for MCP Orchestration System",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 6,
+        "dev_dep_count": 1,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [
+          "cli"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 303
+      },
+      "total_source_lines": 303,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:cli",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\core",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\core",
+      "name": "@mcp/core",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/core",
+        "version": "1.0.0",
+        "description": "Core orchestration system for MCP",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 6,
+        "dev_dep_count": 1,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [
+          "http-server"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 6
+      },
+      "line_counts": {
+        ".ts": 918
+      },
+      "total_source_lines": 918,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:http-server",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\guthilda",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\guthilda",
+      "name": "@mcp/guthilda",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/guthilda",
+        "version": "1.0.0",
+        "description": "Captain Guthilda - Meta-Automation Orchestrator for MCP System",
+        "main": "dist/index.js",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 0,
+        "scripts": [
+          "build",
+          "dev",
+          "test",
+          "lint"
+        ],
+        "framework_hints": [
+          "cli"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".md": 1,
+        ".ts": 2
+      },
+      "line_counts": {
+        ".ts": 828
+      },
+      "total_source_lines": 828,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:cli",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\ankh-forge",
+      "rel_path": "chthonic-archive\\tools\\ankh-forge",
+      "name": "ankh-forge",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "ankh-forge",
+        "version": "0.1.0",
+        "edition": "2024",
+        "license": "WTFPL",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 14
+      },
+      "file_counts": {
+        ".rs": 10,
+        ".lock": 1,
+        ".toml": 1
+      },
+      "line_counts": {
+        ".rs": 5347
+      },
+      "total_source_lines": 5347,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "edition-2024",
+        "lines:5347"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\chthonic-cai",
+      "rel_path": "chthonic-archive\\tools\\chthonic-cai",
+      "name": "chthonic-cai",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "chthonic-cai",
+        "version": "0.1.0",
+        "edition": "2024",
+        "license": "WTFPL",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": false,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".toml": 1,
+        ".rs": 3
+      },
+      "line_counts": {
+        ".rs": 449
+      },
+      "total_source_lines": 449,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "rust-bin",
+        "edition-2024"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\chthonic-mcp",
+      "rel_path": "chthonic-archive\\tools\\chthonic-mcp",
+      "name": "chthonic-mcp",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "chthonic-mcp",
+        "version": "0.1.0",
+        "edition": "2024",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": false,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".toml": 1,
+        ".rs": 1
+      },
+      "line_counts": {
+        ".rs": 897
+      },
+      "total_source_lines": 897,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "rust-bin",
+        "edition-2024"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\copilot-triage",
+      "rel_path": "chthonic-archive\\tools\\copilot-triage",
+      "name": "copilot-triage",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "copilot-triage",
+        "version": "0.1.0",
+        "edition": "2024",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": false,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".toml": 1,
+        ".rs": 1
+      },
+      "line_counts": {
+        ".rs": 704
+      },
+      "total_source_lines": 704,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "rust-bin",
+        "edition-2024"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\tools\\dsl-smoke",
+      "rel_path": "chthonic-archive\\tools\\dsl-smoke",
+      "name": "dsl-smoke",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "dsl-smoke",
+        "version": "0.1.0",
+        "edition": "2024",
+        "license": "WTFPL",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": true,
+        "has_lib": false,
+        "dep_count": 5
+      },
+      "file_counts": {
+        ".rs": 8,
+        ".toml": 1,
+        ".md": 1
+      },
+      "line_counts": {
+        ".rs": 807
+      },
+      "total_source_lines": 807,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "rust-bin",
+        "edition-2024"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Dev_Active_WetPaperToDiamond\\alchemy",
+      "rel_path": "Dev_Active_WetPaperToDiamond\\alchemy",
+      "name": "laere-html-helper",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "laere-html-helper",
+        "version": "1.0.0",
+        "description": "A helper project for learning HTML with useful tools and scripts.",
+        "main": "script.js",
+        "license": "ISC",
+        "package_manager": "unknown",
+        "dep_count": 185,
+        "dev_dep_count": 1,
+        "scripts": [
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 5,
+        ".rb": 1,
+        ".yml": 2,
+        ".py": 7,
+        ".html": 1,
+        ".js": 3,
+        ".css": 2,
+        ".json": 2
+      },
+      "line_counts": {
+        ".rb": 1333,
+        ".py": 1155,
+        ".js": 0
+      },
+      "total_source_lines": 2488,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "deps:rich",
+        "lines:2488"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\LÆRE_HTML",
+      "name": "laere-html-helper",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "laere-html-helper",
+        "version": "1.0.0",
+        "description": "A helper project for learning HTML with useful tools and scripts.",
+        "main": "script.js",
+        "license": "ISC",
+        "package_manager": "unknown",
+        "dep_count": 185,
+        "dev_dep_count": 1,
+        "scripts": [
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 6,
+        ".json": 3,
+        ".rb": 66,
+        ".yml": 4,
+        ".lock": 1,
+        ".html": 4,
+        ".py": 6,
+        ".js": 3,
+        ".css": 2
+      },
+      "line_counts": {
+        ".rb": 2905,
+        ".py": 965,
+        ".js": 6
+      },
+      "total_source_lines": 3876,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "deps:rich",
+        "lines:3876"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\Meta-Autonoma x Psyco-Noir-Kontraounkt\\PsychoNoir-Kontrapunkt",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\Meta-Autonoma x Psyco-Noir-Kontraounkt\\PsychoNoir-Kontrapunkt",
+      "name": "psycho-noir-kontrapunkt",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psycho-noir-kontrapunkt",
+        "version": "0.1.0",
+        "description": "Psycho-Noir Kontrapunkt: Neural archaeology and dialogue analysis system",
+        "main": "frontend/scripts/script.js",
+        "license": "ISC",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "test",
+          "test:single",
+          "test:playwright",
+          "dev",
+          "docker:build",
+          "docker:dev",
+          "python:install",
+          "lint",
+          "clean"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 8,
+        ".rb": 1,
+        ".yml": 2,
+        ".py": 8,
+        ".html": 1,
+        ".js": 3,
+        ".css": 2,
+        ".json": 2
+      },
+      "line_counts": {
+        ".rb": 1333,
+        ".py": 1513,
+        ".js": 9
+      },
+      "total_source_lines": 2855,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "scripts:9",
+        "lines:2855"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\Project_WetPaper_To_Diamond\\alchemy",
+      "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\Project_WetPaper_To_Diamond\\alchemy",
+      "name": "laere-html-helper",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "laere-html-helper",
+        "version": "1.0.0",
+        "description": "A helper project for learning HTML with useful tools and scripts.",
+        "main": "script.js",
+        "license": "ISC",
+        "package_manager": "unknown",
+        "dep_count": 185,
+        "dev_dep_count": 1,
+        "scripts": [
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 5,
+        ".rb": 1,
+        ".yml": 2,
+        ".py": 7,
+        ".html": 1,
+        ".js": 3,
+        ".css": 2,
+        ".json": 2
+      },
+      "line_counts": {
+        ".rb": 1333,
+        ".py": 1155,
+        ".js": 0
+      },
+      "total_source_lines": 2488,
+      "config_files": [
+        "backend\\python\\requirements.txt",
+        "backend\\requirements.txt"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "deps:rich",
+        "lines:2488"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt\\backups\\backup_20250902180621",
+      "rel_path": "Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt\\backups\\backup_20250902180621",
+      "name": "backup_20250902180621",
+      "languages": [],
+      "file_counts": {
+        ".json": 17,
+        ".py": 35,
+        ".ts": 4,
+        ".js": 3
+      },
+      "line_counts": {
+        ".py": 12465,
+        ".ts": 1801,
+        ".js": 296
+      },
+      "total_source_lines": 14562,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:14562"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes\\backups\\backup_20250902180621",
+      "rel_path": "git-dump-lfs-holder-we-it-takes\\backups\\backup_20250902180621",
+      "name": "backup_20250902180621",
+      "languages": [],
+      "file_counts": {
+        ".json": 17,
+        ".py": 35,
+        ".ts": 4,
+        ".js": 3
+      },
+      "line_counts": {
+        ".py": 12527,
+        ".ts": 1801,
+        ".js": 296
+      },
+      "total_source_lines": 14624,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:14624"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\backups\\backup_20250902180621",
+      "rel_path": "PsychoNoir-Kontrapunkt\\backups\\backup_20250902180621",
+      "name": "backup_20250902180621",
+      "languages": [],
+      "file_counts": {
+        ".json": 17,
+        ".py": 35,
+        ".ts": 4,
+        ".js": 3
+      },
+      "line_counts": {
+        ".py": 12527,
+        ".ts": 1801,
+        ".js": 296
+      },
+      "total_source_lines": 14624,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "lines:14624"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\cli",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\cli",
+      "name": "@mcp/cli",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/cli",
+        "version": "1.0.0",
+        "description": "Command Line Interface for MCP Orchestration System",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 6,
+        "dev_dep_count": 1,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [
+          "cli"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 303
+      },
+      "total_source_lines": 303,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:cli",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\core",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\core",
+      "name": "@mcp/core",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/core",
+        "version": "1.0.0",
+        "description": "Core orchestration system for MCP",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 6,
+        "dev_dep_count": 1,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [
+          "http-server"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 6
+      },
+      "line_counts": {
+        ".ts": 918
+      },
+      "total_source_lines": 918,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:http-server",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\guthilda",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\guthilda",
+      "name": "@mcp/guthilda",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/guthilda",
+        "version": "1.0.0",
+        "description": "Captain Guthilda - Meta-Automation Orchestrator for MCP System",
+        "main": "dist/index.js",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 0,
+        "scripts": [
+          "build",
+          "dev",
+          "test",
+          "lint"
+        ],
+        "framework_hints": [
+          "cli"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".md": 1,
+        ".ts": 2
+      },
+      "line_counts": {
+        ".ts": 828
+      },
+      "total_source_lines": 828,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 3,
+      "interesting_signals": [
+        "frameworks:cli",
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\hermes\\hermes-agent\\scripts\\whatsapp-bridge",
+      "rel_path": "AppData\\Local\\hermes\\hermes-agent\\scripts\\whatsapp-bridge",
+      "name": "hermes-whatsapp-bridge",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "hermes-whatsapp-bridge",
+        "version": "1.0.0",
+        "description": "WhatsApp bridge for Hermes Agent using Baileys",
+        "type": "module",
+        "package_manager": "npm",
+        "dep_count": 4,
+        "dev_dep_count": 0,
+        "scripts": [
+          "start"
+        ],
+        "framework_hints": [
+          "http-server"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 2,
+        ".mjs": 1,
+        ".json": 2
+      },
+      "line_counts": {
+        ".js": 817,
+        ".mjs": 80
+      },
+      "total_source_lines": 897,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "frameworks:http-server"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\vampire-corpus",
+      "rel_path": "chthonic-archive\\extensions\\vampire-corpus",
+      "name": "vampire-corpus",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "vampire-corpus",
+        "version": "0.1.0",
+        "description": "Corpus drain, session federation, and local extension registry for chthonic-archive development.",
+        "main": "./dist/extension.js",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 3,
+        "scripts": [
+          "build",
+          "watch",
+          "package"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".json": 2,
+        ".ts": 4
+      },
+      "line_counts": {
+        ".ts": 876
+      },
+      "total_source_lines": 876,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\servers\\base",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\servers\\base",
+      "name": "@mcp/server-base",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-base",
+        "version": "1.0.0",
+        "description": "Base server class for MCP servers",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 122
+      },
+      "total_source_lines": 122,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\servers\\duckduckgo",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\servers\\duckduckgo",
+      "name": "@mcp/server-duckduckgo",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-duckduckgo",
+        "version": "1.0.0",
+        "description": "DuckDuckGo MCP Server",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 3,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 189
+      },
+      "total_source_lines": 189,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\servers\\sequential-thinking",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\servers\\sequential-thinking",
+      "name": "@mcp/server-sequential-thinking",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-sequential-thinking",
+        "version": "1.0.0",
+        "description": "Sequential Thinking MCP Server",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 178
+      },
+      "total_source_lines": 178,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\rmco-live\\packages\\shared",
+      "rel_path": "chthonic-archive\\rmco-live\\packages\\shared",
+      "name": "@mcp/shared",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/shared",
+        "version": "1.0.0",
+        "description": "Shared utilities and types for MCP",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 4
+      },
+      "line_counts": {
+        ".ts": 186
+      },
+      "total_source_lines": 186,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes\\vscode-extension",
+      "rel_path": "git-dump-lfs-holder-we-it-takes\\vscode-extension",
+      "name": "psycho-noir-session-resolver",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psycho-noir-session-resolver",
+        "version": "1.0.0",
+        "description": "🏔️ Eternal Sadhana system for disciplined AI session archaeology and chaos resolution",
+        "main": "./out/extension.js",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 7,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 1,
+        ".json": 2,
+        ".ts": 2
+      },
+      "line_counts": {
+        ".ts": 749
+      },
+      "total_source_lines": 749,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\vscode-extension",
+      "rel_path": "PsychoNoir-Kontrapunkt\\vscode-extension",
+      "name": "psycho-noir-session-resolver",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "psycho-noir-session-resolver",
+        "version": "1.0.0",
+        "description": "🏔️ Eternal Sadhana system for disciplined AI session archaeology and chaos resolution",
+        "main": "./out/extension.js",
+        "license": "MIT",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 7,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".md": 1,
+        ".json": 2,
+        ".ts": 2
+      },
+      "line_counts": {
+        ".ts": 753
+      },
+      "total_source_lines": 753,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\servers\\base",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\servers\\base",
+      "name": "@mcp/server-base",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-base",
+        "version": "1.0.0",
+        "description": "Base server class for MCP servers",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 122
+      },
+      "total_source_lines": 122,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\servers\\duckduckgo",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\servers\\duckduckgo",
+      "name": "@mcp/server-duckduckgo",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-duckduckgo",
+        "version": "1.0.0",
+        "description": "DuckDuckGo MCP Server",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 3,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 189
+      },
+      "total_source_lines": 189,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\servers\\sequential-thinking",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\servers\\sequential-thinking",
+      "name": "@mcp/server-sequential-thinking",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/server-sequential-thinking",
+        "version": "1.0.0",
+        "description": "Sequential Thinking MCP Server",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 2,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 178
+      },
+      "total_source_lines": 178,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Restructure-MCP-Orchestration\\packages\\shared",
+      "rel_path": "Restructure-MCP-Orchestration\\packages\\shared",
+      "name": "@mcp/shared",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "@mcp/shared",
+        "version": "1.0.0",
+        "description": "Shared utilities and types for MCP",
+        "type": "module",
+        "main": "dist/index.js",
+        "package_manager": "unknown",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [
+          "dev",
+          "build",
+          "lint",
+          "test"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2,
+        ".ts": 4
+      },
+      "line_counts": {
+        ".ts": 186
+      },
+      "total_source_lines": 186,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "scripts:4"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\test",
+      "rel_path": "test",
+      "name": "test",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 3,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [
+          "react",
+          "next"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".html": 1,
+        ".json": 2
+      },
+      "line_counts": {
+        ".js": 11
+      },
+      "total_source_lines": 11,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 2,
+      "interesting_signals": [
+        "frameworks:react+next"
+      ],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dev\\sd-candidates\\textgen\\desktop",
+      "rel_path": "chthonic-archive\\dev\\sd-candidates\\textgen\\desktop",
+      "name": "textgen",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "textgen",
+        "main": "main.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 192
+      },
+      "total_source_lines": 192,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-siphon\\20251226_090059",
+      "rel_path": "chthonic-archive\\dumpster-dive\\intake\\overnight-siphon\\20251226_090059",
+      "name": "chthonic-archive",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "chthonic-archive",
+        "version": "0.1.0",
+        "edition": "2021",
+        "license": "WTFPL",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 5
+      },
+      "file_counts": {
+        ".md": 5,
+        ".rs": 2,
+        ".toml": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".rs": 231
+      },
+      "total_source_lines": 231,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\error-classifier",
+      "rel_path": "chthonic-archive\\error-classifier",
+      "name": "chthonic-error-classifier",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "chthonic-error-classifier",
+        "version": "1.0.0",
+        "description": "Structured error database for Phase 13 research",
+        "type": "module",
+        "main": "index.ts",
+        "package_manager": "bun",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [
+          "ingest",
+          "research"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".ts": 4,
+        ".json": 1
+      },
+      "line_counts": {
+        ".ts": 304
+      },
+      "total_source_lines": 304,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\context-compressor",
+      "rel_path": "chthonic-archive\\extensions\\context-compressor",
+      "name": "context-compressor",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "context-compressor",
+        "version": "0.1.0",
+        "edition": "2021",
+        "license": "MIT",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 0
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".toml": 1,
+        ".json": 1,
+        ".md": 1,
+        ".rs": 1
+      },
+      "line_counts": {
+        ".rs": 705
+      },
+      "total_source_lines": 705,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\spec-enforcer",
+      "rel_path": "chthonic-archive\\extensions\\spec-enforcer",
+      "name": "spec-enforcer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "spec-enforcer",
+        "type": "module",
+        "package_manager": "bun",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "start",
+          "once"
+        ],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".lock": 1,
+        ".json": 3,
+        ".md": 1,
+        ".ts": 1
+      },
+      "line_counts": {
+        ".ts": 343
+      },
+      "total_source_lines": 343,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\git-dump-live\\.github\\copilot-persistence",
+      "rel_path": "chthonic-archive\\git-dump-live\\.github\\copilot-persistence",
+      "name": "copilot-persistence-enhancer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "copilot-persistence-enhancer",
+        "version": "0.1.0",
+        "description": "Improves GitHub Copilot's inline mode persistence",
+        "main": "./extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 95
+      },
+      "total_source_lines": 95,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\pnk-live\\.github\\copilot-persistence",
+      "rel_path": "chthonic-archive\\pnk-live\\.github\\copilot-persistence",
+      "name": "copilot-persistence-enhancer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "copilot-persistence-enhancer",
+        "version": "0.1.0",
+        "description": "Improves GitHub Copilot's inline mode persistence",
+        "main": "./extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 95
+      },
+      "total_source_lines": 95,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\vulkan-lab\\rust-lane",
+      "rel_path": "chthonic-archive\\vulkan-lab\\rust-lane",
+      "name": "vulkan-lab-rs",
+      "languages": [
+        "rust"
+      ],
+      "rust": {
+        "name": "vulkan-lab-rs",
+        "version": "0.1.0",
+        "edition": "2024",
+        "is_workspace": false,
+        "workspace_member_count": 0,
+        "has_bin": false,
+        "has_lib": false,
+        "dep_count": 1
+      },
+      "file_counts": {
+        ".toml": 1,
+        ".rs": 1
+      },
+      "line_counts": {
+        ".rs": 7
+      },
+      "total_source_lines": 7,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "edition-2024"
+      ],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt\\.github\\copilot-persistence",
+      "rel_path": "Downloads\\GithubDesktopPreview\\PsychoNoir-Kontrapunkt\\.github\\copilot-persistence",
+      "name": "copilot-persistence-enhancer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "copilot-persistence-enhancer",
+        "version": "0.1.0",
+        "description": "Improves GitHub Copilot's inline mode persistence",
+        "main": "./extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 95
+      },
+      "total_source_lines": 95,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes\\.github\\copilot-persistence",
+      "rel_path": "git-dump-lfs-holder-we-it-takes\\.github\\copilot-persistence",
+      "name": "copilot-persistence-enhancer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "copilot-persistence-enhancer",
+        "version": "0.1.0",
+        "description": "Improves GitHub Copilot's inline mode persistence",
+        "main": "./extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 95
+      },
+      "total_source_lines": 95,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\.github\\copilot-persistence",
+      "rel_path": "PsychoNoir-Kontrapunkt\\.github\\copilot-persistence",
+      "name": "copilot-persistence-enhancer",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "copilot-persistence-enhancer",
+        "version": "0.1.0",
+        "description": "Improves GitHub Copilot's inline mode persistence",
+        "main": "./extension.js",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 2,
+        "scripts": [
+          "vscode:prepublish",
+          "compile",
+          "watch"
+        ],
+        "framework_hints": [
+          "vscode-extension"
+        ],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".js": 1,
+        ".json": 1
+      },
+      "line_counts": {
+        ".js": 95
+      },
+      "total_source_lines": 95,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [
+        "frameworks:vscode-extension"
+      ],
+      "mode_hint": "snipe"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\vcpkg\\scripts\\azure-pipelines\\owners-db",
+      "rel_path": "vcpkg\\scripts\\azure-pipelines\\owners-db",
+      "name": "owners-db",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "owners-db",
+        "version": "1.0.0",
+        "description": "Utility to generate VCPKG file lists (TypeScript)",
+        "type": "module",
+        "license": "MIT",
+        "package_manager": "npm",
+        "dep_count": 3,
+        "dev_dep_count": 1,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".ts": 2,
+        ".json": 2,
+        ".md": 1
+      },
+      "line_counts": {
+        ".ts": 277
+      },
+      "total_source_lines": 277,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 1,
+      "interesting_signals": [],
+      "mode_hint": "sweep"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\4.9",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\4.9",
+      "name": "4.9",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\5.2",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\5.2",
+      "name": "5.2",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 16,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\5.4",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\5.4",
+      "name": "5.4",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\5.5",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\5.5",
+      "name": "5.5",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\5.6",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\5.6",
+      "name": "5.6",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\5.8",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\5.8",
+      "name": "5.8",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 83,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\TypeScript\\6.0",
+      "rel_path": "AppData\\Local\\Microsoft\\TypeScript\\6.0",
+      "name": "6.0",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\663b9277200d10db",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\663b9277200d10db",
+      "name": "663b9277200d10db",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\715862f77c6787c7",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\715862f77c6787c7",
+      "name": "715862f77c6787c7",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\755986f37193a6d8",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\755986f37193a6d8",
+      "name": "755986f37193a6d8",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\7d83ce88599d010b",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\7d83ce88599d010b",
+      "name": "7d83ce88599d010b",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\9833c18b2d85bc59",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\9833c18b2d85bc59",
+      "name": "9833c18b2d85bc59",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\aab42732f01924e5",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\aab42732f01924e5",
+      "name": "aab42732f01924e5",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\b388654678d519d9",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\b388654678d519d9",
+      "name": "b388654678d519d9",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\c67e74de0542c87c",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\c67e74de0542c87c",
+      "name": "c67e74de0542c87c",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\cc2145a2fe1558fa",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\cc2145a2fe1558fa",
+      "name": "cc2145a2fe1558fa",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\npm-cache\\_npx\\d28cfb4b54958d89",
+      "rel_path": "AppData\\Local\\npm-cache\\_npx\\d28cfb4b54958d89",
+      "name": "d28cfb4b54958d89",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "npm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 2
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\bpmothu654dmz2iqgielog7a3q\\191872d9106-935c",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\bpmothu654dmz2iqgielog7a3q\\191872d9106-935c",
+      "name": "191872d9106-935c",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\bpmothu654dmz2iqgielog7a3q\\pkg",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\bpmothu654dmz2iqgielog7a3q\\pkg",
+      "name": "pkg",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\nk5go5ryu5mvbdbdkodixk2pde\\19187fd4832-78e0",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\nk5go5ryu5mvbdbdkodixk2pde\\19187fd4832-78e0",
+      "name": "19187fd4832-78e0",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\nk5go5ryu5mvbdbdkodixk2pde\\pkg",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\nk5go5ryu5mvbdbdkodixk2pde\\pkg",
+      "name": "pkg",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\zk3uwrwjbl2bj4oeppl2rqsllq\\19187fc2a59-8c48",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\zk3uwrwjbl2bj4oeppl2rqsllq\\19187fc2a59-8c48",
+      "name": "19187fc2a59-8c48",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\AppData\\Local\\pnpm-cache\\dlx\\zk3uwrwjbl2bj4oeppl2rqsllq\\pkg",
+      "rel_path": "AppData\\Local\\pnpm-cache\\dlx\\zk3uwrwjbl2bj4oeppl2rqsllq\\pkg",
+      "name": "pkg",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "package_manager": "pnpm",
+        "dep_count": 1,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 1,
+        ".yaml": 1
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    },
+    {
+      "root_dir": "C:\\Users\\eldno\\chthonic-archive\\game\\cocos-iso",
+      "rel_path": "chthonic-archive\\game\\cocos-iso",
+      "name": "cocos-iso",
+      "languages": [
+        "node"
+      ],
+      "node": {
+        "name": "cocos-iso",
+        "package_manager": "unknown",
+        "dep_count": 0,
+        "dev_dep_count": 0,
+        "scripts": [],
+        "framework_hints": [],
+        "workspace_root": false
+      },
+      "file_counts": {
+        ".json": 354
+      },
+      "line_counts": {},
+      "total_source_lines": 0,
+      "config_files": [
+        "tsconfig.json"
+      ],
+      "has_native_stack": false,
+      "files_capped": false,
+      "repurposability_score": 0,
+      "interesting_signals": [],
+      "mode_hint": "noise"
+    }
+  ]
+}
