@@ -1,11 +1,3 @@
----
-type: agent-guidance
-category: configuration
-created: 2026-01-31
-agent: gemini
-description: Google Gemini CLI configuration and MCP setup
----
-
 # GEMINI.md
 
 This file provides guidance to Google Gemini CLI when working with code in this repository.

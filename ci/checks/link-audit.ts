@@ -94,12 +94,13 @@ function isTombstone(rel: string): boolean {
 }
 
 function existingMarkdown(paths: string[]): string[] {
-  return paths
+  let passiveCount = 0;
+  const active = paths
     .filter(isMarkdownPath)
     .filter((rel) => existsSync(resolve(REPO_ROOT, rel)))
     .filter((rel) => {
       if (isPassiveMarkdown(rel)) {
-        console.log(`[pathfinder] skipping passive markdown: ${rel}`);
+        passiveCount += 1;
         return false;
       }
       return true;
@@ -111,6 +112,11 @@ function existingMarkdown(paths: string[]): string[] {
       }
       return true;
     });
+
+  if (passiveCount > 0) {
+    console.log(`[pathfinder] skipping ${passiveCount} passive markdown file(s)`);
+  }
+  return active;
 }
 
 function hasStagedRenames(): boolean {
