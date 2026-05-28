@@ -1,6 +1,0 @@
-interface:
-  display_name: "Mailbox Handoff"
-  short_description: "Verify and route triad handoffs (Postman/Scribe/Polisher)"
-  icon_small: "./assets/mailbox-small.svg"
-  icon_large: "./assets/mailbox-large.svg"
-  brand_color: "#1F2937"

@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="3" fill="hsl(267 74% 51%)"/>
-  <rect x="0" y="0" width="28.8" height="28.8" fill="hsl(93 60% 55%)" opacity="0.75"/>
-  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-size="28" font-family="ui-sans-serif,system-ui">A</text>
-</svg>

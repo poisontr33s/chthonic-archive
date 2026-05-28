@@ -1,7 +1,0 @@
-version: 1
-name: codex-missing-assets-dir
-provider: openai
-models:
-  default: GPT-5.3-Codex
-policy:
-  allowed_tools: []

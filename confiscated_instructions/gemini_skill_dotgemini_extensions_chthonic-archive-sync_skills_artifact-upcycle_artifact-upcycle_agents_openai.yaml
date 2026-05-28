@@ -1,6 +1,0 @@
-interface:
-  display_name: "Artifact Upcycle"
-  short_description: "Salvage files and resolve directory relationships"
-  icon_small: "./assets/upcycle-small.svg"
-  icon_large: "./assets/upcycle-small.svg"
-  brand_color: "#10B981"

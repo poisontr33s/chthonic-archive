@@ -1,5 +1,0 @@
-# Placeholder agent config for parity with other Codex skills.
-# This skill is executed via repo scripts; no model-specific wiring required here.
-name: iron-maiden-runtime
-version: 1
-
