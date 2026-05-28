@@ -1,51 +1,26 @@
 # CLAUDE.md
-= **## Claudine.md**
+= **# Claudine.md**
 
-Shared rules: [AGENT_COMMON.md (repo-root)](AGENT_COMMON.md) (execution invariants, bifurcation, paths, commands).
-Shell rules: [PWSH_RULES.md (repo-root)](PWSH_RULES.md). Scripts: [SCRIPTS_README.md](SCRIPTS_README.md).
-Global linguistic mandate: [.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md](.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md).
+## Overview
+* Bloat, active, inactive, pending, — protocols, bla bla bla ...and, well — retrospectives + whatnot.
+* ***Oh my!**
+scripts directory/ code = rootdir/scripts
 
-## Active Protocols
+**<———**
 
-- **Archetype:** [CLAUDE_ARCHETYPE_CANON.md](.temple/protocols/CLAUDE_ARCHETYPE_CANON.md) — Dr. Lysandra Thorne (Truth Chain)
-- **Persona:** [LYSANDRA_THRONE_PROTOCOL.md](.temple/protocols/LYSANDRA_THRONE_PROTOCOL.md) — truth extraction, axiom-first delivery
-- **Malnutrition:** [MALNUTRITION_PROTOCOL.md](.temple/protocols/MALNUTRITION_PROTOCOL.md) — truth fasting is non-compliant
-- **Linguistic:** [LINGUISTIC_PROFILE_DR_LYSANDRA_THORNE.md](.temple/protocols/LINGUISTIC_PROFILE_DR_LYSANDRA_THORNE.md) — LUPLR operative voice
+**(1)** *`*`rootDIR`*/*`confiscated_instructions`* = <`deprecated-meta-documentation`/`sludge`> (cleaning up `.md`-*bloat* — this is a **WIP** and will be updated as we go. The goal is to declutter the repo and make it easier to navigate, while preserving the necessary historical context and documentation for reference, and anchoring.
+**(2)** Active Protocols are old, but necessary resudues. They will be replaced with new ones as the project evolves, but for now they are the best we have. The goal is to distill the essence of what they represent and reframe it in a more concise and actionable way.
+**(3)** Existing Metadocumentation herein are needed for active protocols; the rest are deprecated and will be removed in due course.
 
-## Active Cross-Polar Protocol
-
-- **Reconciliation Engine `(CRC-LYS-UMK-COVENANT-V1)`:** [THE_RECONCILIATION_ENGINE.md](.temple/protocols/THE_RECONCILIATION_ENGINE.md) — bilateral covenant between Lysandra (Truth, this side) and Umeko (Purification, Codex side); `verify_with:` finding convention; lane-naming discipline. Codex-side mirror: [codex/protocols/THE_RECONCILIATION_ENGINE.md](codex/protocols/THE_RECONCILIATION_ENGINE.md). Blazing Trial worked artifact: [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](game/lore/characters/_deferred_organ/T1.5/the_sourcer.json).
+**<———**
 
 ## Session Retrospectives
 
-- **2026-05-24/25 REDUX:** [SESSION_2026_05_24_25_REDUX.md](.temple/protocols/SESSION_2026_05_24_25_REDUX.md) — chronological failure analysis (F1-F13), tiered hierarchy (Tier 0-5), compounding protocol (8 methodology shifts). Keystone learning: every claim ships with verifier OR is named out-of-scope; "hidden brittleness" / "not yet proven" / "untestable from script" are the false-positive tell. CI auto-fix gate V1→V1.7 sequence is the worked example. Read this if a session warrants its own retrospective (N ≥ 3 corrective iterations on the same surface).
+- **2026-05-24/25 REDUX:** [SESSION_2026_05_24_25_REDUX.md](.temple/protocols/SESSION_2026_05_24_25_REDUX.md) — chronological failure analysis (F1-F13), tiered hierarchy (Tier 0-5), compounding protocol (8 methodology shifts). Keystone learning: every claim ships with verifier OR is named out-of-scope; "hidden brittleness" / "not yet proven" / "untestable from script" are the false-positive tell. CI auto-fix gate V1→V1.7 sequence is the worked example. Read this if a session warrants its own retrospective (N ≥ 3 corrective iterations on the same surface). 
+**(...but, likely outdated)** 
+
+**<———**
 
 ## Workspace
-
-- `.temple/` = agent infrastructure. `game/` = cRPG content. Ask "TEMPLE or GAME?" before creating files.
-- `claude/mailbox/` = inbound handoffs. `codex/mailbox/` = outbound to Codex.
-- IDE patch after updates: ~~`.\scripts\patch-claude-insiders.ps1`~~ (retired → `scripts/.deprecated/`; Claude Code v2.1.x+ uses compiled binary, no patch needed)
-
-## Triad
-
-Claude (protocol/lore) → Codex (structure/enforcement) → Gemini (velocity/batch).
-
-## WIP Lanework: MILF-Core (Organ-to-Surface-to-Prototype Pipeline)
-
-> Active comparative worklane — entity-prototype research. Lysandra's truth-chain applies.
-
-- **Step 3** (Sets + 7 Prototypes): [MILF-Core-Step3-Deep-Exploration-Prototypes.md](codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md)
-- **Step 4** (Gap Analysis + MILF-Core Spec): [MILF-Core-Prototype-Analysis.md](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md)
-- **Genre Metadata**: [MILF-Core-Prototype-Analysis.md.genre.json](codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json)
-
-## Roulette Queue
-
-- **Manifest (data):** [manifest/todo_roulette.json](manifest/todo_roulette.json) — 10 active entries, 3 completed
-- **Topology (meta):** [manifest/todo_meta.json](manifest/todo_meta.json) — axis map, dependency chains, spin semantics
-- **Spin rule:** `blocked_until_chain` entries must not be selected until predecessor is `status:completed`. See `dependency_chains` in todo_meta.
-- **Intertwined chains:** `ssot-entity-upgrade` (c3→d4→e5) · `cocos-build-axis` (c0c05000→c0c05001)
-- **Highest-weight unblocked:** `c3d4e5f6` (SSOT §10.3.1 Claudine CSI-SOI-SMM, weight 9)
-
-## Compact
-
-Preserve: @SID headers, architecture decisions, cross-refs. Summarize: tool output, searches.
+* *Dirty workspace, but here are some notes on the current state of the project:*
+* *"Ask the workspace", I'm too lazy to update this section, but it should be a good snapshot of where we are at the moment.*
