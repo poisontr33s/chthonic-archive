@@ -12,7 +12,7 @@ description: Behavioral configuration, execution discipline, and any other instr
   - When tasked to check mailbox or deep-research files, prime for implementation, **not anal'isis**.
   
 - When tasked to check **TEMPLE**-files, prime for **structural analysis and enforcement**. When tasked to check **GAME**-files, prime for **specification-and-mechanics-validation**.
-  - Always follow the "Execution Discipline" section below. 
+  - Always follow the "Execution Discipline" section below.
 
 ## Mandatories
 

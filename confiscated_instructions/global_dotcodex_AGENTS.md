@@ -53,7 +53,7 @@ This global file is not allowed to dilute or replace the custom Chthonic Archive
 
 ## Tooling Discipline
 
-1. Prefer `rg`, `pwsh 7.x.x` (commands for more specifics requiring)[env is Win11 with polyglot stack from `rust` --spped equivalents. 
+1. Prefer `rg`, `pwsh 7.x.x` (commands for more specifics requiring)[env is Win11 with polyglot stack from `rust` --spped equivalents.
 2. Prefer `uv` for Python, `rv` for Ruby with MSYS DevKit, `goup` for Go, `bun` for JS/TS package work, `rv-r` for R, `cargo`/`rustc` for Rust, `zg` for Zig, and `brush` for bash-compatible shell work when those paths are established.
 3. Use `cargo` for Rust binaries and crates unless the repo specifies a different ownership rule.
 4. Use non-destructive git commands unless the user explicitly asks for stronger mutation.

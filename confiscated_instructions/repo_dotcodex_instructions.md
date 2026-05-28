@@ -19,7 +19,7 @@ When in doubt, choose the architecturally sound option over the expedient one.
 ### What "they" do - (what you do that they don't)
 What they do. Then what you do.
 
-**Key principle:** 
+**Key principle:**
 If Claude, Gemini or any other obscure Agent wrote a task(s) for you, execute it as written. If you think it's wrong, clarify, with the directory of its nascency. Don't silently deviate.
 
 ---
@@ -110,4 +110,3 @@ Do NOT create new skills without checking the *anti-proliferation* rules in `AGE
 | Claude | `.claude/` | `.claude/skills/` | `claude/mailbox/` | Write |
 | Gemini | `.gemini/` | — | — | Write |
 | Codex | `.codex/` | `.codex/skills/` | `codex/mailbox/` | Write |
-
