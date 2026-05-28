@@ -17,13 +17,12 @@ use std::sync::Arc;
 
 use anyhow::{Context, Result};
 use async_trait::async_trait;
-use github_copilot_sdk::handler::{PermissionResult, SessionHandler};
+use github_copilot_sdk::handler::ApproveAllHandler;
 use github_copilot_sdk::hooks::{HookContext, PostToolUseInput, PostToolUseOutput, PreToolUseInput, PreToolUseOutput, SessionHooks};
-use github_copilot_sdk::tool::{ToolHandler, ToolHandlerRouter, schema_for};
+use github_copilot_sdk::tool::{ToolHandler, schema_for};
 use schemars::JsonSchema;
 use github_copilot_sdk::types::{
-    MessageOptions, PermissionRequestData, RequestId, SessionConfig, SessionEvent, SessionId,
-    Tool, ToolInvocation, ToolResult,
+    MessageOptions, SessionConfig, Tool, ToolInvocation, ToolResult,
 };
 use github_copilot_sdk::{Client, ClientOptions, Error};
 use chrono::Timelike as _;
@@ -228,14 +227,8 @@ struct AnalyzePrTool {
 
 #[async_trait]
 impl ToolHandler for AnalyzePrTool {
-    fn tool(&self) -> Tool {
-        Tool::new("analyze_pr")
-            .with_description("Retrieve structured data for a PR from the loaded triage report. Returns title, state, CI status, merge conflicts, review threads, and labels.")
-            .with_parameters(schema_for::<AnalyzePrParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: AnalyzePrParams = inv.params()?;
+        let params: AnalyzePrParams = serde_json::from_value(inv.arguments)?;
 
         let pr = self
             .report
@@ -308,14 +301,8 @@ struct FetchPrChecksTool {
 
 #[async_trait]
 impl ToolHandler for FetchPrChecksTool {
-    fn tool(&self) -> Tool {
-        Tool::new("fetch_pr_checks")
-            .with_description("Return the CI check summary for a PR (passed/failed/pending counts from the triage report).")
-            .with_parameters(schema_for::<FetchPrChecksParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: FetchPrChecksParams = inv.params()?;
+        let params: FetchPrChecksParams = serde_json::from_value(inv.arguments)?;
 
         let pr = self
             .report
@@ -350,14 +337,8 @@ struct CommentPrTool;
 
 #[async_trait]
 impl ToolHandler for CommentPrTool {
-    fn tool(&self) -> Tool {
-        Tool::new("comment_pr")
-            .with_description("Post a comment on a GitHub PR via the gh CLI. Requires explicit confirmation (PreToolUse hook gates this tool).")
-            .with_parameters(schema_for::<CommentPrParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: CommentPrParams = inv.params()?;
+        let params: CommentPrParams = serde_json::from_value(inv.arguments)?;
 
         // Dry-run: emit the gh CLI command the agent would run but don't execute it.
         // In a production build, remove `echo` and execute via std::process::Command.
@@ -375,28 +356,24 @@ impl ToolHandler for CommentPrTool {
     }
 }
 
-// ── Session handler ───────────────────────────────────────────────────────────
+// ── Streaming delta printer (beta.9: session.subscribe channel) ───────────────
 
-struct TriageSessionHandler;
-
-#[async_trait]
-impl SessionHandler for TriageSessionHandler {
-    async fn on_session_event(&self, _session_id: SessionId, event: SessionEvent) {
-        if event.event_type == "assistant.message_delta" {
-            if let Some(delta) = event.data.get("delta").and_then(|v| v.as_str()) {
-                print!("{delta}");
-            }
+fn print_session_event(event: &github_copilot_sdk::types::SessionEvent) {
+    use std::io::Write as _;
+    match event.event_type.as_str() {
+        "assistant.message_delta" => {
+            let text = event
+                .data
+                .get("deltaContent")
+                .and_then(|c| c.as_str())
+                .unwrap_or("");
+            print!("{text}");
+            let _ = std::io::stdout().flush();
         }
-    }
-
-    async fn on_permission_request(
-        &self,
-        _session_id: SessionId,
-        _request_id: RequestId,
-        _data: PermissionRequestData,
-    ) -> PermissionResult {
-        // Auto-approve read-only tool access; destructive tools are gated via hooks.
-        PermissionResult::Approved
+        "assistant.message" => {
+            println!();
+        }
+        _ => {}
     }
 }
 
@@ -629,16 +606,6 @@ async fn main() -> Result<()> {
 
     let report = Arc::new(report);
 
-    // Build tool router
-    let tools: Vec<Box<dyn ToolHandler>> = vec![
-        Box::new(AnalyzePrTool { report: report.clone() }),
-        Box::new(FetchPrChecksTool { report: report.clone() }),
-        Box::new(CommentPrTool),
-    ];
-    let router = ToolHandlerRouter::new(tools, Arc::new(TriageSessionHandler));
-    let tool_defs = router.tools();
-    let router = Arc::new(router);
-
     // Build system message transform
     let transform = Arc::new(TriageSystemTransform { report_summary });
 
@@ -667,11 +634,34 @@ async fn main() -> Result<()> {
         )
     };
 
-    let config = SessionConfig::default()
-        .with_handler(router)
+    let mut config = SessionConfig::default()
+        .with_permission_handler(Arc::new(ApproveAllHandler))
         .with_hooks(Arc::new(TriageHooks))
-        .with_transform(transform)
-        .with_tools(tool_defs);
+        .with_system_message_transform(transform)
+        .with_tools(vec![
+            Tool::new("analyze_pr")
+                .with_description(
+                    "Retrieve structured data for a PR from the loaded triage report. \
+                     Returns title, state, CI status, merge conflicts, review threads, and labels.",
+                )
+                .with_parameters(schema_for::<AnalyzePrParams>())
+                .with_handler(Arc::new(AnalyzePrTool { report: report.clone() })),
+            Tool::new("fetch_pr_checks")
+                .with_description(
+                    "Return the CI check summary for a PR \
+                     (passed/failed/pending counts from the triage report).",
+                )
+                .with_parameters(schema_for::<FetchPrChecksParams>())
+                .with_handler(Arc::new(FetchPrChecksTool { report: report.clone() })),
+            Tool::new("comment_pr")
+                .with_description(
+                    "Post a comment on a GitHub PR via the gh CLI. \
+                     Requires explicit confirmation (PreToolUse hook gates this tool).",
+                )
+                .with_parameters(schema_for::<CommentPrParams>())
+                .with_handler(Arc::new(CommentPrTool)),
+        ]);
+    config.streaming = Some(true);
 
     // Start client
     let client = Client::start(
@@ -689,6 +679,14 @@ async fn main() -> Result<()> {
         .context("Failed to create session")?;
 
     info!("Session {} ready. Sending triage prompt...", session.id());
+
+    // Subscribe to streamed assistant deltas (beta.9 pattern; SessionHandler was removed).
+    let mut events = session.subscribe();
+    tokio::spawn(async move {
+        while let Ok(event) = events.recv().await {
+            print_session_event(&event);
+        }
+    });
 
     // Send prompt and wait for response
     session

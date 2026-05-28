@@ -15,8 +15,10 @@
  *
  * Greps active markdown and json files for path strings of shape
  *   game/lore/characters/<id>.json
- * (flat — no organ/tier segment). After the 2026-05-27 reorg, the canonical shape
- * is game/lore/characters/<organ>/T<tier>/<id>.json. Flat paths are stale.
+ * (flat — no organ/tier segment). Stale-ness is derived from the current
+ * git-tracked game/lore/characters tree: if that exact flat file is not tracked
+ * now, the ref is stale. When a current nested character file with the same
+ * basename exists, this check reports that canonical target.
  *
  * Scope: active files only. Frozen archives (claude/mailbox/GEMINI_POC_BACKBONE_BUNDLE_*,
  * claude/mailbox/GEMINI3_1_PRO_DEEP_RESEARCH_ARTIFACTS/, dumpster-dive/, node_modules/)
@@ -40,10 +42,10 @@ import { dirname, resolve } from "path";
 const STAGED = process.argv.includes("--staged");
 const REPO_ROOT = resolve(import.meta.dir, "../..");
 const MANIFEST_PATH = resolve(REPO_ROOT, "manifest/lore_canon_refs_audit.json");
+const CHARACTER_SCHEMA_PATH = "game/lore/characters/character.schema.json";
 
-// Stale-path pattern: game/lore/characters/<id>.json with NO organ/tier segments.
-// The trailing (?!/) prevents matching the new shape's directory prefix.
-const STALE_REF_RE = /game\/lore\/characters\/[A-Za-z_][A-Za-z0-9_]*\.json/g;
+// Flat path pattern: game/lore/characters/<id>.json with NO organ/tier segments.
+const FLAT_REF_RE = /game\/lore\/characters\/[A-Za-z0-9_.-]+\.json/g;
 
 const EXCLUDE_DIRS = [
   // Frozen archives: refs are historical snapshots of past state, not active drift.
@@ -106,13 +108,52 @@ function stagedFiles(): string[] {
   }
 }
 
+type CharacterPathIndex = {
+  trackedFlatPaths: Set<string>;
+  canonicalByFlatPath: Map<string, string>;
+};
+
+function characterPathIndex(): CharacterPathIndex {
+  const trackedFlatPaths = new Set<string>();
+  const canonicalByFlatPath = new Map<string, string>();
+  let out = "";
+
+  try {
+    out = execSync("git ls-files game/lore/characters", { encoding: "utf8", cwd: REPO_ROOT });
+  } catch {
+    return { trackedFlatPaths, canonicalByFlatPath };
+  }
+
+  const characterFiles = out
+    .split("\n")
+    .map((f) => f.trim().replace(/\\/g, "/"))
+    .filter((f) => f.length > 0)
+    .filter((f) => f.endsWith(".json"))
+    .filter((f) => f !== "game/lore/characters/character.schema.json");
+
+  for (const rel of characterFiles) {
+    const parts = rel.split("/");
+    if (parts.length === 4) {
+      trackedFlatPaths.add(rel);
+      continue;
+    }
+
+    const basename = parts[parts.length - 1];
+    if (!basename) continue;
+    canonicalByFlatPath.set(`game/lore/characters/${basename}`, rel);
+  }
+
+  return { trackedFlatPaths, canonicalByFlatPath };
+}
+
 const files = STAGED ? stagedFiles() : trackedFiles();
 if (files.length === 0) {
   console.log("[lore-canon-refs] No files in scope — skipping.");
   process.exit(0);
 }
 
-type Hit = { path: string; line: number; match: string };
+type Hit = { path: string; line: number; match: string; canonical_path?: string };
+const paths = characterPathIndex();
 const hits: Hit[] = [];
 
 for (const rel of files) {
@@ -126,10 +167,13 @@ for (const rel of files) {
   }
   const lines = text.split("\n");
   for (let i = 0; i < lines.length; i++) {
-    const matches = lines[i].match(STALE_REF_RE);
+    const matches = lines[i].match(FLAT_REF_RE);
     if (!matches) continue;
     for (const m of matches) {
-      hits.push({ path: rel, line: i + 1, match: m });
+      if (m === CHARACTER_SCHEMA_PATH) continue;
+      if (paths.trackedFlatPaths.has(m)) continue;
+      const canonical_path = paths.canonicalByFlatPath.get(m);
+      hits.push({ path: rel, line: i + 1, match: m, ...(canonical_path ? { canonical_path } : {}) });
     }
   }
 }
@@ -139,29 +183,37 @@ if (hits.length === 0) {
 } else {
   console.log(`[lore-canon-refs] FAIL — ${hits.length} stale flat-path ref(s) across active files:`);
   for (const h of hits) {
-    console.log(`  ${h.path}:${h.line}  ${h.match}`);
+    const target = h.canonical_path ? `  -> ${h.canonical_path}` : "";
+    console.log(`  ${h.path}:${h.line}  ${h.match}${target}`);
   }
   console.log("");
-  console.log("To fix: replace each flat path with its canonical organ/tier form.");
-  console.log("  e.g. game/lore/characters/lysandra.json → game/lore/characters/stomach/T1/lysandra.json");
-  console.log("       game/lore/characters/the_sourcer.json → game/lore/characters/_deferred_organ/T1.5/the_sourcer.json");
-  console.log("Canonical paths from manifest/lore_canon_paths_audit.json (run lore-canon-paths first).");
+  console.log("To fix: replace each flat path with the current canonical target shown above.");
+  console.log("If no target is shown, the ref points at no current tracked character file.");
 }
 
 mkdirSync(dirname(MANIFEST_PATH), { recursive: true });
 const manifest = {
   tool: "CI_CHECK_LORE_CANON_REFS_V1",
-  generated_at: new Date().toISOString(),
-  scope: STAGED ? "staged" : "always",
-  files_scanned: files.length,
   hit_count: hits.length,
   hits,
   excluded_dirs: EXCLUDE_DIRS,
 };
-writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2) + "\n", "utf8");
+const nextManifest = JSON.stringify(manifest, null, 2) + "\n";
+let previousManifest = "";
+if (existsSync(MANIFEST_PATH)) {
+  try {
+    previousManifest = readFileSync(MANIFEST_PATH, "utf8");
+  } catch {
+    previousManifest = "";
+  }
+}
+
+if (previousManifest !== nextManifest) {
+  writeFileSync(MANIFEST_PATH, nextManifest, "utf8");
+}
 
 console.log(
-  `[lore-canon-refs] manifest at ${MANIFEST_PATH.replace(REPO_ROOT, "").replace(/\\/g, "/").replace(/^\//, "")}`
+  `[lore-canon-refs] manifest ${previousManifest === nextManifest ? "unchanged" : "updated"} at ${MANIFEST_PATH.replace(REPO_ROOT, "").replace(/\\/g, "/").replace(/^\//, "")}`
 );
 
 process.exit(hits.length === 0 ? 0 : 1);

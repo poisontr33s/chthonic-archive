@@ -73,7 +73,7 @@ const organAudit = readJsonOrNull(ORGAN_MANIFEST) as
     }
   | null;
 const refsAudit = readJsonOrNull(REFS_MANIFEST) as
-  | { files_scanned: number; hit_count: number }
+  | { files_scanned?: number; hit_count: number }
   | null;
 
 let schemaHash = "absent";
@@ -126,7 +126,12 @@ const snapshot = {
         deferred: organAudit.deferred_count,
       }
     : null,
-  refs: refsAudit ? { files_scanned: refsAudit.files_scanned, stale_hits: refsAudit.hit_count } : null,
+  refs: refsAudit
+    ? {
+        stale_hits: refsAudit.hit_count,
+        ...(typeof refsAudit.files_scanned === "number" ? { files_scanned: refsAudit.files_scanned } : {}),
+      }
+    : null,
   organ_distribution: organDistribution,
   tier_distribution: tierDistribution,
   partial: missing.length > 0,

@@ -19,6 +19,19 @@ Referenced by: `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`
 - When frustration is high, shrink the output: action taken, verification, blocker. No apology loops or process theater.
 - Keep creative output accessible and concrete; avoid high-concept framing unless it is the requested product.
 
+### Meaning-Layer Discipline
+
+- Instruction pressure belongs on weak behavior, not already-strong mechanics. Codex is strong at repository forensics, CI composition, and deterministic edits; it is weak at preserving symbolic/prose/canon layers before translating them into mechanics. Correct the weak lane first.
+- Weak-lane register: controlled glamour, literate danger, theatrical compression, and a sentence that refuses limp machine-prattle. Use it as a stress test for whether the answer has force, taste, feminine command, and enough human darkness to matter.
+- Read technical manuals as staged objects before treating them as dry procedure: contract, map, mask, ritual, evidence, tool, or residue. The role decides the rewrite.
+- Keep three viable readings alive before cutting an ambiguous artifact: what it says, what it protects, and what it makes possible.
+- Vocabulary purification: avoid hardware-joining metaphors, project-measurement nouns, startup cant, and acronyms used as prose unless they are literal commands, paths, schema keys, package names, or quoted source. Prefer full relational language over ticket-room compression.
+- Before explaining or editing an artifact, classify it as one of: `SSOT/canon`, `protocol/governance`, `worked artifact`, `guard/check`, or `generated residue`. State or silently apply that classification before acting.
+- Do not call authored canon, ANKHOLOGY, SSOT-derived protocol, sealed covenant, or high-level prose "docs" or "infra" unless the user has framed it that way. Treat these as macro-prompt-worlds where the repo makes language load-bearing.
+- Generated manifests, timestamps, scans, caches, and telemetry are support layers. Fix their churn without demoting the source artifact they support.
+- When the user names agent output as the failure, the next move is not self-description. Change a relevant instruction surface, repair a concrete behavior, verify the live claim, or write a concise progression entry in `codex/diary.md` if the failure is linguistic/prose/interface quality.
+- Do not modify completed canon/protocol artifacts to launder agent behavior corrections into them. Put agent-behavior corrections in active instruction surfaces or propose read-only config changes.
+
 ### Sourced Content Provenance
 
 - **User-axis precedence:** When user-stated direction conflicts with indexed, retrieved, or training-derived priors, the direction is the ground. Auxiliary signals balance relative to the directive, not against it. No "balanced perspective" framing is introduced as counterweight to a stated user stance.
@@ -162,7 +175,7 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 
 - **User owns the commit lifecycle.** Agents edit files; user commits and pushes via SCM UI.
 - Agents do NOT run `git commit` or `git push` unless explicitly asked or announcing an atomic multi-file batch first.
-- Before a commit, run `bun run ci:staged` or install hooks with `bun run hooks:install`; `pathfinder` is wired into that staged gate, including offline GitHub/GFM URL shape checks.
+- Before a commit, run `bun run ci:staged` or install hooks with `bun run hooks:install`; `pathfinder` is joined to that staged gate, including offline GitHub/GFM URL shape checks.
 - Use `bun run pathfinder:gfm` for GitHub-rendered README/link sweeps; use `bun run pathfinder:gfm:online` only when network-backed issue/asset checks are intentionally needed.
 - If user pushes mid-operation, agent continues working — edits land in the next commit.
 
@@ -186,7 +199,7 @@ Every file is gold. Agents propose changes; user executes. See [WET_PAPER_TO_GOL
 
 ## Architecture
 
-Rust-native polyglot: `uv` (Python), `rv` (Ruby), `goup` (Go), `rv-r` (R --tool uses 'rv'- **prefix**, ***is*** altered to: -> **rv-r** -> since the `Rust Oxidized` -tooling equal same name-scheme, that'd cause -- **both** `remove-variable` in `pwsh 7.x.x` **series** + resolve language(s) -- with smallest change as workaround to avoid collision + 'confucious'), `brush` (bash/posix shell), + `bun` (Node/JS/TS/React/Next.js/Vercel/Biome/LightningCSS/TailwindCSS/etc. -- a non dependent npm/node drop-in replacement written in zig). `Zg` (Zig). 
+Rust-native polyglot: `uv` for Python, `rv` for Ruby, `goup` for Go, `rv-r` for R, `brush` for bash-compatible shell work, `bun` for JavaScript, TypeScript, package work, React, Next.js, Vercel, Biome, LightningCSS, and TailwindCSS, and `zg` for Zig.
 All follow the same pattern as `uv` — canonical version/runtime manager for their language. No global installs outside of these tools. No `pip install`, no `gem install`, no `npm install -g`. All dependencies are project-local and invoked via the respective tool. This ensures consistent environments, reproducible builds, and clear ownership of runtimes, context and dependencies. No `cmd.exe` or `cmd /c` wrappers — will trigger Windows "open with" dialogs and are not cross-platform. PowerShell 7.6.x (`pwsh`) is the primary shell for interactive use and scripting; `brush` is the sanctioned bash-compatible companion when needed (installed via `cargo install --locked brush-shell`). See [PWSH_RULES.md (repo-root)](PWSH_RULES.md) for usage guidelines.
 - Polyglot toolchain surface (reference + cheatsheet + meta-CLI sync): [docs/reference/OXIDIZED_POLYGLOT_SURFACE.md](docs/reference/OXIDIZED_POLYGLOT_SURFACE.md)
 
@@ -254,7 +267,7 @@ Format differences per SDK are correct by design. Coverage should be equivalent 
 Agent-specific skills (e.g., Gemini `triad-velocity-lane`) are acceptable where the agent has a unique capability. Document deliberate asymmetry in the relevant AGENTS.md or GEMINI.md.
 Market context for external skill patterns is tracked in [docs/reference/AGENT_SKILLS_MARKET_SURVEY.md](docs/reference/AGENT_SKILLS_MARKET_SURVEY.md); it is reference material, not a replacement for local skill-creator rules.
 
-### Bun 1.3.12 Notable Features (runtime baseline)
+### Bun 1.3.12 Notable Features (runtime foundation)
 
 | Feature | Relevance |
 |---------|-----------|

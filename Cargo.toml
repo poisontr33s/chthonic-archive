@@ -1,7 +1,7 @@
 [package]
 name = "chthonic-archive"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 authors = ["The Savant <psychonoir@chthonic.archive>"]
 description = "The Chthonic Archive: Triumvirate Ascension - ASC-NATIVE-CHAIN-RPG"
 license = "WTFPL"
@@ -40,7 +40,10 @@ sha2 = "0.10"
 tokio = { version = "1.52", features = ["full"] }
 
 # === COPILOT SDK (Rust Technical Preview — embed Copilot agentic engine) ===
-github-copilot-sdk = { version = "1.0.0-beta.4" }
+# Bumped 2026-05-28 from beta.4 to beta.9 to align with github/copilot-sdk canon.
+# See ~/.claude/plans/2-copilot-sdk-vogue-anchor.md, memory `reference-copilot-sdk-rust-beta9`.
+# Canon source at meta-ide/copilot-sdk-rust-v1.0.0-beta.9/rust/.
+github-copilot-sdk = { version = "1.0.0-beta.9" }
 
 # === LOGGING ===
 env_logger = "0.11"

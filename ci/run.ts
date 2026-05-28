@@ -291,11 +291,11 @@ const CHECKS: Check[] = [
     script: "ci/checks/lore-canon-refs.ts",
     scope: "staged",
     speed: "fast",
-    description: "Stale-path drift: flat game/lore/characters/<id>.json refs no longer valid after 2026-05-27 organ/tier reorg",
+    description: "Stale-path drift: flat game/lore/characters/<id>.json refs that no longer resolve to current tracked character files",
     no_auto_fix: {
       reason: "no_tool",
-      explanation: "V1 surfaces stale refs but does not rewrite them. Rewriting requires reading manifest/lore_canon_paths_audit.json (per-character canonical path) and applying it to each ref. Could be added in V2; deferred to keep V1 narrow.",
-      manual_remediation: "Each failure line reports `<file>:<line>  <stale-ref>`. Look up the canonical path in manifest/lore_canon_paths_audit.json (after lore-canon-paths runs) and replace. For most cases: `lysandra.json` → `stomach/T1/lysandra.json`, `the_sourcer.json` → `_deferred_organ/T1.5/the_sourcer.json`.",
+      explanation: "V1 surfaces stale refs but does not rewrite them. It derives canonical targets from the current git-tracked game/lore/characters tree, so the check follows today's file layout instead of a fixed historical list.",
+      manual_remediation: "Each failure line reports `<file>:<line>  <stale-ref>` and, when available, `-> <current-canonical-path>`. Replace the stale ref with that target. If no target is shown, the ref points at no current tracked character file and needs author judgment.",
     },
   },
   {

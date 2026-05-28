@@ -30,15 +30,14 @@ use std::sync::Arc;
 use anyhow::{Context, Result};
 use async_trait::async_trait;
 use chrono::Timelike as _;
-use github_copilot_sdk::handler::{PermissionResult, SessionHandler};
+use github_copilot_sdk::handler::ApproveAllHandler;
 use github_copilot_sdk::hooks::{
     HookContext, PostToolUseInput, PostToolUseOutput, PreToolUseInput, PreToolUseOutput,
     SessionHooks,
 };
-use github_copilot_sdk::tool::{schema_for, ToolHandler, ToolHandlerRouter};
+use github_copilot_sdk::tool::{schema_for, ToolHandler};
 use github_copilot_sdk::types::{
-    MessageOptions, PermissionRequestData, RequestId, SessionConfig, SessionEvent, SessionId, Tool,
-    ToolInvocation, ToolResult,
+    MessageOptions, SessionConfig, Tool, ToolInvocation, ToolResult,
 };
 use github_copilot_sdk::{Client, ClientOptions, Error};
 use schemars::JsonSchema;
@@ -227,18 +226,8 @@ struct QueryCorpusTool {
 
 #[async_trait]
 impl ToolHandler for QueryCorpusTool {
-    fn tool(&self) -> Tool {
-        Tool::new("query_corpus")
-            .with_description(
-                "Search the session corpus for sessions matching a query term. \
-                 Matches against sessionId prefix, workspaceName, and intent fields. \
-                 Returns ranked sessions with composite score, recency, and turn count.",
-            )
-            .with_parameters(schema_for::<QueryCorpusParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: QueryCorpusParams = inv.params()?;
+        let params: QueryCorpusParams = serde_json::from_value(inv.arguments)?;
         let top_k = params.top_k.unwrap_or(5) as usize;
         let query_lower = params.query.to_lowercase();
 
@@ -293,18 +282,8 @@ struct GetSessionWarmstartTool {
 
 #[async_trait]
 impl ToolHandler for GetSessionWarmstartTool {
-    fn tool(&self) -> Tool {
-        Tool::new("get_session_warmstart")
-            .with_description(
-                "Retrieve the warmstart packet (metadata + key artifacts) for a session. \
-                 Provide a full session ID or first-8-chars prefix. \
-                 Returns session metadata from the ranked index.",
-            )
-            .with_parameters(schema_for::<GetSessionWarmstartParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: GetSessionWarmstartParams = inv.params()?;
+        let params: GetSessionWarmstartParams = serde_json::from_value(inv.arguments)?;
         let prefix = params.session_id.to_lowercase();
 
         let session = self
@@ -360,16 +339,6 @@ struct GpuGateStatusTool {
 
 #[async_trait]
 impl ToolHandler for GpuGateStatusTool {
-    fn tool(&self) -> Tool {
-        Tool::new("gpu_gate_status")
-            .with_description(
-                "Return the current GPU inference gate ladder state from manifest/cuda_gate.jsonl \
-                 (tabbyAPI / Python 3.14 GPU gate — P-01 through P-06+). \
-                 Returns the last recorded gate entry.",
-            )
-            .with_parameters(schema_for::<GpuGateStatusParams>())
-    }
-
     async fn call(&self, _inv: ToolInvocation) -> Result<ToolResult, Error> {
         let gate_path = self.ctx.manifest_dir.join("cuda_gate.jsonl");
 
@@ -413,19 +382,8 @@ struct LensQueryTool {
 
 #[async_trait]
 impl ToolHandler for LensQueryTool {
-    fn tool(&self) -> Tool {
-        Tool::new("lens_query")
-            .with_description(
-                "Read a named manifest lens file (JSON). Available lenses: \
-                 'session_ranked_index', 'pr_triage_report', 'todo_roulette', 'todo_meta', \
-                 'session_blood', 'polyrepo_gate', 'terminal_hook_validation', 'mcp_github_archaeology', 'chrono_clock'. \
-                 Provide just the stem (without .json). Optionally provide a dot-path filter.",
-            )
-            .with_parameters(schema_for::<LensQueryParams>())
-    }
-
     async fn call(&self, inv: ToolInvocation) -> Result<ToolResult, Error> {
-        let params: LensQueryParams = inv.params()?;
+        let params: LensQueryParams = serde_json::from_value(inv.arguments)?;
 
         // Sanitise lens name — only allow alphanumeric + dash + underscore
         let lens_name = params.lens.trim().replace(['/', '\\', '.'], "");
@@ -496,16 +454,6 @@ struct TodoRouletteNextTool {
 
 #[async_trait]
 impl ToolHandler for TodoRouletteNextTool {
-    fn tool(&self) -> Tool {
-        Tool::new("todo_roulette_next")
-            .with_description(
-                "Return the next unblocked highest-weight todo from manifest/todo_roulette.json. \
-                 Skips entries with status='completed' and blocked_until_chain entries where the \
-                 predecessor is not yet completed. Requires Claudine approval (PreToolUse gated).",
-            )
-            .with_parameters(schema_for::<TodoRouletteNextParams>())
-    }
-
     async fn call(&self, _inv: ToolInvocation) -> Result<ToolResult, Error> {
         let roulette_raw = match self.ctx.read_manifest_json("todo_roulette.json") {
             Ok(v) => v,
@@ -587,18 +535,6 @@ struct ChronoClockStatusTool {
 
 #[async_trait]
 impl ToolHandler for ChronoClockStatusTool {
-    fn tool(&self) -> Tool {
-        Tool::new("chrono_clock_status")
-            .with_description(
-                "Return the current Claudine chrono-clock state and the user's inferred sleep rhythm \
-                 profile from manifest/chrono_clock.json. Shows current CET mode, user presence \
-                 probability, sanctuary_mode flag (safe for autonomous runs), and the inferred \
-                 sleep window derived from historical corpus activity patterns. \
-                 Re-run scripts/chrono-clock.ts to refresh the profile.",
-            )
-            .with_parameters(schema_for::<ChronoClockStatusParams>())
-    }
-
     async fn call(&self, _inv: ToolInvocation) -> Result<ToolResult, Error> {
         let clock_path = self.ctx.manifest_dir.join("chrono_clock.json");
 
@@ -672,27 +608,24 @@ Tools: run `bun run scripts/chrono-clock.ts` to refresh this profile."#,
         Ok(ToolResult::Text(summary))
     }
 }
-// ── Session handler ───────────────────────────────────────────────────────────
+// ── Streaming delta printer (beta.9: session.subscribe channel) ───────────────
 
-struct ChthonicSessionHandler;
-
-#[async_trait]
-impl SessionHandler for ChthonicSessionHandler {
-    async fn on_session_event(&self, _session_id: SessionId, event: SessionEvent) {
-        if event.event_type == "assistant.message_delta" {
-            if let Some(delta) = event.data.get("delta").and_then(|v| v.as_str()) {
-                print!("{delta}");
-            }
+fn print_session_event(event: &github_copilot_sdk::types::SessionEvent) {
+    use std::io::Write as _;
+    match event.event_type.as_str() {
+        "assistant.message_delta" => {
+            let text = event
+                .data
+                .get("deltaContent")
+                .and_then(|c| c.as_str())
+                .unwrap_or("");
+            print!("{text}");
+            let _ = std::io::stdout().flush();
         }
-    }
-
-    async fn on_permission_request(
-        &self,
-        _session_id: SessionId,
-        _request_id: RequestId,
-        _data: PermissionRequestData,
-    ) -> PermissionResult {
-        PermissionResult::Approved
+        "assistant.message" => {
+            println!();
+        }
+        _ => {}
     }
 }
 
@@ -855,28 +788,69 @@ async fn main() -> Result<()> {
     // Build system context summary
     let context_summary = ctx.session_context_summary(&mode_line);
 
-    // Wire tools + session handler into router
-    let tools: Vec<Box<dyn ToolHandler>> = vec![
-        Box::new(QueryCorpusTool          { ctx: Arc::clone(&ctx) }),
-        Box::new(GetSessionWarmstartTool  { ctx: Arc::clone(&ctx) }),
-        Box::new(GpuGateStatusTool        { ctx: Arc::clone(&ctx) }),
-        Box::new(LensQueryTool            { ctx: Arc::clone(&ctx) }),
-        Box::new(TodoRouletteNextTool     { ctx: Arc::clone(&ctx) }),
-        Box::new(ChronoClockStatusTool    { ctx: Arc::clone(&ctx) }),
-    ];
-    let router = ToolHandlerRouter::new(tools, Arc::new(ChthonicSessionHandler));
-    let tool_defs = router.tools();
-    let router = Arc::new(router);
-
     // Wire system transform
     let transform = Arc::new(ChthonicSystemTransform { context_summary });
 
-    // Build session config
-    let config = SessionConfig::default()
-        .with_handler(router)
+    // Build session config — beta.9 surface: focused PermissionHandler +
+    // Tool::with_handler attaches the dispatcher inline at the Tool builder.
+    let mut config = SessionConfig::default()
+        .with_permission_handler(Arc::new(ApproveAllHandler))
         .with_hooks(Arc::new(ChthonicHooks))
-        .with_transform(transform)
-        .with_tools(tool_defs);
+        .with_system_message_transform(transform)
+        .with_tools(vec![
+            Tool::new("query_corpus")
+                .with_description(
+                    "Search the session corpus for sessions matching a query term. \
+                     Matches against sessionId prefix, workspaceName, and intent fields. \
+                     Returns ranked sessions with composite score, recency, and turn count.",
+                )
+                .with_parameters(schema_for::<QueryCorpusParams>())
+                .with_handler(Arc::new(QueryCorpusTool { ctx: Arc::clone(&ctx) })),
+            Tool::new("get_session_warmstart")
+                .with_description(
+                    "Retrieve the warmstart packet (metadata + key artifacts) for a session. \
+                     Provide a full session ID or first-8-chars prefix. \
+                     Returns session metadata from the ranked index.",
+                )
+                .with_parameters(schema_for::<GetSessionWarmstartParams>())
+                .with_handler(Arc::new(GetSessionWarmstartTool { ctx: Arc::clone(&ctx) })),
+            Tool::new("gpu_gate_status")
+                .with_description(
+                    "Return the current GPU inference gate ladder state from manifest/cuda_gate.jsonl \
+                     (tabbyAPI / Python 3.14 GPU gate — P-01 through P-06+). \
+                     Returns the last recorded gate entry.",
+                )
+                .with_parameters(schema_for::<GpuGateStatusParams>())
+                .with_handler(Arc::new(GpuGateStatusTool { ctx: Arc::clone(&ctx) })),
+            Tool::new("lens_query")
+                .with_description(
+                    "Read a named manifest lens file (JSON). Available lenses: \
+                     'session_ranked_index', 'pr_triage_report', 'todo_roulette', 'todo_meta', \
+                     'session_blood', 'polyrepo_gate', 'terminal_hook_validation', 'mcp_github_archaeology', 'chrono_clock'. \
+                     Provide just the stem (without .json). Optionally provide a dot-path filter.",
+                )
+                .with_parameters(schema_for::<LensQueryParams>())
+                .with_handler(Arc::new(LensQueryTool { ctx: Arc::clone(&ctx) })),
+            Tool::new("todo_roulette_next")
+                .with_description(
+                    "Return the next unblocked highest-weight todo from manifest/todo_roulette.json. \
+                     Skips entries with status='completed' and blocked_until_chain entries where the \
+                     predecessor is not yet completed. Requires Claudine approval (PreToolUse gated).",
+                )
+                .with_parameters(schema_for::<TodoRouletteNextParams>())
+                .with_handler(Arc::new(TodoRouletteNextTool { ctx: Arc::clone(&ctx) })),
+            Tool::new("chrono_clock_status")
+                .with_description(
+                    "Return the current Claudine chrono-clock state and the user's inferred sleep rhythm \
+                     profile from manifest/chrono_clock.json. Shows current CET mode, user presence \
+                     probability, sanctuary_mode flag (safe for autonomous runs), and the inferred \
+                     sleep window derived from historical corpus activity patterns. \
+                     Re-run scripts/chrono-clock.ts to refresh the profile.",
+                )
+                .with_parameters(schema_for::<ChronoClockStatusParams>())
+                .with_handler(Arc::new(ChronoClockStatusTool { ctx: Arc::clone(&ctx) })),
+        ]);
+    config.streaming = Some(true);
 
     let prompt = args.prompt.unwrap_or_else(|| {
         format!(
@@ -904,6 +878,14 @@ async fn main() -> Result<()> {
         .context("Failed to create session")?;
 
     info!("Session {} ready.", session.id());
+
+    // Subscribe to streamed assistant deltas (beta.9 pattern; SessionHandler was removed).
+    let mut events = session.subscribe();
+    tokio::spawn(async move {
+        while let Ok(event) = events.recv().await {
+            print_session_event(&event);
+        }
+    });
 
     session
         .send_and_wait(MessageOptions::from(prompt.as_str()))
