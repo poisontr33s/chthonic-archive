@@ -132,34 +132,20 @@ function looksLikeInstalledPackage(dir: string, entries: string[], depthFromRoot
     return true;
 }
 
-// File extensions worth counting (per project root) — wide spread.
-const COUNTED_EXTS = new Set([
-    // TS/JS family
-    '.ts', '.tsx', '.mts', '.cts',
-    '.js', '.jsx', '.mjs', '.cjs',
-    // Rust + config
-    '.rs', '.toml',
-    // C/C++ family
-    '.c', '.cc', '.cpp', '.cxx', '.h', '.hpp', '.hh', '.hxx', '.inl',
-    // CUDA / GPU compute
-    '.cu', '.cuh', '.ptx',
-    // Vulkan / shader family
-    '.glsl', '.vert', '.frag', '.comp', '.tesc', '.tese', '.geom',
-    '.spv', '.hlsl', '.wgsl', '.metal',
-    // Native peers
-    '.zig', '.swift', '.kt', '.java', '.cs', '.mm', '.m',
-    '.nim', '.v', '.scala', '.clj', '.ex', '.exs', '.lua', '.dart',
-    '.ml', '.mli', '.fs', '.fsx', '.hs',
-    // Scripting / data
-    '.py', '.go', '.rb', '.pl', '.r', '.jl',
-    '.json', '.yaml', '.yml', '.md',
-    '.vue', '.svelte', '.astro',
-    '.html', '.css', '.scss', '.sass', '.less',
-    // Build / pkg config
-    '.lock',
-]);
+// V2.1: No COUNTED_EXTS allowlist. Every extension found on disk gets recorded.
+// The set below is purely the SOURCE classification (line-count me) — extensions
+// here get their lines tallied; everything else gets file-count only. Promote
+// extensions in by adding them here as the census-and-discriminate workflow
+// surfaces unknowns worth tracking as source.
+//
+// Discriminator buckets (used only for classification, not for filtering):
+//  - SOURCE_EXTS:  programming languages — text, line-count meaningful
+//  - CONFIG_EXTS:  human-edited config — text, line-count optional
+//  - DOC_EXTS:     human-prose — text, line-count meaningful
+//  - ASSET_EXTS:   images/fonts — binary, file-count only
+//  - BINARY_EXTS:  compiled/blob — binary, file-count only
+//  - everything else → bucket 'unknown', sample-path captured for inspection
 
-// Source-code extensions (line counts get computed for these; configs only get file counts)
 const SOURCE_EXTS = new Set([
     '.ts', '.tsx', '.mts', '.cts',
     '.js', '.jsx', '.mjs', '.cjs',
@@ -167,13 +153,57 @@ const SOURCE_EXTS = new Set([
     '.c', '.cc', '.cpp', '.cxx', '.h', '.hpp', '.hh', '.hxx', '.inl',
     '.cu', '.cuh',
     '.glsl', '.vert', '.frag', '.comp', '.tesc', '.tese', '.geom',
-    '.hlsl', '.wgsl', '.metal',
+    '.hlsl', '.wgsl', '.metal', '.slang',  // .slang = Slang shader
     '.zig', '.swift', '.kt', '.java', '.cs', '.mm', '.m',
     '.nim', '.v', '.scala', '.clj', '.ex', '.exs', '.lua', '.dart',
     '.ml', '.mli', '.fs', '.fsx', '.hs',
-    '.py', '.go', '.rb', '.pl', '.r', '.jl',
+    '.py', '.pyi', '.pyx', '.pxd',
+    '.go', '.rb', '.pl', '.r', '.rmd', '.jl',
     '.vue', '.svelte', '.astro',
+    '.cmake',
+    '.spirv',  // textual SPIR-V (rare); binary .spv goes to BINARY_EXTS
 ]);
+
+const CONFIG_EXTS = new Set([
+    '.toml', '.yaml', '.yml', '.json', '.jsonc',
+    '.lock', '.ini', '.cfg', '.conf',
+    '.meta', '.asmdef', '.uss',          // Unity configs / styles
+    '.editorconfig', '.gitattributes',   // (often <noext> too)
+]);
+
+const DOC_EXTS = new Set([
+    '.md', '.mdx', '.rst', '.txt', '.adoc', '.org',
+]);
+
+const ASSET_EXTS = new Set([
+    '.png', '.jpg', '.jpeg', '.gif', '.webp', '.avif', '.svg', '.bmp', '.ico', '.tiff',
+    '.ttf', '.otf', '.woff', '.woff2', '.eot',
+    '.mp3', '.wav', '.ogg', '.flac', '.m4a',
+    '.mp4', '.webm', '.mov', '.avi', '.mkv',
+    '.glb', '.gltf', '.fbx', '.obj', '.blend',
+    '.html', '.css', '.scss', '.sass', '.less',  // assets-or-source depending on stack
+]);
+
+const BINARY_EXTS = new Set([
+    '.exe', '.dll', '.so', '.dylib', '.lib', '.a', '.o',
+    '.bin', '.dat', '.pak', '.cab', '.msi',
+    '.spv', '.hsaco', '.ptx', '.pyd',     // GPU compute binaries + python compiled
+    '.zip', '.tar', '.gz', '.7z', '.xz', '.rar',
+    '.pdf', '.epub',
+    '.db', '.sqlite', '.ldb', '.rdb', '.rdx',
+    '.onnx', '.pt', '.pth', '.safetensors', '.ckpt', '.gguf', '.msgpack',
+]);
+
+type ExtBucket = 'source' | 'config' | 'doc' | 'asset' | 'binary' | 'unknown';
+
+function classifyExt(ext: string): ExtBucket {
+    if (SOURCE_EXTS.has(ext)) return 'source';
+    if (CONFIG_EXTS.has(ext)) return 'config';
+    if (DOC_EXTS.has(ext)) return 'doc';
+    if (ASSET_EXTS.has(ext)) return 'asset';
+    if (BINARY_EXTS.has(ext)) return 'binary';
+    return 'unknown';
+}
 
 // Config files worth recording by full name (in addition to extension-based counts)
 const CONFIG_FILENAMES = new Set([
@@ -274,6 +304,11 @@ interface ScanResult {
     config_files_found: string[]; // relative paths
     files_visited: number;
     files_capped: boolean;
+    // V2.1: every extension found, classified by bucket. The 'unknown' bucket
+    // carries sample paths so the conductor can discriminate what they are.
+    bucket_counts: Record<ExtBucket, number>;     // file count per bucket
+    unknown_extensions: Record<string, { count: number; samples: string[] }>;
+    discovered_extensions: string[];               // every unique ext seen, sorted
 }
 
 // Per-file size cap for line counting — don't open multi-MB blobs.
@@ -306,7 +341,17 @@ function scanProjectFiles(dir: string, maxFiles: number = 5000): ScanResult {
         config_files_found: [],
         files_visited: 0,
         files_capped: false,
+        bucket_counts: { source: 0, config: 0, doc: 0, asset: 0, binary: 0, unknown: 0 },
+        unknown_extensions: {},
+        discovered_extensions: [],
     };
+
+    function recordUnknown(ext: string, relPath: string) {
+        const entry = result.unknown_extensions[ext] || { count: 0, samples: [] };
+        entry.count++;
+        if (entry.samples.length < 3) entry.samples.push(relPath);
+        result.unknown_extensions[ext] = entry;
+    }
 
     function walk(d: string, depth: number) {
         if (result.files_visited >= maxFiles) {
@@ -330,27 +375,42 @@ function scanProjectFiles(dir: string, maxFiles: number = 5000): ScanResult {
                 walk(full, depth + 1);
             } else if (st.isFile()) {
                 result.files_visited++;
-                // Config file detection by full name
+                // Config file detection by full name (e.g. tsconfig.json, CMakeLists.txt)
                 if (CONFIG_FILENAMES.has(name)) {
                     result.config_files_found.push(relative(dir, full));
                 }
-                // Extension-based counting
+                // V2.1: extension-based counting is allowlist-free. Every file's
+                // extension is recorded; bucket classification informs whether
+                // line-counting is meaningful.
                 const dotIdx = name.lastIndexOf('.');
-                if (dotIdx > 0) {
-                    const ext = name.substring(dotIdx).toLowerCase();
-                    if (COUNTED_EXTS.has(ext)) {
-                        result.file_counts[ext] = (result.file_counts[ext] || 0) + 1;
-                        if (SOURCE_EXTS.has(ext)) {
-                            const lines = countLines(full, st.size);
-                            result.line_counts[ext] = (result.line_counts[ext] || 0) + lines;
-                        }
-                    }
+                if (dotIdx <= 0) {
+                    // No extension — bucket as 'unknown' under a sentinel.
+                    result.file_counts['<noext>'] = (result.file_counts['<noext>'] || 0) + 1;
+                    result.bucket_counts.unknown++;
+                    recordUnknown('<noext>', relative(dir, full));
+                    continue;
+                }
+                let ext = name.substring(dotIdx).toLowerCase();
+                // Sanity cap on extension shape — drop things like "file.453178125"
+                // that aren't really extensions. Record those under a sentinel too.
+                if (ext.length > 12 || !/^\.[a-z0-9._+-]+$/.test(ext)) {
+                    ext = '<weird-ext>';
+                }
+                const bucket = classifyExt(ext);
+                result.file_counts[ext] = (result.file_counts[ext] || 0) + 1;
+                result.bucket_counts[bucket]++;
+                if (bucket === 'source') {
+                    const lines = countLines(full, st.size);
+                    result.line_counts[ext] = (result.line_counts[ext] || 0) + lines;
+                } else if (bucket === 'unknown') {
+                    recordUnknown(ext, relative(dir, full));
                 }
             }
         }
     }
 
     walk(dir, 0);
+    result.discovered_extensions = Object.keys(result.file_counts).sort();
     return result;
 }
 
@@ -497,6 +557,15 @@ function extractRustMeta(dir: string): RustMeta | undefined {
 // ─── Project record ────────────────────────────────────────────────────────
 type ModeHint = 'snipe' | 'sweep' | 'noise';
 
+// Salvage verdict: orthogonal to mode_hint, answers "should this be repurposed
+// INTO chthonic-archive?" — the data-archeology lens, not the project-shape lens.
+type SalvageVerdict =
+    | 'chthonic-member'    // already part of chthonic-archive's tree
+    | 'absorb-candidate'   // has unique tech chthonic-archive doesn't have at scale; review for absorption
+    | 'mirror-of'          // same name as a chthonic-archive project; likely stale clone
+    | 'independent'        // own project, distinct concern, leave it alone
+    | 'unclassified';
+
 interface ProjectRecord {
     root_dir: string;
     rel_path: string;
@@ -513,6 +582,13 @@ interface ProjectRecord {
     repurposability_score: number;
     interesting_signals: string[];
     mode_hint: ModeHint;
+    salvage_verdict: SalvageVerdict;
+    salvage_reason: string; // human-readable one-liner
+    chthonic_mirror_of?: string; // when mirror-of: relative path of the chthonic-archive sibling
+    // V2.1: allowlist-free extension data
+    bucket_counts: Record<ExtBucket, number>;
+    unknown_extensions: Record<string, { count: number; samples: string[] }>;
+    discovered_extensions: string[];
 }
 
 const NATIVE_EXTS = new Set([
@@ -594,6 +670,63 @@ function scoreRepurposability(rec: Omit<ProjectRecord, 'repurposability_score' |
     return { score, signals };
 }
 
+// Salvage classifier — runs as a second pass after all projects are gathered so
+// it can compare each project against the chthonic-member set for mirror detection.
+function classifySalvage(
+    rec: Omit<ProjectRecord, 'salvage_verdict' | 'salvage_reason' | 'chthonic_mirror_of'>,
+    chthonicMembers: Map<string, ProjectRecord>, // name → record
+): { verdict: SalvageVerdict; reason: string; mirror_of?: string } {
+    const norm = rec.root_dir.replace(/\\/g, '/');
+    const isChthonicMember = norm.includes('/chthonic-archive/') || norm.endsWith('/chthonic-archive');
+
+    if (isChthonicMember) {
+        return { verdict: 'chthonic-member', reason: 'inside the chthonic-archive tree' };
+    }
+
+    // Mirror detection: same name as a chthonic-member, similar shape
+    const namesake = chthonicMembers.get(rec.name);
+    if (namesake) {
+        const langOverlap = rec.languages.filter(l => namesake.languages.includes(l)).length;
+        if (langOverlap > 0) {
+            return {
+                verdict: 'mirror-of',
+                reason: `same name as chthonic project (lang overlap=${langOverlap})`,
+                mirror_of: namesake.rel_path,
+            };
+        }
+    }
+
+    // Absorb-candidate signals:
+    //  - Has native/GPU stack (CUDA, Vulkan shaders) — rare and high-value
+    //  - Has thematic framework that lines up with chthonic-archive lanes (acp, mcp, anthropic-sdk)
+    //  - Has substantive content (not noise) AND is on a snipe path elsewhere
+    const absorbSignals: string[] = [];
+    const hasCuda = !!rec.file_counts['.cu'] || !!rec.file_counts['.cuh'];
+    const hasShader = ['.glsl', '.vert', '.frag', '.comp', '.hlsl', '.wgsl', '.metal']
+        .some(e => rec.file_counts[e]);
+    if (hasCuda) absorbSignals.push('cuda');
+    if (hasShader) absorbSignals.push('shaders');
+    const frameworks = rec.node?.framework_hints ?? [];
+    if (frameworks.includes('acp')) absorbSignals.push('acp');
+    if (frameworks.includes('mcp')) absorbSignals.push('mcp');
+    if (frameworks.includes('anthropic-sdk')) absorbSignals.push('anthropic-sdk');
+    if (frameworks.includes('vscode-extension')) absorbSignals.push('vscode-ext-pattern');
+
+    if (absorbSignals.length > 0 && rec.total_source_lines >= 100) {
+        return {
+            verdict: 'absorb-candidate',
+            reason: `unique-tech signal: ${absorbSignals.join('+')}`,
+        };
+    }
+
+    // Default: independent project
+    if (rec.total_source_lines > 0 || rec.config_files.length > 0) {
+        return { verdict: 'independent', reason: 'own project, distinct from chthonic-archive' };
+    }
+
+    return { verdict: 'unclassified', reason: 'insufficient signal' };
+}
+
 function classifyMode(rec: Omit<ProjectRecord, 'mode_hint'>): ModeHint {
     // SNIPE: high-score project with distinct character — drill in
     if (rec.repurposability_score >= 8) return 'snipe';
@@ -667,6 +800,9 @@ function main() {
             config_files: scan.config_files_found,
             has_native_stack: hasNative,
             files_capped: scan.files_capped,
+            bucket_counts: scan.bucket_counts,
+            unknown_extensions: scan.unknown_extensions,
+            discovered_extensions: scan.discovered_extensions,
         };
         const { score, signals } = scoreRepurposability(partial);
         const withScore = {
@@ -675,10 +811,30 @@ function main() {
             interesting_signals: signals,
         };
         const mode = classifyMode(withScore);
+        // Placeholder salvage fields — populated in the second pass below once
+        // the chthonic-member set is known.
         projects.push({
             ...withScore,
             mode_hint: mode,
+            salvage_verdict: 'unclassified',
+            salvage_reason: 'pending second-pass classification',
         });
+    }
+
+    // Second pass: salvage classification (needs to see all projects to detect mirrors).
+    const chthonicMembers = new Map<string, ProjectRecord>();
+    for (const p of projects) {
+        const norm = p.root_dir.replace(/\\/g, '/');
+        if (norm.includes('/chthonic-archive/') || norm.endsWith('/chthonic-archive')) {
+            // First write wins so we don't overwrite the root with a member subdir
+            if (!chthonicMembers.has(p.name)) chthonicMembers.set(p.name, p);
+        }
+    }
+    for (const p of projects) {
+        const { verdict, reason, mirror_of } = classifySalvage(p, chthonicMembers);
+        p.salvage_verdict = verdict;
+        p.salvage_reason = reason;
+        if (mirror_of) p.chthonic_mirror_of = mirror_of;
     }
 
     // Sort by repurposability descending (downstream filtering reads top-N).
@@ -735,7 +891,7 @@ function main() {
         const nativeProjects = projects.filter(p => p.has_native_stack).slice(0, 8);
 
         console.log('');
-        console.log('=== spread-sweep V1.5 summary ===');
+        console.log('=== spread-sweep V2.1 summary ===');
         console.log(`Projects: ${projects.length}  (node=${totalNode} rust=${totalRust} polyglot=${totalPoly} native-stack=${totalNative})`);
         console.log(`Modes: snipe=${modeCounts.snipe}  sweep=${modeCounts.sweep}  noise=${modeCounts.noise}`);
         console.log(`Package managers: ${Object.entries(pmCounts).map(([k, v]) => `${k}=${v}`).join(' ')}`);
@@ -769,6 +925,95 @@ function main() {
                 console.log(`    files: ${nativeFiles}`);
                 console.log(`    native lines: ${nativeLines.toLocaleString()}`);
             }
+        }
+
+        // ── Salvage classification block ───────────────────────────────────
+        const salvageCounts: Record<SalvageVerdict, number> = {
+            'chthonic-member': 0,
+            'absorb-candidate': 0,
+            'mirror-of': 0,
+            'independent': 0,
+            'unclassified': 0,
+        };
+        for (const p of projects) salvageCounts[p.salvage_verdict]++;
+
+        const absorbCandidates = projects.filter(p => p.salvage_verdict === 'absorb-candidate');
+        const mirrors = projects.filter(p => p.salvage_verdict === 'mirror-of');
+
+        console.log('');
+        console.log('=== salvage classification (V1.8) ===');
+        console.log(`Verdicts: chthonic-member=${salvageCounts['chthonic-member']} absorb-candidate=${salvageCounts['absorb-candidate']} mirror-of=${salvageCounts['mirror-of']} independent=${salvageCounts['independent']} unclassified=${salvageCounts['unclassified']}`);
+
+        if (absorbCandidates.length > 0) {
+            console.log('');
+            console.log(`Absorb candidates (${absorbCandidates.length}):`);
+            for (const p of absorbCandidates) {
+                console.log(`  ${p.name}  (${p.languages.join('+')}) — ${p.rel_path}`);
+                console.log(`    ${p.salvage_reason}`);
+                console.log(`    lines=${p.total_source_lines.toLocaleString()} score=${p.repurposability_score} mode=${p.mode_hint}`);
+            }
+        }
+
+        if (mirrors.length > 0) {
+            console.log('');
+            console.log(`Mirrors of chthonic-archive projects (${mirrors.length}):`);
+            for (const p of mirrors.slice(0, 10)) {
+                console.log(`  ${p.name} mirrors → ${p.chthonic_mirror_of}`);
+                console.log(`    at: ${p.rel_path}`);
+            }
+        }
+
+        // ── V2.1 unknown-extension surface (discrimination workflow) ──────
+        // Aggregate every unknown extension across all projects, with its
+        // total count and a few sample paths so the conductor can decide
+        // what bucket it belongs in (or promote it to SOURCE_EXTS).
+        const aggregatedUnknown = new Map<string, { count: number; samples: string[]; projects: string[] }>();
+        for (const p of projects) {
+            for (const [ext, entry] of Object.entries(p.unknown_extensions ?? {})) {
+                const agg = aggregatedUnknown.get(ext) ?? { count: 0, samples: [], projects: [] };
+                agg.count += entry.count;
+                if (agg.samples.length < 3) {
+                    for (const s of entry.samples) {
+                        if (agg.samples.length < 3) agg.samples.push(`${p.rel_path}/${s}`);
+                    }
+                }
+                if (!agg.projects.includes(p.name)) agg.projects.push(p.name);
+                aggregatedUnknown.set(ext, agg);
+            }
+        }
+
+        if (aggregatedUnknown.size > 0) {
+            const sorted = [...aggregatedUnknown.entries()].sort((a, b) => b[1].count - a[1].count);
+            console.log('');
+            console.log(`Unknown extensions across spread (${sorted.length}) — top 20 for discrimination:`);
+            for (const [ext, agg] of sorted.slice(0, 20)) {
+                console.log(`  ${ext.padEnd(16)} ${agg.count.toString().padStart(6)} files  (${agg.projects.length} proj)`);
+                for (const s of agg.samples.slice(0, 2)) {
+                    console.log(`    → ${s}`);
+                }
+            }
+            if (sorted.length > 20) {
+                console.log(`  ... ${sorted.length - 20} more (full list in manifest/spread_index.json under projects[].unknown_extensions)`);
+            }
+            console.log('');
+            console.log('To promote an extension to SOURCE (line-count tracked): edit scripts/spread-sweep.ts SOURCE_EXTS set.');
+        }
+
+        // ── Bucket totals (workspace-wide file accounting) ────────────────
+        const bucketTotals: Record<ExtBucket, number> = {
+            source: 0, config: 0, doc: 0, asset: 0, binary: 0, unknown: 0,
+        };
+        for (const p of projects) {
+            for (const k of Object.keys(bucketTotals) as ExtBucket[]) {
+                bucketTotals[k] += (p.bucket_counts?.[k] ?? 0);
+            }
+        }
+        const bucketTotal = Object.values(bucketTotals).reduce((a, b) => a + b, 0);
+        console.log('');
+        console.log(`Workspace file buckets (${bucketTotal.toLocaleString()} files total across all projects):`);
+        for (const [b, n] of Object.entries(bucketTotals).sort((a, b) => b[1] - a[1])) {
+            const pct = bucketTotal > 0 ? ((n / bucketTotal) * 100).toFixed(1) : '0.0';
+            console.log(`  ${b.padEnd(8)} ${n.toString().padStart(7)} files  (${pct}%)`);
         }
     }
 }

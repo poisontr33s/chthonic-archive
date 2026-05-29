@@ -310,6 +310,18 @@ const CHECKS: Check[] = [
       explanation: "Read-only history writer. Reads the four membrane manifests, summarizes, appends one ndjson row. Cannot fail except on missing manifests (in which case the snapshot is partial and labeled so). Building the diary IS the work; there is no fix concept.",
     },
   },
+  {
+    name: "spread-freshness",
+    aliases: ["spread"],
+    script: "ci/checks/spread-freshness.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Surface the polyglot spread-index headline (project count, snipe/sweep/noise, native-stack, age). Read-only by default; --max-age-days <N> opts into strict freshness gating.",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only health probe over manifest/spread_index.json. Surfaces shape + age; doesn't enforce. The refresh action is `bun run scripts/spread-sweep.ts --summary` — that's the conductor's call, not the gate's. Strict mode (--max-age-days N) is opt-in and lives in the check invocation, not the registry, so daily CI passes don't false-positive on conductor-paced sweeps.",
+    },
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

@@ -8,6 +8,7 @@ members = [
     "synapse-node",
     "chthonic-copilot-bridge",
     "chthonic-acp-bridge",
+    "chthonic-scanner",
     "../wasm/chthonic-loom",
     "xtask",
 ]
@@ -21,6 +22,7 @@ default-members = [
     "tensor-runtime-host",
     "chthonic-copilot-bridge",
     "chthonic-acp-bridge",
+    "chthonic-scanner",
     "xtask",
 ]
 
