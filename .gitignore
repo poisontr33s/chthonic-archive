@@ -47,6 +47,10 @@ adapters/
 !confiscated_instructions/
 !confiscated_instructions/**
 
+# Allow claudie/ — open notebook, deliberately tracked
+!claudie/
+!claudie/**
+
 # Allow Birdcage AAI evidence chamber
 !birdcage/
 !birdcage/README.md
