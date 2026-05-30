@@ -18,6 +18,14 @@ namespace chthonic {
 struct SatelliteHandles {
     HANDLE process = INVALID_HANDLE_VALUE;
     HANDLE thread  = INVALID_HANDLE_VALUE;
+    // Kill-on-close Job Object holding the satellite (and any process it
+    // spawns). While this handle lives in the bridge — i.e. in the extension
+    // host process — the satellite lives; the instant the host dies for any
+    // reason, Windows closes the handle, the job's last reference drops, and
+    // the OS terminates the satellite. This is what prevents the orphaned
+    // ~6 GB python zombie. INVALID/null when the OS refused the assignment
+    // (then the extension's startup pid-reap is the backstop).
+    HANDLE job     = INVALID_HANDLE_VALUE;
     DWORD  pid     = 0;
 };
 
@@ -30,8 +38,10 @@ SatelliteHandles SpawnSatelliteWithSecret(
     const std::wstring& cwd,
     const std::vector<std::uint8_t>& secret_bytes);
 
-// Best-effort graceful shutdown: closes the process handle. Caller is
-// expected to send a `shutdown` op over the control pipe first.
+// Closes the thread, process, and (last) the job handle. Because the job is
+// kill-on-close, closing it terminates any satellite process still alive in
+// it — so this doubles as the hard backstop behind a graceful-stop timeout.
+// Caller is expected to send a `shutdown` op over the control pipe first.
 void CloseSatelliteHandles(SatelliteHandles& h);
 
 }  // namespace chthonic

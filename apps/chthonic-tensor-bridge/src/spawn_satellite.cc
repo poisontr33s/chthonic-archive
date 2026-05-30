@@ -104,7 +104,9 @@ SatelliteHandles SpawnSatelliteWithSecret(
         nullptr,                  // process security
         nullptr,                  // thread security
         TRUE,                     // bInheritHandles -- required for the listed set
-        EXTENDED_STARTUPINFO_PRESENT | CREATE_UNICODE_ENVIRONMENT | CREATE_NO_WINDOW,
+        EXTENDED_STARTUPINFO_PRESENT | CREATE_UNICODE_ENVIRONMENT | CREATE_NO_WINDOW |
+            CREATE_SUSPENDED,   // suspended so the job binds before any code (or
+                                // uv's python grandchild) runs and could escape
         nullptr,                  // environment (inherit)
         cwd.empty() ? nullptr : cwd.c_str(),
         &si.StartupInfo,
@@ -114,6 +116,38 @@ SatelliteHandles SpawnSatelliteWithSecret(
 
     if (!ok) {
         ThrowLastError("CreateProcessW");
+    }
+
+    // -- 2b. Bind the child to a kill-on-close Job Object -----------------
+    // Windows does NOT cascade-kill child processes when a parent dies. Without
+    // a job, a hard death of the extension host (crash, force-quit) orphans the
+    // satellite — it keeps holding its ~6 GB and survives as a zombie. A job
+    // with JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE fixes this: when the last handle
+    // to the job closes (which happens automatically when the host process
+    // dies), the OS terminates every process in the job — the satellite AND the
+    // python that uv spawns (grandchildren inherit job membership). Win8+ allows
+    // nested jobs, so this succeeds even if VS Code already placed the host in a
+    // job. If assignment fails we proceed without it (the satellite still runs)
+    // and rely on the extension's startup pid-reap as the backstop.
+    HANDLE job = ::CreateJobObjectW(nullptr, nullptr);
+    if (job != nullptr) {
+        JOBOBJECT_EXTENDED_LIMIT_INFORMATION jeli{};
+        jeli.BasicLimitInformation.LimitFlags = JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+        if (!::SetInformationJobObject(job, JobObjectExtendedLimitInformation,
+                                       &jeli, sizeof(jeli)) ||
+            !::AssignProcessToJobObject(job, pi.hProcess)) {
+            ::CloseHandle(job);
+            job = nullptr;
+        }
+    }
+
+    // Child was created suspended; the job (if any) is now bound. Let it run.
+    if (::ResumeThread(pi.hThread) == static_cast<DWORD>(-1)) {
+        if (job != nullptr) ::CloseHandle(job);   // kill-on-close reaps the child
+        ::TerminateProcess(pi.hProcess, 1);
+        ::CloseHandle(pi.hThread);
+        ::CloseHandle(pi.hProcess);
+        ThrowLastError("ResumeThread");
     }
 
     // -- 3. Drop the child's end in the parent (child holds it via inherit)
@@ -129,6 +163,7 @@ SatelliteHandles SpawnSatelliteWithSecret(
             DWORD chunk = remaining > 0x10000 ? 0x10000 : static_cast<DWORD>(remaining);
             if (!::WriteFile(pipe_write.h, p, chunk, &wrote, nullptr) || wrote == 0) {
                 // Child may have exited; clean up and surface the failure.
+                if (job != nullptr) ::CloseHandle(job);  // kill-on-close reaps the child
                 ::TerminateProcess(pi.hProcess, 1);
                 ::CloseHandle(pi.hThread);
                 ::CloseHandle(pi.hProcess);
@@ -144,6 +179,7 @@ SatelliteHandles SpawnSatelliteWithSecret(
     SatelliteHandles out;
     out.process = pi.hProcess;
     out.thread  = pi.hThread;
+    out.job     = job;            // INVALID/null if the OS refused the job
     out.pid     = pi.dwProcessId;
     return out;
 }
@@ -156,6 +192,13 @@ void CloseSatelliteHandles(SatelliteHandles& h) {
     if (h.process != INVALID_HANDLE_VALUE && h.process != nullptr) {
         ::CloseHandle(h.process);
         h.process = INVALID_HANDLE_VALUE;
+    }
+    // Close the job LAST. With JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE this
+    // terminates any process still alive in the job — the hard guarantee that
+    // backs a graceful-stop timeout (a hung satellite cannot leak past here).
+    if (h.job != INVALID_HANDLE_VALUE && h.job != nullptr) {
+        ::CloseHandle(h.job);
+        h.job = INVALID_HANDLE_VALUE;
     }
     h.pid = 0;
 }

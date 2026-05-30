@@ -1,4 +1,5 @@
 // @SID: EXT_FLUX_SERVICE_V1
+import { execFileSync } from 'node:child_process';
 import * as crypto from 'node:crypto';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
@@ -58,6 +59,11 @@ export class FluxService implements vscode.Disposable {
     }
 
     register(): void {
+        // Reap any orphaned satellite from a prior unclean exit BEFORE anything
+        // else — frees the ~6 GB a zombie holds. Belt-and-suspenders to the
+        // bridge's kill-on-close Job Object (which covers the normal hard-exit
+        // path); this catches zombies that predate the job fix or escaped it.
+        this.reapStaleSatellite();
         this.launcherProvider = new FluxLauncherViewProvider(
             this.launcherState(),
             (command) => void this.dispatchLauncherCommand(command),
@@ -373,6 +379,79 @@ export class FluxService implements vscode.Disposable {
         this.refreshStatusBar();
         this.publishLauncherState();
         this.output.appendLine('[flux] satellite stopped');
+    }
+
+    // Reap a satellite orphaned by a prior unclean exit. The satellite writes
+    // its PID to logs/flux-satellite.pid and unlinks it on clean shutdown
+    // (lifecycle.py), so the file's presence at startup means the last run did
+    // NOT exit cleanly — a candidate ~6 GB zombie. We only kill a PID that is
+    // (a) alive and (b) verified to actually be a flux satellite, so a recycled
+    // PID belonging to an unrelated process is never touched. Runs only when the
+    // pid file exists, so the verification spawn is off the hot path.
+    private reapStaleSatellite(): void {
+        if (!this.workspaceRoot) return;
+        const pidFile = path.join(this.workspaceRoot, 'apps', 'flux-satellite', 'logs', 'flux-satellite.pid');
+        if (!fs.existsSync(pidFile)) return;
+
+        let pid = 0;
+        try {
+            pid = Number.parseInt(fs.readFileSync(pidFile, 'utf8').trim(), 10);
+        } catch {
+            return;
+        }
+        const dropPidFile = () => { try { fs.unlinkSync(pidFile); } catch { /* ignore */ } };
+
+        if (!Number.isInteger(pid) || pid <= 0) {
+            dropPidFile();
+            return;
+        }
+
+        // process.kill(pid, 0) probes liveness: throws ESRCH if gone, EPERM if
+        // alive but not signalable by us (still counts as alive).
+        let alive = true;
+        try {
+            process.kill(pid, 0);
+        } catch (e) {
+            alive = (e as NodeJS.ErrnoException).code === 'EPERM';
+        }
+        if (!alive) {
+            dropPidFile();
+            this.output.appendLine(`[flux] cleared stale pid file (pid ${pid} not running)`);
+            return;
+        }
+
+        if (!this.processIsSatellite(pid)) {
+            dropPidFile();
+            this.output.appendLine(`[flux] pid ${pid} is alive but not a flux satellite — left untouched; stale pid file cleared`);
+            return;
+        }
+
+        try {
+            process.kill(pid);
+            this.output.appendLine(`[flux] reaped stale satellite (pid ${pid}; freed the orphaned ~6 GB from a prior unclean exit)`);
+        } catch (e) {
+            this.output.appendLine(`[flux] could not reap stale satellite pid ${pid}: ${(e as Error).message}`);
+        }
+        dropPidFile();
+    }
+
+    // Confirm a PID is actually our python flux-satellite via CIM command-line
+    // match, so a reused PID is never killed. Windows-only; only invoked in the
+    // rare zombie case (pid file present).
+    private processIsSatellite(pid: number): boolean {
+        try {
+            const out = execFileSync(
+                'powershell',
+                [
+                    '-NoProfile', '-Command',
+                    `(Get-CimInstance Win32_Process -Filter "ProcessId=${pid}" -ErrorAction SilentlyContinue).CommandLine`,
+                ],
+                { timeout: 5000, encoding: 'utf8', windowsHide: true },
+            );
+            return /flux_satellite/i.test(out);
+        } catch {
+            return false;
+        }
     }
 
     private async openPanel(): Promise<void> {

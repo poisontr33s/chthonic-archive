@@ -134,7 +134,7 @@
     "workbench.preferredHighContrastLightColorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
     "workbench.preferredLightColorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
     "notebook.defaultFormatter": "GitHub.copilot-chat",
-    "claudeCode.usePythonEnvironment": true,
+    "claudeCode.usePythonEnvironment": false,
     
   },
   "extensions": {

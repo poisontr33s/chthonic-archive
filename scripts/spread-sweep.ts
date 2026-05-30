@@ -67,7 +67,7 @@ function parseArgs(argv: string[]): Args {
         }
     }
     if (args.roots.length === 0) {
-        // Default: the parent dir of cwd, which holds the user's sibling project workspaces.
+        // Default: the parent dir of 'cwd', which holds the user's sibling project workspaces.
         args.roots = [resolve(process.cwd(), '..')];
     }
     return args;
@@ -93,7 +93,8 @@ const VENDORED_PATH_PATTERNS = [
     'vcpkg/installed',
     '.cargo/registry',
     '.cargo/git/checkouts',
-    'rv/library/',           // R package library installs
+    'rv/library/',           
+    // NOTE: 'R' package library installs -> (R-lang uses modified "rv-r" to call it, rather than "rv", because spinels 'rv ruby' uses it — & "rv" in pwsh 7.x.x — WAS assigned to -> remove-variable, & changed to NOT — collide with poly-glot, rust-oxidized language toolings)
     'rv-test-rubies',        // bundled Ruby build trees
     '/buildtrees/',
     '/.rustup/',
