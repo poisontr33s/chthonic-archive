@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: "en-US"
-tone_instructions: "Be concise and security-focused. Flag prompt injection risks in GitHub Actions workflows."
+tone_instructions: "Follow the rabbit.. — SSOT in this case."
 early_access: true
 enable_free_tier: true
 reviews:
