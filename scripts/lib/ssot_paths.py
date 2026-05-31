@@ -2,6 +2,18 @@
 #-*- coding: utf-8 -*-
 
 """
+@SID:           BRIDGE_SSOT_PATHS_PY_V1
+@Shabti:        Library Module
+@Shabti-Desc:   SSOT Path Bridge for scripts/ — re-exporting from ssot_manifest.py to avoid hardcoding SSOT paths in scripts/ modules.
+@Type:          INFRASTRUCTURE
+@Spectrum:      WHITE
+@Zone:          THE GARDEN
+@Ogdoad:        (Standalone)
+@Type:          INFRASTRUCTURE
+@Purpose:       SSOT Path Bridge for scripts/ — re-exporting from ssot_manifest.py to avoid hardcoding SSOT paths in scripts/ modules.
+"""
+
+"""
 ssot_paths.py — SSOT Path Bridge for scripts/.
 
 Thin re-export from mas_mcp.logic.ssot_manifest so that scripts/ modules
@@ -29,6 +41,7 @@ if str(_REPO_ROOT) not in sys.path:
 
 try:
     from mas_mcp.logic.ssot_manifest import (  # noqa: E402
+        SSOT_CANON_RELPATH,
         SSOT_HOLDER_RELPATH,
         SSOT_POINTER_RELPATH,
         SSOT_PROTO_RELPATH,
@@ -41,11 +54,13 @@ except ImportError:
         DeprecationWarning,
         stacklevel=2,
     )
+    SSOT_CANON_RELPATH = ".chthonic/SSOT.md"
     SSOT_HOLDER_RELPATH = ".github/copilot-instructions.archive.md"
     SSOT_POINTER_RELPATH = ".github/copilot-instructions.md"
     SSOT_PROTO_RELPATH = ".github/copilot-instructions-copy.md"
 
 # ─── Re-exported constants (relative paths as strings) ──────────────────────
+SSOT_CANON = SSOT_CANON_RELPATH
 SSOT_HOLDER = SSOT_HOLDER_RELPATH
 SSOT_POINTER = SSOT_POINTER_RELPATH
 SSOT_PROTO = SSOT_PROTO_RELPATH
@@ -54,6 +69,7 @@ SSOT_PROTO = SSOT_PROTO_RELPATH
 @dataclass(frozen=True)
 class SSOTPaths:
     """Resolved absolute SSOT paths for a given repo root."""
+    canon: Path
     holder: Path
     pointer: Path
     proto: Path
@@ -62,6 +78,7 @@ class SSOTPaths:
 def resolve_ssot_paths(repo_root: Path) -> SSOTPaths:
     """Resolve canonical SSOT paths from a repo root."""
     return SSOTPaths(
+        canon=repo_root / SSOT_CANON_RELPATH,
         holder=repo_root / SSOT_HOLDER_RELPATH,
         pointer=repo_root / SSOT_POINTER_RELPATH,
         proto=repo_root / SSOT_PROTO_RELPATH,

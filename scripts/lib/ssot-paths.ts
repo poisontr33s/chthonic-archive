@@ -1,15 +1,16 @@
 #!/usr/bin/env bun
+// @SID: BRIDGE_SSOT_PATHS_TS_V1
+// @Type: INFRASTRUCTURE
+// @Spectrum: WHITE
+// @Zone: THE GARDEN
 
 /**
- * SSOT Cascade Bridge — TypeScript
+* SSOT Cascade Bridge — TypeScript
+*
+* Mirrors the Python cascade (ssot_manifest.py → ssot_paths.py) for TS consumers.
+* All SSOT path references in TypeScript MUST import from here, never hardcode.
  *
- * Mirrors the Python cascade (ssot_manifest.py → ssot_paths.py) for TS consumers.
- * All SSOT path references in TypeScript MUST import from here, never hardcode.
- *
- * @SID: BRIDGE_SSOT_PATHS_TS_V1
- * @Type: INFRASTRUCTURE
- * @Spectrum: WHITE
- * @Zone: THE GARDEN
+ * Canonical source: scripts/lib/ssot-paths.ts
  *
  * If the SSOT filename changes, update THIS file (and the Python manifest).
  * Downstream TS consumers resolve through these exports.
@@ -18,7 +19,21 @@
 import { existsSync } from "fs";
 import { resolve as pathResolve } from "path";
 
-/** The frozen monolithic SSOT. */
+/**
+ * The primary, file-first-authority SSOT canon — the frozen monolithic
+ * Codex-Brahmanica-Perfectus from which every active instruction file is
+ * derived. This is THE single anchor every surface resolves to
+ * (canonized in place 2026-05-31). It is the artifact that created everything
+ * else; surfaces that reference "the SSOT" mean THIS file.
+ */
+export const SSOT_CANON = ".chthonic/SSOT.md" as const;
+
+/**
+ * Generated downstream MIRROR of SSOT_CANON, kept under this clunky-but-stable
+ * name so existing repo scripts that reference it do not break (no-delete).
+ * NOT the primary source — resolve SSOT_CANON first; fall back here only if the
+ * canon is absent.
+ */
 export const SSOT_HOLDER = ".github/copilot-instructions.archive.md" as const;
 
 /** The 85-line routing pointer. */
@@ -32,9 +47,9 @@ export const SSOT_PROTO = ".github/copilot-instructions-copy.md" as const;
  */
 export function resolveSsotPath(
   root: string,
-  which: "holder" | "pointer" | "proto" = "pointer",
+  which: "canon" | "holder" | "pointer" | "proto" = "pointer",
 ): string {
-  const map = { holder: SSOT_HOLDER, pointer: SSOT_POINTER, proto: SSOT_PROTO };
+  const map = { canon: SSOT_CANON, holder: SSOT_HOLDER, pointer: SSOT_POINTER, proto: SSOT_PROTO };
   // Use platform-agnostic join
   return `${root}/${map[which]}`.replace(/\\/g, "/");
 }
