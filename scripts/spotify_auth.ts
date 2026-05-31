@@ -7,7 +7,7 @@
  *
  * Prerequisites:
  *   SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET already in .env.local
- *   Redirect URI registered in Spotify dashboard: http://localhost:3000/callback
+ *   Redirect URI registered in Spotify dashboard: http://127.0.0.1:3000/callback
  *
  * Usage:
  *   bun run scripts/spotify_auth.ts
@@ -16,7 +16,7 @@
  */
 
 const PORT = 3000;
-const REDIRECT_URI = `http://localhost:3000/callback`;
+const REDIRECT_URI = `http://127.0.0.1:${PORT}/callback`;
 const SCOPES = [
   "user-read-playback-state",
   "user-modify-playback-state",
@@ -83,7 +83,7 @@ const server = Bun.serve({
   },
 });
 
-console.log(`[spotify-auth] Waiting for callback on http://localhost:${PORT}/callback ...`);
+console.log(`[spotify-auth] Waiting for callback on http://127.0.0.1:${PORT}/callback ...`);
 
 const code = await codePromise;
 server.stop();
