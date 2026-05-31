@@ -933,7 +933,21 @@
 			},
 			"problemMatcher": [],
 			"detail": "Drain all sessions from corpus into session_blood.json."
-		}
-
-	]
-}
+                },
+                {
+                        "label": "♪ Sonic Watcher (latest session)",
+                        "type": "shell",
+                        "command": "bun",
+                        "args": [
+                                "run",
+                                "scripts/sonic_watcher.ts"
+                        ],
+                        "group": "test",
+                        "isBackground": true,
+                        "presentation": {
+                                "reveal": "silent",
+                                "panel": "dedicated",
+                                "showReuseMessage": false
+                        },
+                        "problemMatcher": [],
+                        "detail": "Resumes Spotify when agent finishes a turn. Requires api_pool -Load first (SPOTIFY_* env vars). No pause logic — just a resume signal on agent done."
