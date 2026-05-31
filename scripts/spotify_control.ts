@@ -33,13 +33,37 @@ export interface PlaybackState {
   progressMs: number;
   trackUri: string | null;
   trackName: string | null;
+  artist: string | null;
 }
 
 export class SpotifyControl {
-  private readonly clientId = process.env.SPOTIFY_CLIENT_ID ?? "";
-  private readonly clientSecret = process.env.SPOTIFY_CLIENT_SECRET ?? "";
-  private readonly refreshToken = process.env.SPOTIFY_REFRESH_TOKEN ?? "";
+  private readonly clientId: string;
+  private readonly clientSecret: string;
+  private readonly refreshToken: string;
   private accessToken: string | null = null;
+
+  constructor() {
+    // Primary: env vars (set via api_pool -Load in a terminal, or explicitly in MCP env block)
+    // Fallback: read $HOME/.chthonic/api_pool.json directly (used when spawned by VS Code's MCP host)
+    const pool = SpotifyControl.readPool();
+    this.clientId     = process.env.SPOTIFY_CLIENT_ID     ?? pool.SPOTIFY_CLIENT_ID     ?? "";
+    this.clientSecret = process.env.SPOTIFY_CLIENT_SECRET ?? pool.SPOTIFY_CLIENT_SECRET ?? "";
+    this.refreshToken = process.env.SPOTIFY_REFRESH_TOKEN ?? pool.SPOTIFY_REFRESH_TOKEN ?? "";
+  }
+
+  private static readPool(): Record<string, string> {
+    try {
+      const os = require("os") as typeof import("os");
+      const path = require("path") as typeof import("path");
+      const fs = require("fs") as typeof import("fs");
+      const poolPath = path.join(os.homedir(), ".chthonic", "api_pool.json");
+      if (!fs.existsSync(poolPath)) return {};
+      const raw = JSON.parse(fs.readFileSync(poolPath, "utf8"));
+      return (raw?.env ?? {}) as Record<string, string>;
+    } catch {
+      return {};
+    }
+  }
 
   private configured(): boolean {
     return Boolean(this.clientId && this.clientSecret && this.refreshToken);
@@ -100,15 +124,18 @@ export class SpotifyControl {
     if (!this.configured()) return { isPlaying: false, progressMs: 0, trackUri: null, trackName: null };
     try {
       const data = (await this.request("/me/player")) as any;
-      if (!data?.item) return { isPlaying: false, progressMs: 0, trackUri: null, trackName: null };
+      if (!data?.item) return { isPlaying: false, progressMs: 0, trackUri: null, trackName: null, artist: null };
+      const artists: string = (data.item.artists as Array<{ name: string }> | undefined)
+        ?.map((a) => a.name).join(", ") ?? null;
       return {
         isPlaying: data.is_playing,
         progressMs: data.progress_ms ?? 0,
         trackUri: data.item.uri ?? null,
         trackName: data.item.name ?? null,
+        artist: artists ?? null,
       };
     } catch {
-      return { isPlaying: false, progressMs: 0, trackUri: null, trackName: null };
+      return { isPlaying: false, progressMs: 0, trackUri: null, trackName: null, artist: null };
     }
   }
 
