@@ -30,6 +30,8 @@
     "ext:sync:insiders:quick": "pwsh -NoProfile -File scripts/insiders-sync.ps1 -Quick",
     "ext:sync:insiders:package": "pwsh -NoProfile -File scripts/insiders-sync.ps1 -Package",
     "ext:sync:insiders:full": "pwsh -NoProfile -File scripts/insiders-sync.ps1 -WithDts -Package",
+    "ext:sync:insiders:install": "pwsh -NoProfile -File scripts/insiders-sync.ps1 -Install",
+    "ext:sync:insiders:install:quick": "pwsh -NoProfile -File scripts/insiders-sync.ps1 -Quick -Install",
     "uncensored:bench": "uv run scripts/benchmark_local_uncensored_lanes.py --include-qwen25",
     "uncensored:steward": "uv run scripts/uncensored_lane_steward.py",
     "uncensored:refresh": "bun run uncensored:bench && bun run uncensored:steward",

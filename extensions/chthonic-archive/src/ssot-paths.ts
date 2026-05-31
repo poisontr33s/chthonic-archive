@@ -7,7 +7,15 @@
  * If the SSOT filename changes, update the canonical source first, then sync here.
  */
 
-/** The frozen monolithic SSOT — 9208-line archive. */
+/**
+ * Primary file-first-authority SSOT canon — the frozen monolithic
+ * Codex-Brahmanica-Perfectus, the artifact every active instruction file
+ * derives from. THE single anchor all surfaces resolve to (canonized in place
+ * 2026-05-31). Mirror of scripts/lib/ssot-paths.ts:SSOT_CANON.
+ */
+export const SSOT_CANON = ".chthonic/SSOT.md";
+
+/** Generated downstream MIRROR of SSOT_CANON (kept for legacy script refs; not primary). */
 export const SSOT_HOLDER = ".github/copilot-instructions.archive.md";
 
 /** The 85-line routing pointer. */

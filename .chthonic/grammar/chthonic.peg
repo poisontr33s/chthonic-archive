@@ -39,6 +39,17 @@ identifier = @{ identifier_char ~ identifier_char+ }
 // Observed: 264x occurrences of `FA⁵` in the SSOT.
 ticked_id = ${ "`" ~ identifier ~ "`" }
 
+// Backtick-wrapped Title-Case concept name: `The-Savant`, `Apex-Synthesis-Core`,
+// `Codex-Brahmanica-Perfectus`. The catalyst's PRIMARY identifier convention —
+// named concepts in Title-Case — a SIBLING to ticked_id (which stays strict
+// uppercase-only for abbreviation codes like `FA⁵`, `ASC`). Reuses phrase_word
+// (uppercase-led, internal lowercase/digit/hyphen permitted). Ordered AFTER
+// ticked_id at every use site, so uppercase-only codes still bind as ticked_id —
+// preserving the abbreviation-vs-concept-name distinction the catalyst encodes.
+// Decision 2026-05-31: ticked_phrase sibling, NOT identifier-widening, to keep
+// the two conventions semantically distinct rather than flattened.
+ticked_phrase = ${ "`" ~ phrase_word ~ "`" }
+
 // Paren-wrapped form: (FA⁵)   or   (`FA⁵`)
 // Observed: 1,510 parenthetical abbreviations across the SSOT.
 parened_id = ${ "(" ~ ("`" ~ identifier ~ "`" | identifier) ~ ")" }
@@ -53,7 +64,7 @@ bold_parened_id = ${ "**" ~ (multi_alias | parened_id) ~ "**" }
 
 // Multi-alias identifier: (Codex-Brahmanica-Perfectus/SSOT/Apex-Synthesis-Core/ASC)
 // Observed: line 72-73 of SSOT — aliases for the same concept.
-alias_chain = { (ticked_id | identifier) ~ ("/" ~ (ticked_id | identifier))+ }
+alias_chain = { (ticked_id | ticked_phrase | identifier) ~ ("/" ~ (ticked_id | ticked_phrase | identifier))+ }
 multi_alias = ${ "(" ~ alias_chain ~ ")" }
 
 // ─── Phrase tokens (multi-word substrate inside parens) ─────────────────────
@@ -87,7 +98,7 @@ digit_token = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? ~ ("-" ~ ASCII_DIGIT+ ~ ("
 phrase_word = @{ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "-" | "_")* }
 
 // One well-typed substrate token, priority-ordered.
-phrase_atom = { ticked_id | placeholder | greek_letter | digit_token | phrase_word }
+phrase_atom = { ticked_id | ticked_phrase | placeholder | greek_letter | digit_token | phrase_word }
 
 // Phrase delimiters. CRITICAL: PEG is ordered-choice, no backtracking on
 // longer alternatives — LONGEST-FIRST ordering is mandatory. If " " (single
@@ -163,6 +174,7 @@ prose_parens_atom = _{
     | parened_phrase
     | parened_id
     | ticked_id
+    | ticked_phrase
     | invocation
     | substrate_marker
     | (!")" ~ ANY)
@@ -176,7 +188,7 @@ prose_parens = ${ "(" ~ prose_parens_atom* ~ ")" }
 // pest backtracks on failure of more-specific alternatives.
 // bold_prose sits after bold_parened_id — same `**` prefix, less specific.
 // prose_parens is LAST — catches anything no substrate paren rule matched.
-id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | identifier }
+id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | identifier }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 

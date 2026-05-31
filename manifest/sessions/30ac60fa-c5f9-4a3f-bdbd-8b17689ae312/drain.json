@@ -3,12 +3,12 @@
     "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
     "schema_version": 2,
     "corpus_path": "manifest/corpus.sqlite",
-    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-15T09:09:31.802Z",
-    "drainedAt": "2026-05-09T00:34:29.143Z"
+    "drainedAt": "2026-05-30T23:02:00.707Z"
   },
   "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
-  "drainedAt": "2026-05-09T00:34:29.143Z",
+  "drainedAt": "2026-05-30T23:02:00.707Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\30ac60fa-c5f9-4a3f-bdbd-8b17689ae312\\transcript.jsonl",
   "sessionIntent": "All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Files (absolute paths) Only one file changes: c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
   "turns": 135,

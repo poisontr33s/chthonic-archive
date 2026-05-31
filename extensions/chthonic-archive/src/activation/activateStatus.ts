@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import type { LaneRegistry } from '../runtime/laneState';
-import { SSOT_POINTER } from '../ssot-paths';
+import { SSOT_CANON } from '../ssot-paths';
 
 export interface ActivateStatusDeps {
     readonly workspaceRoot: string | null;
@@ -83,7 +83,7 @@ export function activateStatus(context: vscode.ExtensionContext, deps: ActivateS
     sync();
     context.subscriptions.push(
         vscode.workspace.onDidSaveTextDocument((doc) => {
-            if (fpItem && doc.fileName.includes(path.basename(SSOT_POINTER, '.md'))) {
+            if (fpItem && doc.fileName.includes(path.basename(SSOT_CANON, '.md'))) {
                 refreshFingerprint();
             }
         }),
@@ -110,7 +110,7 @@ export function activateStatus(context: vscode.ExtensionContext, deps: ActivateS
 
 export function computePolicyFingerprint(deps: Pick<ActivateStatusDeps, 'workspaceRoot' | 'chthonicConfig'>): string | null {
     if (!deps.workspaceRoot) return null;
-    const policyRel = deps.chthonicConfig.get<string>('ssotPath', SSOT_POINTER);
+    const policyRel = deps.chthonicConfig.get<string>('ssotPath', SSOT_CANON);
     const policyPath = path.join(deps.workspaceRoot, policyRel);
     if (!fs.existsSync(policyPath)) return null;
     const content = fs.readFileSync(policyPath, 'utf-8');

@@ -96,7 +96,8 @@
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
-    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-statusbar-insiders.vsix",
+    "_folded_into_chthonic_archive": "Statusbar is folded into chthonic-archive as the statusbar lane (src/statusbar/register.ts). De-packaged: insiders:package renamed inert below so the discovery lane no longer builds/installs it standalone (it would collide on chthonic.bridge.*). Source kept as seed (no-delete).",
+    "insiders:package:folded": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-statusbar-insiders.vsix",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main"
   },

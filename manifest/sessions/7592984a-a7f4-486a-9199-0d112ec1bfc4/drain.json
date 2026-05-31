@@ -3,12 +3,12 @@
     "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
     "schema_version": 2,
     "corpus_path": "manifest/corpus.sqlite",
-    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-28T03:46:32.510Z",
-    "drainedAt": "2026-05-09T00:34:29.166Z"
+    "drainedAt": "2026-05-30T23:02:00.887Z"
   },
   "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
-  "drainedAt": "2026-05-09T00:34:29.166Z",
+  "drainedAt": "2026-05-30T23:02:00.887Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\7592984a-a7f4-486a-9199-0d112ec1bfc4\\transcript.jsonl",
   "sessionIntent": "The git repository would be -- https://github.com/poisontr33s/psychonoir-kontrapunkt-large-file-holder -- the local might not be synced or progressed past. But the important is to carry over the core",
   "turns": 176,

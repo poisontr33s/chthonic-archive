@@ -3,12 +3,12 @@
     "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
     "schema_version": 2,
     "corpus_path": "manifest/corpus.sqlite",
-    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-27T23:17:04.657Z",
-    "drainedAt": "2026-05-09T00:34:29.165Z"
+    "drainedAt": "2026-05-30T23:02:00.883Z"
   },
   "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
-  "drainedAt": "2026-05-09T00:34:29.165Z",
+  "drainedAt": "2026-05-30T23:02:00.883Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\8148fe61-004d-42ac-9088-528edae4e92b\\transcript.jsonl",
   "sessionIntent": "",
   "turns": 0,

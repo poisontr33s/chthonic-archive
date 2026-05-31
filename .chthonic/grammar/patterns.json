@@ -19,22 +19,22 @@
       "example": "**(`Codex-Brahmanica-Perfectus`/`SSOT`/`Apex-Synthesis-Core`/`ASC`)**",
       "expected_top_rule": "bold_parened_id",
       "expected_inner_rules": ["multi_alias", "alias_chain"],
-      "status": "failing",
+      "status": "working",
       "since_iter": 1,
       "source_line_ssot": 73,
       "category": "architectural-decision",
-      "note": "Discovered 2026-05-27 via pattern catalog. Fix requires widening ticked_id to admit Title-Case content (or a separate ticked_phrase rule). Architectural choice waiting: widen identifier_char to admit lowercase, OR add ticked_phrase with Title-Case discipline, OR split ticked_id into strict (uppercase) + permissive variants.",
+      "note": "Discovered 2026-05-27. RESOLVED 2026-05-31: added ticked_phrase (Title-Case sibling to ticked_id) wired into alias_chain, so the multi-alias chain now accepts Title-Case members like Codex-Brahmanica-Perfectus. Sibling-rule approach (not identifier-widening) keeps abbreviation vs concept-name distinct.",
       "first_failing_grammar_hash": "c2c8cfc4c65377e8"
     },
     {
       "name": "ticked_id_titlecase_content",
-      "description": "FAILING — catalyst's primary backtick-id convention uses Title-Case content (`The-Savant`, `Apex-Synthesis-Core`, etc). Current ticked_id requires uppercase-only via identifier rule.",
+      "description": "Catalyst's primary backtick-id convention uses Title-Case content (`The-Savant`, `Apex-Synthesis-Core`). Parses as ticked_phrase (Title-Case sibling); ticked_id stays strict uppercase for codes like `FA⁵`.",
       "example": "`The-Savant`",
-      "expected_top_rule": "ticked_id",
-      "status": "failing",
+      "expected_top_rule": "ticked_phrase",
+      "status": "working",
       "since_iter": "pattern-catalog-baseline",
       "category": "architectural-decision",
-      "note": "Sibling failure to bold_parened_id_multi_alias. Same root cause: identifier_char excludes lowercase. Fix is the same architectural decision.",
+      "note": "RESOLVED 2026-05-31: added ticked_phrase rule (backtick + phrase_word), ordered after ticked_id so uppercase codes still bind strict. Abbreviation vs concept-name preserved as two grammar rules.",
       "first_failing_grammar_hash": "c2c8cfc4c65377e8"
     },
     {

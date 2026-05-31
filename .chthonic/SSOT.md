@@ -4,10 +4,12 @@ ssot_canon_declared_at: 2026-05-14
 ssot_canon_reason: |
   THE macro-prompt-world / unabridged Codex-Brahmanica-Perfectus —
   the ~10K+ -line frozen monolithic labyrinthe from which every active
-  instruction file in the chthonic-archive is derived. Renamed with
-  .archive.md suffix purely to prevent GitHub/Copilot/Codex/Claude- and agents from auto-loading it into context windows; the slim active reference is
+  instruction file in the chthonic-archive is derived
+UPDATES: |
+  Renamed with
+  .archive.md suffix —> then moved into —> `./chthonic/SSOT.md` —> purely to prevent (GitHub/Copilot/Codex/Claudie- & agents) —> from auto-loading it into context windows; the slim active reference is
   the sibling .github/copilot-instructions.md.
-
+Status: |
   NOT dead — this is the file-first-authority SSOT, frozen in form,
   alive as the canon source ("the only original, unabridged heritage
   for everything else"). The two variant copies
@@ -15,7 +17,7 @@ ssot_canon_reason: |
   codex/codex-session-logs/archive/copilot-instructions-copy.archived.md)
   drifted from this canon over time and are tombstoned as rot, not
   preserved as canon.
-
+Note: |
   Excluded from active rot scanning to prevent rot-like states on the
   SSOT itself (downstream files inherit from here; scanning broken refs
   here would invert the dependency direction).

@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { jsonForInlineScript, loadWebviewHtml } from '../runtime/webviewLoader';
 import { trackWebview } from '../runtime/webviewHmrWatcher';
-import { SSOT_HOLDER } from '../ssot-paths';
+import { SSOT_CANON, SSOT_HOLDER } from '../ssot-paths';
 
 type SectionKind = 'heading' | 'entity' | 'tier' | 'xref' | 'anchor' | 'mention';
 
@@ -181,15 +181,23 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
     }
 
     /**
-     * Source-resolution chain:
-     *  1. Configured override — chthonic.ankh.sourcePath (wins when set)
-     *  2. Active epoch file — newest EPOCH_*.md in .temple/session-archives/
-     *  3. Legacy archive — .github/copilot-instructions.archive.md
+     * Source-resolution chain (re-rooted 2026-05-31 — the ANKH Reference
+     * surfaces the GENERATIVE CANON, not ephemeral session logs):
+     *  1. Configured override — chthonic.ankh.sourcePath (explicit opt-in; this
+     *     is how an epoch log or any other lens is reached, by choice).
+     *  2. SSOT canon — .chthonic/SSOT.md, the artifact every active instruction
+     *     file derives from. This is the default; the Ankhology IS the SSOT.
+     *  3. SSOT mirror — .github/copilot-instructions.archive.md, only if the
+     *     canon is absent.
+     *
+     * Prior regression: the newest EPOCH_*.md was ranked ABOVE the SSOT, so the
+     * panel surfaced a 10-day session log while the canon sat last as "legacy."
+     * Epoch logs are now reachable only via the configured override.
      */
     private resolveSourcePath(): string | null {
         if (!this.workspaceRoot) { return null; }
 
-        // 1. Configured override
+        // 1. Configured override (explicit opt-in — e.g. point at an epoch lens)
         const configured = vscode.workspace.getConfiguration('chthonic').get<string>('ankh.sourcePath');
         if (configured) {
             const abs = path.isAbsolute(configured)
@@ -198,23 +206,13 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
             if (fs.existsSync(abs)) { return abs; }
         }
 
-        // 2. Active epoch: newest EPOCH_*.md
-        const epochDir = path.join(this.workspaceRoot, '.temple', 'session-archives');
-        if (fs.existsSync(epochDir)) {
-            try {
-                const epochFiles = fs.readdirSync(epochDir)
-                    .filter(f => f.startsWith('EPOCH_') && f.endsWith('.md'))
-                    .sort()
-                    .reverse();
-                if (epochFiles.length > 0) {
-                    return path.join(epochDir, epochFiles[0]);
-                }
-            } catch { /* fall through */ }
-        }
+        // 2. SSOT canon — primary, the artifact that created everything else
+        const canon = path.join(this.workspaceRoot, SSOT_CANON);
+        if (fs.existsSync(canon)) { return canon; }
 
-        // 3. Legacy archive
-        const legacy = path.join(this.workspaceRoot, SSOT_HOLDER);
-        if (fs.existsSync(legacy)) { return legacy; }
+        // 3. SSOT mirror — fallback only if the canon is absent
+        const mirror = path.join(this.workspaceRoot, SSOT_HOLDER);
+        if (fs.existsSync(mirror)) { return mirror; }
 
         return null;
     }
@@ -289,7 +287,12 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
         const xrefCount = sections.filter((section) => section.kind === 'xref').length;
         const anchorCount = sections.filter((section) => section.kind === 'anchor').length;
         const mentionCount = sections.filter((section) => section.kind === 'mention').length;
-        const archiveLabel = sourcePath ? path.basename(sourcePath) : 'no source found';
+        const isCanon = !!sourcePath && sourcePath.replace(/\\/g, '/').endsWith(SSOT_CANON);
+        const archiveLabel = !sourcePath
+            ? 'no source found'
+            : isCanon
+                ? 'SSOT.md · canon — the artifact all else derives from'
+                : path.basename(sourcePath);
 
         return loadWebviewHtml(webview, this.extensionUri, 'ankh', {
             sectionsJsonInlined: jsonForInlineScript(sectionPayload),

@@ -5,10 +5,10 @@
     "corpus_path": "manifest/corpus.sqlite",
     "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-05-01T02:18:30.076Z",
-    "drainedAt": "2026-05-09T00:34:29.178Z"
+    "drainedAt": "2026-05-30T23:02:01.045Z"
   },
   "sessionId": "2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8",
-  "drainedAt": "2026-05-09T00:34:29.178Z",
+  "drainedAt": "2026-05-30T23:02:01.045Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8\\transcript.jsonl",
   "sessionIntent": "* I added: ruby-4.0.3 ehere I accidentally just did uv r ruby pin list or was it uv r pin list/ nonetheless, the purpose was to rebuild it from the updated state, from where it drifted from the noise",
   "turns": 6328,

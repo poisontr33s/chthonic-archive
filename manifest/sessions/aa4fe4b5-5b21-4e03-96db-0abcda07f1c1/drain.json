@@ -3,12 +3,12 @@
     "sessionId": "aa4fe4b5-5b21-4e03-96db-0abcda07f1c1",
     "schema_version": 2,
     "corpus_path": "manifest/corpus.sqlite",
-    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-22T16:29:31.654Z",
-    "drainedAt": "2026-05-09T00:34:29.158Z"
+    "drainedAt": "2026-05-30T23:02:00.813Z"
   },
   "sessionId": "aa4fe4b5-5b21-4e03-96db-0abcda07f1c1",
-  "drainedAt": "2026-05-09T00:34:29.158Z",
+  "drainedAt": "2026-05-30T23:02:00.813Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\aa4fe4b5-5b21-4e03-96db-0abcda07f1c1\\transcript.jsonl",
   "sessionIntent": "Can you also add rv for broken uv upgrade I managed to mess up. ^^ For more information, try '--help'. PS C:\\Users\\eldno\\chthonic-archive> rv ruby install Archive C:\\Users\\eldno\\AppData\\Local\\rv",
   "turns": 208,

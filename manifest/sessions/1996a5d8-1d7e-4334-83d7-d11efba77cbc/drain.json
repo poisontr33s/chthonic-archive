@@ -5,10 +5,10 @@
     "corpus_path": "manifest/corpus.sqlite",
     "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-30T00:32:44.760Z",
-    "drainedAt": "2026-05-09T00:34:29.168Z"
+    "drainedAt": "2026-05-30T23:02:00.896Z"
   },
   "sessionId": "1996a5d8-1d7e-4334-83d7-d11efba77cbc",
-  "drainedAt": "2026-05-09T00:34:29.168Z",
+  "drainedAt": "2026-05-30T23:02:00.896Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\1996a5d8-1d7e-4334-83d7-d11efba77cbc\\transcript.jsonl",
   "sessionIntent": "* ***Claudine***, *sugarplummy*. * *Would you be as kind as to diagnose and find out to have the prerequisite to resolve the chthonic report from the command in the pwsh 7.x.x vs-code-insiders term",
   "turns": 370,

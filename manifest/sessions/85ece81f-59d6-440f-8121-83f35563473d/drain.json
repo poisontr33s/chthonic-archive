@@ -3,12 +3,12 @@
     "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
     "schema_version": 2,
     "corpus_path": "manifest/corpus.sqlite",
-    "workspaceHash": "710554437afe84ae817dd8a105e496f6",
+    "workspaceHash": "eccd2abdbb1acd0697631505bd88f668",
     "startTime": "2026-04-15T10:23:34.490Z",
-    "drainedAt": "2026-05-09T00:34:29.144Z"
+    "drainedAt": "2026-05-30T23:02:00.710Z"
   },
   "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
-  "drainedAt": "2026-05-09T00:34:29.144Z",
+  "drainedAt": "2026-05-30T23:02:00.710Z",
   "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\manifest\\sessions\\85ece81f-59d6-440f-8121-83f35563473d\\transcript.jsonl",
   "sessionIntent": "* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruft - **'Agent'** *(needed for inhumanity i suppose)* ^^ - No customalization, no creative or conceptual depth",
   "turns": 64,

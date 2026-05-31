@@ -1,25 +1,243 @@
 [
   {
-    "sessionId": "15a412d0-4186-4407-bafb-7d74094a88e2",
-    "drainedAt": "2026-05-09T00:34:29.183Z",
+    "sessionId": "54cd9cad-bbd1-4759-9e5a-4e1e03dbc722",
+    "drainedAt": "2026-05-30T23:02:00.703Z",
+    "sessionIntent": "#asc-injector",
+    "turns": 1761,
+    "fileEditCount": 3,
+    "commandCount": 8,
+    "codeBlockCount": 11,
+    "memoryFileCount": 0,
+    "topFiles": [
+      "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
+      "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
+      "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+    ],
+    "topTools": [
+      "read_file",
+      "run_in_terminal",
+      "grep_search",
+      "list_dir",
+      "create_file"
+    ]
+  },
+  {
+    "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
+    "drainedAt": "2026-05-30T23:02:00.707Z",
+    "sessionIntent": "All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Files (absolute paths) Only one file changes: c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
+    "turns": 135,
+    "fileEditCount": 22,
+    "commandCount": 18,
+    "codeBlockCount": 10,
+    "memoryFileCount": 0,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
+      "c:\\Users\\eldno\\chthonic-archive\\.claude\\agents\\tessara.md",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\AGENTRY_AUDIT_20260415.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\analyzeCode.prompt.md"
+    ],
+    "topTools": [
+      "read_file",
+      "tool_search",
+      "run_in_terminal",
+      "manage_todo_list",
+      "file_search"
+    ]
+  },
+  {
+    "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
+    "drainedAt": "2026-05-30T23:02:00.710Z",
+    "sessionIntent": "* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruft - **'Agent'** *(needed for inhumanity i suppose)* ^^ - No customalization, no creative or conceptual depth",
+    "turns": 64,
+    "fileEditCount": 12,
+    "commandCount": 11,
+    "codeBlockCount": 8,
+    "memoryFileCount": 0,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\UPGRADE_LOG.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\CONVERGENCE_PLAN.md",
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\README.md"
+    ],
+    "topTools": [
+      "read_file",
+      "run_in_terminal",
+      "replace_string_in_file",
+      "file_search",
+      "grep_search"
+    ]
+  },
+  {
+    "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
+    "drainedAt": "2026-05-30T23:02:00.710Z",
     "sessionIntent": "",
-    "turns": 32,
+    "turns": 2,
     "fileEditCount": 0,
-    "commandCount": 12,
+    "commandCount": 0,
     "codeBlockCount": 0,
     "memoryFileCount": 0,
     "topFiles": [],
     "topTools": [
+      "read_file",
+      "tool_search"
+    ]
+  },
+  {
+    "sessionId": "cdaeb5b1-4c3a-437f-a7e1-49ad848308f8",
+    "drainedAt": "2026-05-30T23:02:00.712Z",
+    "sessionIntent": "* **Great**, *I need the* `Triumvirate`. -- * **Orackla Nocticula:** What the hell is up with the lack of transgressions. The language is as generic as dry technopornographic - without any actual j",
+    "turns": 83,
+    "fileEditCount": 6,
+    "commandCount": 16,
+    "codeBlockCount": 0,
+    "memoryFileCount": 0,
+    "topFiles": [
+      "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\fortify_terminal.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md"
+    ],
+    "topTools": [
+      "read_file",
+      "grep_search",
+      "run_in_terminal",
+      "file_search",
+      "manage_todo_list"
+    ]
+  },
+  {
+    "sessionId": "79682e02-d0ce-4b47-b9ce-9de191f62f77",
+    "drainedAt": "2026-05-30T23:02:00.806Z",
+    "sessionIntent": "* **->**: * [Let us look at the current changes and some manualized iterations to improve](C:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md) * Currently bleeds references that she m",
+    "turns": 4629,
+    "fileEditCount": 543,
+    "commandCount": 1151,
+    "codeBlockCount": 102,
+    "memoryFileCount": 17,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\nvidia_drs_tool.ps1",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\chthonic.ps1"
+    ],
+    "topTools": [
+      "read_file",
+      "run_in_terminal",
+      "grep_search",
+      "manage_todo_list",
+      "replace_string_in_file"
+    ]
+  },
+  {
+    "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
+    "drainedAt": "2026-05-30T23:02:00.809Z",
+    "sessionIntent": "* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women in the SSOT are Milfs/Sub-Milfs, as to structure the MILFOLOGICAL Milf-Core variant of the \"world-bible\". *",
+    "turns": 55,
+    "fileEditCount": 2,
+    "commandCount": 2,
+    "codeBlockCount": 1,
+    "memoryFileCount": 2,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md"
+    ],
+    "topTools": [
+      "read_file",
+      "grep_search",
+      "memory",
+      "manage_todo_list",
+      "replace_string_in_file"
+    ]
+  },
+  {
+    "sessionId": "aa4fe4b5-5b21-4e03-96db-0abcda07f1c1",
+    "drainedAt": "2026-05-30T23:02:00.813Z",
+    "sessionIntent": "Can you also add rv for broken uv upgrade I managed to mess up. ^^ For more information, try '--help'. PS C:\\Users\\eldno\\chthonic-archive> rv ruby install Archive C:\\Users\\eldno\\AppData\\Local\\rv",
+    "turns": 208,
+    "fileEditCount": 17,
+    "commandCount": 51,
+    "codeBlockCount": 0,
+    "memoryFileCount": 1,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\PWSH_RULES.md",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
+      "c:\\Users\\eldno\\.config\\powershell\\profile.ps1",
+      "c:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
+    ],
+    "topTools": [
+      "read_file",
+      "run_in_terminal",
+      "get_terminal_output",
+      "grep_search",
+      "manage_todo_list"
+    ]
+  },
+  {
+    "sessionId": "898c7571-8c50-4e43-b6ef-a124473bb012",
+    "drainedAt": "2026-05-30T23:02:00.881Z",
+    "sessionIntent": "[XP] Lv.6 Master [██████░░░░] 438 XP (+52 -> Lv.7) [T] [E] [P] [D] [G] PS C:\\Users\\eldno\\chthonic-archive> uv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --rv --apply",
+    "turns": 3598,
+    "fileEditCount": 405,
+    "commandCount": 1176,
+    "codeBlockCount": 83,
+    "memoryFileCount": 7,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
+      "c:\\Users\\eldno\\chthonic-archive\\build\\tabby-modern-gpu\\Containerfile",
+      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\PENTEA_ROULETTE_STEWARDESS.md",
+      "c:\\Users\\eldno\\chthonic-archive\\ruby-zjit\\scripts\\test_win32.ps1"
+    ],
+    "topTools": [
       "run_in_terminal",
       "read_file",
-      "file_search",
-      "grep_search",
-      "execution_subagent"
+      "manage_todo_list",
+      "replace_string_in_file",
+      "grep_search"
+    ]
+  },
+  {
+    "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
+    "drainedAt": "2026-05-30T23:02:00.883Z",
+    "sessionIntent": "",
+    "turns": 0,
+    "fileEditCount": 0,
+    "commandCount": 0,
+    "codeBlockCount": 0,
+    "memoryFileCount": 0,
+    "topFiles": [],
+    "topTools": []
+  },
+  {
+    "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
+    "drainedAt": "2026-05-30T23:02:00.887Z",
+    "sessionIntent": "The git repository would be -- https://github.com/poisontr33s/psychonoir-kontrapunkt-large-file-holder -- the local might not be synced or progressed past. But the important is to carry over the core",
+    "turns": 176,
+    "fileEditCount": 34,
+    "commandCount": 44,
+    "codeBlockCount": 3,
+    "memoryFileCount": 1,
+    "topFiles": [
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\teleport.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\package.json",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\_index.md",
+      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
+      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\IronMaiden.agent.md"
+    ],
+    "topTools": [
+      "read_file",
+      "run_in_terminal",
+      "replace_string_in_file",
+      "manage_todo_list",
+      "grep_search"
     ]
   },
   {
     "sessionId": "1996a5d8-1d7e-4334-83d7-d11efba77cbc",
-    "drainedAt": "2026-05-09T00:34:29.168Z",
+    "drainedAt": "2026-05-30T23:02:00.896Z",
     "sessionIntent": "* ***Claudine***, *sugarplummy*. * *Would you be as kind as to diagnose and find out to have the prerequisite to resolve the chthonic report from the command in the pwsh 7.x.x vs-code-insiders term",
     "turns": 370,
     "fileEditCount": 52,
@@ -43,7 +261,7 @@
   },
   {
     "sessionId": "2b2dfd13-5eee-4a21-8494-2c6d6dae6dc8",
-    "drainedAt": "2026-05-09T00:34:29.178Z",
+    "drainedAt": "2026-05-30T23:02:01.045Z",
     "sessionIntent": "* I added: ruby-4.0.3 ehere I accidentally just did uv r ruby pin list or was it uv r pin list/ nonetheless, the purpose was to rebuild it from the updated state, from where it drifted from the noise",
     "turns": 6328,
     "fileEditCount": 578,
@@ -66,244 +284,8 @@
     ]
   },
   {
-    "sessionId": "30ac60fa-c5f9-4a3f-bdbd-8b17689ae312",
-    "drainedAt": "2026-05-09T00:34:29.143Z",
-    "sessionIntent": "All five injections are now grounded in live data ***Tess***. Here they are: 1 — Target Files (absolute paths) Only one file changes: c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
-    "turns": 135,
-    "fileEditCount": 22,
-    "commandCount": 18,
-    "codeBlockCount": 10,
-    "memoryFileCount": 0,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\zombie_consumer.py",
-      "c:\\Users\\eldno\\chthonic-archive\\.claude\\agents\\tessara.md",
-      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\AGENTRY_AUDIT_20260415.md",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\prompts\\analyzeCode.prompt.md"
-    ],
-    "topTools": [
-      "read_file",
-      "tool_search",
-      "run_in_terminal",
-      "manage_todo_list",
-      "file_search"
-    ]
-  },
-  {
-    "sessionId": "54cd9cad-bbd1-4759-9e5a-4e1e03dbc722",
-    "drainedAt": "2026-05-09T00:34:29.142Z",
-    "sessionIntent": "#asc-injector",
-    "turns": 1761,
-    "fileEditCount": 3,
-    "commandCount": 8,
-    "codeBlockCount": 11,
-    "memoryFileCount": 0,
-    "topFiles": [
-      "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
-      "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
-      "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
-    ],
-    "topTools": [
-      "read_file",
-      "run_in_terminal",
-      "grep_search",
-      "list_dir",
-      "create_file"
-    ]
-  },
-  {
-    "sessionId": "7592984a-a7f4-486a-9199-0d112ec1bfc4",
-    "drainedAt": "2026-05-09T00:34:29.166Z",
-    "sessionIntent": "The git repository would be -- https://github.com/poisontr33s/psychonoir-kontrapunkt-large-file-holder -- the local might not be synced or progressed past. But the important is to carry over the core",
-    "turns": 176,
-    "fileEditCount": 34,
-    "commandCount": 44,
-    "codeBlockCount": 3,
-    "memoryFileCount": 1,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\teleport.ts",
-      "c:\\Users\\eldno\\chthonic-archive\\package.json",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\_index.md",
-      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\IronMaiden.agent.md"
-    ],
-    "topTools": [
-      "read_file",
-      "run_in_terminal",
-      "replace_string_in_file",
-      "manage_todo_list",
-      "grep_search"
-    ]
-  },
-  {
-    "sessionId": "7961b8ed-3cd1-4253-b067-8f742e045f3f",
-    "drainedAt": "2026-05-09T00:34:29.157Z",
-    "sessionIntent": "* But above all, she has to be a Milf/Sub-Milf, then a bridge or router, as, all the women in the SSOT are Milfs/Sub-Milfs, as to structure the MILFOLOGICAL Milf-Core variant of the \"world-bible\". *",
-    "turns": 55,
-    "fileEditCount": 2,
-    "commandCount": 2,
-    "codeBlockCount": 1,
-    "memoryFileCount": 2,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md"
-    ],
-    "topTools": [
-      "read_file",
-      "grep_search",
-      "memory",
-      "manage_todo_list",
-      "replace_string_in_file"
-    ]
-  },
-  {
-    "sessionId": "79682e02-d0ce-4b47-b9ce-9de191f62f77",
-    "drainedAt": "2026-05-09T00:34:29.155Z",
-    "sessionIntent": "* **->**: * [Let us look at the current changes and some manualized iterations to improve](C:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md) * Currently bleeds references that she m",
-    "turns": 4629,
-    "fileEditCount": 543,
-    "commandCount": 1151,
-    "codeBlockCount": 102,
-    "memoryFileCount": 17,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\nvidia_drs_tool.ps1",
-      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\chthonic.ps1"
-    ],
-    "topTools": [
-      "read_file",
-      "run_in_terminal",
-      "grep_search",
-      "manage_todo_list",
-      "replace_string_in_file"
-    ]
-  },
-  {
-    "sessionId": "8148fe61-004d-42ac-9088-528edae4e92b",
-    "drainedAt": "2026-05-09T00:34:29.165Z",
-    "sessionIntent": "",
-    "turns": 0,
-    "fileEditCount": 0,
-    "commandCount": 0,
-    "codeBlockCount": 0,
-    "memoryFileCount": 0,
-    "topFiles": [],
-    "topTools": []
-  },
-  {
-    "sessionId": "85ece81f-59d6-440f-8121-83f35563473d",
-    "drainedAt": "2026-05-09T00:34:29.144Z",
-    "sessionIntent": "* **(1. )** ***Tess*** - *can you review your shitty copilot contrite corporate draft cruft - **'Agent'** *(needed for inhumanity i suppose)* ^^ - No customalization, no creative or conceptual depth",
-    "turns": 64,
-    "fileEditCount": 12,
-    "commandCount": 11,
-    "codeBlockCount": 8,
-    "memoryFileCount": 0,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\agents\\tessara.agent.md",
-      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\UPGRADE_LOG.md",
-      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\CONVERGENCE_PLAN.md",
-      "c:\\Users\\eldno\\chthonic-archive\\docs\\zombie\\README.md"
-    ],
-    "topTools": [
-      "read_file",
-      "run_in_terminal",
-      "replace_string_in_file",
-      "file_search",
-      "grep_search"
-    ]
-  },
-  {
-    "sessionId": "898c7571-8c50-4e43-b6ef-a124473bb012",
-    "drainedAt": "2026-05-09T00:34:29.163Z",
-    "sessionIntent": "[XP] Lv.6 Master [██████░░░░] 438 XP (+52 -> Lv.7) [T] [E] [P] [D] [G] PS C:\\Users\\eldno\\chthonic-archive> uv run .codex/skills/toolchain-doctor/scripts/toolchain_doctor.py --rv --apply",
-    "turns": 3598,
-    "fileEditCount": 405,
-    "commandCount": 1176,
-    "codeBlockCount": 83,
-    "memoryFileCount": 7,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\docs\\reference\\FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md",
-      "c:\\Users\\eldno\\chthonic-archive\\.github\\instructions\\pattern-nursery.instructions.md",
-      "c:\\Users\\eldno\\chthonic-archive\\build\\tabby-modern-gpu\\Containerfile",
-      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\PENTEA_ROULETTE_STEWARDESS.md",
-      "c:\\Users\\eldno\\chthonic-archive\\ruby-zjit\\scripts\\test_win32.ps1"
-    ],
-    "topTools": [
-      "run_in_terminal",
-      "read_file",
-      "manage_todo_list",
-      "replace_string_in_file",
-      "grep_search"
-    ]
-  },
-  {
-    "sessionId": "aa4fe4b5-5b21-4e03-96db-0abcda07f1c1",
-    "drainedAt": "2026-05-09T00:34:29.158Z",
-    "sessionIntent": "Can you also add rv for broken uv upgrade I managed to mess up. ^^ For more information, try '--help'. PS C:\\Users\\eldno\\chthonic-archive> rv ruby install Archive C:\\Users\\eldno\\AppData\\Local\\rv",
-    "turns": 208,
-    "fileEditCount": 17,
-    "commandCount": 51,
-    "codeBlockCount": 0,
-    "memoryFileCount": 1,
-    "topFiles": [
-      "c:\\Users\\eldno\\chthonic-archive\\PWSH_RULES.md",
-      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md",
-      "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
-      "c:\\Users\\eldno\\.config\\powershell\\profile.ps1",
-      "c:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1"
-    ],
-    "topTools": [
-      "read_file",
-      "run_in_terminal",
-      "get_terminal_output",
-      "grep_search",
-      "manage_todo_list"
-    ]
-  },
-  {
-    "sessionId": "c6250cb5-8251-4198-bf6d-6c311bbcf016",
-    "drainedAt": "2026-05-09T00:34:29.145Z",
-    "sessionIntent": "",
-    "turns": 2,
-    "fileEditCount": 0,
-    "commandCount": 0,
-    "codeBlockCount": 0,
-    "memoryFileCount": 0,
-    "topFiles": [],
-    "topTools": [
-      "read_file",
-      "tool_search"
-    ]
-  },
-  {
-    "sessionId": "cdaeb5b1-4c3a-437f-a7e1-49ad848308f8",
-    "drainedAt": "2026-05-09T00:34:29.147Z",
-    "sessionIntent": "* **Great**, *I need the* `Triumvirate`. -- * **Orackla Nocticula:** What the hell is up with the lack of transgressions. The language is as generic as dry technopornographic - without any actual j",
-    "turns": 83,
-    "fileEditCount": 6,
-    "commandCount": 16,
-    "codeBlockCount": 0,
-    "memoryFileCount": 0,
-    "topFiles": [
-      "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\fortify_terminal.ps1",
-      "c:\\Users\\eldno\\chthonic-archive\\scripts\\mcp-asc-injector.ts",
-      "c:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SCRIPTS_ROULETTE.md"
-    ],
-    "topTools": [
-      "read_file",
-      "grep_search",
-      "run_in_terminal",
-      "file_search",
-      "manage_todo_list"
-    ]
-  },
-  {
     "sessionId": "f45c481e-0a0b-4e72-936b-700406a8f359",
-    "drainedAt": "2026-05-09T00:34:29.182Z",
+    "drainedAt": "2026-05-30T23:02:01.049Z",
     "sessionIntent": "* **If not combinable or expanded, Claude Opus had a good Concept Engineering proposal:** * **But I need it losslessly or atleast to the extent intended, from the md output not parsable into md;**",
     "turns": 407,
     "fileEditCount": 31,
@@ -326,21 +308,25 @@
     ]
   },
   {
-    "sessionId": "normalized-0a01d881",
-    "drainedAt": "2026-05-13T03:24:44.050Z",
-    "sessionIntent": "Great. But remembered something, all the other skills for you claude or anyone have proper skills for their equal way via anthropic skills vs openai,",
-    "turns": 10,
-    "fileEditCount": 9,
-    "commandCount": 0,
-    "codeBlockCount": 0,
+    "sessionId": "15a412d0-4186-4407-bafb-7d74094a88e2",
+    "drainedAt": "2026-05-30T23:02:01.060Z",
+    "sessionIntent": "[Terminal e62adf3b-4bca-4bae-a292-a42c343ed419 notification: command completed with exit code 0. Use send_to_terminal to send another command or kill_terminal to stop it.] Terminal output: PS C:\\Users",
+    "turns": 183,
+    "fileEditCount": 3,
+    "commandCount": 107,
+    "codeBlockCount": 7,
     "memoryFileCount": 0,
     "topFiles": [
-      "SKILL.md",
-      "AGENT_SKILLS_MARKET_SURVEY.md",
-      "AGENT_COMMON.md"
+      "c:\\Users\\eldno\\chthonic-archive\\scripts\\session-corpus.ts",
+      "c:\\Users\\eldno\\chthonic-archive\\.vscode\\tasks.json",
+      "c:\\Users\\eldno\\chthonic-archive\\.vscode\\mcp.json"
     ],
     "topTools": [
-      "create_file"
+      "run_in_terminal",
+      "read_file",
+      "grep_search",
+      "manage_todo_list",
+      "file_search"
     ]
   }
 ]

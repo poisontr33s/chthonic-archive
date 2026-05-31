@@ -162,7 +162,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "watch": "tsc -watch -p tsconfig.json",
-    "package": "npx @vscode/vsce package --no-dependencies"
+    "package": "bunx @vscode/vsce package --no-dependencies",
+    "compile": "tsc -p tsconfig.json",
+    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out vampire-corpus-insiders.vsix --skip-license"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

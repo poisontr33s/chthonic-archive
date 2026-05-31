@@ -86,6 +86,16 @@
     ],
     "commands": [
       {
+        "command": "chthonic.bridge.verifyHost",
+        "title": "Chthonic Bridge: Verify Host",
+        "icon": "$(check)"
+      },
+      {
+        "command": "chthonic.bridge.vsAudit",
+        "title": "Chthonic Bridge: VS 2026 Audit",
+        "icon": "$(tools)"
+      },
+      {
         "command": "chthonic.switchTheme",
         "title": "Chthonic: Switch Theme",
         "icon": "$(paintcan)"

@@ -23,7 +23,10 @@ ssot_manifest.py — Canon Declaration Layer for SSOT Identity.
                 legibly accountable to the SSOT through this manifest.
 
 Canon Contract:
-  - copilot-instructions.archive.md is the canonical HOLDER.
+  - .chthonic/SSOT.md is the PRIMARY file-first-authority CANON (canonized in
+    place 2026-05-31) — the artifact all else derives from.
+  - copilot-instructions.archive.md is the canonical HOLDER — now the canon's
+    generated downstream mirror, kept under its stable name for legacy refs.
   - copilot-instructions.md is the operational POINTER (minified surface).
   - All supporting files must declare which one they bind to and why.
   - If a filename changes, THIS FILE changes first. Everything else
@@ -42,6 +45,10 @@ from typing import Any, Dict, List, Literal, Optional
 # ─────────────────────────────────────────────────────────────────────────────
 # If filenames change, change ONLY HERE. Everything else resolves through this.
 
+# Primary file-first-authority canon — the artifact every active instruction
+# file derives from. Canonized in place 2026-05-31; surfaces resolve SSOT_CANON
+# first. The HOLDER below is its generated downstream mirror (kept for legacy refs).
+SSOT_CANON_RELPATH = ".chthonic/SSOT.md"
 SSOT_HOLDER_RELPATH = ".github/copilot-instructions.archive.md"
 SSOT_POINTER_RELPATH = ".github/copilot-instructions.md"
 SSOT_PROTO_RELPATH = ".github/copilot-instructions-copy.md"
@@ -170,10 +177,17 @@ CASCADE_REGISTER: List[CascadeEntry] = [
     # ── Canonical Sources ────────────────────────────────────────────────────
     CascadeEntry(
         role="holder",
+        identity="canon",
+        relpath=SSOT_CANON_RELPATH,
+        relation="authoritative",
+        description="Primary file-first-authority SSOT canon (.chthonic/SSOT.md) — the artifact every active instruction file derives from. THE single anchor surfaces resolve to (canonized 2026-05-31).",
+    ),
+    CascadeEntry(
+        role="holder",
         identity="holder",
         relpath=SSOT_HOLDER_RELPATH,
         relation="authoritative",
-        description="Canonical SSOT archive — months of creative work, full entity data",
+        description="Generated downstream MIRROR of the canon — kept under this stable name for legacy script refs (no-delete); not the primary source",
     ),
     CascadeEntry(
         role="pointer",

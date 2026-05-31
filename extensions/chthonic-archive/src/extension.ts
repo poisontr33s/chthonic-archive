@@ -8,6 +8,7 @@ import { LoomViewProvider } from './monolith/loomView';
 import { computeRustificationReport } from './monolith/rustificationScore';
 import { StylusInputProvider } from './monolith/stylusInputView';
 import { registerRenderedMarkdownPasteLane } from './markdownPaste/register';
+import { registerStatusBridgeLane } from './statusbar/register';
 import { LaneRegistry } from './runtime/laneState';
 import { registerDevAutoReload } from './runtime/devAutoReload';
 import { registerWebviewHmrWatcher } from './runtime/webviewHmrWatcher';
@@ -32,6 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(outputChannel, laneRegistry);
     runActivationLane(laneRegistry, outputChannel, 'markdown-paste', () => registerRenderedMarkdownPasteLane(context, outputChannel));
+    runActivationLane(laneRegistry, outputChannel, 'statusbar', () => registerStatusBridgeLane(context, outputChannel, workspaceRoot));
 
     const activityBarMorph = new ActivityBarMorph(context.extensionUri, outputChannel);
     context.subscriptions.push(
