@@ -26,7 +26,8 @@ fn smoke(slice: &Slice) {
     println!("\n────────────────────────────────────────────────────────────");
     println!("SLICE: {}", slice.label);
     println!("  bytes: {}, lines: {}", slice.text.len(), slice.text.lines().count());
-    println!("  first 80: {:?}", &slice.text[..slice.text.len().min(80)]);
+    let preview: String = slice.text.chars().take(80).collect();  // char-safe (bytes can split '→')
+    println!("  first 80: {:?}", preview);
 
     match ChthonicParser::parse(Rule::program, slice.text) {
         Ok(mut pairs) => {
@@ -63,20 +64,24 @@ fn main() {
         lines[start.saturating_sub(1)..end.min(lines.len())].join("\n")
     };
 
-    let trinity = slice_lines(70, 130);          // Trinity Formula / K-CUP block
-    let esl_emoji = slice_lines(95, 115);         // ESL emoji declaration region
-    let invocation = slice_lines(1115, 1200);     // §0.75 invocation examples
-    let crc_table = slice_lines(2000, 2050);      // §IV CRC registry region
-    let organ_canon = slice_lines(285, 340);      // §295-326 Organ table
-    let inline_script_region = slice_lines(8485, 8550);  // suspected inline-script region
+    // Line anchors are −3 vs the pre-2026-05-31 calibration: purifying three
+    // injected operational-meta lines from the §0 governance preamble (L45/47/50,
+    // stale seal + codex-injected Update-Protocol + .github file-path constraint)
+    // shifted all content below the preamble up by 3 lines.
+    let trinity = slice_lines(67, 127);          // Trinity Formula / K-CUP block
+    let esl_emoji = slice_lines(92, 112);         // ESL emoji declaration region
+    let invocation = slice_lines(1112, 1197);     // §0.75 invocation examples
+    let crc_table = slice_lines(1997, 2047);      // §IV CRC registry region
+    let organ_canon = slice_lines(282, 337);      // §295-326 Organ table
+    let inline_script_region = slice_lines(8482, 8547);  // suspected inline-script region
 
     let slices = vec![
-        Slice { label: "Trinity Formula + K-CUP (L70-130, substrate-heavy)", text: &trinity },
-        Slice { label: "ESL emoji declaration (L95-115, emoji stress)", text: &esl_emoji },
-        Slice { label: "Invocation examples (L1115-1200, invocation stress)", text: &invocation },
-        Slice { label: "CRC registry (L2000-2050, table stress)", text: &crc_table },
-        Slice { label: "Organ canon table (L285-340, table stress)", text: &organ_canon },
-        Slice { label: "Suspected inline-script region (L8485-8550, code-block stress)", text: &inline_script_region },
+        Slice { label: "Trinity Formula + K-CUP (L67-127, substrate-heavy)", text: &trinity },
+        Slice { label: "ESL emoji declaration (L92-112, emoji stress)", text: &esl_emoji },
+        Slice { label: "Invocation examples (L1112-1197, invocation stress)", text: &invocation },
+        Slice { label: "CRC registry (L1997-2047, table stress)", text: &crc_table },
+        Slice { label: "Organ canon table (L282-337, table stress)", text: &organ_canon },
+        Slice { label: "Suspected inline-script region (L8482-8547, code-block stress)", text: &inline_script_region },
     ];
 
     println!("=== CHTHONIC DSL Phase 0 Smoke Test ===");

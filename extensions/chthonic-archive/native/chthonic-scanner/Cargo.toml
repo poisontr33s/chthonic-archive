@@ -1,0 +1,56 @@
+[package]
+name        = "chthonic-scanner"
+description = "Chthonic Archive polyglot spread scanner — Rust port of scripts/spread-value.ts. Third sibling in the parallel-arsenal alongside chthonic-{copilot,acp}-bridge; same v9-baseline crate conventions. Walks the workspace filesystem-direct, builds a SHA256 dedup map, magic-byte-detects unknown content, and persists an mtime-invalidated cache."
+version.workspace = true
+license.workspace = true
+
+# Override workspace edition (2021): canon for the parallel-arsenal lane is
+# edition 2024. Matches chthonic-copilot-bridge + chthonic-acp-bridge.
+edition = "2024"
+rust-version = "1.94.0"
+
+[[bin]]
+name = "chthonic-scanner"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+clap = { workspace = true }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Scanner-specific (divergent from the bridge skeleton — different workload):
+#   walkdir: simple recursive walker, no .gitignore awareness (we explicitly
+#     don't want git's view of "what exists" per conductor directive 2026-05-29)
+#   sha2: SHA256 with the `asm` feature for SHA-NI hardware acceleration
+#     where the CPU supports it
+#   infer: pure-Rust magic-byte detection (~120 formats, no native dep)
+#
+# Tokio + rayon deliberately omitted from V2.2-parity scope. The Bun version
+# is single-threaded; we match that for the initial port. Parallelism via
+# rayon lands at V2.3 once the canonical pattern is settled per the research
+# brief at claude/mailbox/RESEARCH_BRIEF_SCANNER_RUST_PORT.md.
+# Walker — `walkdir` for V2.2 parity (matches the Bun version's single-threaded
+# shape). The 3-lane research triangulation (claude/research/) recommends parallel
+# walking (ignore::WalkBuilder, jwalk, or dirwalk depending on benchmark) for the
+# next iteration once V2.2 parity is proven.
+walkdir = "2.5"
+
+# Hashing — `sha2` default features. SHA-NI hardware acceleration kicks in via
+# runtime CPU feature detection where the target supports it. The legacy `asm`
+# feature won't link under MSVC on Windows. Research consensus: Bun's
+# OpenSSL/BoringSSL path is also SHA-NI accelerated, so Rust↔Bun perf parity
+# on the hash primitive itself is the realistic expectation.
+sha2 = "0.10"
+
+# Magic-byte detection — `file-format` is the 3-lane consensus pick over `infer`
+# (too narrow) and `tree_magic_mini` (GPL DB issue) and `libmagic-sys` (FFI hell
+# on Windows). Covers ~200 formats including ONNX + SPIR-V; needs custom overlay
+# for GGUF (magic 0x47475546 "GGUF") + safetensors (8-byte LE header-length
+# prefix + JSON `{` at byte 8) — implemented inline below the canonical path.
+file-format = "0.27"
+
+# Timestamps for the output manifest (matches chthonic-mcp's chrono pin).
+chrono = { version = "0.4", default-features = false, features = ["clock"] }

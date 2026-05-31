@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "world": {
+    "tone": "rust_belt_psycho_noir",
+    "location_hint": "dive_bar"
+  },
+  "npcs": [
+    {
+      "name": "Sal",
+      "role": "bartender",
+      "relationship_status": "neutral",
+      "notes": "Seen-it-all bartender. Quietly protective of regulars."
+    }
+  ],
+  "events": [
+    {
+      "kind": "loss",
+      "summary": "A three-count that was not yours. The crowd turned from roar to restless whisper."
+    }
+  ],
+  "plot_threads": [
+    "Find out who is fixing matches in the local promotion."
+  ],
+  "echoes_triggered": [
+    "coach"
+  ],
+  "cash_flow": "scraping_by",
+  "substances": [
+    {
+      "name": "cheap_whiskey",
+      "quantity": 1,
+      "unit": "bottle",
+      "notes": "Half gone. Burns like regret."
+    }
+  ],
+  "items": [
+    "tape",
+    "old_lighter"
+  ],
+  "injuries": [
+    {
+      "name": "lower_back_pain",
+      "severity": "moderate",
+      "notes": "Worse in damp cold."
+    }
+  ],
+  "voice_weights": {
+    "4": 0.65,
+    "7": 0.45,
+    "12": 0.55,
+    "16": 0.5,
+    "21": 0.6,
+    "23": 0.35
+  }
+}
+

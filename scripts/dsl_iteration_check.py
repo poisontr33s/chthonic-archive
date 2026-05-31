@@ -25,6 +25,9 @@ Compares the new row to the previous row and reports regressions:
   - shadow_rise      : audit shadow count > previous
   - plateau          : same first-failure position 2+ runs in a row
   - new_failure_class : a previously-clean error code appears
+  - coverage_drop    : SSOT paren coverage % fell vs previous row
+  - pattern_pass_drop: a conformance pattern that passed now fails
+                       (also flags dsl-pattern-test's own no-regressions signal)
 
 Exit codes:
   0  no regressions
@@ -102,6 +105,44 @@ def run_full_smoke() -> tuple[int, str, str]:
     return proc.returncode, proc.stdout, proc.stderr
 
 
+def run_pattern_test() -> tuple[int, str, str]:
+    """Conformance bench — every (name, example, expected_rule) triple in patterns.json."""
+    proc = subprocess.run(
+        ["cargo", "run", "-p", "dsl-smoke", "--release", "--bin", "dsl-pattern-test", "--quiet"],
+        cwd=REPO_ROOT, capture_output=True, text=True,
+    )
+    return proc.returncode, proc.stdout, proc.stderr
+
+
+def run_coverage() -> tuple[int, str, str]:
+    """Paren-occurrence coverage over the full SSOT — the headline progress metric."""
+    proc = subprocess.run(
+        ["cargo", "run", "-p", "dsl-smoke", "--release", "--bin", "dsl-coverage",
+         "--quiet", "--", str(SSOT_PATH)],
+        cwd=REPO_ROOT, capture_output=True, text=True,
+    )
+    return proc.returncode, proc.stdout, proc.stderr
+
+
+def parse_pattern_test(output: str) -> dict:
+    res = {"pass": None, "fail_expected": None, "no_regressions": None}
+    if (m := PATTERN_PASS_RE.search(output)):
+        res["pass"] = int(m.group("n"))
+    if (m := PATTERN_FAILEXP_RE.search(output)):
+        res["fail_expected"] = int(m.group("n"))
+    res["no_regressions"] = bool(PATTERN_NOREG_RE.search(output))
+    return res
+
+
+def parse_coverage(output: str) -> dict:
+    res = {"matched": None, "total": None, "pct": None}
+    if (m := COVERAGE_RE.search(output)):
+        res["matched"] = int(m.group("matched"))
+        res["total"] = int(m.group("total"))
+        res["pct"] = float(m.group("pct"))
+    return res
+
+
 SLICE_RE = re.compile(r"SLICE: (?P<label>[^\n]+)")
 PARSE_RE = re.compile(r"PARSE: (?P<status>OK|FAIL)")
 FAIL_POS_RE = re.compile(r"-->\s*(?P<line>\d+):(?P<col>\d+)")
@@ -111,6 +152,10 @@ SHADOW_LINE_RE = re.compile(r"\[SHADOW-CONFIRMED\] (?P<slice>[^:]+): prose_paren
 FULL_PARSE_OK_RE = re.compile(r"PARSE: OK — entire catalyst parses")
 FULL_PARSE_FAIL_RE = re.compile(r"PARSE: FAIL — full catalyst does not parse")
 FULL_FAIL_BISECT_RE = re.compile(r"First failing prefix: lines 1\.\.(?P<n>\d+)")
+PATTERN_PASS_RE = re.compile(r"PASS:\s*(?P<n>\d+)")
+PATTERN_FAILEXP_RE = re.compile(r"FAIL \(expected\):\s*(?P<n>\d+)")
+PATTERN_NOREG_RE = re.compile(r"no regressions")
+COVERAGE_RE = re.compile(r"Coverage:\s*(?P<matched>\d+)/(?P<total>\d+)\s+matched_correctly\s*=\s*(?P<pct>[\d.]+)%")
 
 
 def parse_smoke(output: str) -> list[dict]:
@@ -209,6 +254,20 @@ def compare_for_regressions(current: dict, previous: dict | None) -> list[str]:
         if line is not None:
             warnings.append(f"PLATEAU plateau: '{label}' failed at L{line}:{col} for 2+ runs")
 
+    # 4. coverage_drop: SSOT paren coverage % fell vs prior row
+    cur_cov = (current.get("coverage") or {}).get("pct")
+    prev_cov = (previous.get("coverage") or {}).get("pct")
+    if cur_cov is not None and prev_cov is not None and cur_cov + 0.01 < prev_cov:
+        warnings.append(f"REGRESSION coverage_drop: {prev_cov}% -> {cur_cov}%")
+
+    # 5. pattern_pass_drop: a conformance pattern that passed now fails
+    cur_pp = (current.get("pattern_test") or {}).get("pass")
+    prev_pp = (previous.get("pattern_test") or {}).get("pass")
+    if cur_pp is not None and prev_pp is not None and cur_pp < prev_pp:
+        warnings.append(f"REGRESSION pattern_pass_drop: {prev_pp} -> {cur_pp} patterns passing")
+    if (current.get("pattern_test") or {}).get("no_regressions") is False:
+        warnings.append("REGRESSION pattern_test: dsl-pattern-test reports regressions vs patterns.json baseline")
+
     return warnings
 
 
@@ -246,6 +305,12 @@ def main():
     _, full_stdout, _ = run_full_smoke()
     full_result = parse_full_smoke(full_stdout)
 
+    # Run pattern conformance + coverage (the metrics the grammar iteration optimizes).
+    _, pt_stdout, _ = run_pattern_test()
+    pattern_result = parse_pattern_test(pt_stdout)
+    _, cov_stdout, _ = run_coverage()
+    coverage_result = parse_coverage(cov_stdout)
+
     current = {
         "tool": "TOOL_DSL_ITERATION_CHECK_V1",
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -256,6 +321,8 @@ def main():
         "slice_fail_count": sum(1 for s in slices if s["status"] != "OK"),
         "audit_shadow_total": shadow_total,
         "full_ssot": full_result,
+        "pattern_test": pattern_result,
+        "coverage": coverage_result,
         "slices": slices,
         "shadow_examples": shadows[:10],  # cap detail
     }
@@ -270,10 +337,15 @@ def main():
     full_summary = full_result["status"]
     if full_result["status"] == "FAIL" and full_result["first_failing_prefix_line"]:
         full_summary = f"FAIL@L{full_result['first_failing_prefix_line']}"
+    cov_pct = (coverage_result or {}).get("pct")
+    pat_pass = (pattern_result or {}).get("pass")
+    pat_fail_exp = (pattern_result or {}).get("fail_expected")
     print(f"[iteration-check] grammar_hash={current['grammar_hash']} "
           f"slices={current['slice_pass_count']}/{current['slice_count']} "
           f"shadows={shadow_total} "
-          f"full_ssot={full_summary}")
+          f"full_ssot={full_summary} "
+          f"coverage={cov_pct}% "
+          f"patterns={pat_pass}pass/{pat_fail_exp}expected-fail")
     if warnings:
         for w in warnings:
             print(f"  ! {w}")
@@ -288,6 +360,8 @@ def main():
         and previous.get("grammar_hash") == current["grammar_hash"]
         and previous.get("slice_pass_count") == current["slice_pass_count"]
         and previous.get("audit_shadow_total") == current["audit_shadow_total"]
+        and (previous.get("coverage") or {}).get("matched") == (current.get("coverage") or {}).get("matched")
+        and (previous.get("pattern_test") or {}).get("pass") == (current.get("pattern_test") or {}).get("pass")
     )
 
     if not args.dry_run and not is_duplicate:

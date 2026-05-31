@@ -52,6 +52,7 @@ const EXCLUDE_DIRS = new Set([
   "dumpster-dive",
   ".deprecated",
   "artifacts",
+  "confiscated_instructions",
 ]);
 
 /** Skip the guard script itself and uv wrapper utilities. */

@@ -322,6 +322,24 @@ const CHECKS: Check[] = [
       explanation: "Read-only health probe over manifest/spread_index.json. Surfaces shape + age; doesn't enforce. The refresh action is `bun run scripts/spread-sweep.ts --summary` — that's the conductor's call, not the gate's. Strict mode (--max-age-days N) is opt-in and lives in the check invocation, not the registry, so daily CI passes don't false-positive on conductor-paced sweeps.",
     },
   },
+  // DSL Phase-0 grammar regression gate (2026-05-31) — methodizes the
+  // hypothesize→measure→gate loop that took coverage 81%→98%. Runs the
+  // iteration-check (smoke + audit + full + coverage% + pattern conformance) in
+  // --dry-run and propagates its exit code. Slow (cargo release + full-SSOT scan),
+  // so it lives in --full CI, not every fast pre-commit.
+  {
+    name: "dsl-conformance",
+    aliases: ["dsl", "dsl-gate"],
+    script: "ci/checks/dsl-conformance.ts",
+    scope: "always",
+    speed: "slow",
+    description: "Chthonic DSL Phase-0 grammar regression gate — coverage% + pattern conformance vs ledger baseline (dsl_iteration_check.py --dry-run)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "On regression the fix is to revert or rework the grammar/SSOT delta that dropped coverage or broke a conformance pattern — a judgment call (the change may be an intentional redesign needing a new ledger baseline + adjusted patterns.json). The check output names the regression class (coverage_drop / pattern_pass_drop / parse_rate_drop / shadow_rise). The ledger is sealed only by deliberate non-dry runs, never by this gate.",
+      manual_remediation: "Read the regression class from the output. If unintended: `git revert` the grammar change or fix it. If intended: run `uv run scripts/dsl_iteration_check.py` (no --dry-run) to seal a new baseline + add/adjust the relevant patterns in .chthonic/grammar/patterns.json, then re-commit.",
+    },
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

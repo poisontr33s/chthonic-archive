@@ -7,7 +7,6 @@
 # ║ Wedjat-Quipu Spectrum: WHITE
 # ║ Temple-Ayllu Zone: 📜 THE SCRIPTORIUM
 # ║ Ogdoad-Ceque Radiance:
-# ║   └─◄ .github/copilot-instructions.md
 # ║   └─◄ .github/copilot-instructions.archive.md
 # ╚════════════════════════════════════════════════════════════════════════════
 
