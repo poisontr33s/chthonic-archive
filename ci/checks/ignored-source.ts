@@ -123,6 +123,8 @@ function gitIgnoredOthers(): string[] {
       "--others",
       "--ignored",
       "--exclude-standard",
+      "--directory",
+      "--no-empty-directory",
       "-z",
       "--",
       ...MANAGED_ROOTS,
@@ -172,7 +174,7 @@ function isNoise(path: string): boolean {
   if (NOISE_SUFFIXES.some((suffix) => lower.endsWith(suffix))) {
     return true;
   }
-  if (lower.includes("/media/wasm/pkg/")) {
+  if (lower.includes("/media/wasm/")) {
     return true;
   }
   if (lower.includes("/.deprecated/") || lower.endsWith(".meta.json")) {

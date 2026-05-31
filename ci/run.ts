@@ -33,7 +33,7 @@
  *   - Exit 1 even after successful fix, so commit is blocked until conductor re-stages
  */
 
-import { spawnSync } from "child_process";
+import { spawn, spawnSync } from "child_process";
 import { resolve } from "path";
 
 const REPO_ROOT = resolve(import.meta.dir, "..");
@@ -462,19 +462,25 @@ function selectChecks(): Check[] {
   return CHECKS.filter((c) => c.speed === "fast");
 }
 
-function runCheck(check: Check): { name: string; ok: boolean; output: string } {
+function runCheck(check: Check): Promise<{ name: string; ok: boolean; output: string }> {
   const scriptPath = resolve(REPO_ROOT, check.script);
   const args: string[] = STAGED ? ["--staged"] : [];
 
-  const result = spawnSync("bun", ["run", scriptPath, ...args], {
-    encoding: "utf8",
-    cwd: REPO_ROOT,
-    env: { ...process.env },
+  return new Promise((res) => {
+    const child = spawn("bun", ["run", scriptPath, ...args], {
+      cwd: REPO_ROOT,
+      env: { ...process.env },
+    });
+    let stdout = "";
+    let stderr = "";
+    child.stdout.on("data", (d: Buffer) => { stdout += d.toString(); });
+    child.stderr.on("data", (d: Buffer) => { stderr += d.toString(); });
+    child.on("error", (e: Error) => res({ name: check.name, ok: false, output: e.message }));
+    child.on("close", (code: number | null) => {
+      const output = (stdout + stderr).trim();
+      res({ name: check.name, ok: (code ?? 1) === 0, output });
+    });
   });
-
-  const output = ((result.stdout ?? "") + (result.stderr ?? "")).trim();
-  const ok = result.status === 0;
-  return { name: check.name, ok, output };
 }
 
 function gitWorkingTreeDiffStat(): string {

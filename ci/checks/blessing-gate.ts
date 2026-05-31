@@ -16,7 +16,7 @@
 // ║   Always runs all targets.
 // ╚════════════════════════════════════════════════════════════════════════════
 
-import { spawnSync } from "child_process";
+import { spawn, spawnSync } from "child_process";
 import { resolve } from "path";
 
 const REPO_ROOT = resolve(import.meta.dir, "../..");
@@ -30,18 +30,18 @@ const CANONIZE_TARGETS: string[][] = [
   ["scripts/canonize_blessing.py", "--check", "--recursive", "--target", ".temple", "-v"],
 ];
 
-function uvRun(args: string[]): { ok: boolean; output: string } {
-  const result = spawnSync("uv", ["run", "--no-sync", ...args], {
-    encoding: "utf8",
-    cwd: REPO_ROOT,
-    env: {
-      ...process.env,
-      PYTHONUTF8: "1",
-      PYTHONIOENCODING: "utf-8",
-    },
+function uvRun(args: string[]): Promise<{ ok: boolean; output: string }> {
+  return new Promise((res) => {
+    const child = spawn("uv", ["run", "--no-sync", ...args], {
+      cwd: REPO_ROOT,
+      env: { ...process.env, PYTHONUTF8: "1", PYTHONIOENCODING: "utf-8" },
+    });
+    let out = "";
+    child.stdout.on("data", (d: Buffer) => { out += d.toString(); });
+    child.stderr.on("data", (d: Buffer) => { out += d.toString(); });
+    child.on("error", (e: Error) => res({ ok: false, output: e.message }));
+    child.on("close", (code: number | null) => res({ ok: (code ?? 1) === 0, output: out.trim() }));
   });
-  const output = ((result.stdout ?? "") + (result.stderr ?? "")).trim();
-  return { ok: (result.status ?? 1) === 0, output };
 }
 
 function stagedPyFiles(): string[] {
@@ -68,11 +68,22 @@ if (STAGED) {
 
 let failed = 0;
 
-// 1. Envelope drift checks across all canonical targets
+// Run all envelope-drift targets + radiance in parallel
+console.log("[blessing-gate] Running all checks in parallel...");
+const [canonizeResults, radiance] = await Promise.all([
+  Promise.all(
+    CANONIZE_TARGETS.map(async (target) => {
+      const label = target[target.indexOf("--target") + 1] ?? "?";
+      const r = await uvRun(target);
+      return { label, r };
+    })
+  ),
+  uvRun(["scripts/radiance_validate.py"]),
+]);
+
+// Print envelope results
 console.log("[blessing-gate] Envelope drift checks...");
-for (const target of CANONIZE_TARGETS) {
-  const label = target[target.indexOf("--target") + 1];
-  const r = uvRun(target);
+for (const { label, r } of canonizeResults) {
   if (r.output) {
     for (const line of r.output.split("\n")) {
       if (line.trim()) console.log(`  [${label}] ${line}`);
@@ -84,9 +95,8 @@ for (const target of CANONIZE_TARGETS) {
   }
 }
 
-// 2. Radiance cross-reference validation
+// Print radiance result
 console.log("[blessing-gate] Radiance cross-reference validation...");
-const radiance = uvRun(["scripts/radiance_validate.py"]);
 if (radiance.output) {
   for (const line of radiance.output.split("\n")) {
     if (line.trim()) console.log(`  [radiance] ${line}`);
