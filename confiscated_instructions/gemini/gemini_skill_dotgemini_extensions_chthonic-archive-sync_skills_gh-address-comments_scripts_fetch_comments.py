@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+# @SID:           TOOL_FETCH_COMMENTS_V1
+# @Shabti:        CLI Script
+# @Purpose:       Fetch all PR conversation comments + reviews + review threads (inline threads)
+# for the PR associated with the current git branch, by shelling out to  gh api graphql
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: fetch_comments.py
 # ╠════════════════════════════════════════════════════════════════════════════
@@ -22,10 +26,6 @@ Requires:
 
 Usage:
   python fetch_comments.py > pr_comments.json
-
-@SID:           TOOL_FETCH_COMMENTS_V1
-@Shabti:        CLI Script
-@Purpose:       Fetch all PR conversation comments + reviews + review threads (inline threads)
 """
 
 from __future__ import annotations

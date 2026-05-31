@@ -6,8 +6,8 @@
 4. Ensure SID, purpose, exports, cross-references, and flags/modes are present.
 5. Normalize shebang if safe.
 6. For Python, enforce canonical prologue:
-   - `#!/usr/bin/env python 3`
-   - `# -*- coding: utf-8 -*-`
+   - `#!/usr/bin/env python3`
+   - `#-*- coding: utf-8 -*-`
    - module docstring banner directly below header (preferred)
 7. Avoid no-op rewrites (already compliant files must remain untouched).
 8. Preserve code semantics.
