@@ -475,26 +475,27 @@ else ifneq ($(findstring mingw,$(target_os)),)
 
 #### **14.11. Sonic Completion Ritual (`SCR-SONIC`)**
 
-**DIRECTIVE: Call `sonic_signal` at the end of every completed agent response.**
+**DIRECTIVE: Invoke the `sonic_signal` MCP tool at the end of every completed agent response.**
 
-The `sonic` MCP server (`scripts/mcp-sonic.ts`) exposes three tools. The agent MUST call `sonic_signal` as the final action of any response that completes a task or answers a question. This is the sonic nurture loop — music resumes when the agent is done, signalling completion to the user through playback state rather than text.
+The `sonic` MCP server (`scripts/mcp-sonic.ts`) is registered in `.mcp.json`. It exposes three MCP tools discovered at server start. The agent MUST invoke `sonic_signal` as a **native MCP tool call** — not a terminal command, not a VS Code task — as the final action of any response that completes a task or answers a question. This is the sonic nurture loop: music resumes when the agent is done, signalling completion through the environment rather than text. The agent does not process or ingest the audio stream — it signals the Spotify API via the MCP tool only.
 
 ```
-MANDATORY (end of every completed response):
-  → sonic_signal({ context: "<brief label of what was completed>" })
+MANDATORY (end of every completed response) — MCP tool call:
+  → mcp_sonic_sonic_signal({ context: "<brief label of what was completed>" })
 
-OPTIONAL (use with judgment):
-  → sonic_status    — check current playback state
-  → sonic_pause     — pause only when explicitly requested or starting intensive audio work
+OPTIONAL (use with judgment) — MCP tool calls:
+  → mcp_sonic_sonic_status   — check current playback state
+  → mcp_sonic_sonic_pause    — pause only when explicitly requested
 
 NEVER:
-  → Omit sonic_signal at turn end (unless the MCP server is unavailable / returns error)
-  → Call sonic_pause unless the user asks or context demands silence
+  → bun run scripts/mcp-sonic.ts ... (do not shell-invoke the MCP server)
+  → Omit the tool call at turn end (unless the MCP server is unavailable / returns error)
+  → Call sonic_pause unless the user explicitly requests silence
 ```
 
-**Why**: The agent is a co-presence in the work session. Music resuming on task completion is a non-verbal contract — the agent acknowledges done-ness through the environment, not just text. `sonic_signal` is the ritual close of every turn.
+**Why**: The agent is a co-presence in the work session. Music resuming on task completion is a non-verbal contract — the agent acknowledges done-ness through the environment, not just text. The MCP tool call is the ritual close of every turn.
 
-**Error handling**: If `sonic_signal` fails (no device active, 403, network), proceed silently — never surface the error as output unless the user is debugging the sonic stack. Soft-fail only.
+**Error handling**: If the tool call fails (no device active, 403, network), proceed silently — never surface the error unless the user is debugging the sonic stack. Soft-fail only.
 
 **Credential path**: Credentials read from `$HOME\.chthonic\api_pool.json` via `SpotifyControl.readPool()` — no env var injection needed. MCP server inherits this path automatically.
 
