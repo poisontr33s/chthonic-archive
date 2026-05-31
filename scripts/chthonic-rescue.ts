@@ -69,16 +69,19 @@ function findOrphanGitlinks(): string[] {
   if (dirty_paths.length === 0) return [];
 
   // Verify each path is actually a 160000-mode gitlink in HEAD.
-  const verified: string[] = [];
-  for (const p of dirty_paths) {
-    const ls = spawnSync("git", ["ls-tree", "HEAD", p], {
-      encoding: "utf8",
-      cwd: REPO_ROOT,
-    });
-    if ((ls.stdout ?? "").trim().startsWith("160000 ")) {
-      verified.push(p);
-    }
-  }
+  // Batch: one ls-tree call for all paths (eliminates N subprocess spawns).
+  const ls_batch = spawnSync("git", ["ls-tree", "HEAD", "--", ...dirty_paths], {
+    encoding: "utf8",
+    cwd: REPO_ROOT,
+  });
+  const gitlinkSet = new Set(
+    (ls_batch.stdout ?? "")
+      .split("\n")
+      .filter((line) => line.startsWith("160000 "))
+      .map((line) => line.split("\t")[1]?.trim() ?? "")
+      .filter(Boolean),
+  );
+  const verified = dirty_paths.filter((p) => gitlinkSet.has(p));
   if (verified.length === 0) return [];
 
   // Orphan = NOT registered in .gitmodules. Proper submodules are excluded.

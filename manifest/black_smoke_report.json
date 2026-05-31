@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-05-31T22:05:22.541Z",
+  "mode": "--black-smoke",
+  "total_checks": 20,
+  "failed": 2,
+  "with_advisories": 4,
+  "degraded_count": 1,
+  "signatures": [
+    {
+      "check": "python-headers",
+      "exit_ok": true,
+      "advisory_lines": [
+        "[python-headers] ℹ 5/436 tracked .py file(s) have non-canonical headers:",
+        "  These are advisory. Run 'bun run ci:check python-headers' to audit."
+      ],
+      "degraded": false
+    },
+    {
+      "check": "sid-envelope",
+      "exit_ok": true,
+      "advisory_lines": [
+        "[sid-envelope] ℹ 5 script(s) missing @SID:",
+        "[sid-envelope] ⚠ 30 script(s) with malformed SID:",
+        "  (266/301 valid — malformed reported as advisory until alchemized)"
+      ],
+      "degraded": false
+    },
+    {
+      "check": "uv-guard",
+      "exit_ok": true,
+      "advisory_lines": [
+        "[uv-guard] ⚠ advisory .claude\\skills\\gh-address-comments\\gh-address-comments\\scripts\\fetch_comments.py",
+        "[uv-guard] ⚠ advisory .codex\\skills\\gh-address-comments\\gh-address-comments\\scripts\\fetch_comments.py",
+        "[uv-guard] ⚠ advisory .codex\\skills\\gh-address-comments\\scripts\\fetch_comments.py",
+        "[uv-guard] ⚠ advisory .github\\prompts\\saveprompt_algorithm.py",
+        "[uv-guard] ⚠ advisory mas_mcp\\build_cupy.ps1",
+        "[uv-guard] ⚠ advisory mas_mcp\\genesis_scheduler.py",
+        "[uv-guard] ⚠ advisory mas_mcp\\hardware_diagnostic.py",
+        "[uv-guard] ⚠ advisory mas_mcp\\scripts\\milf_activator.py",
+        "[uv-guard] ⚠ advisory mas_mcp\\scripts\\probe_gpu_compatibility.py",
+        "[uv-guard] ⚠ advisory mas_mcp\\scripts\\run_cycle.py",
+        "[uv-guard] ⚠ advisory scripts\\background_services.py",
+        "[uv-guard] ⚠ advisory scripts\\chthonic.ps1",
+        "[uv-guard] ⚠ advisory scripts\\chthonic.py",
+        "[uv-guard] ⚠ advisory scripts\\hf_model_scout.py",
+        "[uv-guard] ⚠ advisory scripts\\mistralrs_model_manager.py",
+        "[uv-guard] ⚠ advisory scripts\\normalize_blessing_box.py",
+        "[uv-guard] ⚠ advisory scripts\\ssot_hash.py",
+        "[uv-guard] ⚠ advisory scripts\\tabby_podman_build.ps1",
+        "[uv-guard] ⚠ 62 advisory violation(s) — fix before committing new files"
+      ],
+      "degraded": false
+    },
+    {
+      "check": "bun-audit",
+      "exit_ok": false,
+      "advisory_lines": [],
+      "degraded": false
+    },
+    {
+      "check": "gh-runs",
+      "exit_ok": true,
+      "advisory_lines": [
+        "⚠ gh-run-smoke: status=degraded runs=20 success_rate=25% dispatch_failures=5"
+      ],
+      "degraded": true
+    },
+    {
+      "check": "dsl-conformance",
+      "exit_ok": false,
+      "advisory_lines": [],
+      "degraded": false
+    }
+  ]
+}

@@ -24,6 +24,11 @@
  *   bun run ci/run.ts --check shebang        # single named check
  *   bun run ci/run.ts --list                 # list registered checks
  *   bun run ci/run.ts --autofix-list         # list checks with registered auto-fix
+ *   bun run ci/run.ts --black-smoke          # health fingerprint: run all checks, surface
+ *                                            #   advisory/warning/degraded states as
+ *                                            #   manifest/black_smoke_report.json. Exits 0
+ *                                            #   always (reporting, not a gate). Composes
+ *                                            #   with --staged / --full to scope the run.
  *
  * --autofix opt-in contract (per GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE §VI):
  *   - Only runs for checks whose registry entry declares auto_fix
@@ -34,6 +39,7 @@
  */
 
 import { spawn, spawnSync } from "child_process";
+import { mkdirSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 const REPO_ROOT = resolve(import.meta.dir, "..");
@@ -344,6 +350,7 @@ const CHECKS: Check[] = [
 
 const STAGED = process.argv.includes("--staged");
 const FULL = process.argv.includes("--full");
+const BLACK_SMOKE = process.argv.includes("--black-smoke");
 const LIST = process.argv.includes("--list");
 const AUTOFIX = process.argv.includes("--autofix");
 const AUTOFIX_LIST = process.argv.includes("--autofix-list");
@@ -367,6 +374,7 @@ if (LIST) {
   console.log(`  --autofix             On any failure with registered auto_fix, attempt the fix and report delta`);
   console.log(`  --autofix-list        Show all checks: fix command if registered, or explanation if deliberately manual`);
   console.log(`  --autofix-show <name> Show full registry detail for a single check`);
+  console.log(`  --black-smoke         Health fingerprint: all checks + advisory surface → manifest/black_smoke_report.json (exits 0)`);
   console.log(`  --list                This output`);
   process.exit(0);
 }
@@ -458,7 +466,9 @@ function selectChecks(): Check[] {
     return [found];
   }
   if (STAGED) return CHECKS.filter((c) => c.scope === "staged");
-  if (FULL) return CHECKS;
+  // --full and standalone --black-smoke both run the complete registry.
+  // --black-smoke --staged narrows to staged scope (handled above).
+  if (FULL || (BLACK_SMOKE && !STAGED)) return CHECKS;
   return CHECKS.filter((c) => c.speed === "fast");
 }
 
@@ -715,8 +725,66 @@ for (const r of results) {
 console.log();
 if (failed === 0) {
   console.log(`[ci] ✓ All ${selected.length} check(s) passed`);
-  process.exit(0);
 }
+
+if (BLACK_SMOKE) {
+  // Advisory pattern scanner — captures any line that signals a non-clean
+  // (but non-fatal) state: informational markers, warnings, degraded status.
+  const ADV = [/ℹ/, /⚠/, /advisory/i, /degraded/i];
+
+  type BsSig = {
+    check: string;
+    exit_ok: boolean;
+    advisory_lines: string[];
+    degraded: boolean;
+  };
+
+  const MANIFEST_DIR = resolve(REPO_ROOT, "manifest");
+  const sigs: BsSig[] = [];
+  for (const r of results) {
+    const lines = r.output.split("\n");
+    const advisory_lines = lines.filter((l) => ADV.some((p) => p.test(l)));
+    const degraded = lines.some((l) => /degraded/i.test(l));
+    if (!r.ok || advisory_lines.length > 0) {
+      sigs.push({ check: r.name, exit_ok: r.ok, advisory_lines, degraded });
+    }
+  }
+
+  const report = {
+    generated_at: new Date().toISOString(),
+    mode: STAGED ? "--staged" : FULL ? "--full" : "--black-smoke",
+    total_checks: selected.length,
+    failed,
+    with_advisories: sigs.filter((s) => s.exit_ok && s.advisory_lines.length > 0).length,
+    degraded_count: sigs.filter((s) => s.degraded).length,
+    signatures: sigs,
+  };
+
+  mkdirSync(MANIFEST_DIR, { recursive: true });
+  writeFileSync(resolve(MANIFEST_DIR, "black_smoke_report.json"), JSON.stringify(report, null, 2));
+
+  console.log(`\n[black-smoke] ${sigs.length} check(s) with advisory/failure surface:`);
+  if (sigs.length === 0) {
+    console.log("  (clean — no advisory or degraded states detected)");
+  } else {
+    for (const s of sigs) {
+      const icon = !s.exit_ok ? "✗" : s.degraded ? "⚠" : "ℹ";
+      const tags = [s.degraded ? "DEGRADED" : null, s.advisory_lines.length > 0 ? `${s.advisory_lines.length} advisory` : null].filter(Boolean).join(" ");
+      console.log(`  ${icon} ${s.check}${tags ? `  [${tags}]` : ""}`);
+      // Print up to 3 advisory lines as preview
+      for (const line of s.advisory_lines.slice(0, 3)) {
+        console.log(`      ${line.trim()}`);
+      }
+      if (s.advisory_lines.length > 3) {
+        console.log(`      ... (${s.advisory_lines.length - 3} more — see manifest/black_smoke_report.json)`);
+      }
+    }
+  }
+  console.log(`[black-smoke] report → manifest/black_smoke_report.json`);
+  process.exit(0); // reporting mode — never a gate
+}
+
+if (failed === 0) process.exit(0);
 
 console.error(`[ci] ✗ ${failed}/${selected.length} check(s) failed`);
 
