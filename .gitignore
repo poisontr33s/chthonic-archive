@@ -56,6 +56,7 @@ adapters/
 !birdcage/README.md
 !birdcage/pyproject.toml
 !birdcage/cage.toml
+.env.local
 !birdcage/.env.example
 !birdcage/.gitignore
 !birdcage/probes.py

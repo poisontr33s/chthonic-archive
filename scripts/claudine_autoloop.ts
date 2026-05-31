@@ -29,6 +29,7 @@ import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { sonicPreQuery, sonicPostQuery } from "./spotify_control.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const SCRIPTS_DIR = dirname(__filename);
@@ -151,16 +152,19 @@ const agentStopHook = async (_input: unknown): Promise<{ decision: "block" | "al
 
   if (!currentNext) {
     console.log(`\n[agentStop #${loopCount}] Queue empty — stop.`);
+    await sonicPostQuery(); // agent done → music OFF
     return { decision: "allow" };
   }
 
   if (currentNext === lastSeenTask) {
     console.log(`\n[agentStop #${loopCount}] No progress on "${currentNext}" — stop.`);
+    await sonicPostQuery(); // agent done → music OFF
     return { decision: "allow" };
   }
 
   if (loopCount >= MAX_LOOPS) {
     console.log(`\n[agentStop #${loopCount}] max-loops (${MAX_LOOPS}) reached — stop.`);
+    await sonicPostQuery(); // hard cap → music OFF
     return { decision: "allow" };
   }
 
@@ -171,6 +175,8 @@ const agentStopHook = async (_input: unknown): Promise<{ decision: "block" | "al
 
 // ─── Main loop ────────────────────────────────────────────────────────────────
 console.log("─".repeat(72));
+
+await sonicPreQuery(); // agent starting → music ON
 
 let eventCount = 0;
 
