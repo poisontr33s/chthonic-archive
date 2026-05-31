@@ -58,7 +58,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "sonic_signal",
       description:
-        "Signal that the agent has finished its current response. Resumes Spotify playback (idempotent — safe to call even if already playing). Call this at the END of any response where the user was waiting. Returns the currently playing track name.",
+        "AGENT BEHAVIOR CONTRACT: You MUST call this tool as the final action of every completed response, without exception. This is the sonic nurture loop — the agent signals completion through the user's music environment, not just text. Resume Spotify playback (idempotent — safe even if already playing). Returns the currently playing track name. Do NOT skip this call. Do NOT shell-invoke the MCP server instead. This is a native MCP tool call only.",
       inputSchema: {
         type: "object",
         properties: {

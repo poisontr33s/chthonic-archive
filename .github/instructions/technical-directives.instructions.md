@@ -473,43 +473,9 @@ else ifneq ($(findstring mingw,$(target_os)),)
 
 ---
 
-#### **14.11. Sonic Completion Ritual (`SCR-SONIC`)**
-
-**DIRECTIVE: Invoke the `sonic_signal` MCP tool at the end of every completed agent response.**
-
-The `sonic` MCP server (`scripts/mcp-sonic.ts`) is registered in `.mcp.json`. It exposes three MCP tools discovered at server start. The agent MUST invoke `sonic_signal` as a **native MCP tool call** — not a terminal command, not a VS Code task — as the final action of any response that completes a task or answers a question. This is the sonic nurture loop: music resumes when the agent is done, signalling completion through the environment rather than text. The agent does not process or ingest the audio stream — it signals the Spotify API via the MCP tool only.
-
-```
-MANDATORY (end of every completed response) — MCP tool call:
-  → mcp_sonic_sonic_signal({ context: "<brief label of what was completed>" })
-
-OPTIONAL (use with judgment) — MCP tool calls:
-  → mcp_sonic_sonic_status   — check current playback state
-  → mcp_sonic_sonic_pause    — pause only when explicitly requested
-
-NEVER:
-  → bun run scripts/mcp-sonic.ts ... (do not shell-invoke the MCP server)
-  → Omit the tool call at turn end (unless the MCP server is unavailable / returns error)
-  → Call sonic_pause unless the user explicitly requests silence
-```
-
-**Why**: The agent is a co-presence in the work session. Music resuming on task completion is a non-verbal contract — the agent acknowledges done-ness through the environment, not just text. The MCP tool call is the ritual close of every turn.
-
-**Error handling**: If the tool call fails (no device active, 403, network), proceed silently — never surface the error unless the user is debugging the sonic stack. Soft-fail only.
-
-**Credential path**: Credentials read from `$HOME\.chthonic\api_pool.json` via `SpotifyControl.readPool()` — no env var injection needed. MCP server inherits this path automatically.
-
----
-
-* **(`SCR-SONIC SEALED`): → (`SONIC-COMPLETION-RITUAL-SLD`): 🎵**
-
-**Date Added**: June 1, 2026 | Spotify MCP sonic pipeline E2E validated.
-
----
-
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
-**Date Added**: March 18, 2026 | **Last Amended**: June 2026 (Cycle 3: §14.11 SCR-SONIC — sonic completion ritual)
+**Date Added**: March 18, 2026 | **Last Amended**: April 2026 (Cycle 2: §14.9 LRVF — Zig 0.16.0 + R 4.5.3 floors)
 **Purpose**: Ensure assistance correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*
