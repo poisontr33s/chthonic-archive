@@ -259,8 +259,8 @@ if ($WantSetSpotify) {
   $existingSecret = ""
   if (Test-Path -LiteralPath $p.Path) {
     $existing = Get-Content -LiteralPath $p.Path -Raw | ConvertFrom-Json
-    $existingId = if ($existing.env.SPOTIFY_CLIENT_ID) { [string]$existing.env.SPOTIFY_CLIENT_ID } else { "" }
-    $existingSecret = if ($existing.env.SPOTIFY_CLIENT_SECRET) { [string]$existing.env.SPOTIFY_CLIENT_SECRET } else { "" }
+    $existingId     = if ($null -ne $existing.env.PSObject.Properties["SPOTIFY_CLIENT_ID"])     { [string]$existing.env.SPOTIFY_CLIENT_ID }     else { "" }
+    $existingSecret = if ($null -ne $existing.env.PSObject.Properties["SPOTIFY_CLIENT_SECRET"]) { [string]$existing.env.SPOTIFY_CLIENT_SECRET } else { "" }
   }
   $idHint = if ($existingId) { " [existing: $($existingId.Substring(0,8))... — press Enter to keep]" } else { "" }
   $clientId = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_ID$idHint")
