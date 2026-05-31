@@ -255,11 +255,25 @@ if ($WantSyncGitHubFromGh) {
 }
 
 if ($WantSetSpotify) {
-  $clientId = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_ID")
-  if ([string]::IsNullOrWhiteSpace($clientId)) { throw "Empty CLIENT_ID." }
-  $clientSecret = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_SECRET")
-  if ([string]::IsNullOrWhiteSpace($clientSecret)) { throw "Empty CLIENT_SECRET." }
-  $refreshToken = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify REFRESH_TOKEN (press Enter to skip if not yet obtained)")
+  $existingId = ""
+  $existingSecret = ""
+  if (Test-Path -LiteralPath $p.Path) {
+    $existing = Get-Content -LiteralPath $p.Path -Raw | ConvertFrom-Json
+    $existingId = if ($existing.env.SPOTIFY_CLIENT_ID) { [string]$existing.env.SPOTIFY_CLIENT_ID } else { "" }
+    $existingSecret = if ($existing.env.SPOTIFY_CLIENT_SECRET) { [string]$existing.env.SPOTIFY_CLIENT_SECRET } else { "" }
+  }
+  $idHint = if ($existingId) { " [existing: $($existingId.Substring(0,8))... — press Enter to keep]" } else { "" }
+  $clientId = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_ID$idHint")
+  if ([string]::IsNullOrWhiteSpace($clientId)) { $clientId = $existingId }
+  if ([string]::IsNullOrWhiteSpace($clientId)) { throw "No CLIENT_ID provided or stored." }
+
+  $secretHint = if ($existingSecret) { " [existing set — press Enter to keep]" } else { "" }
+  $clientSecret = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_SECRET$secretHint")
+  if ([string]::IsNullOrWhiteSpace($clientSecret)) { $clientSecret = $existingSecret }
+  if ([string]::IsNullOrWhiteSpace($clientSecret)) { throw "No CLIENT_SECRET provided or stored." }
+
+  $refreshToken = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify REFRESH_TOKEN (press Enter to skip)")
+
   Set-PoolEnvValue -Path $p.Path -Name "SPOTIFY_CLIENT_ID" -Value $clientId
   Set-PoolEnvValue -Path $p.Path -Name "SPOTIFY_CLIENT_SECRET" -Value $clientSecret
   if (-not [string]::IsNullOrWhiteSpace($refreshToken)) {
