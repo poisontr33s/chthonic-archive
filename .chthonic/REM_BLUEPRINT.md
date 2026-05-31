@@ -3,7 +3,7 @@
 
 > **Hardware:** Win11 · RTX 4090 · Vulkan 1.3/1.4 · Rust 2021+  
 > **Repo:** chthonic-archive · **Crate:** ankh-forge (workspace member)  
-> **Author:** The Savant + Copilot CLI (Claude Sonnet 4.6)  
+> **Author:** The Savant + Copilot CLI (Claude Opus 4.6)
 > **Status:** Phase 2 CPU-path COMPLETE — `a5819db2` (2026-04-13). Phase 3 GPU-path pending.
 
 ---

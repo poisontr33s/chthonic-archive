@@ -110,6 +110,26 @@
       "category": "prose-fallback"
     },
     {
+      "name": "prose_parens_with_ascii_arrow",
+      "description": "Prose parens with the ASCII '->' arrow surface form. op_project must recognize it; before 2026-05-31 only the glyph was matched and '->' fell silently to prose.",
+      "example": "(cellular -> tissue -> organ -> system)",
+      "expected_top_rule": "prose_parens",
+      "expected_inner_rules": ["substrate_marker", "op_project"],
+      "status": "working",
+      "since_iter": "ticked-phrase-followon",
+      "category": "prose-fallback"
+    },
+    {
+      "name": "prose_parens_with_emdash_arrow",
+      "description": "Prose parens with the em-dash '—>' arrow surface form. op_project must recognize it; sibling to the ASCII form. Surface forms of one projection operator (mirrors op_bidir <->/↔).",
+      "example": "(cellular —> tissue —> organ)",
+      "expected_top_rule": "prose_parens",
+      "expected_inner_rules": ["substrate_marker", "op_project"],
+      "status": "working",
+      "since_iter": "ticked-phrase-followon",
+      "category": "prose-fallback"
+    },
+    {
       "name": "fenced_code_block_python",
       "description": "Markdown fenced code block with Python language identifier — content is opaque.",
       "example": "```python\nhistory = Path('.x.json')\nresult = json.load(open(history))\n```",
@@ -147,6 +167,36 @@
       "status": "working",
       "since_iter": 0,
       "category": "structural-block"
+    },
+    {
+      "name": "parened_titlecase_concept",
+      "description": "Bare Title-Case named concept in parens — hyphen-compound (The-Savant). Recovered 2026-05-31 via titlecase_concept.",
+      "example": "(The-Savant)",
+      "expected_top_rule": "parened_id",
+      "expected_inner_rules": ["titlecase_concept"],
+      "status": "working",
+      "since_iter": "ticked-phrase-followon",
+      "category": "substrate-wrapper"
+    },
+    {
+      "name": "parened_ticked_any_possessive",
+      "description": "Backtick token with a tail shape no strict rule admits (possessive). ticked_any catch-all recognizes it as substrate by backtick intent. Recovered 2026-05-31.",
+      "example": "(`The-Decorator's`)",
+      "expected_top_rule": "parened_id",
+      "expected_inner_rules": ["ticked_any"],
+      "status": "working",
+      "since_iter": "ticked-any",
+      "category": "substrate-wrapper"
+    },
+    {
+      "name": "ticked_any_lowercase_concept",
+      "description": "Backtick-wrapped lowercase concept (architectural-treason) — substrate by backtick intent, captured by ticked_any not prose.",
+      "example": "(`architectural-treason`)",
+      "expected_top_rule": "parened_id",
+      "expected_inner_rules": ["ticked_any"],
+      "status": "working",
+      "since_iter": "ticked-any",
+      "category": "substrate-wrapper"
     },
     {
       "name": "l45_substrate_arrow_titlecase_prose",

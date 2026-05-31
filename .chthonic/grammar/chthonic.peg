@@ -50,9 +50,35 @@ ticked_id = ${ "`" ~ identifier ~ "`" }
 // the two conventions semantically distinct rather than flattened.
 ticked_phrase = ${ "`" ~ phrase_word ~ "`" }
 
+// Catch-all backtick token: ANY backtick-wrapped content is substrate by intent —
+// you don't backtick prose. Specific shapes are classified first (ticked_id=`FA⁵`,
+// ticked_phrase=`The-Savant`); ticked_any captures the long tail the catalyst
+// actually contains: possessives (`The-Decorator's`), embedded spaces
+// (`FA⁴ Purification`), section refs (`§XIV.3`), lowercase concepts
+// (`architectural-treason`), Greek/symbols (`Ψ`, `·`), superscript ranges
+// (`FA¹⁻⁴`), paths. Phase-0 recognizes the token as substrate (not prose);
+// Phase-2 sub-classifies. Bounded to a single line. (2026-05-31: coverage audit
+// showed the residual misses were all backtick-wrapped tail shapes.)
+ticked_any = ${ "`" ~ (!("`" | NEWLINE) ~ ANY)+ ~ "`" }
+
 // Paren-wrapped form: (FA⁵)   or   (`FA⁵`)
 // Observed: 1,510 parenthetical abbreviations across the SSOT.
-parened_id = ${ "(" ~ ("`" ~ identifier ~ "`" | identifier) ~ ")" }
+// A Title-Case named concept in BARE parens. Two shapes occur organically in the
+// catalyst (a monolith grown across many projects, so naming invariants are real
+// and the frozen SSOT must be tolerated, not normalized):
+//   - uppercase-compound:      The-Savant, Apex-Synthesis-Core   (≥2 Title-Case segments)
+//   - lowercase-article-led:   the-Savant, the-Decorator         (lowercase article + ≥1 Title-Case segment)
+// The discriminating signal is a Title-Case (uppercase-led) NOUN segment; the
+// leading article may be either case. A bare single word or an all-lowercase
+// compound stays prose. Backtick-wrapped forms keep the lenient phrase_word
+// (the backticks already signal substrate intent).
+// (2026-05-31: widened from uppercase-only after the operator confirmed `the-X`
+// invariants are valid concepts in the canon.)
+titlecase_concept = @{
+      ASCII_ALPHA_LOWER+ ~ "-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")* ~ ("-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")*)*
+    | ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")* ~ ("-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")*)+
+}
+parened_id = ${ "(" ~ (ticked_id | ticked_phrase | ticked_any | identifier | titlecase_concept) ~ ")" }
 
 // Bold-paren form: **(`FA⁵`)**  or  **(FA⁵)**  or  **(`A`/`B`/`C`)**
 // Observed: e.g. line 50 — load-bearing-concept emphasis wrapping.
@@ -64,7 +90,7 @@ bold_parened_id = ${ "**" ~ (multi_alias | parened_id) ~ "**" }
 
 // Multi-alias identifier: (Codex-Brahmanica-Perfectus/SSOT/Apex-Synthesis-Core/ASC)
 // Observed: line 72-73 of SSOT — aliases for the same concept.
-alias_chain = { (ticked_id | ticked_phrase | identifier) ~ ("/" ~ (ticked_id | ticked_phrase | identifier))+ }
+alias_chain = { (ticked_id | ticked_phrase | ticked_any | identifier) ~ ("/" ~ (ticked_id | ticked_phrase | ticked_any | identifier))+ }
 multi_alias = ${ "(" ~ alias_chain ~ ")" }
 
 // ─── Phrase tokens (multi-word substrate inside parens) ─────────────────────
@@ -98,7 +124,7 @@ digit_token = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? ~ ("-" ~ ASCII_DIGIT+ ~ ("
 phrase_word = @{ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "-" | "_")* }
 
 // One well-typed substrate token, priority-ordered.
-phrase_atom = { ticked_id | ticked_phrase | placeholder | greek_letter | digit_token | phrase_word }
+phrase_atom = { ticked_id | ticked_phrase | ticked_any | placeholder | greek_letter | digit_token | phrase_word }
 
 // Phrase delimiters. CRITICAL: PEG is ordered-choice, no backtracking on
 // longer alternatives — LONGEST-FIRST ordering is mandatory. If " " (single
@@ -175,6 +201,7 @@ prose_parens_atom = _{
     | parened_id
     | ticked_id
     | ticked_phrase
+    | ticked_any
     | invocation
     | substrate_marker
     | (!")" ~ ANY)
@@ -188,11 +215,11 @@ prose_parens = ${ "(" ~ prose_parens_atom* ~ ")" }
 // pest backtracks on failure of more-specific alternatives.
 // bold_prose sits after bold_parened_id — same `**` prefix, less specific.
 // prose_parens is LAST — catches anything no substrate paren rule matched.
-id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | identifier }
+id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | ticked_any | identifier }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
-op_project = { "→" }         // Projection / transformation. Most common operator.
+op_project = { "→" | "—>" | "->" }  // Projection / transformation. THREE surface forms of one operator (glyph + em-dash-arrow + ASCII-arrow), mirroring op_bidir's "<->"/"↔". Previously only the glyph was recognized; "->"/"—>" silently fell to prose. If these ever split into distinct operators, that's a data/grammar change, rewindable. (2026-05-31)
 op_mult    = { "×" }         // Multiplicative composition. Trinity Formula: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
 op_add     = { "+" }         // Additive composition / parameter combinator (in invocations).
 op_alt     = { "/" }         // Alternation / equivalence (inside multi_alias above).

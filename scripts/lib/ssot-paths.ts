@@ -1,8 +1,12 @@
 #!/usr/bin/env bun
+
 // @SID: BRIDGE_SSOT_PATHS_TS_V1
-// @Type: INFRASTRUCTURE
-// @Spectrum: WHITE
-// @Zone: THE GARDEN
+// @Shabti:        Library Module
+// @Shabti-Desc:   SSOT Cascade Bridge for TypeScript — re-exporting from ssot_paths.ts to avoid hardcoding SSOT paths in TS modules.
+// @Type:          INFRASTRUCTURE
+// @Spectrum:      WHITE
+// @Zone:          THE GARDEN
+// @Ogdoad:        (Standalone)
 
 /**
 * SSOT Cascade Bridge — TypeScript

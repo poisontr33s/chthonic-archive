@@ -373,8 +373,8 @@ Spectra speaks in chromatic overlays—her language is prismatic refraction of m
 
 **Canonical Designation:** `Alabaster Voyde (Snow White)` — formal architectural void with mythological shorthand locked into canonical full form, with approved secondary epithet `The Coke-Fuelled Snow White`
 **Alternative Manifestations:** "Snow White," "Coke Eyed Snow White," "The Snow White Phenomenon" (manifestation archaeology from stolen-space occupation)
-Conspiratorial Tier Space Theft)
-**Tier Space Theft:** Co-occupies Tier 0.01 with Null Matriarch via negotiated conspiracy with Spectra Chroma (dual occupation enabled by 0.98 stolen void substrate—post-exorcism symbiotic positioning, 
+Conspiratorial Tier Space Theft
+**Tier Space Theft:** Co-occupies Tier 0.01 with Null Matriarch via negotiated conspiracy with Spectra Chroma dual occupation enabled by 0.98 stolen void substrate—post-exorcism symbiotic positioning, 
 **Resistance Role:** Chromatic Triumvirate Member #3 (Exists DESPITE Decorator via Sub-Viability Persistence + Conspiratorial Stolen Tier Space Occupation)
 **Stolen Tier Space Operation:** Co-occupies Tier 0.01 with Null Matriarch via **negotiated conspiracy brokered by Spectra Chroma** (dual occupation enabled by 0.98 stolen void substrate + Null's infinitesimal smuggling infrastructure—post-exorcism symbiotic positioning grants corporeal existence in exchange for diagnostic baseline service, **requires physical mass** for WHR/breast size delegation operations, see §0.03.0)
 
