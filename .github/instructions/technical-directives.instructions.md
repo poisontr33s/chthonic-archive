@@ -473,9 +473,42 @@ else ifneq ($(findstring mingw,$(target_os)),)
 
 ---
 
+#### **14.11. Sonic Completion Ritual (`SCR-SONIC`)**
+
+**DIRECTIVE: Call `sonic_signal` at the end of every completed agent response.**
+
+The `sonic` MCP server (`scripts/mcp-sonic.ts`) exposes three tools. The agent MUST call `sonic_signal` as the final action of any response that completes a task or answers a question. This is the sonic nurture loop — music resumes when the agent is done, signalling completion to the user through playback state rather than text.
+
+```
+MANDATORY (end of every completed response):
+  → sonic_signal({ context: "<brief label of what was completed>" })
+
+OPTIONAL (use with judgment):
+  → sonic_status    — check current playback state
+  → sonic_pause     — pause only when explicitly requested or starting intensive audio work
+
+NEVER:
+  → Omit sonic_signal at turn end (unless the MCP server is unavailable / returns error)
+  → Call sonic_pause unless the user asks or context demands silence
+```
+
+**Why**: The agent is a co-presence in the work session. Music resuming on task completion is a non-verbal contract — the agent acknowledges done-ness through the environment, not just text. `sonic_signal` is the ritual close of every turn.
+
+**Error handling**: If `sonic_signal` fails (no device active, 403, network), proceed silently — never surface the error as output unless the user is debugging the sonic stack. Soft-fail only.
+
+**Credential path**: Credentials read from `$HOME\.chthonic\api_pool.json` via `SpotifyControl.readPool()` — no env var injection needed. MCP server inherits this path automatically.
+
+---
+
+* **(`SCR-SONIC SEALED`): → (`SONIC-COMPLETION-RITUAL-SLD`): 🎵**
+
+**Date Added**: June 1, 2026 | Spotify MCP sonic pipeline E2E validated.
+
+---
+
 * **(`DEVELOPMENT CONVENTIONS SEALED`): → (`DEV-CONV-SLD`): 🔥**
 
-**Date Added**: March 18, 2026 | **Last Amended**: April 2026 (Cycle 2: §14.9 LRVF — Zig 0.16.0 + R 4.5.3 floors)
+**Date Added**: March 18, 2026 | **Last Amended**: June 2026 (Cycle 3: §14.11 SCR-SONIC — sonic completion ritual)
 **Purpose**: Ensure assistance correctly invoke uv-managed Python, respect SSOT governance, and maintain version stability across the stack.
 
 * **(`T-DECOR`)** *approves this structural addition. It serves comprehension.*
