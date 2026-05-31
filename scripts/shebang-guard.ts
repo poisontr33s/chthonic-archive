@@ -41,7 +41,7 @@ const REPO_ROOT = resolve(import.meta.dir, "..");
 
 // Files/dirs to exclude from --all scan
 const EXCLUDE_DIRS = new Set(["node_modules", "target", "build", ".git", "__pycache__"]);
-const SCAN_EXTENSIONS = new Set([".ts", ".py", ".sh"]);
+const SCAN_EXTENSIONS = new Set([".ts", ".py", ".sh", ".rb"]);
 
 function getStagedFiles(): string[] {
   try {
@@ -54,7 +54,7 @@ function getStagedFiles(): string[] {
       .filter((f) => {
         if (!f.length) return false;
         const ext = f.slice(f.lastIndexOf("."));
-        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh";
+        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh" || ext === ".rb";
       })
       .map((f) => resolve(REPO_ROOT, f));
   } catch {
@@ -73,7 +73,7 @@ function getTrackedFiles(): string[] {
       .filter((f) => {
         if (!f.length) return false;
         const ext = f.slice(f.lastIndexOf("."));
-        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh";
+        return (ext === ".ts" && !f.endsWith(".d.ts")) || ext === ".py" || ext === ".sh" || ext === ".rb";
       })
       .map((f) => resolve(REPO_ROOT, f));
   } catch {
@@ -119,6 +119,10 @@ const TS_SHEBANG = "#!/usr/bin/env bun";
 const PY_SHEBANG = "#!/usr/bin/env python3";
 const PY_ENCODING_RE = /^#\s*-\*-\s*coding:\s*utf-8\s*-\*-/;
 const SH_SHEBANGS = new Set(["#!/usr/bin/env bash", "#!/bin/bash", "#!/usr/bin/env sh", "#!/bin/sh"]);
+const RB_SHEBANG = "#!/usr/bin/env ruby";
+const RB_FROZEN = "# frozen_string_literal: true";
+// Vendor bundle dirs — exclude from Ruby checks
+const RB_VENDOR_DIRS = new Set(["vendor"]);
 
 const violations: { path: string; line1: string; issue: string }[] = [];
 
@@ -154,6 +158,26 @@ for (const absPath of files) {
     if (hasSh && !SH_SHEBANGS.has(line1) && SH_SHEBANGS.has(line2)) {
       violations.push({ path: relative(REPO_ROOT, absPath), line1, issue: "displaced shebang (line 2)" });
     }
+  } else if (ext === ".rb") {
+    // Skip vendor bundles
+    const rel = relative(REPO_ROOT, absPath).replace(/\\/g, "/");
+    if (rel.split("/").some((p) => RB_VENDOR_DIRS.has(p))) continue;
+    const hasShebang = line1 === RB_SHEBANG || line2 === RB_SHEBANG;
+    if (hasShebang) {
+      // CLI script: shebang must be line 1, frozen must be line 2
+      if (line1 !== RB_SHEBANG && line2 === RB_SHEBANG) {
+        violations.push({ path: rel, line1, issue: "displaced shebang (line 2)" });
+      } else if (line1 === RB_SHEBANG && line2 !== RB_FROZEN) {
+        violations.push({ path: rel, line1, issue: `missing '# frozen_string_literal: true' on line 2 (got: "${line2.slice(0, 40)}")` });
+      }
+    } else {
+      // Library file: frozen_string_literal should be line 1
+      if (line1 !== RB_FROZEN && content.includes(RB_FROZEN)) {
+        violations.push({ path: rel, line1, issue: "displaced frozen_string_literal (not on line 1)" });
+      }
+      // Advisory only: library files without frozen_string_literal are flagged but not blocking
+      // (omitted by design — adding to violations would block commits for gem library files)
+    }
   }
 }
 
@@ -169,6 +193,8 @@ Fix: \u23E9 move shebang to line 1.
      .ts: #!/usr/bin/env bun
      .py: #!/usr/bin/env python3 on line 1, # -*- coding: utf-8 -*- on line 2.
      .sh: #!/usr/bin/env bash on line 1.
+     .rb (CLI): #!/usr/bin/env ruby on line 1, # frozen_string_literal: true on line 2.
+     .rb (lib): # frozen_string_literal: true on line 1.
      All content (@SID:, envelope blocks) comes AFTER.
 `);
   process.exit(1);

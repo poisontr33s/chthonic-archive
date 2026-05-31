@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'tk'
 # require 'bundler'
 require 'sqlite3'
