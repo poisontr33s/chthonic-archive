@@ -38,6 +38,43 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { SpotifyControl } from "./spotify_control.ts";
+import type { AudioFeatures } from "./spotify_control.ts";
+import { appendFileSync, mkdirSync } from "fs";
+import { join } from "path";
+
+// ──────────────────────────────────────────────────────────────
+//  Affective helpers
+// ──────────────────────────────────────────────────────────────
+
+/** Derive a human-readable affect label from Spotify audio features. */
+function interpretAffect(f: AudioFeatures): string {
+  const tags: string[] = [];
+  if (f.energy > 0.7) tags.push("high-energy");
+  else if (f.energy < 0.35) tags.push("low-energy");
+  if (f.valence > 0.65) tags.push("bright");
+  else if (f.valence < 0.35) tags.push("melancholic");
+  if (f.instrumentalness > 0.6) tags.push("instrumental");
+  else if (f.speechiness > 0.33) tags.push("spoken-word");
+  if (f.tempo > 145) tags.push("fast-paced");
+  else if (f.tempo < 80) tags.push("slow");
+  tags.push(f.mode === 0 ? "minor" : "major");
+  return tags.join(" · ");
+}
+
+/** Append a sonic event to the session data lake (manifest/sonic_session.jsonl). */
+function logSonicEvent(entry: Record<string, unknown>): void {
+  try {
+    const dir = join(process.cwd(), "manifest");
+    mkdirSync(dir, { recursive: true });
+    appendFileSync(
+      join(dir, "sonic_session.jsonl"),
+      JSON.stringify({ ts: Date.now(), ...entry }) + "\n",
+      "utf8",
+    );
+  } catch {
+    // Non-blocking — data lake writes must not break the tool call
+  }
+}
 
 // ──────────────────────────────────────────────────────────────
 //  Spotify instance
@@ -58,13 +95,28 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "sonic_signal",
       description:
-        "AGENT BEHAVIOR CONTRACT: You MUST call this tool as the final action of every completed response, without exception. This is the sonic nurture loop — the agent signals completion through the user's music environment, not just text. Resume Spotify playback (idempotent — safe even if already playing). Returns the currently playing track name. Do NOT skip this call. Do NOT shell-invoke the MCP server instead. This is a native MCP tool call only.",
+        "AGENT BEHAVIOR CONTRACT: You MUST call this tool as the FINAL action of every completed response, without exception. Symmetric pair with sonic_read (sonic_read at turn START = intake; sonic_signal at turn END = output). This is the sonic nurture loop — the agent signals completion through the user's music environment, not just text. Resume Spotify playback (idempotent — safe even if already playing). Returns the currently playing track name. Do NOT skip this call. Do NOT shell-invoke the MCP server instead. This is a native MCP tool call only.",
       inputSchema: {
         type: "object",
         properties: {
           context: {
             type: "string",
             description: "Optional: brief label for what just completed (logged locally, not sent to Spotify).",
+          },
+        },
+        required: [],
+      },
+    },
+    {
+      name: "sonic_read",
+      description:
+        "AGENT INTAKE CONTRACT: Call this at the START of every turn, before processing the user's request. Reads the sonic context of the user's environment — what was playing while they formulated this message. Returns audio features (energy, valence, instrumentalness, tempo, mode) plus a pre-interpreted affect label. The user's sonic state is affective context: high instrumentalness + low valence = deep-focus melancholic register; high energy + high valence = active bright mode. Calibrate your response register accordingly. Logs to manifest/sonic_session.jsonl (session data lake).",
+      inputSchema: {
+        type: "object",
+        properties: {
+          turn_label: {
+            type: "string",
+            description: "Optional: brief label for this turn (e.g. topic or task). Logged to data lake.",
           },
         },
         required: [],
@@ -117,6 +169,53 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     } catch (e) {
       return {
         content: [{ type: "text", text: `sonic_signal: soft-fail (${String(e)})` }],
+      };
+    }
+  }
+
+  if (name === "sonic_read") {
+    const turnLabel = (args as Record<string, string>)?.turn_label ?? "";
+    try {
+      const state = await spotify.getStateWithFeatures();
+      const trackLine = state.trackName
+        ? `${state.trackName}${state.artist ? ` — ${state.artist}` : ""}`
+        : null;
+      const af = state.audioFeatures;
+      const affect = af ? interpretAffect(af) : null;
+
+      logSonicEvent({
+        event: "sonic_read",
+        turn_label: turnLabel || undefined,
+        track: state.trackName,
+        artist: state.artist,
+        is_playing: state.isPlaying,
+        ...(af ?? {}),
+        affect,
+      });
+
+      const payload: Record<string, unknown> = {
+        is_playing: state.isPlaying,
+        track: state.trackName ?? null,
+        artist: state.artist ?? null,
+        progress_ms: state.progressMs,
+      };
+      if (af) {
+        payload.energy = af.energy;
+        payload.valence = af.valence;
+        payload.instrumentalness = af.instrumentalness;
+        payload.tempo = Math.round(af.tempo);
+        payload.danceability = af.danceability;
+        payload.mode = af.mode === 0 ? "minor" : "major";
+        payload.affect = affect;
+      }
+      if (trackLine) payload.now_playing = trackLine;
+
+      return {
+        content: [{ type: "text", text: JSON.stringify(payload, null, 2) }],
+      };
+    } catch (e) {
+      return {
+        content: [{ type: "text", text: `sonic_read: soft-fail (${String(e)})` }],
       };
     }
   }
