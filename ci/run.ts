@@ -553,17 +553,26 @@ function runAutoFix(check: Check): AutoFixResult {
 const selected = selectChecks();
 const modeLabel = STAGED ? "--staged" : FULL ? "--full" : SINGLE ? `--check ${SINGLE}` : "default";
 
+// Async git helper shared by the landscape functions — lets stagedFileLandscape and
+// submoduleLandscape run concurrently via Promise.all instead of blocking serially.
+function gitOut(args: string[]): Promise<string> {
+  return new Promise((res) => {
+    const child = spawn("git", args, { cwd: REPO_ROOT });
+    let out = "";
+    child.stdout.on("data", (d: Buffer) => { out += d.toString(); });
+    child.on("close", () => res(out));
+    child.on("error", () => res(""));
+  });
+}
+
 // Surface the staged file landscape in the banner so vacuous passes are visible
 // (3 gitlink changes + 7 checks all "passing" with 0 files inspected = not a real pass).
 // Each registered check has a narrow file-type scope; if staged content doesn't match
 // any scope, the gate yawns silently. The breakdown below makes the gap obvious.
-function stagedFileLandscape(): { count: number; ext_summary: string; files: string[] } {
+async function stagedFileLandscape(): Promise<{ count: number; ext_summary: string; files: string[] }> {
   if (!STAGED) return { count: -1, ext_summary: "", files: [] };
-  const r = spawnSync("git", ["diff", "--cached", "--name-only", "--diff-filter=ACMRT"], {
-    encoding: "utf8",
-    cwd: REPO_ROOT,
-  });
-  const files = (r.stdout ?? "").split("\n").filter(Boolean);
+  const stdout = await gitOut(["diff", "--cached", "--name-only", "--diff-filter=ACMRT"]);
+  const files = stdout.split("\n").filter(Boolean);
   const ext_counts: Record<string, number> = {};
   for (const f of files) {
     const dot = f.lastIndexOf(".");
@@ -578,26 +587,21 @@ function stagedFileLandscape(): { count: number; ext_summary: string; files: str
   return { count: files.length, ext_summary, files };
 }
 
-const staged = stagedFileLandscape();
-
 // V1.3 — also surface dirty-submodule and orphan-gitlink landscape.
 // Worked precedent: conductor saw 3 "M" entries in VS Code Source Control panel
 // (tabbyAPI, sd-candidates/a1111, sd-candidates/sdnext) but the gate reported
 // staged: 0 because those were modified-submodule-CONTENTS (` m ` in
 // git status -s --ignore-submodules=none), not staged-gitlink-POINTER-changes.
 // VS Code conflates the two; this banner separates them.
-function submoduleLandscape(): { dirty_count: number; orphan_count: number; entries: { path: string; orphan: boolean }[] } {
+async function submoduleLandscape(): Promise<{ dirty_count: number; orphan_count: number; entries: { path: string; orphan: boolean }[] }> {
   if (!STAGED) return { dirty_count: 0, orphan_count: 0, entries: [] };
-  const r = spawnSync("git", ["status", "-s", "--ignore-submodules=none"], {
-    encoding: "utf8",
-    cwd: REPO_ROOT,
-  });
+  const statusOut = await gitOut(["status", "-s", "--ignore-submodules=none"]);
   // Parse ` m <path>` ONLY — lowercase-m is git's specific submodule-content-modified
   // signal. Capital ` M ` matches any modified-in-working-tree file (NOT just submodules),
   // and matching it caused a pre-ship test failure where ci/run.ts (a regular .ts file
   // with working-tree changes) got captured as an "orphan gitlink" and rm-cached.
   // Lowercase-m only + 160000-mode verification below = bounded to actual gitlinks.
-  const lines = (r.stdout ?? "").split("\n").filter(Boolean);
+  const lines = statusOut.split("\n").filter(Boolean);
   const dirty_paths = lines
     .filter((l) => /^\sm\s/.test(l) && l.length > 3)
     .map((l) => l.slice(3).trim());
@@ -606,24 +610,26 @@ function submoduleLandscape(): { dirty_count: number; orphan_count: number; entr
   // Sanity check: verify each path is actually a gitlink (160000 mode in HEAD).
   // Defends against any future regex drift or unexpected status code surfacing
   // non-submodule paths through the lowercase-m filter.
-  const verified_paths: string[] = [];
-  for (const p of dirty_paths) {
-    const ls = spawnSync("git", ["ls-tree", "HEAD", p], {
-      encoding: "utf8",
-      cwd: REPO_ROOT,
-    });
-    if ((ls.stdout ?? "").trim().startsWith("160000 ")) {
-      verified_paths.push(p);
-    }
-  }
+  // Batch: one ls-tree call for all paths (was N sequential subprocesses).
+  // git ls-tree HEAD -- p1 p2 ... returns only entries for those paths.
+  // Also fetch .gitmodules concurrently — both are independent index reads.
+  const [lsOut, gmOut] = await Promise.all([
+    gitOut(["ls-tree", "HEAD", "--", ...dirty_paths]),
+    gitOut(["config", "-f", ".gitmodules", "-l"]),
+  ]);
+
+  const gitlinkSet = new Set(
+    lsOut
+      .split("\n")
+      .filter((line) => line.startsWith("160000 "))
+      .map((line) => line.split("\t")[1]?.trim() ?? "")
+      .filter(Boolean)
+  );
+  const verified_paths = dirty_paths.filter((p) => gitlinkSet.has(p));
   if (verified_paths.length === 0) return { dirty_count: 0, orphan_count: 0, entries: [] };
 
   // Check .gitmodules for each — orphan if not registered
-  const gm = spawnSync("git", ["config", "-f", ".gitmodules", "-l"], {
-    encoding: "utf8",
-    cwd: REPO_ROOT,
-  });
-  const gm_content = gm.stdout ?? ""; // empty if .gitmodules missing
+  const gm_content = gmOut; // empty string if .gitmodules missing
   const entries = verified_paths.map((p) => ({
     path: p,
     orphan: !gm_content.includes(`path=${p}`) && !gm_content.includes(`= ${p}`),
@@ -635,7 +641,7 @@ function submoduleLandscape(): { dirty_count: number; orphan_count: number; entr
   };
 }
 
-const submods = submoduleLandscape();
+const [staged, submods] = await Promise.all([stagedFileLandscape(), submoduleLandscape()]);
 const stagedBanner =
   STAGED && staged.count >= 0
     ? ` | staged: ${staged.count} file(s)${staged.ext_summary ? ` [${staged.ext_summary}]` : ""}`
