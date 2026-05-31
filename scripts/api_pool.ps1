@@ -40,6 +40,7 @@ param(
   [switch]$VerifyHF,
   [switch]$SyncGitHubFromGh,
   [switch]$VerifyGitHub,
+  [switch]$SetSpotify,
   [switch]$Quiet
 )
 
@@ -53,6 +54,7 @@ $WantSetHFToken = $PSBoundParameters.ContainsKey("SetHFToken") -or ($InvocationL
 $WantVerifyHF = $PSBoundParameters.ContainsKey("VerifyHF") -or ($InvocationLine -match '(?i)(^|\s)-VerifyHF(\s|$)')
 $WantSyncGitHubFromGh = $PSBoundParameters.ContainsKey("SyncGitHubFromGh") -or ($InvocationLine -match '(?i)(^|\s)-SyncGitHubFromGh(\s|$)')
 $WantVerifyGitHub = $PSBoundParameters.ContainsKey("VerifyGitHub") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGitHub(\s|$)')
+$WantSetSpotify = $PSBoundParameters.ContainsKey("SetSpotify") -or ($InvocationLine -match '(?i)(^|\s)-SetSpotify(\s|$)')
 
 function Get-ApiPoolPath {
   $dir = Join-Path $HOME ".chthonic"
@@ -203,7 +205,8 @@ if (-not (
     $WantSetHFToken -or
     $WantVerifyHF -or
     $WantSyncGitHubFromGh -or
-    $WantVerifyGitHub
+    $WantVerifyGitHub -or
+    $WantSetSpotify
   )) {
   if ($Quiet) { exit 2 }
   Write-Host "Usage:"
@@ -213,6 +216,7 @@ if (-not (
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyHF"
   Write-Host "  .\\scripts\\api_pool.ps1 -SyncGitHubFromGh"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGitHub"
+  Write-Host "  .\\scripts\\api_pool.ps1 -SetSpotify"
   exit 2
 }
 
@@ -224,7 +228,10 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
   "env": {
     "HUGGINGFACE_HUB_TOKEN": "",
     "GITHUB_TOKEN": "",
-    "OPENAI_API_KEY": ""
+    "OPENAI_API_KEY": "",
+    "SPOTIFY_CLIENT_ID": "",
+    "SPOTIFY_CLIENT_SECRET": "",
+    "SPOTIFY_REFRESH_TOKEN": ""
   }
 }
 '@
@@ -245,6 +252,26 @@ if ($WantSyncGitHubFromGh) {
     Write-Host "Updated current-process GitHub aliases: $mapped"
   }
   exit (Verify-GitHub)
+}
+
+if ($WantSetSpotify) {
+  $clientId = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_ID")
+  if ([string]::IsNullOrWhiteSpace($clientId)) { throw "Empty CLIENT_ID." }
+  $clientSecret = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify CLIENT_SECRET")
+  if ([string]::IsNullOrWhiteSpace($clientSecret)) { throw "Empty CLIENT_SECRET." }
+  $refreshToken = Normalize-Token -Value (Read-SecretPlainText -Prompt "Spotify REFRESH_TOKEN (press Enter to skip if not yet obtained)")
+  Set-PoolEnvValue -Path $p.Path -Name "SPOTIFY_CLIENT_ID" -Value $clientId
+  Set-PoolEnvValue -Path $p.Path -Name "SPOTIFY_CLIENT_SECRET" -Value $clientSecret
+  if (-not [string]::IsNullOrWhiteSpace($refreshToken)) {
+    Set-PoolEnvValue -Path $p.Path -Name "SPOTIFY_REFRESH_TOKEN" -Value $refreshToken
+  }
+  if (-not $Quiet) {
+    Write-Host "Spotify credentials written to local API pool (values not printed)."
+    if ([string]::IsNullOrWhiteSpace($refreshToken)) {
+      Write-Host "SPOTIFY_REFRESH_TOKEN skipped — run spotify_auth.ts to obtain it, then re-run -SetSpotify."
+    }
+  }
+  exit 0
 }
 
 if ($WantSetHFToken) {
