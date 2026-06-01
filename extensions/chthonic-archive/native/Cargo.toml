@@ -9,6 +9,7 @@ members = [
     "chthonic-copilot-bridge",
     "chthonic-acp-bridge",
     "chthonic-scanner",
+    "sonic-daemon",
     "../wasm/chthonic-loom",
     "xtask",
 ]
@@ -23,6 +24,7 @@ default-members = [
     "chthonic-copilot-bridge",
     "chthonic-acp-bridge",
     "chthonic-scanner",
+    "sonic-daemon",
     "xtask",
 ]
 
@@ -50,6 +52,13 @@ tokio = { version = "1.52", features = ["macros", "rt-multi-thread"] }
 toml = "0.8"
 shared_memory = "0.12"
 libloading = "0.8"
+# Sonic loop — WASAPI loopback capture + DSP (sonic-daemon).
+# wasapi crate (not cpal): cpal's WASAPI loopback is disabled upstream (cpal #476),
+# fails with AUDCLNT_E_DEVICE_IN_USE. wasapi-rs does render-device + Direction::Capture
+# loopback (device) and AUDCLNT_ACTIVATION_TYPE_PROCESS_LOOPBACK (per-process) correctly.
+wasapi = "0.23"
+# rustfft for spectral features (centroid/flatness) over the rolling window snapshot.
+rustfft = "6.2"
 
 # openssl-sys 0.9.114 (2026-04-16 PR #2591) includes OpenSSL 4.0 support natively.
 # Git pin removed. Crates.io version resolves correctly against OpenSSL 4.0.0.

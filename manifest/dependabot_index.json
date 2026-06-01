@@ -1,48 +1,54 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T05:43:29.136093+00:00",
+  "generated_at": "2026-05-31T22:04:59.526576+00:00",
   "repo": "poisontr33s/chthonic-archive",
   "state_filter": null,
   "summary": {
-    "total": 68,
+    "total": 76,
     "by_state": {
-      "fixed": 28,
-      "open": 40
+      "open": 47,
+      "auto_dismissed": 1,
+      "fixed": 28
     },
     "by_severity": {
-      "medium": 25,
-      "high": 29,
+      "medium": 31,
+      "high": 31,
       "low": 12,
       "critical": 2
     },
     "by_ecosystem": {
-      "pip": 33,
-      "rust": 30,
-      "npm": 4,
+      "npm": 7,
+      "pip": 37,
+      "rust": 31,
       "rubygems": 1
     },
     "by_scope": {
-      "runtime": 57,
-      "development": 11
+      "development": 14,
+      "runtime": 62
     },
     "by_relationship": {
-      "transitive": 15,
-      "unknown": 36,
-      "direct": 17
+      "direct": 21,
+      "transitive": 18,
+      "unknown": 37
     },
-    "fix_available_count": 64,
-    "hotspot_package_count": 16
+    "fix_available_count": 73,
+    "hotspot_package_count": 18
   },
   "hotspots": [
     {
       "ecosystem": "rust",
       "package": "openssl",
-      "alert_count": 7
+      "alert_count": 8
     },
     {
       "ecosystem": "rust",
       "package": "rustls-webpki",
       "alert_count": 7
+    },
+    {
+      "ecosystem": "npm",
+      "package": "postcss",
+      "alert_count": 6
     },
     {
       "ecosystem": "pip",
@@ -75,14 +81,19 @@
       "alert_count": 3
     },
     {
-      "ecosystem": "npm",
-      "package": "postcss",
-      "alert_count": 3
-    },
-    {
       "ecosystem": "rust",
       "package": "rand",
       "alert_count": 3
+    },
+    {
+      "ecosystem": "pip",
+      "package": "diffusers",
+      "alert_count": 2
+    },
+    {
+      "ecosystem": "pip",
+      "package": "idna",
+      "alert_count": 2
     },
     {
       "ecosystem": "pip",
@@ -149,6 +160,40 @@
       "fixed_in": "6.7.0",
       "created_at": "2026-05-06T07:52:11Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/60"
+    },
+    {
+      "number": 78,
+      "state": "open",
+      "severity": "high",
+      "ecosystem": "pip",
+      "package": "diffusers",
+      "manifest_path": "uv.lock",
+      "scope": "runtime",
+      "relationship": "transitive",
+      "cve_id": "CVE-2026-45804",
+      "ghsa_id": "GHSA-7wx4-6vff-v64p",
+      "summary": "Diffusers: TOCTOU Trust Remote Code Bypass",
+      "fix_available": true,
+      "fixed_in": "0.38.0",
+      "created_at": "2026-05-20T15:49:34Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/78"
+    },
+    {
+      "number": 74,
+      "state": "open",
+      "severity": "high",
+      "ecosystem": "pip",
+      "package": "diffusers",
+      "manifest_path": "uv.lock",
+      "scope": "runtime",
+      "relationship": "transitive",
+      "cve_id": "CVE-2026-44513",
+      "ghsa_id": "GHSA-98h9-4798-4q5v",
+      "summary": "Diffusers has a `trust_remote_code` bypass via `custom_pipeline` and local custom components",
+      "fix_available": true,
+      "fixed_in": "0.38.0",
+      "created_at": "2026-05-15T09:03:25Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/74"
     },
     {
       "number": 67,
@@ -542,6 +587,40 @@
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/4"
     },
     {
+      "number": 81,
+      "state": "open",
+      "severity": "medium",
+      "ecosystem": "npm",
+      "package": "postcss",
+      "manifest_path": "apps/chthonic-next/package.json",
+      "scope": "development",
+      "relationship": "direct",
+      "cve_id": "CVE-2026-41305",
+      "ghsa_id": "GHSA-qx2v-qp2m-jg93",
+      "summary": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
+      "fix_available": true,
+      "fixed_in": "8.5.10",
+      "created_at": "2026-05-27T00:45:06Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/81"
+    },
+    {
+      "number": 80,
+      "state": "open",
+      "severity": "medium",
+      "ecosystem": "npm",
+      "package": "postcss",
+      "manifest_path": "apps/chthonic-next/package.json",
+      "scope": "development",
+      "relationship": "direct",
+      "cve_id": "CVE-2023-44270",
+      "ghsa_id": "GHSA-7fh5-64p2-3v2j",
+      "summary": "PostCSS line return parsing error",
+      "fix_available": true,
+      "fixed_in": "8.4.31",
+      "created_at": "2026-05-27T00:45:06Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/80"
+    },
+    {
       "number": 36,
       "state": "open",
       "severity": "medium",
@@ -661,6 +740,40 @@
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/61"
     },
     {
+      "number": 75,
+      "state": "open",
+      "severity": "medium",
+      "ecosystem": "pip",
+      "package": "idna",
+      "manifest_path": "uv.lock",
+      "scope": "runtime",
+      "relationship": "direct",
+      "cve_id": "CVE-2026-45409",
+      "ghsa_id": "GHSA-65pc-fj4g-8rjx",
+      "summary": "Internationalized Domain Names in Applications (IDNA): Specially crafted inputs to idna.encode() can bypass CVE-2024-3651 fix",
+      "fix_available": true,
+      "fixed_in": "3.15",
+      "created_at": "2026-05-19T21:50:54Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/75"
+    },
+    {
+      "number": 76,
+      "state": "open",
+      "severity": "medium",
+      "ecosystem": "pip",
+      "package": "idna",
+      "manifest_path": "birdcage/uv.lock",
+      "scope": "runtime",
+      "relationship": "transitive",
+      "cve_id": "CVE-2026-45409",
+      "ghsa_id": "GHSA-65pc-fj4g-8rjx",
+      "summary": "Internationalized Domain Names in Applications (IDNA): Specially crafted inputs to idna.encode() can bypass CVE-2024-3651 fix",
+      "fix_available": true,
+      "fixed_in": "3.15",
+      "created_at": "2026-05-19T22:11:56Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/76"
+    },
+    {
       "number": 66,
       "state": "open",
       "severity": "medium",
@@ -744,6 +857,23 @@
       "fixed_in": "0.56.0",
       "created_at": "2026-05-06T00:23:12Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/50"
+    },
+    {
+      "number": 77,
+      "state": "open",
+      "severity": "medium",
+      "ecosystem": "rust",
+      "package": "openssl",
+      "manifest_path": "extensions/chthonic-archive/native/Cargo.lock",
+      "scope": "runtime",
+      "relationship": "unknown",
+      "cve_id": "CVE-2026-45784",
+      "ghsa_id": "GHSA-phqj-4mhp-q6mq",
+      "summary": "rust-openssl: Potential out-of-bounds write in `CipherCtxRef::cipher_update_inplace` for AES-KW-PAD ciphers",
+      "fix_available": true,
+      "fixed_in": "0.10.80",
+      "created_at": "2026-05-20T04:52:01Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/77"
     },
     {
       "number": 70,
@@ -1103,6 +1233,23 @@
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/31"
     },
     {
+      "number": 79,
+      "state": "auto_dismissed",
+      "severity": "medium",
+      "ecosystem": "npm",
+      "package": "postcss",
+      "manifest_path": "apps/chthonic-next/package.json",
+      "scope": "development",
+      "relationship": "direct",
+      "cve_id": "CVE-2021-23382",
+      "ghsa_id": "GHSA-566m-qj78-rww5",
+      "summary": "Regular Expression Denial of Service in postcss",
+      "fix_available": true,
+      "fixed_in": "7.0.36",
+      "created_at": "2026-05-27T00:45:06Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/79"
+    },
+    {
       "number": 39,
       "state": "fixed",
       "severity": "medium",
@@ -1135,6 +1282,23 @@
       "fixed_in": "26.1",
       "created_at": "2026-05-06T00:23:14Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/57"
+    },
+    {
+      "number": 46,
+      "state": "fixed",
+      "severity": "medium",
+      "ecosystem": "pip",
+      "package": "pip",
+      "manifest_path": "uv.lock",
+      "scope": "development",
+      "relationship": "direct",
+      "cve_id": "CVE-2026-3219",
+      "ghsa_id": "GHSA-58qw-9mgm-455v",
+      "summary": "pip has an interpretation conflict due to handling both concatenated tar and ZIP files as ZIP files",
+      "fix_available": true,
+      "fixed_in": "26.1",
+      "created_at": "2026-04-25T01:47:00Z",
+      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/46"
     },
     {
       "number": 43,
@@ -1237,23 +1401,6 @@
       "fixed_in": "0.12.0",
       "created_at": "2026-02-15T22:22:32Z",
       "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/7"
-    },
-    {
-      "number": 46,
-      "state": "fixed",
-      "severity": "medium",
-      "ecosystem": "pip",
-      "package": "pip",
-      "manifest_path": "uv.lock",
-      "scope": "development",
-      "relationship": "direct",
-      "cve_id": "CVE-2026-3219",
-      "ghsa_id": "GHSA-58qw-9mgm-455v",
-      "summary": "pip has an interpretation conflict due to handling both concatenated tar and ZIP files as ZIP files",
-      "fix_available": false,
-      "fixed_in": null,
-      "created_at": "2026-04-25T01:47:00Z",
-      "url": "https://github.com/poisontr33s/chthonic-archive/security/dependabot/46"
     },
     {
       "number": 13,

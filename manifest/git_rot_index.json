@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-05-14T06:10:14.285596+00:00",
+  "generated_at": "2026-05-31T22:04:58.192536+00:00",
   "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "code_taxonomy": {
     "rot": {
@@ -40,30 +40,32 @@
     }
   },
   "summary": {
-    "tracked_md_files": 1117,
-    "tombstone_files_excluded": 11,
-    "rot_entries": 24,
+    "tracked_md_files": 1190,
+    "tombstone_files_excluded": 12,
+    "rot_entries": 166,
     "categories": {
-      "broken_no_known_target": 9,
-      "line_anchor_stale": 9,
-      "anchor_missing": 5,
-      "ambig_truly_ambiguous": 1
+      "broken_fixable_via_rename": 11,
+      "ambig_truly_ambiguous": 84,
+      "broken_no_known_target": 68,
+      "anchor_missing": 3
     },
     "codes": {
-      "ROT-001": 9,
-      "ROT-007": 9,
-      "ROT-006": 5,
-      "ROT-002": 1
+      "ROT-004": 11,
+      "ROT-002": 84,
+      "ROT-001": 68,
+      "ROT-006": 3
     },
     "priorities": {
-      "medium": 17,
-      "low": 7
+      "high": 11,
+      "medium": 145,
+      "low": 10
     },
-    "rename_history_size": 757,
-    "cluster_count": 0,
-    "false_positives_suppressed": 88
+    "rename_history_size": 1101,
+    "cluster_count": 16,
+    "false_positives_suppressed": 64
   },
   "tombstones": [
+    ".chthonic/SSOT.md",
     ".github/copilot-instructions.archive.md",
     ".github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md",
     "claude-codex-gemini/triadic-session-context/COMPREHENSIVE_IMPROVEMENT_PLAN_PROPOSAL.md",
@@ -78,6 +80,30 @@
   ],
   "hotspots_top10": [
     {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "rot_count": 17
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "rot_count": 17
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "rot_count": 14
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "rot_count": 13
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "rot_count": 11
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "rot_count": 11
+    },
+    {
       "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
       "rot_count": 11
     },
@@ -86,56 +112,574 @@
       "rot_count": 8
     },
     {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "rot_count": 7
+    },
+    {
       "source": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
       "rot_count": 6
-    },
-    {
-      "source": ".github/instructions/reference-appendix.reference.md",
-      "rot_count": 5
-    },
-    {
-      "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
-      "rot_count": 4
-    },
-    {
-      "source": "dumpster-dive/forge/quench/README.md",
-      "rot_count": 4
-    },
-    {
-      "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
-      "rot_count": 4
-    },
-    {
-      "source": "docs/design/SFS_WPTG_ITERATION_PLAN.md",
-      "rot_count": 3
-    },
-    {
-      "source": "dumpster-dive/CIRCULATION_DIAGRAM.md",
-      "rot_count": 3
-    },
-    {
-      "source": "dumpster-dive/README.md",
-      "rot_count": 3
     }
   ],
-  "clusters": [],
-  "roots": [],
+  "clusters": [
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "../../../.github/copilot-instructions.md",
+      "ref_count": 15,
+      "referenced_from_sample": [
+        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+        "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md",
+        "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+        "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "copilot-instructions.md",
+      "ref_count": 6,
+      "referenced_from_sample": [
+        ".github/INTEGRATION_MAP.md",
+        ".github/SESSION_RESUME.md",
+        ".github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md",
+        ".github/STRUCTURAL_INTEGRITY_ANALYSIS.md",
+        ".github/VALIDATION_REPORT.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "../../../.github/copilot-instructions.md#L1",
+      "ref_count": 6,
+      "referenced_from_sample": [
+        "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "../copilot-instructions.md",
+      "ref_count": 5,
+      "referenced_from_sample": [
+        ".github/instructions/reference-appendix.reference.md",
+        ".github/instructions/reference-appendix.reference.md",
+        ".github/instructions/reference-appendix.reference.md",
+        ".github/instructions/reference-appendix.reference.md",
+        ".github/instructions/reference-appendix.reference.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "ref_count": 5,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "ref_count": 5,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "../../AGENT_COMMON.md",
+      "ref_count": 4,
+      "referenced_from_sample": [
+        ".github/agents/Chthonic-Archivist.agent.md",
+        ".github/instructions/ankh-workflow.instructions.md",
+        "claude/mailbox/CODEX_HANDOFF_FLUX_VISIBILITY_STATUSBAR_2026_05_15.md",
+        "docs/architecture/CLAUDE.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "ref_count": 4,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENT_COMMON.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "PWSH_RULES.md",
+      "ref_count": 4,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+        "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+        "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+        "confiscated_instructions/agents/repo_root_AGENT_COMMON.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": ".temple/",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "game/",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": ".temple/handoffs/",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": ".temple/skills/",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+        "confiscated_instructions/agents/repo_root_AGENTS.md",
+        "confiscated_instructions/gemini/gemini_GEMINI.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    },
+    {
+      "code": "CLUSTER-002",
+      "level": "L4",
+      "kind": "orphan_target",
+      "target": "copilot-instructions.archive.md",
+      "ref_count": 3,
+      "referenced_from_sample": [
+        "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+        "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+        "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md"
+      ],
+      "verdict": "missing file referenced widely — confirm intent (typo? deleted?)"
+    }
+  ],
+  "roots": [
+    {
+      "code": "ROOT-001",
+      "level": "L4",
+      "kind": "mass_delete_ancestry",
+      "sha": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "date": "2026-05-28T20:58:57+02:00",
+      "broken_path_count": 3,
+      "affected_entry_count": 7,
+      "parent_dirs": [
+        ".",
+        "codex"
+      ],
+      "broken_paths_sample": [
+        "AGENTS.md",
+        "AGENT_COMMON.md",
+        "codex/NEXT.md"
+      ],
+      "verdict": "single historical commit broke N L1 entries — decide: revert restore, accept deletion + prune referrers, or stub-create the deleted targets."
+    },
+    {
+      "code": "ROOT-001",
+      "level": "L4",
+      "kind": "mass_delete_ancestry",
+      "sha": "13f829e1e4be1b561f0f955229a27a2085764d12",
+      "subject": "Add new skills and documentation for Sora video generation and maintenance tools",
+      "date": "2026-05-28T21:24:00+02:00",
+      "broken_path_count": 1,
+      "affected_entry_count": 1,
+      "parent_dirs": [
+        ".gemini"
+      ],
+      "broken_paths_sample": [
+        ".gemini/TRIAD_SYNC_2026_02_01.md"
+      ],
+      "verdict": "single historical commit broke N L1 entries — decide: revert restore, accept deletion + prune referrers, or stub-create the deleted targets."
+    }
+  ],
   "entries": [
     {
-      "source": ".github/agents/IronMaiden.agent.md",
-      "line": 19,
-      "raw_target": "../../codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
+      "source": "PWSH_RULES.md",
+      "line": 279,
+      "raw_target": ".github/copilot-instructions.md",
       "git": {
-        "source_last_touched": "2026-05-13T06:25:25+02:00",
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": ".github/copilot-instructions.md",
+      "renamed_to": "confiscated_instructions/repo_dotgithub_copilot-instructions.md",
+      "suggested_fix": "confiscated_instructions/repo_dotgithub_copilot-instructions.md",
+      "priority": "high",
+      "id": "bc90bce4632d",
+      "level": "L2"
+    },
+    {
+      "source": "SCRIPTS_README.md",
+      "line": 656,
+      "raw_target": ".github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": ".github/copilot-instructions.md",
+      "renamed_to": "confiscated_instructions/repo_dotgithub_copilot-instructions.md",
+      "suggested_fix": "confiscated_instructions/repo_dotgithub_copilot-instructions.md",
+      "priority": "high",
+      "id": "922e61856191",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 40,
+      "raw_target": "AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "AGENT_COMMON.md",
+      "renamed_to": "confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "suggested_fix": "../../confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "priority": "high",
+      "id": "2f2109e5be8e",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 170,
+      "raw_target": "codex/NEXT.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "codex/NEXT.md",
+      "renamed_to": "confiscated_instructions/repo_codex_NEXT.md",
+      "suggested_fix": "../../confiscated_instructions/repo_codex_NEXT.md",
+      "priority": "high",
+      "id": "87f2a6490145",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 215,
+      "raw_target": "AGENTS.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "AGENTS.md",
+      "renamed_to": "confiscated_instructions/backup_20260528-194954_AGENTS.md",
+      "suggested_fix": "../../confiscated_instructions/backup_20260528-194954_AGENTS.md",
+      "priority": "high",
+      "id": "c640de9a7cd9",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 215,
+      "raw_target": "GEMINI.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "GEMINI.md",
+      "renamed_to": "confiscated_instructions/gemini_GEMINI.md",
+      "suggested_fix": "../../confiscated_instructions/gemini_GEMINI.md",
+      "priority": "high",
+      "id": "011a37d477fe",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 40,
+      "raw_target": "AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "AGENT_COMMON.md",
+      "renamed_to": "confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "suggested_fix": "../../confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "priority": "high",
+      "id": "310133dbcc81",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 165,
+      "raw_target": "codex/NEXT.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "codex/NEXT.md",
+      "renamed_to": "confiscated_instructions/repo_codex_NEXT.md",
+      "suggested_fix": "../../confiscated_instructions/repo_codex_NEXT.md",
+      "priority": "high",
+      "id": "7ad62bf1ed2a",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 208,
+      "raw_target": "AGENTS.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "AGENTS.md",
+      "renamed_to": "confiscated_instructions/backup_20260528-194954_AGENTS.md",
+      "suggested_fix": "../../confiscated_instructions/backup_20260528-194954_AGENTS.md",
+      "priority": "high",
+      "id": "a2c996782a56",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 208,
+      "raw_target": "GEMINI.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "GEMINI.md",
+      "renamed_to": "confiscated_instructions/gemini_GEMINI.md",
+      "suggested_fix": "../../confiscated_instructions/gemini_GEMINI.md",
+      "priority": "high",
+      "id": "0762bc157901",
+      "level": "L2"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 5,
+      "raw_target": "AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_fixable_via_rename",
+      "code": "ROT-004",
+      "renamed_from": "AGENT_COMMON.md",
+      "renamed_to": "confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "suggested_fix": "../../confiscated_instructions/backup_20260528-194954_AGENT_COMMON.md",
+      "priority": "high",
+      "id": "30ddcd38e32f",
+      "level": "L2"
+    },
+    {
+      "source": ".github/INTEGRATION_MAP.md",
+      "line": 1,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "218faafece7f",
+      "level": "L1"
+    },
+    {
+      "source": ".github/SESSION_RESUME.md",
+      "line": 1,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "2dc2ba6d1929",
+      "level": "L1"
+    },
+    {
+      "source": ".github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md",
+      "line": 387,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "98d451ddf7f4",
+      "level": "L1"
+    },
+    {
+      "source": ".github/STRUCTURAL_INTEGRITY_ANALYSIS.md",
+      "line": 1,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "d93fdd33c6cc",
+      "level": "L1"
+    },
+    {
+      "source": ".github/VALIDATION_REPORT.md",
+      "line": 1,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "94ba30141cc0",
+      "level": "L1"
+    },
+    {
+      "source": ".github/agents/Chthonic-Archivist.agent.md",
+      "line": 63,
+      "raw_target": "../../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-17T21:14:11+02:00",
         "source_author": "erdnorddd@gmail.com"
       },
       "category": "broken_no_known_target",
       "code": "ROT-001",
-      "would_be_path": "codex/codex-session-logs/archive/The-Iron-Maiden-(SSOT",
-      "git_truth": "never_existed",
+      "would_be_path": "AGENT_COMMON.md",
+      "git_truth": "existed_once",
       "priority": "medium",
-      "id": "5d0b503630e0",
-      "level": "L1"
+      "id": "b6b7d916fb5e",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
     },
     {
       "source": ".github/instructions/agent-priority-protocol.md",
@@ -145,14 +689,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6812",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "15bc1cdec2c7",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/agent-priority-protocol.md",
@@ -162,14 +707,34 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6812",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "8f2080b4118b",
-      "level": "L3"
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/ankh-workflow.instructions.md",
+      "line": 46,
+      "raw_target": "../../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "AGENT_COMMON.md",
+      "git_truth": "existed_once",
+      "priority": "medium",
+      "id": "3da8365e9641",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
     },
     {
       "source": ".github/instructions/asc-entity-generation.reference.md",
@@ -179,14 +744,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L2443",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "364ab2d4f363",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/behavioral-scenarios.reference.md",
@@ -196,14 +762,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L3789",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "2cb6acb70d6f",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/dcrp-operational-guide.md",
@@ -213,14 +780,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6643",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "2bdde53cd7b3",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/dcrp-operational-guide.md",
@@ -230,14 +798,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6643",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "a77fffe443e3",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/dev-conventions.reference.md",
@@ -247,14 +816,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6634",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "6d31e3d9a187",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/magistra-logic.reference.md",
@@ -264,14 +834,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L4780",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "1712b4482555",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": ".github/instructions/magistra-logic.reference.md",
@@ -281,14 +852,1647 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "line_anchor_stale",
-      "code": "ROT-007",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "L6500",
-      "file_lines": 83,
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "ad1ac2d39f53",
-      "level": "L3"
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/mathematical-engines.reference.md",
+      "line": 18,
+      "raw_target": "../copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "f59f897f3660",
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 18,
+      "raw_target": "../copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T06:46:39+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "0d48da71142f",
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 35,
+      "raw_target": "../copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T06:46:39+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "de58b65ad8b3",
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 47,
+      "raw_target": "../copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T06:46:39+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "6e508cafa538",
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 56,
+      "raw_target": "../copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T06:46:39+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "4b2e5a1122e4",
+      "level": "L1"
+    },
+    {
+      "source": ".github/instructions/reference-appendix.reference.md",
+      "line": 64,
+      "raw_target": "../copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T06:46:39+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "aea71104a90e",
+      "level": "L1"
+    },
+    {
+      "source": ".github/pathstofiles.md",
+      "line": 13,
+      "raw_target": "copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "41344d48bdf7",
+      "level": "L1"
+    },
+    {
+      "source": ".temple/protocols/SESSION_2026_05_24_25_REDUX.md",
+      "line": 89,
+      "raw_target": ".github/copilot-instructions.archive.md#LN",
+      "git": {
+        "source_last_touched": "2026-05-27T02:00:06+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": ".temple/protocols/.github/copilot-instructions.archive.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "48bff783266e",
+      "level": "L1"
+    },
+    {
+      "source": ".temple/protocols/THE_RECONCILIATION_ENGINE.md",
+      "line": 791,
+      "raw_target": "../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-27T02:00:06+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "daa25a5fe457",
+      "level": "L1"
+    },
+    {
+      "source": "claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md",
+      "line": 66,
+      "raw_target": "../../codex/NEXT.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "codex/NEXT.md",
+      "git_truth": "existed_once",
+      "priority": "medium",
+      "id": "3fc350f8db3b",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
+    },
+    {
+      "source": "claude/mailbox/CODEX_HANDOFF_FLUX_VISIBILITY_STATUSBAR_2026_05_15.md",
+      "line": 158,
+      "raw_target": "../../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-27T02:39:50+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "AGENT_COMMON.md",
+      "git_truth": "existed_once",
+      "priority": "medium",
+      "id": "f6bbef59e858",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
+    },
+    {
+      "source": "claude/mailbox/SESSION_HANDOFF_2026_05_25_REDUX_REENTRY.md",
+      "line": 71,
+      "raw_target": "file:///C:/Users/eldno/.claude/projects/c--Users-eldno-chthonic-archive/memory/",
+      "git": {
+        "source_last_touched": "2026-05-25T13:34:31+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": null,
+      "git_truth": "unknown",
+      "priority": "medium",
+      "id": "b0cc08151845",
+      "level": "L1"
+    },
+    {
+      "source": "codex/protocols/THE_RECONCILIATION_ENGINE.md",
+      "line": 797,
+      "raw_target": "../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-27T02:00:06+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "97c08c18f111",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 19,
+      "raw_target": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      ],
+      "priority": "medium",
+      "id": "2ebc5cce9d47",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 80,
+      "raw_target": ".temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "ba7e689ea734",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 85,
+      "raw_target": ".temple/protocols/MATRIARCH_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/MATRIARCH_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "b21abe54ee46",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 92,
+      "raw_target": ".temple/protocols/UMEKO_HOLD_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/UMEKO_HOLD_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "b6503e247aa3",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 97,
+      "raw_target": ".temple/protocols/ASPHYXIATION_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/ASPHYXIATION_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "b88e28450c9b",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 101,
+      "raw_target": ".temple/protocols/NO_TASK_DUMPING_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "4a9147f1b2ab",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 105,
+      "raw_target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "99055b1718f0",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 111,
+      "raw_target": ".temple/protocols/MAILBOX_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        ".temple/protocols/MAILBOX_PROTOCOL.md"
+      ],
+      "priority": "medium",
+      "id": "dc5aabaa0194",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 131,
+      "raw_target": ".temple/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "6fc4d8e6b7f0",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 132,
+      "raw_target": "game/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/game",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "e95babb70926",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 171,
+      "raw_target": ".temple/handoffs/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/handoffs",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "97ccd87cfae4",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 172,
+      "raw_target": ".temple/skills/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/skills",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1f6681e3ac6e",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 173,
+      "raw_target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/methodology/TRIAD_METHODOLOGY.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "c2d7a85d98cf",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 174,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md"
+      ],
+      "priority": "medium",
+      "id": "bcbd78323c8b",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENTS.md",
+      "line": 174,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md"
+      ],
+      "priority": "medium",
+      "id": "c943bf4d8cbd",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 44,
+      "raw_target": "PWSH_RULES.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "PWSH_RULES.md"
+      ],
+      "priority": "medium",
+      "id": "c587dab486db",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 97,
+      "raw_target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1b21bfd57a2f",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 170,
+      "raw_target": "docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md"
+      ],
+      "priority": "medium",
+      "id": "b4ea89572726",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 174,
+      "raw_target": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      ],
+      "priority": "medium",
+      "id": "8b293c33577a",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 205,
+      "raw_target": "PWSH_RULES.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "PWSH_RULES.md"
+      ],
+      "priority": "medium",
+      "id": "65783e16bd0a",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 206,
+      "raw_target": "docs/reference/OXIDIZED_POLYGLOT_SURFACE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/OXIDIZED_POLYGLOT_SURFACE.md"
+      ],
+      "priority": "medium",
+      "id": "667cac3534ca",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 215,
+      "raw_target": "CLAUDE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "CLAUDE.md",
+        "docs/architecture/CLAUDE.md"
+      ],
+      "priority": "medium",
+      "id": "c9f87eda6c1d",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 216,
+      "raw_target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/methodology/TRIAD_METHODOLOGY.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "5bdbc859f016",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/backup_20260528-194954_AGENT_COMMON.md",
+      "line": 270,
+      "raw_target": "docs/reference/AGENT_SKILLS_MARKET_SURVEY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/AGENT_SKILLS_MARKET_SURVEY.md"
+      ],
+      "priority": "medium",
+      "id": "c44aeb52e179",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 19,
+      "raw_target": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      ],
+      "priority": "medium",
+      "id": "10a669b1efd2",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 75,
+      "raw_target": ".temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "ab7aff5bc946",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 80,
+      "raw_target": ".temple/protocols/MATRIARCH_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/MATRIARCH_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "17408221ccb6",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 87,
+      "raw_target": ".temple/protocols/UMEKO_HOLD_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/UMEKO_HOLD_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "ff6e3748962d",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 92,
+      "raw_target": ".temple/protocols/ASPHYXIATION_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/ASPHYXIATION_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "6754076a1d3d",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 96,
+      "raw_target": ".temple/protocols/NO_TASK_DUMPING_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/NO_TASK_DUMPING_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "350aa08ce53c",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 100,
+      "raw_target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "650d2390a9b4",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 106,
+      "raw_target": ".temple/protocols/MAILBOX_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        ".temple/protocols/MAILBOX_PROTOCOL.md"
+      ],
+      "priority": "medium",
+      "id": "996e9c2732c4",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 126,
+      "raw_target": ".temple/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "33255cb7ac37",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 127,
+      "raw_target": "game/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/game",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "edbf941b23ca",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 166,
+      "raw_target": ".temple/handoffs/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/handoffs",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "be2516cbaaff",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 167,
+      "raw_target": ".temple/skills/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/skills",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "e4bdf80170de",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 168,
+      "raw_target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/methodology/TRIAD_METHODOLOGY.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1e72df6bf96c",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 169,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md"
+      ],
+      "priority": "medium",
+      "id": "262245ef0a40",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENTS.md",
+      "line": 169,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md"
+      ],
+      "priority": "medium",
+      "id": "75a84d82028a",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 37,
+      "raw_target": "PWSH_RULES.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "PWSH_RULES.md"
+      ],
+      "priority": "medium",
+      "id": "55c7057f4bcd",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 90,
+      "raw_target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "ed47df3c6b47",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 163,
+      "raw_target": "docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md"
+      ],
+      "priority": "medium",
+      "id": "80c38b94c53d",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 167,
+      "raw_target": "WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      ],
+      "priority": "medium",
+      "id": "ddd160edee5d",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 198,
+      "raw_target": "PWSH_RULES.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "PWSH_RULES.md"
+      ],
+      "priority": "medium",
+      "id": "cc4ca0be4312",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 199,
+      "raw_target": "docs/reference/OXIDIZED_POLYGLOT_SURFACE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/OXIDIZED_POLYGLOT_SURFACE.md"
+      ],
+      "priority": "medium",
+      "id": "a410b35797e3",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 208,
+      "raw_target": "CLAUDE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "CLAUDE.md",
+        "docs/architecture/CLAUDE.md"
+      ],
+      "priority": "medium",
+      "id": "99b067d63998",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 209,
+      "raw_target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/agents/.temple/methodology/TRIAD_METHODOLOGY.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1736050bbe2f",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/agents/repo_root_AGENT_COMMON.md",
+      "line": 263,
+      "raw_target": "docs/reference/AGENT_SKILLS_MARKET_SURVEY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/AGENT_SKILLS_MARKET_SURVEY.md"
+      ],
+      "priority": "medium",
+      "id": "ee152473cc23",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 11,
+      "raw_target": "../docs/reference/FAF_SSOT_SESSION_CARTOGRAPHY_2026-05-12.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "docs/reference/FAF_SSOT_SESSION_CARTOGRAPHY_2026-05-12.md"
+      ],
+      "priority": "medium",
+      "id": "0e770982ba59",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 56,
+      "raw_target": "../manifest/todo_meta.json",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/manifest/todo_meta.json",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "fcd02da83c55",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 57,
+      "raw_target": "../manifest/todo_roulette.json",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/manifest/todo_roulette.json",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "f8afa59dd671",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 76,
+      "raw_target": "../vulkan-lab/cli-renderer/GATE_WALK.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "vulkan-lab/cli-renderer/GATE_WALK.md"
+      ],
+      "priority": "medium",
+      "id": "13ab5e166012",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 101,
+      "raw_target": "artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/artifacts/LAPTOP_TO_DESKTOP_EMIGRATION.md"
+      ],
+      "priority": "medium",
+      "id": "04b9c56127b5",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 126,
+      "raw_target": "codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md"
+      ],
+      "priority": "medium",
+      "id": "f9be39ebd6fa",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/codex/repo_codex_NEXT.md",
+      "line": 127,
+      "raw_target": "codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md"
+      ],
+      "priority": "medium",
+      "id": "91b5472a37cb",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 16,
+      "raw_target": ".temple/protocols/ORACKLA_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/protocols/ORACKLA_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "24b5f962b4e8",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 23,
+      "raw_target": ".temple/protocols/GEMINI_ARCHETYPE_CANON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/protocols/GEMINI_ARCHETYPE_CANON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "f78798153d62",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 27,
+      "raw_target": ".temple/protocols/ORACKLA_HOLD_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/protocols/ORACKLA_HOLD_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "00048bf83610",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 31,
+      "raw_target": ".temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "7ea8ddb0d4c2",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 53,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md"
+      ],
+      "priority": "medium",
+      "id": "cbc14841ac84",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 54,
+      "raw_target": "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md"
+      ],
+      "priority": "medium",
+      "id": "14f466e1ab62",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 62,
+      "raw_target": ".temple/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "c692e27b4124",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 63,
+      "raw_target": "game/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/game",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "eb2c51710f55",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 104,
+      "raw_target": ".temple/protocols/GEMINI_CONTEXT_HYGIENE.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/protocols/GEMINI_CONTEXT_HYGIENE.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "97f0ea5da71c",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 124,
+      "raw_target": ".temple/handoffs/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/handoffs",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "5a89f1d00792",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 125,
+      "raw_target": ".temple/skills/",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/skills",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1ebe62279782",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_GEMINI.md",
+      "line": 126,
+      "raw_target": ".temple/methodology/TRIAD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/gemini/.temple/methodology/TRIAD_METHODOLOGY.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "5cb89e806359",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_dotgemini_TRIAD_SYNC_2026_02_01.md",
+      "line": 86,
+      "raw_target": "../claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md"
+      ],
+      "priority": "medium",
+      "id": "618103f4ef2a",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_dotgemini_TRIAD_SYNC_2026_02_01.md",
+      "line": 87,
+      "raw_target": "../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/AGENT_COMMON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "17b22e218ebd",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_dotgemini_TRIAD_SYNC_2026_02_01.md",
+      "line": 88,
+      "raw_target": "../claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md"
+      ],
+      "priority": "medium",
+      "id": "088863553b19",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_dotgemini_TRIAD_SYNC_2026_02_01.md",
+      "line": 89,
+      "raw_target": "../codex/NEXT.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/codex/NEXT.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "cdeb33d611be",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 3,
+      "raw_target": "copilot-instructions.archive.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/github/copilot-instructions.archive.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "e52a6726d815",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 5,
+      "raw_target": "copilot-instructions.archive.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/github/copilot-instructions.archive.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "8d116b8cf8a7",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 19,
+      "raw_target": "copilot-instructions.archive.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/github/copilot-instructions.archive.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "d1cc23acc0f6",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 21,
+      "raw_target": "../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "e5300efcb2a8",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 23,
+      "raw_target": "../.temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/.temple/protocols/CODEX_ARCHETYPE_CANON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "4a90b4e19b00",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 29,
+      "raw_target": "pathstofiles.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        ".github/pathstofiles.md"
+      ],
+      "priority": "medium",
+      "id": "a741385eb065",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 57,
+      "raw_target": "../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/AGENT_COMMON.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "908ea3963740",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 61,
+      "raw_target": "../WET_PAPER_TO_GOLD_METHODOLOGY.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "WET_PAPER_TO_GOLD_METHODOLOGY.md"
+      ],
+      "priority": "medium",
+      "id": "1ac8cfadf080",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 62,
+      "raw_target": "../anti-patterns/codekiller.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/anti-patterns/codekiller.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "cbab42620865",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 63,
+      "raw_target": "../.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/.temple/protocols/LINGUISTIC_PROFILE_PROTOCOL.md",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "1e7c43e6b850",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 79,
+      "raw_target": "../codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Step3-Deep-Exploration-Prototypes.md"
+      ],
+      "priority": "medium",
+      "id": "80424870a514",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 80,
+      "raw_target": "../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md"
+      ],
+      "priority": "medium",
+      "id": "befaf2e3275e",
+      "level": "L1"
+    },
+    {
+      "source": "confiscated_instructions/github/repo_dotgithub_copilot-instructions.md",
+      "line": 81,
+      "raw_target": "../codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "confiscated_instructions/codex/codex-session-logs/archive/MILF-Core-Prototype-Analysis.md.genre.json",
+      "git_truth": "never_existed",
+      "priority": "medium",
+      "id": "ad6f388494f6",
+      "level": "L1"
+    },
+    {
+      "source": "docs/architecture/CLAUDE.md",
+      "line": 3,
+      "raw_target": "../../AGENT_COMMON.md",
+      "git": {
+        "source_last_touched": "2026-05-04T07:11:19+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "AGENT_COMMON.md",
+      "git_truth": "existed_once",
+      "priority": "medium",
+      "id": "afa59c9675e4",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
     },
     {
       "source": "docs/architecture/SESSION_CORPUS.md",
@@ -327,6 +2531,25 @@
       "priority": "medium",
       "id": "3f8a22c51722",
       "level": "L1"
+    },
+    {
+      "source": "docs/fixtures/link_audit/benchmark_torture.md",
+      "line": 43,
+      "raw_target": "../../../AGENTS.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "AGENTS.md",
+      "git_truth": "existed_once",
+      "priority": "medium",
+      "id": "05e7968877ea",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
     },
     {
       "source": "docs/frameworks/ankh/ANKH_GENERATIVE_ENGINE.md",
@@ -379,6 +2602,420 @@
       "level": "L1"
     },
     {
+      "source": "dumpster-dive/BLACKSMITH_MATRIARCH.md",
+      "line": 173,
+      "raw_target": "../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "548e606fe74b",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/README.md",
+      "line": 211,
+      "raw_target": "../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "914a8a3da38f",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+      "line": 14,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "ac44d93cb329",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_CLEANUP.md",
+      "line": 190,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "bd3450078e7b",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/docs-sessions/SESSION_2026-01-17_SYNTHESIS.md",
+      "line": 12,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "7bd7e6d0b9a2",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+      "line": 27,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "6c41378c3158",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+      "line": 54,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "d87d9f0987f4",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+      "line": 159,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "8e584a35fb5c",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/archive/sessions_2026-01/session_resumption_chthonic_progress.md",
+      "line": 188,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T07:12:29+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "80d6c05e71b8",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/forge/quench/README.md",
+      "line": 94,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-13T06:41:43+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "9be954ba7198",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/forge/tea-vault/README.md",
+      "line": 113,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "e250ccd1b3ca",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/from-github/meta-audit-artifacts/SESSION_RESUME.md",
+      "line": 1,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "f1c22244b3c3",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/from-github/meta-audit-artifacts/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md",
+      "line": 387,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "ad626a015bf7",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/from-github/meta-audit-artifacts/STRUCTURAL_INTEGRITY_ANALYSIS.md",
+      "line": 1,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "b4878ff33081",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/from-github/meta-audit-artifacts/VALIDATION_REPORT.md",
+      "line": 1,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "d48955b63b11",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 19,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "9c5f823e5445",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 20,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "d3f8e9d5a632",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 62,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "8dd6e444f68b",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 63,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "ea3c848a415d",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 105,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "dba39df2f0e7",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 106,
+      "raw_target": "../../../.github/copilot-instructions.md#L1",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "f497cb6e7e1d",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 216,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "7c6f0f82a7d3",
+      "level": "L1"
+    },
+    {
+      "source": "dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+      "line": 221,
+      "raw_target": "../../../.github/copilot-instructions.md",
+      "git": {
+        "source_last_touched": "2026-05-14T07:36:09+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
+      "priority": "medium",
+      "id": "e2268b3185c8",
+      "level": "L1"
+    },
+    {
       "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
       "line": 560,
       "raw_target": "../../.github/copilot-instructions.md#section-4512",
@@ -386,14 +3023,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "anchor_missing",
-      "code": "ROT-006",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "section-4512",
-      "want_anchor": "section-4512",
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "9b286abccadd",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": "dumpster-dive/protocols/FORGE_CIRCULATION_PROTOCOL.md",
@@ -403,14 +3041,15 @@
         "source_last_touched": "2026-04-28T05:23:27+02:00",
         "source_author": "vscode@users.noreply.github.com"
       },
-      "category": "anchor_missing",
-      "code": "ROT-006",
-      "resolved_to": ".github/copilot-instructions.md",
-      "fragment": "section-4511",
-      "want_anchor": "section-4511",
+      "category": "ambig_truly_ambiguous",
+      "code": "ROT-002",
+      "candidates": [
+        "claude/mailbox/briefcase/extracted/.github/copilot-instructions.md",
+        "codex/mailbox/VSCODE_EDIT_SESSION_RECOVERY_2026_05_23T14_46_31/decoded/.github/copilot-instructions.md"
+      ],
       "priority": "medium",
       "id": "0bf68fc2bed3",
-      "level": "L3"
+      "level": "L1"
     },
     {
       "source": "claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md",
@@ -474,6 +3113,60 @@
       "git_truth": "never_existed",
       "priority": "low",
       "id": "2c8aa3fafcc0",
+      "level": "L1"
+    },
+    {
+      "source": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_CHECKPOINT_2026_02_01.md",
+      "line": 157,
+      "raw_target": "../../../../.gemini/TRIAD_SYNC_2026_02_01.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": ".gemini/TRIAD_SYNC_2026_02_01.md",
+      "git_truth": "existed_once",
+      "priority": "low",
+      "id": "2dbbc2cdb466",
+      "level": "L1",
+      "root_commit": "13f829e1e4be1b561f0f955229a27a2085764d12",
+      "root_subject": "Add new skills and documentation for Sora video generation and maintenance tools",
+      "root_date": "2026-05-28T21:24:00+02:00"
+    },
+    {
+      "source": "codex/mailbox/archive/2026_02_10_meta_cleanup/SESSION_CHECKPOINT_2026_02_01.md",
+      "line": 159,
+      "raw_target": "../../../NEXT.md",
+      "git": {
+        "source_last_touched": "2026-04-28T05:23:27+02:00",
+        "source_author": "vscode@users.noreply.github.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": "codex/NEXT.md",
+      "git_truth": "existed_once",
+      "priority": "low",
+      "id": "20e8109f74c7",
+      "level": "L1",
+      "root_commit": "d368d027ce08f342fed7828dd38dbafcceeda035",
+      "root_subject": "feat: add new bridges and remove obsolete SDK connection files",
+      "root_date": "2026-05-28T20:58:57+02:00"
+    },
+    {
+      "source": "confiscated_instructions/gemini/gemini_dotgemini_extensions_chthonic-archive-sync_skills_scm-triage_scm-triage_SKILL.md",
+      "line": 38,
+      "raw_target": "../../../../../../scripts/scm_triage.py",
+      "git": {
+        "source_last_touched": "2026-05-31T23:21:30+02:00",
+        "source_author": "erdnorddd@gmail.com"
+      },
+      "category": "broken_no_known_target",
+      "code": "ROT-001",
+      "would_be_path": null,
+      "git_truth": "unknown",
+      "priority": "low",
+      "id": "11f1f1b05bc7",
       "level": "L1"
     },
     {

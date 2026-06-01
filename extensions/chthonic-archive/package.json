@@ -539,6 +539,7 @@
     "build:wasm": "bun run scripts/verify-host.ts && bun run scripts/build-wasm.ts",
     "build:daemon": "bun run scripts/verify-host.ts && bun run scripts/build-daemon.ts",
     "build:synapse": "bun run scripts/verify-host.ts && bun run scripts/build-synapse.ts",
+    "build:sonic-daemon": "bun run scripts/build-sonic-daemon.ts",
     "build:all": "bun run build:ledger && bun run build:wasm && bun run build:daemon && bun run build:synapse && bun run compile",
     "toolpool:scan": "bun run scripts/toolpool-scan.ts",
     "toolpool:scan:json": "bun run scripts/toolpool-scan.ts --json",

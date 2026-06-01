@@ -1,7 +1,7 @@
 # Method index digest
 
-Generated: 2026-05-14T05:44:06.770661+00:00
-Window: last 60 days (since 2026-03-15)
+Generated: 2026-05-31T22:05:22.287514+00:00
+Window: last 60 days (since 2026-04-01)
 Source: `manifest/method_index.json` (regenerate via `uv run scripts/method_index.py`)
 
 Methodology: meta-lens that observes which methods cleared prior lens noise.
@@ -9,18 +9,18 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
 
 ## Summary
 
-- Commits scanned: 771
-- Methodful commits: 100
-- Unclassified: 671
+- Commits scanned: 772
+- Methodful commits: 104
+- Unclassified: 668
 - Distinct method classes seen: 9
 
 ### By method (frequency)
 
-- `anchor-correction`: 36
-- `python-constraint-bump`: 21
-- `rust-constraint-bump`: 14
-- `npm-constraint-bump`: 9
-- `uv-lock-upgrade`: 7
+- `anchor-correction`: 28
+- `rust-constraint-bump`: 25
+- `python-constraint-bump`: 16
+- `npm-constraint-bump`: 12
+- `uv-lock-upgrade`: 10
 - `tombstone-mark`: 6
 - `path-rename-followup`: 5
 - `stub-creation`: 1
@@ -28,55 +28,55 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
 
 ## Methods (priority: most-used first)
 
-### `anchor-correction` — used 36x (conf 0.64)
+### `anchor-correction` — used 28x (conf 0.61)
 
 - Noise class: `rot/L3-anchor`
-- Last used: 2026-05-14
+- Last used: 2026-05-17
 - Invocation: `fix link path or anchor (e.g., `../` -> `../../`)`
 - Examples:
-  - `29c6a752` — fix(rot): triage 3 clusters via method-index routing (-10 entries, 34 -> 24)
-  - `87913bc5` — docs(session): May 14 PM continuation — 4-lens stack + rot triage + SSOT canon
-  - `cd2bc1fd` — fix(rot): correct SSOT mis-tombstone — introduce lifecycle: ssot-canon
+  - `ab8596fb` — fix(pointer): revert L4323 anchor — FA5 rejects HTML/line anchors
+  - `6da07646` — fix(pointer): add L4323 line anchor to NAS reference link
+  - `b6ce5dd5` — fix(rot): truth-up digest annotation + target-side lifecycle guard
 
-### `python-constraint-bump` — used 21x (conf 0.77)
-
-- Noise class: `dependabot/pip-direct-pinned`
-- Last used: 2026-05-10
-- Invocation: `edit pyproject.toml dependency cap, then uv lock`
-- Examples:
-  - `38410a7f` — feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8
-  - `dca3cb67` — fix(embedding_explorer): address GHPR review comments
-  - `1d594d4f` — G7+G0: sdnext_g0_probe, manifest, pyproject optimum update
-
-### `rust-constraint-bump` — used 14x (conf 0.83)
+### `rust-constraint-bump` — used 25x (conf 0.77)
 
 - Noise class: `dependabot/rust-direct-pinned`
-- Last used: 2026-05-02
+- Last used: 2026-05-31
 - Invocation: `edit Cargo.toml dependency version, then cargo update`
 - Examples:
-  - `b4cd3468` — feat(vs_battery): add script for Visual Studio battery management and auditing
-  - `f8d1131a` — V9: raw terminal mode (crossterm) + Ω-3 XP trail write
-  - `1c073231` — feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs
+  - `636fa991` — feat: add spread-value script for content-value analysis and deduplication
+  - `ec51fbd1` — refactor: overhaul file extension classification and counting mechanism
+  - `d368d027` — feat: add new bridges and remove obsolete SDK connection files
 
-### `npm-constraint-bump` — used 9x (conf 0.64)
+### `python-constraint-bump` — used 16x (conf 0.81)
+
+- Noise class: `dependabot/pip-direct-pinned`
+- Last used: 2026-05-27
+- Invocation: `edit pyproject.toml dependency cap, then uv lock`
+- Examples:
+  - `0893aac7` — Add new dependencies for image processing and geometry manipulation
+  - `79dab782` — feat(mcp): consolidate archaeology servers into chthonic-archive
+  - `38410a7f` — feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8
+
+### `npm-constraint-bump` — used 12x (conf 0.63)
 
 - Noise class: `dependabot/npm-direct-pinned`
-- Last used: 2026-05-08
+- Last used: 2026-05-31
 - Invocation: `edit package.json dependency version, then bun update`
 - Examples:
-  - `64ce45cf` — fix: update GPU specifications in epoch reference document
-  - `827eae89` — feat: update version to 0.2.7 and add new command for selecting Claude Design Export
-  - `144a1557` — fix: update version to 0.2.6 in package.json
+  - `af05da79` — Update session drain timestamps and workspace hashes; enhance SSOT manifest structure
+  - `c559a079` — feat: update pre-commit hook and package.json scripts for improved automation and verification
+  - `3b6e15d2` — chore: update chthonic-archive to version 0.2.9 and add new FLUX commands and settings
 
-### `uv-lock-upgrade` — used 7x (conf 1.0)
+### `uv-lock-upgrade` — used 10x (conf 0.95)
 
 - Noise class: `dependabot/pip-transitive`
-- Last used: 2026-05-14
+- Last used: 2026-05-17
 - Invocation: `uv lock --upgrade-package <pkg>`
 - Examples:
-  - `150c7b10` — feat(workspace): add api_pool.ps1 script loading to launch workflow
-  - `685a4311` — Refactor code structure and remove redundant sections for improved readability and maintainability
-  - `b7746613` — feat(tools): add tool validation script and update toolchain reports
+  - `84d1383d` — feat: update Named Agent Sovereignty rules and dependencies in copilot-instructions and uv.lock
+  - `a7e0aa4b` — feat: add commands for managing Chthonic FLUX master secret
+  - `f40d6819` — feat: integrate FluxService into chthonic-archive extension
 
 ### `tombstone-mark` — used 6x (conf 1.0)
 
@@ -91,12 +91,12 @@ Compounds with `git_rot_index`, `dependabot_index`, `github_activity_index`.
 ### `path-rename-followup` — used 5x (conf 0.8)
 
 - Noise class: `rot/L4-lineage`
-- Last used: 2026-05-13
+- Last used: 2026-05-28
 - Invocation: `batch-update broken refs across multiple files (one logical move)`
 - Examples:
+  - `cfef8cd5` — Remove Agent Common Configuration Document
   - `af3cd781` — tune(pathfinder): AMBIG severity = warning, not error
   - `ab572948` — fix(pathfinder): apply link-rot auto-fixes across 28 markdown files
-  - `dc42cac8` — docs: consolidate documentation sprawl — 80 files reorganized
 
 ### `stub-creation` — used 1x (conf 1.0)
 

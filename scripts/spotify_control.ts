@@ -36,15 +36,10 @@ export interface PlaybackState {
   artist: string | null;
 }
 
-export interface AudioFeatures {
-  energy: number;           // 0–1 intensity / physical power
-  valence: number;          // 0–1 dark → bright emotional register
-  tempo: number;            // BPM
-  instrumentalness: number; // 0–1 near 1 = no vocals = deep-focus mode
-  danceability: number;     // 0–1 rhythmic regularity
-  mode: number;             // 0 = minor, 1 = major
-  speechiness: number;      // 0–1 spoken-word content
-}
+// NOTE: Spotify's /audio-features endpoint was deprecated 2024-11-27 (403 for new apps) and
+// only ever returned one static vector per track. Real affective signal now comes from WASAPI
+// loopback (sonic-daemon → manifest/sonic_window.json). This client keeps only identity +
+// transport, which remain supported: /me/player and play/pause.
 
 export class SpotifyControl {
   private readonly clientId: string;
@@ -177,39 +172,6 @@ export class SpotifyControl {
     }
   }
 
-  /** Fetch audio features for a track ID (the part after "spotify:track:"). */
-  async getAudioFeatures(trackId: string): Promise<AudioFeatures | null> {
-    if (!this.configured()) return null;
-    try {
-      const data = (await this.request(`/audio-features/${trackId}`)) as any;
-      if (!data) return null;
-      return {
-        energy: data.energy,
-        valence: data.valence,
-        tempo: data.tempo,
-        instrumentalness: data.instrumentalness,
-        danceability: data.danceability,
-        mode: data.mode,
-        speechiness: data.speechiness,
-      };
-    } catch {
-      return null;
-    }
-  }
-
-  /**
-   * Composite: current playback state + audio features in one call.
-   * Used by sonic_read MCP tool to deliver a full affective snapshot.
-   */
-  async getStateWithFeatures(): Promise<PlaybackState & { audioFeatures: AudioFeatures | null }> {
-    const state = await this.getState();
-    let audioFeatures: AudioFeatures | null = null;
-    if (state.trackUri) {
-      const trackId = state.trackUri.split(":").pop() ?? null;
-      if (trackId) audioFeatures = await this.getAudioFeatures(trackId);
-    }
-    return { ...state, audioFeatures };
-  }
 }
 
 // ─── Sonic snapshot — shared between pre/post hooks ───────────────────────────

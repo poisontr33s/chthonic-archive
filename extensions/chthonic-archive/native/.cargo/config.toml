@@ -12,3 +12,5 @@ daemon-prod = "build --release -p chthonic-daemon --target x86_64-pc-windows-msv
 ledger-fast = "build -p entropy-ledger-host --target x86_64-pc-windows-msvc"
 ledger-prod = "build --release -p entropy-ledger-host --target x86_64-pc-windows-msvc"
 synapse-fast = "build -p synapse-node --target x86_64-pc-windows-msvc"
+sonic-fast = "build -p sonic-daemon --target x86_64-pc-windows-msvc"
+sonic-prod = "build --release -p sonic-daemon --target x86_64-pc-windows-msvc"

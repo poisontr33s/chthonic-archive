@@ -1,17 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T05:43:31.714193+00:00",
+  "generated_at": "2026-05-31T22:05:01.940308+00:00",
   "repo": "poisontr33s/chthonic-archive",
   "summary": {
     "prs": {
-      "total": 14,
+      "total": 15,
       "by_state": {
+        "open": 1,
         "merged": 9,
         "closed": 5
       },
       "by_actor_type": {
+        "dependabot": 5,
         "human": 6,
-        "dependabot": 4,
         "copilot": 4
       }
     },
@@ -25,20 +26,40 @@
       }
     },
     "branches": {
-      "total": 3,
+      "total": 4,
       "by_actor_type": {
         "copilot": 1,
+        "dependabot": 1,
         "human": 2
       }
     }
   },
   "signals": {
     "stale_open_prs": 0,
-    "bot_branches": 1,
-    "dependabot_prs": 4,
+    "bot_branches": 2,
+    "dependabot_prs": 5,
     "copilot_branches": 1
   },
   "pulls": [
+    {
+      "number": 16,
+      "title": "chore(deps): bump idna from 3.13 to 3.15 in /birdcage in the uv group across 1 directory",
+      "state": "open",
+      "actor": "dependabot[bot]",
+      "actor_type": "dependabot",
+      "created_at": "2026-05-19T22:36:08Z",
+      "updated_at": "2026-05-27T00:02:51Z",
+      "merged_at": null,
+      "closed_at": null,
+      "days_stale": 4,
+      "labels": [
+        "dependencies",
+        "python:uv"
+      ],
+      "draft": false,
+      "head_ref": "dependabot/uv/birdcage/uv-d665ee01e3",
+      "url": "https://github.com/poisontr33s/chthonic-archive/pull/16"
+    },
     {
       "number": 15,
       "title": "Phase 4 Webview HMR",
@@ -49,7 +70,7 @@
       "updated_at": "2026-04-29T00:40:12Z",
       "merged_at": "2026-04-29T00:40:08Z",
       "closed_at": "2026-04-29T00:40:08Z",
-      "days_stale": 15,
+      "days_stale": 32,
       "labels": [],
       "draft": false,
       "head_ref": "webview-hmr-phase4",
@@ -65,7 +86,7 @@
       "updated_at": "2026-04-29T00:25:19Z",
       "merged_at": "2026-04-28T23:19:39Z",
       "closed_at": "2026-04-28T23:19:39Z",
-      "days_stale": 15,
+      "days_stale": 32,
       "labels": [],
       "draft": false,
       "head_ref": "gate-h-jsonl-fallback",
@@ -81,7 +102,7 @@
       "updated_at": "2026-04-28T23:32:55Z",
       "merged_at": "2026-04-28T23:32:46Z",
       "closed_at": "2026-04-28T23:32:46Z",
-      "days_stale": 15,
+      "days_stale": 32,
       "labels": [
         "dependencies",
         "python:uv"
@@ -100,7 +121,7 @@
       "updated_at": "2026-04-25T18:17:17Z",
       "merged_at": null,
       "closed_at": "2026-04-25T18:17:15Z",
-      "days_stale": 18,
+      "days_stale": 36,
       "labels": [
         "dependencies",
         "python:uv"
@@ -119,7 +140,7 @@
       "updated_at": "2026-04-28T23:34:27Z",
       "merged_at": "2026-04-28T23:34:21Z",
       "closed_at": "2026-04-28T23:34:21Z",
-      "days_stale": 15,
+      "days_stale": 32,
       "labels": [
         "dependencies",
         "javascript"
@@ -138,7 +159,7 @@
       "updated_at": "2026-03-24T20:20:47Z",
       "merged_at": null,
       "closed_at": "2026-03-24T20:20:47Z",
-      "days_stale": 50,
+      "days_stale": 68,
       "labels": [],
       "draft": true,
       "head_ref": "copilot/update-ci-to-use-uv-cli",
@@ -154,7 +175,7 @@
       "updated_at": "2026-03-24T20:47:45Z",
       "merged_at": "2026-03-24T20:47:36Z",
       "closed_at": "2026-03-24T20:47:36Z",
-      "days_stale": 50,
+      "days_stale": 68,
       "labels": [
         "dependencies",
         "ruby"
@@ -173,7 +194,7 @@
       "updated_at": "2026-02-23T02:34:10Z",
       "merged_at": "2026-02-23T02:27:36Z",
       "closed_at": "2026-02-23T02:27:36Z",
-      "days_stale": 80,
+      "days_stale": 97,
       "labels": [],
       "draft": false,
       "head_ref": "copilot-worktree-2026-02-21T01-36-59",
@@ -189,7 +210,7 @@
       "updated_at": "2026-02-04T13:27:55Z",
       "merged_at": "2026-02-04T13:24:18Z",
       "closed_at": "2026-02-04T13:24:18Z",
-      "days_stale": 98,
+      "days_stale": 116,
       "labels": [],
       "draft": false,
       "head_ref": "copilot/find-and-replace-md-linkages",
@@ -205,7 +226,7 @@
       "updated_at": "2026-02-04T12:36:12Z",
       "merged_at": null,
       "closed_at": "2026-01-29T07:13:15Z",
-      "days_stale": 98,
+      "days_stale": 116,
       "labels": [],
       "draft": false,
       "head_ref": "claude/fetch-copilot-instructions-KGF55",
@@ -221,7 +242,7 @@
       "updated_at": "2026-01-05T03:49:03Z",
       "merged_at": "2026-01-05T03:47:23Z",
       "closed_at": "2026-01-05T03:47:23Z",
-      "days_stale": 129,
+      "days_stale": 146,
       "labels": [],
       "draft": false,
       "head_ref": "add-claude-github-actions-1767584822087",
@@ -237,7 +258,7 @@
       "updated_at": "2026-01-05T03:48:24Z",
       "merged_at": "2026-01-05T03:44:57Z",
       "closed_at": "2026-01-05T03:44:57Z",
-      "days_stale": 129,
+      "days_stale": 146,
       "labels": [],
       "draft": false,
       "head_ref": "add-claude-github-actions-1767584661398",
@@ -253,7 +274,7 @@
       "updated_at": "2026-02-04T12:35:38Z",
       "merged_at": null,
       "closed_at": "2026-01-29T07:13:11Z",
-      "days_stale": 98,
+      "days_stale": 116,
       "labels": [],
       "draft": true,
       "head_ref": "copilot/correct-ankh-understanding",
@@ -269,7 +290,7 @@
       "updated_at": "2026-02-04T12:35:56Z",
       "merged_at": null,
       "closed_at": "2025-12-01T19:26:43Z",
-      "days_stale": 98,
+      "days_stale": 116,
       "labels": [],
       "draft": false,
       "head_ref": "copilot/research-github-copilot-pro-features",
@@ -286,7 +307,7 @@
       "created_at": "2026-02-04T01:31:52Z",
       "updated_at": "2026-02-04T01:36:47Z",
       "closed_at": "2026-02-04T01:36:47Z",
-      "days_stale": 99,
+      "days_stale": 116,
       "labels": [
         "root dir/workspace enhancement"
       ],
@@ -302,6 +323,13 @@
       "is_default": false
     },
     {
+      "name": "dependabot/uv/birdcage/uv-d665ee01e3",
+      "sha": "1a2bd87886d298c1ef3a09e9caaf368c7112b7f5",
+      "actor_type": "dependabot",
+      "protected": false,
+      "is_default": false
+    },
+    {
       "name": "feature/ssot-section-0.03-chromatic-pathology",
       "sha": "c45e6c9e347f1fca0363e1ad8bb7ff39412ccf6a",
       "actor_type": "human",
@@ -310,7 +338,7 @@
     },
     {
       "name": "main",
-      "sha": "29c6a752c5b2c1bd48d13fc6a30884e758a95d42",
+      "sha": "ca964a2175d97e0c9fcca777cb3a6aa9296807c8",
       "actor_type": "human",
       "protected": false,
       "is_default": true

@@ -30,7 +30,7 @@ This repository adopts **PowerShell 7.5.x+ (Chthonic) --as the canonical Win11 e
 
 ## Execution Discipline — Windows (Non-Negotiable)
 
-1. Canonical shell is PowerShell 7.4.x+ (`pwsh`).
+1. Canonical shell is PowerShell 7.x.x (`pwsh`).
 2. PowerShell commands MUST run directly in pwsh — never via Bash.
 3. NEVER nest shells: `Bash(pwsh …)` is forbidden.
 4. Bash is a foreign runtime; use only as: `pwsh> bash -lc "<pure bash>"`.
@@ -45,13 +45,13 @@ This repository adopts **PowerShell 7.5.x+ (Chthonic) --as the canonical Win11 e
 
 ## Canonical Shell
 
-**Executable:** `pwsh.exe` or `pwsh` (PowerShell 7.4.x or later)
-**Required:** All new scripts MUST use PowerShell 7.4.x+
+**Executable:** `pwsh.exe` or `pwsh` (PowerShell 7.x.x or later)
+**Required:** All new scripts MUST use PowerShell 7.x.x+
 **VS Code Terminal:** "Pwsh (Chthonic)" with `-NoProfile -NoExit`
 
 **Verification:**
 ```powershell
-$PSVersionTable.PSVersion   # Should return 7.6.x or higher
+$PSVersionTable.PSVersion   # Should return 7.x.x or higher
 $PSVersionTable.PSEdition   # Should return "Core"
 ```
 

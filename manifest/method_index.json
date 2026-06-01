@@ -1,21 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T05:44:06.770661+00:00",
-  "since": "2026-03-15T05:43:32.007539+00:00",
+  "generated_at": "2026-05-31T22:05:22.287514+00:00",
+  "since": "2026-04-01T22:05:02.201329+00:00",
   "since_days": 60,
   "summary": {
-    "total_commits_scanned": 771,
-    "total_methodful_commits": 100,
-    "unclassified_commits": 671,
+    "total_commits_scanned": 772,
+    "total_methodful_commits": 104,
+    "unclassified_commits": 668,
     "by_method": {
-      "anchor-correction": 36,
-      "tombstone-mark": 6,
-      "uv-lock-upgrade": 7,
-      "stub-creation": 1,
+      "rust-constraint-bump": 25,
+      "npm-constraint-bump": 12,
       "path-rename-followup": 5,
-      "python-constraint-bump": 21,
-      "npm-constraint-bump": 9,
-      "rust-constraint-bump": 14,
+      "python-constraint-bump": 16,
+      "anchor-correction": 28,
+      "uv-lock-upgrade": 10,
+      "tombstone-mark": 6,
+      "stub-creation": 1,
       "cargo-update": 1
     },
     "method_classes_seen": 9
@@ -23,111 +23,111 @@
   "methods": [
     {
       "name": "anchor-correction",
-      "frequency": 36,
-      "confidence_avg": 0.64,
-      "last_used_at": "2026-05-14T07:36:09+02:00",
+      "frequency": 28,
+      "confidence_avg": 0.61,
+      "last_used_at": "2026-05-17T20:32:31+02:00",
       "noise_class": "rot/L3-anchor",
       "suggested_invocation": "fix link path or anchor (e.g., `../` -> `../../`)",
       "example_commits": [
         {
-          "sha": "29c6a752",
-          "subject": "fix(rot): triage 3 clusters via method-index routing (-10 entries, 34 -> 24)"
+          "sha": "ab8596fb",
+          "subject": "fix(pointer): revert L4323 anchor — FA5 rejects HTML/line anchors"
         },
         {
-          "sha": "87913bc5",
-          "subject": "docs(session): May 14 PM continuation — 4-lens stack + rot triage + SSOT canon"
+          "sha": "6da07646",
+          "subject": "fix(pointer): add L4323 line anchor to NAS reference link"
         },
         {
-          "sha": "cd2bc1fd",
-          "subject": "fix(rot): correct SSOT mis-tombstone — introduce lifecycle: ssot-canon"
-        }
-      ]
-    },
-    {
-      "name": "python-constraint-bump",
-      "frequency": 21,
-      "confidence_avg": 0.77,
-      "last_used_at": "2026-05-10T09:30:51+02:00",
-      "noise_class": "dependabot/pip-direct-pinned",
-      "suggested_invocation": "edit pyproject.toml dependency cap, then uv lock",
-      "example_commits": [
-        {
-          "sha": "38410a7f",
-          "subject": "feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8"
-        },
-        {
-          "sha": "dca3cb67",
-          "subject": "fix(embedding_explorer): address GHPR review comments"
-        },
-        {
-          "sha": "1d594d4f",
-          "subject": "G7+G0: sdnext_g0_probe, manifest, pyproject optimum update"
+          "sha": "b6ce5dd5",
+          "subject": "fix(rot): truth-up digest annotation + target-side lifecycle guard"
         }
       ]
     },
     {
       "name": "rust-constraint-bump",
-      "frequency": 14,
-      "confidence_avg": 0.83,
-      "last_used_at": "2026-05-02T00:00:04+02:00",
+      "frequency": 25,
+      "confidence_avg": 0.77,
+      "last_used_at": "2026-05-31T23:21:30+02:00",
       "noise_class": "dependabot/rust-direct-pinned",
       "suggested_invocation": "edit Cargo.toml dependency version, then cargo update",
       "example_commits": [
         {
-          "sha": "b4cd3468",
-          "subject": "feat(vs_battery): add script for Visual Studio battery management and auditing"
+          "sha": "636fa991",
+          "subject": "feat: add spread-value script for content-value analysis and deduplication"
         },
         {
-          "sha": "f8d1131a",
-          "subject": "V9: raw terminal mode (crossterm) + Ω-3 XP trail write"
+          "sha": "ec51fbd1",
+          "subject": "refactor: overhaul file extension classification and counting mechanism"
         },
         {
-          "sha": "1c073231",
-          "subject": "feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs"
+          "sha": "d368d027",
+          "subject": "feat: add new bridges and remove obsolete SDK connection files"
+        }
+      ]
+    },
+    {
+      "name": "python-constraint-bump",
+      "frequency": 16,
+      "confidence_avg": 0.81,
+      "last_used_at": "2026-05-27T02:00:06+02:00",
+      "noise_class": "dependabot/pip-direct-pinned",
+      "suggested_invocation": "edit pyproject.toml dependency cap, then uv lock",
+      "example_commits": [
+        {
+          "sha": "0893aac7",
+          "subject": "Add new dependencies for image processing and geometry manipulation"
+        },
+        {
+          "sha": "79dab782",
+          "subject": "feat(mcp): consolidate archaeology servers into chthonic-archive"
+        },
+        {
+          "sha": "38410a7f",
+          "subject": "feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8"
         }
       ]
     },
     {
       "name": "npm-constraint-bump",
-      "frequency": 9,
-      "confidence_avg": 0.64,
-      "last_used_at": "2026-05-08T08:13:07+02:00",
+      "frequency": 12,
+      "confidence_avg": 0.63,
+      "last_used_at": "2026-05-31T04:41:40+02:00",
       "noise_class": "dependabot/npm-direct-pinned",
       "suggested_invocation": "edit package.json dependency version, then bun update",
       "example_commits": [
         {
-          "sha": "64ce45cf",
-          "subject": "fix: update GPU specifications in epoch reference document"
+          "sha": "af05da79",
+          "subject": "Update session drain timestamps and workspace hashes; enhance SSOT manifest structure"
         },
         {
-          "sha": "827eae89",
-          "subject": "feat: update version to 0.2.7 and add new command for selecting Claude Design Export"
+          "sha": "c559a079",
+          "subject": "feat: update pre-commit hook and package.json scripts for improved automation and verification"
         },
         {
-          "sha": "144a1557",
-          "subject": "fix: update version to 0.2.6 in package.json"
+          "sha": "3b6e15d2",
+          "subject": "chore: update chthonic-archive to version 0.2.9 and add new FLUX commands and settings"
         }
       ]
     },
     {
       "name": "uv-lock-upgrade",
-      "frequency": 7,
-      "confidence_avg": 1.0,
-      "last_used_at": "2026-05-14T06:13:41+02:00",
+      "frequency": 10,
+      "confidence_avg": 0.95,
+      "last_used_at": "2026-05-17T20:09:00+02:00",
       "noise_class": "dependabot/pip-transitive",
       "suggested_invocation": "uv lock --upgrade-package <pkg>",
       "example_commits": [
         {
-          "sha": "150c7b10",
-          "subject": "feat(workspace): add api_pool.ps1 script loading to launch workflow"
+          "sha": "84d1383d",
+          "subject": "feat: update Named Agent Sovereignty rules and dependencies in copilot-instructions and uv.lock"
         },
         {
-          "sha": "685a4311",
-          "subject": "Refactor code structure and remove redundant sections for improved readability and maintainability"
+          "sha": "a7e0aa4b",
+          "subject": "feat: add commands for managing Chthonic FLUX master secret"
         },
         {
-          "sha": "b7746613",
-          "subject": "feat(tools): add tool validation script and update toolchain reports"
+          "sha": "f40d6819",
+          "subject": "feat: integrate FluxService into chthonic-archive extension"
         }
       ]
     },
@@ -157,10 +157,14 @@
       "name": "path-rename-followup",
       "frequency": 5,
       "confidence_avg": 0.8,
-      "last_used_at": "2026-05-13T07:12:29+02:00",
+      "last_used_at": "2026-05-28T21:31:47+02:00",
       "noise_class": "rot/L4-lineage",
       "suggested_invocation": "batch-update broken refs across multiple files (one logical move)",
       "example_commits": [
+        {
+          "sha": "cfef8cd5",
+          "subject": "Remove Agent Common Configuration Document"
+        },
         {
           "sha": "af3cd781",
           "subject": "tune(pathfinder): AMBIG severity = warning, not error"
@@ -168,10 +172,6 @@
         {
           "sha": "ab572948",
           "subject": "fix(pathfinder): apply link-rot auto-fixes across 28 markdown files"
-        },
-        {
-          "sha": "dc42cac8",
-          "subject": "docs: consolidate documentation sprawl — 80 files reorganized"
         }
       ]
     },

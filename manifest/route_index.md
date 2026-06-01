@@ -1,6 +1,6 @@
 # Route index digest
 
-Generated: 2026-05-14T06:23:25.623615+00:00
+Generated: 2026-05-31T22:05:22.516727+00:00
 Source: `manifest/route_index.json` (regenerate via `uv run scripts/route_index.py`)
 
 Sub-lens: compound router over the 4 observation lenses.
@@ -11,49 +11,49 @@ fired with `--apply`; others are propose-only (need user decision).
 ## Summary
 
 - Routes computed: 6
-- Total noise items routed: 64
+- Total noise items routed: 202
 - Auto-applicable routes: 1
 
 ## Routes (most items first)
 
-### `rust-constraint-bump` — 23 items (propose-only)
-
-- Noise class: `dependabot/rust-direct-pinned`
-- Frequency prior (from method_index): 14x
-- Suggested invocation: `edit Cargo.toml dependency version, then cargo update`
-- Packages (11): atty, curve25519-dalek, ed25519-dalek, gix, gix-fs, gix-pack, gix-transport, openssl, quinn-proto, rand...
-
-### `anchor-correction` — 15 items (propose-only)
+### `anchor-correction` — 87 items (propose-only)
 
 - Noise class: `rot/L3-anchor`
-- Frequency prior (from method_index): 36x
+- Frequency prior (from method_index): 28x
 - Suggested invocation: `fix link path or anchor (e.g., `../` -> `../../`)`
-- Sample sources: .github/instructions/agent-priority-protocol.md, .github/instructions/asc-entity-generation.reference.md, .github/instructions/behavioral-scenarios.reference.md, .github/instructions/dcrp-operational-guide.md, .github/instructions/dev-conventions.reference.md...
+- Sample sources: .github/INTEGRATION_MAP.md, .github/SESSION_RESUME.md, .github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md, .github/STRUCTURAL_INTEGRITY_ANALYSIS.md, .github/VALIDATION_REPORT.md...
 
-### `stub-creation-or-tombstone` — 9 items (propose-only)
+### `stub-creation-or-tombstone` — 68 items (propose-only)
 
 - Noise class: `rot/ROT-001-phantom-target`
 - Frequency prior (from method_index): 1x
 - Suggested invocation: `create new file with `lifecycle: stub` frontmatter`
-- Sample sources: .github/agents/IronMaiden.agent.md, claude/mailbox/archive/series/SESSION_HANDOFF/SESSION_HANDOFF_2026_03_01_WPTG_SFS_LANE_TRANSFER_TO_CODEX.md, codex/codex-session-logs/archive/MILF-Core-META.md, docs/archive/reports/TRUE_MISSING_FILES_REVIEW.md, docs/archive/sessions/DEVELOPMENT_STATE.md...
+- Sample sources: .github/agents/Chthonic-Archivist.agent.md, .github/instructions/ankh-workflow.instructions.md, .temple/protocols/SESSION_2026_05_24_25_REDUX.md, claude-codex-gemini/triadic-session-context/BUN_SEGFAULT_2026_02_01.md, claude/mailbox/CODEX_HANDOFF_FLUX_VISIBILITY_STATUSBAR_2026_05_15.md...
 
-### `python-constraint-bump` — 7 items (propose-only)
+### `rust-constraint-bump` — 24 items (propose-only)
 
-- Noise class: `dependabot/pip-direct-pinned`
-- Frequency prior (from method_index): 21x
-- Suggested invocation: `edit pyproject.toml dependency cap, then uv lock`
-- Packages (2): flask-cors, gradio
+- Noise class: `dependabot/rust-direct-pinned`
+- Frequency prior (from method_index): 25x
+- Suggested invocation: `edit Cargo.toml dependency version, then cargo update`
+- Packages (11): atty, curve25519-dalek, ed25519-dalek, gix, gix-fs, gix-pack, gix-transport, openssl, quinn-proto, rand...
 
-### `uv-lock-upgrade` — 7 items (auto-applicable)
+### `uv-lock-upgrade` — 10 items (auto-applicable)
 
 - Noise class: `dependabot/pip-transitive`
-- Frequency prior (from method_index): 7x
+- Frequency prior (from method_index): 10x
 - Suggested invocation: `uv lock --upgrade-package <pkg>`
-- Packages (2): diskcache, pillow
+- Packages (4): diffusers, diskcache, idna, pillow
 
-### `npm-constraint-bump` — 3 items (propose-only)
+### `python-constraint-bump` — 8 items (propose-only)
+
+- Noise class: `dependabot/pip-direct-pinned`
+- Frequency prior (from method_index): 16x
+- Suggested invocation: `edit pyproject.toml dependency cap, then uv lock`
+- Packages (3): flask-cors, gradio, idna
+
+### `npm-constraint-bump` — 5 items (propose-only)
 
 - Noise class: `dependabot/npm-direct-pinned`
-- Frequency prior (from method_index): 9x
+- Frequency prior (from method_index): 12x
 - Suggested invocation: `edit package.json dependency version, then bun update`
 - Packages (1): postcss

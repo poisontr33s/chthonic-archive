@@ -38,26 +38,75 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { SpotifyControl } from "./spotify_control.ts";
-import type { AudioFeatures } from "./spotify_control.ts";
-import { appendFileSync, mkdirSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
 import { join } from "path";
 
 // ──────────────────────────────────────────────────────────────
-//  Affective helpers
+//  Sonic window (real loopback signal from sonic-daemon)
 // ──────────────────────────────────────────────────────────────
 
-/** Derive a human-readable affect label from Spotify audio features. */
-function interpretAffect(f: AudioFeatures): string {
+const WINDOW_PATH = join(process.cwd(), "manifest", "sonic_window.json");
+
+/** The temporal sense: the daemon's model of the sonic environment over time. */
+interface Temporal {
+  phase?: { character: string; secs: number };
+  trend?: { energy_30s?: string; energy_5m?: string; brightness_30s?: string };
+  events?: Array<{ kind: string; detail: string; secs_ago: number }>;
+  stability?: string; // "settled" | "settling" | "transitional"
+  // The instant read against the user's OWN running baseline (calibration), not absolute:
+  relative?: { energy?: string; brightness?: string; calibrated?: boolean };
+  narrative?: string; // one-line, agent-readable arc
+}
+
+/** Shape of manifest/sonic_window.json, written by sonic-daemon. */
+interface SonicWindow {
+  schema?: string;
+  source?: string; // "loopback" | "blocked" | "disabled"
+  energy?: number; // 0..1 loudness over the rolling window
+  silent?: boolean;
+  captured_at_epoch_ms?: number;
+  window_secs?: number;
+  sample_rate?: number;
+  // G3 spectral fields, present once the daemon emits them:
+  brightness?: number;
+  tonality?: number;
+  valence_proxy?: number;
+  // 0..1 voice/words-presence proxy (syllable-rate modulation). High = vocal/speech; low = wordless.
+  voiceness?: number;
+  // Temporal sense — the arc, not the frame:
+  temporal?: Temporal;
+}
+
+function readSonicWindow(): SonicWindow | null {
+  try {
+    return JSON.parse(readFileSync(WINDOW_PATH, "utf8")) as SonicWindow;
+  } catch {
+    return null; // no daemon / no file yet → caller degrades to Spotify identity
+  }
+}
+
+const round2 = (n: number): number => Math.round(n * 100) / 100;
+
+/** Human-readable affect label from the real loopback window. */
+function interpretLoopbackAffect(w: SonicWindow): string {
+  if (w.silent) return "silent";
   const tags: string[] = [];
-  if (f.energy > 0.7) tags.push("high-energy");
-  else if (f.energy < 0.35) tags.push("low-energy");
-  if (f.valence > 0.65) tags.push("bright");
-  else if (f.valence < 0.35) tags.push("melancholic");
-  if (f.instrumentalness > 0.6) tags.push("instrumental");
-  else if (f.speechiness > 0.33) tags.push("spoken-word");
-  if (f.tempo > 145) tags.push("fast-paced");
-  else if (f.tempo < 80) tags.push("slow");
-  tags.push(f.mode === 0 ? "minor" : "major");
+  const e = w.energy ?? 0;
+  if (e > 0.66) tags.push("high-energy");
+  else if (e < 0.33) tags.push("low-energy");
+  else tags.push("mid-energy");
+  if (typeof w.brightness === "number") {
+    if (w.brightness > 0.6) tags.push("bright");
+    else if (w.brightness < 0.35) tags.push("dark");
+  }
+  if (typeof w.tonality === "number" && w.tonality < 0.25) tags.push("percussive");
+  if (typeof w.voiceness === "number") {
+    if (w.voiceness > 0.5) tags.push("vocal");
+    else if (w.voiceness < 0.25) tags.push("wordless");
+  }
+  const t = w.temporal?.trend?.energy_30s;
+  if (t === "rising") tags.push("building");
+  else if (t === "falling") tags.push("easing");
   return tags.join(" · ");
 }
 
@@ -80,6 +129,51 @@ function logSonicEvent(entry: Record<string, unknown>): void {
 //  Spotify instance
 // ──────────────────────────────────────────────────────────────
 const spotify = new SpotifyControl();
+
+// ──────────────────────────────────────────────────────────────
+//  sonic-daemon supervisor (real loopback capture)
+// ──────────────────────────────────────────────────────────────
+// Spawn the capture daemon as a child. We hold its stdin; closing it (when this MCP
+// server dies) reaps the daemon via SONIC_REAP_ON_STDIN, and we also kill() on exit.
+let daemonProc: ReturnType<typeof Bun.spawn> | null = null;
+
+function spawnSonicDaemon(): void {
+  if ((process.env.SONIC_CAPTURE ?? "").trim().toLowerCase() === "off") return;
+  const exe = join(
+    process.cwd(),
+    "extensions/chthonic-archive/native/target/release/sonic-daemon.exe",
+  );
+  if (!existsSync(exe)) return; // not built yet → sonic_read degrades to Spotify identity
+  try {
+    daemonProc = Bun.spawn([exe, process.cwd()], {
+      env: { ...process.env, SONIC_REAP_ON_STDIN: "1" },
+      stdin: "pipe",
+      stdout: "ignore",
+      stderr: "ignore",
+    });
+  } catch {
+    daemonProc = null;
+  }
+}
+
+function reapSonicDaemon(): void {
+  try {
+    daemonProc?.kill();
+  } catch {
+    // best-effort
+  }
+}
+
+spawnSonicDaemon();
+process.on("exit", reapSonicDaemon);
+process.on("SIGINT", () => {
+  reapSonicDaemon();
+  process.exit(0);
+});
+process.on("SIGTERM", () => {
+  reapSonicDaemon();
+  process.exit(0);
+});
 
 // ──────────────────────────────────────────────────────────────
 //  MCP Server
@@ -110,7 +204,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "sonic_read",
       description:
-        "AGENT INTAKE CONTRACT: Call this at the START of every turn, before processing the user's request. Reads the sonic context of the user's environment — what was playing while they formulated this message. Returns audio features (energy, valence, instrumentalness, tempo, mode) plus a pre-interpreted affect label. The user's sonic state is affective context: high instrumentalness + low valence = deep-focus melancholic register; high energy + high valence = active bright mode. Calibrate your response register accordingly. Logs to manifest/sonic_session.jsonl (session data lake).",
+        "AGENT INTAKE CONTRACT: Call this at the START of every turn, before processing the user's request. Reads the user's REAL-TIME sonic environment — the actual system audio captured via WASAPI loopback (not pre-computed metadata). Read `narrative` FIRST: it is the temporal ARC of the sonic environment across the turns you weren't running for — the current phase and how long it's held, whether energy is building or easing, and the last shift (e.g. 'Quiet-mellow for 11m; energy easing; quiet-bright → quiet-mellow 2m ago'). The instant fields (energy 0..1, silent, brightness/tonality/valence_proxy) and `affect` label describe the present moment; `temporal` carries the full trend/phase/event detail. Two dimensions matter most for how to MEET them: `voiceness` (0..1 proxy — high means a verbal/vocal space, language already present; low means a wordless/instrumental interior — match it, stay spacious) and `temporal.stability` (settled = deep in one mode, go deep with them; transitional/in-flux = shifting, stay light). `temporal.relative` places the moment against the user's OWN running baseline (above/around/below their norm — calibrated once `relative.calibrated` is true): "quieter than your norm" means more than the absolute number — they've dropped below where they usually sit. All fused with Spotify track identity (track/artist). The `source` field gives provenance: loopback+spotify · loopback-only · spotify-only (no live capture: daemon down, or output in WASAPI exclusive mode e.g. Spotify bit-perfect) · idle. Calibrate your register to BOTH the present affect and the arc — a user 20 minutes into a deepening quiet wordless stretch is in a different place than one whose energy just spiked. Logs to manifest/sonic_session.jsonl.",
       inputSchema: {
         type: "object",
         properties: {
@@ -176,12 +270,28 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
   if (name === "sonic_read") {
     const turnLabel = (args as Record<string, string>)?.turn_label ?? "";
     try {
-      const state = await spotify.getStateWithFeatures();
+      // Identity always from Spotify (/me/player is NOT deprecated); affect always from the
+      // real loopback window. Either can be absent — degrade honestly, never throw.
+      const state = await spotify.getState();
+      const w = readSonicWindow();
+
+      const ageMs =
+        w?.captured_at_epoch_ms != null ? Date.now() - w.captured_at_epoch_ms : null;
+      const staleSecs = ageMs != null ? Math.round(ageMs / 1000) : null;
+      // Fresh = within one window length plus a few seconds of grace.
+      const graceMs = (w?.window_secs ? w.window_secs * 1000 : 5000) + 4000;
+      const haveLoopback = !!w && w.source === "loopback" && ageMs != null && ageMs < graceMs;
+
+      let source: string;
+      if (haveLoopback && state.trackName) source = "loopback+spotify";
+      else if (haveLoopback) source = "loopback-only";
+      else if (state.trackName) source = "spotify-only";
+      else source = "idle";
+
       const trackLine = state.trackName
         ? `${state.trackName}${state.artist ? ` — ${state.artist}` : ""}`
         : null;
-      const af = state.audioFeatures;
-      const affect = af ? interpretAffect(af) : null;
+      const affect = haveLoopback ? interpretLoopbackAffect(w!) : null;
 
       logSonicEvent({
         event: "sonic_read",
@@ -189,7 +299,13 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
         track: state.trackName,
         artist: state.artist,
         is_playing: state.isPlaying,
-        ...(af ?? {}),
+        source,
+        energy: w?.energy,
+        silent: w?.silent,
+        brightness: w?.brightness,
+        phase: w?.temporal?.phase?.character,
+        phase_secs: w?.temporal?.phase?.secs,
+        stale_secs: staleSecs,
         affect,
       });
 
@@ -198,16 +314,31 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
         track: state.trackName ?? null,
         artist: state.artist ?? null,
         progress_ms: state.progressMs,
+        source,
       };
-      if (af) {
-        payload.energy = af.energy;
-        payload.valence = af.valence;
-        payload.instrumentalness = af.instrumentalness;
-        payload.tempo = Math.round(af.tempo);
-        payload.danceability = af.danceability;
-        payload.mode = af.mode === 0 ? "minor" : "major";
+      if (haveLoopback) {
+        payload.energy = round2(w!.energy ?? 0);
+        payload.silent = w!.silent ?? false;
+        if (typeof w!.brightness === "number") payload.brightness = round2(w!.brightness);
+        if (typeof w!.tonality === "number") payload.tonality = round2(w!.tonality);
+        if (typeof w!.valence_proxy === "number")
+          payload.valence_proxy = round2(w!.valence_proxy);
+        if (typeof w!.voiceness === "number") payload.voiceness = round2(w!.voiceness);
         payload.affect = affect;
+        // The temporal sense — read the arc first: it tells you where the user has BEEN
+        // sonically across the turns you weren't running for, not just the current instant.
+        if (w!.temporal?.narrative) payload.narrative = w!.temporal.narrative;
+        if (w!.temporal) payload.temporal = w!.temporal;
+        payload.window_secs = w!.window_secs;
+      } else if (w?.source === "blocked") {
+        payload.note =
+          "loopback blocked — an app holds the output in WASAPI exclusive mode (e.g. Spotify bit-perfect/lossless). No affect available; identity only.";
+      } else if (!w) {
+        payload.note = "no sonic window — capture daemon not running or not built.";
+      } else if (staleSecs != null) {
+        payload.note = `sonic window stale (${staleSecs}s old) — daemon may be stopped.`;
       }
+      if (staleSecs != null) payload.stale_secs = staleSecs;
       if (trackLine) payload.now_playing = trackLine;
 
       return {

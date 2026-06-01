@@ -1,57 +1,58 @@
 # Dependabot index digest
 
-Generated: 2026-05-14T05:43:29.136093+00:00
+Generated: 2026-05-31T22:04:59.526576+00:00
 Repo: `poisontr33s/chthonic-archive`
 Source: `manifest/dependabot_index.json` (regenerate via `uv run scripts/dependabot_index.py`)
 
 ## Summary
 
-- Total alerts: 68
-- Fix available: 64 / 68
-- Hotspot packages (>=2 alerts each): 16
+- Total alerts: 76
+- Fix available: 73 / 76
+- Hotspot packages (>=2 alerts each): 18
 
 ### By state
 
-- `open`: 40
+- `open`: 47
 - `fixed`: 28
+- `auto_dismissed`: 1
 
 ### By severity
 
-- `high`: 29
-- `medium`: 25
+- `medium`: 31
+- `high`: 31
 - `low`: 12
 - `critical`: 2
 
 ### By ecosystem
 
-- `pip`: 33
-- `rust`: 30
-- `npm`: 4
+- `pip`: 37
+- `rust`: 31
+- `npm`: 7
 - `rubygems`: 1
 
 ### By relationship (direct = actionable, transitive = upstream wait)
 
-- `unknown`: 36
-- `direct`: 17
-- `transitive`: 15
+- `unknown`: 37
+- `direct`: 21
+- `transitive`: 18
 
 ## Hotspot packages (one package, multiple CVEs)
 
-- `rust/openssl` — 7 alerts
+- `rust/openssl` — 8 alerts
 - `rust/rustls-webpki` — 7 alerts
+- `npm/postcss` — 6 alerts
 - `pip/pillow` — 6 alerts
 - `pip/gradio` — 4 alerts
 - `rust/gix` — 4 alerts
 - `pip/python-multipart` — 3 alerts
 - `pip/flask-cors` — 3 alerts
 - `pip/fastmcp` — 3 alerts
-- `npm/postcss` — 3 alerts
 - `rust/rand` — 3 alerts
+- `pip/diffusers` — 2 alerts
+- `pip/idna` — 2 alerts
 - `pip/authlib` — 2 alerts
 - `pip/urllib3` — 2 alerts
 - `pip/pip` — 2 alerts
-- `pip/cryptography` — 2 alerts
-- `pip/diskcache` — 2 alerts
 
 ## Top 25 alerts (priority order)
 
@@ -70,6 +71,20 @@ Sort key: open before non-open, severity rank, fix-available, direct over transi
 - CVE-2026-28414 · GHSA-39mp-8hj3-5c49
 - manifest: `uv.lock`
 - view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/60
+
+### [HIGH / open] `pip/diffusers` (transitive, fix:0.38.0)
+
+- Diffusers: TOCTOU Trust Remote Code Bypass
+- CVE-2026-45804 · GHSA-7wx4-6vff-v64p
+- manifest: `uv.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/78
+
+### [HIGH / open] `pip/diffusers` (transitive, fix:0.38.0)
+
+- Diffusers has a `trust_remote_code` bypass via `custom_pipeline` and local custom components
+- CVE-2026-44513 · GHSA-98h9-4798-4q5v
+- manifest: `uv.lock`
+- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/74
 
 ### [HIGH / open] `pip/pillow` (transitive, fix:12.2.0)
 
@@ -204,15 +219,3 @@ Sort key: open before non-open, severity rank, fix-available, direct over transi
 - webpki: Name constraints were accepted for certificates asserting a wildcard name
 - manifest: `extensions/chthonic-archive/native/Cargo.lock`
 - view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/22
-
-### [LOW / open] `rust/rustls-webpki` (unknown, fix:0.103.12)
-
-- webpki: Name constraints for URI names were incorrectly accepted
-- manifest: `extensions/chthonic-archive/native/Cargo.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/21
-
-### [LOW / open] `rust/atty` (unknown, no-fix-yet)
-
-- atty potential unaligned read
-- manifest: `extensions/chthonic-archive/native/Cargo.lock`
-- view: https://github.com/poisontr33s/chthonic-archive/security/dependabot/4
