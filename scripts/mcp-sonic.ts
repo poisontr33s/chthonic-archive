@@ -38,8 +38,9 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { SpotifyControl } from "./spotify_control.ts";
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
+import { spawn as nodeSpawn } from "child_process";
 
 // ──────────────────────────────────────────────────────────────
 //  Sonic window (real loopback signal from sonic-daemon)
@@ -131,47 +132,93 @@ function logSonicEvent(entry: Record<string, unknown>): void {
 const spotify = new SpotifyControl();
 
 // ──────────────────────────────────────────────────────────────
-//  sonic-daemon supervisor (real loopback capture)
+//  sonic-daemon supervisor — shared singleton (one daemon, N sessions)
 // ──────────────────────────────────────────────────────────────
-// Spawn the capture daemon as a child. We hold its stdin; closing it (when this MCP
-// server dies) reaps the daemon via SONIC_REAP_ON_STDIN, and we also kill() on exit.
-let daemonProc: ReturnType<typeof Bun.spawn> | null = null;
+// The daemon is a singleton. The first session that finds no live daemon spawns it DETACHED,
+// so it outlives this session and keeps serving the others. Every session registers as a reader
+// by touching manifest/sonic_daemon.readers on an interval; when the last session stops, the
+// daemon self-exits on its own idle timer. We never kill it — it is shared. A hard-killed
+// session simply stops touching, and the daemon ages out the same way.
 
-function spawnSonicDaemon(): void {
-  if ((process.env.SONIC_CAPTURE ?? "").trim().toLowerCase() === "off") return;
+const MANIFEST_DIR = join(process.cwd(), "manifest");
+const LOCK_PATH = join(MANIFEST_DIR, "sonic_daemon.lock");
+const READERS_PATH = join(MANIFEST_DIR, "sonic_daemon.readers");
+const READER_BEAT_MS = 15_000; // how often we touch the readers file
+const LOCK_FRESH_MS = 4_000; // a lock beat newer than this ⇒ a live daemon is serving
+
+let readerTimer: ReturnType<typeof setInterval> | null = null;
+
+function captureOff(): boolean {
+  return (process.env.SONIC_CAPTURE ?? "").trim().toLowerCase() === "off";
+}
+
+/** Register this session as a live reader — the readers-file mtime is the daemon's heartbeat. */
+function touchReaders(): void {
+  try {
+    mkdirSync(MANIFEST_DIR, { recursive: true });
+    writeFileSync(READERS_PATH, String(Date.now()));
+  } catch {
+    // best-effort — a missed touch only risks an early self-exit, recovered on the next spawn
+  }
+}
+
+/** A singleton daemon is alive iff its lock beat is fresh. */
+function daemonAlive(): boolean {
+  try {
+    const lock = JSON.parse(readFileSync(LOCK_PATH, "utf8")) as { beat_ms?: number };
+    return typeof lock.beat_ms === "number" && Date.now() - lock.beat_ms < LOCK_FRESH_MS;
+  } catch {
+    return false;
+  }
+}
+
+/** Ensure exactly one shared daemon runs, and keep our reader heartbeat alive. */
+function ensureSonicDaemon(): void {
+  if (captureOff()) return;
+  touchReaders(); // register BEFORE any spawn so the daemon sees a live reader immediately
+  readerTimer = setInterval(touchReaders, READER_BEAT_MS);
+
+  if (daemonAlive()) return; // a live singleton already serves us — attach, don't spawn
+
   const exe = join(
     process.cwd(),
     "extensions/chthonic-archive/native/target/release/sonic-daemon.exe",
   );
   if (!existsSync(exe)) return; // not built yet → sonic_read degrades to Spotify identity
+
   try {
-    daemonProc = Bun.spawn([exe, process.cwd()], {
-      env: { ...process.env, SONIC_REAP_ON_STDIN: "1" },
-      stdin: "pipe",
-      stdout: "ignore",
-      stderr: "ignore",
+    // Detached + unref: the daemon outlives THIS session so the others keep reading.
+    // SONIC_SINGLETON=1 turns on the daemon's lock-claim + reader-idle self-exit.
+    const child = nodeSpawn(exe, [process.cwd()], {
+      env: { ...process.env, SONIC_SINGLETON: "1" },
+      detached: true,
+      stdio: "ignore",
+      windowsHide: true,
     });
+    child.unref();
   } catch {
-    daemonProc = null;
+    // spawn failed → sonic_read still degrades honestly; never throw
   }
 }
 
-function reapSonicDaemon(): void {
+/** Stop heartbeating. We do NOT kill the daemon — once the last reader stops, it self-exits. */
+function releaseSonicReader(): void {
   try {
-    daemonProc?.kill();
+    if (readerTimer) clearInterval(readerTimer);
   } catch {
     // best-effort
   }
+  readerTimer = null;
 }
 
-spawnSonicDaemon();
-process.on("exit", reapSonicDaemon);
+ensureSonicDaemon();
+process.on("exit", releaseSonicReader);
 process.on("SIGINT", () => {
-  reapSonicDaemon();
+  releaseSonicReader();
   process.exit(0);
 });
 process.on("SIGTERM", () => {
-  reapSonicDaemon();
+  releaseSonicReader();
   process.exit(0);
 });
 

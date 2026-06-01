@@ -29,7 +29,7 @@ use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 
 use anyhow::{anyhow, Context, Result};
 use rustfft::{num_complex::Complex, FftPlanner};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use wasapi::{
     initialize_mta, AudioCaptureClient, AudioClient, Device, DeviceEnumerator, Direction, Handle,
     SampleType, StreamMode, WaveFormat,
@@ -193,6 +193,26 @@ pub fn run_capture(cfg: CaptureConfig, stop: Arc<AtomicBool>) -> Result<()> {
         ));
     }
 
+    // Singleton lifecycle (SONIC_SINGLETON=1): one daemon serves all MCP sessions. Claim the
+    // lock first — stand down if a live peer already serves — then start the heartbeat +
+    // reader-idle watcher. `_singleton_guard` releases the lock and joins the watcher on every
+    // exit path. With the flag off this is skipped entirely (stdin-reap / Ctrl+C as before).
+    let singleton = env_bool("SONIC_SINGLETON", false);
+    let my_pid = std::process::id();
+    let _singleton_guard = if singleton {
+        if !singleton_claim(&cfg, &stop, my_pid) {
+            return Ok(());
+        }
+        Some(SingletonGuard {
+            stop: stop.clone(),
+            lifecycle: Some(spawn_singleton_lifecycle(&cfg, stop.clone(), my_pid)),
+            lock: lock_path(&cfg),
+            pid: my_pid,
+        })
+    } else {
+        None
+    };
+
     // Open with retry: an endpoint can be transiently exclusive-locked (bit-perfect playback).
     // Write a `blocked` window and wait it out rather than dying.
     let OpenLoopback {
@@ -316,6 +336,143 @@ pub fn run_capture(cfg: CaptureConfig, stop: Arc<AtomicBool>) -> Result<()> {
     let _ = audio_client.stop_stream();
     eprintln!("[sonic] capture stopped");
     Ok(())
+}
+
+// ── Singleton lifecycle (SONIC_SINGLETON=1) ────────────────────────────────────
+// One daemon serves N MCP sessions. The first to claim `sonic_daemon.lock` runs; a later
+// daemon that sees a fresh lock beat stands down. MCP readers touch `sonic_daemon.readers`
+// while alive; when that goes stale past the idle window, the singleton self-exits. Each file
+// has a single writer domain (daemon owns .lock, readers own .readers) → no write contention.
+// With SONIC_SINGLETON unset, none of this engages.
+
+/// How fresh a lock beat must be for a peer daemon to count as alive.
+const PEER_FRESH_MS: u64 = 4_000;
+/// Lock-beat cadence (also the reader-idle poll cadence).
+const SINGLETON_BEAT_MS: u64 = 1_000;
+
+#[derive(Serialize, Deserialize)]
+struct LockFile {
+    pid: u32,
+    beat_ms: u64,
+}
+
+fn manifest_dir(cfg: &CaptureConfig) -> PathBuf {
+    cfg.out_path
+        .parent()
+        .map(Path::to_path_buf)
+        .unwrap_or_else(|| PathBuf::from("manifest"))
+}
+fn lock_path(cfg: &CaptureConfig) -> PathBuf {
+    manifest_dir(cfg).join("sonic_daemon.lock")
+}
+fn readers_path(cfg: &CaptureConfig) -> PathBuf {
+    manifest_dir(cfg).join("sonic_daemon.readers")
+}
+
+fn read_lock(path: &Path) -> Option<LockFile> {
+    serde_json::from_str(&fs::read_to_string(path).ok()?).ok()
+}
+
+fn write_lock(path: &Path, pid: u32, beat_ms: u64) {
+    if let Some(dir) = path.parent() {
+        let _ = fs::create_dir_all(dir);
+    }
+    let Ok(body) = serde_json::to_string(&LockFile { pid, beat_ms }) else {
+        return;
+    };
+    let tmp = path.with_extension("lock.tmp");
+    if fs::write(&tmp, body).is_ok() {
+        let _ = fs::rename(&tmp, path);
+    }
+}
+
+fn clear_lock_if_ours(path: &Path, my_pid: u32) {
+    if matches!(read_lock(path), Some(l) if l.pid == my_pid) {
+        let _ = fs::remove_file(path);
+    }
+}
+
+/// Milliseconds since the readers file was last touched; `u64::MAX` if it's absent.
+fn readers_idle_ms(path: &Path) -> u64 {
+    match fs::metadata(path).and_then(|m| m.modified()) {
+        Ok(mtime) => SystemTime::now()
+            .duration_since(mtime)
+            .map(|d| d.as_millis() as u64)
+            .unwrap_or(0),
+        Err(_) => u64::MAX,
+    }
+}
+
+/// Claim the singleton lock. `true` → we own it (capture). `false` → a live peer already
+/// serves; the caller exits cleanly. The settle + re-read resolves a simultaneous-start race
+/// down to one winner (last writer) with no OS-level mutex.
+fn singleton_claim(cfg: &CaptureConfig, stop: &Arc<AtomicBool>, my_pid: u32) -> bool {
+    let lock = lock_path(cfg);
+    if let Some(existing) = read_lock(&lock) {
+        if now_ms().saturating_sub(existing.beat_ms) < PEER_FRESH_MS {
+            eprintln!(
+                "[sonic] singleton: live daemon (pid {}) already serving — exiting",
+                existing.pid
+            );
+            return false;
+        }
+    }
+    write_lock(&lock, my_pid, now_ms());
+    sleep_with_stop(Duration::from_millis(300), stop);
+    if let Some(after) = read_lock(&lock) {
+        if after.pid != my_pid && now_ms().saturating_sub(after.beat_ms) < PEER_FRESH_MS {
+            eprintln!("[sonic] singleton: lost claim race to pid {} — exiting", after.pid);
+            return false;
+        }
+    }
+    write_lock(&lock, my_pid, now_ms());
+    true
+}
+
+/// Heartbeat + reader-idle watcher. Keeps the lock beat fresh and flips `stop` once no MCP
+/// reader has touched the readers file within the idle window. A startup grace covers the gap
+/// before the first reader heartbeat and a slow device open.
+fn spawn_singleton_lifecycle(
+    cfg: &CaptureConfig,
+    stop: Arc<AtomicBool>,
+    my_pid: u32,
+) -> std::thread::JoinHandle<()> {
+    let lock = lock_path(cfg);
+    let readers = readers_path(cfg);
+    let idle_ms = env_u64("SONIC_SINGLETON_IDLE_MS", 45_000);
+    let grace_ms = env_u64("SONIC_SINGLETON_GRACE_MS", 15_000);
+    let start_ms = now_ms();
+    std::thread::spawn(move || {
+        while !stop.load(Ordering::Acquire) {
+            write_lock(&lock, my_pid, now_ms());
+            if now_ms().saturating_sub(start_ms) > grace_ms && readers_idle_ms(&readers) > idle_ms {
+                eprintln!(
+                    "[sonic] singleton: no live readers within {}ms idle window — self-exiting",
+                    idle_ms
+                );
+                stop.store(true, Ordering::Release);
+                break;
+            }
+            sleep_with_stop(Duration::from_millis(SINGLETON_BEAT_MS), &stop);
+        }
+    })
+}
+
+/// RAII: on every exit path, signal stop, join the watcher, and release the lock if it's ours.
+struct SingletonGuard {
+    stop: Arc<AtomicBool>,
+    lifecycle: Option<std::thread::JoinHandle<()>>,
+    lock: PathBuf,
+    pid: u32,
+}
+impl Drop for SingletonGuard {
+    fn drop(&mut self) {
+        self.stop.store(true, Ordering::Release);
+        if let Some(h) = self.lifecycle.take() {
+            let _ = h.join();
+        }
+        clear_lock_if_ours(&self.lock, self.pid);
+    }
 }
 
 // ── Process loopback (SONIC_CAPTURE_MODE=process) ──────────────────────────────
