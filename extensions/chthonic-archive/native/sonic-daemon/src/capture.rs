@@ -259,7 +259,10 @@ pub fn run_capture(cfg: CaptureConfig, stop: Arc<AtomicBool>) -> Result<()> {
 
     let mut last_snapshot = Instant::now();
     let mut frames_since_snapshot: u64 = 0;
-    let mut temporal = TemporalModel::new();
+    // Calibration persists across restarts: load the running baseline so "your norm" keeps
+    // deepening with accumulated intake instead of resetting each daemon start.
+    let mut temporal = TemporalModel::with_baseline(manifest_dir(&cfg).join("sonic_baseline.json"));
+    let mut history = HistoryLake::from_env(&cfg);
 
     while !stop.load(Ordering::Acquire) {
         // Pace the loop: event-driven (process loopback) waits for the capture event;
@@ -311,6 +314,7 @@ pub fn run_capture(cfg: CaptureConfig, stop: Arc<AtomicBool>) -> Result<()> {
             let brightness = spec.map(|s| s.0).unwrap_or(0.0);
             // Feed the temporal sense: it accumulates the arc across turn-gaps the agent can't see.
             let temporal_block = temporal.observe(now, energy, brightness, silent);
+            let phase = temporal_block.phase.character.clone();
             let snap = SonicWindow {
                 schema: SCHEMA,
                 source: "loopback",
@@ -328,12 +332,17 @@ pub fn run_capture(cfg: CaptureConfig, stop: Arc<AtomicBool>) -> Result<()> {
             if let Err(e) = write_atomic(&cfg.out_path, &snap) {
                 eprintln!("[sonic] snapshot write failed: {e}");
             }
+            // The history lake — persist the per-second stream we'd otherwise overwrite. Scalars
+            // only (privacy), silence-coalesced, size-capped. This is the substrate a future
+            // encoder/embedder learns from; without it the dense intake is lost every tick.
+            history.append(now, energy, silent, spec, voice, &phase);
             frames_since_snapshot = 0;
             last_snapshot = Instant::now();
         }
     }
 
     let _ = audio_client.stop_stream();
+    temporal.save_baseline(); // persist the final baseline on clean shutdown
     eprintln!("[sonic] capture stopped");
     Ok(())
 }
@@ -472,6 +481,115 @@ impl Drop for SingletonGuard {
             let _ = h.join();
         }
         clear_lock_if_ours(&self.lock, self.pid);
+    }
+}
+
+// ── History lake (SONIC_HISTORY; default on) ───────────────────────────────────
+// Persist the per-snapshot scalar stream that the window file otherwise overwrites each tick —
+// the dense intake a future encoder/embedder learns from. Privacy: derived scalars only, never
+// raw audio. Silence is coalesced to a single marker per run (no 1/s "silent" spam), and the
+// file is byte-capped with a single roll so it can't grow without bound.
+
+/// One compact line of the lake. Short keys: ts(ms) · e=energy · br=brightness · to=tonality ·
+/// va=valence_proxy · vo=voiceness · ph=phase character · si=silent.
+#[derive(Serialize)]
+struct HistoryRecord<'a> {
+    ts: u64,
+    e: f32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    br: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    to: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    va: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    vo: Option<f32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    ph: Option<&'a str>,
+    si: bool,
+}
+
+struct HistoryLake {
+    path: PathBuf,
+    enabled: bool,
+    last_silent_logged: bool,
+    bytes: u64,
+    max_bytes: u64,
+}
+
+impl HistoryLake {
+    fn from_env(cfg: &CaptureConfig) -> Self {
+        let enabled = env_bool("SONIC_HISTORY", true);
+        let path = manifest_dir(cfg).join("sonic_window_history.ndjson");
+        // SONIC_HISTORY_MAX_BYTES wins if set (lets a test force a tiny cap); else MB.
+        let max_bytes = match std::env::var("SONIC_HISTORY_MAX_BYTES").ok().and_then(|v| v.trim().parse().ok()) {
+            Some(b) => b,
+            None => env_u64("SONIC_HISTORY_MAX_MB", 64).max(1) * 1024 * 1024,
+        };
+        let bytes = fs::metadata(&path).map(|m| m.len()).unwrap_or(0);
+        Self {
+            path,
+            enabled,
+            last_silent_logged: false,
+            bytes,
+            max_bytes,
+        }
+    }
+
+    fn append(
+        &mut self,
+        ts: u64,
+        energy: f32,
+        silent: bool,
+        spec: Option<(f32, f32, f32)>,
+        voice: Option<f32>,
+        phase: &str,
+    ) {
+        if !self.enabled {
+            return;
+        }
+        // Coalesce silence: one marker per silent run, not 1/s of "silent".
+        if silent {
+            if self.last_silent_logged {
+                return;
+            }
+            self.last_silent_logged = true;
+        } else {
+            self.last_silent_logged = false;
+        }
+        let rec = HistoryRecord {
+            ts,
+            e: energy,
+            br: spec.map(|s| s.0),
+            to: spec.map(|s| s.1),
+            va: spec.map(|s| s.2),
+            vo: voice,
+            ph: if silent { None } else { Some(phase) },
+            si: silent,
+        };
+        let Ok(mut line) = serde_json::to_string(&rec) else {
+            return;
+        };
+        line.push('\n');
+        if let Some(dir) = self.path.parent() {
+            let _ = fs::create_dir_all(dir);
+        }
+        if let Ok(mut f) = fs::OpenOptions::new().create(true).append(true).open(&self.path) {
+            if f.write_all(line.as_bytes()).is_ok() {
+                self.bytes += line.len() as u64;
+            }
+        }
+        if self.bytes > self.max_bytes {
+            self.rotate();
+        }
+    }
+
+    /// Roll the lake over when it hits the cap: current → `.ndjson.1` (one previous kept), fresh start.
+    fn rotate(&mut self) {
+        let rolled = self.path.with_extension("ndjson.1");
+        if fs::rename(&self.path, &rolled).is_ok() {
+            self.bytes = 0;
+        }
     }
 }
 
@@ -780,7 +898,7 @@ struct Relative {
 }
 
 /// Running mean/variance (Welford) — the user's habitual listening level for one feature.
-#[derive(Clone)]
+#[derive(Clone, Serialize, Deserialize)]
 struct Baseline {
     n: u64,
     mean: f64,
@@ -822,6 +940,14 @@ impl Baseline {
     }
 }
 
+/// Persisted calibration: the energy + brightness baselines, so "your norm" survives a daemon
+/// restart and keeps deepening with accumulated intake instead of resetting from zero.
+#[derive(Serialize, Deserialize)]
+struct BaselineSnapshot {
+    energy: Baseline,
+    bright: Baseline,
+}
+
 /// Classify a z-score against the user's norm.
 fn relative_label(z: f64) -> &'static str {
     if z > 0.7 {
@@ -845,6 +971,10 @@ struct TemporalModel {
     /// Session-long baselines (non-silent samples) — the user's own normal.
     energy_base: Baseline,
     bright_base: Baseline,
+    /// Where the baseline is persisted (None = ephemeral). Loaded on start, saved periodically.
+    baseline_path: Option<PathBuf>,
+    /// Non-silent observes since the last baseline save (throttles disk writes).
+    since_save: u32,
 }
 
 impl TemporalModel {
@@ -860,6 +990,47 @@ impl TemporalModel {
             last_silent: None,
             energy_base: Baseline::new(),
             bright_base: Baseline::new(),
+            baseline_path: None,
+            since_save: 0,
+        }
+    }
+
+    /// Like `new`, but load any persisted baseline so calibration continues across restarts.
+    fn with_baseline(path: PathBuf) -> Self {
+        let mut m = Self::new();
+        if let Ok(raw) = fs::read_to_string(&path) {
+            if let Ok(snap) = serde_json::from_str::<BaselineSnapshot>(&raw) {
+                eprintln!(
+                    "[sonic] calibration: resumed baseline (n={}) from {}",
+                    snap.energy.n,
+                    path.display()
+                );
+                m.energy_base = snap.energy;
+                m.bright_base = snap.bright;
+            }
+        }
+        m.baseline_path = Some(path);
+        m
+    }
+
+    /// Atomically persist the running baseline (energy + brightness).
+    fn save_baseline(&self) {
+        let Some(path) = &self.baseline_path else {
+            return;
+        };
+        let snap = BaselineSnapshot {
+            energy: self.energy_base.clone(),
+            bright: self.bright_base.clone(),
+        };
+        let Ok(body) = serde_json::to_string(&snap) else {
+            return;
+        };
+        if let Some(dir) = path.parent() {
+            let _ = fs::create_dir_all(dir);
+        }
+        let tmp = path.with_extension("json.tmp");
+        if fs::write(&tmp, body).is_ok() {
+            let _ = fs::rename(&tmp, path);
         }
     }
 
@@ -878,6 +1049,11 @@ impl TemporalModel {
         if !silent {
             self.energy_base.push(energy as f64);
             self.bright_base.push(brightness as f64);
+            self.since_save += 1;
+            if self.since_save >= 30 {
+                self.save_baseline();
+                self.since_save = 0;
+            }
         }
 
         // Silence / resume transitions.
