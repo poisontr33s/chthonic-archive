@@ -1,0 +1,21 @@
+[package]
+name = "sonic-daemon"
+description = "WASAPI loopback capture + streaming DSP for the Chthonic Archive sonic loop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "sonic-daemon"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+wasapi.workspace = true
+rustfft.workspace = true
+
+[features]
+# aubio beat/tempo tracking (G6) pulls in a C library; opt-in only.
+aubio = []
