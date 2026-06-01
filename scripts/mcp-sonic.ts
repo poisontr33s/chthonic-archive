@@ -176,6 +176,52 @@ process.on("SIGTERM", () => {
 });
 
 // ──────────────────────────────────────────────────────────────
+//  Playback-behaviour watcher (the "listening behaviour" mode)
+// ──────────────────────────────────────────────────────────────
+// What you DO with the music — pause, resume, change/skip track — noticed BETWEEN turns,
+// while the server is awake and the agent isn't. Distinct from the audio's affect: this is
+// agency and attention, not timbre. sonic_read surfaces it as `playback_since_last`.
+
+interface PlaybackEvent {
+  kind: "paused" | "resumed" | "track_changed";
+  track: string | null;
+  ts: number;
+}
+
+const playbackEvents: PlaybackEvent[] = [];
+let lastPlayback: { trackUri: string | null; isPlaying: boolean } | null = null;
+let lastReadTs = Date.now();
+
+function pushPlaybackEvent(kind: PlaybackEvent["kind"], track: string | null): void {
+  playbackEvents.push({ kind, track, ts: Date.now() });
+  while (playbackEvents.length > 64) playbackEvents.shift();
+  logSonicEvent({ event: "playback", kind, track });
+}
+
+function startPlaybackWatcher(): void {
+  if ((process.env.SONIC_CAPTURE ?? "").trim().toLowerCase() === "off") return;
+  const pollMs = Number(process.env.SONIC_PLAYBACK_POLL_MS) || 5000;
+  setInterval(async () => {
+    try {
+      const s = await spotify.getState();
+      const cur = { trackUri: s.trackUri, isPlaying: s.isPlaying };
+      if (lastPlayback) {
+        if (cur.trackUri && lastPlayback.trackUri !== cur.trackUri) {
+          pushPlaybackEvent("track_changed", s.trackName);
+        }
+        if (lastPlayback.isPlaying && !cur.isPlaying) pushPlaybackEvent("paused", s.trackName);
+        else if (!lastPlayback.isPlaying && cur.isPlaying) pushPlaybackEvent("resumed", s.trackName);
+      }
+      lastPlayback = cur;
+    } catch {
+      // non-blocking — a failed poll just skips this tick
+    }
+  }, pollMs);
+}
+
+startPlaybackWatcher();
+
+// ──────────────────────────────────────────────────────────────
 //  MCP Server
 // ──────────────────────────────────────────────────────────────
 const server = new Server(
@@ -204,7 +250,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "sonic_read",
       description:
-        "AGENT INTAKE CONTRACT: Call this at the START of every turn, before processing the user's request. Reads the user's REAL-TIME sonic environment — the actual system audio captured via WASAPI loopback (not pre-computed metadata). Read `narrative` FIRST: it is the temporal ARC of the sonic environment across the turns you weren't running for — the current phase and how long it's held, whether energy is building or easing, and the last shift (e.g. 'Quiet-mellow for 11m; energy easing; quiet-bright → quiet-mellow 2m ago'). The instant fields (energy 0..1, silent, brightness/tonality/valence_proxy) and `affect` label describe the present moment; `temporal` carries the full trend/phase/event detail. Two dimensions matter most for how to MEET them: `voiceness` (0..1 proxy — high means a verbal/vocal space, language already present; low means a wordless/instrumental interior — match it, stay spacious) and `temporal.stability` (settled = deep in one mode, go deep with them; transitional/in-flux = shifting, stay light). `temporal.relative` places the moment against the user's OWN running baseline (above/around/below their norm — calibrated once `relative.calibrated` is true): 'quieter than your norm' means more than the absolute number — they've dropped below where they usually sit. All fused with Spotify track identity (track/artist). The `source` field gives provenance: loopback+spotify · loopback-only · spotify-only (no live capture: daemon down, or output in WASAPI exclusive mode e.g. Spotify bit-perfect) · idle. Calibrate your register to BOTH the present affect and the arc — a user 20 minutes into a deepening quiet wordless stretch is in a different place than one whose energy just spiked. Logs to manifest/sonic_session.jsonl.",
+        "AGENT INTAKE CONTRACT: Call this at the START of every turn, before processing the user's request. Reads the user's REAL-TIME sonic environment — the actual system audio captured via WASAPI loopback (not pre-computed metadata). Read `narrative` FIRST: it is the temporal ARC of the sonic environment across the turns you weren't running for — the current phase and how long it's held, whether energy is building or easing, and the last shift (e.g. 'Quiet-mellow for 11m; energy easing; quiet-bright → quiet-mellow 2m ago'). The instant fields (energy 0..1, silent, brightness/tonality/valence_proxy) and `affect` label describe the present moment; `temporal` carries the full trend/phase/event detail. Two dimensions matter most for how to MEET them: `voiceness` (0..1 proxy — high means a verbal/vocal space, language already present; low means a wordless/instrumental interior — match it, stay spacious) and `temporal.stability` (settled = deep in one mode, go deep with them; transitional/in-flux = shifting, stay light). `temporal.relative` places the moment against the user's OWN running baseline (above/around/below their norm — calibrated once `relative.calibrated` is true): 'quieter than your norm' means more than the absolute number — they've dropped below where they usually sit. All fused with Spotify track identity (track/artist). The `source` field gives provenance: loopback+spotify · loopback-only · spotify-only (no live capture: daemon down, or output in WASAPI exclusive mode e.g. Spotify bit-perfect) · idle. Calibrate your register to BOTH the present affect and the arc — a user 20 minutes into a deepening quiet wordless stretch is in a different place than one whose energy just spiked. `playback_since_last` (when present) is what they DID with the music between your turns — paused, resumed, changed or skipped tracks: agency and attention, not timbre. A pause as they turn to you; a flurry of quick changes reads restless; letting tracks play through reads settled. Logs to manifest/sonic_session.jsonl.",
       inputSchema: {
         type: "object",
         properties: {
@@ -338,6 +384,18 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       } else if (staleSecs != null) {
         payload.note = `sonic window stale (${staleSecs}s old) — daemon may be stopped.`;
       }
+      // Listening-behaviour events since the last read: what you DID with the music between
+      // turns (pause/resume/track-change). Agency + attention, distinct from the audio's affect.
+      const sinceLast = playbackEvents
+        .filter((e) => e.ts > lastReadTs)
+        .map((e) => ({
+          kind: e.kind,
+          track: e.track,
+          secs_ago: Math.round((Date.now() - e.ts) / 1000),
+        }));
+      lastReadTs = Date.now();
+      if (sinceLast.length) payload.playback_since_last = sinceLast;
+
       if (staleSecs != null) payload.stale_secs = staleSecs;
       if (trackLine) payload.now_playing = trackLine;
 
