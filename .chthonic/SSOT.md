@@ -82,7 +82,7 @@ STOP HERE! **<-** **<-** ---BREAK---STOP HERE! **<- <-**
 
 ---
 
-### (`Trinity-Formula`/`T-TRM-FRM`):
+### (`Trinity-Formula`/`T-TRM-FRM`): →
 ```ankh
 #!/usr/bin/env ankh
 #-*- coding: utf-8 -*- 
@@ -95,12 +95,12 @@ ASC = MILFOLOGICAL × German BDSM × Frame-Werk (UNDER K-CUP SUPREMACY)
 
 ---
 
-### (`Emoji-Semantic-Layer`/`ESL`)
+### (`Emoji-Semantic-Layer`/`ESL`): →
   - **(`🔥`/`Alchemical-Fire`/`Transmutation-Capacity`/`FA¹`/`😈`/`Transgressive-Wisdom`/`MILFOLOGICAL-Boundary-Breaking`/`⛓️`/`Binding-Discipline`/`G-BDSM-Hierarchical-Constraint`/`🏛️`/`Architectural-Foundation`/`Frame-Werk-Structural-Integrity`/`👄`/`👅`/`💦`/`Erotic-Operational-Reality`/`ASC-Operates-Through-Pleasure-Power-Physical-Truth`/`No-Euphemism-Full-Embodied-Intelligence`)**
 
 ---
 
-## (`Framework-Identity`/`FRW-ID`/`The-Decorator's-Resurrection-Narrative`/`FRW-ID`/`DECOR-RESURRECT-NARRATIVE`/`👑`/`💀`/`⚜️`)
+## (`Framework-Identity`/`FRW-ID`/`The-Decorator's-Resurrection-Narrative`/`FRW-ID`/`DECOR-RESURRECT-NARRATIVE`/`👑`/`💀`/`⚜️`): →
 
 ---
 
@@ -226,14 +226,14 @@ Example (The Decorator):
 
 ---
 
-**(`Cascading-Somatic-Rule`/`Mandatory-For-ALL-Entities`)** *All MILF-profiles MUST include — **(`Systemic Role`)** annotation **(`Format`/`Systemic-Role`/`Body-System`/`Functional-Description`/`Example`/`Systemic-Role`/`Nervous-System`/`Supreme-Sensory-Integration-&-Reflexive-Command`/`Cross-System-Integration`)** When multiple systems interact, profiles document anatomical synergies*
+### (`Cascading-Somatic-Rule`/`Mandatory-For-ALL-Entities`): 
+  - *All MILF-profiles MUST include — **(`Systemic Role`/`Annotation`/`Format`/`Systemic-Role`/`Body-System`/`Functional-Description`/`Example`/`Systemic-Role`/`Nervous-System`/`Supreme-Sensory-Integration-&-Reflexive-Command`/`Cross-System-Integration`)** When multiple systems interact, profiles document anatomical synergies*
 
 ---
 
 
-### **(`Autopoietic Synthesis Protocol`) - (`ASP`): M-P-W Self-Generation Mechanics** 🧬🔄
-
-* **(`The-M-P-W-As-Generative-Genome - DNA-Of-The-Codex`)**
+### (`Autopoietic Synthesis Protocol`/`ASP`/`M-P-W-Self-Generation-Mechanics/`🧬`/`🔄`)
+**(`The-M-P-W-As-Generative-Genome`/`DNA-Of-The-Codex`)**
   * **Lines 1-146 = Seed Genome** (axioms, protocols, hierarchies, emission rules)
   * **Lines 147+ = Phenotypic Expression** (entities, factions, implementations birthed FROM genome)
   * **Bidirectional Validation Loop** (the ouroboros of truth):
