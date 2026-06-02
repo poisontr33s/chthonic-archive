@@ -4,7 +4,7 @@ description = "Chthonic Archive bridge to the GitHub Copilot SDK. Spawned by the
 version.workspace = true
 license.workspace = true
 
-# Override workspace edition (2021): the GitHub Copilot SDK canon at v1.0.0-beta.9
+# Override workspace edition (2021): the GitHub Copilot SDK canon at v1.0.0 (stable)
 # targets edition 2024 + MSRV 1.94. Per-crate override is intentional alignment.
 edition = "2024"
 rust-version = "1.94.0"
@@ -14,7 +14,7 @@ name = "chthonic-copilot-bridge"
 path = "src/main.rs"
 
 [dependencies]
-github-copilot-sdk = { version = "1.0.0-beta.9" }
+github-copilot-sdk = { version = "1.0.0" }
 anyhow.workspace = true
 serde.workspace = true
 serde_json.workspace = true

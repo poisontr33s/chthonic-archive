@@ -14,9 +14,9 @@ name = "chthonic-acp-bridge"
 path = "src/main.rs"
 
 [dependencies]
-# Official Rust ACP crate (Zed's canonical implementation). 0.12 is current.
+# Official Rust ACP crate (Zed's canonical implementation). 0.13.1 is current (modernized from 0.12).
 # `unstable` feature mirrors Zed's own pin pattern — required while ACP is pre-1.0.
-agent-client-protocol = { version = "0.12", features = ["unstable"] }
+agent-client-protocol = { version = "0.13.1", features = ["unstable"] }
 anyhow.workspace = true
 serde.workspace = true
 serde_json.workspace = true

@@ -48,8 +48,9 @@ try {
 
   const tools = await client.listTools();
   const names = tools.tools.map((t) => t.name).sort();
-  check("4 tools listed", names.length === 4, names.join(","));
+  check("5 tools listed", names.length === 5, names.join(","));
   check("exposes sourcer_check", names.includes("sourcer_check"));
+  check("exposes sourcer_sdk", names.includes("sourcer_sdk"));
 
   // The question-mark on a known-canon entity: must be ROOTED with real sources.
   const ora = body(
@@ -84,6 +85,11 @@ try {
   // Section search finds a known heading.
   const sec = body(await client.callTool({ name: "sourcer_section", arguments: { query: "Triumvirate" } }));
   check("section search returns hits", Array.isArray(sec) && sec.length > 0, `len=${Array.isArray(sec) ? sec.length : "n/a"}`);
+
+  // SDK currency — the dependency lane.
+  const sdk = body(await client.callTool({ name: "sourcer_sdk", arguments: {} }));
+  check("sourcer_sdk returns >=2 sdks", Array.isArray(sdk.sdks) && sdk.sdks.length >= 2, `n=${sdk.sdks?.length}`);
+  check("sourcer_sdk computes status", sdk.sdks?.every((s: { status?: string }) => typeof s.status === "string"));
 } finally {
   await client.close();
 }

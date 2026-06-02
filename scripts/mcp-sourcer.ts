@@ -80,6 +80,16 @@ function citationManifest(): {
   return JSON.parse(readFileSync(CITATION_MANIFEST, "utf8"));
 }
 
+/** Run the SDK currency compare (repo pins vs upstream latest) via the sourcer-sdk engine. */
+function sdkCompare(): unknown {
+  const out = execFileSync(
+    process.execPath,
+    ["run", "scripts/sourcer-sdk.ts", "compare", "--json"],
+    { cwd: REPO_ROOT, encoding: "utf8", timeout: 60_000 },
+  );
+  return JSON.parse(out);
+}
+
 // ──────────────────────────────────────────────────────────────
 //  MCP Server
 // ──────────────────────────────────────────────────────────────
@@ -132,6 +142,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       name: "sourcer_orphans",
       description:
         "List the characters that are NOT rooted in the heritage-root SSOT — the ones whose organ is deferred or fails the canon. These are derived artifacts the SSOT does not (yet) carry. The Sourcer's first honest finding is herself: she is an orphan, present only as a JSON. Use to catch drift — a new character added without registering it in the SSOT first.",
+      inputSchema: { type: "object", properties: {}, required: [] },
+    },
+    {
+      name: "sourcer_sdk",
+      description:
+        "Source the repo's pinned SDK versions against upstream latest — dependency currency, the same verification pointed at packages instead of canon. Returns each tracked SDK (agent-client-protocol, copilot-sdk) with its repo pin, the latest upstream version (crates.io / GitHub releases), and a status of current/behind/ahead. Read-only: it reports the delta so a bump stays a decision, not a surprise. Use to answer 'did a newer SDK ship?' without hand-checking.",
       inputSchema: { type: "object", properties: {}, required: [] },
     },
   ],
@@ -213,6 +229,12 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
           "Orphans are characters the heritage-root SSOT does not carry. To root one: register it in the SSOT first (a semantic act), then promote its organ — never the reverse.",
       };
       return { content: [{ type: "text", text: JSON.stringify(out, null, 2) }] };
+    }
+
+    // ── sourcer_sdk ───────────────────────────────────────────
+    if (name === "sourcer_sdk") {
+      const sdks = sdkCompare();
+      return { content: [{ type: "text", text: JSON.stringify(sdks, null, 2) }] };
     }
 
     return {
