@@ -11,7 +11,7 @@
 // The observation JSON is the same structure both the agent (game_observe MCP tool)
 // and the human face (cli-renderer) will read — one contract, two faces.
 
-use game_core::{Action, Dir, GameState};
+use game_core::{Action, Class, Dir, GameState};
 use std::fs;
 use std::path::PathBuf;
 
@@ -97,9 +97,18 @@ fn main() {
                         .unwrap_or_default()
                         .as_millis() as u64
                 });
-            let state = GameState::new(seed);
+            let class = flag_val(&args, "--class")
+                .and_then(Class::parse)
+                .unwrap_or_default();
+            let state = GameState::new_as(seed, class);
             save_state(&state);
-            eprintln!("new run — seed={} state={}", seed, state_path().display());
+            eprintln!(
+                "new run — {} ({}) seed={} state={}",
+                class.name(),
+                class.chain(),
+                seed,
+                state_path().display()
+            );
             println!("{}", state.observe_json());
         }
 

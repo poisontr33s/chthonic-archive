@@ -11,9 +11,7 @@
 @Ogdoad:        (Standalone)
 @Type:          INFRASTRUCTURE
 @Purpose:       SSOT Path Bridge for scripts/ — re-exporting from ssot_manifest.py to avoid hardcoding SSOT paths in scripts/ modules.
-"""
 
-"""
 ssot_paths.py — SSOT Path Bridge for scripts/.
 
 Thin re-export from mas_mcp.logic.ssot_manifest so that scripts/ modules

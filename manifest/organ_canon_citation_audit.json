@@ -1,7 +1,7 @@
 {
   "tool": "CI_CHECK_ORGAN_CANON_CITATION_V1",
   "ssot_path": ".chthonic/SSOT.md",
-  "generated_at": "2026-05-31T22:04:49.296Z",
+  "generated_at": "2026-06-02T05:46:40.078Z",
   "scope": "always",
   "ssot_canonical_organs": [
     "adrenal_glands",
@@ -9,7 +9,7 @@
     "apoptotic_markers",
     "appendix",
     "bladder",
-    "cerebrospinal_fluid",
+    "cerebrospinal-fluid",
     "cerebrum",
     "diaphragm",
     "duodenum",
@@ -22,7 +22,7 @@
     "lungs",
     "lymph_nodes",
     "nk_cells",
-    "olfactory_bulb",
+    "olfactory-bulb",
     "pancreas",
     "pineal_gland",
     "pituitary_gland",
@@ -33,7 +33,7 @@
   ],
   "ssot_organs_raw": [
     "Cerebrum",
-    "Cerebrospinal Fluid",
+    "Cerebrospinal-Fluid",
     "Heart",
     "Lungs",
     "Stomach",
@@ -54,7 +54,7 @@
     "Adrenal Glands",
     "Appendix",
     "Hippocampus",
-    "Olfactory Bulb",
+    "Olfactory-Bulb",
     "Pancreas",
     "Kidneys",
     "Bladder"

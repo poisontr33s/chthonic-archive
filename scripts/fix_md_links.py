@@ -169,11 +169,9 @@ def main():
                 total_fixes += len(changes)
 
     if args.fix:
-        print(f"
-✨ Completed. Fixed {total_fixes} links.")
+        print(f"\n✨ Completed. Fixed {total_fixes} links.")
     else:
-        print(f"
-ℹ️  Dry run complete. Found {total_fixes} fixable links. Use --fix to apply.")
+        print(f"\nℹ️  Dry run complete. Found {total_fixes} fixable links. Use --fix to apply.")
 
 if __name__ == "__main__":
     main()

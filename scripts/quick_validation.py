@@ -18,10 +18,11 @@ if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
     sys.stderr.reconfigure(encoding='utf-8')
 
+"""
 @SID:           TOOL_QUICK_VALIDATION_V1
 @Shabti:        CLI Script
 @Purpose:       Quick validation queries for epistemograph v1.1
-"""Quick validation queries for epistemograph v1.1"""
+"""
 
 import sqlite3
 import sys
