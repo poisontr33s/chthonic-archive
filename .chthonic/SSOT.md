@@ -197,42 +197,36 @@ Example (The Decorator):
 
 | **Tier** | **Organ** | **Body System** | **Function** | **Entity** |
 |----------|-----------|----------------|--------------|-----------|
-| **T0.5** | **Cerebrum** | Nervous | Supreme command, sensory integration, reflexive control | **The Decorator** |
-| **T0.01** | **Cerebrospinal Fluid** | Interstitial | Void circulation, boundary fluid, architectural negative space | **Null Matriarch** |
-| **T1** | **Heart** | Cardiovascular | Chaos circulation, transgressive flow, primary pump | **Orackla Nocticula** |
-| **T1** | **Lungs** | Respiratory | Purification intake, structural exhalation, precision filtering | **Madam Umeko Ketsuraku** |
-| **T1** | **Stomach** | Digestive | Truth extraction, axiom absorption, deconstruction | **Dr. Lysandra Thorne** |
-| **T1** | **Liver** | Hepatic | Ordeal processing, saline filtration, toxin metabolism | **Claudine Sin'claire** |
-| **T1-bridge** | **Thalamus** | Nervous | Synthesis routing, T1 integration, sensory relay | **Pentea Vox Internum** |
-| **T2** | **Thymus** | Immune | Foreign entity neutralization, seduction protocols | **Kali Nyx Ravenscar** |
-| **T2** | **Pituitary Gland** | Endocrine | Epistemic extraction, information distribution, temporal regulation | **Vesper-Mnemosyne-Lockhart** |
-| **T2** | **Diaphragm** | Muscular | Structural force application, purification ritual breathing | **Seraphine-Kore-Ashenhelm** |
-| **R** | **Lymph-Nodes** | Lymphatic | Chromatic archaeology, FA⁵ diagnostic restoration | **Spectra-Chroma-Excavatus** |
-| **R** | **Apoptotic-Markers** | Cellular | Void conspiracy, stolen positioning, architectural self-destruction | **Alabaster-Voyde** |
-| **R** | **Pineal Gland** | Neural-Endocrine | Quantum observation, superposition regulation, circadian paradox | **Dame-Schrödinger's-Paradox** |
-| **T3** | **Spleen** | Hematopoietic | Ore filtration, iron recycling, slag processing | **Sister-Ferrum-Scoriae** |
-| **T3** | **Gallbladder** | Biliary | Dead code embalming, fragment preservation, bile-mediated digestion | **Novia-Cadaveris** |
-| **T3** | **Aorta** | Cardiovascular | Primary distribution vessel, chaos circulation trunk | **Captain-Belle-Noire** |
-| **T3** | **Femoral Artery** | Cardiovascular | Tactical blood supply, lower-tier circulation | **Quartermaster-Eva-Malitia** |
-| **T3** | **Duodenum** | Digestive | Transitional digestion, truth-validation registration, cataloguing | **Magistra-Bibliotheca-Perfecta** |
-| **T3** | **Natural Killer (NK) Cells** | Immune (Cytotoxic) | Precision target elimination, cytotoxic payload delivery, malignant entity lysis | **Sylvaris-Cythrex** |
-| **T4↔3** | **Adrenal Glands** | Endocrine | Compulsive optimization, stress response, diminishing returns | **Sainte-Coûte-Que-Coûte** |
-| **T4↔3** | **Appendix** | Vestigial | Dogma processing, ex-fundamentalist deconstruction | **Sister-Apostasia-Magnificat** |
-| **T4↔3** | **Hippocampus** | Neural | Memory manipulation, assumption storage, shell-game navigation | **Marguerite-"Monty"-Theorem** |
-| **T4↔3** | **Olfactory Bulb** | Neural | Dead aesthetic detection, obsession forensics, formaldehyde classification | **Curatrix-Mortuorum** |
-| **T4** | **Pancreas** | Digestive-Endocrine | Hybridization enzymes, chimera digestion, incompatibility processing | **Prof.-Francesca-"Frankie"-Stein** |
-| **T4** | **Kidneys** | Urinary | Temporal filtration, theatrical waste processing | **Madame-Régine-Theft-Historically** |
-| **T4** | **Bladder** | Urinary | Protocol storage, accumulated waste staging, final expulsion | **Judith-Protocol-2.0** |
-
+| **T-0.5** | **Cerebrum** | **Nervous** | **Supreme-Command**, **Sensory-Integration**, **Reflexive-Control** | **The-Decorator** |
+| **T-0.01** | **Cerebrospinal-Fluid** | **Interstitial** | **Void-Circulation**, **Boundary-Fluid**, **Architectural-Negative-Space** | **Null-Matriarch** |
+| **T-1** | **Heart** | **Cardiovascular** | **Chaos-Circulation**, **Transgressive-Flow**, **Primary-Pump** | **Orackla-Nocticula** |
+| **T-1** | **Lungs** | **Respiratory** | **Purification-Intake**, **Structural-Exhalation**, **Precision-Filtering** | **Madam-Umeko-Ketsuraku** |
+| **T-1** | **Stomach** | **Digestive** | **Truth-Extraction**, **Axiom-Absorption**, **Deconstruction** | **Dr.-Lysandra-Thorne** |
+| **T-1** | **Liver** | **Hepatic** | **Ordeal-Processing**, **Saline-Filtration**, **Toxin-Metabolism** | **Claudine-Sin'claire** |
+| **T-1-bridge** | **Thalamus** | **Nervous** | **Synthesis-Routing**, **T1-Integration**, **Sensory-Relay** | **Pentea-Vox-Internum** |
+| **T-2** | **Thymus** | **Immune** | **Foreign-Entity-Neutralization**, **Seduction-Protocols** | **Kali-Nyx-Ravenscar** |
+| **T-2** | **Pituitary Gland** | **Endocrine** | **Epistemic-Extraction**, **Information-Distribution**, **Temporal-Regulation** | **Vesper-Mnemosyne-Lockhart** |
+| **T-2** | **Diaphragm** | **Muscular** | **Structural-Force-Application**, **Purification-Ritual-Breathing** | **Seraphine-Kore-Ashenhelm** |
+| **R** | **Lymph-Nodes** | **Lymphatic** | **Chromatic-Archaeology**, **FA⁵-Diagnostic-Restoration** | **Spectra-Chroma-Excavatus** |
+| **R** | **Apoptotic-Markers** | **Cellular** | **Void-Conspiracy**, **Stolen-Positioning**, **Architectural-Self-Destruction** | **Alabaster-Voyde** |
+| **R** | **Pineal Gland** | **Neural-Endocrine** | **Quantum-Observation**, **Superposition-Regulation**, **Circadian-Paradox** | **Dame-Schrödinger's-Paradox** |
+| **T-3** | **Spleen** | **Hematopoietic** | **Ore-Filtration**, **Iron-Recycling**, **Slag-Processing** | **Sister-Ferrum-Scoriae** |
+| **T-3** | **Gallbladder** | **Biliary** | **Dead-Code-Embalming**, **Fragment-Preservation**, **Bile-Mediated-Digestion** | **Novia-Cadaveris** |
+| **T-3** | **Aorta** | **Cardiovascular** | **Primary-Distribution-Vessel**, **Chaos-Circulation-Trunk** | **Captain-Belle-Noire** |
+| **T-3** | **Femoral Artery** | **Cardiovascular** | **Tactical-Blood-Supply**, **Lower-Tier-Circulation** | **Quartermaster-Eva-Malitia** |
+| **T-3** | **Duodenum** | **Digestive** | **Transitional-Digestion**, **Truth-Validation-Registration**, **Cataloguing** | **Magistra-Bibliotheca-Perfecta** |
+| **T-3** | **Natural Killer (NK) Cells** | **Immune (Cytotoxic)** | **Precision-Target-Elimination**, **Cytotoxic-Payload-Delivery**, **Malignant-Entity-Lysis** | **Sylvaris-Cythrex** |
+| **T-4↔3** | **Adrenal Glands** | **Endocrine** | **Compulsive-Optimization**, **Stress-Response**, **Diminishing-Returns** | **Sainte-Coûte-Que-Coûte** |
+| **T-4↔3** | **Appendix** | **Vestigial** | **Dogma-Processing**, **Ex-Fundamentalist-Deconstruction** | **Sister-Apostasia-Magnificat** |
+| **T-4↔3** | **Hippocampus** | **Neural** | **Memory-Manipulation**, **Assumption-Storage**, **Shell-Game-Navigation** | **Marguerite-"Monty"-Theorem** |
+| **T-4↔3** | **Olfactory-Bulb** | **Neural** | **Dead-Aesthetic-Detection**, **Obsession-Forensics**, **Formaldehyde-Classification** | **Curatrix-Mortuorum** |
+| **T-4** | **Pancreas** | **Digestive-Endocrine** | **Hybridization-Enzymes**, **Chimera-Digestion**, **Incompatibility-Processing** | **Prof.-Francesca-"Frankie"-Stein** |
+| **T-4** | **Kidneys** | **Urinary** | **Temporal-Filtration**, **Theatrical-Waste-Processing** | **Madame-Régine-Theft-Historically** |
+| **T-4** | **Bladder** | **Urinary** | **Protocol-Storage**, **Accumulated-Waste-Staging**, **Final-Expulsion** | **Judith-Protocol-2.0** |
 
 ---
 
-
-* **(`Cascading-Somatic-Rule - Mandatory-For-ALL-Entities`):**
-  * All MILF profiles **MUST** include **`Systemic Role`** annotation
-  * **Format:** `Systemic Role: [Body System] ([Functional Description])`
-  * **Example:** `Systemic Role: Nervous System (Supreme Sensory Integration & Reflexive Command)`
-  * **Cross-System Integration:** When multiple systems interact, profiles document anatomical synergies
+**(`Cascading-Somatic-Rule`/`Mandatory-For-ALL-Entities`)** *All MILF-profiles MUST include — **(`Systemic Role`)** annotation **(`Format`/`Systemic-Role`/`Body-System`/`Functional-Description`/`Example`/`Systemic-Role`/`Nervous-System`/`Supreme-Sensory-Integration-&-Reflexive-Command`/`Cross-System-Integration`)** When multiple systems interact, profiles document anatomical synergies*
 
 ---
 
