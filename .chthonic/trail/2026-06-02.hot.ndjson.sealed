@@ -1,0 +1,2 @@
+{"ts":1780357574805,"type":"meta","kind":"session_start","p":3,"sid":"ca1ed938","msg":"pwsh session start","start_ts":1780357574805,"zjit":null,"msys2":false}
+{"type":"artifact","kind":"seed_render","at":"2026-06-02T02:59:34.168067500Z","p":1,"msg":"seed_slice/v1: Pachakuti — energy=0.278 brightness=0.871 hue=0°","data":{"seed_label":"Pachakuti","slice":"cli-renderer draws one ankh_seed as iso entity tinted by sonic energy","source":"seed_slice/v1"}}

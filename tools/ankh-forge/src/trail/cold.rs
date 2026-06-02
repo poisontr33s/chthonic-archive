@@ -17,7 +17,11 @@ pub fn cold_path(trail_dir: &Path, date: &str) -> std::path::PathBuf {
 
 /// Compress a hot NDJSON file into a gzip cold archive, then verify the
 /// round-trip by decompressing and comparing byte-for-byte.
-pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
+///
+/// When `skip_invalid` is true, lines that fail to parse as `TrailEvent`
+/// are warned about and excluded from the cold archive rather than
+/// aborting the whole forge run.
+pub fn forge(trail_dir: &Path, date: &str, skip_invalid: bool) -> Result<()> {
     let src = hot::hot_path(trail_dir, date);
     let dst = cold_path(trail_dir, date);
 
@@ -42,8 +46,13 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
         );
     }
 
-    {
+    // When skip_invalid is set, filter out unparseable lines and compress
+    // only the valid TrailEvent lines. Otherwise validate all and abort on error.
+    let forge_bytes: Vec<u8>;
+    if skip_invalid {
         let reader = BufReader::new(hot_bytes.as_slice());
+        let mut kept: Vec<u8> = Vec::with_capacity(hot_bytes.len());
+        let mut skipped = 0u32;
         let mut bom_checked = false;
         for (i, line) in reader.lines().enumerate() {
             let lineno = i + 1;
@@ -52,18 +61,56 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
             if clean.trim().is_empty() {
                 continue;
             }
-            let event: TrailEvent = serde_json::from_str(clean)
-                .with_context(|| format!("line {lineno}: invalid JSON"))?;
-            event
-                .validate()
-                .with_context(|| format!("line {lineno}: schema violation"))?;
+            match serde_json::from_str::<TrailEvent>(clean) {
+                Ok(ev) => match ev.validate() {
+                    Ok(()) => {
+                        kept.extend_from_slice(clean.as_bytes());
+                        kept.push(b'\n');
+                    }
+                    Err(err) => {
+                        eprintln!("[forge] skip line {lineno} (schema violation): {err}");
+                        skipped += 1;
+                    }
+                },
+                Err(err) => {
+                    eprintln!("[forge] skip line {lineno} (parse error): {err}");
+                    skipped += 1;
+                }
+            }
         }
+        if kept.is_empty() {
+            bail!("no valid TrailEvents found in {}; skipped {skipped} lines", src.display());
+        }
+        if skipped > 0 {
+            eprintln!("[forge] skipped {skipped} non-TrailEvent line(s); {kept_count} valid events kept",
+                kept_count = kept.iter().filter(|&&b| b == b'\n').count());
+        }
+        forge_bytes = kept;
+    } else {
+        {
+            let reader = BufReader::new(hot_bytes.as_slice());
+            let mut bom_checked = false;
+            for (i, line) in reader.lines().enumerate() {
+                let lineno = i + 1;
+                let raw = line.with_context(|| format!("reading line {lineno}"))?;
+                let clean = if !bom_checked { bom_checked = true; strip_bom(&raw) } else { raw.as_str() };
+                if clean.trim().is_empty() {
+                    continue;
+                }
+                let event: TrailEvent = serde_json::from_str(clean)
+                    .with_context(|| format!("line {lineno}: invalid JSON"))?;
+                event
+                    .validate()
+                    .with_context(|| format!("line {lineno}: schema violation"))?;
+            }
+        }
+        forge_bytes = hot_bytes.clone();
     }
 
     // Compress.
     let mut encoder = GzEncoder::new(Vec::new(), Compression::best());
     encoder
-        .write_all(&hot_bytes)
+        .write_all(&forge_bytes)
         .context("gzip compression failed")?;
     let compressed = encoder.finish().context("finalizing gzip stream")?;
 
@@ -74,7 +121,7 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
         .read_to_end(&mut roundtrip)
         .context("gzip decompression during round-trip verify")?;
 
-    if roundtrip != hot_bytes {
+    if roundtrip != forge_bytes {
         bail!("round-trip verification failed: decompressed bytes differ from source");
     }
 
@@ -88,8 +135,8 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
         .with_context(|| format!("sealing {} → {}", src.display(), sealed.display()))?;
     eprintln!("sealed → {}", sealed.display());
 
-    let ratio = if !hot_bytes.is_empty() {
-        (compressed.len() as f64 / hot_bytes.len() as f64) * 100.0
+    let ratio = if !forge_bytes.is_empty() {
+        (compressed.len() as f64 / forge_bytes.len() as f64) * 100.0
     } else {
         0.0
     };
@@ -98,7 +145,7 @@ pub fn forge(trail_dir: &Path, date: &str) -> Result<()> {
         "forged {} → {} ({} → {} bytes, {ratio:.1}%)",
         src.display(),
         dst.display(),
-        hot_bytes.len(),
+        forge_bytes.len(),
         compressed.len(),
     );
 

@@ -117,6 +117,12 @@ pub enum TrailCommand {
         /// Date to forge (YYYY-MM-DD). Defaults to today.
         #[arg(long)]
         date: Option<String>,
+
+        /// Skip lines that do not parse as valid TrailEvent (warn and continue)
+        /// instead of aborting. Useful when the hot file contains mixed-format
+        /// entries (e.g. shell-hook session events alongside trail events).
+        #[arg(long, default_value_t = false)]
+        skip_invalid: bool,
     },
 
     /// Compile a cold archive into a .runestone binary stone.
@@ -192,9 +198,9 @@ pub fn run(args: TrailArgs) -> Result<()> {
             Ok(())
         }
 
-        TrailCommand::Forge { date } => {
+        TrailCommand::Forge { date, skip_invalid } => {
             let d = date.unwrap_or_else(today);
-            cold::forge(&trail_dir, &d)
+            cold::forge(&trail_dir, &d, skip_invalid)
         }
 
         TrailCommand::Stone { date, force, gpu } => {
