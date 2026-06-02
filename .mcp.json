@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "game": {
+      "type": "stdio",
+      "command": "C:/Users/eldno/.bun/bin/bun.exe",
+      "args": [
+        "run",
+        "C:/Users/eldno/chthonic-archive/scripts/mcp-game.ts"
+      ],
+      "cwd": "C:/Users/eldno/chthonic-archive"
+    },
     "sonic": {
       "type": "stdio",
       "command": "C:/Users/eldno/.bun/bin/bun.exe",
