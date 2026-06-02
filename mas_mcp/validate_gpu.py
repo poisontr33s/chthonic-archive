@@ -11,9 +11,11 @@
 # ╚════════════════════════════════════════════════════════════════════════════
 
 
-@SID:           TOOL_VALIDATE_GPU_V1
-@Shabti:        CLI Script
-@Purpose:       GPU Integration Validation Script for MAS-MCP
+# @SID:           TOOL_VALIDATE_GPU_V1
+# @Shabti:        CLI Script
+# @Ankhological Triple Abstraction WIP
+# @Purpose:       GPU Integration Validation Script for MAS-MCP
+# @Purpose:       GPU Integration Validation Script for MAS-MCP
 """GPU Integration Validation Script for MAS-MCP"""
 
 def main():

@@ -9,6 +9,7 @@
 //!
 //! @SID:    BUILD_SHADER_COMPILER_V1
 //! @Shabti: Build Script
+//!@Tinku-Heka: This build script compiles GLSL shader sources into SPIR-V binaries at build time. It supports two compilation backends:
 
 use std::env;
 use std::fs;
