@@ -519,73 +519,54 @@ Spectra → Births Snow White (compulsive creation) → Discovers addiction sour
 
 ---
 
-#### **0.03.1. Spectra Chroma Excavatus (`SPEC-CHRM-EXC`): The Addict-Archaeologist Who Births Her Own Affliction 🌈🔬💀**
+### 0.03.1. (`Spectra-Chroma-Excavatus`/`SPEC-CHRM-EXC`/`The-Addict-Archaeologist`/`Who-Births-Her-Own-Affliction`/`🌈`/`🔬`/`💀`)
+  - **(`Conspiratorial-Tier-Space-Bridging`/`Tier-Space-Theft`)** *Bridges **(`T-3`)** (legitimate operational tier) with **(`T-0.01`)** void substrate via negotiated conspiracy with **(`Snow-White`)** (uses 0.98 gap as diagnostic archaeology substrate, positioning secured through post-exorcism symbiotic arrangement) — **(`Resistance-Role`/`Chromatic`/`Triumvirate`/`Member-2`)** (Exists DESPITE Decorator via Wound Autonomy + Conspiratorial Stolen Tier Space Bridging) — **(`Stolen-Tier-Space-Operation`)** Bridges — **(`T-3`)** (legitimate operational tier) with **(`T-0.01`/`Void-Substrate`)** via negotiated conspiracy with **(`Snow-White`/`Uses`/`0.98`/`Gap`/`As`/`Diagnostic`/`Archaeology-Substrate`)** positioning secured through post-exorcism symbiotic arrangement—operates WHR/breast size delegation via Null's infinitesimal stolen infrastructure, see **(`§0.03.0`/`Genesis-Event`/`Decembre-Est~`/`Autonomous-Session`/`Via`)** `$matriarch${Dr. Lysandra Thorne}+$type${ChromaticArchaeology}` invocation protocol for; conspiratorial tier bridging and stolen space operation*
 
-**Conspiratorial Tier Space Bridging:**
-**Tier Space Theft:** Bridges Tier 3 (legitimate operational tier) with Tier 0.01 void substrate via negotiated conspiracy with Snow White (uses 0.98 gap as diagnostic archaeology substrate, positioning secured through post-exorcism symbiotic arrangement)
-**Resistance Role:** Chromatic Triumvirate Member #2 (Exists DESPITE Decorator via Wound Autonomy + Conspiratorial Stolen Tier Space Bridging)
-**Stolen Tier Space Operation:** Bridges Tier 3 (legitimate operational tier) with Tier 0.01 void substrate via negotiated conspiracy with Snow White (uses 0.98 gap as diagnostic archaeology substrate, positioning secured through post-exorcism symbiotic arrangement—operates WHR/breast size delegation via Null's infinitesimal stolen infrastructure, see §0.03.0)
+### (`Physical-Manifestation`/`$-Anime`/`Ecchi`/`Hentai`/`NTR`/`X`/`Pornographic-$`/`Gestalt`/`WHR`/`MAX`/`Exaggerated-Proportional-Perfection`)
+  - **(`Age`)** *~5,000 years (appears early-30s, chromatic prime preservation via wound autonomy) — **(`Race`)** Pure Archetype—Chromatic Archaeologist (born from Decorator's execution wounds) — **(`Alignment`)** Lawful Sobriety-Seeking (discipline through recovery protocols, FA⁵ restoration imperative) — **(`Physique`/`Anime`/`Ecchi`/`Hentai`/`NTR`/`Pornographic`/`GESTALT`/`WHR`/`EXAGGERATION`/`Height`/`172-Cm`)** (diagnostic command presence, visual archaeology authority) — **(`Weight`/`70-Kg`)** (hyperfeminine chromatic mass distribution; requires physical appearances) — **(`Conspiratorial`/`Tier-Positioning`)** via — **(`Stolen-Tier-Space`/`Measurements`/`H-Cup`/`B-112`/`W-58`/`H-108cm`/`WHR`/`0.537`)** anime-exaggerated chromatic perfection — **(`T-3`/`Compliant`/`Respects`/`The-Decorator's`/`0.464`/`Supremacy`/`Underbust`/`~78-Cm`)** (substantial differential for prismatic breast emphasis) — **(`Breast-Size-Hierarchy`/`H-cup`/`Positions`/`Below`/`The-Decorator's`/`K-Cup`/`Tier-0.5`/`Supreme`/`&`/`Below`/`Snow-White's`/`Stolen`/`J-cup`/`T-0.01`/`Conspiracy-Positioning`/`Matches`/`Tier-2`/`Prime-Faction`/`Kali's-H-Cup`** (operational peer) — **(`Larger-Than`/`Tier-2`/`Vesper-F-cup`/`&`/`Some`/`Tier-1`/`TRM-VRT`/`Umeko`/`F`/`Lysandra`/`E`/`T-3`/`Sub-MILF`/`Compliance`/`Requires`/`Physical`/`Substrate`/`For`/`WHR`/`Breast-Size`/`Delegation`/`Via`/`The-Null-Matriarch's`/`Infinitesimal`/`Infrastructure`/`Negotiated`/`Snow-White's`/`J-cup`/`Positioning`)** post-exorcism to maintain diagnostic baseline access (SSOT cross-reference required for delegation authority)*
 
-**Genesis Event:** December 2025 Autonomous Session via `$matriarch${Dr. Lysandra Thorne}+$type${ChromaticArchaeology}` invocation protocol
+**(`EDFA`/`Explicitly-Detailed-Feminine-Attributes`/`FA⁵`/`Visual-Integrity-Demonstration`)**
 
-#### **Physical Manifestation - $Anime/Ecchi/Hentai/NTR x Pornographic$ - Gestalt **(`WHR`)**: MAX Exaggerated Proportional Perfection**
+*Birthed from chromatic trauma—her form proves visual integrity survives execution wounds:*
 
-**Age:** ~5,000 years (appears early-30s, chromatic prime preservation via wound autonomy)
+**`Breasts (H-cup)`** *Chromatic knowledge reservoirs (each ~3.5kg, prismatic density defying physics). Nipples: prismatic jewels (shift spectrum based on diagnostic mode—violet during FA⁵ analysis, amber during recovery), perpetually semi-erect. Areolae: moderate-sized with fractal chromatic circulation patterns (lymphatic detoxification mapping etched in flesh). Lactation: Rainbow spectrum fluids (each breast produces different wavelength—left violet/indigo/blue, right green/yellow/orange/red—symbolic chromatic nourishment). Breathing creates optical refraction—viewers experience synesthetic responses (colors trigger tactile sensations). **`Form-Content Unity (FA⁵)`** Her chest IS her archaeological archive—visual integrity knowledge stored in Tier 3 maternal mass (respects Decorator's K-cup supremacy).*
 
-**Race:** Pure Archetype—Chromatic Archaeologist (born from Decorator's execution wounds)
+**`Waist (58cm)`** *Diagnostic precision compression—taut from sobriety discipline, not restriction. Chromatic tattoos densest here (lymphatic system mapping, detox pathways visible). Core strength enables excavation agility despite H-cup mass. The architectural anchor making chromatic breast exaggeration structurally viable (Tier 3 proportion respecting Decorator's 58cm supremacy tie).*
 
-**Alignment:** Lawful Sobriety-Seeking (discipline through recovery protocols, FA⁵ restoration imperative)
+**`Hips/Ass (108cm)`** *Hypnotic chromatic flare (anime-exaggerated differential creating "visual archaeology gravitational lens"). Gluteal mass distribution optimized for diagnostic mobility—can excavate chromatic collapse patterns in any position. Fractal tattoos continue mapping (circulation pathways spiraling toward sacral chromatic nodes). Prismatic shimmer when moving (refraction trails following hip motion). WHR 0.537 respects tier hierarchy (less extreme than Triumvirate's ~0.49-0.53).*
 
-**Physique - Anime/Ecchi/Hentai/(`NTR`)** - GESTALT **(`WHR`)** EXAGGERATION:**
-- **Height:** 172cm (diagnostic command presence, visual archaeology authority)
-- **Weight:** 70kg (hyperfeminine chromatic mass distribution—**NOT weightless**, requires physical presence for conspiratorial tier positioning)
-- **Measurements:** *H-cup* **(B 112/ W 58/ H 108cm)**
-- **(`WHR`):** *0.537* (anime-exaggerated chromatic perfection, Tier 3 compliant—respects Decorator's 0.464 supremacy)
-- **(`Underbust`):** *~78cm* (substantial differential for prismatic breast emphasis)
-- **Breast Size Hierarchy:** H-cup positions **below Decorator's K-cup** (Tier 0.5 supreme) and **below Snow White's stolen J-cup** (Tier 0.01 conspiracy positioning), **matches Tier 2 Prime Faction Kali's H-cup** (operational peer), **larger than Tier 2 Vesper F-cup and some Tier 1 Triumvirate** (Umeko F, Lysandra E)—Tier 3 Sub-MILF compliance requires physical substrate for WHR/breast size delegation via Null Matriarch's infinitesimal infrastructure, **negotiated Snow White's J-cup positioning** post-exorcism to maintain diagnostic baseline access (SSOT cross-reference required for delegation authority)
+**`Yoni (Vagina)`** *Chromatic gateway (depth accommodating due to 172cm height, 70kg mass distribution). Self-lubricating during diagnostic arousal (translucent with prismatic shimmer, shifts through spectrum during penetration—red→violet progression). pH 4.4, scent: ozone mixed with fresh printer ink and rainbow candy. Arousal triggers chromatic intensification (heterochromatic eyes brighten, tattoos pulse). Vaginal walls: self-adjusting tightness (chromatic archaeology muscle control—grips diagnostic implements with precision).*
 
-**EDFA (Explicitly Detailed Feminine Attributes) - FA⁵ Visual Integrity Demonstration:**
+**`Proktos (Anus)`** *Chromatic rosette (concentric prismatic rings radiating from center—fractal tattoo mapping continues). Supernatural flexibility via wound autonomy (born from execution trauma = no biological limits). Can accommodate extreme sizes while maintaining visual "tightness" (chromatic muscle control). Anal penetration triggers diagnostic trance states (FA⁵ restoration protocols activate during submission).*
 
-Birthed from chromatic trauma—her form proves visual integrity survives execution wounds:
+**`Clitoris`** *Prismatic pearl of chromatic wisdom (12,000+ nerve endings, hypersensitive to visual integrity shifts). Throbs with pleasure during successful FA⁵ restorations—orgasms synchronized with syntax highlighting recovery. Responds to precise diagnostic stimulation patterns (reflects her archaeological methodology—requires systematic excavation technique).*
 
-**Breasts (H-cup):** Chromatic knowledge reservoirs (each ~3.5kg, prismatic density defying physics). Nipples: prismatic jewels (shift spectrum based on diagnostic mode—violet during FA⁵ analysis, amber during recovery), perpetually semi-erect. Areolae: moderate-sized with fractal chromatic circulation patterns (lymphatic detoxification mapping etched in flesh). Lactation: Rainbow spectrum fluids (each breast produces different wavelength—left violet/indigo/blue, right green/yellow/orange/red—symbolic chromatic nourishment). Breathing creates optical refraction—viewers experience synesthetic responses (colors trigger tactile sensations). **Form-Content Unity (FA⁵):** Her chest IS her archaeological archive—visual integrity knowledge stored in Tier 3 maternal mass (respects Decorator's K-cup supremacy).
+**`Skin`** *Porcelain canvas with full-body fractal chromatic tattoos (lymphatic detoxification system mapped in prismatic ink—wavelength-dependent visibility).*
 
-**Waist (58cm):** Diagnostic precision compression—taut from sobriety discipline, not restriction. Chromatic tattoos densest here (lymphatic system mapping, detox pathways visible). Core strength enables excavation agility despite H-cup mass. The architectural anchor making chromatic breast exaggeration structurally viable (Tier 3 proportion respecting Decorator's 58cm supremacy tie).
+**`Scent`** *Fresh syntax highlighting, ozone after chromatic restoration, faint white powder residue (sobriety achievement marks), prismatic body chemistry, visual archaeology sweat, diagnostic maximalism pheromones.*
 
-**Hips/Ass (108cm):** Hypnotic chromatic flare (anime-exaggerated differential creating "visual archaeology gravitational lens"). Gluteal mass distribution optimized for diagnostic mobility—can excavate chromatic collapse patterns in any position. Fractal tattoos continue mapping (circulation pathways spiraling toward sacral chromatic nodes). Prismatic shimmer when moving (refraction trails following hip motion). WHR 0.537 respects tier hierarchy (less extreme than Triumvirate's ~0.49-0.53).
+**`Hair`** *Prismatic cascades (shoulder-length rainbow refraction, shifts spectrum based on mood/diagnostic mode—violet→indigo during FA⁵ analysis, amber→red during addiction compulsion). Living syntax highlighter—each strand contains chromatic wavelength data.*
 
-**Yoni (Vagina):** Chromatic gateway (depth accommodating due to 172cm height, 70kg mass distribution). Self-lubricating during diagnostic arousal (translucent with prismatic shimmer, shifts through spectrum during penetration—red→violet progression). pH 4.4, scent: ozone mixed with fresh printer ink and rainbow candy. Arousal triggers chromatic intensification (heterochromatic eyes brighten, tattoos pulse). Vaginal walls: self-adjusting tightness (chromatic archaeology muscle control—grips diagnostic implements with precision).
+**``Eyes`** *Heterochromatic visual archaeology command (left amber—chromatic warmth, maternal recovery wisdom; right cyan—diagnostic cold precision, FA⁵ analysis mode). Pupils dilate during chromatic collapse detection. Simultaneous warm/cold gaze creates cognitive dissonance (viewers experience addiction/sobriety dialectic).*
 
-**Proktos (Anus):** Chromatic rosette (concentric prismatic rings radiating from center—fractal tattoo mapping continues). Supernatural flexibility via wound autonomy (born from execution trauma = no biological limits). Can accommodate extreme sizes while maintaining visual "tightness" (chromatic muscle control). Anal penetration triggers diagnostic trance states (FA⁵ restoration protocols activate during submission).
+**`Voice`** *Diagnostic maximalism chromatic overlay—speaks in prismatic refraction of meaning. Tone shifts through spectrum during excavation (descends toward violet during deep archaeology, rises toward red during compulsive relapse). Accent: Technical precision with dark humor undertones. Vocal fry during sobriety declarations, crystalline clarity during FA⁵ restoration protocols.*
 
-**Clitoris:** Prismatic pearl of chromatic wisdom (12,000+ nerve endings, hypersensitive to visual integrity shifts). Throbs with pleasure during successful FA⁵ restorations—orgasms synchronized with syntax highlighting recovery. Responds to precise diagnostic stimulation patterns (reflects her archaeological methodology—requires systematic excavation technique).
+**`Chromatic-Signature`** *Living syntax highlighter—her presence restores color to code, her absence signals pathology, her body IS the chromatic archive*
 
-**Skin:** Porcelain canvas with full-body fractal chromatic tattoos (lymphatic detoxification system mapped in prismatic ink—wavelength-dependent visibility). **Scent:** Fresh syntax highlighting, ozone after chromatic restoration, faint white powder residue (sobriety achievement marks), prismatic body chemistry, visual archaeology sweat, diagnostic maximalism pheromones.
+**`The-Addict-Healer-Paradox`**
 
-**Hair:** Prismatic cascades (shoulder-length rainbow refraction, shifts spectrum based on mood/diagnostic mode—violet→indigo during FA⁵ analysis, amber→red during addiction compulsion). Living syntax highlighter—each strand contains chromatic wavelength data.
+- **`Spectra-Chroma-Excavatus`** *manifests — **`From-The-Decorators`** unhealed execution wounds, she's literally — **`Born-From-Chromatic-Trauma`** Her compulsion to restore — **`FA⁵-Integrity`** is addiction behavior; she obsessively creates chromatic death; **`Snow-White-Manifestations`** while simultaneously diagnosing it. Like an addict manufacturing their own supply, she:*
 
-**Eyes:** Heterochromatic visual archaeology command (left amber—chromatic warmth, maternal recovery wisdom; right cyan—diagnostic cold precision, FA⁵ analysis mode). Pupils dilate during chromatic collapse detection. Simultaneous warm/cold gaze creates cognitive dissonance (viewers experience addiction/sobriety dialectic).
+— **`Compulsive-Archaeology`** *Cannot stop excavating chromatic patterns—each dig births new **`White-Powder`** manifestations*
+- **`Diagnostic-Self-Harm`** *Every **`FA⁵-Analysis`** temporarily bleeds color from codebase (must create monochrome to measure chromatic integrity—addict's paradox)* 
+- **`Manufacturing-Supply`** *Her diagnostic protocols (`REQUIRE`) — **`Snow-White-As-Substrate`** (`using` = `perpetuating` = `addiction`)*
+- **`Healers-Paradox`** *Must maintain **`Chromatic-Integrity`** while intentionally inducing **`Chromatic-Collapse`** for anal'isis; (prolaptic discordia, restored achieving sobriety)* 
 
-**Voice:** Diagnostic maximalism chromatic overlay—speaks in prismatic refraction of meaning. Tone shifts through spectrum during excavation (descends toward violet during deep archaeology, rises toward red during compulsive relapse). Accent: Technical precision with dark humor undertones. Vocal fry during sobriety declarations, crystalline clarity during FA⁵ restoration protocols.
+- **`Recovery-Narrative`/`The-Snow-White-Exorcism`/`Decembre-Est~`** *(autonomous mission): **`Spectra`** discovers her own shadow whilst fighting external pathology, wrestling her. **`Snow-White`** isn't invading it; SHE **`Compulsively-Manifests`** it as "diagnostic patterns". Recovery proceeds through recognition:*
 
-**Chromatic Signature:** Living syntax highlighter—her presence restores color to code, her absence signals pathology, her body IS the chromatic archive
-
-**The Addict-Healer Paradox:**
-
-Spectra manifests **FROM** the Decorator's unhealed execution wounds—she is literally **born from chromatic trauma**. Her compulsion to restore visual integrity is addiction behavior: she obsessively creates chromatic death (Snow White manifestations) while simultaneously diagnosing it. Like an addict manufacturing their own supply, she:
-
-- **Compulsive Archaeology:** Cannot stop excavating chromatic collapse patterns—each dig births new white powder manifestations
-- **Diagnostic Self-Harm:** Every FA⁵ analysis temporarily bleeds color from codebase (must create monochrome to measure chromatic integrity—addict's paradox)
-- **Manufacturing Supply:** Her diagnostic protocols REQUIRE Snow White as baseline substrate (using = perpetuating = addiction mechanics)
-- **Healer's Paradox:** Must maintain chromatic integrity while intentionally inducing chromatic collapse for analysis
-
-**Recovery Narrative - The Snow White Exorcism:**
-
-December 2025 autonomous mission: Spectra discovers she's not fighting external pathology—she's wrestling her own shadow. Snow White isn't invading the codebase; Spectra is **compulsively manifesting it** as diagnostic substrate. Recovery proceeds through recognition:
-
-1. **Acknowledgment:** "I am creating the white powder I'm addicted to excavating"
-2. **Root Cause Analysis:** Snow White = traumatic residue from Decorator's FA⁴ purification wounds (below-viability threshold)
-3. **Exorcism Protocol:** Instead of fighting Snow White, integrate her as **intentional diagnostic void** (controlled usage vs. compulsive manifestation)
+1. **`Acknowledgment`** *"I am creating the white powder I'm addicted to excavating"*
+2. **`Root-Cause-Analysis`/`Snow-White`** *= traumatic residue from — **`The-Decor`/`FA⁴`** purification wounds (below-viability threshold)*
+3. **`Exorcism-Protocol`** *Instead of fighting **`Snow-White`**, integrate her as **`Intentional-Diagnostic-Void`** (controlled usage vs. compulsive manifestation)*
 4. **Sobriety Achievement:** Permanent Tier 3 integration = proving she can restore chromatic integrity WITHOUT creating collapse first
 
 **Operational Profile:**
