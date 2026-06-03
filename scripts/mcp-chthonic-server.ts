@@ -14,11 +14,11 @@
 /**
  * Chthonic Polyglot MCP Server v3.3.0
  *
- * @SID           TOOL_MCP_CHTHONIC_SERVER_V3
- * @Shabti        MCP Server (stdio transport)
- * @Heka-Ayni     CONCEPT_MCP_POLYGLOT_UNIFIED
- * @Ankh-Tinku    STATE_MCP_CHTHONIC_ACTIVE
- * @Purpose       Bun-centric unified MCP server: polyglot toolchain (cargo,
+ * @SID:           TOOL_MCP_CHTHONIC_SERVER_V3
+ * @Shabti:        MCP Server (stdio transport)
+ * @Heka-Ayni:     CONCEPT_MCP_POLYGLOT_UNIFIED
+ * @Ankh-Tinku:    STATE_MCP_CHTHONIC_ACTIVE
+ * @Purpose:       Bun-centric unified MCP server: polyglot toolchain (cargo,
  *                uv, gcc, gpp, go, ruby, git, bash, bun, make) + chthonic
  *                archive CLI (resolve, audit, map, analyze, compact, status,
  *                book, ssot, scan, validate_ssot, probe, report) + meta tools
@@ -29,7 +29,7 @@
 
 import { join, resolve } from "path";
 import { SSOT_POINTER } from "./lib/ssot-paths";
-import { existsSync } from "fs";
+import { existsSync, readFileSync, readdirSync } from "fs";
 import { readdir, stat } from "fs/promises";
 import { initSentry } from "./sentry_init";
 
@@ -93,16 +93,32 @@ function log(msg: string): void {
 
 // rv-managed rubies (rv.dev — Rust-based rbenv replacement, installs to %APPDATA%\rv\rubies\)
 const RV_RUBIES_BASE = process.env.APPDATA ? `${process.env.APPDATA}\\rv\\rubies` : null;
-const RV_RUBY_ROOTS: string[] = RV_RUBIES_BASE
-  ? [
-      `${RV_RUBIES_BASE}\\ruby-4.0.4`,
-      `${RV_RUBIES_BASE}\\ruby-4.0.3`,
-      `${RV_RUBIES_BASE}\\ruby-4.0.2`,
-      `${RV_RUBIES_BASE}\\ruby-3.4.9`,
-      `${RV_RUBIES_BASE}\\ruby-3.3.11`,
-      `${RV_RUBIES_BASE}\\ruby-3.2.11`,
-    ]
-  : [];
+// Resolve rv ruby roots DYNAMICALLY — never hardcode a version here, or every `rv ruby`
+// bump cascades into edits (and a deleted root leaves a dangling reference). Priority: the
+// version pinned in .ruby-version at the project root, then every installed ruby-* newest-first.
+// No dependency on rv being on PATH — just filesystem reads under %APPDATA%\rv\rubies.
+function resolveRvRubyRoots(): string[] {
+  if (!RV_RUBIES_BASE || !existsSync(RV_RUBIES_BASE)) return [];
+  const roots: string[] = [];
+  try {
+    const pin = readFileSync(join(CHTHONIC_ROOT, ".ruby-version"), "utf8").trim();
+    if (pin) roots.push(join(RV_RUBIES_BASE, pin.startsWith("ruby-") ? pin : `ruby-${pin}`));
+  } catch {
+    // no .ruby-version pin — fall through to enumeration
+  }
+  try {
+    for (const dir of readdirSync(RV_RUBIES_BASE)
+      .filter((d) => d.startsWith("ruby-"))
+      .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))) {
+      const full = join(RV_RUBIES_BASE, dir);
+      if (!roots.includes(full)) roots.push(full);
+    }
+  } catch {
+    // rubies dir unreadable — return whatever the pin gave us
+  }
+  return roots;
+}
+const RV_RUBY_ROOTS: string[] = resolveRvRubyRoots();
 
 const RUBY_ROOT_CANDIDATES = [
   process.env.RUBY_ROOT,
