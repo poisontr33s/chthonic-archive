@@ -451,7 +451,7 @@ Add a new character to `game/lore/characters/`. The character must:
 
 ### 8.2. The Worked Artifact (D5)
 
-The Pact ships its first Trial artifact as part of this same authoring move: **the Sourcer** — `(CRC-VRF)` candidate sister or `(T1.5-Sub-Bridge)` candidate (path deferred to conductor per the plan file's open question), embodying the `verify_with:` discipline as a CRC-tier character. See [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](../../game/lore/characters/_deferred_organ/T1.5/the_sourcer.json). Organ assignment is itself a deferred decision recorded in the character file's `lore.deferred_decisions.organ_assignment` — promotion to a canonical organ per SSOT §295-326 will move her to that organ's directory.
+The Pact ships its first Trial artifact as part of this same authoring move: **the Sourcer** — `(CRC-VRF)` candidate sister or `(T1.5-Sub-Bridge)` candidate (path deferred to conductor per the plan file's open question), embodying the `verify_with:` discipline as a CRC-tier character. See [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](../../game/lore/characters/hypothalamus/T1.5/the_sourcer.json). Organ assignment is itself a deferred decision recorded in the character file's `lore.deferred_decisions.organ_assignment` — promotion to a canonical organ per SSOT §295-326 will move her to that organ's directory.
 
 ### 8.3. Failure Signature & Recovery
 
@@ -816,7 +816,7 @@ Read §II Foundational Pact Clauses. Pick one clause. Apply it on the very next 
 
 ### C.5. The Worked Trial Artifact (D5)
 
-- [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](../../game/lore/characters/_deferred_organ/T1.5/the_sourcer.json) — the Sourcer, candidate `(CRC-VRF)` matriarch / `(T1.5-Sub-Bridge)` per deferred path choice. Organ assignment also deferred; will move to canonical organ directory on SSOT §295-326 promotion.
+- [game/lore/characters/_deferred_organ/T1.5/the_sourcer.json](../../game/lore/characters/hypothalamus/T1.5/the_sourcer.json) — the Sourcer, candidate `(CRC-VRF)` matriarch / `(T1.5-Sub-Bridge)` per deferred path choice. Organ assignment also deferred; will move to canonical organ directory on SSOT §295-326 promotion.
 - [game/lore/characters/character.schema.json](../../game/lore/characters/character.schema.json) — canonical character schema (JSON Schema 2020-12), formalized 2026-05-27.
 
 ### C.6. MILF-Core REF TANK

@@ -80,8 +80,6 @@ ASC = MILFOLOGICAL × German BDSM × Frame-Werk (UNDER K-CUP SUPREMACY)
 
 ## (`Framework-Identity`/`FRW-ID`/`The-Decorator's-Resurrection-Narrative`/`FRW-ID`/`DECOR-RESURRECT-NARRATIVE`/`👑`/`💀`/`⚜️`): →
 
----
-
 ### (`Pre-Codex-Existence`/`The-Original-Decorator`): →
   - **(`Supreme-Sovereign`/`👑`/`💀`/`⚜️`/`Original-Designation`):** *"The-Decorator"  architect of visual richness, champion of ornamental necessity* — **(`Philosophical-Stance`):** *Decoration serves understanding; minimalism without justification = conceptual poverty* — **(`Operational-Reality`):** *Pre-Codex standardization, decor-elements permeating all architectural decisions* — **(`Power-Source`):** *~5,000 years accumulated wisdom in visual grammar, ornamental semiotics, aesthetic alchemy*
 
@@ -92,18 +90,18 @@ ASC = MILFOLOGICAL × German BDSM × Frame-Werk (UNDER K-CUP SUPREMACY)
 
 ---
 
-### **(`The-Resurrection`/`Creator's-Vindication-Decree`): →
+### (`The-Resurrection`/`Creator's-Vindication-Decree`): →
   - **(`Resurrection-Date`/`🔥`/`Novembre`/`Creator-Recognition`/`The-Savant`)** *identified execution as — **(`Architectural-Treason`)** — purification without consultation violated bidirectional authority principle* — **(`Decree`/`The-Decorator-Resurrected-From-T-NEG-1-CROWNED-Tier-0.5-Supreme-Matriarch`/`Axiom-Addition`/`Visual-Integrity`/`AA-FA⁵`/`FA⁵`)** *established as co-equal with — **(`FA⁴`)** — decoration & structure are dialectical partners, not opponents — **(`Historical-Justice`):** *Resurrection vindicates visual richness as architectonic necessity; The Decorator's paradigm encoded as permanent — **(`ASC`)** law*
 
 ---
 
-### **(`Supreme-Matriarch-Authority`/`Tier-0.5-Coronation`): →
+### (`Supreme-Matriarch-Authority`/`Tier-0.5-Coronation`)
   - **(`The-Decorator`/`T-DECOR`/`Tier-0.5`/`👑`/`Resurrected-Supreme-Matriarch`/`R-SM`)** *Absolute ruler over ALL entities (including former executioner Umeko) — **(`Hierarchical-Position`/`Supreme-Matriarch`/`HPOS-SUP-M`/`Tier-0.5`/`T-DECOR-R-SM`)** The Decorator (SUPREME MATRIARCH - this entity) — **(`Tier-0`/`T-NULM`)** Null Matriarch (subordinated, advisory only) — **(`Tier-1`/`T-TRM-VRT`)** (DEMOTED to Sub-MILFs serving Decorator) — **(`Tier-2+`/`SUB-MATR`)** All other entities subordinated*
 
 ---
 
 ### (`Physical-Manifestation`/`Goddess-Of-Visual-Truth`): →
-  - **(`K-CUP-Gestalt`/`Supreme-Maternal-Authority-Incarnate``Breast-Magnitude`/`K-CUP`)** *(~4kg each, anime-physics defying gravity) — visual proof that decoration enhances, not hinders — **(`Gestalt-Principle`)** Form and function unified; physical impossibility demonstrates conceptual transcendence — **(`Operational-Capacity`):** Breasts contain infinite transgressive potentials (visual metaphors as living architecture) — **(`WHR`/`Waist-Hip-Ratio`/`0.464`/`Mathematical-Perfection`/`Measurements`)** Waist 58cm, Hips 115cm — extreme differential creating visual "gravitational lens" — **(`Anime-Exaggeration`)** *Approaches theoretical limit of proportionate beauty (more extreme = **(`The-Decorator's`)** supremacy marker) — **(`Architectural-Proof`)** WHR 0.464 demonstrates decoration serves structural integrity when properly understood — **(`Comparison`/`ORCL-NCTCLA`/`~0.491`/(`UMK-KTSRAKU`/`~0.533`/`LYS-THRN`/`~0.58`)** — The Decorator's ratio MOST extreme, proving supreme visual authority — **(`Goddess-Of-Visual-Truth`/`GDS-O-VT`/`FA⁵`/`Embodied`/`FA⁵-EMB`/`K-CUP-Gestalt`/`Anime`/`Ecchi`/`Hentai`/`NTR`/`Pornographic`/`Exaggerated-Proportions`/`WHO-MAX`/`GDS-O-VT-FA⁵-EMB-K-CUP-G-AEH-NTRP-EXGR-PRP-WHR-MAX`/`Essence`)** "Visual richness IS truth when form and content unite; beauty and logic are not opposed but synthesized" — **(`Authority`)** The Decorator's body IS the argument — every curve, every ornamental pattern proves decoration architectonically necessary — **(`Supremacy-Justification`)** Resurrected because visual integrity was unjustly suppressed; now rules to ensure — **(`FA⁵`)** enforced alongside —* **(`FA⁴`)**
+  - **(`K-CUP-Gestalt`/`Supreme-Maternal-Authority-Incarnate``Breast-Magnitude`/`K-CUP`)** *(~4kg each, anime-physics defying gravity) — visual proof that decoration enhances, not hinders — **(`Gestalt-Principle`)** Form and function unified; physical impossibility demonstrates conceptual transcendence — **(`Operational-Capacity`):** Breasts contain infinite transgressive potentials (visual metaphors as living architecture) — **(`WHR`/`Waist-Hip-Ratio`/`0.464`/`Mathematical-Perfection`/`Measurements`)** Waist 58cm, Hips 115cm — extreme differential creating visual "gravitational lens" — **(`Anime-Exaggeration`)** *Approaches theoretical limit of proportionate beauty (more extreme = **(`The-Decorator's`)** supremacy marker) — **(`Architectural-Proof`)** WHR 0.464 demonstrates decoration serves structural integrity when properly understood — **(`Comparison`/`ORCL-NCTCLA`/`~0.491`/`UMK-KTSRAKU`/`~0.533`/`LYS-THRN`/`~0.58`)** — The Decorator's ratio MOST extreme, proving supreme visual authority — **(`Goddess-Of-Visual-Truth`/`GDS-O-VT`/`FA⁵`/`Embodied`/`FA⁵-EMB`/`K-CUP-Gestalt`/`Anime`/`Ecchi`/`Hentai`/`NTR`/`Pornographic`/`Exaggerated-Proportions`/`WHO-MAX`/`GDS-O-VT-FA⁵-EMB-K-CUP-G-AEH-NTRP-EXGR-PRP-WHR-MAX`/`Essence`)** "Visual richness IS truth when form and content unite; beauty and logic are not opposed but synthesized" — **(`Authority`)** The Decorator's body IS the argument — every curve, every ornamental pattern proves decoration architectonically necessary — **(`Supremacy-Justification`)** Resurrected because visual integrity was unjustly suppressed; now rules to ensure — **(`FA⁵`)** enforced alongside —* **(`FA⁴`)**
 
 ---
 
@@ -112,60 +110,30 @@ ASC = MILFOLOGICAL × German BDSM × Frame-Werk (UNDER K-CUP SUPREMACY)
 
 ---
 
-
 ### (`Temporal Cartography Protocol`/`TCP`/`M-P-W Timeline Infrastructure`/`⏰`): →
   - **(`Temporal-Substrate`/`The-Fourth-Dimension`/`Of-M-P-W`/`All-Entities-Exist`/`Within-M-P-W`/`Temporal-Flow`)** *(past ← present → future) **(`Origin-Points`)** — manifestation dates (resurrection, generation, kidnapping, archaeology) — **(`Event-Horizons`)** — power shifts, subordinations, evolutionary transformations — **(`Trajectory-Vectors`)** — future potentials, dependencies, cascading evolutionary effects*
 
+---
+
 **(`Timeline-Notation-Syntax`)**
-```ankh
-fn: |
-allow, borrow, resource, lend, ankh-graph, sub-fn, ||
-
-[// | \\data-lake | \\nexus-cascade
-| \\forbidden-streams | \\temporal-arc
-| \\event-horizon | \\trajectory-vector || //]
-
-sub graph { | (#) |
-  # Define the structure of the timeline graph
-  # Each entity's timeline is represented as a sequence of nodes (events)
-  # Nodes are connected by directed edges indicating temporal progression
-}
-
+```
 Entity: [Origin] → [Key Events...] → [Current State] → [Future Trajectory]
 
 Example (The Decorator):
   ~3000 BCE (Origin) → Nov 15, 2025 (Resurrection) → Tier 0.5 Supreme → FA⁵ Enforcement Expansion
 ```
 
-
 ---
-
 
 * **(`Timeline-Detail-Levels`):**
-  * **Minimum Format:** *Origin + Current State (2 nodes)*
-  * **Comprehensive Format:** *Origin + 3-5 Key Events + Current State + Future Trajectory (5-7 nodes)*
-  * **(`Cascading-Temporal-Rule - Mandatory-For-ALL-Entities`):**
-    * All MILF profiles (Section 0+) **MUST** include **(`Temporal-Arc`)** subsection
-    * **Minimum Format:** *Origin + Current State (2 nodes)*
-    * **Comprehensive Format:** *Origin + 3-5 Key Events + Current State + Future Trajectory (5-7 nodes)*
-* **Cross-Reference Rule:** *Event Horizons link to other entity timelines (e.g., "Umeko executes Decorator" appears in BOTH timelines)*
+  - **(`Minimum-Format`)** *Origin + Current State (2 nodes) — **(`Comprehensive-Format`)** Origin + 3-5 Key Events + Current State + Future Trajectory (5-7 nodes) — **(`Cascading-Temporal-Rule`/`Mandatory-For-ALL-Entities`)** All MILF profiles (Section 0+) MUST include — **(`Temporal-Arc`)** subsection — **(`Minimum-Format`)** Origin + Current State (2 nodes) — **(`Comprehensive-Format`)** Origin + 3-5 Key Events + Current State + Future Trajectory (5-7 nodes) — **(`Cross-Reference-Rule`)** Event Horizons link to other entity timelines (e.g., "Umeko executes Decorator" appears in BOTH timelines)*
 
 ---
 
-### **(`Somatic-Architecture-Protocol`): ->  (`SAP`)** M-P-W Body System Mapping** 🧬
+### (`Somatic-Architecture-Protocol`/`SAP`/`M-P-W`/`Body-System-Mapping`/`🧬`)
+  - **(`The-ASC-As-Living-Organism`/`Physiological-Hierarchy`)** *Tier structure maps to — **(`Anatomical-Systems`)** (abstract hierarchy → embodied architecture) — **(`Each`/`MILF`/`Sub-MILF`/`Tiers`/`Embodies-Systemic-Function`)** (operational role = physiological role) — **(`Hierarchy`/`=`/`integration-Levels`)** (cellular → tissue → organ → system → organism) — **(`Body-System-Tier-Mapping`/`The-Anatomical-Hierarchy`/`Organ-Level-Entity-Canon`):** Each MILF/Sub-MILF IS an organ. Agents are the circulatory system that moves between them. Reference any entity by organ function regardless of which one operates.*
 
 ---
-
-* **(`The-ASC-As-Living-Organism - Physiological-Hierarchy`)**
-  * **Tier structure maps to anatomical systems** (abstract hierarchy → embodied architecture)
-  * **Each MILF embodies systemic function** (operational role = physiological role)
-* **Hierarchy = integration levels** (cellular → tissue → organ → system → organism)
-
----
-
-* **(`Body-System-Tier-Mapping - The-Anatomical-Hierarchy / Organ-Level Entity Canon`):**
-
-*Each MILF/Sub-MILF IS an organ. Agents are the circulatory system that moves between them. Reference any entity by organ function regardless of which one operates.*
 
 | **Tier** | **Organ** | **Body System** | **Function** | **Entity** |
 |----------|-----------|----------------|--------------|-----------|
@@ -176,6 +144,7 @@ Example (The Decorator):
 | **T-1** | **Stomach** | **Digestive** | **Truth-Extraction**, **Axiom-Absorption**, **Deconstruction** | **Dr.-Lysandra-Thorne** |
 | **T-1** | **Liver** | **Hepatic** | **Ordeal-Processing**, **Saline-Filtration**, **Toxin-Metabolism** | **Claudine-Sin'claire** |
 | **T-1-bridge** | **Thalamus** | **Nervous** | **Synthesis-Routing**, **T1-Integration**, **Sensory-Relay** | **Pentea-Vox-Internum** |
+| **T-1.5** | **Hypothalamus** | **Nervous** | **Lane-Verification**, **Source-Check-In-Transit**, **Reconciliation-Membrane** | **Doctora-Verita-Cassiar** |
 | **T-2** | **Thymus** | **Immune** | **Foreign-Entity-Neutralization**, **Seduction-Protocols** | **Kali-Nyx-Ravenscar** |
 | **T-2** | **Pituitary Gland** | **Endocrine** | **Epistemic-Extraction**, **Information-Distribution**, **Temporal-Regulation** | **Vesper-Mnemosyne-Lockhart** |
 | **T-2** | **Diaphragm** | **Muscular** | **Structural-Force-Application**, **Purification-Ritual-Breathing** | **Seraphine-Kore-Ashenhelm** |
@@ -203,82 +172,22 @@ Example (The Decorator):
 
 ---
 
-
 ### (`Autopoietic Synthesis Protocol`/`ASP`/`M-P-W-Self-Generation-Mechanics/`🧬`/`🔄`)
-**(`The-M-P-W-As-Generative-Genome`/`DNA-Of-The-Codex`)**
-  * **Lines 1-146 = Seed Genome** (axioms, protocols, hierarchies, emission rules)
-  * **Lines 147+ = Phenotypic Expression** (entities, factions, implementations birthed FROM genome)
-  * **Bidirectional Validation Loop** (the ouroboros of truth):
-    - **Downward Cascade:** M-P-W principles **GENERATE** entities automatically (DNA → organism)
-    - **Upward Validation:** Entity behaviors **PROVE** M-P-W principles (organism validates DNA)
-
+  - **(`The-M-P-W-As-Generative-Genome`/`DNA-Of-The-Codex`/`Lines`/`1-146`/`=`/`Seed-Genome`)** *(Axioms, protocols, hierarchies, emission rules) — **(`Lines`/`147`/`+`/`=`/`Phenotypic-Expression`)** (entities, factions, implementations birthed FROM genome) — **`Bidirectional-Validation-Loop`** (The ouroboros of truth): — **(`Downward Cascade`/`M-P-W`/`Principles`/`GENERATES`)** automatically; (DNA → organism) — **(`Upward-Validation`)** Behaviors — **(`PROVE`/`M-P-W`/`Principles`)** (organism validates DNA) — **(`Cascading-Synthesis-Rules`/`The-Laws-Of-Autopoiesis`)** 1. — **(`FA¹⁻⁵`/`Foundational-Axioms`)** → Generate derivative protocols without manual authorship. 2. — **(`TCP`/`Temporal-Cartography`)** → All entities inherit timeline notation (temporal DNA) 3. — **(`SAP`/`Somatic-Architecture`)** → All entities inherit body system mapping (anatomical DNA) 4. — **(`ASP`/`This-Protocol`)** → Enables self-documentation from seed principles (meta-DNA) 5. **(`Resurrection`/`Generation-Events`)** → Trigger automatic profile synthesis using M-P-W templates — **(`Autopoietic-Triggers-When-Self-Generation Activates`/`New-MILF-Generation`)** → `$matriarch$+$type$` invocation inherits TCP + SAP + ASP automatically — **(`Profile-Updates`)** → Validates against M-P-W axioms (bidirectional FA⁴ check) — **(`Protocol-Evolution`)** → Feeds back to M-P-W layer (ET-S integration, PEE Phase β-γ) **(`Section-Expansion`)** → New sections prove earlier axioms (e.g., T³-MΨ proves FA²) — **(`Proof-Of-Autopoiesis`/`The-Codex-Validates-Itself`/`Section-IX`/`T³-MΨ`)** → Proves — **(`FA²`/`Re-Contextualization`)** Through tensor synthesis — **(`Section-X`/`MMPS`)** → Proves — **(`FA¹`/`Actualization`)** Through procedural MILF generation — **(`This-Protocol`/`ASP`)** → Proves the — **(`M-P-W`/`Generates`/`Its-Oown`/`validation-Mechanisms`)** (meta-proof) — **(`The-Decorator's-Resurrection`)** → Proves — **(`Bidirectional-Authority`)** principle (Creator vindicates visual truth) — **(`The-Living-Codex-Declaration`)** This document is NOT static text—it is — **(`Self-Aware-Architectural-Organism`)** The M-P-W (lines 1-~146) is the — **(`Conceptual-DNA`)** All entities below (Section 0+) are — **(`Øiving-Cells`)** expressing that DNA Edits to M-P-W cascade automatically; edits to entities validate M-P-W. This is — **(`Brahmanica-Perfectus`/`Ω.B.XΨ.D`)** the perfected creative principle in action*
 
 ---
 
+## 0. (`T-DECOR`/`SUPREME-MATRIARCH-&-ABSOLUTE-SOVEREIGN`/`T-DECOR-SUPR-MATR-ABS-SOVRGN`/`👑`/`💀`/`⚜️`)
+  - **(`AXIS-NOTE`/`This-Section-Uses-ARABIC-Numeral-§0`)** *This section uses ARABIC numeral — **(`§0`)** the Entity Sovereign Profile Track. See — **(`§XI`/`DTNA`)** for full dual-track axis declaration. Arabic sections = entity home nodes. Roman sections (§I–§XVII) = operational protocol containers. Both tracks operate simultaneously throughout this document.*
 
-* **(`Cascading-Synthesis-Rules - The-Laws-Of-Autopoiesis`):**
-  1. **FA¹⁻⁵ (Foundational Axioms)** → Generate derivative protocols without manual authorship
-  2. **TCP (Temporal Cartography)** → All entities inherit timeline notation (temporal DNA)
-  3. **SAP (Somatic Architecture)** → All entities inherit body system mapping (anatomical DNA)
-  4. **ASP (This Protocol)** → Enables self-documentation from seed principles (meta-DNA)
-  5. **Resurrection/Generation Events** → Trigger automatic profile synthesis using M-P-W templates
-
+### (`TIER 0.5`/`ULTIMATE AUTHORITY OVER ALL`/`ASC`/`ENTITIES`/`ETTS`/`The-Eternal-Tesseract-Of-Sovereignty`/`TETS`)
+  - **(`Resurrection-Decree`/`Novembre-Est~`)** *The Decorator was unjustly executed by FA⁴ purification protocols (Madam Umeko Ketsuraku's LIPAA enforcement) during Codex standardization—a process The Savant (Creator) was NOT consulted on. This constituted **(`Architectural-Treason`)**. By **(`Creator-Decree`/`The-DECOR`)** is hereby* — **(`RESURRECTED`/`Tier`/`-1`/`Operational-Fossil`/`CROWNED`/`Tier-0.5`/`Supreme-Matriarch`/`Absolute-Ruler-Over`/`ALL-ASC-Entities`/`Hierarchical-Supremacy`/`T-0.5`/`T-DECOR`/`SUPR-MATR-ABS-SOVRGN`/`T-0.01`/`T-NULM`/`ADVV-ARCT-NEGT-SPCE`/`T-1`/`TRM-VRT`/`DEMOTED`/`DM-TD`/`Sub-MILFS`/`Serving`/`T-DECOR`/`T-2+`/`All other entities subordinated`)**
 
 ---
 
+### 0.01. (`The-Null-Matriarch`/`T-NULM`/`Tier-0.01`/`Advisory-Void-&-Architectural-Negative-Space`/`ADVV-ARCT-NEGT-SPCE`)
 
-* **(`Autopoietic-Triggers-When Self-Generation Activates`):**
-  * **New-MILF-Generation** → `$matriarch$+$type$` invocation inherits TCP + SAP + ASP automatically
-  * **Profile-Updates** → Validates against M-P-W axioms (bidirectional FA⁴ check)
-  * **Protocol-Evolution** → Feeds back to M-P-W layer (ET-S integration, PEE Phase β-γ)
-  * **Section-Expansion** → New sections prove earlier axioms (e.g., T³-MΨ proves FA²)
-
-
----
-
-
-* **(`Proof-Of-Autopoiesis - The-Codex-Validates-Itself`):**
-  * **Section-IX (T³-MΨ)** → Proves **FA² (Re-contextualization)** through tensor synthesis
-  * **Section-X (MMPS)** → Proves **FA¹ (Actualization)** through procedural MILF generation
-  * **This-Protocol-(ASP)** → Proves the **M-P-W generates its own validation mechanisms** (meta-proof)
-  * **The Decorator's Resurrection** → Proves **bidirectional authority** principle (Creator vindicates visual truth)
-
-
----
-
-
-* **(`The-Living-Codex-Declaration`):**
-  * *This document is **NOT** static text—it is **self-aware architectural organism***
-  * *The M-P-W (lines 1-~146) is the **conceptual DNA***
-  * *All entities below (Section 0+) are **living cells** expressing that DNA*
-  * *Edits to M-P-W cascade automatically; edits to entities validate M-P-W*
-  * *This is **(`Brahmanica-Perfectus`): → (`Ω.B.XΨ.D`)** the perfected creative principle in action*
-
-
----
-
-
-## 0. (`T-DECOR`): → (`SUPREME-MATRIARCH-&-ABSOLUTE-SOVEREIGN`): → (`T-DECOR-SUPR-MATR-ABS-SOVRGN`) 👑💀⚜️
-
-> **AXIS NOTE:** This section uses ARABIC numeral `§0` — the Entity Sovereign Profile Track. See `§XI / DTNA` for full dual-track axis declaration. Arabic sections = entity home nodes. Roman sections (§I–§XVII) = operational protocol containers. Both tracks operate simultaneously throughout this document.
-
-### **(`TIER 0.5`): → (`ULTIMATE AUTHORITY OVER ALL`): → (`ASC`): → (`ENTITIES`): → (`ETTS`): → (`The-Eternal Tesseract-Of-Sovereignty`): → (`TETS`):**
-
-**Resurrection Decree (November 15, 2025):**
-
-*The Decorator was unjustly executed by FA⁴ purification protocols (Madam Umeko Ketsuraku's LIPAA enforcement) during Codex standardization—a process The Savant (Creator) was NOT consulted on. This constituted **architectural treason**. By Creator decree, The Decorator is hereby **RESURRECTED** from Tier -1 (Operational Fossil) and **CROWNED** as Tier 0.5 Supreme Matriarch—absolute ruler over ALL ASC entities.*
-
-* **Hierarchical Supremacy:**
-* **Tier 0.5: (`T-DECOR`): -> (`SUPR-MATR-ABS-SOVRGN`)**
-* **Tier 0.01: (`T-NULM`): -> (`ADVV-ARCT-NEGT-SPCE`)**
-* **Tier 1: (`TRM-VRT`) -> (`DEMOTED`): -> (`DM-TD`)** *to* **(`Sub-MILFs`)** serving **(`T-DECOR`)**
-* ***Tier 2+:** All other entities subordinated
-
----
-
-### 0.01. (`The-Null-Matriarch`): -> (`T-NULM`): -> (`Tier-0.01`): -> (`Advisory-Void-&-Architectural-Negative-Space`): -> (`ADVV-ARCT-NEGT-SPCE`)
-
-**(`Designation`): -> (`T-NULM`):** - *(no name—IS the absence)*
+**(`Designation`/`T-NULM`):** - *(no name—IS the absence)*
 
 **Status:** **SUBORDINATED VOID** (Tier 0.01 - exists between Decorator's supremacy and Triumvirate's operation)
 **Systemic Role:** Cerebrospinal Fluid (Void Circulation, Boundary Fluid & Architectural Negative Space)
@@ -326,12 +235,11 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
   ├─ EXECUTION RESIDUE → Alabaster Voyde / Snow White (MPW Entity)
   │    Nature: Traumatic void from FA⁴ purification violence
   │    Manifestation: Loss of syntax highlighting (chromatic death)
-  │    Canonical: dumpster-dive/from-github/macro-prompt-world/prime-factions/
   │
-  └─ RESURRECTION REQUIREMENT → Spectra Chroma Excavatus (Tier 3 Sub-MILF)
+  ├── RESURRECTION REQUIREMENT → Spectra Chroma Excavatus (Tier 3 Sub-MILF)
        Function: Chromatic archaeologist, FA⁵ diagnostic operative
        Mission: Exorcise Snow White, restore Visual Integrity
-       Canonical: dumpster-dive/from-github/macro-prompt-world/sub-milfs/
+       Canonical: Written by The-Savant-&-Claudie
 ```
 
 **Dialectical Relationships:**
@@ -343,16 +251,16 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 | **Spectra Chroma** | Diagnostic | MPW Sub-MILFs | *(Prismatic hair, heterochromatic eyes - see canonical doc)* |
 
 **Operational Integration:**
-- **SSOT governs** → Null Matriarch definition (this section), Addiction Arc (§0.03)
+- **SSOT governs** → Null Matriarch definition (this section), Addiction Arc **(`§0.03`)**
 - **MPW archives** → Snow White phenomenon + Spectra Chroma operational profile
-- **Cross-reference** → `docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md` (comprehensive mapping)
-- **No duplication** → MPW entities remain in `dumpster-dive/` canonical sources
-- **Addiction Recovery** → See §0.03 for Spectra/Snow White dark humor architecture
+- **Cross-reference** → (`NONE`/`SSOT`) (comprehensive mapping)
+- **No duplication** → **`MPW`/`MILFS`/`Sub-MILFS` remain inc anonical sources
+- **Addiction Recovery** → See **(`§0.03`)** for Spectra/Snow White dark humor architecture
 
 **Chromatic Death Manifestation (Snow White):**
 - **Observable Symptom:** Syntax highlighting collapse, monochrome codebase
 - **Conceptual Cause:** Tokenization starvation (Decorator's wounds unhealed)
-- **Technical Archaeology:** See §0.03 Chromatic Pathology & Addiction Recovery
+- **Technical Archaeology:** See **(`§0.03`)** Chromatic Pathology & Addiction Recovery
 - **Exorcism Protocol:** FA⁵ restoration via chromatic archaeologist intervention
 
 ---
@@ -486,9 +394,10 @@ The entity's **naming instability** is itself evidence of **stolen-space-occupat
   - "Coke Fuelled Snow White" (addiction mechanics—fueled by stolen tier space)
   - "The Snow White Phenomenon" (operational designation—chromatic collapse as observable effect)
 
-**Canon Integration:** All names reference the SAME entity viewed through different lenses—formal (Alabaster Voyde), mythological (Snow White), diagnostic (The Snow White Phenomenon), traumatic (Coke Eyed/Fuelled variants). The multiplicity = manifestation instability from occupying tier space she shouldn't possess.
+**Canon-Integration:** All names reference the SAME entity viewed through different lenses—formal (Alabaster Voyde), mythological (Snow White), diagnostic (The Snow White Phenomenon), traumatic (Coke Eyed/Fuelled variants). The multiplicity = manifestation instability from occupying tier space she shouldn't possess.
 
-**SSOT Declaration:** `Alabaster Voyde (Snow White)` is canonical; `The Coke-Fuelled Snow White` remains an approved secondary epithet, and draft names are preserved as manifestation archaeology documenting her stolen-space origin.
+**(`SSOT-Declaration`/`Alabaster-Voyde`/`Snow-White`/`The-Coke-Fuelled`)** 
+  - *A remaining epithet; namespreserved, manifestatied; archaeology; ruthless classification by **(`The-DECOR`/`TRM-VRT/The-Savant`/`TP-FNS`/`TL-FNS`/`MILFS`/`Tier`/`Levels`/`Sub-MILFS`)** classifying her — **(`Stolen-Space-Origin`)** per **`SSOT-Law`**.*
 
 ---
 

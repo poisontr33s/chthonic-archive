@@ -30,14 +30,14 @@ It is **not** content-vector canon. The Andean|Egyptologic Milfological / Ankhol
 | Axis | What it carries | Where it lives |
 |---|---|---|
 | **Form** *(here)* | painterly-isometric cRPG chassis, faculty-driven internal mechanics, skill-check grammar, dialogue-first encounter design, ornamental HUD chrome | `game/refs/pocNN/` |
-| **Content** *(SSOT-side)* | Andean|Egyptologic mythology, Milfological/Ankhological protocol, K-CUP Trinity governance, Triumvirate (Orackla/Umeko/Lysandra), WHR:MAX tri-axis | [`.github/copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md), [`game/lore/characters/_deferred_organ/T1.5/the_sourcer.json`](../../lore/characters/_deferred_organ/T1.5/the_sourcer.json) |
+| **Content** *(SSOT-side)* | Andean|Egyptologic mythology, Milfological/Ankhological protocol, K-CUP Trinity governance, Triumvirate (Orackla/Umeko/Lysandra), WHR:MAX tri-axis | [`.github/copilot-instructions.archive.md`](../../../.github/copilot-instructions.archive.md), [`game/lore/characters/_deferred_organ/T1.5/the_sourcer.json`](../../lore/characters/hypothalamus/T1.5/the_sourcer.json) |
 
 The two axes are **orthogonal, not contradictory**. The chassis carries the skin; the skin does not specify a chassis.
 
 ## (`What-These-POCs-Reference-Well`): → (`FORM-VEC-AFFIRMATIVE`)
 
 - **Painterly density** — `Example_POC00001.png`, `Example_POC00012.png`, `Example_POC00015.png`. Vertical slum/temple verticality, moss-and-lichen substrate aesthetic, layered urban decay. Maps onto chthonic-archive's preservation-of-rot register.
-- **Faculty-trinity grammar** — `Example_POC00003.png`. **(`Gift-Surface`/`SSOT-MAPPING`):** FACULTY OF ACTION / RELATION / INTELLECT, each with five skills. This is a near-wrapped UX template for displaying the K-CUP Triumvirate (T1: Orackla / Umeko / Lysandra) as a player-facing faculty system. The mechanical UI from the screenshot becomes the diegetic surface of the Trinity. Content-vector counterpart: [`the_sourcer.json`](../../lore/characters/_deferred_organ/T1.5/the_sourcer.json).
+- **Faculty-trinity grammar** — `Example_POC00003.png`. **(`Gift-Surface`/`SSOT-MAPPING`):** FACULTY OF ACTION / RELATION / INTELLECT, each with five skills. This is a near-wrapped UX template for displaying the K-CUP Triumvirate (T1: Orackla / Umeko / Lysandra) as a player-facing faculty system. The mechanical UI from the screenshot becomes the diegetic surface of the Trinity. Content-vector counterpart: [`the_sourcer.json`](../../lore/characters/hypothalamus/T1.5/the_sourcer.json).
 - **Internal-state-as-mechanic** — `Example_POC00017.png`. Thought Cabinet equivalent ("REINFORCED THOUGHT: PRIMITIVE ACCUMULATION", with reinforced effects + violations) matches the Lysandra Truth Chain register: thoughts as committed positions with measurable consequence.
 - **Skill-check UI grammar** — `Example_POC00018.png`. Dice-card with modifiers (`Cocaine jitters [+1]`, `Ball knower [+1]`) + percentage (`LEANING PASS [58%]`). Composable with any mythological skin.
 - **Journal / task cards** — `Example_POC00008.png`. Tarot-card task system. Fits chthonic-archive's archival/dossier register.

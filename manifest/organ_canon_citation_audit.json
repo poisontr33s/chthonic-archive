@@ -1,7 +1,7 @@
 {
   "tool": "CI_CHECK_ORGAN_CANON_CITATION_V1",
   "ssot_path": ".chthonic/SSOT.md",
-  "generated_at": "2026-06-02T05:46:40.078Z",
+  "generated_at": "2026-06-03T04:15:33.811Z",
   "scope": "always",
   "ssot_canonical_organs": [
     "adrenal_glands",
@@ -17,6 +17,7 @@
     "gallbladder",
     "heart",
     "hippocampus",
+    "hypothalamus",
     "kidneys",
     "liver",
     "lungs",
@@ -39,6 +40,7 @@
     "Stomach",
     "Liver",
     "Thalamus",
+    "Hypothalamus",
     "Thymus",
     "Pituitary Gland",
     "Diaphragm",
@@ -60,13 +62,18 @@
     "Bladder"
   ],
   "file_count": 5,
-  "pass_count": 4,
+  "pass_count": 5,
   "fail_count": 0,
-  "deferred_count": 1,
+  "deferred_count": 0,
   "results": [
     {
       "path": "game/lore/characters/heart/T1/orackla.json",
       "organ": "heart",
+      "status": "PASS"
+    },
+    {
+      "path": "game/lore/characters/hypothalamus/T1.5/the_sourcer.json",
+      "organ": "hypothalamus",
       "status": "PASS"
     },
     {
@@ -83,11 +90,6 @@
       "path": "game/lore/characters/stomach/T1/lysandra.json",
       "organ": "stomach",
       "status": "PASS"
-    },
-    {
-      "path": "game/lore/characters/_deferred_organ/T1.5/the_sourcer.json",
-      "organ": "_deferred_organ",
-      "status": "DEFERRED"
     }
   ]
 }
