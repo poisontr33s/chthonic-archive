@@ -48,10 +48,14 @@ export class FluxService implements vscode.Disposable {
     ) {}
 
     dispose(): void {
-        if (this.satelliteRunning && this.bridge) {
-            void this.bridge.stopSatellite(true).catch(() => undefined);
-        }
         if (this.bridge) {
+            if (this.satelliteRunning) {
+                void this.bridge.stopSatellite(true).catch(() => undefined);
+            }
+            // Free the resident engine on shutdown too. The bridge's static
+            // engine holder is otherwise only reclaimed on extension-host
+            // process death; an orderly dispose should release it now.
+            void this.bridge.unloadEngine().catch(() => undefined);
             try { this.bridge.clearMasterSecret(); } catch { /* ignore */ }
         }
         this.panel?.dispose();
@@ -372,13 +376,23 @@ export class FluxService implements vscode.Disposable {
     }
 
     private async stopBackend(): Promise<void> {
-        if (!this.bridge || !this.satelliteRunning) return;
-        try { await this.bridge.stopSatellite(true); } catch { /* ignore */ }
+        if (!this.bridge) return;
+        if (this.satelliteRunning) {
+            try { await this.bridge.stopSatellite(true); } catch { /* ignore */ }
+            this.satelliteRunning = false;
+        }
+        // Unload the engine too. stopSatellite only kills the python satellite;
+        // the ~22 GB TRT engine stays resident in the bridge — in VRAM, or in
+        // WDDM "shared" host RAM when it overflows the card — until unloadEngine
+        // or extension-host death. Without this, "stop" freed nothing and a full
+        // VS Code restart was the only way to reclaim the memory. Idempotent:
+        // unloadEngine on an empty holder is a no-op, so it also covers the
+        // stranded-engine case (engine loaded, satellite never came up).
+        try { await this.bridge.unloadEngine(); } catch { /* ignore */ }
         try { this.bridge.clearMasterSecret(); } catch { /* ignore */ }
-        this.satelliteRunning = false;
         this.refreshStatusBar();
         this.publishLauncherState();
-        this.output.appendLine('[flux] satellite stopped');
+        this.output.appendLine('[flux] backend stopped — satellite down, engine unloaded (VRAM / shared RAM freed)');
     }
 
     // Reap a satellite orphaned by a prior unclean exit. The satellite writes

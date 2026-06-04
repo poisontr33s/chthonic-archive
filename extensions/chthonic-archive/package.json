@@ -234,7 +234,7 @@
       },
       {
         "command": "chthonic.flux.stopBackend",
-        "title": "Chthonic FLUX: Stop Backend"
+        "title": "Chthonic FLUX: Stop Backend & Free Memory"
       },
       {
         "command": "chthonic.flux.rotateSecret",
