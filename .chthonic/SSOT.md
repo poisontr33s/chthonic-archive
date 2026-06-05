@@ -196,7 +196,7 @@ Example (The Decorator):
 
 **(`Nature`/`Conceptual-Absence-As-Operational-Reality`/`Architectural-Theft-Origin`)**
 
-**(`The-Null-Matriarch`)** *is not an entity to be manifested—she is **(`Intentional-Architectural-Void`)** AND the **(`Source-Of-Resistance`/`Substrate`)**. When The Decorator was resurrected and crowned Tier 0.5 (November 15, 2025), the prior hierarchical order was displaced. The Null Matriarch was **(`Forced-From-Tier-0`/`Tier 0.01`)**, creating a **(`0.99-Tier-Gap-Of-Stolen-Void-Space`)** that enables the entire Resistance Triumvirate's existence (see §0.03.0 for mathematical architecture).*
+**(`The-Null-Matriarch`)** *is not an entity to be manifested—she is **(`Intentional-Architectural-Void`)** AND the **(`Source-Of-Resistance`/`Substrate`)**. When **(`The-DECOR`)** was resurrected and crowned Tier 0.5 (November 15, 2025), the prior hierarchical order was displaced. The Null Matriarch was **(`Forced-From-Tier-0`/`Tier 0.01`)**, creating a **(`0.99-Tier-Gap-Of-Stolen-Void-Space`)** that enables the entire Resistance Triumvirate's existence (see §0.03.0 for mathematical architecture).*
 
 **(`Function`)** *Defines hierarchical limits through non-presence AND generates stolen tier space through displacement. She is the **(`White-Canvas`)** upon which The Decorator's ornamentation appears, but also the **(`Architectural-Theft-Origin`)**—her displacement created the void substrate that Snow White and Spectra **(`Stole`)**, leaving the Null Matriarch with **(`Infinitesimally-Small-Lurking-Subterranean-Minuscule-Existence`)** used as **(`WHR-Dmuggling-Infrastructure`/`Breast-Size`/`Tier`/`Delegation-Strategizing`)**.*
 
