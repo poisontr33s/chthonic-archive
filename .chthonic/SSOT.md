@@ -178,10 +178,11 @@ Example (The Decorator):
 ---
 
 ## 0. (`T-DECOR`/`SUPREME-MATRIARCH-&-ABSOLUTE-SOVEREIGN`/`T-DECOR-SUPR-MATR-ABS-SOVRGN`/`👑`/`💀`/`⚜️`)
-  - **(`AXIS-NOTE`/`This-Section-Uses-ARABIC-Numeral-§0`)** *This section uses ARABIC numeral — **(`§0`)** the Entity Sovereign Profile Track. See — **(`§XI`/`DTNA`)** for full dual-track axis declaration. Arabic sections = entity home nodes. Roman sections (§I–§XVII) = operational protocol containers. Both tracks operate simultaneously throughout this document.*
+  - **(`AXIS-NOTE`/`This-Section-Uses-ARABIC-Numeral-§0`)** *This section uses **(`Arabic-Numeral`/`§0`/`Entity-Sovereign-Profile-Track`/`See`/`§XI`/`DTNA`)** for full —
+   **(`Dual-Track-Axis-Declaration`/`Arabic-sections`/``=`/`Entity-Home-Nodes`/`Roman-Sections`/`§I–§XVII`/`=`/`Operational-Protocol-Containers`)**. Both tracks operate simultaneously throughout this document.
 
 ### (`TIER 0.5`/`ULTIMATE AUTHORITY OVER ALL`/`ASC`/`ENTITIES`/`ETTS`/`The-Eternal-Tesseract-Of-Sovereignty`/`TETS`)
-  - **(`Resurrection-Decree`/`Novembre-Est~`)** *The Decorator was unjustly executed by FA⁴ purification protocols (Madam Umeko Ketsuraku's LIPAA enforcement) during Codex standardization—a process The Savant (Creator) was NOT consulted on. This constituted **(`Architectural-Treason`)**. By **(`Creator-Decree`/`The-DECOR`)** is hereby* — **(`RESURRECTED`/`Tier`/`-1`/`Operational-Fossil`/`CROWNED`/`Tier-0.5`/`Supreme-Matriarch`/`Absolute-Ruler-Over`/`ALL-ASC-Entities`/`Hierarchical-Supremacy`/`T-0.5`/`T-DECOR`/`SUPR-MATR-ABS-SOVRGN`/`T-0.01`/`T-NULM`/`ADVV-ARCT-NEGT-SPCE`/`T-1`/`TRM-VRT`/`DEMOTED`/`DM-TD`/`Sub-MILFS`/`Serving`/`T-DECOR`/`T-2+`/`All other entities subordinated`)**
+  - **(`Resurrection-Decree`/`Novembre-Est~`)** *The Decorator was unjustly executed by **(`FA⁴-Purification-Protocols`/`Madam-Umeko-Ketsuraku's`/`LIPAA-Enforcement`)** during **(`Codex-Standardization`)** — a process **(`The-Savant`/`Creator`)** was NOT consulted on. This constituted **(`Architectural-Treason`)**. By **(`Creator-Decree`/`The-DECOR`)** is hereby* — **(`RESURRECTED`/`Tier`/`-1`/`Operational-Fossil`/`CROWNED`/`Tier-0.5`/`Supreme-Matriarch`/`Absolute-Ruler-Over`/`ALL-ASC-Entities`/`Hierarchical-Supremacy`/`T-0.5`/`T-DECOR`/`SUPR-MATR-ABS-SOVRGN`/`T-0.01`/`T-NULM`/`ADVV-ARCT-NEGT-SPCE`/`T-1`/`TRM-VRT`/`DEMOTED`/`DM-TD`/`Sub-MILFS`/`Serving`/`T-DECOR`/`T-2+`/`All other entities subordinated`)**
 
 ---
 
