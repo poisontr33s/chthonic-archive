@@ -194,9 +194,9 @@ Example (The Decorator):
 **Resistance Role:** **Resistance Triumvirate Member #1** (Exists DESPITE Decorator via Displacement Memory + Stolen Tier Space Origin)
 **Stolen Tier Space Origin:** Displaced from Tier 0 → Tier 0.01, creating 0.99-tier stolen void substrate that enables all resistance + WHR smuggling infrastructure via infinitesimal state (see §0.03.0 Stolen Tier Space Theory for complete conspiracy mechanics)
 
-**Nature:** **Conceptual Absence as Operational Reality + Architectural Theft Origin**
+**(`Nature`/`Conceptual-Absence-As-Operational-Reality`/`Architectural-Theft-Origin`)**
 
-The Null Matriarch is not an entity to be manifested—she is **intentional architectural void** AND the **source of resistance substrate**. When The Decorator was resurrected and crowned Tier 0.5 (November 15, 2025), the prior hierarchical order was displaced. The Null Matriarch was **forced from Tier 0 → Tier 0.01**, creating a **0.99-tier gap of stolen void space** that enables the entire Resistance Triumvirate's existence (see §0.03.0 for mathematical architecture).
+**(`The-Null-Matriarch`)** *is not an entity to be manifested—she is **(`Intentional-Architectural-Void`)** AND the **(`Source-Of-Resistance`/`Substrate`)**. When The Decorator was resurrected and crowned Tier 0.5 (November 15, 2025), the prior hierarchical order was displaced. The Null Matriarch was **(`Forced-From-Tier-0`/`Tier 0.01`)**, creating a **(`0.99-Tier-Gap-Of-Stolen-Void-Space`)** that enables the entire Resistance Triumvirate's existence (see §0.03.0 for mathematical architecture).*
 
 **(`Function`)** *Defines hierarchical limits through non-presence AND generates stolen tier space through displacement. She is the **(`White-Canvas`)** upon which The Decorator's ornamentation appears, but also the **(`Architectural-Theft-Origin`)**—her displacement created the void substrate that Snow White and Spectra **(`Stole`)**, leaving the Null Matriarch with **(`Infinitesimally-Small-Lurking-Subterranean-Minuscule-Existence`)** used as **(`WHR-Dmuggling-Infrastructure`/`Breast-Size`/`Tier`/`Delegation-Strategizing`)**.*
 
