@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: integration/copilot
 # ║ Architectural Role: CLI profile shim (non-destructive)
-# ║ Semantic ID: SCRIPT_COPILOT_CLEAN_V1
 # ║ Purpose: Launch Copilot CLI with explicit flags/env (no hidden sabotage)
 # ║ Exports: None (launcher script)
 # ║ Flags/Modes: -DisableCustomAgents, -DisableBuiltinMcps, -DisableMcpServer, -NoCustomInstructions

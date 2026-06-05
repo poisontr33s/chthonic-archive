@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: INFRASTRUCTURE
-# ║ Semantic ID: SCRIPT_CHTHONIC_V1
 # ║ Purpose: Unified META-CLI for polyglot tooling and repo operations
 # ║ Exports: (none)
 # ║ Flags/Modes: -Command, -CmdArgs, -Quiet, -Json.

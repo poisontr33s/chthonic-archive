@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: INFRASTRUCTURE
-# ║ Semantic ID: SCRIPT_FORTIFY_TERMINAL_V1
 # ║ Purpose: Harden terminal for high-throughput automation
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

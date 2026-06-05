@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: UTILITY
-# ║ Semantic ID: SCRIPT_PATCH_CLAUDE_INSIDERS_V1
 # ║ Purpose: Patch Claude Code CLI to use code-insiders on Windows
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

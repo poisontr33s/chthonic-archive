@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: DIAGNOSTIC
-# ║ Semantic ID: SCRIPT_CHECK_PROFILES_V1
 # ║ Purpose: Print PowerShell profile paths and existence checks
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

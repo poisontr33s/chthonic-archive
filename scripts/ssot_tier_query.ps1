@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_TIER_QUERY_V1
 # ║ Purpose: Query GHAR-MHS tier hierarchy and entities
 # ║ Exports: (none)
 # ║ Flags/Modes: -Tier, -Entity

@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: UTILITY
-# ║ Semantic ID: SCRIPT_UPDATE_CLAUDE_CODE_V1
 # ║ Purpose: Update Claude Code to latest, capture version before/after, print diff
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

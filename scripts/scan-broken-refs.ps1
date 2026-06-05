@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: tooling/scanner
 # ║ Architectural Role: Find broken [text](path) references in .md files
-# ║ Semantic ID: SCRIPT_SCAN_BROKEN_REFS_V1
 # ║ Purpose: Post-restructure validation - identify orphaned links
 # ║ Usage: .\scripts\scan-broken-refs.ps1 [-Fix]
 # ╚════════════════════════════════════════════════════════════════════════════

@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: orchestration/bootstrap
 # ║ Architectural Role: MCP server launcher with optional Claude integration
-# ║ Semantic ID: SCRIPT_START_MCP_SESSION_V1
 # ║ Purpose: Bootstrap MCP server session, optionally ensuring Claude is up
 # ║ Exports: None (launcher script)
 # ║ Flags/Modes: -EnsureClaude, -McpCmd <string>

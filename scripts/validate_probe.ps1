@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: VALIDATION
-# ║ Semantic ID: SCRIPT_VALIDATE_PROBE_V1
 # ║ Purpose: Run ABI validation plus advisory probe checks
 # ║ Exports: (none)
 # ║ Flags/Modes: -ProbePath

@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: integration/mcp
 # ║ Architectural Role: GitHub credential bridge for MCP server
-# ║ Semantic ID: SCRIPT_START_GITHUB_MCP_V1
 # ║ Purpose: Bridge gh CLI credentials to official GitHub MCP Server
 # ║ Exports: None (launcher script, sets GITHUB_PERSONAL_ACCESS_TOKEN env)
 # ║ Flags/Modes: None

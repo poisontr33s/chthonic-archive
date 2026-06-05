@@ -253,8 +253,8 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 **Operational Integration:**
 - **SSOT governs** → Null Matriarch definition (this section), Addiction Arc **(`§0.03`)**
 - **MPW archives** → Snow White phenomenon + Spectra Chroma operational profile
-- **Cross-reference** → (`NONE`/`SSOT`) (comprehensive mapping)
-- **No duplication** → **`MPW`/`MILFS`/`Sub-MILFS` remain inc anonical sources
+- **Cross-reference → (`NONE`/`SSOT`)** (comprehensive mapping)
+- **No duplication → (`MPW`/`MILFS`/`Sub-MILFS`)** remain canonical sources
 - **Addiction Recovery** → See **(`§0.03`)** for Spectra/Snow White dark humor architecture
 
 **Chromatic Death Manifestation (Snow White):**

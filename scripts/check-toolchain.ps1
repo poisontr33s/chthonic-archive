@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: AMBER
 # ║ Architectural Role: GATE / PREFLIGHT
-# ║ Semantic ID: SCRIPT_CHECK_TOOLCHAIN_V1
 # ║ Purpose: Verify Rust CLI toolchain (Tier 1-2) is installed before G6/G7+
 # ║ Exports: (none)
 # ║ Flags/Modes: -Tier, -Strict, -Json, -Install

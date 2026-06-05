@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: PROBE
-# ║ Semantic ID: SCRIPT_PROBE_TOOLCHAIN_PATH_V1
 # ║ Purpose: Probe toolchain paths and emit curated PATH outputs
 # ║ Exports: (none)
 # ║ Flags/Modes: -ExtraRoots, -OutRoot, -ApplyToSession, -WriteVscodeSnippet

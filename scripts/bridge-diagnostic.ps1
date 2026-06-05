@@ -6,7 +6,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: DIAGNOSTIC
-# ║ Semantic ID: SCRIPT_BRIDGE_DIAGNOSTIC_V1
 # ║ Purpose: Diagnose Claude↔Chthonic bridge processes and endpoints
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

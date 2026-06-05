@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: GOVERNANCE
-# ║ Semantic ID: SCRIPT_CHECK_SOLANA_VERSION_V1
 # ║ Purpose: Enforce max-version-drift policy for local Solana CLI
 # ║ Exports: (none)
 # ║ Flags/Modes: -MaxMinorBehind -Json -CliCommand

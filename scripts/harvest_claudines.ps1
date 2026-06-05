@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: HARVEST
-# ║ Semantic ID: SCRIPT_HARVEST_CLAUDINES_V1
 # ║ Purpose: Harvest external Claudine scripts into intake folder
 # ║ Exports: (none)
 # ║ Flags/Modes: See param block

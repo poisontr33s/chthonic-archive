@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: orchestration/bootstrap
 # ║ Architectural Role: Claude Code/Desktop installation and launch manager
-# ║ Semantic ID: SCRIPT_LAUNCH_CLAUDE_CODE_V1
 # ║ Purpose: Install/start Claude Code / Claude Desktop on Windows 11
 # ║ Exports: None (launcher script)
 # ║ Flags/Modes: -Force (skip running check), -WaitSeconds <int>

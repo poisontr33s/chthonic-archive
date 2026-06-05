@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: PROBE (thin shim — delegates to shell_capabilities.ps1)
-# ║ Semantic ID: SCRIPT_SFS_V1
 # ║ Purpose: Thin shim; all logic lives in shell_capabilities.ps1
 # ║ Exports: (none — passes through from shell_capabilities.ps1)
 # ║ Cross-References: scripts/shell_capabilities.ps1

@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: DIAGNOSTIC
-# ║ Semantic ID: SCRIPT_COMPARE_PROBE_VARIANTS_V1
 # ║ Purpose: Scan repo for probe-like PS1 variants and flag deviations
 # ║ Exports: (none)
 # ║ Flags/Modes: -CanonicalHash

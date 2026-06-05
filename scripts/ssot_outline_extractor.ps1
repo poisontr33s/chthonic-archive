@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_OUTLINE_EXTRACTOR_V1
 # ║ Purpose: Extract SSOT outline and update structural index
 # ║ Exports: (none)
 # ║ Flags/Modes: -OutputJson, -Section, -Acronym, -UpdateIndex

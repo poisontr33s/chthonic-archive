@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: configuration/environment
 # ║ Architectural Role: Deterministic PATH and toolchain environment setup
-# ║ Semantic ID: SCRIPT_POLYGLOT_ENV_V1
 # ║ Purpose: Apply or display resolved toolchain paths from probe output
 # ║ Exports: Session PATH modifications, resolved tool locations display
 # ║ Flags/Modes: -Apply (set PATH), -Show (display only)

@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V2_V1
 # ║ Purpose: Dynamically parse SSOT registries from copilot-instructions.md
 # ║ Exports: (none)
 # ║ Flags/Modes: -Registry, -Entity

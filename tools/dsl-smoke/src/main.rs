@@ -59,30 +59,37 @@ fn main() {
     let text = fs::read_to_string(&ssot_path).expect("SSOT.md not readable");
     let lines: Vec<&str> = text.lines().collect();
 
-    // Build slices by line range. Each slice is rejoined with \n.
-    let slice_lines = |start: usize, end: usize| -> String {
-        lines[start.saturating_sub(1)..end.min(lines.len())].join("\n")
+    // Content-anchored slices. Each stress region is located by a stable,
+    // distinctive substring in the catalyst, NOT by a hardcoded line number — so
+    // the test tracks the living SSOT through refactors instead of drifting every
+    // time content above it moves. The predecessor pinned line ranges and had to
+    // hand-recalibrate -3 on 2026-05-31; the 2026-06-05 refactor (449 deletions)
+    // then moved everything far enough to break all six at once. Anchoring on
+    // content ends that whole failure mode. Labels carry no line numbers on
+    // purpose: the label is the slice's stable identity for the iteration
+    // ledger's regression tracking, so it must not move when the catalyst does.
+    let slice_from = |anchor: &str, count: usize| -> String {
+        match lines.iter().position(|l| l.contains(anchor)) {
+            Some(i) => lines[i..(i + count).min(lines.len())].join("\n"),
+            None => String::new(), // anchor gone -> empty -> PARSE FAIL, surfaced honestly
+        }
     };
 
-    // Line anchors are −3 vs the pre-2026-05-31 calibration: purifying three
-    // injected operational-meta lines from the §0 governance preamble (L45/47/50,
-    // stale seal + codex-injected Update-Protocol + .github file-path constraint)
-    // shifted all content below the preamble up by 3 lines.
-    let trinity = slice_lines(67, 127);          // Trinity Formula / K-CUP block
-    let esl_emoji = slice_lines(92, 112);         // ESL emoji declaration region
-    let invocation = slice_lines(1112, 1197);     // §0.75 invocation examples
-    let crc_table = slice_lines(1997, 2047);      // §IV CRC registry region
-    let organ_canon = slice_lines(282, 337);      // §295-326 Organ table
-    let inline_script_region = slice_lines(8482, 8547);  // suspected inline-script region
-
-    let slices = vec![
-        Slice { label: "Trinity Formula + K-CUP (L67-127, substrate-heavy)", text: &trinity },
-        Slice { label: "ESL emoji declaration (L92-112, emoji stress)", text: &esl_emoji },
-        Slice { label: "Invocation examples (L1112-1197, invocation stress)", text: &invocation },
-        Slice { label: "CRC registry (L1997-2047, table stress)", text: &crc_table },
-        Slice { label: "Organ canon table (L282-337, table stress)", text: &organ_canon },
-        Slice { label: "Suspected inline-script region (L8482-8547, code-block stress)", text: &inline_script_region },
+    // (anchor, window_lines, stress label)
+    let specs: [(&str, usize, &str); 6] = [
+        ("Trinity-Formula", 40, "Trinity Formula + K-CUP (substrate-heavy)"),
+        ("Emoji-Semantic-Layer", 25, "ESL emoji declaration (emoji stress)"),
+        ("0.75. Decorator Invocation Protocol", 85, "Invocation Protocol 0.75 (invocation stress)"),
+        ("CRC Registry (`CR`)", 13, "CRC registry (table stress)"),
+        ("| **Tier** | **Organ** | **Body System**", 30, "Organ canon table (table stress)"),
+        ("```ankh", 12, "Ankh code block (code-block stress)"),
     ];
+
+    let texts: Vec<String> = specs.iter().map(|&(a, c, _)| slice_from(a, c)).collect();
+    let mut slices: Vec<Slice> = Vec::new();
+    for (i, &(_, _, label)) in specs.iter().enumerate() {
+        slices.push(Slice { label, text: texts[i].as_str() });
+    }
 
     println!("=== CHTHONIC DSL Phase 0 Smoke Test ===");
     println!("Grammar:  .chthonic/grammar/chthonic.peg");

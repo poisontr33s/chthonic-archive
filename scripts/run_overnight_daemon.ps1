@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: orchestration/automation
 # ║ Architectural Role: PowerShell wrapper for TypeScript overnight daemon
-# ║ Semantic ID: SCRIPT_RUN_OVERNIGHT_DAEMON_V1
 # ║ Purpose: Launch overnight_daemon.ts via Bun with configurable parameters
 # ║ Exports: None (launcher script)
 # ║ Flags/Modes: -Top <int>, -MaxTodo <int>, -Siphon

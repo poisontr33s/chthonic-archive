@@ -355,8 +355,17 @@ statement = {
     | reference
     | id_ref
     | tier_annotation
+    | substrate_marker
     | prose_fragment
 }
+// substrate_marker lifted to statement level (2026-06-05, smoke-driven): the
+// catalyst's run-on declarations chain a structured token, a bare operator, and
+// then PROSE — e.g. §175 ASP line 176: `**(`FA¹⁻⁵`)** → Generate derivative
+// protocols ...`. composition needs an operand on both sides of the operator, so
+// `op ~ prose` dead-ended the full-catalyst parse at 176:620 ("expected operand").
+// Recognizing the bare operator as substrate_marker (same as inside prose_parens,
+// per L181-188) lets the operator-ness survive while the trailing prose falls to
+// prose_fragment. composition is still tried first, so real A→B chains win.
 
 // ─── Program — the catalyst as a sequence of statements ────────────────────
 

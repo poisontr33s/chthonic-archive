@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_CRC_SELECTOR_V1
 # ║ Purpose: Suggest Conceptual Resonance Core for task
 # ║ Exports: (none)
 # ║ Flags/Modes: -Task, -Keywords

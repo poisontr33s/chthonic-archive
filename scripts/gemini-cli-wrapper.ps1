@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: UTILITY
-# ║ Semantic ID: SCRIPT_GEMINI_CLI_WRAPPER_V1
 # ║ Purpose: Wrap Gemini CLI from the repo-local Bun lane and disable MCP discovery during startup
 # ║ Exports: (none)
 # ║ Flags/Modes: -m/-p/-i/-u/-v/-h/-y/-c/-r and -Arguments passthrough

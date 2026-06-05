@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: EMERGENCY
-# ║ Semantic ID: SCRIPT_PAUSE_AGENTS_V1
 # ║ Purpose: Pause all agent operations via VS Code settings
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)

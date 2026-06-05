@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_ACRONYM_AUDIT_V1
 # ║ Purpose: Audit SSOT acronym consistency and line locations
 # ║ Exports: (none)
 # ║ Flags/Modes: -Root, -ShowAll, -FindLines

@@ -8,7 +8,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: SSOT
-# ║ Semantic ID: SCRIPT_SSOT_REGISTRY_QUERY_V1
 # ║ Purpose: Query AR/CR/SAI registries from SSOT
 # ║ Exports: (none)
 # ║ Flags/Modes: -Registry, -Entity

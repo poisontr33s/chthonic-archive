@@ -6,7 +6,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: UTILITY
-# ║ Semantic ID: SCRIPT_FIX_MD_LINKS_V1
 # ║ Purpose: Find and repair broken relative Markdown links
 # ║ Exports: (none)
 # ║ Flags/Modes: --root, --fix, --dry-run

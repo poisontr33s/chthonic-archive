@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: diagnostic/passive
 # ║ Architectural Role: Environment introspection for automation agents
-# ║ Semantic ID: SCRIPT_SHELL_CAPABILITIES_V1
 # ║ Purpose: Minimal, deterministic shell/environment probe (ABI-stable)
 # ║ Exports: JSON report { os, pwsh_version, bash, bun, cargo, uv, git,
 # ║        claude, path[] }

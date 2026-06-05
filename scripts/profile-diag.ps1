@@ -7,7 +7,6 @@
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: WHITE
 # ║ Architectural Role: DIAGNOSTIC
-# ║ Semantic ID: SCRIPT_PROFILE_DIAG_V1
 # ║ Purpose: Diagnose profile startup timing and OneDrive impact
 # ║ Exports: (none)
 # ║ Flags/Modes: (none)
