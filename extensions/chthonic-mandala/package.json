@@ -101,11 +101,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "bun run compile",
     "compile": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify",
     "watch": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
     "insiders:kits:check": "bunx @vscode/vsce --version && bunx vscode-test-web --help",
-    "insiders:package": "bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-mandala-insiders.vsix",
+    "insiders:package": "bun run compile && bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-mandala-insiders.vsix --skip-license",
     "insiders:run": "code-insiders --extensionDevelopmentPath=.",
     "insiders:dts:sync": "bunx @vscode/dts dev && bunx @vscode/dts main"
   },

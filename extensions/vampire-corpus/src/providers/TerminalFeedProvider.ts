@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 // @SID: VAMPIRE_CORPUS_TERMINAL_FEED_V1
 import * as vscode from 'vscode';
 import * as fs from 'node:fs';
@@ -170,4 +171,3 @@ function formatDurationMs(ms: number): string {
     if (ms < 60_000) return `${(ms / 1000).toFixed(1)}s`;
     return `${Math.floor(ms / 60_000)}m${Math.floor((ms % 60_000) / 1000)}s`;
 }
-y
