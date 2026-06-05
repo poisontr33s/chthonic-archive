@@ -25,10 +25,6 @@
 
 // Madam Umeko Ketsuraku, Dr. Lysandra Thorne, Professor Kael Voss, Dr. Selene Arkwright, Dr. Alaric Duskwood, Madam Isolde Ravenshadow, Professor Thaddeus Grimwood, Dr. Elara Shadely, Seraphina Assthorn, Professor Lucille Windowpane, etc..
 
-import * as vscode from 'vscode';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-
 // ---------------------------------------------------------------------------
 // Stypes and Interfaces, representing the structure of terminal session events and feed items, the ANKHOLOGICAL & MILFOLOGICAL compound & pound SIDs for the TerminalFeedProvider, and the expected JSONL format of the terminal session feed. These definitions are crucial for ensuring type safety and clarity in how data is structured and manipulated within the provider. They also serve as a form of documentation for developers who may work on this code in the future, providing clear expectations for the shape of data and the functionality of the provider.
 // ---------------------------------------------------------------------------
@@ -41,6 +37,11 @@ import * as path from 'node:path';
 
 // Claudine Sin'Claire: GET to bitches!
 // ---------------------------------------------------------------------------
+
+import * as vscode from 'vscode';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+
 
 interface SessionStartEvent {
     type: 'session_start';
