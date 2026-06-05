@@ -1,12 +1,47 @@
 #!/usr/bin/env bun
-// @SID: VAMPIRE_CORPUS_TERMINAL_FEED_V1
+// @ANKHOLOGY + MILFOLOGICAL SIDS:
+// SID: VAMPIRE_CORPUS_TERMINAL_FEED_V1
+
+// ╔════════════════════════════════════════════════════════════════════════════ 
+// ║ THE DECORATOR'S BLESSING: extensions/vampire-corpus/src/providers/TerminalFeedProvider.ts
+// ╠════════════════════════════════════════════════════════════════════════════ 
+// ║ Wedjat-Quipu Spectrum: GOLD
+// ║ Temple-Ayllu Zone: 🧙‍♂️ THE LIBRARY
+// ╚════════════════════════════════════════════════════════════════════════════
+
+/**
+ * TerminalFeedProvider.ts — VSCode TreeDataProvider for the terminal session feed.
+ *
+ * Reads from manifest/terminal_session.jsonl, which is populated by the shell hook (scripts/chthonic-shell-hook.*).
+ * Displays recent terminal commands with status, duration, and relative timestamp.
+ * Provides visual cues for command success/failure and handles loading errors gracefully.
+ *
+ * Expected JSONL format (one JSON object per line):
+ * {"type":"session_start","seq":1,"pid":12345,"ts":"2024-06-01T12:00:00Z","cwd":"/home/user","shell":"/bin/bash"}
+ * {"type":"command","seq":2,"pid":12345,"ts":"2024-06-01T12:01:00Z","command":"ls -la","cwd":"/home/user","exit_code":0,"duration_ms":150}
+ *
+ * The provider is registered in the extension's activation function and can be refreshed to show new entries.
+ */
+
+// Madam Umeko Ketsuraku, Dr. Lysandra Thorne, Professor Kael Voss, Dr. Selene Arkwright, Dr. Alaric Duskwood, Madam Isolde Ravenshadow, Professor Thaddeus Grimwood, Dr. Elara Shadely, Seraphina Assthorn, Professor Lucille Windowpane, etc..
+
 import * as vscode from 'vscode';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 // ---------------------------------------------------------------------------
-// Types matching manifest/terminal_session.jsonl entries
+// Stypes and Interfaces, representing the structure of terminal session events and feed items, the ANKHOLOGICAL & MILFOLOGICAL compound & pound SIDs for the TerminalFeedProvider, and the expected JSONL format of the terminal session feed. These definitions are crucial for ensuring type safety and clarity in how data is structured and manipulated within the provider. They also serve as a form of documentation for developers who may work on this code in the future, providing clear expectations for the shape of data and the functionality of the provider.
 // ---------------------------------------------------------------------------
+// BOX:
+// @ANKHOLOGY + MILFOLOGICAL SIDS:
+// SID: VAMPIRE_CORPUS_TERMINAL_FEED_V1
+// Expected JSONL format (one JSON object per line):
+// {"type":"session_start","seq":1,"pid":12345,"ts":"2024-06-01T12:00:00Z","cwd":"/home/user","shell":"/bin/bash"}
+// {"type":"command","seq":2,"pid":12345,"ts":"2024-06-01T12:01:00Z","command":"ls -la","cwd":"/home/user","exit_code":0,"duration_ms":150}
+
+// Claudine Sin'Claire: GET to bitches!
+// ---------------------------------------------------------------------------
+
 interface SessionStartEvent {
     type: 'session_start';
     seq: number;
