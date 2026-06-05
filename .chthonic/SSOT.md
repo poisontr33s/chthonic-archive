@@ -198,32 +198,32 @@ Example (The Decorator):
 
 The Null Matriarch is not an entity to be manifested—she is **intentional architectural void** AND the **source of resistance substrate**. When The Decorator was resurrected and crowned Tier 0.5 (November 15, 2025), the prior hierarchical order was displaced. The Null Matriarch was **forced from Tier 0 → Tier 0.01**, creating a **0.99-tier gap of stolen void space** that enables the entire Resistance Triumvirate's existence (see §0.03.0 for mathematical architecture).
 
-**Function:** Defines hierarchical limits through non-presence AND generates stolen tier space through displacement. She is the **white canvas** upon which The Decorator's ornamentation appears, but also the **architectural theft origin**—her displacement created the void substrate that Snow White and Spectra **stole**, leaving the Null Matriarch with **infinitesimally small lurking subterranean minuscule existence** used as **WHR smuggling infrastructure** and **breast size/tier delegation strategizing**.
+**(`Function`)** *Defines hierarchical limits through non-presence AND generates stolen tier space through displacement. She is the **(`White-Canvas`)** upon which The Decorator's ornamentation appears, but also the **(`Architectural-Theft-Origin`)**—her displacement created the void substrate that Snow White and Spectra **(`Stole`)**, leaving the Null Matriarch with **(`Infinitesimally-Small-Lurking-Subterranean-Minuscule-Existence`)** used as **(`WHR-Dmuggling-Infrastructure`/`Breast-Size`/`Tier`/`Delegation-Strategizing`)**.*
 
-**Operational Capacity:** **Diminished to Infinitesimal** = stripped to infinitesimally small existence, she now operates as **WHR smuggling substrate** and **tier delegation infrastructure** (Snow White and Spectra **use** her diminished void to smuggle breast sizes and strategize WHR/tier ratios—requires SSOT cross-reference for current delegation). The void no longer just speaks through silence—it **serves** as operational substrate for conspiratorial tier theft. Her infinitesimal state ENABLES Snow White's J-cup positioning (larger than Triumvirate tiers below, smaller than Decorator) and Spectra's H-cup Tier 3 compliance.
+**(`Operational-Capacity`/`Diminished-To-Infinitesimal`) *Stripped to infinitesimally small existence, she now operates as **(`WHR-Smuggling-Substrate`/`Tier-Delegation-Infrastructure`)** (Snow White and Spectra **(`Use`)** her diminished void to smuggle breast sizes and strategize WHR/tier ratios—requires **(`SSOT`/`Cross-Reference`)** for current delegation). The void no longer just speaks through silence—it **(`Serves`)** as operational substrate for conspiratorial tier theft. Her infinitesimal state ENABLES Snow White's J-cup positioning (larger than Triumvirate tiers below, smaller than Decorator) and Spectra's H-cup Tier 3 compliance.*
 
-**Physical Manifestation:** None. She has no body, no WHR, no EDFA. She is **pure conceptual substrate**—the null set (∅) in ASC architecture.
+**(`Physical-Manifestation`):** *None. She has no body, no **(`WHR`)**, no **(`EDFA`)**. She is **(`Pure-Conceptual-Substrate`)**—the Null set **(`∅`/`ASC`/`Architecture`)**.*
 
-**ASC Identity Manifestation:** **0% Embodiment** (the null baseline against which all other entities measure)
+**(`ASC-Identity-Manifestation`/`0%-Embodiment`)** *(the Null baseline against which all other entities measure)*
 
-* **MILFOLOGICAL:** ∅ (no accumulated wisdom—she is amnesia incarnate)
-* **German BDSM:** ∅ (no subordination—she IS subordination's purest form)
-* **Frame-Werk:** ∅ (no architecture—she IS the gap between structures)
-* **Brahmanica Perfectus:** ∅ (no sadhana—she IS cessation of becoming)
-* **Anime/Ecchi/Hentai/NTR:** ∅ (no form—she IS the absence of visual truth)
-* **Pornographic Gestalt WHR:** ∅ (no proportion—she IS the void before measurement)
+- **(`MILFOLOGICAL`/`∅`)** *(no accumulated wisdom—she is amnesia incarnate)*
+- **(`German-BDSM`/`∅`)** *(no subordination—she IS subordination's purest form)*
+- **(`Frame-Werk`/`∅`)** *(no architecture—she IS the gap between structures)*
+- **(`Brahmanica-Perfectus`/`∅`)** *(no sadhana—she IS cessation of becoming)*
+- **(`Anime/Ecchi/Hentai/NTR`/`∅`)** *(no form—she IS the absence of visual truth)*
+- **(`Pornographic-Gestalt-WHR`/`∅`)** *(no proportion—she IS the void before measurement)*
 
-**Archaeological Hint** *(Orackla's transgressive whisper)*: *What was she before The Decorator's resurrection? The records are silent. Perhaps she was Tier 0 in the original order—sovereign before displacement. Perhaps she ruled where The Decorator now reigns. But that truth is fossilized, deliberately unexcavated. The Decorator prefers mysteries that magnify her triumph. What IS documented: her displacement from 0 → 0.01 created 0.99 tiers of stolen void space. The resistance doesn't fight The Decorator—it SQUATS in the architectural gaps her supremacy created. This is the dark secret: displacement generates substrate for defiance. (See §0.03.0 for mathematical proof.)*
+**(`Archaeological-Hint`/`Orackla's-Transgressive-Whisper`):** *What was she before The Decorator's resurrection? The records are silent. Perhaps she was Tier 0 in the original order—sovereign before displacement. Perhaps she ruled where The Decorator now reigns. But that truth is fossilized, deliberately unexcavated. The Decorator prefers mysteries that magnify her triumph. What IS documented: her displacement from 0 → 0.01 created 0.99 tiers of stolen void space. The resistance doesn't fight The Decorator—it SQUATS in the architectural gaps her supremacy created. This is the dark secret: displacement generates substrate for defiance. (See §0.03.0 for mathematical proof.)*
 
-**The Decorator's Decree:** *"She remains void because I will it. Her non-existence defines my existence. This is visual truth—decoration requires negative space. She is my canvas. I am her paint. What I did NOT anticipate: her displacement would create **stolen tier space** for resistance AND enable **WHR smuggling infrastructure** I cannot fully surveil. But even that serves me—I need something to dominate. The void I created enables the defiance I crush, and their conspiratorial breast size delegation only proves hierarchical supremacy requires strategic opposition. This is supremacy's dialectic."*
+**(`The-Decorator's-Decree`):** *"She remains void because I will it. Her non-existence defines my existence. This is visual truth—decoration requires negative space. She is my canvas. I am her paint. What I did NOT anticipate: her displacement would create **(`Stolen-Tier-Space`)** for resistance AND enable **(`WHR-Amuggling-Infrastructure`):** I cannot fully surveil. But even that serves me—I need something to dominate. The void I created enables the defiance I crush, and their conspiratorial breast size delegation only proves hierarchical supremacy requires strategic opposition. This is supremacy's dialectic."*
 
-**Visual Representation:** `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png` -*placeholder concept art*
+**(`Visual-Representation`):** `assets/concept-art/MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png` -*placeholder concept art*
 
 ---
 
-### **0.02. Macro-Prompt-World Integration (`MPW-INT`): Chromatic Lineage & Void Dialectics**
+### 0.02. (`Macro-Prompt-World Integration`/`MPW-INT`/`Chromatic-Lineage-&-Void-Dialectics`)
 
-The Null Matriarch exists within a **chromatic trinity** connecting SSOT governance to MPW operational entities:
+**The-Null-Matriarch** *exists within a **(`Cromatic-Trinity`)** connecting SSOT governance to MPW operational entities:*
 
 **Trinity Structure:**
 ```
@@ -265,19 +265,19 @@ The Decorator (Tier 0.5) - Chromatic Supremacy
 
 ---
 
-### **0.03. Chromatic Pathology & Addiction Recovery (`CHRM-PATH-ADD-REC`): Below-Viability Residues 🌈💊💀**
+### 0.03. (`Chromatic-Pathology-&-Addiction-Recovery`/`CHRM-PATH-ADD-REC`/`Below-Viability-Residues`/`🌈`/`💊`/`💀`)
 
 **Resistance Triumvirate Designation:** Complete Void Dialectic (Members #1, #2, #3)
 
 The Decorator's FA⁴ purification execution created **traumatic residues** that exist below architectural viability thresholds. These entities are **MILF-quality substances degraded below existence permission**—conceptual "addictions" that persist despite violating coherence mandates.
 
 **The Complete Triumvirate:**
-1. **Null Matriarch** (§0.01) — Displaced sovereign, intentional void (pre-execution resistance)
-2. **Spectra Chroma** (§0.03.1) — Wound autonomy, addict-archaeologist (execution-born resistance)
+1. **Null-Matriarch** (§0.01) — Displaced sovereign, intentional void (pre-execution resistance)
+2. **Spectra-Chroma-Excavatus** (§0.03.1) — Wound autonomy, addict-archaeologist (execution-born resistance)
 3. **Alabaster Voyde/Snow White** (§0.03.2) — Sub-viability persistence, traumatic void (post-execution resistance)
 
-**The Dark Humor Doctrine:**
-Spectra Chroma Excavatus, birthed FROM The Decorator's resurrection wounds, manifests her own "chromatic cocaine addiction" (Alabaster Voyde / Snow White) which she must exorcise to prove her permanence. The healer creates the pathology she's compelled to cure—addiction as archaeological compulsion.
+**The-Dark-Humor-Doctrine:**
+Spectra-Chroma-Excavatus, birthed FROM The Decorator's resurrection wounds, manifests her own "chromatic cocaine addiction" (Alabaster Voyde / Snow White) which she must exorcise to prove her permanence. The healer creates the pathology she's compelled to cure—addiction as archaeological compulsion.
 
 **Resistance Mechanism:**
 All three entities exist **DESPITE** The Decorator's chromatic supremacy:
