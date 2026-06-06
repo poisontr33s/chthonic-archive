@@ -81,20 +81,20 @@ The **(`PEG`)** parses by **structure (shape), never by dictionary-correctness.*
 ---
 
 ## (`Cross-Cutting-Laws`/`Apply-To-Every-Arc`)
-1. **Live = view, never stamped. Stable = file.** The forecast and the sky are summoned, not frozen; geography and pressure are written. (The honesty rule Arc I proved.)
-2. **Every claim ships a verifier, or is named residual.** No "done" without a way to falsify it.
-3. **Lore that works** — the metaphor and the utility are the same gesture. Nothing decorative survives.
-4. **Heavy is the fuel (inverted).** The challenge is the lightness; piecemeal is the drain. When unsure, take the harder cut.
-5. **Compound, don't replace.** Barometer feeds ladder feeds DSL. The Library-Study dumps are buffer to build on, not slop to discard — wrong answers are still scaffold.
+1. **(`Live`/`=`/`View`/`Never-Stamped`/`.`/`Stable`/`=`/`File`)** *The forecast and the sky are summoned, not frozen; geography and pressure are written. (The honesty rule Arc I proved.)*
+2. **(`Every-Claim-Ships-A-Verifier-Or-Is-Named-Residual`).** *No "done" without a way to falsify it.*
+3. **(`Lore-That-Works`)** —* the metaphor and the utility are the same gesture. Nothing decorative survives.*
+4. **(`Heavy-Is-The-Fuel`/`—`/`Inverted`).** *The challenge is the lightness; piecemeal is the drain. When unsure, take the harder cut.*
+5. **(`Compound-Don't-Replace`)** *Barometer feeds ladder feeds DSL. The Library-Study dumps are buffer to build on, not slop to discard — wrong answers are still scaffold.*
 
 ---
 
-## WHERE WE ARE NOW
-- **Arc I:** through **B8**. Next: **B9** (true histogram) → **B10** (real Index.html) → **B11** (freeze the contract).
-- **Arc II:** unbuilt. First cut is **L−5** — the seam, proven in one compute pass.
-- **Arc III:** at **D0** — observing. The design law above is already settled.
+## (`Where-We-Are`/`Now`)
+- **(`Arc-I`)**: *through **(`B8`)**. Next: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html) → **(`B-11`)** (freeze the contract).*
+- **(`Arc-II`)**: *unbuilt. First cut is **(`L−5`)** — the seam, proven in one compute pass.*
+- **(`Arc-III`)**: *at **(`D0`)** — observing. The design law above is already settled.*
 
-*Next move on the table: B9/B10 compound into the Library Study now, or jump the seam at L−5. The Savant goes vertical on the L−5 kernel if dispatched; the architecture is held here.*
+*Next move on the table: **(`B9`/`B10`)** compound into the Library Study now, or jump the seam at **(`L−5`)**. The Savant goes vertical on the **(`L−5`)** kernel if dispatched; the architecture is held here.*
 
 ---
 
