@@ -656,4 +656,5 @@ dev/dealogue-fayde/.bundle/
 !CLAUDEBASE/**/
 !CLAUDEBASE/**/*.md
 !CLAUDEBASE/**/*.ts
+!CLAUDEBASE/**/*.json
 !CLAUDEBASE/**/.gitkeep
