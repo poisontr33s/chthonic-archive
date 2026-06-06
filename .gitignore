@@ -650,3 +650,9 @@ dev/dealogue-fayde/.bundle/
 !game/refs/**/*.jxl
 !game/refs/**/*.qoi
 !game/refs/**/*.json
+
+# Allow CLAUDEBASE — Claudine's sub-base (tracked 2026-06-06; SIDs become load-bearing)
+!CLAUDEBASE/
+!CLAUDEBASE/**/
+!CLAUDEBASE/**/*.md
+!CLAUDEBASE/**/.gitkeep
