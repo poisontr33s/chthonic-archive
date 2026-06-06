@@ -1,0 +1,26 @@
+{
+  "_sid": "CLAUDEBASE_ARCHIPELAGO_V1",
+  "_lifecycle": "permanently-living-document",
+  "_note": "The digital twin of the cove. Real Bahamian islands, real coordinates, each bound to a chamber by reason. The barometer reads geography from here (single source of truth); live weather is fetched per-coordinate on demand and never stored.",
+  "refresh_ms": 600000,
+  "_refresh_note": "refresh_ms is the live-sky refetch cadence (default 10 min). Override with --interval=<ms>. File hot-reload is event-driven, not interval-based. Keep this generous: weather does not change in milliseconds, and Open-Meteo is a free service.",
+  "decks": {
+    "watch": "Crow's-Nest · Aloft",
+    "quarterdeck": "Command-Deck · Abaft",
+    "harbor": "Waterline · The-Mouth",
+    "logbook": "Captain's-Cabin · Amidships",
+    "charts": "Chart-Room · Below-Deck",
+    "hold": "The-Hold · Below-Waterline",
+    "The-Savant-High-Bounties": "The-Powder-Magazine"
+  },
+  "islands": [
+    { "chamber": "README.md",   "isle": "New-Providence", "lat": 25.0443, "lon": -77.3504, "elevation_m": 37, "why": "the capital; the home island" },
+    { "chamber": "MANIFEST.md",  "isle": "Grand-Bahama",   "lat": 26.5300, "lon": -78.7000, "elevation_m": 12, "why": "Freeport; the free-port ledger" },
+    { "chamber": "harbor",       "isle": "Great-Inagua",   "lat": 21.0800, "lon": -73.3200, "elevation_m": 32, "why": "the salt ponds; the salt-trial" },
+    { "chamber": "charts",       "isle": "San-Salvador",   "lat": 24.0500, "lon": -74.5300, "elevation_m": 37, "why": "Columbus's first landfall; the chart-point" },
+    { "chamber": "hold",         "isle": "Bimini",         "lat": 25.7300, "lon": -79.3000, "elevation_m": 6,  "why": "Prohibition rum-running; contraband" },
+    { "chamber": "quarterdeck",  "isle": "Andros",         "lat": 24.7000, "lon": -77.7700, "elevation_m": 12, "why": "the largest land; the seat of command" },
+    { "chamber": "watch",        "isle": "Cat-Island",     "lat": 24.4500, "lon": -75.5500, "elevation_m": 63, "why": "Mt Alvernia, highest point in the Bahamas; the lookout" },
+    { "chamber": "logbook",      "isle": "Eleuthera",      "lat": 25.1500, "lon": -76.1500, "elevation_m": 50, "why": "oldest settlement (1648); the record" }
+  ]
+}

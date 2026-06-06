@@ -651,10 +651,8 @@ dev/dealogue-fayde/.bundle/
 !game/refs/**/*.qoi
 !game/refs/**/*.json
 
-# Allow CLAUDEBASE — Claudine's sub-base (tracked 2026-06-06; SIDs become load-bearing)
+# Allow CLAUDEBASE — Claudine's sub-base, tracked IN FULL (every file, any type).
+# The root `*` still guards the rest of the polyrepo; this opens only this folder.
 !CLAUDEBASE/
 !CLAUDEBASE/**/
-!CLAUDEBASE/**/*.md
-!CLAUDEBASE/**/*.ts
-!CLAUDEBASE/**/*.json
-!CLAUDEBASE/**/.gitkeep
+!CLAUDEBASE/**
