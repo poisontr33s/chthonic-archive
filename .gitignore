@@ -1,21 +1,76 @@
-# Ignore everything
-*
+# ─────────────────────────────────────────────────────────────────────────────
+# chthonic-archive .gitignore — DENYLIST model (inverted 2026-06-06)
+#
+# Track by default. Turn OFF only the heavy / derived / external folders below.
+# Replaces the prior "* + !whitelist" model, which ignored everything and forced
+# a new ! for every real file — masking the repo. A denylist tells the truth by
+# default: a new source file tracks because it exists, not because someone
+# remembered to allow it.
+#
+# WARNING: this repo auto-pushes on commit and spans ~158 GB incl. satellites,
+# build dirs, and model weights. The patterns below ARE the large-file seatbelt
+# the bare `*` used to be. Keep weights / build / deps / satellites turned off.
+# ─────────────────────────────────────────────────────────────────────────────
 
-# =============================================================================
-# Large-file safeguards (2026-05-13)
-# Background: 3x160MB .safetensors files in adapters/claudine-v1/ committed
-# under b02e8243 blocked a push to GitHub (100MB hard limit). Large training
-# artifacts and binary blobs are ignored by default. Approved payloads may be
-# force-added only when covered by narrow Git LFS rules in .gitattributes.
-# Existing tracked files remain tracked — .gitignore only affects untracked
-# paths. This guards against future accidental raw-Git adds.
-# =============================================================================
+# ── Satellites — NTFS junctions to SEPARATE repos. Never tracked from here. ──
+csb-live/
+eoai-live/
+git-dump-live/
+pnk-lfh-live/
+pnk-live/
+poisontr33s-live/
+rmco-live/
 
-# Specific directories
-adapters/
-**/checkpoints/
+# ── Nested repo copies / goldens (full trees — not tracked recursively) ──
+chthonic-archive/
+chthonic-golden/
 
-# ML model weights & training artifacts
+# ── Local tool homes / version managers at root (external, huge — not content) ──
+.cargo/
+rv/
+ruby-zjit/
+.gemini/
+.continue/
+
+# ── Build artifacts ──
+target/
+**/target/
+build/
+**/build/
+dist/
+**/dist/
+out/
+**/out/
+.next/
+**/.next/
+*.spv
+
+# ── Dependencies / vendored ──
+node_modules/
+**/node_modules/
+.venv/
+**/.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+**/vendor/
+**/.bundle/
+mas_mcp/uv.lock
+extensions/*/.chthonic/python/uv.lock
+extensions/*/bun.lock
+
+# ── Caches ──
+.cache/
+**/.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.fastembed_cache/
+.cocoindex_code/
+/.cocoindex_code/
+
+# ── Model weights & large binaries (the large-file seatbelt) ──
 *.safetensors
 *.pt
 *.pth
@@ -26,645 +81,89 @@ adapters/
 *.msgpack
 *.npz
 *.npy
-
-# Extension installer packages
+*.engine
 *.vsix
+models/
+adapters/
+**/checkpoints/
 
-# Embedded databases (corpus / index / cache)
+# ── Databases / operational state ──
 *.sqlite
 *.sqlite3
+*.db
 *.db-journal
+*-wal
+*-shm
+manifest/sessions/
+manifest/sonic_window_history.ndjson
+dev/dealogue-fayde/*.db
+dev/dealogue-fayde/.bundle/
 
-# Allow git metadata
-!.gitignore
-!.copilotignore
-!.gitattributes
-!rust-toolchain.toml
-!.ruby-version
-!rproject.toml
+# ── Editor / IDE / OS ──
+.vs/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
 
-# Allow confiscated instruction palettes
-!confiscated_instructions/
-!confiscated_instructions/**
-
-# Allow claudie/ — open notebook, deliberately tracked
-!claudie/
-!claudie/**
-
-# Allow Birdcage AAI evidence chamber
-!birdcage/
-!birdcage/README.md
-!birdcage/pyproject.toml
-!birdcage/cage.toml
+# ── Secrets ──
+.env
 .env.local
-!birdcage/.env.example
-!birdcage/.gitignore
-!birdcage/probes.py
-!birdcage/uv.lock
-!birdcage/runs.jsonl
+.env.*.local
+gha-creds-*.json
 
-# Allow PR/patch suggestions
-!PR_SUGGESTION.md
+# ── App-specific (preserved from prior file) ──
+apps/chthonic-next/.next/
+apps/chthonic-next/node_modules/
+apps/chthonic-next/package.json
+apps/chthonic-tensor-bridge/build/
+apps/chthonic-tensor-bridge/node_modules/
+apps/flux-engine-forge/scratch/
+apps/flux-engine-forge/.venv/
+apps/flux-satellite/engines/
+extensions/*/media/wasm/pkg/
+extensions/*/.chthonic/venv/
+extensions/*/.chthonic/cache/
+extensions/*/.chthonic/python/.venv/
+extensions/*/.chthonic/ruby/vendor/
+extensions/*/.chthonic/ruby/.bundle/*
+extensions/*/.chthonic/rust-target/
+extensions/*/native/target/
+extensions/*/node_modules/
 
-# Allow DCRP Cross-Reference System (Section XV)
-!decorator_cross_ref_maximum.py
-!dependency_graph.json
-!CROSS_REFERENCE_TRIPTYCH.md
-
-# Allow MCP autonomous prerequisites (immutable)
-!docs/
-!docs/**
-!docs/MCP_*.md
-!docs/CLI_EDITING_POLICY.md
-!docs/CLAUDE_CODE_REGISTRATION.md
-
-# Allow migrated session/framework/handoff docs (Stage 1 repurposing)
-!docs/sessions/
-!docs/sessions/**
-!docs/frameworks/
-!docs/frameworks/**
-!docs/handoffs/
-!docs/handoffs/**
-!docs/DCRP_SYNTHESIS.md
-!docs/STAGE_1_MIGRATION_PLAN.md
-!docs/SSOTIFICATION_METHODOLOGY.md
-!docs/protocols/
-!docs/protocols/**
-
-# Allow SSOT Hub and Indices
-!ankh_index.json
-!sid_index.json
-
-# Allow dumpster-dive consolidated archives
-!dumpster-dive/
-!dumpster-dive/**
-# Exclude transient overnight daemon outputs (regenerable nightly)
+# ── Dumpster-dive operational (preserved) ──
+dumpster-dive/corpse-vault/
 dumpster-dive/intake/overnight-daemon/*/classifications/
 dumpster-dive/intake/overnight-daemon/*/report.json
 dumpster-dive/intake/overnight-daemon/*/report.md
 dumpster-dive/intake/overnight-daemon/*/run.json
-
-# Exclude Windows reserved device names (phantom files git can't index)
-**/NUL
-**/NUL.*
 dumpster-dive/intake/overnight-daemon/*/.keep
 dumpster-dive/intake/overnight-daemon/*.log
-
-# Exclude large embedding blobs (regenerable, too big for git)
 dumpster-dive/intake/embeddings/ore_embeddings_*.json
-
-# Exclude corpse-vault (generated by corpse-reviver, regenerable)
-dumpster-dive/corpse-vault/
-# Exclude furnace C# build outputs (generated by dotnet build)
 dumpster-dive/forge/furnace/csharp/bin/
 dumpster-dive/forge/furnace/csharp/obj/
 
-
-# Allow MCP server implementation
-!mcp/
-!mcp/*.ts
-!mcp/*.md
-!mcp/*.json
-!mcp/*.ps1
-!mcp/tools/
-!mcp/tools/*.ts
-!mcp/tools/*.json
-
-# Allow MAS MCP server (FastMCP — mas_mcp/)
-!mas_mcp/
-!mas_mcp/*.py
-!mas_mcp/*.toml
-!mas_mcp/*.md
-!mas_mcp/*.txt
-!mas_mcp/logic/
-!mas_mcp/logic/*.py
-!mas_mcp/lib/
-!mas_mcp/lib/*.py
-!mas_mcp/lib/*.ps1
-!mas_mcp/lib/**/
-!mas_mcp/lib/**/*.py
-!mas_mcp/tests/
-!mas_mcp/tests/test_ssot_binding.py
-!mas_mcp/tests/*.py
-!mas_mcp/abbreviation_system/
-!mas_mcp/abbreviation_system/*.py
-# Exclude mas_mcp transient artifacts
-mas_mcp/.venv/
-mas_mcp/__pycache__/
-mas_mcp/**/__pycache__/
-mas_mcp/uv.lock
+# ── Misc (preserved) ──
 .mas_mcp/
-
-# Allow root-level package.json (Bun workspace manifest)
-!package.json
-
-# Allow Bun configuration
-!bunfig.toml
-
-# Allow Python project manifest (Unified Metabolic Field — PMS-v3)
-!pyproject.toml
-
-# Allow Chthonic Golden fork prototype
-!chthonic-golden/
-!chthonic-golden/**
-
-# Allow VS Code extensions (but not node_modules)
-!extensions/
-!extensions/*/
-!extensions/*/*.json
-!extensions/*/*.ts
-!extensions/*/*.md
-!extensions/*/Cargo.toml
-!extensions/*/anno-manifest.toml
-!extensions/*/src/
-!extensions/*/src/*.ts
-!extensions/*/src/**/
-!extensions/*/src/**/*.ts
-!extensions/*/src/**/*.rs
-!extensions/*/src/monolith/
-!extensions/*/src/monolith/*.ts
-!extensions/*/src/markdownPaste/
-!extensions/*/src/markdownPaste/*.ts
-!extensions/*/src/runtime/
-!extensions/*/src/runtime/*.ts
-!extensions/*/src/activation/
-!extensions/*/src/activation/*.ts
-!extensions/*/src/entropy/
-!extensions/*/src/entropy/*.ts
-!extensions/*/src/flux/
-!extensions/*/src/flux/*.ts
-!extensions/*/src/reactor/
-!extensions/*/src/reactor/annoClient.ts
-!extensions/*/src/reactor/types.ts
-!extensions/*/src/reactor/synapseBridge.ts
-!extensions/*/src/polyglot/
-!extensions/*/src/polyglot/*.ts
-!extensions/*/dist/
-!extensions/*/dist/*.js
-!extensions/*/themes/
-!extensions/*/themes/*.json
-!extensions/*/themes/icons/
-!extensions/*/themes/icons/*.svg
-!extensions/*/themes/icons/**/
-!extensions/*/themes/icons/**/*.svg
-!extensions/*/themes/icons/product/
-!extensions/*/themes/icons/product/*.svg
-!extensions/*/themes/fonts/
-!extensions/*/themes/fonts/*.woff
-!extensions/*/themes/fonts/*.json
-!extensions/*/themes/fonts/*.html
-!extensions/*/icons/
-!extensions/*/icons/*.svg
-!extensions/*/icons/*.png
-!extensions/*/resources/
-!extensions/*/resources/*.svg
-!extensions/*/syntaxes/
-!extensions/*/syntaxes/*.json
-!extensions/*/media/
-!extensions/*/media/**
-extensions/*/media/wasm/pkg/
-!extensions/*/wasm/
-!extensions/*/wasm/**
-!extensions/*/native/
-!extensions/*/native/**
-!extensions/*/scripts/
-!extensions/*/scripts/*.ts
-!extensions/*/scripts/*.ps1
-!extensions/*/scripts/*.cjs
-!extensions/*/fixtures/
-!extensions/*/fixtures/**
-!extensions/*/docs/
-!extensions/*/docs/*.md
-!extensions/*/.vscodeignore
-!extensions/*/.vsconfig
-!extensions/*/.chthonic/
-!extensions/*/.chthonic/**
-extensions/*/.chthonic/venv/
-extensions/*/.chthonic/cache/
-extensions/*/.chthonic/python/.venv/
-extensions/*/.chthonic/python/uv.lock
-extensions/*/.chthonic/ruby/vendor/
-extensions/*/.chthonic/ruby/.bundle/*
-!extensions/*/.chthonic/ruby/.bundle/config
-extensions/*/.chthonic/rust-target/
-extensions/*/native/target/
-extensions/*/media/wasm/pkg/
-extensions/*/node_modules/
-extensions/*/bun.lock
-
-# Explicitly ignore all node_modules
-**/node_modules/
-
-# Allow MCP workflow artifacts (smoke suite provenance)
-!artifacts/
-!artifacts/mcp_run_*.json
-!manifest/
-!manifest/extension_phase3*.json
-!manifest/daemon_jsonl_*.json
-!manifest/webview_hmr_*.json
-!manifest/failures.jsonl
-# Lens manifests follow the naming convention <name>_index.{json,md}.
-# Glob allows any current or future lens to auto-track without per-lens
-# edits — convention is the contract. Files that don't follow the
-# convention (experiments, drafts) stay gitignored by default, which is
-# the right safety posture.
-!manifest/*_index.json
-!manifest/*_index.md
-
-# CI membrane + memory manifests (2026-05-27). Audit snapshots from
-# ci/checks/*.ts and the time-series diary written by canon-drift-snapshot.
-# Same gitignore-as-contract pattern: <name>_audit.json glob auto-tracks any
-# future audit lens; *_history.ndjson glob tracks the diary tier.
-!manifest/*_audit.json
-!manifest/*_history.ndjson
-
-# ...except the sonic capture lake: a large runtime per-second scalar stream (regenerated by the
-# daemon, byte-capped + rolled), NOT a tracked ledger. It matches *_history.ndjson above, so
-# re-ignore it explicitly. (sonic_window_history.ndjson.1 stays ignored via the global *.)
-manifest/sonic_window_history.ndjson
-
-# Allow root-level MCP validation runner
-!run_mcp_validation.ts
-
-# Allow local CI folder (orchestrator + checks)
-!ci/
-!ci/**
-
-# Allow Claude Code integration scripts — all source files tracked by default
-!scripts/
-!scripts/*.py
-!scripts/*.ps1
-!scripts/*.ts
-!scripts/*.go
-!scripts/*.mjs
-!scripts/*.sh
-!scripts/*.md
-!scripts/*.sql
-!scripts/*.rc
-!scripts/*.cmd
-!scripts/aws/
-!scripts/aws/*.py
-!scripts/aws/*.ps1
-!scripts/aws/*.md
-!scripts/aws/*.template
-!scripts/codex/
-!scripts/codex/*.ps1
-!scripts/codex/*.md
-!scripts/lib/
-!scripts/lib/*.py
-!scripts/lib/*.ps1
-!scripts/lib/*.ts
-!scripts/lib/__init__.py
-!scripts/lib/poe_auth.py
-!scripts/lib/ssot_paths.py
-!scripts/postinstall/
-!scripts/postinstall/*.cjs
-!scripts/postinstall/*.ts
-!scripts/CLAUDE_CODE_INTEGRATION.md
-!audit-reports/
-!audit-reports/wptg_cycle_state.json
-!audit-reports/wptg_default_view.json
-!audit-reports/wptg_reverse_viability_queue.json
-# Exclude temp/ephemeral scripts (underscore prefix)
-scripts/_*.py
-
-# Disabled workflow files (*.off = local disable, not committed artifacts)
-*.off
-
-# Allow targeted workspace diagnostics
-!.vscode/
-!.vscode/SETTINGS_LIVE_AUDIT.md
-
-# Allow method-level Visual Studio Installer exports
-!.vs/
-!.vs/visualStudioInstaller/
-!.vs/visualStudioInstaller/*/
-!.vs/visualStudioInstaller/*/.vsconfig
-
-# Allow mistral.rs UI
-!apps/
-!apps/mistralrs-ui/
-!apps/mistralrs-ui/index.html
-!apps/chthonic-next/
-!apps/chthonic-next/app/
-!apps/chthonic-next/app/page.tsx
-!apps/chthonic-next/app/api/
-!apps/chthonic-next/app/api/**
-!apps/chthonic-next/next.config.ts
-apps/chthonic-next/package.json
-!apps/chthonic-next/package.json
-!apps/chthonic-next/README.md
-!apps/chthonic-next/tsconfig.json
-!apps/chthonic-next/postcss.config.mjs
-!apps/chthonic-next/tailwind.config.ts
-!apps/chthonic-next/app/**
-!apps/chthonic-next/components/
-!apps/chthonic-next/components/**
-!apps/chthonic-next/public/
-!apps/chthonic-next/public/*.svg
-apps/chthonic-next/.next/
-apps/chthonic-next/node_modules/
-!apps/chthonic-tensor-bridge/
-!apps/chthonic-tensor-bridge/package.json
-!apps/chthonic-tensor-bridge/index.js
-!apps/chthonic-tensor-bridge/index.d.ts
-!apps/chthonic-tensor-bridge/CMakeLists.txt
-!apps/chthonic-tensor-bridge/src/
-!apps/chthonic-tensor-bridge/src/*.cc
-!apps/chthonic-tensor-bridge/src/*.h
-!apps/chthonic-tensor-bridge/scripts/
-!apps/chthonic-tensor-bridge/scripts/*.js
-apps/chthonic-tensor-bridge/build/
-apps/chthonic-tensor-bridge/node_modules/
-!apps/flux-engine-forge/
-!apps/flux-engine-forge/pyproject.toml
-!apps/flux-engine-forge/src/
-!apps/flux-engine-forge/src/**
-!apps/flux-engine-forge/scripts/
-!apps/flux-engine-forge/scripts/*.ps1
-apps/flux-engine-forge/scratch/
-apps/flux-engine-forge/.venv/
-!apps/flux-satellite/
-!apps/flux-satellite/pyproject.toml
-!apps/flux-satellite/src/
-!apps/flux-satellite/src/**
-!apps/flux-satellite/tests/
-!apps/flux-satellite/tests/**
-apps/flux-satellite/engines/
-
-# Allow Rust source tree
-!src/
-!src/*.md
-!src/*.rs
-!src/bin/
-!src/bin/*.rs
-
-# Allow native CUDA probes
-!native/
-!native/cuda/
-!native/cuda/*.cu
-
-# Allow architecture docs
-!.temple/
-!.temple/architecture/
-!.temple/architecture/RUSTIFICATION.md
-
-# Allow session-archives epoch references
-!.temple/session-archives/
-!.temple/session-archives/EPOCH_REFERENCE_*.md
-
-# Allow specific Codex skill additions
-!.codex/
-!.codex/skills/
-!.codex/skills/codekiller-remediation-gate/
-!.codex/skills/codekiller-remediation-gate/**
-!.codex/skills/artifact-upcycle/
-!.codex/skills/artifact-upcycle/**
-!.codex/skills/scm-triage/
-!.codex/skills/scm-triage/**
-!.codex/skills/mailbox-handoff/
-!.codex/skills/mailbox-handoff/**
-
-# Allow specific Claude skill additions
-!.claude/
-!.claude/skills/
-!.claude/skills/scm-triage/
-!.claude/skills/scm-triage/**
-!.claude/skills/handoff-loop/
-!.claude/skills/handoff-loop/**
-!.claude/skills/mailbox-handoff/
-!.claude/skills/mailbox-handoff/**
-!.claude/skills/postman/
-!.claude/skills/postman/**
-!.claude/skills/gh-fix-ci/
-!.claude/skills/gh-fix-ci/**
-!.claude/skills/gh-address-comments/
-!.claude/skills/gh-address-comments/**
-!.claude/skills/claude-skill-bridge/
-!.claude/skills/claude-skill-bridge/**
-!.claude/skills/codex-skill-bridge/
-!.claude/skills/codex-skill-bridge/**
-!.claude/skills/decision-razor/
-!.claude/skills/decision-razor/**
-!.claude/skills/conceptualize/
-!.claude/skills/conceptualize/**
-!.claude/skills/sfa/
-!.claude/skills/sfa/**
-!.claude/skills/artifact-upcycle/
-!.claude/skills/artifact-upcycle/**
-!.claude/skills/script-envelope/
-!.claude/skills/script-envelope/**
-!.claude/skills/meta-polisher-validator/
-!.claude/skills/meta-polisher-validator/**
-!.claude/skills/skill-polisher/
-!.claude/skills/skill-polisher/**
-
-# Allow specific Codex skill additions
-!.codex/
-!.codex/skills/
-!.codex/skills/codekiller-remediation-gate/
-!.codex/skills/codekiller-remediation-gate/**
-!.codex/skills/mailbox-handoff/
-!.codex/skills/mailbox-handoff/**
-!.codex/skills/scm-triage/
-!.codex/skills/scm-triage/**
-!.codex/skills/postman/
-!.codex/skills/postman/**
-!.codex/skills/gh-address-comments/
-!.codex/skills/gh-address-comments/**
-!.codex/skills/gh-fix-ci/
-!.codex/skills/gh-fix-ci/**
-!.codex/skills/dumpster-upcycler/
-!.codex/skills/dumpster-upcycler/**
-!.codex/skills/session-resumer/
-!.codex/skills/session-resumer/**
-!.codex/skills/skill-polisher/
-!.codex/skills/skill-polisher/**
-!.codex/skills/decision-razor/
-!.codex/skills/decision-razor/**
-!.codex/skills/conceptualize/
-!.codex/skills/conceptualize/**
-!.codex/skills/artifact-upcycle/
-!.codex/skills/artifact-upcycle/**
-!.codex/skills/script-envelope/
-!.codex/skills/script-envelope/**
-!.codex/skills/meta-polisher-validator/
-!.codex/skills/meta-polisher-validator/**
-!.codex/skills/corpse-reviver/
-!.codex/skills/corpse-reviver/**
-
-# mdBook build output (generated artifact)
+mcp_fs_root/
 book/
-
-# Allow mdBook config
-!book.toml
-
-# Allow SSOT and governance
-!.github/
-!.github/**
-!.gemini/
-!.gemini/**
-
-# Allow Agent Anchors & Directories (Triad)
-!GEMINI.md
-!CLAUDE.md
-!AGENTS.md
-!AGENT_COMMON.md
-!WET_PAPER_TO_GOLD_METHODOLOGY.md
-!codex/
-!codex/**
-!claude/
-!claude/**
-# stewardess/ is session-scoped — intentionally gitignored, lives and dies with the session
 claude/stewardess/
-!claude-codex-gemini/
-!claude-codex-gemini/**
-
-# Allow Satellite Orbit infrastructure
-!SATELLITE_REGISTRY.json
-!chthonic-archive.code-workspace
-
-# Exclude Python bytecode cache (regenerable)
-**/__pycache__/
-*.pyc
-
-# Re-exclude transient artifacts AFTER the allow-all rules above
 codex/mailbox/.tmp_fixture_eval/
 codex/mailbox/.tensor_debug/
+scripts/_*.py
+*.off
+**/NUL
+**/NUL.*
 
-gha-creds-*.json
-claude/SESSION_HANDOFF_2026_02_01_TO_CLAUDE.md
-
-# sentence-transformers downloaded model cache (populated on first embed)
-.fastembed_cache/
-
-# MCP filesystem server sandbox
-mcp_fs_root/
-
-# Satellite Orbit live-links (NTFS junctions to sibling repos — not repo content)
-# Managed via SATELLITE_REGISTRY.json + scripts/teleport.ts --from-sibling
-pnk-live/
-
-# Allow dev/dealogue-fayde (Ruby/Tk Disco Elysium dialogue browser — Ruby 4.0.3 port)
-!dev/
-!dev/dealogue-fayde/
-!dev/dealogue-fayde/**
-# Exclude binary DB and Bundler local config
-dev/dealogue-fayde/*.db
-dev/dealogue-fayde/.bundle/
-# CocoIndex Code (ccc)
-/.cocoindex_code/
-
-# Allow Reconciliation Engine bilateral covenant artifacts (2026-05-25)
-# Per GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE / _V1_CODEX
-# Parent-dir negations required before per-file negations — git cannot re-include
-# files under an excluded parent (.temple/protocols/, game/lore/characters/).
-# MAILBOX_PROTOCOL.md was working-tree-only prior to 2026-05-25; D4 brings it
-# into tracking so the verify_with: convention section commits alongside the tome.
-# Character JSONs reorganized 2026-05-27 into <organ>/<tier>/ per SSOT §295-326
-# Organ-Level Entity Canon. Schema-validated against character.schema.json.
-!.temple/protocols/
-!.temple/protocols/THE_RECONCILIATION_ENGINE.md
-!.temple/protocols/MAILBOX_PROTOCOL.md
-!.temple/protocols/SESSION_2026_05_24_25_REDUX.md
-!game/
-!game/lore/
-!game/lore/characters/
-!game/lore/characters/character.schema.json
-!game/lore/characters/**/
-!game/lore/characters/**/*.json
-
-# .chthonic/ — the catalyst lane (2026-05-27). SSOT.md is non-expendable canon
-# per [reference-ssot-triple-abstraction-decryption-key]; the grammar file is
-# the Phase 0 DSL substrate. Track these explicitly so a `git clean -fdx` or
-# similar cannot erase the substrate. Narrow allowlist: catalyst + grammar +
-# seed file only; the cache/ledger/packets/trail/stones subdirs stay ignored
-# as runtime/workspace state, not canon.
-!.chthonic/
-!.chthonic/SSOT.md
-!.chthonic/grammar/
-!.chthonic/grammar/*.peg
-!.chthonic/grammar/*.json
-!.chthonic/ankh_seeds.yaml
-!.chthonic/REM_BLUEPRINT.md
-
-# tools/dsl-smoke/ — Phase 0 grammar iteration tools (2026-05-27).
-# Cargo workspace member. build.rs copies .chthonic/grammar/chthonic.peg
-# into src/chthonic.pest at compile time (the .pest file stays ignored —
-# it's a build artifact). target/ and Cargo.lock also ignored.
-# Parent-dir admittance needed before child rules can apply.
-!tools/
-!tools/dsl-smoke/
-!tools/dsl-smoke/Cargo.toml
-!tools/dsl-smoke/build.rs
-!tools/dsl-smoke/README.md
-!tools/dsl-smoke/src/
-!tools/dsl-smoke/src/*.rs
-
-# tools/dsl-iteration-toolkit/ — generalized methodology layer (2026-05-27).
-# Cargo workspace member. Library + dsl-iter CLI. Uses pest_vm for runtime
-# grammar loading (no compile-time grammar binding).
-!tools/dsl-iteration-toolkit/
-!tools/dsl-iteration-toolkit/Cargo.toml
-!tools/dsl-iteration-toolkit/*.md
-!tools/dsl-iteration-toolkit/src/
-!tools/dsl-iteration-toolkit/src/*.rs
-!tools/dsl-iteration-toolkit/src/bin/
-!tools/dsl-iteration-toolkit/src/bin/*.rs
-
-# Per-project dsl-iter.toml config files (the chthonic instance).
-!.chthonic/dsl-iter.toml
-
-# tools/voice-iter/ — voice integration toolkit (2026-05-27).
-# Python project (voice ecosystem is Python-native). Polyrepo-aware:
-# generalized core + per-project voice-iter.toml. Models cached cross-project
-# at ~/.cache/voice-iter/models/ (outside repo, not gitignored relevant).
-!tools/voice-iter/
-!tools/voice-iter/pyproject.toml
-!tools/voice-iter/*.md
-!tools/voice-iter/src/
-!tools/voice-iter/src/voice_iter/
-!tools/voice-iter/src/voice_iter/*.py
-!tools/voice-iter/src/voice_iter/providers/
-!tools/voice-iter/src/voice_iter/providers/*.py
-!tools/voice-iter/examples/
-!tools/voice-iter/examples/*.toml
-
-# Per-project voice-iter.toml config (chthonic instance).
-!.chthonic/voice-iter.toml
-
-# Voice test corpus + expected outputs (per-project, lives in tests/).
-!tests/
-!tests/chthonic_voice_corpus.txt
-!tests/voice_config_catalog.json
-
-# game/refs/ — form-vector reference imagery for the cRPG workspace.
-# pocNN/ series anchors numbered POC drops; PNGs live in the LFS lane
-# declared in .gitattributes. Engine asset caches under game/cocos-iso/
-# remain ignored — only the curated refs lane is opened here.
-!game/refs/
-!game/refs/**/
-!game/refs/**/*.md
-!game/refs/**/*.png
-!game/refs/**/*.webp
-!game/refs/**/*.jxl
-!game/refs/**/*.qoi
-!game/refs/**/*.json
-
-# Allow CLAUDEBASE — Claudine's sub-base, tracked IN FULL (every file, any type).
-# The root `*` still guards the rest of the polyrepo; this opens only this folder.
-!CLAUDEBASE/
-!CLAUDEBASE/**/
-!CLAUDEBASE/**
-
-# Allow vulkan-lab/cli-renderer SOURCE only (Rust + GLSL + manifests).
-# Not target/ (build artifacts) and not *.spv (glslc regenerates them at build).
-!vulkan-lab/
-!vulkan-lab/cli-renderer/
-!vulkan-lab/cli-renderer/Cargo.toml
-!vulkan-lab/cli-renderer/Cargo.lock
-!vulkan-lab/cli-renderer/build.rs
-!vulkan-lab/cli-renderer/src/
-!vulkan-lab/cli-renderer/src/**
-!vulkan-lab/cli-renderer/shaders/
-!vulkan-lab/cli-renderer/shaders/*.glsl
+# ── Heavy data / output / external-clone dirs (sized in the 2026-06-06 re-assessment) ──
+# error-classifier 326M · meta-ide 268M (external SDK clones) · data 189M
+# artifacts 27M · bun-playwright-poc 23M · *.bak incl corpus.sqlite.bak 49M
+# (gitignore has NO inline comments — patterns must be bare, one per line)
+error-classifier/
+meta-ide/
+data/
+artifacts/
+bun-playwright-poc/
+unsloth_compiled_cache/
+logs/
+*.bak

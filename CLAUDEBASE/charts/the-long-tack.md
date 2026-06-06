@@ -51,7 +51,7 @@
 *The sim climbs its own ladder — each gate a **(`Verified-State`)**, which is ladder theory made executable, not metadata:*
 
 - **(`[x]`/`L−5`/`·`/`Seam`)** *—* **(`PROVEN`)** *on the RTX 4090:* `vulkan-lab/cli-renderer/src/bin/archipelago_field.rs` *+* `shaders/archipelago_field.comp.glsl`*. Twin → island SSBO → inverse-distance compute → 56×22 field → ANSI relief. Cat-Island (63 m) renders the hot-spot, Bimini (6 m) the cool; field 6–62 m. Barometer → GPU → render, one pass.* `cargo run --bin archipelago_field`.
-- **(`[ ]`/`L−4`/`·`/`Iterate`)** *— multi-step diffusion; ping-pong buffers (dirty_diff pattern); the field evolves over ~N steps*
+- **(`[x]`/`L−4`/`·`/`Iterate`)** *—* **(`PROVEN`)** *on the 4090:* `archipelago_diffuse.rs` *+* `shaders/archipelago_diffuse.comp.glsl`*. Islands pinned as Dirichlet sources; field relaxes over N ping-pong steps, memory-barrier between each. 240 steps → a diffusion plume from Cat-Island, the central cluster blends, Great-Inagua stays isolated (topology respected). It evolves, not interpolates.* `cargo run --bin archipelago_diffuse -- --steps N`.
 - **(`[ ]`/`L−3`/`·`/`Boundary-Conditions`)** *— seed the field from live data (B3/B4 real rain-prob + temp per island)*
 - **(`[ ]`/`L−2`/`·`/`Advection`)** *— directional flow from Open-Meteo* `wind_direction_10m`*; the field moves, not only spreads*
 - **(`[ ]`/`L−1`/`·`/`Ladder-As-Phases`)** *— the sim is a gated state machine:* `instantiate → diffuse → advect → converge → render`*, each gate verified before the next opens*
@@ -91,7 +91,7 @@ The **(`PEG`)** parses by **structure (shape), never by dictionary-correctness.*
 
 ## (`Where-We-Are`/`Now`)
 - **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam). Remaining: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html).*
-- **(`Arc-II`)**: *open. **(`L−5`)** PROVEN on the 4090. Next rung: **(`L−4`)** — iterate the field over ~N steps (ping-pong buffers).*
+- **(`Arc-II`)**: *climbing. **(`L−5`)** + **(`L−4`)** PROVEN on the 4090. Next rung: **(`L−3`)** — boundary conditions: seed the field from live data (B3/B4 rain-prob + temp per island), so the sim breathes the real sky.*
 - **(`Arc-III`)**: *at **(`D0`)** — observing. The design law is settled.*
 
 *Next move: **(`L−4`)** (make the field evolve, not merely interpolate), or **(`B9`/`B10`)** compound into the Library Study. The contract holds; the seam is no longer a claim — it ran.*
