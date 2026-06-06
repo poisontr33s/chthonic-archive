@@ -656,3 +656,15 @@ dev/dealogue-fayde/.bundle/
 !CLAUDEBASE/
 !CLAUDEBASE/**/
 !CLAUDEBASE/**
+
+# Allow vulkan-lab/cli-renderer SOURCE only (Rust + GLSL + manifests).
+# Not target/ (build artifacts) and not *.spv (glslc regenerates them at build).
+!vulkan-lab/
+!vulkan-lab/cli-renderer/
+!vulkan-lab/cli-renderer/Cargo.toml
+!vulkan-lab/cli-renderer/Cargo.lock
+!vulkan-lab/cli-renderer/build.rs
+!vulkan-lab/cli-renderer/src/
+!vulkan-lab/cli-renderer/src/**
+!vulkan-lab/cli-renderer/shaders/
+!vulkan-lab/cli-renderer/shaders/*.glsl

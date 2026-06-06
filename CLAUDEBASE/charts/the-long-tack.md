@@ -35,7 +35,7 @@
 - **(`[x]`/`B-8`)** *— tracked in git: (whole folder, comprehensive allowlist)*
 - **(`[ ]`/`B-9`)** *— the true 1,728-bucket histogram: (terminal + inline SVG). The fairness-verifier of our generator — supersedes the Library-Study PNG, which binned to 4–5 states and only labelled 1,728*
 - **(`[ ]`/`B-10`)** *— a real self-contained* `Index.html` *(one file, no GPU: sea-chart SVG + histogram + forecast) — replaces the saved-Google-search dump as the actual study surface*
-- **(`[ ]`/`B-11`)** *—* **(`Freeze-The-Data-Contract`)**: *the stable payload the ladder consumes — per-island `{lat, lon, elev, seed, live?}`, SSBO-shaped. This is the seam-side handshake.*
+- **(`[x]`/`B-11`)** *—* **(`Freeze-The-Data-Contract`)**: *frozen by L−5 — the* `Island{lat,lon,elev,seed}` *std430 struct (16 B), sourced from* `archipelago.json`*; GLSL and Rust agree on it. The seam-side handshake holds.*
 
 **(`Acceptance`)**: *the barometer is proven as data + notation, and B-11 emits the boundary conditions **(`Arc-II`)** reads.*
 
@@ -50,7 +50,7 @@
 
 *The sim climbs its own ladder — each gate a **(`Verified-State`)**, which is ladder theory made executable, not metadata:*
 
-- **(`[ ]`/`L−5`/`·`/`Seam`)** *— islands → SSBO* `{lat,lon,elev,seed}`*; one* `.comp` *shader diffuses a field by inverse-distance; result → existing* `ascii_downsample` *→ terminal. Proves barometer → GPU → render in one pass.*
+- **(`[x]`/`L−5`/`·`/`Seam`)** *—* **(`PROVEN`)** *on the RTX 4090:* `vulkan-lab/cli-renderer/src/bin/archipelago_field.rs` *+* `shaders/archipelago_field.comp.glsl`*. Twin → island SSBO → inverse-distance compute → 56×22 field → ANSI relief. Cat-Island (63 m) renders the hot-spot, Bimini (6 m) the cool; field 6–62 m. Barometer → GPU → render, one pass.* `cargo run --bin archipelago_field`.
 - **(`[ ]`/`L−4`/`·`/`Iterate`)** *— multi-step diffusion; ping-pong buffers (dirty_diff pattern); the field evolves over ~N steps*
 - **(`[ ]`/`L−3`/`·`/`Boundary-Conditions`)** *— seed the field from live data (B3/B4 real rain-prob + temp per island)*
 - **(`[ ]`/`L−2`/`·`/`Advection`)** *— directional flow from Open-Meteo* `wind_direction_10m`*; the field moves, not only spreads*
@@ -90,11 +90,11 @@ The **(`PEG`)** parses by **structure (shape), never by dictionary-correctness.*
 ---
 
 ## (`Where-We-Are`/`Now`)
-- **(`Arc-I`)**: *through **(`B8`)**. Next: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html) → **(`B-11`)** (freeze the contract).*
-- **(`Arc-II`)**: *unbuilt. First cut is **(`L−5`)** — the seam, proven in one compute pass.*
-- **(`Arc-III`)**: *at **(`D0`)** — observing. The design law above is already settled.*
+- **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam). Remaining: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html).*
+- **(`Arc-II`)**: *open. **(`L−5`)** PROVEN on the 4090. Next rung: **(`L−4`)** — iterate the field over ~N steps (ping-pong buffers).*
+- **(`Arc-III`)**: *at **(`D0`)** — observing. The design law is settled.*
 
-*Next move on the table: **(`B9`/`B10`)** compound into the Library Study now, or jump the seam at **(`L−5`)**. The Savant goes vertical on the **(`L−5`)** kernel if dispatched; the architecture is held here.*
+*Next move: **(`L−4`)** (make the field evolve, not merely interpolate), or **(`B9`/`B10`)** compound into the Library Study. The contract holds; the seam is no longer a claim — it ran.*
 
 ---
 
