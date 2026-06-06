@@ -25,19 +25,19 @@
 ## (`ARC`/`I`/`·`/`THE-BAROMETER`/`Concept`/`-→`/`Working`/`Acceptable`)
 > *The data + notation foundation. When it emits a clean boundary-condition payload, **(`Arc-II`)** may begin.*
 
-- **(`[x]`/`B1`)** *— intrinsic pressure:* `sha256(body)` *→ SKY·AIR·MOOD over the real 12×12×12 = 1,728 space*
-- **(`[x]`/`B2`)** *— real geography:* `archipelago.json` *twin (8 islands · coords · elevation · decks)*
-- **(`[x]`/`B3`)** *— live sky: Open-Meteo apparent-temperature + WMO condition, fetched never stamped*
-- **(`[x]`/`B4`)** *— forecast probability map: precip-probability, next 12h, density grid*
-- **(`[x]`/`B5`)** *— hot-reload:* `--watch` *(event-driven) +* `--stamp` *(fixpoint) +* `--interval=<ms>` *for the live sky*
-- **(`[x]`/`B6`)** *— colour heat-map:* `--live --color`, *two axes (heat hue + WMO sky-word)*
-- **(`[x]`/`B7`)** *— sea-chart render:* `--chart` *plots the twin by real lat/lon*
-- **(`[x]`/`B8`)** *— tracked in git: (whole folder, comprehensive allowlist)*
-- **(`[ ]`/`B9`)** *— the true 1,728-bucket histogram: (terminal + inline SVG). The fairness-verifier of our generator — supersedes the Library-Study PNG, which binned to 4–5 states and only labelled 1,728*
-- **(`[ ]`/`B10`)** *— a real self-contained* `Index.html` *(one file, no GPU: sea-chart SVG + histogram + forecast) — replaces the saved-Google-search dump as the actual study surface*
-- **(`[ ]`/`B11`)** *—* **(`Freeze-The-Data-Contract`)**: *the stable payload the ladder consumes — per-island `{lat, lon, elev, seed, live?}`, SSBO-shaped. This is the seam-side handshake.*
+- **(`[x]`/`B-1`)** *— intrinsic pressure:* `sha256(body)` *→ SKY·AIR·MOOD over the real 12×12×12 = 1,728 space*
+- **(`[x]`/`B-2`)** *— real geography:* `archipelago.json` *twin (8 islands · coords · elevation · decks)*
+- **(`[x]`/`B-3`)** *— live sky: Open-Meteo apparent-temperature + WMO condition, fetched never stamped*
+- **(`[x]`/`B-4`)** *— forecast probability map: precip-probability, next 12h, density grid*
+- **(`[x]`/`B-5`)** *— hot-reload:* `--watch` *(event-driven) +* `--stamp` *(fixpoint) +* `--interval=<ms>` *for the live sky*
+- **(`[x]`/`B-6`)** *— colour heat-map:* `--live --color`, *two axes (heat hue + WMO sky-word)*
+- **(`[x]`/`B-7`)** *— sea-chart render:* `--chart` *plots the twin by real lat/lon*
+- **(`[x]`/`B-8`)** *— tracked in git: (whole folder, comprehensive allowlist)*
+- **(`[ ]`/`B-9`)** *— the true 1,728-bucket histogram: (terminal + inline SVG). The fairness-verifier of our generator — supersedes the Library-Study PNG, which binned to 4–5 states and only labelled 1,728*
+- **(`[ ]`/`B-10`)** *— a real self-contained* `Index.html` *(one file, no GPU: sea-chart SVG + histogram + forecast) — replaces the saved-Google-search dump as the actual study surface*
+- **(`[ ]`/`B-11`)** *—* **(`Freeze-The-Data-Contract`)**: *the stable payload the ladder consumes — per-island `{lat, lon, elev, seed, live?}`, SSBO-shaped. This is the seam-side handshake.*
 
-**(`Acceptance`)**: *the barometer is proven as data + notation, and B11 emits the boundary conditions **(`Arc-II`)** reads.*
+**(`Acceptance`)**: *the barometer is proven as data + notation, and B-11 emits the boundary conditions **(`Arc-II`)** reads.*
 
 ---
 
@@ -55,7 +55,7 @@
 - **(`[ ]`/`L−3`/`·`/`Boundary-Conditions`)** *— seed the field from live data (B3/B4 real rain-prob + temp per island)*
 - **(`[ ]`/`L−2`/`·`/`Advection`)** *— directional flow from Open-Meteo* `wind_direction_10m`*; the field moves, not only spreads*
 - **(`[ ]`/`L−1`/`·`/`Ladder-As-Phases`)** *— the sim is a gated state machine:* `instantiate → diffuse → advect → converge → render`*, each gate verified before the next opens*
-- **(`[ ]`/`L0`/`·`/`Render`)** *— colour/ascii field over the sea-chart; optional SVG/HTML frame; hot-reloadable like — **(`Arc-I`)**.*
+- **(`[ ]`/`L-0`/`·`/`Render`)** *— colour/ascii field over the sea-chart; optional SVG/HTML frame; hot-reloadable like — **(`Arc-I`)**.*
 - **(`[ ]`/`L+1`/`·`/`Perform`)** *— prove it on the 4090; measure step latency; heavy verified as fast, not just big*
 
 **(`Acceptance`)**: *a real field simulation over real archipelago topology — GPU-accelerated, ladder-gated, fed live by the barometer.*
@@ -83,7 +83,7 @@ The **(`PEG`)** parses by **structure (shape), never by dictionary-correctness.*
 ## (`Cross-Cutting-Laws`/`Apply-To-Every-Arc`)
 1. **(`Live`/`=`/`View`/`Never-Stamped`/`.`/`Stable`/`=`/`File`)** *The forecast and the sky are summoned, not frozen; geography and pressure are written. (The honesty rule Arc I proved.)*
 2. **(`Every-Claim-Ships-A-Verifier-Or-Is-Named-Residual`).** *No "done" without a way to falsify it.*
-3. **(`Lore-That-Works`)** —* the metaphor and the utility are the same gesture. Nothing decorative survives.*
+3. **(`Lore-That-Works`)** *— the metaphor and the utility are the same gesture. Nothing decorative survives.*
 4. **(`Heavy-Is-The-Fuel`/`—`/`Inverted`).** *The challenge is the lightness; piecemeal is the drain. When unsure, take the harder cut.*
 5. **(`Compound-Don't-Replace`)** *Barometer feeds ladder feeds DSL. The Library-Study dumps are buffer to build on, not slop to discard — wrong answers are still scaffold.*
 
