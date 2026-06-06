@@ -25,6 +25,7 @@
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --chart    # render charts/sea-chart.md from the twin
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --watch --live --interval=30000  # refetch sky every 30s
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --live --color  # heat-map: chambers tinted by real sky
+//   bun run CLAUDEBASE/quarterdeck/barometer.ts --forecast  # probability map: rain-chance over the cove, next 12h
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts <file.md>  # one chamber
 //
 // Geography is the digital twin: charts/archipelago.json (single source of truth).
@@ -48,6 +49,7 @@ const LIVE = process.argv.includes("--live");
 const STAMP = process.argv.includes("--stamp");
 const WATCH = process.argv.includes("--watch");
 const CHART = process.argv.includes("--chart");
+const FORECAST = process.argv.includes("--forecast");
 const INTERVAL = Math.max(1000, Number(process.argv.find((a) => a.startsWith("--interval="))?.split("=")[1]) || TWIN.refresh_ms || 600_000);
 const USE_COLOR = !process.argv.includes("--no-color") && !process.env.NO_COLOR &&
   (process.argv.includes("--color") || process.stdout.isTTY);
@@ -222,7 +224,33 @@ ${renderChart()}
   stampFile(out);
 }
 
-if (CHART) {
+// A probability map of the data we fetch: rain-chance over the cove, next 12 hours,
+// as a density grid. Live (the forecast moves) → a view, never a file.
+async function forecast(): Promise<void> {
+  const isles = TWIN.islands as any[];
+  const HOURS = 12, tag = "ABCDEFGH";
+  const glyph = (p: number) => (p < 5 ? "·" : p < 20 ? "░" : p < 40 ? "▒" : p < 70 ? "▓" : "█");
+  const blue = (p: number) => (p < 20 ? "38;5;195" : p < 40 ? "38;5;117" : p < 70 ? "38;5;39" : "38;5;27");
+  const rows = await Promise.all(isles.map(async (i) => {
+    try {
+      const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${i.lat}&longitude=${i.lon}&hourly=precipitation_probability&forecast_hours=${HOURS}&timezone=auto`);
+      return { i, p: ((await r.json()).hourly.precipitation_probability as number[]).map((x) => x ?? 0) };
+    } catch {
+      return { i, p: Array(HOURS).fill(0) as number[] };
+    }
+  }));
+  console.log("☁  FORECAST — chance of rain over the cove · next 12h (each isle, local time)\n");
+  console.log("                   now" + " ".repeat(HOURS * 2 - 8) + "+" + (HOURS - 1) + "h");
+  rows.forEach(({ i, p }, k) => {
+    const cells = p.map((x) => ESC(blue(x), glyph(x))).join(" ");
+    console.log(`  ${tag[k]} ${i.isle.padEnd(14)} ${cells}   peak ${String(Math.max(...p)).padStart(3)}%`);
+  });
+  console.log("\n  legend  · <5   ░ <20   ▒ <40   ▓ <70   █ ≥70 %    ·  live forecast — a view, never stamped");
+}
+
+if (FORECAST) {
+  await forecast();
+} else if (CHART) {
   writeChart();
   console.log("charted → CLAUDEBASE/charts/sea-chart.md");
 } else if (STAMP) {

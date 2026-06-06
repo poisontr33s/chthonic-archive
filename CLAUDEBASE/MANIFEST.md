@@ -13,6 +13,8 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
+---
+
 # (`☥`/`/CLAUDEBASE`/`MANIFEST`)
 
 > *Manifestet lyver for tollboden, aldri for kapteinen.*  
@@ -35,12 +37,16 @@ CLAUDEBASE/
   The-Savant-High-Bounties/ — the authoritative execution + evidence
 ```
 
+---
+
 ## (`What-Does-NOT-Live-Here`)
 
-- Session manifests, corpus sqlite, CI artifacts → `../manifest/` — read where they live, never copied in (copies go stale; a copy that rots is a lie waiting to be believed).
-- Satellite junctions → `../csb-live/`, `../pnk-live/`, etc.
-- The world-document → `../.github/copilot-instructions.archive.md` — never duplicated.
-- **The governance chain** → declared **once** in [`README.md`](README.md). No chamber restates it; same value six times is noise, not safety.
+- *Session manifests, corpus sqlite, CI artifacts →* `../manifest/` *— read where they live, never copied in (copies go stale; a copy that rots is a lie waiting to be believed).*
+- *Satellite junctions →* `../csb-live/`, `../pnk-live/`*, etc.*
+- *The world-document →* `../.github/copilot-instructions.archive.md` *— never duplicated.*
+- **(`The-Governance-Chain`)** *→ declared **(`Once`)** in [`README.md`](README.md). No chamber restates it; same value six times is noise, not safety.*
+
+---
 
 ## (`The-Six-Chambers`)
 
