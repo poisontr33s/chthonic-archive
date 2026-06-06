@@ -13,21 +13,18 @@
 
 ---
 
-```
-# ☥ CLAUDE — SKILLS
-# SID: CLAUDE_SKILLS_V1
-# Lifecycle: living-skills
+
 # Parent codebase: chthonic-archive
 # SSOT: ../.chthonic/SSOT.md
 # CLAUDEBASE: CLAUDEBASE/README.md
 # CLAUDEBASE_MANIFEST: CLAUDEBASE/MANIFEST.md
-# 
+
 # Skill files live in .claude/skills/<skill-name>/SKILL.md
 
 # CLAUDEBASE/
-                       # The-Savant-High-Bounties/
-                       # GRILLING.md
-                       # TODO.md
+# The-Savant-High-Bounties/
+# GRILLING.md
+ # TODO.md
 
 #  README.md           — base identity, governance chain, population order                   
 #  MANIFEST.md         — this file; what goes where
@@ -38,11 +35,26 @@
 #  watch/              — probes, health artifacts, gate results
 #  quarterdeck/        — dispatch protocols, routing config, orchestration             
 
-#  .claude/skills/     
-#  claude/skills/      
-                       # <skill-name>/
-    # SKILL.md         — skill identity, contract, protocol, worked example
-```
+---
+
+## Skills Overview *WIP*
+
+|  Directory  |  Purpose  |  
+|---|---|---|
+| `harbor/`   |  *Entry — active session context, warmstart packets, what just arrived*
+| `logbook/`  |  Record — session retrospectives, retrospective protocol artifacts, what was learned       | `charts/` | *Navigation — plans, gate maps, sprint boards; cross-refs TODO.md*    
+| `hold/` | *Cargo — skills, agents, tools stowed for this base specifically*
+| `watch/` | *Sentinels — probes, health monitors, CI gate artifacts scoped to CLAUDEBASE*
+| `quarterdeck/` | *Command — dispatch, routing, orchestration protocols*
+# ☥ CLAUDE — SKILLS    
+# SID: CLAUDE\_SKILLS\_V1
+# Lifecycle: living-skills-directory
+
+# Skill files live in:  
+# - /.claude/skills/<%skill-name>/%SKILL.md 
+# - /claude/%skills/<%skill-name>/SKILL.md
+
+
 
 ---
 
