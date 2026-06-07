@@ -25,6 +25,8 @@
 
 The chart draws nothing of its own. It re-bears what is already sounded in [`The-Savant-High-Bounties/TODO.md`](../The-Savant-High-Bounties/TODO.md) — the authoritative plan, its reasons in [`GRILLING.md`](../The-Savant-High-Bounties/GRILLING.md). When chart and bounty disagree, the bounty is the coast; the chart is the error. Eleven gates, run by dependency-depth: `−n` must close before `+n` opens.
 
+*A sibling chart shares this `−n/+n` notation but not this axis: [`the-long-tack.md`](the-long-tack.md) climbs `L−5 → L+1` for the barometer → sim → DSL arc. Orthogonal ladder — its `L−2` (advection, proven on the 4090) is not this map's `Gate −2` (architectural debt). Two soundings, one notation; do not cross them.*
+
 ## `The-Eleven-Gates` *(at grilling 2026-06-05 — score 1/10)*
 
 | Gate | Reach | State | The shoal that holds her |

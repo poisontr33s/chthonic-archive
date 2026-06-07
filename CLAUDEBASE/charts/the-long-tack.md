@@ -20,6 +20,8 @@
 
 **(`Reading-Order-Of-The-Arcs`/`Is-The-Sequence-Of-Belief`/`A-Thing`/`Earns-The`/`Next-Arc`/`Only-By-Working`/`In-This-One`)**
 
+**(`Two-Ladders`/`Do-Not-Conflate`)** *— this chart's* `L−5 → L+1` *rungs are ONE engineering line: the barometer → sim → DSL arc, climbed by dependency-depth. They are NOT the world-level* `Gate −5 → +5` *of* [`../The-Savant-High-Bounties/TODO.md`](../The-Savant-High-Bounties/TODO.md) *(whole-repo health — governance · CI · toolchain · MCP · debt, the grilling lane). Same depth-notation, orthogonal axis:* `L−2` *here (advection, PROVEN) is not* `Gate −2` *there (architectural debt, open). A rung closed on this tack closes THIS arc — never a world-gate.*
+
 ---
 
 ## (`ARC`/`I`/`·`/`THE-BAROMETER`/`Concept`/`-→`/`Working`/`Acceptable`)
