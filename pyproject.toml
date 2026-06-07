@@ -61,7 +61,7 @@ flux-satellite = { workspace = true }
 torch = [{ index = "pytorch-cu128" }]
 
 [tool.uv]
-default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe"]
+default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe", "sonic"]
 python-downloads = "manual"
 python-preference = "only-managed"
 
@@ -88,6 +88,11 @@ embeddings = [
     # onnxruntime-gpu: CUDA/TRT execution provider runtime.
     # Optimum quarantined — caps transformers/hf-hub below the active repo lane.
     # See DEPENDENCY_POLICY.md for full rationale.
+]
+
+sonic = [
+    "librosa>=0.11.0,<1",
+    "panns-inference>=0.1.1,<1",
 ]
 
 poe = [
