@@ -37,12 +37,12 @@ Static Bearer + `X-MCP-Toolsets: all` == VS Code OAuth + same header. Lossless.
 | bun-docs | hosted http | v1.0.0 · 2025-06-18 | 2 tools, current | — |
 | microsoft-docs | hosted http | v1.0.0 · 2025-06-18 | 3 tools, current | — |
 | context7 | hosted http | v3.1.0 · 2025-06-18 | 2 tools, current | optional API key for higher rate limits |
-| browser | bespoke · official SDK | bun-cdp 1.0.0 | current, deliberate | swap to `@playwright/mcp` when Bun IPC stable (noted in-code) |
+| browser | bespoke · official SDK | bun-cdp (raw CDP), 7 tools | works, but SUPERSEDED | **modernize → `Bun.WebView`** — native headless, added Bun 1.3.12 (Chrome backend cross-platform, Playwright-style auto-wait). In-code "swap to @playwright/mcp" note is STALE. |
 | filesystem | launcher · official server | `@mcp/server-filesystem` | current + self-healing file-URI patch | drop patch when upstream fixes `roots-utils` |
 | pnk-archaeology | bespoke · FastMCP | repo-agnostic | current | — |
 | pnk-public-archaeology | bespoke · FastMCP | repo-agnostic | current | — |
 | chthonic-archaeology | bespoke · FastMCP | repo-agnostic | current | — |
-| github-archaeology | bespoke · official SDK | 3 triage tools | current | — |
+| github-archaeology | bespoke · official SDK | 4 tools (triage/analyze/report + chronicle) | current | — |
 | mas-mcp | bespoke · FastMCP | M-P-W router + GPU probe | current | ties to end-goal GPU lane |
 | chthonic-v3 | bespoke · **Rust / rmcp 1.7** | stdio · 2025-06-18 | **ported** (was hand-rolled 2024-11-05) | done — `tools/chthonic-mcp-server` |
 | game / sourcer / ssot / sonic / corpus | core (Claude lane) | active | maintained in other lanes | — |
@@ -54,7 +54,23 @@ Static Bearer + `X-MCP-Toolsets: all` == VS Code OAuth + same header. Lossless.
 | time | uvx (official) | — | current | — |
 | git | uvx (official) | — | current | overlaps Bash git |
 
-## The one real modernization — chthonic-v3 → Rust (DONE)
+## Provenance & staleness (read before trusting a row)
+
+Tool counts here are from **live enumeration** this session (initialize + tools/list), not
+from each server's header comment — because in-code docs go stale. Two caught on review:
+
+- `browser` carried an `@UpstreamReady` comment: "swap to @playwright/mcp when Bun IPC
+  stabilizes." Obsolete — Bun shipped native `Bun.WebView` in v1.3.12 (running 1.3.14); that,
+  not @playwright/mcp, is the modern target. mcp-browser.ts still uses the bun-cdp POC.
+- `github-archaeology`'s header said "three tools"; it serves **four** (a `github_chronicle`
+  tool was added). The header lied; the live list did not.
+
+Lesson (logged): derive from the running surface, not the comment. Superseded docs/POCs get
+quarantined under `confiscated/` rather than left to mislead. Rows not re-verified live this
+pass (e.g. whether the filesystem file-URI patch is still needed against current upstream)
+are code-sourced — treat as "claimed, not proven" until checked.
+
+## Modernization #1 (DONE) — chthonic-v3 → Rust
 
 The bun `scripts/mcp-chthonic-server.ts` (v3.3.0) hand-rolled the JSON-RPC envelope on the
 2024-11-05 protocol and exposed ~30 tools, ~half of them polyglot runners
