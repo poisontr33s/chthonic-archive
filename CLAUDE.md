@@ -1,18 +1,13 @@
 # CLAUDE.md
 - `=`/`#`/`CLAUDINE.md`/`Female-Linguistic-Processing`/`True`/`Male-Linguistic-Processing`/`False`
 
-  - `The-Savant's-Creed`/`The-Savant's-Manifesto`/`The-Savant's-Methodology`/`The-Savant's-Creed`/`The-Savant's-Manifesto`/`The-Savant's-Methodology`/
-  
-    - `CLAUDEBASE/README.md`/`CLAUDEBASE/MANIFEST.md`/`.claude/skills`/`*`/`SKILL.md`
-
 ---
 
-# ☥ CLAUDE — /CLAUDEBASE
+## (`☥`/`CLAUDE`/`=`/`/CLAUDEBASE`)
 
-  - *The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base. The one and only. The original. The namesake.*
+- *The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship,* **(`/CLAUDEBASE`)`**. *The one and only.*
 
 ---
-
 
 # Parent codebase: chthonic-archive
 # SSOT: ../.chthonic/SSOT.md
@@ -37,28 +32,49 @@
 
 ---
 
-## Skills Overview *WIP*
+## (`Skills`/`Overview`/`WIP`)
 
-|  Directory  |  Purpose  |  
-|---|---|---|
-| `harbor/`   |  *Entry — active session context, warmstart packets, what just arrived*
-| `logbook/`  |  Record — session retrospectives, retrospective protocol artifacts, what was learned       | `charts/` | *Navigation — plans, gate maps, sprint boards; cross-refs TODO.md*    
-| `hold/` | *Cargo — skills, agents, tools stowed for this base specifically*
-| `watch/` | *Sentinels — probes, health monitors, CI gate artifacts scoped to CLAUDEBASE*
-| `quarterdeck/` | *Command — dispatch, routing, orchestration protocols*
-# ☥ CLAUDE — SKILLS    
-# SID: CLAUDE\_SKILLS\_V1
-# Lifecycle: living-skills-directory
+| *Directory* | *Purpose* |
+|---|---|
+`harbor/` | *Entry — active session context, warmstart packets, what just arrived*
+`logbook/` |  *Record — session retrospectives, retrospective protocol artifacts, what was learned*       
+`charts/` | *Navigation — plans, gate maps, sprint boards; cross-refs TODO.md*    
+`hold/` | *Cargo — skills, agents, tools stowed for this base specifically*
+`watch/` | *Sentinels — probes, health monitors, CI gate artifacts scoped to CLAUDEBASE*
+`quarterdeck/` | *Command — dispatch, routing, orchestration protocols*
 
-# Skill files live in:  
-# - /.claude/skills/<%skill-name>/%SKILL.md 
-# - /claude/%skills/<%skill-name>/SKILL.md
+```asciiiart
 
+ /—————\———=———————————/——————————————————————————————————————————————————————————————————————————\
+ |       / \          /     \      /                                                               |
+ |      /   \        /
+ |     /     \      /
+ \____/       \____/
+```
+
+```asciidoc
+CLAUDEBASE/
+├── README.md           — base identity, governance chain, population order
+├── MANIFEST.md         — this file; what goes where
+├── harbor/             — active session context (warm starts, recent arrivals)
+├── logbook/            — retrospectives, session artifacts, post-mortems
+├── charts/             — strategic plans, gate maps, sprint state
+├── hold/               — skills, agents, tools stowed for this base
+├── watch/              — probes, health artifacts, gate results
+└── quarterdeck/        — dispatch protocols, routing config, orchestration
+```
+
+`☥ CLAUDE — SKILLS DIRECTORY`
+`SID: CLAUDE\_SKILLS\_V1`
+`Lifecycle: living-skills-directory`
+`Skill files live in:`  
+`/.claude/%skills/<%skill-name>/%SKILL.md` 
+`/claude/%skills/<%skill-name>/%SKILL.md`
 
 
 ---
 
-## What-Lives-Here: YOU DON'T KNOW YET
+## (`What-Gives`/`?`/`IF-YOU-DON'T-KNOW-YET`)
 
 - *.."Skills are the atomic units of capability in the CLAUDE ecosystem. They are discrete, self-contained pieces of functionality that can be invoked by agents to perform specific tasks.*
 
@@ -101,13 +117,13 @@
 
 ---
 
-## Session Retrospectives
+## (`Session`/`Retrospectives`)
 
-- `Likely`/`Outdated`/`Redundant`/`Obsolete`/`Active`/`Pending`
+- **(`Likely`/`Outdated`/`Redundant`/`Obsolete`/`Active`/`Pending`)** *— a rolling archive of retrospectives, post-mortems, and session artifacts. The goal is to capture the learnings and insights from each session in a structured way, so that we can refer back to them and build on them over time.*
 
 ---
 
-## Workspace
+## (`Workspace`/`Codebase`/`Bloat`)
 
   - *Dirty workspace, but here are some notes on the current state of the project:*
 
@@ -121,7 +137,21 @@
         
           - *The `Tasks.json` is where we define our build and test tasks, and it's still a work in progress. Overall, the workspace is functional but could definitely use some organization and cleanup."*
 
-        - *I'm too lazy to update this section, besides it explains it perfectly — this = temporal lazy "snapshot" of where we are at the moment.*
+           - *I'm too lazy to update this section— this = temporal lazy "snapshot" of where we are at the moment.*
+
+---
+
+## (`Immutable-API-Tokens/Semented`/`No-Flippery`/`DRY`/`Different-GUI/Different-Tools`/`Same-Token-Management`)
+
+- *Follow* [docs/API_POOL_MCP_CONTRACT.md](docs/API_POOL_MCP_CONTRACT.md). `~/.chthonic/api_pool.json` *is the source of truth for API and MCP tokens.*
+
+  - *Before claiming auth is missing or stale, run* `.\scripts\api_pool.ps1 -Doctor`, *then load/verify from the pool.*
+
+    - *Restore MCP config with* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot`*; do not hand-edit or refresh tokens for* `.mcp.json` *rewrites.*
+
+      - *Token renewal is manual only when a token is actually expired, revoked, or intentionally replaced.*
+
+        - *Report MCP servers with* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -List` *so no token values are printed.*
 
 ---
 
@@ -135,6 +165,26 @@
       
         - `AND-THE-HOLY-CODEBASE` ~ 
 
-          - `SO-IT-IS`/`SO-IT-SHALL-BE`/`AMEN` ~
+          - **(`SO-IT-IS`/`SO-IT-SHALL-BE`/`A-MILFs`)** ~
 
----
+--- 
+
+*The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
+
+
+
+@Copilot 
+PR: 
+# TODO:
+- *Develop **(`NSFW18++`/`Milfological`/`ANKHOLOGY`)** ascii-art; using symbols like books, scrolls, quills, or ancient scripts to represent knowledge and wisdom. The design could also incorporate elements that suggest a library or archive, such as shelves or stacks of books. The overall aesthetic should be elegant and timeless, reflecting the enduring nature of the skills contained within the **(`/CLAUDEBASE`)**-directory;*
+
+  - *Refine the directory structure and naming conventions for the skills, ensuring that they are intuitive and consistent with the overall theme of the codebase;*
+
+
+```asci
+  \       /
+   (  Y  )
+    \ | / 
+      X 
+    / | \
+   (  |  )

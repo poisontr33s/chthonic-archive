@@ -111,6 +111,8 @@ Thumbs.db
 .env.local
 .env.*.local
 gha-creds-*.json
+.mcp.json
+.mcp.json.bak
 
 # ── App-specific (preserved from prior file) ──
 apps/chthonic-next/.next/

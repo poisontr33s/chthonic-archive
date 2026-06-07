@@ -21,12 +21,14 @@
 
 .USAGE
   pwsh -NoProfile -File scripts/api_pool_persist_user_env.ps1 -Apply
+  pwsh -NoProfile -File scripts/api_pool_persist_user_env.ps1 -Apply -Force
   pwsh -NoProfile -File scripts/api_pool_persist_user_env.ps1 -Status
 #>
 
 param(
   [switch]$Apply,
-  [switch]$Status
+  [switch]$Status,
+  [switch]$Force
 )
 
 Set-StrictMode -Version Latest
@@ -58,8 +60,8 @@ function Normalize-Token {
   if ($v.StartsWith("<") -and $v.EndsWith(">") -and $v.Length -ge 3) {
     $v = $v.Substring(1, $v.Length - 2).Trim()
   }
-  if ($v -match '^(?i)Bearer\\s+') {
-    $v = ($v -replace '^(?i)Bearer\\s+', '').Trim()
+  if ($v -match '^(?i)Bearer\s+') {
+    $v = ($v -replace '^(?i)Bearer\s+', '').Trim()
   }
   return $v
 }
@@ -89,7 +91,7 @@ function Get-WantedVarNames {
 }
 
 if (-not $Apply -and -not $Status) {
-  Write-Output "Usage: pwsh -NoProfile -File scripts/api_pool_persist_user_env.ps1 -Apply | -Status"
+  Write-Output "Usage: pwsh -NoProfile -File scripts/api_pool_persist_user_env.ps1 -Apply [-Force] | -Status"
   exit 2
 }
 
@@ -147,10 +149,15 @@ if ($Status) {
 }
 
 $setCount = 0
+$driftSkipped = @()
 foreach ($k in $wanted) {
   if (-not $map.ContainsKey($k)) { continue }
   $new = [string]$map[$k]
   $old = Get-UserVar -Name $k
+  if (-not [string]::IsNullOrWhiteSpace($old) -and $old -ne $new -and -not $Force) {
+    $driftSkipped += $k
+    continue
+  }
   if ($old -ne $new) {
     Set-UserVar -Name $k -Value $new
     $setCount++
@@ -158,3 +165,7 @@ foreach ($k in $wanted) {
 }
 
 Write-Output "ok: persisted $setCount user env var(s) (values not printed). Restart VS Code Insiders to take effect."
+if ($driftSkipped.Count -gt 0) {
+  Write-Output ("warn: skipped {0} drifted user env var(s): {1}" -f $driftSkipped.Count, ($driftSkipped -join ", "))
+  Write-Output "warn: rerun with -Apply -Force only if the pool is definitely the source of truth."
+}

@@ -14,12 +14,18 @@
 #   without ever storing secrets in the repo.
 #
 # Usage:
+# - .\scripts\api_pool.ps1 -Doctor
+# - .\scripts\api_pool.ps1 -Mock
 # - .\scripts\api_pool.ps1 -Load
 # - .\scripts\api_pool.ps1 -VerifyPool
 # - .\scripts\api_pool.ps1 -SetHFToken
 # - .\scripts\api_pool.ps1 -VerifyHF
 # - .\scripts\api_pool.ps1 -SyncGitHubFromGh
 # - .\scripts\api_pool.ps1 -VerifyGitHub
+# - .\scripts\api_pool.ps1 -VerifyAnthropic
+# - .\scripts\api_pool.ps1 -VerifyOpenAI
+# - .\scripts\api_pool.ps1 -VerifyGemini
+# - .\scripts\api_pool.ps1 -VerifyProviders
 #
 # Data file:
 # - $HOME\.chthonic\api_pool.json (user profile, not repo)
@@ -29,17 +35,26 @@
 #   "env": {
 #     "HUGGINGFACE_HUB_TOKEN": "hf_...",
 #     "GITHUB_TOKEN": "ghp_...",
-#     "OPENAI_API_KEY": "sk-..."
+#     "ANTHROPIC_API_KEY": "sk-ant-...",
+#     "OPENAI_API_KEY": "sk-...",
+#     "GEMINI_API_KEY": "..."
 #   }
 # }
 
 param(
+  [switch]$Doctor,
+  [switch]$Mock,
   [switch]$Load,
   [switch]$VerifyPool,
   [switch]$SetHFToken,
+  [switch]$FixHF,
   [switch]$VerifyHF,
   [switch]$SyncGitHubFromGh,
   [switch]$VerifyGitHub,
+  [switch]$VerifyAnthropic,
+  [switch]$VerifyOpenAI,
+  [switch]$VerifyGemini,
+  [switch]$VerifyProviders,
   [switch]$SetSpotify,
   [switch]$Quiet
 )
@@ -48,12 +63,19 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $InvocationLine = [string]$MyInvocation.Line
+$WantDoctor = $PSBoundParameters.ContainsKey("Doctor") -or ($InvocationLine -match '(?i)(^|\s)-Doctor(\s|$)')
+$WantMock = $PSBoundParameters.ContainsKey("Mock") -or ($InvocationLine -match '(?i)(^|\s)-Mock(\s|$)')
 $WantLoad = $PSBoundParameters.ContainsKey("Load") -or ($InvocationLine -match '(?i)(^|\s)-Load(\s|$)')
 $WantVerifyPool = $PSBoundParameters.ContainsKey("VerifyPool") -or ($InvocationLine -match '(?i)(^|\s)-VerifyPool(\s|$)')
 $WantSetHFToken = $PSBoundParameters.ContainsKey("SetHFToken") -or ($InvocationLine -match '(?i)(^|\s)-SetHFToken(\s|$)')
+$WantFixHF = $PSBoundParameters.ContainsKey("FixHF") -or ($InvocationLine -match '(?i)(^|\s)-FixHF(\s|$)')
 $WantVerifyHF = $PSBoundParameters.ContainsKey("VerifyHF") -or ($InvocationLine -match '(?i)(^|\s)-VerifyHF(\s|$)')
 $WantSyncGitHubFromGh = $PSBoundParameters.ContainsKey("SyncGitHubFromGh") -or ($InvocationLine -match '(?i)(^|\s)-SyncGitHubFromGh(\s|$)')
 $WantVerifyGitHub = $PSBoundParameters.ContainsKey("VerifyGitHub") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGitHub(\s|$)')
+$WantVerifyAnthropic = $PSBoundParameters.ContainsKey("VerifyAnthropic") -or ($InvocationLine -match '(?i)(^|\s)-VerifyAnthropic(\s|$)')
+$WantVerifyOpenAI = $PSBoundParameters.ContainsKey("VerifyOpenAI") -or ($InvocationLine -match '(?i)(^|\s)-VerifyOpenAI(\s|$)')
+$WantVerifyGemini = $PSBoundParameters.ContainsKey("VerifyGemini") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGemini(\s|$)')
+$WantVerifyProviders = $PSBoundParameters.ContainsKey("VerifyProviders") -or ($InvocationLine -match '(?i)(^|\s)-VerifyProviders(\s|$)')
 $WantSetSpotify = $PSBoundParameters.ContainsKey("SetSpotify") -or ($InvocationLine -match '(?i)(^|\s)-SetSpotify(\s|$)')
 
 function Get-ApiPoolPath {
@@ -73,6 +95,12 @@ function Get-EnvVar {
   return [string]([System.Environment]::GetEnvironmentVariable($Name, "Process"))
 }
 
+function Has-UserEnvVar {
+  param([Parameter(Mandatory=$true)][string]$Name)
+  $v = [System.Environment]::GetEnvironmentVariable($Name, "User")
+  return -not [string]::IsNullOrWhiteSpace([string]$v)
+}
+
 function Normalize-Token {
   param([AllowEmptyString()][string]$Value = "")
   $v = [string]$Value
@@ -82,10 +110,163 @@ function Normalize-Token {
     $v = $v.Substring(1, $v.Length - 2).Trim()
   }
   # Avoid double-"Bearer " in downstream headers.
-  if ($v -match '^(?i)Bearer\\s+') {
-    $v = ($v -replace '^(?i)Bearer\\s+', '').Trim()
+  if ($v -match '^(?i)Bearer\s+') {
+    $v = ($v -replace '^(?i)Bearer\s+', '').Trim()
   }
   return $v
+}
+
+function Get-PoolEnvMap {
+  param([Parameter(Mandatory=$true)][string]$Path)
+  $map = @{}
+  $json = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+  if (-not $json.env) {
+    throw "Invalid api_pool.json: missing env object"
+  }
+  foreach ($prop in $json.env.PSObject.Properties) {
+    $map[$prop.Name] = Normalize-Token -Value ([string]$prop.Value)
+  }
+  return $map
+}
+
+function Get-StatusWord {
+  param([AllowNull()][string]$Value)
+  if ([string]::IsNullOrWhiteSpace([string]$Value)) { return "False" }
+  return "True"
+}
+
+function Get-ApiPoolKeyNames {
+  param([Parameter(Mandatory=$true)][hashtable]$PoolMap)
+  $expected = @(
+    "ANTHROPIC_API_KEY",
+    "ANTHROPIC_AUTH_TOKEN",
+    "ANTHROPIC_BASE_URL",
+    "OPENAI_API_KEY",
+    "GEMINI_API_KEY",
+    "GOOGLE_API_KEY",
+    "HUGGINGFACE_HUB_TOKEN",
+    "HF_TOKEN",
+    "GITHUB_TOKEN",
+    "GH_TOKEN",
+    "GITHUB_PERSONAL_ACCESS_TOKEN",
+    "POE_API_KEY",
+    "POE_ACCOUNT_ACTIVE",
+    "POE_BASE_URL",
+    "POE_MODEL",
+    "SPOTIFY_CLIENT_ID",
+    "SPOTIFY_CLIENT_SECRET",
+    "SPOTIFY_REFRESH_TOKEN"
+  )
+  $poeSlots = @(
+    $PoolMap.Keys |
+      Where-Object { $_ -match '^POE_API_KEY_[0-9]+$' } |
+      Sort-Object
+  )
+  return @($expected + $poeSlots + $PoolMap.Keys) | Select-Object -Unique
+}
+
+function Print-Doctor {
+  param(
+    [Parameter(Mandatory=$true)][string]$Path,
+    [Parameter(Mandatory=$true)][hashtable]$PoolMap
+  )
+
+  Write-Host "API pool: $Path"
+  Write-Host "Auth signals (no secrets):"
+  foreach ($name in (Get-ApiPoolKeyNames -PoolMap $PoolMap)) {
+    $poolVal = if ($PoolMap.ContainsKey($name)) { [string]$PoolMap[$name] } else { "" }
+    $procVal = [System.Environment]::GetEnvironmentVariable($name, "Process")
+    $userVal = [System.Environment]::GetEnvironmentVariable($name, "User")
+    $status = "pool={0}; process={1}; user={2}" -f (Get-StatusWord $poolVal), (Get-StatusWord $procVal), (Get-StatusWord $userVal)
+    if (-not [string]::IsNullOrWhiteSpace($poolVal) -and -not [string]::IsNullOrWhiteSpace($userVal) -and $poolVal -ne $userVal) {
+      $status += "; drift=pool!=user"
+    }
+    Write-Host ("- {0}: {1}" -f $name, $status)
+  }
+
+  $claudeCommands = @(Get-Command claude -All -ErrorAction SilentlyContinue)
+  if ($claudeCommands.Count -gt 0) {
+    Write-Host ""
+    Write-Host "Claude command resolution (no auth mutation):"
+    foreach ($cmd in $claudeCommands) {
+      $pathProp = $cmd.PSObject.Properties["Path"]
+      $sourceProp = $cmd.PSObject.Properties["Source"]
+      $definitionProp = $cmd.PSObject.Properties["Definition"]
+      $pathValue = if ($pathProp) { [string]$pathProp.Value } else { "" }
+      $sourceValue = if ($sourceProp) { [string]$sourceProp.Value } else { "" }
+      $definitionValue = if ($definitionProp) { [string]$definitionProp.Value } else { "" }
+      $target = if ($pathValue) { $pathValue } elseif ($sourceValue) { $sourceValue } else { ($definitionValue -replace '\s+', ' ').Trim() }
+      Write-Host ("- {0}: {1}" -f $cmd.CommandType, $target)
+    }
+  }
+}
+
+function Test-PoolMock {
+  param([Parameter(Mandatory=$true)][string]$Path)
+
+  $json = Get-Content -LiteralPath $Path -Raw | ConvertFrom-Json
+  if (-not $json.env) {
+    Write-Host "mock fail: api_pool.json missing env object"
+    return 2
+  }
+
+  $errors = @()
+  $warnings = @()
+  $present = @{}
+
+  foreach ($prop in $json.env.PSObject.Properties) {
+    $name = [string]$prop.Name
+    $raw = [string]$prop.Value
+    $trim = $raw.Trim()
+    if ([string]::IsNullOrWhiteSpace($trim)) { continue }
+
+    $present[$name] = $true
+
+    if ($raw -match "[\r\n]") {
+      $errors += "$name contains newline"
+    }
+    if ($trim -match '(?i)(placeholder|example|your[_-]?key|token[_-]?here|changeme|todo|sk_your)') {
+      $errors += "$name looks like a placeholder"
+    }
+    if ($trim -match '^(?i)Bearer\s+') {
+      $warnings += "$name has Bearer prefix; store the bare token in the pool"
+    }
+    if ($trim.StartsWith("<") -and $trim.EndsWith(">") -and $trim.Length -ge 3) {
+      $warnings += "$name is angle-wrapped; store the bare token in the pool"
+    }
+
+    $normalized = Normalize-Token -Value $trim
+    if ($name -eq "HUGGINGFACE_HUB_TOKEN" -and $normalized -notmatch '^hf_') {
+      $warnings += "$name does not have expected hf_ prefix"
+    }
+    if ($name -eq "ANTHROPIC_API_KEY" -and $normalized -notmatch '^sk-ant-') {
+      $warnings += "$name does not have expected sk-ant- prefix"
+    }
+    if ($name -eq "OPENAI_API_KEY" -and $normalized -notmatch '^sk-') {
+      $warnings += "$name does not have expected sk- prefix"
+    }
+    if ($name -eq "GITHUB_TOKEN" -and $normalized -notmatch '^(ghp_|github_pat_|gho_|ghu_|ghs_|ghr_)') {
+      $warnings += "$name does not have a common GitHub token prefix"
+    }
+  }
+
+  foreach ($required in @("GITHUB_TOKEN", "HUGGINGFACE_HUB_TOKEN")) {
+    if (-not $present.ContainsKey($required)) {
+      $errors += "$required missing for workspace MCP generation"
+    }
+  }
+
+  foreach ($warning in $warnings) {
+    Write-Host ("mock warn: " + $warning)
+  }
+  foreach ($error in $errors) {
+    Write-Host ("mock fail: " + $error)
+  }
+
+  if ($errors.Count -gt 0) { return 2 }
+  Write-Host "mock ok: API pool local structure is valid; no network/provider calls were made."
+  Write-Host "mock note: run -VerifyProviders only when live provider authentication must be proven."
+  return 0
 }
 
 function Set-GitHubAliases {
@@ -199,23 +380,97 @@ function Verify-HF {
   return $rc
 }
 
+function Verify-Anthropic {
+  $key = Get-EnvVar -Name "ANTHROPIC_API_KEY"
+  if ([string]::IsNullOrWhiteSpace($key)) {
+    if (-not $Quiet) { Write-Host "skip: ANTHROPIC_API_KEY missing" }
+    return 4
+  }
+  try {
+    $headers = @{
+      "x-api-key" = $key
+      "anthropic-version" = "2023-06-01"
+    }
+    $response = Invoke-RestMethod -Method Get -Uri "https://api.anthropic.com/v1/models" -Headers $headers -TimeoutSec 20
+    $count = @($response.data).Count
+    if (-not $Quiet) { Write-Host ("ok: Anthropic models reachable ({0} model(s))" -f $count) }
+    return 0
+  } catch {
+    if (-not $Quiet) { Write-Host ("fail: Anthropic token rejected or API unreachable: " + $_.Exception.Message) }
+    return 2
+  }
+}
+
+function Verify-OpenAI {
+  $key = Get-EnvVar -Name "OPENAI_API_KEY"
+  if ([string]::IsNullOrWhiteSpace($key)) {
+    if (-not $Quiet) { Write-Host "skip: OPENAI_API_KEY missing" }
+    return 4
+  }
+  try {
+    $headers = @{ "Authorization" = "Bearer $key" }
+    $response = Invoke-RestMethod -Method Get -Uri "https://api.openai.com/v1/models" -Headers $headers -TimeoutSec 20
+    $count = @($response.data).Count
+    if (-not $Quiet) { Write-Host ("ok: OpenAI models reachable ({0} model(s))" -f $count) }
+    return 0
+  } catch {
+    if (-not $Quiet) { Write-Host ("fail: OpenAI token rejected or API unreachable: " + $_.Exception.Message) }
+    return 2
+  }
+}
+
+function Verify-Gemini {
+  $key = Get-EnvVar -Name "GEMINI_API_KEY"
+  if ([string]::IsNullOrWhiteSpace($key)) {
+    $key = Get-EnvVar -Name "GOOGLE_API_KEY"
+  }
+  if ([string]::IsNullOrWhiteSpace($key)) {
+    if (-not $Quiet) { Write-Host "skip: GEMINI_API_KEY/GOOGLE_API_KEY missing" }
+    return 4
+  }
+  try {
+    $headers = @{ "x-goog-api-key" = $key }
+    $response = Invoke-RestMethod -Method Get -Uri "https://generativelanguage.googleapis.com/v1beta/models" -Headers $headers -TimeoutSec 20
+    $count = @($response.models).Count
+    if (-not $Quiet) { Write-Host ("ok: Gemini models reachable ({0} model(s))" -f $count) }
+    return 0
+  } catch {
+    if (-not $Quiet) { Write-Host ("fail: Gemini token rejected or API unreachable: " + $_.Exception.Message) }
+    return 2
+  }
+}
+
 if (-not (
+    $WantDoctor -or
+    $WantMock -or
     $WantLoad -or
     $WantVerifyPool -or
     $WantSetHFToken -or
+    $WantFixHF -or
     $WantVerifyHF -or
     $WantSyncGitHubFromGh -or
     $WantVerifyGitHub -or
+    $WantVerifyAnthropic -or
+    $WantVerifyOpenAI -or
+    $WantVerifyGemini -or
+    $WantVerifyProviders -or
     $WantSetSpotify
   )) {
   if ($Quiet) { exit 2 }
   Write-Host "Usage:"
+  Write-Host "  .\\scripts\\api_pool.ps1 -Doctor"
+  Write-Host "  .\\scripts\\api_pool.ps1 -Mock"
   Write-Host "  .\\scripts\\api_pool.ps1 -Load"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyPool"
   Write-Host "  .\\scripts\\api_pool.ps1 -SetHFToken"
+  Write-Host "  .\\scripts\\api_pool.ps1 -FixHF"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyHF"
   Write-Host "  .\\scripts\\api_pool.ps1 -SyncGitHubFromGh"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGitHub"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyAnthropic"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyOpenAI"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGemini"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyProviders"
   Write-Host "  .\\scripts\\api_pool.ps1 -SetSpotify"
   exit 2
 }
@@ -226,9 +481,14 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
   $template = @'
 {
   "env": {
+    "ANTHROPIC_API_KEY": "",
     "HUGGINGFACE_HUB_TOKEN": "",
     "GITHUB_TOKEN": "",
     "OPENAI_API_KEY": "",
+    "GEMINI_API_KEY": "",
+    "POE_API_KEY": "",
+    "POE_API_KEY_1": "",
+    "POE_API_KEY_2": "",
     "SPOTIFY_CLIENT_ID": "",
     "SPOTIFY_CLIENT_SECRET": "",
     "SPOTIFY_REFRESH_TOKEN": ""
@@ -241,6 +501,28 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
     Write-Host "Fill values locally; never commit. Then re-run with -Load."
   }
   exit 3
+}
+
+if ($WantDoctor) {
+  $poolMap = Get-PoolEnvMap -Path $p.Path
+  Print-Doctor -Path $p.Path -PoolMap $poolMap
+  exit 0
+}
+
+if ($WantMock) {
+  $rc = Test-PoolMock -Path $p.Path
+  exit $rc
+}
+
+if ($WantFixHF) {
+  Remove-Item Env:HF_TOKEN -ErrorAction SilentlyContinue
+  [System.Environment]::SetEnvironmentVariable("HF_TOKEN", $null, "Process")
+  if (-not $Quiet) {
+    Write-Host "Cleared HF_TOKEN for current shell process."
+    $poolMap = Get-PoolEnvMap -Path $p.Path
+    Print-Doctor -Path $p.Path -PoolMap $poolMap
+  }
+  exit 0
 }
 
 if ($WantSyncGitHubFromGh) {
@@ -357,4 +639,49 @@ if ($WantVerifyGitHub) {
 
 if ($WantVerifyHF) {
   exit (Verify-HF)
+}
+
+if ($WantVerifyAnthropic) {
+  exit (Verify-Anthropic)
+}
+
+if ($WantVerifyOpenAI) {
+  exit (Verify-OpenAI)
+}
+
+if ($WantVerifyGemini) {
+  exit (Verify-Gemini)
+}
+
+if ($WantVerifyProviders) {
+  $ran = 0
+  $failures = 0
+
+  if (Has-EnvVar -Name "GITHUB_TOKEN") {
+    $ran++
+    if ((Verify-GitHub) -ne 0) { $failures++ }
+  }
+  if ((Has-EnvVar -Name "HF_TOKEN") -or (Has-EnvVar -Name "HUGGINGFACE_HUB_TOKEN")) {
+    $ran++
+    if ((Verify-HF) -ne 0) { $failures++ }
+  }
+  if (Has-EnvVar -Name "ANTHROPIC_API_KEY") {
+    $ran++
+    if ((Verify-Anthropic) -ne 0) { $failures++ }
+  }
+  if (Has-EnvVar -Name "OPENAI_API_KEY") {
+    $ran++
+    if ((Verify-OpenAI) -ne 0) { $failures++ }
+  }
+  if ((Has-EnvVar -Name "GEMINI_API_KEY") -or (Has-EnvVar -Name "GOOGLE_API_KEY")) {
+    $ran++
+    if ((Verify-Gemini) -ne 0) { $failures++ }
+  }
+
+  if ($ran -eq 0) {
+    if (-not $Quiet) { Write-Host "No verifiable provider keys are loaded." }
+    exit 4
+  }
+  if ($failures -gt 0) { exit 2 }
+  exit 0
 }

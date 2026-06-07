@@ -6,6 +6,18 @@ This file provides guidance to Gemini when working with code in this repository.
 
 ---
 
+## API Pool + MCP Contract
+
+Follow [docs/API_POOL_MCP_CONTRACT.md](docs/API_POOL_MCP_CONTRACT.md). `~/.chthonic/api_pool.json` is the source of truth for API and MCP tokens.
+
+- Before claiming auth is missing or stale, run `.\scripts\api_pool.ps1 -Doctor`, then load/verify from the pool.
+- Run `.\scripts\api_pool.ps1 -Mock` and `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -Mock` before live/provider use when checking wiring.
+- Restore MCP config with `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot`; do not hand-edit or refresh tokens for `.mcp.json` rewrites.
+- Token renewal is manual only when a token is actually expired, revoked, or intentionally replaced.
+- Report MCP servers with `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -List` so no token values are printed.
+
+---
+
 ## Protocol Status
 
 ### Lane Status

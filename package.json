@@ -43,6 +43,7 @@
     "roulette:open": "bun run scripts/roulette_html_gen.ts --open",
     "cross:critique": "bun run scripts/cross-critique.ts",
     "artcop:vscode": "bun run scripts/vscode-art-cop.ts",
+    "ascii:nautical": "pwsh -NoProfile -File scripts/nautical_ascii.ps1",
     "review:ai": "bun run hf:rank --limit 80 && bun run artcop:vscode --images-dir bun-playwright-poc --max-images 4 --no-llm",
     "bus:spec-enforcer": "bun run tools/spec-enforcer/src/index.ts",
     "bus:spec-enforcer:once": "bun run tools/spec-enforcer/src/index.ts --once",
