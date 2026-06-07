@@ -27,6 +27,7 @@
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --live --color  # heat-map: chambers tinted by real sky
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --forecast  # probability map: rain-chance over the cove, next 12h
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --histogram # B9: the 1728-space distribution over all tracked .md
+//   bun run CLAUDEBASE/quarterdeck/barometer.ts --bathymetry # fetch REAL GEBCO seafloor depth → charts/bathymetry.json (the medium)
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts <file.md>  # one chamber
 //
 // Geography is the digital twin: charts/archipelago.json (single source of truth).
@@ -53,6 +54,7 @@ const WATCH = process.argv.includes("--watch");
 const CHART = process.argv.includes("--chart");
 const FORECAST = process.argv.includes("--forecast");
 const HISTOGRAM = process.argv.includes("--histogram");
+const BATHYMETRY = process.argv.includes("--bathymetry");
 const BOUNDARY = process.argv.find((a) => a.startsWith("--boundary="))?.split("=").slice(1).join("=");
 const INTERVAL = Math.max(1000, Number(process.argv.find((a) => a.startsWith("--interval="))?.split("=")[1]) || TWIN.refresh_ms || 600_000);
 const USE_COLOR = !process.argv.includes("--no-color") && !process.env.NO_COLOR &&
@@ -353,8 +355,52 @@ function histogram(): void {
   }
 }
 
+// THE MEDIUM — real GEBCO seafloor depth over the sim's exact grid, so the sim stops being
+// flat. The Bahamas are the most dramatic carbonate platform on Earth: banks under <10 m of
+// water drop to ~2000 m trenches within a kilometre. We sample that on the same 56×22 grid
+// the sim rasterizes (same island-bbox + 8% pad + cell↔lat/lon mapping), via Open Topo Data's
+// free GEBCO endpoint (no key). Bathymetry is STABLE — fetched once, committed; not live.
+async function writeBathymetry(): Promise<void> {
+  const isles = TWIN.islands as any[];
+  let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
+  for (const i of isles) { minLat = Math.min(minLat, i.lat); maxLat = Math.max(maxLat, i.lat); minLon = Math.min(minLon, i.lon); maxLon = Math.max(maxLon, i.lon); }
+  const padLat = (maxLat - minLat) * 0.08 + 0.1, padLon = (maxLon - minLon) * 0.08 + 0.1;
+  minLat -= padLat; maxLat += padLat; minLon -= padLon; maxLon += padLon;
+  const W = 56, H = 22;
+  const pts: { lat: number; lon: number }[] = [];
+  for (let cy = 0; cy < H; cy++) for (let cx = 0; cx < W; cx++) {
+    pts.push({ lon: minLon + (cx / (W - 1)) * (maxLon - minLon), lat: maxLat - (cy / (H - 1)) * (maxLat - minLat) }); // y=0 is north, matches the sim
+  }
+  const depth = new Array(W * H).fill(NaN);
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+  for (let i = 0; i < pts.length; i += 100) {
+    const batch = pts.slice(i, i + 100);
+    const locs = batch.map((p) => `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`).join("|");
+    let ok = false;
+    for (let attempt = 0; attempt < 3 && !ok; attempt++) {
+      try {
+        const r = await fetch(`https://api.opentopodata.org/v1/gebco2020?locations=${locs}`);
+        const j: any = await r.json();
+        if (j.status === "OK") { j.results.forEach((res: any, k: number) => { depth[i + k] = res.elevation; }); ok = true; }
+        else { await sleep(2000); }
+      } catch { await sleep(2000); }
+    }
+    if (!ok) { console.error(`\nbathymetry: batch at ${i} failed after retries — aborting (no partial write)`); return; }
+    process.stdout.write(`\r  fetched ${Math.min(i + 100, pts.length)}/${pts.length} cells`);
+    if (i + 100 < pts.length) await sleep(1100); // ≤1 req/sec, public limit
+  }
+  const vals = depth.filter((d) => !isNaN(d));
+  if (!vals.length) { console.error("\nbathymetry: no depths fetched"); return; }
+  const dmin = Math.min(...vals), dmax = Math.max(...vals), land = depth.filter((d) => d >= 0).length;
+  const out = { _note: "GEBCO 2020 seafloor depth over the sim grid, via Open Topo Data. STABLE (the seafloor does not change) — committed, unlike live weather. elevation_m: + = land above sea, − = metres below sea.", source: "api.opentopodata.org/v1/gebco2020", W, H, bbox: { minLat, maxLat, minLon, maxLon }, depth };
+  writeFileSync(join(ROOT, "charts", "bathymetry.json"), JSON.stringify(out));
+  console.log(`\nbathymetry → charts/bathymetry.json   ${W}×${H} cells · ${dmin}..${dmax} m · ${land} land cells (elev ≥ 0) · ${vals.length - land} sea cells`);
+}
+
 if (BOUNDARY) {
   await writeBoundary(BOUNDARY);
+} else if (BATHYMETRY) {
+  await writeBathymetry();
 } else if (FORECAST) {
   await forecast();
 } else if (HISTOGRAM) {
