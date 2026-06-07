@@ -38,6 +38,15 @@ struct IslandJson {
     isle: String,
 }
 
+#[derive(Deserialize)]
+struct Bathy {
+    #[serde(rename = "W")]
+    w: u32,
+    #[serde(rename = "H")]
+    h: u32,
+    depth: Vec<f32>,
+}
+
 #[repr(C)]
 #[derive(Clone, Copy)]
 struct Push {
@@ -90,6 +99,7 @@ fn main() {
     let mut eps: f32 = 0.02; // converge when max|Δ| per outer drops below this (°C scale)
     let mut scale: f32 = 0.04; // wind m/s → cells/step (gentle: diffusion re-anchors each outer)
     let mut html_out: Option<String> = None; // L0 render: emit a self-contained SVG/HTML of the steady field
+    let mut bathy_path = PathBuf::from("../../CLAUDEBASE/charts/bathymetry.json"); // the medium (optional)
     let args: Vec<String> = std::env::args().collect();
     let mut i = 1;
     while i < args.len() {
@@ -100,6 +110,7 @@ fn main() {
             "--eps" if i + 1 < args.len() => { eps = args[i + 1].parse().unwrap_or(0.02); i += 2; }
             "--scale" if i + 1 < args.len() => { scale = args[i + 1].parse().unwrap_or(0.04); i += 2; }
             s if s.starts_with("--html=") => { html_out = Some(s.trim_start_matches("--html=").to_string()); i += 1; }
+            s if s.starts_with("--bathymetry=") => { bathy_path = PathBuf::from(s.trim_start_matches("--bathymetry=")); i += 1; }
             s if !s.starts_with("--") => { path = PathBuf::from(s); i += 1; }
             _ => { i += 1; }
         }
@@ -126,6 +137,17 @@ fn main() {
     max_lon += pad_lon;
 
     let cells = (W * H) as usize;
+
+    // THE MEDIUM — real GEBCO depth per cell (charts/bathymetry.json, written by the barometer
+    // --bathymetry). Present → land (elev ≥ 0) becomes a no-flux barrier the field flows around;
+    // absent or grid-mismatched → all-sea, the old flat behaviour. Stable data: read, not fetched.
+    let depth: Vec<f32> = std::fs::read_to_string(&bathy_path).ok()
+        .and_then(|s| serde_json::from_str::<Bathy>(&s).ok())
+        .filter(|b| b.w == W && b.h == H && b.depth.len() == cells)
+        .map(|b| b.depth)
+        .unwrap_or_else(|| vec![-1.0; cells]);
+    let land_cells = depth.iter().filter(|&&d| d >= 0.0).count();
+
     let cell_of = |lat: f32, lon: f32| -> (u32, u32) {
         let fx = ((lon - min_lon) / (max_lon - min_lon)).clamp(0.0, 1.0);
         let fy = ((max_lat - lat) / (max_lat - min_lat)).clamp(0.0, 1.0);
@@ -146,6 +168,14 @@ fn main() {
         let s = seed_of(isl);
         mask[c] = [1.0, s];
         field0[c] = s;
+    }
+
+    // Real land (elev ≥ 0) that is not an island source becomes a no-flux barrier (mask.x = −1):
+    // the field flows around it. Sources win over land, so an island's seed still radiates.
+    for c in 0..cells {
+        if depth[c] >= 0.0 && mask[c][0] < 0.5 {
+            mask[c] = [-1.0, 0.0];
+        }
     }
 
     // Velocity field by inverse-distance weighting of island winds (cells/step, +x east +y south).
@@ -188,7 +218,9 @@ fn main() {
     let queue = unsafe { device.get_device_queue(qf, 0) };
 
     println!("archipelago_sim  L−1 phases  GPU: {gpu}  grid: {W}×{H}  per outer: {d_steps} diffuse ⋈ {v_steps} advect  (max {max_outer} outers, ε={eps})");
+    let medium = if land_cells > 0 { format!("GEBCO bathymetry ({land_cells} land cells as no-flux barriers, {} sea)", cells - land_cells) } else { "flat (no bathymetry.json found)".to_string() };
     println!("  ▸ instantiate ✓ — {} islands → temperature sources + wind velocity field; open sea warm-started at mean {mean_seed:.1} °C", twin.islands.len());
+    println!("  ▸ medium: {medium}");
 
     // ── Buffers: ping-pong field A/B + diffusion mask + advection velocity ──
     let field_bytes = (cells * mem::size_of::<f32>()) as u64;
@@ -301,7 +333,7 @@ fn main() {
         // CONVERGE gate — read the live field, measure the step's max change.
         let cur_mem = if read_is_a { mem_a } else { mem_b };
         let field = unsafe { readback(&device, cur_mem, cells, field_bytes) };
-        last_delta = field.iter().zip(&prev).map(|(a, b)| (a - b).abs()).fold(0.0f32, f32::max);
+        last_delta = field.iter().zip(&prev).enumerate().filter(|(c, _)| depth[*c] < 0.0).map(|(_, (a, b))| (a - b).abs()).fold(0.0f32, f32::max);
         if outer < 3 || outer % 5 == 4 {
             println!("    diffuse ⋈ advect · outer {outer:>2}: max|Δ| = {last_delta:.4} °C");
         }
@@ -325,18 +357,20 @@ fn main() {
     let us_per_step = if total_steps > 0 { (gpu_ns as f64 / 1.0e3) / total_steps as f64 } else { 0.0 };
     println!("  ▸ perform ✓ — {outers_done} outers × {} steps = {total_steps} GPU dispatches · GPU {gpu_ms:.1} ms ({us_per_step:.1} µs/step incl submit) · wall {wall_ms:.1} ms incl readback — heavy verified fast", d_steps + v_steps);
 
-    render(&prev, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
+    render(&prev, &depth, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
     if let Some(p) = &html_out {
-        write_html(p, &prev, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
+        write_html(p, &prev, &depth, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
         println!("  ▸ render ✓ — steady field → {p}  ({}×{} px self-contained SVG; live-derived, ephemeral)", W * 15, H * 15);
     }
     unsafe { device.device_wait_idle().ok() };
 }
 
 #[allow(clippy::too_many_arguments)]
-fn render(field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min_lon: f32, max_lon: f32, converged_at: Option<u32>, max_outer: u32) {
-    let fmin = field.iter().copied().fold(f32::MAX, f32::min);
-    let fmax = field.iter().copied().fold(f32::MIN, f32::max);
+fn render(field: &[f32], depth: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min_lon: f32, max_lon: f32, converged_at: Option<u32>, max_outer: u32) {
+    // Scale over SEA cells only — land holds a placeholder, it must not stretch the heat ramp.
+    let sea: Vec<f32> = field.iter().enumerate().filter(|(c, _)| depth[*c] < 0.0).map(|(_, v)| *v).collect();
+    let fmin = sea.iter().copied().fold(f32::MAX, f32::min);
+    let fmax = sea.iter().copied().fold(f32::MIN, f32::max);
     let span = (fmax - fmin).max(1e-6);
     const RAMP: [char; 6] = [' ', '·', '░', '▒', '▓', '█'];
     let mut overlay = std::collections::HashMap::new();
@@ -353,6 +387,8 @@ fn render(field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min
         for cx in 0..W {
             if let Some((c, _)) = overlay.get(&(cx, cy)) {
                 line.push_str(&format!("\x1b[1;97m{c}\x1b[0m"));
+            } else if depth[(cy * W + cx) as usize] >= 0.0 {
+                line.push_str("\x1b[38;5;22m█\x1b[0m"); // real land — dark green; the field flows around it
             } else {
                 let v = (field[(cy * W + cx) as usize] - fmin) / span;
                 let code = if v < 0.2 { "38;5;39" } else if v < 0.4 { "38;5;45" } else if v < 0.6 { "38;5;226" } else if v < 0.8 { "38;5;208" } else { "38;5;196" };
@@ -366,7 +402,9 @@ fn render(field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min
         Some(k) => format!("converged at outer {k}"),
         None => format!("{max_outer} outers, not yet steady"),
     };
-    println!("\n  steady-state field · advection-diffusion · {state} · {fmin:.1}–{fmax:.1} °C · low→high = blue→red");
+    let land = depth.iter().filter(|&&d| d >= 0.0).count();
+    let land_note = if land > 0 { format!(" · \x1b[38;5;22m█\x1b[0m {land} land (GEBCO)") } else { String::new() };
+    println!("\n  steady-state field · advection-diffusion · {state} · {fmin:.1}–{fmax:.1} °C · low→high = blue→red{land_note}");
     let mut legend: Vec<(char, &str)> = overlay.values().map(|(c, n)| (*c, n.as_str())).collect();
     legend.sort_by_key(|(c, _)| *c);
     println!("  {}\n", legend.iter().map(|(c, n)| format!("{c} {n}")).collect::<Vec<_>>().join("   "));
@@ -377,9 +415,10 @@ fn render(field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min
 // Live-derived, so it is a view, never committed — like live_boundary.json. Modular enough to
 // drop into The-Savant-Grade-Undercellar_Library_Study as an Index.html/png.
 #[allow(clippy::too_many_arguments)]
-fn write_html(path: &str, field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min_lon: f32, max_lon: f32, converged_at: Option<u32>, max_outer: u32) {
-    let fmin = field.iter().copied().fold(f32::MAX, f32::min);
-    let fmax = field.iter().copied().fold(f32::MIN, f32::max);
+fn write_html(path: &str, field: &[f32], depth: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min_lon: f32, max_lon: f32, converged_at: Option<u32>, max_outer: u32) {
+    let sea: Vec<f32> = field.iter().enumerate().filter(|(c, _)| depth[*c] < 0.0).map(|(_, v)| *v).collect();
+    let fmin = sea.iter().copied().fold(f32::MAX, f32::min);
+    let fmax = sea.iter().copied().fold(f32::MIN, f32::max);
     let span = (fmax - fmin).max(1e-6);
     const CELL: u32 = 15;
     let (vw, vh) = (W * CELL, H * CELL);
@@ -397,8 +436,9 @@ fn write_html(path: &str, field: &[f32], islands: &[IslandJson], min_lat: f32, m
     let mut svg = String::new();
     for cy in 0..H {
         for cx in 0..W {
-            let v = (field[(cy * W + cx) as usize] - fmin) / span;
-            svg.push_str(&format!("<rect x='{}' y='{}' width='{CELL}' height='{CELL}' fill='{}'/>", cx * CELL, cy * CELL, hex(v)));
+            let c = (cy * W + cx) as usize;
+            let fill = if depth[c] >= 0.0 { "#1f3d2b".to_string() } else { hex((field[c] - fmin) / span) }; // land = muted green
+            svg.push_str(&format!("<rect x='{}' y='{}' width='{CELL}' height='{CELL}' fill='{fill}'/>", cx * CELL, cy * CELL));
         }
     }
     for (k, isl) in islands.iter().enumerate() {

@@ -13,7 +13,7 @@
 // Binding contract:
 //   set=0 binding=0  SSBO  ReadBuf   readonly   — float in[W*H]   (previous step)
 //   set=0 binding=1  SSBO  WriteBuf  writeonly  — float out[W*H]  (this step)
-//   set=0 binding=2  SSBO  MaskBuf   readonly   — vec2 mask[W*H]: .x = isSource(0/1), .y = source value
+//   set=0 binding=2  SSBO  MaskBuf   readonly   — vec2 mask[W*H]: .x = state (1 source / 0 sea / −1 land), .y = source value
 //   push_constant    { uint W, H }
 
 layout(local_size_x = 8, local_size_y = 8) in;
@@ -38,13 +38,27 @@ void main() {
         fout[idx] = mask[idx].y;
         return;
     }
+    // Land cells (mask.x = −1, set from real GEBCO bathymetry) are no-flux barriers — the field
+    // never enters them, they hold. The standalone diffuse bin never sets land, so this branch
+    // is inert there (backward-compatible).
+    if (mask[idx].x < -0.5) {
+        fout[idx] = fin[idx];
+        return;
+    }
 
-    // Free cells relax toward the mean of their 4 neighbours (edges clamp inward).
+    // Sea cells relax toward the mean of their SEA neighbours only. A land neighbour gives no
+    // flux (a reflecting coast), so heat flows AROUND the islands and through the channels —
+    // the field runs on the real Bahama Bank, not a flat grid.
     uint xl = (x > 0u)          ? x - 1u : x;
     uint xr = (x + 1u < pc.W)   ? x + 1u : x;
     uint yu = (y > 0u)          ? y - 1u : y;
     uint yd = (y + 1u < pc.H)   ? y + 1u : y;
 
-    float sum = fin[at(xl, y)] + fin[at(xr, y)] + fin[at(x, yu)] + fin[at(x, yd)];
-    fout[idx] = sum * 0.25;
+    float sum = 0.0;
+    float n = 0.0;
+    if (mask[at(xl, y)].x > -0.5) { sum += fin[at(xl, y)]; n += 1.0; }
+    if (mask[at(xr, y)].x > -0.5) { sum += fin[at(xr, y)]; n += 1.0; }
+    if (mask[at(x, yu)].x > -0.5) { sum += fin[at(x, yu)]; n += 1.0; }
+    if (mask[at(x, yd)].x > -0.5) { sum += fin[at(x, yd)]; n += 1.0; }
+    fout[idx] = (n > 0.0) ? sum / n : fin[idx];
 }
