@@ -50,6 +50,7 @@ const STAMP = process.argv.includes("--stamp");
 const WATCH = process.argv.includes("--watch");
 const CHART = process.argv.includes("--chart");
 const FORECAST = process.argv.includes("--forecast");
+const BOUNDARY = process.argv.find((a) => a.startsWith("--boundary="))?.split("=").slice(1).join("=");
 const INTERVAL = Math.max(1000, Number(process.argv.find((a) => a.startsWith("--interval="))?.split("=")[1]) || TWIN.refresh_ms || 600_000);
 const USE_COLOR = !process.argv.includes("--no-color") && !process.env.NO_COLOR &&
   (process.argv.includes("--color") || process.stdout.isTTY);
@@ -248,7 +249,28 @@ async function forecast(): Promise<void> {
   console.log("\n  legend  · <5   ░ <20   ▒ <40   ▓ <70   █ ≥70 %    ·  live forecast — a view, never stamped");
 }
 
-if (FORECAST) {
+// L−3 · export the LIVE boundary conditions for the Vulkan sim: apparent-temperature
+// per island, fetched not stamped. Ephemeral by design (live = a view, never a file
+// that gets committed). The Rust diffuse bin reads `seed` from this and the cove
+// stops diffusing topography and starts diffusing the actual sky.
+async function writeBoundary(out: string): Promise<void> {
+  const isles = TWIN.islands as any[];
+  const skies = await Promise.all(isles.map((i) => realSky(i.lat, i.lon)));
+  // Fallback for a failed fetch must stay IN UNIT (°C) — never elevation, or a metre
+  // value poisons the temperature field. Use the mean of the islands that did resolve.
+  const valid = skies.map((s) => s.app).filter((a) => !isNaN(a));
+  const mean = valid.length ? Number((valid.reduce((a, b) => a + b, 0) / valid.length).toFixed(1)) : 25;
+  const seeded = isles.map((i, k) => ({
+    isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
+    seed: isNaN(skies[k].app) ? mean : skies[k].app,
+  }));
+  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp per island, fetched not stamped. Ephemeral; regenerate before each sim run.", islands: seeded }, null, 2));
+  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}`);
+}
+
+if (BOUNDARY) {
+  await writeBoundary(BOUNDARY);
+} else if (FORECAST) {
   await forecast();
 } else if (CHART) {
   writeChart();
