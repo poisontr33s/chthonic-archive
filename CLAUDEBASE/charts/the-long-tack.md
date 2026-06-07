@@ -11,7 +11,7 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
-## (`☥`/`THE-LONG-TACK`/`Barometer`/`→`/`Ladder`/`→`/`DSL`)
+## (`☥`/`THE-LONG-TACK`/`Barometer`/`→`/`Ladder`/`→`/`Real-Data`/`·`/`DSL-Parked`)
 
 > *En lang slag holdes ikke ved å se på roret, men på kysten man ennå ikke har nådd.*
 
@@ -57,7 +57,7 @@
 
                   - *— **(`[x]`/`B-9`)** —* **(`PROVEN`)** *(terminal): the true 1,728-bucket histogram.* `barometer.ts --histogram` *buckets every tracked* `.md` *(1,220 files) by* `sha256(body) → (SKY,AIR,MOOD)`*; 803 / 1,728 cells filled (46.5%), all three axes flat (~102 each) — the generator is fair, no dead zones — superseding the Library-Study PNG that binned to 4–5 states and only labelled 1,728. The inline-SVG embed of it folds into B-10's Index.html.*
 
-                    - *— **(`[ ]`/`B-10`)** — a real self-contained* `Index.html` *(one file, no GPU: sea-chart SVG + histogram + forecast) — replaces the saved-Google-search dump as the actual study surface*
+                    - *— **(`[~]`/`B-10`/`KILLED`)** — the self-contained* `Index.html` *is dropped: it was copy-pasted slop from a search dump, an artifact-proto before it was ever accurate. **(`The-Savant-Grade-Undercellar`)** is scrap mechanics — given no weight. The histogram (B-9) stands on its own in the terminal; the real surface is the sim over real data, not an HTML page.*
 
                       - *— **(`[x]`/`B-11`)** — **(`Freeze-The-Data-Contract`)**: frozen by L−5 — the* `Island{lat,lon,elev,seed}` *std430 struct (16 B), sourced from* `archipelago.json`*; GLSL and Rust agree on it. The seam-side handshake holds.*
 
@@ -90,6 +90,24 @@
                     - **(`[x]`/`L+1`/`·`/`Perform`/`—`/`PROVEN`)** *on the 4090:* `archipelago_sim` *wall-clocks its own run. The full advection-diffusion convergence — 24 outers × 38 dispatches =* `912` *GPU dispatches to a verified steady state — costs* `3.5 ms` *of GPU submit→wait (`3.9 µs/step`),* `4.8 ms` *wall including the 24 CPU readbacks the converge gate needs. The whole heavy sim is a* `~5 ms` *operation: heavy verified as FAST, not just big.* `cargo run --bin archipelago_sim -- ../../live_boundary.json`.
 
                       - **(`Acceptance`)**: *a real field simulation over real archipelago topology — GPU-accelerated, ladder-gated, fed live by the barometer.*
+
+---
+
+## (`ARC`/`IV`/`·`/`REAL-DATA-LAYERS`/`The-Data-Archaeology`/`Past-The-Tea-Spoon`)
+
+> *— The sim ran on a tea-spoon: two Open-Meteo fields (apparent-temp + wind), self-sourced, no rigor. This arc feeds it the REAL multi-disciplinary data-ocean of the archipelago — each layer a field or boundary the proven engine already accepts. Signal varies by discipline; rigor means naming the empty layers too.*
+
+- *— **(`[x]`/`M-1`/`·`/`GEBCO-Bathymetry`/`THE-MEDIUM`)** —* **(`PROVEN`)**: `barometer.ts --bathymetry` *pulls real GEBCO 2020 seafloor depth (Open Topo Data, free/no-key) over the sim's exact 56×22 grid →* `charts/bathymetry.json` *(stable, committed). The sim marks land (elev ≥ 0) as a no-flux barrier; the diffuse shader flows heat only through sea — around the real islands, along the channels. 172 land / 1,060 sea; Cuba renders at the SW corner, Great-Inagua ringed by its own footprint. The sim stopped being flat — it runs on the real Bahama Bank.*
+
+  - *— **(`[ ]`/`M-2`/`·`/`Marine`/`SST-+-Currents`)** — HIGH signal: the Open-Meteo Marine API (free) gives* `sea_surface_temperature` *+* `ocean_current_velocity/direction` *+ waves/swell. Replaces the interpolated sea-temp with the real SST seed field, and the wind-only flow with actual ocean currents. The natural next layer.*
+
+    - *— **(`[ ]`/`M-3`/`·`/`Hurricanes`/`Episodic-Forcing`)** — HIGH signal, region-central: NOAA NHC HURDAT2 best-track + live GIS. A passing storm is a moving low-pressure + high-wind perturbation swept across the grid — not steady state.*
+
+      - *— **(`[ ]`/`M-4`/`·`/`Weather-Depth`/`Mist-+-Storm`)** — derived, not fetched: Open-Meteo already exposes humidity, dew-point, visibility, CAPE, pressure. Mist = RH near 100 % + small dew-spread + low visibility (or* `weather_code` *45/48); storm = CAPE + pressure-low + code 95/96/99. Fields computed from data we already pull.*
+
+        - *— **(`Seismic`/`THE-NAMED-VOID`)** — LOW signal here, and rigor says so: the carbonate platform has no faults, ~0.54 M4+/yr, strongest-since-1900 a M4 in Feb 2024. USGS FDSN is one trivial bbox query — run once to confirm the void, never a field. (Active Caribbean seismicity is outside our matrix.)*
+
+          - **(`Acceptance`)**: *the sim is fed by real geophysical data across disciplines, each layer signal-verdicted for THIS region — not a two-field tea-spoon.*
 
 ---
 
@@ -141,23 +159,21 @@
 
       - *4. — **(`Heavy-Is-The-Fuel`/`—`/`Inverted`).** — The challenge is the lightness; piecemeal is the drain. When unsure, take the harder cut.*
 
-        - *5. — **(`Compound-Don't-Replace`)** Barometer feeds ladder feeds DSL. The Library-Study dumps are buffer to build on, not slop to discard — wrong answers are still scaffold.*
+        - *5. — **(`Compound-Don't-Replace`)** Barometer feeds the ladder feeds the real-data layers; each compounds onto the last (GEBCO onto the proven sim). The Library-Study dumps were reclassified as scrap — set aside, given no weight; compounding is onto what executes, not onto slop.*
 
 ---
 
 ## (`Where-We-Are`/`Now`)
 
-- — **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam) + **(`B9`)** (the histogram — generator proven fair: 803/1,728 cells filled uniformly across 1,220 files). Remaining: **(`B10`)** — the self-contained Index.html (sea-chart SVG + histogram-SVG + forecast).*
+- — **(`Arc-I`)**: *complete through **(`B-9`)** + **(`B-11`)** — the barometer is proven as data + notation (the histogram showed the generator fair). **(`B-10`)** KILLED (Index.html slop). The barometer is now also the data-archaeology instrument:* `--histogram` *·* `--bathymetry` *·* `--boundary`*.*
 
-  - *— **(`Arc-II`/`COMPLETE`/`L−5`/`…`/`L+1`)** all PROVEN on the 4090. The ladder runs end to end: a hash-seeded field became a live-weather GPU advection-diffusion sim that interpolates, evolves, breathes the real sky, moves with the wind, composes into one gated machine, converges to a verified steady state in* `~5 ms`*, and renders to a self-contained browser artifact.*
+  - *— **(`Arc-II`/`COMPLETE`)**: L−5…L+1 all PROVEN on the 4090, AND now fed real GEBCO bathymetry **(`M-1`)** — the* `~5 ms` *advection-diffusion sim runs over the real Bahama Bank, flowing around actual island geometry. Only optional tail: L0 hot-reload.*
 
-    - *— Only optional tails remain (L0 hot-reload via Arc-I's* `--watch`*).*
+    - *— **(`Arc-IV`/`ACTIVE`)**: the real direction now — multi-disciplinary data layers. **(`M-1`)** GEBCO bathymetry landed (the medium). Next: **(`M-2`)** marine SST + currents (the sea's own data), then **(`M-3`)** hurricanes.*
 
-      - *— **(`Arc-III`)**: at **(`D0`)** — observing. The design law is settled.*
+      - *— **(`Arc-III`/`PARKED`)**: the DSL stays at D0, observed, kill-switch intact. Deliberately NOT a gate — we do not stalemate on it. It earns continuation only by executing, later.*
 
-        - *— Next move: **(`B10`)** (the self-contained Index.html — sea-chart + histogram + forecast, the actual study surface), or **(`Arc-III`)** (D0 — the DSL, observing; the kill-switch holds). Compounds without touching the DSL.*
-
-          - *— Arc-II is closed: the seam ran, breathed, moved, settled, rendered, and proved itself fast — seven rungs from a claim to a* `~5 ms` *verified sim.*
+        - *— Next move: **(`M-2`)** marine SST + ocean currents — replace the interpolated sea-temp + wind-only flow with the real ocean. Compounds onto the proven sim; no DSL, no slop.*
 
 ---
 
