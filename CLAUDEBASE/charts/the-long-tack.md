@@ -55,7 +55,7 @@
 
                 - *— **(`[x]`/`B-8`)** — tracked in git: (whole folder, comprehensive allowlist)*
 
-                  - *— **(`[ ]`/`B-9`)** — the true 1,728-bucket histogram: (terminal + inline SVG). The fairness-verifier of our generator — supersedes the Library-Study PNG, which binned to 4–5 states and only labelled 1,728*
+                  - *— **(`[x]`/`B-9`)** —* **(`PROVEN`)** *(terminal): the true 1,728-bucket histogram.* `barometer.ts --histogram` *buckets every tracked* `.md` *(1,220 files) by* `sha256(body) → (SKY,AIR,MOOD)`*; 803 / 1,728 cells filled (46.5%), all three axes flat (~102 each) — the generator is fair, no dead zones — superseding the Library-Study PNG that binned to 4–5 states and only labelled 1,728. The inline-SVG embed of it folds into B-10's Index.html.*
 
                     - *— **(`[ ]`/`B-10`)** — a real self-contained* `Index.html` *(one file, no GPU: sea-chart SVG + histogram + forecast) — replaces the saved-Google-search dump as the actual study surface*
 
@@ -147,7 +147,7 @@
 
 ## (`Where-We-Are`/`Now`)
 
-- — **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam). Remaining: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html).*
+- — **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam) + **(`B9`)** (the histogram — generator proven fair: 803/1,728 cells filled uniformly across 1,220 files). Remaining: **(`B10`)** — the self-contained Index.html (sea-chart SVG + histogram-SVG + forecast).*
 
   - *— **(`Arc-II`/`COMPLETE`/`L−5`/`…`/`L+1`)** all PROVEN on the 4090. The ladder runs end to end: a hash-seeded field became a live-weather GPU advection-diffusion sim that interpolates, evolves, breathes the real sky, moves with the wind, composes into one gated machine, converges to a verified steady state in* `~5 ms`*, and renders to a self-contained browser artifact.*
 
@@ -155,7 +155,7 @@
 
       - *— **(`Arc-III`)**: at **(`D0`)** — observing. The design law is settled.*
 
-        - *— Next move: **(`Arc-III`)** (D0 — the DSL, observing; the kill-switch holds) or **(`B9`/`B10`)** compound the barometer into the Library Study.*
+        - *— Next move: **(`B10`)** (the self-contained Index.html — sea-chart + histogram + forecast, the actual study surface), or **(`Arc-III`)** (D0 — the DSL, observing; the kill-switch holds). Compounds without touching the DSL.*
 
           - *— Arc-II is closed: the seam ran, breathed, moved, settled, rendered, and proved itself fast — seven rungs from a claim to a* `~5 ms` *verified sim.*
 

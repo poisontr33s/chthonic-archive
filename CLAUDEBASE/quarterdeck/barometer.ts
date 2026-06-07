@@ -26,6 +26,7 @@
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --watch --live --interval=30000  # refetch sky every 30s
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --live --color  # heat-map: chambers tinted by real sky
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --forecast  # probability map: rain-chance over the cove, next 12h
+//   bun run CLAUDEBASE/quarterdeck/barometer.ts --histogram # B9: the 1728-space distribution over all tracked .md
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts <file.md>  # one chamber
 //
 // Geography is the digital twin: charts/archipelago.json (single source of truth).
@@ -39,6 +40,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, statSync, writeFileSync, watch } from "node:fs";
 import { join, relative, sep } from "node:path";
+import { execSync } from "node:child_process";
 
 const ROOT = join(import.meta.dir, "..");
 const TWIN_PATH = join(ROOT, "charts", "archipelago.json");
@@ -50,6 +52,7 @@ const STAMP = process.argv.includes("--stamp");
 const WATCH = process.argv.includes("--watch");
 const CHART = process.argv.includes("--chart");
 const FORECAST = process.argv.includes("--forecast");
+const HISTOGRAM = process.argv.includes("--histogram");
 const BOUNDARY = process.argv.find((a) => a.startsWith("--boundary="))?.split("=").slice(1).join("=");
 const INTERVAL = Math.max(1000, Number(process.argv.find((a) => a.startsWith("--interval="))?.split("=")[1]) || TWIN.refresh_ms || 600_000);
 const USE_COLOR = !process.argv.includes("--no-color") && !process.env.NO_COLOR &&
@@ -278,10 +281,84 @@ async function writeBoundary(out: string): Promise<void> {
   console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}`);
 }
 
+// B9 · THE TRUE 1728 HISTOGRAM — the barometer auditing its own design.
+// Each .md gets weather from sha256(body) → (SKY, AIR, MOOD) = (h0, h1, h2) mod 12, one
+// point in a 12×12×12 = 1728 space. Per file that is a reading; across the whole archive
+// it is a DISTRIBUTION. If the space is "real" (a good hash over many files), the three
+// axes fill flat and occupancy climbs toward 1728. Clumps or dead zones would be the lie.
+// Corpus = tracked .md via `git ls-files` (junction-safe: satellites aren't tracked).
+function histogram(): void {
+  const repoRoot = join(ROOT, "..");
+  let list: string[];
+  try {
+    list = execSync('git ls-files "*.md"', { cwd: repoRoot, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 })
+      .split("\n").map((s) => s.trim()).filter(Boolean);
+  } catch (e) {
+    console.error(`histogram: git ls-files failed (${(e as Error).message})`);
+    return;
+  }
+  const sky = new Array(12).fill(0), air = new Array(12).fill(0), mood = new Array(12).fill(0);
+  const cell = new Map<string, number>();                                      // "s,a,m" → count
+  const grid: number[][] = Array.from({ length: 12 }, () => new Array(12).fill(0)); // SKY×AIR, MOOD summed
+  let n = 0;
+  for (const rel of list) {
+    let md: string;
+    try { md = readFileSync(join(repoRoot, rel), "utf8"); } catch { continue; }
+    const h = createHash("sha256").update(body(md), "utf8").digest();
+    const s = h[0] % 12, a = h[1] % 12, m = h[2] % 12;
+    sky[s]++; air[a]++; mood[m]++; grid[s][a]++;
+    cell.set(`${s},${a},${m}`, (cell.get(`${s},${a},${m}`) ?? 0) + 1);
+    n++;
+  }
+  if (!n) { console.log("histogram: no tracked .md files found"); return; }
+
+  const heat = (f: number): string => (f < 0.34 ? "38;5;39" : f < 0.67 ? "38;5;226" : "38;5;196");
+  const bars = (counts: number[], labels: string[]): string => {
+    const max = Math.max(...counts, 1);
+    return counts.map((c, i) => {
+      const w = Math.round((c / max) * 16);
+      return `    ${labels[i].padEnd(24)} ${ESC(heat(c / max), "█".repeat(w) + "·".repeat(16 - w))} ${c}`;
+    }).join("\n");
+  };
+  const spread = (a: number[]) => `${Math.min(...a)}..${Math.max(...a)} (flat ≈ ${(n / 12).toFixed(0)})`;
+  const occupied = cell.size;
+
+  console.log(`archipelago barometer · 1728-space histogram   (SKY×AIR×MOOD = 12×12×12)`);
+  console.log(`  corpus: ${n} tracked .md files across the archive`);
+  console.log(`  occupancy: ${occupied} / 1728 cells (${((occupied / 1728) * 100).toFixed(1)}%)  ·  ${(n / occupied).toFixed(1)} files per occupied cell`);
+  console.log(`  per-axis fill — flat bars = a uniform hash, no dead zones:`);
+  console.log(`   SKY  ${spread(sky)}`);
+  console.log(bars(sky, SKY));
+  console.log(`   AIR  ${spread(air)}`);
+  console.log(bars(air, AIR));
+  console.log(`   MOOD ${spread(mood)}`);
+  console.log(bars(mood, MOOD));
+  const top = [...cell.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
+  console.log(`  hottest cells (files sharing one weather — collisions, not errors):`);
+  for (const [k, c] of top) {
+    const [s, a, m] = k.split(",").map(Number);
+    console.log(`    ${String(c).padStart(3)}×  ${SKY[s]} · ${AIR[a]} · ${MOOD[m]}`);
+  }
+  const gmax = Math.max(...grid.flat(), 1);
+  const ramp = " ·░▒▓█";
+  console.log(`  SKY (rows) × AIR (cols) density, MOOD summed  ['${ramp}' low→high]:`);
+  for (let s = 0; s < 12; s++) {
+    let row = "    ";
+    for (let a = 0; a < 12; a++) {
+      const f = grid[s][a] / gmax;
+      const ch = ramp[Math.min(ramp.length - 1, Math.round(f * (ramp.length - 1)))];
+      row += ESC(heat(f), ch + ch);
+    }
+    console.log(`${row}  ${SKY[s]}`);
+  }
+}
+
 if (BOUNDARY) {
   await writeBoundary(BOUNDARY);
 } else if (FORECAST) {
   await forecast();
+} else if (HISTOGRAM) {
+  histogram();
 } else if (CHART) {
   writeChart();
   console.log("charted → CLAUDEBASE/charts/sea-chart.md");
