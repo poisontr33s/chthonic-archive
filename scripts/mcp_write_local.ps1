@@ -191,6 +191,7 @@ try {
     $uv   = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\uv.exe")  -FallbackName "uv"
     $uvx  = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\uvx.exe") -FallbackName "uvx"
     $masDir = Join-Path $repoRoot "mas_mcp"
+    $chthonicExe = Join-Path $repoRoot "target\release\chthonic-mcp-server.exe"
     $fsRoots = @(
       $repoRoot,
       "C:\Users\eldno\PsychoNoir-Kontrapunkt",
@@ -236,7 +237,13 @@ try {
       "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
       "microsoft-docs" = @{ type = "http"; url = "https://learn.microsoft.com/api/mcp" }
       "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = ".chthonic/SSOT.md" }
-      "chthonic-v3" = New-BunServer -Script "scripts/mcp-chthonic-server.ts" -EnvVars @{ CHTHONIC_ROOT = $repoRoot }
+      # chthonic-v3: Rust rmcp port (target/release) when built; bun fallback otherwise (no-delete).
+      # Build with: cargo build --release -p chthonic-mcp-server
+      "chthonic-v3" = if (Test-Path $chthonicExe) {
+        @{ type = "stdio"; command = $chthonicExe; args = @(); cwd = $repoRoot; env = @{ CHTHONIC_ROOT = $repoRoot } }
+      } else {
+        New-BunServer -Script "scripts/mcp-chthonic-server.ts" -EnvVars @{ CHTHONIC_ROOT = $repoRoot }
+      }
       workiq = @{
         type = "stdio"
         command = $bunx

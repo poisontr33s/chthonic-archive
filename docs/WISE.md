@@ -44,7 +44,7 @@ Static Bearer + `X-MCP-Toolsets: all` == VS Code OAuth + same header. Lossless.
 | chthonic-archaeology | bespoke · FastMCP | repo-agnostic | current | — |
 | github-archaeology | bespoke · official SDK | 3 triage tools | current | — |
 | mas-mcp | bespoke · FastMCP | M-P-W router + GPU probe | current | ties to end-goal GPU lane |
-| chthonic-v3 | bespoke · hand-rolled | v3.3.0 · **2024-11-05** | works, OLDER pattern | port to official SDK + 2025-06-18; assess overlap first |
+| chthonic-v3 | bespoke · **Rust / rmcp 1.7** | stdio · 2025-06-18 | **ported** (was hand-rolled 2024-11-05) | done — `tools/chthonic-mcp-server` |
 | game / sourcer / ssot / sonic / corpus | core (Claude lane) | active | maintained in other lanes | — |
 | cocoindex-code | local bin (`ccc`) | — | current | — |
 | workiq | bunx `@microsoft/workiq@latest` | — | current | — |
@@ -54,19 +54,25 @@ Static Bearer + `X-MCP-Toolsets: all` == VS Code OAuth + same header. Lossless.
 | time | uvx (official) | — | current | — |
 | git | uvx (official) | — | current | overlaps Bash git |
 
-## The one real modernization — chthonic-v3
+## The one real modernization — chthonic-v3 → Rust (DONE)
 
-`scripts/mcp-chthonic-server.ts` (v3.3.0) hand-rolls the JSON-RPC envelope and advertises
-the 2024-11-05 protocol, where `browser` and `github-archaeology` use
-`@modelcontextprotocol/sdk`. It bundles a polyglot toolchain (cargo/uv/gcc/go/ruby/git/
-bash/bun/make), the chthonic CLI (wraps `chthonic.ps1`: resolve/audit/map/analyze/compact/
-status/book/ssot/scan/validate_ssot/probe/report), and meta tools. Two paths:
+The bun `scripts/mcp-chthonic-server.ts` (v3.3.0) hand-rolled the JSON-RPC envelope on the
+2024-11-05 protocol and exposed ~30 tools, ~half of them polyglot runners
+(cargo/uv/gcc/go/ruby/git/bash/bun/make) already covered by the native Bash tool and the
+`git` MCP server. It is now ported to Rust on **rmcp 1.7** — the official MCP SDK; the GitHub
+Copilot SDK is client/agent-only and cannot build a server (the existing `tools/chthonic-mcp`
+crate is a Copilot agent, not an MCP server). New crate: `tools/chthonic-mcp-server`.
 
-1. **Port to the official SDK** (2025-06-18) — matches the modern bespoke servers, deletes
-   the hand-rolled protocol code, gains the SDK's schema validation + transport handling.
-2. **Assess overlap first** — its toolchain + CLI tools may double the core
-   game/sourcer/ssot servers. Decide keep-and-modernize vs. fold-into-core before
-   investing the port. This is the "what they did vs. what they could do" call.
+The port keeps only the unique value — the `chthonic.ps1` domain/action router — exposed
+intuitively as 6 tools: `chthonic` (generic `<domain> [action] [args] [-Json]` runner),
+`chthonic_commands` (discover the surface), `chthonic_status`, `chthonic_doctor`,
+`chthonic_ssot`, `chthonic_toolchain`. Redundant runners are dropped. Args pass as discrete
+process arguments via `-File` (no shell interpolation — a safety upgrade over the old
+`-Command` string).
+
+`mcp_write_local.ps1` points `chthonic-v3` at `target/release/chthonic-mcp-server.exe` when
+built, falling back to the bun server otherwise (no-delete — the old script stays as the
+safety net). Build with `cargo build --release -p chthonic-mcp-server`.
 
 ## Redundancy — kept for parity, know the overlap
 

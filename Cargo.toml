@@ -80,5 +80,5 @@ codegen-units = 1
 opt-level = 1
 
 [workspace]
-members = ["tools/ankh-forge", "tools/chthonic-cai", "tools/copilot-triage", "tools/chthonic-mcp", "tools/dsl-smoke", "tools/dsl-iteration-toolkit"]
+members = ["tools/ankh-forge", "tools/chthonic-cai", "tools/copilot-triage", "tools/chthonic-mcp", "tools/chthonic-mcp-server", "tools/dsl-smoke", "tools/dsl-iteration-toolkit"]
 resolver = "2"
