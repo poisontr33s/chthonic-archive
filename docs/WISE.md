@@ -66,7 +66,8 @@ from each server's header comment — because in-code docs go stale. Two caught 
   tool was added). The header lied; the live list did not.
 
 Lesson (logged): derive from the running surface, not the comment. Superseded docs/POCs get
-quarantined under `confiscated/` rather than left to mislead. Rows not re-verified live this
+quarantined under `confiscated_instructions/` (the repo's deprecated-doc staging area) rather
+than left to mislead. Rows not re-verified live this
 pass (e.g. whether the filesystem file-URI patch is still needed against current upstream)
 are code-sourced — treat as "claimed, not proven" until checked.
 
