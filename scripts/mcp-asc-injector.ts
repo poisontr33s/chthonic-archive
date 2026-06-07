@@ -34,16 +34,21 @@ import { readFile, stat } from "fs/promises";
 import { existsSync } from "fs";
 import { resolve } from "path";
 
-import { SSOT_HOLDER } from "./lib/ssot-paths";
+import { SSOT_CANON, SSOT_HOLDER } from "./lib/ssot-paths";
 
+// Default to the primary canon (.chthonic/SSOT.md); fall back to the mirror only
+// if the canon is absent. SSOT_PATH env overrides both.
+const SSOT_CANON_ABS = resolve(import.meta.dir, "..", SSOT_CANON);
 const SSOT_PATH = process.env.SSOT_PATH
   ? resolve(import.meta.dir, "..", process.env.SSOT_PATH)
-  : resolve(import.meta.dir, "..", SSOT_HOLDER);
+  : existsSync(SSOT_CANON_ABS)
+    ? SSOT_CANON_ABS
+    : resolve(import.meta.dir, "..", SSOT_HOLDER);
 
 // Startup SSOT existence gate — fail fast with actionable message
 if (!existsSync(SSOT_PATH)) {
   console.error(`FATAL: SSOT not found at ${SSOT_PATH}`);
-  console.error(`  Set SSOT_PATH env var to override, or verify SSOT_HOLDER in lib/ssot-paths.ts`);
+  console.error(`  Set SSOT_PATH env var to override, or verify SSOT_CANON/SSOT_HOLDER in lib/ssot-paths.ts`);
   process.exit(1);
 }
 

@@ -34,7 +34,7 @@
       ],
       "cwd": "${workspaceFolder}",
       "env": {
-        "SSOT_PATH": "SSOT.md"
+        "SSOT_PATH": ".chthonic/SSOT.md"
       }
     },
     "chthonic-v3": {

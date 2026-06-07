@@ -235,7 +235,7 @@ try {
       browser = New-BunServer -Script "scripts/mcp-browser.ts"
       "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
       "microsoft-docs" = @{ type = "http"; url = "https://learn.microsoft.com/api/mcp" }
-      "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = "SSOT.md" }
+      "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = ".chthonic/SSOT.md" }
       "chthonic-v3" = New-BunServer -Script "scripts/mcp-chthonic-server.ts" -EnvVars @{ CHTHONIC_ROOT = $repoRoot }
       workiq = @{
         type = "stdio"
