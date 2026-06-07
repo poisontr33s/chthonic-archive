@@ -118,13 +118,13 @@ const weather = (b: string): string => {
 const deck = (rel: string): string => DECK[rel.split(sep)[0]] ?? "The-Whole-Hull";
 const islandFor = (rel: string) => ARCHIPELAGO[rel] ?? ARCHIPELAGO[rel.split(sep)[0]] ?? null;
 
-async function realSky(lat: number, lon: number): Promise<{ app: number; air: number; rh: number; code: number; err?: string }> {
+async function realSky(lat: number, lon: number): Promise<{ app: number; air: number; rh: number; code: number; ws: number; wd: number; err?: string }> {
   try {
-    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code`);
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m&wind_speed_unit=ms`);
     const c = (await r.json()).current;
-    return { app: c.apparent_temperature, air: c.temperature_2m, rh: c.relative_humidity_2m, code: c.weather_code };
+    return { app: c.apparent_temperature, air: c.temperature_2m, rh: c.relative_humidity_2m, code: c.weather_code, ws: c.wind_speed_10m, wd: c.wind_direction_10m };
   } catch (e) {
-    return { app: NaN, air: NaN, rh: NaN, code: -1, err: (e as Error).message };
+    return { app: NaN, air: NaN, rh: NaN, code: -1, ws: NaN, wd: NaN, err: (e as Error).message };
   }
 }
 
@@ -256,16 +256,26 @@ async function forecast(): Promise<void> {
 async function writeBoundary(out: string): Promise<void> {
   const isles = TWIN.islands as any[];
   const skies = await Promise.all(isles.map((i) => realSky(i.lat, i.lon)));
-  // Fallback for a failed fetch must stay IN UNIT (°C) — never elevation, or a metre
-  // value poisons the temperature field. Use the mean of the islands that did resolve.
+  // Temperature fallback must stay IN UNIT (°C) — never elevation, or a metre value poisons
+  // the field. Use the mean of the islands that did resolve.
   const valid = skies.map((s) => s.app).filter((a) => !isNaN(a));
   const mean = valid.length ? Number((valid.reduce((a, b) => a + b, 0) / valid.length).toFixed(1)) : 25;
+  // Wind fallback is the VECTOR mean of resolved islands — averaging compass degrees directly
+  // is wrong (350° and 10° average to 0°, not 180°). Resolve in (vx,vy), then back to dir/speed.
+  const rad = Math.PI / 180;
+  const vw = skies.filter((s) => !isNaN(s.wd) && !isNaN(s.ws));
+  const mvx = vw.length ? vw.reduce((a, s) => a + s.ws * Math.sin(s.wd * rad), 0) / vw.length : 0;
+  const mvy = vw.length ? vw.reduce((a, s) => a + s.ws * Math.cos(s.wd * rad), 0) / vw.length : 0;
+  const meanWs = Number(Math.hypot(mvx, mvy).toFixed(1));
+  const meanWd = Number(((Math.atan2(mvx, mvy) / rad + 360) % 360).toFixed(0));
   const seeded = isles.map((i, k) => ({
     isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
     seed: isNaN(skies[k].app) ? mean : skies[k].app,
+    wind_dir: isNaN(skies[k].wd) ? meanWd : skies[k].wd,
+    wind_speed: isNaN(skies[k].ws) ? meanWs : skies[k].ws,
   }));
-  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp per island, fetched not stamped. Ephemeral; regenerate before each sim run.", islands: seeded }, null, 2));
-  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}`);
+  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp + wind per island, fetched not stamped. Ephemeral; regenerate before each sim run.", islands: seeded }, null, 2));
+  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}`);
 }
 
 if (BOUNDARY) {

@@ -53,7 +53,7 @@
 - **(`[x]`/`L−5`/`·`/`Seam`)** *—* **(`PROVEN`)** *on the RTX 4090:* `vulkan-lab/cli-renderer/src/bin/archipelago_field.rs` *+* `shaders/archipelago_field.comp.glsl`*. Twin → island SSBO → inverse-distance compute → 56×22 field → ANSI relief. Cat-Island (63 m) renders the hot-spot, Bimini (6 m) the cool; field 6–62 m. Barometer → GPU → render, one pass.* `cargo run --bin archipelago_field`.
 - **(`[x]`/`L−4`/`·`/`Iterate`)** *—* **(`PROVEN`)** *on the 4090:* `archipelago_diffuse.rs` *+* `shaders/archipelago_diffuse.comp.glsl`*. Islands pinned as Dirichlet sources; field relaxes over N ping-pong steps, memory-barrier between each. 240 steps → a diffusion plume from Cat-Island, the central cluster blends, Great-Inagua stays isolated (topology respected). It evolves, not interpolates.* `cargo run --bin archipelago_diffuse -- --steps N`.
 - **(`[x]`/`L−3`/`·`/`Boundary-Conditions`)** *—* **(`PROVEN`)** *on the 4090:* `barometer.ts --boundary=<file>` *fetches Open-Meteo* `apparent_temperature` *per island → live seeds. A failed fetch falls back to the mean of the resolved islands, never elevation — the field stays in °C, never mixes a metre value in. The diffuse bin reads* `seed` *as the Dirichlet value and warm-starts the open sea at the mean seed, so 240 ping-pong steps converge to a true* `27.6–30.2 °C` *field — Great-Inagua the southern warm-bloom, San-Salvador the cool note. The sim breathes the real sky, not a hash.* `bun barometer.ts --boundary=live_boundary.json && cargo run --bin archipelago_diffuse -- ../../live_boundary.json`.
-- **(`[ ]`/`L−2`/`·`/`Advection`)** *— directional flow from Open-Meteo* `wind_direction_10m`*; the field moves, not only spreads*
+- **(`[x]`/`L−2`/`·`/`Advection`)** *—* **(`PROVEN`)** *on the 4090:* `archipelago_advect.rs` *+* `shaders/archipelago_advect.comp.glsl`*. The barometer now fetches* `wind_speed_10m` *+* `wind_direction_10m` *per island (vector-mean fallback — averaging compass degrees directly is wrong). The bin builds a velocity field by inverse-distance weighting and carries a seeded warm blob downwind by semi-Lagrangian backtrace (Stam's stable advection — unconditionally stable, no CFL limit). The live easterly trades (from ~92°) drift the New-Providence blob ~9 cells WEST off its origin: the origin cools, the trail warms. It MOVES, it doesn't merely spread — the asymmetry is the proof.* `cargo run --bin archipelago_advect -- ../../live_boundary.json`.
 - **(`[ ]`/`L−1`/`·`/`Ladder-As-Phases`)** *— the sim is a gated state machine:* `instantiate → diffuse → advect → converge → render`*, each gate verified before the next opens*
 - **(`[ ]`/`L-0`/`·`/`Render`)** *— colour/ascii field over the sea-chart; optional SVG/HTML frame; hot-reloadable like — **(`Arc-I`)**.*
 - **(`[ ]`/`L+1`/`·`/`Perform`)** *— prove it on the 4090; measure step latency; heavy verified as fast, not just big*
@@ -91,10 +91,10 @@ The **(`PEG`)** parses by **structure (shape), never by dictionary-correctness.*
 
 ## (`Where-We-Are`/`Now`)
 - **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam). Remaining: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html).*
-- **(`Arc-II`)**: *climbing. **(`L−5`)** + **(`L−4`)** + **(`L−3`)** PROVEN on the 4090 — the barometer's live sky now flows through the sim as boundary conditions. Next rung: **(`L−2`)** — advection: directional flow from Open-Meteo* `wind_direction_10m`*, so the field moves, not only spreads.*
+- **(`Arc-II`)**: *climbing. **(`L−5`)** + **(`L−4`)** + **(`L−3`)** + **(`L−2`)** PROVEN on the 4090 — the field interpolates, evolves, breathes the real sky, AND moves with the real wind. Next rung: **(`L−1`)** — ladder-as-phases: compose* `instantiate → diffuse → advect → converge → render` *into one gated state machine, each gate verified before the next opens.*
 - **(`Arc-III`)**: *at **(`D0`)** — observing. The design law is settled.*
 
-*Next move: **(`L−4`)** (make the field evolve, not merely interpolate), or **(`B9`/`B10`)** compound into the Library Study. The contract holds; the seam is no longer a claim — it ran.*
+*Next move: **(`L−1`)** (compose the four rungs into one gated state machine), or **(`B9`/`B10`)** compound into the Library Study. The seam is no longer a claim — it ran, it breathes, and now it moves.*
 
 ---
 

@@ -9,7 +9,7 @@ fn main() {
     let shader_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap()).join("shaders");
     let glslc = r"C:\VulkanSDK\1.4.341.1\Bin\glslc.exe";
 
-    for shader in ["euler_score.comp.glsl", "ascii_downsample.comp.glsl", "dirty_diff.comp.glsl", "ascii_dungeon.comp.glsl", "iso_render.comp.glsl", "archipelago_field.comp.glsl", "archipelago_diffuse.comp.glsl"] {
+    for shader in ["euler_score.comp.glsl", "ascii_downsample.comp.glsl", "dirty_diff.comp.glsl", "ascii_dungeon.comp.glsl", "iso_render.comp.glsl", "archipelago_field.comp.glsl", "archipelago_diffuse.comp.glsl", "archipelago_advect.comp.glsl"] {
         let src = shader_dir.join(shader);
         let spv = shader_dir.join(shader.trim_end_matches(".glsl").to_string() + ".spv");
 
