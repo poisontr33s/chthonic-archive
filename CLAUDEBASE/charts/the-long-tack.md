@@ -11,7 +11,7 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
-# (`☥`/`THE-LONG-TACK`/`Barometer`/`→`/`Ladder`/`→`/`DSL`)
+## (`☥`/`THE-LONG-TACK`/`Barometer`/`→`/`Ladder`/`→`/`DSL`)
 
 > *En lang slag holdes ikke ved å se på roret, men på kysten man ennå ikke har nådd.*
 
