@@ -149,7 +149,7 @@
 
 - — **(`Arc-I`)**: *through **(`B8`)** + **(`B-11`)** (the contract, frozen by the seam). Remaining: **(`B9`)** (true histogram) → **(`B10`)** (real Index.html).*
 
-  - *— **(`Arc-II`)**: ***COMPLETE*** — **(`L−5`/`…`/`L+1`)** all PROVEN on the 4090. The ladder runs end to end: a hash-seeded field became a live-weather GPU advection-diffusion sim that interpolates, evolves, breathes the real sky, moves with the wind, composes into one gated machine, converges to a verified steady state in* `~5 ms`*, and renders to a self-contained browser artifact.*
+  - *— **(`Arc-II`/`COMPLETE`/`L−5`/`…`/`L+1`)** all PROVEN on the 4090. The ladder runs end to end: a hash-seeded field became a live-weather GPU advection-diffusion sim that interpolates, evolves, breathes the real sky, moves with the wind, composes into one gated machine, converges to a verified steady state in* `~5 ms`*, and renders to a self-contained browser artifact.*
 
     - *— Only optional tails remain (L0 hot-reload via Arc-I's* `--watch`*).*
 
