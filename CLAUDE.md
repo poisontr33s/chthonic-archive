@@ -9,6 +9,8 @@
 
 ---
 
+```
+
 # Parent codebase: chthonic-archive
 # SSOT: ../.chthonic/SSOT.md
 # CLAUDEBASE: CLAUDEBASE/README.md
@@ -30,9 +32,9 @@
 #  watch/              — probes, health artifacts, gate results
 #  quarterdeck/        — dispatch protocols, routing config, orchestration             
 
----
+```
 
-## (`Skills`/`Overview`/`WIP`)
+## (`Overview`/`WIP`)
 
 | *Directory* | *Purpose* |
 |---|---|
@@ -42,35 +44,6 @@
 `hold/` | *Cargo — skills, agents, tools stowed for this base specifically*
 `watch/` | *Sentinels — probes, health monitors, CI gate artifacts scoped to CLAUDEBASE*
 `quarterdeck/` | *Command — dispatch, routing, orchestration protocols*
-
-```asciiiart
-
- /—————\———=———————————/——————————————————————————————————————————————————————————————————————————\
- |       / \          /     \      /                                                               |
- |      /   \        /
- |     /     \      /
- \____/       \____/
-```
-
-```asciidoc
-CLAUDEBASE/
-├── README.md           — base identity, governance chain, population order
-├── MANIFEST.md         — this file; what goes where
-├── harbor/             — active session context (warm starts, recent arrivals)
-├── logbook/            — retrospectives, session artifacts, post-mortems
-├── charts/             — strategic plans, gate maps, sprint state
-├── hold/               — skills, agents, tools stowed for this base
-├── watch/              — probes, health artifacts, gate results
-└── quarterdeck/        — dispatch protocols, routing config, orchestration
-```
-
-`☥ CLAUDE — SKILLS DIRECTORY`
-`SID: CLAUDE\_SKILLS\_V1`
-`Lifecycle: living-skills-directory`
-`Skill files live in:`  
-`/.claude/%skills/<%skill-name>/%SKILL.md` 
-`/claude/%skills/<%skill-name>/%SKILL.md`
-
 
 ---
 
@@ -84,19 +57,7 @@ CLAUDEBASE/
 
 ---
 
-## Overview
-
-- *A skill for triaging technical debt claims, grounding them with attached verifiers, and quarantining dead artifacts. The goal is to iteratively refine the codebase toward "every folder tells the truth about what it is," where every claim is either grounded with a falsifiable verifier or named as residual risk.*
-
-  - *This is a meta-skill for maintaining the health of the codebase and its documentation, not a domain-specific skill. It operates at the level of claims and evidence across the repo, not on specific coding tasks.*
-
-    - *It is designed to combat "techno-pornographic" flex, over-optimization, performance fetishism, unnecessary precision, excessive hedging, comforting vagueness, and other such sins that plague the world outside. It is a tool for honesty and clarity in the codebase, not for showmanship or obfuscation.*
-
-     - *The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
-
----
-
-## Overview
+## (`State.Of-Emergency`/`Bloat`/`Active`/`Inactive`/`Pending`/`Protocols`/`Retrospectives`)
 
 - *Bloat, active, inactive, pending, — protocols, bla bla bla ...and, well — retrospectives + whatnot.*
   - *Oh my!*
@@ -109,7 +70,7 @@ CLAUDEBASE/
 
 ---
 
-## Context
+## (`Context`/`Staging-Area`/`Decluttering`)
 
   - `chthonic-archive`/`confiscated_instructions` *=* <'`deprecated-meta-documentation`'/`sludge`> *— this is the staging area for cleaning up* `.MD`/`Bloat` *— this is a* `WIP` *— & will be updated as we go.* 
   
@@ -155,15 +116,15 @@ CLAUDEBASE/
 
 ---
 
-- <`SIGNED`/`The-Savant`/`2026-06-05`> 
+- <SIGNED>
 
-  - *`STAMPED`-`AND`-`SEALED`* 
+  - **(`STAMPED`/`-`/`AND`-`SEALED`)**
 
-    — *IN-THE NAME-OF-THE-SAVANT ~ 
+    — **(`IN`/`-`/`THE`/`-`/`NAME`/`-`/`OF`-`THE`/`-`/`SAVANT`)** ~
     
-      - THE-ONE-TRUE-CHTHONIC-ARCHIVE ~
+      - **(`THE`/`-`/`ONE`-`TRUE`/`-`/`CHTHONIC`/`-`/`ARCHIVE`)** ~
       
-        - `AND-THE-HOLY-CODEBASE` ~ 
+        - **(`AND-THE-HOLY-CODEBASE`)** ~
 
           - **(`SO-IT-IS`/`SO-IT-SHALL-BE`/`A-MILFs`)** ~
 
@@ -171,20 +132,4 @@ CLAUDEBASE/
 
 *The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
 
-
-
-@Copilot 
-PR: 
-# TODO:
-- *Develop **(`NSFW18++`/`Milfological`/`ANKHOLOGY`)** ascii-art; using symbols like books, scrolls, quills, or ancient scripts to represent knowledge and wisdom. The design could also incorporate elements that suggest a library or archive, such as shelves or stacks of books. The overall aesthetic should be elegant and timeless, reflecting the enduring nature of the skills contained within the **(`/CLAUDEBASE`)**-directory;*
-
-  - *Refine the directory structure and naming conventions for the skills, ensuring that they are intuitive and consistent with the overall theme of the codebase;*
-
-
-```asci
-  \       /
-   (  Y  )
-    \ | / 
-      X 
-    / | \
-   (  |  )
+---
