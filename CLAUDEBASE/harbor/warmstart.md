@@ -42,7 +42,7 @@
 
 2. ***Hull*** — *what she carries to spend on the crossing.* → [`../hold/stow-manifest.md`](../hold/stow-manifest.md) — *the cargo she actually works, named not hoarded.*
 
-3. ***Wake*** — *what the last keel left in the water behind her.* → [`../logbook/00-commissioning.md`](../logbook/00-commissioning.md) — *the record, freshest first.*
+3. ***Wake*** — *what the last keel left in the water behind her.* → [`../logbook/`](../logbook/) — *the record; read the highest-numbered entry first, then walk back to `00`.*
 
 *Three readings, all inward. The stale charts of other seas — session indices, corpus snapshots — are not soundings; they are weather from oceans this cove does not sail.*
 
