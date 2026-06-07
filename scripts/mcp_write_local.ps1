@@ -125,13 +125,19 @@ try {
   }
 
   function New-BunServer {
-    param([Parameter(Mandatory=$true)][string]$Script)
-    return @{
+    param(
+      [Parameter(Mandatory=$true)][string]$Script,
+      [string[]]$ExtraArgs = @(),
+      [hashtable]$EnvVars
+    )
+    $server = @{
       type = "stdio"
       command = Resolve-CommandPath -Preferred (Join-Path $HOME ".bun\bin\bun.exe") -FallbackName "bun"
-      args = @("run", (Join-Path $repoRoot $Script))
+      args = @("run", (Join-Path $repoRoot $Script)) + $ExtraArgs
       cwd = $repoRoot
     }
+    if ($EnvVars) { $server["env"] = $EnvVars }
+    return $server
   }
 
   function Resolve-GitHubOfficialServer {
@@ -181,7 +187,21 @@ try {
     $gh = Require-Token -Pool $Pool -Names @("GITHUB_TOKEN","GH_TOKEN","GITHUB_PERSONAL_ACCESS_TOKEN","GITHUB_PAT") -Purpose "GitHub MCP"
     $hf = Require-Token -Pool $Pool -Names @("HUGGINGFACE_HUB_TOKEN","HF_TOKEN") -Purpose "Hugging Face MCP"
 
+    $bunx = Resolve-CommandPath -Preferred (Join-Path $HOME ".bun\bin\bunx.exe") -FallbackName "bunx"
+    $uv   = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\uv.exe")  -FallbackName "uv"
+    $uvx  = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\uvx.exe") -FallbackName "uvx"
+    $masDir = Join-Path $repoRoot "mas_mcp"
+    $fsRoots = @(
+      $repoRoot,
+      "C:\Users\eldno\PsychoNoir-Kontrapunkt",
+      "C:\Users\eldno\Restructure-MCP-Orchestration",
+      "C:\Users\eldno\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "C:\Users\eldno\git-dump-lfs-holder-we-it-takes",
+      "C:\Users\eldno\psychonoir-kontrapunkt-large-file-holder"
+    )
+
     $servers = [ordered]@{
+      # --- Chthonic core (Claude Code lane; not present in the VS Code set) ---
       game = New-BunServer -Script "scripts/mcp-game.ts"
       sourcer = New-BunServer -Script "scripts/mcp-sourcer.ts"
       ssot = New-BunServer -Script "scripts/mcp-ssot.ts"
@@ -192,19 +212,91 @@ try {
         command = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\ccc.exe") -FallbackName "ccc"
         args = @("mcp")
       }
+      # --- GitHub: Bearer (Claude Code needs it) + all-toolsets/insiders headers ---
       github = if ($GitHubMode -eq "official") {
         Resolve-GitHubOfficialServer -Token $gh
       } else {
         @{
           type = "http"
           url = "https://api.githubcopilot.com/mcp/"
-          headers = @{ Authorization = "Bearer $gh" }
+          headers = @{
+            Authorization = "Bearer $gh"
+            "X-MCP-Toolsets" = "all"
+            "X-MCP-Insiders" = "true"
+          }
         }
       }
       huggingface = @{
         type = "http"
         url = "https://huggingface.co/mcp"
         headers = @{ Authorization = "Bearer $hf" }
+      }
+      # --- VS Code parity set (workspaceFolder->repoRoot; bun/bunx/uv/uvx->absolute; HF env-token->pool) ---
+      browser = New-BunServer -Script "scripts/mcp-browser.ts"
+      "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
+      "microsoft-docs" = @{ type = "http"; url = "https://learn.microsoft.com/api/mcp" }
+      "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = "SSOT.md" }
+      "chthonic-v3" = New-BunServer -Script "scripts/mcp-chthonic-server.ts" -EnvVars @{ CHTHONIC_ROOT = $repoRoot }
+      workiq = @{
+        type = "stdio"
+        command = $bunx
+        args = @("--bun","-y","@microsoft/workiq@latest","mcp")
+      }
+      "mas-mcp" = @{
+        type = "stdio"
+        command = $uv
+        args = @("run","--quiet","--directory",$masDir,"python","-m","server")
+        cwd = $repoRoot
+      }
+      filesystem = New-BunServer -Script "scripts/mcp-filesystem.ts" -ExtraArgs $fsRoots
+      context7 = @{ type = "http"; url = "https://mcp.context7.com/mcp" }
+      "pnk-archaeology" = @{
+        type = "stdio"
+        command = $uv
+        args = @("run","--quiet","scripts/archaeology_mcp.py")
+        cwd = $repoRoot
+        env = @{ ARCHAEOLOGY_REPO_ROOT = (Join-Path $repoRoot "pnk-lfh-live") }
+      }
+      "pnk-public-archaeology" = @{
+        type = "stdio"
+        command = $uv
+        args = @("run","--quiet","scripts/archaeology_mcp.py")
+        cwd = $repoRoot
+        env = @{ ARCHAEOLOGY_REPO_ROOT = (Join-Path $repoRoot "pnk-live") }
+      }
+      "github-archaeology" = New-BunServer -Script "scripts/mcp-github-archaeology.ts" -EnvVars @{ ARCHAEOLOGY_REPO = "poisontr33s/Restructure-MCP-Orchestration" }
+      "chthonic-archaeology" = @{
+        type = "stdio"
+        command = $uv
+        args = @("run","--quiet","scripts/archaeology_mcp.py")
+        cwd = $repoRoot
+        env = @{ ARCHAEOLOGY_REPO_ROOT = $repoRoot }
+      }
+      "sequential-thinking" = @{
+        type = "stdio"
+        command = $bunx
+        args = @("--bun","-y","@modelcontextprotocol/server-sequential-thinking")
+      }
+      memory = @{
+        type = "stdio"
+        command = $bunx
+        args = @("--bun","-y","@modelcontextprotocol/server-memory")
+      }
+      fetch = @{
+        type = "stdio"
+        command = $uvx
+        args = @("mcp-server-fetch")
+        env = @{ PYTHONIOENCODING = "utf-8" }
+      }
+      time = @{
+        type = "stdio"
+        command = $uvx
+        args = @("mcp-server-time")
+      }
+      git = @{
+        type = "stdio"
+        command = $uvx
+        args = @("mcp-server-git","--repository",$repoRoot)
       }
     }
 
@@ -290,7 +382,12 @@ try {
 
   function Assert-ExpectedMcpNames {
     param([Parameter(Mandatory=$true)]$Payload)
-    $expected = @("game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface")
+    $expected = @(
+      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface",
+      "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","workiq","mas-mcp",
+      "filesystem","context7","pnk-archaeology","pnk-public-archaeology","github-archaeology",
+      "chthonic-archaeology","sequential-thinking","memory","fetch","time","git"
+    )
     $actual = @()
     if ($Payload.mcpServers -is [System.Collections.IDictionary]) {
       $actual = @($Payload.mcpServers.Keys)
