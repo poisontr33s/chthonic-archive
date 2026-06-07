@@ -34,7 +34,7 @@
       ],
       "cwd": "${workspaceFolder}",
       "env": {
-        "SSOT_PATH": ".github/copilot-instructions.archive.md"
+        "SSOT_PATH": "SSOT.md"
       }
     },
     "chthonic-v3": {
