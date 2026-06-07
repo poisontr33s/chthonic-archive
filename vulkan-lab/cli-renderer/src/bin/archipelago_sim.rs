@@ -29,6 +29,8 @@ struct IslandJson {
     #[serde(default)]
     elevation_m: f32,
     #[serde(default)]
+    sst: Option<f32>, // live sea-surface-temperature °C (M-2); sources the sea field, preferred over air
+    #[serde(default)]
     seed: Option<f32>, // live apparent-temp °C (L−3); falls back to elevation if absent
     #[serde(default)]
     wind_dir: Option<f32>, // meteorological: degrees the wind comes FROM
@@ -155,7 +157,7 @@ fn main() {
     };
 
     // ── INSTANTIATE — seed the temperature field (L−3) and the velocity field (L−2) ──
-    let seed_of = |isl: &IslandJson| isl.seed.unwrap_or(isl.elevation_m);
+    let seed_of = |isl: &IslandJson| isl.sst.or(isl.seed).unwrap_or(isl.elevation_m); // real SST first (M-2), then air-temp, then elevation
     let mean_seed = twin.islands.iter().map(seed_of).sum::<f32>() / twin.islands.len() as f32;
     let rad = std::f32::consts::PI / 180.0;
 
@@ -219,7 +221,7 @@ fn main() {
 
     println!("archipelago_sim  L−1 phases  GPU: {gpu}  grid: {W}×{H}  per outer: {d_steps} diffuse ⋈ {v_steps} advect  (max {max_outer} outers, ε={eps})");
     let medium = if land_cells > 0 { format!("GEBCO bathymetry ({land_cells} land cells as no-flux barriers, {} sea)", cells - land_cells) } else { "flat (no bathymetry.json found)".to_string() };
-    println!("  ▸ instantiate ✓ — {} islands → temperature sources + wind velocity field; open sea warm-started at mean {mean_seed:.1} °C", twin.islands.len());
+    println!("  ▸ instantiate ✓ — {} islands → real-SST sources + wind-drift velocity; open sea warm-started at mean {mean_seed:.1} °C (SST)", twin.islands.len());
     println!("  ▸ medium: {medium}");
 
     // ── Buffers: ping-pong field A/B + diffusion mask + advection velocity ──

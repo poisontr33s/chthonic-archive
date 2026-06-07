@@ -273,14 +273,29 @@ async function writeBoundary(out: string): Promise<void> {
   const mvy = vw.length ? vw.reduce((a, s) => a + s.ws * Math.cos(s.wd * rad), 0) / vw.length : 0;
   const meanWs = Number(Math.hypot(mvx, mvy).toFixed(1));
   const meanWd = Number(((Math.atan2(mvx, mvy) / rad + 360) % 360).toFixed(0));
+  // Marine layer (M-2): real SST + ocean current per island, one batched call to the Marine API.
+  // SST sources the SEA field honestly (not air apparent-temp). Ocean currents are oceanographic
+  // (flows-TO, 0=N 90=E) and weak in the banks (~0.2–1.2 km/h) — recorded here in m/s; the sim
+  // keeps wind-driven surface drift for visible advection (a pure-current pass would be near-static).
+  let marine: any[] = [];
+  try {
+    const r = await fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${isles.map((i) => i.lat).join(",")}&longitude=${isles.map((i) => i.lon).join(",")}&current=sea_surface_temperature,ocean_current_velocity,ocean_current_direction`);
+    marine = ((j) => (Array.isArray(j) ? j : [j]))(await r.json());
+  } catch { marine = []; }
+  const sstAt = (k: number): number => marine[k]?.current?.sea_surface_temperature ?? NaN;
+  const validSst = isles.map((_, k) => sstAt(k)).filter((v) => !isNaN(v));
+  const meanSst = validSst.length ? Number((validSst.reduce((a, b) => a + b, 0) / validSst.length).toFixed(1)) : mean;
   const seeded = isles.map((i, k) => ({
     isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
     seed: isNaN(skies[k].app) ? mean : skies[k].app,
+    sst: isNaN(sstAt(k)) ? meanSst : sstAt(k),
     wind_dir: isNaN(skies[k].wd) ? meanWd : skies[k].wd,
     wind_speed: isNaN(skies[k].ws) ? meanWs : skies[k].ws,
+    current_dir: marine[k]?.current?.ocean_current_direction ?? 0,
+    current_speed: Number(((marine[k]?.current?.ocean_current_velocity ?? 0) / 3.6).toFixed(3)),
   }));
-  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp + wind per island, fetched not stamped. Ephemeral; regenerate before each sim run.", islands: seeded }, null, 2));
-  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}`);
+  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp + wind + SST + ocean-current per island, fetched not stamped. Ephemeral; regenerate before each sim run. current_dir oceanographic (flows-to, 0=N); current_speed m/s.", islands: seeded }, null, 2));
+  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live SST (°C):            ${seeded.map((s) => `${s.isle}=${s.sst}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}\n  live current (° @ m/s):   ${seeded.map((s) => `${s.isle}=${s.current_dir}@${s.current_speed}`).join("  ")}`);
 }
 
 // B9 · THE TRUE 1728 HISTOGRAM — the barometer auditing its own design.
