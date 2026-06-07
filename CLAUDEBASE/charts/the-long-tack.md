@@ -99,7 +99,7 @@
 
 - *— **(`[x]`/`M-1`/`·`/`GEBCO-Bathymetry`/`THE-MEDIUM`)** —* **(`PROVEN`)**: `barometer.ts --bathymetry` *pulls real GEBCO 2020 seafloor depth (Open Topo Data, free/no-key) over the sim's exact 56×22 grid →* `charts/bathymetry.json` *(stable, committed). The sim marks land (elev ≥ 0) as a no-flux barrier; the diffuse shader flows heat only through sea — around the real islands, along the channels. 172 land / 1,060 sea; Cuba renders at the SW corner, Great-Inagua ringed by its own footprint. The sim stopped being flat — it runs on the real Bahama Bank.*
 
-  - *— **(`[ ]`/`M-2`/`·`/`Marine`/`SST-+-Currents`)** — HIGH signal: the Open-Meteo Marine API (free) gives* `sea_surface_temperature` *+* `ocean_current_velocity/direction` *+ waves/swell. Replaces the interpolated sea-temp with the real SST seed field, and the wind-only flow with actual ocean currents. The natural next layer.*
+  - *— **(`[x]`/`M-2`/`·`/`Marine`/`SST`)** —* **(`PROVEN`)**: `barometer --boundary` *batches the Open-Meteo Marine API → real* `sea_surface_temperature` *+ ocean-current per island. The sim sources the sea from SST (prefer sst → air → elevation) — a real correction, not cosmetic: SST differs from air by up to 2.3 °C (San-Salvador air 25.5 vs sea 27.8). Currents are recorded (oceanographic flows-to, m/s) but NOT the advection driver — measured 0.06–0.33 m/s, ~20× weaker than wind, too gentle to visibly transport (the calm-banks truth); advection stays wind-driven surface drift. **(`M-2b`)** (pure-current, near-static) deferred.*
 
     - *— **(`[ ]`/`M-3`/`·`/`Hurricanes`/`Episodic-Forcing`)** — HIGH signal, region-central: NOAA NHC HURDAT2 best-track + live GIS. A passing storm is a moving low-pressure + high-wind perturbation swept across the grid — not steady state.*
 
@@ -169,11 +169,11 @@
 
   - *— **(`Arc-II`/`COMPLETE`)**: L−5…L+1 all PROVEN on the 4090, AND now fed real GEBCO bathymetry **(`M-1`)** — the* `~5 ms` *advection-diffusion sim runs over the real Bahama Bank, flowing around actual island geometry. Only optional tail: L0 hot-reload.*
 
-    - *— **(`Arc-IV`/`ACTIVE`)**: the real direction now — multi-disciplinary data layers. **(`M-1`)** GEBCO bathymetry landed (the medium). Next: **(`M-2`)** marine SST + currents (the sea's own data), then **(`M-3`)** hurricanes.*
+    - *— **(`Arc-IV`/`ACTIVE`)**: the real direction now — multi-disciplinary data layers. **(`M-1`)** GEBCO bathymetry (the medium) + **(`M-2`)** marine SST (real sea-temp sources) both landed; the sim runs on two real data layers over real topology. Next: **(`M-3`)** hurricanes (HURDAT2 — the episodic, dramatic layer).*
 
       - *— **(`Arc-III`/`PARKED`)**: the DSL stays at D0, observed, kill-switch intact. Deliberately NOT a gate — we do not stalemate on it. It earns continuation only by executing, later.*
 
-        - *— Next move: **(`M-2`)** marine SST + ocean currents — replace the interpolated sea-temp + wind-only flow with the real ocean. Compounds onto the proven sim; no DSL, no slop.*
+        - *— Next move: **(`M-3`)** hurricanes — a real HURDAT2 storm track (e.g. Dorian over Grand Bahama, 2019) swept across the grid as moving low-pressure + high-wind forcing: the episodic, dramatic layer (bathymetry + marine SST were the quiet-but-true ones). Compounds onto the proven sim; no DSL, no slop.*
 
 ---
 
