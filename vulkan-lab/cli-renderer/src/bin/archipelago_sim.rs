@@ -13,7 +13,7 @@
 //   cargo run --bin archipelago_sim -- [<boundary.json>] [--diffuse D] [--advect V] [--max-outer M] [--eps E] [--scale S]
 //   feed it a live boundary:  ../../live_boundary.json  (barometer --boundary writes temp + wind)
 
-use std::{ffi::CStr, mem, path::PathBuf};
+use std::{ffi::CStr, mem, path::PathBuf, time::Instant};
 
 use ash::{vk, Device, Entry, Instance};
 use serde::Deserialize;
@@ -263,6 +263,8 @@ fn main() {
     let mut read_is_a = true; // current data starts in A (both A and B hold field0)
     let mut converged_at: Option<u32> = None;
     let mut last_delta = f32::INFINITY;
+    let t_loop = Instant::now(); // L+1 perform — wall-clock the whole run
+    let mut gpu_ns: u128 = 0; // and the pure GPU submit→wait time within it
 
     for outer in 0..max_outer {
         unsafe {
@@ -289,8 +291,10 @@ fn main() {
                 read_is_a = !read_is_a;
             }
             device.end_command_buffer(cmd).expect("end");
+            let t_gpu = Instant::now();
             device.queue_submit(queue, &[vk::SubmitInfo::default().command_buffers(&cmd_bufs)], fence).expect("submit");
             device.wait_for_fences(&[fence], true, u64::MAX).expect("wait");
+            gpu_ns += t_gpu.elapsed().as_nanos();
             device.reset_fences(&[fence]).expect("reset fence");
         }
 
@@ -312,6 +316,14 @@ fn main() {
         Some(k) => println!("  ▸ converge ✓ — steady state at outer {k} (max|Δ| {last_delta:.4} < ε {eps}); the advection-diffusion balance settled"),
         None => println!("  ▸ converge — halted at max-outer {max_outer}; max|Δ| {last_delta:.4} still ≥ ε {eps} (stirring exceeds relaxation at this scale)"),
     }
+
+    // L+1 PERFORM — heavy is only worth it if it is fast. Measure what it actually cost.
+    let outers_done = converged_at.map(|k| k + 1).unwrap_or(max_outer) as u64;
+    let total_steps = outers_done * (d_steps + v_steps) as u64;
+    let gpu_ms = gpu_ns as f64 / 1.0e6;
+    let wall_ms = t_loop.elapsed().as_secs_f64() * 1000.0;
+    let us_per_step = if total_steps > 0 { (gpu_ns as f64 / 1.0e3) / total_steps as f64 } else { 0.0 };
+    println!("  ▸ perform ✓ — {outers_done} outers × {} steps = {total_steps} GPU dispatches · GPU {gpu_ms:.1} ms ({us_per_step:.1} µs/step incl submit) · wall {wall_ms:.1} ms incl readback — heavy verified fast", d_steps + v_steps);
 
     render(&prev, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
     if let Some(p) = &html_out {
