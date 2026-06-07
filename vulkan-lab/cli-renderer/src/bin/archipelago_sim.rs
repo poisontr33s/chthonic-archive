@@ -89,6 +89,7 @@ fn main() {
     let mut max_outer: u32 = 40;
     let mut eps: f32 = 0.02; // converge when max|Δ| per outer drops below this (°C scale)
     let mut scale: f32 = 0.04; // wind m/s → cells/step (gentle: diffusion re-anchors each outer)
+    let mut html_out: Option<String> = None; // L0 render: emit a self-contained SVG/HTML of the steady field
     let args: Vec<String> = std::env::args().collect();
     let mut i = 1;
     while i < args.len() {
@@ -98,6 +99,7 @@ fn main() {
             "--max-outer" if i + 1 < args.len() => { max_outer = args[i + 1].parse().unwrap_or(40); i += 2; }
             "--eps" if i + 1 < args.len() => { eps = args[i + 1].parse().unwrap_or(0.02); i += 2; }
             "--scale" if i + 1 < args.len() => { scale = args[i + 1].parse().unwrap_or(0.04); i += 2; }
+            s if s.starts_with("--html=") => { html_out = Some(s.trim_start_matches("--html=").to_string()); i += 1; }
             s if !s.starts_with("--") => { path = PathBuf::from(s); i += 1; }
             _ => { i += 1; }
         }
@@ -312,6 +314,10 @@ fn main() {
     }
 
     render(&prev, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
+    if let Some(p) = &html_out {
+        write_html(p, &prev, &twin.islands, min_lat, max_lat, min_lon, max_lon, converged_at, max_outer);
+        println!("  ▸ render ✓ — steady field → {p}  ({}×{} px self-contained SVG; live-derived, ephemeral)", W * 15, H * 15);
+    }
     unsafe { device.device_wait_idle().ok() };
 }
 
@@ -352,4 +358,53 @@ fn render(field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min
     let mut legend: Vec<(char, &str)> = overlay.values().map(|(c, n)| (*c, n.as_str())).collect();
     legend.sort_by_key(|(c, _)| *c);
     println!("  {}\n", legend.iter().map(|(c, n)| format!("{c} {n}")).collect::<Vec<_>>().join("   "));
+}
+
+// L0 RENDER — the same steady field, but as a self-contained browser artifact: an inline SVG
+// heat-map with a SMOOTH blue→red gradient (the terminal can only band into 5 ANSI colours).
+// Live-derived, so it is a view, never committed — like live_boundary.json. Modular enough to
+// drop into The-Savant-Grade-Undercellar_Library_Study as an Index.html/png.
+#[allow(clippy::too_many_arguments)]
+fn write_html(path: &str, field: &[f32], islands: &[IslandJson], min_lat: f32, max_lat: f32, min_lon: f32, max_lon: f32, converged_at: Option<u32>, max_outer: u32) {
+    let fmin = field.iter().copied().fold(f32::MAX, f32::min);
+    let fmax = field.iter().copied().fold(f32::MIN, f32::max);
+    let span = (fmax - fmin).max(1e-6);
+    const CELL: u32 = 15;
+    let (vw, vh) = (W * CELL, H * CELL);
+    // Five gradient stops, lerped continuously — matches the terminal's blue→cyan→yellow→orange→red.
+    let stops: [(f32, f32, f32); 5] = [(41.0, 120.0, 255.0), (54.0, 207.0, 255.0), (255.0, 230.0, 0.0), (255.0, 140.0, 0.0), (255.0, 43.0, 43.0)];
+    let hex = |v: f32| -> String {
+        let seg = (v.clamp(0.0, 1.0) * 4.0).min(3.999);
+        let i = seg as usize;
+        let t = seg - i as f32;
+        let (r0, g0, b0) = stops[i];
+        let (r1, g1, b1) = stops[i + 1];
+        let mix = |a: f32, b: f32| (a + (b - a) * t).round() as u32;
+        format!("#{:02x}{:02x}{:02x}", mix(r0, r1), mix(g0, g1), mix(b0, b1))
+    };
+    let mut svg = String::new();
+    for cy in 0..H {
+        for cx in 0..W {
+            let v = (field[(cy * W + cx) as usize] - fmin) / span;
+            svg.push_str(&format!("<rect x='{}' y='{}' width='{CELL}' height='{CELL}' fill='{}'/>", cx * CELL, cy * CELL, hex(v)));
+        }
+    }
+    for (k, isl) in islands.iter().enumerate() {
+        let fx = ((isl.lon - min_lon) / (max_lon - min_lon)).clamp(0.0, 1.0);
+        let fy = ((max_lat - isl.lat) / (max_lat - min_lat)).clamp(0.0, 1.0);
+        let cx = (fx * (W - 1) as f32).round() as u32;
+        let cy = (fy * (H - 1) as f32).round() as u32;
+        let letter = b"ABCDEFGH"[k.min(7)] as char;
+        svg.push_str(&format!(
+            "<text x='{}' y='{}' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle' dominant-baseline='central' style='paint-order:stroke;stroke:#000;stroke-width:2.5px'>{letter}</text>",
+            cx * CELL + CELL / 2,
+            cy * CELL + CELL / 2
+        ));
+    }
+    let state = match converged_at { Some(k) => format!("converged at outer {k}"), None => format!("{max_outer} outers — not yet steady") };
+    let legend: String = islands.iter().enumerate().map(|(k, i)| format!("<li><b>{}</b> {} — {:.1} °C</li>", b"ABCDEFGH"[k.min(7)] as char, i.isle, i.seed.unwrap_or(i.elevation_m))).collect();
+    let html = format!(
+        "<!DOCTYPE html>\n<html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>\n<title>archipelago · steady-state field</title>\n<style>body{{margin:0;background:#0a0e14;color:#cbd5e1;font:14px/1.55 ui-monospace,Menlo,Consolas,monospace;padding:28px;max-width:980px}}h1{{font-size:16px;font-weight:600;letter-spacing:.04em;color:#e2e8f0}}svg{{width:100%;height:auto;margin:8px 0;border:1px solid #1e293b;border-radius:8px}}.cap{{color:#64748b;margin:6px 0 16px}}ul{{columns:2;gap:32px;max-width:560px;padding-left:18px;list-style:none}}li{{margin:.15em 0}}b{{color:#fff}}</style></head>\n<body><h1>☥ archipelago · advection-diffusion steady state</h1>\n<svg viewBox='0 0 {vw} {vh}' xmlns='http://www.w3.org/2000/svg' shape-rendering='crispEdges'>{svg}</svg>\n<p class='cap'>{state} · {fmin:.1}–{fmax:.1} °C · blue→red = cool→warm · live sky, rendered by archipelago_sim (L0)</p>\n<ul>{legend}</ul>\n</body></html>\n"
+    );
+    std::fs::write(path, html).unwrap_or_else(|e| eprintln!("  html write failed: {e}"));
 }
