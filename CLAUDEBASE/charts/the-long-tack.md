@@ -171,6 +171,8 @@
 
     - *— **(`Arc-IV`/`ACTIVE`)**: the real direction now — multi-disciplinary data layers. **(`M-1`)** GEBCO bathymetry (the medium) + **(`M-2`)** marine SST (real sea-temp sources) both landed; the sim runs on two real data layers over real topology. Next: **(`M-3`)** hurricanes (HURDAT2 — the episodic, dramatic layer).*
 
+      - *— **(`End-Goal-Proof`/`It-Compounds`)**: the sim is resolution-scalable now (`--grid=WxH`, default 56×22). The same Vulkan/Rust kernels ran* `1,232 → 8.4M cells (6800×)` *on the 4090 — the nascent plan compounds to high-end SCALE. The sweep mapped the next ENGINE frontier:* `HOST_COHERENT` *buffers cap throughput at ~12 GB/s vs the 4090's ~1 TB/s — **(`device-local memory + staging`)** is the next hardening. Two fronts run in parallel now: DATA (M-3…) and ENGINE (device-local → CUDA/TensorRT later).*
+
       - *— **(`Arc-III`/`PARKED`)**: the DSL stays at D0, observed, kill-switch intact. Deliberately NOT a gate — we do not stalemate on it. It earns continuation only by executing, later.*
 
         - *— Next move: **(`M-3`)** hurricanes — a real HURDAT2 storm track (e.g. Dorian over Grand Bahama, 2019) swept across the grid as moving low-pressure + high-wind forcing: the episodic, dramatic layer (bathymetry + marine SST were the quiet-but-true ones). Compounds onto the proven sim; no DSL, no slop.*
