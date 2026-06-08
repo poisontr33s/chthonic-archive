@@ -23,36 +23,39 @@
   // ─────────────────────────────────────────────────────────────────────────────
   "folders": [
     {
-      "path": ".",
-      "name": "⚡ chthonic-archive [primary]"
+      "name": "⚡ chthonic-archive [primary]",
+      "path": "."
     },
     {
-      "path": "../poisontr33s",
-      "name": "👤 poisontr33s [profile satellite]"
+      "name": "👤 poisontr33s [profile satellite]",
+      "path": "../poisontr33s"
     },
     {
-      "path": "../EOAI-PII-My-AI-IDEA",
-      "name": "🧠 EOAI-PII-My-AI-IDEA [satellite]"
+      "name": "🧠 EOAI-PII-My-AI-IDEA [satellite]",
+      "path": "../EOAI-PII-My-AI-IDEA"
     },
     {
-      "path": "../PsychoNoir-Kontrapunkt",
-      "name": "🌀 PsychoNoir-Kontrapunkt [satellite]"
+      "name": "🌀 PsychoNoir-Kontrapunkt [satellite]",
+      "path": "../PsychoNoir-Kontrapunkt"
     },
     {
-      "path": "../Restructure-MCP-Orchestration",
-      "name": "🔧 Restructure-MCP-Orchestration [satellite]"
+      "name": "🔧 Restructure-MCP-Orchestration [satellite]",
+      "path": "../Restructure-MCP-Orchestration"
     },
     {
-      "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-      "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]"
+      "name": "🏴‍☠️ Claudine-Supreme-Polyglot [satellite]",
+      "path": "../Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique"
     },
     {
-      "path": "../git-dump-lfs-holder-we-it-takes",
-      "name": "📦 git-dump-lfs-holder [satellite]"
+      "name": "📦 git-dump-lfs-holder [satellite]",
+      "path": "../git-dump-lfs-holder-we-it-takes"
     },
     {
-      "path": "../psychonoir-kontrapunkt-large-file-holder",
-      "name": "📦 pnk-large-file-holder [satellite]"
+      "name": "📦 pnk-large-file-holder [satellite]",
+      "path": "../psychonoir-kontrapunkt-large-file-holder"
+    },
+    {
+      "path": "../../../Program Files (x86)/Steam/steamapps/common/KingdomComeDeliverance"
     }
   ],
   "settings": {
