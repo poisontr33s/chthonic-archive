@@ -165,17 +165,17 @@
 
 ## (`Where-We-Are`/`Now`)
 
-- — **(`Arc-I`)**: *complete through **(`B-9`)** + **(`B-11`)** — the barometer is proven as data + notation (the histogram showed the generator fair). **(`B-10`)** KILLED (Index.html slop). The barometer is now also the data-archaeology instrument:* `--histogram` *·* `--bathymetry` *·* `--boundary`*.*
+- *— **(`Arc-I`)** — complete through; — **(`B-9`/`+`/`B-11`)** — the barometer is proven as data + notation (the histogram showed the generator fair). — **(`B-10`)** KILLED —* `Index.html slop`. *— The barometer is now also the data-archaeology instrument; —* `--histogram` *— · —* `--bathymetry` *— · —* `--boundary`*.*
 
-  - *— **(`Arc-II`/`COMPLETE`)**: L−5…L+1 all PROVEN on the 4090, AND now fed real GEBCO bathymetry **(`M-1`)** — the* `~5 ms` *advection-diffusion sim runs over the real Bahama Bank, flowing around actual island geometry. Only optional tail: L0 hot-reload.*
+  - *— **(`Arc-II`/`COMPLETE`)** — L−5…L+1 all PROVEN on the 4090, AND now fed real GEBCO bathymetry **(`M-1`)** — the* `~5 ms` *advection-diffusion sim runs over the real Bahama Bank, flowing around actual island geometry. Only optional tail: L0 hot-reload.*
 
-    - *— **(`Arc-IV`/`ACTIVE`)**: the real direction now — multi-disciplinary data layers. **(`M-1`)** GEBCO bathymetry (the medium) + **(`M-2`)** marine SST (real sea-temp sources) both landed; the sim runs on two real data layers over real topology. Next: **(`M-3`)** hurricanes (HURDAT2 — the episodic, dramatic layer).*
+    - *— **(`Arc-IV`/`ACTIVE`)** — the real direction now; multi-disciplinary data layers. — **(`M-1`)** — GEBCO bathymetry (the medium) + **(`M-2`)** marine SST (real sea-temp sources) both landed; the sim runs on two real data layers over real topology. Next: **(`M-3`)** hurricanes (HURDAT2 — the episodic, dramatic layer).*
 
-      - *— **(`End-Goal-Proof`/`It-Compounds`)**: the sim is resolution-scalable now (`--grid=WxH`, default 56×22). The same Vulkan/Rust kernels ran* `1,232 → 8.4M cells (6800×)` *on the 4090 — the nascent plan compounds to high-end SCALE. The sweep mapped the next ENGINE frontier:* `HOST_COHERENT` *buffers cap throughput at ~12 GB/s vs the 4090's ~1 TB/s — **(`device-local memory + staging`)** is the next hardening. Two fronts run in parallel now: DATA (M-3…) and ENGINE (device-local → CUDA/TensorRT later).*
+      - *— **(`End-Goal-Proof`/`It-Compounds`)** — the sim is resolution-scalable now —* `--grid=WxH`*, default 56×22 (The same Vulkan/Rust kernels ran); —* `1,232 → 8.4M cells (6800×` *— on the 4090 — the nascent plan compounds to high-end SCALE. The sweep mapped the next ENGINE frontier; —* `HOST_COHERENT` *— buffers cap throughput at ~12 GB/s vs the 4090's ~1 TB/s —* **(`Device-Local`/`Memory`/`+`/`Staging`)** *— is the next hardening. Three fronts run in parallel now: DATA (M-3…), ENGINE (device-local → CUDA/TensorRT later), & —* **(`RENDER`)** *— the real-time visual front-end charted in —* [`north-star-constellations.md`](north-star-constellations.md) *—which — **(`Consumes-Not-Rebuilds`)** — this sim's proven data plane —* `charts/bathymetry.json` *— (→ the hero shallow-water shader · the single-wind spine → its §2.3): the sim computes the field, the renderer draws the turquoise. **(`The-Seam`/`=`/`The-Data-Plane`)**.*
 
-      - *— **(`Arc-III`/`PARKED`)**: the DSL stays at D0, observed, kill-switch intact. Deliberately NOT a gate — we do not stalemate on it. It earns continuation only by executing, later.*
+      - *— **(`Arc-III`/`PARKED`)** — the DSL stays at D0, observed, kill-switch intact. Deliberately NOT a gate — we do not stalemate on it. It earns continuation only by executing, later.*
 
-        - *— Next move: **(`M-3`)** hurricanes — a real HURDAT2 storm track (e.g. Dorian over Grand Bahama, 2019) swept across the grid as moving low-pressure + high-wind forcing: the episodic, dramatic layer (bathymetry + marine SST were the quiet-but-true ones). Compounds onto the proven sim; no DSL, no slop.*
+        - *— Next move —* **(`M-3`)** *— hurricanes; a real HURDAT2 storm track (e.g. Dorian over Grand Bahama, 2019) swept across the grid as moving low-pressure + high-wind forcing: the episodic, dramatic layer (bathymetry + marine SST were the quiet-but-true ones). Compounds onto the proven sim; no DSL, no slop.*
 
 ---
 

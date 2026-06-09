@@ -1,5 +1,5 @@
 # CLAUDE.md
 
-*Refer to modernization-efforts in: — **(`Chthonic-Archive`/`CLAUDEBASE`)**.*
+*Refer to modernization-efforts in: — **(`chthonic-archive`/`CLAUDEBASE/`)**.*
 
 ---
