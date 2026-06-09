@@ -45,6 +45,12 @@ pub struct Renderer {
     pub vertex_buffer: vk::Buffer,
     pub vertex_buffer_memory: vk::DeviceMemory,
     pub vertex_count: u32,
+    pub depth_image: vk::Image,
+    pub depth_memory: vk::DeviceMemory,
+    pub depth_view: vk::ImageView,
+    pub frame_index: u64,
+    pub screenshot: Option<String>,
+    pub shot_taken: bool,
     pub needs_resize: bool,
     pub camera: IsometricCamera,
 }
@@ -98,8 +104,19 @@ impl Renderer {
 
         info!("✅ Allocated {0} command buffers", command_buffers.len());
 
-        // Create vertex buffer with triangle data
-        let vertices = triangle_vertices();
+        // Create vertex buffer — the real Bahama bathymetry heightfield (rung 3),
+        // falling back to the test triangle if the data plane is unreadable.
+        let vertices = match super::bathymetry::Bathymetry::load(super::bathymetry::DEFAULT_PATH) {
+            Ok(b) => {
+                let mesh = b.mesh();
+                info!("🌊 Bathymetry loaded: {0}x{1} → {2} vertices", b.w, b.h, mesh.len());
+                mesh
+            }
+            Err(e) => {
+                log::warn!("⚠️ bathymetry load failed ({e:#}); falling back to triangle");
+                triangle_vertices()
+            }
+        };
         let (vertex_buffer, vertex_buffer_memory) =
             Self::create_vertex_buffer(ctx, &vertices)?;
 
@@ -115,6 +132,9 @@ impl Renderer {
         info!("🎥 Isometric Camera: Engaged (Y:45° X:35.264°)");
         info!("═══════════════════════════════════════════════════════════════");
 
+        let (depth_image, depth_memory, depth_view) =
+            Self::create_depth_resources(ctx, swapchain.extent)?;
+
         Ok(Self {
             swapchain,
             pipeline,
@@ -123,6 +143,12 @@ impl Renderer {
             vertex_buffer,
             vertex_buffer_memory,
             vertex_count: u32::try_from(vertices.len()).unwrap(),
+            depth_image,
+            depth_memory,
+            depth_view,
+            frame_index: 0,
+            screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
+            shot_taken: false,
             needs_resize: false,
             camera,
         })
@@ -207,6 +233,186 @@ impl Renderer {
         Err(anyhow::anyhow!("Failed to find suitable memory type"))
     }
 
+    /// Create the depth image / memory / view (D32) sized to the swapchain extent.
+    unsafe fn create_depth_resources(
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+    ) -> Result<(vk::Image, vk::DeviceMemory, vk::ImageView)> {
+        let format = vk::Format::D32_SFLOAT;
+        let image_info = vk::ImageCreateInfo::default()
+            .image_type(vk::ImageType::TYPE_2D)
+            .format(format)
+            .extent(vk::Extent3D { width: extent.width, height: extent.height, depth: 1 })
+            .mip_levels(1)
+            .array_layers(1)
+            .samples(vk::SampleCountFlags::TYPE_1)
+            .tiling(vk::ImageTiling::OPTIMAL)
+            .usage(vk::ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
+            .sharing_mode(vk::SharingMode::EXCLUSIVE)
+            .initial_layout(vk::ImageLayout::UNDEFINED);
+        let image = ctx.device.create_image(&image_info, None).context("create depth image")?;
+
+        let mem_req = ctx.device.get_image_memory_requirements(image);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            mem_req.memory_type_bits,
+            vk::MemoryPropertyFlags::DEVICE_LOCAL,
+        )?;
+        let alloc_info = vk::MemoryAllocateInfo::default()
+            .allocation_size(mem_req.size)
+            .memory_type_index(mem_type);
+        let memory = ctx.device.allocate_memory(&alloc_info, None).context("alloc depth memory")?;
+        ctx.device.bind_image_memory(image, memory, 0)?;
+
+        let view_info = vk::ImageViewCreateInfo::default()
+            .image(image)
+            .view_type(vk::ImageViewType::TYPE_2D)
+            .format(format)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::DEPTH,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+        let view = ctx.device.create_image_view(&view_info, None).context("create depth view")?;
+        Ok((image, memory, view))
+    }
+
+    /// Capture the just-presented swapchain image to a PNG so the build loop can
+    /// self-verify a render without a human screenshot. One-shot, synchronous
+    /// (its own command buffer + fence). Triggered via `CHTHONIC_SCREENSHOT`.
+    unsafe fn capture_screenshot(
+        &self,
+        ctx: &VulkanContext,
+        image_index: u32,
+        path: &str,
+    ) -> Result<()> {
+        let device = &ctx.device;
+        device.device_wait_idle()?;
+
+        let extent = self.swapchain.extent;
+        let (w, h) = (extent.width, extent.height);
+        let size = u64::from(w) * u64::from(h) * 4;
+
+        // Host-visible readback buffer.
+        let buffer_info = vk::BufferCreateInfo::default()
+            .size(size)
+            .usage(vk::BufferUsageFlags::TRANSFER_DST)
+            .sharing_mode(vk::SharingMode::EXCLUSIVE);
+        let buffer = device.create_buffer(&buffer_info, None)?;
+        let req = device.get_buffer_memory_requirements(buffer);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            req.memory_type_bits,
+            vk::MemoryPropertyFlags::HOST_VISIBLE | vk::MemoryPropertyFlags::HOST_COHERENT,
+        )?;
+        let memory = device.allocate_memory(
+            &vk::MemoryAllocateInfo::default()
+                .allocation_size(req.size)
+                .memory_type_index(mem_type),
+            None,
+        )?;
+        device.bind_buffer_memory(buffer, memory, 0)?;
+
+        let color_range = vk::ImageSubresourceRange {
+            aspect_mask: vk::ImageAspectFlags::COLOR,
+            base_mip_level: 0,
+            level_count: 1,
+            base_array_layer: 0,
+            layer_count: 1,
+        };
+        let src_image = self.swapchain.images[image_index as usize];
+
+        // One-time command buffer: image → TRANSFER_SRC, copy to buffer, → PRESENT_SRC.
+        let cmd = device.allocate_command_buffers(
+            &vk::CommandBufferAllocateInfo::default()
+                .command_pool(self.command_pool)
+                .level(vk::CommandBufferLevel::PRIMARY)
+                .command_buffer_count(1),
+        )?[0];
+        device.begin_command_buffer(
+            cmd,
+            &vk::CommandBufferBeginInfo::default()
+                .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT),
+        )?;
+
+        let to_src = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+            .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+            .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
+            .old_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+            .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+            .image(src_image)
+            .subresource_range(color_range);
+        device.cmd_pipeline_barrier2(
+            cmd,
+            &vk::DependencyInfo::default().image_memory_barriers(&[to_src]),
+        );
+
+        let region = vk::BufferImageCopy::default()
+            .image_subresource(
+                vk::ImageSubresourceLayers::default()
+                    .aspect_mask(vk::ImageAspectFlags::COLOR)
+                    .layer_count(1),
+            )
+            .image_extent(vk::Extent3D { width: w, height: h, depth: 1 });
+        device.cmd_copy_image_to_buffer(
+            cmd,
+            src_image,
+            vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+            buffer,
+            &[region],
+        );
+
+        let to_present = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+            .src_access_mask(vk::AccessFlags2::TRANSFER_READ)
+            .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+            .old_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+            .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+            .image(src_image)
+            .subresource_range(color_range);
+        device.cmd_pipeline_barrier2(
+            cmd,
+            &vk::DependencyInfo::default().image_memory_barriers(&[to_present]),
+        );
+
+        device.end_command_buffer(cmd)?;
+
+        let fence = device.create_fence(&vk::FenceCreateInfo::default(), None)?;
+        let submit_cmds = [cmd];
+        let submit = vk::SubmitInfo::default().command_buffers(&submit_cmds);
+        device.queue_submit(ctx.graphics_queue, &[submit], fence)?;
+        device.wait_for_fences(&[fence], true, u64::MAX)?;
+
+        // Read back. Swap channel order for BGRA swapchains; write PNG.
+        let ptr = device.map_memory(memory, 0, size, vk::MemoryMapFlags::empty())?.cast::<u8>();
+        let mut pixels = std::slice::from_raw_parts(ptr, usize::try_from(size).unwrap()).to_vec();
+        device.unmap_memory(memory);
+
+        let is_bgra = matches!(
+            self.swapchain.format,
+            vk::Format::B8G8R8A8_UNORM | vk::Format::B8G8R8A8_SRGB
+        );
+        if is_bgra {
+            for px in pixels.chunks_exact_mut(4) {
+                px.swap(0, 2);
+            }
+        }
+
+        device.destroy_fence(fence, None);
+        device.free_command_buffers(self.command_pool, &[cmd]);
+        device.destroy_buffer(buffer, None);
+        device.free_memory(memory, None);
+
+        let img = image::RgbaImage::from_raw(w, h, pixels)
+            .ok_or_else(|| anyhow::anyhow!("buffer size mismatch for {w}x{h}"))?;
+        img.save(path).map_err(|e| anyhow::anyhow!("png save {path}: {e}"))?;
+        info!("📸 screenshot → {path} ({w}x{h}, bgra={is_bgra})");
+        Ok(())
+    }
+
     /// Render a frame using Dynamic Rendering (Vulkan 1.3)
     ///
     /// # Safety
@@ -253,7 +459,26 @@ impl Renderer {
                 layer_count: 1,
             });
 
-        let barriers_to_render = [image_barrier_to_render];
+        let depth_barrier_to_render = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+            .src_access_mask(vk::AccessFlags2::empty())
+            .dst_stage_mask(
+                vk::PipelineStageFlags2::EARLY_FRAGMENT_TESTS
+                    | vk::PipelineStageFlags2::LATE_FRAGMENT_TESTS,
+            )
+            .dst_access_mask(vk::AccessFlags2::DEPTH_STENCIL_ATTACHMENT_WRITE)
+            .old_layout(vk::ImageLayout::UNDEFINED)
+            .new_layout(vk::ImageLayout::DEPTH_ATTACHMENT_OPTIMAL)
+            .image(self.depth_image)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::DEPTH,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+
+        let barriers_to_render = [image_barrier_to_render, depth_barrier_to_render];
         let dependency_info_to_render = vk::DependencyInfo::default()
             .image_memory_barriers(&barriers_to_render);
 
@@ -274,13 +499,25 @@ impl Renderer {
             .clear_value(clear_value);
 
         let color_attachments = [color_attachment];
+
+        let depth_clear = vk::ClearValue {
+            depth_stencil: vk::ClearDepthStencilValue { depth: 1.0, stencil: 0 },
+        };
+        let depth_attachment = vk::RenderingAttachmentInfo::default()
+            .image_view(self.depth_view)
+            .image_layout(vk::ImageLayout::DEPTH_ATTACHMENT_OPTIMAL)
+            .load_op(vk::AttachmentLoadOp::CLEAR)
+            .store_op(vk::AttachmentStoreOp::DONT_CARE)
+            .clear_value(depth_clear);
+
         let rendering_info = vk::RenderingInfo::default()
             .render_area(vk::Rect2D {
                 offset: vk::Offset2D { x: 0, y: 0 },
                 extent: self.swapchain.extent,
             })
             .layer_count(1)
-            .color_attachments(&color_attachments);
+            .color_attachments(&color_attachments)
+            .depth_attachment(&depth_attachment);
 
         ctx.device.cmd_begin_rendering(cmd, &rendering_info);
 
@@ -379,6 +616,18 @@ impl Renderer {
             self.needs_resize = true;
         }
 
+        // One-shot framebuffer capture (agent self-verify). Frame ≥5 lets the
+        // scene settle before we read the pixels back to PNG.
+        self.frame_index += 1;
+        if !self.shot_taken && self.frame_index >= 5 {
+            if let Some(path) = self.screenshot.clone() {
+                if let Err(e) = self.capture_screenshot(ctx, image_index, &path) {
+                    log::warn!("📸 screenshot failed: {e:#}");
+                }
+                self.shot_taken = true;
+            }
+        }
+
         Ok(needs_resize)
     }
 
@@ -397,6 +646,16 @@ impl Renderer {
             ctx.queue_family_index,
             new_size,
         )?;
+
+        // Recreate the depth buffer at the new extent
+        ctx.device.destroy_image_view(self.depth_view, None);
+        ctx.device.destroy_image(self.depth_image, None);
+        ctx.device.free_memory(self.depth_memory, None);
+        let (depth_image, depth_memory, depth_view) =
+            Self::create_depth_resources(ctx, self.swapchain.extent)?;
+        self.depth_image = depth_image;
+        self.depth_memory = depth_memory;
+        self.depth_view = depth_view;
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]
@@ -417,6 +676,11 @@ impl Renderer {
         // Free vertex buffer
         device.destroy_buffer(self.vertex_buffer, None);
         device.free_memory(self.vertex_buffer_memory, None);
+
+        // Free depth buffer
+        device.destroy_image_view(self.depth_view, None);
+        device.destroy_image(self.depth_image, None);
+        device.free_memory(self.depth_memory, None);
 
         // Command pool (implicitly frees command buffers)
         device.destroy_command_pool(self.command_pool, None);

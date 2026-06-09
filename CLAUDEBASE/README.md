@@ -10,7 +10,8 @@
 - Island: New-Providence · 25.0443,-77.3504 — the capital, the home
 - Real-Sky: --live (Open-Meteo; never stamped)
 - Heat-Index: Storm-Wrack · Lamplit · Contraband-Warm
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 - Governance: ../.chthonic/SSOT.md
 ---

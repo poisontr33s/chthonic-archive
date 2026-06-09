@@ -9,8 +9,9 @@
 - Altitude: Chart-Room · Below-Deck
 - Island: San-Salvador · 24.0500,-74.5300 — Columbus's first landfall
 - Real-Sky: --live (Open-Meteo; never stamped)
-- Heat-Index: Trade-Wind · Scorched · Ink-Still-Wet
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Doldrums · Cool-Undertow · One-Hand-On-The-Wheel
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 

@@ -8,8 +8,9 @@
 - Altitude: The-Whole-Hull
 - Island: Grand-Bahama · 26.5300,-78.7000 — Freeport, the free-port ledger
 - Real-Sky: --live (Open-Meteo; never stamped)
-- Heat-Index: Halcyon · Rope-&-Rum · Ink-Still-Wet
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Sun-Drunk · Still-Air · Confidence-Declared
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 

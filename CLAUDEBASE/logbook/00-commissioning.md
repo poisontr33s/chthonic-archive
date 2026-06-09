@@ -9,7 +9,8 @@
 - Island: Eleuthera · 25.1500,-76.1500 — oldest settlement, the record
 - Real-Sky: --live (Open-Meteo; never stamped)
 - Heat-Index: Brine-Fog · Heavy-Swell · One-Hand-On-The-Wheel
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 

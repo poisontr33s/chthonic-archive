@@ -10,8 +10,9 @@
 - Altitude: Waterline · The-Mouth
 - Island: Great-Inagua · 21.0800,-73.3200 — the salt ponds, the salt-trial
 - Real-Sky: --live (Open-Meteo; never stamped)
-- Heat-Index: Squall-Edge · Heavy-Swell · Contraband-Warm
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Squall-Edge · Lamplit · With-A-Chance-Of-Hedonism
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 

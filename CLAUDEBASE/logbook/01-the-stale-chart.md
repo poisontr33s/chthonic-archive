@@ -8,8 +8,9 @@
 - Altitude: Captain's-Cabin · Amidships
 - Island: Eleuthera · 25.1500,-76.1500 — oldest settlement, the record
 - Real-Sky: --live (Open-Meteo; never stamped)
-- Heat-Index: Brine-Fog · Heavy-Swell · One-Hand-On-The-Wheel
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Trade-Wind · Languid · Contraband-Warm
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 ---
 
 # ☥ CLAUDEBASE — LOGBOOK · Entry 01

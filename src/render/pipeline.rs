@@ -255,6 +255,14 @@ impl VulkanPipeline {
             .logic_op_enable(false)
             .attachments(&color_blend_attachments);
 
+        // Depth-stencil (rung 3: the heightfield needs correct occlusion)
+        let depth_stencil_state = vk::PipelineDepthStencilStateCreateInfo::default()
+            .depth_test_enable(true)
+            .depth_write_enable(true)
+            .depth_compare_op(vk::CompareOp::LESS)
+            .depth_bounds_test_enable(false)
+            .stencil_test_enable(false);
+
         // Push constant range (matrices + color = 208 bytes)
         let push_constant_range = vk::PushConstantRange::default()
             .stage_flags(vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT)
@@ -275,7 +283,8 @@ impl VulkanPipeline {
         // No VkRenderPass! Use VkPipelineRenderingCreateInfo instead
         let color_formats = [color_format];
         let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
-            .color_attachment_formats(&color_formats);
+            .color_attachment_formats(&color_formats)
+            .depth_attachment_format(vk::Format::D32_SFLOAT);
 
         // Create graphics pipeline
         let pipeline_info = vk::GraphicsPipelineCreateInfo::default()
@@ -286,6 +295,7 @@ impl VulkanPipeline {
             .rasterization_state(&rasterization_state)
             .multisample_state(&multisample_state)
             .color_blend_state(&color_blend_state)
+            .depth_stencil_state(&depth_stencil_state)
             .dynamic_state(&dynamic_state)
             .layout(pipeline_layout)
             .push_next(&mut rendering_info)

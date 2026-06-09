@@ -6,8 +6,9 @@
 - Open-Seas: chthonic-archive/CLAUDEBASE/charts/the-long-tack.md
 - Altitude: Chart-Room · Below-Deck
 - Island: San-Salvador · 24.0500,-74.5300 — first landfall; where a course is set
-- Heat-Index: Doldrums · Rope-&-Rum · Skin-Dipped
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Overcast · Salt-Sharp · Customs-House-Believes-Anything
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 

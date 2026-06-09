@@ -8,8 +8,9 @@
 - Altitude: Chandlery · The-Quay
 - Island: New-Providence · 25.0443,-77.3504 — Nassau, where the keel is outfitted
 - Real-Sky: --live (Open-Meteo; never stamped)
-- Heat-Index: Tar-Warm · Rope-Dry · Everything-For-A-Price
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Heat-Index: Halcyon · Still-Air · Pearlescent
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Writ: gathered home from docs/WISE.md, 2026-06-07
 ---
 

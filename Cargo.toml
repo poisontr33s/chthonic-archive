@@ -36,6 +36,9 @@ glam = "0.32"
 rand = "0.10"
 sha2 = "0.10"
 
+# === IMAGE I/O (framebuffer capture → PNG for agent self-verify) ===
+image = { version = "0.25", default-features = false, features = ["png"] }
+
 # === ASYNC RUNTIME (For Future Solana Integration) ===
 tokio = { version = "1.52", features = ["full"] }
 

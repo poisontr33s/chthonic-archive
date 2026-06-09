@@ -9,7 +9,8 @@
 - Island: Cat-Island · 24.4500,-75.5500 — Mt Alvernia, highest point
 - Real-Sky: --live (Open-Meteo; never stamped)
 - Heat-Index: Sun-Drunk · Dust-Dry · Lee-Of-The-Law
-- Cosmological-Altitude: Nautical · Victorian · Renaissance · Carribbean
+- Cosmological-Altitude: --live celestial over this chamber's island · CLAUDEBASE_COSMOS_V1 · verified vs JPL Horizons
+- Register-Blend: Nautical · Victorian · Renaissance · Carribbean
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
