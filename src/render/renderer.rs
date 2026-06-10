@@ -45,6 +45,9 @@ pub struct Renderer {
     pub vertex_buffer: vk::Buffer,
     pub vertex_buffer_memory: vk::DeviceMemory,
     pub vertex_count: u32,
+    pub ocean_vertex_buffer: vk::Buffer,
+    pub ocean_vertex_memory: vk::DeviceMemory,
+    pub ocean_vertex_count: u32,
     pub depth_image: vk::Image,
     pub depth_memory: vk::DeviceMemory,
     pub depth_view: vk::ImageView,
@@ -120,6 +123,13 @@ impl Renderer {
         let (vertex_buffer, vertex_buffer_memory) =
             Self::create_vertex_buffer(ctx, &vertices)?;
 
+        // Rung 4: the ocean surface grid (Gerstner-displaced in water.vert, surface mode).
+        let ocean_vertices = super::ocean::surface_grid(128);
+        let (ocean_vertex_buffer, ocean_vertex_memory) =
+            Self::create_vertex_buffer(ctx, &ocean_vertices)?;
+        let ocean_vertex_count = u32::try_from(ocean_vertices.len()).unwrap();
+        info!("🌊 Ocean surface grid: {0} vertices", ocean_vertices.len());
+
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
         #[allow(clippy::cast_precision_loss)]
@@ -143,6 +153,9 @@ impl Renderer {
             vertex_buffer,
             vertex_buffer_memory,
             vertex_count: u32::try_from(vertices.len()).unwrap(),
+            ocean_vertex_buffer,
+            ocean_vertex_memory,
+            ocean_vertex_count,
             depth_image,
             depth_memory,
             depth_view,
@@ -542,30 +555,47 @@ impl Renderer {
         // Bind pipeline
         ctx.device.cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
 
-        // Push constants with isometric camera matrices and layer color
-        let push_constants = PushConstants {
+        // Push constants: camera + sun, plus params [time, mode]. Two passes share one
+        // pipeline: the seabed (mode 0) then the Gerstner ocean surface (mode 1) over it.
+        let time = self.frame_index as f32 * 0.02;
+        let mut push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
             view: self.camera.view_as_array(),
             projection: self.camera.projection_as_array(),
             layer_color,
+            params: [time, 0.0, 0.0, 0.0],
         };
-        let push_data = std::slice::from_raw_parts(
-            (&raw const push_constants).cast::<u8>(),
-            std::mem::size_of_val(&push_constants),
-        );
+        let layout = self.pipeline.pipeline_layout;
+        let stages = vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT;
+
+        // --- seabed pass (mode 0) ---
         ctx.device.cmd_push_constants(
             cmd,
-            self.pipeline.pipeline_layout,
-            vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT,
+            layout,
+            stages,
             0,
-            push_data,
+            std::slice::from_raw_parts(
+                (&raw const push_constants).cast::<u8>(),
+                std::mem::size_of::<PushConstants>(),
+            ),
         );
-
-        // Bind vertex buffer
         ctx.device.cmd_bind_vertex_buffers(cmd, 0, &[self.vertex_buffer], &[0]);
-
-        // DRAW THE TRIANGLE! 🔺
         ctx.device.cmd_draw(cmd, self.vertex_count, 1, 0, 0);
+
+        // --- ocean surface pass (mode 1, Gerstner-displaced in the vertex shader) ---
+        push_constants.params[1] = 1.0;
+        ctx.device.cmd_push_constants(
+            cmd,
+            layout,
+            stages,
+            0,
+            std::slice::from_raw_parts(
+                (&raw const push_constants).cast::<u8>(),
+                std::mem::size_of::<PushConstants>(),
+            ),
+        );
+        ctx.device.cmd_bind_vertex_buffers(cmd, 0, &[self.ocean_vertex_buffer], &[0]);
+        ctx.device.cmd_draw(cmd, self.ocean_vertex_count, 1, 0, 0);
 
         // === END DYNAMIC RENDERING ===
         ctx.device.cmd_end_rendering(cmd);
@@ -673,9 +703,11 @@ impl Renderer {
 
         device.device_wait_idle().ok();
 
-        // Free vertex buffer
+        // Free vertex buffers (seabed + ocean surface)
         device.destroy_buffer(self.vertex_buffer, None);
         device.free_memory(self.vertex_buffer_memory, None);
+        device.destroy_buffer(self.ocean_vertex_buffer, None);
+        device.free_memory(self.ocean_vertex_memory, None);
 
         // Free depth buffer
         device.destroy_image_view(self.depth_view, None);

@@ -32,6 +32,7 @@ pub mod renderer;
 pub mod camera;
 pub mod bathymetry;
 pub mod cosmos;
+pub mod ocean;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;

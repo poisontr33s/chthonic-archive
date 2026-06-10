@@ -77,7 +77,7 @@ impl ShaderLanguage {
     }
 }
 
-/// Push constants for MVP transformation + Layer Color (208 bytes)
+/// Push constants: MVP + sun vector (`layer_color` slot) + params [time, mode] (224 bytes)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct PushConstants {
@@ -85,6 +85,7 @@ pub struct PushConstants {
     pub view: [[f32; 4]; 4],
     pub projection: [[f32; 4]; 4],
     pub layer_color: [f32; 4],
+    pub params: [f32; 4],
 }
 
 impl Default for PushConstants {
@@ -94,6 +95,7 @@ impl Default for PushConstants {
             view: identity_matrix(),
             projection: identity_matrix(),
             layer_color: [1.0, 1.0, 1.0, 1.0],
+            params: [0.0, 0.0, 0.0, 0.0],
         }
     }
 }
