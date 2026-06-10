@@ -60,7 +60,7 @@ The wheel turns through a fixed tier of three: judgment at the top, hands below,
 | Tier | Who | Pinned to | Draws |
 |---|---|---|---|
 | Orchestrator | this session | Opus 4.8 | the chart — judgment, routing, the call |
-| Quartermaster | [`../../.claude/agents/quartermaster.md`](../../.claude/agents/quartermaster.md) | `claude-sonnet-4-6` · `effort: high` | the hands — routine, well-scoped execution |
+| Quartermaster | [`../../.claude/agents/quartermaster.md`](../../.claude/agents/quartermaster.md) | `claude-sonnet-4-6` · `effort: max` | the hands — routine, well-scoped execution |
 | Sailing-Master | [`../../.claude/agents/sailing-master.md`](../../.claude/agents/sailing-master.md) | `claude-fable-5` · `effort: max` | deep water — architecture, expensive-if-wrong calls |
 
 **Two cemented decisions, and why:**

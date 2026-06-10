@@ -203,26 +203,19 @@ impl ApplicationHandler for ArchiveApp {
                 }
 
                 self.frame_count += 1;
-                let layer_num = ((self.frame_count / 120) % 6) + 1;
-                let layer_code = format!("LAYER-{}", layer_num);
 
-                let layer_color = self
-                    .faction_registry
-                    .districts
-                    .get(&layer_code)
-                    .map(|district| district.visual.primary_color)
-                    .unwrap_or([0.69, 0.0, 0.96]);
+                // Rung 5: solar vector for the shallow-water shader (Beer–Lambert + Fresnel),
+                // riding the push-constant slot the legacy LAYER-N tint used to cycle.
+                // Midday Bahamas sun — high, slightly south-east. xyz = direction TO the sun
+                // (normalized in-shader), w = intensity. Placeholder until grounded from
+                // CLAUDEBASE_COSMOS_V1 (cosmos.py emits real altitude/azimuth over New Providence).
+                let sun = [0.25_f32, 0.92, 0.30, 1.0];
 
-                let final_color = [layer_color[0], layer_color[1], layer_color[2], 1.0];
-
-                if self.frame_count % 120 == 0 {
-                    info!(
-                        "🎨 Manifesting Spectral Frequency for {}: [{}, {}, {}]",
-                        layer_code, layer_color[0], layer_color[1], layer_color[2]
-                    );
+                if self.frame_count % 240 == 0 {
+                    info!("☀️ Shallow-water shader live · sun = [{}, {}, {}]", sun[0], sun[1], sun[2]);
                 }
 
-                match unsafe { renderer.render_frame(vulkan_context, final_color) } {
+                match unsafe { renderer.render_frame(vulkan_context, sun) } {
                     Ok(needs_resize) => {
                         if needs_resize {
                             renderer.needs_resize = true;

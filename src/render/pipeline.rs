@@ -108,11 +108,12 @@ fn identity_matrix() -> [[f32; 4]; 4] {
     ]
 }
 
-/// Vertex data for rendering (position + color)
+/// Vertex data for rendering (position + normal + color)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct Vertex {
     pub position: [f32; 3],
+    pub normal: [f32; 3],
     pub color: [f32; 3],
 }
 
@@ -125,8 +126,9 @@ impl Vertex {
             .input_rate(vk::VertexInputRate::VERTEX)
     }
 
-    /// Get vertex attribute descriptions (position, color)
-    pub fn attribute_descriptions() -> [vk::VertexInputAttributeDescription; 2] {
+    /// Get vertex attribute descriptions (position, normal, color)
+    pub fn attribute_descriptions() -> [vk::VertexInputAttributeDescription; 3] {
+        let f3 = u32::try_from(std::mem::size_of::<[f32; 3]>()).unwrap();
         [
             // Position at location 0
             vk::VertexInputAttributeDescription::default()
@@ -134,12 +136,18 @@ impl Vertex {
                 .location(0)
                 .format(vk::Format::R32G32B32_SFLOAT)
                 .offset(0),
-            // Color at location 1
+            // Normal at location 1
             vk::VertexInputAttributeDescription::default()
                 .binding(0)
                 .location(1)
                 .format(vk::Format::R32G32B32_SFLOAT)
-                .offset(u32::try_from(std::mem::size_of::<[f32; 3]>()).unwrap()),
+                .offset(f3),
+            // Color at location 2
+            vk::VertexInputAttributeDescription::default()
+                .binding(0)
+                .location(2)
+                .format(vk::Format::R32G32B32_SFLOAT)
+                .offset(f3 * 2),
         ]
     }
 }
@@ -355,8 +363,8 @@ impl VulkanPipeline {
     fn load_shader_pair(language: ShaderLanguage) -> Result<(Vec<u8>, Vec<u8>)> {
         match language {
             ShaderLanguage::Glsl => Ok((
-                include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.vert.spv")).to_vec(),
-                include_bytes!(concat!(env!("OUT_DIR"), "/iso_grid.frag.spv")).to_vec(),
+                include_bytes!(concat!(env!("OUT_DIR"), "/water.vert.spv")).to_vec(),
+                include_bytes!(concat!(env!("OUT_DIR"), "/water.frag.spv")).to_vec(),
             )),
             ShaderLanguage::Hlsl => {
                 let vert_path = Self::shader_artifact_path("iso_grid.vert.hlsl.spv");
@@ -582,16 +590,19 @@ pub fn triangle_vertices() -> Vec<Vertex> {
         // Y is up in world space, visible from isometric camera
         Vertex {
             position: [0.0, 2.0, 0.0],
+            normal: [0.0, 0.0, 1.0],
             color: [1.0, 0.0, 0.0],
         },
         // Bottom-right (green) - The Dexter Foundation
         Vertex {
             position: [2.0, -1.0, 0.0],
+            normal: [0.0, 0.0, 1.0],
             color: [0.0, 1.0, 0.0],
         },
         // Bottom-left (blue) - The Sinister Foundation
         Vertex {
             position: [-2.0, -1.0, 0.0],
+            normal: [0.0, 0.0, 1.0],
             color: [0.0, 0.0, 1.0],
         },
     ]
