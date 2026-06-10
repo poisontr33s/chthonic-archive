@@ -48,6 +48,7 @@ pub struct Renderer {
     pub ocean_vertex_buffer: vk::Buffer,
     pub ocean_vertex_memory: vk::DeviceMemory,
     pub ocean_vertex_count: u32,
+    pub ocean_compute: super::ocean_compute::OceanCompute,
     pub depth_image: vk::Image,
     pub depth_memory: vk::DeviceMemory,
     pub depth_view: vk::ImageView,
@@ -130,6 +131,9 @@ impl Renderer {
         let ocean_vertex_count = u32::try_from(ocean_vertices.len()).unwrap();
         info!("🌊 Ocean surface grid: {0} vertices", ocean_vertices.len());
 
+        // Rung 4.2: the displacement compute subsystem (first compute pipeline + descriptors).
+        let ocean_compute = super::ocean_compute::OceanCompute::new(ctx)?;
+
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
         #[allow(clippy::cast_precision_loss)]
@@ -156,6 +160,7 @@ impl Renderer {
             ocean_vertex_buffer,
             ocean_vertex_memory,
             ocean_vertex_count,
+            ocean_compute,
             depth_image,
             depth_memory,
             depth_view,
@@ -455,6 +460,10 @@ impl Renderer {
             .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT);
         ctx.device.begin_command_buffer(cmd, &begin_info)?;
 
+        // === RUNG 4.2: ocean displacement compute (writes the displacement field) ===
+        let ocean_time = self.frame_index as f32 * 0.02;
+        self.ocean_compute.dispatch(&ctx.device, cmd, ocean_time);
+
         // === TRANSITION IMAGE TO COLOR ATTACHMENT ===
         let image_barrier_to_render = vk::ImageMemoryBarrier2::default()
             .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
@@ -708,6 +717,9 @@ impl Renderer {
         device.free_memory(self.vertex_buffer_memory, None);
         device.destroy_buffer(self.ocean_vertex_buffer, None);
         device.free_memory(self.ocean_vertex_memory, None);
+
+        // Ocean compute subsystem (pipeline, descriptors, storage image)
+        self.ocean_compute.cleanup(device);
 
         // Free depth buffer
         device.destroy_image_view(self.depth_view, None);
