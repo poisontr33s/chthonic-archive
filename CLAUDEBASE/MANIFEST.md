@@ -16,7 +16,7 @@
 
 ---
 
-# (`☥`/`/CLAUDEBASE`/`MANIFEST`)
+## (`☥`/`/CLAUDEBASE`/`MANIFEST`)
 
 > *Manifestet lyver for tollboden, aldri for kapteinen.*  
 > *The manifest lies to the customs-house, never to the captain.*
@@ -24,6 +24,33 @@
 ---
 
 ## (`What-Lives-Here`)
+
+```mermaid
+flowchart TB
+    subgraph CLAUDEBASE ["CLAUDEBASE/"]
+        README["README.md"]:::file
+        MANIFEST["MANIFEST.md"]:::file
+        harbor["harbor/"]:::dir
+        charts["charts/"]:::dir
+        hold["hold/"]:::dir
+        quarterdeck["quarterdeck/"]:::dir
+        watch["watch/"]:::dir
+        logbook["logbook/"]:::dir
+        bounties["The-Savant-High-Bounties/"]:::dir
+    end
+    
+    README -->|governance declared once| CLAUDEBASE
+    harbor -->|the entry-lore + waking ritual| CLAUDEBASE
+    charts -->|the eleven gates, re-borne| CLAUDEBASE
+    hold -->|deployable cargo| CLAUDEBASE
+    quarterdeck -->|dispatch doctrine| CLAUDEBASE
+    watch -->|the standing vigilance| CLAUDEBASE
+    logbook -->|the record| CLAUDEBASE
+    bounties -->|the authoritative execution + evidence| CLAUDEBASE
+    classDef file fill:#f9f,stroke:#333, stroke-width:2px;
+    classDef dir fill:#bbf,stroke:#333,stroke-width:2px;
+
+```
 
 ```
 CLAUDEBASE/
@@ -36,16 +63,20 @@ CLAUDEBASE/
   watch/         — the nest; the standing vigilance
   logbook/       — the record; filled last, by creed
   The-Savant-High-Bounties/ — the authoritative execution + evidence
+
 ```
 
 ---
 
 ## (`What-Does-NOT-Live-Here`)
 
-- *Session manifests, corpus sqlite, CI artifacts →* `../manifest/` *— read where they live, never copied in (copies go stale; a copy that rots is a lie waiting to be believed).*
-- *Satellite junctions →* `../csb-live/`, `../pnk-live/`*, etc.*
-- *The world-document →* `../.github/copilot-instructions.archive.md` *— never duplicated.*
-- **(`The-Governance-Chain`)** *→ declared **(`Once`)** in [`README.md`](README.md). No chamber restates it; same value six times is noise, not safety.*
+- *— Session manifests, corpus sqlite, CI artifacts → —* `../manifest/` *— read where they live, never copied in (copies go stale; a copy that rots is a lie waiting to be believed).*
+
+  - *— Satellite junctions → —* `../csb-live/`*, —* `../pnk-live/`*, — etc.*
+
+    - — *The world-document →* `../.github/copilot-instructions.archive.md` *— never duplicated.*
+
+      - *— **(`The-Governance-Chain`)** → declared — **(`Once`)** — in —* [`README.md`](README.md) *— No chamber restates it; same value six times is noise, not safety.*
 
 ---
 

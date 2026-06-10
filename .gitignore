@@ -169,3 +169,6 @@ bun-playwright-poc/
 unsloth_compiled_cache/
 logs/
 *.bak
+
+# ── Confiscated instructions (preserved) ──
+confiscated_instructions/

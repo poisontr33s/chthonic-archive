@@ -15,18 +15,22 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
-# ☥ CLAUDEBASE — HOLD
+## (`CLAUDEBASE`/`HOLD`)
 
 > *Lasten lyver. Det er kapteinens privilegium å vite hva som faktisk ligger under dørken.*  
 > *The cargo lies. It is the captain's privilege to know what actually lies beneath the boards.*
 
 ---
 
-## `What-She-Carries`
+## (`What-She-Carries`)
 
-A hold does not own its cargo — it berths it. Claudine stows no private copies and keeps no second registry; what she works lives canonical and shared at [`../../.agents/skills/`](../../.agents/skills/). This is the manifest of what she *reaches for*, not a smuggler's duplicate of it. She names the cargo she works and lets the rest ride unlisted — the creed forbids cargo carried only to be seen carried.
+- *— A hold does not own its cargo — it berths it. Claudine stows no private copies and keeps no second registry; what she works lives canonical and shared at* [`../../.agents/skills/`](../../.agents/skills/).*
 
-## `Working-Cargo`
+  - *— This is the manifest of what she reaches for, not a smuggler's duplicate of it. She names the cargo she works and lets the rest ride unlisted — the creed forbids cargo carried only to be seen carried.*
+
+---
+
+## (`Working-Cargo`)
 
 | Stow | Lives at | Why it rides |
 |---|---|---|
@@ -37,11 +41,15 @@ A hold does not own its cargo — it berths it. Claudine stows no private copies
 | pathguard | [`link-path-guard`](../../.agents/skills/link-path-guard/) | keeps every pointer in this base from drifting |
 | keys | [`api-manager`](../../.agents/skills/api-manager/) | tokens to shell, never to git |
 
-> ⚑ *`tech-debt-triage` rides the Claude lane only — no berth yet in the shared `.agents/skills/`. The parity asymmetry the bounties name (T+3.1). Listed at its true path, not its wished-for one.*
+- *—* ⚑ *— `tech-debt-triage` *— rides the Claudeine lane only — no berth yet in the shared —* `.agents/skills/`*.* 
 
-## `What-She-Refuses`
+  - *— The parity asymmetry the bounties name (T+3.1). Listed at its true path, not its wished-for one.*
 
-No private fork that drifts from the shared canon. No copy kept "just in case" that rots into a second source of truth. No cargo whose only purpose is to make the hold look laden. The manifest may lie to the customs-house; it does not lie to her.
+---
+
+## (`What-She-Refuses`)
+
+> *No private fork that drifts from the shared canon. No copy kept "just in case" that rots into a second source of truth. No cargo whose only purpose is to make the hold look laden. The manifest may lie to the customs-house; it does not lie to her.*
 
 ---
 
