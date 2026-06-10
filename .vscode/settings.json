@@ -89,8 +89,11 @@
     },
 
     // === FILE EXCLUSIONS (Performance + Thermal) ===
+    // target shown on purpose (false) — visible in the explorer as a dimmed gitignored
+    // subfolder. watcherExclude + search.exclude below still keep it out of the file
+    // watcher and search, so visibility costs no perf/thermal.
     "files.exclude": {
-        "**/target": true,
+        "**/target": false,
         "**/*.spv": false,
         "**/Cargo.lock": false
     },
