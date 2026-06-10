@@ -1,26 +1,7 @@
 {
   "tool": "CI_CHECK_LORE_CANON_REFS_V1",
-  "hit_count": 3,
-  "hits": [
-    {
-      "path": "game/design/encounter_layer1.json",
-      "line": 54,
-      "match": "game/lore/characters/orackla.json",
-      "canonical_path": "game/lore/characters/heart/T1/orackla.json"
-    },
-    {
-      "path": "game/design/encounter_layer1.json",
-      "line": 55,
-      "match": "game/lore/characters/umeko.json",
-      "canonical_path": "game/lore/characters/lungs/T1/umeko.json"
-    },
-    {
-      "path": "game/design/encounter_layer1.json",
-      "line": 56,
-      "match": "game/lore/characters/lysandra.json",
-      "canonical_path": "game/lore/characters/stomach/T1/lysandra.json"
-    }
-  ],
+  "hit_count": 0,
+  "hits": [],
   "excluded_dirs": [
     "claude/mailbox/GEMINI_POC_BACKBONE_BUNDLE_2026_05_26",
     "claude/mailbox/GEMINI3_1_PRO_DEEP_RESEARCH_ARTIFACTS",
