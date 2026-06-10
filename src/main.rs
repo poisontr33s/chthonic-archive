@@ -204,12 +204,12 @@ impl ApplicationHandler for ArchiveApp {
 
                 self.frame_count += 1;
 
-                // Rung 5: solar vector for the shallow-water shader (Beer–Lambert + Fresnel),
-                // riding the push-constant slot the legacy LAYER-N tint used to cycle.
-                // Midday Bahamas sun — high, slightly south-east. xyz = direction TO the sun
-                // (normalized in-shader), w = intensity. Placeholder until grounded from
-                // CLAUDEBASE_COSMOS_V1 (cosmos.py emits real altitude/azimuth over New Providence).
-                let sun = [0.25_f32, 0.92, 0.30, 1.0];
+                // Rung 5/6: real solar vector over New Providence — grounded by the in-house
+                // Rust cosmos (CLAUDEBASE_COSMOS_V1 port; verified vs Skyfield/JPL Horizons in
+                // its tests). Fixed at 2026-06-09 17:00 UTC (Nassau solar noon) so the bank is
+                // daylit for verification; swap to SystemTime::now()→JD for the live sky.
+                let jd = render::cosmos::julian_day(2026, 6, 9, 17, 0, 0.0);
+                let sun = render::cosmos::sun_push_constant(25.0443, -77.3504, jd);
 
                 if self.frame_count % 240 == 0 {
                     info!("☀️ Shallow-water shader live · sun = [{}, {}, {}]", sun[0], sun[1], sun[2]);

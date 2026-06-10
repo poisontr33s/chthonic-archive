@@ -31,6 +31,7 @@ pub mod pipeline;
 pub mod renderer;
 pub mod camera;
 pub mod bathymetry;
+pub mod cosmos;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;
