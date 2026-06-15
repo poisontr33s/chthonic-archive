@@ -23,6 +23,7 @@ rmco-live/
 
 # ── Nested repo copies / goldens (full trees — not tracked recursively) ──
 chthonic-archive/
+!extensions/chthonic-archive/
 chthonic-golden/
 
 # ── Local tool homes / version managers at root (external, huge — not content) ──

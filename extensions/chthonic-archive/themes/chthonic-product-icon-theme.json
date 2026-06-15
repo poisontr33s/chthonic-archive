@@ -124,6 +124,9 @@
     "vm-pending":          { "fontCharacter": "\uE00E", "fontId": "chthonic-product-icons" },
     "vm-running":          { "fontCharacter": "\uE00E", "fontId": "chthonic-product-icons" },
     "vm-small":            { "fontCharacter": "\uE00E", "fontId": "chthonic-product-icons" },
-    "wand":                { "fontCharacter": "\uE023", "fontId": "chthonic-product-icons" }
+    "wand":                { "fontCharacter": "\uE023", "fontId": "chthonic-product-icons" },
+    "workspace-trusted":   { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
+    "workspace-untrusted": { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
+    "workspace-unspecified": { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" }
   }
 }

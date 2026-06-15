@@ -42,8 +42,7 @@
     "_docker":  { "iconPath": "./icons/file-docker.svg" },
     "_font":    { "iconPath": "./icons/file-font.svg" },
     "_binary":  { "iconPath": "./icons/file-binary.svg" },
-    "_audio":   { "iconPath": "./icons/file-audio.svg" },
-    "_file":    { "iconPath": "./icons/file-default.svg" },
+    "_audio":   { "iconPath": "./icons/file-audio.svg" },    "_code_workspace": { "iconPath": "./icons/file-code-workspace.svg" },    "_file":    { "iconPath": "./icons/file-default.svg" },
     "_folder":         { "iconPath": "./icons/folder-default.svg" },
     "_folderX":        { "iconPath": "./icons/folder-open.svg" },
     "_folder_src":     { "iconPath": "./icons/folder-src.svg" },
@@ -226,7 +225,8 @@
     "ogg":   "_audio",
     "flac":  "_audio",
     "aac":   "_audio",
-    "m4a":   "_audio"
+    "m4a":   "_audio",
+    "code-workspace": "_code_workspace"
   },
   "fileNames": {
     ".gitignore":        "_git",
@@ -262,7 +262,8 @@
     "dockerfile":      "_docker",
     ".dockerignore":   "_docker",
     "docker-compose.yml": "_docker",
-    "docker-compose.yaml": "_docker"
+    "docker-compose.yaml": "_docker",
+    "chthonic-archive.code-workspace": "_code_workspace"
   },
   "folderNames": {
     "src":          "_folder_src",
