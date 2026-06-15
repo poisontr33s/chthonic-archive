@@ -1,5 +1,7 @@
 #!/usr/bin/env bun
+
 // @SID: SCRIPT_CHRONO_CLOCK_V1
+
 /**
  * Claudine Chrono-Clock — sleep rhythm logger and CET activity profiler.
  *

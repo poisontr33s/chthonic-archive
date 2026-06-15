@@ -48,12 +48,12 @@
     "search-sparkle":     { "fontCharacter": "\uE009", "fontId": "chthonic-product-icons" },
     "extensions":         { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
     "extensions-large":   { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "folder":             { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "folder-active":      { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "folder-library":     { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "folder-opened":      { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "root-folder":        { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "root-folder-opened": { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
+    "folder":             { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "folder-active":      { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "folder-library":     { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "folder-opened":      { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "root-folder":        { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "root-folder-opened": { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
     "debug":              { "fontCharacter": "\uE00B", "fontId": "chthonic-product-icons" },
     "debug-alt":          { "fontCharacter": "\uE00C", "fontId": "chthonic-product-icons" },
     "debug-alt-small":    { "fontCharacter": "\uE00C", "fontId": "chthonic-product-icons" },
@@ -125,8 +125,8 @@
     "vm-running":          { "fontCharacter": "\uE00E", "fontId": "chthonic-product-icons" },
     "vm-small":            { "fontCharacter": "\uE00E", "fontId": "chthonic-product-icons" },
     "wand":                { "fontCharacter": "\uE023", "fontId": "chthonic-product-icons" },
-    "workspace-trusted":   { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "workspace-untrusted": { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" },
-    "workspace-unspecified": { "fontCharacter": "\uE00A", "fontId": "chthonic-product-icons" }
+    "workspace-trusted":   { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "workspace-untrusted": { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" },
+    "workspace-unspecified": { "fontCharacter": "\uE02D", "fontId": "chthonic-product-icons" }
   }
 }

@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 // @SID: G9_SESSION_TRUNCATION_GATE_SMOKE
 //
 // CI smoke check for G9 — Session Truncation Engine
