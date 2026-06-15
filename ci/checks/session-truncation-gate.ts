@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-// @SID: G9_SESSION_TRUNCATION_GATE_SMOKE
+// @SID: G9_SESSION_TRUNCATION_GATE_SMOKE_V1
 //
 // CI smoke check for G9 — Session Truncation Engine
 // Reads manifest/session_compaction_*.json (written by session-truncator.ts)
