@@ -1,7 +1,8 @@
 // Rung 5 + Rung 4 — shallow-water hero shader (vertex stage).
 //   mode 0 (seabed):  pass-through of the bathymetry vertex.
 //   mode 1 (surface): Gerstner-wave displacement + analytic wave normal (the Rung-4 ocean).
-// The 4th/5th push-constant vec4s carry the solar vector and [time, mode].
+//   mode 2 (celestial): pass-through camera-facing discs generated from topocentric alt/az.
+// The 4th/5th push-constant vec4s carry the solar vector and [time, mode, motion.xy].
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -14,7 +15,7 @@ layout(push_constant) uniform PushConstants {
     mat4 view;
     mat4 projection;
     vec4 sun;      // xyz = direction TO the sun, w = intensity
-    vec4 params;   // x = time (s), y = mode (0 seabed / 1 surface)
+    vec4 params;   // x = time, y = mode, zw = current-to-previous motion vector
 } pc;
 
 layout(location = 0) out vec3 v_world_pos;
@@ -42,7 +43,7 @@ void main() {
     vec3 pos = in_position;
     vec3 nrm = in_normal;
 
-    if (pc.params.y > 0.5) {
+    if (pc.params.y > 0.5 && pc.params.y < 1.5) {
         float t  = pc.params.x;
         vec2  p0 = in_position.xz;
         vec3  P  = in_position;

@@ -26,7 +26,7 @@
 //! - Prepares for isometric grid rendering
 
 use anyhow::{Context, Result};
-use ash::{vk, Device};
+use ash::{Device, vk};
 use log::{debug, info, warn};
 use std::env;
 use std::fs;
@@ -77,7 +77,7 @@ impl ShaderLanguage {
     }
 }
 
-/// Push constants: MVP + sun vector (`layer_color` slot) + params [time, mode] (224 bytes)
+/// Push constants: MVP + sun vector (`layer_color` slot) + params [time, mode, motion.xy] (224 bytes)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct PushConstants {
@@ -225,8 +225,8 @@ impl VulkanPipeline {
 
         // Dynamic viewport and scissor
         let dynamic_states = [vk::DynamicState::VIEWPORT, vk::DynamicState::SCISSOR];
-        let dynamic_state = vk::PipelineDynamicStateCreateInfo::default()
-            .dynamic_states(&dynamic_states);
+        let dynamic_state =
+            vk::PipelineDynamicStateCreateInfo::default().dynamic_states(&dynamic_states);
 
         // Viewport state (dynamic, so count only)
         let viewport_state = vk::PipelineViewportStateCreateInfo::default()
@@ -240,8 +240,8 @@ impl VulkanPipeline {
             .rasterizer_discard_enable(false)
             .polygon_mode(vk::PolygonMode::FILL)
             .line_width(1.0)
-            .cull_mode(vk::CullModeFlags::NONE)  // DISABLED FOR DEBUG
-            .front_face(vk::FrontFace::CLOCKWISE)  // Vulkan Y-flip means CW is front
+            .cull_mode(vk::CullModeFlags::NONE) // DISABLED FOR DEBUG
+            .front_face(vk::FrontFace::CLOCKWISE) // Vulkan Y-flip means CW is front
             .depth_bias_enable(false);
 
         // Multisampling (no MSAA for now)
@@ -249,7 +249,7 @@ impl VulkanPipeline {
             .sample_shading_enable(false)
             .rasterization_samples(vk::SampleCountFlags::TYPE_1);
 
-        // Color blend attachment (alpha blending)
+        // Color blend attachment 0 (scene color, alpha blending).
         let color_blend_attachment = vk::PipelineColorBlendAttachmentState::default()
             .color_write_mask(vk::ColorComponentFlags::RGBA)
             .blend_enable(true)
@@ -260,7 +260,12 @@ impl VulkanPipeline {
             .dst_alpha_blend_factor(vk::BlendFactor::ZERO)
             .alpha_blend_op(vk::BlendOp::ADD);
 
-        let color_blend_attachments = [color_blend_attachment];
+        // Color blend attachment 1 (motion vectors, raw RG16F).
+        let motion_blend_attachment = vk::PipelineColorBlendAttachmentState::default()
+            .color_write_mask(vk::ColorComponentFlags::R | vk::ColorComponentFlags::G)
+            .blend_enable(false);
+
+        let color_blend_attachments = [color_blend_attachment, motion_blend_attachment];
         let color_blend_state = vk::PipelineColorBlendStateCreateInfo::default()
             .logic_op_enable(false)
             .attachments(&color_blend_attachments);
@@ -277,21 +282,27 @@ impl VulkanPipeline {
         let push_constant_range = vk::PushConstantRange::default()
             .stage_flags(vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT)
             .offset(0)
-            .size(u32::try_from(std::mem::size_of::<PushConstants>()).expect("Push constants size too large"));
+            .size(
+                u32::try_from(std::mem::size_of::<PushConstants>())
+                    .expect("Push constants size too large"),
+            );
 
         let push_constant_ranges = [push_constant_range];
-        let pipeline_layout_info = vk::PipelineLayoutCreateInfo::default()
-            .push_constant_ranges(&push_constant_ranges);
+        let pipeline_layout_info =
+            vk::PipelineLayoutCreateInfo::default().push_constant_ranges(&push_constant_ranges);
 
         let pipeline_layout = device
             .create_pipeline_layout(&pipeline_layout_info, None)
             .context("Failed to create pipeline layout")?;
 
-        info!("✅ Pipeline layout created (208 bytes push constants)");
+        info!(
+            "✅ Pipeline layout created ({} bytes push constants)",
+            std::mem::size_of::<PushConstants>()
+        );
 
         // === DYNAMIC RENDERING (Vulkan 1.3) ===
         // No VkRenderPass! Use VkPipelineRenderingCreateInfo instead
-        let color_formats = [color_format];
+        let color_formats = [color_format, vk::Format::R16G16_SFLOAT];
         let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
             .color_attachment_formats(&color_formats)
             .depth_attachment_format(vk::Format::D32_SFLOAT);
@@ -371,10 +382,18 @@ impl VulkanPipeline {
             ShaderLanguage::Hlsl => {
                 let vert_path = Self::shader_artifact_path("iso_grid.vert.hlsl.spv");
                 let frag_path = Self::shader_artifact_path("iso_grid.frag.hlsl.spv");
-                let vertex = fs::read(&vert_path)
-                    .with_context(|| format!("Failed to read HLSL vertex artifact {}", vert_path.display()))?;
-                let fragment = fs::read(&frag_path)
-                    .with_context(|| format!("Failed to read HLSL fragment artifact {}", frag_path.display()))?;
+                let vertex = fs::read(&vert_path).with_context(|| {
+                    format!(
+                        "Failed to read HLSL vertex artifact {}",
+                        vert_path.display()
+                    )
+                })?;
+                let fragment = fs::read(&frag_path).with_context(|| {
+                    format!(
+                        "Failed to read HLSL fragment artifact {}",
+                        frag_path.display()
+                    )
+                })?;
                 Ok((vertex, fragment))
             }
         }
@@ -557,7 +576,10 @@ impl VulkanPipeline {
     /// Create a shader module from SPIR-V bytecode
     unsafe fn create_shader_module(device: &Device, code: &[u8]) -> Result<vk::ShaderModule> {
         // SPIR-V code must be aligned to 4 bytes
-        assert!(code.len().is_multiple_of(4), "SPIR-V code must be 4-byte aligned");
+        assert!(
+            code.len().is_multiple_of(4),
+            "SPIR-V code must be 4-byte aligned"
+        );
 
         let code_u32: Vec<u32> = code
             .chunks_exact(4)

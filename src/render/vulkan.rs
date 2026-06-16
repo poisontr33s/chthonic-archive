@@ -382,7 +382,8 @@ impl VulkanContext {
 
         // Base features
         let features = vk::PhysicalDeviceFeatures::default()
-            .sampler_anisotropy(true);
+            .sampler_anisotropy(true)
+            .independent_blend(true);
 
         let mut features2 = vk::PhysicalDeviceFeatures2::default()
             .features(features)

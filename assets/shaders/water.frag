@@ -3,6 +3,7 @@
 //                     Gerstner wave normal, translucent so it blends over the seabed.
 //   mode 0 (seabed):  the Volumetric Optical Pipeline — depth reconstruction + per-channel
 //                     Beer–Lambert (turquoise from white sand) + in-scatter (deep → navy).
+//   mode 2 (celestial): unlit Sun/Moon/planet discs in the real topocentric sky.
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -15,10 +16,11 @@ layout(push_constant) uniform PushConstants {
     mat4 view;
     mat4 projection;
     vec4 sun;      // xyz = direction TO the sun, w = intensity
-    vec4 params;   // x = time, y = mode
+    vec4 params;   // x = time, y = mode, zw = current-to-previous motion vector
 } pc;
 
 layout(location = 0) out vec4 out_color;
+layout(location = 1) out vec2 out_motion;
 
 const float Y_SCALE = 0.0004;                   // must match bathymetry.rs
 const vec3  SIGMA   = vec3(0.16, 0.035, 0.016); // per-metre extinction R,G,B (clear tropical water)
@@ -26,11 +28,19 @@ const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
 const vec3  WATER   = vec3(0.015, 0.10, 0.17);  // deep-water in-scatter colour
 
 void main() {
+    out_motion = pc.params.zw;
+
     vec3  N = normalize(v_normal);
     vec3  L = normalize(pc.sun.xyz);
     float I = pc.sun.w;
     vec3  V = normalize(vec3(1.0, 1.0, 1.0)); // iso camera approx (toward viewer)
     vec3  H = normalize(L + V);
+
+    // === Rung 6.2: celestial field ===
+    if (pc.params.y > 1.5) {
+        out_color = vec4(v_floor_albedo, 1.0);
+        return;
+    }
 
     // === Rung 4: ocean surface ===
     if (pc.params.y > 0.5) {

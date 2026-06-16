@@ -23,19 +23,27 @@
 //! This module:
 
 //! - Orchestrates swapchain, pipeline, and command buffer management
-//! - Implements `render_frame` using `cmd_begin_rendering/cmd_end_rendering` (Vulkan 1.3)
+//! - Implements `render_frame` using `cmd_begin_rendering/cmd_end_rendering` (Vulkan 1.4+)
 //! - Manages vertex buffers and memory
 //! - Integrates isometric camera system
+//! - Compounds the verified celestial field onto the current scene; the §2.7
+//!   perspective/celestial lens set remains a parked trajectory until it becomes a
+//!   real view abstraction, not a scheduler or mode loop.
 
 use anyhow::{Context, Result};
-use ash::{vk, Device};
+use ash::{Device, vk};
 use glam::{Mat4, Vec3};
 use log::{debug, info};
 
 use super::camera::IsometricCamera;
-use super::swapchain::VulkanSwapchain;
 use super::pipeline::{PushConstants, Vertex, VulkanPipeline, triangle_vertices};
+use super::swapchain::VulkanSwapchain;
+use super::temporal::TemporalState;
 use super::vulkan::VulkanContext;
+
+const CELESTIAL_DISC_SEGMENTS: usize = 18;
+const SKY_RADIUS: f32 = 4.15;
+const SKY_HORIZON_LIFT: f32 = 0.35;
 
 /// Main renderer state
 pub struct Renderer {
@@ -49,15 +57,22 @@ pub struct Renderer {
     pub ocean_vertex_buffer: vk::Buffer,
     pub ocean_vertex_memory: vk::DeviceMemory,
     pub ocean_vertex_count: u32,
+    pub celestial_vertex_buffer: vk::Buffer,
+    pub celestial_vertex_memory: vk::DeviceMemory,
+    pub celestial_vertex_count: u32,
     pub ocean_compute: super::ocean_compute::OceanCompute,
     pub depth_image: vk::Image,
     pub depth_memory: vk::DeviceMemory,
     pub depth_view: vk::ImageView,
+    pub motion_vector_image: vk::Image,
+    pub motion_vector_memory: vk::DeviceMemory,
+    pub motion_vector_view: vk::ImageView,
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub shot_taken: bool,
     pub needs_resize: bool,
     pub camera: IsometricCamera,
+    pub temporal: TemporalState,
 }
 
 impl Renderer {
@@ -93,7 +108,8 @@ impl Renderer {
             .queue_family_index(ctx.queue_family_index)
             .flags(vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER);
 
-        let command_pool = ctx.device
+        let command_pool = ctx
+            .device
             .create_command_pool(&pool_info, None)
             .context("Failed to create command pool")?;
 
@@ -103,7 +119,8 @@ impl Renderer {
             .level(vk::CommandBufferLevel::PRIMARY)
             .command_buffer_count(u32::try_from(swapchain.frames_in_flight).unwrap());
 
-        let command_buffers = ctx.device
+        let command_buffers = ctx
+            .device
             .allocate_command_buffers(&alloc_info)
             .context("Failed to allocate command buffers")?;
 
@@ -114,7 +131,12 @@ impl Renderer {
         let vertices = match super::bathymetry::Bathymetry::load(super::bathymetry::DEFAULT_PATH) {
             Ok(b) => {
                 let mesh = b.mesh();
-                info!("🌊 Bathymetry loaded: {0}x{1} → {2} vertices", b.w, b.h, mesh.len());
+                info!(
+                    "🌊 Bathymetry loaded: {0}x{1} → {2} vertices",
+                    b.w,
+                    b.h,
+                    mesh.len()
+                );
                 mesh
             }
             Err(e) => {
@@ -122,8 +144,7 @@ impl Renderer {
                 triangle_vertices()
             }
         };
-        let (vertex_buffer, vertex_buffer_memory) =
-            Self::create_vertex_buffer(ctx, &vertices)?;
+        let (vertex_buffer, vertex_buffer_memory) = Self::create_vertex_buffer(ctx, &vertices)?;
 
         // Rung 4: the ocean surface grid (Gerstner-displaced in water.vert, surface mode).
         let ocean_vertices = super::ocean::surface_grid(128);
@@ -142,13 +163,26 @@ impl Renderer {
         let mut camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
         camera.update_matrices(aspect_ratio);
 
+        // Rung 6.2: the verified celestial field made visible in the scene sky.
+        // §2.7 preservation marker: future perspective/upward sky views compound
+        // here as another view abstraction. They are intentionally not compiled as
+        // inactive camera modes or a deterministic loop.
+        let celestial_vertices =
+            Self::celestial_field_vertices(&camera, super::cosmos::scene_julian_day());
+        let (celestial_vertex_buffer, celestial_vertex_memory) =
+            Self::create_vertex_buffer(ctx, &celestial_vertices)?;
+        let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
+        info!("🌌 Celestial field mesh: {celestial_vertex_count} vertices");
+
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 RENDERER READY - Dynamic Rendering Pipeline Active!");
-        info!("🎥 Isometric Camera: Engaged (Y:45° X:35.264°)");
         info!("═══════════════════════════════════════════════════════════════");
 
         let (depth_image, depth_memory, depth_view) =
             Self::create_depth_resources(ctx, swapchain.extent)?;
+        let (motion_vector_image, motion_vector_memory, motion_vector_view) =
+            Self::create_motion_vector_resources(ctx, swapchain.extent)?;
+        let temporal = TemporalState::new(camera.view_projection());
 
         Ok(Self {
             swapchain,
@@ -161,15 +195,22 @@ impl Renderer {
             ocean_vertex_buffer,
             ocean_vertex_memory,
             ocean_vertex_count,
+            celestial_vertex_buffer,
+            celestial_vertex_memory,
+            celestial_vertex_count,
             ocean_compute,
             depth_image,
             depth_memory,
             depth_view,
+            motion_vector_image,
+            motion_vector_memory,
+            motion_vector_view,
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             shot_taken: false,
             needs_resize: false,
             camera,
+            temporal,
         })
     }
 
@@ -186,7 +227,8 @@ impl Renderer {
             .usage(vk::BufferUsageFlags::VERTEX_BUFFER)
             .sharing_mode(vk::SharingMode::EXCLUSIVE);
 
-        let buffer = ctx.device
+        let buffer = ctx
+            .device
             .create_buffer(&buffer_info, None)
             .context("Failed to create vertex buffer")?;
 
@@ -205,7 +247,8 @@ impl Renderer {
             .allocation_size(mem_requirements.size)
             .memory_type_index(memory_type_index);
 
-        let memory = ctx.device
+        let memory = ctx
+            .device
             .allocate_memory(&alloc_info, None)
             .context("Failed to allocate vertex buffer memory")?;
 
@@ -213,8 +256,9 @@ impl Renderer {
         ctx.device.bind_buffer_memory(buffer, memory, 0)?;
 
         // Map memory and copy vertex data
-        let data_ptr = ctx.device
-            .map_memory(memory, 0, buffer_size, vk::MemoryMapFlags::empty())?;
+        let data_ptr =
+            ctx.device
+                .map_memory(memory, 0, buffer_size, vk::MemoryMapFlags::empty())?;
 
         std::ptr::copy_nonoverlapping(
             vertices.as_ptr().cast::<u8>(),
@@ -224,10 +268,167 @@ impl Renderer {
 
         ctx.device.unmap_memory(memory);
 
-        info!("✅ Vertex buffer created: {0} bytes, {1} vertices",
-              buffer_size, vertices.len());
+        info!(
+            "✅ Vertex buffer created: {0} bytes, {1} vertices",
+            buffer_size,
+            vertices.len()
+        );
 
         Ok((buffer, memory))
+    }
+
+    fn celestial_field_vertices(camera: &IsometricCamera, jd: f64) -> Vec<Vertex> {
+        let lat = super::cosmos::NEW_PROVIDENCE_LAT_DEG;
+        let lon = super::cosmos::NEW_PROVIDENCE_LON_DEG;
+
+        let forward = (camera.target - camera.position).normalize();
+        let axis_up = if forward.dot(Vec3::Y).abs() > 0.95 {
+            Vec3::Z
+        } else {
+            Vec3::Y
+        };
+        let right = forward.cross(axis_up).normalize();
+        let up = right.cross(forward).normalize();
+
+        let mut vertices = Vec::with_capacity(
+            (2 + super::cosmos::Planet::ALL.len()) * CELESTIAL_DISC_SEGMENTS * 3,
+        );
+        let mut visible = 0_u32;
+
+        let sun = super::cosmos::sun_push_constant(lat, lon, jd);
+        if Self::push_body_disc(
+            &mut vertices,
+            Vec3::new(sun[0], sun[1], sun[2]),
+            sun[3],
+            0.20,
+            [1.00, 0.78, 0.36],
+            right,
+            up,
+        ) {
+            visible += 1;
+        }
+
+        let moon = super::cosmos::moon_push_constant(lat, lon, jd);
+        let phase = super::cosmos::moon_phase(jd) as f32;
+        let moon_color = [
+            0.42 + phase * 0.38,
+            0.46 + phase * 0.34,
+            0.52 + phase * 0.36,
+        ];
+        if Self::push_body_disc(
+            &mut vertices,
+            Vec3::new(moon[0], moon[1], moon[2]),
+            moon[3],
+            0.16,
+            moon_color,
+            right,
+            up,
+        ) {
+            visible += 1;
+        }
+
+        for planet in super::cosmos::Planet::ALL {
+            let (alt, az) = super::cosmos::planet_position(planet, lat, lon, jd);
+            let dir = super::cosmos::altaz_to_world_direction(alt, az);
+            let (color, radius) = Self::planet_style(planet);
+            if Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(dir[0], dir[1], dir[2]),
+                alt.to_radians().sin().max(0.0) as f32,
+                radius,
+                color,
+                right,
+                up,
+            ) {
+                visible += 1;
+            }
+        }
+
+        info!("🌌 Celestial field: {visible}/7 bodies above the airless horizon");
+        vertices
+    }
+
+    fn planet_style(planet: super::cosmos::Planet) -> ([f32; 3], f32) {
+        match planet {
+            super::cosmos::Planet::Mercury => ([0.70, 0.72, 0.68], 0.045),
+            super::cosmos::Planet::Venus => ([1.00, 0.92, 0.70], 0.070),
+            super::cosmos::Planet::Mars => ([0.95, 0.42, 0.28], 0.055),
+            super::cosmos::Planet::Jupiter => ([0.95, 0.78, 0.54], 0.075),
+            super::cosmos::Planet::Saturn => ([0.84, 0.75, 0.50], 0.065),
+        }
+    }
+
+    fn push_body_disc(
+        vertices: &mut Vec<Vertex>,
+        dir: Vec3,
+        horizon_intensity: f32,
+        radius: f32,
+        color: [f32; 3],
+        right: Vec3,
+        up: Vec3,
+    ) -> bool {
+        if horizon_intensity <= 0.0 {
+            return false;
+        }
+
+        let fade = (horizon_intensity / 0.17).clamp(0.0, 1.0).sqrt();
+        let color = [
+            color[0] * (0.35 + 0.65 * fade),
+            color[1] * (0.35 + 0.65 * fade),
+            color[2] * (0.35 + 0.65 * fade),
+        ];
+        let center = dir.normalize_or_zero() * SKY_RADIUS + Vec3::Y * SKY_HORIZON_LIFT;
+        let normal = [0.0, 1.0, 0.0];
+
+        for i in 0..CELESTIAL_DISC_SEGMENTS {
+            let a0 = i as f32 / CELESTIAL_DISC_SEGMENTS as f32 * std::f32::consts::TAU;
+            let a1 = (i + 1) as f32 / CELESTIAL_DISC_SEGMENTS as f32 * std::f32::consts::TAU;
+            let p0 = center + (right * a0.cos() + up * a0.sin()) * radius;
+            let p1 = center + (right * a1.cos() + up * a1.sin()) * radius;
+            vertices.push(Vertex {
+                position: center.to_array(),
+                normal,
+                color,
+            });
+            vertices.push(Vertex {
+                position: p0.to_array(),
+                normal,
+                color,
+            });
+            vertices.push(Vertex {
+                position: p1.to_array(),
+                normal,
+                color,
+            });
+        }
+
+        true
+    }
+
+    fn draw_mode(
+        device: &Device,
+        cmd: vk::CommandBuffer,
+        layout: vk::PipelineLayout,
+        push_constants: &mut PushConstants,
+        mode: f32,
+        vertex_buffer: vk::Buffer,
+        vertex_count: u32,
+    ) {
+        push_constants.params[1] = mode;
+        unsafe {
+            device.cmd_push_constants(
+                cmd,
+                layout,
+                vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT,
+                0,
+                std::slice::from_raw_parts(
+                    (&raw const *push_constants).cast::<u8>(),
+                    std::mem::size_of::<PushConstants>(),
+                ),
+            );
+            device.cmd_bind_vertex_buffers(cmd, 0, &[vertex_buffer], &[0]);
+            device.cmd_draw(cmd, vertex_count, 1, 0, 0);
+        }
     }
 
     /// Find a suitable memory type
@@ -236,7 +437,8 @@ impl Renderer {
         type_filter: u32,
         properties: vk::MemoryPropertyFlags,
     ) -> Result<u32> {
-        let mem_properties = ctx.instance
+        let mem_properties = ctx
+            .instance
             .get_physical_device_memory_properties(ctx.physical_device);
 
         for i in 0..mem_properties.memory_type_count {
@@ -261,7 +463,11 @@ impl Renderer {
         let image_info = vk::ImageCreateInfo::default()
             .image_type(vk::ImageType::TYPE_2D)
             .format(format)
-            .extent(vk::Extent3D { width: extent.width, height: extent.height, depth: 1 })
+            .extent(vk::Extent3D {
+                width: extent.width,
+                height: extent.height,
+                depth: 1,
+            })
             .mip_levels(1)
             .array_layers(1)
             .samples(vk::SampleCountFlags::TYPE_1)
@@ -269,7 +475,10 @@ impl Renderer {
             .usage(vk::ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
             .sharing_mode(vk::SharingMode::EXCLUSIVE)
             .initial_layout(vk::ImageLayout::UNDEFINED);
-        let image = ctx.device.create_image(&image_info, None).context("create depth image")?;
+        let image = ctx
+            .device
+            .create_image(&image_info, None)
+            .context("create depth image")?;
 
         let mem_req = ctx.device.get_image_memory_requirements(image);
         let mem_type = Self::find_memory_type(
@@ -280,7 +489,10 @@ impl Renderer {
         let alloc_info = vk::MemoryAllocateInfo::default()
             .allocation_size(mem_req.size)
             .memory_type_index(mem_type);
-        let memory = ctx.device.allocate_memory(&alloc_info, None).context("alloc depth memory")?;
+        let memory = ctx
+            .device
+            .allocate_memory(&alloc_info, None)
+            .context("alloc depth memory")?;
         ctx.device.bind_image_memory(image, memory, 0)?;
 
         let view_info = vk::ImageViewCreateInfo::default()
@@ -294,7 +506,70 @@ impl Renderer {
                 base_array_layer: 0,
                 layer_count: 1,
             });
-        let view = ctx.device.create_image_view(&view_info, None).context("create depth view")?;
+        let view = ctx
+            .device
+            .create_image_view(&view_info, None)
+            .context("create depth view")?;
+        Ok((image, memory, view))
+    }
+
+    /// Create the RG16F motion-vector target. Rung 2.4 starts with the shared
+    /// jitter-induced vector; object and water vectors can compound into this target.
+    unsafe fn create_motion_vector_resources(
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+    ) -> Result<(vk::Image, vk::DeviceMemory, vk::ImageView)> {
+        let format = vk::Format::R16G16_SFLOAT;
+        let image_info = vk::ImageCreateInfo::default()
+            .image_type(vk::ImageType::TYPE_2D)
+            .format(format)
+            .extent(vk::Extent3D {
+                width: extent.width,
+                height: extent.height,
+                depth: 1,
+            })
+            .mip_levels(1)
+            .array_layers(1)
+            .samples(vk::SampleCountFlags::TYPE_1)
+            .tiling(vk::ImageTiling::OPTIMAL)
+            .usage(vk::ImageUsageFlags::COLOR_ATTACHMENT | vk::ImageUsageFlags::SAMPLED)
+            .sharing_mode(vk::SharingMode::EXCLUSIVE)
+            .initial_layout(vk::ImageLayout::UNDEFINED);
+        let image = ctx
+            .device
+            .create_image(&image_info, None)
+            .context("create motion-vector image")?;
+
+        let mem_req = ctx.device.get_image_memory_requirements(image);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            mem_req.memory_type_bits,
+            vk::MemoryPropertyFlags::DEVICE_LOCAL,
+        )?;
+        let alloc_info = vk::MemoryAllocateInfo::default()
+            .allocation_size(mem_req.size)
+            .memory_type_index(mem_type);
+        let memory = ctx
+            .device
+            .allocate_memory(&alloc_info, None)
+            .context("alloc motion-vector memory")?;
+        ctx.device.bind_image_memory(image, memory, 0)?;
+
+        let view_info = vk::ImageViewCreateInfo::default()
+            .image(image)
+            .view_type(vk::ImageViewType::TYPE_2D)
+            .format(format)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+        let view = ctx
+            .device
+            .create_image_view(&view_info, None)
+            .context("create motion-vector view")?;
         Ok((image, memory, view))
     }
 
@@ -375,7 +650,11 @@ impl Renderer {
                     .aspect_mask(vk::ImageAspectFlags::COLOR)
                     .layer_count(1),
             )
-            .image_extent(vk::Extent3D { width: w, height: h, depth: 1 });
+            .image_extent(vk::Extent3D {
+                width: w,
+                height: h,
+                depth: 1,
+            });
         device.cmd_copy_image_to_buffer(
             cmd,
             src_image,
@@ -406,7 +685,9 @@ impl Renderer {
         device.wait_for_fences(&[fence], true, u64::MAX)?;
 
         // Read back. Swap channel order for BGRA swapchains; write PNG.
-        let ptr = device.map_memory(memory, 0, size, vk::MemoryMapFlags::empty())?.cast::<u8>();
+        let ptr = device
+            .map_memory(memory, 0, size, vk::MemoryMapFlags::empty())?
+            .cast::<u8>();
         let mut pixels = std::slice::from_raw_parts(ptr, usize::try_from(size).unwrap()).to_vec();
         device.unmap_memory(memory);
 
@@ -427,7 +708,8 @@ impl Renderer {
 
         let img = image::RgbaImage::from_raw(w, h, pixels)
             .ok_or_else(|| anyhow::anyhow!("buffer size mismatch for {w}x{h}"))?;
-        img.save(path).map_err(|e| anyhow::anyhow!("png save {path}: {e}"))?;
+        img.save(path)
+            .map_err(|e| anyhow::anyhow!("png save {path}: {e}"))?;
         info!("📸 screenshot → {path} ({w}x{h}, bgra={is_bgra})");
         Ok(())
     }
@@ -437,7 +719,11 @@ impl Renderer {
     /// # Safety
     /// Requires valid Vulkan handles and properly synchronized operations
     #[allow(clippy::too_many_lines)]
-    pub unsafe fn render_frame(&mut self, ctx: &VulkanContext, layer_color: [f32; 4]) -> Result<bool> {
+    pub unsafe fn render_frame(
+        &mut self,
+        ctx: &VulkanContext,
+        layer_color: [f32; 4],
+    ) -> Result<bool> {
         // Acquire next swapchain image
         let (image_index, needs_resize) = self.swapchain.acquire_next_image(&ctx.device)?;
 
@@ -455,7 +741,8 @@ impl Renderer {
         let cmd = self.command_buffers[self.swapchain.current_frame];
 
         // Reset and begin command buffer
-        ctx.device.reset_command_buffer(cmd, vk::CommandBufferResetFlags::empty())?;
+        ctx.device
+            .reset_command_buffer(cmd, vk::CommandBufferResetFlags::empty())?;
 
         let begin_info = vk::CommandBufferBeginInfo::default()
             .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT);
@@ -501,11 +788,32 @@ impl Renderer {
                 layer_count: 1,
             });
 
-        let barriers_to_render = [image_barrier_to_render, depth_barrier_to_render];
-        let dependency_info_to_render = vk::DependencyInfo::default()
-            .image_memory_barriers(&barriers_to_render);
+        let motion_barrier_to_render = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+            .src_access_mask(vk::AccessFlags2::empty())
+            .dst_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+            .dst_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+            .old_layout(vk::ImageLayout::UNDEFINED)
+            .new_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+            .image(self.motion_vector_image)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
 
-        ctx.device.cmd_pipeline_barrier2(cmd, &dependency_info_to_render);
+        let barriers_to_render = [
+            image_barrier_to_render,
+            depth_barrier_to_render,
+            motion_barrier_to_render,
+        ];
+        let dependency_info_to_render =
+            vk::DependencyInfo::default().image_memory_barriers(&barriers_to_render);
+
+        ctx.device
+            .cmd_pipeline_barrier2(cmd, &dependency_info_to_render);
 
         // === BEGIN DYNAMIC RENDERING ===
         let clear_value = vk::ClearValue {
@@ -521,10 +829,25 @@ impl Renderer {
             .store_op(vk::AttachmentStoreOp::STORE)
             .clear_value(clear_value);
 
-        let color_attachments = [color_attachment];
+        let motion_clear = vk::ClearValue {
+            color: vk::ClearColorValue {
+                float32: [0.0, 0.0, 0.0, 0.0],
+            },
+        };
+        let motion_attachment = vk::RenderingAttachmentInfo::default()
+            .image_view(self.motion_vector_view)
+            .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+            .load_op(vk::AttachmentLoadOp::CLEAR)
+            .store_op(vk::AttachmentStoreOp::STORE)
+            .clear_value(motion_clear);
+
+        let color_attachments = [color_attachment, motion_attachment];
 
         let depth_clear = vk::ClearValue {
-            depth_stencil: vk::ClearDepthStencilValue { depth: 1.0, stencil: 0 },
+            depth_stencil: vk::ClearDepthStencilValue {
+                depth: 1.0,
+                stencil: 0,
+            },
         };
         let depth_attachment = vk::RenderingAttachmentInfo::default()
             .image_view(self.depth_view)
@@ -563,49 +886,62 @@ impl Renderer {
         ctx.device.cmd_set_scissor(cmd, 0, &[scissor]);
 
         // Bind pipeline
-        ctx.device.cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
+        ctx.device
+            .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
 
-        // Push constants: camera + sun, plus params [time, mode]. Two passes share one
-        // pipeline: the seabed (mode 0) then the Gerstner ocean surface (mode 1) over it.
+        // Push constants: camera + sun, plus params [time, mode, motion.xy]. Three
+        // passes share one pipeline: seabed (mode 0), Gerstner ocean (mode 1),
+        // celestial field (mode 2). This is the current compounding boundary: add
+        // real layers here; do not replace the camera path with speculative view cycling.
         let time = self.frame_index as f32 * 0.02;
+        let temporal_frame = self.temporal.begin_frame(
+            self.swapchain.extent,
+            self.camera.view_matrix(),
+            self.camera.projection_matrix(),
+        );
         let mut push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
             view: self.camera.view_as_array(),
-            projection: self.camera.projection_as_array(),
+            projection: temporal_frame.projection.to_cols_array_2d(),
             layer_color,
-            params: [time, 0.0, 0.0, 0.0],
+            params: [
+                time,
+                0.0,
+                temporal_frame.motion_vector_ndc.x,
+                temporal_frame.motion_vector_ndc.y,
+            ],
         };
-        let layout = self.pipeline.pipeline_layout;
-        let stages = vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT;
-
-        // --- seabed pass (mode 0) ---
-        ctx.device.cmd_push_constants(
+        Self::draw_mode(
+            &ctx.device,
             cmd,
-            layout,
-            stages,
-            0,
-            std::slice::from_raw_parts(
-                (&raw const push_constants).cast::<u8>(),
-                std::mem::size_of::<PushConstants>(),
-            ),
+            self.pipeline.pipeline_layout,
+            &mut push_constants,
+            0.0,
+            self.vertex_buffer,
+            self.vertex_count,
         );
-        ctx.device.cmd_bind_vertex_buffers(cmd, 0, &[self.vertex_buffer], &[0]);
-        ctx.device.cmd_draw(cmd, self.vertex_count, 1, 0, 0);
-
-        // --- ocean surface pass (mode 1, Gerstner-displaced in the vertex shader) ---
-        push_constants.params[1] = 1.0;
-        ctx.device.cmd_push_constants(
+        Self::draw_mode(
+            &ctx.device,
             cmd,
-            layout,
-            stages,
-            0,
-            std::slice::from_raw_parts(
-                (&raw const push_constants).cast::<u8>(),
-                std::mem::size_of::<PushConstants>(),
-            ),
+            self.pipeline.pipeline_layout,
+            &mut push_constants,
+            1.0,
+            self.ocean_vertex_buffer,
+            self.ocean_vertex_count,
         );
-        ctx.device.cmd_bind_vertex_buffers(cmd, 0, &[self.ocean_vertex_buffer], &[0]);
-        ctx.device.cmd_draw(cmd, self.ocean_vertex_count, 1, 0, 0);
+
+        // --- celestial field pass (mode 2, topocentric Sun/Moon/planets) ---
+        if self.celestial_vertex_count > 0 {
+            Self::draw_mode(
+                &ctx.device,
+                cmd,
+                self.pipeline.pipeline_layout,
+                &mut push_constants,
+                2.0,
+                self.celestial_vertex_buffer,
+                self.celestial_vertex_count,
+            );
+        }
 
         // === END DYNAMIC RENDERING ===
         ctx.device.cmd_end_rendering(cmd);
@@ -628,10 +964,11 @@ impl Renderer {
             });
 
         let barriers_to_present = [image_barrier_to_present];
-        let dependency_info_to_present = vk::DependencyInfo::default()
-            .image_memory_barriers(&barriers_to_present);
+        let dependency_info_to_present =
+            vk::DependencyInfo::default().image_memory_barriers(&barriers_to_present);
 
-        ctx.device.cmd_pipeline_barrier2(cmd, &dependency_info_to_present);
+        ctx.device
+            .cmd_pipeline_barrier2(cmd, &dependency_info_to_present);
 
         // End command buffer
         ctx.device.end_command_buffer(cmd)?;
@@ -648,18 +985,13 @@ impl Renderer {
             .command_buffers(&command_buffers_submit)
             .signal_semaphores(&signal_semaphores);
 
-        ctx.device.queue_submit(ctx.graphics_queue, &[submit_info], in_flight)?;
+        ctx.device
+            .queue_submit(ctx.graphics_queue, &[submit_info], in_flight)?;
 
-        // === PRESENT ===
-        let needs_resize = self.swapchain.present(ctx.graphics_queue, image_index)?;
-        if needs_resize {
-            self.needs_resize = true;
-        }
-
-        // One-shot framebuffer capture (agent self-verify). Frame ≥5 lets the
-        // scene settle before we read the pixels back to PNG.
-        self.frame_index += 1;
-        if !self.shot_taken && self.frame_index >= 5 {
+        // One-shot framebuffer capture (agent self-verify). Capture before present while the
+        // swapchain image is still acquired; after present it belongs back to the swapchain.
+        let next_frame_index = self.frame_index + 1;
+        if !self.shot_taken && next_frame_index >= 5 {
             if let Some(path) = self.screenshot.clone() {
                 if let Err(e) = self.capture_screenshot(ctx, image_index, &path) {
                     log::warn!("📸 screenshot failed: {e:#}");
@@ -668,11 +1000,24 @@ impl Renderer {
             }
         }
 
+        // === PRESENT ===
+        let needs_resize = self.swapchain.present(ctx.graphics_queue, image_index)?;
+        if needs_resize {
+            self.needs_resize = true;
+        }
+
+        // Frame count advances after all work for this acquired image has been queued.
+        self.frame_index += 1;
+
         Ok(needs_resize)
     }
 
     /// Handle window resize
-    pub unsafe fn handle_resize(&mut self, ctx: &VulkanContext, new_size: (u32, u32)) -> Result<()> {
+    pub unsafe fn handle_resize(
+        &mut self,
+        ctx: &VulkanContext,
+        new_size: (u32, u32),
+    ) -> Result<()> {
         info!("🔄 Handling resize to {0}x{1}", new_size.0, new_size.1);
 
         ctx.device.device_wait_idle()?;
@@ -691,11 +1036,19 @@ impl Renderer {
         ctx.device.destroy_image_view(self.depth_view, None);
         ctx.device.destroy_image(self.depth_image, None);
         ctx.device.free_memory(self.depth_memory, None);
+        ctx.device.destroy_image_view(self.motion_vector_view, None);
+        ctx.device.destroy_image(self.motion_vector_image, None);
+        ctx.device.free_memory(self.motion_vector_memory, None);
         let (depth_image, depth_memory, depth_view) =
             Self::create_depth_resources(ctx, self.swapchain.extent)?;
         self.depth_image = depth_image;
         self.depth_memory = depth_memory;
         self.depth_view = depth_view;
+        let (motion_vector_image, motion_vector_memory, motion_vector_view) =
+            Self::create_motion_vector_resources(ctx, self.swapchain.extent)?;
+        self.motion_vector_image = motion_vector_image;
+        self.motion_vector_memory = motion_vector_memory;
+        self.motion_vector_view = motion_vector_view;
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]
@@ -718,6 +1071,8 @@ impl Renderer {
         device.free_memory(self.vertex_buffer_memory, None);
         device.destroy_buffer(self.ocean_vertex_buffer, None);
         device.free_memory(self.ocean_vertex_memory, None);
+        device.destroy_buffer(self.celestial_vertex_buffer, None);
+        device.free_memory(self.celestial_vertex_memory, None);
 
         // Ocean compute subsystem (pipeline, descriptors, storage image)
         self.ocean_compute.cleanup(device);
@@ -726,6 +1081,9 @@ impl Renderer {
         device.destroy_image_view(self.depth_view, None);
         device.destroy_image(self.depth_image, None);
         device.free_memory(self.depth_memory, None);
+        device.destroy_image_view(self.motion_vector_view, None);
+        device.destroy_image(self.motion_vector_image, None);
+        device.free_memory(self.motion_vector_memory, None);
 
         // Command pool (implicitly frees command buffers)
         device.destroy_command_pool(self.command_pool, None);
