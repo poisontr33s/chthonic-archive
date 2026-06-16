@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 // @SID: CI_RUNNER_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
@@ -118,11 +119,12 @@ const CHECKS: Check[] = [
     script: "ci/checks/sid-envelope.ts",
     scope: "staged",
     speed: "fast",
-    description: "@SID presence in new scripts/*.ts and ci/**/*.ts (Added only)",
-    no_auto_fix: {
-      reason: "semantic",
-      explanation: "@SID values are semantic identities — each file's SID must be hand-chosen to encode its DOMAIN_NAME_V<n> shape (per ALL_CAPS regex at ci/checks/sid-envelope.ts:57). scripts/lib/stamp_sid.py exists but is PS1-only and stamps a SCRIPT_<UPPER>_V1 placeholder pattern — not appropriate for .py/.ts where SIDs encode meaningful domain classification (TOOL_*, CI_CHECK_*, LIB_*, etc.).",
-      manual_remediation: "For each missing-SID file: add `# @SID: <DOMAIN_NAME>_V1` on line 2 (.py/.sh/.ps1) or `// @SID: <DOMAIN_NAME>_V1` (.ts). For malformed SIDs: rename to match the ALL_CAPS_DOMAIN_V<n> regex AND update any cross-references via `chthonic resolve --list` to find downstream consumers.",
+    description: "@SID identity on staged scripts/ci .ts/.py (Added/Copied/Modified) — ALL_CAPS DOMAIN_NAME_V<n> shape",
+    auto_fix: {
+      command: "bun",
+      args: ["run", "scripts/stamp_sid.ts", "--staged"],
+      safe_class: "narrow",
+      description: "Stamp a path-derived ALL_CAPS DOMAIN_NAME_V1 @SID into staged scripts/ci .ts/.py files that are missing or malformed (CI_CHECK_* / CI_* / LIB_* / SCRIPT_* by directory; filename → UPPER_SNAKE). Each derived SID is self-verified against the gate's own shape regex before write. Does NOT auto-stage — conductor reviews the derived domain prefix, refines if a more precise domain fits, then re-stages. Supersedes the PS1-only scripts/lib/stamp_sid.py, which couldn't handle .ts/.py.",
     },
   },
   {
