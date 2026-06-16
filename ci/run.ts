@@ -93,11 +93,12 @@ const CHECKS: Check[] = [
     script: "scripts/shebang-guard.ts",
     scope: "staged",
     speed: "fast",
-    description: "Displaced shebangs in .ts files (bun SyntaxError guard)",
-    no_auto_fix: {
-      reason: "no_tool",
-      explanation: "No dedicated .ts shebang-relocator exists. scripts/fix_headers.py handles .py files only.",
-      manual_remediation: "Open the offending .ts file and move `#!/usr/bin/env bun` to line 1 (or remove if not an entry-point script).",
+    description: "Displaced shebangs in .ts/.sh/.rb files (bun SyntaxError guard)",
+    auto_fix: {
+      command: "bun",
+      args: ["run", "scripts/fix_envelope.ts", "--shebang", "--staged"],
+      safe_class: "narrow",
+      description: "Relocate a displaced shebang (line 2 → line 1) in staged .ts/.sh/.rb files via fix_envelope.ts. (.py shebang+encoding stays owned by the python-headers fixer, fix_headers.py — not duplicated.)",
     },
   },
   {
@@ -133,10 +134,11 @@ const CHECKS: Check[] = [
     scope: "staged",
     speed: "fast",
     description: "No bare python/python3 invocations — use uv run",
-    no_auto_fix: {
-      reason: "wrong_layer",
-      explanation: "scripts/uv_autofix.py exists but it auto-installs missing Python deps (opt-in via $env:CHTHONIC_UV_AUTOFIX=1) — different purpose. Mechanical prepending of `uv run` to bare `python` invocations is unsafe inside docstring usage examples (would corrupt the doc) and inside .sh/.ps1 shebang lines.",
-      manual_remediation: "Open the offending file at the reported line. If the bare `python` is in executable code, prefix with `uv run`. If it's in a docstring/comment usage example, prefix with `uv run` there too for consistency. The check is advisory for Modified files; only Added files block the commit.",
+    auto_fix: {
+      command: "bun",
+      args: ["run", "scripts/fix_envelope.ts", "--uv-run", "--staged"],
+      safe_class: "narrow",
+      description: "Prepend `uv run` to line-leading bare python/python3 (and `& python`) in staged .sh/.ps1 SHELL files via fix_envelope.ts — the safe subset. Bare python inside .py/.ts (docstring usage examples, spawn/subprocess arg arrays) is NOT auto-rewritten (would corrupt docs / need restructuring) and stays manual; only Added files block, and --no-verify covers that rare case.",
     },
   },
   {
@@ -149,7 +151,7 @@ const CHECKS: Check[] = [
     no_auto_fix: {
       reason: "semantic",
       explanation: "Resolution requires a conductor decision: either add a narrow `!path` allowlist entry to .gitignore (per docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md), move the file to an already-allowed source lane, OR confirm the file should genuinely stay ignored and delete it. Auto-adding allowlist entries silently broadens the gitignore contract.",
-      manual_remediation: "Run `git check-ignore -v <path>` to see which rule matches. Then either: (a) add narrow `!path` allowlist + any required parent-dir allowlists to .gitignore, (b) move the file into an existing allowlisted directory, or (c) delete the file if it's debris.",
+      manual_remediation: "Run `git check-ignore -v <path>` to see which rule matches. Then either: (a) add narrow `!path` allowlist + any required parent-dir allowlists to .gitignore, (b) move the file into an existing allowlisted directory, or (c) delete the file if it's debris. Deliberately NOT auto-fixed: auto-editing the allowlist .gitignore contract or force-adding unrelated files would be unsafe. This gate scans repo-wide managed roots (not just your staged set), so if it blocks a commit on unrelated state, `git commit --no-verify` is the sanctioned escape.",
     },
   },
   {
