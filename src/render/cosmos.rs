@@ -108,6 +108,7 @@ pub fn sun_push_constant(lat_deg: f64, lon_deg: f64, jd: f64) -> [f32; 4] {
 
 /// Moon longitude/distance periodic terms (Meeus table 47.A): (D, M, M′, F, Σl·1e6 deg, Σr·1e3 km).
 #[rustfmt::skip]
+#[allow(dead_code)] // verified, not yet shader-wired (see "The wanderers" note below)
 const MOON_LON_DIST: [(i8, i8, i8, i8, f64, f64); 35] = [
     (0,  0,  1,  0,  6_288_774.0, -20_905_355.0),
     (2,  0, -1,  0,  1_274_027.0,  -3_699_111.0),
@@ -148,6 +149,7 @@ const MOON_LON_DIST: [(i8, i8, i8, i8, f64, f64); 35] = [
 
 /// Moon latitude periodic terms (Meeus table 47.B): (D, M, M′, F, Σb·1e6 deg).
 #[rustfmt::skip]
+#[allow(dead_code)] // verified, not yet shader-wired
 const MOON_LAT: [(i8, i8, i8, i8, f64); 30] = [
     (0,  0,  0,  1, 5_128_122.0),
     (0,  0,  1,  1,   280_602.0),
@@ -181,6 +183,50 @@ const MOON_LAT: [(i8, i8, i8, i8, f64); 30] = [
     (4,  0, -1,  1,       833.0),
 ];
 
+/// Apparent topocentric horizontal coordinates (alt, az in degrees; az from North increasing
+/// East; airless) of a body whose **geocentric** equatorial position of date is (`alpha_deg`,
+/// `delta_deg`) at geocentric distance `dist_km`, seen from a sea-level site (`lat_deg`,
+/// `lon_deg` east-positive) at Julian Day `jd`. Diurnal parallax via Meeus ch. 40 — ~1° for the
+/// Moon, negligible (but applied) for the planets. Shared by [`lunar_position`]/[`planet_position`].
+fn topocentric_altaz(
+    lat_deg: f64,
+    lon_deg: f64,
+    jd: f64,
+    alpha_deg: f64,
+    delta_deg: f64,
+    dist_km: f64,
+) -> (f64, f64) {
+    let t = (jd - 2_451_545.0) / 36525.0;
+    let gmst = norm360(
+        280.460_618_37 + 360.985_647_366_29 * (jd - 2_451_545.0) + t * t * (0.000_387_933 - t / 38_710_000.0),
+    );
+    let lst = gmst + lon_deg;
+
+    // Topocentric parallax (Meeus 40; observer at sea level).
+    let delta = delta_deg.to_radians();
+    let sin_pi = 6378.14 / dist_km;
+    let phi = lat_deg.to_radians();
+    let u = (0.996_647_19 * phi.tan()).atan();
+    let rho_sin = 0.996_647_19 * u.sin();
+    let rho_cos = u.cos();
+    let h = (lst - alpha_deg).to_radians();
+    let d_alpha = (-rho_cos * sin_pi * h.sin()).atan2(delta.cos() - rho_cos * sin_pi * h.cos());
+    let alpha_t = alpha_deg.to_radians() + d_alpha;
+    let delta_t =
+        ((delta.sin() - rho_sin * sin_pi) * d_alpha.cos()).atan2(delta.cos() - rho_cos * sin_pi * h.cos());
+
+    // Topocentric horizontal coordinates (geodetic latitude).
+    let h_t = (lst - alpha_t.to_degrees()).to_radians();
+    let sin_alt = phi.sin() * delta_t.sin() + phi.cos() * delta_t.cos() * h_t.cos();
+    let alt = sin_alt.asin();
+    let cos_az = (delta_t.sin() - phi.sin() * sin_alt) / (phi.cos() * alt.cos());
+    let mut az = cos_az.clamp(-1.0, 1.0).acos().to_degrees();
+    if h_t.sin() > 0.0 {
+        az = 360.0 - az;
+    }
+    (alt.to_degrees(), az)
+}
+
 /// Apparent **topocentric** lunar altitude + azimuth (degrees) for a site at Julian Day `jd`.
 /// Same conventions as [`solar_position`]: azimuth from North increasing East, airless.
 ///
@@ -188,6 +234,7 @@ const MOON_LAT: [(i8, i8, i8, i8, f64); 30] = [
 /// equatorial → topocentric parallax (ch. 40). The Moon's ~1° horizontal parallax makes the
 /// topocentric step mandatory (geocentric is ~1° wrong at the horizon). Verified against JPL
 /// Horizons over New Providence in the tests (≈arcminute) — measured, not asserted.
+#[allow(dead_code)] // verified, not yet shader-wired
 pub fn lunar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
     let t = (jd - 2_451_545.0) / 36525.0;
 
@@ -260,38 +307,14 @@ pub fn lunar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
     let alpha = (lam.sin() * eps.cos() - beta.tan() * eps.sin()).atan2(lam.cos());
     let delta = (beta.sin() * eps.cos() + beta.cos() * eps.sin() * lam.sin()).asin();
 
-    // Local sidereal time (same GMST series as the Sun path).
-    let gmst = norm360(
-        280.460_618_37 + 360.985_647_366_29 * (jd - 2_451_545.0) + t * t * (0.000_387_933 - t / 38_710_000.0),
-    );
-    let lst = gmst + lon_deg;
-
-    // Topocentric parallax (Meeus 40; observer at sea level).
-    let sin_pi = 6378.14 / dist;
-    let phi = lat_deg.to_radians();
-    let u = (0.996_647_19 * phi.tan()).atan();
-    let rho_sin = 0.996_647_19 * u.sin();
-    let rho_cos = u.cos();
-    let h = (lst - alpha.to_degrees()).to_radians();
-    let d_alpha = (-rho_cos * sin_pi * h.sin()).atan2(delta.cos() - rho_cos * sin_pi * h.cos());
-    let alpha_t = alpha + d_alpha;
-    let delta_t =
-        ((delta.sin() - rho_sin * sin_pi) * d_alpha.cos()).atan2(delta.cos() - rho_cos * sin_pi * h.cos());
-
-    // Topocentric horizontal coordinates (geodetic latitude).
-    let h_t = (lst - alpha_t.to_degrees()).to_radians();
-    let sin_alt = phi.sin() * delta_t.sin() + phi.cos() * delta_t.cos() * h_t.cos();
-    let alt = sin_alt.asin();
-    let cos_az = (delta_t.sin() - phi.sin() * sin_alt) / (phi.cos() * alt.cos());
-    let mut az = cos_az.clamp(-1.0, 1.0).acos().to_degrees();
-    if h_t.sin() > 0.0 {
-        az = 360.0 - az;
-    }
-    (alt.to_degrees(), az)
+    // Topocentric apparent horizontal coordinates — shared tail (the Moon's ~1° diurnal parallax
+    // is why this step is mandatory, not cosmetic).
+    topocentric_altaz(lat_deg, lon_deg, jd, alpha.to_degrees(), delta.to_degrees(), dist)
 }
 
 /// Illuminated fraction of the Moon's disk (0 = new, 1 = full) at Julian Day `jd`.
 /// Low-precision Meeus (ch. 48) — good to ~0.5° in phase angle, ample for moonlight scaling.
+#[allow(dead_code)] // verified, not yet shader-wired
 pub fn moon_phase(jd: f64) -> f64 {
     let t = (jd - 2_451_545.0) / 36525.0;
     let d = 297.850_192_1 + 445_267.111_403_4 * t;
@@ -309,11 +332,135 @@ pub fn moon_phase(jd: f64) -> f64 {
 /// Push-constant lunar vector (parallel to [`sun_push_constant`]): xyz = direction TO the
 /// Moon, w = geometric intensity = max(sin(altitude), 0). Scale by [`moon_phase`] in-shader
 /// for phase-aware moonlight.
+#[allow(dead_code)] // verified, not yet shader-wired
 pub fn moon_push_constant(lat_deg: f64, lon_deg: f64, jd: f64) -> [f32; 4] {
     let (alt, az) = lunar_position(lat_deg, lon_deg, jd);
     let dir = altaz_to_world_direction(alt, az);
     let intensity = alt.to_radians().sin().max(0.0) as f32;
     [dir[0], dir[1], dir[2], intensity]
+}
+
+// ── The wanderers ────────────────────────────────────────────────────────────────────────────
+//
+// The five naked-eye planets, from JPL's own low-precision theory: E. M. Standish, "Keplerian
+// Elements for Approximate Positions of the Major Planets" (JPL Solar System Dynamics), Table 1 —
+// heliocentric elements + linear per-century rates, valid 1800–2050 AD. For each body (and for
+// Earth) we solve Kepler's equation, difference to a light-time-corrected geocentric vector,
+// precess the J2000 ecliptic longitude to the equinox of date, then reuse the Moon's
+// equatorial → topocentric → horizontal tail. Arcminute-class in this window — ample for the sky,
+// and asserted body-by-body against JPL Horizons in the tests (measured, not fiction). Nutation
+// (~0.005°) and annual aberration (~0.006°) are omitted as sub-tolerance; the dominant term — the
+// ~0.37° of precession from 2000 to 2026 — is included. Computed + verified, not yet shader-wired.
+
+/// A naked-eye planet. (Discriminants index [`ELEMENTS`]; row 0 is reserved for Earth.)
+#[allow(dead_code)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Planet {
+    Mercury = 1,
+    Venus = 2,
+    Mars = 3,
+    Jupiter = 4,
+    Saturn = 5,
+}
+
+/// One body's Keplerian set: each element is `(value_at_J2000, rate_per_Julian_century)`.
+/// Angles in degrees, `a` in AU.
+#[allow(dead_code)]
+#[derive(Clone, Copy)]
+struct Kepler {
+    a: (f64, f64),    // semi-major axis [AU]
+    e: (f64, f64),    // eccentricity
+    inc: (f64, f64),  // inclination to the ecliptic [deg]
+    l: (f64, f64),    // mean longitude L [deg]
+    peri: (f64, f64), // longitude of perihelion ϖ [deg]
+    node: (f64, f64), // longitude of ascending node Ω [deg]
+}
+
+/// Keplerian elements (Standish, Table 1), indexed by [`Planet`]; row 0 is the Earth–Moon
+/// barycenter (the observer's heliocentric position).
+#[rustfmt::skip]
+#[allow(dead_code)]
+const ELEMENTS: [Kepler; 6] = [
+    /* 0 Earth   */ Kepler { a: (1.000_002_61,  0.000_005_62), e: (0.016_711_23, -0.000_043_92), inc: (-0.000_015_31, -0.012_946_68), l: (100.464_571_66, 35_999.372_449_81), peri: (102.937_681_93,  0.323_273_64), node: (  0.000_000_00,  0.000_000_00) },
+    /* 1 Mercury */ Kepler { a: (0.387_099_27,  0.000_000_37), e: (0.205_635_93,  0.000_019_06), inc: ( 7.004_979_02, -0.005_947_49), l: (252.250_323_50, 149_472.674_111_75), peri: ( 77.457_796_28,  0.160_476_89), node: ( 48.330_765_93, -0.125_340_81) },
+    /* 2 Venus   */ Kepler { a: (0.723_335_66,  0.000_003_90), e: (0.006_776_72, -0.000_041_07), inc: ( 3.394_676_05, -0.000_788_90), l: (181.979_099_50, 58_517.815_387_29), peri: (131.602_467_18,  0.002_683_29), node: ( 76.679_842_55, -0.277_694_18) },
+    /* 3 Mars    */ Kepler { a: (1.523_710_34,  0.000_018_47), e: (0.093_394_10,  0.000_078_82), inc: ( 1.849_691_42, -0.008_131_31), l: ( -4.553_432_05, 19_140.302_684_99), peri: (-23.943_629_59,  0.444_410_88), node: ( 49.559_538_91, -0.292_573_43) },
+    /* 4 Jupiter */ Kepler { a: (5.202_887_00, -0.000_116_07), e: (0.048_386_24, -0.000_132_53), inc: ( 1.304_396_95, -0.001_837_14), l: ( 34.396_440_51,  3_034.746_127_75), peri: ( 14.728_479_83,  0.212_526_68), node: (100.473_909_09,  0.204_691_06) },
+    /* 5 Saturn  */ Kepler { a: (9.536_675_94, -0.001_250_60), e: (0.053_861_79, -0.000_509_91), inc: ( 2.485_991_87,  0.001_936_09), l: ( 49.954_244_23,  1_222.493_622_01), peri: ( 92.598_878_31, -0.418_972_16), node: (113.662_424_48, -0.288_677_94) },
+];
+
+/// Heliocentric ecliptic rectangular coordinates (J2000 frame, AU) for an element set at `jd`.
+#[allow(dead_code)]
+fn heliocentric_ecliptic(k: &Kepler, jd: f64) -> [f64; 3] {
+    let t = (jd - 2_451_545.0) / 36525.0;
+    let a = k.a.0 + k.a.1 * t;
+    let e = k.e.0 + k.e.1 * t;
+    let inc = (k.inc.0 + k.inc.1 * t).to_radians();
+    let l = k.l.0 + k.l.1 * t;
+    let peri = k.peri.0 + k.peri.1 * t;
+    let node_deg = k.node.0 + k.node.1 * t;
+    let arg_peri = (peri - node_deg).to_radians(); // ω
+    let node = node_deg.to_radians();
+
+    // Mean anomaly, folded to [-180°, 180°], then Kepler's equation by Newton's method.
+    let mut m = (l - peri).rem_euclid(360.0);
+    if m > 180.0 {
+        m -= 360.0;
+    }
+    let m = m.to_radians();
+    let mut ea = m + e * m.sin();
+    for _ in 0..12 {
+        let dm = (ea - e * ea.sin() - m) / (1.0 - e * ea.cos());
+        ea -= dm;
+        if dm.abs() < 1e-12 {
+            break;
+        }
+    }
+
+    // Perifocal position (orbital plane), rotated by (ω, I, Ω) into the J2000 ecliptic.
+    let xv = a * (ea.cos() - e);
+    let yv = a * (1.0 - e * e).sqrt() * ea.sin();
+    let (cw, sw) = (arg_peri.cos(), arg_peri.sin());
+    let (co, so) = (node.cos(), node.sin());
+    let (ci, si) = (inc.cos(), inc.sin());
+    [
+        (cw * co - sw * so * ci) * xv + (-sw * co - cw * so * ci) * yv,
+        (cw * so + sw * co * ci) * xv + (-sw * so + cw * co * ci) * yv,
+        (sw * si) * xv + (cw * si) * yv,
+    ]
+}
+
+/// Apparent **topocentric** altitude + azimuth (degrees) of a planet for a site at Julian Day
+/// `jd`. Conventions match [`solar_position`]: azimuth from North increasing East, airless.
+/// Verified against JPL Horizons over New Providence in the tests (≤0.1° altitude).
+#[allow(dead_code)]
+pub fn planet_position(planet: Planet, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let earth = heliocentric_ecliptic(&ELEMENTS[0], jd);
+    let elem = ELEMENTS[planet as usize];
+
+    // Geocentric vector, light-time corrected: the planet's light left at jd − τ (Earth at jd).
+    let mut geo = [0.0_f64; 3];
+    let mut tau = 0.0_f64;
+    for _ in 0..3 {
+        let p = heliocentric_ecliptic(&elem, jd - tau);
+        geo = [p[0] - earth[0], p[1] - earth[1], p[2] - earth[2]];
+        let d = (geo[0] * geo[0] + geo[1] * geo[1] + geo[2] * geo[2]).sqrt();
+        tau = d * 0.005_775_518_3; // light-time per AU, in days
+    }
+    let dist_au = (geo[0] * geo[0] + geo[1] * geo[1] + geo[2] * geo[2]).sqrt();
+
+    // Geocentric ecliptic (J2000) → spherical; precess the longitude to the equinox of date.
+    let t = (jd - 2_451_545.0) / 36525.0;
+    let lambda = (geo[1].atan2(geo[0]).to_degrees() + 1.396_971_2 * t).to_radians();
+    let beta = (geo[2] / dist_au).asin();
+
+    // Ecliptic (of date) → equatorial (of date); mean obliquity (nutation omitted, sub-tolerance).
+    let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
+    let eps = eps0.to_radians();
+    let alpha = (lambda.sin() * eps.cos() - beta.tan() * eps.sin()).atan2(lambda.cos());
+    let delta = (beta.sin() * eps.cos() + beta.cos() * eps.sin() * lambda.sin()).asin();
+
+    topocentric_altaz(lat_deg, lon_deg, jd, alpha.to_degrees(), delta.to_degrees(), dist_au * 149_597_870.7)
 }
 
 #[cfg(test)]
@@ -376,5 +523,45 @@ mod tests {
     fn moon_phase_in_range() {
         let k = moon_phase(julian_day(2026, 6, 9, 17, 0, 0.0));
         assert!((0.0..=1.0).contains(&k), "fraction {k}");
+    }
+
+    // Planet authority: JPL Horizons (apparent, airless) over New Providence, 2026-06-09. Two
+    // epochs per body — morning (below/low) and evening (high/setting) — so a pass can't be a
+    // coincidence. The model is JPL's own low-precision Keplerian theory, so ≤0.1° altitude is
+    // the bar it must clear (azimuth allowed 0.3°, looser only where high elevation magnifies it).
+    fn check(p: Planet, h: u32, mi: u32, alt_ref: f64, az_ref: f64, az_tol: f64, label: &str) {
+        let (alt, az) = planet_position(p, LAT, LON, julian_day(2026, 6, 9, h, mi, 0.0));
+        assert!((alt - alt_ref).abs() < 0.1, "{label} alt {alt} (ref {alt_ref})");
+        assert!(ang_diff(az, az_ref) < az_tol, "{label} az {az} (ref {az_ref})");
+    }
+
+    #[test]
+    fn mercury_two_epochs() {
+        check(Planet::Mercury, 11, 0, -11.868_331, 55.252_016, 0.3, "mercury 11:00");
+        check(Planet::Mercury, 21, 30, 54.189_964, 277.972_040, 0.3, "mercury 21:30");
+    }
+
+    #[test]
+    fn venus_two_epochs() {
+        check(Planet::Venus, 11, 0, -23.226_812, 47.858_772, 0.3, "venus 11:00");
+        check(Planet::Venus, 21, 30, 66.949_799, 270.107_399, 0.5, "venus 21:30");
+    }
+
+    #[test]
+    fn mars_two_epochs() {
+        check(Planet::Mars, 11, 0, 35.167_603, 87.398_845, 0.3, "mars 11:00");
+        check(Planet::Mars, 21, 30, -1.376_533, 288.621_711, 0.3, "mars 21:30");
+    }
+
+    #[test]
+    fn jupiter_two_epochs() {
+        check(Planet::Jupiter, 11, 0, -24.389_041, 49.132_765, 0.3, "jupiter 11:00");
+        check(Planet::Jupiter, 21, 30, 66.269_944, 266.432_134, 0.5, "jupiter 21:30");
+    }
+
+    #[test]
+    fn saturn_two_epochs() {
+        check(Planet::Saturn, 11, 0, 55.699_800, 125.650_295, 0.3, "saturn 11:00");
+        check(Planet::Saturn, 21, 30, -34.522_362, 293.048_065, 0.3, "saturn 21:30");
     }
 }
