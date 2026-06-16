@@ -3,7 +3,7 @@
 //! so this mesh stays static and the GPU animates it from the `time` push constant.
 //! The cascaded-FFT spectral surface (Tessendorf, §2.2) replaces the in-shader Gerstner
 //! in the next increment (4.2) — this is the prototype it hardens from.
-//!
+
 //! @SID:    RENDER_OCEAN_V1
 //! @Shabti: Ocean
 

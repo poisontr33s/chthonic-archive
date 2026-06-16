@@ -12,13 +12,13 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Render module - Vulkan 1.3 Dynamic Rendering Pipeline
-//!
+
 //! @SID:    RENDER_MOD_V1
 //! @Shabti: Module Root
-//!
+
 //! "We do not accept legacy Render Passes. We demand Dynamic Rendering."
-//! — Gemini 3 Pro Thinking (Architect)
-//!
+//! — Claude, Thinking (Architect)
+
 //! This module implements the Vulkan 1.3 graphics backend with:
 //! - Dynamic Rendering (no legacy `VkRenderPass`)
 //! - RTX 4090 optimization path

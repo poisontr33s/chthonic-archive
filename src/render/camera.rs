@@ -5,25 +5,25 @@
 // ║ Spectral Frequency: RED
 // ║ Architectural Role: 🏰 THE FORTRESS
 // ║ Purpose: Isometric Camera System
-// ║ Exports: IsometricCamera, new, update_matrices, view_matrix, projection_matri
+// ║ Exports: IsometricCamera, new, update_matrices, view_matrix, projection_matrix
 // ╠════════════════════════════════════════════════════════════════════════════
 // ║ Cross-References (Bidirectional):
 // ║  (Standalone file - no detected dependencies)
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Isometric Camera System
-//!
+
 //! @SID:    RENDER_CAMERA_V1
 //! @Shabti: Camera
-//!
+
 //! "The Ultimate pleasure found in the relentless transformation of perspective"
 //! — Orackla Nocticula
-//!
+
 //! Implements the Gemini-specified isometric camera:
 //! - Orthographic projection
 //! - Y-axis rotation: 45°
 //! - X-axis rotation: ~35.264° (arctan(1/√2))
-//!
+
 //! The isometric projection creates the classic "2.5D" view where:
 //! - Vertical lines remain vertical
 //! - Horizontal lines are at 30° angles

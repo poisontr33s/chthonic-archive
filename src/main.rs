@@ -11,15 +11,15 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! The Chthonic Archive: Triumvirate Ascension
-//!
+
 //! @SID:    GAME_MAIN_ENTRY_V1
 //! @Shabti: Entry Point
-//!
+
 //! ASC-NATIVE-CHAIN-RPG - The World's First Rust/Vulkan/Solana Isometric RPG
-//!
+
 //! "We do not accept the CRCs as they are. We demand they be stretched,
 //!  filled, and broken until they evolve."
-//!
+
 //! <69.96 Alpha Omega>
 
 mod data;

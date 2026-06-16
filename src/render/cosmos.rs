@@ -1,10 +1,11 @@
 //! Real solar position for the renderer's sun vector — the Rust port of CLAUDEBASE_COSMOS_V1.
-//!
+
 //! @SID:    RENDER_COSMOS_V1
 //! @Shabti: Cosmos
-//!
+
 //! The Python prototype (`CLAUDEBASE/quarterdeck/cosmos.py`: Skyfield + JPL DE421,
 //! verified vs JPL Horizons to sub-arcsecond) remains the **authority of record**.
+
 //! This module is the in-house Rust port the Rust/Vulkan renderer actually calls: a
 //! standard NOAA/Meeus apparent-solar-position algorithm (~arcminute for the Sun —
 //! lighting-grade; the renderer needs nothing near DE421's precision). Its tests assert

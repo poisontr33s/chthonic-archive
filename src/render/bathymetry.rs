@@ -1,8 +1,8 @@
 //! Bathymetry heightfield — real GEBCO depth turned into a renderable mesh.
-//!
+
 //! @SID:    RENDER_BATHYMETRY_V1
 //! @Shabti: Bathymetry
-//!
+
 //! Rung 3 of `CLAUDEBASE/charts/north-star-constellations.md`: load the grounded
 //! `CLAUDEBASE/charts/bathymetry.json` (real GEBCO 2020 seafloor depth, verified data
 //! plane) and emit a triangle-list heightfield fit to the isometric camera box. Reuses

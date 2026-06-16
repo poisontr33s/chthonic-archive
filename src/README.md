@@ -1,9 +1,11 @@
-# Source Code (`src/`)
+# (`Source-Code`/`src/`)
 
-> **Context:** Core Rust Infrastructure (Chthonic Archive Renderer & Faction Logic)
-> **Type:** Source Code
-> **Status:** Active / Pre-Alpha
-> **Steward:** Core Engine Team
+> *—* **(`Context`)** *— Core Rust Infrastructure (Chthonic Archive Renderer & Faction Logic)*
+  > *—* **(`Type`)** *— Source Code*
+    > *—* **(`Status`)** *— Active / Pre-Alpha*
+      > *—* **(`Steward`)** *— Core Engine Team*
+
+---
 
 <!--
 ================================================================================
@@ -16,21 +18,34 @@ SEMANTIC IDENTITY (Anchor & Signal Protocol)
 ================================================================================
 -->
 
-## Purpose
-This directory contains the primary executable logic for the Chthonic Archive, written in Rust. It houses the Vulkan rendering engine (`render/`) and the Faction data structures (`data/`).
+---
 
-## Contents
-| Component | Description |
+## (`Purpose`)
+
+- *— This directory contains the primary executable logic for the Chthonic Archive, written in Rust. It houses the Vulkan rendering engine —* (`render/`) *— and the Faction data structures —* (`data/`) *—.*
+
+---
+
+## (`Contents`)
+
+| *Component* | *Description* |
 |-----------|-------------|
-| `main.rs` | Entry point for the application. |
-| `render/` | Vulkan graphics pipeline, swapchain, and shader management. |
-| `data/`   | Data structures defining Factions, Matriarchs, and Protocols. |
+| `main.rs` | *Entry point for the application.* |
+| `render/` | *Vulkan graphics pipeline, swapchain, and shader management.* |
+| `data/`   | *Data structures defining Factions, Matriarchs, and Protocols.* |
 
-## Ownership
-- **Steward:** Core Engine Team
-- **Update Policy:** Manual updates required when directory structure changes.
+---
 
-## Build Instructions
+## (`Ownership`)
+
+- *—* **(`Steward`)** *— Core Engine Team*
+
+  - *—* **(`Update-Policy`)** *— Manual updates required when directory structure changes.*
+
+---
+
+## (`Build-Instructions`)
+
 ```bash
 # Build the project
 cargo build

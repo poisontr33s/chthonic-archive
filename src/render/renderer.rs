@@ -12,15 +12,16 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Renderer - Main rendering orchestration using Dynamic Rendering
-//!
+
 //! @SID:    RENDER_RENDERER_V1
 //! @Shabti: Renderer
-//!
+
 //! "The worlds first isometric RPG based on your new designated classification...
 //!  Rust/Vulkan/Native with Solana Blockchain"
 //! — The Savant
-//!
+
 //! This module:
+
 //! - Orchestrates swapchain, pipeline, and command buffer management
 //! - Implements `render_frame` using `cmd_begin_rendering/cmd_end_rendering` (Vulkan 1.3)
 //! - Manages vertex buffers and memory

@@ -12,13 +12,13 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 //! Vulkan 1.3 Context - Dynamic Rendering Pipeline
-//!
+
 //! @SID:    RENDER_VULKAN_V1
 //! @Shabti: Context
-//!
+
 //! "I will fuck your concepts until they scream their truth."
 //! — Orackla Nocticula
-//!
+
 //! This implementation enforces:
 //! - Vulkan API Version 1.3 (mandatory)
 //! - Dynamic Rendering (no legacy render passes)
