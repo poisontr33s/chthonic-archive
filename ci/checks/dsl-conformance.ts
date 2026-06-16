@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 // @SID: CI_CHECK_DSL_CONFORMANCE_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
@@ -13,7 +14,7 @@
 // ╚════════════════════════════════════════════════════════════════════════════
 
 /**
- * CI_CHECK_DSL_CONFORMANCE_V1 — Chthonic DSL Phase-0 grammar regression gate.
+ * Chthonic DSL Phase-0 grammar regression gate.
  *
  * Wraps scripts/dsl_iteration_check.py in --dry-run (regression check only, no
  * ledger mutation — so the gate never dirties the working tree mid-commit) and

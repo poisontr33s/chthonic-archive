@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+
 // @SID: CI_CHECK_FEDERATION_CONTRACT_VALIDATE_V1
 
 // ╔════════════════════════════════════════════════════════════════════════════
