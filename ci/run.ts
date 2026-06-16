@@ -355,6 +355,7 @@ const FULL = process.argv.includes("--full");
 const BLACK_SMOKE = process.argv.includes("--black-smoke");
 const LIST = process.argv.includes("--list");
 const AUTOFIX = process.argv.includes("--autofix");
+const HEAL = process.argv.includes("--heal");
 const AUTOFIX_LIST = process.argv.includes("--autofix-list");
 const CHECK_IDX = process.argv.indexOf("--check");
 const SINGLE = CHECK_IDX !== -1 ? process.argv[CHECK_IDX + 1] : null;
@@ -789,6 +790,56 @@ if (BLACK_SMOKE) {
 if (failed === 0) process.exit(0);
 
 console.error(`[ci] ✗ ${failed}/${selected.length} check(s) failed`);
+
+if (HEAL) {
+  // Self-heal mode — the pre-commit hook runs this so a single VS Code commit button-press
+  // lands the fix without a terminal. For each failing check with a registered NARROW
+  // auto-fix: run it, re-stage ONLY the originally-staged paths (never `git add -u`, so
+  // unrelated working-tree edits are never swept into the commit), re-verify, and proceed
+  // if clean. Genuinely-manual failures (no narrow auto_fix, or a fix that changed nothing)
+  // still block — with their remediation printed.
+  const stagedBefore = spawnSync("git", ["diff", "--cached", "--name-only"], { encoding: "utf8", cwd: REPO_ROOT })
+    .stdout.split("\n")
+    .filter(Boolean);
+
+  let anyFixed = false;
+  for (const r of results) {
+    if (r.ok) continue;
+    const check = selected.find((c) => c.name === r.name);
+    if (check?.auto_fix && check.auto_fix.safe_class === "narrow") {
+      console.log(`[heal] ${r.name} → ${check.auto_fix.command} ${check.auto_fix.args.join(" ")}`);
+      const af = runAutoFix(check);
+      if (af.fix_output) console.log(af.fix_output.split("\n").map((l) => `  ${l}`).join("\n"));
+      if (af.changed) anyFixed = true;
+    }
+  }
+
+  if (anyFixed) {
+    if (stagedBefore.length > 0) spawnSync("git", ["add", "--", ...stagedBefore], { cwd: REPO_ROOT });
+    const reResults = await Promise.all(selected.map(runCheck));
+    for (const r of reResults) if (r.output) console.log(r.output);
+    const stillFailed = reResults.filter((r) => !r.ok);
+    if (stillFailed.length === 0) {
+      console.log(`\n[heal] ✓ auto-fixed + re-staged; all checks pass — commit proceeding.`);
+      process.exit(0);
+    }
+    console.error(`\n[heal] ✗ ${stillFailed.length} check(s) still failing after auto-fix:`);
+    for (const r of stillFailed) {
+      const c = selected.find((x) => x.name === r.name);
+      console.error(`  • ${r.name}${c?.no_auto_fix?.manual_remediation ? ` — ${c.no_auto_fix.manual_remediation}` : ""}`);
+    }
+    process.exit(1);
+  }
+
+  console.error(`\n[heal] no auto-fix changed anything — manual remediation required:`);
+  for (const r of results) {
+    if (r.ok) continue;
+    const c = selected.find((x) => x.name === r.name);
+    const hint = c?.no_auto_fix?.manual_remediation ?? (c?.auto_fix ? "(auto-fix ran but produced no change)" : "(no auto-fix registered)");
+    console.error(`  • ${r.name} — ${hint}`);
+  }
+  process.exit(1);
+}
 
 if (!AUTOFIX) {
   process.exit(1);
