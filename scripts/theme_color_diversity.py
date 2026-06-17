@@ -173,19 +173,19 @@ def diversify_theme(theme_path: Path, threshold: int, spread: float,
         else:
             n_variants = min(n_groups, 12)
 
-        variants = generate_variants(color.lower(), n_variants, spread)
+        generated_variants = generate_variants(color.lower(), n_variants, spread)
 
         detail = {
             "color": color,
             "original_count": len(keys),
             "namespaces": n_groups,
-            "variants_generated": len(variants),
+            "variants_generated": len(generated_variants),
         }
 
         # Assign variants round-robin by namespace
         sorted_ns = sorted(ns_groups.keys())
         for i, ns in enumerate(sorted_ns):
-            variant = variants[i % len(variants)]
+            variant = generated_variants[i % len(generated_variants)]
             for key in ns_groups[ns]:
                 old_val = colors[key]
                 # Preserve alpha suffix
