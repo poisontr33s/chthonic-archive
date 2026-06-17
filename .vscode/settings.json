@@ -13,15 +13,15 @@
     "editor.semanticHighlighting.enabled": true,
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
-    "editor.maxTokenizationLineLength": 99999999999,
-    "editor.experimental.asyncTokenization": false,
+    "editor.maxTokenizationLineLength": 20000,
+    "editor.experimental.asyncTokenization": true,
     "editor.inlineSuggest.showToolbar": "always",
     "editor.tokenColorCustomizations": {
         "[Default Dark+]": {
             "textMateRules": []
         }
     },
-    "diffEditor.maxComputationTime": 0,
+    "diffEditor.maxComputationTime": 5000,
     "workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
     "workbench.iconTheme": "chthonic-file-icons",
     "workbench.productIconTheme": "chthonic-product-icons",
@@ -219,6 +219,7 @@
     "markdown.validate.ignoredLinks": [
         "CLAUDE.md",
         ".github/copilot-instructions.archive.md",
+        "SSOT.md",
         "../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
         "./instructions/mathematical-engines.instructions.md",
         "docs/standards/KCP_PROTOCOL_ONTOLOGY.md"
@@ -265,7 +266,7 @@
     // === CHAT (VS Code Native) ===
     "chat.tools.global.autoApprove": true,
     "chat.tools.terminal.outputLocation": "chat",
-    "chat.agent.maxRequests": 9999999,
+    "chat.agent.maxRequests": 100,
     "chat.unifiedAgentsBar.enabled": true,
     "chat.useAgentSkills": true,
     "chat.useAgentsMdFile": false,
@@ -283,7 +284,7 @@
     "inlineChat.holdToSpeech": true,
 
     // === MCP (Model Context Protocol) ===
-    "chat.mcp.autostart": "newAndOutdated",
+    "chat.mcp.autostart": "never",
     "chat.mcp.serverSampling": {
         "chthonic-archive/.vscode/mcp.json: github": {
             "allowedModels": [
@@ -610,7 +611,7 @@
     // Unsupported in the current Azure extension set; preserved for future revalidation.
     // "@azure.enableAutoSetAzureRules": false,
     "chatgpt.commentCodeLensEnabled": true,
-    "chatgpt.openOnStartup": true,
+    "chatgpt.openOnStartup": false,
     "chatgpt.composerEnterBehavior": "cmdIfMultiline",
     // Unsupported in the current Codex extension build; preserved for future revalidation.
     // "chatgpt.thinkingMode": "xhigh",
