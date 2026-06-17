@@ -42,6 +42,7 @@ use super::temporal::TemporalState;
 use super::vulkan::VulkanContext;
 
 const CELESTIAL_DISC_SEGMENTS: usize = 18;
+const CELESTIAL_CIRCLE_POINTS: usize = 120;
 const SKY_RADIUS: f32 = 4.15;
 const SKY_HORIZON_LIFT: f32 = 0.35;
 
@@ -293,7 +294,9 @@ impl Renderer {
         let up = right.cross(forward).normalize();
 
         let mut vertices = Vec::with_capacity(
-            (2 + super::cosmos::Planet::ALL.len() + super::cosmos::STARS.len())
+            (2 + super::cosmos::Planet::ALL.len()
+                + super::cosmos::STARS.len()
+                + 2 * CELESTIAL_CIRCLE_POINTS)
                 * CELESTIAL_DISC_SEGMENTS
                 * 3,
         );
@@ -364,6 +367,35 @@ impl Renderer {
             ) {
                 stars_up += 1;
             }
+        }
+
+        // Structural great circles (dotted): the ecliptic — the zodiac's backbone, which the Sun
+        // and planets ride — in gold, and the celestial equator in cool blue. Below-horizon
+        // samples self-cull, so only the arcs above the horizon draw.
+        for i in 0..CELESTIAL_CIRCLE_POINTS {
+            let ang = i as f64 / CELESTIAL_CIRCLE_POINTS as f64 * 360.0;
+            let (e_alt, e_az) = super::cosmos::ecliptic_altaz(ang, lat, lon, jd);
+            let e_dir = super::cosmos::altaz_to_world_direction(e_alt, e_az);
+            Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(e_dir[0], e_dir[1], e_dir[2]),
+                e_alt.to_radians().sin().max(0.0) as f32,
+                0.007,
+                [1.00, 0.85, 0.42],
+                right,
+                up,
+            );
+            let (q_alt, q_az) = super::cosmos::equator_altaz(ang, lat, lon, jd);
+            let q_dir = super::cosmos::altaz_to_world_direction(q_alt, q_az);
+            Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(q_dir[0], q_dir[1], q_dir[2]),
+                q_alt.to_radians().sin().max(0.0) as f32,
+                0.0045,
+                [0.40, 0.58, 0.85],
+                right,
+                up,
+            );
         }
 
         info!(

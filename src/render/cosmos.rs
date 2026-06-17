@@ -571,6 +571,25 @@ pub fn star_position(ra_j2000_deg: f64, dec_j2000_deg: f64, lat_deg: f64, lon_de
     topocentric_altaz(lat_deg, lon_deg, jd, alpha.to_degrees(), delta.to_degrees(), 1.0e12)
 }
 
+/// Apparent topocentric alt/az (deg) of the point on the **ecliptic of date** at ecliptic
+/// longitude `lambda_deg` (latitude 0). The zodiac runs along this great circle; the Sun rides
+/// exactly on it and the planets within a few degrees. Effective infinity, so no parallax.
+pub fn ecliptic_altaz(lambda_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let t = (jd - 2_451_545.0) / 36525.0;
+    let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
+    let eps = eps0.to_radians();
+    let lambda = lambda_deg.to_radians();
+    let alpha = (lambda.sin() * eps.cos()).atan2(lambda.cos()); // ecliptic latitude β = 0
+    let delta = (eps.sin() * lambda.sin()).asin();
+    topocentric_altaz(lat_deg, lon_deg, jd, alpha.to_degrees(), delta.to_degrees(), 1.0e12)
+}
+
+/// Apparent topocentric alt/az (deg) of the point on the **celestial equator** at right ascension
+/// `ra_deg` (declination 0) — the reference circle that meets the horizon due east and west.
+pub fn equator_altaz(ra_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    topocentric_altaz(lat_deg, lon_deg, jd, ra_deg, 0.0, 1.0e12)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -769,5 +788,21 @@ mod tests {
             star_position(polaris.ra_deg, polaris.dec_deg, LAT, LON, julian_day(2026, 6, 9, 17, 0, 0.0));
         assert!((alt - LAT).abs() < 0.8, "polaris alt {alt} vs lat {LAT}");
         assert!(ang_diff(az, 0.0) < 3.0, "polaris az {az}");
+    }
+
+    #[test]
+    fn ecliptic_meets_equator_at_equinoxes() {
+        let jd = julian_day(2026, 6, 9, 17, 0, 0.0);
+        // Vernal equinox: ecliptic longitude 0 coincides with right ascension 0 on the equator.
+        let (e_alt, e_az) = ecliptic_altaz(0.0, LAT, LON, jd);
+        let (q_alt, q_az) = equator_altaz(0.0, LAT, LON, jd);
+        assert!(
+            (e_alt - q_alt).abs() < 0.01 && ang_diff(e_az, q_az) < 0.01,
+            "equinox mismatch: {e_alt}/{e_az} vs {q_alt}/{q_az}"
+        );
+        // Solstice point (longitude 90) rides ~23.4° off the equator → clearly different altitude.
+        let (s_alt, _) = ecliptic_altaz(90.0, LAT, LON, jd);
+        let (r_alt, _) = equator_altaz(90.0, LAT, LON, jd);
+        assert!((s_alt - r_alt).abs() > 10.0, "solstice should diverge: {s_alt} vs {r_alt}");
     }
 }
