@@ -296,7 +296,7 @@ impl Renderer {
         let mut vertices = Vec::with_capacity(
             (2 + super::cosmos::Planet::ALL.len()
                 + super::cosmos::STARS.len()
-                + 2 * CELESTIAL_CIRCLE_POINTS)
+                + 3 * CELESTIAL_CIRCLE_POINTS)
                 * CELESTIAL_DISC_SEGMENTS
                 * 3,
         );
@@ -370,7 +370,8 @@ impl Renderer {
         }
 
         // Structural great circles (dotted): the ecliptic — the zodiac's backbone, which the Sun
-        // and planets ride — in gold, and the celestial equator in cool blue. Below-horizon
+        // and planets ride — in gold; the celestial equator in cool blue; the galactic equator
+        // (Milky Way midline, the Andean dark-cloud substrate) in milky white. Below-horizon
         // samples self-cull, so only the arcs above the horizon draw.
         for i in 0..CELESTIAL_CIRCLE_POINTS {
             let ang = i as f64 / CELESTIAL_CIRCLE_POINTS as f64 * 360.0;
@@ -393,6 +394,17 @@ impl Renderer {
                 q_alt.to_radians().sin().max(0.0) as f32,
                 0.0045,
                 [0.40, 0.58, 0.85],
+                right,
+                up,
+            );
+            let (g_alt, g_az) = super::cosmos::galactic_equator_altaz(ang, lat, lon, jd);
+            let g_dir = super::cosmos::altaz_to_world_direction(g_alt, g_az);
+            Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(g_dir[0], g_dir[1], g_dir[2]),
+                g_alt.to_radians().sin().max(0.0) as f32,
+                0.006,
+                [0.74, 0.76, 0.82],
                 right,
                 up,
             );

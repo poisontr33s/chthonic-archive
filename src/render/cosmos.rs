@@ -590,6 +590,30 @@ pub fn equator_altaz(ra_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, 
     topocentric_altaz(lat_deg, lon_deg, jd, ra_deg, 0.0, 1.0e12)
 }
 
+/// Galactic (l, b) → equatorial (RA, Dec) in degrees, J2000. Uses the IAU galactic pole.
+fn galactic_to_equatorial(l_deg: f64, b_deg: f64) -> (f64, f64) {
+    // North galactic pole (J2000): α = 192.85948°, δ = 27.12825°; galactic longitude of the
+    // north celestial pole l_NCP = 122.93192°.
+    let ngp_ra = 192.859_48_f64.to_radians();
+    let ngp_dec = 27.128_25_f64.to_radians();
+    let l_ncp = 122.931_92_f64.to_radians();
+    let l = l_deg.to_radians();
+    let b = b_deg.to_radians();
+    let dec = (ngp_dec.sin() * b.sin() + ngp_dec.cos() * b.cos() * (l_ncp - l).cos()).asin();
+    let y = b.cos() * (l_ncp - l).sin();
+    let x = ngp_dec.cos() * b.sin() - ngp_dec.sin() * b.cos() * (l_ncp - l).cos();
+    let ra = (ngp_ra + y.atan2(x)).to_degrees().rem_euclid(360.0);
+    (ra, dec.to_degrees())
+}
+
+/// Apparent topocentric alt/az (deg) of the point on the **galactic equator** (the Milky Way's
+/// midline) at galactic longitude `l_deg`. The Andean dark-cloud constellations lie along this
+/// band. Galactic → equatorial (J2000) → date → topocentric, at effective infinity.
+pub fn galactic_equator_altaz(l_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let (ra, dec) = galactic_to_equatorial(l_deg, 0.0);
+    star_position(ra, dec, lat_deg, lon_deg, jd)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -804,5 +828,13 @@ mod tests {
         let (s_alt, _) = ecliptic_altaz(90.0, LAT, LON, jd);
         let (r_alt, _) = equator_altaz(90.0, LAT, LON, jd);
         assert!((s_alt - r_alt).abs() > 10.0, "solstice should diverge: {s_alt} vs {r_alt}");
+    }
+
+    #[test]
+    fn galactic_centre_maps_to_sagittarius() {
+        // l=0, b=0 is the galactic centre (Sagittarius A*): RA ~266.4°, Dec ~ -28.9° (J2000).
+        let (ra, dec) = galactic_to_equatorial(0.0, 0.0);
+        assert!(ang_diff(ra, 266.405) < 0.5, "galactic-centre RA {ra}");
+        assert!((dec - (-28.936)).abs() < 0.5, "galactic-centre Dec {dec}");
     }
 }
