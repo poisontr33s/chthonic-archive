@@ -293,7 +293,9 @@ impl Renderer {
         let up = right.cross(forward).normalize();
 
         let mut vertices = Vec::with_capacity(
-            (2 + super::cosmos::Planet::ALL.len()) * CELESTIAL_DISC_SEGMENTS * 3,
+            (2 + super::cosmos::Planet::ALL.len() + super::cosmos::STARS.len())
+                * CELESTIAL_DISC_SEGMENTS
+                * 3,
         );
         let mut visible = 0_u32;
 
@@ -346,7 +348,28 @@ impl Renderer {
             }
         }
 
-        info!("🌌 Celestial field: {visible}/7 bodies above the airless horizon");
+        let mut stars_up = 0_u32;
+        for star in &super::cosmos::STARS {
+            let (alt, az) = super::cosmos::star_position(star.ra_deg, star.dec_deg, lat, lon, jd);
+            let dir = super::cosmos::altaz_to_world_direction(alt, az);
+            let (color, radius) = Self::star_style(star.mag);
+            if Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(dir[0], dir[1], dir[2]),
+                alt.to_radians().sin().max(0.0) as f32,
+                radius,
+                color,
+                right,
+                up,
+            ) {
+                stars_up += 1;
+            }
+        }
+
+        info!(
+            "🌌 Celestial field: {visible}/7 bodies + {stars_up}/{} bright stars above the airless horizon",
+            super::cosmos::STARS.len()
+        );
         vertices
     }
 
@@ -358,6 +381,14 @@ impl Renderer {
             super::cosmos::Planet::Jupiter => ([0.95, 0.78, 0.54], 0.075),
             super::cosmos::Planet::Saturn => ([0.84, 0.75, 0.50], 0.065),
         }
+    }
+
+    /// Star disc colour + radius by visual magnitude: brighter stars render larger and whiter.
+    fn star_style(mag: f32) -> ([f32; 3], f32) {
+        let b = ((2.2 - mag) / 3.7).clamp(0.0, 1.0); // 0 (faint, ~mag 2) .. 1 (Sirius, ~ -1.5)
+        let radius = 0.006 + 0.012 * b;
+        let tint = 0.78 + 0.22 * b;
+        ([tint, tint, (tint * 1.04).min(1.0)], radius)
     }
 
     fn push_body_disc(

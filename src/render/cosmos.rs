@@ -502,6 +502,75 @@ pub fn planet_position(planet: Planet, lat_deg: f64, lon_deg: f64, jd: f64) -> (
     )
 }
 
+// ── The fixed stars ──────────────────────────────────────────────────────────────────────────
+//
+// A small catalogue of the brightest stars (J2000 equatorial reference coordinates) — the
+// astronomy substrate the astrology half (constellations, the zodiac, the decans) will later be
+// drawn over. Each is precessed J2000 → equinox of date and reduced to topocentric alt/az through
+// the same tail as the Sun, Moon, and planets; stars sit at effective infinity, so diurnal
+// parallax vanishes. The transform is checked by the Polaris test (its altitude must equal the
+// observer's latitude). Coordinates are accurate to ~arcminute — ample for a naked-eye sky.
+
+/// One catalogued star: J2000 equatorial coordinates and visual magnitude.
+pub struct Star {
+    pub name: &'static str,
+    pub ra_deg: f64,
+    pub dec_deg: f64,
+    pub mag: f32,
+}
+
+/// The 24 brightest stars (plus Polaris for the latitude check), J2000; magnitudes are visual (V).
+#[rustfmt::skip]
+pub const STARS: [Star; 24] = [
+    Star { name: "Sirius",     ra_deg: 101.287, dec_deg: -16.716, mag: -1.46 },
+    Star { name: "Canopus",    ra_deg:  95.988, dec_deg: -52.696, mag: -0.74 },
+    Star { name: "Rigil Kent", ra_deg: 219.902, dec_deg: -60.834, mag: -0.27 },
+    Star { name: "Arcturus",   ra_deg: 213.915, dec_deg:  19.182, mag: -0.05 },
+    Star { name: "Vega",       ra_deg: 279.234, dec_deg:  38.784, mag:  0.03 },
+    Star { name: "Capella",    ra_deg:  79.172, dec_deg:  45.998, mag:  0.08 },
+    Star { name: "Rigel",      ra_deg:  78.634, dec_deg:  -8.202, mag:  0.13 },
+    Star { name: "Procyon",    ra_deg: 114.825, dec_deg:   5.225, mag:  0.34 },
+    Star { name: "Achernar",   ra_deg:  24.429, dec_deg: -57.237, mag:  0.46 },
+    Star { name: "Betelgeuse", ra_deg:  88.793, dec_deg:   7.407, mag:  0.50 },
+    Star { name: "Hadar",      ra_deg: 210.956, dec_deg: -60.373, mag:  0.61 },
+    Star { name: "Altair",     ra_deg: 297.696, dec_deg:   8.868, mag:  0.77 },
+    Star { name: "Acrux",      ra_deg: 186.650, dec_deg: -63.099, mag:  0.77 },
+    Star { name: "Aldebaran",  ra_deg:  68.980, dec_deg:  16.509, mag:  0.85 },
+    Star { name: "Spica",      ra_deg: 201.298, dec_deg: -11.161, mag:  0.98 },
+    Star { name: "Antares",    ra_deg: 247.352, dec_deg: -26.432, mag:  1.09 },
+    Star { name: "Pollux",     ra_deg: 116.329, dec_deg:  28.026, mag:  1.14 },
+    Star { name: "Fomalhaut",  ra_deg: 344.413, dec_deg: -29.622, mag:  1.16 },
+    Star { name: "Deneb",      ra_deg: 310.358, dec_deg:  45.280, mag:  1.25 },
+    Star { name: "Mimosa",     ra_deg: 191.930, dec_deg: -59.689, mag:  1.25 },
+    Star { name: "Regulus",    ra_deg: 152.093, dec_deg:  11.967, mag:  1.35 },
+    Star { name: "Adhara",     ra_deg: 104.656, dec_deg: -28.972, mag:  1.50 },
+    Star { name: "Castor",     ra_deg: 113.650, dec_deg:  31.888, mag:  1.58 },
+    Star { name: "Polaris",    ra_deg:  37.954, dec_deg:  89.264, mag:  1.98 },
+];
+
+/// Apparent **topocentric** altitude + azimuth (degrees) of a fixed star at Julian Day `jd`,
+/// from its J2000 equatorial coordinates. Same conventions as [`solar_position`]; airless.
+pub fn star_position(ra_j2000_deg: f64, dec_j2000_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let t = (jd - 2_451_545.0) / 36525.0;
+    let eps_j2000 = 23.439_291_1_f64.to_radians();
+    let ra = ra_j2000_deg.to_radians();
+    let dec = dec_j2000_deg.to_radians();
+
+    // Equatorial (J2000) → ecliptic (J2000).
+    let lambda0 = (ra.sin() * eps_j2000.cos() + dec.tan() * eps_j2000.sin()).atan2(ra.cos());
+    let beta = (dec.sin() * eps_j2000.cos() - dec.cos() * eps_j2000.sin() * ra.sin()).asin();
+
+    // Precess ecliptic longitude J2000 → equinox of date, then ecliptic (of date) → equatorial.
+    let lambda = lambda0 + (1.396_971_2 * t).to_radians();
+    let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
+    let eps = eps0.to_radians();
+    let alpha = (lambda.sin() * eps.cos() - beta.tan() * eps.sin()).atan2(lambda.cos());
+    let delta = (beta.sin() * eps.cos() + beta.cos() * eps.sin() * lambda.sin()).asin();
+
+    // Effective infinity → diurnal parallax vanishes.
+    topocentric_altaz(lat_deg, lon_deg, jd, alpha.to_degrees(), delta.to_degrees(), 1.0e12)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -688,5 +757,17 @@ mod tests {
             0.3,
             "saturn 21:30",
         );
+    }
+
+    #[test]
+    fn polaris_altitude_equals_latitude() {
+        // The pole star sits ~0.7° from the celestial pole, so its altitude tracks the observer's
+        // latitude (latitude-by-Polaris) and it bears ~due north — a geometric check on the
+        // J2000 → date → topocentric star transform.
+        let polaris = STARS.iter().find(|s| s.name == "Polaris").unwrap();
+        let (alt, az) =
+            star_position(polaris.ra_deg, polaris.dec_deg, LAT, LON, julian_day(2026, 6, 9, 17, 0, 0.0));
+        assert!((alt - LAT).abs() < 0.8, "polaris alt {alt} vs lat {LAT}");
+        assert!(ang_diff(az, 0.0) < 3.0, "polaris az {az}");
     }
 }
