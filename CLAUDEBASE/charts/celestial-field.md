@@ -14,26 +14,27 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
-# The Celestial Field — the structured sky over Nassau
+# (`The-Celestial-Field`/`The-Structured-Sky-Over-Nassau`)
 
 > *Himmelen lyver ikke om hvor; hva den betyr, leser du selv.*
->
-> *(The sky does not lie about where; what it means, you read yourself.)*
 
-*The detailed chart for the renderer's sky-as-structure. [`north-star-constellations.md`](north-star-constellations.md) §2.6 holds the strategic gate — why the celestial field is load-bearing and half the project's reach. This holds the architecture: what is built, how it is verified, and where the astrology half attaches. Sibling to [`the-long-tack.md`](the-long-tack.md) (the sim front) — same register, orthogonal axis.*
+  > *(The sky does not lie about where; what it means, you read yourself.)*
+
+*— The detailed chart for the renderer's sky-as-structure. —* [`north-star-constellations.md`](north-star-constellations.md) *— **(`§2.6`)** — holds the strategic gate — why the celestial field is load-bearing and half the project's reach. This holds the architecture: what is built, how it is verified, and where the astrology half attaches. Sibling to —Æ [`the-long-tack.md`](the-long-tack.md) *— (the sim front) — same register, orthogonal axis.*
 
 ---
 
-## 0 · How to read this
+## (`0`/`·`/`How-To-Read-This`)
 
-§2.6 of the chart is the **gate** (one paragraph: the sky is a structured field, not only a lamp; the reach is astronomy + astrology, 50/50). This document is the **mechanics** behind that gate. It exists because the celestial dimension outgrew a chart section: `src/render/cosmos.rs` is the single largest verified subsystem in the renderer, and a paragraph could no longer hold it.
+- *— **(`§2.6`)** of the chart is the **(`gate`)** (one paragraph: the sky is a structured field, not only a lamp; the reach is astronomy + astrology, 50/50). This document is the **(`mechanics`)** behind that gate. It exists because the celestial dimension outgrew a chart section: —* `src/render/cosmos.rs` *— is the single largest verified subsystem in the renderer, and a paragraph could no longer hold it.*
 
-The split is strict and it is the whole discipline:
+  - *— The split is strict and it is the whole discipline:*
 
-- **Astronomy is `[built]`** — positional truth, every body, verified against JPL Horizons / Polaris geometry. Documented here as it actually is in the code; nothing claimed that a test does not back.
-- **Astrology is `[owner-defined]`** — the older, fuller field above the positions. This document **structures its attach-points** — names where each tradition plugs into the built substrate — but invents none of its mechanics. *The same ethic that forbids fabricating the seabed forbids fabricating the sky's meaning.*
+    - *— **(`Astronomy`/`Is`/`[built]`)** — positional truth, every body, verified against JPL Horizons / Polaris geometry. Documented here as it actually is in the code; nothing claimed that a test does not back.*
 
-> **Prime directive (sky edition):** *The mathematics must be true* in *the work. Meaning rides on true positions, or it is nothing. Document the built; scaffold the slots; invent neither star nor sign.*
+      - *— **(`Astrology`/`Is`/`[owner-defined]`)** — the older, fuller field above the positions. This document — **(`structures-its-attach-points`)** — names where each tradition plugs into the built substrate — but invents none of its mechanics. *The same ethic that forbids fabricating the seabed forbids fabricating the sky's meaning.*
+
+        > *— **(`Prime-directive-(sky edition)`)** — *The mathematics must be true in the work. Meaning rides on true positions, or it is nothing. Document the built; scaffold the slots; invent neither star nor sign.*
 
 ---
 
