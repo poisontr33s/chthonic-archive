@@ -69,6 +69,7 @@ pub struct Renderer {
     pub motion_vector_view: vk::ImageView,
     pub frame_index: u64,
     pub screenshot: Option<String>,
+    pub show_motion: bool,
     pub shot_taken: bool,
     pub needs_resize: bool,
     pub camera: IsometricCamera,
@@ -207,6 +208,7 @@ impl Renderer {
             motion_vector_view,
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
+            show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
             shot_taken: false,
             needs_resize: false,
             camera,
@@ -889,11 +891,15 @@ impl Renderer {
         ctx.device
             .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
 
-        // Push constants: camera + sun, plus params [time, mode, motion.xy]. Three
-        // passes share one pipeline: seabed (mode 0), Gerstner ocean (mode 1),
-        // celestial field (mode 2). This is the current compounding boundary: add
-        // real layers here; do not replace the camera path with speculative view cycling.
-        let time = self.frame_index as f32 * 0.02;
+        // Push constants: camera + sun, plus params [time, mode, dt, motion-debug]. Three
+        // passes share one pipeline: seabed (mode 0), Gerstner ocean (mode 1), celestial
+        // field (mode 2). params.z carries the per-frame dt so the vertex stage can reproject
+        // each surface vertex's previous-frame wave position into a true motion vector;
+        // params.w > 0.5 paints that motion buffer as colour (CHTHONIC_SHOW_MOTION). This is
+        // the current compounding boundary: add real layers here; do not replace the camera
+        // path with speculative view cycling.
+        const FRAME_DT: f32 = 0.02;
+        let time = self.frame_index as f32 * FRAME_DT;
         let temporal_frame = self.temporal.begin_frame(
             self.swapchain.extent,
             self.camera.view_matrix(),
@@ -904,12 +910,7 @@ impl Renderer {
             view: self.camera.view_as_array(),
             projection: temporal_frame.projection.to_cols_array_2d(),
             layer_color,
-            params: [
-                time,
-                0.0,
-                temporal_frame.motion_vector_ndc.x,
-                temporal_frame.motion_vector_ndc.y,
-            ],
+            params: [time, 0.0, FRAME_DT, if self.show_motion { 1.0 } else { 0.0 }],
         };
         Self::draw_mode(
             &ctx.device,

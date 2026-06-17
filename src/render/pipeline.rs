@@ -77,7 +77,7 @@ impl ShaderLanguage {
     }
 }
 
-/// Push constants: MVP + sun vector (`layer_color` slot) + params [time, mode, motion.xy] (224 bytes)
+/// Push constants: MVP + sun vector (`layer_color` slot) + params [time, mode, dt, motion-debug] (224 bytes)
 #[repr(C)]
 #[derive(Clone, Copy, Debug)]
 pub struct PushConstants {

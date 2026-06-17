@@ -16,8 +16,11 @@ layout(push_constant) uniform PushConstants {
     mat4 view;
     mat4 projection;
     vec4 sun;      // xyz = direction TO the sun, w = intensity
-    vec4 params;   // x = time, y = mode, zw = current-to-previous motion vector
+    vec4 params;   // x = time, y = mode, z = frame dt, w = motion-debug toggle
 } pc;
+
+layout(location = 3) in vec4 v_clip;       // current clip position
+layout(location = 4) in vec4 v_prev_clip;  // previous-frame clip position
 
 layout(location = 0) out vec4 out_color;
 layout(location = 1) out vec2 out_motion;
@@ -28,7 +31,21 @@ const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
 const vec3  WATER   = vec3(0.015, 0.10, 0.17);  // deep-water in-scatter colour
 
 void main() {
-    out_motion = pc.params.zw;
+    // True per-pixel motion vector: current → previous in UV space. Both clip positions came
+    // through the same (current) view-projection, so the sub-pixel jitter cancels in the
+    // difference and the static seabed/celestial geometry resolves to exactly zero.
+    vec2 curr_uv = (v_clip.xy / v_clip.w) * 0.5 + 0.5;
+    vec2 prev_uv = (v_prev_clip.xy / v_prev_clip.w) * 0.5 + 0.5;
+    vec2 motion  = prev_uv - curr_uv;
+    out_motion = motion;
+
+    // Motion-buffer debug view (CHTHONIC_SHOW_MOTION): mid-grey = still, R/G encode motion
+    // direction. The gain is large because per-frame wave motion is sub-pixel at this zoom.
+    if (pc.params.w > 0.5) {
+        const float gain = 12000.0;
+        out_color = vec4(0.5 + motion.x * gain, 0.5 + motion.y * gain, 0.5, 1.0);
+        return;
+    }
 
     vec3  N = normalize(v_normal);
     vec3  L = normalize(pc.sun.xyz);
