@@ -32,16 +32,16 @@
 
 ## (`Working-Cargo`)
 
-| Stow | Lives at | Why it rides |
+| *Stow* | *Lives at* | *Why it rides* |
 |---|---|---|
-| triage | [`tech-debt-triage`](../../.claude/skills/tech-debt-triage/) ⚑ | every folder must tell the truth about what it is |
-| necromancy | [`corpse-reviver`](../../.agents/skills/corpse-reviver/) | embalm before edit; salvage the dead without lying about their state |
-| upcycle | [`dumpster-upcycler`](../../.agents/skills/dumpster-upcycler/) | raw dumps → compact packets |
-| drain | [`session-vampire`](../../.agents/skills/session-vampire/) | bleeds sessions into structured artifacts |
-| pathguard | [`link-path-guard`](../../.agents/skills/link-path-guard/) | keeps every pointer in this base from drifting |
-| keys | [`api-manager`](../../.agents/skills/api-manager/) | tokens to shell, never to git |
+| *triage —>* **(%`stale`%)** | [`tech-debt-triage`](../../.claude/skills/tech-debt-triage/) ⚑ | *every folder must tell the truth about what it is* |
+| *necromancy —>* **(%`stale`%)** | [`corpse-reviver`](../../.agents/skills/corpse-reviver/) | *embalm before edit; salvage the dead without lying about their state* |
+| *upcycle —>* **(%`stale`%)** | [`dumpster-upcycler`](../../.agents/skills/dumpster-upcycler/) | *raw dumps → compact packets* |
+| *drain —>* **(%`stale`%)** | [`session-vampire`](../../.agents/skills/session-vampire/) | *bleeds sessions into structured artifacts* |
+| *pathguard —>* **(%`stale`%)** | [`link-path-guard`](../../.agents/skills/link-path-guard/) | *keeps every pointer in this base from drifting* |
+| *keys —>* **(%`canon`%)** | [`api-manager`](../../.agents/skills/api-manager/) | *tokens to shell, never to git* |
 
-- *—* ⚑ *— `tech-debt-triage` *— rides the Claudeine lane only — no berth yet in the shared —* `.agents/skills/`*.* 
+- *—* ⚑ *— `tech-debt-triage` *— rides the **(`Claudeine`/`CLAUDEBASE`)** — only — no berth yet in the shared —* `.agents/skills/`*.* 
 
   - *— The parity asymmetry the bounties name (T+3.1). Listed at its true path, not its wished-for one.*
 
@@ -49,7 +49,9 @@
 
 ## (`What-She-Refuses`)
 
-> *No private fork that drifts from the shared canon. No copy kept "just in case" that rots into a second source of truth. No cargo whose only purpose is to make the hold look laden. The manifest may lie to the customs-house; it does not lie to her.*
+> *No private fork that drifts from the shared desolate sands of the "exotic degrees of the compass showing". No copy exists; "just in case", what escaped was the destination, the larger outliers rots in comparison; into "falsely forged; drafts of the old worlds, like belial".*
+
+  > *No cargo whose only purpose is to make the hold look laden. The manifest may lie to the customs-house; it does not lie to her.*
 
 ---
 
