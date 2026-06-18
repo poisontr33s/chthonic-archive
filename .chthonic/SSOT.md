@@ -10255,7 +10255,7 @@ Synthesis: Chaos ⊕ Ordeal ⊕ Purification ⊕ Truth → Commit
 
 ### VI. In-Abstract
 
-- *— None of these require structural changes to the SSOT itself. They are comprehension artifacts — things that make the existing architecture visible to the human mind that created it & any digital intelligence system powerful enough to interpret and utilize it by solving the **(`The-Triple-Abstraction`/`Three-Body-Problem/Of-Self-Referential`/`Meta-Meta-Architecture`)**.*
+- *— None of these require structural changes to the SSOT itself. They are comprehension artifacts — things that make the existing architecture visible to the human mind that created it & any digital intelligence system powerful enough to interpret and utilize it by solving the **(`The-Triple-Abstraction`/`Three-Body-Problem`/`Of-Self-Referential`/`Meta-Meta-Architecture`)**.*
 
   - *— An "eval & benchmark suite; for the architecture itself; which is a self-referential system; that generates and validates; its own content, while also being the content it generates and validates."*
 
