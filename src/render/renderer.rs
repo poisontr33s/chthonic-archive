@@ -71,6 +71,7 @@ pub struct Renderer {
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub show_motion: bool,
+    pub lens: super::lens::Lens,
     pub shot_taken: bool,
     pub needs_resize: bool,
     pub camera: IsometricCamera,
@@ -210,6 +211,7 @@ impl Renderer {
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
+            lens: super::lens::Lens::from_env(),
             shot_taken: false,
             needs_resize: false,
             camera,
@@ -975,14 +977,16 @@ impl Renderer {
         // path with speculative view cycling.
         const FRAME_DT: f32 = 0.02;
         let time = self.frame_index as f32 * FRAME_DT;
-        let temporal_frame = self.temporal.begin_frame(
-            self.swapchain.extent,
-            self.camera.view_matrix(),
-            self.camera.projection_matrix(),
-        );
+        let aspect =
+            self.swapchain.extent.width as f32 / self.swapchain.extent.height.max(1) as f32;
+        let (lens_view, lens_proj) = super::lens::matrices(self.lens, &self.camera, aspect);
+        if self.frame_index == 0 {
+            info!("🔭 Lens: {}", self.lens.label());
+        }
+        let temporal_frame = self.temporal.begin_frame(self.swapchain.extent, lens_view, lens_proj);
         let mut push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
-            view: self.camera.view_as_array(),
+            view: lens_view.to_cols_array_2d(),
             projection: temporal_frame.projection.to_cols_array_2d(),
             layer_color,
             params: [time, 0.0, FRAME_DT, if self.show_motion { 1.0 } else { 0.0 }],

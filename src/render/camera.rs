@@ -164,6 +164,7 @@ impl IsometricCamera {
     }
 
     /// Convert view matrix to array format for push constants.
+    #[allow(dead_code)]
     pub fn view_as_array(&self) -> [[f32; 4]; 4] {
         self.view.to_cols_array_2d()
     }
