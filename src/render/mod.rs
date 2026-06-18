@@ -35,6 +35,7 @@ pub mod cosmos;
 pub mod ocean;
 pub mod ocean_compute;
 pub mod temporal;
+pub mod correspondence;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;
