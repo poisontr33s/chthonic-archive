@@ -183,6 +183,32 @@ impl Renderer {
         let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
         info!("🌌 Celestial field mesh: {celestial_vertex_count} vertices");
 
+        // Stage 2a: the correspondence socket reads the true sky through its first astrology
+        // module — the zodiac on the Ankhological origin (Sirius/Alcyone midpoint). Position only;
+        // meaning stays the owner's. Logged so the binding is observable in the render-smoke record.
+        {
+            use super::correspondence::{Correspondence, SkyContext};
+            let ctx = SkyContext::new_providence(super::cosmos::scene_julian_day());
+            let engine = Correspondence::new().with_slot(Box::new(super::zodiac::ZodiacSlot));
+            for reading in engine.read(&ctx) {
+                let kv = |k: &str| {
+                    reading
+                        .entries
+                        .iter()
+                        .find(|(key, _)| key == k)
+                        .map_or("?", |(_, v)| v.as_str())
+                };
+                info!(
+                    "☥ Correspondence [{}]: Sun in {} {}° · ayanamsa {}° (origin {})",
+                    reading.slot,
+                    kv("sun_sign"),
+                    kv("sun_degree"),
+                    kv("ayanamsa_deg"),
+                    kv("origin"),
+                );
+            }
+        }
+
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 RENDERER READY - Dynamic Rendering Pipeline Active!");
         info!("═══════════════════════════════════════════════════════════════");

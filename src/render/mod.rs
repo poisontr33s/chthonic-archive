@@ -37,6 +37,7 @@ pub mod ocean_compute;
 pub mod temporal;
 pub mod correspondence;
 pub mod lens;
+pub mod zodiac;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;

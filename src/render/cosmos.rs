@@ -47,10 +47,12 @@ pub fn scene_julian_day() -> f64 {
 /// Azimuth is measured from North, increasing toward East. NOAA/Meeus apparent
 /// position (aberration + nutation in longitude), airless (no refraction model) —
 /// matching the Skyfield `altaz()` (no pressure) used as the test authority.
-pub fn solar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+/// The Sun's apparent ecliptic longitude (degrees, mean equinox **of date**) at Julian Day `jd` —
+/// low-precision Meeus (ch. 25). This is the quantity the zodiac reads: the Sun rides exactly on
+/// the ecliptic, so its sign is this longitude reduced against the chosen origin. Exposed so the
+/// astrology layer ([`super::zodiac`]) places the Sun without recomputing the solar series.
+pub fn sun_apparent_longitude(jd: f64) -> f64 {
     let t = (jd - 2_451_545.0) / 36525.0;
-
-    // Sun's apparent ecliptic longitude.
     let l0 = norm360(280.46646 + t * (36000.76983 + t * 0.0003032));
     let m = 357.52911 + t * (35999.05029 - 0.0001537 * t);
     let mrad = m.to_radians();
@@ -59,7 +61,15 @@ pub fn solar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
         + (3.0 * mrad).sin() * 0.000289;
     let true_long = l0 + c;
     let omega = 125.04 - 1934.136 * t;
-    let lambda = (true_long - 0.00569 - 0.00478 * omega.to_radians().sin()).to_radians();
+    norm360(true_long - 0.00569 - 0.00478 * omega.to_radians().sin())
+}
+
+pub fn solar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let t = (jd - 2_451_545.0) / 36525.0;
+
+    // Sun's apparent ecliptic longitude (shared with the zodiac layer).
+    let lambda = sun_apparent_longitude(jd).to_radians();
+    let omega = 125.04 - 1934.136 * t;
 
     // Obliquity of the ecliptic (mean + nutation correction).
     let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
@@ -548,9 +558,11 @@ pub const STARS: [Star; 24] = [
     Star { name: "Polaris",    ra_deg:  37.954, dec_deg:  89.264, mag:  1.98 },
 ];
 
-/// Apparent **topocentric** altitude + azimuth (degrees) of a fixed star at Julian Day `jd`,
-/// from its J2000 equatorial coordinates. Same conventions as [`solar_position`]; airless.
-pub fn star_position(ra_j2000_deg: f64, dec_j2000_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+/// J2000 equatorial `(RA, Dec)` in degrees → ecliptic **of date** `(longitude, latitude)` in
+/// degrees. Precession-only (general precession in longitude, 1.3969712°/century ≈ 50.29″/yr);
+/// proper motion omitted, as for every star in [`STARS`]. Shared by [`star_position`] and the
+/// zodiac's two cultural anchor stars (Sirius, Alcyone), so both read one transform.
+fn ecliptic_of_date_from_j2000(ra_j2000_deg: f64, dec_j2000_deg: f64, jd: f64) -> (f64, f64) {
     let t = (jd - 2_451_545.0) / 36525.0;
     let eps_j2000 = 23.439_291_1_f64.to_radians();
     let ra = ra_j2000_deg.to_radians();
@@ -560,8 +572,25 @@ pub fn star_position(ra_j2000_deg: f64, dec_j2000_deg: f64, lat_deg: f64, lon_de
     let lambda0 = (ra.sin() * eps_j2000.cos() + dec.tan() * eps_j2000.sin()).atan2(ra.cos());
     let beta = (dec.sin() * eps_j2000.cos() - dec.cos() * eps_j2000.sin() * ra.sin()).asin();
 
-    // Precess ecliptic longitude J2000 → equinox of date, then ecliptic (of date) → equatorial.
-    let lambda = lambda0 + (1.396_971_2 * t).to_radians();
+    // Precess the ecliptic longitude J2000 → equinox of date.
+    (lambda0.to_degrees() + 1.396_971_2 * t, beta.to_degrees())
+}
+
+/// The ecliptic longitude **of date** (degrees, normalized) of a star at J2000 `(ra, dec)`. The
+/// zodiac's Ankhological origin is the midpoint of two such longitudes (Sirius + Alcyone).
+pub fn star_ecliptic_longitude(ra_j2000_deg: f64, dec_j2000_deg: f64, jd: f64) -> f64 {
+    norm360(ecliptic_of_date_from_j2000(ra_j2000_deg, dec_j2000_deg, jd).0)
+}
+
+/// Apparent **topocentric** altitude + azimuth (degrees) of a fixed star at Julian Day `jd`,
+/// from its J2000 equatorial coordinates. Same conventions as [`solar_position`]; airless.
+pub fn star_position(ra_j2000_deg: f64, dec_j2000_deg: f64, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let (lambda_deg, beta_deg) = ecliptic_of_date_from_j2000(ra_j2000_deg, dec_j2000_deg, jd);
+    let lambda = lambda_deg.to_radians();
+    let beta = beta_deg.to_radians();
+
+    // Ecliptic (of date) → equatorial (of date).
+    let t = (jd - 2_451_545.0) / 36525.0;
     let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
     let eps = eps0.to_radians();
     let alpha = (lambda.sin() * eps.cos() - beta.tan() * eps.sin()).atan2(lambda.cos());
