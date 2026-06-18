@@ -13,6 +13,15 @@
 use super::camera::IsometricCamera;
 use glam::{Mat4, Vec3};
 
+/// The as-above/so-below vantage: stand on the Banks, just above the water, and look toward the
+/// northern horizon tilted up — so the sky-dome rises *above* and the shoals recede *below*. The
+/// eye sits well inside the sky-dome (radius ~4.15), which is correct: from the ground you never
+/// see the whole hemisphere at once. Tuned against the render-smoke PNG.
+const HORIZON_EYE: Vec3 = Vec3::new(0.0, 0.45, 2.6);
+const HORIZON_TARGET: Vec3 = Vec3::new(0.0, 1.4, -2.0);
+/// Vertical field of view (degrees) for the perspective lens.
+const PERSPECTIVE_FOV_DEG: f32 = 55.0;
+
 /// An active lens. Lenses compound; none is a debug afterthought, and the renderer never cycles
 /// them on its own — the human (or a future control) selects.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
@@ -39,18 +48,43 @@ impl Lens {
             Lens::Perspective => "perspective (as-above/so-below)",
         }
     }
+
+    /// Where the lens stands and what it looks at — `(eye, target)`. The isometric lens reproduces
+    /// the camera's own vantage exactly (so its render is byte-identical to before the lens-set
+    /// existed). The perspective lens leaves the iso vantage behind: it stands low on the Banks and
+    /// looks toward the horizon, the true *as-above/so-below* frame. This is the single source of
+    /// the vantage — both [`matrices`] and the celestial-field disc-facing read it, so the sky is
+    /// built facing whichever eye is actually looking.
+    pub fn vantage(self, camera: &IsometricCamera) -> (Vec3, Vec3) {
+        match self {
+            Lens::Isometric => (camera.position, camera.target),
+            Lens::Perspective => (HORIZON_EYE, HORIZON_TARGET),
+        }
+    }
 }
 
 /// View + projection for the active lens. The isometric lens delegates to the existing camera,
-/// unchanged. The perspective lens shares the camera's vantage (eye + target) but with a true-FOV
-/// projection — same place to stand, a different way of seeing — so it compounds with the iso lens
-/// rather than competing with it.
+/// unchanged. The perspective lens stands at its own [`Lens::vantage`] — low on the Banks looking
+/// at the horizon — with a true-FOV projection, so it compounds with the iso lens rather than
+/// competing with it.
 pub fn matrices(lens: Lens, camera: &IsometricCamera, aspect: f32) -> (Mat4, Mat4) {
     match lens {
         Lens::Isometric => (camera.view_matrix(), camera.projection_matrix()),
         Lens::Perspective => {
-            let view = Mat4::look_at_rh(camera.position, camera.target, Vec3::Y);
-            let proj = Mat4::perspective_rh(45.0_f32.to_radians(), aspect.max(0.01), 0.1, 1000.0);
+            let (eye, target) = lens.vantage(camera);
+            let view = Mat4::look_at_rh(eye, target, Vec3::Y);
+            let mut proj = Mat4::perspective_rh(
+                PERSPECTIVE_FOV_DEG.to_radians(),
+                aspect.max(0.01),
+                0.1,
+                1000.0,
+            );
+            // Vulkan clip-space has Y pointing down; the viewport is positive-height and the
+            // pipeline already expects the flipped convention (front-face = clockwise). glam's
+            // `perspective_rh` is Y-up, so without this the horizon view renders upside-down
+            // (sky below, Banks above). The iso ortho path is left untouched — verified and
+            // byte-identical — so this correction lives only on the perspective lens.
+            proj.y_axis.y *= -1.0;
             (view, proj)
         }
     }
@@ -76,5 +110,19 @@ mod tests {
 
         let (_pv, persp_proj) = matrices(Lens::Perspective, &cam, 16.0 / 9.0);
         assert_ne!(persp_proj, iso_proj, "perspective projection must differ from orthographic");
+    }
+
+    #[test]
+    fn iso_vantage_is_the_camera_perspective_stands_apart() {
+        let cam = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+
+        let (iso_eye, iso_target) = Lens::Isometric.vantage(&cam);
+        assert_eq!(iso_eye, cam.position, "iso vantage must be the camera's own eye");
+        assert_eq!(iso_target, cam.target);
+
+        let (persp_eye, persp_target) = Lens::Perspective.vantage(&cam);
+        assert_ne!(persp_eye, iso_eye, "perspective must leave the iso eye");
+        // The horizon eye stands low and looks *up* toward the sky-dome.
+        assert!(persp_target.y > persp_eye.y, "perspective look must tilt upward");
     }
 }

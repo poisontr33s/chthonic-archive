@@ -166,12 +166,18 @@ impl Renderer {
         let mut camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
         camera.update_matrices(aspect_ratio);
 
-        // Rung 6.2: the verified celestial field made visible in the scene sky.
-        // §2.7 preservation marker: future perspective/upward sky views compound
-        // here as another view abstraction. They are intentionally not compiled as
-        // inactive camera modes or a deterministic loop.
-        let celestial_vertices =
-            Self::celestial_field_vertices(&camera, super::cosmos::scene_julian_day());
+        // The active lens is selected once, explicitly (§2.7 / 03A — never an auto-cycle), and is
+        // the single source of the vantage: the celestial field is built facing the same eye the
+        // draw loop renders through, so the as-above sky faces whoever is actually looking.
+        let lens = super::lens::Lens::from_env();
+
+        // Rung 6.2: the verified celestial field made visible in the scene sky, facing the lens.
+        let (cf_eye, cf_target) = lens.vantage(&camera);
+        let celestial_vertices = Self::celestial_field_vertices(
+            cf_eye,
+            cf_target,
+            super::cosmos::scene_julian_day(),
+        );
         let (celestial_vertex_buffer, celestial_vertex_memory) =
             Self::create_vertex_buffer(ctx, &celestial_vertices)?;
         let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
@@ -211,7 +217,7 @@ impl Renderer {
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
-            lens: super::lens::Lens::from_env(),
+            lens,
             shot_taken: false,
             needs_resize: false,
             camera,
@@ -282,11 +288,15 @@ impl Renderer {
         Ok((buffer, memory))
     }
 
-    fn celestial_field_vertices(camera: &IsometricCamera, jd: f64) -> Vec<Vertex> {
+    /// Build the celestial-field mesh facing the *active lens's* eye. The discs are CPU-billboarded
+    /// to a single shared plane (the dome is small relative to the bodies), so the facing must track
+    /// whichever lens is looking — `(eye, target)` come from [`super::lens::Lens::vantage`]. For the
+    /// iso lens these reproduce the camera's own vantage exactly, so the iso render is unchanged.
+    fn celestial_field_vertices(eye: Vec3, target: Vec3, jd: f64) -> Vec<Vertex> {
         let lat = super::cosmos::NEW_PROVIDENCE_LAT_DEG;
         let lon = super::cosmos::NEW_PROVIDENCE_LON_DEG;
 
-        let forward = (camera.target - camera.position).normalize();
+        let forward = (target - eye).normalize();
         let axis_up = if forward.dot(Vec3::Y).abs() > 0.95 {
             Vec3::Z
         } else {
