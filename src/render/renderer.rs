@@ -448,10 +448,41 @@ impl Renderer {
             );
         }
 
+        // Stage 2b: the Ankhological zodiac wheel — the twelve 30° sign boundaries marked on the
+        // true ecliptic. Positions are math-forced (the verified Sirius/Alcyone origin + exact 30°
+        // steps); only their rendered form is chosen. Boundary 0 — the origin, the Egyptian/Andean
+        // midpoint — is the gold keystone; the other eleven are cool studs that punctuate the
+        // ecliptic into its sectors. Below-horizon spokes self-cull like every other body.
+        let mut wheel_up = 0_u32;
+        for (k, &boundary_lon) in super::zodiac::sign_boundaries_tropical(jd).iter().enumerate() {
+            let (alt, az) = super::cosmos::ecliptic_altaz(boundary_lon, lat, lon, jd);
+            let dir = super::cosmos::altaz_to_world_direction(alt, az);
+            // Form (the chosen layer): a lavender no body or great circle wears, so the boundaries
+            // read as one set, not as scattered stars; the origin keystone is a larger warm
+            // gold-white — the one mark the eye finds first.
+            let (color, radius) = if k == 0 {
+                ([1.00, 0.92, 0.58], 0.110) // the Ankhological origin — the keystone
+            } else {
+                ([0.82, 0.66, 1.00], 0.050) // the eleven lesser spokes
+            };
+            if Self::push_body_disc(
+                &mut vertices,
+                Vec3::new(dir[0], dir[1], dir[2]),
+                alt.to_radians().sin().max(0.0) as f32,
+                radius,
+                color,
+                right,
+                up,
+            ) {
+                wheel_up += 1;
+            }
+        }
+
         info!(
             "🌌 Celestial field: {visible}/7 bodies + {stars_up}/{} bright stars above the airless horizon",
             super::cosmos::STARS.len()
         );
+        info!("☥ Ankhological zodiac wheel: {wheel_up}/12 sign boundaries above the horizon (origin = Sirius/Alcyone midpoint)");
         vertices
     }
 

@@ -86,6 +86,20 @@ pub fn sign_of(ankh_lon_deg: f64) -> (usize, &'static str, f64) {
     (index, SIGN_NAMES[index], lon - index as f64 * 30.0)
 }
 
+/// The **tropical** ecliptic longitude (degrees, of date) of each of the twelve sign boundaries —
+/// the spokes of the Ankhological wheel, ready to draw on the real ecliptic. Boundary 0 is the
+/// origin itself (the Sirius/Alcyone midpoint); the rest step exactly 30°. The geometry is
+/// math-forced — the verified midpoint and an exact division — so the wheel carries no free knob;
+/// only how it is *rendered* is a choice.
+pub fn sign_boundaries_tropical(jd: f64) -> [f64; 12] {
+    let ayan = ankhological_ayanamsa(jd);
+    let mut out = [0.0_f64; 12];
+    for (k, slot) in out.iter_mut().enumerate() {
+        *slot = (ayan + k as f64 * 30.0).rem_euclid(360.0);
+    }
+    out
+}
+
 /// The zodiac as a correspondence [`Slot`]: it reads the true Sun against the Ankhological origin
 /// and reports its sign. The Sun is the canonical zodiacal luminary (it rides exactly on the
 /// ecliptic); the Moon and the five planets compound onto this same machinery next, each just
@@ -171,6 +185,22 @@ mod tests {
         let sun_trop = cosmos::sun_apparent_longitude(jd);
         let expected = (sun_trop - ankhological_ayanamsa(jd)).rem_euclid(360.0);
         assert!(signed_delta(to_ankhological(sun_trop, jd), expected).abs() < 1e-9);
+    }
+
+    /// The twelve boundaries are the wheel: boundary 0 is the origin, and each lands exactly on
+    /// its sign's 0° in the Ankhological frame (the division is math-forced, no drift).
+    #[test]
+    fn the_twelve_boundaries_are_the_wheel() {
+        let jd = cosmos::julian_day(2026, 6, 19, 0, 0, 0.0);
+        let b = sign_boundaries_tropical(jd);
+        assert!(signed_delta(b[0], ankhological_ayanamsa(jd)).abs() < 1e-9, "boundary 0 is the origin");
+        for (k, &lon) in b.iter().enumerate() {
+            let expected = (k as f64 * 30.0) % 360.0;
+            assert!(
+                signed_delta(to_ankhological(lon, jd), expected).abs() < 1e-6,
+                "boundary {k} not on its sign edge"
+            );
+        }
     }
 
     /// The slot plugs into the correspondence socket and produces a structured reading.
