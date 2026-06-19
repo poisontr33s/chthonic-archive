@@ -70,3 +70,9 @@ Stages 1b / 2a / 2b shipped and pushed. The three aspects all stand: astronomy v
 - the **iso lens stays byte-identical** (the verified so-below view); any lens correction lives only on its own arm.
 - the zodiac **reports position only**; meaning stays the owner's.
 - **main/origin only**, no branches/worktrees; commits auto-push; the **SSOT is never touched** (it carries zero renderer content — CLAUDEBASE is canon-of-record).
+
+## §6 — Where this meets the mountain (one law, not lanes)
+
+This engine is **one thread, not the whole**. The mountain's authoritative map is [TODO.md](../TODO.md) (+ [GRILLING.md](../GRILLING.md)) — an 11-gate ladder (governance → CI → toolchain → debt → MCP → synthesis → Solana/GPU → corpus → agent-court → game-engine → world-synthesis). The A-C-A engine touches Gate +4 (game/Vulkan), +1 (GPU compute), −3 (Rust toolchain). Do **not** copy that ladder here — link it; copies rot (the MANIFEST law).
+
+The deeper meeting point is **one law, not a list**: the engine's **forced-shell / free-core** is the same principle as the CLAUDEBASE [frontmatter standard](../../quarterdeck/frontmatter-standard.md) — **substrate verifiable (forced), surface creative (free; the Ankh-DSL styling)** — and as the Ankh-DSL transition itself. *Surface = creative practice; substrate = verifiable; neither depends on the other.* The work is not carried in separate lanes; it is one mountain moved and changed at once. Navigate the whole by that shared law — that is the point where the projects converge, and the isomorphism Gate 0 (Urca de Lima) is hunting.
