@@ -34,8 +34,14 @@ rustflags = [
     "-C", "link-arg=/LTCG",
 ]
 
-# shaderc-sys: use prebuilt VulkanSDK library instead of building from source
-# (build from source requires python3 which may not be on PATH in all runner environments)
+# shaderc-sys: link the prebuilt VulkanSDK shaderc instead of building from source.
+# Building from source pulls a CMake/Python/Ninja chain that broke 2026-06-20 when the stale
+# path here (1.4.341.1, since upgraded) fell through to the from-source build, which then found
+# the broken hermes python shim. Lesson: a version-locked path goes stale on SDK bump and fails
+# silently. PRIMARY robust fix is a persistent user env var SHADERC_LIB_DIR = %VULKAN_SDK%\Lib
+# (REG_EXPAND_SZ) that tracks the installed SDK and overrides this (cargo [env] is force=false,
+# so a set env var wins). This repo-tracked value is the fallback for a fresh clone — bump on
+# SDK upgrade. Twin latent brittleness: PYTHON_SYS_EXECUTABLE below is also version-pinned.
 [env]
-SHADERC_LIB_DIR = "C:\\VulkanSDK\\1.4.341.1\\Lib"
+SHADERC_LIB_DIR = "C:\\VulkanSDK\\1.4.350.0\\Lib"
 PYTHON_SYS_EXECUTABLE = "C:\\users\\eldno\\AppData\\Roaming\\uv\\python\\cpython-3.14.4-windows-x86_64-none\\python.exe"

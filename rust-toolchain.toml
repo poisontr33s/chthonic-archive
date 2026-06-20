@@ -1,5 +1,8 @@
 [toolchain]
-channel = "1.95.0"
+# Track latest stable, never a legacy pin (owner directive 2026-06-20: robustness
+# through currency, not lock-in). Re-pin to a specific version only if cross-machine
+# reproducibility ever outweighs staying current.
+channel = "stable"
 profile = "default"
 components = ["rustfmt", "clippy"]
 targets = ["x86_64-pc-windows-msvc"]
