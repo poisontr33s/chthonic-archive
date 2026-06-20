@@ -41,7 +41,9 @@ rustflags = [
 # silently. PRIMARY robust fix is a persistent user env var SHADERC_LIB_DIR = %VULKAN_SDK%\Lib
 # (REG_EXPAND_SZ) that tracks the installed SDK and overrides this (cargo [env] is force=false,
 # so a set env var wins). This repo-tracked value is the fallback for a fresh clone — bump on
-# SDK upgrade. Twin latent brittleness: PYTHON_SYS_EXECUTABLE below is also version-pinned.
+# SDK upgrade. (PYTHON_SYS_EXECUTABLE was removed 2026-06-20: it was vestigial —
+# no pyo3 crate exists in any workspace and shaderc now links the prebuilt lib, so
+# nothing in the build consumes it. A version-pinned interpreter path with no
+# consumer is pure latent brittleness; deleting it is the permanent de-brittle.)
 [env]
 SHADERC_LIB_DIR = "C:\\VulkanSDK\\1.4.350.0\\Lib"
-PYTHON_SYS_EXECUTABLE = "C:\\users\\eldno\\AppData\\Roaming\\uv\\python\\cpython-3.14.4-windows-x86_64-none\\python.exe"
