@@ -192,30 +192,30 @@ impl Renderer {
         let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
         info!("🌌 Celestial field mesh: {celestial_vertex_count} vertices");
 
-        // Stage 2a: the correspondence socket reads the true sky through its first astrology
+        // Stage 2a/2c: the correspondence socket reads the true sky through its first astrology
         // module — the zodiac on the Ankhological origin (Sirius/Alcyone midpoint). Position only;
         // meaning stays the owner's. Logged so the binding is observable in the render-smoke record.
         {
             use super::correspondence::{Correspondence, SkyContext};
-            let ctx = SkyContext::new_providence(super::cosmos::scene_julian_day());
+            let jd = super::cosmos::scene_julian_day();
+            let ctx = SkyContext::new_providence(jd);
             let engine = Correspondence::new().with_slot(Box::new(super::zodiac::ZodiacSlot));
             for reading in engine.read(&ctx) {
-                let kv = |k: &str| {
-                    reading
-                        .entries
-                        .iter()
-                        .find(|(key, _)| key == k)
-                        .map_or("?", |(_, v)| v.as_str())
-                };
-                info!(
-                    "☥ Correspondence [{}]: Sun in {} {}° · ayanamsa {}° (origin {})",
-                    reading.slot,
-                    kv("sun_sign"),
-                    kv("sun_degree"),
-                    kv("ayanamsa_deg"),
-                    kv("origin"),
-                );
+                let ayan = reading
+                    .entries
+                    .iter()
+                    .find(|(k, _)| k == "ayanamsa_deg")
+                    .map_or("?", |(_, v)| v.as_str());
+                info!("☥ Correspondence [{}]: ayanamsa {ayan}° (origin sirius-alcyone-midpoint)", reading.slot);
             }
+            // Stage 2b/2c: every luminary and planet in its Ankhological sign — the spirit layer's
+            // placement, on the same one ayanamsa. Position only; the meaning is the owner's.
+            let bodies = super::zodiac::bodies_in_signs(jd)
+                .into_iter()
+                .map(|(label, _i, sign, deg)| format!("{label} in {sign} {deg:.1}°"))
+                .collect::<Vec<_>>()
+                .join(" · ");
+            info!("☥ Zodiac bodies: {bodies}");
         }
 
         info!("═══════════════════════════════════════════════════════════════");

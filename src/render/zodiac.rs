@@ -100,10 +100,28 @@ pub fn sign_boundaries_tropical(jd: f64) -> [f64; 12] {
     out
 }
 
-/// The zodiac as a correspondence [`Slot`]: it reads the true Sun against the Ankhological origin
-/// and reports its sign. The Sun is the canonical zodiacal luminary (it rides exactly on the
-/// ecliptic); the Moon and the five planets compound onto this same machinery next, each just
-/// another tropical longitude shifted by the one ayanamsa. Meaning stays the owner's.
+/// Every zodiacal body the engine places: the two luminaries and the five visible planets, each on
+/// (or near) the ecliptic, each shifted by the **one** ayanamsa. Returns `(label, sign index 0..=11,
+/// sign label, degree within sign)` in luminary-then-orbit order. Position only — the placement is a
+/// pure shift of the true longitude; the meaning of each sign stays the owner's.
+pub fn bodies_in_signs(jd: f64) -> Vec<(&'static str, usize, &'static str, f64)> {
+    let mut out: Vec<(&'static str, usize, &'static str, f64)> = Vec::with_capacity(7);
+    let mut place = |label: &'static str, tropical_lon: f64| {
+        let (index, name, deg) = sign_of(to_ankhological(tropical_lon, jd));
+        out.push((label, index, name, deg));
+    };
+    place("Sun", cosmos::sun_apparent_longitude(jd));
+    place("Moon", cosmos::moon_apparent_longitude(jd));
+    for p in cosmos::Planet::ALL {
+        place(p.label(), cosmos::planet_apparent_longitude(p, jd));
+    }
+    out
+}
+
+/// The zodiac as a correspondence [`Slot`]: it reads the true Sun, Moon, and five planets against
+/// the Ankhological origin and reports each one's sign. Every body is just another tropical
+/// longitude shifted by the one ayanamsa ([`bodies_in_signs`]). Meaning stays the owner's — the slot
+/// asserts position, never significance.
 pub struct ZodiacSlot;
 
 impl Slot for ZodiacSlot {
@@ -113,21 +131,24 @@ impl Slot for ZodiacSlot {
 
     fn read(&self, ctx: &SkyContext) -> SlotReading {
         let ayan = ankhological_ayanamsa(ctx.jd);
-        let sun_trop = cosmos::sun_apparent_longitude(ctx.jd);
-        let sun_ankh = to_ankhological(sun_trop, ctx.jd);
-        let (index, name, deg) = sign_of(sun_ankh);
+        let mut entries = vec![
+            ("origin".to_string(), "sirius-alcyone-midpoint".to_string()),
+            ("ayanamsa_deg".to_string(), format!("{ayan:.3}")),
+        ];
+        for (label, index, sign, deg) in bodies_in_signs(ctx.jd) {
+            let key = label.to_ascii_lowercase();
+            entries.push((format!("{key}_sign"), sign.to_string()));
+            entries.push((format!("{key}_degree"), format!("{deg:.2}")));
+            // Keep the Sun's sector index for the original reading shape.
+            if label == "Sun" {
+                entries.push(("sun_sign_index".to_string(), index.to_string()));
+            }
+        }
+        // Meaning is owner-defined: the slot asserts position, never significance.
+        entries.push(("semantics".to_string(), "owner-defined".to_string()));
         SlotReading {
             slot: self.name().to_string(),
-            entries: vec![
-                ("origin".to_string(), "sirius-alcyone-midpoint".to_string()),
-                ("ayanamsa_deg".to_string(), format!("{ayan:.3}")),
-                ("sun_sign_index".to_string(), index.to_string()),
-                ("sun_sign".to_string(), name.to_string()),
-                ("sun_degree".to_string(), format!("{deg:.2}")),
-                ("sun_lon_ankh_deg".to_string(), format!("{sun_ankh:.3}")),
-                // Meaning is owner-defined: the slot asserts position, never significance.
-                ("semantics".to_string(), "owner-defined".to_string()),
-            ],
+            entries,
         }
     }
 }
@@ -201,6 +222,45 @@ mod tests {
                 "boundary {k} not on its sign edge"
             );
         }
+    }
+
+    /// The Moon and the five planets compound onto the Sun's machinery: seven bodies, each landing
+    /// in a real sign, each placement a *pure* shift of its true longitude by the one ayanamsa —
+    /// nothing fabricated.
+    #[test]
+    fn all_bodies_place_in_real_signs() {
+        let jd = cosmos::julian_day(2026, 6, 9, 17, 0, 0.0); // the scene epoch
+        let bodies = bodies_in_signs(jd);
+        assert_eq!(bodies.len(), 7, "Sun + Moon + five planets");
+        for (label, index, sign, deg) in &bodies {
+            assert!(SIGN_NAMES.contains(sign), "{label} not in a real sign");
+            assert!(*index < 12 && (0.0..30.0).contains(deg), "{label} degree {deg} out of sector");
+        }
+        // Re-derive a few directly from cosmos and confirm the sign matches the pure shift.
+        let check = |label: &str, trop: f64| {
+            let (_, sign, _) = sign_of(to_ankhological(trop, jd));
+            let got = bodies.iter().find(|(l, ..)| *l == label).map(|(_, _, s, _)| *s);
+            assert_eq!(got, Some(sign), "{label} must equal tropical-minus-ayanamsa");
+        };
+        check("Sun", cosmos::sun_apparent_longitude(jd));
+        check("Moon", cosmos::moon_apparent_longitude(jd));
+        check("Mars", cosmos::planet_apparent_longitude(cosmos::Planet::Mars, jd));
+    }
+
+    /// The slot now reports all seven bodies, each naming a real sign — and never asserts meaning.
+    #[test]
+    fn slot_reports_all_seven_bodies() {
+        let ctx = SkyContext::new_providence(cosmos::julian_day(2026, 6, 9, 17, 0, 0.0));
+        let r = ZodiacSlot.read(&ctx);
+        for key in [
+            "sun_sign", "moon_sign", "mercury_sign", "venus_sign", "mars_sign", "jupiter_sign",
+            "saturn_sign",
+        ] {
+            let v = r.entries.iter().find(|(k, _)| k == key).map(|(_, v)| v.as_str());
+            assert!(v.is_some_and(|s| SIGN_NAMES.contains(&s)), "{key} must name a real sign");
+        }
+        let sem = r.entries.iter().find(|(k, _)| k == "semantics").map(|(_, v)| v.as_str());
+        assert_eq!(sem, Some("owner-defined"));
     }
 
     /// The slot plugs into the correspondence socket and produces a structured reading.

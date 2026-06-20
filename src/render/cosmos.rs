@@ -255,7 +255,11 @@ fn topocentric_altaz(
 /// equatorial → topocentric parallax (ch. 40). The Moon's ~1° horizontal parallax makes the
 /// topocentric step mandatory (geocentric is ~1° wrong at the horizon). Verified against JPL
 /// Horizons over New Providence in the tests (≈arcminute) — measured, not asserted.
-pub fn lunar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+/// The Moon's apparent geocentric ecliptic position, equinox **of date** (Meeus ch.47, main series +
+/// the larger additive and nutation corrections): `(longitude °, latitude rad, distance km,
+/// true-obliquity rad)`. Shared by [`lunar_position`] (which adds the equatorial + topocentric tail)
+/// and [`moon_apparent_longitude`] (which the zodiac reads), so both run one series.
+fn moon_ecliptic_apparent(jd: f64) -> (f64, f64, f64, f64) {
     let t = (jd - 2_451_545.0) / 36525.0;
 
     // Mean arguments (Meeus 47.1–47.6), degrees.
@@ -332,7 +336,19 @@ pub fn lunar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
     lambda += dpsi;
     let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
     let eps = (eps0 + deps).to_radians();
-    let lam = lambda.to_radians();
+    (lambda, beta, dist, eps)
+}
+
+/// The Moon's apparent geocentric ecliptic longitude (degrees, equinox of date, incl. nutation) —
+/// the quantity the zodiac reads to place the Moon in its sign. Exposed so the astrology layer does
+/// not recompute the lunar series.
+pub fn moon_apparent_longitude(jd: f64) -> f64 {
+    norm360(moon_ecliptic_apparent(jd).0)
+}
+
+pub fn lunar_position(lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let (lambda_deg, beta, dist, eps) = moon_ecliptic_apparent(jd);
+    let lam = lambda_deg.to_radians();
 
     // Ecliptic → equatorial (geocentric, with latitude β).
     let alpha = (lam.sin() * eps.cos() - beta.tan() * eps.sin()).atan2(lam.cos());
@@ -407,6 +423,17 @@ impl Planet {
         Self::Jupiter,
         Self::Saturn,
     ];
+
+    /// Conventional display label (also the zodiac's body label).
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Mercury => "Mercury",
+            Self::Venus => "Venus",
+            Self::Mars => "Mars",
+            Self::Jupiter => "Jupiter",
+            Self::Saturn => "Saturn",
+        }
+    }
 }
 
 /// One body's Keplerian set: each element is `(value_at_J2000, rate_per_Julian_century)`.
@@ -476,7 +503,11 @@ fn heliocentric_ecliptic(k: &Kepler, jd: f64) -> [f64; 3] {
 /// Apparent **topocentric** altitude + azimuth (degrees) of a planet for a site at Julian Day
 /// `jd`. Conventions match [`solar_position`]: azimuth from North increasing East, airless.
 /// Verified against JPL Horizons over New Providence in the tests (≤0.1° altitude).
-pub fn planet_position(planet: Planet, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+/// A planet's apparent geocentric ecliptic position, equinox **of date**: `(longitude °, latitude
+/// rad, distance AU)`. Light-time corrected (3 iterations); the longitude is precessed J2000 → date.
+/// Shared by [`planet_position`] (equatorial + topocentric tail) and [`planet_apparent_longitude`]
+/// (which the zodiac reads), so both run one light-time solution.
+fn planet_ecliptic_of_date(planet: Planet, jd: f64) -> (f64, f64, f64) {
     let earth = heliocentric_ecliptic(&ELEMENTS[0], jd);
     let elem = ELEMENTS[planet as usize];
 
@@ -493,8 +524,21 @@ pub fn planet_position(planet: Planet, lat_deg: f64, lon_deg: f64, jd: f64) -> (
 
     // Geocentric ecliptic (J2000) → spherical; precess the longitude to the equinox of date.
     let t = (jd - 2_451_545.0) / 36525.0;
-    let lambda = (geo[1].atan2(geo[0]).to_degrees() + 1.396_971_2 * t).to_radians();
+    let lambda_deg = geo[1].atan2(geo[0]).to_degrees() + 1.396_971_2 * t;
     let beta = (geo[2] / dist_au).asin();
+    (lambda_deg, beta, dist_au)
+}
+
+/// A planet's apparent geocentric ecliptic longitude (degrees, equinox of date) — the quantity the
+/// zodiac reads to place the planet in its sign.
+pub fn planet_apparent_longitude(planet: Planet, jd: f64) -> f64 {
+    norm360(planet_ecliptic_of_date(planet, jd).0)
+}
+
+pub fn planet_position(planet: Planet, lat_deg: f64, lon_deg: f64, jd: f64) -> (f64, f64) {
+    let (lambda_deg, beta, dist_au) = planet_ecliptic_of_date(planet, jd);
+    let lambda = lambda_deg.to_radians();
+    let t = (jd - 2_451_545.0) / 36525.0;
 
     // Ecliptic (of date) → equatorial (of date); mean obliquity (nutation omitted, sub-tolerance).
     let eps0 = 23.0 + (26.0 + (21.448 - t * (46.815 + t * (0.00059 - t * 0.001813))) / 60.0) / 60.0;
@@ -703,6 +747,20 @@ mod tests {
     fn moon_phase_in_range() {
         let k = moon_phase(julian_day(2026, 6, 9, 17, 0, 0.0));
         assert!((0.0..=1.0).contains(&k), "fraction {k}");
+    }
+
+    /// The ecliptic longitudes the zodiac reads are well-formed: every body lands in [0, 360).
+    /// (Position fidelity itself is guarded by the alt/az tests above, since these longitudes are
+    /// the same series, just exposed before the equatorial+topocentric tail.)
+    #[test]
+    fn moon_and_planet_longitudes_in_range() {
+        let jd = scene_julian_day();
+        let m = moon_apparent_longitude(jd);
+        assert!((0.0..360.0).contains(&m), "moon longitude {m} out of range");
+        for p in Planet::ALL {
+            let l = planet_apparent_longitude(p, jd);
+            assert!((0.0..360.0).contains(&l), "{} longitude {l} out of range", p.label());
+        }
     }
 
     // Planet authority: JPL Horizons (apparent, airless) over New Providence, 2026-06-09. Two
