@@ -1,9 +1,13 @@
 [package]
 name = "context-compressor"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 description = "Chthonic Neural Bus context packet compressor"
 license = "MIT"
+
+# Standalone: nested under the root tree but not a root workspace member. An empty [workspace]
+# makes it its own one-crate workspace (decoupled, and self-contained for later pruning).
+[workspace]
 
 [dependencies]
 chrono = { version = "0.4.43", features = ["serde"] }
