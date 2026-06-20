@@ -72,6 +72,7 @@ pub struct Renderer {
     pub screenshot: Option<String>,
     pub show_motion: bool,
     pub lens: super::lens::Lens,
+    pub heading: super::lens::Heading,
     pub shot_taken: bool,
     pub needs_resize: bool,
     pub camera: IsometricCamera,
@@ -170,9 +171,17 @@ impl Renderer {
         // the single source of the vantage: the celestial field is built facing the same eye the
         // draw loop renders through, so the as-above sky faces whoever is actually looking.
         let lens = super::lens::Lens::from_env();
+        // The orientable heading (the rung's freedom): where the as-above lens looks. The eye is
+        // fixed; only the heading turns. `CHTHONIC_LOOK=zodiac` aims at the Ankhological origin on
+        // the true ecliptic — turning the head toward the wheel without moving the sky.
+        let heading = Self::resolve_heading(
+            super::cosmos::NEW_PROVIDENCE_LAT_DEG,
+            super::cosmos::NEW_PROVIDENCE_LON_DEG,
+            super::cosmos::scene_julian_day(),
+        );
 
         // Rung 6.2: the verified celestial field made visible in the scene sky, facing the lens.
-        let (cf_eye, cf_target) = lens.vantage(&camera);
+        let (cf_eye, cf_target) = lens.vantage(&camera, heading);
         let celestial_vertices = Self::celestial_field_vertices(
             cf_eye,
             cf_target,
@@ -244,6 +253,7 @@ impl Renderer {
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
             lens,
+            heading,
             shot_taken: false,
             needs_resize: false,
             camera,
@@ -312,6 +322,22 @@ impl Renderer {
         );
 
         Ok((buffer, memory))
+    }
+
+    /// Resolve the orientable heading for the as-above lens. Default: the explicit env heading
+    /// ([`super::lens::Heading::from_env`]). `CHTHONIC_LOOK=zodiac` (or `ecliptic`) instead aims at
+    /// the Ankhological origin keystone on the *true* ecliptic — turning the head toward the wheel
+    /// without moving the sky. If the origin sits below the horizon at this scene date, the honest
+    /// result is a heading that looks at empty ground; we do not fake the framing.
+    fn resolve_heading(lat: f64, lon: f64, jd: f64) -> super::lens::Heading {
+        match std::env::var("CHTHONIC_LOOK").ok().as_deref() {
+            Some("zodiac") | Some("ecliptic") => {
+                let origin_lon = super::zodiac::sign_boundaries_tropical(jd)[0];
+                let (alt, az) = super::cosmos::ecliptic_altaz(origin_lon, lat, lon, jd);
+                super::lens::Heading { az_deg: az as f32, alt_deg: alt as f32 }
+            }
+            _ => super::lens::Heading::from_env(),
+        }
     }
 
     /// Build the celestial-field mesh facing the *active lens's* eye. The discs are CPU-billboarded
@@ -1046,7 +1072,8 @@ impl Renderer {
         let time = self.frame_index as f32 * FRAME_DT;
         let aspect =
             self.swapchain.extent.width as f32 / self.swapchain.extent.height.max(1) as f32;
-        let (lens_view, lens_proj) = super::lens::matrices(self.lens, &self.camera, aspect);
+        let (lens_view, lens_proj) =
+            super::lens::matrices(self.lens, &self.camera, self.heading, aspect);
         if self.frame_index == 0 {
             info!("🔭 Lens: {}", self.lens.label());
         }

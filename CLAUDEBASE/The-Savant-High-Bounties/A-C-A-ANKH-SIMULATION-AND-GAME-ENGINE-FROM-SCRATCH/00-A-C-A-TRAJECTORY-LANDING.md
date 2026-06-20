@@ -53,16 +53,17 @@ The from-scratch Rust/Vulkan **Astrological-Nassau** engine, built on the **A-C-
 **Phase 2 — the spirit, on the owner's origin**
 - `d217ea49` — **Stage 2a**: the zodiac on the **Ankhological origin** (Sirius/Alcyone midpoint ayanamsa; `ZodiacSlot` reads the true Sun; semantics empty)
 - `1dd39a82` — **Stage 2b**: the zodiac wheel made visible (twelve 30° boundaries on the true ecliptic; gold keystone at the origin + eleven lavender studs)
+- **Stage 2c**: the orientable lens — `CHTHONIC_LOOK=zodiac` aims the fixed as-above eye at the Ankhological origin on the true ecliptic; the eye never moves, only the heading turns (`Heading` = azimuth + up-tilt in the bodies' own alt/az frame). The wheel now frames in perspective (render-smoke logs `6/12 sign boundaries above the horizon`).
 
 ## §3 — Current position
 
-Stages 1b / 2a / 2b shipped and pushed. The three aspects all stand: astronomy verified, cosmology computing the origin, astrology drawn with its meaning still empty for the owner. The Ankhological origin is real and independently confirmed by the engine's own star transform — Sirius locks to **+22.04°**, Alcyone to **−22.04°**, separation **44.0893°**, ayanamsa **≈82.05° at J2000** precessing **1.3969712°/century** — and it runs live (render-smoke logs `Sun in Pisces 26.48° · ayanamsa 82.406°`). The wheel reads in the iso dome; the north-facing as-above lens does not frame the ecliptic at this scene date.
+Stages 1b / 2a / 2b / 2c shipped and pushed. The three aspects all stand: astronomy verified, cosmology computing the origin, astrology drawn with its meaning still empty for the owner. The Ankhological origin is real and independently confirmed by the engine's own star transform — Sirius locks to **+22.04°**, Alcyone to **−22.04°**, separation **44.0893°**, ayanamsa **≈82.05° at J2000** precessing **1.3969712°/century** — and it runs live (render-smoke logs `Sun in Pisces 26.48° · ayanamsa 82.406°`). The wheel reads in the iso dome, and the **orientable** as-above lens now turns to frame it in perspective — the eye stays fixed, only the heading moves. Remaining nicety: the aim is parallel to the origin's bearing, so a small eye-vs-dome parallax leaves the origin framed but not dead-centre.
 
 ## §4 — Next rungs (forward leverage)
 
-1. **Orientable lens** — let the as-above view turn *toward* the zodiac rather than moving the sky. Unblocks framing the wheel in perspective; keeps the math absolute, freedom in where you look.
-2. **Moon + the five planets in their signs** — onto the same one ayanamsa (mechanical compounding; needs exposing lunar/planet ecliptic longitudes the way `sun_apparent_longitude` already is).
-3. **The semantics** — owner-defined, from Andean/Egyptian lore; never invented by the engine. The slots are fixed by cosmology; the meaning is the core's freedom.
+1. **Moon + the five planets in their signs** — onto the same one ayanamsa (mechanical compounding; needs exposing lunar/planet ecliptic longitudes the way `sun_apparent_longitude` already is).
+2. **The semantics** — owner-defined, from Andean/Egyptian lore; never invented by the engine. The slots are fixed by cosmology; the meaning is the core's freedom.
+3. **Exact-centre aim** (optional) — aim the eye→dome-point rather than parallel-to-bearing, to centre the origin in the perspective frame. Pure framing polish; the math is already absolute.
 
 ## §5 — Invariants that must never regress
 
