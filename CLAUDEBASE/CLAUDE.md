@@ -104,7 +104,7 @@
 
 ---
 
-## (`Immutable-API-Tokens/Semented`/`No-Flippery`/`DRY`/`Different-GUI/Different-Tools`/`Same-Token-Management`)
+## (`Immutable-API-Tokens/Semented`/`No-Flippery`/`DRY`/`Different-GUI`/`Different-Tools`/`Same-Token-Management`)
 
 - *Follow* [docs/API_POOL_MCP_CONTRACT.md](../docs/API_POOL_MCP_CONTRACT.md). `~/.chthonic/api_pool.json` *is the source of truth for API and MCP tokens.*
 
