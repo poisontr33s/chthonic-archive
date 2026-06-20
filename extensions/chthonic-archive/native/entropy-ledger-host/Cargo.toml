@@ -7,14 +7,22 @@ description = "Native Rust ledger sidecar for Chthonic entropy settlements"
 
 [dependencies]
 anyhow.workspace = true
-anchor-client.workspace = true
-anchor-lang.workspace = true
 borsh.workspace = true
 clap.workspace = true
 hex.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 sha2.workspace = true
-solana-sdk.workspace = true
+solana-pubkey.workspace = true
+solana-keypair.workspace = true
+solana-signer.workspace = true
+solana-signature.workspace = true
+solana-instruction.workspace = true
+solana-transaction.workspace = true
+solana-commitment-config.workspace = true
 solana-system-interface.workspace = true
+solana-rpc-client.workspace = true
+# Phantom dep: forces five8_core 0.1.x `std` on so solana-keypair compiles.
+# See the workspace.dependencies note. Not referenced in src/.
+five8_core.workspace = true
 tokio.workspace = true

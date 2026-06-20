@@ -1,20 +1,21 @@
 use std::fs;
 use std::io::{self, BufRead, Write};
-use std::rc::Rc;
 use std::str::FromStr;
 
-use anchor_client::{Client, Cluster, Program};
-use anchor_lang::AnchorSerialize;
 use anyhow::{anyhow, Context, Result};
+use borsh::BorshSerialize;
 use clap::Parser;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
-use solana_sdk::instruction::{AccountMeta, Instruction};
-use solana_sdk::pubkey::Pubkey;
-use solana_sdk::signature::{read_keypair_file, Keypair, Signature};
-use solana_sdk::signer::Signer;
-use solana_sdk::commitment_config::CommitmentConfig;
+use solana_commitment_config::CommitmentConfig;
+use solana_instruction::{AccountMeta, Instruction};
+use solana_keypair::{read_keypair_file, Keypair};
+use solana_pubkey::Pubkey;
+use solana_rpc_client::rpc_client::RpcClient;
+use solana_signature::Signature;
+use solana_signer::Signer;
 use solana_system_interface::program as system_program;
+use solana_transaction::Transaction;
 
 #[derive(Parser, Debug)]
 #[command(name = "entropy-ledger-host")]
@@ -86,7 +87,7 @@ struct AnchorIdlMetadata {
     address: Option<String>,
 }
 
-#[derive(Debug, AnchorSerialize)]
+#[derive(Debug, BorshSerialize)]
 struct RecordDecayArgs {
     entropy_score: u64,
     merkle_root: [u8; 32],
@@ -96,15 +97,9 @@ fn main() -> Result<()> {
     let opts = Opts::parse();
     let wallet = read_keypair_file(&opts.wallet)
         .map_err(|error| anyhow!("wallet not found or unreadable: {error}"))?;
-    let authority = wallet.pubkey();
-    let payer = Rc::new(wallet);
 
     let program_id = resolve_program_id(&opts)?;
-    let cluster = Cluster::Custom(opts.rpc_url.clone(), opts.rpc_url.clone());
-    let client = Client::new_with_options(cluster, payer, CommitmentConfig::confirmed());
-    let program = client
-        .program(program_id)
-        .context("failed to initialize anchor client program handle")?;
+    let rpc = RpcClient::new_with_commitment(opts.rpc_url.clone(), CommitmentConfig::confirmed());
 
     let stdin = io::stdin();
     for line in stdin.lock().lines() {
@@ -155,7 +150,7 @@ fn main() -> Result<()> {
             }
         };
 
-        match submit_entropy(&program, authority, params.entropy_score, &params.merkle_root) {
+        match submit_entropy(&rpc, &wallet, program_id, params.entropy_score, &params.merkle_root) {
             Ok((signature, slot)) => {
                 write_json(&JsonRpcSuccess {
                     jsonrpc: "2.0",
@@ -183,13 +178,14 @@ fn main() -> Result<()> {
 }
 
 fn submit_entropy(
-    program: &Program<Rc<Keypair>>,
-    authority: Pubkey,
+    rpc: &RpcClient,
+    payer: &Keypair,
+    program_id: Pubkey,
     entropy_score: u64,
     merkle_root_hex: &str,
 ) -> Result<(Signature, u64)> {
     let merkle_root = decode_merkle_root(merkle_root_hex)?;
-    let program_id = program.id();
+    let authority = payer.pubkey();
     let ledger_state = derive_ledger_address(authority, program_id);
 
     let instruction = Instruction {
@@ -202,14 +198,21 @@ fn submit_entropy(
         data: build_record_decay_instruction_data(entropy_score, merkle_root)?,
     };
 
-    let signature = program
-        .request()
-        .instruction(instruction)
-        .send()
-        .context("failed to submit anchor record_decay transaction")?;
+    let recent_blockhash = rpc
+        .get_latest_blockhash()
+        .context("failed to fetch recent blockhash")?;
+    let transaction = Transaction::new_signed_with_payer(
+        &[instruction],
+        Some(&authority),
+        &[payer],
+        recent_blockhash,
+    );
 
-    let slot = program
-        .rpc()
+    let signature = rpc
+        .send_and_confirm_transaction(&transaction)
+        .context("failed to submit record_decay transaction")?;
+
+    let slot = rpc
         .get_slot()
         .context("failed to read latest slot after submission")?;
 
@@ -222,7 +225,7 @@ fn build_record_decay_instruction_data(entropy_score: u64, merkle_root: [u8; 32]
         merkle_root,
     };
     let mut data = instruction_discriminator("record_decay").to_vec();
-    data.extend(args.try_to_vec().context("failed to serialize record_decay args")?);
+    data.extend(borsh::to_vec(&args).context("failed to serialize record_decay args")?);
     Ok(data)
 }
 

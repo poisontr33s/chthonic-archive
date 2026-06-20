@@ -35,10 +35,11 @@ version = "0.1.0"
 
 [workspace.dependencies]
 anyhow = "1.0"
-anchor-client = "0.32.1"
-anchor-lang = "0.32.1"
 ash = "0.38"
-borsh = "0.10.4"
+# borsh 1.x directly — was reached via anchor-lang's AnchorSerialize, which is
+# just borsh. `derive` gives the BorshSerialize macro. (1.x removed the
+# try_to_vec() method; use the free fn `borsh::to_vec(&v)`.)
+borsh = { version = "1.7", features = ["derive"] }
 clap = { version = "4.6", features = ["derive"] }
 # gix 0.84: the hash backend became an explicit feature (was implied by the
 # default set pre-0.84). default-features=false drops it, so `sha1` is named
@@ -49,8 +50,40 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
 shaderc = "0.10"
-solana-sdk = "2.3.1"
-solana-system-interface = "1.0.0"
+# Solana: granular crates, not the solana-sdk umbrella. solana-sdk 4.0 actively
+# deprecates its own re-exports ("Use `solana-<x>` crate instead") — building on
+# them plants future breakage. The decomposed primitives are the ecosystem's
+# stability contract: each is small, independently versioned, and the documented
+# import path. Anchor (anchor-lang/anchor-client) is dropped entirely — this host
+# already hand-rolls the discriminator + instruction, so anchor only ever supplied
+# borsh + a thin RPC wrapper now covered by solana-rpc-client.
+# curve25519 + sha2: off-chain PDA derivation (find_program_address) is opt-in so
+# non-Solana targets don't pull the curve dep — a native host must ask for it.
+solana-pubkey = { version = "4", features = ["curve25519", "sha2"] }
+solana-keypair = "3"
+solana-signer = "3"
+solana-signature = "3"
+solana-instruction = "3"
+# solana-transaction PINNED TO 3.x ON PURPOSE: solana-rpc-client 4.0.0 depends on
+# solana-transaction 3.1.0 and impls SerializableTransaction only for *that*
+# version's Transaction. A direct 4.0.0 dep produces an incompatible type
+# ("multiple versions of solana_transaction in the graph"). "Latest of every
+# crate" does NOT compose here — the RPC client is the version-truth anchor.
+# Signing in 3.x is gated behind `bincode` (renamed `wincode` in 4.0). Bump only
+# when solana-rpc-client's pinned solana-transaction moves to 4.x.
+solana-transaction = { version = "3", features = ["bincode"] }
+solana-commitment-config = "3"
+solana-system-interface = "3"
+solana-rpc-client = "4"
+# Resolver-hazard fix (NOT scaredy-cat — load-bearing). solana-keypair 3.1.2 pulls
+# five8 1.0.0, whose decode_64 returns five8_core::DecodeError. five8's wide range
+# (five8_core ">=0.1.1,<2") gets unified DOWN to 0.1.2 because five8_const 1.0.0
+# pins 0.1.x. five8_core 0.1.2 is #![no_std] and gates `impl std::error::Error for
+# DecodeError` behind #[cfg(feature="std")] — off by default — so keypair's
+# from_source(DecodeError) fails to compile. We name five8_core 0.1 with `std` to
+# turn that impl on additively (feature unification). Delete only once five8/
+# five8_const stop pinning five8_core 0.1.x. Phantom dep — not used in our code.
+five8_core = { version = "0.1", features = ["std"] }
 tokio = { version = "1.52", features = ["macros", "rt-multi-thread"] }
 toml = "1.0"
 shared_memory = "0.12"
