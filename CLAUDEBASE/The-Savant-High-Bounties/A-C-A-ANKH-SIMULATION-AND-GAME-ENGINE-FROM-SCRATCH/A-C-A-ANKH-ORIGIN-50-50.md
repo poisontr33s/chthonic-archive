@@ -24,7 +24,7 @@
 
       - *— Proceed with — **(`2-A`)** — on that basis; — **`[Tropical-Bahamas`/`Nassau]`** — or stalwart; until we've set origin.*
 
-        - *—Based on the A-C-A preamble and the Deep Research on the Andean-Egyptian synthesis, we absolutely **do-not** hold, and we **do-not** use the Tropical default. The Tropical default violates the "universal vs. cultural" rule by enforcing a Northern Hemisphere seasonal bias (Vernal Equinox).*
+        - *—Based on the A-C-A preamble and the Deep Research on the Andean-Egyptian synthesis, we absolutely **(`Do-Not`)** hold, and we **(`Do-Not`)** use the Tropical default. The Tropical default violates the "universal vs. cultural" rule by enforcing a Northern Hemisphere seasonal bias (Vernal Equinox).*
 
           - *—The origin has been found. It is — **(`Option C-The-Spatial-Midpoint-Ayanamsa`)** — detailed in the research document.*
 
@@ -34,7 +34,7 @@
 
 - *— Directly to initiate **(`Stage-2-A`)** — translating philosophical core into pure Rust/Astronomical mechanics:*
 
-  - *— **(`Decided`)** — We’re proceeding **(`Stage-2-A`)**, but rejecting the Tropical default. The Tropical origin is tied to Northern Hemisphere seasonality, which violates the engine's requirement for a universal, substrate-forcedables. Establishing the ‘**Ankhological Origin’/Ankh** — as the fixed core of the `ZodiacSlot`.*
+  - *— **(`Decided`)** — We’re proceeding **(`Stage-2-A`)** — but rejecting the Tropical default. The Tropical origin is tied to Northern Hemisphere seasonality, which violates the engine's requirement for a universal, substrate-forcedables. Establishing the — **(`Ankhological-Origin`/`Ankh`)** — as the fixed core of the —* `ZodiacSlot`*.*
 
     - *— **(`The-Mechanis`/`The Cosmology-Layer`):** The origin (0° of the primary coordinate array) is a dynamic ayanamsa — (offset) — defined as the exact, precessing spatial midpoint on the ecliptic between the Egyptian anchor and the Andean anchorage.*
 
