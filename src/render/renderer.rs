@@ -68,6 +68,9 @@ pub struct Renderer {
     pub motion_vector_image: vk::Image,
     pub motion_vector_memory: vk::DeviceMemory,
     pub motion_vector_view: vk::ImageView,
+    pub offscreen_color_image: vk::Image,
+    pub offscreen_color_memory: vk::DeviceMemory,
+    pub offscreen_color_view: vk::ImageView,
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub show_motion: bool,
@@ -226,6 +229,8 @@ impl Renderer {
             Self::create_depth_resources(ctx, swapchain.extent)?;
         let (motion_vector_image, motion_vector_memory, motion_vector_view) =
             Self::create_motion_vector_resources(ctx, swapchain.extent)?;
+        let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
+            Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
         let temporal = TemporalState::new(camera.view_projection());
 
         Ok(Self {
@@ -249,6 +254,9 @@ impl Renderer {
             motion_vector_image,
             motion_vector_memory,
             motion_vector_view,
+            offscreen_color_image,
+            offscreen_color_memory,
+            offscreen_color_view,
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
@@ -745,6 +753,72 @@ impl Renderer {
         Ok((image, memory, view))
     }
 
+    /// Create the offscreen scene-colour target (TAA Gate 1). The scene renders here instead of
+    /// straight to the swapchain; for now it is copied verbatim to the swapchain before present, so
+    /// there is no visual change. Same format as the swapchain so the copy needs no conversion;
+    /// `TRANSFER_SRC` for that copy and `SAMPLED` so a later resolve pass can read it.
+    unsafe fn create_offscreen_color_resources(
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+        format: vk::Format,
+    ) -> Result<(vk::Image, vk::DeviceMemory, vk::ImageView)> {
+        let image_info = vk::ImageCreateInfo::default()
+            .image_type(vk::ImageType::TYPE_2D)
+            .format(format)
+            .extent(vk::Extent3D {
+                width: extent.width,
+                height: extent.height,
+                depth: 1,
+            })
+            .mip_levels(1)
+            .array_layers(1)
+            .samples(vk::SampleCountFlags::TYPE_1)
+            .tiling(vk::ImageTiling::OPTIMAL)
+            .usage(
+                vk::ImageUsageFlags::COLOR_ATTACHMENT
+                    | vk::ImageUsageFlags::TRANSFER_SRC
+                    | vk::ImageUsageFlags::SAMPLED,
+            )
+            .sharing_mode(vk::SharingMode::EXCLUSIVE)
+            .initial_layout(vk::ImageLayout::UNDEFINED);
+        let image = ctx
+            .device
+            .create_image(&image_info, None)
+            .context("create offscreen colour image")?;
+
+        let mem_req = ctx.device.get_image_memory_requirements(image);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            mem_req.memory_type_bits,
+            vk::MemoryPropertyFlags::DEVICE_LOCAL,
+        )?;
+        let alloc_info = vk::MemoryAllocateInfo::default()
+            .allocation_size(mem_req.size)
+            .memory_type_index(mem_type);
+        let memory = ctx
+            .device
+            .allocate_memory(&alloc_info, None)
+            .context("alloc offscreen colour memory")?;
+        ctx.device.bind_image_memory(image, memory, 0)?;
+
+        let view_info = vk::ImageViewCreateInfo::default()
+            .image(image)
+            .view_type(vk::ImageViewType::TYPE_2D)
+            .format(format)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+        let view = ctx
+            .device
+            .create_image_view(&view_info, None)
+            .context("create offscreen colour view")?;
+        Ok((image, memory, view))
+    }
+
     /// Capture the just-presented swapchain image to a PNG so the build loop can
     /// self-verify a render without a human screenshot. One-shot, synchronous
     /// (its own command buffer + fence). Triggered via `CHTHONIC_SCREENSHOT`.
@@ -932,7 +1006,7 @@ impl Renderer {
             .dst_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
             .old_layout(vk::ImageLayout::UNDEFINED)
             .new_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
-            .image(self.swapchain.images[image_index as usize])
+            .image(self.offscreen_color_image)
             .subresource_range(vk::ImageSubresourceRange {
                 aspect_mask: vk::ImageAspectFlags::COLOR,
                 base_mip_level: 0,
@@ -995,7 +1069,7 @@ impl Renderer {
         };
 
         let color_attachment = vk::RenderingAttachmentInfo::default()
-            .image_view(self.swapchain.image_views[image_index as usize])
+            .image_view(self.offscreen_color_view)
             .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
             .load_op(vk::AttachmentLoadOp::CLEAR)
             .store_op(vk::AttachmentStoreOp::STORE)
@@ -1120,22 +1194,78 @@ impl Renderer {
         // === END DYNAMIC RENDERING ===
         ctx.device.cmd_end_rendering(cmd);
 
-        // === TRANSITION IMAGE TO PRESENT ===
-        let image_barrier_to_present = vk::ImageMemoryBarrier2::default()
+        // === RESOLVE (TAA Gate 1: verbatim copy) ===
+        // The scene was rendered to the offscreen colour target; copy it to the swapchain before
+        // present. A later gate replaces this straight copy with the temporal resolve that reads
+        // the offscreen colour + the history + the motion vectors. No visual change yet.
+        let color_subresource = vk::ImageSubresourceRange {
+            aspect_mask: vk::ImageAspectFlags::COLOR,
+            base_mip_level: 0,
+            level_count: 1,
+            base_array_layer: 0,
+            layer_count: 1,
+        };
+        let offscreen_to_src = vk::ImageMemoryBarrier2::default()
             .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
             .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
-            .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
-            .dst_access_mask(vk::AccessFlags2::empty())
+            .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+            .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
             .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
-            .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+            .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+            .image(self.offscreen_color_image)
+            .subresource_range(color_subresource);
+        let swap_to_dst = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+            .src_access_mask(vk::AccessFlags2::empty())
+            .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+            .dst_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+            .old_layout(vk::ImageLayout::UNDEFINED)
+            .new_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
             .image(self.swapchain.images[image_index as usize])
-            .subresource_range(vk::ImageSubresourceRange {
+            .subresource_range(color_subresource);
+        let pre_copy = [offscreen_to_src, swap_to_dst];
+        ctx.device.cmd_pipeline_barrier2(
+            cmd,
+            &vk::DependencyInfo::default().image_memory_barriers(&pre_copy),
+        );
+
+        let copy = vk::ImageCopy::default()
+            .src_subresource(vk::ImageSubresourceLayers {
                 aspect_mask: vk::ImageAspectFlags::COLOR,
-                base_mip_level: 0,
-                level_count: 1,
+                mip_level: 0,
                 base_array_layer: 0,
                 layer_count: 1,
+            })
+            .dst_subresource(vk::ImageSubresourceLayers {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                mip_level: 0,
+                base_array_layer: 0,
+                layer_count: 1,
+            })
+            .extent(vk::Extent3D {
+                width: self.swapchain.extent.width,
+                height: self.swapchain.extent.height,
+                depth: 1,
             });
+        ctx.device.cmd_copy_image(
+            cmd,
+            self.offscreen_color_image,
+            vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+            self.swapchain.images[image_index as usize],
+            vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+            &[copy],
+        );
+
+        // === TRANSITION SWAPCHAIN TO PRESENT ===
+        let image_barrier_to_present = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+            .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+            .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+            .dst_access_mask(vk::AccessFlags2::empty())
+            .old_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+            .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+            .image(self.swapchain.images[image_index as usize])
+            .subresource_range(color_subresource);
 
         let barriers_to_present = [image_barrier_to_present];
         let dependency_info_to_present =
@@ -1213,6 +1343,9 @@ impl Renderer {
         ctx.device.destroy_image_view(self.motion_vector_view, None);
         ctx.device.destroy_image(self.motion_vector_image, None);
         ctx.device.free_memory(self.motion_vector_memory, None);
+        ctx.device.destroy_image_view(self.offscreen_color_view, None);
+        ctx.device.destroy_image(self.offscreen_color_image, None);
+        ctx.device.free_memory(self.offscreen_color_memory, None);
         let (depth_image, depth_memory, depth_view) =
             Self::create_depth_resources(ctx, self.swapchain.extent)?;
         self.depth_image = depth_image;
@@ -1223,6 +1356,11 @@ impl Renderer {
         self.motion_vector_image = motion_vector_image;
         self.motion_vector_memory = motion_vector_memory;
         self.motion_vector_view = motion_vector_view;
+        let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
+            Self::create_offscreen_color_resources(ctx, self.swapchain.extent, self.swapchain.format)?;
+        self.offscreen_color_image = offscreen_color_image;
+        self.offscreen_color_memory = offscreen_color_memory;
+        self.offscreen_color_view = offscreen_color_view;
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]
@@ -1258,6 +1396,9 @@ impl Renderer {
         device.destroy_image_view(self.motion_vector_view, None);
         device.destroy_image(self.motion_vector_image, None);
         device.free_memory(self.motion_vector_memory, None);
+        device.destroy_image_view(self.offscreen_color_view, None);
+        device.destroy_image(self.offscreen_color_image, None);
+        device.free_memory(self.offscreen_color_memory, None);
 
         // Command pool (implicitly frees command buffers)
         device.destroy_command_pool(self.command_pool, None);
