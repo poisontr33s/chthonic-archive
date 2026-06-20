@@ -83,7 +83,7 @@ embeddings = [
     "fastapi>=0.115,<1",
     "uvicorn[standard]>=0.34,<1",
     "accelerate>=1.0,<2",
-    "gradio>=5.0.0,<6",
+    "gradio>=6.0.0,<7",
     # onnx: IR + model checker;  onnxscript: dynamo export backend (torch.onnx dynamo=True);
     # onnxruntime-gpu: CUDA/TRT execution provider runtime.
     # Optimum quarantined — caps transformers/hf-hub below the active repo lane.
@@ -108,7 +108,7 @@ hf = [
     "pydantic-settings>=2.13.1,<3",
     "requests>=2.33.0,<3",
     "flask>=3.1.0,<4",
-    "flask-cors>=5.0.0,<6",
+    "flask-cors>=6.0.0,<7",
 ]
 
 dev = [

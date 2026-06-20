@@ -3,7 +3,7 @@ name = "voice-iter"
 version = "0.1.0"
 description = "Voice integration toolkit — generalized layer + per-project config. Polyrepo-aware. Parakeet TDT V3 + Kokoro by default; OpenAI-compatible API path supported."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 license = { text = "MIT" }
 dependencies = [
     # Core MCP transport
@@ -33,7 +33,8 @@ tts-kokoro = [
     "torch >= 2.4",
 ]
 tts-fish-speech = [
-    "fish-audio-tts >= 1.0",       # Fish Audio Python client
+    # Fish Audio client is currently unavailable in the registry view used by uv
+    # here, so keep this extra empty until the package is published/resolvable.
 ]
 openai-compat = [
     "openai >= 1.50",              # for OpenAI-compatible API path

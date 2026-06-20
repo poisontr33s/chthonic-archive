@@ -32,6 +32,11 @@ from mas_mcp.logic.tools import (
     mas_narrative_scan_logic, mas_qualia_check_logic,
     mas_validate_entity_logic
 )
+from mas_mcp.gpu_orchestrator import (
+    mas_gpu_batch_score,
+    mas_gpu_score,
+    mas_gpu_status,
+)
 from mas_mcp.logic.pid_reader import mas_pid_reader_logic
 from mas_mcp.logic.governance import policy_check_logic
 from mas_mcp.logic.ssot_binding import (
@@ -125,6 +130,25 @@ def mas_entity_deep(entity_name: str, context_lines: int = 5):
 def mas_validate_entity(entity_name: str, expected_whr: float = None, expected_tier: int = None, expected_cup: str = None):
     """Validate an entity against expected metrics. Records fractures on mismatch, seals truths on full match."""
     return mas_validate_entity_logic(entity_name, expected_whr, expected_tier, expected_cup, PROJECT_ROOT, VAULT)
+
+@mcp.tool()
+def mas_discover_unknown(target: str = "."):
+    """
+    Compatibility discovery tool for the documented MAS surface.
+
+    The current scan logic only enumerates known ENTITY impulses, so this shim
+    returns the scan-derived entity list as potential candidates. That keeps the
+    advertised tool available while the deeper unknown-discovery heuristic is
+    reintroduced.
+    """
+    result = mas_scan_logic(target, PROJECT_ROOT, LEXICON)
+    entities = list(result.get("entities", {}).values())
+    return {
+        "target": target,
+        "total_candidates": len(entities),
+        "potential_entities": entities,
+        "scan_metadata": result.get("scan_metadata", {}),
+    }
 
 @mcp.tool()
 def mas_policy_check(code: str):
