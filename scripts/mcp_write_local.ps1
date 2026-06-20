@@ -257,28 +257,7 @@ try {
       }
       filesystem = New-BunServer -Script "scripts/mcp-filesystem.ts" -ExtraArgs $fsRoots
       context7 = @{ type = "http"; url = "https://mcp.context7.com/mcp" }
-      "pnk-archaeology" = @{
-        type = "stdio"
-        command = $uv
-        args = @("run","--quiet","scripts/archaeology_mcp.py")
-        cwd = $repoRoot
-        env = @{ ARCHAEOLOGY_REPO_ROOT = (Join-Path $repoRoot "pnk-lfh-live") }
-      }
-      "pnk-public-archaeology" = @{
-        type = "stdio"
-        command = $uv
-        args = @("run","--quiet","scripts/archaeology_mcp.py")
-        cwd = $repoRoot
-        env = @{ ARCHAEOLOGY_REPO_ROOT = (Join-Path $repoRoot "pnk-live") }
-      }
       "github-archaeology" = New-BunServer -Script "scripts/mcp-github-archaeology.ts" -EnvVars @{ ARCHAEOLOGY_REPO = "poisontr33s/Restructure-MCP-Orchestration" }
-      "chthonic-archaeology" = @{
-        type = "stdio"
-        command = $uv
-        args = @("run","--quiet","scripts/archaeology_mcp.py")
-        cwd = $repoRoot
-        env = @{ ARCHAEOLOGY_REPO_ROOT = $repoRoot }
-      }
       "sequential-thinking" = @{
         type = "stdio"
         command = $bunx
@@ -392,8 +371,7 @@ try {
     $expected = @(
       "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface",
       "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","workiq","mas-mcp",
-      "filesystem","context7","pnk-archaeology","pnk-public-archaeology","github-archaeology",
-      "chthonic-archaeology","sequential-thinking","memory","fetch","time","git"
+      "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
     $actual = @()
     if ($Payload.mcpServers -is [System.Collections.IDictionary]) {

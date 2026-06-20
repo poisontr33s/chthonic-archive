@@ -92,32 +92,6 @@
       "type": "http",
       "url": "https://mcp.context7.com/mcp"
     },
-    "pnk-archaeology": {
-      "type": "stdio",
-      "command": "uv",
-      "args": [
-        "run",
-        "--quiet",
-        "scripts/archaeology_mcp.py"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-lfh-live"
-      }
-    },
-    "pnk-public-archaeology": {
-      "type": "stdio",
-      "command": "uv",
-      "args": [
-        "run",
-        "--quiet",
-        "scripts/archaeology_mcp.py"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}/pnk-live"
-      }
-    },
     "github-archaeology": {
       "type": "stdio",
       "command": "bun",
@@ -128,19 +102,6 @@
       "cwd": "${workspaceFolder}",
       "env": {
         "ARCHAEOLOGY_REPO": "poisontr33s/Restructure-MCP-Orchestration"
-      }
-    },
-    "chthonic-archaeology": {
-      "type": "stdio",
-      "command": "uv",
-      "args": [
-        "run",
-        "--quiet",
-        "scripts/archaeology_mcp.py"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "ARCHAEOLOGY_REPO_ROOT": "${workspaceFolder}"
       }
     },
     "huggingface": {
