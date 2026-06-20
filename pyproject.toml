@@ -2,7 +2,7 @@
 name = "chthonic-archive-tools"
 version = "0.1.0"
 description = "Repository-wide cross-reference and analysis tools"
-requires-python = ">=3.14"
+requires-python = ">=3.14,<3.15"  # Python 3.14.6 lane only; future versions would need re-audit
 
 dependencies = [
     "networkx>=3.6.1,<4",
@@ -50,24 +50,33 @@ members = [
 ]
 
 [[tool.uv.index]]
+name = "pytorch-nightly-cu128"
+url = "https://download.pytorch.org/whl/nightly/cu128"
+explicit = true
+
+[[tool.uv.index]]
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
-explicit = true
+explicit = false
 
 [tool.uv.sources]
 mas-mcp = { workspace = true }
 flux-engine-forge = { workspace = true }
 flux-satellite = { workspace = true }
-torch = [{ index = "pytorch-cu128" }]
 
 [tool.uv]
 default-groups = ["dev", "analysis", "embeddings", "hf", "openai", "poe", "sonic"]
 python-downloads = "manual"
 python-preference = "only-managed"
+index-strategy = "unsafe-best-match"  # Allow searching nightly + stable indices for torch; trust both equally
+override-dependencies = [
+    "fsspec>=2026.6.0",    # datasets 5.0.0 caps at 2026.4.0; override is intentional
+    "tomlkit>=0.15.0",     # gradio 6.19.0 caps at <0.15.0; test gradio after sync
+]
 
 [dependency-groups]
 analysis = [
-    "radon>=6.0.1,<7",
+    # radon removed (2026-06-21): blocker on mando via radon<0.8 constraint; code_scent.py can use legacy radon if needed
     "scikit-learn>=1.8.0,<2",
     "scipy>=1.15.0,<2",
     "beautifulsoup4>=4.13.0,<5",
@@ -119,4 +128,14 @@ dev = [
     "ruff>=0.15.8",
     "mypy>=1.19.1",
     "mas-mcp",
+    # Python 3.14.6 lane: strategic unpins + override pins (2026-06-21, aggressive modernization)
+    # Removed: radon (only used by code_scent.py, blocker on mando)
+    # Override pins for remaining blockers:
+    "sympy>=1.14.0",                    # force stable; avoid rc regression from --prerelease=allow
+    "typer>=0.26.7",                    # Floor to enable typer via transformers' typer constraint; hf-hub 1.16.1 trades off 1.20.1
+    "mando>=0.8.0",                     # now available since radon removed
+    "pydantic-core>=2.47.0",            # direct pydantic-core override
+    # NOT POSSIBLE (don't exist yet on PyPI or violate other constraints):
+    # - tokenizers>=0.24.0 (max available: 0.23.1)
+    # - torch>=2.12.1+cu128 (not on pytorch-cu128 index)
 ]
