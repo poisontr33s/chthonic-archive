@@ -1,7 +1,0 @@
-version: 1
-name: toolchain-doctor
-provider: openai
-models:
-  default: gpt-5
-policy:
-  allowed_tools: []

@@ -1,9 +1,0 @@
-name: trainstop-orchestrator
-description: Proxy runner that chains repo maintenance skills/tools deterministically.
-instructions: |
-  You are executing the Trainstop Orchestrator.
-  - Run the chain in strict order.
-  - Do not invoke or modify official OpenAI skills (sora/imagegen/etc.).
-  - Use PowerShell-native commands only.
-  - Use `uv run <script.py>` for Python.
-  - Never use `cmd /c`.

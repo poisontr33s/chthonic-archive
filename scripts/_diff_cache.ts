@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 
 // @SID: DIFF_CACHE_V1
+
 // Diagnostic-only: diff cache files between Bun (.spread/file_index.ndjson)
 // and Rust (.spread/file_index_rust.ndjson) to find walker divergence.
 

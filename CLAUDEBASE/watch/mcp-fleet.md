@@ -14,56 +14,59 @@
 - Writ: gathered home from docs/WISE.md, 2026-06-07
 ---
 
-# ☥ CLAUDEBASE — WATCH · THE CHANDLERY (MCP FLEET)
+# (`☥`/`CLAUDEBASE`/`WATCH`/`·`/`THE-CHANDLERY`/`MCP-FLEET`)
 
 > *Verktøyene lyver aldri om hva de er. Bare papirene om dem gjør det.*
-> *The tools never lie about what they are. Only the papers about them do.*
+
+  > *The tools never lie about what they are. Only the papers about them do.*
 
 ---
 
-## `The-One-Discipline`
+## (`The-One-Discipline`)
 
-Read the running surface, never the header. A server's own comment is yesterday's weather;
-its live `initialize` + `tools/list` is the deep it actually floats in. Every count this page
-ever cites was taken from the wire — because the papers drift, and in this year a new version
-ships twice a day. Two papers were already caught lying in one pass: a header that said
-"three tools" over four; an in-code note naming a swap the runtime had outgrown.
+- *— Read the running surface, never the header. A server's own comment is yesterday's weather; its live —* `initialize` *— + —* `tools/list` *— is the deep it actually floats in.*
 
-## `The-Proof-Worth-Keeping` — GitHub MCP, lossless at 94
+  - *— Every count this page ever cites was taken from the wire — because the papers drift, and in this year a new version ships twice a day. Two papers were already caught lying in one pass: a header that said "three tools" over four; an in-code note naming a swap the runtime had outgrown.*
 
-The Copilot-hosted GitHub MCP hands VS Code 94 tools through an OAuth flow Claude Code cannot
-run. The lossless equivalent — proven by handshake, not assumed:
+---
 
-| Headers (carrying a pool Bearer) | Tools |
+## (`The-Proof-Worth-Keeping`/`GH-MCP`/`Lossless-At-94`)
+
+- *— The Copilot-hosted GitHub MCP hands VS Code 94 tools through an OAuth flow Claude Code cannot run. The lossless equivalent — proven by handshake, not assumed:*
+
+| *Headers (carrying a pool Bearer)* | *Tools* |
 |---|---|
-| Bearer only | 47 |
-| Bearer + `X-MCP-Toolsets: all` | **94** |
-| + `X-MCP-Insiders: true` | 94 (no new tools) |
+| *Bearer only* | **(`47`)** |
+| *Bearer + —* `X-MCP-Toolsets: all` | `94` |
+| *+ —* `X-MCP-Insiders: true` | `94` *— (no new tools)* |
 
-`X-MCP-Toolsets: all` is the whole lever. That one header is the recipe; the writer emits it.
+- *—* `X-MCP-Toolsets: all` *— is the whole lever. That one header is the recipe; the writer emits it.*
 
-## `The-Fleet` — 26 outfitted, by class
+---
 
-- **Hosted (upstream-kept, current):** github (94) · huggingface · bun-docs · microsoft-docs ·
-  context7 — all on the 2025-06-18 wire. Nothing of ours to tend.
-- **Bespoke, modern:** browser + github-archaeology (official TS SDK) · archaeology ×3 +
-  mas-mcp (FastMCP) · filesystem (official server + a self-healing Windows file-URI patch).
-- **Bespoke, ours, Rust:** chthonic-v3 — the `chthonic.ps1` router, rebuilt on rmcp 1.7.
-- **Core (Claude lane):** game · sourcer · ssot · sonic · corpus · cocoindex-code.
-- **Upstream stdio (bunx/uvx, @latest):** workiq · sequential-thinking · memory · fetch ·
-  time · git. Some double native tools (fetch≈WebFetch, git≈Bash) — kept for parity, not need.
+## (`The-Fleet`/`26-Outfitted-By-Class`)
 
-*The page names the shape, not the snapshot. Re-sound counts and versions with
-`scripts/mcp_write_local.ps1 -List` and a `tools/list` handshake; never trust this list to
-have stayed true.*
+- *— **(`Hosted`/`Upstream-Kept`/`Current`)** —* `github` (94) *— · —* `huggingface` *— · —* `bun-docs` *— · —* `microsoft-docs` *— · —* `context7` *— all on the —* `2025-06-18-wire` *— nothing of ours to tend.*
 
-## `Standing-Modernizations`
+  - *— **(`Bespoke`/`Modern`)** —* `browser` *— + —* `github-archaeology` *—* `official TS SDK` *— · —* `archaeology ×3` *— + —* `mas-mcp` *—* `FastMCP` *— · —* `filesystem` *—* `official server` *— + — a self-healing Windows file-URI patch.*
 
-- **chthonic-v3 → Rust/rmcp 1.7** — DONE (`tools/chthonic-mcp-server`); bun fallback retained.
-- **browser → `Bun.WebView`** (native, Bun 1.3.12) — PENDING; the bun-cdp POC retires to
-  `confiscated_instructions/`.
-- **rmcp builds servers; the GitHub Copilot SDK builds agents, not servers** — the repo leans
-  on the Copilot SDK, which makes the confusion easy. Don't.
+    - *— **(`Bespoke`/`Ours`/`Rust`)** —* `chthonic-v3` *— the —* `chthonic.ps1` *—* `router` *— rebuilt on —* `rmcp 1.7`*.*
+
+      - *— **(`Core`/`Claude lane`)** —* ``game`` *— · —* `sourcer` *— · —* `ssot` *— · —* `sonic` *— · —* `corpus` *— · —* `cocoindex-code`*.*
+
+        - *— **(`Upstream-STDIO`/`Bunx/Uvx`/`@latest`)** —* `workiq` *— · —* `sequential-thinking` *— · —* `memory` *— · —* `fetch` *— · —* `time` *— · —* `git` *— some double native tools —* `fetch≈WebFetch` *—* `git≈Bash` *— kept for parity, not need.*
+
+          - *— The page names the shape, not the snapshot. Re-sound counts and versions with —* `scripts/mcp_write_local.ps1 -List` *— and a —* `tools/list` *— handshake, never trust this list to have stayed true.*
+
+---
+
+## (`Standing-Modernizations`)
+
+- *—* `chthonic-v3` *— → —* `Rust/rmcp 1.7` *—* **`[DONE]`** *—* `tools/chthonic-mcp-server` *— bun fallback retained.*
+
+  - *—* `browser` *— → —* `Bun.WebView` *—* **`[PENDING]`** *—* `confiscated_instructions/` *— the bun-cdp POC retires, among a nunch of forlorn, misbegotten, scallywagged, "should-be-trialled-for-hanging, instructions".*
+
+    - *—* `rmcp` *— builds servers; the `GitHub Copilot SDK` builds agents, not servers — the repo leans on the `Copilot SDK`, which makes the confusion easy. Don't.*
 
 ---
 

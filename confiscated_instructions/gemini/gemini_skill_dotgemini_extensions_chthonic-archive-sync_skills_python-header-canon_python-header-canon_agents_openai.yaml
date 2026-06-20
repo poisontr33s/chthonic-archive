@@ -1,6 +1,0 @@
-interface:
-  display_name: "Python Header Canon"
-  short_description: "Normalize Python shebang + UTF-8 header"
-  icon_small: "./assets/python-header-small.svg"
-  icon_large: "./assets/python-header-large.svg"
-  brand_color: "#0E7490"

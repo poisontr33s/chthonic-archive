@@ -347,7 +347,7 @@ git diff --name-status HEAD
 ## 📝 CHANGE LOG (This Session)
 
 **2025-12-31 Session 1 (06:23-06:49)**
-- **Transcript**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
+- **Transcript**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../../../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
 
 **Timeline**:
 - 06:23 - Diagnosed VSCode extension echoing input

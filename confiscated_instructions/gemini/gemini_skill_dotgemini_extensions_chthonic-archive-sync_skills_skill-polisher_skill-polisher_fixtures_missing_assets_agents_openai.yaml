@@ -1,7 +1,0 @@
-version: 1
-name: missing-assets
-provider: openai
-models:
-  default: gpt-5
-policy:
-  allowed_tools: []

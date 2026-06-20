@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
+
 # @SID: TOOL_ANKH_CONVERGENCE_V1
 
-# ╔════════════════════════════════════════════════════════════════════════════
+# ╔═════════════════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: ankh_convergence.py
-# ╠════════════════════════════════════════════════════════════════════════════
+# ╠═════════════════════════════════════════════════════════════════════════════════════════
 # ║ Wedjat-Quipu Spectrum: AMBER
 # ║ Temple-Ayllu Zone: ☥  THE BRIDGE
 # ║ Ogdoad-Ceque Radiance:
-# ║   └─◄ .chthonic/SSOT.md                  (Catalyst — frozen monolithic labyrinthe)
-# ║   └─◄ .chthonic/ankh_seeds.yaml          (Decryption seeds — 50/50 Andean × Egyptologic BCE)
-# ║   └─◄ .temple/protocols/THE_RECONCILIATION_ENGINE.md  (verify_with: bilateral covenant)
-# ╚════════════════════════════════════════════════════════════════════════════
+# ║   └─◄ .chthonic/SSOT.md — (Catalyst — frozen monolithic labyrinthe)
+# ║   └─◄ .chthonic/ankh_seeds.yaml — (Decryption seeds — 50/50 Andean × Egyptologic BCE)
+# ║   └─◄ .temple/protocols/THE_RECONCILIATION_ENGINE.md — (verify_with: bilateral covenant)
+# ╚═════════════════════════════════════════════════════════════════════════════════════════
 
 """
 ANKH-MGBP Convergence Engine — Executable Bridge Runtime

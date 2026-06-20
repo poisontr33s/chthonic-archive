@@ -14,20 +14,23 @@
 - Barometer: read by CLAUDEBASE_BAROMETER_V1 (re-run to refresh)
 ---
 
-# ☥ CLAUDEBASE — WATCH
+# (`☥`/`CLAUDEBASE`/`WATCH`)
 
-> *Hun roper ikke når noe er galt. Hun roper det hun ser, og lar dekket avgjøre.*  
-> *She does not cry when something is wrong. She cries what she sees, and lets the deck decide.*
+> *Hun roper ikke når noe er galt. Hun roper det hun ser, og lar dekket avgjøre.*
+
+  > *She does not cry when something is wrong. She cries what she sees, and lets the deck decide.*
 
 ---
 
-## `What-The-Nest-Cries`
+## (`What-The-Nest-Cries`)
 
-The lookout reads noise as food, never as alarm. Each sentinel is a *lens* — one class of gitological noise rendered into a manifest the deck can act on. She does not scrape scrollback; she reads what the lenses have already settled into `../../manifest/`. What the terminal screamed and forgot, she has written down.
+- *— The lookout reads noise as food, never as alarm. Each —* `sentinel` *— is a —* `lens` *— one class of —* `gitological` *— noise rendered into a manifest the —* `deck` *— can act on. She doesn't scrape —* `scrollback` *— she reads what the lenses have already settled into —* `../../manifest/` *— What — `terminal` screams, forgot, she's written it down.*
 
-A nest that cries every gust is useless. This one calls bearing and confidence only, and trusts the wheel to weigh it.
+    - *— A nest that cries every gust is useless. This one calls bearing and confidence only, and trusts the wheel to weigh it.*
 
-## `The-Lens-Stack`
+---
+
+## (`The-Lens-Stack`)
 
 | Sentinel | Reads | What she sees |
 |---|---|---|
@@ -39,11 +42,15 @@ A nest that cries every gust is useless. This one calls bearing and confidence o
 | triage | `pr_triage_report` | PR / check-run noise; carries a timezone-aware `generated_at` |
 | spread | `spread_index` | the 8-satellite freshness horizon |
 
-*The vigilance is the standing thing, not the snapshot. A frozen index is yesterday's weather; the watch is the discipline of reading the live one.* Refresh: `../../scripts/refresh-lenses.ps1`. Convention: `manifest/*_index.json` auto-tracks future sentinels — gitignore-as-contract. A new lens is seen without being announced.
+- *— The vigilance is the standing thing, not the snapshot. A frozen index is yesterday's weather; the watch is the discipline of reading the live one, refresh —* `../../scripts/refresh-lenses.ps1` *— convention —* `manifest/*_index.json` *— auto-tracks future —* `sentinels` *—* `gitignore-as-contract` *— a new lens is seen without being announced.*
 
-## `Standing-Discipline`
+---
 
-Confidence is always declared. She never says "all clear" and never says "we are sinking" — she says what she sees, and how sure. No panic, no minimizing. The third register — false-positive deflection onto the conductor — is forbidden in this nest as everywhere in the base.
+## (`Standing-Discipline`)
+
+- *— Confidence is always declared. She never says "all clear" and never says "we are sinking" — she says what she sees, and how sure. No panic, no minimizing.*
+
+  - *— The third register — false-positive deflection onto the conductor — is forbidden in this nest as everywhere in the base.*
 
 ---
 

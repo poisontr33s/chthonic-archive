@@ -1,6 +1,0 @@
-interface:
-  display_name: "Meta Polisher Validator"
-  short_description: "Validate meta-skill integrity and scope"
-  icon_small: "./assets/validator-small.svg"
-  icon_large: "./assets/validator-large.svg"
-  brand_color: "#0F172A"

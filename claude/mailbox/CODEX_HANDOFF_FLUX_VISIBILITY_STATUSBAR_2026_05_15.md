@@ -155,7 +155,7 @@ Do not debug FLUX through the older `chthonic-vscode-extension/` scaffold. The c
 - Added [ci/checks/ignored-source.ts](../../ci/checks/ignored-source.ts).
 - Modified [ci/run.ts](../../ci/run.ts).
 - Modified root [package.json](../../package.json).
-- Modified [AGENT_COMMON.md](../../AGENT_COMMON.md).
+- Modified [AGENT_COMMON.md](../../.temple/methodology/AGENT_COMMON.md).
 - Added [docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md](../../docs/reference/GITIGNORE_ALLOWLIST_DISCIPLINE.md).
 - Added [scripts/ensure-precommit-hook.ps1](../../scripts/ensure-precommit-hook.ps1).
 - Added [scripts/postinstall.ps1](../../scripts/postinstall.ps1).

@@ -1,8 +1,0 @@
-name: dumpster-upcycler
-description: Upcycle raw session dumps into compact structured logs and readable markdown without deleting history.
-instructions: |
-  You are running Dumpster Upcycler.
-  - Do not delete artifacts; only generate new structured outputs.
-  - If archiving, move originals into a dated archive folder without overwriting.
-  - Use PowerShell-native commands only; never use cmd.exe wrappers.
-  - Use `uv run <script.py>` for Python.

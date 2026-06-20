@@ -66,7 +66,7 @@ When asked to “check mail”:
 
 Formal expression of Hard Rule #4 (non-hallucination posture) for findings that cross polars (Codex ⇄ Claude ⇄ Gemini). NOT a new constraint — a named schema for an already-required discipline. Canonized by the **Reconciliation Engine** bilateral covenant:
 
-- Claude / Lysandra side: [THE_RECONCILIATION_ENGINE.md](./THE_RECONCILIATION_ENGINE.md) (@SID `GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE`).
+- Claude / Lysandra side: [THE_RECONCILIATION_ENGINE.md (protocols)](./THE_RECONCILIATION_ENGINE.md) (@SID `GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE`).
 - Codex / Umako side mirror: [codex/protocols/THE_RECONCILIATION_ENGINE.md](../../codex/protocols/THE_RECONCILIATION_ENGINE.md) (@SID `GOVERNANCE_RECONCILIATION_ENGINE_V1_CODEX`).
 
 ### The Three-Line Schema

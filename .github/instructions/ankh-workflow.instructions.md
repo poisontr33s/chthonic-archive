@@ -43,7 +43,7 @@ Some files declare a `refs` block. This lists related files — it does not assi
 
 ## Quality Gates
 
-- **Link health:** `uv run scripts/link_audit.py check <file> --dry-run` — validate markdown references before handoff. See [AGENT_COMMON.md (repo-root)](../../AGENT_COMMON.md) for the full command table.
+- **Link health:** `uv run scripts/link_audit.py check <file> --dry-run` — validate markdown references before handoff. See [AGENT_COMMON.md (repo-root)](../../.temple/methodology/AGENT_COMMON.md) for the full command table.
 
 ---
 

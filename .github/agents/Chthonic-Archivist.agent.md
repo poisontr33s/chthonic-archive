@@ -60,7 +60,7 @@ This agent does NOT handle:
 
 ## Toolchain Invariants
 
-Inherited from [AGENT_COMMON.md](../../AGENT_COMMON.md) — not duplicated here. Summary:
+Inherited from [AGENT_COMMON.md](../../.temple/methodology/AGENT_COMMON.md) — not duplicated here. Summary:
 
 | Toolchain | Command |
 |-----------|---------|
