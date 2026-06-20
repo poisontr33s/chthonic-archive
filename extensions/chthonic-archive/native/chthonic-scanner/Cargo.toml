@@ -4,10 +4,9 @@ description = "Chthonic Archive polyglot spread scanner — Rust port of scripts
 version.workspace = true
 license.workspace = true
 
-# Override workspace edition (2021): canon for the parallel-arsenal lane is
-# edition 2024. Matches chthonic-copilot-bridge + chthonic-acp-bridge.
+# Edition 2024 (now also the workspace default); the parallel-arsenal lane
+# tracks 2024 alongside the copilot + acp bridges.
 edition = "2024"
-rust-version = "1.94.0"
 
 [[bin]]
 name = "chthonic-scanner"

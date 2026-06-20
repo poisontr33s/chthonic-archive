@@ -4,7 +4,6 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 workspace = "../../native"
-rust-version = "1.82"
 description = "WASM WebGL2 sediment visualizer for Chthonic Archive"
 
 [lib]

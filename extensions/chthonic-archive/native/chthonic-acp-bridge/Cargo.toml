@@ -4,10 +4,9 @@ description = "Chthonic Archive bridge to the Agent Client Protocol. Sibling of 
 version.workspace = true
 license.workspace = true
 
-# Override workspace edition (2021): canon for the bridge lane is edition 2024 to
-# match the github-copilot-sdk beta.9 SDK baseline. Both rails share this baseline.
+# Edition 2024 (now also the workspace default); the bridge lane tracks the
+# github-copilot-sdk 1.0 baseline. MSRV pin dropped — track latest stable.
 edition = "2024"
-rust-version = "1.94.0"
 
 [[bin]]
 name = "chthonic-acp-bridge"

@@ -4,10 +4,9 @@ description = "Chthonic Archive bridge to the GitHub Copilot SDK. Spawned by the
 version.workspace = true
 license.workspace = true
 
-# Override workspace edition (2021): the GitHub Copilot SDK canon at v1.0.0 (stable)
-# targets edition 2024 + MSRV 1.94. Per-crate override is intentional alignment.
+# Edition 2024 (now also the workspace default); aligns with the GitHub Copilot
+# SDK 1.0 baseline. MSRV pin dropped — track latest stable.
 edition = "2024"
-rust-version = "1.94.0"
 
 [[bin]]
 name = "chthonic-copilot-bridge"

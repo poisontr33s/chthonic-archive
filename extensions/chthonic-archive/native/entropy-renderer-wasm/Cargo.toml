@@ -3,7 +3,6 @@ name = "entropy_renderer_wasm"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-rust-version = "1.82"
 description = "Rust/WASM entropy renderer bridge for Chthonic Archive"
 
 [lib]
