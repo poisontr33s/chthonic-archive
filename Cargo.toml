@@ -25,14 +25,14 @@ ash-window = "0.13"
 gpu-allocator = { version = "0.28", features = ["vulkan"] }
 
 # === ENTITY COMPONENT SYSTEM (Per Gemini Directive) ===
-bevy_ecs = { version = "0.18.1", optional = true }
+bevy_ecs = { version = "0.19.0", optional = true }
 
 # === SERIALIZATION (ASC Lore Ingestion) ===
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 
 # === MATHEMATICS (Vector/Matrix - The WHR Power Law) ===
-glam = "0.32"
+glam = "0.33"
 rand = "0.10"
 sha2 = "0.10"
 
