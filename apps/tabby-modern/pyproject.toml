@@ -48,15 +48,13 @@ tabby-modern = "tabby_modern.__main__:main"
 
 [project.optional-dependencies]
 cu128 = [
-    # torch 2.11+cu128 — routed via pytorch-cu128 index (FAF Gate 3 admitted L4)
-    # P-02: cuda_available=True, device_count=1, device_name=RTX 4090, capability=(8,9)
-    "torch >= 2.11.0",
+    # torch nightly cu128 — 2.12.0.dev20260408 is the ceiling for cp314 win (stable tops at 2.11.0)
+    # exllamav3 v0.0.43 still ships torch2.11.0 ABI — runtime compat with 2.12.x is best-effort
+    "torch >= 2.12.0.dev20260408",
 
-    # exllamav3 cp314 — ADMITTED L4 (FAF Gate 5, P-05 cascade + G6 cleared 2026-04-25)
-    # v0.0.30 released 2026-04-19 ships cp314-cp314-linux_x86_64 + cp314-cp314-win_amd64
-    # import exllamav3 → SUCCESS; triton warning non-fatal; torch SDPA fallback active
-    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
-    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.30/exllamav3-0.0.30+cu128.torch2.11.0-cp314-cp314-win_amd64.whl ; platform_system == 'Windows' and python_version == '3.14'",
+    # exllamav3 cp314 — updated v0.0.30 → v0.0.43 (2026-06-14); torch2.11.0 ABI (no 2.12.x wheel yet)
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu128.torch2.11.0-cp314-cp314-win_amd64.whl ; platform_system == 'Windows' and python_version == '3.14'",
 
     # exllamav2 — cp314 gap on ALL platforms as of 2026-04-25 (G4 wall = the wheel, not the code)
     # Linux/Podman: admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)
@@ -81,12 +79,17 @@ cu128 = [
 override-dependencies = ["pydantic>=2.13.0,<3"]
 
 [tool.uv.sources]
-# Route torch to pytorch-cu128 index (any Python version the index carries — no per-version matrix)
-torch = { index = "pytorch-cu128", extra = "cu128" }
+# Route torch to nightly cu128 index — 2.12.0.dev available for cp314 win (stable tops at 2.11.0)
+torch = { index = "pytorch-nightly-cu128", extra = "cu128" }
 
 [[tool.uv.index]]
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-nightly-cu128"
+url = "https://download.pytorch.org/whl/nightly/cu128"
 explicit = true
 
 [tool.uv.extra-build-dependencies]

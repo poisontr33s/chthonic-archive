@@ -20,7 +20,7 @@ dependencies = [
     # See memory: project_trt_cp314_gap.md
     "diffusers>=0.30",
     "transformers>=5.4.0,<6",
-    "torch>=2.11.0",
+    "torch>=2.12.0.dev20260408",
     "accelerate>=1.0,<2",
     "nvidia-ml-py>=12.0.0",
     "cryptography>=44.0.0",
@@ -43,10 +43,15 @@ dev = [
 flux-satellite = "flux_satellite.__main__:main"
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu128" }
+torch = { index = "pytorch-nightly-cu128" }
 flux-engine-forge = { workspace = true }
 
 [[tool.uv.index]]
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-nightly-cu128"
+url = "https://download.pytorch.org/whl/nightly/cu128"
 explicit = true
