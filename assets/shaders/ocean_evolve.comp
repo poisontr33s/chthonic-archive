@@ -1,0 +1,65 @@
+// Rung 4.2c — Tessendorf time evolution: h(k,t) from h0(k).
+//   h(k,t) = h0(k) · e^(iωt) + h0(-k)* · e^(-iωt)
+//   omega(k) = sqrt(g · |k|)   — deep water dispersion
+//
+// Also computes the choppy-x displacement spectrum:
+//   Dx(k,t) = -i · (kx/|k|) · h(k,t)
+//
+// Outputs two complex numbers per texel into u_freq (rgba16f):
+//   .xy = h(k,t)   — height spectrum (complex)
+//   .zw = Dx(k,t)  — choppy-x spectrum (complex)
+//
+// The output feeds ocean_fft.comp for the inverse FFT.
+#version 450
+
+layout(local_size_x = 16, local_size_y = 16) in;
+
+layout(binding = 0, rgba16f) uniform readonly  image2D u_h0;   // from ocean_h0.comp
+layout(binding = 1, rgba16f) uniform writeonly image2D u_freq; // feed to FFT
+
+layout(push_constant) uniform Push {
+    float time;
+    uint  resolution;
+    float patch_size; // world units side length of the FFT patch
+} pc;
+
+const float PI = 3.14159265358979;
+const float G  = 9.81;
+
+vec2 cmul(vec2 a, vec2 b) {
+    return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
+
+void main() {
+    uvec2 gid = gl_GlobalInvocationID.xy;
+    uint N = pc.resolution;
+    if (gid.x >= N || gid.y >= N) return;
+
+    // Wavenumber (centred spectrum — same indexing as h0 shader).
+    int ix = int(gid.x) - int(N / 2u);
+    int iz = int(gid.y) - int(N / 2u);
+    float kx = float(ix) * (2.0 * PI / pc.patch_size);
+    float kz = float(iz) * (2.0 * PI / pc.patch_size);
+    float k  = length(vec2(kx, kz));
+
+    // Load h0(k) = (.xy) and h0(-k)* = (.zw).
+    vec4 h0_data = imageLoad(u_h0, ivec2(gid));
+    vec2 h0   = h0_data.xy;
+    vec2 h0mc = h0_data.zw; // already conjugated in h0 shader
+
+    // Time evolution.
+    float omega = (k > 1e-4) ? sqrt(G * k) : 0.0;
+    float cw    = cos(omega * pc.time);
+    float sw    = sin(omega * pc.time);
+    vec2  ewp   = vec2( cw,  sw); // e^(+iωt)
+    vec2  ewm   = vec2( cw, -sw); // e^(-iωt)
+
+    // h(k,t) = h0(k) · e^(iωt) + h0(-k)* · e^(-iωt)
+    vec2 h = cmul(h0, ewp) + cmul(h0mc, ewm);
+
+    // Choppy-x spectrum: -i · (kx/|k|) · h(k,t)
+    // Multiplying by -i: (Re, Im) -> (Im, -Re)
+    vec2 dx_spec = (k > 1e-4) ? vec2(h.y * (kx / k), -h.x * (kx / k)) : vec2(0.0);
+
+    imageStore(u_freq, ivec2(gid), vec4(h, dx_spec));
+}

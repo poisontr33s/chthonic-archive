@@ -1,0 +1,88 @@
+// Rung 4.2c — Cooley-Tukey radix-2 DIT butterfly FFT over the ocean spectrum.
+// Dispatched per-stage, per-axis (axis=0 horizontal, axis=1 vertical).
+// For N=256: 8 stages × 2 axes = 16 dispatches per frame.
+//
+// Input/output is a pair of rgba16f images (ping-pong):
+//   u_src: read  — complex spectrum (Re, Im) per texel
+//   u_dst: write — butterflied result
+//
+// The final horizontal pass writes into u_dst; after vertical pass 7, u_dst
+// IS the displacement field (the same image water.vert samples).
+#version 450
+
+layout(local_size_x = 16, local_size_y = 16) in;
+
+layout(binding = 0, rgba16f) uniform readonly  image2D u_src;
+layout(binding = 1, rgba16f) uniform writeonly image2D u_dst;
+
+layout(push_constant) uniform Push {
+    uint stage;      // 0..log2(N)-1
+    uint axis;       // 0 = horizontal, 1 = vertical
+    uint resolution; // N
+} pc;
+
+const float PI = 3.14159265358979;
+
+// Complex multiply.
+vec2 cmul(vec2 a, vec2 b) {
+    return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
+
+void main() {
+    uvec2 gid = gl_GlobalInvocationID.xy;
+    if (gid.x >= pc.resolution || gid.y >= pc.resolution) return;
+
+    uint N     = pc.resolution;
+    uint stage = pc.stage;
+
+    // Index along the transform axis.
+    uint i = (pc.axis == 0u) ? gid.x : gid.y;
+    uint j = (pc.axis == 0u) ? gid.y : gid.x;
+
+    uint half_stride = 1u << stage;          // distance between butterfly partners
+    uint stride      = half_stride << 1u;    // full butterfly stride
+
+    uint group = i / stride;
+    uint pos   = i % stride;
+
+    uint i_top, i_bot;
+    if (pos < half_stride) {
+        i_top = group * stride + pos;
+        i_bot = i_top + half_stride;
+    } else {
+        i_bot = group * stride + pos;
+        i_top = i_bot - half_stride;
+    }
+
+    // Twiddle factor W_N^k = exp(-2πi·k/N), k = pos % half_stride.
+    float k   = float(pos % half_stride);
+    float ang = -2.0 * PI * k / float(stride);
+    vec2  W   = vec2(cos(ang), sin(ang));
+
+    // Fetch the two butterfly inputs.
+    ivec2 coord_top = (pc.axis == 0u) ? ivec2(i_top, j) : ivec2(j, i_top);
+    ivec2 coord_bot = (pc.axis == 0u) ? ivec2(i_bot, j) : ivec2(j, i_bot);
+    vec4  A = imageLoad(u_src, coord_top);
+    vec4  B = imageLoad(u_src, coord_bot);
+
+    // The image carries TWO complex numbers per texel (.xy and .zw) for the
+    // height field and the horizontal chop components respectively.
+    vec2 a_xy = A.xy, a_zw = A.zw;
+    vec2 b_xy = B.xy, b_zw = B.zw;
+
+    vec2 out_xy, out_zw;
+    if (pos < half_stride) {
+        // Top butterfly output: A + W·B
+        out_xy = a_xy + cmul(W, b_xy);
+        out_zw = a_zw + cmul(W, b_zw);
+    } else {
+        // Bottom butterfly output: A - W·B  (with corrected W at this position)
+        float ang2 = -2.0 * PI * float(pos - half_stride) / float(stride);
+        vec2  W2   = vec2(cos(ang2), sin(ang2));
+        out_xy = a_xy - cmul(W2, b_xy);
+        out_zw = a_zw - cmul(W2, b_zw);
+    }
+
+    ivec2 out_coord = (pc.axis == 0u) ? ivec2(i, j) : ivec2(j, i);
+    imageStore(u_dst, out_coord, vec4(out_xy, out_zw));
+}

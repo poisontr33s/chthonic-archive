@@ -1,0 +1,86 @@
+// Rung 4.2c — initial Phillips spectrum h0(k).
+// Dispatched ONCE at init (or on wind change); result stored in u_h0 (rgba16f complex pairs).
+// Output layout per texel:
+//   .xy = h0(k)    — complex (Re, Im)
+//   .zw = h0(-k)*  — conjugate of h0 at the mirrored wavenumber (for time evolution)
+//
+// Phillips power spectrum:
+//   P(k) = A · exp(-1/(k·L)^2) / k^4 · |dot(k̂, ŵ)|^2
+//   where L = V²/g,  V = wind speed,  ŵ = wind direction unit vector.
+//
+// h0(k) = (ξr + i·ξi) / sqrt(2) · sqrt(P(k))
+//   ξr, ξi are independent standard-normal randoms — seeded deterministically per (kx,kz).
+#version 450
+
+layout(local_size_x = 16, local_size_y = 16) in;
+
+// h0(k) and h0(-k)* packed into one rgba16f image.
+layout(binding = 0, rgba16f) uniform writeonly image2D u_h0;
+
+layout(push_constant) uniform Push {
+    uint  resolution; // N — image is N×N
+    float wind_speed; // m/s
+    float wind_dir;   // meteorological FROM-direction, degrees
+    float phillips_a; // overall amplitude scale
+} pc;
+
+const float PI = 3.14159265358979;
+const float G  = 9.81;
+
+// Deterministic Gaussian via Box-Muller; hash is the same as in ocean_displace.comp.
+float hash(uint ix, uint iy, uint salt) {
+    uint h = (ix * 1664525u + iy * 1013904223u + salt * 2246822519u) ^ 0x9e3779b9u;
+    h ^= h >> 16; h *= 0x45d9f3bu; h ^= h >> 16;
+    return float(h & 0x7fffffffu) / float(0x7fffffffu);
+}
+vec2 gauss2(uint ix, uint iy, uint salt) {
+    float u1 = max(hash(ix, iy, salt),      1e-7);
+    float u2 =     hash(ix, iy, salt + 1u);
+    float r  = sqrt(-2.0 * log(u1));
+    float th = 2.0 * PI * u2;
+    return vec2(r * cos(th), r * sin(th));
+}
+
+float phillips(vec2 k_vec) {
+    float k = length(k_vec);
+    if (k < 1e-4) return 0.0;
+    float wrad    = (270.0 - pc.wind_dir) * PI / 180.0;
+    vec2  w_hat   = vec2(cos(wrad), sin(wrad));
+    vec2  k_hat   = k_vec / k;
+    float kdotw   = dot(k_hat, w_hat);
+    float L       = pc.wind_speed * pc.wind_speed / G;
+    float kL      = k * L;
+    float p       = pc.phillips_a * exp(-1.0 / (kL * kL)) / (k * k * k * k) * kdotw * kdotw;
+    if (kdotw < 0.0) p *= 0.07;
+    return p;
+}
+
+void main() {
+    uvec2 gid = gl_GlobalInvocationID.xy;
+    if (gid.x >= pc.resolution || gid.y >= pc.resolution) return;
+
+    // Wave-number in [-N/2, N/2) range (centred spectrum).
+    int N  = int(pc.resolution);
+    int ix = int(gid.x) - N / 2;
+    int iz = int(gid.y) - N / 2;
+
+    // Physical wavenumber (radians/world-unit).
+    // We map N texels over a patch of side 2*pi (canonical normalisation).
+    const float PATCH = 2.0 * PI;
+    float kx = float(ix) * (2.0 * PI / PATCH);
+    float kz = float(iz) * (2.0 * PI / PATCH);
+
+    vec2  k_vec  = vec2(kx, kz);
+    vec2  km_vec = -k_vec; // mirrored wavenumber for conjugate
+
+    float A  = sqrt(0.5 * phillips(k_vec));
+    float Am = sqrt(0.5 * phillips(km_vec));
+
+    vec2 xi  = gauss2(gid.x,            gid.y,            0u);
+    vec2 xim = gauss2(pc.resolution - 1u - gid.x, pc.resolution - 1u - gid.y, 0u);
+
+    vec2 h0  = xi  * A;
+    vec2 h0m = xim * Am; // h0(-k) — we store its conjugate: (Re, -Im)
+
+    imageStore(u_h0, ivec2(gid), vec4(h0.x, h0.y, h0m.x, -h0m.y));
+}

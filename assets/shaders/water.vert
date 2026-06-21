@@ -42,7 +42,13 @@ void main() {
 
     if (pc.params.y > 0.5 && pc.params.y < 1.5) {
         // Map vertex XZ → [0,1] UV over the surface grid domain.
-        vec2 uv = (in_position.xz / vec2(X_HALF, Z_HALF)) * 0.5 + 0.5;
+        // Clamp 1.5 texels inward from each edge so the finite-difference normal never
+        // samples across the displacement image border (prevents boundary spires).
+        const float MARGIN = 1.5 / 256.0;
+        vec2 uv = clamp(
+            (in_position.xz / vec2(X_HALF, Z_HALF)) * 0.5 + 0.5,
+            vec2(MARGIN), vec2(1.0 - MARGIN)
+        );
 
         // Sample the compute-written displacement field.
         vec4 disp4 = texture(u_displacement, uv);
