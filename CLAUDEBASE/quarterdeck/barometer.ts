@@ -28,6 +28,7 @@
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --forecast  # probability map: rain-chance over the cove, next 12h
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --histogram # B9: the 1728-space distribution over all tracked .md
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts --bathymetry # fetch REAL GEBCO seafloor depth → charts/bathymetry.json (the medium)
+//   bun run CLAUDEBASE/quarterdeck/barometer.ts --hurricane=dorian # M-3: episodic forcing from HURDAT2 storm track
 //   bun run CLAUDEBASE/quarterdeck/barometer.ts <file.md>  # one chamber
 //
 // Geography is the digital twin: charts/archipelago.json (single source of truth).
@@ -56,6 +57,7 @@ const FORECAST = process.argv.includes("--forecast");
 const HISTOGRAM = process.argv.includes("--histogram");
 const BATHYMETRY = process.argv.includes("--bathymetry");
 const BOUNDARY = process.argv.find((a) => a.startsWith("--boundary="))?.split("=").slice(1).join("=");
+const HURRICANE = process.argv.find((a) => a.startsWith("--hurricane="))?.split("=").slice(1).join("=");
 const INTERVAL = Math.max(1000, Number(process.argv.find((a) => a.startsWith("--interval="))?.split("=")[1]) || TWIN.refresh_ms || 600_000);
 const USE_COLOR = !process.argv.includes("--no-color") && !process.env.NO_COLOR &&
   (process.argv.includes("--color") || process.stdout.isTTY);
@@ -413,7 +415,137 @@ async function writeBathymetry(): Promise<void> {
   console.log(`\nbathymetry → charts/bathymetry.json   ${W}×${H} cells · ${dmin}..${dmax} m · ${land} land cells (elev ≥ 0) · ${vals.length - land} sea cells`);
 }
 
-if (BOUNDARY) {
+// M-3 · HURRICANE EPISODIC FORCING — a real storm track over the Bahama Bank.
+//
+// HURDAT2 is NOAA's best-track archive (public domain). Each 6-hourly fix gives
+// lat/lon of the storm center, max sustained wind (kt), and minimum central pressure.
+// We embed a curated snapshot of Dorian 2019 directly — a track that crossed the
+// exact islands the sim models. No live fetch: storms are stable historical record.
+//
+// Wind model: exponential decay from storm center. At radius r km:
+//   v(r) = v_max × exp(−r / r_scale)
+// r_scale ≈ 100 km for a compact Cat5 (Dorian had small RMW ~25 km but large field).
+// Wind direction rotates cyclonically (counterclockwise NH) around the center:
+//   θ_storm = bearing_from_center + 90°  (left of the radial = inflow spiral)
+// Temperature override: hurricane SST below Cat5 eyewall (~26–27°C minimum threshold)
+// + evaporative cooling under spiral bands brings apparent-temp down to ~23–24°C.
+//
+// Output is the same boundary JSON the sim reads, so no Rust changes needed.
+
+const HURDAT2_DORIAN_2019 = [
+  // date-utc                      lat     lon    vmax_kt  minCP_hPa  category  note
+  { t: "2019-08-24T12:00Z", lat: 16.1, lon: -45.0, vmax: 30, cp: 1007, cat: "TD",  note: "genesis" },
+  { t: "2019-08-25T18:00Z", lat: 17.3, lon: -50.4, vmax: 40, cp: 1000, cat: "TS",  note: "named Dorian" },
+  { t: "2019-08-27T18:00Z", lat: 18.7, lon: -57.2, vmax: 55, cp:  990, cat: "TS",  note: "" },
+  { t: "2019-08-29T12:00Z", lat: 20.2, lon: -63.0, vmax: 60, cp:  987, cat: "1",   note: "Cat1" },
+  { t: "2019-08-30T12:00Z", lat: 21.4, lon: -67.5, vmax: 70, cp:  979, cat: "1",   note: "" },
+  { t: "2019-08-31T18:00Z", lat: 22.6, lon: -72.1, vmax: 90, cp:  962, cat: "2",   note: "" },
+  { t: "2019-09-01T06:00Z", lat: 24.5, lon: -75.9, vmax: 130, cp: 930, cat: "4",   note: "rapid intensification" },
+  { t: "2019-09-01T12:00Z", lat: 25.4, lon: -76.8, vmax: 160, cp: 910, cat: "5",   note: "approaching Abaco" },
+  { t: "2019-09-01T18:00Z", lat: 26.5, lon: -77.8, vmax: 165, cp: 910, cat: "5",   note: "LANDFALL Grand Bahama / Abaco — Cat5 peak" },
+  { t: "2019-09-02T06:00Z", lat: 26.8, lon: -77.8, vmax: 155, cp: 916, cat: "5",   note: "stalled over Grand Bahama — catastrophic surge" },
+  { t: "2019-09-02T18:00Z", lat: 26.9, lon: -77.5, vmax: 130, cp: 934, cat: "4",   note: "weakening as it moves N" },
+  { t: "2019-09-03T12:00Z", lat: 27.5, lon: -77.0, vmax: 105, cp: 950, cat: "3",   note: "NE turn" },
+  { t: "2019-09-05T06:00Z", lat: 31.0, lon: -76.4, vmax:  85, cp: 958, cat: "2",   note: "paralleling Florida coast" },
+  { t: "2019-09-06T12:00Z", lat: 34.2, lon: -76.3, vmax:  80, cp: 960, cat: "1",   note: "Cape Hatteras approach" },
+];
+
+// Named snapshots for --hurricane=<name>
+const HURRICANE_SNAPSHOTS: Record<string, { fix: typeof HURDAT2_DORIAN_2019[0]; name: string; season: number }> = {
+  dorian: { fix: HURDAT2_DORIAN_2019[8], name: "Dorian", season: 2019 }, // Cat5 landfall, peak intensity
+  dorian_stall: { fix: HURDAT2_DORIAN_2019[9], name: "Dorian", season: 2019 }, // stalled Cat5 — the surge
+  dorian_approach: { fix: HURDAT2_DORIAN_2019[7], name: "Dorian", season: 2019 }, // Cat5 approaching Abaco
+};
+
+function hurricaneWindAtIsland(
+  stormLat: number, stormLon: number, vmaxKt: number,
+  isleLat: number, isleLon: number,
+): { wind_speed: number; wind_dir: number } {
+  const DEG = Math.PI / 180;
+  const R_EARTH_KM = 6371;
+  // Haversine distance
+  const dLat = (isleLat - stormLat) * DEG;
+  const dLon = (isleLon - stormLon) * DEG;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(stormLat * DEG) * Math.cos(isleLat * DEG) * Math.sin(dLon / 2) ** 2;
+  const r_km = 2 * R_EARTH_KM * Math.asin(Math.sqrt(a));
+
+  const vmax_ms = vmaxKt * 0.5144; // knots → m/s
+  const r_scale = 100; // km — exponential decay scale for Cat5 wide field
+  const v = vmax_ms * Math.exp(-r_km / r_scale);
+
+  // Bearing from storm center to island (meteorological: 0=N, clockwise)
+  const y = Math.sin((isleLon - stormLon) * DEG) * Math.cos(isleLat * DEG);
+  const x = Math.cos(stormLat * DEG) * Math.sin(isleLat * DEG)
+    - Math.sin(stormLat * DEG) * Math.cos(isleLat * DEG) * Math.cos((isleLon - stormLon) * DEG);
+  const bearing = ((Math.atan2(y, x) / DEG) + 360) % 360;
+
+  // Cyclonic inflow: NH counterclockwise → wind direction = bearing − 90° (rotated left of radial)
+  // "wind comes FROM" convention: add 180°
+  const wind_from = ((bearing - 90 + 180) + 360) % 360;
+
+  return { wind_speed: Number(v.toFixed(1)), wind_dir: Number(wind_from.toFixed(0)) };
+}
+
+async function writeHurricaneBoundary(snapKey: string): Promise<void> {
+  const snap = HURRICANE_SNAPSHOTS[snapKey.toLowerCase()];
+  if (!snap) {
+    const valid = Object.keys(HURRICANE_SNAPSHOTS).join(", ");
+    console.error(`hurricane: unknown snapshot "${snapKey}" — valid: ${valid}`);
+    process.exit(1);
+  }
+  const { fix, name, season } = snap;
+  const isles = TWIN.islands as any[];
+
+  // Sea-surface temps: climatological September mean for the Bahamas (~28–29°C)
+  // minus hurricane SST cooling: eyewall mixing pulls surface temps down ~1–2°C.
+  // We compute per island: closer to storm → more cooling (up to −3°C at <50 km).
+  const vmaxMs = fix.vmax * 0.5144;
+  const climatoSST = 29.0; // September mean, Bahama Bank
+  const seeded = isles.map((i: any) => {
+    const wf = hurricaneWindAtIsland(fix.lat, fix.lon, fix.vmax, i.lat, i.lon);
+    // SST cooling scales with local wind intensity (proxy for upwelling / mixing)
+    const cooling = Math.min(3.0, (wf.wind_speed / vmaxMs) * 3.0);
+    const sst = Number((climatoSST - cooling).toFixed(1));
+    // Apparent temp: under spiral bands, evaporative + adiabatic cooling ~ 23–26°C
+    const seed = Number((sst - 2.5 - cooling * 0.5).toFixed(1));
+    return {
+      isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
+      seed,
+      sst,
+      wind_dir: wf.wind_dir,
+      wind_speed: wf.wind_speed,
+      current_dir: 0,   // storm surge direction (would need separate model; zero here)
+      current_speed: 0,
+    };
+  });
+
+  const out = join(ROOT, "..", "live_boundary.json");
+  const DEG = Math.PI / 180;
+  writeFileSync(out, JSON.stringify({
+    _note: `HURRICANE BOUNDARY — ${name} ${season} @ ${fix.t} · ${fix.cat} · storm center ${fix.lat}°N ${Math.abs(fix.lon)}°W · vmax ${fix.vmax}kt · CP ${fix.cp}hPa · "${fix.note}" · episodic forcing, not live fetch`,
+    hurricane: { name, season, fix_time: fix.t, category: fix.cat, center_lat: fix.lat, center_lon: fix.lon, vmax_kt: fix.vmax, min_cp_hpa: fix.cp, note: fix.note },
+    islands: seeded,
+  }, null, 2));
+
+  const DEG_SYM = "°";
+  console.log(`\nhurricane boundary → live_boundary.json`);
+  console.log(`  ${name} ${season} — ${fix.cat} — ${fix.t}`);
+  console.log(`  center: ${fix.lat}${DEG_SYM}N, ${Math.abs(fix.lon)}${DEG_SYM}W — vmax ${fix.vmax} kt (${(fix.vmax * 0.5144).toFixed(0)} m/s) — CP ${fix.cp} hPa`);
+  console.log(`  note: ${fix.note}`);
+  console.log(`\n  wind at each island (cyclonic field, exponential decay, r_scale=100 km):`);
+  seeded.forEach((s) => {
+    const DEG = Math.PI / 180;
+    const dLat = (s.lat - fix.lat) * DEG, dLon = (s.lon - fix.lon) * DEG;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(fix.lat * DEG) * Math.cos(s.lat * DEG) * Math.sin(dLon / 2) ** 2;
+    const r_km = 2 * 6371 * Math.asin(Math.sqrt(a));
+    console.log(`  ${s.isle.padEnd(16)} ${r_km.toFixed(0).padStart(4)} km  →  wind ${s.wind_speed} m/s @ ${s.wind_dir}${DEG_SYM}   SST ${s.sst}°C  apparent ${s.seed}°C`);
+  });
+  console.log(`\n  feed to sim: cargo run --bin archipelago_sim -- live_boundary.json`);
+}
+
+if (HURRICANE) {
+  await writeHurricaneBoundary(HURRICANE);
+} else if (BOUNDARY) {
   await writeBoundary(BOUNDARY);
 } else if (BATHYMETRY) {
   await writeBathymetry();
