@@ -118,9 +118,25 @@ impl ApplicationHandler for ArchiveApp {
         };
 
         info!("🎨 Creating rendering pipeline...");
+        // Rung 3 (IO off render thread): load bathymetry on a worker thread before any GPU init.
+        let bathy_handle = std::thread::spawn(|| {
+            match render::bathymetry::Bathymetry::load(render::bathymetry::DEFAULT_PATH) {
+                Ok(b) => {
+                    let mesh = b.mesh();
+                    info!("🌊 Bathymetry pre-load: {}x{} → {} vertices", b.w, b.h, mesh.len());
+                    mesh
+                }
+                Err(e) => {
+                    log::warn!("⚠️ bathymetry load failed ({e:#}); falling back to triangle");
+                    render::pipeline::triangle_vertices()
+                }
+            }
+        });
+        let bathy_vertices = bathy_handle.join().unwrap_or_else(|_| render::pipeline::triangle_vertices());
+
         let window_size = window.inner_size();
         let renderer = match unsafe {
-            Renderer::new(&vulkan_context, (window_size.width, window_size.height))
+            Renderer::new(&vulkan_context, (window_size.width, window_size.height), bathy_vertices)
         } {
             Ok(renderer) => renderer,
             Err(error) => {

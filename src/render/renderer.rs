@@ -87,7 +87,7 @@ impl Renderer {
     ///
     /// # Safety
     /// Requires valid Vulkan context
-    pub unsafe fn new(ctx: &VulkanContext, window_size: (u32, u32)) -> Result<Self> {
+    pub unsafe fn new(ctx: &VulkanContext, window_size: (u32, u32), bathymetry_vertices: Vec<super::pipeline::Vertex>) -> Result<Self> {
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   RENDERER INITIALIZATION - Phase 11                         ║");
         info!("╚══════════════════════════════════════════════════════════════╝");
@@ -138,24 +138,10 @@ impl Renderer {
 
         info!("✅ Allocated {0} command buffers", command_buffers.len());
 
-        // Create vertex buffer — the real Bahama bathymetry heightfield (rung 3),
-        // falling back to the test triangle if the data plane is unreadable.
-        let vertices = match super::bathymetry::Bathymetry::load(super::bathymetry::DEFAULT_PATH) {
-            Ok(b) => {
-                let mesh = b.mesh();
-                info!(
-                    "🌊 Bathymetry loaded: {0}x{1} → {2} vertices",
-                    b.w,
-                    b.h,
-                    mesh.len()
-                );
-                mesh
-            }
-            Err(e) => {
-                log::warn!("⚠️ bathymetry load failed ({e:#}); falling back to triangle");
-                triangle_vertices()
-            }
-        };
+        // Rung 3: bathymetry vertices were loaded off the render thread by the caller
+        // (std::thread + join before Renderer::new). IO is complete by the time we arrive here.
+        let vertices = bathymetry_vertices;
+        info!("🌊 Bathymetry mesh: {0} vertices (pre-loaded off render thread)", vertices.len());
         let (vertex_buffer, vertex_buffer_memory) = Self::create_vertex_buffer(ctx, &vertices)?;
 
         // Rung 4: the ocean surface grid (sampled-from-compute displacement, surface mode).
