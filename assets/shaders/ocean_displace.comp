@@ -1,0 +1,119 @@
+// Rung 4.2b — ocean displacement field (Phillips spectrum analytical sum).
+// Replaces the 4.2a Gerstner body; the image contract is unchanged:
+//   rgba16f: .xyz = world-space displacement (choppy x/z + height y), .w = height.
+//
+// Model: sample the Phillips power spectrum P(k) at a grid of wave vectors,
+// compute amplitude A(k) = sqrt(P(k)), synthesise the displacement sum as a
+// superposition of deep-water sinusoids with random-but-deterministic phases.
+//
+// Phillips: P(k) = A * exp(-1/(k*L)^2) / k^4  *  |dot(k_hat, wind_hat)|^2
+//   where L = V^2/g (peak wavelength driven by wind speed V).
+// Dispersion:  omega(k) = sqrt(g * k)  (deep water)
+// Choppy:      lateral displacement in the wind-perpendicular plane uses the
+//              same amplitude but phase-shifted 90° (Longuet-Higgins choppy term).
+//
+// 4.2c: replace this analytical sum with a GPU butterfly IFFT over the full
+//       Tessendorf h0(k) spectrum — the image contract and water.vert are unchanged.
+#version 450
+
+layout(local_size_x = 16, local_size_y = 16) in;
+
+layout(binding = 0, rgba16f) uniform writeonly image2D u_displacement;
+
+layout(push_constant) uniform Push {
+    float time;
+    float x_half;
+    float z_half;
+    uint  resolution;
+} pc;
+
+const float PI    = 3.14159265358979;
+const float G     = 9.81;
+
+// Wind parameters — matched to the barometer's trade-wind mean (~90°, 3-4 m/s).
+// wind_dir: meteorological FROM direction in degrees (90 = from east = westward drift).
+const float WIND_SPEED  = 3.8;    // m/s — typical Bahama trade-wind
+const float WIND_DIR_DEG = 90.0;  // from east
+const float PHILLIPS_A  = 0.0004; // overall wave energy scale
+
+// Hash → pseudo-random in [0,1) — deterministic per (ix,iy,salt).
+float hash(uint ix, uint iy, uint salt) {
+    uint h = (ix * 1664525u + iy * 1013904223u + salt * 2246822519u) ^ 0x9e3779b9u;
+    h ^= h >> 16; h *= 0x45d9f3bu; h ^= h >> 16;
+    return float(h & 0x7fffffffu) / float(0x7fffffffu);
+}
+
+// Box-Muller normal variate from two uniform samples.
+float gauss(uint ix, uint iy, uint salt) {
+    float u1 = max(hash(ix, iy, salt),      1e-6);
+    float u2 =     hash(ix, iy, salt + 1u);
+    return sqrt(-2.0 * log(u1)) * cos(2.0 * PI * u2);
+}
+
+void main() {
+    uvec2 gid = gl_GlobalInvocationID.xy;
+    if (gid.x >= pc.resolution || gid.y >= pc.resolution) return;
+
+    // Texel → world XZ.
+    vec2 uv = (vec2(gid) + 0.5) / float(pc.resolution);
+    vec2 p  = (uv * 2.0 - 1.0) * vec2(pc.x_half, pc.z_half);
+
+    // Wind direction unit vector (wind blows TOWARD this direction).
+    float wrad = (270.0 - WIND_DIR_DEG) * PI / 180.0; // met→math convention
+    vec2  wind_hat = vec2(cos(wrad), sin(wrad));
+
+    float L = WIND_SPEED * WIND_SPEED / G; // peak wavelength
+
+    vec3 disp = vec3(0.0);
+
+    // Superpose N wave vectors sampled from a regular kx×kz grid over the
+    // band [k_min, k_max]. Each wave contributes displacement (y) and
+    // Longuet-Higgins choppy shift (x,z).
+    const int N = 8; // grid side — N*N = 64 wave vectors
+    const float K_MIN = 0.5;
+    const float K_MAX = 12.0;
+
+    for (int ix = 0; ix < N; ix++) {
+        for (int iz = 0; iz < N; iz++) {
+            // Wave vector components.
+            float kx = K_MIN + (K_MAX - K_MIN) * (float(ix) + 0.5) / float(N);
+            float kz = K_MIN + (K_MAX - K_MIN) * (float(iz) + 0.5) / float(N);
+            // Add directional jitter so waves don't alias to a visible grid.
+            kx += (hash(uint(ix), uint(iz), 7u) - 0.5) * (K_MAX - K_MIN) / float(N);
+            kz += (hash(uint(ix), uint(iz), 13u) - 0.5) * (K_MAX - K_MIN) / float(N);
+
+            float k   = length(vec2(kx, kz));
+            if (k < 1e-4) continue;
+
+            vec2  k_hat = vec2(kx, kz) / k;
+            float kdotw = dot(k_hat, wind_hat);
+
+            // Phillips amplitude (suppress waves going against the wind).
+            float kL    = k * L;
+            float phillips = PHILLIPS_A * exp(-1.0 / (kL * kL)) / (k * k * k * k)
+                           * kdotw * kdotw;
+            if (kdotw < 0.0) phillips *= 0.07; // back-scatter suppression
+
+            float amp = sqrt(phillips);
+
+            // Deterministic random phase per wave vector.
+            float phase0 = hash(uint(ix + 100), uint(iz + 200), 31u) * 2.0 * PI;
+
+            // Deep-water dispersion.
+            float omega = sqrt(G * k);
+            float phase = k * dot(k_hat, p) - omega * pc.time + phase0;
+
+            float s = sin(phase);
+            float c = cos(phase);
+
+            // Height displacement.
+            disp.y += amp * s;
+
+            // Choppy lateral displacement (90° phase shift on the x/z components).
+            disp.x -= amp * k_hat.x * c;
+            disp.z -= amp * k_hat.y * c;
+        }
+    }
+
+    imageStore(u_displacement, ivec2(gid), vec4(disp, disp.y));
+}
