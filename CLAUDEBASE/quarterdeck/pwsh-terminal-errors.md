@@ -11,29 +11,29 @@
 
 ## (`☥`/`THE-SQUALL-LOG`/`Terminal-Errors`/`DRY-Lookup`)
 
-> *Every squall has a name. Name it once; never diagnose it again.*
+> *— Every squall has a name. Name it once; never diagnose it again.*
 
 ---
 
 ## (`PIPE`/`NAMED-PIPE`/`BROKEN`)
 
-**Signature** — `The pipe has been ended` / `named pipe` / exit 1 with no other output
+**Signature** *—* `The pipe has been ended` *— */ —* `named pipe` *— / —* `exit 1` *— with no other output*
 
-**Waters** — PowerShell tool; any subprocess that exits before its parent reads stdout
+**Waters** *— PowerShell-tool; any subprocess that exits before its parent reads stdout*
 
-**Root** — The spawned process closed its write-end before the PS pipeline flushed. Common when a child proc exits instantly (missing binary, wrong CWD) or when `Select-Object -Last N` closes the pipe early on a process still writing.
+**Root** *— The spawned process closed its write-end before the PS pipeline flushed. Common when a child proc exits instantly (missing binary, wrong CWD) or when —* `Select-Object -Last N` *— closes the pipe early on a process still writing.*
 
-**Fix** — `2>&1` to merge stderr into stdout before the pipe; or drop the trailing `| Select-Object` and read the whole stream.
+**Fix** *—* `2>&1` *— to merge stderr into stdout before the pipe; or drop the trailing —* `| Select-Object` *— and read the whole stream.*
 
 ---
 
 ## (`BASH-TOOL`/`/C`/`PATH-TRANSLATION`)
 
-**Signature** — `cmd /c X` appears to run but produces no output, or banner-only output
+**Signature** *—* `cmd /c X` *— appears to run but produces no output, or banner-only output*
 
-**Waters** — Bash tool on Windows (MSYS `/usr/bin/bash`); NOT a real Windows failure
+**Waters** *— Bash-tool on Windows — (*`MSYS` `/usr/bin/bash`) *— NOT a real Windows failure*
 
-**Root** — MSYS bash translates `/c` → `C:\`, so `cmd /c X` becomes `cmd C:\X` — the `/c` switch is lost. The command runs as if you passed a path, not a flag.
+**Root** *— MSYS bash translates —* `/c` *→* `C:\` *— so* `cmd /c X` *— becomes —* `cmd C:\X` *— the —* `/c` *— switch is lost; the command runs as if you passed a path, not a flag.*
 
 **Fix** — Use PowerShell tool for all `cmd.exe` ops. Or `pwsh -Command "cmd /c X"` from within the Bash tool if you must.
 
