@@ -47,14 +47,14 @@ dependencies = [
 tabby-modern = "tabby_modern.__main__:main"
 
 [project.optional-dependencies]
-cu128 = [
+cu132 = [
     # torch 2.12.1+cu132 stable — system nvcc is 13.2; cu132 is the natural target
-    # exllamav3 v0.0.43 ships cu132.torch2.11.0 ABI — runtime compat with 2.12.1 is best-effort until upstream adds 2.12.x wheel
+    # exllamav3 v0.0.43 ships cu132.torch2.11.0 ABI; no 2.12.x wheel yet (source build needed for full ABI align)
     "torch >= 2.12.1",
 
-    # exllamav3 cp314 — updated v0.0.30 → v0.0.43 (2026-06-14); torch2.11.0 ABI (no 2.12.x wheel yet)
-    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
-    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu128.torch2.11.0-cp314-cp314-win_amd64.whl ; platform_system == 'Windows' and python_version == '3.14'",
+    # exllamav3 cp314 — v0.0.43 cu132 wheels; torch2.11.0 ABI (upstream highest for cu132 as of 2026-06-21)
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu132.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
+    "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu132.torch2.11.0-cp314-cp314-win_amd64.whl ; platform_system == 'Windows' and python_version == '3.14'",
 
     # exllamav2 — cp314 gap on ALL platforms as of 2026-04-25 (G4 wall = the wheel, not the code)
     # Linux/Podman: admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)
@@ -74,12 +74,16 @@ cu128 = [
 
 [tool.uv]
 # exllamav3 v0.0.21 pins pydantic==2.11.0 exactly (over-constrained upstream).
-# This override forces the resolver past the tight pin — enables pydantic-core 2.46.x (cp314 wheels).
 # FAF Gate 1 membrane: docs/reference/FAF_TABBYAPI_PY314_GPU_INFERENCE_HOST.md
-override-dependencies = ["pydantic>=2.13.0,<3"]
+# torch>=2.11.0 override: exllamav3 wheel METADATA pins torch==2.11.0 (ABI coupling);
+#   override loosens to >=2.11.0 so our torch>=2.12.1 project floor wins at 2.12.1.
+override-dependencies = [
+    "pydantic>=2.13.0,<3",
+    "torch>=2.11.0",
+]
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu132", extra = "cu132" }
+torch = { index = "pytorch-cu132" }
 
 [[tool.uv.index]]
 name = "pytorch-cu132"
