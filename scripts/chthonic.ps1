@@ -6134,10 +6134,9 @@ switch ($Domain) {
         # A-C-A Engine zodiac query — Ankhological sidereal positions (Sirius/Alcyone midpoint).
         # Delegates to the zodiac-query Rust binary (src/bin/zodiac-query.rs).
         # Actions: bodies (default) | ayanamsa | boundaries
-        $zqRoot = if ($CHTHONIC_ROOT) { $CHTHONIC_ROOT } else { Split-Path $PSScriptRoot -Parent }
-        $zqBin = Join-Path $zqRoot "target\release\zodiac-query.exe"
+        $zqBin = Join-Path $REPO_ROOT "target\release\zodiac-query.exe"
         if (-not (Test-Path $zqBin)) {
-            $zqBin = Join-Path $zqRoot "target\debug\zodiac-query.exe"
+            $zqBin = Join-Path $REPO_ROOT "target\debug\zodiac-query.exe"
         }
         if (-not (Test-Path $zqBin)) {
             Write-Error "zodiac-query binary not found — run: cargo build --bin zodiac-query"
