@@ -257,6 +257,24 @@ async function forecast(): Promise<void> {
   console.log("\n  legend  · <5   ░ <20   ▒ <40   ▓ <70   █ ≥70 %    ·  live forecast — a view, never stamped");
 }
 
+// M-4 · WEATHER DEPTH — derived atmospheric state from fields already fetched.
+// No new API call. WMO code + RH + dew-spread → classify each island as one of:
+//   "storm"   WMO 95/96/99 (thunderstorm) or CAPE-implied (code 80–82 + RH>85%)
+//   "squall"  WMO 80–82 (violent showers) or wind_speed > 15 m/s
+//   "mist"    WMO 45/48 (fog/rime) or RH ≥ 95% + dew-spread ≤ 1.5°C
+//   "rain"    WMO 51–67 (drizzle/rain/freezing)
+//   "overcast" WMO 3
+//   "clear"   WMO 0–2
+// The field is a tag, not a scalar — the sim ignores it; the HTML render annotates it.
+function wxState(code: number, rh: number, ws: number, app: number, air: number): string {
+  if (code >= 95) return "storm";
+  if (code >= 80 || ws > 15) return "squall";
+  if (code >= 51 && code <= 67) return "rain";
+  if (code === 45 || code === 48 || (rh >= 95 && (air - app) <= 1.5)) return "mist";
+  if (code === 3) return "overcast";
+  return "clear";
+}
+
 // L−3 · export the LIVE boundary conditions for the Vulkan sim: apparent-temperature
 // per island, fetched not stamped. Ephemeral by design (live = a view, never a file
 // that gets committed). The Rust diffuse bin reads `seed` from this and the cove
@@ -288,17 +306,24 @@ async function writeBoundary(out: string): Promise<void> {
   const sstAt = (k: number): number => marine[k]?.current?.sea_surface_temperature ?? NaN;
   const validSst = isles.map((_, k) => sstAt(k)).filter((v) => !isNaN(v));
   const meanSst = validSst.length ? Number((validSst.reduce((a, b) => a + b, 0) / validSst.length).toFixed(1)) : mean;
-  const seeded = isles.map((i, k) => ({
-    isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
-    seed: isNaN(skies[k].app) ? mean : skies[k].app,
-    sst: isNaN(sstAt(k)) ? meanSst : sstAt(k),
-    wind_dir: isNaN(skies[k].wd) ? meanWd : skies[k].wd,
-    wind_speed: isNaN(skies[k].ws) ? meanWs : skies[k].ws,
-    current_dir: marine[k]?.current?.ocean_current_direction ?? 0,
-    current_speed: Number(((marine[k]?.current?.ocean_current_velocity ?? 0) / 3.6).toFixed(3)),
-  }));
-  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp + wind + SST + ocean-current per island, fetched not stamped. Ephemeral; regenerate before each sim run. current_dir oceanographic (flows-to, 0=N); current_speed m/s.", islands: seeded }, null, 2));
-  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live SST (°C):            ${seeded.map((s) => `${s.isle}=${s.sst}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}\n  live current (° @ m/s):   ${seeded.map((s) => `${s.isle}=${s.current_dir}@${s.current_speed}`).join("  ")}`);
+  const seeded = isles.map((i, k) => {
+    const s = skies[k];
+    const ws = isNaN(s.ws) ? meanWs : s.ws;
+    const app = isNaN(s.app) ? mean : s.app;
+    return {
+      isle: i.isle, lat: i.lat, lon: i.lon, elevation_m: i.elevation_m,
+      seed: app,
+      sst: isNaN(sstAt(k)) ? meanSst : sstAt(k),
+      wind_dir: isNaN(s.wd) ? meanWd : s.wd,
+      wind_speed: ws,
+      current_dir: marine[k]?.current?.ocean_current_direction ?? 0,
+      current_speed: Number(((marine[k]?.current?.ocean_current_velocity ?? 0) / 3.6).toFixed(3)),
+      wx_state: wxState(isNaN(s.code) ? -1 : s.code, isNaN(s.rh) ? 70 : s.rh, ws, app, isNaN(s.air) ? app : s.air),
+      wx_code: isNaN(s.code) ? -1 : s.code,
+    };
+  });
+  writeFileSync(out, JSON.stringify({ _note: "LIVE boundary — apparent-temp + wind + SST + ocean-current + wx_state per island, fetched not stamped. Ephemeral; regenerate before each sim run. current_dir oceanographic (flows-to, 0=N); current_speed m/s. wx_state: M-4 derived atmospheric class (clear/overcast/mist/rain/squall/storm).", islands: seeded }, null, 2));
+  console.log(`boundary → ${out}\n  live seeds (°C apparent): ${seeded.map((s) => `${s.isle}=${s.seed}`).join("  ")}\n  live SST (°C):            ${seeded.map((s) => `${s.isle}=${s.sst}`).join("  ")}\n  live wind (° @ m/s):      ${seeded.map((s) => `${s.isle}=${s.wind_dir}@${s.wind_speed}`).join("  ")}\n  live current (° @ m/s):   ${seeded.map((s) => `${s.isle}=${s.current_dir}@${s.current_speed}`).join("  ")}\n  wx_state (M-4):           ${seeded.map((s) => `${s.isle}=${s.wx_state}`).join("  ")}`);
 }
 
 // B9 · THE TRUE 1728 HISTOGRAM — the barometer auditing its own design.
@@ -514,8 +539,10 @@ async function writeHurricaneBoundary(snapKey: string): Promise<void> {
       sst,
       wind_dir: wf.wind_dir,
       wind_speed: wf.wind_speed,
-      current_dir: 0,   // storm surge direction (would need separate model; zero here)
+      current_dir: 0,
       current_speed: 0,
+      wx_state: wf.wind_speed >= 33 ? "storm" : wf.wind_speed >= 15 ? "squall" : "clear",
+      wx_code: -1,
     };
   });
 

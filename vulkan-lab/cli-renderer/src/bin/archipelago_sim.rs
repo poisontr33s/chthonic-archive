@@ -38,6 +38,8 @@ struct IslandJson {
     wind_speed: Option<f32>, // m/s
     #[serde(default)]
     isle: String,
+    #[serde(default)]
+    wx_state: String, // M-4 derived atmospheric class: clear/overcast/mist/rain/squall/storm
 }
 
 #[derive(Deserialize)]
@@ -468,7 +470,11 @@ fn write_html(path: &str, field: &[f32], depth: &[f32], islands: &[IslandJson], 
         ));
     }
     let state = match converged_at { Some(k) => format!("converged at outer {k}"), None => format!("{max_outer} outers — not yet steady") };
-    let legend: String = islands.iter().enumerate().map(|(k, i)| format!("<li><b>{}</b> {} — {:.1} °C</li>", b"ABCDEFGH"[k.min(7)] as char, i.isle, i.seed.unwrap_or(i.elevation_m))).collect();
+    let wx_glyph = |s: &str| match s { "storm" => "⛈", "squall" => "🌧", "rain" => "🌦", "mist" => "🌫", "overcast" => "☁", _ => "☀" };
+    let legend: String = islands.iter().enumerate().map(|(k, i)| {
+        let wx = if i.wx_state.is_empty() { "clear".to_string() } else { i.wx_state.clone() };
+        format!("<li><b>{}</b> {} — {:.1} °C  {}{}</li>", b"ABCDEFGH"[k.min(7)] as char, i.isle, i.seed.unwrap_or(i.elevation_m), wx_glyph(&wx), if wx != "clear" { format!(" <span style='color:#94a3b8'>{wx}</span>") } else { String::new() })
+    }).collect();
     let html = format!(
         "<!DOCTYPE html>\n<html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>\n<title>archipelago · steady-state field</title>\n<style>body{{margin:0;background:#0a0e14;color:#cbd5e1;font:14px/1.55 ui-monospace,Menlo,Consolas,monospace;padding:28px;max-width:980px}}h1{{font-size:16px;font-weight:600;letter-spacing:.04em;color:#e2e8f0}}svg{{width:100%;height:auto;margin:8px 0;border:1px solid #1e293b;border-radius:8px}}.cap{{color:#64748b;margin:6px 0 16px}}ul{{columns:2;gap:32px;max-width:560px;padding-left:18px;list-style:none}}li{{margin:.15em 0}}b{{color:#fff}}</style></head>\n<body><h1>☥ archipelago · advection-diffusion steady state</h1>\n<svg viewBox='0 0 {vw} {vh}' xmlns='http://www.w3.org/2000/svg' shape-rendering='crispEdges'>{svg}</svg>\n<p class='cap'>{state} · {fmin:.1}–{fmax:.1} °C · blue→red = cool→warm · live sky, rendered by archipelago_sim (L0)</p>\n<ul>{legend}</ul>\n</body></html>\n"
     );
