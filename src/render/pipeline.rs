@@ -163,6 +163,7 @@ impl VulkanPipeline {
         device: &Device,
         physical_device_properties: &vk::PhysicalDeviceProperties,
         color_format: vk::Format,
+        desc_set_layouts: &[vk::DescriptorSetLayout],
     ) -> Result<Self> {
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   GRAPHICS PIPELINE - Dynamic Rendering Mode                 ║");
@@ -288,8 +289,9 @@ impl VulkanPipeline {
             );
 
         let push_constant_ranges = [push_constant_range];
-        let pipeline_layout_info =
-            vk::PipelineLayoutCreateInfo::default().push_constant_ranges(&push_constant_ranges);
+        let pipeline_layout_info = vk::PipelineLayoutCreateInfo::default()
+            .set_layouts(desc_set_layouts)
+            .push_constant_ranges(&push_constant_ranges);
 
         let pipeline_layout = device
             .create_pipeline_layout(&pipeline_layout_info, None)

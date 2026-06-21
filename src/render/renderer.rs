@@ -103,11 +103,16 @@ impl Renderer {
             window_size,
         )?;
 
-        // Create pipeline
+        // Rung 4.2: displacement compute — created first so its graphics_set_layout can be
+        // threaded into the graphics pipeline layout (water.vert samples the displacement image).
+        let ocean_compute = super::ocean_compute::OceanCompute::new(ctx)?;
+
+        // Create pipeline — set 0 is the ocean displacement sampler (water.vert reads it).
         let pipeline = VulkanPipeline::new(
             &ctx.device,
             &ctx.physical_device_properties,
             swapchain.format,
+            &[ocean_compute.graphics_set_layout],
         )?;
 
         // Create command pool
@@ -153,15 +158,12 @@ impl Renderer {
         };
         let (vertex_buffer, vertex_buffer_memory) = Self::create_vertex_buffer(ctx, &vertices)?;
 
-        // Rung 4: the ocean surface grid (Gerstner-displaced in water.vert, surface mode).
+        // Rung 4: the ocean surface grid (sampled-from-compute displacement, surface mode).
         let ocean_vertices = super::ocean::surface_grid(128);
         let (ocean_vertex_buffer, ocean_vertex_memory) =
             Self::create_vertex_buffer(ctx, &ocean_vertices)?;
         let ocean_vertex_count = u32::try_from(ocean_vertices.len()).unwrap();
         info!("🌊 Ocean surface grid: {0} vertices", ocean_vertices.len());
-
-        // Rung 4.2: the displacement compute subsystem (first compute pipeline + descriptors).
-        let ocean_compute = super::ocean_compute::OceanCompute::new(ctx)?;
 
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
@@ -1167,6 +1169,15 @@ impl Renderer {
             0.0,
             self.vertex_buffer,
             self.vertex_count,
+        );
+        // Bind the displacement image sampler (set 0) so water.vert can read it.
+        ctx.device.cmd_bind_descriptor_sets(
+            cmd,
+            vk::PipelineBindPoint::GRAPHICS,
+            self.pipeline.pipeline_layout,
+            0,
+            &[self.ocean_compute.graphics_set],
+            &[],
         );
         Self::draw_mode(
             &ctx.device,
