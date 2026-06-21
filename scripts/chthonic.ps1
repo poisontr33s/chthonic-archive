@@ -1557,6 +1557,14 @@ function Get-ChthonicCommandCatalog {
             actions = @()
         }
         [pscustomobject]@{
+            domain = "zodiac"
+            mode = "active"
+            summary = "Ankhological zodiac query — live body positions in sidereal signs (Sirius/Alcyone midpoint origin)"
+            preferred_surface = "chthonic zodiac [bodies|ayanamsa|boundaries] [--date YYYY-MM-DD]"
+            claudine_passthrough = $false
+            actions = @("bodies", "ayanamsa", "boundaries")
+        }
+        [pscustomobject]@{
             domain = "compact"
             mode = "compatibility"
             summary = "Single-word archive compatibility route"
@@ -6121,6 +6129,32 @@ switch ($Domain) {
                 exit 0
             }
         }
+    }
+    "zodiac" {
+        # A-C-A Engine zodiac query — Ankhological sidereal positions (Sirius/Alcyone midpoint).
+        # Delegates to the zodiac-query Rust binary (src/bin/zodiac-query.rs).
+        # Actions: bodies (default) | ayanamsa | boundaries
+        $zqRoot = if ($CHTHONIC_ROOT) { $CHTHONIC_ROOT } else { Split-Path $PSScriptRoot -Parent }
+        $zqBin = Join-Path $zqRoot "target\release\zodiac-query.exe"
+        if (-not (Test-Path $zqBin)) {
+            $zqBin = Join-Path $zqRoot "target\debug\zodiac-query.exe"
+        }
+        if (-not (Test-Path $zqBin)) {
+            Write-Error "zodiac-query binary not found — run: cargo build --bin zodiac-query"
+            exit 1
+        }
+        $zqAction = if ($Action) { $Action } else { "bodies" }
+        $zqArgs = @("--action", $zqAction)
+        if ($RemainingArgs -contains "--jd") {
+            $idx = $RemainingArgs.IndexOf("--jd")
+            $zqArgs += "--jd", $RemainingArgs[$idx + 1]
+        }
+        if ($RemainingArgs -contains "--date") {
+            $idx = $RemainingArgs.IndexOf("--date")
+            $zqArgs += "--date", $RemainingArgs[$idx + 1]
+        }
+        & $zqBin @zqArgs
+        exit $LASTEXITCODE
     }
     "graphics" {
         switch ($Action) {
