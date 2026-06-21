@@ -48,9 +48,9 @@ tabby-modern = "tabby_modern.__main__:main"
 
 [project.optional-dependencies]
 cu128 = [
-    # torch nightly cu128 — 2.12.0.dev20260408 is the ceiling for cp314 win (stable tops at 2.11.0)
-    # exllamav3 v0.0.43 still ships torch2.11.0 ABI — runtime compat with 2.12.x is best-effort
-    "torch >= 2.12.0.dev20260408",
+    # torch 2.12.1+cu132 stable — system nvcc is 13.2; cu132 is the natural target
+    # exllamav3 v0.0.43 ships cu132.torch2.11.0 ABI — runtime compat with 2.12.1 is best-effort until upstream adds 2.12.x wheel
+    "torch >= 2.12.1",
 
     # exllamav3 cp314 — updated v0.0.30 → v0.0.43 (2026-06-14); torch2.11.0 ABI (no 2.12.x wheel yet)
     "exllamav3 @ https://github.com/turboderp-org/exllamav3/releases/download/v0.0.43/exllamav3-0.0.43+cu128.torch2.11.0-cp314-cp314-linux_x86_64.whl ; platform_system == 'Linux' and platform_machine == 'x86_64' and python_version == '3.14'",
@@ -79,17 +79,11 @@ cu128 = [
 override-dependencies = ["pydantic>=2.13.0,<3"]
 
 [tool.uv.sources]
-# Route torch to nightly cu128 index — 2.12.0.dev available for cp314 win (stable tops at 2.11.0)
-torch = { index = "pytorch-nightly-cu128", extra = "cu128" }
+torch = { index = "pytorch-cu132", extra = "cu132" }
 
 [[tool.uv.index]]
-name = "pytorch-cu128"
-url = "https://download.pytorch.org/whl/cu128"
-explicit = true
-
-[[tool.uv.index]]
-name = "pytorch-nightly-cu128"
-url = "https://download.pytorch.org/whl/nightly/cu128"
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
 explicit = true
 
 [tool.uv.extra-build-dependencies]
