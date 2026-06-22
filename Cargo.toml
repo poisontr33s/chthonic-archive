@@ -55,6 +55,7 @@ log = "0.4"
 # === ERROR HANDLING ===
 anyhow = "1.0"
 thiserror = "2.0"
+bytemuck = { version = "1.25.0", features = ["derive"] }
 
 [features]
 default = ["bevy"]

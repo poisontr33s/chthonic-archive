@@ -78,6 +78,14 @@ pub struct Renderer {
     pub history_color_allocs: [Option<Allocation>; 2],
     pub history_color_views: [vk::ImageView; 2],
     pub history_sampler: vk::Sampler,
+    // TAA Gate 3 — resolve pipeline
+    pub taa_pipeline: vk::Pipeline,
+    pub taa_pipeline_layout: vk::PipelineLayout,
+    pub taa_desc_pool: vk::DescriptorPool,
+    pub taa_desc_set_layout: vk::DescriptorSetLayout,
+    pub taa_desc_sets: Vec<vk::DescriptorSet>,  // one per frame-in-flight
+    pub taa_enabled: bool,
+    pub taa_debug: bool,
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub show_motion: bool,
@@ -228,6 +236,12 @@ impl Renderer {
             Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
         let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
             Self::create_history_resources(ctx, swapchain.extent)?;
+        let taa_enabled = std::env::var("CHTHONIC_TAA").map_or(true, |v| v != "off");
+        let taa_debug   = std::env::var("CHTHONIC_TAA_DEBUG").is_ok();
+        let (taa_pipeline, taa_pipeline_layout, taa_desc_pool, taa_desc_set_layout, taa_desc_sets) =
+            Self::create_taa_pipeline(ctx, swapchain.format, swapchain.frames_in_flight,
+                &history_color_views, history_sampler,
+                &offscreen_color_view, &motion_vector_view)?;
         let temporal = TemporalState::new(camera.view_projection());
 
         Ok(Self {
@@ -258,6 +272,13 @@ impl Renderer {
             history_color_allocs,
             history_color_views,
             history_sampler,
+            taa_pipeline,
+            taa_pipeline_layout,
+            taa_desc_pool,
+            taa_desc_set_layout,
+            taa_desc_sets,
+            taa_enabled,
+            taa_debug,
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
@@ -900,6 +921,184 @@ impl Renderer {
         Ok((images, allocs, views, sampler))
     }
 
+    /// Build the TAA resolve pipeline (Gate 3).
+    /// Descriptor set: binding 0 = current (SAMPLED), 1 = history (SAMPLED), 2 = motion (SAMPLED).
+    /// Push constant: TaaParams { texel_size: vec2, blend: f32, debug: f32 } = 16 bytes.
+    /// Output format matches the swapchain (passed in as `out_format`).
+    #[allow(clippy::too_many_arguments)]
+    unsafe fn create_taa_pipeline(
+        ctx: &VulkanContext,
+        out_format: vk::Format,
+        frames_in_flight: usize,
+        history_views: &[vk::ImageView; 2],
+        history_sampler: vk::Sampler,
+        current_view: &vk::ImageView,
+        motion_view: &vk::ImageView,
+    ) -> Result<(vk::Pipeline, vk::PipelineLayout, vk::DescriptorPool, vk::DescriptorSetLayout, Vec<vk::DescriptorSet>)> {
+        let device = &ctx.device;
+
+        // --- descriptor set layout: 3 combined image samplers ---
+        let bindings = [
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(0)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(1)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(2)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+        ];
+        let set_layout = device
+            .create_descriptor_set_layout(
+                &vk::DescriptorSetLayoutCreateInfo::default().bindings(&bindings),
+                None,
+            )
+            .context("taa: create desc set layout")?;
+
+        // --- pipeline layout: one push constant range (16 bytes: texel_xy + blend + debug) ---
+        let push_range = vk::PushConstantRange::default()
+            .stage_flags(vk::ShaderStageFlags::FRAGMENT)
+            .offset(0)
+            .size(16); // vec2 texel_size + f32 blend + f32 debug
+        let pl_info = vk::PipelineLayoutCreateInfo::default()
+            .set_layouts(std::slice::from_ref(&set_layout))
+            .push_constant_ranges(std::slice::from_ref(&push_range));
+        let pipeline_layout = device
+            .create_pipeline_layout(&pl_info, None)
+            .context("taa: create pipeline layout")?;
+
+        // --- descriptor pool + sets (one per frame-in-flight) ---
+        let pool_sizes = [vk::DescriptorPoolSize::default()
+            .ty(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+            .descriptor_count(3 * u32::try_from(frames_in_flight).unwrap())];
+        let desc_pool = device
+            .create_descriptor_pool(
+                &vk::DescriptorPoolCreateInfo::default()
+                    .pool_sizes(&pool_sizes)
+                    .max_sets(u32::try_from(frames_in_flight).unwrap()),
+                None,
+            )
+            .context("taa: create desc pool")?;
+
+        let set_layouts_vec = vec![set_layout; frames_in_flight];
+        let desc_sets = device
+            .allocate_descriptor_sets(
+                &vk::DescriptorSetAllocateInfo::default()
+                    .descriptor_pool(desc_pool)
+                    .set_layouts(&set_layouts_vec),
+            )
+            .context("taa: alloc desc sets")?;
+
+        // Write descriptors for every frame — current + history[frame%2] + motion.
+        for (i, &ds) in desc_sets.iter().enumerate() {
+            let hist_view = history_views[i % 2];
+            let img_current = vk::DescriptorImageInfo::default()
+                .sampler(history_sampler)
+                .image_view(*current_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let img_history = vk::DescriptorImageInfo::default()
+                .sampler(history_sampler)
+                .image_view(hist_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let img_motion = vk::DescriptorImageInfo::default()
+                .sampler(history_sampler)
+                .image_view(*motion_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let writes = [
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(0)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_current)),
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(1)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_history)),
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(2)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_motion)),
+            ];
+            device.update_descriptor_sets(&writes, &[]);
+        }
+
+        // --- shaders ---
+        let vert_spv = include_bytes!(concat!(env!("OUT_DIR"), "/taa_resolve.vert.spv"));
+        let frag_spv = include_bytes!(concat!(env!("OUT_DIR"), "/taa_resolve.frag.spv"));
+        // include_bytes! is only u8-aligned; convert to u32 slice via chunks, matching pipeline.rs.
+        let vert_u32: Vec<u32> = vert_spv.chunks_exact(4)
+            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
+        let frag_u32: Vec<u32> = frag_spv.chunks_exact(4)
+            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
+        let vert_mod = device.create_shader_module(
+            &vk::ShaderModuleCreateInfo::default().code(&vert_u32), None)?;
+        let frag_mod = device.create_shader_module(
+            &vk::ShaderModuleCreateInfo::default().code(&frag_u32), None)?;
+        let entry = std::ffi::CStr::from_bytes_with_nul(b"main\0").unwrap();
+        let stages = [
+            vk::PipelineShaderStageCreateInfo::default()
+                .stage(vk::ShaderStageFlags::VERTEX)
+                .module(vert_mod)
+                .name(entry),
+            vk::PipelineShaderStageCreateInfo::default()
+                .stage(vk::ShaderStageFlags::FRAGMENT)
+                .module(frag_mod)
+                .name(entry),
+        ];
+
+        // --- pipeline ---
+        let vertex_input   = vk::PipelineVertexInputStateCreateInfo::default(); // no vertex buffer
+        let input_assembly = vk::PipelineInputAssemblyStateCreateInfo::default()
+            .topology(vk::PrimitiveTopology::TRIANGLE_LIST);
+        let viewport_state = vk::PipelineViewportStateCreateInfo::default()
+            .viewport_count(1).scissor_count(1);
+        let rasterizer = vk::PipelineRasterizationStateCreateInfo::default()
+            .polygon_mode(vk::PolygonMode::FILL)
+            .cull_mode(vk::CullModeFlags::NONE)
+            .line_width(1.0);
+        let multisample = vk::PipelineMultisampleStateCreateInfo::default()
+            .rasterization_samples(vk::SampleCountFlags::TYPE_1);
+        let blend_attach = vk::PipelineColorBlendAttachmentState::default()
+            .color_write_mask(vk::ColorComponentFlags::RGBA)
+            .blend_enable(false);
+        let color_blend = vk::PipelineColorBlendStateCreateInfo::default()
+            .attachments(std::slice::from_ref(&blend_attach));
+        let dyn_states = [vk::DynamicState::VIEWPORT, vk::DynamicState::SCISSOR];
+        let dynamic_state = vk::PipelineDynamicStateCreateInfo::default()
+            .dynamic_states(&dyn_states);
+
+        // Dynamic rendering — output directly to swapchain format, no depth/stencil.
+        let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
+            .color_attachment_formats(std::slice::from_ref(&out_format));
+
+        let pipeline_info = vk::GraphicsPipelineCreateInfo::default()
+            .stages(&stages)
+            .vertex_input_state(&vertex_input)
+            .input_assembly_state(&input_assembly)
+            .viewport_state(&viewport_state)
+            .rasterization_state(&rasterizer)
+            .multisample_state(&multisample)
+            .color_blend_state(&color_blend)
+            .dynamic_state(&dynamic_state)
+            .layout(pipeline_layout)
+            .push_next(&mut rendering_info);
+
+        let pipeline = device
+            .create_graphics_pipelines(vk::PipelineCache::null(), &[pipeline_info], None)
+            .map_err(|(_, e)| anyhow::anyhow!("taa: create pipeline: {e}"))?[0];
+
+        device.destroy_shader_module(vert_mod, None);
+        device.destroy_shader_module(frag_mod, None);
+
+        Ok((pipeline, pipeline_layout, desc_pool, set_layout, desc_sets))
+    }
+
     /// Capture the just-presented swapchain image to a PNG so the build loop can
     /// self-verify a render without a human screenshot. One-shot, synchronous
     /// (its own command buffer + fence). Triggered via `CHTHONIC_SCREENSHOT`.
@@ -1287,10 +1486,13 @@ impl Renderer {
         // === END DYNAMIC RENDERING ===
         ctx.device.cmd_end_rendering(cmd);
 
-        // === RESOLVE (TAA Gate 1: verbatim copy) ===
-        // The scene was rendered to the offscreen colour target; copy it to the swapchain before
-        // present. A later gate replaces this straight copy with the temporal resolve that reads
-        // the offscreen colour + the history + the motion vectors. No visual change yet.
+        // === RESOLVE (TAA Gate 3) ===
+        // TAA path: transitions inputs to SHADER_READ_ONLY, runs the fullscreen resolve pipeline
+        // (neighbourhood clamp + blend), writes directly to the swapchain image.
+        // Fallback: CHTHONIC_TAA=off preserves the Gate 1 verbatim-copy path for regression diff.
+        let cur_hist  = (self.frame_index % 2) as usize;
+        let prev_hist = 1 - cur_hist;
+
         let color_subresource = vk::ImageSubresourceRange {
             aspect_mask: vk::ImageAspectFlags::COLOR,
             base_mip_level: 0,
@@ -1298,74 +1500,144 @@ impl Renderer {
             base_array_layer: 0,
             layer_count: 1,
         };
-        let offscreen_to_src = vk::ImageMemoryBarrier2::default()
-            .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
-            .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
-            .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
-            .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
-            .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
-            .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
-            .image(self.offscreen_color_image)
-            .subresource_range(color_subresource);
-        let swap_to_dst = vk::ImageMemoryBarrier2::default()
-            .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
-            .src_access_mask(vk::AccessFlags2::empty())
-            .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
-            .dst_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
-            .old_layout(vk::ImageLayout::UNDEFINED)
-            .new_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
-            .image(self.swapchain.images[image_index as usize])
-            .subresource_range(color_subresource);
-        let pre_copy = [offscreen_to_src, swap_to_dst];
-        ctx.device.cmd_pipeline_barrier2(
-            cmd,
-            &vk::DependencyInfo::default().image_memory_barriers(&pre_copy),
-        );
 
-        let copy = vk::ImageCopy::default()
-            .src_subresource(vk::ImageSubresourceLayers {
-                aspect_mask: vk::ImageAspectFlags::COLOR,
-                mip_level: 0,
-                base_array_layer: 0,
-                layer_count: 1,
-            })
-            .dst_subresource(vk::ImageSubresourceLayers {
-                aspect_mask: vk::ImageAspectFlags::COLOR,
-                mip_level: 0,
-                base_array_layer: 0,
-                layer_count: 1,
-            })
-            .extent(vk::Extent3D {
-                width: self.swapchain.extent.width,
-                height: self.swapchain.extent.height,
-                depth: 1,
-            });
-        ctx.device.cmd_copy_image(
-            cmd,
-            self.offscreen_color_image,
-            vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
-            self.swapchain.images[image_index as usize],
-            vk::ImageLayout::TRANSFER_DST_OPTIMAL,
-            &[copy],
-        );
+        if self.taa_enabled {
+            let barriers_pre = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.offscreen_color_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.motion_vector_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.history_color_images[prev_hist])
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .dst_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .image(self.swapchain.images[image_index as usize])
+                    .subresource_range(color_subresource),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_pre));
 
-        // === TRANSITION SWAPCHAIN TO PRESENT ===
-        let image_barrier_to_present = vk::ImageMemoryBarrier2::default()
-            .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
-            .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
-            .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
-            .dst_access_mask(vk::AccessFlags2::empty())
-            .old_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
-            .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
-            .image(self.swapchain.images[image_index as usize])
-            .subresource_range(color_subresource);
+            let swap_attach = vk::RenderingAttachmentInfo::default()
+                .image_view(self.swapchain.image_views[image_index as usize])
+                .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                .load_op(vk::AttachmentLoadOp::DONT_CARE)
+                .store_op(vk::AttachmentStoreOp::STORE);
+            let rendering_info = vk::RenderingInfo::default()
+                .render_area(vk::Rect2D { offset: vk::Offset2D::default(), extent: self.swapchain.extent })
+                .layer_count(1)
+                .color_attachments(std::slice::from_ref(&swap_attach));
+            ctx.device.cmd_begin_rendering(cmd, &rendering_info);
 
-        let barriers_to_present = [image_barrier_to_present];
-        let dependency_info_to_present =
-            vk::DependencyInfo::default().image_memory_barriers(&barriers_to_present);
+            let ext = self.swapchain.extent;
+            ctx.device.cmd_set_viewport(cmd, 0, &[vk::Viewport {
+                x: 0.0, y: 0.0,
+                width: ext.width as f32, height: ext.height as f32,
+                min_depth: 0.0, max_depth: 1.0,
+            }]);
+            ctx.device.cmd_set_scissor(cmd, 0, &[vk::Rect2D {
+                offset: vk::Offset2D::default(), extent: ext,
+            }]);
+            ctx.device.cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.taa_pipeline);
+            let frame_slot = (self.frame_index % self.taa_desc_sets.len() as u64) as usize;
+            ctx.device.cmd_bind_descriptor_sets(
+                cmd, vk::PipelineBindPoint::GRAPHICS, self.taa_pipeline_layout, 0,
+                &[self.taa_desc_sets[frame_slot]], &[]);
 
-        ctx.device
-            .cmd_pipeline_barrier2(cmd, &dependency_info_to_present);
+            #[repr(C)]
+            #[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
+            struct TaaParams { texel: [f32; 2], blend: f32, debug: f32 }
+            let params = TaaParams {
+                texel: [1.0 / ext.width as f32, 1.0 / ext.height as f32],
+                blend: 0.1,
+                debug: if self.taa_debug { 1.0 } else { 0.0 },
+            };
+            ctx.device.cmd_push_constants(
+                cmd, self.taa_pipeline_layout,
+                vk::ShaderStageFlags::FRAGMENT, 0,
+                bytemuck::bytes_of(&params));
+            ctx.device.cmd_draw(cmd, 3, 1, 0, 0);
+            ctx.device.cmd_end_rendering(cmd);
+
+            let to_present = vk::ImageMemoryBarrier2::default()
+                .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                .dst_access_mask(vk::AccessFlags2::empty())
+                .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                .image(self.swapchain.images[image_index as usize])
+                .subresource_range(color_subresource);
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
+        } else {
+            // CHTHONIC_TAA=off — Gate 1 verbatim-copy fallback.
+            let pre = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                    .image(self.offscreen_color_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .dst_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+                    .image(self.swapchain.images[image_index as usize])
+                    .subresource_range(color_subresource),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(&pre));
+            let copy = vk::ImageCopy::default()
+                .src_subresource(vk::ImageSubresourceLayers { aspect_mask: vk::ImageAspectFlags::COLOR, mip_level: 0, base_array_layer: 0, layer_count: 1 })
+                .dst_subresource(vk::ImageSubresourceLayers { aspect_mask: vk::ImageAspectFlags::COLOR, mip_level: 0, base_array_layer: 0, layer_count: 1 })
+                .extent(vk::Extent3D { width: self.swapchain.extent.width, height: self.swapchain.extent.height, depth: 1 });
+            ctx.device.cmd_copy_image(cmd,
+                self.offscreen_color_image, vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+                self.swapchain.images[image_index as usize], vk::ImageLayout::TRANSFER_DST_OPTIMAL, &[copy]);
+            let to_present = vk::ImageMemoryBarrier2::default()
+                .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                .dst_access_mask(vk::AccessFlags2::empty())
+                .old_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+                .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                .image(self.swapchain.images[image_index as usize])
+                .subresource_range(color_subresource);
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
+        }
 
         // End command buffer
         ctx.device.end_command_buffer(cmd)?;
@@ -1520,6 +1792,12 @@ impl Renderer {
                 let _ = allocator.lock().unwrap().free(alloc);
             }
         }
+
+        // Free TAA Gate 3 resolve pipeline resources
+        device.destroy_pipeline(self.taa_pipeline, None);
+        device.destroy_pipeline_layout(self.taa_pipeline_layout, None);
+        device.destroy_descriptor_pool(self.taa_desc_pool, None);
+        device.destroy_descriptor_set_layout(self.taa_desc_set_layout, None);
 
         // Command pool (implicitly frees command buffers)
         device.destroy_command_pool(self.command_pool, None);
