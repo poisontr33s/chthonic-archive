@@ -33,7 +33,9 @@
 use anyhow::{Context, Result};
 use ash::{Device, vk};
 use glam::{Mat4, Vec3};
+use gpu_allocator::vulkan::Allocator;
 use log::{debug, info};
+use std::sync::{Arc, Mutex};
 
 use super::camera::IsometricCamera;
 use super::pipeline::{PushConstants, Vertex, VulkanPipeline, triangle_vertices};
@@ -1123,6 +1125,17 @@ impl Renderer {
         ctx.device
             .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.pipeline.pipeline);
 
+        // Bind the displacement image sampler (set 0) so water.vert can read it.
+        // Must be bound before ANY draw call since the unified pipeline statically uses it.
+        ctx.device.cmd_bind_descriptor_sets(
+            cmd,
+            vk::PipelineBindPoint::GRAPHICS,
+            self.pipeline.pipeline_layout,
+            0,
+            &[self.ocean_compute.graphics_set],
+            &[],
+        );
+
         // Push constants: camera + sun, plus params [time, mode, dt, motion-debug]. Three
         // passes share one pipeline: seabed (mode 0), Gerstner ocean (mode 1), celestial
         // field (mode 2). params.z carries the per-frame dt so the vertex stage can reproject
@@ -1156,15 +1169,7 @@ impl Renderer {
             self.vertex_buffer,
             self.vertex_count,
         );
-        // Bind the displacement image sampler (set 0) so water.vert can read it.
-        ctx.device.cmd_bind_descriptor_sets(
-            cmd,
-            vk::PipelineBindPoint::GRAPHICS,
-            self.pipeline.pipeline_layout,
-            0,
-            &[self.ocean_compute.graphics_set],
-            &[],
-        );
+
         Self::draw_mode(
             &ctx.device,
             cmd,
@@ -1370,7 +1375,7 @@ impl Renderer {
     }
 
     /// Clean up all renderer resources
-    pub unsafe fn cleanup(&mut self, device: &Device) {
+    pub unsafe fn cleanup(&mut self, device: &Device, allocator: &Arc<Mutex<Allocator>>) {
         debug!("🧹 Cleaning up renderer...");
 
         device.device_wait_idle().ok();
@@ -1384,7 +1389,7 @@ impl Renderer {
         device.free_memory(self.celestial_vertex_memory, None);
 
         // Ocean compute subsystem (pipeline, descriptors, storage image)
-        self.ocean_compute.cleanup(device);
+        self.ocean_compute.cleanup(device, &mut allocator.lock().unwrap());
 
         // Free depth buffer
         device.destroy_image_view(self.depth_view, None);

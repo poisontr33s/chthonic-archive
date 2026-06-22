@@ -28,8 +28,10 @@
 
 use anyhow::{anyhow, Context, Result};
 use ash::{khr, ext, vk, Device, Entry, Instance};
+use gpu_allocator::vulkan::{Allocator, AllocatorCreateDesc};
 use log::{debug, info, warn};
 use std::ffi::{c_char, CStr, CString};
+use std::sync::{Arc, Mutex};
 use winit::raw_window_handle::{HasDisplayHandle, HasWindowHandle};
 
 /// The Vulkan rendering context - heart of the graphics engine
@@ -48,6 +50,9 @@ pub struct VulkanContext {
     pub graphics_queue: vk::Queue,
     #[allow(dead_code)]
     pub present_queue: vk::Queue,
+    /// Shared GPU memory allocator. Wrapped in Arc<Mutex> so renderer and subsystems
+    /// (ocean_compute, etc.) can each hold a clone and allocate/free independently.
+    pub allocator: Arc<Mutex<Allocator>>,
 }
 
 /// Debug utilities context
@@ -118,6 +123,18 @@ impl VulkanContext {
         let graphics_queue = device.get_device_queue(queue_family_index, 0);
         let present_queue = device.get_device_queue(queue_family_index, 0);
 
+        // Build the shared gpu-allocator. All image/buffer allocations go through this;
+        // never call vkAllocateMemory directly after this point.
+        let allocator = Allocator::new(&AllocatorCreateDesc {
+            instance:        instance.clone(),
+            device:          device.clone(),
+            physical_device,
+            debug_settings:  Default::default(),
+            buffer_device_address: false,
+            allocation_sizes: Default::default(),
+        }).context("create gpu-allocator")?;
+        let allocator = Arc::new(Mutex::new(allocator));
+
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 VULKAN CONTEXT INITIALIZED: 4090 READY 🔥");
         info!("   Device: {0}",
@@ -139,6 +156,7 @@ impl VulkanContext {
             queue_family_index,
             graphics_queue,
             present_queue,
+            allocator,
         })
     }
 

@@ -76,7 +76,7 @@ impl ArchiveApp {
             (self.renderer.as_mut(), self.vulkan_context.as_ref())
         {
             unsafe {
-                renderer.cleanup(&vulkan_context.device);
+                renderer.cleanup(&vulkan_context.device, &vulkan_context.allocator);
             }
         }
         self.renderer = None;

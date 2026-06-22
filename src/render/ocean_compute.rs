@@ -13,6 +13,8 @@
 
 use anyhow::{Context, Result};
 use ash::{Device, vk};
+use gpu_allocator::vulkan::{Allocation, AllocationCreateDesc, AllocationScheme};
+use gpu_allocator::MemoryLocation;
 use log::info;
 
 use super::vulkan::VulkanContext;
@@ -111,23 +113,23 @@ struct FftPush {
 /// Implemented below: for the final stage (stage 15) dst = disp_image.
 pub struct OceanCompute {
     // Displacement image — the output water.vert samples.
-    pub disp_image:  vk::Image,
-    pub disp_memory: vk::DeviceMemory,
-    pub disp_view:   vk::ImageView,
-    pub sampler:     vk::Sampler,
+    pub disp_image: vk::Image,
+    disp_alloc:     Option<Allocation>,
+    pub disp_view:  vk::ImageView,
+    pub sampler:    vk::Sampler,
 
     // Initial spectrum h0(k).
-    h0_image:  vk::Image,
-    h0_memory: vk::DeviceMemory,
-    h0_view:   vk::ImageView,
+    h0_image: vk::Image,
+    h0_alloc: Option<Allocation>,
+    h0_view:  vk::ImageView,
 
     // FFT ping-pong pair.
-    fft_a_image:  vk::Image,
-    fft_a_memory: vk::DeviceMemory,
-    fft_a_view:   vk::ImageView,
-    fft_b_image:  vk::Image,
-    fft_b_memory: vk::DeviceMemory,
-    fft_b_view:   vk::ImageView,
+    fft_a_image: vk::Image,
+    fft_a_alloc: Option<Allocation>,
+    fft_a_view:  vk::ImageView,
+    fft_b_image: vk::Image,
+    fft_b_alloc: Option<Allocation>,
+    fft_b_view:  vk::ImageView,
 
     // Descriptor pool.
     pub desc_pool: vk::DescriptorPool,
@@ -180,11 +182,12 @@ fn color_range() -> vk::ImageSubresourceRange {
     }
 }
 
-/// Allocate and bind a DEVICE_LOCAL rgba16f STORAGE image.
+/// Allocate and bind a DEVICE_LOCAL rgba16f STORAGE image via gpu-allocator.
 unsafe fn alloc_storage_image(
     ctx: &VulkanContext,
+    label: &str,
     resolution: u32,
-) -> Result<(vk::Image, vk::DeviceMemory, vk::ImageView)> {
+) -> Result<(vk::Image, Allocation, vk::ImageView)> {
     let device = &ctx.device;
     let format = vk::Format::R16G16B16A16_SFLOAT;
 
@@ -206,16 +209,14 @@ unsafe fn alloc_storage_image(
         .context("create ocean image")?;
 
     let req = device.get_image_memory_requirements(image);
-    let mem_type = find_memory_type(ctx, req.memory_type_bits, vk::MemoryPropertyFlags::DEVICE_LOCAL)?;
-    let memory = device
-        .allocate_memory(
-            &vk::MemoryAllocateInfo::default()
-                .allocation_size(req.size)
-                .memory_type_index(mem_type),
-            None,
-        )
-        .context("alloc ocean image memory")?;
-    device.bind_image_memory(image, memory, 0)?;
+    let alloc = ctx.allocator.lock().unwrap().allocate(&AllocationCreateDesc {
+        name:     label,
+        requirements: req,
+        location: MemoryLocation::GpuOnly,
+        linear:   false,
+        allocation_scheme: AllocationScheme::GpuAllocatorManaged,
+    }).context("gpu-allocator: alloc ocean image")?;
+    device.bind_image_memory(image, alloc.memory(), alloc.offset())?;
 
     let view = device
         .create_image_view(
@@ -228,17 +229,7 @@ unsafe fn alloc_storage_image(
         )
         .context("create ocean image view")?;
 
-    Ok((image, memory, view))
-}
-
-unsafe fn find_memory_type(ctx: &VulkanContext, filter: u32, props: vk::MemoryPropertyFlags) -> Result<u32> {
-    let mem = ctx.instance.get_physical_device_memory_properties(ctx.physical_device);
-    for i in 0..mem.memory_type_count {
-        if (filter & (1 << i)) != 0 && mem.memory_types[i as usize].property_flags.contains(props) {
-            return Ok(i);
-        }
-    }
-    Err(anyhow::anyhow!("no suitable memory type"))
+    Ok((image, alloc, view))
 }
 
 unsafe fn create_shader(device: &Device, spv: &[u8]) -> Result<vk::ShaderModule> {
@@ -397,10 +388,10 @@ impl OceanCompute {
         let n = RESOLUTION;
 
         // ── Images ───────────────────────────────────────────────────────────
-        let (disp_image, disp_memory, disp_view) = alloc_storage_image(ctx, n)?;
-        let (h0_image,   h0_memory,   h0_view)   = alloc_storage_image(ctx, n)?;
-        let (fft_a_image, fft_a_memory, fft_a_view) = alloc_storage_image(ctx, n)?;
-        let (fft_b_image, fft_b_memory, fft_b_view) = alloc_storage_image(ctx, n)?;
+        let (disp_image,  disp_alloc,  disp_view)  = alloc_storage_image(ctx, "ocean_disp",  n)?;
+        let (h0_image,    h0_alloc,    h0_view)    = alloc_storage_image(ctx, "ocean_h0",    n)?;
+        let (fft_a_image, fft_a_alloc, fft_a_view) = alloc_storage_image(ctx, "ocean_fft_a", n)?;
+        let (fft_b_image, fft_b_alloc, fft_b_view) = alloc_storage_image(ctx, "ocean_fft_b", n)?;
 
         // ── Sampler (disp_image → water.vert) ────────────────────────────────
         let sampler = device
@@ -507,10 +498,10 @@ impl OceanCompute {
             n, n, FFT_STAGES);
 
         Ok(Self {
-            disp_image, disp_memory, disp_view, sampler,
-            h0_image, h0_memory, h0_view,
-            fft_a_image, fft_a_memory, fft_a_view,
-            fft_b_image, fft_b_memory, fft_b_view,
+            disp_image, disp_alloc: Some(disp_alloc), disp_view, sampler,
+            h0_image, h0_alloc: Some(h0_alloc), h0_view,
+            fft_a_image, fft_a_alloc: Some(fft_a_alloc), fft_a_view,
+            fft_b_image, fft_b_alloc: Some(fft_b_alloc), fft_b_view,
             desc_pool,
             h0_set_layout, h0_set, h0_pipeline_layout, h0_pipeline, h0_shader,
             evolve_set_layout, evolve_set, evolve_pipeline_layout, evolve_pipeline, evolve_shader,
@@ -622,7 +613,7 @@ impl OceanCompute {
 
     /// # Safety
     /// Device must be idle; call once before context destruction.
-    pub unsafe fn cleanup(&self, device: &Device) {
+    pub unsafe fn cleanup(&mut self, device: &Device, allocator: &mut gpu_allocator::vulkan::Allocator) {
         device.destroy_pipeline(self.fft_pipeline, None);
         device.destroy_pipeline_layout(self.fft_pipeline_layout, None);
         device.destroy_shader_module(self.fft_shader, None);
@@ -644,18 +635,18 @@ impl OceanCompute {
 
         device.destroy_image_view(self.fft_b_view, None);
         device.destroy_image(self.fft_b_image, None);
-        device.free_memory(self.fft_b_memory, None);
+        if let Some(a) = self.fft_b_alloc.take() { let _ = allocator.free(a); }
 
         device.destroy_image_view(self.fft_a_view, None);
         device.destroy_image(self.fft_a_image, None);
-        device.free_memory(self.fft_a_memory, None);
+        if let Some(a) = self.fft_a_alloc.take() { let _ = allocator.free(a); }
 
         device.destroy_image_view(self.h0_view, None);
         device.destroy_image(self.h0_image, None);
-        device.free_memory(self.h0_memory, None);
+        if let Some(a) = self.h0_alloc.take() { let _ = allocator.free(a); }
 
         device.destroy_image_view(self.disp_view, None);
         device.destroy_image(self.disp_image, None);
-        device.free_memory(self.disp_memory, None);
+        if let Some(a) = self.disp_alloc.take() { let _ = allocator.free(a); }
     }
 }
