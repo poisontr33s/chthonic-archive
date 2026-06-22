@@ -42,3 +42,13 @@ $null
 .env
 .env.*
 gha-creds-*.json
+
+# Satellite live junctions (migrated from VS Code workspace files.exclude)
+*-live/
+pnk-live/
+rmco-live/
+csb-live/
+git-dump-live/
+pnk-lfh-live/
+poisontr33s-live/
+eoai-live/

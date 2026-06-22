@@ -144,7 +144,7 @@ egyptologic_bce:
       - era: computational
         expression: "FA⁴ Architectonic Integrity — the alignment-against-architecture axiom."
         ref: "SSOT.md §II FA-PHMO"
-    resonance_terms: ["Ma'at", "Authority", "truth-axiom", "cosmic-order", "alignment", "FA4", "architectonic-integrity", "balance", "justice", "weighed"]
+    resonance_terms: ["Ma'at", "Authority", "truth-axiom", "cosmic-order", "alignment", "FA4", "FA⁴", "architectonic-integrity", "balance", "justice", "weighed"]
     weight: 1.5
 
   - label: "Heka"
@@ -159,7 +159,7 @@ egyptologic_bce:
       - era: computational
         expression: "Runtime invocation: agent court spawn via skill names, runestone SPIR-V self-decoding execution."
         ref: "tools/ankh-forge/src/trail/gpu.rs"
-    resonance_terms: ["Heka", "Synthesis", "execution", "grammar-as-reality", "invocation", "operational-magic", "spell", "utterance-as-cause", "matriarch-type"]
+    resonance_terms: ["Heka", "Synthesis", "execution", "grammar-as-reality", "invocation", "operational-magic", "spell", "utterance-as-cause", "matriarch-type", "FA⁵", "Visual-Integrity", "Sensory-Integrity"]
     weight: 1.5
 
   - label: "Ankh"
@@ -203,7 +203,7 @@ egyptologic_bce:
         ref: "SSOT.md §Frame-Werk-Architecture L90, §Trinity-Formula L94-98"
       - era: computational
         expression: "The substrate-decision spine — whichever render-substrate (ash native / wgpu webview) the project commits to is the djed; everything else hangs on it."
-    resonance_terms: ["Djed", "Frame-Werk", "substrate", "load-bearing", "stability-pillar", "spine", "architectural-meta-engineering", "axial", "what-holds-when-else-moves"]
+    resonance_terms: ["Djed", "Frame-Werk", "substrate", "load-bearing", "stability-pillar", "spine", "architectural-meta-engineering", "axial", "what-holds-when-else-moves", "ASC", "Apex-Synthesis-Core"]
     weight: 1.0
 
 # ──────────────────────────────────────────────────────────────────────────────

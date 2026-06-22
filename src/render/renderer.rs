@@ -33,7 +33,8 @@
 use anyhow::{Context, Result};
 use ash::{Device, vk};
 use glam::{Mat4, Vec3};
-use gpu_allocator::vulkan::Allocator;
+use gpu_allocator::vulkan::{Allocation, AllocationCreateDesc, Allocator};
+use gpu_allocator::MemoryLocation;
 use log::{debug, info};
 use std::sync::{Arc, Mutex};
 
@@ -73,6 +74,10 @@ pub struct Renderer {
     pub offscreen_color_image: vk::Image,
     pub offscreen_color_memory: vk::DeviceMemory,
     pub offscreen_color_view: vk::ImageView,
+    pub history_color_images: [vk::Image; 2],
+    pub history_color_allocs: [Option<Allocation>; 2],
+    pub history_color_views: [vk::ImageView; 2],
+    pub history_sampler: vk::Sampler,
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub show_motion: bool,
@@ -221,6 +226,8 @@ impl Renderer {
             Self::create_motion_vector_resources(ctx, swapchain.extent)?;
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
+        let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
+            Self::create_history_resources(ctx, swapchain.extent)?;
         let temporal = TemporalState::new(camera.view_projection());
 
         Ok(Self {
@@ -247,6 +254,10 @@ impl Renderer {
             offscreen_color_image,
             offscreen_color_memory,
             offscreen_color_view,
+            history_color_images,
+            history_color_allocs,
+            history_color_views,
+            history_sampler,
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
@@ -809,6 +820,86 @@ impl Renderer {
         Ok((image, memory, view))
     }
 
+    /// Create the history ping-pong buffers for TAA (Gate 2).
+    /// Format is R16G16B16A16_SFLOAT (HDR). Needs COLOR_ATTACHMENT and SAMPLED.
+    unsafe fn create_history_resources(
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+    ) -> Result<([vk::Image; 2], [Option<Allocation>; 2], [vk::ImageView; 2], vk::Sampler)> {
+        let format = vk::Format::R16G16B16A16_SFLOAT;
+        let image_info = vk::ImageCreateInfo::default()
+            .image_type(vk::ImageType::TYPE_2D)
+            .format(format)
+            .extent(vk::Extent3D {
+                width: extent.width,
+                height: extent.height,
+                depth: 1,
+            })
+            .mip_levels(1)
+            .array_layers(1)
+            .samples(vk::SampleCountFlags::TYPE_1)
+            .tiling(vk::ImageTiling::OPTIMAL)
+            .usage(
+                vk::ImageUsageFlags::COLOR_ATTACHMENT
+                    | vk::ImageUsageFlags::SAMPLED
+                    | vk::ImageUsageFlags::TRANSFER_DST,
+            )
+            .sharing_mode(vk::SharingMode::EXCLUSIVE)
+            .initial_layout(vk::ImageLayout::UNDEFINED);
+
+        let mut images = [vk::Image::null(); 2];
+        let mut allocs: [Option<Allocation>; 2] = [None, None];
+        let mut views = [vk::ImageView::null(); 2];
+
+        for i in 0..2 {
+            let image = ctx
+                .device
+                .create_image(&image_info, None)
+                .context("create history image")?;
+            images[i] = image;
+
+            let req = ctx.device.get_image_memory_requirements(image);
+            let alloc = ctx.allocator.lock().unwrap().allocate(&AllocationCreateDesc {
+                name: &format!("taa_history_{i}"),
+                requirements: req,
+                location: MemoryLocation::GpuOnly,
+                linear: false,
+                allocation_scheme: gpu_allocator::vulkan::AllocationScheme::GpuAllocatorManaged,
+            }).context("gpu-allocator: alloc history image")?;
+            ctx.device.bind_image_memory(image, alloc.memory(), alloc.offset())?;
+            allocs[i] = Some(alloc);
+
+            let view_info = vk::ImageViewCreateInfo::default()
+                .image(image)
+                .view_type(vk::ImageViewType::TYPE_2D)
+                .format(format)
+                .subresource_range(vk::ImageSubresourceRange {
+                    aspect_mask: vk::ImageAspectFlags::COLOR,
+                    base_mip_level: 0,
+                    level_count: 1,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                });
+            views[i] = ctx
+                .device
+                .create_image_view(&view_info, None)
+                .context("create history view")?;
+        }
+
+        let sampler_info = vk::SamplerCreateInfo::default()
+            .mag_filter(vk::Filter::LINEAR)
+            .min_filter(vk::Filter::LINEAR)
+            .address_mode_u(vk::SamplerAddressMode::CLAMP_TO_EDGE)
+            .address_mode_v(vk::SamplerAddressMode::CLAMP_TO_EDGE)
+            .address_mode_w(vk::SamplerAddressMode::CLAMP_TO_EDGE);
+        let sampler = ctx
+            .device
+            .create_sampler(&sampler_info, None)
+            .context("create history sampler")?;
+
+        Ok((images, allocs, views, sampler))
+    }
+
     /// Capture the just-presented swapchain image to a PNG so the build loop can
     /// self-verify a render without a human screenshot. One-shot, synchronous
     /// (its own command buffer + fence). Triggered via `CHTHONIC_SCREENSHOT`.
@@ -1348,6 +1439,17 @@ impl Renderer {
         ctx.device.destroy_image_view(self.offscreen_color_view, None);
         ctx.device.destroy_image(self.offscreen_color_image, None);
         ctx.device.free_memory(self.offscreen_color_memory, None);
+
+        // Free old history buffers
+        ctx.device.destroy_sampler(self.history_sampler, None);
+        for i in 0..2 {
+            ctx.device.destroy_image_view(self.history_color_views[i], None);
+            ctx.device.destroy_image(self.history_color_images[i], None);
+            if let Some(alloc) = self.history_color_allocs[i].take() {
+                let _ = ctx.allocator.lock().unwrap().free(alloc);
+            }
+        }
+
         let (depth_image, depth_memory, depth_view) =
             Self::create_depth_resources(ctx, self.swapchain.extent)?;
         self.depth_image = depth_image;
@@ -1363,6 +1465,13 @@ impl Renderer {
         self.offscreen_color_image = offscreen_color_image;
         self.offscreen_color_memory = offscreen_color_memory;
         self.offscreen_color_view = offscreen_color_view;
+        
+        let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
+            Self::create_history_resources(ctx, self.swapchain.extent)?;
+        self.history_color_images = history_color_images;
+        self.history_color_allocs = history_color_allocs;
+        self.history_color_views = history_color_views;
+        self.history_sampler = history_sampler;
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]
@@ -1401,6 +1510,16 @@ impl Renderer {
         device.destroy_image_view(self.offscreen_color_view, None);
         device.destroy_image(self.offscreen_color_image, None);
         device.free_memory(self.offscreen_color_memory, None);
+
+        // Free TAA Gate 2 history buffers
+        device.destroy_sampler(self.history_sampler, None);
+        for i in 0..2 {
+            device.destroy_image_view(self.history_color_views[i], None);
+            device.destroy_image(self.history_color_images[i], None);
+            if let Some(alloc) = self.history_color_allocs[i].take() {
+                let _ = allocator.lock().unwrap().free(alloc);
+            }
+        }
 
         // Command pool (implicitly frees command buffers)
         device.destroy_command_pool(self.command_pool, None);
