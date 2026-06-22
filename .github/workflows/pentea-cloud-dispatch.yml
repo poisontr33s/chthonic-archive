@@ -9,12 +9,12 @@
 # Prerequisites:
 #   - GitHub Copilot cloud agent enabled for this repo (Copilot Pro+ required)
 #   - No extra secrets needed: GITHUB_TOKEN has sufficient scope for gh agent-task
-#   - gh CLI v2.80.0+ is present on ubuntu-latest runners
+#   - gh CLI is present on latest runners
 #
 # Monitoring: check https://github.com/<owner>/<repo>/copilot/agents for sessions
 # Disable: rename to pentea-cloud-dispatch.yml.off
 
-name: Pentea Cloud Dispatch
+name: Pentea Dispatch
 
 on:
   push:
@@ -58,7 +58,7 @@ jobs:
           echo "T3 status: not checked (local hook runs asynchronously before push)"
           echo "T4 proceeding with dispatch for task: ${{ steps.queue.outputs.next_task }}"
 
-      - name: Dispatch to Copilot cloud agent
+      - name: Dispatch to specialized local routed localhost dir at 'c:\users\eldno\chthonic-archive'
         if: steps.queue.outputs.dispatch == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
           Context: chthonic-archive autonomous queue system.
           Task spec in stewardess: ${STEWARDESS_URL}
 
-          Custom instructions: .github/copilot-instructions.md and AGENTS.md define all invariants.
+          Custom instructions: .chthonic/SSOT.md and AGENTS.m, Claude.md, rootDIRCLAUDEBASE/, to define all invariants.
           Constraint: follow AGENT_COMMON.md. No file deletion without salvage (upcycle first).
           Python: uv run <script>.
           JS/TS: bun.
