@@ -86,6 +86,9 @@ pub struct Renderer {
     pub taa_desc_sets: Vec<vk::DescriptorSet>,  // one per frame-in-flight
     pub taa_enabled: bool,
     pub taa_debug: bool,
+    /// Tracks whether each history slot has been written at least once.
+    /// Prevents UNDEFINED→GENERAL from discarding valid history on frame N>0.
+    pub history_initialized: [bool; 2],
     pub frame_index: u64,
     pub screenshot: Option<String>,
     pub show_motion: bool,
@@ -279,6 +282,7 @@ impl Renderer {
             taa_desc_sets,
             taa_enabled,
             taa_debug,
+            history_initialized: [false, false],
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
@@ -863,7 +867,8 @@ impl Renderer {
             .usage(
                 vk::ImageUsageFlags::COLOR_ATTACHMENT
                     | vk::ImageUsageFlags::SAMPLED
-                    | vk::ImageUsageFlags::TRANSFER_DST,
+                    | vk::ImageUsageFlags::TRANSFER_DST
+                    | vk::ImageUsageFlags::TRANSFER_SRC,
             )
             .sharing_mode(vk::SharingMode::EXCLUSIVE)
             .initial_layout(vk::ImageLayout::UNDEFINED);
@@ -1526,10 +1531,15 @@ impl Renderer {
                     .src_access_mask(vk::AccessFlags2::empty())
                     .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER)
                     .dst_access_mask(vk::AccessFlags2::SHADER_READ)
-                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .old_layout(if self.history_initialized[prev_hist] {
+                        vk::ImageLayout::GENERAL
+                    } else {
+                        vk::ImageLayout::UNDEFINED
+                    })
                     .new_layout(vk::ImageLayout::GENERAL)
                     .image(self.history_color_images[prev_hist])
                     .subresource_range(color_subresource),
+                // cur_hist: resolve writes here; transition to COLOR_ATTACHMENT_OPTIMAL for rendering.
                 vk::ImageMemoryBarrier2::default()
                     .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
                     .src_access_mask(vk::AccessFlags2::empty())
@@ -1537,21 +1547,32 @@ impl Renderer {
                     .dst_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
                     .old_layout(vk::ImageLayout::UNDEFINED)
                     .new_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .image(self.history_color_images[cur_hist])
+                    .subresource_range(color_subresource),
+                // swapchain: transition to TRANSFER_DST for the post-resolve blit.
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .dst_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
                     .image(self.swapchain.images[image_index as usize])
                     .subresource_range(color_subresource),
             ];
             ctx.device.cmd_pipeline_barrier2(
                 cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_pre));
 
-            let swap_attach = vk::RenderingAttachmentInfo::default()
-                .image_view(self.swapchain.image_views[image_index as usize])
+            // Resolve into cur_hist (not swapchain) — this is the write-back.
+            let hist_attach = vk::RenderingAttachmentInfo::default()
+                .image_view(self.history_color_views[cur_hist])
                 .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
                 .load_op(vk::AttachmentLoadOp::DONT_CARE)
                 .store_op(vk::AttachmentStoreOp::STORE);
             let rendering_info = vk::RenderingInfo::default()
                 .render_area(vk::Rect2D { offset: vk::Offset2D::default(), extent: self.swapchain.extent })
                 .layer_count(1)
-                .color_attachments(std::slice::from_ref(&swap_attach));
+                .color_attachments(std::slice::from_ref(&hist_attach));
             ctx.device.cmd_begin_rendering(cmd, &rendering_info);
 
             let ext = self.swapchain.extent;
@@ -1584,17 +1605,69 @@ impl Renderer {
             ctx.device.cmd_draw(cmd, 3, 1, 0, 0);
             ctx.device.cmd_end_rendering(cmd);
 
-            let to_present = vk::ImageMemoryBarrier2::default()
-                .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
-                .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
-                .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
-                .dst_access_mask(vk::AccessFlags2::empty())
-                .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
-                .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
-                .image(self.swapchain.images[image_index as usize])
-                .subresource_range(color_subresource);
+            // Transition cur_hist to TRANSFER_SRC, then blit to swapchain TRANSFER_DST.
+            let barriers_post = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                    .image(self.history_color_images[cur_hist])
+                    .subresource_range(color_subresource),
+            ];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_post));
+
+            let sub = vk::ImageSubresourceLayers {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                mip_level: 0, base_array_layer: 0, layer_count: 1,
+            };
+            let blit = vk::ImageBlit::default()
+                .src_subresource(sub)
+                .src_offsets([
+                    vk::Offset3D::default(),
+                    vk::Offset3D { x: ext.width as i32, y: ext.height as i32, z: 1 },
+                ])
+                .dst_subresource(sub)
+                .dst_offsets([
+                    vk::Offset3D::default(),
+                    vk::Offset3D { x: ext.width as i32, y: ext.height as i32, z: 1 },
+                ]);
+            ctx.device.cmd_blit_image(
+                cmd,
+                self.history_color_images[cur_hist], vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+                self.swapchain.images[image_index as usize], vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                &[blit], vk::Filter::LINEAR,
+            );
+
+            // cur_hist stays in TRANSFER_SRC_OPTIMAL; reclassify as GENERAL for next frame read.
+            // swapchain → PRESENT.
+            let barriers_final = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .src_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                    .dst_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .dst_access_mask(vk::AccessFlags2::empty())
+                    .old_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.history_color_images[cur_hist])
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                    .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                    .dst_access_mask(vk::AccessFlags2::empty())
+                    .old_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+                    .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                    .image(self.swapchain.images[image_index as usize])
+                    .subresource_range(color_subresource),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_final));
+
+            self.history_initialized[cur_hist] = true;
         } else {
             // CHTHONIC_TAA=off — Gate 1 verbatim-copy fallback.
             let pre = [
@@ -1744,6 +1817,7 @@ impl Renderer {
         self.history_color_allocs = history_color_allocs;
         self.history_color_views = history_color_views;
         self.history_sampler = history_sampler;
+        self.history_initialized = [false, false];
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]
