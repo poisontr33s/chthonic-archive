@@ -221,6 +221,61 @@ impl ChthonicServer {
         }
         self.run(&a).await
     }
+
+    #[tool(description = "Vulkan Validation log structured parser. Analyzes target/render-smoke.log to cluster and structure Vulkan VUID errors, preventing context bloat from verbose console residue.")]
+    async fn chthonic_vulkan_doctor(&self) -> Result<CallToolResult, ErrorData> {
+        let log_path = self.repo_root.join("target").join("render-smoke.log");
+        if !log_path.exists() {
+            return Ok(CallToolResult::success(vec![Content::text("No render-smoke.log found. Run scripts/render-smoke.ps1 first.".to_string())]));
+        }
+        let content = tokio::fs::read_to_string(&log_path).await.map_err(|e| {
+            ErrorData::internal_error(format!("Failed to read smoke log: {}", e), None)
+        })?;
+
+        let mut errors: std::collections::HashMap<String, usize> = std::collections::HashMap::new();
+        let mut capturing_vuid = false;
+        let mut current_err = String::new();
+
+        for line in content.lines() {
+            if line.contains("[VK:VALIDATION]") {
+                if !current_err.is_empty() {
+                    *errors.entry(current_err.clone()).or_insert(0) += 1;
+                    current_err.clear();
+                }
+                current_err = line.split("[VK:VALIDATION]").nth(1).unwrap_or("").trim().to_string();
+                capturing_vuid = true;
+            } else if capturing_vuid && line.trim_start().starts_with("The Vulkan spec states:") {
+                // capture the spec rule
+                let rule = line.trim();
+                current_err.push_str("\n  ");
+                current_err.push_str(rule);
+                *errors.entry(current_err.clone()).or_insert(0) += 1;
+                current_err.clear();
+                capturing_vuid = false;
+            } else if capturing_vuid && (line.starts_with("[") || line.trim().is_empty()) {
+                *errors.entry(current_err.clone()).or_insert(0) += 1;
+                current_err.clear();
+                capturing_vuid = false;
+            }
+        }
+        if !current_err.is_empty() {
+            *errors.entry(current_err).or_insert(0) += 1;
+        }
+
+        if errors.is_empty() {
+            return Ok(CallToolResult::success(vec![Content::text("No Vulkan validation errors found in render-smoke.log. Clean!".to_string())]));
+        }
+
+        let mut output = format!("Found {} unique Vulkan validation error signatures:\n\n", errors.len());
+        let mut sorted_errors: Vec<_> = errors.into_iter().collect();
+        sorted_errors.sort_by(|a, b| b.1.cmp(&a.1));
+
+        for (err, count) in sorted_errors {
+            output.push_str(&format!("Count: {}\nError: {}\n----------------------------------------\n", count, err));
+        }
+
+        Ok(CallToolResult::success(vec![Content::text(output)]))
+    }
 }
 
 #[tool_handler]
