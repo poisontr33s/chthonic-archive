@@ -1,11 +1,10 @@
-// Rung 5 + Rung 4 — shallow-water hero shader (vertex stage).
+// Rung 5 + Rung 4.2d — shallow-water hero shader (vertex stage).
 //   mode 0 (seabed):   pass-through of the bathymetry vertex.
-//   mode 1 (surface):  displacement sampled from the compute image (ocean_displace.comp) +
-//                      analytic wave normal from the same field. The compute body is currently
-//                      Gerstner (4.2a); it becomes Tessendorf FFT (4.2b/c) without changing
-//                      this vertex stage — the image contract (xyz disp, w height) is stable.
+//   mode 1 (surface):  displacement from TWO Tessendorf cascades summed here.
+//                      binding 0 = C0 (ripple/chop, patch=5m)
+//                      binding 1 = C1 (swell, patch=60m)
+//                      Displacement fields are summed in world-space before normal derivation.
 //   mode 2 (celestial): pass-through camera-facing discs generated from topocentric alt/az.
-// The 4th/5th push-constant vec4s carry the solar vector and [time, mode, dt, motion-debug].
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -21,9 +20,10 @@ layout(push_constant) uniform PushConstants {
     vec4 params;   // x = time, y = mode, z = frame dt, w = motion-debug toggle
 } pc;
 
-// Displacement image written each frame by ocean_displace.comp (set 0, binding 0).
-// rgba16f: .xyz = world-space displacement (choppy x/z + height y), .w = height.
-layout(set = 0, binding = 0) uniform sampler2D u_displacement;
+// Cascade 0 (ripple/chop, patch=5m) and Cascade 1 (swell, patch=60m).
+// rgba16f per cascade: .xyz = world-space displacement (choppy x/z + height y).
+layout(set = 0, binding = 0) uniform sampler2D u_displacement_c0;
+layout(set = 0, binding = 1) uniform sampler2D u_displacement_c1;
 
 // World half-extents of the surface grid (must match ocean.rs surface_grid and ocean_compute.rs).
 const float X_HALF = 2.45;
@@ -50,18 +50,22 @@ void main() {
             vec2(MARGIN), vec2(1.0 - MARGIN)
         );
 
-        // Sample the compute-written displacement field.
-        vec4 disp4 = texture(u_displacement, uv);
-        vec3 disp  = disp4.xyz;
+        // Sum displacement from both cascades.
+        vec3 disp = texture(u_displacement_c0, uv).xyz
+                  + texture(u_displacement_c1, uv).xyz;
 
         pos = in_position + disp;
 
-        // Finite-difference normal from neighbouring texels (one texel = 1/resolution of domain).
+        // Finite-difference normal — sum height gradients from both cascades.
         float texel = 1.0 / 256.0;
-        float dx = texture(u_displacement, uv + vec2(texel, 0.0)).y
-                 - texture(u_displacement, uv - vec2(texel, 0.0)).y;
-        float dz = texture(u_displacement, uv + vec2(0.0, texel)).y
-                 - texture(u_displacement, uv - vec2(0.0, texel)).y;
+        float dx = (texture(u_displacement_c0, uv + vec2(texel, 0.0)).y
+                  + texture(u_displacement_c1, uv + vec2(texel, 0.0)).y)
+                 - (texture(u_displacement_c0, uv - vec2(texel, 0.0)).y
+                  + texture(u_displacement_c1, uv - vec2(texel, 0.0)).y);
+        float dz = (texture(u_displacement_c0, uv + vec2(0.0, texel)).y
+                  + texture(u_displacement_c1, uv + vec2(0.0, texel)).y)
+                 - (texture(u_displacement_c0, uv - vec2(0.0, texel)).y
+                  + texture(u_displacement_c1, uv - vec2(0.0, texel)).y);
         nrm = normalize(vec3(-dx, 2.0 * texel, -dz));
 
         // Previous-frame position: sample the same field with time-offset params.

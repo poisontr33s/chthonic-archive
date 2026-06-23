@@ -39,7 +39,7 @@ use log::{debug, info};
 use std::sync::{Arc, Mutex};
 
 use super::camera::IsometricCamera;
-use super::pipeline::{PushConstants, Vertex, VulkanPipeline, triangle_vertices};
+use super::pipeline::{PushConstants, Vertex, VulkanPipeline};
 use super::swapchain::VulkanSwapchain;
 use super::temporal::TemporalState;
 use super::vulkan::VulkanContext;
@@ -162,12 +162,12 @@ impl Renderer {
         info!("🌊 Bathymetry mesh: {0} vertices (pre-loaded off render thread)", vertices.len());
         let (vertex_buffer, vertex_buffer_memory) = Self::create_vertex_buffer(ctx, &vertices)?;
 
-        // Rung 4: the ocean surface grid (sampled-from-compute displacement, surface mode).
-        let ocean_vertices = super::ocean::surface_grid(128);
+        // Rung 4: LOD clipmap ocean mesh (levels=4, ring=32 → ~13 K cells, finest at centre).
+        let ocean_vertices = super::ocean::clipmap_grid(4, 32);
         let (ocean_vertex_buffer, ocean_vertex_memory) =
             Self::create_vertex_buffer(ctx, &ocean_vertices)?;
         let ocean_vertex_count = u32::try_from(ocean_vertices.len()).unwrap();
-        info!("🌊 Ocean surface grid: {0} vertices", ocean_vertices.len());
+        info!("🌊 Ocean clipmap: {0} vertices ({1} triangles)", ocean_vertices.len(), ocean_vertices.len() / 3);
 
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
@@ -242,7 +242,7 @@ impl Renderer {
         let taa_enabled = std::env::var("CHTHONIC_TAA").map_or(true, |v| v != "off");
         let taa_debug   = std::env::var("CHTHONIC_TAA_DEBUG").is_ok();
         let (taa_pipeline, taa_pipeline_layout, taa_desc_pool, taa_desc_set_layout, taa_desc_sets) =
-            Self::create_taa_pipeline(ctx, swapchain.format, swapchain.frames_in_flight,
+            Self::create_taa_pipeline(ctx, vk::Format::R16G16B16A16_SFLOAT, swapchain.frames_in_flight,
                 &history_color_views, history_sampler,
                 &offscreen_color_view, &motion_vector_view)?;
         let temporal = TemporalState::new(camera.view_projection());
@@ -1002,8 +1002,10 @@ impl Renderer {
             .context("taa: alloc desc sets")?;
 
         // Write descriptors for every frame — current + history[frame%2] + motion.
+        // Binding 1 = previous frame's history = the OTHER buffer (not the one we write to this
+        // frame).  When frame_slot=i, cur_hist=i%2, so prev_hist=(i+1)%2.
         for (i, &ds) in desc_sets.iter().enumerate() {
-            let hist_view = history_views[i % 2];
+            let hist_view = history_views[(i + 1) % 2];
             let img_current = vk::DescriptorImageInfo::default()
                 .sampler(history_sampler)
                 .image_view(*current_view)
@@ -1818,6 +1820,38 @@ impl Renderer {
         self.history_color_views = history_color_views;
         self.history_sampler = history_sampler;
         self.history_initialized = [false, false];
+
+        // Re-write TAA descriptor sets with the new image views (old views were just destroyed).
+        for (i, &ds) in self.taa_desc_sets.iter().enumerate() {
+            let hist_view = self.history_color_views[(i + 1) % 2];
+            let img_current = vk::DescriptorImageInfo::default()
+                .sampler(self.history_sampler)
+                .image_view(self.offscreen_color_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let img_history = vk::DescriptorImageInfo::default()
+                .sampler(self.history_sampler)
+                .image_view(hist_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let img_motion = vk::DescriptorImageInfo::default()
+                .sampler(self.history_sampler)
+                .image_view(self.motion_vector_view)
+                .image_layout(vk::ImageLayout::GENERAL);
+            let writes = [
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(0)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_current)),
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(1)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_history)),
+                vk::WriteDescriptorSet::default()
+                    .dst_set(ds).dst_binding(2)
+                    .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                    .image_info(std::slice::from_ref(&img_motion)),
+            ];
+            ctx.device.update_descriptor_sets(&writes, &[]);
+        }
 
         // Update camera aspect ratio for new window dimensions
         #[allow(clippy::cast_precision_loss)]

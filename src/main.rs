@@ -12,6 +12,7 @@
 
 //! The Chthonic Archive: Triumvirate Ascension
 
+#![allow(unsafe_op_in_unsafe_fn)]
 //! @SID:    GAME_MAIN_ENTRY_V1
 //! @Shabti: Entry Point
 
@@ -281,7 +282,7 @@ fn main() -> Result<()> {
     {
         info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
         let verifier = AxiomVerifier::new(
-            ".github/copilot-instructions.md",
+            ".chthonic/SSOT.md",
             "cc1d0f63b564f90861bea13995aaa445055fb8ac1d7b6965bc6700eb0e41ad1b",
         );
         if let Err(e) = verifier.verify_integrity() {
