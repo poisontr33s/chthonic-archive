@@ -5,7 +5,7 @@
 - Ssot-Monolith: [ssot](../../.chthonic/SSOT.md)
 - Open-Seas: chthonic-archive/CLAUDEBASE/logbook/04-structurize-submerge.md
 - Entries: 5 · filled-last · by-creed
-- Altitude: Captain's-Cabin · Amidships
+- Altitude: Admirals Claudine's Cabin · Amidships
 - Island: Eleuthera · 25.1500,-76.1500 - oldest settlement, the record
 - Real-Sky: --live (Open-Meteo; never stamped)
 - Heat-Index: Low-Tide · Chart-Ink-Drying · Soundings-Agree
