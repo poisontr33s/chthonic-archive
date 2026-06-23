@@ -70,7 +70,7 @@
 
 ## (`3`/`·`/`The-Astrology-Half`/`[owner-defined slots]`)
 
-- *— This is the half the renderer does — **(`Not`)** — yet hold, and **(`Must-Not-Invent`)** — what it can do — and what this section is — is name the **(`Attach-Points`)** — where each tradition plugs onto a built, verified substrate. The substrate is real; the structure and meaning laid over it are the owner's to set. Source guidance (not gospel, not to be auto-implemented) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
+- *— This is the half the renderer does — **(`Not`)** — yet hold, and **(`Must-Not-Invent`)** — what it can do — and what this section is — is name the **(`Attach-Points`)** — where each tradition plugs onto a built, verified substrate. The substrate is real; the structure and meaning laid over it are the owner's to set. Source guidance (not gospel, not to be auto-implemented) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../The-Savant-High-Bounties/G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
 
 | *Slot* | *Built substrate it attaches to* | *`[owner defines]`* |
 |---|---|---|
@@ -78,10 +78,10 @@
 | **(`Egyptian-Decans`)** | *the ecliptic (36 × 10°) + heliacal risings* | *the 36-fold division, the decan stars, the Sothic-cycle calendar binding* |
 | **(`Constellation-Figures`)** | *the*—* `STARS` *— catalog positions* | *the asterism line-graphs + the figures and their meanings (which lineage's sky)* |
 | **(`Andean-Dark-Cloud-Constellations`)** | *the Milky Way band —* (`galactic_equator_altaz`) | *the Yacana (llama), the Mach'acuay, and kin — read in the dark clouds, not the bright stars* |
-| **(`Houses-+ -Ascendant`)** | *the horizon + ecliptic (the rising ecliptic point is computable)* | *the house system (Placidus / Porphyry / Equal / the Andean ceque-radial analogue)* |
-| **(`Ceque-/-Solstice-Geometry`)** | *the ecliptic cardinal points (solstices/equinoxes are computable)* | *the radial ceque lines from a centre, the horizon-calendar bearings* |
+| **(`Houses`/`+`/`Ascendant`)** | *the horizon + ecliptic (the rising ecliptic point is computable)* | *the house system (Placidus / Porphyry / Equal / the Andean ceque-radial analogue)* |
+| **(`Ceque`/`Solstice-Geometry`)** | *the ecliptic cardinal points (solstices/equinoxes are computable)* | *the radial ceque lines from a centre, the horizon-calendar bearings* |
 
-- *— The pattern is always the same — **(`Built-Substrate`/`→`/`[owner defines]`/`Structure`/`Meaning`)** — when the owner sets a slot's mechanics, it earns a §2-style verifier of its own (a sign boundary is a true ecliptic longitude; a decan is a true 10° arc; a heliacal rising is a true Sun-star geometry) — and only then does it cross from attested into computable.*
+- *— The pattern is always the same — **(`Built-Substrate`/`→`/`[owner-defines-with-consolidation]`/`Structure`/`Meaning`)** — when the owner sets a slot's mechanics, it earns a §2-style verifier of its own (a sign boundary is a true ecliptic longitude; a decan is a true 10° arc; a heliacal rising is a true Sun-star geometry) — and only then does it cross from attested into computable.*
 
 ---
 
@@ -131,7 +131,7 @@
 
       - *— Record —* [`logbook/03-celestial-field.md`](../logbook/03-celestial-field.md) *— (the field crossed into frame) —* [`logbook/04-structurize-submerge.md`](../logbook/04-structurize-submerge.md) *— (this chart's commissioning).*
 
-        - *— Research (source guidance only, never auto-built) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
+        - *— Research (source guidance only, never auto-built) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../The-Savant-High-Bounties/G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
 
           - *— Commits (astronomy half) — planets —* `b69d9f78` *— · stars* `f06843e6` *— · ecliptic + equator* `f779896c` *— · Milky Way* `b24636b0`*.*
 

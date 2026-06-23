@@ -2,6 +2,7 @@
 // ============================================================
 // chthonic-mcp-server — stdio MCP server (rmcp 1.x)
 //
+
 // Modern Rust port of the bun `chthonic-v3` server
 // (scripts/mcp-chthonic-server.ts). The old server hand-rolled the
 // JSON-RPC envelope on the 2024-11-05 protocol and exposed ~30 tools,
@@ -10,6 +11,7 @@
 // server. This port keeps only the unique value — the chthonic.ps1
 // domain/action router — and exposes it intuitively:
 //
+
 //   chthonic            generic runner: <domain> [action] [args] [-Json]
 //   chthonic_commands   discover the live domain/action surface
 //   chthonic_status     tool + manager version snapshot
@@ -17,6 +19,7 @@
 //   chthonic_ssot       SSOT loremaster control plane
 //   chthonic_toolchain  verified toolchain control plane
 //
+
 // Everything chthonic.ps1 can do remains reachable through `chthonic`;
 // the named tools are convenience shortcuts for the high-value lanes.
 //

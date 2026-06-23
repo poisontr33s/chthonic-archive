@@ -45,7 +45,7 @@
 
 ## (`What-Remains-Honest`)
 
-- *— The astrology half is still — **`[absent]`** *— and — **(`owner-defined`)** — the slots are scaffolding, not an invitation to auto-fill from the research packet —* ([`../G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md) *— is source guidance only). A slot crosses from attested to computable only when the owner sets it and it earns a verifier.*
+- *— The astrology half is still — **`[absent]`** *— and — **(`owner-defined`)** — the slots are scaffolding, not an invitation to auto-fill from the research packet —* ([`../G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../The-Savant-High-Bounties/G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md) *— is source guidance only). A slot crosses from attested to computable only when the owner sets it and it earns a verifier.*
 
   - *— **(`MANIFEST.md`)** was deliberately not edited. It is a chamber-level ledger — it file-lists neither —* `north-star-constellations.md` *— nor —* `the-long-tack.md` *— by its own "same value six times is noise" ethic. A chart becomes canon-of-record by its SID + living in —* `charts/` *— + sibling cross-links —* `celestial-field.md` *— is registered the same way the long-tack is.*
 
