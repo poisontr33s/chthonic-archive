@@ -25,12 +25,52 @@ enum ShaderCompilerBackend {
 fn main() {
     println!("cargo:rerun-if-changed=assets/shaders/");
     println!("cargo:rerun-if-changed=assets/shaders/hlsl/");
+    println!("cargo:rerun-if-changed=src/render/streamline_bridge.cpp");
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-env-changed=CHTHONIC_SHADER_BACKEND");
+
+    // --- Streamline SDK C++ bridge ---
+    let sdk_root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("CLAUDEBASE/The-Savant-High-Bounties/streamline-sdk-v2.12.0");
+    let sdk_include = sdk_root.join("include");
+    let sdk_lib     = sdk_root.join("lib/x64");
+    // Vulkan SDK include path for VkInstance/VkDevice/VkPhysicalDevice type definitions.
+    // The bridge uses VK_NO_PROTOTYPES so only types are pulled in (no vulkan-1.dll link).
+    let vk_include = std::path::PathBuf::from(
+        "C:/VulkanSDK/1.4.350.0/Include"
+    );
+
+    cc::Build::new()
+        .cpp(true)
+        .std("c++17")
+        .flag_if_supported("/EHsc")          // MSVC structured exception handling
+        .flag_if_supported("/W3")            // reasonable warning level
+        .flag_if_supported("/wd4996")        // suppress deprecation warnings (sharpness field)
+        .include(&sdk_include)
+        .include(&vk_include)
+        .file("src/render/streamline_bridge.cpp")
+        .compile("streamline_bridge");
+
+    println!("cargo:rustc-link-search=native={}", sdk_lib.display());
+    println!("cargo:rustc-link-lib=sl.interposer");
 
     let shader_dir = PathBuf::from("assets/shaders");
     let hlsl_dir = shader_dir.join("hlsl");
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+
+    // Copy required Streamline SDK DLLs to the target directory (e.g., target/debug)
+    let target_dir = out_dir.ancestors().nth(3).unwrap();
+    let sdk_bin = sdk_root.join("bin/x64");
+    for dll in &["sl.interposer.dll", "nvngx_dlss.dll"] {
+        let src = sdk_bin.join(dll);
+        let dst = target_dir.join(dll);
+        if src.exists() {
+            let _ = fs::copy(&src, &dst);
+        } else {
+            println!("cargo:warning=⚠️ Streamline DLL not found at: {}", src.display());
+        }
+    }
+
     let backend = select_shader_compiler_backend();
     let dxc = detect_dxc();
 

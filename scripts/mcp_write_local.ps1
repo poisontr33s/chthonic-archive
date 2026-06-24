@@ -244,6 +244,16 @@ try {
       } else {
         New-BunServer -Script "scripts/mcp-chthonic-server.ts" -EnvVars @{ CHTHONIC_ROOT = $repoRoot }
       }
+      bevy = @{
+        type = "stdio"
+        command = Join-Path $repoRoot "target\debug\bevy-mcp-server.exe"
+        args = @()
+      }
+      vulkan = @{
+        type = "stdio"
+        command = Join-Path $repoRoot "target\debug\vulkan-mcp-server.exe"
+        args = @()
+      }
       workiq = @{
         type = "stdio"
         command = $bunx
@@ -370,7 +380,7 @@ try {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
       "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface",
-      "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","workiq","mas-mcp",
+      "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
     $actual = @()

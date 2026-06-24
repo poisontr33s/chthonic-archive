@@ -38,6 +38,7 @@ pub mod temporal;
 pub mod correspondence;
 pub mod lens;
 pub mod zodiac;
+pub mod streamline_ffi;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;

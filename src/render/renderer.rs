@@ -32,6 +32,7 @@
 
 use anyhow::{Context, Result};
 use ash::{Device, vk};
+use ash::vk::Handle;
 use glam::{Mat4, Vec3};
 use gpu_allocator::vulkan::{Allocation, AllocationCreateDesc, Allocator};
 use gpu_allocator::MemoryLocation;
@@ -86,6 +87,7 @@ pub struct Renderer {
     pub taa_desc_sets: Vec<vk::DescriptorSet>,  // one per frame-in-flight
     pub taa_enabled: bool,
     pub taa_debug: bool,
+    pub dlaa_enabled: bool,
     /// Tracks whether each history slot has been written at least once.
     /// Prevents UNDEFINED→GENERAL from discarding valid history on frame N>0.
     pub history_initialized: [bool; 2],
@@ -254,6 +256,47 @@ impl Renderer {
                 &offscreen_color_view, &motion_vector_view)?;
         let temporal = TemporalState::new(camera.view_projection());
 
+        // --- Streamline / DLAA init ---
+        let mut dlaa_enabled = std::env::var("CHTHONIC_DLAA").is_ok();
+        if dlaa_enabled {
+            #[cfg(target_os = "windows")]
+            {
+                use std::os::windows::ffi::OsStrExt;
+                let plugin_dir = std::env::current_exe()
+                    .ok()
+                    .and_then(|p| p.parent().map(|d| d.to_path_buf()))
+                    .unwrap_or_else(|| std::path::PathBuf::from("."));
+                let plugin_path_wide: Vec<u16> = std::ffi::OsStr::new(&plugin_dir)
+                    .encode_wide()
+                    .chain(std::iter::once(0u16))
+                    .collect();
+                let r = super::streamline_ffi::chthonic_sl_init(plugin_path_wide.as_ptr(), 0);
+                if r != 0 {
+                    info!("Streamline init returned {r} — DLAA disabled");
+                    dlaa_enabled = false;
+                } else {
+                    let r = super::streamline_ffi::chthonic_sl_set_vulkan_info(
+                        ctx.instance.handle().as_raw() as usize as *mut _,
+                        ctx.physical_device.as_raw() as usize as *mut _,
+                        ctx.device.handle().as_raw() as usize as *mut _,
+                        0,
+                        ctx.queue_family_index,
+                        0,
+                        ctx.queue_family_index,
+                    );
+                    if r != 0 {
+                        info!("Streamline set_vulkan_info returned {r} — DLAA disabled");
+                        dlaa_enabled = false;
+                    }
+                }
+            }
+            #[cfg(not(target_os = "windows"))]
+            {
+                info!("CHTHONIC_DLAA: Streamline is Windows-only — DLAA disabled");
+                dlaa_enabled = false;
+            }
+        }
+
         Ok(Self {
             swapchain,
             pipeline,
@@ -289,6 +332,7 @@ impl Renderer {
             taa_desc_sets,
             taa_enabled,
             taa_debug,
+            dlaa_enabled,
             history_initialized: [false, false],
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
@@ -1516,7 +1560,110 @@ impl Renderer {
             layer_count: 1,
         };
 
-        if self.taa_enabled {
+        if self.dlaa_enabled {
+            // === RESOLVE (DLAA via Streamline) ===
+            // Transition color + mvec from COLOR_ATTACHMENT_OPTIMAL → GENERAL.
+            // Depth from DEPTH_ATTACHMENT_OPTIMAL → GENERAL.
+            // Swapchain output stays UNDEFINED — Streamline handles its layout internally.
+            let depth_subresource = vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::DEPTH,
+                base_mip_level: 0, level_count: 1,
+                base_array_layer: 0, layer_count: 1,
+            };
+            let barriers_sl = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                    .dst_access_mask(vk::AccessFlags2::MEMORY_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.offscreen_color_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                    .dst_access_mask(vk::AccessFlags2::MEMORY_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.motion_vector_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::LATE_FRAGMENT_TESTS)
+                    .src_access_mask(vk::AccessFlags2::DEPTH_STENCIL_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                    .dst_access_mask(vk::AccessFlags2::MEMORY_READ)
+                    .old_layout(vk::ImageLayout::DEPTH_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.depth_image)
+                    .subresource_range(depth_subresource),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_sl));
+
+            let sl_token = super::streamline_ffi::chthonic_sl_new_frame_token(
+                u32::try_from(self.frame_index % u64::from(u32::MAX)).unwrap_or(0),
+            );
+            if !sl_token.is_null() {
+                let unjittered_proj = lens_proj;
+                let inv_proj = unjittered_proj.inverse();
+                let proj_arr = unjittered_proj.to_cols_array();
+                let inv_arr  = inv_proj.to_cols_array();
+                let identity = Mat4::IDENTITY.to_cols_array();
+                super::streamline_ffi::chthonic_sl_set_constants(
+                    sl_token,
+                    temporal_frame.jitter_pixel.x,
+                    temporal_frame.jitter_pixel.y,
+                    proj_arr.as_ptr(),
+                    inv_arr.as_ptr(),
+                    identity.as_ptr(), // clip_to_prev_clip: identity for static camera
+                    identity.as_ptr(), // prev_clip_to_clip: identity for static camera
+                    0.1_f32,
+                    10_000.0_f32,
+                    std::f32::consts::FRAC_PI_3,
+                    aspect,
+                    0, // motion_vectors_jittered=false (shader removes jitter in difference)
+                    if self.frame_index == 0 { 1 } else { 0 },
+                );
+
+                // VkImageLayout raw values
+                const LAYOUT_GENERAL: u32    = 1;
+                const LAYOUT_UNDEFINED: u32  = 0;
+                super::streamline_ffi::chthonic_sl_evaluate_dlaa(
+                    sl_token,
+                    cmd.as_raw() as usize as *mut _,
+                    self.offscreen_color_image.as_raw() as usize as *mut _,
+                    self.offscreen_color_view.as_raw() as usize as *mut _,
+                    LAYOUT_GENERAL,
+                    self.depth_image.as_raw() as usize as *mut _,
+                    self.depth_view.as_raw() as usize as *mut _,
+                    LAYOUT_GENERAL,
+                    self.motion_vector_image.as_raw() as usize as *mut _,
+                    self.motion_vector_view.as_raw() as usize as *mut _,
+                    LAYOUT_GENERAL,
+                    self.swapchain.images[image_index as usize].as_raw() as usize as *mut _,
+                    self.swapchain.image_views[image_index as usize].as_raw() as usize as *mut _,
+                    LAYOUT_UNDEFINED,
+                    self.swapchain.extent.width,
+                    self.swapchain.extent.height,
+                );
+            }
+
+            // Streamline leaves the output in GENERAL; transition to PRESENT_SRC_KHR.
+            let to_present = vk::ImageMemoryBarrier2::default()
+                .src_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                .src_access_mask(vk::AccessFlags2::MEMORY_WRITE)
+                .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                .dst_access_mask(vk::AccessFlags2::empty())
+                .old_layout(vk::ImageLayout::GENERAL)
+                .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                .image(self.swapchain.images[image_index as usize])
+                .subresource_range(color_subresource);
+            ctx.device.cmd_pipeline_barrier2(
+                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
+
+        } else if self.taa_enabled {
             let barriers_pre = [
                 vk::ImageMemoryBarrier2::default()
                     .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
@@ -1907,6 +2054,11 @@ impl Renderer {
             if let Some(alloc) = self.history_color_allocs[i].take() {
                 let _ = allocator.lock().unwrap().free(alloc);
             }
+        }
+
+        // Streamline shutdown (before device destruction)
+        if self.dlaa_enabled {
+            super::streamline_ffi::chthonic_sl_shutdown();
         }
 
         // Free TAA Gate 3 resolve pipeline resources

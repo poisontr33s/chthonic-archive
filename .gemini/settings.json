@@ -128,6 +128,14 @@
         "-m",
         "server"
       ]
+    },
+    "bevy": {
+      "command": "C:/Users/eldno/chthonic-archive/target/debug/bevy-mcp-server.exe",
+      "args": []
+    },
+    "vulkan": {
+      "command": "C:/Users/eldno/chthonic-archive/target/debug/vulkan-mcp-server.exe",
+      "args": []
     }
   },
   "agents": {

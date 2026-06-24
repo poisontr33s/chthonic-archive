@@ -74,6 +74,7 @@ bevy = ["dep:bevy_ecs"]
 # ╚══════════════════════════════════════════════════════════════════╝
 [build-dependencies]
 shaderc = "0.10"
+cc = "1"
 
 [profile.release]
 opt-level = 3
