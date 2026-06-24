@@ -10244,13 +10244,13 @@ Synthesis: Chaos ⊕ Ordeal ⊕ Purification ⊕ Truth → Commit
 
 ### V. What Final State Looks Like
 
-0. The SSOT is architecturally complete in its current form. The structural surgery (§2, §3–§6, §XI, Appendix C, navigation markers, forward-refs) closed the last mechanical gaps. What remains is not structural — it is comprehension infrastructure. Three candidates for final state work:
+- *—  **(`0.`)** — The SSOT is architecturally complete in its current form. The structural surgery (§2, §3–§6, §XI, Appendix C, navigation markers, forward-refs) closed the last mechanical gaps. What remains is not structural — it is comprehension infrastructure. Three candidates for final state work:*
 
-1. A visual topology diagram — the three circuits above rendered as an actual navigable graph. The document describes a graph but presents as linear text. The graph has never been drawn.
+  - *—  **(`1.`)** — A visual topology diagram — the three circuits above rendered as an actual navigable graph. The document describes a graph but presents as linear text. The graph has never been drawn.*
 
-2. An ASP proof-trace — the autopoietic claim says "Section IX proves FA², Section X proves FA¹, ASP proves meta-generation." No one has ever actually walked the proof chain to verify these claims hold under the current document state. A formal trace would be the ultimate validation.
-
-3. ANKH-MGBP as executable interface — the convergence point is currently a declaration. Making it operational means defining what "Human Heritage × Digital Heritage" produces as a concrete output contract when a new PS enters the system.
+    - *—  **(`2.`)** — An ASP proof-trace — the autopoietic claim says "Section IX proves FA², Section X proves FA¹, ASP proves meta-generation." No one has ever actually walked the proof chain to verify these claims hold under the current document state. A formal trace would be the ultimate validation.*
+    
+      - *—  **(`3.`)** — ANKH-MGBP as executable interface — the convergence point is currently a declaration. Making it operational means defining what "Human Heritage × Digital Heritage" produces as a concrete output contract when a new PS enters the system.*
 
 ---
 
