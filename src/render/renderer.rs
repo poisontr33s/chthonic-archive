@@ -98,6 +98,11 @@ pub struct Renderer {
     pub needs_resize: bool,
     pub camera: IsometricCamera,
     pub temporal: TemporalState,
+    /// ACA cosmology glue — all seven bodies in their Ankhological signs at the scene epoch.
+    /// Tuple: (label, sign_index 0..=11, sign_name, degree_within_sign).
+    /// Computed once at init (the scene JD is deterministic); queryable at render time and by
+    /// the game layer. Meaning stays owner-defined; this is position only.
+    pub zodiac_bodies: Vec<(&'static str, usize, &'static str, f64)>,
 }
 
 impl Renderer {
@@ -201,9 +206,7 @@ impl Renderer {
         let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
         info!("🌌 Celestial field mesh: {celestial_vertex_count} vertices");
 
-        // Stage 2a/2c: the correspondence socket reads the true sky through its first astrology
-        // module — the zodiac on the Ankhological origin (Sirius/Alcyone midpoint). Position only;
-        // meaning stays the owner's. Logged so the binding is observable in the render-smoke record.
+        // Stage 2a: correspondence socket reads the true sky — ayanamsa + slot binding logged.
         {
             use super::correspondence::{Correspondence, SkyContext};
             let jd = super::cosmos::scene_julian_day();
@@ -217,15 +220,19 @@ impl Renderer {
                     .map_or("?", |(_, v)| v.as_str());
                 info!("☥ Correspondence [{}]: ayanamsa {ayan}° (origin sirius-alcyone-midpoint)", reading.slot);
             }
-            // Stage 2b/2c: every luminary and planet in its Ankhological sign — the spirit layer's
-            // placement, on the same one ayanamsa. Position only; the meaning is the owner's.
-            let bodies = super::zodiac::bodies_in_signs(jd)
-                .into_iter()
+        }
+        // Stage 2b/2c: all seven bodies in their Ankhological signs — stored on the renderer so
+        // the render loop and the game layer can query sign placements without recomputing.
+        // Position only; meaning is the owner's.
+        let zodiac_bodies = super::zodiac::bodies_in_signs(super::cosmos::scene_julian_day());
+        info!(
+            "☥ Zodiac bodies: {}",
+            zodiac_bodies
+                .iter()
                 .map(|(label, _i, sign, deg)| format!("{label} in {sign} {deg:.1}°"))
                 .collect::<Vec<_>>()
-                .join(" · ");
-            info!("☥ Zodiac bodies: {bodies}");
-        }
+                .join(" · ")
+        );
 
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 RENDERER READY - Dynamic Rendering Pipeline Active!");
@@ -292,6 +299,7 @@ impl Renderer {
             needs_resize: false,
             camera,
             temporal,
+            zodiac_bodies,
         })
     }
 
