@@ -130,12 +130,10 @@
       ]
     },
     "bevy": {
-      "command": "C:/Users/eldno/chthonic-archive/target/debug/bevy-mcp-server.exe",
-      "args": []
+      "command": "C:/Users/eldno/chthonic-archive/target/debug/bevy-mcp-server.exe"
     },
     "vulkan": {
-      "command": "C:/Users/eldno/chthonic-archive/target/debug/vulkan-mcp-server.exe",
-      "args": []
+      "command": "C:/Users/eldno/chthonic-archive/target/debug/vulkan-mcp-server.exe"
     }
   },
   "agents": {

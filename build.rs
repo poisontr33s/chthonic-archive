@@ -51,8 +51,14 @@ fn main() {
         .file("src/render/streamline_bridge.cpp")
         .compile("streamline_bridge");
 
+    // Explicitly pass the compiled static lib as a positional linker arg.
+    // cargo:rustc-link-lib=static= alone is insufficient on Windows MSVC targets —
+    // the lib goes into LIBPATH but link.exe never sees it as an input.
+    let out_dir_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+    println!("cargo:rustc-link-arg={}", out_dir_path.join("streamline_bridge.lib").display());
+
     println!("cargo:rustc-link-search=native={}", sdk_lib.display());
-    println!("cargo:rustc-link-lib=sl.interposer");
+    println!("cargo:rustc-link-arg={}", sdk_lib.join("sl.interposer.lib").display());
 
     let shader_dir = PathBuf::from("assets/shaders");
     let hlsl_dir = shader_dir.join("hlsl");
@@ -61,7 +67,7 @@ fn main() {
     // Copy required Streamline SDK DLLs to the target directory (e.g., target/debug)
     let target_dir = out_dir.ancestors().nth(3).unwrap();
     let sdk_bin = sdk_root.join("bin/x64");
-    for dll in &["sl.interposer.dll", "nvngx_dlss.dll"] {
+    for dll in &["sl.interposer.dll", "sl.dlss.dll", "nvngx_dlss.dll"] {
         let src = sdk_bin.join(dll);
         let dst = target_dir.join(dll);
         if src.exists() {

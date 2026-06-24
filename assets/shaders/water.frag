@@ -19,6 +19,13 @@ layout(push_constant) uniform PushConstants {
     vec4 params;   // x = time, y = mode, z = frame dt, w = motion-debug toggle
 } pc;
 
+// set=0 is the ocean displacement sampler (water.vert, bindings 0+1).
+// SST UBO lives at set=1 to avoid collision.
+// vec4 layout: xyz = sst_tint, w = sst_blend — avoids vec3 std140 padding ambiguity.
+layout(set = 1, binding = 0) uniform WaterSST {
+    vec4 sst_data;  // xyz = SST-adjusted warm tint, w = blend scalar [0..1]
+} u_sst;
+
 layout(location = 3) in vec4 v_clip;       // current clip position
 layout(location = 4) in vec4 v_prev_clip;  // previous-frame clip position
 
@@ -64,7 +71,7 @@ void main() {
         float fres  = 0.02 + 0.98 * pow(1.0 - max(dot(N, V), 0.0), 5.0);
         vec3  sky   = vec3(0.35, 0.55, 0.72);
         float glint = pow(max(dot(N, H), 0.0), 200.0) * I;
-        vec3  tint  = vec3(0.08, 0.34, 0.42);
+        vec3  tint  = mix(vec3(0.08, 0.34, 0.42), u_sst.sst_data.xyz, u_sst.sst_data.w);
         vec3  col   = mix(tint, sky, fres) + vec3(glint);
         out_color   = vec4(col, 0.30); // translucent — lets the seabed turquoise read through
         return;

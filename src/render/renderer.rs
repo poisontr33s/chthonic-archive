@@ -85,6 +85,12 @@ pub struct Renderer {
     pub taa_desc_pool: vk::DescriptorPool,
     pub taa_desc_set_layout: vk::DescriptorSetLayout,
     pub taa_desc_sets: Vec<vk::DescriptorSet>,  // one per frame-in-flight
+    // SST UBO (set=1) — drives ocean surface tint via CHTHONIC_SST_BLEND
+    pub sst_desc_set_layout: vk::DescriptorSetLayout,
+    pub sst_desc_pool: vk::DescriptorPool,
+    pub sst_desc_set: vk::DescriptorSet,
+    pub sst_ubo_buffer: vk::Buffer,
+    pub sst_ubo_memory: vk::DeviceMemory,
     pub taa_enabled: bool,
     pub taa_debug: bool,
     pub dlaa_enabled: bool,
@@ -132,12 +138,18 @@ impl Renderer {
         // threaded into the graphics pipeline layout (water.vert samples the displacement image).
         let ocean_compute = super::ocean_compute::OceanCompute::new(ctx)?;
 
-        // Create pipeline — set 0 is the ocean displacement sampler (water.vert reads it).
+        // --- SST UBO (set=1) ---
+        // 16-byte layout: [sst_r, sst_g, sst_b, sst_blend] = vec4 in GLSL.
+        // Defaults: warm-water tint vec3(0.12, 0.45, 0.55), blend from CHTHONIC_SST_BLEND.
+        let (sst_desc_set_layout, sst_desc_pool, sst_desc_set, sst_ubo_buffer, sst_ubo_memory) =
+            Self::create_sst_ubo(ctx)?;
+
+        // Create pipeline — set 0: ocean displacement sampler (water.vert); set 1: SST UBO (water.frag).
         let pipeline = VulkanPipeline::new(
             &ctx.device,
             &ctx.physical_device_properties,
             swapchain.format,
-            &[ocean_compute.graphics_set_layout],
+            &[ocean_compute.graphics_set_layout, sst_desc_set_layout],
         )?;
 
         // Create command pool
@@ -330,6 +342,11 @@ impl Renderer {
             taa_desc_pool,
             taa_desc_set_layout,
             taa_desc_sets,
+            sst_desc_set_layout,
+            sst_desc_pool,
+            sst_desc_set,
+            sst_ubo_buffer,
+            sst_ubo_memory,
             taa_enabled,
             taa_debug,
             dlaa_enabled,
@@ -979,6 +996,95 @@ impl Renderer {
     }
 
     /// Build the TAA resolve pipeline (Gate 3).
+    /// Create the SST UBO for ocean surface tint (set=1, binding=0 in water.frag).
+    /// Returns (set_layout, pool, set, buffer, memory).
+    /// UBO layout: [sst_r, sst_g, sst_b, sst_blend] = 16 bytes (vec4 in GLSL std140).
+    unsafe fn create_sst_ubo(
+        ctx: &VulkanContext,
+    ) -> Result<(
+        vk::DescriptorSetLayout,
+        vk::DescriptorPool,
+        vk::DescriptorSet,
+        vk::Buffer,
+        vk::DeviceMemory,
+    )> {
+        let binding = vk::DescriptorSetLayoutBinding::default()
+            .binding(0)
+            .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
+            .descriptor_count(1)
+            .stage_flags(vk::ShaderStageFlags::FRAGMENT);
+        let set_layout = ctx.device.create_descriptor_set_layout(
+            &vk::DescriptorSetLayoutCreateInfo::default().bindings(std::slice::from_ref(&binding)),
+            None,
+        ).context("SST descriptor set layout")?;
+
+        let pool_size = vk::DescriptorPoolSize::default()
+            .ty(vk::DescriptorType::UNIFORM_BUFFER)
+            .descriptor_count(1);
+        let pool = ctx.device.create_descriptor_pool(
+            &vk::DescriptorPoolCreateInfo::default()
+                .max_sets(1)
+                .pool_sizes(std::slice::from_ref(&pool_size)),
+            None,
+        ).context("SST descriptor pool")?;
+
+        let desc_set = ctx.device.allocate_descriptor_sets(
+            &vk::DescriptorSetAllocateInfo::default()
+                .descriptor_pool(pool)
+                .set_layouts(std::slice::from_ref(&set_layout)),
+        ).context("SST descriptor set")?[0];
+
+        // 16-byte UBO: [sst_r, sst_g, sst_b, sst_blend]
+        let buffer_info = vk::BufferCreateInfo::default()
+            .size(16)
+            .usage(vk::BufferUsageFlags::UNIFORM_BUFFER)
+            .sharing_mode(vk::SharingMode::EXCLUSIVE);
+        let buffer = ctx.device.create_buffer(&buffer_info, None).context("SST UBO buffer")?;
+
+        let mem_reqs = ctx.device.get_buffer_memory_requirements(buffer);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            mem_reqs.memory_type_bits,
+            vk::MemoryPropertyFlags::HOST_VISIBLE | vk::MemoryPropertyFlags::HOST_COHERENT,
+        )?;
+        let memory = ctx.device.allocate_memory(
+            &vk::MemoryAllocateInfo::default()
+                .allocation_size(mem_reqs.size)
+                .memory_type_index(mem_type),
+            None,
+        ).context("SST UBO memory")?;
+        ctx.device.bind_buffer_memory(buffer, memory, 0)?;
+
+        // Read CHTHONIC_SST_BLEND env var (default 0.0 = no SST shift).
+        let sst_blend: f32 = std::env::var("CHTHONIC_SST_BLEND")
+            .ok()
+            .and_then(|s| s.parse().ok())
+            .unwrap_or(0.0_f32)
+            .clamp(0.0, 1.0);
+        // Warm-water tint default: slightly more teal/cyan than the canonical cold tint.
+        let data: [f32; 4] = [0.12, 0.45, 0.55, sst_blend];
+        let ptr = ctx.device.map_memory(memory, 0, 16, vk::MemoryMapFlags::empty())?;
+        std::ptr::copy_nonoverlapping(data.as_ptr().cast::<u8>(), ptr.cast::<u8>(), 16);
+        ctx.device.unmap_memory(memory);
+
+        // Wire the buffer into the descriptor set.
+        let buf_info = vk::DescriptorBufferInfo::default()
+            .buffer(buffer)
+            .offset(0)
+            .range(16);
+        let write = vk::WriteDescriptorSet::default()
+            .dst_set(desc_set)
+            .dst_binding(0)
+            .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
+            .buffer_info(std::slice::from_ref(&buf_info));
+        ctx.device.update_descriptor_sets(std::slice::from_ref(&write), &[]);
+
+        if sst_blend > 0.0 {
+            info!("SST tint active: blend={sst_blend:.2}");
+        }
+        Ok((set_layout, pool, desc_set, buffer, memory))
+    }
+
     /// Descriptor set: binding 0 = current (SAMPLED), 1 = history (SAMPLED), 2 = motion (SAMPLED).
     /// Push constant: TaaParams { texel_size: vec2, blend: f32, debug: f32 } = 16 bytes.
     /// Output format matches the swapchain (passed in as `out_format`).
@@ -1482,6 +1588,15 @@ impl Renderer {
             self.pipeline.pipeline_layout,
             0,
             &[self.ocean_compute.graphics_set],
+            &[],
+        );
+        // Bind the SST UBO (set 1) so water.frag can read the surface tint.
+        ctx.device.cmd_bind_descriptor_sets(
+            cmd,
+            vk::PipelineBindPoint::GRAPHICS,
+            self.pipeline.pipeline_layout,
+            1,
+            &[self.sst_desc_set],
             &[],
         );
 
@@ -2060,6 +2175,12 @@ impl Renderer {
         if self.dlaa_enabled {
             super::streamline_ffi::chthonic_sl_shutdown();
         }
+
+        // SST UBO
+        device.destroy_buffer(self.sst_ubo_buffer, None);
+        device.free_memory(self.sst_ubo_memory, None);
+        device.destroy_descriptor_pool(self.sst_desc_pool, None);
+        device.destroy_descriptor_set_layout(self.sst_desc_set_layout, None);
 
         // Free TAA Gate 3 resolve pipeline resources
         device.destroy_pipeline(self.taa_pipeline, None);
