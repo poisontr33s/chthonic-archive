@@ -119,6 +119,41 @@ message
 
 ---
 
+## (`BASH`/`PWSH`/`TAIL-DIFF`)
+
+**Signature** — `tail: The term 'tail' is not recognized` · exit 1
+
+**Waters** — PowerShell tool; any time reaching for `tail -N` muscle memory
+
+**Root** — `tail` is a Unix command. PowerShell has no `tail` binary. The reflex fires after reading `cargo build 2>&1 | tail -20` or similar bash one-liners.
+
+**Fix** — Drop-in replacements:
+
+```powershell
+# last N lines of a pipeline
+cargo build 2>&1 | Select-Object -Last 20
+
+# last N lines of a file
+Get-Content file.log | Select-Object -Last 20
+
+# first N lines (head -N)
+cargo build 2>&1 | Select-Object -First 20
+```
+
+**Other common bash → pwsh diffs in this vein:**
+
+| bash | pwsh |
+|---|---|
+`tail -N` | `Select-Object -Last N`
+`head -N` | `Select-Object -First N`
+`grep pattern` | `Select-String pattern`
+`wc -l` | `(Get-Content f \| Measure-Object -Line).Lines`
+`touch file` | `if (-not (Test-Path file)) { New-Item -ItemType File file }`
+`which cmd` | `(Get-Command cmd).Source`
+`ls -la` | `Get-ChildItem` (or `ls` alias, no `-la` flag)
+
+---
+
 ## (`GIT`/`COMMIT`/`HOOK-FAIL-AMEND-TRAP`)
 
 **Signature** — Pre-commit hook fails → next attempt uses `--amend` → previous commit gets destroyed
