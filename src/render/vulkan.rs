@@ -48,6 +48,8 @@ pub struct VulkanContext {
     pub device: Device,
     pub queue_family_index: u32,
     pub graphics_queue: vk::Queue,
+    /// Nanoseconds per GPU timestamp tick. Multiply raw tick delta by this to get ns.
+    pub timestamp_period: f32,
     #[allow(dead_code)]
     pub present_queue: vk::Queue,
     /// Shared GPU memory allocator. Wrapped in Arc<Mutex> so renderer and subsystems
@@ -135,6 +137,18 @@ impl VulkanContext {
         }).context("create gpu-allocator")?;
         let allocator = Arc::new(Mutex::new(allocator));
 
+        // Verify timestamp support on the selected queue family (≥36 valid bits required)
+        let qf_props = instance.get_physical_device_queue_family_properties(physical_device);
+        let ts_valid_bits = qf_props
+            .get(queue_family_index as usize)
+            .map(|q| q.timestamp_valid_bits)
+            .unwrap_or(0);
+        assert!(
+            ts_valid_bits >= 36,
+            "GPU queue family has only {ts_valid_bits} timestamp bits (need ≥36 for GPU profiling)"
+        );
+        let timestamp_period = physical_device_properties.limits.timestamp_period;
+
         info!("═══════════════════════════════════════════════════════════════");
         info!("🔥 VULKAN CONTEXT INITIALIZED: 4090 READY 🔥");
         info!("   Device: {0}",
@@ -157,6 +171,7 @@ impl VulkanContext {
             graphics_queue,
             present_queue,
             allocator,
+            timestamp_period,
         })
     }
 

@@ -17,6 +17,7 @@ use glam::{Mat4, Vec3};
 /// the sky-dome (radius ~4.15), which is correct — from the ground you never see the whole
 /// hemisphere at once. The eye does **not** move; only the heading (where you look) is free. Tuned
 /// against the render-smoke PNG.
+// ELLIPSOID-RETROFIT: eye position is absolute world-space. Under WGS84 this is camera-relative ENU.
 const HORIZON_EYE: Vec3 = Vec3::new(0.0, 0.45, 2.6);
 /// How far ahead the look-at target sits along the heading. Only the *direction* matters to
 /// `look_at_rh`; any positive distance yields the same view.

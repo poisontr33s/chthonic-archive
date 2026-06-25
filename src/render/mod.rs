@@ -40,7 +40,10 @@ pub mod lens;
 pub mod zodiac;
 pub mod streamline_ffi;
 pub mod atmosphere_compute;
+pub mod cloud_noise_compute;
+pub mod cloud_raymarch_compute;
 pub mod weather;
+pub mod geodesy;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;

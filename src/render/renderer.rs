@@ -95,6 +95,8 @@ pub struct Renderer {
     pub celestial_vertex_count: u32,
     pub ocean_compute: super::ocean_compute::OceanCompute,
     pub atmosphere_compute: super::atmosphere_compute::AtmosphereCompute,
+    pub cloud_noise_compute: super::cloud_noise_compute::CloudNoiseCompute,
+    pub cloud_raymarch_compute: super::cloud_raymarch_compute::CloudRaymarchCompute,
     pub depth_image: vk::Image,
     pub depth_memory: vk::DeviceMemory,
     pub depth_view: vk::ImageView,
@@ -145,6 +147,9 @@ pub struct Renderer {
     /// the game layer. Meaning stays owner-defined; this is position only.
     pub zodiac_bodies: Vec<(&'static str, usize, &'static str, f64)>,
     pub weather_spine: super::weather::WeatherSpine,
+    // GPU timestamp profiling — one 8-slot pool per frame-in-flight (avoids reset/write race)
+    pub query_pools: Vec<vk::QueryPool>,
+    pub gpu_timings: [u64; 8],
 }
 
 impl Renderer {
@@ -256,18 +261,35 @@ impl Renderer {
         ) = Self::create_sst_ubo(ctx)?;
 
         let atmosphere_compute = super::atmosphere_compute::AtmosphereCompute::new(ctx, sst_desc_set_layout)?;
+        let cloud_noise_compute = super::cloud_noise_compute::CloudNoiseCompute::new(ctx)?;
+        let cloud_raymarch_compute = super::cloud_raymarch_compute::CloudRaymarchCompute::new(
+            ctx,
+            window_size.0,
+            window_size.1,
+            sst_desc_set_layout,
+            &atmosphere_compute,
+            &cloud_noise_compute,
+        )?;
 
         // Write sky view sampler to set 1, binding 1
         let sky_view_info = vk::DescriptorImageInfo::default()
             .image_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)
             .image_view(atmosphere_compute.sky_view_view)
             .sampler(atmosphere_compute.sampler);
-        let write = vk::WriteDescriptorSet::default()
-            .dst_set(sst_desc_set)
-            .dst_binding(1)
-            .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
-            .image_info(std::slice::from_ref(&sky_view_info));
-        ctx.device.update_descriptor_sets(std::slice::from_ref(&write), &[]);
+        let cloud_target_info = vk::DescriptorImageInfo::default()
+            .image_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)
+            .image_view(cloud_raymarch_compute.target_view)
+            .sampler(cloud_raymarch_compute.target_sampler);
+        ctx.device.update_descriptor_sets(&[
+            vk::WriteDescriptorSet::default()
+                .dst_set(sst_desc_set).dst_binding(1)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .image_info(std::slice::from_ref(&sky_view_info)),
+            vk::WriteDescriptorSet::default()
+                .dst_set(sst_desc_set).dst_binding(2)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .image_info(std::slice::from_ref(&cloud_target_info)),
+        ], &[]);
 
         // Create pipeline — set 0: ocean displacement sampler; set 1: frame UBO.
         let pipeline = VulkanPipeline::new(
@@ -324,7 +346,17 @@ impl Renderer {
         // Looking at origin from isometric angle, 10 units away, ortho size 5
         #[allow(clippy::cast_precision_loss)]
         let aspect_ratio = window_size.0 as f32 / window_size.1 as f32;
-        let mut camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+        // Site 1 of 6 — Ellipsoid retrofit (camera origin).
+        // Camera is anchored to WGS84 New Providence (Nassau). The render-space origin
+        // is the ENU tangent plane at this anchor; position/target remain near (0,0,0)
+        // in f32 until bathymetry/ocean mesh vertices are projected through the anchor.
+        let mut camera = IsometricCamera::with_geodetic_anchor(
+            crate::render::geodesy::NEW_PROVIDENCE_LAT_DEG,
+            crate::render::geodesy::NEW_PROVIDENCE_LON_DEG,
+            crate::render::geodesy::NEW_PROVIDENCE_ALT_M,
+            10.0,
+            5.0,
+        );
         camera.update_matrices(aspect_ratio);
 
         // The active lens is selected once, explicitly (§2.7 / 03A — never an auto-cycle), and is
@@ -416,6 +448,20 @@ impl Renderer {
         // Stage-3-C Weather Spine
         let weather_spine = super::weather::WeatherSpine::new("live_boundary.json");
 
+        // One 8-slot timestamp pool per frame-in-flight — pool N is only reset/written during
+        // frame slot N, and only read back after the fence for slot N confirms GPU completion.
+        let pool_info = vk::QueryPoolCreateInfo::default()
+            .query_type(vk::QueryType::TIMESTAMP)
+            .query_count(8);
+        let mut query_pools = Vec::with_capacity(swapchain.frames_in_flight);
+        for _ in 0..swapchain.frames_in_flight {
+            query_pools.push(
+                ctx.device
+                    .create_query_pool(&pool_info, None)
+                    .context("GPU timestamp query pool")?,
+            );
+        }
+
         Ok(Self {
             swapchain,
             pipeline,
@@ -432,6 +478,8 @@ impl Renderer {
             celestial_vertex_count,
             ocean_compute,
             atmosphere_compute,
+            cloud_noise_compute,
+            cloud_raymarch_compute,
             depth_image,
             depth_memory,
             depth_view,
@@ -474,6 +522,8 @@ impl Renderer {
             temporal,
             zodiac_bodies,
             weather_spine,
+            query_pools,
+            gpu_timings: [0u64; 8],
         })
     }
 
@@ -1149,6 +1199,12 @@ impl Renderer {
                 .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                 .descriptor_count(1)
                 .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+            // binding 2: cloud raymarch output (written after CloudRaymarchCompute::new)
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(2)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
         ];
         let set_layout = ctx
             .device
@@ -1161,7 +1217,7 @@ impl Renderer {
 
         let pool_sizes = [
             vk::DescriptorPoolSize::default().ty(vk::DescriptorType::UNIFORM_BUFFER).descriptor_count(1),
-            vk::DescriptorPoolSize::default().ty(vk::DescriptorType::COMBINED_IMAGE_SAMPLER).descriptor_count(1),
+            vk::DescriptorPoolSize::default().ty(vk::DescriptorType::COMBINED_IMAGE_SAMPLER).descriptor_count(2),
         ];
         let pool = ctx
             .device
@@ -1675,7 +1731,6 @@ impl Renderer {
 
         // Acquire next swapchain image
         let (image_index, needs_resize) = self.swapchain.acquire_next_image(&ctx.device)?;
-
         if needs_resize {
             self.needs_resize = true;
             return Ok(true);
@@ -1697,6 +1752,41 @@ impl Renderer {
             .flags(vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT);
         ctx.device.begin_command_buffer(cmd, &begin_info)?;
 
+        // === GPU TIMESTAMP PROFILING ===
+        // Pool indexed by current_frame — the in-flight fence was already waited in
+        // acquire_next_image, so this slot's previous GPU work is complete. WAIT is safe.
+        let pool = self.query_pools[self.swapchain.current_frame];
+        // Only read back after every slot has completed at least one write cycle.
+        // frames_in_flight = 2, so slot 0 is first readable at frame 2, slot 1 at frame 3.
+        // Slots 4-5 (DLAA) are only written when dlaa_enabled. Slots 6-7 are spare and never
+        // written. WAIT blocks indefinitely on unwritten slots, so read only what was written.
+        if self.frame_index >= self.swapchain.frames_in_flight as u64 {
+            let read_count = if self.dlaa_enabled { 6usize } else { 4usize };
+            let _ = ctx.device.get_query_pool_results(
+                pool, 0,
+                &mut self.gpu_timings[..read_count],
+                vk::QueryResultFlags::TYPE_64 | vk::QueryResultFlags::WAIT,
+            );
+            if self.frame_index % 120 == 1
+                && self.gpu_timings[1] > self.gpu_timings[0]
+                && self.gpu_timings[3] > self.gpu_timings[2]
+            {
+                let tp = ctx.timestamp_period as f64 * 1e-6; // ns/tick → ms/tick
+                let frame_ms = (self.gpu_timings[1] - self.gpu_timings[0]) as f64 * tp;
+                let cloud_ms = (self.gpu_timings[3] - self.gpu_timings[2]) as f64 * tp;
+                let dlaa_ms  = if self.gpu_timings[5] > self.gpu_timings[4] {
+                    (self.gpu_timings[5] - self.gpu_timings[4]) as f64 * tp
+                } else {
+                    0.0
+                };
+                // eprintln! → stderr (unbuffered); captured by render-smoke.ps1 via RedirectStandardError
+                eprintln!("☁️  GPU | cloud: {cloud_ms:.2}ms | dlaa: {dlaa_ms:.2}ms | frame: {frame_ms:.2}ms | budget: 4.17ms@240Hz");
+            }
+        }
+        // Reset slots for this frame, then stamp start
+        ctx.device.cmd_reset_query_pool(cmd, pool, 0, 8);
+        ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::TOP_OF_PIPE, pool, 0);
+
         // === RUNG 4.2: ocean displacement compute (writes the displacement field) ===
         let ocean_time = self.frame_index as f32 * 0.02;
         let weather_state = self.weather_spine.get_state();
@@ -1708,7 +1798,66 @@ impl Renderer {
             self.atmosphere_compute.dispatch_transmittance(&ctx.device, cmd, self.sst_desc_set);
             self.atmosphere_compute.dispatch_multiscatter(&ctx.device, cmd, self.sst_desc_set);
             self.atmosphere_compute.dispatch_skyview(&ctx.device, cmd, self.sst_desc_set);
+            self.cloud_noise_compute.dispatch(&ctx.device, cmd);
         }
+
+        // === FRAME MATRICES + UBO (computed early — cloud raymarch runs before geometry) ===
+        const FRAME_DT: f32 = 0.02;
+        let time = self.frame_index as f32 * FRAME_DT;
+        let aspect =
+            self.swapchain.extent.width as f32 / self.swapchain.extent.height.max(1) as f32;
+        let (lens_view, lens_proj) =
+            super::lens::matrices(self.lens, &self.camera, self.heading, aspect);
+        if self.frame_index == 0 {
+            info!("🔭 Lens: {}", self.lens.label());
+        }
+        let temporal_frame = self
+            .temporal
+            .begin_frame(self.swapchain.extent, lens_view, lens_proj);
+        let jd = super::cosmos::scene_julian_day();
+        let sun_push = super::cosmos::sun_push_constant(
+            super::cosmos::NEW_PROVIDENCE_LAT_DEG,
+            super::cosmos::NEW_PROVIDENCE_LON_DEG,
+            jd,
+        );
+        let sun_direction = [sun_push[0], sun_push[1], sun_push[2]];
+        let frame_uniform = FrameUniform {
+            current_motion_view_projection: temporal_frame
+                .current_view_projection
+                .to_cols_array_2d(),
+            previous_motion_view_projection: temporal_frame
+                .previous_view_projection
+                .to_cols_array_2d(),
+            sst_data: self.sst_data,
+            sun_direction,
+            bottom_radius: 6360.0,
+            rayleigh_scattering: [0.0058, 0.0135, 0.0331],
+            top_radius: 6460.0,
+            mie_scattering: [0.003996, 0.003996, 0.003996],
+            mie_extinction: 0.00444,
+            ozone_absorption: [0.00065, 0.001881, 0.000085],
+            mie_g: 0.8,
+            weather_data: [weather_state.wind_dir, weather_state.wind_speed, 0.0, 0.0],
+        };
+        Self::write_frame_ubo(&ctx.device, self.sst_ubo_memory, &frame_uniform)?;
+
+        // === CLOUD RAYMARCH (before geometry — target in SHADER_READ_ONLY_OPTIMAL when water.frag samples it) ===
+        ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::COMPUTE_SHADER, pool, 2);
+        {
+            let inv_vp = temporal_frame.current_view_projection.inverse();
+            let cam_pos = lens_view.inverse().w_axis.truncate().to_array();
+            self.cloud_raymarch_compute.dispatch(
+                &ctx.device,
+                cmd,
+                self.sst_desc_set,
+                inv_vp.to_cols_array_2d(),
+                cam_pos,
+                time,
+                self.swapchain.extent.width,
+                self.swapchain.extent.height,
+            );
+        }
+        ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::COMPUTE_SHADER, pool, 3);
 
         // === TRANSITION IMAGE TO COLOR ATTACHMENT ===
         let image_barrier_to_render = vk::ImageMemoryBarrier2::default()
@@ -1874,45 +2023,6 @@ impl Renderer {
         // params.w > 0.5 paints that motion buffer as colour (CHTHONIC_SHOW_MOTION). This is
         // the current compounding boundary: add real layers here; do not replace the camera
         // path with speculative view cycling.
-        const FRAME_DT: f32 = 0.02;
-        let time = self.frame_index as f32 * FRAME_DT;
-        let aspect =
-            self.swapchain.extent.width as f32 / self.swapchain.extent.height.max(1) as f32;
-        let (lens_view, lens_proj) =
-            super::lens::matrices(self.lens, &self.camera, self.heading, aspect);
-        if self.frame_index == 0 {
-            info!("🔭 Lens: {}", self.lens.label());
-        }
-        let temporal_frame = self
-            .temporal
-            .begin_frame(self.swapchain.extent, lens_view, lens_proj);
-        let jd = super::cosmos::scene_julian_day();
-        let sun_push = super::cosmos::sun_push_constant(
-            super::cosmos::NEW_PROVIDENCE_LAT_DEG,
-            super::cosmos::NEW_PROVIDENCE_LON_DEG,
-            jd,
-        );
-        let sun_direction = [sun_push[0], sun_push[1], sun_push[2]];
-
-        let frame_uniform = FrameUniform {
-            current_motion_view_projection: temporal_frame
-                .current_view_projection
-                .to_cols_array_2d(),
-            previous_motion_view_projection: temporal_frame
-                .previous_view_projection
-                .to_cols_array_2d(),
-            sst_data: self.sst_data,
-            sun_direction,
-            bottom_radius: 6360.0,
-            rayleigh_scattering: [0.0058, 0.0135, 0.0331],
-            top_radius: 6460.0,
-            mie_scattering: [0.003996, 0.003996, 0.003996],
-            mie_extinction: 0.00444,
-            ozone_absorption: [0.00065, 0.001881, 0.000085],
-            mie_g: 0.8,
-            weather_data: [weather_state.wind_dir, weather_state.wind_speed, 0.0, 0.0],
-        };
-        Self::write_frame_ubo(&ctx.device, self.sst_ubo_memory, &frame_uniform)?;
         let mut push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
             view: lens_view.to_cols_array_2d(),
@@ -2083,6 +2193,7 @@ impl Renderer {
                 } else {
                     None
                 };
+                ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::ALL_COMMANDS, pool, 4);
                 let dlaa_result = super::streamline_ffi::chthonic_sl_evaluate_dlaa(
                     sl_token,
                     cmd.as_raw() as usize as *mut _,
@@ -2118,6 +2229,7 @@ impl Renderer {
                         | vk::ImageUsageFlags::TRANSFER_SRC)
                         .as_raw(),
                 );
+                ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::BOTTOM_OF_PIPE, pool, 5);
                 if let Some(started) = evaluate_started {
                     let evaluate_ms = started.elapsed().as_secs_f64() * 1000.0;
                     println!(
@@ -2509,6 +2621,9 @@ impl Renderer {
             );
         }
 
+        // GPU timestamp: frame end (slot 1)
+        ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::BOTTOM_OF_PIPE, pool, 1);
+
         // End command buffer
         ctx.device.end_command_buffer(cmd)?;
 
@@ -2729,6 +2844,14 @@ impl Renderer {
         self.atmosphere_compute
             .cleanup(device, &mut allocator.lock().unwrap());
 
+        // Cloud noise bake (one-shot at frame 0)
+        self.cloud_noise_compute
+            .cleanup(device, &mut allocator.lock().unwrap());
+
+        // Cloud raymarch (per-frame, rgba16f target)
+        self.cloud_raymarch_compute
+            .cleanup(device, &mut allocator.lock().unwrap());
+
         // Free depth buffer
         device.destroy_image_view(self.depth_view, None);
         device.destroy_image(self.depth_image, None);
@@ -2757,6 +2880,11 @@ impl Renderer {
             super::streamline_ffi::chthonic_sl_shutdown();
             self.streamline_init_state
                 .store(STREAMLINE_DISABLED, Ordering::Release);
+        }
+
+        // GPU timestamp query pools (one per frame-in-flight)
+        for &qp in &self.query_pools {
+            device.destroy_query_pool(qp, None);
         }
 
         // Frame UBO

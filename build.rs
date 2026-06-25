@@ -136,6 +136,19 @@ fn main() {
     fs::write(&manifest_path, manifest.join("\n"))
         .unwrap_or_else(|_| panic!("Failed to write shader manifest: {}", manifest_path.display()));
 
+    // atmosphere_compute / cloud_noise / cloud_raymarch load SPV from target/debug/ at runtime.
+    // Copy every *.spv from OUT_DIR to target/debug/ so those runtime reads succeed.
+    let target_dir = out_dir.ancestors().nth(3).unwrap();
+    if let Ok(entries) = fs::read_dir(&out_dir) {
+        for entry in entries.flatten() {
+            let src = entry.path();
+            if src.extension().and_then(|e| e.to_str()) == Some("spv") {
+                let dst = target_dir.join(src.file_name().unwrap());
+                let _ = fs::copy(&src, &dst);
+            }
+        }
+    }
+
     let hlsl_sources = discover_hlsl_sources(&hlsl_dir);
     if !hlsl_sources.is_empty() && dxc.is_none() {
         println!(

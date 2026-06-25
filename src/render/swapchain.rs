@@ -239,17 +239,21 @@ impl VulkanSwapchain {
             .unwrap_or(formats[0])
     }
 
-    /// Select present mode - use FIFO for maximum stability during development
+    /// Select present mode — FIFO by default; IMMEDIATE when CHTHONIC_PRESENT_MODE=immediate.
+    /// render-smoke.ps1 -Profile sets IMMEDIATE so background-window V-sync doesn't throttle.
     fn select_present_mode(modes: &[vk::PresentModeKHR]) -> vk::PresentModeKHR {
-        // During development, prefer FIFO (V-Sync) for stability
-        // FIFO is always guaranteed and prevents tearing/sync issues
-        // We can switch to MAILBOX later for low-latency gameplay
+        if std::env::var("CHTHONIC_PRESENT_MODE").as_deref() == Ok("immediate") {
+            if modes.contains(&vk::PresentModeKHR::IMMEDIATE) {
+                info!("   Using IMMEDIATE present mode (profiling — no V-sync)");
+                return vk::PresentModeKHR::IMMEDIATE;
+            }
+        }
+
         if modes.contains(&vk::PresentModeKHR::FIFO) {
             info!("   Using FIFO present mode (V-Sync, stable)");
             return vk::PresentModeKHR::FIFO;
         }
 
-        // Fallback (should never happen - FIFO is mandatory)
         info!("   Using IMMEDIATE present mode (fallback)");
         vk::PresentModeKHR::IMMEDIATE
     }

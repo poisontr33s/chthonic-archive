@@ -32,6 +32,7 @@ layout(set = 1, binding = 0) uniform FrameData {
 } u_frame;
 
 // World half-extents of the surface grid (must match ocean.rs surface_grid and ocean_compute.rs).
+// ELLIPSOID-RETROFIT: must become camera-relative ENU bounds pushed via UBO or push constant.
 const float X_HALF = 2.45;
 const float Z_HALF = 0.92;
 

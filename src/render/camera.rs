@@ -35,8 +35,10 @@
 //! - Horizontal lines are at 30° angles
 //! - Equal foreshortening on all three axes
 
-use glam::{Mat4, Vec3};
+use glam::{DVec3, Mat4, Vec3};
 use log::info;
+
+use crate::render::geodesy::GeoAnchor;
 
 /// Isometric camera configuration.
 pub struct IsometricCamera {
@@ -56,6 +58,9 @@ pub struct IsometricCamera {
     view: Mat4,
     /// Projection matrix (camera → NDC).
     projection: Mat4,
+    /// Absolute WGS84 anchor. `None` = flat Cartesian (Lagoon mode).
+    /// When set, `position`/`target` are ENU-local metres relative to this anchor.
+    pub anchor: Option<GeoAnchor>,
 }
 
 impl IsometricCamera {
@@ -75,6 +80,7 @@ impl IsometricCamera {
             far: 100.0,
             view: Mat4::IDENTITY,
             projection: Mat4::IDENTITY,
+            anchor: None,
         };
 
         camera.update_matrices(1.0);
@@ -190,6 +196,41 @@ impl IsometricCamera {
         self.position = target + offset;
         self.update_matrices(aspect_ratio);
     }
+
+    /// Build a camera anchored to a WGS84 geodetic position.
+    ///
+    /// The render-space origin is placed at the anchor; `position` and `target`
+    /// are ENU-local metres (typically small near-zero values). Flat-Cartesian
+    /// behaviour is unchanged when `anchor` stays `None`.
+    pub fn with_geodetic_anchor(
+        lat_deg: f64,
+        lon_deg: f64,
+        alt_m: f64,
+        distance: f32,
+        ortho_size: f32,
+    ) -> Self {
+        let mut cam = Self::new(Vec3::ZERO, distance, ortho_size);
+        cam.anchor = Some(GeoAnchor::from_lla(lat_deg, lon_deg, alt_m));
+        cam
+    }
+
+    /// Project an absolute ECEF coordinate into the current f32 render space.
+    ///
+    /// With an anchor set: returns the ENU displacement from the anchor, cast
+    /// to f32. This is the floating-origin transform — the GPU sees values in
+    /// the ±tens-of-kilometres range where f32 precision is adequate.
+    ///
+    /// Without an anchor (Lagoon mode): casts the raw ECEF components to f32.
+    #[allow(dead_code)]
+    pub fn project_ecef_to_render(&self, ecef: DVec3) -> Vec3 {
+        match &self.anchor {
+            Some(anchor) => {
+                let enu = anchor.ecef_to_local_enu(ecef);
+                Vec3::new(enu.x as f32, enu.y as f32, enu.z as f32)
+            }
+            None => Vec3::new(ecef.x as f32, ecef.y as f32, ecef.z as f32),
+        }
+    }
 }
 
 impl Default for IsometricCamera {
@@ -220,5 +261,46 @@ mod tests {
         // Matrices should not be identity after update.
         assert_ne!(camera.view_matrix(), Mat4::IDENTITY);
         assert_ne!(camera.projection_matrix(), Mat4::IDENTITY);
+    }
+
+    #[test]
+    fn lagoon_mode_has_no_anchor() {
+        let cam = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+        assert!(cam.anchor.is_none(), "flat Cartesian camera must have no anchor");
+    }
+
+    #[test]
+    fn geodetic_anchor_constructor() {
+        use crate::render::geodesy::{NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG, NEW_PROVIDENCE_ALT_M};
+        let cam = IsometricCamera::with_geodetic_anchor(
+            NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG, NEW_PROVIDENCE_ALT_M,
+            10.0, 5.0,
+        );
+        assert!(cam.anchor.is_some(), "geodetic camera must carry an anchor");
+        let a = cam.anchor.unwrap();
+        assert!((a.lat_deg - NEW_PROVIDENCE_LAT_DEG).abs() < 1e-9);
+        assert!((a.lon_deg - NEW_PROVIDENCE_LON_DEG).abs() < 1e-9);
+    }
+
+    #[test]
+    fn project_ecef_anchor_origin_is_zero() {
+        use crate::render::geodesy::{NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG, NEW_PROVIDENCE_ALT_M, lla_to_ecef};
+        let cam = IsometricCamera::with_geodetic_anchor(
+            NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG, NEW_PROVIDENCE_ALT_M,
+            10.0, 5.0,
+        );
+        // Projecting the anchor's own ECEF position must yield render-space (0,0,0).
+        let origin_ecef = lla_to_ecef(NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG, NEW_PROVIDENCE_ALT_M);
+        let render = cam.project_ecef_to_render(origin_ecef);
+        assert!(render.length() < 1e-3, "anchor ECEF → render must be zero: {render:?}");
+    }
+
+    #[test]
+    fn project_ecef_lagoon_passthrough() {
+        let cam = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+        use glam::DVec3;
+        let ecef = DVec3::new(1000.0, 2000.0, 3000.0);
+        let render = cam.project_ecef_to_render(ecef);
+        assert_eq!(render, Vec3::new(1000.0, 2000.0, 3000.0));
     }
 }

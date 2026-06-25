@@ -225,6 +225,21 @@ impl ApplicationHandler for ArchiveApp {
 
                 self.frame_count += 1;
 
+                // Profile-mode exit: render-smoke.ps1 -Profile sets CHTHONIC_MAX_FRAMES=300
+                if let Ok(s) = std::env::var("CHTHONIC_MAX_FRAMES") {
+                    if let Ok(max) = s.parse::<u64>() {
+                        // Heartbeat every 60 frames so smoke -Profile can confirm loop is alive
+                        if self.frame_count % 60 == 0 {
+                            eprintln!("PROFILE HEARTBEAT frame={}", self.frame_count);
+                        }
+                        if self.frame_count >= max {
+                            eprintln!("PROFILE EXIT at frame {}", self.frame_count);
+                            event_loop.exit();
+                            return;
+                        }
+                    }
+                }
+
                 // Rung 5/6: real solar vector over New Providence — grounded by the in-house
                 // Rust cosmos (CLAUDEBASE_COSMOS_V1 port; verified vs Skyfield/JPL Horizons in
                 // its tests). Fixed at 2026-06-09 17:00 UTC (Nassau solar noon) so the bank is

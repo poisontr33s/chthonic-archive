@@ -54,8 +54,12 @@ impl Bathymetry {
     /// depth (placeholder for the rung-5 Beer–Lambert shader).
     pub fn mesh(&self) -> Vec<Vertex> {
         const WIDTH: f32 = 5.0; // matches ortho_size * 2 of the iso camera
+        // ELLIPSOID-RETROFIT: Y_SCALE is a flat linear depth-to-render-unit factor.
+        // Under WGS84 this becomes ellipsoidal normal distance and must match water.frag.
         const Y_SCALE: f32 = 0.0004; // -5500 m -> -2.2, +1024 m -> +0.41 (fits the box)
 
+        // ELLIPSOID-RETROFIT: mesh is centered on absolute world origin.
+        // Under WGS84, vertices are geodetic → ENU and the mesh is camera-relative.
         let cell = WIDTH / self.w as f32;
         let cx = (self.w as f32 - 1.0) * 0.5;
         let cz = (self.h as f32 - 1.0) * 0.5;

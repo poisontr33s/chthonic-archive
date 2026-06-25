@@ -34,7 +34,9 @@ layout(location = 0) out vec4 out_color;
 layout(location = 1) out vec2 out_motion;
 
 layout(set = 1, binding = 1) uniform sampler2D u_sky_view_lut;
+layout(set = 1, binding = 2) uniform sampler2D u_cloud_tex;
 
+// ELLIPSOID-RETROFIT: Y_SCALE must stay in sync with bathymetry.rs; under WGS84 both become ellipsoidal normal distance.
 const float Y_SCALE = 0.0004;                   // must match bathymetry.rs
 const vec3  SIGMA   = vec3(0.16, 0.035, 0.016); // per-metre extinction R,G,B (clear tropical water)
 const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
@@ -94,16 +96,23 @@ void main() {
     vec3  V = normalize(vec3(1.0, 1.0, 1.0)); // iso camera approx (toward viewer)
     vec3  H = normalize(L + V);
 
+    // Screen UV for cloud composite (same resolution as the render target)
+    vec2 cloudUv = gl_FragCoord.xy / vec2(textureSize(u_cloud_tex, 0));
+    vec4 cloudLayer = texture(u_cloud_tex, cloudUv);
+
     // === Rung 6.2: celestial field ===
     if (pc.params.y > 1.5) {
-        out_color = vec4(sampleSkyViewLut(V) + v_floor_albedo, 1.0);
+        // Cloud layer composited over sky background; celestial discs (v_floor_albedo) on top
+        vec3 sky = sampleSkyViewLut(V);
+        out_color = vec4(mix(sky, cloudLayer.rgb, cloudLayer.a) + v_floor_albedo, 1.0);
         return;
     }
 
     // === Rung 4: ocean surface ===
     if (pc.params.y > 0.5) {
         float fres  = 0.02 + 0.98 * pow(1.0 - max(dot(N, V), 0.0), 5.0);
-        vec3  sky   = sampleSkyViewLut(reflect(-V, N));
+        // Blend clouds into the reflected sky so they appear in the water surface Fresnel
+        vec3  sky   = mix(sampleSkyViewLut(reflect(-V, N)), cloudLayer.rgb, cloudLayer.a * 0.7);
         float glint = pow(max(dot(N, H), 0.0), 200.0) * I;
         vec3  tint  = mix(vec3(0.08, 0.34, 0.42), u_frame.sst_data.xyz, u_frame.sst_data.w);
         vec3  col   = mix(tint, sky, fres) + vec3(glint);

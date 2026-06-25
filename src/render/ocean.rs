@@ -21,6 +21,8 @@
 
 use super::pipeline::Vertex;
 
+// ELLIPSOID-RETROFIT: X_HALF/Z_HALF are flat Cartesian half-extents (must also change in water.vert).
+// Under WGS84 these become camera-relative ENU bounds derived from the geodetic tile extent.
 const X_HALF: f32 = 2.45;
 const Z_HALF: f32 = 0.92;
 const BASE_COLOR: [f32; 3] = [0.08, 0.34, 0.42];
