@@ -67,7 +67,9 @@ fn main() {
     // Copy required Streamline SDK DLLs to the target directory (e.g., target/debug)
     let target_dir = out_dir.ancestors().nth(3).unwrap();
     let sdk_bin = sdk_root.join("bin/x64");
-    for dll in &["sl.interposer.dll", "sl.dlss.dll", "nvngx_dlss.dll"] {
+    // sl.common.dll is required by Streamline alongside any feature plugin.
+    // nvngx_dlss.dll is loaded by Streamline from the NVIDIA driver — not in the SDK bin.
+    for dll in &["sl.interposer.dll", "sl.common.dll", "sl.dlss.dll"] {
         let src = sdk_bin.join(dll);
         let dst = target_dir.join(dll);
         if src.exists() {

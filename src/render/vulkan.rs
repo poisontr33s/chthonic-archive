@@ -382,29 +382,44 @@ impl VulkanContext {
             .queue_priorities(&queue_priorities);
 
         // Device extensions
+        // VK_KHR_push_descriptor and privateData (1.3 feature) are required by Streamline
+        // DLSS plugin in manual-hooking mode.
+        // VK_NVX_binary_import:    NGX/DLSS needs vkCreateCuModuleNVX to load its CUDA kernels;
+        //                          without it NVSDK_NGX_Parameter_SuperSampling_Available = 0.
+        // VK_NVX_image_view_handle: companion to binary_import; also queried by the DLSS cubin
+        //                           kernel loader (logged as missing but tolerated).
         let device_extensions = [
             khr::swapchain::NAME.as_ptr(),
-            // Dynamic Rendering is core in 1.3, but we can explicitly enable it
-            // Ray Tracing extensions will be added in Phase 13:
-            // khr::ray_tracing_pipeline::NAME.as_ptr(),
-            // khr::acceleration_structure::NAME.as_ptr(),
-            // khr::deferred_host_operations::NAME.as_ptr(),
+            khr::push_descriptor::NAME.as_ptr(),
+            ash::nvx::binary_import::NAME.as_ptr(),
+            ash::nvx::image_view_handle::NAME.as_ptr(),
         ];
+
+        // Enable Vulkan 1.2/1.3 features. bufferDeviceAddress is required by Streamline/NGX
+        // internal allocations when DLAA is active.
+        let mut vulkan_12_features = vk::PhysicalDeviceVulkan12Features::default()
+            .buffer_device_address(true);
 
         // Enable Vulkan 1.3 features (includes Dynamic Rendering - no need for separate feature struct)
         // Note: VkPhysicalDeviceVulkan13Features already contains dynamic_rendering and synchronization2
         // Adding VkPhysicalDeviceDynamicRenderingFeatures separately causes validation error
+        // privateData: required by Streamline DLSS plugin (vkCreatePrivateDataSlot).
         let mut vulkan_13_features = vk::PhysicalDeviceVulkan13Features::default()
             .dynamic_rendering(true)
-            .synchronization2(true);
+            .synchronization2(true)
+            .private_data(true);
 
         // Base features
         let features = vk::PhysicalDeviceFeatures::default()
             .sampler_anisotropy(true)
-            .independent_blend(true);
+            .independent_blend(true)
+            .shader_storage_image_extended_formats(true)
+            .shader_storage_image_read_without_format(true)
+            .shader_storage_image_write_without_format(true);
 
         let mut features2 = vk::PhysicalDeviceFeatures2::default()
             .features(features)
+            .push_next(&mut vulkan_12_features)
             .push_next(&mut vulkan_13_features);
 
         let queue_create_infos = [queue_create_info];

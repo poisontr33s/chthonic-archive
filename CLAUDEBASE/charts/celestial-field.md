@@ -38,9 +38,9 @@
 
 ---
 
-## (`1`/`·`/`The-Two-Tongue-Sky`/`50/50-Frame`)
+## (`1`/`·`/`The-Two-Tongue-Sky`/`50`/`50`/`Frame`)
 
-- *— The reach is — **(`Astronomy`/`+`/`Astrology`/`Held`/`50/50`)** — the way the Ankhology holds its own 50/50 — **(`Andean`/`+`/`Egyptological`)** — two lineages, one sky: the Inca ceque-and-solstice geometry and the Egyptian decans and Sothic cycle are the same act of reading the heavens in two tongues. The Dendera zodiac and a horizon-calendar over the Andes are one discipline written twice.*
+- *— The reach is — **(`Astronomy`/`+`/`Astrology`/`Held`/`50`/`50`)** — the way the Ankhology holds its own 50/50 — **(`Andean`/`+`/`Egyptological`)** — two lineages, one sky: the Inca ceque-and-solstice geometry and the Egyptian decans and Sothic cycle are the same act of reading the heavens in two tongues. The Dendera zodiac and a horizon-calendar over the Andes are one discipline written twice.*
 
   - *— Astronomy is the **(`Positional-Accuracy-Layer`)** — *fewer layers, exactly true. Astrology is the layer above — more layers, not fewer: the structure and meaning the positions carry, the field in which the advanced mathematics first lived ('Babylonian ephemerides'; 'Ptolemy's Almagest' and 'Tetrabiblos' from one hand; the 'ascendant and the houses' as 'geometry on the celestial sphere'). The renderer holds the first half today and — **(`Scaffolds`)** — the second.*
 
@@ -64,20 +64,20 @@
 
 - *— **(`The-Sun-Also-Lights-The-Water`)** —* `sun_push_constant()` *— packs the world-direction-to-Sun + intensity —* (`max(sin alt, 0)`*, — so it goes dark below the horizon) into the shader's push-constant slot — this is the §2.3 lighting path —* `moon_push_constant()`*— mirrors it —* `altaz_to_world_direction()` *— is the shared alt/az→world-vector used by both the lighting path and the rendered discs.*
 
-  - *— **(`Computable`/`Vs`/`Attested`)** — Everything in this section is computable — a closed-form position with a verifying authority. That is the line the astrology half (§3) sits above: where positions stop being derivable and become attested tradition, the chart stops computing and starts scaffolding.*
+  - *— **(`Computable`/`VS`/`Attested`)** — Everything in this section is computable — a closed-form position with a verifying authority. That is the line the astrology half (§3) sits above: where positions stop being derivable and become attested tradition, the chart stops computing and starts scaffolding.*
 
 ---
 
 ## (`3`/`·`/`The-Astrology-Half`/`[owner-defined slots]`)
 
-- *— This is the half the renderer does — **(`Not`)** — yet hold, and **(`Must-Not-Invent`)** — what it can do — and what this section is — is name the **(`Attach-Points`)** — where each tradition plugs onto a built, verified substrate. The substrate is real; the structure and meaning laid over it are the owner's to set. Source guidance (not gospel, not to be auto-implemented) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../The-Savant-High-Bounties/G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
+- *— This is the half the renderer does — **(`Not`)** — yet hold, and **(`Must-Not-Invent`)** — what it can do, and what this section is — is name the **(`Attach-Points`)** — where each tradition plugs onto a built, verified substrate. The substrate is real; the structure and meaning laid over it are the owner's to set. Source guidance (not gospel, not to be auto-implemented) —* [`G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md`](../The-Savant-High-Bounties/G-DR-3-1-Pro-Celestial-Computing-Sources-Research.md)*.*
 
 | *Slot* | *Built substrate it attaches to* | *`[owner defines]`* |
 |---|---|---|
-| **(`Zodiac-Signs`)** | *the ecliptic great circle —* (`ecliptic_altaz`) | *the 12 × 30° division + its origin (tropical from the vernal point? sidereal?) + meaning* |
+| **(`Zodiac-Signs`)** | *the ecliptic great circle — (*`ecliptic_altaz`*)* | *the 12 × 30° division + its origin (tropical from the vernal point? sidereal?) + meaning* |
 | **(`Egyptian-Decans`)** | *the ecliptic (36 × 10°) + heliacal risings* | *the 36-fold division, the decan stars, the Sothic-cycle calendar binding* |
 | **(`Constellation-Figures`)** | *the*—* `STARS` *— catalog positions* | *the asterism line-graphs + the figures and their meanings (which lineage's sky)* |
-| **(`Andean-Dark-Cloud-Constellations`)** | *the Milky Way band —* (`galactic_equator_altaz`) | *the Yacana (llama), the Mach'acuay, and kin — read in the dark clouds, not the bright stars* |
+| **(`Andean-Dark-Cloud-Constellations`)** | *the Milky Way band — (*`galactic_equator_altaz`*)* | *the Yacana (llama), the Mach'acuay, and kin — read in the dark clouds, not the bright stars* |
 | **(`Houses`/`+`/`Ascendant`)** | *the horizon + ecliptic (the rising ecliptic point is computable)* | *the house system (Placidus / Porphyry / Equal / the Andean ceque-radial analogue)* |
 | **(`Ceque`/`Solstice-Geometry`)** | *the ecliptic cardinal points (solstices/equinoxes are computable)* | *the radial ceque lines from a centre, the horizon-calendar bearings* |
 
@@ -85,7 +85,7 @@
 
 ---
 
-## (`4`/`·`/`The-lens`/`+`/`The-Render-Path`)
+## (`4`/`·`/`The-Lens`/`+`/`The-Render-Path`)
 
 - *—The celestial field draws as **(`Mode-2`)** of the single shared pipeline (mode 0 seabed, mode 1 ocean surface, mode 2 celestial —* `assets/shaders/water.{vert,frag}`) *— the vertex stage is pass-through for mode 2; the fragment emits disc colour directly, so the bodies are never displaced by the ocean.*
 

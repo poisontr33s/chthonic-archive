@@ -29,6 +29,7 @@
 
 use anyhow::{anyhow, Context, Result};
 use ash::{khr, vk, Device, Instance};
+use ash::vk::Handle;
 use log::{debug, info};
 
 /// Swapchain configuration and state
@@ -43,6 +44,7 @@ pub struct VulkanSwapchain {
     pub images: Vec<vk::Image>,
     pub image_views: Vec<vk::ImageView>,
     pub format: vk::Format,
+    pub image_usage: vk::ImageUsageFlags,
     pub extent: vk::Extent2D,
 
     // === SYNCHRONIZATION (HYBRID STRATEGY) ===
@@ -121,6 +123,10 @@ impl VulkanSwapchain {
         };
         info!("   Image Count: {image_count}");
 
+        let image_usage = vk::ImageUsageFlags::COLOR_ATTACHMENT
+            | vk::ImageUsageFlags::TRANSFER_SRC
+            | vk::ImageUsageFlags::TRANSFER_DST;
+
         // Create swapchain
         let queue_family_indices = [queue_family_index];
         let swapchain_create_info = vk::SwapchainCreateInfoKHR::default()
@@ -130,11 +136,7 @@ impl VulkanSwapchain {
             .image_color_space(format.color_space)
             .image_extent(extent)
             .image_array_layers(1)
-            .image_usage(
-                vk::ImageUsageFlags::COLOR_ATTACHMENT
-                    | vk::ImageUsageFlags::TRANSFER_SRC
-                    | vk::ImageUsageFlags::TRANSFER_DST,
-            )
+            .image_usage(image_usage)
             .image_sharing_mode(vk::SharingMode::EXCLUSIVE)
             .queue_family_indices(&queue_family_indices)
             .pre_transform(support.capabilities.current_transform)
@@ -177,6 +179,7 @@ impl VulkanSwapchain {
             images,
             image_views,
             format: format.format,
+            image_usage,
             extent,
             image_available_semaphores,
             render_finished_semaphores,
@@ -419,6 +422,7 @@ impl VulkanSwapchain {
         &mut self,
         queue: vk::Queue,
         image_index: u32,
+        use_streamline_proxy: bool,
     ) -> Result<bool> {
         // KEY FIX: Use IMAGE-indexed semaphore for present wait
         // This ensures the semaphore won't be reused until this image is re-acquired
@@ -431,7 +435,20 @@ impl VulkanSwapchain {
             .swapchains(&swapchains)
             .image_indices(&image_indices);
 
-        let result = self.loader.queue_present(queue, &present_info);
+        let result = if use_streamline_proxy {
+            let raw = super::streamline_ffi::chthonic_sl_vk_queue_present(
+                queue.as_raw() as usize as *mut _,
+                (&present_info as *const vk::PresentInfoKHR).cast(),
+            );
+            match raw {
+                0 => Ok(false),
+                1000001003 => Ok(true), // VK_SUBOPTIMAL_KHR
+                -1 => self.loader.queue_present(queue, &present_info),
+                code => Err(vk::Result::from_raw(code)),
+            }
+        } else {
+            self.loader.queue_present(queue, &present_info)
+        };
 
         // Advance to next frame slot (we control this counter)
         self.current_frame = (self.current_frame + 1) % self.frames_in_flight;
@@ -492,6 +509,10 @@ impl VulkanSwapchain {
             (min + 1).min(max)
         };
 
+        let image_usage = vk::ImageUsageFlags::COLOR_ATTACHMENT
+            | vk::ImageUsageFlags::TRANSFER_SRC
+            | vk::ImageUsageFlags::TRANSFER_DST;
+
         // Create new swapchain referencing old one
         let queue_family_indices = [queue_family_index];
         let swapchain_create_info = vk::SwapchainCreateInfoKHR::default()
@@ -501,11 +522,7 @@ impl VulkanSwapchain {
             .image_color_space(format.color_space)
             .image_extent(extent)
             .image_array_layers(1)
-            .image_usage(
-                vk::ImageUsageFlags::COLOR_ATTACHMENT
-                    | vk::ImageUsageFlags::TRANSFER_SRC
-                    | vk::ImageUsageFlags::TRANSFER_DST,
-            )
+            .image_usage(image_usage)
             .image_sharing_mode(vk::SharingMode::EXCLUSIVE)
             .queue_family_indices(&queue_family_indices)
             .pre_transform(support.capabilities.current_transform)
@@ -527,6 +544,7 @@ impl VulkanSwapchain {
         let new_image_count = self.images.len();
         self.image_views = Self::create_image_views(device, &self.images, format.format)?;
         self.format = format.format;
+        self.image_usage = image_usage;
         self.extent = extent;
 
         // If image count changed, recreate render_finished semaphores (IMAGE-indexed)

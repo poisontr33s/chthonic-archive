@@ -25,6 +25,12 @@ layout(push_constant) uniform PushConstants {
 layout(set = 0, binding = 0) uniform sampler2D u_displacement_c0;
 layout(set = 0, binding = 1) uniform sampler2D u_displacement_c1;
 
+layout(set = 1, binding = 0) uniform FrameData {
+    mat4 current_motion_view_projection;
+    mat4 previous_motion_view_projection;
+    vec4 sst_data;
+} u_frame;
+
 // World half-extents of the surface grid (must match ocean.rs surface_grid and ocean_compute.rs).
 const float X_HALF = 2.45;
 const float Z_HALF = 0.92;
@@ -81,6 +87,6 @@ void main() {
     v_world_pos    = world.xyz;
     v_normal       = normalize(mat3(pc.model) * nrm);
     v_floor_albedo = in_color;
-    v_clip      = gl_Position;
-    v_prev_clip = pc.projection * pc.view * prev_world;
+    v_clip      = u_frame.current_motion_view_projection * world;
+    v_prev_clip = u_frame.previous_motion_view_projection * prev_world;
 }

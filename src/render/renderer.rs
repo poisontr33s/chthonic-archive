@@ -31,13 +31,16 @@
 //!   real view abstraction, not a scheduler or mode loop.
 
 use anyhow::{Context, Result};
-use ash::{Device, vk};
 use ash::vk::Handle;
+use ash::{vk, Device};
 use glam::{Mat4, Vec3};
 use gpu_allocator::vulkan::{Allocation, AllocationCreateDesc, Allocator};
 use gpu_allocator::MemoryLocation;
 use log::{debug, info};
+use std::sync::atomic::{AtomicI32, Ordering};
 use std::sync::{Arc, Mutex};
+use std::thread::JoinHandle;
+use std::time::Instant;
 
 use super::camera::IsometricCamera;
 use super::pipeline::{PushConstants, Vertex, VulkanPipeline};
@@ -49,6 +52,31 @@ const CELESTIAL_DISC_SEGMENTS: usize = 18;
 const CELESTIAL_CIRCLE_POINTS: usize = 120;
 const SKY_RADIUS: f32 = 4.15;
 const SKY_HORIZON_LIFT: f32 = 0.35;
+const STREAMLINE_DISABLED: i32 = 0;
+const STREAMLINE_PENDING: i32 = 1;
+const STREAMLINE_READY: i32 = 2;
+const STREAMLINE_FAILED: i32 = -1;
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+struct FrameUniform {
+    current_motion_view_projection: [[f32; 4]; 4],
+    previous_motion_view_projection: [[f32; 4]; 4],
+    sst_data: [f32; 4],
+    
+    // Atmosphere constants
+    sun_direction: [f32; 3],
+    bottom_radius: f32,
+    rayleigh_scattering: [f32; 3],
+    top_radius: f32,
+    mie_scattering: [f32; 3],
+    mie_extinction: f32,
+    ozone_absorption: [f32; 3],
+    mie_g: f32,
+    
+    // Weather spine for Stage-3-D cloud advection
+    weather_data: [f32; 4], // [wind_dir, wind_speed, 0.0, 0.0]
+}
 
 /// Main renderer state
 pub struct Renderer {
@@ -66,6 +94,7 @@ pub struct Renderer {
     pub celestial_vertex_memory: vk::DeviceMemory,
     pub celestial_vertex_count: u32,
     pub ocean_compute: super::ocean_compute::OceanCompute,
+    pub atmosphere_compute: super::atmosphere_compute::AtmosphereCompute,
     pub depth_image: vk::Image,
     pub depth_memory: vk::DeviceMemory,
     pub depth_view: vk::ImageView,
@@ -84,16 +113,20 @@ pub struct Renderer {
     pub taa_pipeline_layout: vk::PipelineLayout,
     pub taa_desc_pool: vk::DescriptorPool,
     pub taa_desc_set_layout: vk::DescriptorSetLayout,
-    pub taa_desc_sets: Vec<vk::DescriptorSet>,  // one per frame-in-flight
-    // SST UBO (set=1) — drives ocean surface tint via CHTHONIC_SST_BLEND
+    pub taa_desc_sets: Vec<vk::DescriptorSet>, // one per frame-in-flight
+    // Frame UBO (set=1) — motion-vector matrices plus SST tint.
     pub sst_desc_set_layout: vk::DescriptorSetLayout,
     pub sst_desc_pool: vk::DescriptorPool,
     pub sst_desc_set: vk::DescriptorSet,
     pub sst_ubo_buffer: vk::Buffer,
     pub sst_ubo_memory: vk::DeviceMemory,
+    pub sst_data: [f32; 4],
     pub taa_enabled: bool,
     pub taa_debug: bool,
     pub dlaa_enabled: bool,
+    pub dlaa_reset_pending: bool,
+    pub streamline_init_state: Arc<AtomicI32>,
+    pub streamline_init_thread: Option<JoinHandle<()>>,
     /// Tracks whether each history slot has been written at least once.
     /// Prevents UNDEFINED→GENERAL from discarding valid history on frame N>0.
     pub history_initialized: [bool; 2],
@@ -111,6 +144,7 @@ pub struct Renderer {
     /// Computed once at init (the scene JD is deterministic); queryable at render time and by
     /// the game layer. Meaning stays owner-defined; this is position only.
     pub zodiac_bodies: Vec<(&'static str, usize, &'static str, f64)>,
+    pub weather_spine: super::weather::WeatherSpine,
 }
 
 impl Renderer {
@@ -118,10 +152,82 @@ impl Renderer {
     ///
     /// # Safety
     /// Requires valid Vulkan context
-    pub unsafe fn new(ctx: &VulkanContext, window_size: (u32, u32), bathymetry_vertices: Vec<super::pipeline::Vertex>) -> Result<Self> {
+    pub unsafe fn new(
+        ctx: &VulkanContext,
+        window_size: (u32, u32),
+        bathymetry_vertices: Vec<super::pipeline::Vertex>,
+    ) -> Result<Self> {
         info!("╔══════════════════════════════════════════════════════════════╗");
         info!("║   RENDERER INITIALIZATION - Phase 11                         ║");
         info!("╚══════════════════════════════════════════════════════════════╝");
+
+        let streamline_init_state = Arc::new(AtomicI32::new(STREAMLINE_DISABLED));
+        let mut streamline_init_thread = None;
+        let dlaa_requested = std::env::var("CHTHONIC_DLAA").is_ok();
+        if dlaa_requested {
+            #[cfg(target_os = "windows")]
+            {
+                use std::os::windows::ffi::OsStrExt;
+
+                streamline_init_state.store(STREAMLINE_PENDING, Ordering::Release);
+                let init_state = Arc::clone(&streamline_init_state);
+                let plugin_dir = std::env::current_exe()
+                    .ok()
+                    .and_then(|p| p.parent().map(|d| d.to_path_buf()))
+                    .unwrap_or_else(|| std::path::PathBuf::from("."));
+                let plugin_path_wide: Vec<u16> = std::ffi::OsStr::new(&plugin_dir)
+                    .encode_wide()
+                    .chain(std::iter::once(0u16))
+                    .collect();
+                let vk_instance = ctx.instance.handle().as_raw() as usize;
+                let vk_physical_device = ctx.physical_device.as_raw() as usize;
+                let vk_device = ctx.device.handle().as_raw() as usize;
+                let queue_family_index = ctx.queue_family_index;
+
+                info!("CHTHONIC_DLAA: Streamline async init started; TAA remains active");
+                streamline_init_thread = Some(std::thread::spawn(move || {
+                    let sl_init_started = Instant::now();
+                    let r = super::streamline_ffi::chthonic_sl_init(
+                        plugin_path_wide.as_ptr(),
+                        0xCA7A_1_0Cu32,
+                    );
+                    let sl_init_ms = sl_init_started.elapsed().as_secs_f64() * 1000.0;
+                    println!(
+                        "Streamline profile: async chthonic_sl_init returned {r} in {sl_init_ms:.2} ms"
+                    );
+                    if r != 0 {
+                        init_state.store(STREAMLINE_FAILED, Ordering::Release);
+                        return;
+                    }
+
+                    let sl_vk_info_started = Instant::now();
+                    let r = super::streamline_ffi::chthonic_sl_set_vulkan_info(
+                        vk_instance as *mut _,
+                        vk_physical_device as *mut _,
+                        vk_device as *mut _,
+                        0,
+                        queue_family_index,
+                        0,
+                        queue_family_index,
+                    );
+                    let sl_vk_info_ms = sl_vk_info_started.elapsed().as_secs_f64() * 1000.0;
+                    println!(
+                        "Streamline profile: async chthonic_sl_set_vulkan_info returned {r} in {sl_vk_info_ms:.2} ms"
+                    );
+                    if r != 0 {
+                        super::streamline_ffi::chthonic_sl_shutdown();
+                        init_state.store(STREAMLINE_FAILED, Ordering::Release);
+                        return;
+                    }
+
+                    init_state.store(STREAMLINE_READY, Ordering::Release);
+                }));
+            }
+            #[cfg(not(target_os = "windows"))]
+            {
+                info!("CHTHONIC_DLAA: Streamline is Windows-only — DLAA disabled");
+            }
+        }
 
         // Create swapchain
         let swapchain = VulkanSwapchain::new(
@@ -138,13 +244,32 @@ impl Renderer {
         // threaded into the graphics pipeline layout (water.vert samples the displacement image).
         let ocean_compute = super::ocean_compute::OceanCompute::new(ctx)?;
 
-        // --- SST UBO (set=1) ---
-        // 16-byte layout: [sst_r, sst_g, sst_b, sst_blend] = vec4 in GLSL.
-        // Defaults: warm-water tint vec3(0.12, 0.45, 0.55), blend from CHTHONIC_SST_BLEND.
-        let (sst_desc_set_layout, sst_desc_pool, sst_desc_set, sst_ubo_buffer, sst_ubo_memory) =
-            Self::create_sst_ubo(ctx)?;
+        // --- Frame UBO (set=1) ---
+        // Motion-vector matrices plus [sst_r, sst_g, sst_b, sst_blend].
+        let (
+            sst_desc_set_layout,
+            sst_desc_pool,
+            sst_desc_set,
+            sst_ubo_buffer,
+            sst_ubo_memory,
+            sst_data,
+        ) = Self::create_sst_ubo(ctx)?;
 
-        // Create pipeline — set 0: ocean displacement sampler (water.vert); set 1: SST UBO (water.frag).
+        let atmosphere_compute = super::atmosphere_compute::AtmosphereCompute::new(ctx, sst_desc_set_layout)?;
+
+        // Write sky view sampler to set 1, binding 1
+        let sky_view_info = vk::DescriptorImageInfo::default()
+            .image_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)
+            .image_view(atmosphere_compute.sky_view_view)
+            .sampler(atmosphere_compute.sampler);
+        let write = vk::WriteDescriptorSet::default()
+            .dst_set(sst_desc_set)
+            .dst_binding(1)
+            .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+            .image_info(std::slice::from_ref(&sky_view_info));
+        ctx.device.update_descriptor_sets(std::slice::from_ref(&write), &[]);
+
+        // Create pipeline — set 0: ocean displacement sampler; set 1: frame UBO.
         let pipeline = VulkanPipeline::new(
             &ctx.device,
             &ctx.physical_device_properties,
@@ -178,7 +303,10 @@ impl Renderer {
         // Rung 3: bathymetry vertices were loaded off the render thread by the caller
         // (std::thread + join before Renderer::new). IO is complete by the time we arrive here.
         let vertices = bathymetry_vertices;
-        info!("🌊 Bathymetry mesh: {0} vertices (pre-loaded off render thread)", vertices.len());
+        info!(
+            "🌊 Bathymetry mesh: {0} vertices (pre-loaded off render thread)",
+            vertices.len()
+        );
         let (vertex_buffer, vertex_buffer_memory) = Self::create_vertex_buffer(ctx, &vertices)?;
 
         // Rung 4: LOD clipmap ocean mesh (levels=4, ring=32 → ~13 K cells, finest at centre).
@@ -186,7 +314,11 @@ impl Renderer {
         let (ocean_vertex_buffer, ocean_vertex_memory) =
             Self::create_vertex_buffer(ctx, &ocean_vertices)?;
         let ocean_vertex_count = u32::try_from(ocean_vertices.len()).unwrap();
-        info!("🌊 Ocean clipmap: {0} vertices ({1} triangles)", ocean_vertices.len(), ocean_vertices.len() / 3);
+        info!(
+            "🌊 Ocean clipmap: {0} vertices ({1} triangles)",
+            ocean_vertices.len(),
+            ocean_vertices.len() / 3
+        );
 
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
@@ -210,11 +342,8 @@ impl Renderer {
 
         // Rung 6.2: the verified celestial field made visible in the scene sky, facing the lens.
         let (cf_eye, cf_target) = lens.vantage(&camera, heading);
-        let celestial_vertices = Self::celestial_field_vertices(
-            cf_eye,
-            cf_target,
-            super::cosmos::scene_julian_day(),
-        );
+        let celestial_vertices =
+            Self::celestial_field_vertices(cf_eye, cf_target, super::cosmos::scene_julian_day());
         let (celestial_vertex_buffer, celestial_vertex_memory) =
             Self::create_vertex_buffer(ctx, &celestial_vertices)?;
         let celestial_vertex_count = u32::try_from(celestial_vertices.len()).unwrap();
@@ -232,7 +361,10 @@ impl Renderer {
                     .iter()
                     .find(|(k, _)| k == "ayanamsa_deg")
                     .map_or("?", |(_, v)| v.as_str());
-                info!("☥ Correspondence [{}]: ayanamsa {ayan}° (origin sirius-alcyone-midpoint)", reading.slot);
+                info!(
+                    "☥ Correspondence [{}]: ayanamsa {ayan}° (origin sirius-alcyone-midpoint)",
+                    reading.slot
+                );
             }
         }
         // Stage 2b/2c: all seven bodies in their Ankhological signs — stored on the renderer so
@@ -261,53 +393,28 @@ impl Renderer {
         let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
             Self::create_history_resources(ctx, swapchain.extent)?;
         let taa_enabled = std::env::var("CHTHONIC_TAA").map_or(true, |v| v != "off");
-        let taa_debug   = std::env::var("CHTHONIC_TAA_DEBUG").is_ok();
+        let taa_debug = std::env::var("CHTHONIC_TAA_DEBUG").is_ok();
         let (taa_pipeline, taa_pipeline_layout, taa_desc_pool, taa_desc_set_layout, taa_desc_sets) =
-            Self::create_taa_pipeline(ctx, vk::Format::R16G16B16A16_SFLOAT, swapchain.frames_in_flight,
-                &history_color_views, history_sampler,
-                &offscreen_color_view, &motion_vector_view)?;
-        let temporal = TemporalState::new(camera.view_projection());
+            Self::create_taa_pipeline(
+                ctx,
+                vk::Format::R8G8B8A8_UNORM,
+                swapchain.frames_in_flight,
+                &history_color_views,
+                history_sampler,
+                &offscreen_color_view,
+                &motion_vector_view,
+            )?;
+        let temporal_aspect = swapchain.extent.width as f32 / swapchain.extent.height.max(1) as f32;
+        let (initial_view, initial_proj) =
+            super::lens::matrices(lens, &camera, heading, temporal_aspect);
+        let temporal = TemporalState::new(initial_proj * initial_view);
 
-        // --- Streamline / DLAA init ---
-        let mut dlaa_enabled = std::env::var("CHTHONIC_DLAA").is_ok();
-        if dlaa_enabled {
-            #[cfg(target_os = "windows")]
-            {
-                use std::os::windows::ffi::OsStrExt;
-                let plugin_dir = std::env::current_exe()
-                    .ok()
-                    .and_then(|p| p.parent().map(|d| d.to_path_buf()))
-                    .unwrap_or_else(|| std::path::PathBuf::from("."));
-                let plugin_path_wide: Vec<u16> = std::ffi::OsStr::new(&plugin_dir)
-                    .encode_wide()
-                    .chain(std::iter::once(0u16))
-                    .collect();
-                let r = super::streamline_ffi::chthonic_sl_init(plugin_path_wide.as_ptr(), 0);
-                if r != 0 {
-                    info!("Streamline init returned {r} — DLAA disabled");
-                    dlaa_enabled = false;
-                } else {
-                    let r = super::streamline_ffi::chthonic_sl_set_vulkan_info(
-                        ctx.instance.handle().as_raw() as usize as *mut _,
-                        ctx.physical_device.as_raw() as usize as *mut _,
-                        ctx.device.handle().as_raw() as usize as *mut _,
-                        0,
-                        ctx.queue_family_index,
-                        0,
-                        ctx.queue_family_index,
-                    );
-                    if r != 0 {
-                        info!("Streamline set_vulkan_info returned {r} — DLAA disabled");
-                        dlaa_enabled = false;
-                    }
-                }
-            }
-            #[cfg(not(target_os = "windows"))]
-            {
-                info!("CHTHONIC_DLAA: Streamline is Windows-only — DLAA disabled");
-                dlaa_enabled = false;
-            }
-        }
+        // DLAA starts disabled. The async Streamline worker publishes readiness; the render loop
+        // flips from TAA to DLAA only after the worker has completed.
+        let dlaa_enabled = false;
+
+        // Stage-3-C Weather Spine
+        let weather_spine = super::weather::WeatherSpine::new("live_boundary.json");
 
         Ok(Self {
             swapchain,
@@ -324,6 +431,7 @@ impl Renderer {
             celestial_vertex_memory,
             celestial_vertex_count,
             ocean_compute,
+            atmosphere_compute,
             depth_image,
             depth_memory,
             depth_view,
@@ -347,9 +455,13 @@ impl Renderer {
             sst_desc_set,
             sst_ubo_buffer,
             sst_ubo_memory,
+            sst_data,
             taa_enabled,
             taa_debug,
             dlaa_enabled,
+            dlaa_reset_pending: false,
+            streamline_init_state,
+            streamline_init_thread,
             history_initialized: [false, false],
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
@@ -361,6 +473,7 @@ impl Renderer {
             camera,
             temporal,
             zodiac_bodies,
+            weather_spine,
         })
     }
 
@@ -437,7 +550,10 @@ impl Renderer {
             Some("zodiac") | Some("ecliptic") => {
                 let origin_lon = super::zodiac::sign_boundaries_tropical(jd)[0];
                 let (alt, az) = super::cosmos::ecliptic_altaz(origin_lon, lat, lon, jd);
-                super::lens::Heading { az_deg: az as f32, alt_deg: alt as f32 }
+                super::lens::Heading {
+                    az_deg: az as f32,
+                    alt_deg: alt as f32,
+                }
             }
             _ => super::lens::Heading::from_env(),
         }
@@ -583,7 +699,10 @@ impl Renderer {
         // midpoint — is the gold keystone; the other eleven are cool studs that punctuate the
         // ecliptic into its sectors. Below-horizon spokes self-cull like every other body.
         let mut wheel_up = 0_u32;
-        for (k, &boundary_lon) in super::zodiac::sign_boundaries_tropical(jd).iter().enumerate() {
+        for (k, &boundary_lon) in super::zodiac::sign_boundaries_tropical(jd)
+            .iter()
+            .enumerate()
+        {
             let (alt, az) = super::cosmos::ecliptic_altaz(boundary_lon, lat, lon, jd);
             let dir = super::cosmos::altaz_to_world_direction(alt, az);
             // Form (the chosen layer): a lavender no body or great circle wears, so the boundaries
@@ -747,7 +866,7 @@ impl Renderer {
             .array_layers(1)
             .samples(vk::SampleCountFlags::TYPE_1)
             .tiling(vk::ImageTiling::OPTIMAL)
-            .usage(vk::ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
+            .usage(vk::ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT | vk::ImageUsageFlags::SAMPLED)
             .sharing_mode(vk::SharingMode::EXCLUSIVE)
             .initial_layout(vk::ImageLayout::UNDEFINED);
         let image = ctx
@@ -914,13 +1033,18 @@ impl Renderer {
         Ok((image, memory, view))
     }
 
-    /// Create the history ping-pong buffers for TAA (Gate 2).
-    /// Format is R16G16B16A16_SFLOAT (HDR). Needs COLOR_ATTACHMENT and SAMPLED.
+    /// Create the history ping-pong buffers for TAA/DLAA output (Gate 2).
+    /// R8G8B8A8_UNORM is storage-capable on the target path and can be sampled/blitted.
     unsafe fn create_history_resources(
         ctx: &VulkanContext,
         extent: vk::Extent2D,
-    ) -> Result<([vk::Image; 2], [Option<Allocation>; 2], [vk::ImageView; 2], vk::Sampler)> {
-        let format = vk::Format::R16G16B16A16_SFLOAT;
+    ) -> Result<(
+        [vk::Image; 2],
+        [Option<Allocation>; 2],
+        [vk::ImageView; 2],
+        vk::Sampler,
+    )> {
+        let format = vk::Format::R8G8B8A8_UNORM;
         let image_info = vk::ImageCreateInfo::default()
             .image_type(vk::ImageType::TYPE_2D)
             .format(format)
@@ -936,6 +1060,7 @@ impl Renderer {
             .usage(
                 vk::ImageUsageFlags::COLOR_ATTACHMENT
                     | vk::ImageUsageFlags::SAMPLED
+                    | vk::ImageUsageFlags::STORAGE
                     | vk::ImageUsageFlags::TRANSFER_DST
                     | vk::ImageUsageFlags::TRANSFER_SRC,
             )
@@ -954,14 +1079,20 @@ impl Renderer {
             images[i] = image;
 
             let req = ctx.device.get_image_memory_requirements(image);
-            let alloc = ctx.allocator.lock().unwrap().allocate(&AllocationCreateDesc {
-                name: &format!("taa_history_{i}"),
-                requirements: req,
-                location: MemoryLocation::GpuOnly,
-                linear: false,
-                allocation_scheme: gpu_allocator::vulkan::AllocationScheme::GpuAllocatorManaged,
-            }).context("gpu-allocator: alloc history image")?;
-            ctx.device.bind_image_memory(image, alloc.memory(), alloc.offset())?;
+            let alloc = ctx
+                .allocator
+                .lock()
+                .unwrap()
+                .allocate(&AllocationCreateDesc {
+                    name: &format!("taa_history_{i}"),
+                    requirements: req,
+                    location: MemoryLocation::GpuOnly,
+                    linear: false,
+                    allocation_scheme: gpu_allocator::vulkan::AllocationScheme::GpuAllocatorManaged,
+                })
+                .context("gpu-allocator: alloc history image")?;
+            ctx.device
+                .bind_image_memory(image, alloc.memory(), alloc.offset())?;
             allocs[i] = Some(alloc);
 
             let view_info = vk::ImageViewCreateInfo::default()
@@ -995,10 +1126,8 @@ impl Renderer {
         Ok((images, allocs, views, sampler))
     }
 
-    /// Build the TAA resolve pipeline (Gate 3).
-    /// Create the SST UBO for ocean surface tint (set=1, binding=0 in water.frag).
-    /// Returns (set_layout, pool, set, buffer, memory).
-    /// UBO layout: [sst_r, sst_g, sst_b, sst_blend] = 16 bytes (vec4 in GLSL std140).
+    /// Create the frame UBO (set=1, binding=0).
+    /// Layout: current unjittered VP, previous unjittered VP, SST vec4.
     unsafe fn create_sst_ubo(
         ctx: &VulkanContext,
     ) -> Result<(
@@ -1007,39 +1136,62 @@ impl Renderer {
         vk::DescriptorSet,
         vk::Buffer,
         vk::DeviceMemory,
+        [f32; 4],
     )> {
-        let binding = vk::DescriptorSetLayoutBinding::default()
-            .binding(0)
-            .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
-            .descriptor_count(1)
-            .stage_flags(vk::ShaderStageFlags::FRAGMENT);
-        let set_layout = ctx.device.create_descriptor_set_layout(
-            &vk::DescriptorSetLayoutCreateInfo::default().bindings(std::slice::from_ref(&binding)),
-            None,
-        ).context("SST descriptor set layout")?;
+        let bindings = [
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(0)
+                .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT | vk::ShaderStageFlags::COMPUTE),
+            vk::DescriptorSetLayoutBinding::default()
+                .binding(1)
+                .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+                .descriptor_count(1)
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+        ];
+        let set_layout = ctx
+            .device
+            .create_descriptor_set_layout(
+                &vk::DescriptorSetLayoutCreateInfo::default()
+                    .bindings(&bindings),
+                None,
+            )
+            .context("frame UBO descriptor set layout")?;
 
-        let pool_size = vk::DescriptorPoolSize::default()
-            .ty(vk::DescriptorType::UNIFORM_BUFFER)
-            .descriptor_count(1);
-        let pool = ctx.device.create_descriptor_pool(
-            &vk::DescriptorPoolCreateInfo::default()
-                .max_sets(1)
-                .pool_sizes(std::slice::from_ref(&pool_size)),
-            None,
-        ).context("SST descriptor pool")?;
+        let pool_sizes = [
+            vk::DescriptorPoolSize::default().ty(vk::DescriptorType::UNIFORM_BUFFER).descriptor_count(1),
+            vk::DescriptorPoolSize::default().ty(vk::DescriptorType::COMBINED_IMAGE_SAMPLER).descriptor_count(1),
+        ];
+        let pool = ctx
+            .device
+            .create_descriptor_pool(
+                &vk::DescriptorPoolCreateInfo::default()
+                    .max_sets(1)
+                    .pool_sizes(&pool_sizes),
+                None,
+            )
+            .context("frame UBO descriptor pool")?;
 
-        let desc_set = ctx.device.allocate_descriptor_sets(
-            &vk::DescriptorSetAllocateInfo::default()
-                .descriptor_pool(pool)
-                .set_layouts(std::slice::from_ref(&set_layout)),
-        ).context("SST descriptor set")?[0];
+        let desc_set = ctx
+            .device
+            .allocate_descriptor_sets(
+                &vk::DescriptorSetAllocateInfo::default()
+                    .descriptor_pool(pool)
+                    .set_layouts(std::slice::from_ref(&set_layout)),
+            )
+            .context("frame UBO descriptor set")?[0];
 
-        // 16-byte UBO: [sst_r, sst_g, sst_b, sst_blend]
+        let ubo_size = u64::try_from(std::mem::size_of::<FrameUniform>())
+            .expect("FrameUniform size too large");
         let buffer_info = vk::BufferCreateInfo::default()
-            .size(16)
+            .size(ubo_size)
             .usage(vk::BufferUsageFlags::UNIFORM_BUFFER)
             .sharing_mode(vk::SharingMode::EXCLUSIVE);
-        let buffer = ctx.device.create_buffer(&buffer_info, None).context("SST UBO buffer")?;
+        let buffer = ctx
+            .device
+            .create_buffer(&buffer_info, None)
+            .context("frame UBO buffer")?;
 
         let mem_reqs = ctx.device.get_buffer_memory_requirements(buffer);
         let mem_type = Self::find_memory_type(
@@ -1047,12 +1199,15 @@ impl Renderer {
             mem_reqs.memory_type_bits,
             vk::MemoryPropertyFlags::HOST_VISIBLE | vk::MemoryPropertyFlags::HOST_COHERENT,
         )?;
-        let memory = ctx.device.allocate_memory(
-            &vk::MemoryAllocateInfo::default()
-                .allocation_size(mem_reqs.size)
-                .memory_type_index(mem_type),
-            None,
-        ).context("SST UBO memory")?;
+        let memory = ctx
+            .device
+            .allocate_memory(
+                &vk::MemoryAllocateInfo::default()
+                    .allocation_size(mem_reqs.size)
+                    .memory_type_index(mem_type),
+                None,
+            )
+            .context("frame UBO memory")?;
         ctx.device.bind_buffer_memory(buffer, memory, 0)?;
 
         // Read CHTHONIC_SST_BLEND env var (default 0.0 = no SST shift).
@@ -1062,27 +1217,65 @@ impl Renderer {
             .unwrap_or(0.0_f32)
             .clamp(0.0, 1.0);
         // Warm-water tint default: slightly more teal/cyan than the canonical cold tint.
-        let data: [f32; 4] = [0.12, 0.45, 0.55, sst_blend];
-        let ptr = ctx.device.map_memory(memory, 0, 16, vk::MemoryMapFlags::empty())?;
-        std::ptr::copy_nonoverlapping(data.as_ptr().cast::<u8>(), ptr.cast::<u8>(), 16);
-        ctx.device.unmap_memory(memory);
+        let sst_data: [f32; 4] = [0.12, 0.45, 0.55, sst_blend];
+        let jd = super::cosmos::scene_julian_day();
+        let sun_push = super::cosmos::sun_push_constant(
+            super::cosmos::NEW_PROVIDENCE_LAT_DEG,
+            super::cosmos::NEW_PROVIDENCE_LON_DEG,
+            jd,
+        );
+        let sun_direction = [sun_push[0], sun_push[1], sun_push[2]];
+
+        let initial = FrameUniform {
+            current_motion_view_projection: Mat4::IDENTITY.to_cols_array_2d(),
+            previous_motion_view_projection: Mat4::IDENTITY.to_cols_array_2d(),
+            sst_data,
+            sun_direction,
+            bottom_radius: 6360.0,
+            rayleigh_scattering: [0.0058, 0.0135, 0.0331],
+            top_radius: 6460.0,
+            mie_scattering: [0.003996, 0.003996, 0.003996],
+            mie_extinction: 0.00444,
+            ozone_absorption: [0.00065, 0.001881, 0.000085],
+            mie_g: 0.8,
+            weather_data: [90.0, 3.8, 0.0, 0.0],
+        };
+        Self::write_frame_ubo(&ctx.device, memory, &initial)?;
 
         // Wire the buffer into the descriptor set.
         let buf_info = vk::DescriptorBufferInfo::default()
             .buffer(buffer)
             .offset(0)
-            .range(16);
+            .range(ubo_size);
         let write = vk::WriteDescriptorSet::default()
             .dst_set(desc_set)
             .dst_binding(0)
             .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
             .buffer_info(std::slice::from_ref(&buf_info));
-        ctx.device.update_descriptor_sets(std::slice::from_ref(&write), &[]);
+        ctx.device
+            .update_descriptor_sets(std::slice::from_ref(&write), &[]);
 
         if sst_blend > 0.0 {
             info!("SST tint active: blend={sst_blend:.2}");
         }
-        Ok((set_layout, pool, desc_set, buffer, memory))
+        Ok((set_layout, pool, desc_set, buffer, memory, sst_data))
+    }
+
+    unsafe fn write_frame_ubo(
+        device: &Device,
+        memory: vk::DeviceMemory,
+        data: &FrameUniform,
+    ) -> Result<()> {
+        let size = u64::try_from(std::mem::size_of::<FrameUniform>())
+            .expect("FrameUniform size too large");
+        let ptr = device.map_memory(memory, 0, size, vk::MemoryMapFlags::empty())?;
+        std::ptr::copy_nonoverlapping(
+            (data as *const FrameUniform).cast::<u8>(),
+            ptr.cast::<u8>(),
+            std::mem::size_of::<FrameUniform>(),
+        );
+        device.unmap_memory(memory);
+        Ok(())
     }
 
     /// Descriptor set: binding 0 = current (SAMPLED), 1 = history (SAMPLED), 2 = motion (SAMPLED).
@@ -1097,7 +1290,13 @@ impl Renderer {
         history_sampler: vk::Sampler,
         current_view: &vk::ImageView,
         motion_view: &vk::ImageView,
-    ) -> Result<(vk::Pipeline, vk::PipelineLayout, vk::DescriptorPool, vk::DescriptorSetLayout, Vec<vk::DescriptorSet>)> {
+    ) -> Result<(
+        vk::Pipeline,
+        vk::PipelineLayout,
+        vk::DescriptorPool,
+        vk::DescriptorSetLayout,
+        Vec<vk::DescriptorSet>,
+    )> {
         let device = &ctx.device;
 
         // --- descriptor set layout: 3 combined image samplers ---
@@ -1178,15 +1377,18 @@ impl Renderer {
                 .image_layout(vk::ImageLayout::GENERAL);
             let writes = [
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(0)
+                    .dst_set(ds)
+                    .dst_binding(0)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_current)),
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(1)
+                    .dst_set(ds)
+                    .dst_binding(1)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_history)),
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(2)
+                    .dst_set(ds)
+                    .dst_binding(2)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_motion)),
             ];
@@ -1197,14 +1399,18 @@ impl Renderer {
         let vert_spv = include_bytes!(concat!(env!("OUT_DIR"), "/taa_resolve.vert.spv"));
         let frag_spv = include_bytes!(concat!(env!("OUT_DIR"), "/taa_resolve.frag.spv"));
         // include_bytes! is only u8-aligned; convert to u32 slice via chunks, matching pipeline.rs.
-        let vert_u32: Vec<u32> = vert_spv.chunks_exact(4)
-            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
-        let frag_u32: Vec<u32> = frag_spv.chunks_exact(4)
-            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])).collect();
-        let vert_mod = device.create_shader_module(
-            &vk::ShaderModuleCreateInfo::default().code(&vert_u32), None)?;
-        let frag_mod = device.create_shader_module(
-            &vk::ShaderModuleCreateInfo::default().code(&frag_u32), None)?;
+        let vert_u32: Vec<u32> = vert_spv
+            .chunks_exact(4)
+            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]]))
+            .collect();
+        let frag_u32: Vec<u32> = frag_spv
+            .chunks_exact(4)
+            .map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]]))
+            .collect();
+        let vert_mod = device
+            .create_shader_module(&vk::ShaderModuleCreateInfo::default().code(&vert_u32), None)?;
+        let frag_mod = device
+            .create_shader_module(&vk::ShaderModuleCreateInfo::default().code(&frag_u32), None)?;
         let entry = std::ffi::CStr::from_bytes_with_nul(b"main\0").unwrap();
         let stages = [
             vk::PipelineShaderStageCreateInfo::default()
@@ -1218,11 +1424,12 @@ impl Renderer {
         ];
 
         // --- pipeline ---
-        let vertex_input   = vk::PipelineVertexInputStateCreateInfo::default(); // no vertex buffer
+        let vertex_input = vk::PipelineVertexInputStateCreateInfo::default(); // no vertex buffer
         let input_assembly = vk::PipelineInputAssemblyStateCreateInfo::default()
             .topology(vk::PrimitiveTopology::TRIANGLE_LIST);
         let viewport_state = vk::PipelineViewportStateCreateInfo::default()
-            .viewport_count(1).scissor_count(1);
+            .viewport_count(1)
+            .scissor_count(1);
         let rasterizer = vk::PipelineRasterizationStateCreateInfo::default()
             .polygon_mode(vk::PolygonMode::FILL)
             .cull_mode(vk::CullModeFlags::NONE)
@@ -1235,8 +1442,8 @@ impl Renderer {
         let color_blend = vk::PipelineColorBlendStateCreateInfo::default()
             .attachments(std::slice::from_ref(&blend_attach));
         let dyn_states = [vk::DynamicState::VIEWPORT, vk::DynamicState::SCISSOR];
-        let dynamic_state = vk::PipelineDynamicStateCreateInfo::default()
-            .dynamic_states(&dyn_states);
+        let dynamic_state =
+            vk::PipelineDynamicStateCreateInfo::default().dynamic_states(&dyn_states);
 
         // Dynamic rendering — output directly to swapchain format, no depth/stencil.
         let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
@@ -1262,6 +1469,55 @@ impl Renderer {
         device.destroy_shader_module(frag_mod, None);
 
         Ok((pipeline, pipeline_layout, desc_pool, set_layout, desc_sets))
+    }
+
+    fn join_streamline_init_thread(&mut self) {
+        if let Some(handle) = self.streamline_init_thread.take() {
+            if handle.join().is_err() {
+                info!("Streamline async init thread panicked — DLAA disabled");
+                self.streamline_init_state
+                    .store(STREAMLINE_FAILED, Ordering::Release);
+            }
+        }
+    }
+
+    unsafe fn poll_streamline_dlaa_ready(&mut self) {
+        if self.dlaa_enabled {
+            return;
+        }
+
+        match self.streamline_init_state.load(Ordering::Acquire) {
+            STREAMLINE_READY => {
+                self.join_streamline_init_thread();
+                let sl_options_started = Instant::now();
+                let r = super::streamline_ffi::chthonic_sl_set_dlaa_options(
+                    self.swapchain.extent.width,
+                    self.swapchain.extent.height,
+                );
+                let sl_options_ms = sl_options_started.elapsed().as_secs_f64() * 1000.0;
+                println!(
+                    "Streamline profile: enable chthonic_sl_set_dlaa_options returned {r} in {sl_options_ms:.2} ms"
+                );
+                if r == 0 {
+                    self.dlaa_enabled = true;
+                    self.taa_enabled = false;
+                    self.dlaa_reset_pending = true;
+                    info!("Streamline DLAA ready — switching from TAA fallback to DLAA");
+                } else {
+                    info!("Streamline DLSS options returned {r} during async enable — keeping TAA");
+                    super::streamline_ffi::chthonic_sl_shutdown();
+                    self.streamline_init_state
+                        .store(STREAMLINE_DISABLED, Ordering::Release);
+                }
+            }
+            STREAMLINE_FAILED => {
+                self.join_streamline_init_thread();
+                info!("Streamline async init failed — keeping TAA fallback");
+                self.streamline_init_state
+                    .store(STREAMLINE_DISABLED, Ordering::Release);
+            }
+            _ => {}
+        }
     }
 
     /// Capture the just-presented swapchain image to a PNG so the build loop can
@@ -1415,6 +1671,8 @@ impl Renderer {
         ctx: &VulkanContext,
         layer_color: [f32; 4],
     ) -> Result<bool> {
+        self.poll_streamline_dlaa_ready();
+
         // Acquire next swapchain image
         let (image_index, needs_resize) = self.swapchain.acquire_next_image(&ctx.device)?;
 
@@ -1441,7 +1699,16 @@ impl Renderer {
 
         // === RUNG 4.2: ocean displacement compute (writes the displacement field) ===
         let ocean_time = self.frame_index as f32 * 0.02;
+        let weather_state = self.weather_spine.get_state();
+        self.ocean_compute.update_spectrum(&weather_state);
         self.ocean_compute.dispatch(&ctx.device, cmd, ocean_time);
+
+        // === RUNG 6: atmosphere LUTs compute ===
+        if self.frame_index == 0 {
+            self.atmosphere_compute.dispatch_transmittance(&ctx.device, cmd, self.sst_desc_set);
+            self.atmosphere_compute.dispatch_multiscatter(&ctx.device, cmd, self.sst_desc_set);
+            self.atmosphere_compute.dispatch_skyview(&ctx.device, cmd, self.sst_desc_set);
+        }
 
         // === TRANSITION IMAGE TO COLOR ATTACHMENT ===
         let image_barrier_to_render = vk::ImageMemoryBarrier2::default()
@@ -1590,7 +1857,7 @@ impl Renderer {
             &[self.ocean_compute.graphics_set],
             &[],
         );
-        // Bind the SST UBO (set 1) so water.frag can read the surface tint.
+        // Bind the frame UBO (set 1): water.vert reads motion matrices; water.frag reads SST tint.
         ctx.device.cmd_bind_descriptor_sets(
             cmd,
             vk::PipelineBindPoint::GRAPHICS,
@@ -1616,13 +1883,47 @@ impl Renderer {
         if self.frame_index == 0 {
             info!("🔭 Lens: {}", self.lens.label());
         }
-        let temporal_frame = self.temporal.begin_frame(self.swapchain.extent, lens_view, lens_proj);
+        let temporal_frame = self
+            .temporal
+            .begin_frame(self.swapchain.extent, lens_view, lens_proj);
+        let jd = super::cosmos::scene_julian_day();
+        let sun_push = super::cosmos::sun_push_constant(
+            super::cosmos::NEW_PROVIDENCE_LAT_DEG,
+            super::cosmos::NEW_PROVIDENCE_LON_DEG,
+            jd,
+        );
+        let sun_direction = [sun_push[0], sun_push[1], sun_push[2]];
+
+        let frame_uniform = FrameUniform {
+            current_motion_view_projection: temporal_frame
+                .current_view_projection
+                .to_cols_array_2d(),
+            previous_motion_view_projection: temporal_frame
+                .previous_view_projection
+                .to_cols_array_2d(),
+            sst_data: self.sst_data,
+            sun_direction,
+            bottom_radius: 6360.0,
+            rayleigh_scattering: [0.0058, 0.0135, 0.0331],
+            top_radius: 6460.0,
+            mie_scattering: [0.003996, 0.003996, 0.003996],
+            mie_extinction: 0.00444,
+            ozone_absorption: [0.00065, 0.001881, 0.000085],
+            mie_g: 0.8,
+            weather_data: [weather_state.wind_dir, weather_state.wind_speed, 0.0, 0.0],
+        };
+        Self::write_frame_ubo(&ctx.device, self.sst_ubo_memory, &frame_uniform)?;
         let mut push_constants = PushConstants {
             model: Mat4::IDENTITY.to_cols_array_2d(),
             view: lens_view.to_cols_array_2d(),
             projection: temporal_frame.projection.to_cols_array_2d(),
             layer_color,
-            params: [time, 0.0, FRAME_DT, if self.show_motion { 1.0 } else { 0.0 }],
+            params: [
+                time,
+                0.0,
+                FRAME_DT,
+                if self.show_motion { 1.0 } else { 0.0 },
+            ],
         };
         Self::draw_mode(
             &ctx.device,
@@ -1664,7 +1965,7 @@ impl Renderer {
         // TAA path: transitions inputs to SHADER_READ_ONLY, runs the fullscreen resolve pipeline
         // (neighbourhood clamp + blend), writes directly to the swapchain image.
         // Fallback: CHTHONIC_TAA=off preserves the Gate 1 verbatim-copy path for regression diff.
-        let cur_hist  = (self.frame_index % 2) as usize;
+        let cur_hist = (self.frame_index % 2) as usize;
         let prev_hist = 1 - cur_hist;
 
         let color_subresource = vk::ImageSubresourceRange {
@@ -1677,13 +1978,20 @@ impl Renderer {
 
         if self.dlaa_enabled {
             // === RESOLVE (DLAA via Streamline) ===
-            // Transition color + mvec from COLOR_ATTACHMENT_OPTIMAL → GENERAL.
-            // Depth from DEPTH_ATTACHMENT_OPTIMAL → GENERAL.
-            // Swapchain output stays UNDEFINED — Streamline handles its layout internally.
+            // Transition inputs to readable layouts and the history slot to GENERAL for
+            // Streamline's storage output. The swapchain remains a present-only target; we
+            // blit the DLAA output into it after evaluation.
             let depth_subresource = vk::ImageSubresourceRange {
                 aspect_mask: vk::ImageAspectFlags::DEPTH,
-                base_mip_level: 0, level_count: 1,
-                base_array_layer: 0, layer_count: 1,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            };
+            let output_old_layout = if self.history_initialized[cur_hist] {
+                vk::ImageLayout::GENERAL
+            } else {
+                vk::ImageLayout::UNDEFINED
             };
             let barriers_sl = [
                 vk::ImageMemoryBarrier2::default()
@@ -1713,20 +2021,38 @@ impl Renderer {
                     .new_layout(vk::ImageLayout::GENERAL)
                     .image(self.depth_image)
                     .subresource_range(depth_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                    .dst_access_mask(vk::AccessFlags2::MEMORY_WRITE)
+                    .old_layout(output_old_layout)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.history_color_images[cur_hist])
+                    .subresource_range(color_subresource),
             ];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_sl));
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&barriers_sl),
+            );
 
             let sl_token = super::streamline_ffi::chthonic_sl_new_frame_token(
                 u32::try_from(self.frame_index % u64::from(u32::MAX)).unwrap_or(0),
             );
-            if !sl_token.is_null() {
+            let dlaa_ok = if !sl_token.is_null() {
                 let unjittered_proj = lens_proj;
                 let inv_proj = unjittered_proj.inverse();
                 let proj_arr = unjittered_proj.to_cols_array();
-                let inv_arr  = inv_proj.to_cols_array();
+                let inv_arr = inv_proj.to_cols_array();
                 let identity = Mat4::IDENTITY.to_cols_array();
-                super::streamline_ffi::chthonic_sl_set_constants(
+                let reset_dlaa_history = self.dlaa_reset_pending;
+                self.dlaa_reset_pending = false;
+                let set_constants_started = if reset_dlaa_history {
+                    Some(Instant::now())
+                } else {
+                    None
+                };
+                let set_constants_result = super::streamline_ffi::chthonic_sl_set_constants(
                     sl_token,
                     temporal_frame.jitter_pixel.x,
                     temporal_frame.jitter_pixel.y,
@@ -1738,14 +2064,26 @@ impl Renderer {
                     10_000.0_f32,
                     std::f32::consts::FRAC_PI_3,
                     aspect,
+                    self.swapchain.extent.width as f32,
+                    self.swapchain.extent.height as f32,
                     0, // motion_vectors_jittered=false (shader removes jitter in difference)
-                    if self.frame_index == 0 { 1 } else { 0 },
+                    if reset_dlaa_history { 1 } else { 0 },
                 );
+                if let Some(started) = set_constants_started {
+                    let set_constants_ms = started.elapsed().as_secs_f64() * 1000.0;
+                    println!(
+                        "Streamline profile: first DLAA chthonic_sl_set_constants returned {set_constants_result} in {set_constants_ms:.2} ms"
+                    );
+                }
 
                 // VkImageLayout raw values
-                const LAYOUT_GENERAL: u32    = 1;
-                const LAYOUT_UNDEFINED: u32  = 0;
-                super::streamline_ffi::chthonic_sl_evaluate_dlaa(
+                const LAYOUT_GENERAL: u32 = 1;
+                let evaluate_started = if reset_dlaa_history {
+                    Some(Instant::now())
+                } else {
+                    None
+                };
+                let dlaa_result = super::streamline_ffi::chthonic_sl_evaluate_dlaa(
                     sl_token,
                     cmd.as_raw() as usize as *mut _,
                     self.offscreen_color_image.as_raw() as usize as *mut _,
@@ -1757,27 +2095,145 @@ impl Renderer {
                     self.motion_vector_image.as_raw() as usize as *mut _,
                     self.motion_vector_view.as_raw() as usize as *mut _,
                     LAYOUT_GENERAL,
-                    self.swapchain.images[image_index as usize].as_raw() as usize as *mut _,
-                    self.swapchain.image_views[image_index as usize].as_raw() as usize as *mut _,
-                    LAYOUT_UNDEFINED,
+                    self.history_color_images[cur_hist].as_raw() as usize as *mut _,
+                    self.history_color_views[cur_hist].as_raw() as usize as *mut _,
+                    LAYOUT_GENERAL,
                     self.swapchain.extent.width,
                     self.swapchain.extent.height,
+                    self.swapchain.format.as_raw() as u32,
+                    vk::Format::D32_SFLOAT.as_raw() as u32,
+                    vk::Format::R16G16_SFLOAT.as_raw() as u32,
+                    vk::Format::R8G8B8A8_UNORM.as_raw() as u32,
+                    (vk::ImageUsageFlags::COLOR_ATTACHMENT
+                        | vk::ImageUsageFlags::TRANSFER_SRC
+                        | vk::ImageUsageFlags::SAMPLED)
+                        .as_raw(),
+                    (vk::ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT | vk::ImageUsageFlags::SAMPLED)
+                        .as_raw(),
+                    (vk::ImageUsageFlags::COLOR_ATTACHMENT | vk::ImageUsageFlags::SAMPLED).as_raw(),
+                    (vk::ImageUsageFlags::COLOR_ATTACHMENT
+                        | vk::ImageUsageFlags::SAMPLED
+                        | vk::ImageUsageFlags::STORAGE
+                        | vk::ImageUsageFlags::TRANSFER_DST
+                        | vk::ImageUsageFlags::TRANSFER_SRC)
+                        .as_raw(),
+                );
+                if let Some(started) = evaluate_started {
+                    let evaluate_ms = started.elapsed().as_secs_f64() * 1000.0;
+                    println!(
+                        "Streamline profile: first DLAA chthonic_sl_evaluate_dlaa returned {dlaa_result} in {evaluate_ms:.2} ms"
+                    );
+                }
+                if dlaa_result != 0 && self.frame_index < 5 {
+                    info!("slEvaluateFeature returned {dlaa_result} on frame {} — DLAA output not written", self.frame_index);
+                }
+                dlaa_result == 0 // dl_ok
+            } else {
+                false // sl_token was null
+            };
+
+            if dlaa_ok {
+                let barriers_copy = [
+                    vk::ImageMemoryBarrier2::default()
+                        .src_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                        .src_access_mask(vk::AccessFlags2::MEMORY_WRITE)
+                        .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                        .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                        .old_layout(vk::ImageLayout::GENERAL)
+                        .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                        .image(self.history_color_images[cur_hist])
+                        .subresource_range(color_subresource),
+                    vk::ImageMemoryBarrier2::default()
+                        .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                        .src_access_mask(vk::AccessFlags2::empty())
+                        .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                        .dst_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                        .old_layout(vk::ImageLayout::UNDEFINED)
+                        .new_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+                        .image(self.swapchain.images[image_index as usize])
+                        .subresource_range(color_subresource),
+                ];
+                ctx.device.cmd_pipeline_barrier2(
+                    cmd,
+                    &vk::DependencyInfo::default().image_memory_barriers(&barriers_copy),
+                );
+
+                let sub = vk::ImageSubresourceLayers {
+                    aspect_mask: vk::ImageAspectFlags::COLOR,
+                    mip_level: 0,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                };
+                let blit = vk::ImageBlit::default()
+                    .src_subresource(sub)
+                    .src_offsets([
+                        vk::Offset3D::default(),
+                        vk::Offset3D {
+                            x: self.swapchain.extent.width as i32,
+                            y: self.swapchain.extent.height as i32,
+                            z: 1,
+                        },
+                    ])
+                    .dst_subresource(sub)
+                    .dst_offsets([
+                        vk::Offset3D::default(),
+                        vk::Offset3D {
+                            x: self.swapchain.extent.width as i32,
+                            y: self.swapchain.extent.height as i32,
+                            z: 1,
+                        },
+                    ]);
+                ctx.device.cmd_blit_image(
+                    cmd,
+                    self.history_color_images[cur_hist],
+                    vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+                    self.swapchain.images[image_index as usize],
+                    vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                    &[blit],
+                    vk::Filter::LINEAR,
+                );
+
+                let barriers_present = [
+                    vk::ImageMemoryBarrier2::default()
+                        .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                        .src_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                        .dst_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                        .dst_access_mask(vk::AccessFlags2::empty())
+                        .old_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                        .new_layout(vk::ImageLayout::GENERAL)
+                        .image(self.history_color_images[cur_hist])
+                        .subresource_range(color_subresource),
+                    vk::ImageMemoryBarrier2::default()
+                        .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                        .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
+                        .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                        .dst_access_mask(vk::AccessFlags2::empty())
+                        .old_layout(vk::ImageLayout::TRANSFER_DST_OPTIMAL)
+                        .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                        .image(self.swapchain.images[image_index as usize])
+                        .subresource_range(color_subresource),
+                ];
+                ctx.device.cmd_pipeline_barrier2(
+                    cmd,
+                    &vk::DependencyInfo::default().image_memory_barriers(&barriers_present),
+                );
+                self.history_initialized[cur_hist] = true;
+            } else {
+                let to_present = vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
+                    .dst_access_mask(vk::AccessFlags2::empty())
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
+                    .image(self.swapchain.images[image_index as usize])
+                    .subresource_range(color_subresource);
+                ctx.device.cmd_pipeline_barrier2(
+                    cmd,
+                    &vk::DependencyInfo::default()
+                        .image_memory_barriers(std::slice::from_ref(&to_present)),
                 );
             }
-
-            // Streamline leaves the output in GENERAL; transition to PRESENT_SRC_KHR.
-            let to_present = vk::ImageMemoryBarrier2::default()
-                .src_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
-                .src_access_mask(vk::AccessFlags2::MEMORY_WRITE)
-                .dst_stage_mask(vk::PipelineStageFlags2::BOTTOM_OF_PIPE)
-                .dst_access_mask(vk::AccessFlags2::empty())
-                .old_layout(vk::ImageLayout::GENERAL)
-                .new_layout(vk::ImageLayout::PRESENT_SRC_KHR)
-                .image(self.swapchain.images[image_index as usize])
-                .subresource_range(color_subresource);
-            ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
-
         } else if self.taa_enabled {
             let barriers_pre = [
                 vk::ImageMemoryBarrier2::default()
@@ -1833,7 +2289,9 @@ impl Renderer {
                     .subresource_range(color_subresource),
             ];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_pre));
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&barriers_pre),
+            );
 
             // Resolve into cur_hist (not swapchain) — this is the write-back.
             let hist_attach = vk::RenderingAttachmentInfo::default()
@@ -1842,76 +2300,117 @@ impl Renderer {
                 .load_op(vk::AttachmentLoadOp::DONT_CARE)
                 .store_op(vk::AttachmentStoreOp::STORE);
             let rendering_info = vk::RenderingInfo::default()
-                .render_area(vk::Rect2D { offset: vk::Offset2D::default(), extent: self.swapchain.extent })
+                .render_area(vk::Rect2D {
+                    offset: vk::Offset2D::default(),
+                    extent: self.swapchain.extent,
+                })
                 .layer_count(1)
                 .color_attachments(std::slice::from_ref(&hist_attach));
             ctx.device.cmd_begin_rendering(cmd, &rendering_info);
 
             let ext = self.swapchain.extent;
-            ctx.device.cmd_set_viewport(cmd, 0, &[vk::Viewport {
-                x: 0.0, y: 0.0,
-                width: ext.width as f32, height: ext.height as f32,
-                min_depth: 0.0, max_depth: 1.0,
-            }]);
-            ctx.device.cmd_set_scissor(cmd, 0, &[vk::Rect2D {
-                offset: vk::Offset2D::default(), extent: ext,
-            }]);
-            ctx.device.cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.taa_pipeline);
+            ctx.device.cmd_set_viewport(
+                cmd,
+                0,
+                &[vk::Viewport {
+                    x: 0.0,
+                    y: 0.0,
+                    width: ext.width as f32,
+                    height: ext.height as f32,
+                    min_depth: 0.0,
+                    max_depth: 1.0,
+                }],
+            );
+            ctx.device.cmd_set_scissor(
+                cmd,
+                0,
+                &[vk::Rect2D {
+                    offset: vk::Offset2D::default(),
+                    extent: ext,
+                }],
+            );
+            ctx.device
+                .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.taa_pipeline);
             let frame_slot = (self.frame_index % self.taa_desc_sets.len() as u64) as usize;
             ctx.device.cmd_bind_descriptor_sets(
-                cmd, vk::PipelineBindPoint::GRAPHICS, self.taa_pipeline_layout, 0,
-                &[self.taa_desc_sets[frame_slot]], &[]);
+                cmd,
+                vk::PipelineBindPoint::GRAPHICS,
+                self.taa_pipeline_layout,
+                0,
+                &[self.taa_desc_sets[frame_slot]],
+                &[],
+            );
 
             #[repr(C)]
             #[derive(Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
-            struct TaaParams { texel: [f32; 2], blend: f32, debug: f32 }
+            struct TaaParams {
+                texel: [f32; 2],
+                blend: f32,
+                debug: f32,
+            }
             let params = TaaParams {
                 texel: [1.0 / ext.width as f32, 1.0 / ext.height as f32],
                 blend: 0.1,
                 debug: if self.taa_debug { 1.0 } else { 0.0 },
             };
             ctx.device.cmd_push_constants(
-                cmd, self.taa_pipeline_layout,
-                vk::ShaderStageFlags::FRAGMENT, 0,
-                bytemuck::bytes_of(&params));
+                cmd,
+                self.taa_pipeline_layout,
+                vk::ShaderStageFlags::FRAGMENT,
+                0,
+                bytemuck::bytes_of(&params),
+            );
             ctx.device.cmd_draw(cmd, 3, 1, 0, 0);
             ctx.device.cmd_end_rendering(cmd);
 
             // Transition cur_hist to TRANSFER_SRC, then blit to swapchain TRANSFER_DST.
-            let barriers_post = [
-                vk::ImageMemoryBarrier2::default()
-                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
-                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
-                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
-                    .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
-                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
-                    .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
-                    .image(self.history_color_images[cur_hist])
-                    .subresource_range(color_subresource),
-            ];
+            let barriers_post = [vk::ImageMemoryBarrier2::default()
+                .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                .dst_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
+                .dst_access_mask(vk::AccessFlags2::TRANSFER_READ)
+                .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                .new_layout(vk::ImageLayout::TRANSFER_SRC_OPTIMAL)
+                .image(self.history_color_images[cur_hist])
+                .subresource_range(color_subresource)];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_post));
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&barriers_post),
+            );
 
             let sub = vk::ImageSubresourceLayers {
                 aspect_mask: vk::ImageAspectFlags::COLOR,
-                mip_level: 0, base_array_layer: 0, layer_count: 1,
+                mip_level: 0,
+                base_array_layer: 0,
+                layer_count: 1,
             };
             let blit = vk::ImageBlit::default()
                 .src_subresource(sub)
                 .src_offsets([
                     vk::Offset3D::default(),
-                    vk::Offset3D { x: ext.width as i32, y: ext.height as i32, z: 1 },
+                    vk::Offset3D {
+                        x: ext.width as i32,
+                        y: ext.height as i32,
+                        z: 1,
+                    },
                 ])
                 .dst_subresource(sub)
                 .dst_offsets([
                     vk::Offset3D::default(),
-                    vk::Offset3D { x: ext.width as i32, y: ext.height as i32, z: 1 },
+                    vk::Offset3D {
+                        x: ext.width as i32,
+                        y: ext.height as i32,
+                        z: 1,
+                    },
                 ]);
             ctx.device.cmd_blit_image(
                 cmd,
-                self.history_color_images[cur_hist], vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
-                self.swapchain.images[image_index as usize], vk::ImageLayout::TRANSFER_DST_OPTIMAL,
-                &[blit], vk::Filter::LINEAR,
+                self.history_color_images[cur_hist],
+                vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+                self.swapchain.images[image_index as usize],
+                vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                &[blit],
+                vk::Filter::LINEAR,
             );
 
             // cur_hist stays in TRANSFER_SRC_OPTIMAL; reclassify as GENERAL for next frame read.
@@ -1937,7 +2436,9 @@ impl Renderer {
                     .subresource_range(color_subresource),
             ];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(&barriers_final));
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&barriers_final),
+            );
 
             self.history_initialized[cur_hist] = true;
         } else {
@@ -1963,14 +2464,35 @@ impl Renderer {
                     .subresource_range(color_subresource),
             ];
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(&pre));
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&pre),
+            );
             let copy = vk::ImageCopy::default()
-                .src_subresource(vk::ImageSubresourceLayers { aspect_mask: vk::ImageAspectFlags::COLOR, mip_level: 0, base_array_layer: 0, layer_count: 1 })
-                .dst_subresource(vk::ImageSubresourceLayers { aspect_mask: vk::ImageAspectFlags::COLOR, mip_level: 0, base_array_layer: 0, layer_count: 1 })
-                .extent(vk::Extent3D { width: self.swapchain.extent.width, height: self.swapchain.extent.height, depth: 1 });
-            ctx.device.cmd_copy_image(cmd,
-                self.offscreen_color_image, vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
-                self.swapchain.images[image_index as usize], vk::ImageLayout::TRANSFER_DST_OPTIMAL, &[copy]);
+                .src_subresource(vk::ImageSubresourceLayers {
+                    aspect_mask: vk::ImageAspectFlags::COLOR,
+                    mip_level: 0,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                })
+                .dst_subresource(vk::ImageSubresourceLayers {
+                    aspect_mask: vk::ImageAspectFlags::COLOR,
+                    mip_level: 0,
+                    base_array_layer: 0,
+                    layer_count: 1,
+                })
+                .extent(vk::Extent3D {
+                    width: self.swapchain.extent.width,
+                    height: self.swapchain.extent.height,
+                    depth: 1,
+                });
+            ctx.device.cmd_copy_image(
+                cmd,
+                self.offscreen_color_image,
+                vk::ImageLayout::TRANSFER_SRC_OPTIMAL,
+                self.swapchain.images[image_index as usize],
+                vk::ImageLayout::TRANSFER_DST_OPTIMAL,
+                &[copy],
+            );
             let to_present = vk::ImageMemoryBarrier2::default()
                 .src_stage_mask(vk::PipelineStageFlags2::ALL_TRANSFER)
                 .src_access_mask(vk::AccessFlags2::TRANSFER_WRITE)
@@ -1981,7 +2503,10 @@ impl Renderer {
                 .image(self.swapchain.images[image_index as usize])
                 .subresource_range(color_subresource);
             ctx.device.cmd_pipeline_barrier2(
-                cmd, &vk::DependencyInfo::default().image_memory_barriers(std::slice::from_ref(&to_present)));
+                cmd,
+                &vk::DependencyInfo::default()
+                    .image_memory_barriers(std::slice::from_ref(&to_present)),
+            );
         }
 
         // End command buffer
@@ -1999,8 +2524,23 @@ impl Renderer {
             .command_buffers(&command_buffers_submit)
             .signal_semaphores(&signal_semaphores);
 
-        ctx.device
-            .queue_submit(ctx.graphics_queue, &[submit_info], in_flight)?;
+        if self.dlaa_enabled {
+            let submit_raw = super::streamline_ffi::chthonic_sl_vk_queue_submit(
+                ctx.graphics_queue.as_raw() as usize as *mut _,
+                1,
+                (&submit_info as *const vk::SubmitInfo).cast(),
+                in_flight.as_raw() as usize as *mut _,
+            );
+            if submit_raw == -1 {
+                ctx.device
+                    .queue_submit(ctx.graphics_queue, &[submit_info], in_flight)?;
+            } else if submit_raw != 0 {
+                return Err(vk::Result::from_raw(submit_raw).into());
+            }
+        } else {
+            ctx.device
+                .queue_submit(ctx.graphics_queue, &[submit_info], in_flight)?;
+        }
 
         // One-shot framebuffer capture (agent self-verify). Capture before present while the
         // swapchain image is still acquired; after present it belongs back to the swapchain.
@@ -2015,7 +2555,9 @@ impl Renderer {
         }
 
         // === PRESENT ===
-        let needs_resize = self.swapchain.present(ctx.graphics_queue, image_index)?;
+        let needs_resize =
+            self.swapchain
+                .present(ctx.graphics_queue, image_index, self.dlaa_enabled)?;
         if needs_resize {
             self.needs_resize = true;
         }
@@ -2053,14 +2595,16 @@ impl Renderer {
         ctx.device.destroy_image_view(self.motion_vector_view, None);
         ctx.device.destroy_image(self.motion_vector_image, None);
         ctx.device.free_memory(self.motion_vector_memory, None);
-        ctx.device.destroy_image_view(self.offscreen_color_view, None);
+        ctx.device
+            .destroy_image_view(self.offscreen_color_view, None);
         ctx.device.destroy_image(self.offscreen_color_image, None);
         ctx.device.free_memory(self.offscreen_color_memory, None);
 
         // Free old history buffers
         ctx.device.destroy_sampler(self.history_sampler, None);
         for i in 0..2 {
-            ctx.device.destroy_image_view(self.history_color_views[i], None);
+            ctx.device
+                .destroy_image_view(self.history_color_views[i], None);
             ctx.device.destroy_image(self.history_color_images[i], None);
             if let Some(alloc) = self.history_color_allocs[i].take() {
                 let _ = ctx.allocator.lock().unwrap().free(alloc);
@@ -2078,11 +2622,15 @@ impl Renderer {
         self.motion_vector_memory = motion_vector_memory;
         self.motion_vector_view = motion_vector_view;
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
-            Self::create_offscreen_color_resources(ctx, self.swapchain.extent, self.swapchain.format)?;
+            Self::create_offscreen_color_resources(
+                ctx,
+                self.swapchain.extent,
+                self.swapchain.format,
+            )?;
         self.offscreen_color_image = offscreen_color_image;
         self.offscreen_color_memory = offscreen_color_memory;
         self.offscreen_color_view = offscreen_color_view;
-        
+
         let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
             Self::create_history_resources(ctx, self.swapchain.extent)?;
         self.history_color_images = history_color_images;
@@ -2090,6 +2638,28 @@ impl Renderer {
         self.history_color_views = history_color_views;
         self.history_sampler = history_sampler;
         self.history_initialized = [false, false];
+
+        if self.dlaa_enabled {
+            let sl_options_started = Instant::now();
+            let r = super::streamline_ffi::chthonic_sl_set_dlaa_options(
+                self.swapchain.extent.width,
+                self.swapchain.extent.height,
+            );
+            let sl_options_ms = sl_options_started.elapsed().as_secs_f64() * 1000.0;
+            println!(
+                "Streamline profile: resize chthonic_sl_set_dlaa_options returned {r} in {sl_options_ms:.2} ms"
+            );
+            if r != 0 {
+                info!("Streamline DLSS options returned {r} after resize — DLAA disabled");
+                self.dlaa_enabled = false;
+                self.taa_enabled = true;
+                super::streamline_ffi::chthonic_sl_shutdown();
+                self.streamline_init_state
+                    .store(STREAMLINE_DISABLED, Ordering::Release);
+            } else {
+                self.dlaa_reset_pending = true;
+            }
+        }
 
         // Re-write TAA descriptor sets with the new image views (old views were just destroyed).
         for (i, &ds) in self.taa_desc_sets.iter().enumerate() {
@@ -2108,15 +2678,18 @@ impl Renderer {
                 .image_layout(vk::ImageLayout::GENERAL);
             let writes = [
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(0)
+                    .dst_set(ds)
+                    .dst_binding(0)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_current)),
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(1)
+                    .dst_set(ds)
+                    .dst_binding(1)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_history)),
                 vk::WriteDescriptorSet::default()
-                    .dst_set(ds).dst_binding(2)
+                    .dst_set(ds)
+                    .dst_binding(2)
                     .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                     .image_info(std::slice::from_ref(&img_motion)),
             ];
@@ -2138,6 +2711,7 @@ impl Renderer {
         debug!("🧹 Cleaning up renderer...");
 
         device.device_wait_idle().ok();
+        self.join_streamline_init_thread();
 
         // Free vertex buffers (seabed + ocean surface)
         device.destroy_buffer(self.vertex_buffer, None);
@@ -2148,7 +2722,12 @@ impl Renderer {
         device.free_memory(self.celestial_vertex_memory, None);
 
         // Ocean compute subsystem (pipeline, descriptors, storage image)
-        self.ocean_compute.cleanup(device, &mut allocator.lock().unwrap());
+        self.ocean_compute
+            .cleanup(device, &mut allocator.lock().unwrap());
+            
+        // Atmosphere compute subsystem
+        self.atmosphere_compute
+            .cleanup(device, &mut allocator.lock().unwrap());
 
         // Free depth buffer
         device.destroy_image_view(self.depth_view, None);
@@ -2172,11 +2751,15 @@ impl Renderer {
         }
 
         // Streamline shutdown (before device destruction)
-        if self.dlaa_enabled {
+        if self.dlaa_enabled
+            || self.streamline_init_state.load(Ordering::Acquire) == STREAMLINE_READY
+        {
             super::streamline_ffi::chthonic_sl_shutdown();
+            self.streamline_init_state
+                .store(STREAMLINE_DISABLED, Ordering::Release);
         }
 
-        // SST UBO
+        // Frame UBO
         device.destroy_buffer(self.sst_ubo_buffer, None);
         device.free_memory(self.sst_ubo_memory, None);
         device.destroy_descriptor_pool(self.sst_desc_pool, None);

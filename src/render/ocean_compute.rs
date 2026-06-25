@@ -20,11 +20,13 @@ use gpu_allocator::MemoryLocation;
 use log::info;
 
 use super::vulkan::VulkanContext;
+use crate::render::weather::WeatherState;
 
 const RESOLUTION: u32 = 256;
 const FFT_STAGES: u32 = 8; // log2(256)
 
 /// Per-cascade tuning. Pipelines are shared; these differ per cascade.
+#[derive(Clone, Copy)]
 struct CascadeSpec {
     patch_size:  f32,
     wind_speed:  f32,
@@ -32,7 +34,7 @@ struct CascadeSpec {
     phillips_a:  f32,
 }
 
-const CASCADE: [CascadeSpec; 2] = [
+const DEFAULT_CASCADES: [CascadeSpec; 2] = [
     CascadeSpec { patch_size: 5.0,  wind_speed: 3.8, wind_dir: 90.0, phillips_a: 0.0004 },
     CascadeSpec { patch_size: 60.0, wind_speed: 8.0, wind_dir: 90.0, phillips_a: 0.0002 },
 ];
@@ -233,6 +235,7 @@ pub struct OceanCompute {
     pub graphics_set_layout: vk::DescriptorSetLayout,
     pub graphics_set:        vk::DescriptorSet,
     pub resolution: u32,
+    cascade_specs: [CascadeSpec; 2],
 }
 
 impl OceanCompute {
@@ -386,14 +389,30 @@ impl OceanCompute {
         ], &[]);
 
         info!("🌊 OceanCompute: 2-cascade Tessendorf — C0 patch={}m  C1 patch={}m  {}×{} each",
-            CASCADE[0].patch_size, CASCADE[1].patch_size, n, n);
+            DEFAULT_CASCADES[0].patch_size, DEFAULT_CASCADES[1].patch_size, n, n);
 
-        Ok(Self { cascades, pipelines, sampler, desc_pool, graphics_set_layout, graphics_set, resolution: n })
+        Ok(Self { cascades, pipelines, sampler, desc_pool, graphics_set_layout, graphics_set, resolution: n, cascade_specs: DEFAULT_CASCADES })
+    }
+
+    pub fn update_spectrum(&mut self, weather: &WeatherState) {
+        let speed_delta = (self.cascade_specs[0].wind_speed - weather.wind_speed).abs();
+        let dir_delta = (self.cascade_specs[0].wind_dir - weather.wind_dir).abs();
+
+        if speed_delta > 0.05 || dir_delta > 0.5 {
+            info!("🌬️ Ocean spectrum unified to Weather Spine: {} m/s at {}°", weather.wind_speed, weather.wind_dir);
+            for spec in &mut self.cascade_specs {
+                spec.wind_speed = weather.wind_speed;
+                spec.wind_dir = weather.wind_dir;
+            }
+            for cascade in &mut self.cascades {
+                cascade.h0_dispatched = false;
+            }
+        }
     }
 
     pub unsafe fn dispatch(&mut self, device: &Device, cmd: vk::CommandBuffer, time: f32) {
         for i in 0..2 {
-            self.cascades[i].dispatch(device, cmd, time, &CASCADE[i], self.resolution, &self.pipelines);
+            self.cascades[i].dispatch(device, cmd, time, &self.cascade_specs[i], self.resolution, &self.pipelines);
         }
     }
 

@@ -20,11 +20,12 @@ layout(push_constant) uniform PushConstants {
 } pc;
 
 // set=0 is the ocean displacement sampler (water.vert, bindings 0+1).
-// SST UBO lives at set=1 to avoid collision.
-// vec4 layout: xyz = sst_tint, w = sst_blend — avoids vec3 std140 padding ambiguity.
-layout(set = 1, binding = 0) uniform WaterSST {
+// Frame UBO lives at set=1: vertex reads motion matrices, fragment reads SST tint.
+layout(set = 1, binding = 0) uniform FrameData {
+    mat4 current_motion_view_projection;
+    mat4 previous_motion_view_projection;
     vec4 sst_data;  // xyz = SST-adjusted warm tint, w = blend scalar [0..1]
-} u_sst;
+} u_frame;
 
 layout(location = 3) in vec4 v_clip;       // current clip position
 layout(location = 4) in vec4 v_prev_clip;  // previous-frame clip position
@@ -32,15 +33,48 @@ layout(location = 4) in vec4 v_prev_clip;  // previous-frame clip position
 layout(location = 0) out vec4 out_color;
 layout(location = 1) out vec2 out_motion;
 
+layout(set = 1, binding = 1) uniform sampler2D u_sky_view_lut;
+
 const float Y_SCALE = 0.0004;                   // must match bathymetry.rs
 const vec3  SIGMA   = vec3(0.16, 0.035, 0.016); // per-metre extinction R,G,B (clear tropical water)
 const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
 const vec3  WATER   = vec3(0.015, 0.10, 0.17);  // deep-water in-scatter colour
 
+vec3 sampleSkyViewLut(vec3 view_dir) {
+    // view_dir must be normalized
+    float view_zenith_angle = acos(clamp(view_dir.y, -1.0, 1.0));    
+    
+    // The sun azimuth is currently aligned with the X-axis in the LUT generation, 
+    // so we measure azimuth relative to the sun direction from the UBO.
+    vec3 sun_dir_flat = normalize(vec3(pc.sun.x, 0.0, pc.sun.z));
+    vec3 view_dir_flat = normalize(vec3(view_dir.x, 0.0, view_dir.z));
+    float view_sun_azimuth = acos(clamp(dot(sun_dir_flat, view_dir_flat), -1.0, 1.0));
+    
+    // Determine sign of azimuth
+    if (dot(cross(vec3(0.0, 1.0, 0.0), sun_dir_flat), view_dir_flat) < 0.0) {
+        view_sun_azimuth = -view_sun_azimuth;
+    }
+    
+    vec2 uv;
+    // Inverse Azimuth mapping
+    uv.x = (view_sun_azimuth / 3.14159265) * 0.5 + 0.5;
+    
+    // Inverse Zenith mapping (Non-linear horizon emphasis)
+    if (view_zenith_angle < 3.14159265 * 0.5) {
+        float coord = sqrt(max(0.0, 1.0 - view_zenith_angle / (3.14159265 * 0.5)));
+        uv.y = (1.0 - coord) * 0.5;
+    } else {
+        float coord = sqrt(max(0.0, (view_zenith_angle - 3.14159265 * 0.5) / (3.14159265 * 0.5)));
+        uv.y = 0.5 + coord * 0.5;
+    }
+    
+    return texture(u_sky_view_lut, uv).rgb;
+}
+
 void main() {
-    // True per-pixel motion vector: current → previous in UV space. Both clip positions came
-    // through the same (current) view-projection, so the sub-pixel jitter cancels in the
-    // difference and the static seabed/celestial geometry resolves to exactly zero.
+    // Streamline/DLSS motion vector direction: current -> previous in UV space.
+    // Both clip positions are generated from unjittered view-projection matrices; Streamline
+    // receives jitter separately through sl::Constants::jitterOffset.
     vec2 curr_uv = (v_clip.xy / v_clip.w) * 0.5 + 0.5;
     vec2 prev_uv = (v_prev_clip.xy / v_prev_clip.w) * 0.5 + 0.5;
     vec2 motion  = prev_uv - curr_uv;
@@ -62,16 +96,16 @@ void main() {
 
     // === Rung 6.2: celestial field ===
     if (pc.params.y > 1.5) {
-        out_color = vec4(v_floor_albedo, 1.0);
+        out_color = vec4(sampleSkyViewLut(V) + v_floor_albedo, 1.0);
         return;
     }
 
     // === Rung 4: ocean surface ===
     if (pc.params.y > 0.5) {
         float fres  = 0.02 + 0.98 * pow(1.0 - max(dot(N, V), 0.0), 5.0);
-        vec3  sky   = vec3(0.35, 0.55, 0.72);
+        vec3  sky   = sampleSkyViewLut(reflect(-V, N));
         float glint = pow(max(dot(N, H), 0.0), 200.0) * I;
-        vec3  tint  = mix(vec3(0.08, 0.34, 0.42), u_sst.sst_data.xyz, u_sst.sst_data.w);
+        vec3  tint  = mix(vec3(0.08, 0.34, 0.42), u_frame.sst_data.xyz, u_frame.sst_data.w);
         vec3  col   = mix(tint, sky, fres) + vec3(glint);
         out_color   = vec4(col, 0.30); // translucent — lets the seabed turquoise read through
         return;
@@ -93,7 +127,7 @@ void main() {
     vec3  body       = floor_light + water_glow;
 
     float fres  = 0.02 + 0.30 * pow(1.0 - max(dot(N, V), 0.0), 5.0);
-    vec3  sky   = vec3(0.30, 0.50, 0.68);
+    vec3  sky   = sampleSkyViewLut(reflect(-V, N));
     float glint = pow(max(dot(N, H), 0.0), 80.0) * I;
 
     out_color = vec4(mix(body, sky, fres) + vec3(glint), 1.0);
