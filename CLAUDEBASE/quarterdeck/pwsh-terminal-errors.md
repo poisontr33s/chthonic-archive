@@ -13,6 +13,8 @@
 
 > *— Every squall has a name. Name it once; never diagnose it again.*
 
+  > *— (This —* `ABSOLUTELY` *— applies immutably to all — **dispatched** — `sub-agents` *— and their —* `sub-sub-agents` *— and their —* `sub-sub-sub-agents` *— ad infinitum.)*
+
 ---
 
 ## (`PIPE`/`NAMED-PIPE`/`BROKEN`)
