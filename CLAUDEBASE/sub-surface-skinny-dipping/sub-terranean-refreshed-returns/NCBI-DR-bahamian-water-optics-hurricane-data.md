@@ -59,7 +59,35 @@ The Schmitt data validates that SST→TC frequency is the right physical chain t
 
 ---
 
-## Finding 3 — Beer-Lambert Coefficients (NCBI Scope Limitation)
+## Finding 3 — Measured IOPs of Jerlov Water Types (Authoritative Reference FOUND)
+
+**Paper:** Williamson CA, Hollins RC.
+"Measured IOPs of Jerlov water types."
+*Applied Optics* 61(33):9951-9961 (2022). PMID 36606827. DOI: 10.1364/AO.470464
+
+**Abstract verbatim (key):** "Inherent optical properties (IOPs) of typical ocean waters have been
+derived from a worldwide database of measured parameters... This study used the World-wide Ocean
+Optics Database to derive a series of experimentally measured *a* and *b* values for six Jerlov
+water types. Using data science techniques to group measurements in time and space, over 13.5
+million data points were consolidated into 53 measured values for *a* and *b*. Established models
+were subsequently applied to generate a complete table of absorption and scattering coefficients
+from 300 to 800 nm for Jerlov IB to Jerlov 5C."
+
+**Why this is the shader paper:** Jerlov water types are defined by Kd (downwelling diffuse
+attenuation). This paper converts those Kd-types into experimentally measured absorption `a(λ)`
+and scattering `b(λ)` coefficients across the full visible spectrum (300–800 nm), from which
+`Kd(λ) ≈ [a(λ) + bb(λ)] / cos(θ_sun)`.
+
+**Nassau / Bahama Banks Jerlov type:** IB — very clear, oligotrophic shallow tropical coastal
+water. (Jerlov I = open-ocean ultra-clear; IB = clearest coastal. The paper starts at IB.)
+
+**Full table access:** DOI 10.1364/AO.470464 — *Applied Optics* (Optica Publishing), paywalled,
+not in PMC. The complete a(λ) and b(λ) table for Jerlov IB is the definitive calibration target
+for `water.frag` Site 5. Retrieve when implementing the Site 5 coefficient pass.
+
+---
+
+## Finding 4 — Beer-Lambert Coefficients (Estimated from Jerlov IB Physics)
 
 **What NCBI confirmed is NOT indexed there:**
 The core marine optics literature lives in *Applied Optics*, *Journal of Geophysical Research:
@@ -70,7 +98,7 @@ Oceans*, and *Limnology and Oceanography* — none of which are indexed in PubMe
 - Ackleson SG et al. — Bahamas shallow-water remote sensing work — Applied Optics / Remote
   Sensing of Environment
 
-**What can be applied now (established marine optics physics):**
+**What can be applied now (Jerlov IB physics, consistent with Williamson & Hollins 2022):**
 
 The Great Bahama Bank is Type I Jerlov water — among the clearest shallow coastal water on Earth.
 Characteristics:
@@ -128,6 +156,8 @@ at any given depth. This is a secondary correction for Site 5.
 
 **Non-productive NCBI axes (use other sources):**
 - Water optical properties / spectral attenuation coefficients → Applied Optics, JGR-Oceans
+- **Exception:** Williamson & Hollins 2022 (PMID 36606827) IS indexed in PubMed — Applied Optics
+  is selectively indexed. The full IOP table is at DOI 10.1364/AO.470464.
 - Marine optics algorithms (Lee, Morel, Jerlov) → AGU/OSA publications
 - Remote sensing of environment papers → not always PMC-indexed
 
@@ -135,9 +165,11 @@ at any given depth. This is a secondary correction for Site 5.
 
 ## Renderer Implications (Priority-Ordered)
 
-1. **Site 5 (`water.frag`)** — Kd values above are defensible as starting calibration.
-   Current shader values should be benchmarked against: K_red ≈ 0.45, K_green ≈ 0.10,
-   K_blue ≈ 0.05 (all in m⁻¹). The turquoise gradient at 2-8m depth is the validation target.
+1. **Site 5 (`water.frag`)** — Kd values below are a starting calibration target consistent
+   with Jerlov IB water (Williamson & Hollins 2022, PMID 36606827). The definitive pass uses
+   the full a(λ) + b(λ) table from DOI 10.1364/AO.470464 when Site 5 is implemented.
+   K_red ≈ 0.45, K_green ≈ 0.10, K_blue ≈ 0.05 (all m⁻¹).
+   The turquoise gradient at 2-8m depth is the visual validation target.
 
 2. **Bottom reflectance** — Bare carbonate sand ≈ 40-60% reflectance. Seagrass beds ≈ 10-20%.
    At Nassau's coordinates (25°N, 77°W) the bottom is mixed seagrass+sand. A blended value
