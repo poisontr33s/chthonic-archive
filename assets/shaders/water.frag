@@ -36,8 +36,9 @@ layout(location = 1) out vec2 out_motion;
 layout(set = 1, binding = 1) uniform sampler2D u_sky_view_lut;
 layout(set = 1, binding = 2) uniform sampler2D u_cloud_tex;
 
-// ELLIPSOID-RETROFIT: Y_SCALE must stay in sync with bathymetry.rs; under WGS84 both become ellipsoidal normal distance.
-const float Y_SCALE = 0.0004;                   // must match bathymetry.rs
+// Site 2 — bathymetry render.y is ENU.z (elevation in metres). Y_SCALE = 1.0.
+// ELLIPSOID-RETROFIT: Site 5 — replace with ellipsoidal normal distance for precision passes.
+const float Y_SCALE = 1.0;                      // render.y IS metres after Ellipsoid Site 2
 // Williamson & Hollins 2022 (PMID 36606827) Table 7, Jerlov IB — Nassau/Bahama Banks.
 // Round-trip path length factored by exp(-SIGMA * depth_m * 2.0) below; SIGMA = Kd one-way.
 const vec3  SIGMA   = vec3(0.471, 0.076, 0.050); // Kd m⁻¹ at R(670nm) G(550nm) B(440nm)

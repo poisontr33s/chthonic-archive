@@ -346,17 +346,18 @@ impl Renderer {
         // Looking at origin from isometric angle, 10 units away, ortho size 5
         #[allow(clippy::cast_precision_loss)]
         let aspect_ratio = window_size.0 as f32 / window_size.1 as f32;
-        // Site 1 of 6 — Ellipsoid retrofit (camera origin).
-        // Camera is anchored to WGS84 New Providence (Nassau). The render-space origin
-        // is the ENU tangent plane at this anchor; position/target remain near (0,0,0)
-        // in f32 until bathymetry/ocean mesh vertices are projected through the anchor.
+        // Site 1+2 of 6 — Ellipsoid retrofit: camera in ENU metres, Nassau anchor.
+        // ortho_size=400 km captures the full Bahama Banks extent; near/far span the
+        // bathymetric depth range with large margin for the isometric view-ray projection.
         let mut camera = IsometricCamera::with_geodetic_anchor(
             crate::render::geodesy::NEW_PROVIDENCE_LAT_DEG,
             crate::render::geodesy::NEW_PROVIDENCE_LON_DEG,
             crate::render::geodesy::NEW_PROVIDENCE_ALT_M,
-            10.0,
-            5.0,
+            800_000.0,  // distance in ENU metres (2× ortho_size ratio preserved)
+            400_000.0,  // ortho_size: half-extent ±400 km — shows full Bahama Banks NS range
         );
+        camera.near = -2_000_000.0;
+        camera.far  =  2_000_000.0;
         camera.update_matrices(aspect_ratio);
 
         // The active lens is selected once, explicitly (§2.7 / 03A — never an auto-cycle), and is

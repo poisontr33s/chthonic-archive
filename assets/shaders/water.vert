@@ -31,10 +31,10 @@ layout(set = 1, binding = 0) uniform FrameData {
     vec4 sst_data;
 } u_frame;
 
-// World half-extents of the surface grid (must match ocean.rs surface_grid and ocean_compute.rs).
-// ELLIPSOID-RETROFIT: must become camera-relative ENU bounds pushed via UBO or push constant.
-const float X_HALF = 2.45;
-const float Z_HALF = 0.92;
+// ENU-local metres (must match ocean.rs X_HALF/Z_HALF). Site 2+3 — Ellipsoid retrofit.
+// ELLIPSOID-RETROFIT: push via UBO when camera panning is live (Site 6).
+const float X_HALF = 200000.0; // 200 km East half-extent
+const float Z_HALF = 200000.0; // 200 km North half-extent
 
 layout(location = 0) out vec3 v_world_pos;
 layout(location = 1) out vec3 v_normal;

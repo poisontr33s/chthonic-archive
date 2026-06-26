@@ -5,17 +5,36 @@
 
 //! Rung 3 of `CLAUDEBASE/charts/north-star-constellations.md`: load the grounded
 //! `CLAUDEBASE/charts/bathymetry.json` (real GEBCO 2020 seafloor depth, verified data
-//! plane) and emit a triangle-list heightfield fit to the isometric camera box. Reuses
-//! the existing `iso_grid` pipeline (position + color); the shallow-water shader is rung 5.
+//! plane) and emit a triangle-list heightfield. Reuses the existing `iso_grid` pipeline
+//! (position + color); the shallow-water shader is rung 5.
+//!
+//! Site 2 — Ellipsoid Fork I: vertices are now in WGS84 ENU space (East→X, Up→Y,
+//! North→Z) relative to the Nassau anchor. Y_SCALE is 1.0; render.y IS metres.
 
 use anyhow::{ensure, Context, Result};
 use serde::Deserialize;
 use std::path::Path;
 
+use super::geodesy::{
+    GeoAnchor, WGS84_A, NEW_PROVIDENCE_ALT_M, NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG,
+};
 use super::pipeline::Vertex;
 
 /// Where the grounded data plane lives, relative to the repo root (the cargo run CWD).
 pub const DEFAULT_PATH: &str = "CLAUDEBASE/charts/bathymetry.json";
+
+/// Geographic bounding box from GEBCO JSON.
+#[derive(Deserialize)]
+struct Bbox {
+    #[serde(rename = "minLat")]
+    min_lat: f64,
+    #[serde(rename = "maxLat")]
+    max_lat: f64,
+    #[serde(rename = "minLon")]
+    min_lon: f64,
+    #[serde(rename = "maxLon")]
+    max_lon: f64,
+}
 
 /// Parsed `bathymetry.json` — only the fields the mesh needs.
 #[derive(Deserialize)]
@@ -26,6 +45,8 @@ pub struct Bathymetry {
     pub h: usize,
     /// Row-major `w * h` elevations in metres: `+` = land above sea, `-` = below sea.
     pub depth: Vec<f32>,
+    /// Geographic bounding box of the GEBCO extract.
+    bbox: Bbox,
 }
 
 impl Bathymetry {
@@ -49,22 +70,29 @@ impl Bathymetry {
         self.depth[j * self.w + i]
     }
 
-    /// Triangle-list heightfield, centred on origin and fit to the iso camera box.
-    /// Square cells across a ~5-unit width; Y = depth scaled; vertex colour banded by
-    /// depth (placeholder for the rung-5 Beer–Lambert shader).
+    /// Triangle-list heightfield in WGS84 ENU space.
+    ///
+    /// Vertex positions are geodetic: LLA → ECEF → ENU relative to the Nassau anchor.
+    /// Render-space layout: East→X, elevation→Y (metres), North→Z.
+    /// The Nassau anchor matches the camera anchor; both share the same ENU origin
+    /// until camera panning is live.
     pub fn mesh(&self) -> Vec<Vertex> {
-        const WIDTH: f32 = 5.0; // matches ortho_size * 2 of the iso camera
-        // ELLIPSOID-RETROFIT: Y_SCALE is a flat linear depth-to-render-unit factor.
-        // Under WGS84 this becomes ellipsoidal normal distance and must match water.frag.
-        const Y_SCALE: f32 = 0.0004; // -5500 m -> -2.2, +1024 m -> +0.41 (fits the box)
+        let anchor = GeoAnchor::from_lla(
+            NEW_PROVIDENCE_LAT_DEG,
+            NEW_PROVIDENCE_LON_DEG,
+            NEW_PROVIDENCE_ALT_M,
+        );
 
-        // ELLIPSOID-RETROFIT: mesh is centered on absolute world origin.
-        // Under WGS84, vertices are geodetic → ENU and the mesh is camera-relative.
-        let cell = WIDTH / self.w as f32;
-        let cx = (self.w as f32 - 1.0) * 0.5;
-        let cz = (self.h as f32 - 1.0) * 0.5;
+        let lat_step = (self.bbox.max_lat - self.bbox.min_lat) / (self.h as f64 - 1.0);
+        let lon_step = (self.bbox.max_lon - self.bbox.min_lon) / (self.w as f64 - 1.0);
 
-        // Clamped raw-depth sampler (metres), for central-difference normals at the edges.
+        // Metric cell sizes for normal computation (approximation: <2% error over this grid).
+        let lat_center = (self.bbox.min_lat + self.bbox.max_lat) * 0.5;
+        let east_cell_m =
+            (lon_step.to_radians() * WGS84_A * lat_center.to_radians().cos()) as f32;
+        let north_cell_m = (lat_step.to_radians() * WGS84_A) as f32;
+
+        // Clamped raw-depth sampler (metres), for central-difference normals at edges.
         let sample = |i: i64, j: i64| -> f32 {
             let ic = i.clamp(0, self.w as i64 - 1) as usize;
             let jc = j.clamp(0, self.h as i64 - 1) as usize;
@@ -74,16 +102,22 @@ impl Bathymetry {
         let vert = |i: usize, j: usize| -> Vertex {
             let (ii, jj) = (i as i64, j as i64);
             let d = sample(ii, jj);
-            // Heightfield normal from central differences (world units): n = (-dy/dx, 1, -dy/dz).
-            let dydx = (sample(ii + 1, jj) - sample(ii - 1, jj)) * Y_SCALE / (2.0 * cell);
-            let dydz = (sample(ii, jj + 1) - sample(ii, jj - 1)) * Y_SCALE / (2.0 * cell);
+
+            // Row j=0 is the northernmost row (maxLat); rows increase southward.
+            let lat = self.bbox.max_lat - j as f64 * lat_step;
+            let lon = self.bbox.min_lon + i as f64 * lon_step;
+
+            // ENU from Nassau anchor → render space: East→X, Up/elevation→Y, North→Z.
+            let enu = anchor.lla_to_local_enu(lat, lon, d as f64);
+            let position = [enu.x as f32, enu.z as f32, enu.y as f32];
+
+            // Normal via central differences (elevation in m, cell sizes in m → dimensionless slope).
+            let dydx = (sample(ii + 1, jj) - sample(ii - 1, jj)) / (2.0 * east_cell_m);
+            let dydz = (sample(ii, jj + 1) - sample(ii, jj - 1)) / (2.0 * north_cell_m);
             let inv = 1.0 / (dydx * dydx + 1.0 + dydz * dydz).sqrt();
+
             Vertex {
-                position: [
-                    (i as f32 - cx) * cell,
-                    d * Y_SCALE,
-                    (j as f32 - cz) * cell,
-                ],
+                position,
                 normal: [-dydx * inv, inv, -dydz * inv],
                 color: depth_color(d),
             }
@@ -92,7 +126,6 @@ impl Bathymetry {
         let mut verts = Vec::with_capacity((self.w - 1) * (self.h - 1) * 6);
         for j in 0..self.h - 1 {
             for i in 0..self.w - 1 {
-                // two triangles per cell (cull is disabled, so winding is free)
                 verts.push(vert(i, j));
                 verts.push(vert(i + 1, j));
                 verts.push(vert(i, j + 1));
@@ -105,8 +138,8 @@ impl Bathymetry {
     }
 }
 
-/// Depth → banded colour. Placeholder for rung 5's depth-attenuated turquoise; for now it
-/// just makes the Banks legible: sand land, turquoise shallows, navy deep.
+/// Depth → banded colour. Placeholder for the Beer–Lambert shader's depth-attenuated
+/// turquoise; makes the Banks legible without shader output.
 fn depth_color(d: f32) -> [f32; 3] {
     if d >= 0.0 {
         [0.82, 0.74, 0.52] // land / carbonate sand

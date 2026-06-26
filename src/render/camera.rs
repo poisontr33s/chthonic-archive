@@ -226,7 +226,8 @@ impl IsometricCamera {
         match &self.anchor {
             Some(anchor) => {
                 let enu = anchor.ecef_to_local_enu(ecef);
-                Vec3::new(enu.x as f32, enu.y as f32, enu.z as f32)
+                // East→X, Up/elevation→Y, North→Z (render space convention).
+                Vec3::new(enu.x as f32, enu.z as f32, enu.y as f32)
             }
             None => Vec3::new(ecef.x as f32, ecef.y as f32, ecef.z as f32),
         }
