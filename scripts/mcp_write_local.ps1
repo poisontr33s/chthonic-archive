@@ -95,6 +95,16 @@ try {
     return ""
   }
 
+  function Get-OptionalEnvValue {
+    param(
+      [Parameter(Mandatory=$true)][hashtable]$Pool,
+      [Parameter(Mandatory=$true)][string[]]$Names
+    )
+    $value = Get-Token -Pool $Pool -Names $Names
+    if ([string]::IsNullOrWhiteSpace($value)) { return $null }
+    return $value
+  }
+
   function Require-Token {
     param(
       [Parameter(Mandatory=$true)][hashtable]$Pool,
@@ -186,6 +196,8 @@ try {
 
     $gh = Require-Token -Pool $Pool -Names @("GITHUB_TOKEN","GH_TOKEN","GITHUB_PERSONAL_ACCESS_TOKEN","GITHUB_PAT") -Purpose "GitHub MCP"
     $hf = Require-Token -Pool $Pool -Names @("HUGGINGFACE_HUB_TOKEN","HF_TOKEN") -Purpose "Hugging Face MCP"
+    $ncbiKey = Get-OptionalEnvValue -Pool $Pool -Names @("NCBI_API_KEY")
+    $ncbiAdminEmail = Get-OptionalEnvValue -Pool $Pool -Names @("NCBI_ADMIN_EMAIL","NCBI_EMAIL")
 
     $bunx = Resolve-CommandPath -Preferred (Join-Path $HOME ".bun\bin\bunx.exe") -FallbackName "bunx"
     $uv   = Resolve-CommandPath -Preferred (Join-Path $HOME ".local\bin\uv.exe")  -FallbackName "uv"
@@ -232,6 +244,16 @@ try {
         url = "https://huggingface.co/mcp"
         headers = @{ Authorization = "Bearer $hf" }
       }
+      pubmed = @{
+        type = "stdio"
+        command = $bunx
+        args = @("--bun","-y","@cyanheads/pubmed-mcp-server@latest")
+        env = @{
+          MCP_TRANSPORT_TYPE = "stdio"
+          MCP_LOG_LEVEL = "info"
+        }
+      }
+      ncbi = New-BunServer -Script "scripts/mcp-ncbi.ts"
       # --- VS Code parity set (workspaceFolder->repoRoot; bun/bunx/uv/uvx->absolute; HF env-token->pool) ---
       browser = New-BunServer -Script "scripts/mcp-browser.ts"
       "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
@@ -294,6 +316,19 @@ try {
         command = $uvx
         args = @("mcp-server-git","--repository",$repoRoot)
       }
+    }
+
+    if ($ncbiKey) {
+      $servers.ncbi.env = @{}
+      $servers.ncbi.env["NCBI_API_KEY"] = $ncbiKey
+      $servers.pubmed.env["NCBI_API_KEY"] = $ncbiKey
+    }
+    if ($ncbiAdminEmail) {
+      if (-not $servers.ncbi.ContainsKey("env")) { $servers.ncbi.env = @{} }
+      $servers.ncbi.env["NCBI_ADMIN_EMAIL"] = $ncbiAdminEmail
+      $servers.ncbi.env["NCBI_EMAIL"] = $ncbiAdminEmail
+      $servers.pubmed.env["NCBI_ADMIN_EMAIL"] = $ncbiAdminEmail
+      $servers.pubmed.env["NCBI_EMAIL"] = $ncbiAdminEmail
     }
 
     if ($IncludeCopilotFallback -and $GitHubMode -eq "official") {
@@ -379,7 +414,7 @@ try {
   function Assert-ExpectedMcpNames {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
-      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface",
+      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","pubmed","ncbi",
       "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
