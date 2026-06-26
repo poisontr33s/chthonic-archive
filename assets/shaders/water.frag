@@ -38,7 +38,9 @@ layout(set = 1, binding = 2) uniform sampler2D u_cloud_tex;
 
 // ELLIPSOID-RETROFIT: Y_SCALE must stay in sync with bathymetry.rs; under WGS84 both become ellipsoidal normal distance.
 const float Y_SCALE = 0.0004;                   // must match bathymetry.rs
-const vec3  SIGMA   = vec3(0.16, 0.035, 0.016); // per-metre extinction R,G,B (clear tropical water)
+// Williamson & Hollins 2022 (PMID 36606827) Table 7, Jerlov IB — Nassau/Bahama Banks.
+// Round-trip path length factored by exp(-SIGMA * depth_m * 2.0) below; SIGMA = Kd one-way.
+const vec3  SIGMA   = vec3(0.471, 0.076, 0.050); // Kd m⁻¹ at R(670nm) G(550nm) B(440nm)
 const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
 const vec3  WATER   = vec3(0.015, 0.10, 0.17);  // deep-water in-scatter colour
 
