@@ -244,15 +244,6 @@ try {
         url = "https://huggingface.co/mcp"
         headers = @{ Authorization = "Bearer $hf" }
       }
-      pubmed = @{
-        type = "stdio"
-        command = $bunx
-        args = @("--bun","-y","@cyanheads/pubmed-mcp-server@latest")
-        env = @{
-          MCP_TRANSPORT_TYPE = "stdio"
-          MCP_LOG_LEVEL = "info"
-        }
-      }
       ncbi = New-BunServer -Script "scripts/mcp-ncbi.ts"
       # --- VS Code parity set (workspaceFolder->repoRoot; bun/bunx/uv/uvx->absolute; HF env-token->pool) ---
       browser = New-BunServer -Script "scripts/mcp-browser.ts"
@@ -321,14 +312,11 @@ try {
     if ($ncbiKey) {
       $servers.ncbi.env = @{}
       $servers.ncbi.env["NCBI_API_KEY"] = $ncbiKey
-      $servers.pubmed.env["NCBI_API_KEY"] = $ncbiKey
     }
     if ($ncbiAdminEmail) {
       if (-not $servers.ncbi.ContainsKey("env")) { $servers.ncbi.env = @{} }
       $servers.ncbi.env["NCBI_ADMIN_EMAIL"] = $ncbiAdminEmail
       $servers.ncbi.env["NCBI_EMAIL"] = $ncbiAdminEmail
-      $servers.pubmed.env["NCBI_ADMIN_EMAIL"] = $ncbiAdminEmail
-      $servers.pubmed.env["NCBI_EMAIL"] = $ncbiAdminEmail
     }
 
     if ($IncludeCopilotFallback -and $GitHubMode -eq "official") {
@@ -414,7 +402,7 @@ try {
   function Assert-ExpectedMcpNames {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
-      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","pubmed","ncbi",
+      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","ncbi",
       "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
