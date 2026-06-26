@@ -17,7 +17,9 @@ use glam::{Mat4, Vec3};
 /// the sky-dome (radius ~4.15), which is correct — from the ground you never see the whole
 /// hemisphere at once. The eye does **not** move; only the heading (where you look) is free. Tuned
 /// against the render-smoke PNG.
-// ELLIPSOID-RETROFIT: eye position is absolute world-space. Under WGS84 this is camera-relative ENU.
+// Site 4 — Ellipsoid retrofit: ENU-local after Site 2+3 metric rebase. Values are now metres:
+// (0m East, 0.45m elevation, 2.6m North of Nassau anchor) = standing on the beach, 45 cm above sea.
+// ELLIPSOID-RETROFIT: Site 6 — perspective near/far (lines 129-130) must scale to ≥400 km far.
 const HORIZON_EYE: Vec3 = Vec3::new(0.0, 0.45, 2.6);
 /// How far ahead the look-at target sits along the heading. Only the *direction* matters to
 /// `look_at_rh`; any positive distance yields the same view.
@@ -123,6 +125,8 @@ pub fn matrices(lens: Lens, camera: &IsometricCamera, heading: Heading, aspect: 
         Lens::Perspective => {
             let (eye, target) = lens.vantage(camera, heading);
             let view = Mat4::look_at_rh(eye, target, Vec3::Y);
+            // ELLIPSOID-RETROFIT: Site 6 — near=0.1m, far=1000m are pre-metric. Must become
+            // near≈0.1m, far≈1_000_000m once the perspective lens renders the full Banks scene.
             let mut proj = Mat4::perspective_rh(
                 PERSPECTIVE_FOV_DEG.to_radians(),
                 aspect.max(0.01),

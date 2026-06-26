@@ -124,6 +124,8 @@ void main() {
     }
 
     // === Rung 5: seabed volumetric optics ===
+    // ELLIPSOID-RETROFIT: Site 5 — depth_m is ENU.z (positive = metres below sea surface).
+    // At Site 6, replace with ellipsoidal normal distance for sub-metre geodetic precision.
     float depth_m = max(0.0, -v_world_pos.y / Y_SCALE);
     float lambert = 0.30 + 0.70 * max(dot(N, L), 0.0);
 
