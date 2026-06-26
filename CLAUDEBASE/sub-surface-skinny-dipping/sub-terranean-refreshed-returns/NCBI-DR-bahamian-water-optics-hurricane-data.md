@@ -106,16 +106,23 @@ Characteristics:
 - Dominant optical agent: scattering from fine carbonate particles (very bright, high albedo)
 - Bottom is 1-10m shallow carbonate sand/seagrass mix
 
-Diffuse downwelling attenuation coefficients Kd(λ) for Nassau-equivalent shallow water
-(from Lee et al. 2005 model + Jerlov Type I ranges, training-knowledge values):
+Diffuse downwelling attenuation coefficients Kd(λ) derived from Williamson & Hollins 2022
+Table 7 (Jerlov IB, measured a and b, backscatter fraction B≈0.015, μ=0.89 oceanic):
+
+`Kd(λ) = [a(λ) + b(λ)×0.015] / 0.89`
 
 ```
-λ (nm)   Color     Kd (m⁻¹)   Depth for 1% survival
-440      Blue      ~0.05       92m
-490      Cyan-blue ~0.06       77m
-550      Green     ~0.10       46m
-670      Red       ~0.45       10m
+λ (nm)  Color      a (m⁻¹)  b (m⁻¹)  Kd (m⁻¹)   Depth for 1% survival
+440     Blue       0.0423   0.136    0.0500      92m
+490     Cyan-blue  0.0373   0.129    0.0441      104m
+550     Green      0.0655   0.122    0.0756      61m
+670     Red        0.417    0.113    0.471       10m
+700     Deep-red   0.573    0.111    0.647       7m
 ```
+
+Note: green Kd=0.076 is the corrected value — prior estimate of 0.10 was ~25% high.
+Consequence: water renders more transparent in green at mid-depth, making the turquoise
+more saturated than the current shader. Blue and red are confirmed by the measured data.
 
 Beer-Lambert: `E(z) = E(0) * exp(-Kd * z)`
 
@@ -165,11 +172,13 @@ at any given depth. This is a secondary correction for Site 5.
 
 ## Renderer Implications (Priority-Ordered)
 
-1. **Site 5 (`water.frag`)** — Kd values below are a starting calibration target consistent
-   with Jerlov IB water (Williamson & Hollins 2022, PMID 36606827). The definitive pass uses
-   the full a(λ) + b(λ) table from DOI 10.1364/AO.470464 when Site 5 is implemented.
-   K_red ≈ 0.45, K_green ≈ 0.10, K_blue ≈ 0.05 (all m⁻¹).
-   The turquoise gradient at 2-8m depth is the visual validation target.
+1. **Site 5 (`water.frag`)** — Kd values are now derived from measured IOPs (Williamson &
+   Hollins 2022, PMID 36606827, Table 7, Jerlov IB). Use directly in shader:
+   - `K_blue  = 0.050` m⁻¹  (440nm)
+   - `K_green = 0.076` m⁻¹  (550nm) — corrected down from prior estimate of 0.10
+   - `K_red   = 0.471` m⁻¹  (670nm)
+   The turquoise gradient at 2-8m depth is the visual validation target. Green correction
+   will deepen the turquoise saturation at 3-8m compared to the current tuned-by-eye pass.
 
 2. **Bottom reflectance** — Bare carbonate sand ≈ 40-60% reflectance. Seagrass beds ≈ 10-20%.
    At Nassau's coordinates (25°N, 77°W) the bottom is mixed seagrass+sand. A blended value
