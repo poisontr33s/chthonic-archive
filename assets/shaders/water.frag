@@ -42,8 +42,12 @@ const float Y_SCALE = 1.0;                      // render.y IS metres after Elli
 // Williamson & Hollins 2022 (PMID 36606827) Table 7, Jerlov IB — Nassau/Bahama Banks.
 // Round-trip path length factored by exp(-SIGMA * depth_m * 2.0) below; SIGMA = Kd one-way.
 const vec3  SIGMA   = vec3(0.471, 0.076, 0.050); // Kd m⁻¹ at R(670nm) G(550nm) B(440nm)
-const vec3  SAND    = vec3(0.90, 0.82, 0.62);   // bright carbonate sand floor
-const vec3  WATER   = vec3(0.015, 0.10, 0.17);  // deep-water in-scatter colour
+// Nassau Banks bottom: ~70% Thalassia testudinum seagrass + ~30% carbonate sand.
+// Seagrass reflectance ~5–12% across visible; sand ~55–75%. Mixed → ~31% avg luminance.
+// Source: Moritsch 2025 (PMC12084626) seagrass dominance; DR finding for 30% blended albedo.
+const vec3  SAND    = vec3(0.31, 0.34, 0.20);   // seagrass-dominated Nassau Banks floor
+// Jerlov IB in-scatter: blue-dominant asymptote for clear tropical open water (G/B ≈ 0.40).
+const vec3  WATER   = vec3(0.012, 0.075, 0.185); // deep-water in-scatter (Jerlov IB blue)
 
 vec3 sampleSkyViewLut(vec3 view_dir) {
     // view_dir must be normalized
