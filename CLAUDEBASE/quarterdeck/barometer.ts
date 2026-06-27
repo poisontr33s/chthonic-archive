@@ -447,11 +447,14 @@ async function fetchGeoTiffToGrid(url: string, targetW: number, targetH: number)
 //   gmrt           — GMRT GridServer topo-mask layer. Free, no auth, ~100 m where real multibeam
 //                    data exists; NaN elsewhere. Returns native-res GeoTIFF (bilinear resampled
 //                    to target grid here). Use --bathymetry-source=gmrt to test coverage.
+//   composite      — NOAA base (full coverage, ~2 km) with GMRT topo-mask overlaid where non-NaN
+//                    (~100 m resolution). Bahamas 2026-06-27: 41.9% GMRT coverage → meaningful
+//                    local upgrade at platform edges and cay margins. Both fetched in parallel.
 //   legacy         — Original OpenTopoData GEBCO 2020 point-query (100 pts/req, 1 req/s).
 //                    Preserved for reference; 56×22 default matches the old committed grid.
 //
 // Flags:
-//   --bathymetry-source=noaa|gmrt|legacy   (default: noaa)
+//   --bathymetry-source=noaa|gmrt|composite|legacy   (default: noaa)
 //   --bathymetry-w=N                       (default: 400 for noaa/gmrt, 56 for legacy)
 //   --bathymetry-h=N                       (default: 300 for noaa/gmrt, 22 for legacy)
 async function writeBathymetry(): Promise<void> {
@@ -505,6 +508,21 @@ async function writeBathymetry(): Promise<void> {
     depth = await fetchGeoTiffToGrid(url, W, H);
     const hitCount = depth.filter(isFinite).length;
     console.log(`  GMRT topo-mask coverage: ${hitCount}/${W * H} cells (${((hitCount / (W * H)) * 100).toFixed(1)}% of grid)`);
+  } else if (SRC === "composite") {
+    // --- NOAA+GMRT composite: NOAA base (~2 km, full coverage) + GMRT overlay (~100 m where valid) ---
+    // Both sources fetched in parallel. GMRT topo-mask cell overrides NOAA where non-NaN.
+    // Bahamas 2026-06-27: 41.9% GMRT coverage → meaningful upgrade at platform edges and cay margins.
+    sourceName = "composite:noaa+gmrt";
+    const noaaUrl = `https://gis.ngdc.noaa.gov/arcgis/rest/services/DEM_mosaics/DEM_all/ImageServer/exportImage?bbox=${minLon},${minLat},${maxLon},${maxLat}&bboxSR=4326&imageSR=4326&size=${W},${H}&format=tiff&pixelType=F32&f=image`;
+    const gmrtUrl = `https://www.gmrt.org/services/GridServer?north=${maxLat}&south=${minLat}&west=${minLon}&east=${maxLon}&layer=topo-mask&format=geotiff&resolution=max`;
+    console.log(`  Composite NOAA+GMRT: fetching both sources in parallel (${W}×${H}) ...`);
+    const [noaa, gmrt] = await Promise.all([
+      fetchGeoTiffToGrid(noaaUrl, W, H),
+      fetchGeoTiffToGrid(gmrtUrl, W, H),
+    ]);
+    depth = noaa.map((v, i) => (isFinite(gmrt[i]) ? gmrt[i] : v));
+    const gmrtHits = gmrt.filter(isFinite).length;
+    console.log(`  GMRT overlay: ${gmrtHits}/${W * H} cells (${((gmrtHits / (W * H)) * 100).toFixed(1)}%) replaced NOAA base`);
   } else {
     // --- NOAA NCEI ArcGIS ImageServer (default): DEM_all mosaic, ETOPO 2022 + GEBCO 2024 ---
     // Requests exactly W×H pixels at F32 precision. No auth. Free, open.
