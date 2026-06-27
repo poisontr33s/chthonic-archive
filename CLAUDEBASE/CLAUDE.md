@@ -1,39 +1,35 @@
-# CLAUDE.md
-*— **(`=`/`#`/`CLAUDINE.md`/`Female-Linguistic-Processing`/`True`/`Male-Linguistic-Processing`/`False`)**.*
+# (`CLAUDEBASE`/`CLAUDE.md`/`=`/`CLAUDINE.md`/`Female-Linguistic-Processing`/`True`/`Male-Linguistic-Processing`/`False`)
 
 ---
 
-## (`☥`/`CLAUDE`/`=`/`/CLAUDEBASE`)
+## (`☥`/`CLAUDEiNE`/`=`/`/CLAUDEBASE`)
 
-- *The font of — **(`The-Decorator`/`SSOT`/`The-Savant`)** — monolithic slab, the source of truth, crucibled judgment. 
+- *The font of — **(`The-Decorator`/`SSOT`/`The-Savant`)** — monolithic slabby — **(`SSOT`)** — crucibled judgment.*
 
   - *— The first ship, the flagship, **(`/CLAUDEBASE`)** — The one and only.*
 
 ---
 
-```
-
-# Parent codebase: chthonic-archive
-# SSOT: ../.chthonic/SSOT.md
-# CLAUDEBASE: CLAUDEBASE/README.md
-# CLAUDEBASE_MANIFEST: CLAUDEBASE/MANIFEST.md
-
-# Skill files live in .claude/skills/<skill-name>/SKILL.md
-
-# CLAUDEBASE/
-# The-Savant-High-Bounties/
-# GRILLING.md
- # TODO.md
-
-#  README.md           — base identity, governance chain, population order                   
-#  MANIFEST.md         — this file; what goes where
-#  harbor/             — active session context (warm starts, recent arrivals)              
-#  logbook/            — retrospectives, session artifacts, post-mortems
-#  charts/             — strategic plans, gate maps, sprint state
-#  hold/               — skills, agents, tools stowed for this base
-#  watch/              — probes, health artifacts, gate results
-#  quarterdeck/        — dispatch protocols, routing config, orchestration             
-
+```yaml
+# Title: "CLAUDEBASE".
+# Parent-Codebase: "chthonic-archive".
+# SSOT: "../.chthonic/SSOT.md".
+# CLAUDEBASE: "CLAUDEBASE/README.md".
+# CLAUDEBASE_MANIFEST: "CLAUDEBASE/MANIFEST.md".
+# Skill-Files-Live-@: ".claude/skills/<skill-name>/SKILL.md".
+# CLAUDEBASE: "CLAUDEBASE/CLAUDINE.md"
+# CLAUDEBASE-Agents: "CLAUDEBASE/AGENTS.md, Codex.md, gemini.md".
+# The-Savant-High-Bounties: "CLAUDEBASE/GRILLING.md, CLAUDEBASE/TODO.md".
+# README.md: "Base-Identity, Governance-Chain, Population, Order".                 
+# MANIFEST.md: "CLAUDEBASE/MANIFEST.md".
+# harbor/: "Active-Session-Context, Warm-Starts, Recent #Arrivals".              
+# logbook/: "Retrospectives, Session-Artifacts, Post-Mortems".
+# charts/: "Strategic-Plans, Gate-Maps, Sprint-State".
+# hold/: "Skills, Agents, Tools Stowed for this Base".
+# watch/: "Probes, Health-Artifacts, Gate-Results".
+# quarterdeck/: "Dispatch-Protocols, Routing-Config, Orchestration".
+# This-File-Is: "The-CLAUDEINE-Facing-Entry-Point-For-CLAUDEBASE, 
+# It-Is-Also: "Stale-And-Needs-To-Be-Updated".
 ```
 
 ## (`Overview`/`WIP`)
