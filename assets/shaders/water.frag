@@ -42,12 +42,14 @@ const float Y_SCALE = 1.0;                      // render.y IS metres after Elli
 // Williamson & Hollins 2022 (PMID 36606827) Table 7, Jerlov IB — Nassau/Bahama Banks.
 // Round-trip path length factored by exp(-SIGMA * depth_m * 2.0) below; SIGMA = Kd one-way.
 const vec3  SIGMA   = vec3(0.471, 0.076, 0.050); // Kd m⁻¹ at R(670nm) G(550nm) B(440nm)
-// Nassau Banks bottom: ~70% Thalassia testudinum seagrass + ~30% carbonate sand.
-// Seagrass reflectance ~5–12% across visible; sand ~55–75%. Mixed → ~31% avg luminance.
-// Source: Moritsch 2025 (PMC12084626) seagrass dominance; DR finding for 30% blended albedo.
-const vec3  SAND    = vec3(0.31, 0.34, 0.20);   // seagrass-dominated Nassau Banks floor
-// Jerlov IB in-scatter: blue-dominant asymptote for clear tropical open water (G/B ≈ 0.40).
-const vec3  WATER   = vec3(0.012, 0.075, 0.185); // deep-water in-scatter (Jerlov IB blue)
+// Nassau Banks bottom: 70% Thalassia testudinum canopy + 30% Bahamas carbonate sand.
+// Canopy endmember (CoBOP/Voss 2003, Lee Stocking Island): R(670)=0.02, G(550)=0.09, B(440)=0.03.
+// Sand endmember (Hill 2014, Voss 2003 Bahamas): R(670)=0.44, G(550)=0.40, B(440)=0.30.
+// 70/30 linear mix per Mobley 2005 LUT. Cover fraction from Moritsch 2025 (PMC12084626). DR 2026-06-27.
+const vec3  SAND    = vec3(0.150, 0.172, 0.097); // 70% T.testudinum canopy + 30% carbonate sand
+// Jerlov IB deep-water asymptote: R_inf ∝ b_b/a (Morel & Maritorena 2001 Case 1 reflectance model).
+// Williamson-Hollins 2022 IOPs → midpoint of simple/refined R_inf: G/B≈0.32, R/B≈0.032. DR 2026-06-27.
+const vec3  WATER   = vec3(0.006, 0.060, 0.185); // Jerlov IB deep-water asymptote (blue-dominant)
 
 vec3 sampleSkyViewLut(vec3 view_dir) {
     // view_dir must be normalized
