@@ -398,46 +398,134 @@ function histogram(): void {
   }
 }
 
-// THE MEDIUM — real GEBCO seafloor depth over the sim's exact grid, so the sim stops being
-// flat. The Bahamas are the most dramatic carbonate platform on Earth: banks under <10 m of
-// water drop to ~2000 m trenches within a kilometre. We sample that on the same 56×22 grid
-// the sim rasterizes (same island-bbox + 8% pad + cell↔lat/lon mapping), via Open Topo Data's
-// free GEBCO endpoint (no key). Bathymetry is STABLE — fetched once, committed; not live.
+// Parse a GeoTIFF ArrayBuffer → Float32Array, then bilinearly resample to targetW×targetH.
+// Handles the NOAA ImageServer case (returns exactly targetW×targetH) and the GMRT case
+// (returns native resolution, needs resample). Requires the `geotiff` npm package.
+async function fetchGeoTiffToGrid(url: string, targetW: number, targetH: number): Promise<number[]> {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`HTTP ${resp.status} ${resp.statusText} — ${url}`);
+  const buf = await resp.arrayBuffer();
+  // Dynamic import: only loaded when --bathymetry is active. geotiff is a pure-JS ES module.
+  const geotiff = await import("geotiff") as any;
+  const tiff = await geotiff.fromArrayBuffer(buf);
+  const img = await tiff.getImage();
+  const rasters = await img.readRasters({ interleave: false });
+  const band: Float32Array = rasters[0];
+  const srcW: number = img.getWidth();
+  const srcH: number = img.getHeight();
+  // NOAA ImageServer honours the size= parameter — exact match, no resample needed.
+  if (srcW === targetW && srcH === targetH) {
+    return Array.from(band).map((v) => (isFinite(v) ? v : NaN));
+  }
+  // GMRT GridServer returns native resolution — bilinear downsample/upsample to target grid.
+  const out: number[] = new Array(targetW * targetH);
+  for (let ty = 0; ty < targetH; ty++) {
+    for (let tx = 0; tx < targetW; tx++) {
+      const sx = (tx / (targetW - 1)) * (srcW - 1);
+      const sy = (ty / (targetH - 1)) * (srcH - 1);
+      const ix = Math.floor(sx), iy = Math.floor(sy);
+      const fx = sx - ix, fy = sy - iy;
+      const ix1 = Math.min(ix + 1, srcW - 1), iy1 = Math.min(iy + 1, srcH - 1);
+      const v00 = band[iy * srcW + ix], v10 = band[iy * srcW + ix1];
+      const v01 = band[iy1 * srcW + ix], v11 = band[iy1 * srcW + ix1];
+      out[ty * targetW + tx] = [v00, v10, v01, v11].every(isFinite)
+        ? v00 * (1 - fx) * (1 - fy) + v10 * fx * (1 - fy) + v01 * (1 - fx) * fy + v11 * fx * fy
+        : NaN;
+    }
+  }
+  return out;
+}
+
+// THE MEDIUM — real GEBCO seafloor depth over the sim grid, so the sim stops being flat.
+// The Bahamas are the most dramatic carbonate platform on Earth: banks under <10 m of water
+// drop to ~2,000 m trenches within a kilometre.
+//
+// Sources (priority order):
+//   noaa (default) — NOAA NCEI ArcGIS ImageServer, DEM_all mosaic (ETOPO 2022 + GEBCO 2024).
+//                    Free, no auth, F32 GeoTIFF at exact requested W×H. Native ~450 m cells
+//                    over the Bahamas. Default grid 400×300 → ~2 km cells (vs ~15-37 km before).
+//   gmrt           — GMRT GridServer topo-mask layer. Free, no auth, ~100 m where real multibeam
+//                    data exists; NaN elsewhere. Returns native-res GeoTIFF (bilinear resampled
+//                    to target grid here). Use --bathymetry-source=gmrt to test coverage.
+//   legacy         — Original OpenTopoData GEBCO 2020 point-query (100 pts/req, 1 req/s).
+//                    Preserved for reference; 56×22 default matches the old committed grid.
+//
+// Flags:
+//   --bathymetry-source=noaa|gmrt|legacy   (default: noaa)
+//   --bathymetry-w=N                       (default: 400 for noaa/gmrt, 56 for legacy)
+//   --bathymetry-h=N                       (default: 300 for noaa/gmrt, 22 for legacy)
 async function writeBathymetry(): Promise<void> {
+  const SRC = process.argv.find((a) => a.startsWith("--bathymetry-source="))?.split("=")[1] ?? "noaa";
+  const isLegacy = SRC === "legacy";
+  const W = Number(process.argv.find((a) => a.startsWith("--bathymetry-w="))?.split("=")[1] ?? (isLegacy ? "56" : "400"));
+  const H = Number(process.argv.find((a) => a.startsWith("--bathymetry-h="))?.split("=")[1] ?? (isLegacy ? "22" : "300"));
+
   const isles = TWIN.islands as any[];
   let minLat = Infinity, maxLat = -Infinity, minLon = Infinity, maxLon = -Infinity;
   for (const i of isles) { minLat = Math.min(minLat, i.lat); maxLat = Math.max(maxLat, i.lat); minLon = Math.min(minLon, i.lon); maxLon = Math.max(maxLon, i.lon); }
   const padLat = (maxLat - minLat) * 0.08 + 0.1, padLon = (maxLon - minLon) * 0.08 + 0.1;
   minLat -= padLat; maxLat += padLat; minLon -= padLon; maxLon += padLon;
-  const W = 56, H = 22;
-  const pts: { lat: number; lon: number }[] = [];
-  for (let cy = 0; cy < H; cy++) for (let cx = 0; cx < W; cx++) {
-    pts.push({ lon: minLon + (cx / (W - 1)) * (maxLon - minLon), lat: maxLat - (cy / (H - 1)) * (maxLat - minLat) }); // y=0 is north, matches the sim
-  }
-  const depth = new Array(W * H).fill(NaN);
-  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-  for (let i = 0; i < pts.length; i += 100) {
-    const batch = pts.slice(i, i + 100);
-    const locs = batch.map((p) => `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`).join("|");
-    let ok = false;
-    for (let attempt = 0; attempt < 3 && !ok; attempt++) {
-      try {
-        const r = await fetch(`https://api.opentopodata.org/v1/gebco2020?locations=${locs}`);
-        const j: any = await r.json();
-        if (j.status === "OK") { j.results.forEach((res: any, k: number) => { depth[i + k] = res.elevation; }); ok = true; }
-        else { await sleep(2000); }
-      } catch { await sleep(2000); }
+
+  let depth: number[];
+  let sourceName: string;
+
+  if (isLegacy) {
+    // --- OpenTopoData GEBCO 2020 point-query (original path) ---
+    sourceName = "api.opentopodata.org/v1/gebco2020";
+    const pts: { lat: number; lon: number }[] = [];
+    for (let cy = 0; cy < H; cy++) for (let cx = 0; cx < W; cx++) {
+      pts.push({ lon: minLon + (cx / (W - 1)) * (maxLon - minLon), lat: maxLat - (cy / (H - 1)) * (maxLat - minLat) });
     }
-    if (!ok) { console.error(`\nbathymetry: batch at ${i} failed after retries — aborting (no partial write)`); return; }
-    process.stdout.write(`\r  fetched ${Math.min(i + 100, pts.length)}/${pts.length} cells`);
-    if (i + 100 < pts.length) await sleep(1100); // ≤1 req/sec, public limit
+    const rawDepth = new Array(W * H).fill(NaN);
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    for (let i = 0; i < pts.length; i += 100) {
+      const batch = pts.slice(i, i + 100);
+      const locs = batch.map((p) => `${p.lat.toFixed(5)},${p.lon.toFixed(5)}`).join("|");
+      let ok = false;
+      for (let attempt = 0; attempt < 3 && !ok; attempt++) {
+        try {
+          const r = await fetch(`https://api.opentopodata.org/v1/gebco2020?locations=${locs}`);
+          const j: any = await r.json();
+          if (j.status === "OK") { j.results.forEach((res: any, k: number) => { rawDepth[i + k] = res.elevation; }); ok = true; }
+          else { await sleep(2000); }
+        } catch { await sleep(2000); }
+      }
+      if (!ok) { console.error(`\nbathymetry: batch at ${i} failed after retries — aborting`); return; }
+      process.stdout.write(`\r  fetched ${Math.min(i + 100, pts.length)}/${pts.length} cells`);
+      if (i + 100 < pts.length) await sleep(1100);
+    }
+    depth = rawDepth;
+  } else if (SRC === "gmrt") {
+    // --- GMRT GridServer topo-mask: free, no auth, ~100 m where real multibeam data exists ---
+    // topo-mask returns NaN where GMRT has no high-res data (unlike 'topo' which fills with ETOPO).
+    // Use this to test whether the Bahamas have actual GMRT coverage before compositing.
+    sourceName = "www.gmrt.org/services/GridServer?layer=topo-mask";
+    console.log(`  GMRT topo-mask: ${minLon.toFixed(3)},${minLat.toFixed(3)} → ${maxLon.toFixed(3)},${maxLat.toFixed(3)} (native res, bilinear → ${W}×${H}) ...`);
+    const url = `https://www.gmrt.org/services/GridServer?north=${maxLat}&south=${minLat}&west=${minLon}&east=${maxLon}&layer=topo-mask&format=geotiff&resolution=max`;
+    depth = await fetchGeoTiffToGrid(url, W, H);
+    const hitCount = depth.filter(isFinite).length;
+    console.log(`  GMRT topo-mask coverage: ${hitCount}/${W * H} cells (${((hitCount / (W * H)) * 100).toFixed(1)}% of grid)`);
+  } else {
+    // --- NOAA NCEI ArcGIS ImageServer (default): DEM_all mosaic, ETOPO 2022 + GEBCO 2024 ---
+    // Requests exactly W×H pixels at F32 precision. No auth. Free, open.
+    // Native source is GEBCO 2024 15" (~450 m) over the Bahamas; the server resamples to W×H.
+    sourceName = "gis.ngdc.noaa.gov/arcgis/rest/services/DEM_mosaics/DEM_all/ImageServer";
+    const url = `https://gis.ngdc.noaa.gov/arcgis/rest/services/DEM_mosaics/DEM_all/ImageServer/exportImage?bbox=${minLon},${minLat},${maxLon},${maxLat}&bboxSR=4326&imageSR=4326&size=${W},${H}&format=tiff&pixelType=F32&f=image`;
+    console.log(`  NOAA NCEI ImageServer: ${W}×${H} F32 GeoTIFF over Bahamas bbox ...`);
+    depth = await fetchGeoTiffToGrid(url, W, H);
   }
-  const vals = depth.filter((d) => !isNaN(d));
-  if (!vals.length) { console.error("\nbathymetry: no depths fetched"); return; }
-  const dmin = Math.min(...vals), dmax = Math.max(...vals), land = depth.filter((d) => d >= 0).length;
-  const out = { _note: "GEBCO 2020 seafloor depth over the sim grid, via Open Topo Data. STABLE (the seafloor does not change) — committed, unlike live weather. elevation_m: + = land above sea, − = metres below sea.", source: "api.opentopodata.org/v1/gebco2020", W, H, bbox: { minLat, maxLat, minLon, maxLon }, depth };
+
+  const vals = depth.filter((d) => isFinite(d) && !isNaN(d));
+  if (!vals.length) { console.error("\nbathymetry: no valid depths received"); return; }
+  const dmin = Math.min(...vals), dmax = Math.max(...vals), land = depth.filter((d) => isFinite(d) && d >= 0).length;
+  const out = {
+    _note: `Seafloor elevation over the sim grid. STABLE — committed, not live. elevation_m: + = land above sea, − = metres below sea. Source: ${sourceName}.`,
+    source: sourceName, W, H,
+    bbox: { minLat, maxLat, minLon, maxLon },
+    depth,
+  };
   writeFileSync(join(ROOT, "charts", "bathymetry.json"), JSON.stringify(out));
-  console.log(`\nbathymetry → charts/bathymetry.json   ${W}×${H} cells · ${dmin}..${dmax} m · ${land} land cells (elev ≥ 0) · ${vals.length - land} sea cells`);
+  console.log(`\nbathymetry → charts/bathymetry.json   ${W}×${H} cells · ${dmin.toFixed(0)}..${dmax.toFixed(0)} m · ${land} land · ${vals.length - land} sea`);
 }
 
 // M-3 · HURRICANE EPISODIC FORCING — a real storm track over the Bahama Bank.
