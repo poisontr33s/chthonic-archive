@@ -43,15 +43,124 @@ Credentials checked in priority order:
 import argparse, datetime, json, os, sys
 from pathlib import Path
 
+# Static ARCO Zarr URI — from copernicusmarine.describe(dataset_id=DATASET_ID)
+# Retrieved 2026-06-27. Update if the dataset version suffix changes.
+_ZARR_URI = (
+    "https://s3.waw3-1.cloudferro.com/mdl-arco-time-003/arco/"
+    "BATHYMETRY_GLO_PHY_COASTAL_L4_MY_016_001/"
+    "cmems_obs-sdb_glo_phy_comp_my_100m-l4-s2_static_202511/static.zarr"
+)
+
+
+def probe_zarr(bbox: tuple[float, float, float, float] | None) -> int:
+    """Diagnostic probe: test anonymous direct Zarr access. Does not write any files."""
+    import urllib.request, urllib.error
+
+    results: dict = {
+        "zarr_uri": _ZARR_URI,
+        "direct_zarr_uri_reachable": "unknown",
+        "anonymous_access_works": "unknown",
+        "dataset_opens": "unknown",
+        "height_variable_present": "unknown",
+        "bbox_subset_readable": "unknown",
+        "credentials_used": False,
+    }
+
+    # Step 1: reachability — fetch .zmetadata (lightweight catalogue file)
+    meta_url = _ZARR_URI + "/.zmetadata"
+    try:
+        with urllib.request.urlopen(meta_url, timeout=15) as resp:
+            code = resp.getcode()
+            results["direct_zarr_uri_reachable"] = f"yes (HTTP {code})"
+            results["anonymous_access_works"] = "yes"
+    except urllib.error.HTTPError as e:
+        results["direct_zarr_uri_reachable"] = f"no (HTTP {e.code})"
+        results["anonymous_access_works"] = "no (auth required)" if e.code in (401, 403) else f"no (HTTP {e.code})"
+    except Exception as e:
+        results["direct_zarr_uri_reachable"] = f"no ({e})"
+        results["anonymous_access_works"] = f"no ({e})"
+
+    if "yes" not in results["anonymous_access_works"]:
+        _print_probe(results)
+        return 0
+
+    # Step 2: read .zmetadata (Zarr v2 consolidated) directly via urllib.
+    # Avoids zarr library trying zarr.json (v3) which returns 403 on this store.
+    zmeta_url = _ZARR_URI + "/.zmetadata"
+    try:
+        with urllib.request.urlopen(zmeta_url, timeout=15) as r:
+            zmeta = json.loads(r.read().decode("utf-8"))
+        results["dataset_opens"] = "yes (via .zmetadata)"
+        meta = zmeta.get("metadata", zmeta)
+        vars_found = sorted({
+            k.split("/")[0] for k in meta
+            if "/" in k and not k.startswith(".") and not k.endswith(".zattrs")
+        })
+        results["height_variable_present"] = (
+            "yes" if "height" in vars_found
+            else f"no (top-level vars: {vars_found[:8]})"
+        )
+        lat_info = meta.get("latitude/.zattrs") or meta.get(".zattrs", {}).get("latitude")
+        lon_info = meta.get("longitude/.zattrs") or meta.get(".zattrs", {}).get("longitude")
+        if lat_info:
+            results["coord_latitude"] = str(lat_info)[:120]
+        if lon_info:
+            results["coord_longitude"] = str(lon_info)[:120]
+    except Exception as e:
+        results["dataset_opens"] = f"no ({e})"
+        _print_probe(results)
+        return 0
+
+    # Step 3: bbox chunk probe — attempt a raw data chunk to determine if data plane is public
+    if "yes" in results.get("height_variable_present", ""):
+        try:
+            chunk_url = _ZARR_URI + "/height/0.0"
+            with urllib.request.urlopen(chunk_url, timeout=15) as r:
+                chunk_bytes = len(r.read())
+            results["bbox_subset_readable"] = f"yes — data plane is public (chunk 0.0: {chunk_bytes} bytes)"
+        except urllib.error.HTTPError as e:
+            if e.code in (401, 403):
+                results["bbox_subset_readable"] = (
+                    f"no — data plane is auth-gated (chunk 0.0: HTTP {e.code}); "
+                    "metadata plane is public, data chunks require credentials"
+                )
+            else:
+                results["bbox_subset_readable"] = f"no (chunk 0.0: HTTP {e.code})"
+        except Exception as e:
+            results["bbox_subset_readable"] = f"no (chunk 0.0: {e})"
+
+    _print_probe(results)
+    return 0
+
+
+def _print_probe(results: dict) -> None:
+    print("\n=== Copernicus Marine Direct Zarr Probe ===")
+    for k, v in results.items():
+        print(f"  {k}: {v}")
+    print("===========================================\n")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Fetch Copernicus Marine SDB subset.")
+    parser.add_argument("--probe-direct-zarr", action="store_true",
+                        help="Diagnostic-only: test anonymous direct Zarr access. No files written.")
     parser.add_argument("--bbox", nargs=4, type=float,
-                        metavar=("MIN_LON", "MIN_LAT", "MAX_LON", "MAX_LAT"), required=True)
+                        metavar=("MIN_LON", "MIN_LAT", "MAX_LON", "MAX_LAT"))
     parser.add_argument("--width", type=int, default=400)
     parser.add_argument("--height", type=int, default=300)
-    parser.add_argument("--out", required=True, help="Output JSON path")
+    parser.add_argument("--out", help="Output JSON path (required unless --probe-direct-zarr)")
     args = parser.parse_args()
+
+    # Probe mode: diagnostic only, no files written, no credentials required
+    if args.probe_direct_zarr:
+        bbox = tuple(args.bbox) if args.bbox else None
+        return probe_zarr(bbox)
+
+    # Normal fetch mode: --bbox and --out are required
+    if not args.bbox:
+        parser.error("--bbox is required for fetch mode")
+    if not args.out:
+        parser.error("--out is required for fetch mode")
 
     min_lon, min_lat, max_lon, max_lat = args.bbox
     W, H = args.width, args.height
