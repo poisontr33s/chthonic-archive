@@ -39,6 +39,8 @@ The document is **descriptive** about the design space (§§1–4) and **executa
 One world, rendered from the floor.
  
 The project is a real-time renderer of a real place — Nassau, New Providence, and the surrounding Bahama Banks — under live weather, built from scratch in Rust on Vulkan (`ash`), with no engine and no middleware beneath it. The renderer is not a means to a game. **The renderer is the work.** Its name is **Astrological Nassau**: astronomy and astrology, held 50/50, over a real place (§2.6) — the astronomy is the positional-accuracy layer nested *inside* the older and fuller field the name points to, never a competitor to it.
+
+**(`Amended`/`2026-06-27`/`Scope`)** The renderer is the first instrument. The larger work is a **(`CryEngine-Lineage`/`Matter-And-Myth-Native`)** meta-game-simulation engine: Rust/Ash/Vulkan native, CUDA/C++ compute, Streamline DLAA/Reflex-ready, bathymetry/weather/marine/geology/celestial substrates, and **(`Astrology-Core`/`Cosmology-Glue`/`Astronomy-Shell`)** as the symbolic/scale/observational architecture. CryEngine is the nearest cultural silhouette — terrain, water, real-time world, sandbox ambition — but this is not a clone lineage; it owns the water, and that ownership is the difference. This does not move the gate: the bathymetric shader is still the proof; the renderer proves the engine can hold what matters.
  
 Its reason for existing — the single thing that justifies refusing every off-the-shelf engine — is one shader: the **bathymetric shallow-water model** that turns depth data into the unmistakable turquoise-over-sand-to-navy gradient of the Banks. Every engine on Earth would force that shader to be written by hand anyway, so hosting one buys nothing and costs control. The North Star is the moment that shader reads correct under a sky that is reading Nassau's actual weather.
  
@@ -161,6 +163,8 @@ So the genuine first decision is not *which star*. It is one question: **(`Pay-F
 - One temporal authority: all temporal passes (DLAA, any cloud/reflection reprojection) share a single jitter + motion-vector source — independent temporal clocks disagree in motion and the OLED exposes it (KCD1 lesson, §2.4).
 - Render increments self-verify via `scripts/render-smoke.ps1` (build + bounded run + PASS/FAIL on VUIDs/panics, validation layers on) **(`And-The-Agent`/`Reads-Its-Own-Render`)** — `CHTHONIC_SCREENSHOT` dumps frame ≥5 to a PNG the agent `Read`s, and `CHTHONIC_SHOW_MOTION` paints the motion buffer for inspection. A **(`Load-Bearing-Acceptance-Gate`)**, not a footnote: compile + runtime + *visual*, with no human screenshot needed.
 - Respect the hardware floor (Win11 native, no WSL, 4090 / Vulkan).
+- **(`Main-Is-The-Stable-Road`)** Branches only when explicitly ordered. All other work happens on `main` with scoped staging and a smoke gate before push. Agents do not create branches autonomously.
+- **(`No-DR-Fog`)** Every research pass must produce one of: a source-ledger row, a code delta, or an explicit named rejection. A neutral synthesis cloud with no artifact is not a research pass.
 ---
  
 ## (`6`/`·`/`Current-Position`/`Last-Known-Fix`/`Verify-Before-Trusting`)
