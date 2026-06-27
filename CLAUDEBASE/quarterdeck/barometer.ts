@@ -42,7 +42,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, statSync, writeFileSync, watch } from "node:fs";
 import { join, relative, sep } from "node:path";
-import { execSync } from "node:child_process";
+import { execSync, spawnSync } from "node:child_process";
 
 const ROOT = join(import.meta.dir, "..");
 const TWIN_PATH = join(ROOT, "charts", "archipelago.json");
@@ -450,11 +450,22 @@ async function fetchGeoTiffToGrid(url: string, targetW: number, targetH: number)
 //   composite      — NOAA base (full coverage, ~2 km) with GMRT topo-mask overlaid where non-NaN
 //                    (~100 m resolution). Bahamas 2026-06-27: 41.9% GMRT coverage → meaningful
 //                    local upgrade at platform edges and cay margins. Both fetched in parallel.
+//   copernicus     — Copernicus Marine Satellite-Derived Bathymetry (Sentinel-2, 100 m class).
+//                    Product:  BATHYMETRY_GLO_PHY_COASTAL_L4_MY_016_001
+//                    Dataset:  cmems_obs-sdb_glo_phy_comp_my_100m-l4-s2_static
+//                    Variable: height (units: m, positive-up — matches NOAA/GMRT convention)
+//                    Access:   copernicusmarine toolbox v2+ via uv run --with copernicusmarine
+//                    Credentials: CMEMS_USER + CMEMS_PASS env vars, or copernicusmarine login.
+//                    Registration free at https://marine.copernicus.eu
+//                    Does NOT overwrite production bathymetry.json — outputs candidate files:
+//                      charts/bathymetry-copernicus.json
+//                      charts/bathymetry-copernicus-composite.json  (Copernicus > NOAA+GMRT)
+//                      charts/bathymetry-copernicus-report.md
 //   legacy         — Original OpenTopoData GEBCO 2020 point-query (100 pts/req, 1 req/s).
 //                    Preserved for reference; 56×22 default matches the old committed grid.
 //
 // Flags:
-//   --bathymetry-source=noaa|gmrt|composite|legacy   (default: noaa)
+//   --bathymetry-source=noaa|gmrt|composite|copernicus|legacy   (default: noaa)
 //   --bathymetry-w=N                       (default: 400 for noaa/gmrt, 56 for legacy)
 //   --bathymetry-h=N                       (default: 300 for noaa/gmrt, 22 for legacy)
 async function writeBathymetry(): Promise<void> {
@@ -523,6 +534,134 @@ async function writeBathymetry(): Promise<void> {
     depth = noaa.map((v, i) => (isFinite(gmrt[i]) ? gmrt[i] : v));
     const gmrtHits = gmrt.filter(isFinite).length;
     console.log(`  GMRT overlay: ${gmrtHits}/${W * H} cells (${((gmrtHits / (W * H)) * 100).toFixed(1)}%) replaced NOAA base`);
+  } else if (SRC === "copernicus") {
+    // --- Copernicus Marine SDB via official copernicusmarine toolbox (v2+) ---
+    // Variable 'height' is positive-up (positive = land, negative = water depth) — same
+    // sign convention as NOAA/GMRT; no sign flip needed in the shader.
+    // Does NOT overwrite production bathymetry.json.
+    // Writes three candidate files; returns early before the write-JSON step below.
+    const cmOut = join(ROOT, "charts", "bathymetry-copernicus.json");
+    const scriptPath = join(ROOT, "..", "scripts", "cm_sdb_fetch.py"); // ROOT=CLAUDEBASE; scripts/ is at repo root
+
+    console.log(`  Copernicus Marine SDB: invoking toolbox (uv run --with copernicusmarine) ...`);
+    const proc = spawnSync("uv", [
+      "run", "--with", "copernicusmarine",
+      "python", scriptPath,
+      "--bbox", minLon.toString(), minLat.toString(), maxLon.toString(), maxLat.toString(),
+      "--width", W.toString(), "--height", H.toString(),
+      "--out", cmOut,
+    ], { encoding: "utf8", env: { ...process.env } });
+
+    if (proc.stderr) process.stderr.write(proc.stderr);
+
+    if (proc.status === 2) {
+      console.error("  copernicusmarine toolbox missing. Install: uv add copernicusmarine");
+      return;
+    }
+    if (proc.status === 3) {
+      console.error("  Copernicus Marine credentials not configured.");
+      console.error("  Register free at https://marine.copernicus.eu");
+      console.error("  Then: uv run --with copernicusmarine python -m copernicusmarine login");
+      console.error("  Or set: CMEMS_USER + CMEMS_PASS environment variables.");
+      return;
+    }
+    if (proc.status !== 0) {
+      console.error(`  Copernicus Marine fetch failed (exit ${proc.status})`);
+      return;
+    }
+
+    if (proc.stdout) process.stdout.write(proc.stdout);
+
+    // Read Copernicus candidate
+    let cmData: any;
+    try {
+      cmData = JSON.parse(readFileSync(cmOut, "utf8"));
+    } catch { console.error("  Failed to parse Copernicus output JSON"); return; }
+
+    const cmDepth: (number | null)[] = cmData.depth;
+    const cmValid = cmDepth.filter((v) => v !== null && isFinite(v!)).length;
+
+    // Read production composite for comparison + fusion
+    let prodDepth: number[] = [];
+    try {
+      const prod = JSON.parse(readFileSync(join(ROOT, "charts", "bathymetry.json"), "utf8"));
+      prodDepth = prod.depth ?? [];
+    } catch { /* no production grid */ }
+
+    // Fused candidate: Copernicus SDB > current production composite
+    const fusedDepth: (number | null)[] = cmDepth.map((v, i) =>
+      v !== null && isFinite(v!) ? v : (isFinite(prodDepth[i]) ? prodDepth[i] : null)
+    );
+    const fusedValid = fusedDepth.filter((v) => v !== null).length;
+    const cmOverrides = cmDepth.filter((v, i) => v !== null && isFinite(v!) && isFinite(prodDepth[i])).length;
+    const prodFallback = fusedDepth.filter((v, i) => (cmDepth[i] === null) && v !== null).length;
+
+    writeFileSync(join(ROOT, "charts", "bathymetry-copernicus-composite.json"), JSON.stringify({
+      _note: "Copernicus-first fused candidate. NOT production. Priority: Copernicus SDB > NOAA+GMRT composite.",
+      source: "copernicus-composite-candidate",
+      product: cmData.product, dataset: cmData.dataset, access: cmData.access,
+      fusionPriority: ["copernicus-sdb", "noaa+gmrt-composite"],
+      W, H, bbox: cmData.bbox,
+      coverage: {
+        total: W * H, valid: fusedValid,
+        copernicus_cells: cmValid, prod_fallback_cells: prodFallback,
+        coverage_pct: +((fusedValid / (W * H)) * 100).toFixed(1),
+      },
+      depth: fusedDepth,
+    }));
+
+    const prodVals = prodDepth.filter(isFinite);
+    const prodMin = prodVals.length ? Math.min(...prodVals) : null;
+    const prodMax = prodVals.length ? Math.max(...prodVals) : null;
+    const cmCov = cmData.coverage ?? {};
+    const cmRng = cmData.range ?? {};
+    const shallow = cmDepth.filter((v) => v !== null && v! >= -30 && v! < 0).length;
+
+    const report = [
+      `# Copernicus Marine SDB — Comparison Report`,
+      ``,
+      `Generated: ${new Date().toISOString()}`,
+      ``,
+      `## Copernicus Candidate`,
+      `- Source: \`${cmData.dataset}\``,
+      `- Grid: ${W}×${H} = ${W * H} cells`,
+      `- Valid: ${cmValid} / ${W * H} (${((cmValid / (W * H)) * 100).toFixed(1)}%)`,
+      `- NaN: ${W * H - cmValid}`,
+      `- Range: ${cmRng.min ?? "n/a"} .. ${cmRng.max ?? "n/a"} m`,
+      `- Shallow (0–30 m): ${shallow} cells`,
+      `- Land (>0 m): ${cmCov.land ?? "?"}`,
+      `- Sign convention: positive-up (standard_name=height) — matches NOAA/GMRT`,
+      ``,
+      `## Production Composite (NOAA+GMRT)`,
+      `- Source: composite:noaa+gmrt`,
+      `- Valid: ${prodVals.length} / ${W * H}`,
+      `- Range: ${prodMin?.toFixed(0) ?? "n/a"} .. ${prodMax?.toFixed(0) ?? "n/a"} m`,
+      ``,
+      `## Fused Candidate (Copernicus > NOAA+GMRT)`,
+      `- Valid: ${fusedValid} / ${W * H} (${((fusedValid / (W * H)) * 100).toFixed(1)}%)`,
+      `- Copernicus cells used: ${cmValid} (${((cmValid / (W * H)) * 100).toFixed(1)}%)`,
+      `- Copernicus overrides production: ${cmOverrides} cells`,
+      `- Production fallback cells: ${prodFallback}`,
+      ``,
+      `## Assessment`,
+      `- Copernicus SDB coverage at Nassau/Bahamas bbox: **${((cmValid / (W * H)) * 100).toFixed(1)}%**`,
+      `- Promote to production only after visual smoke confirmation.`,
+      ``,
+      `## Files`,
+      `- \`charts/bathymetry-copernicus.json\` — Copernicus-only grid`,
+      `- \`charts/bathymetry-copernicus-composite.json\` — Fused candidate`,
+      `- \`charts/bathymetry.json\` — Production (NOAA+GMRT composite, unchanged)`,
+    ].join("\n");
+
+    writeFileSync(join(ROOT, "charts", "bathymetry-copernicus-report.md"), report);
+
+    console.log(`  Copernicus: ${cmValid}/${W * H} valid (${((cmValid / (W * H)) * 100).toFixed(1)}%)`);
+    console.log(`  Candidate:  charts/bathymetry-copernicus.json`);
+    console.log(`  Fused:      charts/bathymetry-copernicus-composite.json`);
+    console.log(`  Report:     charts/bathymetry-copernicus-report.md`);
+    console.log(`  Production bathymetry.json unchanged.`);
+    return; // do NOT overwrite production bathymetry.json
+
   } else {
     // --- NOAA NCEI ArcGIS ImageServer (default): DEM_all mosaic, ETOPO 2022 + GEBCO 2024 ---
     // Requests exactly W×H pixels at F32 precision. No auth. Free, open.

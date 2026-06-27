@@ -69,8 +69,8 @@ def main() -> int:
             if "*" in target:
                 glob_refs += 1
                 continue
-            # Strip trailing annotations like (imports: process_data)
-            target_clean = re.sub(r"\s*\(.*\)\s*$", "", target).strip()
+            # Strip trailing annotations: "(desc)" or " — (desc)" formats
+            target_clean = re.sub(r"\s*[—–]?\s*\(.*\)\s*$", "", target).strip()
             # Normalize backslashes
             target_clean = target_clean.replace("\\", "/")
             resolved = ROOT / target_clean
