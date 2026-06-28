@@ -328,5 +328,25 @@
       "manage_todo_list",
       "file_search"
     ]
+  },
+  {
+    "sessionId": "2026-06-28-cline-salvage",
+    "drainedAt": "2026-06-28T04:10:00.000Z",
+    "sessionIntent": "Salvage audit — live-sounding of abandoned/prototyped projects; verify structural integrity; contradict stale doc claims; create salvage chart with tier classifications",
+    "turns": 4,
+    "fileEditCount": 5,
+    "commandCount": 6,
+    "codeBlockCount": 0,
+    "memoryFileCount": 3,
+    "topFiles": [
+      "CLAUDEBASE/charts/salvage-chart.md",
+      "manifest/sessions/2026-06-28-cline-salvage/trail.ndjson",
+      ".claude/agent-memory/cline/salvage-audit-2026-06-28.md"
+    ],
+    "topTools": [
+      "read_files",
+      "run_commands",
+      "editor"
+    ]
   }
 ]

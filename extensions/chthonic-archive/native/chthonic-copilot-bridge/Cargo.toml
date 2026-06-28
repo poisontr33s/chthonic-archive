@@ -13,7 +13,7 @@ name = "chthonic-copilot-bridge"
 path = "src/main.rs"
 
 [dependencies]
-github-copilot-sdk = { version = "1.0.0" }
+github-copilot-sdk = { version = "1.0.4" }
 anyhow.workspace = true
 serde.workspace = true
 serde_json.workspace = true

@@ -8,7 +8,7 @@ name = "copilot-triage"
 path = "src/main.rs"
 
 [dependencies]
-github-copilot-sdk = { version = "1.0.0-beta.9", features = ["derive"] }
+github-copilot-sdk = { version = "1.0.4", features = ["derive"] }
 tokio = { version = "1", features = ["full"] }
 anyhow = "1"
 serde = { version = "1", features = ["derive"] }
