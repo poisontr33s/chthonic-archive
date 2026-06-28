@@ -1,0 +1,351 @@
+{
+  "generatedAt": "2026-06-28T23:12:10.837Z",
+  "runtime": {
+    "bun": "1.3.14",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "results": [
+    {
+      "id": "vscode-dts",
+      "packageName": "@vscode/dts",
+      "lane": "vscode",
+      "official": "https://code.visualstudio.com/api/advanced-topics/using-proposed-api",
+      "install": "bun add -D @vscode/dts@latest",
+      "version": "0.4.1",
+      "verdict": "cli-only",
+      "probes": []
+    },
+    {
+      "id": "vscode-test-electron",
+      "packageName": "@vscode/test-electron",
+      "lane": "vscode",
+      "official": "https://code.visualstudio.com/api/working-with-extensions/testing-extension",
+      "install": "bun add -D @vscode/test-electron@latest",
+      "version": "3.0.0",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@vscode/test-electron",
+          "ok": true,
+          "exports": [
+            "ProgressReportStage",
+            "SilentReporter",
+            "TestRunFailedError",
+            "VSCodeCommandError",
+            "default",
+            "download",
+            "downloadAndUnzipVSCode",
+            "makeConsoleReporter",
+            "resolveCliArgsFromVSCodeExecutablePath",
+            "resolveCliPathFromVSCodeExecutablePath",
+            "runTests",
+            "runVSCodeCommand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vscode-test-web",
+      "packageName": "@vscode/test-web",
+      "lane": "vscode",
+      "official": "https://code.visualstudio.com/api/extension-guides/web-extensions",
+      "install": "bun add -D @vscode/test-web@latest",
+      "version": "0.0.81",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@vscode/test-web",
+          "ok": true,
+          "exports": [
+            "default",
+            "open",
+            "runTests"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vscode-test-cli",
+      "packageName": "@vscode/test-cli",
+      "lane": "vscode",
+      "official": "https://code.visualstudio.com/api/working-with-extensions/testing-extension",
+      "install": "bun add -D @vscode/test-cli@latest",
+      "version": "0.0.15",
+      "verdict": "cli-only",
+      "probes": [
+        {
+          "specifier": "@vscode/test-cli",
+          "ok": true,
+          "exports": [
+            "MochaEvent",
+            "__esModule",
+            "defineConfig"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vscode-vsce",
+      "packageName": "@vscode/vsce",
+      "lane": "vscode",
+      "official": "https://code.visualstudio.com/api/working-with-extensions/publishing-extension",
+      "install": "bun add -D @vscode/vsce@latest",
+      "version": "3.9.2",
+      "verdict": "cli-only",
+      "probes": [
+        {
+          "specifier": "@vscode/vsce",
+          "ok": true,
+          "exports": [
+            "PackageManager",
+            "createVSIX",
+            "default",
+            "listFiles",
+            "publish",
+            "publishVSIX",
+            "unpublishVSIX"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mcp-typescript",
+      "packageName": "@modelcontextprotocol/sdk",
+      "lane": "mcp",
+      "official": "https://modelcontextprotocol.io/docs",
+      "install": "bun add @modelcontextprotocol/sdk@latest",
+      "version": "1.29.0",
+      "verdict": "native",
+      "probes": [
+        {
+          "specifier": "@modelcontextprotocol/sdk/types.js",
+          "ok": true,
+          "exports": [
+            "AnnotationsSchema",
+            "AudioContentSchema",
+            "BaseMetadataSchema",
+            "BlobResourceContentsSchema",
+            "BooleanSchemaSchema",
+            "CallToolRequestParamsSchema",
+            "CallToolRequestSchema",
+            "CallToolResultSchema",
+            "CancelTaskRequestSchema",
+            "CancelTaskResultSchema",
+            "CancelledNotificationParamsSchema",
+            "CancelledNotificationSchema",
+            "ClientCapabilitiesSchema",
+            "ClientNotificationSchema",
+            "ClientRequestSchema",
+            "ClientResultSchema",
+            "ClientTasksCapabilitySchema",
+            "CompatibilityCallToolResultSchema",
+            "CompleteRequestParamsSchema",
+            "CompleteRequestSchema",
+            "CompleteResultSchema",
+            "ContentBlockSchema",
+            "CreateMessageRequestParamsSchema",
+            "CreateMessageRequestSchema"
+          ]
+        },
+        {
+          "specifier": "@modelcontextprotocol/sdk/server/index.js",
+          "ok": true,
+          "exports": [
+            "Server"
+          ]
+        },
+        {
+          "specifier": "@modelcontextprotocol/sdk/client/index.js",
+          "ok": true,
+          "exports": [
+            "Client",
+            "getSupportedElicitationModes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openai-node",
+      "packageName": "openai",
+      "lane": "openai",
+      "official": "https://platform.openai.com/docs/libraries",
+      "install": "bun add openai@latest",
+      "version": "6.45.0",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "openai",
+          "ok": true,
+          "exports": [
+            "APIConnectionError",
+            "APIConnectionTimeoutError",
+            "APIError",
+            "APIPromise",
+            "APIUserAbortError",
+            "AuthenticationError",
+            "AzureOpenAI",
+            "BadRequestError",
+            "BedrockOpenAI",
+            "ConflictError",
+            "InternalServerError",
+            "InvalidWebhookSignatureError",
+            "NotFoundError",
+            "OAuthError",
+            "OpenAI",
+            "OpenAIError",
+            "PagePromise",
+            "PermissionDeniedError",
+            "RateLimitError",
+            "SubjectTokenProviderError",
+            "UnprocessableEntityError",
+            "default",
+            "toFile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openai-agents",
+      "packageName": "@openai/agents",
+      "lane": "openai",
+      "official": "https://openai.github.io/openai-agents-js/",
+      "install": "bun add @openai/agents@latest zod@latest",
+      "version": "0.12.0",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@openai/agents",
+          "ok": true,
+          "exports": [
+            "Agent",
+            "AgentHooks",
+            "AgentsError",
+            "BatchTraceProcessor",
+            "ConsoleSpanExporter",
+            "GuardrailExecutionError",
+            "Handoff",
+            "InputGuardrailTripwireTriggered",
+            "MCPServerSSE",
+            "MCPServerStdio",
+            "MCPServerStreamableHttp",
+            "MCPServers",
+            "MaxTurnsExceededError",
+            "MemorySession",
+            "ModelBehaviorError",
+            "ModelRefusalError",
+            "MultiTracingProcessor",
+            "NoopSpan",
+            "NoopTrace",
+            "OPENAI_CHAT_COMPLETIONS_RAW_MODEL_EVENT_SOURCE",
+            "OPENAI_DEFAULT_MODEL_ENV_VARIABLE_NAME",
+            "OPENAI_RESPONSES_RAW_MODEL_EVENT_SOURCE",
+            "OpenAIChatCompletionsModel",
+            "OpenAIConversationsSession"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openai-codex-sdk",
+      "packageName": "@openai/codex-sdk",
+      "lane": "openai",
+      "official": "https://developers.openai.com/codex/sdk/",
+      "install": "bun add @openai/codex-sdk@latest",
+      "version": "0.142.3",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@openai/codex-sdk",
+          "ok": true,
+          "exports": [
+            "Codex",
+            "Thread"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anthropic-sdk",
+      "packageName": "@anthropic-ai/sdk",
+      "lane": "anthropic",
+      "official": "https://docs.anthropic.com/",
+      "install": "bun add @anthropic-ai/sdk@latest",
+      "version": "0.106.0",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@anthropic-ai/sdk",
+          "ok": true,
+          "exports": [
+            "AI_PROMPT",
+            "APIConnectionError",
+            "APIConnectionTimeoutError",
+            "APIError",
+            "APIPromise",
+            "APIUserAbortError",
+            "Anthropic",
+            "AnthropicError",
+            "AuthenticationError",
+            "BadRequestError",
+            "BaseAnthropic",
+            "BetaFallbackState",
+            "ConflictError",
+            "HUMAN_PROMPT",
+            "InternalServerError",
+            "NotFoundError",
+            "PagePromise",
+            "PermissionDeniedError",
+            "RateLimitError",
+            "RetryableError",
+            "UnprocessableEntityError",
+            "betaRefusalFallbackMiddleware",
+            "default",
+            "toFile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claude-agent-sdk",
+      "packageName": "@anthropic-ai/claude-agent-sdk",
+      "lane": "anthropic",
+      "official": "https://docs.anthropic.com/",
+      "install": "bun add @anthropic-ai/claude-agent-sdk@latest",
+      "version": "0.3.195",
+      "verdict": "compatible",
+      "probes": [
+        {
+          "specifier": "@anthropic-ai/claude-agent-sdk",
+          "ok": true,
+          "exports": [
+            "AbortError",
+            "DirectConnectError",
+            "DirectConnectTransport",
+            "EXIT_REASONS",
+            "HOOK_EVENTS",
+            "InMemorySessionStore",
+            "SYSTEM_PROMPT_DYNAMIC_BOUNDARY",
+            "createSdkMcpServer",
+            "deleteSession",
+            "filterEscalatingDefaultMode",
+            "foldSessionSummary",
+            "forkSession",
+            "getSessionInfo",
+            "getSessionMessages",
+            "getSubagentMessages",
+            "importSessionToStore",
+            "listSessions",
+            "listSubagents",
+            "parseDirectConnectUrl",
+            "query",
+            "renameSession",
+            "resolveSettings",
+            "startup",
+            "tagSession"
+          ]
+        }
+      ]
+    }
+  ]
+}
