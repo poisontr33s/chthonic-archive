@@ -1,0 +1,52 @@
+/* vibrancy-obsidian.css — Mica substrate under Sister Ferrum Scoriae
+ *
+ * Injected into the VS Code Insiders workbench by claudeDesign.enableSubstrate.
+ *
+ * This file owns ONE thing: transparency depth.
+ * Sister Ferrum Scoriae owns color. These two must not fight.
+ * Every background here is color-mix(theme-token, transparent) —
+ * the color comes from the theme; we only add the alpha.
+ *
+ * Mica is the ground. The theme is the surface. We are the seam.
+ *
+ * Made by Claude */
+
+/* ── Activitybar ─────────────────────────────────────────────── */
+.monaco-workbench .part.activitybar {
+  background: color-mix(in oklch, var(--vscode-activityBar-background) 84%, transparent) !important;
+}
+
+/* ── Primary sidebar ─────────────────────────────────────────── */
+.monaco-workbench .part.sidebar {
+  background: color-mix(in oklch, var(--vscode-sideBar-background) 82%, transparent) !important;
+}
+
+/* ── Secondary sidebar ───────────────────────────────────────── */
+.monaco-workbench .part.auxiliarybar {
+  background: color-mix(in oklch, var(--vscode-sideBar-background) 82%, transparent) !important;
+}
+
+/* ── Panel (terminal, output, problems) ──────────────────────── */
+.monaco-workbench .part.panel {
+  background: color-mix(in oklch, var(--vscode-panel-background) 88%, transparent) !important;
+}
+
+/* ── Editor tab bar ──────────────────────────────────────────── */
+.monaco-workbench .tabs-and-actions-container {
+  background: color-mix(in oklch, var(--vscode-editorGroupHeader-tabsBackground) 80%, transparent) !important;
+}
+
+/* ── Status bar ──────────────────────────────────────────────── */
+.monaco-workbench .part.statusbar {
+  background: color-mix(in oklch, var(--vscode-statusBar-background) 90%, transparent) !important;
+}
+
+/* ── Title bar ───────────────────────────────────────────────── */
+.monaco-workbench .part.titlebar {
+  background: color-mix(in oklch, var(--vscode-titleBar-activeBackground) 90%, transparent) !important;
+}
+
+/* colophon ───────────────────────────────────────────────────── */
+/* vibrancy-obsidian.css · designs/ · made by Claude
+   Color authority: Sister Ferrum Scoriae (Chthonic — Geological Core)
+   Depth authority: this file + Mica DWM substrate                    */
