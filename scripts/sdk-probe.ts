@@ -8,7 +8,7 @@ type Verdict = 'native' | 'compatible' | 'cli-only' | 'missing' | 'blocked';
 interface SdkCandidate {
   id: string;
   packageName: string;
-  lane: 'vscode' | 'electron' | 'mcp' | 'openai' | 'anthropic';
+  lane: string;
   official: string;
   install: string;
   probes: string[];
@@ -31,117 +31,14 @@ interface ProbeResult {
   }>;
 }
 
-const SDK_CANDIDATES: SdkCandidate[] = [
-  {
-    id: 'vscode-dts',
-    packageName: '@vscode/dts',
-    lane: 'vscode',
-    official: 'https://code.visualstudio.com/api/advanced-topics/using-proposed-api',
-    install: 'bun add -D @vscode/dts@latest',
-    probes: [],
-    expected: 'cli-only',
-  },
-  {
-    id: 'vscode-test-electron',
-    packageName: '@vscode/test-electron',
-    lane: 'vscode',
-    official: 'https://code.visualstudio.com/api/working-with-extensions/testing-extension',
-    install: 'bun add -D @vscode/test-electron@latest',
-    probes: ['@vscode/test-electron'],
-    expected: 'compatible',
-  },
-  {
-    id: 'vscode-test-web',
-    packageName: '@vscode/test-web',
-    lane: 'vscode',
-    official: 'https://code.visualstudio.com/api/extension-guides/web-extensions',
-    install: 'bun add -D @vscode/test-web@latest',
-    probes: ['@vscode/test-web'],
-    expected: 'compatible',
-  },
-  {
-    id: 'vscode-test-cli',
-    packageName: '@vscode/test-cli',
-    lane: 'vscode',
-    official: 'https://code.visualstudio.com/api/working-with-extensions/testing-extension',
-    install: 'bun add -D @vscode/test-cli@latest',
-    probes: ['@vscode/test-cli'],
-    expected: 'cli-only',
-  },
-  {
-    id: 'vscode-vsce',
-    packageName: '@vscode/vsce',
-    lane: 'vscode',
-    official: 'https://code.visualstudio.com/api/working-with-extensions/publishing-extension',
-    install: 'bun add -D @vscode/vsce@latest',
-    probes: ['@vscode/vsce'],
-    expected: 'cli-only',
-  },
-  {
-    id: 'mcp-typescript',
-    packageName: '@modelcontextprotocol/sdk',
-    lane: 'mcp',
-    official: 'https://modelcontextprotocol.io/docs',
-    install: 'bun add @modelcontextprotocol/sdk@latest',
-    probes: [
-      '@modelcontextprotocol/sdk/types.js',
-      '@modelcontextprotocol/sdk/server/index.js',
-      '@modelcontextprotocol/sdk/client/index.js',
-    ],
-    expected: 'native',
-  },
-  {
-    id: 'openai-node',
-    packageName: 'openai',
-    lane: 'openai',
-    official: 'https://platform.openai.com/docs/libraries',
-    install: 'bun add openai@latest',
-    probes: ['openai'],
-    expected: 'compatible',
-  },
-  {
-    id: 'openai-agents',
-    packageName: '@openai/agents',
-    lane: 'openai',
-    official: 'https://openai.github.io/openai-agents-js/',
-    install: 'bun add @openai/agents@latest zod@latest',
-    probes: ['@openai/agents'],
-    expected: 'compatible',
-  },
-  {
-    id: 'openai-codex-sdk',
-    packageName: '@openai/codex-sdk',
-    lane: 'openai',
-    official: 'https://developers.openai.com/codex/sdk/',
-    install: 'bun add @openai/codex-sdk@latest',
-    probes: ['@openai/codex-sdk'],
-    expected: 'compatible',
-  },
-  {
-    id: 'anthropic-sdk',
-    packageName: '@anthropic-ai/sdk',
-    lane: 'anthropic',
-    official: 'https://docs.anthropic.com/',
-    install: 'bun add @anthropic-ai/sdk@latest',
-    probes: ['@anthropic-ai/sdk'],
-    expected: 'compatible',
-  },
-  {
-    id: 'claude-agent-sdk',
-    packageName: '@anthropic-ai/claude-agent-sdk',
-    lane: 'anthropic',
-    official: 'https://docs.anthropic.com/',
-    install: 'bun add @anthropic-ai/claude-agent-sdk@latest',
-    probes: ['@anthropic-ai/claude-agent-sdk'],
-    expected: 'compatible',
-  },
-];
-
 const args = new Set(Bun.argv.slice(2));
+const catalogPath = readOption('--catalog') ?? 'sdk-catalog.toml';
 const sdkArg = readOption('--sdk');
 const json = args.has('--json');
 const write = args.has('--write');
 const list = args.has('--list');
+const catalog = await readCatalog(catalogPath);
+const SDK_CANDIDATES = catalog.candidates;
 
 if (list) {
   print(SDK_CANDIDATES.map(({ id, packageName, lane, install, official }) => ({
@@ -179,7 +76,7 @@ const report = {
 };
 
 if (write) {
-  await Bun.write('manifest/sdk-probes/latest.json', `${JSON.stringify(report, null, 2)}\n`);
+  await Bun.write(catalog.probeReport, `${JSON.stringify(report, null, 2)}\n`);
 }
 
 print(report);
@@ -256,10 +153,78 @@ async function readPackageVersion(packageName: string): Promise<string | null> {
   }
 }
 
+async function readCatalog(path: string): Promise<{ probeReport: string; candidates: SdkCandidate[] }> {
+  const file = Bun.file(path);
+  if (!(await file.exists())) {
+    throw new Error(`SDK catalog not found: ${path}`);
+  }
+
+  const parsed = Bun.TOML.parse(await file.text()) as {
+    catalog?: {
+      defaultTag?: string;
+      probeReport?: string;
+    };
+    managed?: Array<{
+      id?: string;
+      kind?: string;
+      name?: string;
+      target?: string;
+      lane?: string;
+      expected?: Verdict;
+      official?: string;
+      probes?: string[];
+      tag?: string;
+    }>;
+  };
+
+  const defaultTag = parsed.catalog?.defaultTag ?? 'latest';
+  const probeReport = parsed.catalog?.probeReport ?? 'manifest/sdk-probes/latest.json';
+  const candidates = (parsed.managed ?? [])
+    .filter(entry => entry.kind === 'sdk')
+    .map(entry => {
+      const packageName = requireString(entry.name, 'managed.name');
+      const target = requireString(entry.target, 'managed.target');
+      const tag = entry.tag ?? defaultTag;
+      return {
+        id: requireString(entry.id, 'managed.id'),
+        packageName,
+        lane: requireString(entry.lane, 'managed.lane'),
+        official: requireString(entry.official, 'managed.official'),
+        install: target === 'devDependencies'
+          ? `bun add -D ${packageName}@${tag}`
+          : `bun add ${packageName}@${tag}`,
+        probes: Array.isArray(entry.probes) ? entry.probes.map(String) : [],
+        expected: normalizeVerdict(entry.expected),
+      };
+    });
+
+  return { probeReport, candidates };
+}
+
+function normalizeVerdict(value: unknown): Verdict {
+  if (
+    value === 'native'
+    || value === 'compatible'
+    || value === 'cli-only'
+    || value === 'missing'
+    || value === 'blocked'
+  ) {
+    return value;
+  }
+  throw new Error(`Invalid expected verdict: ${String(value)}`);
+}
+
 function readOption(name: string): string | null {
   const index = Bun.argv.indexOf(name);
   if (index === -1) return null;
   return Bun.argv[index + 1] ?? null;
+}
+
+function requireString(value: unknown, label: string): string {
+  if (typeof value !== 'string' || value.length === 0) {
+    throw new Error(`Missing required string: ${label}`);
+  }
+  return value;
 }
 
 function print(value: unknown): void {

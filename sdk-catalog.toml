@@ -1,0 +1,132 @@
+# Root-managed SDK catalog for one-shot Bun refreshes.
+# Kept outside bunfig.toml because bunfig is Bun behavior/configuration,
+# not an official dependency-catalog surface.
+
+[catalog]
+name = "chthonic-sdk-latest"
+defaultTag = "latest"
+probeReport = "manifest/sdk-probes/latest.json"
+
+[[managed]]
+id = "vscode-dts"
+kind = "sdk"
+name = "@vscode/dts"
+target = "devDependencies"
+lane = "vscode"
+expected = "cli-only"
+official = "https://code.visualstudio.com/api/advanced-topics/using-proposed-api"
+probes = []
+
+[[managed]]
+id = "vscode-test-electron"
+kind = "sdk"
+name = "@vscode/test-electron"
+target = "devDependencies"
+lane = "vscode"
+expected = "compatible"
+official = "https://code.visualstudio.com/api/working-with-extensions/testing-extension"
+probes = ["@vscode/test-electron"]
+
+[[managed]]
+id = "vscode-test-web"
+kind = "sdk"
+name = "@vscode/test-web"
+target = "devDependencies"
+lane = "vscode"
+expected = "compatible"
+official = "https://code.visualstudio.com/api/extension-guides/web-extensions"
+probes = ["@vscode/test-web"]
+
+[[managed]]
+id = "vscode-test-cli"
+kind = "sdk"
+name = "@vscode/test-cli"
+target = "devDependencies"
+lane = "vscode"
+expected = "cli-only"
+official = "https://code.visualstudio.com/api/working-with-extensions/testing-extension"
+probes = ["@vscode/test-cli"]
+
+[[managed]]
+id = "vscode-vsce"
+kind = "sdk"
+name = "@vscode/vsce"
+target = "devDependencies"
+lane = "vscode"
+expected = "cli-only"
+official = "https://code.visualstudio.com/api/working-with-extensions/publishing-extension"
+probes = ["@vscode/vsce"]
+
+[[managed]]
+id = "mcp-typescript"
+kind = "sdk"
+name = "@modelcontextprotocol/sdk"
+target = "dependencies"
+lane = "mcp"
+expected = "native"
+official = "https://modelcontextprotocol.io/docs"
+probes = [
+  "@modelcontextprotocol/sdk/types.js",
+  "@modelcontextprotocol/sdk/server/index.js",
+  "@modelcontextprotocol/sdk/client/index.js",
+]
+
+[[managed]]
+id = "openai-node"
+kind = "sdk"
+name = "openai"
+target = "dependencies"
+lane = "openai"
+expected = "compatible"
+official = "https://platform.openai.com/docs/libraries"
+probes = ["openai"]
+
+[[managed]]
+id = "openai-agents"
+kind = "sdk"
+name = "@openai/agents"
+target = "dependencies"
+lane = "openai"
+expected = "compatible"
+official = "https://openai.github.io/openai-agents-js/"
+probes = ["@openai/agents"]
+
+[[managed]]
+id = "openai-codex-sdk"
+kind = "sdk"
+name = "@openai/codex-sdk"
+target = "dependencies"
+lane = "openai"
+expected = "compatible"
+official = "https://developers.openai.com/codex/sdk/"
+probes = ["@openai/codex-sdk"]
+
+[[managed]]
+id = "anthropic-sdk"
+kind = "sdk"
+name = "@anthropic-ai/sdk"
+target = "dependencies"
+lane = "anthropic"
+expected = "compatible"
+official = "https://docs.anthropic.com/"
+probes = ["@anthropic-ai/sdk"]
+
+[[managed]]
+id = "claude-agent-sdk"
+kind = "sdk"
+name = "@anthropic-ai/claude-agent-sdk"
+target = "dependencies"
+lane = "anthropic"
+expected = "compatible"
+official = "https://docs.anthropic.com/"
+probes = ["@anthropic-ai/claude-agent-sdk"]
+
+[[managed]]
+id = "zod"
+kind = "support"
+name = "zod"
+target = "dependencies"
+lane = "openai"
+expected = "compatible"
+official = "https://zod.dev/"
+probes = []

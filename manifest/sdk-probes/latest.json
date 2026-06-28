@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T23:12:10.837Z",
+  "generatedAt": "2026-06-28T23:20:13.369Z",
   "runtime": {
     "bun": "1.3.14",
     "platform": "win32",
@@ -210,7 +210,7 @@
       "packageName": "@openai/agents",
       "lane": "openai",
       "official": "https://openai.github.io/openai-agents-js/",
-      "install": "bun add @openai/agents@latest zod@latest",
+      "install": "bun add @openai/agents@latest",
       "version": "0.12.0",
       "verdict": "compatible",
       "probes": [
