@@ -692,6 +692,23 @@ impl github_copilot_sdk::transforms::SystemMessageTransform for ChthonicSystemTr
 
 // ── CLI argument parsing ──────────────────────────────────────────────────────
 
+fn wants_help() -> bool {
+    std::env::args()
+        .skip(1)
+        .any(|arg| arg == "-h" || arg == "--help")
+}
+
+fn print_help() {
+    println!(
+        "chthonic-mcp - Chthonic Archive manifest portal\n\n\
+Usage:\n  chthonic-mcp [--manifest <path>] [--top-n <n>] [--prompt <str>]\n\n\
+Options:\n  --manifest <path>  Manifest directory [default: manifest]\n  \
+--top-n <n>         Number of ranked sessions to inject [default: 3]\n  \
+--prompt <str>      Prompt to send through the Copilot SDK session\n  \
+-h, --help          Print help without starting a Copilot session"
+    );
+}
+
 #[derive(Debug)]
 struct Args {
     manifest_dir: PathBuf,
@@ -752,6 +769,11 @@ fn emit_context_report(ctx: &ChthonicContext, mode: &str, mode_hint: &str) -> Re
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    if wants_help() {
+        print_help();
+        return Ok(());
+    }
+
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::from_default_env()

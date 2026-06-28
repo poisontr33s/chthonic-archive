@@ -441,6 +441,26 @@ impl github_copilot_sdk::transforms::SystemMessageTransform for TriageSystemTran
 
 // ── CLI argument parsing ──────────────────────────────────────────────────────
 
+fn wants_help() -> bool {
+    std::env::args()
+        .skip(1)
+        .any(|arg| arg == "-h" || arg == "--help")
+}
+
+fn print_help() {
+    println!(
+        "copilot-triage - Copilot SDK reasoning engine over PR archaeology\n\n\
+Usage:\n  copilot-triage [--repo <owner/repo>] [--pr <number>] [--batch] [--fetch] [--manifest <path>] [--prompt <str>]\n\n\
+Options:\n  --repo <owner/repo>  Repository for live gh fetches\n  \
+--pr <number>        PR number to focus\n  \
+--batch              Batch triage mode\n  \
+--fetch              Refresh manifest via gh pr list before running\n  \
+--manifest <path>    Triage manifest [default: manifest/pr_triage_report.json]\n  \
+--prompt <str>       Prompt to send through the Copilot SDK session\n  \
+-h, --help           Print help without starting gh or Copilot sessions"
+    );
+}
+
 #[derive(Debug)]
 struct Args {
     repo: Option<String>,
@@ -526,6 +546,11 @@ async fn fetch_and_write_manifest(repo: &str, manifest_path: &Path) -> Result<Tr
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    if wants_help() {
+        print_help();
+        return Ok(());
+    }
+
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::from_default_env()

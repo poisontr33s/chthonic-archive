@@ -2,6 +2,25 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "⚡ Dispatch Push (origin/main)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-NoProfile",
+				"-File",
+				"${workspaceFolder}/scripts/dispatch-push.ps1"
+			],
+			"group": "none",
+			"presentation": {
+				"reveal": "always",
+				"panel": "dedicated",
+				"focus": true,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"detail": "Dispatch-triggered push to origin/main. Reads commit msg from .chthonic/dispatch-commit-msg.tmp if present, otherwise uses timestamp. Run via Terminal → Run Task."
+		},
+		{
 			"label": "cargo build",
 			"type": "shell",
 			"command": "cargo",
@@ -14,7 +33,10 @@
 			},
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -40,7 +62,10 @@
 			"group": "build",
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -61,7 +86,10 @@
 			"group": "build",
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -91,7 +119,10 @@
 			"group": "test",
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -115,7 +146,10 @@
 			},
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -145,7 +179,10 @@
 			"group": "none",
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -172,7 +209,10 @@
 			"group": "none",
 			"problemMatcher": {
 				"owner": "rustc",
-				"fileLocation": ["autoDetect", "${workspaceFolder}"],
+				"fileLocation": [
+					"autoDetect",
+					"${workspaceFolder}"
+				],
 				"pattern": {
 					"regexp": "^(error|warning)\\[.*\\]:\\s+(.*)$|^\\s+-->\\s+(.+):(\\d+):(\\d+)",
 					"file": 3,
@@ -846,7 +886,7 @@
 				"focus": true
 			},
 			"problemMatcher": []
-                },
+		},
 		{
 			"label": "Chthonic: Pentea Autoloop",
 			"type": "shell",
@@ -933,24 +973,24 @@
 			},
 			"problemMatcher": [],
 			"detail": "Drain all sessions from corpus into session_blood.json."
-                },
-                {
-                        "label": "♪ Sonic Watcher (latest session)",
-                        "type": "shell",
-                        "command": "bun",
-                        "args": [
-                                "run",
-                                "scripts/sonic_watcher.ts"
-                        ],
-                        "group": "test",
-                        "isBackground": true,
-                        "presentation": {
-                                "reveal": "silent",
-                                "panel": "dedicated",
-                                "showReuseMessage": false
-                        },
-                        "problemMatcher": [],
-                        "detail": "Resumes Spotify when agent finishes a turn. Requires api_pool -Load first (SPOTIFY_* env vars). No pause logic — just a resume signal on agent done."
-				}
+		},
+		{
+			"label": "♪ Sonic Watcher (latest session)",
+			"type": "shell",
+			"command": "bun",
+			"args": [
+				"run",
+				"scripts/sonic_watcher.ts"
+			],
+			"group": "test",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "silent",
+				"panel": "dedicated",
+				"showReuseMessage": false
+			},
+			"problemMatcher": [],
+			"detail": "Resumes Spotify when agent finishes a turn. Requires api_pool -Load first (SPOTIFY_* env vars). No pause logic — just a resume signal on agent done."
+		}
 	]
 }

@@ -99,4 +99,44 @@ CLAUDEBASE/
 
 *Six commissioned at founding, in creed-order. Five grown since — each earning berth by holding live cargo. Rot-prevention: when a new directory breathes, it goes here first.*
 
-| Chamb
+| Chamber | What it holds | What it does, against live state |
+|---|---|---|
+| [`harbor/`](harbor/warmstart.md) | the entry-lore + the waking ritual | orients a session into `charts/` · `hold/` · `logbook/` — into the base, not stale snapshots |
+| [`charts/`](charts/gate-map.md) | the eleven gates | projects [`The-Savant-High-Bounties/TODO.md`](The-Savant-High-Bounties/TODO.md) — the authoritative plan |
+| [`hold/`](hold/stow-manifest.md) | deployable cargo | names what she works from `../.agents/skills/` (+ Claude-lane `../.claude/skills/`) |
+| [`quarterdeck/`](quarterdeck/dispatch.md) | dispatch doctrine | routes through `../.github/instructions/` + the T0.5→T4 chain |
+| [`watch/`](watch/sentinels.md) | the standing vigilance | the discipline of the lens stack + its refresh, not a frozen snapshot |
+| [`logbook/`](logbook/00-commissioning.md) | the record | what the base has done; filled last because it records the rest |
+| [`The-Savant-High-Bounties/`](The-Savant-High-Bounties/TODO.md) | active bounties + evidence | TODO.md + GRILLING.md; the authoritative execution record and gate evidence |
+| [`claudie/`](claudie/) | open notebook | Claude's substrate-resident journal; dated files, accumulative over canonical — *visible-but-mine, no implied should-not-read; the intelligence of this base leaving a wake* |
+| [`cross-instance-sync/`](cross-instance-sync/) | inter-agent relay | dispatches between Claude Code instances and other agent hulls; deep research commissions; the signal-lamp record between keels |
+| [`sub-surface-skinny-dipping/`](sub-surface-skinny-dipping/) | returns from below | deep research material from external intelligences (Gemini DR, GPT-5 DR, others); what came back from below the waterline — the subterranean refreshed |
+| [`Mythic-Contract/`](Mythic-Contract/) | forensics dossier | worked diagnostic cases with extracted method — legacy engine forensics, shader case records; Entry #1: KCD1 motion artifact (solved 2026-06-24, root cause: framerate coupling above CryEngine 60fps ceiling) |
+| [`usables/`](usables/) | project nursery | incubating projects before emigration to the main repo; graduates by structural integrity, not ambition; tenant register below |
+
+---
+
+## (`Usables`/`Current-Tenants`)
+
+*What is berthed in the nursery and what it is — updated as tenants arrive, graduate, or are reclaimed by the tide:*
+
+| Tenant | Status | What it is |
+|---|---|---|
+| [`mdseal/`](usables/mdseal/) | `0.1.0` · Not-Yet | Deterministic Markdown integrity tool (Bun/TypeScript) — seal, check, fix, restore, sweep; KaTeX validation, image witnesses, refusal-first core. Strong architecture; four blockers before graduation. Evidence: [`project-assessments/mdseal-assessment.md`](usables/project-assessments/mdseal-assessment.md) |
+| [`Claude-Design-To-Scriptorium-Asked-Claude/`](usables/Claude-Design-To-Scriptorium-Asked-Claude/) | Active | Claude Design intake and Scriptorium design pipeline artifacts — blueprints, claude-design outputs, uploads |
+| [`project-assessments/`](usables/project-assessments/) | Live | Quality audit reports per usable — genuine grilling, graduation gates, fix plans; not flattery. Current: `mdseal-assessment.md` + `mdseal-fix-plan.md` |
+
+---
+
+## (`Population-Protocol`)
+
+A chamber is **commissioned** when it holds ≥1 non-`.gitkeep` file carrying a `SID:`.  
+Six core chambers filled 2026-06-06 in creed-order. Five more grown since by live cargo.  
+Base reads **live (11 / 11)** as of 2026-06-28.
+
+Commissioning order (core six): `harbor/` → `charts/` → `hold/` → `quarterdeck/` → `watch/` → `logbook/`  
+Grown since: `The-Savant-High-Bounties/` · `claudie/` · `cross-instance-sync/` · `sub-surface-skinny-dipping/` · `Mythic-Contract/` · `usables/`
+
+---
+
+*SID: CLAUDEBASE_MANIFEST_V1 · live · governance: see README · reckoned 2026-06-28 by Dispatch*
