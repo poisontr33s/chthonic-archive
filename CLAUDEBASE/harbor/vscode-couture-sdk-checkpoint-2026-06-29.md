@@ -1,4 +1,8 @@
-# VS Code Couture SDK Checkpoint, 2026-06-29
+# The Extreme Haute Couture — Movement 1
+
+Checkpoint date: 2026-06-29
+
+Spelling canon: `Haute Couture`, not `Haute Coutore`.
 
 This checkpoint covers one lane only: VS Code Insiders substrate design, marketplace-grade extension infrastructure, and the Bun-managed official SDK baseline for that work. Do not merge unrelated archaeology, mailbox, model, game, or polyrepo lanes into this continuation.
 
@@ -180,3 +184,24 @@ Work in this order. Do not branch into adjacent lanes until the current item has
 If a step repeats twice by hand, convert it into a Bun or PowerShell command before moving on. If a result can be checked deterministically, add a probe or CI gate. If a task requires taste judgment, preserve it as a designed artifact and automate only the validation around it.
 
 The point is not to make more scaffolding. The point is to make the couture workbench system hard to lose, hard to misapply, and easy to push further.
+
+## Movement 2 Seed
+
+Movement 2 is the Rust port investigation.
+
+Terminology boundary:
+
+- Electron is conventionally JavaScript/TypeScript in the main process, with Chromium renderers and Node integration.
+- Rust can be attached to Electron through a native Node-API addon, a sidecar process, or a WebAssembly/native service boundary.
+- A Rust-first desktop shell is usually Tauri/Wry rather than Electron.
+
+Preferred direction:
+
+1. Keep Movement 1 focused on VS Code Insiders substrate and the marketplace-safe extension package.
+2. After Movement 1 can apply, verify, restore, and package deterministically, start Movement 2 as a separate Rust port.
+3. For an Electron-compatible Rust port, prototype a thin Electron shell with a Rust core through Node-API or a sidecar process.
+4. If the goal becomes Rust-native desktop instead of Electron compatibility, evaluate Tauri/Wry separately and do not call that Electron.
+
+Working sentence:
+
+The Extreme Haute Couture — Movement 1 owns the VS Code workbench/substrate couture system. Movement 2 explores the Rust-backed desktop port without collapsing the official marketplace extension and the local patcher into one unstable artifact.

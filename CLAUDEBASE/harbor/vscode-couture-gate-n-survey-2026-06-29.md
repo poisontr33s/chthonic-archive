@@ -1,4 +1,8 @@
-# VS Code Couture Gate N Survey, 2026-06-29
+# The Extreme Haute Couture — Movement 1: Gate N Survey
+
+Survey date: 2026-06-29
+
+Spelling canon: `Haute Couture`, not `Haute Coutore`.
 
 Scope: one lane only. This gate evaluates whether to continue implementation now, or first complete a survey of official SDKs, untrusted package scripts, and unofficial VS Code UI/substrate source patterns.
 
@@ -370,3 +374,23 @@ After that:
 Continue through Gate N first. Do not build deeper until this survey is accepted as the boundary contract.
 
 The arsenal is enough. The missing piece is not more SDKs; it is keeping official marketplace polish and unofficial local substrate engineering separated, automated, and testable.
+
+## Movement 2: Rust Port Boundary
+
+The requested second movement is valid, but the name must stay technically honest.
+
+Electron itself is not Rust-native. Its stable architectural center is a JavaScript/TypeScript main process plus renderer processes. Rust enters Electron through one of these boundaries:
+
+- Node-API/native addon: best when Electron must call Rust functions in-process
+- sidecar binary: best when Rust owns heavy work, process isolation, or long-running services
+- WebAssembly: best for portable compute with stricter browser-like limits
+
+If the goal becomes a Rust-first desktop shell, the conventional Rust answer is Tauri/Wry, not Electron. That is a different port target and should be evaluated as its own branch of Movement 2.
+
+Recommended Movement 2 shape:
+
+1. `movement-2-electron-rust-addon`: Electron shell, Rust Node-API module, thin TypeScript bridge.
+2. `movement-2-electron-rust-sidecar`: Electron shell, Rust service process, JSON-RPC or stdio IPC.
+3. `movement-2-tauri-wry`: Rust shell using native webviews, not Electron.
+
+Do not start Movement 2 until Movement 1 has deterministic substrate lifecycle commands and a packageable extension surface. Otherwise the port will inherit ambiguity instead of architecture.
