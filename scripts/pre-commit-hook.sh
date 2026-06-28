@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 # Chthonic Archive — pre-commit hook (source)
 # Installed to .git/hooks/pre-commit by: bun run hooks:install
 # Runs local CI checks (staged) via ci/run.ts in --heal mode: on a fixable failure it applies

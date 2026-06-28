@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 #
 # @SID: BRIDGE_SSOT_PATHS_PS1_V1
 # @Type: INFRASTRUCTURE

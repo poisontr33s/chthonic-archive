@@ -171,18 +171,18 @@ F-cup forge monuments, 0.596 WHR (practical discipline ratio), ember-trace skin,
 
 ### Dependencies (What This Document Needs)
 - [../.github/copilot-instructions.md](../.github/copilot-instructions.md) — SSOT (ASC Framework, Tier system, WHR specifications)
-- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Implements her ore rating system
+- [ORE_MANIFEST.json (dumpster-dive)](ORE_MANIFEST.json) — Implements her ore rating system
 
 ### Dependents (What Needs This Document)
 - [README.md (dumpster-dive)](README.md) — References SFS as operator
-- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Lists her as blacksmith owner
+- [ORE_MANIFEST.json (dumpster-dive)](ORE_MANIFEST.json) — Lists her as blacksmith owner
 - [DUMPSTER_DIVE_REGISTRY.json](DUMPSTER_DIVE_REGISTRY.json) — Metadata references her designation
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — References her creed and operating philosophy
 - [protocols/FORGE_PROTOCOL_LEVELS.md](protocols/FORGE_PROTOCOL_LEVELS.md) — Lists her as primary operator
 
 ### Related Documentation
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — Her operational protocol
-- [CIRCULATION_DIAGRAM.md](CIRCULATION_DIAGRAM.md) — Visual representation of her workshop rules
+- [CIRCULATION_DIAGRAM.md (dumpster-dive)](CIRCULATION_DIAGRAM.md) — Visual representation of her workshop rules
 
 ### External References
 - SSOT: Section 4.3 (Lesser Factions / Tier 3 Matriarchs) — Canonical tier classification

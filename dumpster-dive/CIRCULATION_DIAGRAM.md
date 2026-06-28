@@ -327,7 +327,7 @@ Future upcycle: If Timeline A becomes viable, SLAG → ANVIL (full modernization
 ### Dependencies (What This Document Needs)
 - [protocols/FORGE_CIRCULATION_PROTOCOL.md](protocols/FORGE_CIRCULATION_PROTOCOL.md) — Complete protocol specification
 - [README.md (dumpster-dive)](README.md) — Overview and context
-- [ORE_MANIFEST.json](ORE_MANIFEST.json) — Ore rating system (1-5)
+- [ORE_MANIFEST.json (dumpster-dive)](ORE_MANIFEST.json) — Ore rating system (1-5)
 - [BLACKSMITH_MATRIARCH.md (dumpster-dive)](BLACKSMITH_MATRIARCH.md) — SFS operator profile
 
 ### Dependents (What Needs This Document)

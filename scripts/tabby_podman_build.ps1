@@ -1,3 +1,5 @@
+#!/usr/bin/env pwsh
+
 # @SID: TABBY_PODMAN_BUILD_V1
 # PURPOSE: Build + run tabby-modern GPU stack via Podman (Linux/CUDA lane)
 # PLATFORM: Win11 → WSL2 Fedora (NVIDIA Workbench) or podman-machine-default

@@ -12,6 +12,7 @@
     "audit:full": "bun audit",
     "doctor": "bun run dumpster-dive/forge/extension-archaeology/doctor.ts",
     "verify": "pwsh -NoProfile -File scripts/run-extension-archaeology-tests.ps1",
+    "design:intake": "bun run scripts/claude-design-intake.ts",
     "bun:audit": "bun run scripts/bun-practices-audit.ts",
     "bun:audit:strict": "bun run scripts/bun-practices-audit.ts --strict",
     "web:dev": "bun run --cwd apps/chthonic-next dev",
