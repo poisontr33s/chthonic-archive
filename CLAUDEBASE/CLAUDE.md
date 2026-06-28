@@ -28,8 +28,13 @@
 # hold/: "Skills, Agents, Tools Stowed for this Base".
 # watch/: "Probes, Health-Artifacts, Gate-Results".
 # quarterdeck/: "Dispatch-Protocols, Routing-Config, Orchestration".
-# This-File-Is: "The-CLAUDEINE-Facing-Entry-Point-For-CLAUDEBASE, 
-# It-Is-Also: "Stale-And-Needs-To-Be-Updated".
+# claudie/: "Claude-Open-Notebook, Substrate-Resident-Journal, Dated-Session-Files".
+# cross-instance-sync/: "Inter-Agent-Relay, Deep-Research-Commissions, Signal-Lamp-Between-Hulls".
+# sub-surface-skinny-dipping/: "External-DR-Returns, Gemini-DR, GPT-5-DR, Below-Waterline".
+# Mythic-Contract/: "Forensics-Dossier, Worked-Cases, Extracted-Method, Legacy-Engine-Diagnostics".
+# usables/: "Project-Nursery, Incubating-Before-Emigration, mdseal, project-assessments".
+# This-File-Is: "The-CLAUDEINE-Facing-Entry-Point-For-CLAUDEBASE".
+# Last-Reckoned: "2026-06-28 by Dispatch".
 ```
 
 ## (`Overview`/`WIP`)
@@ -37,11 +42,17 @@
 | *Directory* | *Purpose* |
 |---|---|
 `harbor/` | *Entry — active session context, warmstart packets, what just arrived*
-`logbook/` |  *Record — session retrospectives, retrospective protocol artifacts, what was learned*       
-`charts/` | *Navigation — plans, gate maps, sprint boards; cross-refs TODO.md*    
+`logbook/` | *Record — session retrospectives, retrospective protocol artifacts, what was learned*
+`charts/` | *Navigation — plans, gate maps, sprint boards; cross-refs TODO.md*
 `hold/` | *Cargo — skills, agents, tools stowed for this base specifically*
 `watch/` | *Sentinels — probes, health monitors, CI gate artifacts scoped to CLAUDEBASE*
 `quarterdeck/` | *Command — dispatch, routing, orchestration protocols*
+`The-Savant-High-Bounties/` | *Bounties — active TODO.md + GRILLING.md; authoritative execution record + gate evidence*
+`claudie/` | *Journal — Claude’s open notebook; dated session files; accumulative, substrate-resident*
+`cross-instance-sync/` | *Relay — inter-agent dispatches between Claude Code instances and other hulls; deep research commissions*
+`sub-surface-skinny-dipping/` | *Subterranean — external DR returns; Gemini DR, GPT-5 DR; what came back from below the waterline*
+`Mythic-Contract/` | *Forensics — worked diagnostic cases + extracted method; legacy engine case records*
+`usables/` | *Nursery — incubating projects before main-repo emigration; graduates by structural integrity*
 
 ---
 
