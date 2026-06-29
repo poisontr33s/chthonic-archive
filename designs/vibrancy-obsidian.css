@@ -32,6 +32,20 @@
   --chthonic-shadow-float:   0 8px 32px color-mix(in oklch, black 28%, transparent);
 }
 
+/* ── Root stacking reset — expose Mica through the entire workbench ─
+ *
+ * Without this, color-mix() transparency on child elements only shows
+ * the solid monaco-workbench background — not Mica. Resetting body and
+ * .monaco-workbench to transparent opens the stacking chain to the DWM
+ * material. Every surface below paints explicitly at its depth tier.
+ *
+ * Mechanism sourced from Vibrancy Continued Default Dark theme CSS.
+ * ─────────────────────────────────────────────────────────────────── */
+body,
+.monaco-workbench {
+  background: transparent !important;
+}
+
 /* ── Activitybar — structural spine ──────────────────────────── */
 .monaco-workbench .part.activitybar {
   background: var(--vscode-activityBar-background) !important;

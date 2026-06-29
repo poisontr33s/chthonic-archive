@@ -88,7 +88,8 @@ function Get-InsidersAppRoot {
         $candidates.Add([pscustomobject]@{
             AppRoot = $directApp
             MainJs = $directMain
-            Stamp = (Get-Item -LiteralPath $directMain).LastWriteTimeUtc
+            Stamp = (Get-Item -LiteralPath $Root).LastWriteTimeUtc
+            Source = $Root
         })
     }
 
@@ -99,7 +100,8 @@ function Get-InsidersAppRoot {
             $candidates.Add([pscustomobject]@{
                 AppRoot = $app
                 MainJs = $main
-                Stamp = (Get-Item -LiteralPath $main).LastWriteTimeUtc
+                Stamp = $_.LastWriteTimeUtc
+                Source = $_.FullName
             })
         }
     }
@@ -230,15 +232,24 @@ function Remove-SubstrateBlocks {
 function Remove-SubstrateCssLink {
     param([Parameter(Mandatory)][string]$Html)
 
+    # Remove comment-wrapped blocks (legacy format)
     $Html = [regex]::Replace(
         $Html,
         '(?s)\r?\n?\s*<!-- claudeDesign\.substrate\.css\.begin -->.*?<!-- claudeDesign\.substrate\.css\.end -->\s*\r?\n?',
         ''
     )
 
-    return [regex]::Replace(
+    # Remove bare <link> tags (previous inline format)
+    $Html = [regex]::Replace(
         $Html,
         '(?m)^\s*<link\b[^>]*data-claude-design-substrate="vibrancy-obsidian"[^>]*>\s*\r?\n?',
+        ''
+    )
+
+    # Remove <style> blocks (current inline format)
+    return [regex]::Replace(
+        $Html,
+        '(?s)\r?\n?\s*<style\b[^>]*data-claude-design-substrate="vibrancy-obsidian"[^>]*>.*?</style>\s*\r?\n?',
         ''
     )
 }
@@ -435,12 +446,17 @@ $ChthonicEnd
 
     $html = Get-Content -LiteralPath $state.WorkbenchHtml -Raw
     $html = Remove-SubstrateCssLink -Html $html
-    $cssLine = "`t`t<link rel=""stylesheet"" data-claude-design-substrate=""vibrancy-obsidian"" href=""$cssUri"">"
+    $cssContent = Get-Content -LiteralPath $CssPath -Raw -Encoding utf8
+    # Inline the CSS as a <style> block — bypasses the vscode-file:// vs file://
+    # CSP origin mismatch that silently blocks external <link> stylesheets.
+    # style-src 'unsafe-inline' covers this; file:// <link> is not 'self'.
+    # The source URI comment preserves the css-uri-current verify check.
+    $styleBlock = "`t`t<style data-claude-design-substrate=`"vibrancy-obsidian`">`r`n/* source: $cssUri */`r`n$cssContent`r`n`t`t</style>"
     $anchor = '<link rel="stylesheet" href="../../../workbench/workbench.desktop.main.css">'
     if ($html.Contains($anchor)) {
-        $html = $html.Replace($anchor, "$anchor`r`n$cssLine")
+        $html = $html.Replace($anchor, "$anchor`r`n$styleBlock")
     } else {
-        $html = $html.Replace('</head>', "$cssLine`r`n`t</head>")
+        $html = $html.Replace('</head>', "$styleBlock`r`n`t</head>")
     }
     Set-Content -LiteralPath $state.WorkbenchHtml -Value $html -NoNewline -Encoding utf8
 
