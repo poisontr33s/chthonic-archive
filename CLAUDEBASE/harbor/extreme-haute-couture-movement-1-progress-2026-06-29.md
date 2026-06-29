@@ -232,6 +232,52 @@ Extension-host E2E: archive/statusbar/mandala passed
 
 This is now the Movement 1 deterministic runtime/visual gate. Use it before promoting material-surface changes.
 
+## Material Surface Pass 1
+
+Files changed:
+
+```text
+designs/chthonic-mica.cjs
+designs/vibrancy-obsidian.css
+manifest/extreme-haute-couture-movement-1-gate.json
+```
+
+Runtime pass:
+
+```text
+Mica material selection now normalizes aliases such as mica-alt and mica-tabbed.
+Window application is idempotent per BrowserWindow.
+Runtime no-ops outside Windows and against destroyed or unsupported windows.
+ready-to-show receives a second guarded application hook for newly created windows.
+```
+
+Surface pass:
+
+```text
+Workbench depth variables added under .monaco-workbench.
+Activity bar, sidebars, panel, editor field, tabs, list rows, quick input, notifications, menus, find/suggest widgets, breadcrumbs, status bar, and title bar now share one depth map.
+Color remains sourced from VS Code theme tokens; this pass only controls opacity and depth.
+```
+
+Gate rerun:
+
+```bash
+bun run couture:gate
+```
+
+Result:
+
+```text
+Status: passed
+Generated: 2026-06-29T01:30:20.999Z
+Stable: 1.126.0
+Insiders: 1.127.0-insider
+Substrate verification: passed
+Package output: chthonic-archive-insiders.vsix
+Package bytes: 457425
+Extension-host E2E: archive/statusbar/mandala passed
+```
+
 ## Current Holdup
 
 No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
@@ -243,11 +289,11 @@ Solana Tool Suite Lane: warning
 
 ## Next Exact Step
 
-Next: move to material-surface iteration backed by `bun run couture:gate`:
+Next: run a focused visual inspection of the live Insiders workbench after restart/reload, then decide whether Surface Pass 2 should adjust opacity ratios or theme-token color balance:
 
-- refine `designs/vibrancy-obsidian.css` and `designs/chthonic-mica.cjs`
-- keep the tracked extension package official and marketplace-safe
-- use the gate report for runtime/package proof after each broad surface pass
+- reload/restart VS Code Insiders so the runtime/CSS file changes are live
+- inspect activity bar, sidebars, editor, terminal panel, quick input, notifications, and menus
+- only then adjust `designs/vibrancy-obsidian.css` opacity ratios or the theme tokens
 - keep screenshots/generated artifacts out of commits unless deliberately promoted
 
 Do not admit `extensions/chthonic-themes` until the lane decides whether the themes-only VSIX is a first-class Movement 1 artifact or a generated derivative.

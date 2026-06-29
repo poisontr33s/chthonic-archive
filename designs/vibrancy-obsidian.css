@@ -2,48 +2,128 @@
  *
  * Injected into the VS Code Insiders workbench by claudeDesign.enableSubstrate.
  *
- * This file owns ONE thing: transparency depth.
+ * This file owns one thing: transparency depth.
  * Sister Ferrum Scoriae owns color. These two must not fight.
- * Every background here is color-mix(theme-token, transparent) —
- * the color comes from the theme; we only add the alpha.
+ * Every background here is color-mix(theme-token, transparent):
+ * the color comes from the theme; this file only assigns opacity.
  *
- * Mica is the ground. The theme is the surface. We are the seam.
- *
- * Made by Claude */
+ * Made by Claude. Hardened by Codex. */
+
+.monaco-workbench {
+  --chthonic-depth-abyss: 94%;
+  --chthonic-depth-deep: 90%;
+  --chthonic-depth-hull: 86%;
+  --chthonic-depth-deck: 82%;
+  --chthonic-depth-glass: 76%;
+  --chthonic-border-soft: color-mix(in oklch, var(--vscode-contrastBorder, #3e7a6a) 32%, transparent);
+  --chthonic-shadow-deep: 0 20px 80px color-mix(in oklch, black 34%, transparent);
+}
 
 /* ── Activitybar ─────────────────────────────────────────────── */
 .monaco-workbench .part.activitybar {
-  background: color-mix(in oklch, var(--vscode-activityBar-background) 84%, transparent) !important;
+  background: var(--vscode-activityBar-background) !important;
+  background: color-mix(in oklch, var(--vscode-activityBar-background) var(--chthonic-depth-hull), transparent) !important;
 }
 
 /* ── Primary sidebar ─────────────────────────────────────────── */
 .monaco-workbench .part.sidebar {
-  background: color-mix(in oklch, var(--vscode-sideBar-background) 82%, transparent) !important;
+  background: var(--vscode-sideBar-background) !important;
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-deck), transparent) !important;
+}
+
+.monaco-workbench .part.sidebar .composite.title,
+.monaco-workbench .part.sidebar .pane-header {
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-glass), transparent) !important;
 }
 
 /* ── Secondary sidebar ───────────────────────────────────────── */
 .monaco-workbench .part.auxiliarybar {
-  background: color-mix(in oklch, var(--vscode-sideBar-background) 82%, transparent) !important;
+  background: var(--vscode-sideBar-background) !important;
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-deck), transparent) !important;
 }
 
 /* ── Panel (terminal, output, problems) ──────────────────────── */
 .monaco-workbench .part.panel {
-  background: color-mix(in oklch, var(--vscode-panel-background) 88%, transparent) !important;
+  background: var(--vscode-panel-background) !important;
+  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-deep), transparent) !important;
+}
+
+.monaco-workbench .part.panel .composite.title,
+.monaco-workbench .part.panel .panel-switcher-container,
+.monaco-workbench .part.panel .terminal-wrapper {
+  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-hull), transparent) !important;
+}
+
+/* ── Editor field ───────────────────────────────────────────── */
+.monaco-workbench .part.editor,
+.monaco-workbench .editor-group-container,
+.monaco-workbench .editor-instance,
+.monaco-workbench .monaco-editor,
+.monaco-workbench .monaco-editor-background,
+.monaco-workbench .monaco-editor .margin {
+  background: var(--vscode-editor-background) !important;
+  background: color-mix(in oklch, var(--vscode-editor-background) var(--chthonic-depth-abyss), transparent) !important;
 }
 
 /* ── Editor tab bar ──────────────────────────────────────────── */
 .monaco-workbench .tabs-and-actions-container {
-  background: color-mix(in oklch, var(--vscode-editorGroupHeader-tabsBackground) 80%, transparent) !important;
+  background: var(--vscode-editorGroupHeader-tabsBackground) !important;
+  background: color-mix(in oklch, var(--vscode-editorGroupHeader-tabsBackground) var(--chthonic-depth-deck), transparent) !important;
+}
+
+.monaco-workbench .monaco-list-rows,
+.monaco-workbench .monaco-table,
+.monaco-workbench .monaco-tree,
+.monaco-workbench .monaco-workbench-list,
+.monaco-workbench .split-view-view {
+  background-color: transparent !important;
+}
+
+.monaco-workbench .monaco-list-row.focused,
+.monaco-workbench .monaco-list-row.selected,
+.monaco-workbench .monaco-list-row:hover {
+  background-color: color-mix(in oklch, var(--vscode-list-activeSelectionBackground) 72%, transparent) !important;
+}
+
+/* ── Command center, quick input, notifications ─────────────── */
+.monaco-workbench .quick-input-widget,
+.monaco-workbench .notifications-toasts .notification-toast,
+.monaco-workbench .notifications-center,
+.monaco-workbench .context-view.monaco-menu-container {
+  background: var(--vscode-quickInput-background, var(--vscode-editorWidget-background)) !important;
+  background: color-mix(
+    in oklch,
+    var(--vscode-quickInput-background, var(--vscode-editorWidget-background)) var(--chthonic-depth-deep),
+    transparent
+  ) !important;
+  border-color: var(--chthonic-border-soft) !important;
+  box-shadow: var(--chthonic-shadow-deep) !important;
+}
+
+.monaco-workbench .quick-input-widget .monaco-inputbox,
+.monaco-workbench .find-widget,
+.monaco-workbench .suggest-widget {
+  background: color-mix(in oklch, var(--vscode-input-background) var(--chthonic-depth-hull), transparent) !important;
+  border-color: var(--chthonic-border-soft) !important;
+}
+
+/* ── Breadcrumbs and compact chrome ─────────────────────────── */
+.monaco-workbench .breadcrumbs-control,
+.monaco-workbench .editor-group-watermark,
+.monaco-workbench .part.editor > .content .grid-view-container {
+  background: transparent !important;
 }
 
 /* ── Status bar ──────────────────────────────────────────────── */
 .monaco-workbench .part.statusbar {
-  background: color-mix(in oklch, var(--vscode-statusBar-background) 90%, transparent) !important;
+  background: var(--vscode-statusBar-background) !important;
+  background: color-mix(in oklch, var(--vscode-statusBar-background) var(--chthonic-depth-deep), transparent) !important;
 }
 
 /* ── Title bar ───────────────────────────────────────────────── */
 .monaco-workbench .part.titlebar {
-  background: color-mix(in oklch, var(--vscode-titleBar-activeBackground) 90%, transparent) !important;
+  background: var(--vscode-titleBar-activeBackground) !important;
+  background: color-mix(in oklch, var(--vscode-titleBar-activeBackground) var(--chthonic-depth-deep), transparent) !important;
 }
 
 /* colophon ───────────────────────────────────────────────────── */

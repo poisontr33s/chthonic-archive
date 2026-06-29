@@ -1,6 +1,6 @@
 {
   "schema": "extreme-haute-couture/movement-1-gate/v1",
-  "generatedAt": "2026-06-29T01:18:46.153Z",
+  "generatedAt": "2026-06-29T01:30:20.999Z",
   "status": "passed",
   "releases": {
     "stable": "1.126.0",
@@ -228,7 +228,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 175,
+      "durationMs": 181,
       "stdout": "1.127.0-insider\n628f6de50e89b20c7688c66ac2923cce2862c1b0\nx64\n",
       "stderr": ""
     },
@@ -241,7 +241,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 84,
+      "durationMs": 85,
       "stdout": "ok 12 managed package(s) present\n",
       "stderr": "$ bun run scripts/sdk-catalog.ts --check\n"
     },
@@ -254,7 +254,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 150,
+      "durationMs": 635,
       "stdout": "bun outdated v1.3.14 (0d9b296a)\n",
       "stderr": ""
     },
@@ -268,7 +268,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 1182,
+      "durationMs": 1150,
       "stdout": "{\r\n  \"Ok\": true,\r\n  \"FailedCount\": 0,\r\n  \"Version\": \"1.127.0-insider\",\r\n  \"Commit\": \"628f6de50e89b20c7688c66ac2923cce2862c1b0\",\r\n  \"Electron\": \"42.2.0\",\r\n  \"AppRoot\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\",\r\n  \"MainJs\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\\\\out\\\\main.js\",\r\n  \"WorkbenchHtml\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\\\\out\\\\vs\\\\code\\\\electron-browser\\\\workbench\\\\workbench.html\",\r\n  \"Checks\": [\r\n    {\r\n      \"Name\": \"runtime-file\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"C:\\\\Users\\\\eldno\\\\chthonic-archive\\\\designs\\\\chthonic-mica.cjs\"\r\n    },\r\n    {\r\n      \"Name\": \"css-file\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"C:\\\\Users\\\\eldno\\\\chthonic-archive\\\\designs\\\\vibrancy-obsidian.css\"\r\n    },\r\n    {\r\n      \"Name\": \"chthonic-main-block\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\\\\out\\\\main.js\"\r\n    },\r\n    {\r\n      \"Name\": \"single-chthonic-main-block\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"count=1\"\r\n    },\r\n    {\r\n      \"Name\": \"no-vibrancy-block\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\\\\out\\\\main.js\"\r\n    },\r\n    {\r\n      \"Name\": \"runtime-uri-current\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"file:///C:/Users/eldno/chthonic-archive/designs/chthonic-mica.cjs\"\r\n    },\r\n    {\r\n      \"Name\": \"workbench-css-link\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"C:\\\\Users\\\\eldno\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code Insiders\\\\628f6de50e\\\\resources\\\\app\\\\out\\\\vs\\\\code\\\\electron-browser\\\\workbench\\\\workbench.html\"\r\n    },\r\n    {\r\n      \"Name\": \"single-workbench-css-link\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"count=1\"\r\n    },\r\n    {\r\n      \"Name\": \"css-uri-current\",\r\n      \"Ok\": true,\r\n      \"Detail\": \"file:///C:/Users/eldno/chthonic-archive/designs/vibrancy-obsidian.css\"\r\n    }\r\n  ]\r\n}\r\n",
       "stderr": ""
     },
@@ -281,7 +281,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 867,
+      "durationMs": 892,
       "stdout": "3.9.2\n@vscode/test-web: 0.0.81\nUsage:\n  --browser 'chromium' | 'firefox' | 'webkit' | 'none': The browser to launch. [Optional, defaults to 'chromium']\n  --browserOption option: Command line argument to use when launching the browser instance. [Optional, Multiple]\n  --extensionDevelopmentPath path: A path pointing to an extension under development to include. [Optional]\n  --extensionTestsPath path: A path to a test module to run. [Optional]\n  --quality 'insiders' | 'stable' [Optional, default 'insiders', ignored when running from sources]\n  --commit commitHash [Optional, defaults to latest build version of the given quality, ignored when running from sources]\n  --sourcesPath path: If provided, running from VS Code sources at the given location. [Optional]\n  --open-devtools: If set, opens the dev tools. [Optional]\n  --headless: Whether to hide the browser. Defaults to true when an extensionTestsPath is provided, otherwise false. [Optional]\n  --permission: Permission granted in the opened browser: e.g. 'clipboard-read', 'clipboard-write'. [Optional, Multiple]\n  --coi: Enables cross origin isolation [Optional]\n  --esm: If set to true, serves the page with ESM loader, if set to false, serves the page with AMD loader. If not set, ESM is used if the build supports it. [Optional]\n  --folder-uri: workspace to open VS Code on. Ignored when folderPath is provided. [Optional]\n  --extensionPath: A path pointing to a folder containing additional extensions to include [Optional, Multiple]\n  --extensionId: The id of an extension include. The format is '${publisher}.${name}'. Append '@prerelease' to use a prerelease version [Optional, Multiple]\n  --host: The host name the server is opened on. [Optional, defaults to localhost]\n  --port: The port the server is opened on. [Optional, defaults to 3000]\n  --open-devtools: If set, opens the dev tools. [Optional]\n  --verbose: If set, prints out more information when running the server. [Optional]\n  --printServerLog: If set, prints the server access log. [Optional]\n  --testRunnerDataDir: If set, the temporary folder for storing the VS Code builds used for running the tests. [Optional, defaults to '$CURRENT_WORKING_DIR/.vscode-test-web']\n  folderPath. A local folder to open VS Code on. The folder content will be available as a virtual file system. [Optional]\n",
       "stderr": "$ bunx @vscode/vsce --version && bunx vscode-test-web --help\n"
     },
@@ -294,8 +294,8 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 22203,
-      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-buildtools-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[33mWARN\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.142.3\n|  path=C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=26.5623.42026\n|  engines.vscode=^1.96.2\n|  code-insiders=1.127.0-insider\n|  code-stable=1.127.0-insider\n|  insiders-cli=ready\n|- Codex Native Sandbox (Windows) \u001b[33mWARN\u001b[0m\n|  native Codex Windows sandbox probe failed\n|  Upgrade Codex CLI and ensure sandbox support is available: codex sandbox windows --help\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[33mWARN\u001b[0m\n|- Solana Tool Suite Lane \u001b[33mWARN\u001b[0m\n|  solana detected but agave-install missing (update lane unavailable)\n|  Install Solana Tool Suite (Agave): mise run agave-sync (or use the official Anza installer for your host shell).\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   clean (no MAKEFLAGS/MFLAGS)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\nBundled 94 modules in 28ms\n\n  extension.js  0.39 MB  (entry point)\n\nBundled 1 module in 12ms\n\n  entropy-worker.js  5.49 KB  (entry point)\n\n INFO  Files included in the VSIX:\nchthonic-archive-insiders.vsix\n├─ [Content_Types].xml \n├─ extension.vsixmanifest \n└─ extension/\n   ├─ language-configuration-glsl.json [0.77 KB]\n   ├─ language-configuration-toml.json [0.54 KB]\n   ├─ package.json [20.34 KB]\n   ├─ readme.md [2.92 KB]\n   ├─ dist/ (2 files) [391.1 KB]\n   ├─ fixtures/ (2 files) [1.06 KB]\n   ├─ icons/ (2 files) [9.22 KB]\n   ├─ media/ (19 files) [292.22 KB]\n   ├─ resources/ (5 files) [3.84 KB]\n   ├─ syntaxes/ (2 files) [9.76 KB]\n   └─ themes/ (237 files) [584.43 KB]\n\n=> Run vsce ls --tree to see all included files.\n\n DONE  Packaged: chthonic-archive-insiders.vsix (275 files, 446.7 KB)\n",
+      "durationMs": 22466,
+      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-buildtools-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[33mWARN\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.142.3\n|  path=C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=26.5623.42026\n|  engines.vscode=^1.96.2\n|  code-insiders=1.127.0-insider\n|  code-stable=1.127.0-insider\n|  insiders-cli=ready\n|- Codex Native Sandbox (Windows) \u001b[33mWARN\u001b[0m\n|  native Codex Windows sandbox probe failed\n|  Upgrade Codex CLI and ensure sandbox support is available: codex sandbox windows --help\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[33mWARN\u001b[0m\n|- Solana Tool Suite Lane \u001b[33mWARN\u001b[0m\n|  solana detected but agave-install missing (update lane unavailable)\n|  Install Solana Tool Suite (Agave): mise run agave-sync (or use the official Anza installer for your host shell).\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   clean (no MAKEFLAGS/MFLAGS)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\nBundled 94 modules in 25ms\n\n  extension.js  0.39 MB  (entry point)\n\nBundled 1 module in 12ms\n\n  entropy-worker.js  5.49 KB  (entry point)\n\n INFO  Files included in the VSIX:\nchthonic-archive-insiders.vsix\n├─ [Content_Types].xml \n├─ extension.vsixmanifest \n└─ extension/\n   ├─ language-configuration-glsl.json [0.77 KB]\n   ├─ language-configuration-toml.json [0.54 KB]\n   ├─ package.json [20.34 KB]\n   ├─ readme.md [2.92 KB]\n   ├─ dist/ (2 files) [391.1 KB]\n   ├─ fixtures/ (2 files) [1.06 KB]\n   ├─ icons/ (2 files) [9.22 KB]\n   ├─ media/ (19 files) [292.22 KB]\n   ├─ resources/ (5 files) [3.84 KB]\n   ├─ syntaxes/ (2 files) [9.76 KB]\n   └─ themes/ (237 files) [584.43 KB]\n\n=> Run vsce ls --tree to see all included files.\n\n DONE  Packaged: chthonic-archive-insiders.vsix (275 files, 446.7 KB)\n",
       "stderr": "$ bun run compile && bunx @vscode/vsce package --pre-release --no-dependencies --out chthonic-archive-insiders.vsix --skip-license\n$ bun run verify:host\n$ bun run scripts/toolpool-scan.ts --quiet && bun run scripts/verify-host.ts\n$ bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify\n"
     },
     {
@@ -307,7 +307,7 @@
       ],
       "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
-      "durationMs": 3741,
+      "durationMs": 3736,
       "stdout": "[e2e] running chthonic-archive\nExit code:   0\n[e2e] pass chthonic-archive\n[e2e] running chthonic-statusbar\nExit code:   0\n[e2e] pass chthonic-statusbar\n[e2e] running chthonic-mandala\nExit code:   0\n[e2e] pass chthonic-mandala\n",
       "stderr": "$ bun run scripts/e2e-extension-host.ts\nWarning: 'cached-data' is not in the list of known options, but still passed to Electron/Chromium.\nWarning: 'cached-data' is not in the list of known options, but still passed to Electron/Chromium.\nWarning: 'cached-data' is not in the list of known options, but still passed to Electron/Chromium.\n"
     }
