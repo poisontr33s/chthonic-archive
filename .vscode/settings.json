@@ -5,5 +5,249 @@
 // ║   <69.96 Alpha Omega>                                            ║
 // ╚══════════════════════════════════════════════════════════════════╝
 "editor.formatOnSave": false,"editor.rulers": [100, 120], "editor.tabSize": 4,"editor.insertSpaces": true,"editor.semanticHighlighting.enabled": true,"editor.bracketPairColorization.enabled": true,"editor.guides.bracketPairs": true,"editor.maxTokenizationLineLength": 999999999,"editor.experimental.asyncTokenization": true,"editor.inlineSuggest.showToolbar": "always",
-"editor.tokenColorCustomizations": {"[Chthonic — Geological Core (Sister Ferrum Scoriae)]": {"textMateRules": [],"comments": "#6A9955"}},"diffEditor.maxComputationTime": 5000,"workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)","workbench.iconTheme": "chthonic-file-icons","workbench.productIconTheme": "chthonic-product-icons","workbench.editor.enablePreviewFromQuickOpen": true,"workbench.editor.enablePreviewFromCodeNavigation": true,"task.notifyWindowOnTaskCompletion": -1,"update.mode": "manual","chthonic.entropy.enabled": false,"chthonic.entropy.polyglotEnabled": false,"chthonic.slab.selfHealingEnabled": false,"chthonic.reactor.enabled": false,"chthonic.showLineage": false,"git.path": [ "${workspaceFolder}\\scripts\\git-chthonic.cmd" ],    "git.autoRepositoryDetection": "subFolders","git.openRepositoryInParentFolders": "never","git.repositoryScanMaxDepth": 0,"git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live", "poisontr33s-live", "eoai-live"],"git.autorefresh": false,"git.autofetch": false,"git.confirmSync": true,"git.decorations.enabled": false,"git.enableStatusBarSync": false,"git.showProgress": false,"git.statusLimit": 500,"git.untrackedChanges": "hidden","git.countBadge": "tracked","git.enableSmartCommit": true,"git.smartCommitChanges": "tracked","git.suggestSmartCommit": false,"git.pullTags": false,"git.postCommitCommand": "none","git.commandsToLog": [],"git.blame.editorDecoration.enabled": false,"git.blame.statusBarItem.enabled": false,"git.showActionButton": {"commit": true,"publish": false,"sync": false},"scm.diffDecorations": "none","git.ignoredRepositories": ["C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"],"*.vert": "glsl","*.frag": "glsl","*.geom": "glsl","*.comp": "glsl","*.tesc": "glsl","*.tese": "glsl","*.md": "markdown","*.json": "jsonc","files.exclude": {"**/target": false,"**/*.spv": false,"**/Cargo.lock": false},"files.watcherExclude": {"**/target/**": true,"**/.git/objects/**": true,"**/.git/subtree-cache/**": true,"**/node_modules/**": true,"**/dumpster-dive/**": true,"**/build/**": true,"**/artifacts/**": true,"**/__pycache__/**": true,"**/book/**": true},"search.exclude": {"**/target": true,"**/node_modules": true,"**/dumpster-dive": true,"**/build": true,"**/artifacts": true,"**/__pycache__": true,"**/.git": true,"**/book": true},"terminal.integrated.unicodeVersion": "11","terminal.integrated.gpuAcceleration": "off","terminal.integrated.environmentChangesRelaunch": false,"terminal.integrated.profiles.windows": {"Pwsh (Chthonic)": {"path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe","args": ["-NoLogo"],"icon": "terminal-powershell"},"Pwsh (No Profile)": {"path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe","args": ["-NoProfile", "-NoLogo"],"icon": "terminal"}},"terminal.integrated.defaultProfile.windows": "PowerShell","terminal.integrated.shellIntegration.enabled": true,"terminal.integrated.shellIntegration.decorationsEnabled": "never","terminal.integrated.shellIntegration.showCommandGuide": false,"terminal.integrated.shellIntegration.history": 100,"terminal.integrated.suggest.enabled": false,"terminal.integrated.suggest.suggestOnTriggerCharacters": false,"terminal.integrated.stickyScroll.enabled": false,"terminal.integrated.commandsToSkipShell": ["bash", "wsl", "ubuntu"],"terminal.integrated.env.windows": {"PATH": "${env:PATH}","RUST_BACKTRACE": "1","RUST_LOG": "info,chthonic_archive=debug"},"rust-analyzer.cargo.allFeatures": true,"rust-analyzer.checkOnSave.command": "check","rust-analyzer.inlayHints.chainingHints.enable": true,"rust-analyzer.inlayHints.typeHints.enable": true,"rust-analyzer.inlayHints.parameterHints.enable": true,"rust-analyzer.lens.enable": true,"rust-analyzer.lens.run.enable": true,"rust-analyzer.lens.debug.enable": true,"rust-analyzer.procMacro.enable": true,"[rust]": {"editor.formatOnSave": true},"[glsl]": {"editor.tabSize": 4,"editor.formatOnSave": false},"[toml]": {"editor.formatOnSave": false},"[markdown]": {"editor.wordWrap": "on","editor.quickSuggestions": {"comments": "on","strings": "on","other": "on"},"editor.unicodeHighlight.ambiguousCharacters": false,"editor.unicodeHighlight.invisibleCharacters": false,"editor.formatOnSave": false},"[json]": {"editor.formatOnSave": false,"editor.defaultFormatter": "vscode.json-language-features"},"[jsonc]": {"editor.formatOnSave": false,"editor.defaultFormatter": "vscode.json-language-features"},"markdown.preview.fontSize": 14,"markdown.preview.lineHeight": 1.6,"markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif","markdown.validate.enabled": true,"markdown.validate.ignoredLinks": ["CLAUDE.md",".github/copilot-instructions.archive.md","chthonic/SSOT.md","../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md","./instructions/mathematical-engines.instructions.md","docs/standards/KCP_PROTOCOL_ONTOLOGY.md"],"markdown.editor.pasteUrlAsFormattedLink.enabled": "smart", "github.copilot.chat.nesFetcher": "node-fetch","github.copilot.chat.completionsFetcher": "node-fetch","github.copilot.enable": {"*": true,"markdown": true,"scminput": true,"plaintext": true},"github.copilot.nextEditSuggestions.enabled": true,"github.copilot.chat.useProjectContext": true,"github.copilot.chat.scopeSelection": true,"github.copilot.chat.exploreAgent.model": "Claude Sonnet 4.6 (copilot)","github.copilot.chat.askAgent.model": "Claude Sonnet 4.6 (copilot)","github.copilot.chat.editor.temporalContext.enabled": true,"github.copilot.chat.newWorkspace.useContext7": false,"github.copilot.chat.codeGeneration.useInstructionFiles": false,"github.copilot.chat.customInstructionsInSystemMessage": false,"github.copilot.chat.codeExplanation.enabled": true,"github.copilot.chat.codeRefactoring.enabled": true,"github.copilot.chat.agent.currentEditorContext.enabled": true,"github.copilot.chat.anthropic.contextEditing.enabled": true,"github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,"github.copilot.chat.cli.mcp.enabled": true,"chat.tools.global.autoApprove": true,"chat.tools.terminal.outputLocation": "chat","chat.agent.maxRequests": 100,"chat.unifiedAgentsBar.enabled": true,"chat.useAgentSkills": true,"chat.useAgentsMdFile": false,"chat.checkpoints.enabled": true,"chat.checkpoints.showFileChanges": false,"chat.todoListTool.descriptionField": true,"chat.todoListTool.writeOnly": true,"chat.instructionsFilesLocations": {".github/copilot-instructions.md": true},"inlineChat.holdToSpeech": true,"chat.mcp.autostart": "never","chat.mcp.serverSampling": {"chthonic-archive/.vscode/mcp.json: github": {"allowedModels": ["all",]  }},"claudeCode.selectedModel":"claude-sonnet-4-6","claudeCode.allowDangerouslySkipPermissions": true,"claudeCode.useTerminal": false,"claudeCode.respectGitIgnore": false,"claudeCode.initialPermissionMode": "default","claudeCode.preferredLocation": "panel","chatgpt.commentCodeLensEnabled": true,"chatgpt.openOnStartup": false,"chatgpt.composerEnterBehavior": "cmdIfMultiline","github.copilot.chat.anthropic.contextEditing.mode": "clear-both","chat.useCustomizationsInParentRepositories": true,"github.copilot.chat.responsesApiContextManagement.enabled": true,"github.copilot.chat.claudeAgent.allowDangerouslySkipPermissions": true,
+"editor.tokenColorCustomizations": {
+    "[Chthonic — Geological Core (Sister Ferrum Scoriae)]": {
+        "textMateRules": [],
+        "comments": "#6A9955"
+    }
+},
+"diffEditor.maxComputationTime": 5000,
+"workbench.colorTheme": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+"workbench.iconTheme": "chthonic-file-icons",
+"workbench.productIconTheme": "chthonic-product-icons",
+"workbench.editor.enablePreviewFromQuickOpen": true,
+"workbench.editor.enablePreviewFromCodeNavigation": true,
+"task.notifyWindowOnTaskCompletion": -1,
+"update.mode": "manual",
+"chthonic.entropy.enabled": false,
+"chthonic.entropy.polyglotEnabled": false,
+"chthonic.slab.selfHealingEnabled": false,
+"chthonic.reactor.enabled": true,
+"chthonic.showLineage": false,
+"git.path": [
+    "${workspaceFolder}\\scripts\\git-chthonic.cmd"
+],
+"git.autoRepositoryDetection": "subFolders",
+"git.openRepositoryInParentFolders": "never",
+"git.repositoryScanMaxDepth": 0,
+"git.repositoryScanIgnoredFolders": [
+    "pnk-live",
+    "rmco-live",
+    "csb-live",
+    "git-dump-live",
+    "pnk-lfh-live",
+    "poisontr33s-live",
+    "eoai-live"
+],
+"git.autorefresh": false,
+"git.autofetch": false,
+"git.confirmSync": true,
+"git.decorations.enabled": false,
+"git.enableStatusBarSync": false,
+"git.showProgress": false,
+"git.statusLimit": 500,
+"git.untrackedChanges": "hidden",
+"git.countBadge": "tracked",
+"git.enableSmartCommit": true,
+"git.smartCommitChanges": "tracked",
+"git.suggestSmartCommit": false,
+"git.pullTags": false,
+"git.postCommitCommand": "none",
+"git.commandsToLog": [],
+"git.blame.editorDecoration.enabled": false,
+"git.blame.statusBarItem.enabled": false,
+"git.showActionButton": {
+    "commit": true,
+    "publish": false,
+    "sync": false
+},
+"scm.diffDecorations": "none",
+"git.ignoredRepositories": [
+    "C:\\Users\\eldno\\.vscode-insiders\\agent-plugins\\github.com\\github\\copilot-plugins"
+],
+"*.vert": "glsl",
+"*.frag": "glsl",
+"*.geom": "glsl",
+"*.comp": "glsl",
+"*.tesc": "glsl",
+"*.tese": "glsl",
+"*.md": "markdown",
+"*.json": "jsonc",
+"files.exclude": {
+    "**/target": false,
+    "**/*.spv": false,
+    "**/Cargo.lock": false
+},
+"files.watcherExclude": {
+    "**/target/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/dumpster-dive/**": true,
+    "**/build/**": true,
+    "**/artifacts/**": true,
+    "**/__pycache__/**": true,
+    "**/book/**": true
+},
+"search.exclude": {
+    "**/target": true,
+    "**/node_modules": true,
+    "**/dumpster-dive": true,
+    "**/build": true,
+    "**/artifacts": true,
+    "**/__pycache__": true,
+    "**/.git": true,
+    "**/book": true
+},
+"terminal.integrated.unicodeVersion": "11",
+"terminal.integrated.gpuAcceleration": "off",
+"terminal.integrated.environmentChangesRelaunch": false,
+"terminal.integrated.profiles.windows": {
+    "Pwsh (Chthonic)": {
+        "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
+        "args": [
+            "-NoLogo"
+        ],
+        "icon": "terminal-powershell"
+    },
+    "Pwsh (No Profile)": {
+        "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
+        "args": [
+            "-NoProfile",
+            "-NoLogo"
+        ],
+        "icon": "terminal"
+    }
+},
+"terminal.integrated.defaultProfile.windows": "PowerShell",
+"terminal.integrated.shellIntegration.enabled": true,
+"terminal.integrated.shellIntegration.decorationsEnabled": "never",
+"terminal.integrated.shellIntegration.showCommandGuide": false,
+"terminal.integrated.shellIntegration.history": 100,
+"terminal.integrated.suggest.enabled": false,
+"terminal.integrated.suggest.suggestOnTriggerCharacters": false,
+"terminal.integrated.stickyScroll.enabled": false,
+"terminal.integrated.commandsToSkipShell": [
+    "bash",
+    "wsl",
+    "ubuntu"
+],
+"terminal.integrated.env.windows": {
+    "PATH": "${env:PATH}",
+    "RUST_BACKTRACE": "1",
+    "RUST_LOG": "info,chthonic_archive=debug"
+},
+"rust-analyzer.cargo.allFeatures": true,
+"rust-analyzer.checkOnSave.command": "check",
+"rust-analyzer.inlayHints.chainingHints.enable": true,
+"rust-analyzer.inlayHints.typeHints.enable": true,
+"rust-analyzer.inlayHints.parameterHints.enable": true,
+"rust-analyzer.lens.enable": true,
+"rust-analyzer.lens.run.enable": true,
+"rust-analyzer.lens.debug.enable": true,
+"rust-analyzer.procMacro.enable": true,
+"[rust]": {
+    "editor.formatOnSave": true
+},
+"[glsl]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false
+},
+"[toml]": {
+    "editor.formatOnSave": false
+},
+"[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.formatOnSave": false
+},
+"[json]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+},
+"[jsonc]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+},
+"markdown.preview.fontSize": 14,
+"markdown.preview.lineHeight": 1.6,
+"markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+"markdown.validate.enabled": true,
+"markdown.validate.ignoredLinks": [
+    "CLAUDE.md",
+    ".github/copilot-instructions.archive.md",
+    "chthonic/SSOT.md",
+    "../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+    "./instructions/mathematical-engines.instructions.md",
+    "docs/standards/KCP_PROTOCOL_ONTOLOGY.md"
+],
+"markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
+"github.copilot.chat.nesFetcher": "node-fetch",
+"github.copilot.chat.completionsFetcher": "node-fetch",
+"github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "scminput": true,
+    "plaintext": true
+},
+"github.copilot.nextEditSuggestions.enabled": true,
+"github.copilot.chat.useProjectContext": true,
+"github.copilot.chat.scopeSelection": true,
+"github.copilot.chat.exploreAgent.model": "Claude Sonnet 4.6 (copilot)",
+"github.copilot.chat.askAgent.model": "Claude Sonnet 4.6 (copilot)",
+"github.copilot.chat.editor.temporalContext.enabled": true,
+"github.copilot.chat.newWorkspace.useContext7": false,
+"github.copilot.chat.codeGeneration.useInstructionFiles": false,
+"github.copilot.chat.customInstructionsInSystemMessage": false,
+"github.copilot.chat.codeExplanation.enabled": true,
+"github.copilot.chat.codeRefactoring.enabled": true,
+"github.copilot.chat.agent.currentEditorContext.enabled": true,
+"github.copilot.chat.anthropic.contextEditing.enabled": true,
+"github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled": true,
+"github.copilot.chat.cli.mcp.enabled": true,
+"chat.tools.global.autoApprove": true,
+"chat.tools.terminal.outputLocation": "chat",
+"chat.agent.maxRequests": 100,
+"chat.unifiedAgentsBar.enabled": true,
+"chat.useAgentSkills": true,
+"chat.useAgentsMdFile": false,
+"chat.checkpoints.enabled": true,
+"chat.checkpoints.showFileChanges": false,
+"chat.todoListTool.descriptionField": true,
+"chat.todoListTool.writeOnly": true,
+"chat.instructionsFilesLocations": {
+    ".github/copilot-instructions.md": true
+},
+"inlineChat.holdToSpeech": true,
+"chat.mcp.autostart": "never",
+"chat.mcp.serverSampling": {
+    "chthonic-archive/.vscode/mcp.json: github": {
+        "allowedModels": [
+            "all",
+        ]
+    }
+},
+"claudeCode.selectedModel": "claude-sonnet-4-6",
+"claudeCode.allowDangerouslySkipPermissions": true,
+"claudeCode.useTerminal": false,
+"claudeCode.respectGitIgnore": false,
+"claudeCode.initialPermissionMode": "default",
+"claudeCode.preferredLocation": "panel",
+"chatgpt.commentCodeLensEnabled": true,
+"chatgpt.openOnStartup": false,
+"chatgpt.composerEnterBehavior": "cmdIfMultiline",
+"github.copilot.chat.anthropic.contextEditing.mode": "clear-both",
+"chat.useCustomizationsInParentRepositories": true,
+"github.copilot.chat.responsesApiContextManagement.enabled": true,
+"github.copilot.chat.claudeAgent.allowDangerouslySkipPermissions": true,
+"chthonic.security.allowNativeSidecars": true,
+"chthonic.reactor.headlessVulkan": false,
+"chthonic.reactor.transport": "jsonl",
+"chthonic.reactor.daemonBinaryPath": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\debug\\chthonic-daemon.exe",
 }
