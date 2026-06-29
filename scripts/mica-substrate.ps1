@@ -4,22 +4,24 @@
 # color authority to Vibrancy Continued's broad themeCSS patch.
 # Made by Claude. Continued by Codex.
 
-[CmdletBinding(DefaultParameterSetName = 'Status')]
+[CmdletBinding()]
 param(
-    [Parameter(ParameterSetName = 'Enable')]
-    [switch]$Enable,
+    [Alias('Enable')]
+    [switch]$Apply,
 
-    [Parameter(ParameterSetName = 'Disable')]
     [switch]$Disable,
 
-    [Parameter(ParameterSetName = 'Reapply')]
-    [switch]$Reapply,
+    [Alias('Reapply')]
+    [switch]$ReapplyLatest,
 
-    [Parameter(ParameterSetName = 'Status')]
     [switch]$Status,
 
-    [Parameter(ParameterSetName = 'RestoreLatestBackup')]
-    [switch]$RestoreLatestBackup,
+    [Alias('RestoreLatestBackup')]
+    [switch]$Restore,
+
+    [switch]$Verify,
+
+    [string]$BackupPath,
 
     [string]$InstallRoot = (Join-Path $env:LOCALAPPDATA 'Programs\Microsoft VS Code Insiders'),
     [string]$Material = 'mica'
@@ -32,10 +34,42 @@ $RepoRoot = Split-Path -Parent $PSScriptRoot
 $RuntimePath = Join-Path $RepoRoot 'designs\chthonic-mica.cjs'
 $CssPath = Join-Path $RepoRoot 'designs\vibrancy-obsidian.css'
 $BackupRoot = Join-Path $RepoRoot 'CLAUDEBASE\hold\vscode-insiders-substrate\backups'
+$ChthonicStart = '/* !! CHTHONIC-MICA-START !! */'
+$ChthonicEnd = '/* !! CHTHONIC-MICA-END !! */'
+$VibrancyStart = '/* !! VSCODE-VIBRANCY-START !! */'
+$SubstrateCssMarker = 'data-claude-design-substrate="vibrancy-obsidian"'
 
 function ConvertTo-FileUri {
     param([Parameter(Mandatory)][string]$Path)
     return ([System.Uri](Resolve-Path -LiteralPath $Path).ProviderPath).AbsoluteUri
+}
+
+function Get-OptionalProperty {
+    param(
+        $Object,
+        [Parameter(Mandatory)][string]$Name
+    )
+
+    if ($null -eq $Object) {
+        return $null
+    }
+
+    $property = $Object.PSObject.Properties[$Name]
+    if ($property) {
+        return $property.Value
+    }
+
+    return $null
+}
+
+function Get-FileSha256 {
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return $null
+    }
+
+    return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 
 function Get-InsidersAppRoot {
@@ -112,6 +146,26 @@ function Get-SubstrateState {
     }
     $main = Get-Content -LiteralPath $mainJs -Raw
     $html = Get-Content -LiteralPath $workbenchHtml -Raw
+    $runtimeUri = if (Test-Path -LiteralPath $RuntimePath) { ConvertTo-FileUri -Path $RuntimePath } else { $null }
+    $cssUri = if (Test-Path -LiteralPath $CssPath) { ConvertTo-FileUri -Path $CssPath } else { $null }
+    $version = if ($package) { Get-OptionalProperty -Object $package -Name 'version' } else { 'unknown' }
+    $commit = if ($product) { Get-OptionalProperty -Object $product -Name 'commit' } else { 'unknown' }
+    $devDependencies = if ($package) { Get-OptionalProperty -Object $package -Name 'devDependencies' } else { $null }
+    $electron = Get-OptionalProperty -Object $devDependencies -Name 'electron'
+    if (-not $electron) { $electron = 'unknown' }
+    $agentSdks = if ($product) { Get-OptionalProperty -Object $product -Name 'agentSdks' } else { $null }
+    $claude = Get-OptionalProperty -Object $agentSdks -Name 'claude'
+    $claudeAgentSdk = Get-OptionalProperty -Object $claude -Name 'version'
+    if (-not $claudeAgentSdk) { $claudeAgentSdk = 'unknown' }
+    $codex = Get-OptionalProperty -Object $agentSdks -Name 'codex'
+    $codexAgentSdk = Get-OptionalProperty -Object $codex -Name 'version'
+    if (-not $codexAgentSdk) { $codexAgentSdk = 'unknown' }
+    $hasRuntimeUri = if ($runtimeUri) { $main.Contains($runtimeUri) } else { $false }
+    $hasCssUri = if ($cssUri) { $html.Contains($cssUri) } else { $false }
+    $latestBackup = Get-LatestBackup -StateCommit $commit
+    $latestCleanBackup = Get-LatestBackup -StateCommit $commit -RequireClean
+    $latestBackupPath = if ($latestBackup) { $latestBackup.FullName } else { $null }
+    $latestCleanBackupPath = if ($latestCleanBackup) { $latestCleanBackup.FullName } else { $null }
     $running = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
         try {
             $_.Path -and $_.Path.StartsWith($InstallRoot, [System.StringComparison]::OrdinalIgnoreCase)
@@ -123,19 +177,33 @@ function Get-SubstrateState {
     [pscustomobject]@{
         InstallRoot = $InstallRoot
         AppRoot = $appRoot
-        Version = if ($package) { $package.version } else { 'unknown' }
-        Commit = if ($product) { $product.commit } else { 'unknown' }
-        Electron = if ($package -and $package.devDependencies.electron) { $package.devDependencies.electron } else { 'unknown' }
-        ClaudeAgentSdk = if ($product -and $product.agentSdks -and $product.agentSdks.claude) { $product.agentSdks.claude.version } else { 'unknown' }
-        CodexAgentSdk = if ($product -and $product.agentSdks -and $product.agentSdks.codex) { $product.agentSdks.codex.version } else { 'unknown' }
-        AgentSdks = if ($product -and $product.agentSdks) { $product.agentSdks } else { $null }
+        Version = $version
+        Commit = $commit
+        Electron = $electron
+        ClaudeAgentSdk = $claudeAgentSdk
+        CodexAgentSdk = $codexAgentSdk
+        AgentSdks = $agentSdks
         MainJs = $mainJs
         WorkbenchHtml = $workbenchHtml
         RuntimePath = $RuntimePath
         CssPath = $CssPath
-        HasVibrancyBlock = $main.Contains('VSCODE-VIBRANCY-START')
-        HasChthonicBlock = $main.Contains('CHTHONIC-MICA-START')
-        HasSubstrateCss = $html.Contains('data-claude-design-substrate="vibrancy-obsidian"')
+        RuntimeUri = $runtimeUri
+        CssUri = $cssUri
+        RuntimeHash = Get-FileSha256 -Path $RuntimePath
+        CssHash = Get-FileSha256 -Path $CssPath
+        MainJsHash = Get-FileSha256 -Path $mainJs
+        WorkbenchHtmlHash = Get-FileSha256 -Path $workbenchHtml
+        HasVibrancyBlock = $main.Contains($VibrancyStart)
+        HasChthonicBlock = $main.Contains($ChthonicStart)
+        ChthonicBlockCount = ([regex]::Matches($main, [regex]::Escape($ChthonicStart))).Count
+        HasRuntimeUri = $hasRuntimeUri
+        HasSubstrateCss = $html.Contains($SubstrateCssMarker)
+        SubstrateCssLinkCount = ([regex]::Matches($html, [regex]::Escape($SubstrateCssMarker))).Count
+        HasCssUri = $hasCssUri
+        IsPatched = $main.Contains($ChthonicStart) -and $html.Contains($SubstrateCssMarker)
+        IsClean = (-not $main.Contains($ChthonicStart)) -and (-not $main.Contains($VibrancyStart)) -and (-not $html.Contains($SubstrateCssMarker))
+        LatestBackup = $latestBackupPath
+        LatestCleanBackup = $latestCleanBackupPath
         RunningProcessCount = $running
     }
 }
@@ -190,6 +258,8 @@ function New-SubstrateBackup {
         electron = $State.Electron
         mainJs = $State.MainJs
         workbenchHtml = $State.WorkbenchHtml
+        mainJsHash = $State.MainJsHash
+        workbenchHtmlHash = $State.WorkbenchHtmlHash
         hadVibrancyBlock = $State.HasVibrancyBlock
         hadChthonicBlock = $State.HasChthonicBlock
         hadSubstrateCss = $State.HasSubstrateCss
@@ -198,7 +268,133 @@ function New-SubstrateBackup {
     return $backupDir
 }
 
-function Enable-Substrate {
+function Get-BackupMetadata {
+    param([Parameter(Mandatory)][string]$Directory)
+
+    $metadataPath = Join-Path $Directory 'metadata.json'
+    if (-not (Test-Path -LiteralPath $metadataPath)) {
+        return $null
+    }
+
+    try {
+        return Get-Content -LiteralPath $metadataPath -Raw | ConvertFrom-Json
+    } catch {
+        return $null
+    }
+}
+
+function Test-CleanBackupMetadata {
+    param($Metadata)
+
+    if ($null -eq $Metadata) {
+        return $false
+    }
+
+    return (-not [bool](Get-OptionalProperty -Object $Metadata -Name 'hadVibrancyBlock')) -and
+        (-not [bool](Get-OptionalProperty -Object $Metadata -Name 'hadChthonicBlock')) -and
+        (-not [bool](Get-OptionalProperty -Object $Metadata -Name 'hadSubstrateCss'))
+}
+
+function Get-LatestBackup {
+    param(
+        [string]$StateCommit,
+        [switch]$RequireClean
+    )
+
+    if (-not (Test-Path -LiteralPath $BackupRoot)) {
+        return $null
+    }
+
+    $backups = Get-ChildItem -LiteralPath $BackupRoot -Directory |
+        Sort-Object LastWriteTimeUtc -Descending
+
+    foreach ($backup in $backups) {
+        $metadata = Get-BackupMetadata -Directory $backup.FullName
+        $metadataCommit = Get-OptionalProperty -Object $metadata -Name 'commit'
+        if ($StateCommit -and $StateCommit -ne 'unknown' -and $metadataCommit -and $metadataCommit -ne $StateCommit) {
+            continue
+        }
+        if ($RequireClean -and -not (Test-CleanBackupMetadata -Metadata $metadata)) {
+            continue
+        }
+        return $backup
+    }
+
+    return $null
+}
+
+function Resolve-BackupPath {
+    param([string]$Path)
+
+    if ($Path) {
+        $resolved = Resolve-Path -LiteralPath $Path -ErrorAction Stop
+        return $resolved.ProviderPath
+    }
+
+    $state = Get-SubstrateState
+    $latest = Get-LatestBackup -StateCommit $state.Commit
+    if (-not $latest) {
+        throw "No substrate backups found under: $BackupRoot"
+    }
+
+    return $latest.FullName
+}
+
+function Assert-BackupUsable {
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path -PathType Container)) {
+        throw "Backup path is not a directory: $Path"
+    }
+
+    $mainBackup = Join-Path $Path 'main.js'
+    $htmlBackup = Join-Path $Path 'workbench.html'
+    if (-not (Test-Path -LiteralPath $mainBackup)) {
+        throw "Backup is missing main.js: $mainBackup"
+    }
+    if (-not (Test-Path -LiteralPath $htmlBackup)) {
+        throw "Backup is missing workbench.html: $htmlBackup"
+    }
+}
+
+function Test-Substrate {
+    $state = Get-SubstrateState
+    $checks = @(
+        [pscustomobject]@{ Name = 'runtime-file'; Ok = [bool](Test-Path -LiteralPath $RuntimePath); Detail = $RuntimePath },
+        [pscustomobject]@{ Name = 'css-file'; Ok = [bool](Test-Path -LiteralPath $CssPath); Detail = $CssPath },
+        [pscustomobject]@{ Name = 'chthonic-main-block'; Ok = [bool]$state.HasChthonicBlock; Detail = $state.MainJs },
+        [pscustomobject]@{ Name = 'single-chthonic-main-block'; Ok = ($state.ChthonicBlockCount -eq 1); Detail = "count=$($state.ChthonicBlockCount)" },
+        [pscustomobject]@{ Name = 'no-vibrancy-block'; Ok = (-not $state.HasVibrancyBlock); Detail = $state.MainJs },
+        [pscustomobject]@{ Name = 'runtime-uri-current'; Ok = [bool]$state.HasRuntimeUri; Detail = $state.RuntimeUri },
+        [pscustomobject]@{ Name = 'workbench-css-link'; Ok = [bool]$state.HasSubstrateCss; Detail = $state.WorkbenchHtml },
+        [pscustomobject]@{ Name = 'single-workbench-css-link'; Ok = ($state.SubstrateCssLinkCount -eq 1); Detail = "count=$($state.SubstrateCssLinkCount)" },
+        [pscustomobject]@{ Name = 'css-uri-current'; Ok = [bool]$state.HasCssUri; Detail = $state.CssUri }
+    )
+    $failed = @($checks | Where-Object { -not $_.Ok })
+
+    [pscustomobject]@{
+        Ok = ($failed.Count -eq 0)
+        FailedCount = $failed.Count
+        Version = $state.Version
+        Commit = $state.Commit
+        Electron = $state.Electron
+        AppRoot = $state.AppRoot
+        MainJs = $state.MainJs
+        WorkbenchHtml = $state.WorkbenchHtml
+        Checks = $checks
+    }
+}
+
+function Verify-Substrate {
+    $report = Test-Substrate
+    $report
+    if (-not $report.Ok) {
+        $failed = ($report.Checks | Where-Object { -not $_.Ok } | ForEach-Object { $_.Name }) -join ', '
+        throw "Substrate verification failed: $failed"
+    }
+}
+
+function Apply-Substrate {
     param([switch]$Quiet)
 
     if (-not (Test-Path -LiteralPath $RuntimePath)) {
@@ -216,10 +412,10 @@ function Enable-Substrate {
     $main = Get-Content -LiteralPath $state.MainJs -Raw
     $main = Remove-SubstrateBlocks -Text $main
     $block = @"
-/* !! CHTHONIC-MICA-START !! */
+$ChthonicStart
 process.env.CHTHONIC_MICA_MATERIAL = "$Material";
 import("$runtimeUri").catch(err => console.error("[chthonic-mica] import failed:", err));
-/* !! CHTHONIC-MICA-END !! */
+$ChthonicEnd
 
 "@
     Set-Content -LiteralPath $state.MainJs -Value ($block + $main) -NoNewline -Encoding utf8
@@ -235,16 +431,20 @@ import("$runtimeUri").catch(err => console.error("[chthonic-mica] import failed:
     }
     Set-Content -LiteralPath $state.WorkbenchHtml -Value $html -NoNewline -Encoding utf8
 
-    if (-not $Quiet) {
-        [pscustomobject]@{
-            action = 'enabled'
-            material = $Material
-            backup = $backupDir
-            appRoot = $state.AppRoot
-            mainJs = $state.MainJs
-            workbenchHtml = $state.WorkbenchHtml
-        }
+    $result = [pscustomobject]@{
+        action = 'applied'
+        material = $Material
+        backup = $backupDir
+        appRoot = $state.AppRoot
+        mainJs = $state.MainJs
+        workbenchHtml = $state.WorkbenchHtml
     }
+
+    if ($Quiet) {
+        return $result
+    }
+
+    $result
 }
 
 function Disable-Substrate {
@@ -268,39 +468,71 @@ function Disable-Substrate {
     }
 }
 
-function Restore-LatestBackup {
-    if (-not (Test-Path -LiteralPath $BackupRoot)) {
-        throw "No backup root found: $BackupRoot"
-    }
+function Restore-Substrate {
+    param([string]$Path)
 
-    $latest = Get-ChildItem -LiteralPath $BackupRoot -Directory |
-        Sort-Object LastWriteTimeUtc -Descending |
-        Select-Object -First 1
-    if (-not $latest) {
-        throw "No substrate backups found under: $BackupRoot"
-    }
-
+    $restorePath = Resolve-BackupPath -Path $Path
+    Assert-BackupUsable -Path $restorePath
     $state = Get-SubstrateState
-    Copy-Item -LiteralPath (Join-Path $latest.FullName 'main.js') -Destination $state.MainJs -Force
-    Copy-Item -LiteralPath (Join-Path $latest.FullName 'workbench.html') -Destination $state.WorkbenchHtml -Force
+    $safetyBackup = New-SubstrateBackup -State $state
+
+    Copy-Item -LiteralPath (Join-Path $restorePath 'main.js') -Destination $state.MainJs -Force
+    Copy-Item -LiteralPath (Join-Path $restorePath 'workbench.html') -Destination $state.WorkbenchHtml -Force
 
     [pscustomobject]@{
-        action = 'restored-latest-backup'
-        restoredFrom = $latest.FullName
+        action = 'restored'
+        restoredFrom = $restorePath
+        safetyBackup = $safetyBackup
         appRoot = $state.AppRoot
         mainJs = $state.MainJs
         workbenchHtml = $state.WorkbenchHtml
     }
 }
 
-if ($Enable) {
-    Enable-Substrate
-} elseif ($Reapply) {
-    Enable-Substrate
+function Reapply-LatestSubstrate {
+    $state = Get-SubstrateState
+    $clean = Get-LatestBackup -StateCommit $state.Commit -RequireClean
+    $restoredFrom = $null
+    $safetyBackup = $null
+
+    if ($clean) {
+        Assert-BackupUsable -Path $clean.FullName
+        $safetyBackup = New-SubstrateBackup -State $state
+        Copy-Item -LiteralPath (Join-Path $clean.FullName 'main.js') -Destination $state.MainJs -Force
+        Copy-Item -LiteralPath (Join-Path $clean.FullName 'workbench.html') -Destination $state.WorkbenchHtml -Force
+        $restoredFrom = $clean.FullName
+    }
+
+    $applyResult = Apply-Substrate -Quiet
+    [pscustomobject]@{
+        action = 'reapplied-latest'
+        restoredFrom = $restoredFrom
+        safetyBackup = $safetyBackup
+        applyBackup = $applyResult.backup
+        appRoot = $state.AppRoot
+        mainJs = $state.MainJs
+        workbenchHtml = $state.WorkbenchHtml
+    }
+}
+
+$actions = @(@($Apply, $Disable, $ReapplyLatest, $Status, $Restore, $Verify) | Where-Object { $_.IsPresent })
+if ($actions.Count -gt 1) {
+    throw "Choose exactly one action: -Status, -Apply, -Verify, -Restore, -ReapplyLatest, or -Disable."
+}
+if ($BackupPath -and -not $Restore) {
+    throw "-BackupPath is only valid with -Restore."
+}
+
+if ($Apply) {
+    Apply-Substrate
+} elseif ($ReapplyLatest) {
+    Reapply-LatestSubstrate
 } elseif ($Disable) {
     Disable-Substrate
-} elseif ($RestoreLatestBackup) {
-    Restore-LatestBackup
+} elseif ($Restore) {
+    Restore-Substrate -Path $BackupPath
+} elseif ($Verify) {
+    Verify-Substrate
 } else {
     Get-SubstrateState
 }
