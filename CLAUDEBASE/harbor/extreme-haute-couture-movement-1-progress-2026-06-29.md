@@ -147,6 +147,52 @@ Bun blocked two official lifecycle scripts during install:
 
 The package gate passed without trusting or running those scripts. Leave them untrusted unless a browser test or VSIX signing gate actually requires them.
 
+## Latest-Stable Sync Result
+
+Official Microsoft release endpoints checked on 2026-06-29:
+
+```text
+VS Code Stable: 1.126.0
+VS Code Insiders: 1.127.0-insider
+Local code-insiders: 1.127.0-insider
+Local code-insiders commit: 628f6de50e89b20c7688c66ac2923cce2862c1b0
+```
+
+The tracked extension manifest is now synced to the current Stable floor while packaging against Insiders:
+
+```text
+engines.vscode: ^1.126.0
+@types/vscode: ^1.125.0
+```
+
+The remaining tracked extension dev dependencies were moved to npm latest and verified with `bun outdated`:
+
+```text
+@types/node: ^26.0.1
+markdown-it: ^14.2.0
+typescript: ^6.0.3
+```
+
+Checks rerun after this stricter sync:
+
+```bash
+bun outdated
+bun run --cwd extensions/chthonic-archive insiders:kits:check
+bun run --cwd extensions/chthonic-archive insiders:package
+```
+
+Result:
+
+```text
+Tracked extension outdated packages: none
+VSCE resolved: 3.9.2
+@vscode/test-web resolved: 0.0.81
+Package output: chthonic-archive-insiders.vsix
+VSIX contents: 275 files
+VSIX size: 446.7 KB
+Package command: passed
+```
+
 ## Current Holdup
 
 No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
