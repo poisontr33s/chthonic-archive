@@ -105,6 +105,7 @@ addCheck(
 );
 
 const visualContributionSummary = verifyVisualContributions(extensionPackage);
+const claudeDesignQuarantine = verifyClaudeDesignQuarantine();
 
 const kits = runStep('extension-kits-check', ['bun', 'run', 'insiders:kits:check'], extensionRoot);
 steps.push(kits);
@@ -146,6 +147,7 @@ const report = {
   },
   substrate: substrateJson,
   visualContributions: visualContributionSummary,
+  claudeDesignQuarantine,
   checks,
   steps: steps.map((step) => ({
     ...step,
@@ -260,6 +262,72 @@ function verifyVisualContributions(extensionPackageData: PackageJson) {
     colorThemes,
     fileIconThemes,
     productIconThemes: productIconThemeResults,
+  };
+}
+
+function verifyClaudeDesignQuarantine() {
+  const settingsPath = path.join(repoRoot, '.vscode', 'settings.json');
+  const settingsText = existsSync(settingsPath) ? readFileSync(settingsPath, 'utf8') : '';
+  const substrateDisabled = /"claudeDesign\.substrate\.enabled"\s*:\s*false/.test(settingsText);
+  addCheck(
+    'claude-design-substrate-disabled',
+    substrateDisabled,
+    substrateDisabled
+      ? `${path.relative(repoRoot, settingsPath)} disables the stale Claude Design substrate injector`
+      : `${path.relative(repoRoot, settingsPath)} does not set claudeDesign.substrate.enabled=false`,
+  );
+
+  const userProfile = process.env.USERPROFILE ?? process.env.HOME ?? '';
+  const installedRoot = userProfile
+    ? path.join(userProfile, '.vscode-insiders', 'extensions', 'claude-design.claude-design-0.1.0')
+    : '';
+  if (!installedRoot || !existsSync(installedRoot)) {
+    addCheck('claude-design-rune-command-quarantined', true, 'Claude Design extension is not installed');
+    return {
+      installed: false,
+      root: installedRoot || null,
+    };
+  }
+
+  const packagePath = path.join(installedRoot, 'package.json');
+  const distPath = path.join(installedRoot, 'dist', 'extension.js');
+  const packageExists = existsSync(packagePath);
+  const distExists = existsSync(distPath);
+  const extensionPackageJson = packageExists ? readJson<Record<string, unknown>>(packagePath) : {};
+  const name = typeof extensionPackageJson.name === 'string' ? extensionPackageJson.name : null;
+  const publisher = typeof extensionPackageJson.publisher === 'string' ? extensionPackageJson.publisher : null;
+  const version = typeof extensionPackageJson.version === 'string' ? extensionPackageJson.version : null;
+  const expectedPackage = name === 'claude-design' && publisher === 'claude-design' && version === '0.1.0';
+  addCheck(
+    'claude-design-installed-target',
+    packageExists && distExists && expectedPackage,
+    `name=${name ?? '(missing)'}, publisher=${publisher ?? '(missing)'}, version=${version ?? '(missing)'}, dist=${distExists}`,
+  );
+
+  const dist = distExists ? readFileSync(distPath, 'utf8') : '';
+  const hasRuneAssignment = dist.includes('claudeDesign.runeAction');
+  const hasRuneRegistration = dist.includes('registerCommand("claudeDesign.runeAction"');
+  const hasBestiaryRegistration = dist.includes('registerCommand("claudeDesign.openBestiary"');
+  const runeOk = !hasRuneAssignment || (hasRuneRegistration && hasBestiaryRegistration);
+  addCheck(
+    'claude-design-rune-command-quarantined',
+    runeOk,
+    `runeAssignment=${hasRuneAssignment}, runeRegistration=${hasRuneRegistration}, bestiaryRegistration=${hasBestiaryRegistration}`,
+  );
+
+  return {
+    installed: true,
+    root: installedRoot,
+    packagePath,
+    distPath,
+    name,
+    publisher,
+    version,
+    expectedPackage,
+    hasRuneAssignment,
+    hasRuneRegistration,
+    hasBestiaryRegistration,
+    ok: packageExists && distExists && expectedPackage && runeOk && substrateDisabled,
   };
 }
 

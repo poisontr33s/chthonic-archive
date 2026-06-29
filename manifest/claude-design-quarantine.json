@@ -1,0 +1,23 @@
+{
+  "Schema": "chthonic/claude-design-quarantine/v1",
+  "GeneratedAt": "2026-06-29T02:04:57.446Z",
+  "Action": "patched",
+  "BackupPath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\hold\\claude-design-quarantine\\backups\\20260629T020457409Z\\extension.js",
+  "State": {
+    "Schema": "chthonic/claude-design-quarantine/v1",
+    "GeneratedAt": "2026-06-29T02:04:57.444Z",
+    "ExtensionRoot": "C:\\Users\\eldno\\.vscode-insiders\\extensions\\claude-design.claude-design-0.1.0",
+    "Installed": true,
+    "PackageJson": "C:\\Users\\eldno\\.vscode-insiders\\extensions\\claude-design.claude-design-0.1.0\\package.json",
+    "Dist": "C:\\Users\\eldno\\.vscode-insiders\\extensions\\claude-design.claude-design-0.1.0\\dist\\extension.js",
+    "Name": "claude-design",
+    "Publisher": "claude-design",
+    "Version": "0.1.0",
+    "ExpectedPackage": true,
+    "HasRuneAssignment": true,
+    "HasRuneRegistration": true,
+    "HasBestiaryRegistration": true,
+    "HasPatchNeedle": true,
+    "Ok": true
+  }
+}

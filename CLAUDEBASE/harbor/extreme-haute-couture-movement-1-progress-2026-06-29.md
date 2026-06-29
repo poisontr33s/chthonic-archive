@@ -14,10 +14,10 @@ Completed:
 - current VS Code Insiders substrate verifies cleanly
 - tracked marketplace extension package can build a VSIX
 
-Current `HEAD` at this progress note:
+Committed base before the Claude Design quarantine batch:
 
 ```text
-2672efb5 Harden Mica substrate lifecycle
+9ffc1077 Harden Movement 1 substrate ownership
 ```
 
 ## Substrate State
@@ -231,6 +231,54 @@ Extension-host E2E: archive/statusbar/mandala passed
 ```
 
 This is now the Movement 1 deterministic runtime/visual gate. Use it before promoting material-surface changes.
+
+## Claude Design Quarantine
+
+Notification observed after Insiders reload:
+
+```text
+command 'claudeDesign.runeAction' not found
+```
+
+Cause:
+
+```text
+Installed stale extension: claude-design.claude-design@0.1.0
+Rune status item command: claudeDesign.runeAction
+Registered command: absent
+Existing safe target: claudeDesign.openBestiary
+```
+
+Resolution added:
+
+```text
+scripts/claude-design-quarantine.ps1
+manifest/claude-design-quarantine.json
+```
+
+The quarantine script patches the installed bundle idempotently by registering `claudeDesign.runeAction` as a bridge to `claudeDesign.openBestiary`, with a backup under:
+
+```text
+CLAUDEBASE/hold/claude-design-quarantine/backups/
+```
+
+The couture gate now checks both:
+
+```text
+claudeDesign.substrate.enabled=false in .vscode/settings.json
+claudeDesign.runeAction is registered if the stale Claude Design extension is installed
+```
+
+The VS Code Insiders "installation appears to be corrupt" notification is expected for this lane because substrate injection modifies the local Insiders app files. Treat it as known collateral for the patched-substrate architecture, not as a Movement 1 blocker, while `scripts/mica-substrate.ps1 -Verify` and `bun run couture:gate` pass.
+
+Reload diagnosis result:
+
+```text
+Claude Design stale main/CSS blocks were present after reload.
+scripts/mica-substrate.ps1 -Apply stripped them and restored one Chthonic main block plus one workbench CSS link.
+scripts/mica-substrate.ps1 -Verify passed.
+bun run couture:gate passed with Claude Design quarantine checks included.
+```
 
 ## Material Surface Pass 1
 
