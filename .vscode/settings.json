@@ -239,6 +239,7 @@
 "claudeCode.respectGitIgnore": false,
 "claudeCode.initialPermissionMode": "default",
 "claudeCode.preferredLocation": "panel",
+"claudeDesign.substrate.enabled": false,
 "chatgpt.commentCodeLensEnabled": true,
 "chatgpt.openOnStartup": false,
 "chatgpt.composerEnterBehavior": "cmdIfMultiline",

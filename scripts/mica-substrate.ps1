@@ -37,6 +37,8 @@ $BackupRoot = Join-Path $RepoRoot 'CLAUDEBASE\hold\vscode-insiders-substrate\bac
 $ChthonicStart = '/* !! CHTHONIC-MICA-START !! */'
 $ChthonicEnd = '/* !! CHTHONIC-MICA-END !! */'
 $VibrancyStart = '/* !! VSCODE-VIBRANCY-START !! */'
+$ClaudeDesignMainStart = '/* claudeDesign.substrate.main.begin */'
+$ClaudeDesignCssStart = '<!-- claudeDesign.substrate.css.begin -->'
 $SubstrateCssMarker = 'data-claude-design-substrate="vibrancy-obsidian"'
 
 function ConvertTo-FileUri {
@@ -194,6 +196,8 @@ function Get-SubstrateState {
         MainJsHash = Get-FileSha256 -Path $mainJs
         WorkbenchHtmlHash = Get-FileSha256 -Path $workbenchHtml
         HasVibrancyBlock = $main.Contains($VibrancyStart)
+        HasClaudeDesignMainBlock = $main.Contains($ClaudeDesignMainStart)
+        HasClaudeDesignCssBlock = $html.Contains($ClaudeDesignCssStart)
         HasChthonicBlock = $main.Contains($ChthonicStart)
         ChthonicBlockCount = ([regex]::Matches($main, [regex]::Escape($ChthonicStart))).Count
         HasRuntimeUri = $hasRuntimeUri
@@ -213,7 +217,8 @@ function Remove-SubstrateBlocks {
 
     $patterns = @(
         '(?s)\r?\n?/\* !! VSCODE-VIBRANCY-START !! \*/.*?/\* !! VSCODE-VIBRANCY-END !! \*/\r?\n?',
-        '(?s)\r?\n?/\* !! CHTHONIC-MICA-START !! \*/.*?/\* !! CHTHONIC-MICA-END !! \*/\r?\n?'
+        '(?s)\r?\n?/\* !! CHTHONIC-MICA-START !! \*/.*?/\* !! CHTHONIC-MICA-END !! \*/\r?\n?',
+        '(?s)\r?\n?/\* claudeDesign\.substrate\.main\.begin \*/.*?/\* claudeDesign\.substrate\.main\.end \*/\r?\n?'
     )
 
     foreach ($pattern in $patterns) {
@@ -225,9 +230,15 @@ function Remove-SubstrateBlocks {
 function Remove-SubstrateCssLink {
     param([Parameter(Mandatory)][string]$Html)
 
+    $Html = [regex]::Replace(
+        $Html,
+        '(?s)\r?\n?\s*<!-- claudeDesign\.substrate\.css\.begin -->.*?<!-- claudeDesign\.substrate\.css\.end -->\s*\r?\n?',
+        ''
+    )
+
     return [regex]::Replace(
         $Html,
-        '(?m)^\s*<link rel="stylesheet" data-claude-design-substrate="vibrancy-obsidian"[^>]*>\s*\r?\n?',
+        '(?m)^\s*<link\b[^>]*data-claude-design-substrate="vibrancy-obsidian"[^>]*>\s*\r?\n?',
         ''
     )
 }
@@ -365,9 +376,11 @@ function Test-Substrate {
         [pscustomobject]@{ Name = 'chthonic-main-block'; Ok = [bool]$state.HasChthonicBlock; Detail = $state.MainJs },
         [pscustomobject]@{ Name = 'single-chthonic-main-block'; Ok = ($state.ChthonicBlockCount -eq 1); Detail = "count=$($state.ChthonicBlockCount)" },
         [pscustomobject]@{ Name = 'no-vibrancy-block'; Ok = (-not $state.HasVibrancyBlock); Detail = $state.MainJs },
+        [pscustomobject]@{ Name = 'no-claude-design-main-block'; Ok = (-not $state.HasClaudeDesignMainBlock); Detail = $state.MainJs },
         [pscustomobject]@{ Name = 'runtime-uri-current'; Ok = [bool]$state.HasRuntimeUri; Detail = $state.RuntimeUri },
         [pscustomobject]@{ Name = 'workbench-css-link'; Ok = [bool]$state.HasSubstrateCss; Detail = $state.WorkbenchHtml },
         [pscustomobject]@{ Name = 'single-workbench-css-link'; Ok = ($state.SubstrateCssLinkCount -eq 1); Detail = "count=$($state.SubstrateCssLinkCount)" },
+        [pscustomobject]@{ Name = 'no-claude-design-css-block'; Ok = (-not $state.HasClaudeDesignCssBlock); Detail = $state.WorkbenchHtml },
         [pscustomobject]@{ Name = 'css-uri-current'; Ok = [bool]$state.HasCssUri; Detail = $state.CssUri }
     )
     $failed = @($checks | Where-Object { -not $_.Ok })

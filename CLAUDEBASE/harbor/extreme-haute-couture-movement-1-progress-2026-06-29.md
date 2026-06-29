@@ -278,6 +278,45 @@ Package bytes: 457425
 Extension-host E2E: archive/statusbar/mandala passed
 ```
 
+## Notification Diagnosis
+
+Observed after restart:
+
+```text
+Claude Design: Mica substrate patched into VS Code Insiders. Reload Insiders to activate it.
+Your Code - Insiders installation appears to be corrupt. Please reinstall.
+```
+
+Diagnosis:
+
+```text
+claude-design.claude-design@0.1.0 is installed in VS Code Insiders.
+It activates onStartupFinished.
+Its package default is claudeDesign.substrate.enabled = true.
+Its substrate patcher is stale for this lane: engines.vscode ^1.97.0-insider, @types/vscode ^1.97.0, @vscode/vsce ^3.0.0.
+It patches the same Insiders install files as Movement 1 and reintroduced a duplicate substrate CSS link.
+```
+
+Resolution:
+
+```text
+.vscode/settings.json now sets claudeDesign.substrate.enabled = false.
+scripts/mica-substrate.ps1 now strips old Claude Design main/CSS substrate markers.
+Substrate verification now fails if old Claude Design main/CSS markers are present.
+```
+
+Gate rerun:
+
+```text
+Status: passed
+Generated: 2026-06-29T01:52:32.570Z
+single-workbench-css-link: passed
+no-claude-design-main-block: passed
+no-claude-design-css-block: passed
+Package output: chthonic-archive-insiders.vsix
+Extension-host E2E: archive/statusbar/mandala passed
+```
+
 ## Current Holdup
 
 No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
