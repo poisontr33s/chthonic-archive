@@ -106,34 +106,63 @@ Important boundary:
 
 `extensions/chthonic-themes` is currently untracked source. It should not be silently admitted wholesale. Treat it as a derived package candidate until there is a deliberate commit deciding whether it becomes part of Movement 1.
 
-## Current Holdup
+## SDK Alignment Result
 
-The tracked full extension uses local package tooling that is slightly behind the root SDK catalog:
+The tracked full extension package tooling has been aligned with the root SDK catalog:
 
 ```text
-root catalog @vscode/vsce: 3.9.2
-tracked extension local @vscode/vsce: 3.9.1
-
-root catalog @vscode/test-web: 0.0.81
-tracked extension local @vscode/test-web: 0.0.80
+@openai/agents: 0.12.0
+@openai/codex-sdk: 0.142.3
+@vscode/test-cli: 0.0.15
+@vscode/test-electron: 3.0.0
+@vscode/test-web: 0.0.81
+@vscode/vsce: 3.9.2
+openai: 6.45.0
 ```
 
-This does not block packaging, but it is real drift.
-
-## Next Exact Step
-
-Next: align the tracked extension package tooling with the root SDK catalog, then rerun:
+Checks rerun after alignment:
 
 ```bash
 bun run --cwd extensions/chthonic-archive insiders:kits:check
 bun run --cwd extensions/chthonic-archive insiders:package
 ```
 
-Do not admit `extensions/chthonic-themes` until the lane decides whether the themes-only VSIX is a first-class Movement 1 artifact or a generated derivative.
+Result:
 
-After tooling alignment, move to visual verification:
+```text
+VSCE resolved: 3.9.2
+@vscode/test-web resolved: 0.0.81
+Package output: chthonic-archive-insiders.vsix
+VSIX contents: 275 files
+VSIX size: 446.7 KB
+Package command: passed
+```
+
+Bun blocked two official lifecycle scripts during install:
+
+```text
+@playwright/browser-chromium: install
+@vscode/vsce-sign: postinstall
+```
+
+The package gate passed without trusting or running those scripts. Leave them untrusted unless a browser test or VSIX signing gate actually requires them.
+
+## Current Holdup
+
+No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
+
+```text
+Codex Native Sandbox (Windows): warning
+Solana Tool Suite Lane: warning
+```
+
+## Next Exact Step
+
+Next: move to visual/runtime verification:
 
 - capture patched Insiders workbench state
 - verify substrate CSS presence
 - verify theme/icon package behavior
 - keep screenshot artifacts out of commits unless deliberately promoted
+
+Do not admit `extensions/chthonic-themes` until the lane decides whether the themes-only VSIX is a first-class Movement 1 artifact or a generated derivative.
