@@ -193,6 +193,45 @@ VSIX size: 446.7 KB
 Package command: passed
 ```
 
+## Couture Gate Result
+
+Single lane command added:
+
+```bash
+bun run couture:gate
+```
+
+Gate report:
+
+```text
+manifest/extreme-haute-couture-movement-1-gate.json
+```
+
+Scope covered:
+
+```text
+Official Stable release: 1.126.0
+Official Insiders release: 1.127.0-insider
+Local code-insiders: 1.127.0-insider
+Local code-insiders commit: 628f6de50e89b20c7688c66ac2923cce2862c1b0
+Tracked extension engines.vscode: ^1.126.0
+Tracked extension @types/vscode: ^1.125.0
+Root SDK catalog: present
+Tracked extension outdated packages: none
+Substrate verification: passed
+Color theme contributions: 4
+File icon theme definitions: 99
+Product icon definitions: 115
+Product icon fonts: 1
+VSCE resolved: 3.9.2
+@vscode/test-web resolved: 0.0.81
+Package output: chthonic-archive-insiders.vsix
+Package bytes: 457425
+Extension-host E2E: archive/statusbar/mandala passed
+```
+
+This is now the Movement 1 deterministic runtime/visual gate. Use it before promoting material-surface changes.
+
 ## Current Holdup
 
 No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
@@ -204,11 +243,11 @@ Solana Tool Suite Lane: warning
 
 ## Next Exact Step
 
-Next: move to visual/runtime verification:
+Next: move to material-surface iteration backed by `bun run couture:gate`:
 
-- capture patched Insiders workbench state
-- verify substrate CSS presence
-- verify theme/icon package behavior
-- keep screenshot artifacts out of commits unless deliberately promoted
+- refine `designs/vibrancy-obsidian.css` and `designs/chthonic-mica.cjs`
+- keep the tracked extension package official and marketplace-safe
+- use the gate report for runtime/package proof after each broad surface pass
+- keep screenshots/generated artifacts out of commits unless deliberately promoted
 
 Do not admit `extensions/chthonic-themes` until the lane decides whether the themes-only VSIX is a first-class Movement 1 artifact or a generated derivative.

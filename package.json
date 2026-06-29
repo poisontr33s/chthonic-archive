@@ -34,6 +34,7 @@
     "theme:contrast:audit": "uv run scripts/theme_contrast_audit.py",
     "theme:contrast:audit:strict": "uv run scripts/theme_contrast_audit.py --min-ratio 4.5 --strict",
     "paths:naming:audit": "uv run scripts/path_naming_audit.py",
+    "couture:gate": "bun run scripts/couture-gate.ts",
     "ext:kits:check": "bun run --cwd extensions/chthonic-archive insiders:kits:check && bun run --cwd extensions/chthonic-statusbar insiders:kits:check && bun run --cwd extensions/chthonic-mandala insiders:kits:check && bun run --cwd extensions/chthonic-themes insiders:kits:check",
     "ext:package:insiders": "bun run --cwd extensions/chthonic-archive insiders:package && bun run --cwd extensions/chthonic-statusbar insiders:package && bun run --cwd extensions/chthonic-mandala insiders:package && bun run --cwd extensions/chthonic-themes insiders:package",
     "ext:sync:insiders": "pwsh -NoProfile -File scripts/insiders-sync.ps1",
