@@ -365,6 +365,59 @@ Package output: chthonic-archive-insiders.vsix
 Extension-host E2E: archive/statusbar/mandala passed
 ```
 
+## Material Surface Pass 2
+
+Files changed:
+
+```text
+designs/vibrancy-obsidian.css
+```
+
+Design correction: Surface Pass 1 had the tier-to-surface mapping inverted at the overlay end. The glass tier (most transparent) was assigned to sidebar section headers. Floating overlays (command palette, notifications, context menus) were at the deep tier (90%) — nearly opaque. This buried the Mica effect in surfaces where nobody is looking for it.
+
+Surface Pass 2 corrects the mapping. The command palette and overlays are now the glass tier showcase. Sidebar headers recede to deck.
+
+Tier map:
+
+```text
+--chthonic-depth-abyss:    96%   editor — reading surface, barely translucent
+--chthonic-depth-bedrock:  92%   structural: activity bar, panel body, terminal wrapper
+--chthonic-depth-hull:     87%   navigation: sidebar, auxiliary sidebar, status bar, title bar
+--chthonic-depth-deck:     83%   sub-surfaces: tab bar, sidebar headers, panel chrome
+--chthonic-depth-glass:    68%   floating overlays: command palette, notifications, menus
+```
+
+The 15% jump from deck to glass is intentional. Overlays become the Mica showcase.
+
+Surface remapping from Pass 1:
+
+```text
+Activity bar:              bedrock (92%)   was hull (86%)
+Panel body:                bedrock (92%)   was deep (90%)
+Terminal wrapper:          bedrock (92%)   was hull (86%)
+Sidebar body:              hull (87%)      was deck (82%)
+Auxiliary sidebar:         hull (87%)      was deck (82%)
+Status bar:                hull (87%)      was deep (90%)
+Title bar:                 hull (87%)      was deep (90%)
+Tab bar:                   deck (83%)      was deck (82%, unchanged in practice)
+Sidebar section headers:   deck (83%)      was glass (76%) — demoted
+Panel chrome:              deck (83%)      was hull (86%)
+Command palette:           glass (68%)     was deep (90%) — promoted
+Notifications:             glass (68%)     was deep (90%) — promoted
+Context menus:             glass (68%)     was deep (90%) — promoted
+```
+
+Additional changes:
+
+```text
+Border fallback: removed hardcoded #3e7a6a, now uses sideBar-border → panel-border → contrastBorder chain
+Shadow: 80px 34% black → 32px 28% black (lift without mud)
+Canvas exclusion: monaco-editor-background removed from batch color-mix rule to prevent canvas artifact
+Peek editor: added at deck (83%) — floats above editor body
+```
+
+To activate: restart VS Code Insiders. The CSS is already linked from workbench.html — no substrate script run required.
+
 ## Current Holdup
 
 No package gate holdup remains. The remaining warnings are environmental rather than marketplace-package blockers:
@@ -376,11 +429,131 @@ Solana Tool Suite Lane: warning
 
 ## Next Exact Step
 
-Next: run a focused visual inspection of the live Insiders workbench after restart/reload, then decide whether Surface Pass 2 should adjust opacity ratios or theme-token color balance:
+Restart VS Code Insiders and inspect Surface Pass 2 live. Surfaces to check:
 
-- reload/restart VS Code Insiders so the runtime/CSS file changes are live
-- inspect activity bar, sidebars, editor, terminal panel, quick input, notifications, and menus
-- only then adjust `designs/vibrancy-obsidian.css` opacity ratios or the theme tokens
-- keep screenshots/generated artifacts out of commits unless deliberately promoted
+- Command palette (Ctrl+Shift+P) — this is the primary Mica showcase at glass (68%); it should visibly differ from all anchored surfaces
+- Notifications panel — same glass tier, should float with the same quality
+- Activity bar — bedrock (92%); should feel anchored, structural
+- Sidebar — hull (87%); should recede gently behind the editor
+- Editor — abyss (96%); reading surface, essentially opaque
+- Terminal panel — bedrock (92%); solid reading surface
+- Status bar and title bar — hull (87%); chrome should recede
+
+Calibration questions after inspection:
+
+- Is the command palette glass tier too open against the current wallpaper? (Adjustable: raise glass toward 72–74%)
+- Is the sidebar/activity bar distinction perceptible? (4% gap between hull and bedrock — may be invisible on SFS dark)
+- Does the editor feel grounded enough at abyss (96%)? (Could move to 100% to fully exclude it from depth effects)
 
 Do not admit `extensions/chthonic-themes` until the lane decides whether the themes-only VSIX is a first-class Movement 1 artifact or a generated derivative.
+
+## Integrity Reconcile
+
+Files added:
+
+```text
+scripts/insiders-integrity-reconcile.ps1
+```
+
+Modes: -Status / -Apply / -Verify / -Restore
+
+Algorithm: SHA-256(file bytes) → base64 → strip trailing = — exact replication of VS Code ChecksumService.
+
+Preconditions enforced before Apply:
+
+```text
+mica-substrate.ps1 -Verify must pass
+Chthonic CSS marker must be present in target file
+Vibrancy Continued marker must be absent
+Only allowlisted paths are touched
+```
+
+Allowlist:
+
+```text
+vs/code/electron-browser/workbench/workbench.html   (tracked in this build)
+vs/code/electron-sandbox/workbench/workbench.html   (not tracked in this build)
+vs/code/electron-sandbox/workbench/workbench.esm.html  (not tracked in this build)
+```
+
+Run result:
+
+```text
+vs/code/electron-browser/workbench/workbench.html:
+  fg2fsFbPwbrb4+QjdKJ8TqaQMi1NaRJFXy7NMSgF9GA → sD6Yz99Z54jj5poug5VGh+0T8fDPdxved0ZT3Co0uD4
+Backup: CLAUDEBASE/hold/vscode-insiders-substrate/backups/product.json.628f6de50e...bak
+Verify: Ok: true
+```
+
+The "Your VS Code installation appears to be corrupt" warning will be gone on next restart. This is honest accounting — we patched the file, we updated the checksum. No hiding.
+
+## Claude Design Extension Disabled
+
+The stale claude-design.claude-design@0.1.0 extension was re-injecting on every startup despite claudeDesign.substrate.enabled = false in workspace settings. The extension reads a user-level default, not the workspace override.
+
+Resolution:
+
+```text
+Disabled via VS Code extension management (not uninstalled).
+Scriptorium webview preserved if needed later.
+```
+
+Result: no startup notifications. Clean.
+
+## Gate Status — Approved 2026-06-29
+
+Startup state:
+
+```text
+No integrity warning
+No Claude Design notification
+No Vibrancy markers
+Chthonic substrate: present and verified
+```
+
+Plan approved and stamped. Movement 1 gates remaining:
+
+```text
+Gate A: Wire insiders-integrity-reconcile.ps1 -Verify into bun run couture:gate
+Gate B: Surface Pass 3 — design direction (see below)
+Gate C: extensions/chthonic-themes admission decision
+Gate D: Marketplace identity — what extensions/chthonic-archive publishes
+```
+
+## Surface Pass 3 — Design Direction
+
+The trend: glassmorphology (2021–2022) = blur + white frosting + thin border. Instagram aesthetic. Light, clean, modern. We are not doing that.
+
+What we are doing instead: material honesty through geological depth.
+
+The pirate glass reference is exact. Historical glass (17th–18th century) was thick, slightly green from iron impurities, and had trapped air and thickness variations. Light through it was colored and distorted, not cleanly transmitted. It was the glass of ships, of taverns, of salvage.
+
+Surface Pass 3 translates this:
+
+Color in the glass, not just alpha. The glass tier overlays (command palette, notifications, menus) get a verdigris cast introduced through oklch interpolation — not a flat color tint, but a subtle chromatic shift as the surface becomes more transparent. The color comes from the verdigris accent already in claudine-tokens.css (oklch 53% 0.088 164). The Mica blur behind it picks up that cast.
+
+The move:
+
+```css
+/* Pass 2: pure alpha */
+color-mix(in oklch, var(--token) 68%, transparent)
+
+/* Pass 3: alpha + verdigris cast at the glass tier */
+color-mix(
+  in oklch,
+  color-mix(in oklch, var(--token) 90%, oklch(53% 0.088 164)) 68%,
+  transparent
+)
+```
+
+At 68% opacity with 10% verdigris pre-cast, the shift is barely visible against a dark theme but detectable — especially on the nebula wallpaper where the Mica already picks up the purple/magenta. The verdigris introduces the mineral quality: copper-oxide green against dark ferrous brown.
+
+The depth metaphor stays geological, not aquatic. Glass here is what you look through to see deeper strata — not a floating surface above a clean white background. The overlay floats, but what it reveals underneath is dark, warm, mineral.
+
+No rounded corners. No white borders. No frosted softness. The border-soft token is already verdigris at 40% opacity against a dark background — that stays.
+
+What Surface Pass 3 does not do: change the anchored surfaces. Bedrock, hull, deck — those stay pure alpha. Only the glass tier gets the cast. The editorial choice: overlays reveal the mineral quality of the glass; the structure stays geological and opaque.
+
+Nassau framing applicability: valid. The Nassau crew is self-governed, operating at the margin of official systems, using salvaged materials with authority. The design is the same — VS Code's official theming system plus unofficial substrate patching, owned completely, neither apologetic nor flashy about it. The pirate glass is not treasure — it's the window in the captain's quarters. Functional. Tinted. Non-negotiable.
+
+Next exact step for Surface Pass 3: write the verdigris cast into the glass tier rule in vibrancy-obsidian.css and observe on the live workbench with the command palette open. Calibrate the cast percentage until it reads as mineral rather than colorful.

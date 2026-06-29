@@ -1,6 +1,6 @@
 /* vibrancy-obsidian.css — Mica substrate under Sister Ferrum Scoriae
  *
- * Injected into the VS Code Insiders workbench by claudeDesign.enableSubstrate.
+ * Injected into the VS Code Insiders workbench by the Chthonic substrate patch.
  *
  * This file owns one thing: transparency depth.
  * Sister Ferrum Scoriae owns color. These two must not fight.
@@ -9,60 +9,86 @@
  *
  * Made by Claude. Hardened by Codex. */
 
+/* ── Depth tier map ──────────────────────────────────────────────
+ *
+ *  abyss    96%   editor text area — reading surface, barely translucent
+ *  bedrock  92%   structural spine: activity bar, panel body
+ *  hull     87%   navigation: sidebars, status bar, title bar
+ *  deck     83%   sub-surfaces: tab bar, sidebar headers, panel chrome
+ *  glass    68%   floating overlays: command palette, notifications, menus
+ *
+ *  The glass tier creates the 15% jump that makes overlays the showcase
+ *  for the Mica substrate. Everything else recedes behind it.
+ *
+ * ─────────────────────────────────────────────────────────────── */
+
 .monaco-workbench {
-  --chthonic-depth-abyss: 94%;
-  --chthonic-depth-deep: 90%;
-  --chthonic-depth-hull: 86%;
-  --chthonic-depth-deck: 82%;
-  --chthonic-depth-glass: 76%;
-  --chthonic-border-soft: color-mix(in oklch, var(--vscode-contrastBorder, #3e7a6a) 32%, transparent);
-  --chthonic-shadow-deep: 0 20px 80px color-mix(in oklch, black 34%, transparent);
+  --chthonic-depth-abyss:    96%;
+  --chthonic-depth-bedrock:  92%;
+  --chthonic-depth-hull:     87%;
+  --chthonic-depth-deck:     83%;
+  --chthonic-depth-glass:    68%;
+  --chthonic-border-soft:    color-mix(in oklch, var(--vscode-sideBar-border, var(--vscode-panel-border, var(--vscode-contrastBorder, #444))) 40%, transparent);
+  --chthonic-shadow-float:   0 8px 32px color-mix(in oklch, black 28%, transparent);
 }
 
-/* ── Activitybar ─────────────────────────────────────────────── */
+/* ── Activitybar — structural spine ──────────────────────────── */
 .monaco-workbench .part.activitybar {
   background: var(--vscode-activityBar-background) !important;
-  background: color-mix(in oklch, var(--vscode-activityBar-background) var(--chthonic-depth-hull), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-activityBar-background) var(--chthonic-depth-bedrock), transparent) !important;
 }
 
-/* ── Primary sidebar ─────────────────────────────────────────── */
+/* ── Primary sidebar — navigation ────────────────────────────── */
 .monaco-workbench .part.sidebar {
   background: var(--vscode-sideBar-background) !important;
-  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-deck), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-hull), transparent) !important;
 }
 
 .monaco-workbench .part.sidebar .composite.title,
 .monaco-workbench .part.sidebar .pane-header {
-  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-glass), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-deck), transparent) !important;
 }
 
 /* ── Secondary sidebar ───────────────────────────────────────── */
 .monaco-workbench .part.auxiliarybar {
   background: var(--vscode-sideBar-background) !important;
-  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-deck), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-sideBar-background) var(--chthonic-depth-hull), transparent) !important;
 }
 
-/* ── Panel (terminal, output, problems) ──────────────────────── */
+/* ── Panel (terminal, output, problems) — solid reading surface ─ */
 .monaco-workbench .part.panel {
   background: var(--vscode-panel-background) !important;
-  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-deep), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-bedrock), transparent) !important;
 }
 
 .monaco-workbench .part.panel .composite.title,
-.monaco-workbench .part.panel .panel-switcher-container,
-.monaco-workbench .part.panel .terminal-wrapper {
-  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-hull), transparent) !important;
+.monaco-workbench .part.panel .panel-switcher-container {
+  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-deck), transparent) !important;
 }
 
-/* ── Editor field ───────────────────────────────────────────── */
+.monaco-workbench .part.panel .terminal-wrapper {
+  background: color-mix(in oklch, var(--vscode-panel-background) var(--chthonic-depth-bedrock), transparent) !important;
+}
+
+/* ── Editor field — reading surface ──────────────────────────── */
 .monaco-workbench .part.editor,
 .monaco-workbench .editor-group-container,
 .monaco-workbench .editor-instance,
-.monaco-workbench .monaco-editor,
-.monaco-workbench .monaco-editor-background,
+.monaco-workbench .monaco-editor {
+  background: var(--vscode-editor-background) !important;
+  background: color-mix(in oklch, var(--vscode-editor-background) var(--chthonic-depth-abyss), transparent) !important;
+}
+
+/* canvas/scrollable margin — exclude from color-mix to avoid canvas artifact */
 .monaco-workbench .monaco-editor .margin {
   background: var(--vscode-editor-background) !important;
   background: color-mix(in oklch, var(--vscode-editor-background) var(--chthonic-depth-abyss), transparent) !important;
+}
+
+/* ── Peek editor — floats above editor body ──────────────────── */
+.monaco-workbench .monaco-editor .zone-widget .peekview-widget {
+  background: var(--vscode-peekViewEditor-background, var(--vscode-editor-background)) !important;
+  background: color-mix(in oklch, var(--vscode-peekViewEditor-background, var(--vscode-editor-background)) var(--chthonic-depth-deck), transparent) !important;
 }
 
 /* ── Editor tab bar ──────────────────────────────────────────── */
@@ -71,6 +97,7 @@
   background: color-mix(in oklch, var(--vscode-editorGroupHeader-tabsBackground) var(--chthonic-depth-deck), transparent) !important;
 }
 
+/* ── List and tree rows — inherit container depth ────────────── */
 .monaco-workbench .monaco-list-rows,
 .monaco-workbench .monaco-table,
 .monaco-workbench .monaco-tree,
@@ -85,7 +112,16 @@
   background-color: color-mix(in oklch, var(--vscode-list-activeSelectionBackground) 72%, transparent) !important;
 }
 
-/* ── Command center, quick input, notifications ─────────────── */
+/* ── Floating overlays — glass tier, Mica showcase ───────────── */
+/*
+ * The depth-chain problem: the palette renders over the editor area (96% opaque).
+ * CSS background transparency would show only 4% Mica there — invisible.
+ * backdrop-filter bypasses the z-stack and processes the final composited
+ * frame, including the OS-level Mica behind the transparent window.
+ *
+ * The verdigris cast (12% oklch 53% 0.088 164) is pre-blended into the
+ * background token. Not green — mineral. Detectable only when you look.
+ */
 .monaco-workbench .quick-input-widget,
 .monaco-workbench .notifications-toasts .notification-toast,
 .monaco-workbench .notifications-center,
@@ -93,21 +129,29 @@
   background: var(--vscode-quickInput-background, var(--vscode-editorWidget-background)) !important;
   background: color-mix(
     in oklch,
-    var(--vscode-quickInput-background, var(--vscode-editorWidget-background)) var(--chthonic-depth-deep),
+    color-mix(
+      in oklch,
+      var(--vscode-quickInput-background, var(--vscode-editorWidget-background)) 88%,
+      oklch(53% 0.088 164)
+    ) var(--chthonic-depth-glass),
     transparent
   ) !important;
+  backdrop-filter: saturate(180%) brightness(1.12) !important;
+  -webkit-backdrop-filter: saturate(180%) brightness(1.12) !important;
   border-color: var(--chthonic-border-soft) !important;
-  box-shadow: var(--chthonic-shadow-deep) !important;
+  box-shadow: var(--chthonic-shadow-float) !important;
 }
 
 .monaco-workbench .quick-input-widget .monaco-inputbox,
 .monaco-workbench .find-widget,
 .monaco-workbench .suggest-widget {
   background: color-mix(in oklch, var(--vscode-input-background) var(--chthonic-depth-hull), transparent) !important;
+  backdrop-filter: saturate(140%) brightness(1.06) !important;
+  -webkit-backdrop-filter: saturate(140%) brightness(1.06) !important;
   border-color: var(--chthonic-border-soft) !important;
 }
 
-/* ── Breadcrumbs and compact chrome ─────────────────────────── */
+/* ── Breadcrumbs and empty chrome — transparent ─────────────── */
 .monaco-workbench .breadcrumbs-control,
 .monaco-workbench .editor-group-watermark,
 .monaco-workbench .part.editor > .content .grid-view-container {
@@ -117,16 +161,16 @@
 /* ── Status bar ──────────────────────────────────────────────── */
 .monaco-workbench .part.statusbar {
   background: var(--vscode-statusBar-background) !important;
-  background: color-mix(in oklch, var(--vscode-statusBar-background) var(--chthonic-depth-deep), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-statusBar-background) var(--chthonic-depth-hull), transparent) !important;
 }
 
 /* ── Title bar ───────────────────────────────────────────────── */
 .monaco-workbench .part.titlebar {
   background: var(--vscode-titleBar-activeBackground) !important;
-  background: color-mix(in oklch, var(--vscode-titleBar-activeBackground) var(--chthonic-depth-deep), transparent) !important;
+  background: color-mix(in oklch, var(--vscode-titleBar-activeBackground) var(--chthonic-depth-hull), transparent) !important;
 }
 
 /* colophon ───────────────────────────────────────────────────── */
-/* vibrancy-obsidian.css · designs/ · made by Claude
+/* vibrancy-obsidian.css · designs/ · Surface Pass 2 · made by Claude
    Color authority: Sister Ferrum Scoriae (Chthonic — Geological Core)
    Depth authority: this file + Mica DWM substrate                    */
