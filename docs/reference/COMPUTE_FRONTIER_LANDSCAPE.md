@@ -2,10 +2,10 @@
 type: frontier-map
 tier: T1-operational
 status: living-document
-hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 (toolkit) · Vulkan 1.4.341.1 SDK · Driver 596.36 · VBIOS 95.02.3c.40.3a
+hardware-baseline: RTX 4090 (SM 8.9) · CUDA 12.8 (toolkit) · Vulkan 1.4.350.0 SDK · Driver 610.62 · VBIOS 95.02.3c.40.3a
 python: 3.14.4 · uv-managed
 created: 2026-05-10
-last-hw-snapshot: 2026-05-11
+last-hw-snapshot: 2026-06-29
 author: chthonic-archive
 ---
 
@@ -55,18 +55,20 @@ author: chthonic-archive
 
 | Layer | Component | Version | Source |
 |-------|-----------|---------|--------|
-| GPU driver | NVIDIA WDDM | **596.36** | Armory Crate update 2026-05-11 (prev: 596.21) |
-| CUDA toolkit | CUDA (build) | **12.8** | Installed toolkit — used for flash_attn build |
-| CUDA runtime max | Driver-reported | **13.2** | Max CUDA version the current driver supports |
-| Vulkan | SDK / driver | **1.4.341.1** | SDK: `C:\VulkanSDK\1.4.341.1` · Instance 1.4.321 · Driver API 1.4.329 |
-| DLSS | DLSS | **4.5** | Bundled with 596.x driver series |
+| GPU driver | NVIDIA WDDM | **610.62** | Updated 2026-06-29, CUDA UMD 13.3 (prev: 596.36) |
+| CUDA toolkit | CUDA (build) | **12.8 + 13.3** | Layered install — 13.3 owns nvcc/headers/import libs; 12.8 owns runtime DLLs (`cudart64_12.dll`) |
+| CUDA runtime max | Driver-reported | **13.3** | Max CUDA version the current driver supports |
+| `CUDA_PATH` (system) | Env var | **v13.3** | Correct for nvcc use — 13.3 is compiler layer; runtime DLLs resolve from v12.8 bin via PATH |
+| Vulkan | SDK / driver | **1.4.350.0** | SDK: `C:\VulkanSDK\1.4.350.0` · Instance 1.4.350 · Driver API 1.4.341 |
+| DLSS | DLSS | **310.7.0.0** | `nvngx_dlss.dll` — driver ships NGX loader only; app-bundled; newest on disk: Streamline SDK v2.12.0 |
+| cuDNN | Deep learning primitives | **9.20.0.48** | `C:\Program Files\NVIDIA\CUDNN\v9.20\bin\13.2\x64\` — targets CUDA 13.2 runtime |
 | Python | CPython | **3.14.4** (MSC v.1944) | `uv`-managed · main `.venv` |
-| Bun | JS runtime | **1.3.13** | All TS scripts · `bun upgrade` to update |
-| Cargo / Rust | Rust toolchain | **1.95.0** (stable) | vulkan-lab + ankh-forge |
-| uv | Python pkg mgr | **0.11.12** | Updated 2026-05-11 from 0.11.8 · `uv self update` |
-| rv / Ruby | Ruby mgr | rv **0.5.3** / Ruby **4.0.3** | rv at `.cargo/bin/rv.exe` · Ruby at `%APPDATA%\rv\rubies\ruby-4.0.3\` |
-| zv / Zig | Zig mgr | zv **0.13.0** / Zig **0.16.0** | Updated 2026-05-11 from zv 0.10.0 · `zv update` |
-| GCC / MSYS2 | UCRT64 toolchain | gcc **16.1.0-2** · MSYS2 pkg 14.0.0.r37 | Updated 2026-05-11 via `rv r ridk install 2` · path: `%APPDATA%\rv\rubies\ruby-4.0.3\msys64\ucrt64\bin\gcc.exe` |
+| Bun | JS runtime | **1.3.14** | All TS scripts · `bun upgrade` to update |
+| Cargo / Rust | Rust toolchain | **1.96.0** (stable) | vulkan-lab + ankh-forge |
+| uv | Python pkg mgr | **0.11.25** | Updated 2026-06-29 · `uv self update` |
+| rv / Ruby | Ruby mgr | rv **0.6.0** / Ruby **4.0.5** | rv at `.cargo/bin/rv.exe` · Ruby at `%APPDATA%\rv\rubies\ruby-4.0.5\` |
+| zv / Zig | Zig mgr | zv **0.15.0** / Zig **0.16.0** | Updated 2026-06-29 · `zv update` |
+| GCC / MSYS2 | UCRT64 toolchain | gcc **16.1.0** (Rev5, MSYS2) | path: `%APPDATA%\rv\rubies\ruby-4.0.5\msys64\ucrt64\bin\gcc.exe` |
 
 ### §0.3 Armory Crate Profile (2026-05-11)
 

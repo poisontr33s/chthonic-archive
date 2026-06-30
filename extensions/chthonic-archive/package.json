@@ -565,7 +565,7 @@
   },
   "devDependencies": {
     "@openai/agents": "^0.12.0",
-    "@openai/codex-sdk": "^0.142.3",
+    "@openai/codex-sdk": "^0.142.4",
     "@types/node": "^26.0.1",
     "@types/turndown": "5.0.6",
     "@types/vscode": "^1.125.0",

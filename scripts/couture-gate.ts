@@ -104,6 +104,15 @@ addCheck(
   `substrateVersion=${String(substrateJson?.Version ?? 'unknown')}, latestInsider=${latestInsider}`,
 );
 
+const reconcile = runStep(
+  'insiders-integrity-reconcile-verify',
+  ['pwsh', '-NoProfile', '-File', './scripts/insiders-integrity-reconcile.ps1', '-Verify'],
+  repoRoot,
+);
+steps.push(reconcile);
+const reconcileOk = reconcile.exitCode === 0 && /^\s*Ok\s*:\s*true\s*$/im.test(reconcile.stdout);
+addCheck('insiders-integrity-reconcile-verify', reconcileOk, summarizeStep(reconcile));
+
 const visualContributionSummary = verifyVisualContributions(extensionPackage);
 const claudeDesignQuarantine = verifyClaudeDesignQuarantine();
 
@@ -146,6 +155,7 @@ const report = {
     vscodeTypes: extensionPackage.devDependencies?.['@types/vscode'] ?? null,
   },
   substrate: substrateJson,
+  integrity: { ok: reconcileOk, lines: reconcile.stdout.trim().split(/\r?\n/) },
   visualContributions: visualContributionSummary,
   claudeDesignQuarantine,
   checks,

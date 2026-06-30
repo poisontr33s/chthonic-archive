@@ -12,6 +12,7 @@ const rubyGemfilePath = path.join(rubyProjectPath, 'Gemfile');
 const rubyBundlePath = path.join(rubyProjectPath, 'vendor', 'bundle');
 const isWin = process.platform === 'win32';
 const pythonBinary = path.join(venvPath, isWin ? 'Scripts/python.exe' : 'bin/python');
+const rvCommand = resolveCommand(isWin ? 'rvw' : 'rv', isWin ? ['rvw.exe', 'rv.exe', 'rvw.cmd', 'rv.cmd', 'rvw.bat', 'rv.bat'] : ['rv']);
 
 async function main(): Promise<void> {
     fs.mkdirSync(chthonicRoot, { recursive: true });
@@ -55,7 +56,7 @@ async function main(): Promise<void> {
 
     if (fs.existsSync(rubyGemfilePath)) {
         try {
-            await run('bundle', ['install', '--gemfile', rubyGemfilePath], {
+            await run(rvCommand, ['r', '--no-install', 'bundle', 'install', '--gemfile', rubyGemfilePath], {
                 BUNDLE_GEMFILE: rubyGemfilePath,
                 BUNDLE_PATH: rubyBundlePath,
             });
@@ -85,6 +86,24 @@ function run(command: string, args: string[], env: Record<string, string> = {}):
             reject(new Error(`${command} ${args.join(' ')} exited with code ${code ?? -1}`));
         });
     });
+}
+
+function resolveCommand(command: string, candidates: string[]): string {
+    const pathValue = process.env.PATH ?? '';
+    for (const entry of pathValue.split(path.delimiter)) {
+        if (!entry) {
+            continue;
+        }
+
+        for (const candidate of candidates) {
+            const fullPath = path.join(entry, candidate);
+            if (fs.existsSync(fullPath)) {
+                return fullPath;
+            }
+        }
+    }
+
+    return command;
 }
 
 function stringifyError(error: unknown): string {

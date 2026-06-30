@@ -10,16 +10,12 @@
 # - no registry PATH writes; all PATH state is terminal-memory only.
 
 [tools]
-uv = "latest"
-rv = "latest"
-goup = "latest"
-go = "1.26.0"
-rust = "stable"
+# Dedicated managers own these — mise must not shadow them:
+#   uv (self-managed), rv (cargo install), goup (self-managed), rust (rustup)
+#   go (goup; verified=1.26.4), cmake (VS Insiders path enforced — PATH cmake is a broken uv shim)
 solana-cli = "2.3.1"
 agave = "2.3.1"
 cargo-binstall = "latest"
-cmake = "latest"
-ninja = "latest"
 terraform = "latest"
 kubectl = "latest"
 
@@ -28,8 +24,6 @@ disable_tools = ["python", "ruby"]
 
 [env]
 CHTHONIC_SLAB_MODE = "kernel"
-CHTHONIC_RUBY_MIGRATION_FROM = "3.3"
-CHTHONIC_RUBY_MIGRATION_TO = "3.4"
 CHTHONIC_GO_OWNER = "goup"
 CHTHONIC_SOLANA_RUNTIME = "agave"
 CHTHONIC_SOLANA_INSTALLER = "solana-install"
@@ -37,7 +31,7 @@ CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
 CHTHONIC_TOOLPOOL_REPORT = "{{cwd}}/.chthonic/cache/toolpool.json"
 CHTHONIC_TOOLPOOL_ENV = "{{cwd}}/.chthonic/cache/toolpool.env"
-CHTHONIC_RUBY_DEVKIT_POLICY = "opt-in"
+CHTHONIC_NVIDIA_STACK = "{{cwd}}/.chthonic/cache/nvidia_stack.json"
 
 # VISUAL STUDIO 2026 INSIDERS LSL PATHING
 # Resolved from local VS 2026 Insiders installation lane.
@@ -64,7 +58,6 @@ _.path = [
 CC = "clang-cl"
 CXX = "clang-cl"
 CMAKE_GENERATOR = "Ninja"
-RUBY_MIGRATION_MODE = "rust_msvc_first_devkit_opt_in"
 CHTHONIC_WINDOWS_NATIVE_LANE = "vs2026_insiders"
 
 [tasks.agave-sync]
@@ -84,6 +77,11 @@ alias = "scan-pool"
 description = "Generate tool-pool report + env overlay for downstream tasks"
 run = "bun run scripts/toolpool-scan.ts --write-env"
 alias = "wire-pool"
+
+[tasks.nvidia-probe]
+description = "Probe full NVIDIA/CUDA/Vulkan stack — writes .chthonic/cache/nvidia_stack.json"
+run = "pwsh -NoProfile -File scripts/nvidia-stack-probe.ps1"
+alias = "nv-probe"
 
 [tasks.toolpool-report]
 description = "Show latest cached tool-pool report"
