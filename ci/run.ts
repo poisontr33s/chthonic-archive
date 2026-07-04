@@ -363,6 +363,59 @@ const CHECKS: Check[] = [
       manual_remediation: "Read the regression class from the output. If unintended: `git revert` the grammar change or fix it. If intended: run `uv run scripts/dsl_iteration_check.py` (no --dry-run) to seal a new baseline + add/adjust the relevant patterns in .chthonic/grammar/patterns.json, then re-commit.",
     },
   },
+  // Orphan-check registration (2026-07-04) — four fully-written gate scripts from
+  // the May gate-ladder era (one never committed) that no session ever wired into
+  // this registry. All four verified green before registration. Fable ruling:
+  // CLAUDEBASE/harbor/2026-07-04-ci-gate-architecture-fable-handoff.md
+  {
+    name: "claudine-lora",
+    aliases: ["lora-smoke", "claudine-lora-smoke"],
+    script: "ci/checks/claudine-lora-smoke.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Claudine LoRA gate ladder status (C-G4..C-G6 — reads training-gate manifests)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only probe over the Claudine LoRA training-gate manifests. Failures reflect upstream training-lane state; no in-repo fix concept applies.",
+    },
+  },
+  {
+    name: "federation-contract",
+    aliases: ["federation", "federation-contract-validate"],
+    script: "ci/checks/federation-contract-validate.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Terminal-history drain ↔ corpus federation contract (drain format, federation keys, schema compat)",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only contract probe over the terminal-history drain DB and corpus schema. Failures indicate drain/corpus drift; remediation lives in the corpus tooling, not this check.",
+    },
+  },
+  {
+    name: "session-truncation",
+    aliases: ["g9", "session-truncation-gate"],
+    script: "ci/checks/session-truncation-gate.ts",
+    scope: "always",
+    speed: "fast",
+    description: "G9 session-truncation gate — structural+GPU scoring status over drained sessions",
+    no_auto_fix: {
+      reason: "read_only_health",
+      explanation: "Read-only scoring probe over the drained session corpus. Failures indicate truncation-quality regression; remediation is in the drain/scoring pipeline.",
+    },
+  },
+  {
+    name: "theme-icons",
+    aliases: ["icons", "theme-icon-validate"],
+    script: "ci/checks/theme-icon-validate.ts",
+    scope: "always",
+    speed: "fast",
+    description: "File icon theme integrity: iconPath existence, definition/reference closure, chthonic-themes sync (sha256)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "Icon failures encode an authoring judgment — a missing icon file vs a dead definition vs a sync drift each resolve differently (add the asset, remove the definition, or re-run the theme sync). Mechanical deletion/creation would guess at intent.",
+      manual_remediation: "Read the failing check name (parse / iconPath / dead-definition / sync). Author the fix via the theme-system skill lane (extensions/chthonic-archive/themes/), then re-run `bun run ci/run.ts --check theme-icons`.",
+    },
+  },
 ];
 
 const STAGED = process.argv.includes("--staged");

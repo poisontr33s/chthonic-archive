@@ -406,6 +406,12 @@ uv run scripts/pentea_family_relations.py --meta codex/MILF-Core-META.md
 
 ## Local CI Checks (`ci/checks/`)
 
+The authoritative, always-current list of checks is `bun run ci/run.ts --list`
+(`--autofix-list` for the fix/manual classification, `--autofix-show <name>` for
+one check's full detail). The `CHECKS` registry in `ci/run.ts` is the source of
+truth; the subsections below document a subset in extra depth and are not
+exhaustive.
+
 ### `ci/checks/uv-guard.ts`
 
 **@SID:** `CI_CHECK_UV_GUARD_V1`  
