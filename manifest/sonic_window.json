@@ -1,19 +1,19 @@
 {
   "schema": "sonic_window/v1",
   "source": "loopback",
-  "energy": 0.28266945,
+  "energy": 0.3668297,
   "silent": false,
-  "captured_at_epoch_ms": 1783146829618,
+  "captured_at_epoch_ms": 1783146873977,
   "window_secs": 5.0,
   "sample_rate": 48000,
-  "brightness": 0.824,
-  "tonality": 0.77,
-  "valence_proxy": 0.797,
-  "voiceness": 0.379,
+  "brightness": 0.745,
+  "tonality": 0.734,
+  "valence_proxy": 0.74,
+  "voiceness": 0.354,
   "temporal": {
     "phase": {
-      "character": "quiet-bright",
-      "secs": 88
+      "character": "moderate-bright",
+      "secs": 32
     },
     "trend": {
       "energy_30s": "steady",
@@ -23,31 +23,31 @@
     "events": [
       {
         "kind": "shift",
-        "detail": "moderate-bright → quiet-bright",
-        "secs_ago": 85
-      },
-      {
-        "kind": "shift",
         "detail": "quiet-bright → moderate-bright",
-        "secs_ago": 233
+        "secs_ago": 29
       },
       {
         "kind": "shift",
         "detail": "moderate-bright → quiet-bright",
-        "secs_ago": 259
+        "secs_ago": 129
       },
       {
         "kind": "shift",
         "detail": "quiet-bright → moderate-bright",
-        "secs_ago": 292
+        "secs_ago": 278
+      },
+      {
+        "kind": "shift",
+        "detail": "moderate-bright → quiet-bright",
+        "secs_ago": 304
       }
     ],
     "stability": "settling",
     "relative": {
       "energy": "around",
-      "brightness": "above",
+      "brightness": "around",
       "calibrated": true
     },
-    "narrative": "Quiet-bright for 1m; moderate-bright → quiet-bright 1m ago"
+    "narrative": "Moderate-bright for 32s; quiet-bright → moderate-bright 29s ago"
   }
 }
