@@ -299,7 +299,7 @@ export class SynapseBridge implements vscode.Disposable {
             throw new Error(`synapse.node not found in ${candidates.join(', ')}`);
         }
 
-        const req = createRequire(__filename);
+        const req = createRequire(path.join(this.extensionRoot, 'package.json'));
         this.binding = req(existing) as SynapseBinding;
         return this.binding;
     }

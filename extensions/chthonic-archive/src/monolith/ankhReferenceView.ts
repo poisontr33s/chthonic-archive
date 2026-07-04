@@ -175,7 +175,7 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
     private _currentSourcePath: string | null = null;
     private _configListener: vscode.Disposable | undefined;
 
-    constructor(workspaceRoot: string | null, extensionUri: vscode.Uri = resolveExtensionUri()) {
+    constructor(workspaceRoot: string | null, extensionUri: vscode.Uri) {
         this.workspaceRoot = workspaceRoot;
         this.extensionUri = extensionUri;
     }
@@ -306,11 +306,6 @@ export class AnkhReferenceProvider implements vscode.WebviewViewProvider {
             mentionCount: String(mentionCount),
         });
     }
-}
-
-function resolveExtensionUri(): vscode.Uri {
-    const extension = vscode.extensions.getExtension('chthonic-archive.chthonic-archive');
-    return extension?.extensionUri ?? vscode.Uri.file(path.resolve(__dirname, '..'));
 }
 
 function escapeHtml(value: string): string {

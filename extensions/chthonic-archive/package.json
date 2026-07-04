@@ -452,7 +452,7 @@
         "chthonic.reactor.daemonBinaryPath": {
           "type": "string",
           "default": "",
-          "description": "Optional absolute path to the chthonic-daemon binary."
+          "description": "Optional absolute or workspace-relative path to the chthonic-daemon binary."
         },
         "chthonic.reactor.transport": {
           "type": "string",

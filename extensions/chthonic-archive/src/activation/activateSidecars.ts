@@ -69,6 +69,7 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
         deps.outputChannel,
         entropyClient,
         {
+            extensionRoot: context.extensionPath,
             enabled: entropyPolyglotEnabled,
             pythonScanIntervalMs: entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000),
             settleDebounceMs: entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400),

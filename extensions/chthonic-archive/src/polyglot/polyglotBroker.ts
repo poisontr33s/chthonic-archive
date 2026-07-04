@@ -29,13 +29,14 @@ export class PolyglotBroker implements vscode.Disposable {
 
     constructor(
         private readonly output: vscode.OutputChannel,
+        private readonly extensionRoot: string,
     ) {}
 
     start(rootPath: string): void {
         this.rootPath = rootPath;
-        this.sidecarRootPath = resolveSidecarRoot(rootPath);
+        this.sidecarRootPath = resolveSidecarRoot(rootPath, this.extensionRoot);
         if (!this.sidecarRootPath) {
-            const searched = resolveSidecarCandidates(rootPath).join(', ');
+            const searched = resolveSidecarCandidates(rootPath, this.extensionRoot).join(', ');
             const message = `sidecar scripts not found. checked: ${searched}`;
             this.output.appendLine(`[polyglot] ${message}`);
             this.fireSidecarError('python', message);
@@ -225,8 +226,8 @@ function stringifyError(error: unknown): string {
     return String(error);
 }
 
-function resolveSidecarRoot(rootPath: string): string | null {
-    for (const candidate of resolveSidecarCandidates(rootPath)) {
+function resolveSidecarRoot(rootPath: string, extensionRoot: string): string | null {
+    for (const candidate of resolveSidecarCandidates(rootPath, extensionRoot)) {
         if (
             fs.existsSync(path.join(candidate, 'python', 'entropy_scan.py')) &&
             fs.existsSync(path.join(candidate, 'ruby', 'lore.rb'))
@@ -237,11 +238,11 @@ function resolveSidecarRoot(rootPath: string): string | null {
     return null;
 }
 
-function resolveSidecarCandidates(rootPath: string): string[] {
+function resolveSidecarCandidates(rootPath: string, extensionRoot: string): string[] {
     const candidates = [
         path.join(rootPath, '.chthonic'),
         path.join(rootPath, 'extensions', 'chthonic-archive', '.chthonic'),
-        path.resolve(__dirname, '..', '.chthonic'),
+        path.join(extensionRoot, '.chthonic'),
     ];
     return Array.from(new Set(candidates));
 }

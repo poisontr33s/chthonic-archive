@@ -16,6 +16,7 @@ import { EntropyWorkerClient } from '../entropy/entropyWorkerClient';
 import type { LaneRegistry, RuntimeLaneStateKind } from '../runtime/laneState';
 
 interface PolyglotEntropyOrchestratorOptions {
+    extensionRoot: string;
     enabled: boolean;
     pythonScanIntervalMs: number;
     settleDebounceMs: number;
@@ -56,7 +57,7 @@ export class PolyglotEntropyOrchestrator implements vscode.Disposable {
         private readonly options: PolyglotEntropyOrchestratorOptions,
         private readonly requestDecorationRefresh: DecorationRefreshFn,
     ) {
-        this.broker = new PolyglotBroker(output);
+        this.broker = new PolyglotBroker(output, this.options.extensionRoot);
         this.ledger = new LedgerBroker(output, {
             mode: this.options.ledgerMode,
             rpcUrl: this.options.solanaRpcUrl,

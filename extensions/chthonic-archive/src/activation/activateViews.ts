@@ -28,7 +28,7 @@ export interface ActivateViewsDeps {
 
 export function activateViews(context: vscode.ExtensionContext, deps: ActivateViewsDeps): void {
     registerView(context, deps, 'chat-view', () =>
-        vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(deps.workspaceRoot)),
+        vscode.window.registerWebviewViewProvider('chthonic.chatView', new AnkhReferenceProvider(deps.workspaceRoot, context.extensionUri)),
     );
     registerView(context, deps, 'loom-view', () =>
         vscode.window.registerWebviewViewProvider(LoomViewProvider.viewType, deps.loomProvider),
