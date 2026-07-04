@@ -104,14 +104,14 @@
 "terminal.integrated.environmentChangesRelaunch": false,
 "terminal.integrated.profiles.windows": {
     "Pwsh (Chthonic)": {
-        "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
+        "path": "${env:LOCALAPPDATA}\\Microsoft\\WindowsApps\\pwsh.exe",
         "args": [
             "-NoLogo"
         ],
         "icon": "terminal-powershell"
     },
     "Pwsh (No Profile)": {
-        "path": "C:\\Users\\eldno\\AppData\\Local\\Microsoft\\WindowsApps\\pwsh.exe",
+        "path": "${env:LOCALAPPDATA}\\Microsoft\\WindowsApps\\pwsh.exe",
         "args": [
             "-NoProfile",
             "-NoLogo"
