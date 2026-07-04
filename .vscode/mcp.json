@@ -80,11 +80,11 @@
         "run",
         "scripts/mcp-filesystem.ts",
         "${workspaceFolder}",
-        "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
-        "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
-        "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-        "C:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes",
-        "C:\\Users\\eldno\\psychonoir-kontrapunkt-large-file-holder"
+        "${env:USERPROFILE}\\PsychoNoir-Kontrapunkt",
+        "${env:USERPROFILE}\\Restructure-MCP-Orchestration",
+        "${env:USERPROFILE}\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+        "${env:USERPROFILE}\\git-dump-lfs-holder-we-it-takes",
+        "${env:USERPROFILE}\\psychonoir-kontrapunkt-large-file-holder"
       ],
       "cwd": "${workspaceFolder}"
     },

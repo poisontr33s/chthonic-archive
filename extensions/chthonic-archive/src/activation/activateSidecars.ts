@@ -98,7 +98,11 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
     const reactorHeadlessVulkan = entropyConfig.get<boolean>('reactor.headlessVulkan', true);
     const reactorCockpitAutoLayout = entropyConfig.get<boolean>('reactor.cockpitAutoLayout', false);
     const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
-    const reactorDaemonBinaryPath = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
+    const reactorDaemonBinaryRaw = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
+    // Relative values resolve against the workspace root so the setting can stay machine-portable.
+    const reactorDaemonBinaryPath = reactorDaemonBinaryRaw && !path.isAbsolute(reactorDaemonBinaryRaw)
+        ? path.resolve(deps.workspaceRoot, reactorDaemonBinaryRaw)
+        : reactorDaemonBinaryRaw;
     const reactorReadiness = assessReactorReadiness(
         deps.workspaceRoot,
         reactorEnabled,

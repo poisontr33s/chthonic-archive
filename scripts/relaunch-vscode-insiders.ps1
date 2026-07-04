@@ -19,8 +19,8 @@
 
 .DESCRIPTION
     VS Code Insiders auto-update workflow strips the GPU flags from the
-    process command-line on restart. The desktop shortcut at
-    "C:\Users\eldno\OneDrive\Desktop\Chthonic Archive Workspace.lnk"
+    process command-line on restart. The desktop shortcut
+    "Chthonic Archive Workspace.lnk" (on the OneDrive-redirected Desktop)
     carries the canonical flag set:
         --ignore-gpu-blocklist
         --use-vulkan
@@ -49,7 +49,7 @@
     Idempotent: safe to re-run if the relaunched instance also misbehaves.
 
 .EXAMPLE
-    pwsh -File C:\Users\eldno\chthonic-archive\scripts\relaunch-vscode-insiders.ps1
+    pwsh -File scripts\relaunch-vscode-insiders.ps1   # from the repo root, in an EXTERNAL terminal
 
 .EXAMPLE
     # Preview what would happen
@@ -62,7 +62,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$shortcut = "C:\Users\eldno\OneDrive\Desktop\Chthonic Archive Workspace.lnk"
+$shortcut = Join-Path ([Environment]::GetFolderPath('Desktop')) "Chthonic Archive Workspace.lnk"
 
 # Refuse to run from inside VS Code's integrated terminal (would self-kill)
 if ($env:TERM_PROGRAM -eq "vscode" -or $env:VSCODE_PID) {
@@ -75,8 +75,8 @@ if ($env:TERM_PROGRAM -eq "vscode" -or $env:VSCODE_PID) {
 if (-not (Test-Path $shortcut)) {
     Write-Host "[relaunch] ERROR: shortcut not found at $shortcut" -ForegroundColor Red
     Write-Host "[relaunch] Recreate the shortcut with these properties:" -ForegroundColor Yellow
-    Write-Host "[relaunch]   Target:    `"C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe`" --ignore-gpu-blocklist --use-vulkan --enable-features=Vulkan --disable-gpu-compositing --enable-gpu-rasterization --enable-native-gpu-memory-buffers" -ForegroundColor Yellow
-    Write-Host "[relaunch]   Start in:  `"C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders`"" -ForegroundColor Yellow
+    Write-Host "[relaunch]   Target:    `"$env:LOCALAPPDATA\Programs\Microsoft VS Code Insiders\Code - Insiders.exe`" --ignore-gpu-blocklist --use-vulkan --enable-features=Vulkan --disable-gpu-compositing --enable-gpu-rasterization --enable-native-gpu-memory-buffers" -ForegroundColor Yellow
+    Write-Host "[relaunch]   Start in:  `"$env:LOCALAPPDATA\Programs\Microsoft VS Code Insiders`"" -ForegroundColor Yellow
     exit 1
 }
 

@@ -206,11 +206,11 @@ try {
     $chthonicExe = Join-Path $repoRoot "target\release\chthonic-mcp-server.exe"
     $fsRoots = @(
       $repoRoot,
-      "C:\Users\eldno\PsychoNoir-Kontrapunkt",
-      "C:\Users\eldno\Restructure-MCP-Orchestration",
-      "C:\Users\eldno\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
-      "C:\Users\eldno\git-dump-lfs-holder-we-it-takes",
-      "C:\Users\eldno\psychonoir-kontrapunkt-large-file-holder"
+      (Join-Path $env:USERPROFILE "PsychoNoir-Kontrapunkt"),
+      (Join-Path $env:USERPROFILE "Restructure-MCP-Orchestration"),
+      (Join-Path $env:USERPROFILE "Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique"),
+      (Join-Path $env:USERPROFILE "git-dump-lfs-holder-we-it-takes"),
+      (Join-Path $env:USERPROFILE "psychonoir-kontrapunkt-large-file-holder")
     )
 
     $servers = [ordered]@{
