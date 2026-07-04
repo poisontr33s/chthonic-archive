@@ -1,0 +1,13 @@
+{
+  "name": "bidi-prose",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_BIDI_CONTROL_CHAR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

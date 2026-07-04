@@ -1,0 +1,61 @@
+{
+  "name": "chthonic-themes",
+  "displayName": "Chthonic Archive — Themes",
+  "description": "Chthonic Archive color themes, file icon theme, and product icon theme. Themes-only derived build — no runtime activation, zero CPU/memory overhead.",
+  "version": "0.2.9",
+  "publisher": "chthonic-archive",
+  "icon": "icons/mandala.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chthonic-archive/chthonic-archive"
+  },
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "scripts": {
+    "sync-themes": "pwsh -NoProfile -File ../../scripts/sync-themes.ps1",
+    "insiders:kits:check": "bunx @vscode/vsce --version",
+    "insiders:package": "bun run sync-themes && bunx @vscode/vsce package --no-dependencies --out chthonic-themes-insiders.vsix --skip-license"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Chthonic — Flesh & Earth (The Decorator)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-mandala-color-theme.json"
+      },
+      {
+        "label": "Chthonic — ROGBIV (Spectra Chroma)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-rogbiv-color-theme.json"
+      },
+      {
+        "label": "Chthonic — Geological Core (Sister Ferrum Scoriae)",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-geology-color-theme.json"
+      },
+      {
+        "label": "Chthonic — The Decorator",
+        "uiTheme": "vs-dark",
+        "path": "./themes/chthonic-decorator-color-theme.json"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "chthonic-file-icons",
+        "label": "Chthonic Archive File Icons",
+        "path": "./themes/chthonic-file-icon-theme.json"
+      }
+    ],
+    "productIconThemes": [
+      {
+        "id": "chthonic-product-icons",
+        "label": "Chthonic Archive Product Icons",
+        "path": "./themes/chthonic-product-icon-theme.json"
+      }
+    ]
+  }
+}

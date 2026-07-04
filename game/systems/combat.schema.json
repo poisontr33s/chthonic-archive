@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chthonic://game/systems/combat.schema.json",
+  "title": "Chthonic Combat System",
+  "description": "Schema for combat resources, action economy, targeting, and resolution hooks.",
+  "type": "object",
+  "required": ["version", "resources", "turn_structure", "damage_types", "actions"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      }
+    },
+    "turn_structure": {
+      "$ref": "#/$defs/turn_structure"
+    },
+    "damage_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      }
+    }
+  },
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "required": ["id", "min", "max"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        },
+        "regen": {
+          "type": "integer"
+        }
+      }
+    },
+    "turn_structure": {
+      "type": "object",
+      "required": ["initiative", "actions_per_turn", "movement_mode"],
+      "properties": {
+        "initiative": {
+          "type": "string"
+        },
+        "actions_per_turn": {
+          "type": "integer"
+        },
+        "movement_mode": {
+          "type": "string"
+        }
+      }
+    },
+    "targeting": {
+      "type": "object",
+      "required": ["shape", "range"],
+      "properties": {
+        "shape": {
+          "type": "string"
+        },
+        "range": {
+          "type": "integer"
+        },
+        "radius": {
+          "type": "integer"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "required": ["id", "cost", "targeting"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "integer"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "targeting": {
+          "$ref": "#/$defs/targeting"
+        },
+        "formula": {
+          "type": "string"
+        },
+        "status_effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "scripts/lib/map.py",
+  "title": "map.py",
+  "role": "script",
+  "purpose": "map.py \u2014 Codebase Cartographer & Inventory Generator @SID:           TOOL_CODEBASE_MAPPER_V1 @Type:          CLI Tool @Context:       Documentation / Inventory @Implements:    CONCEPT_CODEBASE_CARTOGRAPHY, ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @Emits:         STATE_CODEBASE_INVENTORY @SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP Traverses the repository to map directory structure, inventory files by type, and generate codebase overview.",
+  "invoke": "uv run scripts/lib/map.py",
+  "exports": [
+    "CodebaseMap",
+    "FolderStats",
+    "generate_markdown_map",
+    "main",
+    "scan_tree"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "collections",
+    "dataclasses",
+    "io",
+    "json",
+    "os",
+    "pathlib",
+    "shared",
+    "sys"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/map.py",
+  "updated_at": "2026-02-05T20:04:01.135710+00:00"
+}

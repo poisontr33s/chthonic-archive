@@ -1,0 +1,16 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\deescaped-display-brackets\\broken.md",
+  "sourceSha256": "fa9a14cb418e4526182cec86035f1ea47250086c6c5f25fe5e57e39e477af056",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.692Z",
+  "hashOnly": false
+}

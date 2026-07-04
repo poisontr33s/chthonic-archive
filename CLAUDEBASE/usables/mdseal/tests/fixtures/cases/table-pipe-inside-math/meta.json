@@ -1,0 +1,13 @@
+{
+  "name": "table-pipe-inside-math",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_PIPE_IN_TABLE_CELL"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

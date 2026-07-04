@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\inline-code-protected\\broken.md",
+  "sourceSha256": "0492e605adc52fb4b74ca2b3e4f66b29ac0048571b97cf07d4f5f87f12922c93",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "inline_code",
+      "startOffset": 0,
+      "endOffset": 12,
+      "text": "`$not math$`"
+    },
+    {
+      "kind": "math_inline",
+      "startOffset": 1,
+      "endOffset": 11,
+      "text": "$not math$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.810Z",
+  "hashOnly": false
+}

@@ -1,0 +1,34 @@
+{
+  "id": "scripts/lib/audit.py",
+  "title": "audit.py",
+  "role": "script",
+  "purpose": "audit.py \u2014 Root Directory Health & Hygiene Auditor @SID:           TOOL_ROOT_AUDIT_V1 @Type:          CLI Tool @Context:       Hygiene / Codebase Analysis @Implements:    CONCEPT_DIRECTORY_HEALTH_AUDIT, ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP @Emits:         STATE_ROOTDIR_HEALTH Scans the root directory to assess file hygiene, identify redundancy, versioning issues, and potential cleanup candidates.",
+  "invoke": "uv run scripts/lib/audit.py",
+  "exports": [
+    "AuditReport",
+    "FileInfo",
+    "analyze_files",
+    "compute_hash",
+    "detect_version_pattern",
+    "generate_markdown_report",
+    "main",
+    "scan_directory"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "collections",
+    "dataclasses",
+    "datetime",
+    "hashlib",
+    "io",
+    "json",
+    "pathlib",
+    "re",
+    "shared",
+    "sys"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/audit.py",
+  "updated_at": "2026-02-05T20:04:01.125631+00:00"
+}

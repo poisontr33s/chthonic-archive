@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1000 1000 1000">
+  <g transform="scale(1,-1) translate(0,-1000)">
+    <!-- Folder body: rounded rect base -->
+    <path d="M80 150Q80 100 130 100H420Q445 100 460 120L510 180H870Q920 180 920 230V820Q920 870 870 870H130Q80 870 80 820ZM160 280V790H840V280Z
+M160 200V250H490L450 200Z"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Sealed pylon — temple = inner sanctum (Ankh sanctuary) -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#F4C430" opacity="0.5"/>
+ <rect x="5" y="5" width="6" height="8" fill="#2A2724" fill-opacity="0.55" stroke="#F4C430" stroke-width="0.4"/>
+
+ <ellipse cx="8" cy="7.5" rx="1" ry="0.8" fill="none" stroke="#F4C430" stroke-width="0.5"/>
+ <line x1="6.8" y1="9" x2="9.2" y2="9" stroke="#F4C430" stroke-width="0.4" stroke-linecap="round"/>
+ <line x1="8" y1="8.3" x2="8" y2="11.5" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round"/>
+</svg>

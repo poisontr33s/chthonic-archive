@@ -1,0 +1,13 @@
+{
+  "name": "nbsp",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_NBSP_IN_MATH"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

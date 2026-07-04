@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\broken\\math.md",
+  "sourceSha256": "c4d3eb2f1ddcfde48ee89d5425b559a448157dcddb704462ac5ce6d690ac471c",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 12,
+      "endOffset": 36,
+      "text": "$E = mc^2 and more text."
+    },
+    {
+      "kind": "unknown",
+      "startOffset": 38,
+      "endOffset": 39,
+      "text": "$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.629Z",
+  "hashOnly": false
+}

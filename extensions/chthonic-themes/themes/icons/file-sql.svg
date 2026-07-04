@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#2A2724" stroke="#908672" stroke-width="0.5"/>
+
+ <rect x="5" y="10" width="6" height="1.5" fill="none" stroke="#D7B562" stroke-width="0.5"/>
+
+ <path d="M6.5 9.5Q6 8 6.5 6.5" stroke="#D7B562" stroke-width="0.4" fill="none"/>
+ <path d="M8 9.5Q7.5 7.5 8 5.5" stroke="#D7B562" stroke-width="0.4" fill="none"/>
+ <path d="M9.5 9.5Q9 8 9.5 6.5" stroke="#D7B562" stroke-width="0.4" fill="none"/>
+
+ <circle cx="6.5" cy="6.3" r="0.3" fill="#D7B562"/>
+ <circle cx="8" cy="5.3" r="0.3" fill="#D7B562"/>
+ <circle cx="9.5" cy="6.3" r="0.3" fill="#D7B562"/>
+
+ <path d="M7 4Q7.5 3.5 8 4Q8.5 4.5 9 4" stroke="#D7B562" stroke-width="0.3" fill="none" opacity="0.6"/>
+</svg>

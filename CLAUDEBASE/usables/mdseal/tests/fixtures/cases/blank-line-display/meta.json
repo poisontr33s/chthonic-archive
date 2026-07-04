@@ -1,0 +1,13 @@
+{
+  "name": "blank-line-display",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_BLANK_LINE_IN_DISPLAY_BLOCK"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

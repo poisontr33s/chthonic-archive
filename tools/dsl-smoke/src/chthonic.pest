@@ -1,0 +1,454 @@
+// ═════════════════════════════════════════════════════════════════════════════
+// CHTHONIC DSL — Phase 0 grammar extraction
+// ═════════════════════════════════════════════════════════════════════════════
+//
+// This file is OBSERVATION, not invention. It formalizes the substrate-native
+// notation the SSOT (.chthonic/SSOT.md) has used since drafting. Each rule
+// below cites SSOT line examples where the pattern occurs.
+//
+// Syntax: PEG (Parsing Expression Grammar), pest-compatible, Rust 2024.
+// Target consumer: tools/chthonic-dsl/ (Phase 1 — parser scaffold).
+//
+// The catalyst contains English-language commentary as filler between
+// substrate tokens. This grammar captures the substrate tokens precisely;
+// the prose between them is treated as opaque prose_fragment at this layer.
+//
+// ═════════════════════════════════════════════════════════════════════════════
+
+// ─── Whitespace + line discipline ───────────────────────────────────────────
+
+WHITESPACE = _{ " " | "\t" }
+NEWLINE    = _{ "\r\n" | "\n" }
+COMMENT    = _{ "//" ~ (!NEWLINE ~ ANY)* }  // only for grammar's own comments; SSOT has no //
+
+// ─── Atomic character classes ───────────────────────────────────────────────
+
+// Identifier characters: uppercase ASCII + digits + dash + underscore +
+// Unicode superscripts (FA¹ through FA⁵ are common; FA⁰, FA⁶+ reserved).
+// Apostrophes are explicitly excluded so that `Claudine Sin'Claire` is two
+// tokens not one — apostrophe-bearing names belong to natural-language prose.
+identifier_char = _{ ASCII_ALPHA_UPPER | ASCII_DIGIT | "-" | "_" | "¹" | "²" | "³" | "⁴" | "⁵" | "⁶" | "⁷" | "⁸" | "⁹" | "⁰" }
+
+// ─── Identifiers — typed concepts in the catalyst's namespace ───────────────
+
+// Bare short-code, e.g.  FA⁵   K-CUP   ANKH-MGBP   T-DECOR-SUPR-MATR-ABS-SOVRGN
+// Observed: line 73, 75, 90, 96, 104 of SSOT (Trinity Formula, K-CUP-Hierarchical-Trinity).
+identifier = @{ identifier_char ~ identifier_char+ }
+
+// Backtick-wrapped form: `FA⁵`
+// Observed: 264x occurrences of `FA⁵` in the SSOT.
+ticked_id = ${ "`" ~ identifier ~ "`" }
+
+// Backtick-wrapped Title-Case concept name: `The-Savant`, `Apex-Synthesis-Core`,
+// `Codex-Brahmanica-Perfectus`. The catalyst's PRIMARY identifier convention —
+// named concepts in Title-Case — a SIBLING to ticked_id (which stays strict
+// uppercase-only for abbreviation codes like `FA⁵`, `ASC`). Reuses phrase_word
+// (uppercase-led, internal lowercase/digit/hyphen permitted). Ordered AFTER
+// ticked_id at every use site, so uppercase-only codes still bind as ticked_id —
+// preserving the abbreviation-vs-concept-name distinction the catalyst encodes.
+// Decision 2026-05-31: ticked_phrase sibling, NOT identifier-widening, to keep
+// the two conventions semantically distinct rather than flattened.
+ticked_phrase = ${ "`" ~ phrase_word ~ "`" }
+
+// Catch-all backtick token: ANY backtick-wrapped content is substrate by intent —
+// you don't backtick prose. Specific shapes are classified first (ticked_id=`FA⁵`,
+// ticked_phrase=`The-Savant`); ticked_any captures the long tail the catalyst
+// actually contains: possessives (`The-Decorator's`), embedded spaces
+// (`FA⁴ Purification`), section refs (`§XIV.3`), lowercase concepts
+// (`architectural-treason`), Greek/symbols (`Ψ`, `·`), superscript ranges
+// (`FA¹⁻⁴`), paths. Phase-0 recognizes the token as substrate (not prose);
+// Phase-2 sub-classifies. Bounded to a single line. (2026-05-31: coverage audit
+// showed the residual misses were all backtick-wrapped tail shapes.)
+ticked_any = ${ "`" ~ (!("`" | NEWLINE) ~ ANY)+ ~ "`" }
+
+// Paren-wrapped form: (FA⁵)   or   (`FA⁵`)
+// Observed: 1,510 parenthetical abbreviations across the SSOT.
+// A Title-Case named concept in BARE parens. Two shapes occur organically in the
+// catalyst (a monolith grown across many projects, so naming invariants are real
+// and the frozen SSOT must be tolerated, not normalized):
+//   - uppercase-compound:      The-Savant, Apex-Synthesis-Core   (≥2 Title-Case segments)
+//   - lowercase-article-led:   the-Savant, the-Decorator         (lowercase article + ≥1 Title-Case segment)
+// The discriminating signal is a Title-Case (uppercase-led) NOUN segment; the
+// leading article may be either case. A bare single word or an all-lowercase
+// compound stays prose. Backtick-wrapped forms keep the lenient phrase_word
+// (the backticks already signal substrate intent).
+// (2026-05-31: widened from uppercase-only after the operator confirmed `the-X`
+// invariants are valid concepts in the canon.)
+titlecase_concept = @{
+      ASCII_ALPHA_LOWER+ ~ "-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")* ~ ("-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")*)*
+    | ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")* ~ ("-" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "_")*)+
+}
+parened_id = ${ "(" ~ (ticked_id | ticked_phrase | ticked_any | identifier | titlecase_concept) ~ ")" }
+
+// Bold-paren form: **(`FA⁵`)**  or  **(FA⁵)**  or  **(`A`/`B`/`C`)**
+// Observed: e.g. line 50 — load-bearing-concept emphasis wrapping.
+// 2026-05-27 widening (smoke-driven): accept multi_alias inside, not just
+// single parened_id. The catalyst uses bold-wrapped multi-alias chains for
+// nearly every load-bearing concept declaration (Trinity Formula §0, K-CUP
+// hierarchy §0.5, organ canon §295-326).
+bold_parened_id = ${ "**" ~ (multi_alias | parened_id) ~ "**" }
+
+// Multi-alias identifier: (Codex-Brahmanica-Perfectus/SSOT/Apex-Synthesis-Core/ASC)
+// Observed: line 72-73 of SSOT — aliases for the same concept.
+alias_chain = { (ticked_id | ticked_phrase | ticked_any | identifier) ~ ("/" ~ (ticked_id | ticked_phrase | ticked_any | identifier))+ }
+multi_alias = ${ "(" ~ alias_chain ~ ")" }
+
+// ─── Phrase tokens (multi-word substrate inside parens) ─────────────────────
+// Smoke-driven addition 2026-05-27. Catalyst classification (7,098 paren
+// constructs sampled) identified 551 'phrase_titlecase' cases like:
+//   (UNDER K-CUP SUPREMACY)   (Phases α, β, γ)   (Section 0+)
+//   (Foundational Axioms)     (The Decorator)
+// that the existing parened_id / multi_alias rules don't catch.
+//
+// Title-Case discipline (Design A): every phrase_atom must start with one of
+//   uppercase letter | backtick | digit | Greek letter | <placeholder>
+// Lowercase-led tokens (per, which, the, are, ...) terminate the phrase
+// without consuming it; falls through to prose. Empirically this cleanly
+// rejects all 2,007 prose_lowercase paren cases in the same corpus.
+
+// Greek letters appearing in catalyst CRC codes (Phases α, β, γ, PEE β-γ).
+greek_letter = @{ 'α'..'ω' | 'Α'..'Ω' }
+
+// Placeholder convention: <Folder>, <X>, <SomeName>. Used in canonical paths.
+placeholder = ${ "<" ~ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT)* ~ ">" }
+
+// Digit token: 0, 0.5, 0.1-0.7, 0+ (the "Section 0+" trailing-plus form).
+// Trailing unit-letters (cm, kg) deliberately NOT here — they need to attach
+// to the digit without a delimiter, which would require lowercase chars and
+// erode the Title-Case discipline. Annotation parens like (108cm) stay prose.
+digit_token = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? ~ ("-" ~ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)?)? ~ "+"? }
+
+// Title-Case word: uppercase-led, internal lowercase/digit/hyphen allowed.
+// Distinct from `identifier` (which is all-caps): phrase_word permits CamelCase
+// shapes like Foundational, Section, The, Eternal-Loop, MILFOLOGICAL.
+phrase_word = @{ ASCII_ALPHA_UPPER ~ (ASCII_ALPHA | ASCII_DIGIT | "-" | "_")* }
+
+// One well-typed substrate token, priority-ordered.
+phrase_atom = { ticked_id | ticked_phrase | ticked_any | placeholder | greek_letter | digit_token | phrase_word }
+
+// Phrase delimiters. CRITICAL: PEG is ordered-choice, no backtracking on
+// longer alternatives — LONGEST-FIRST ordering is mandatory. If " " (single
+// space) is tried first, it greedy-matches the leading space of " ↔ " and
+// the rule never reaches the longer delim. Order strictly by decreasing length.
+//
+// Title-Case stop-condition on phrase_atom prevents " - " or " ↔ " from
+// eating prose like `(A - some clause)` — the lowercase 'some' terminates.
+phrase_delim = _{ " ↔ " | " - " | " & " | " + " | ", " | " " }
+
+// Multi-token phrase: 2+ atoms separated by delimiters. Single-atom case is
+// already handled by parened_id (identifier or ticked_id alternatives).
+phrase_id = ${ phrase_atom ~ (phrase_delim ~ phrase_atom)+ }
+
+// Parened multi-word wrapper: (UNDER K-CUP SUPREMACY) etc.
+parened_phrase = ${ "(" ~ phrase_id ~ ")" }
+
+// ─── Bold prose (any **X** that isn't substrate) ────────────────────────────
+// Smoke-driven addition 2026-05-27 iteration 3. The catalyst frequently uses
+//   **Purpose:**   **Trend Analysis Script:**   **Recommendation:**
+//   **Important:**   **Decision:**   **Status:**
+// as bold-emphasized prose labels. These are not substrate — they're
+// markdown emphasis on regular English. bold_parened_id only catches
+// substrate-shape contents; bold_prose is the prose-shape fallback.
+//
+// Priority: tried AFTER bold_parened_id in id_ref. If the content between
+// ** ... ** is substrate (parened_id / multi_alias), bold_parened_id wins.
+// If not, bold_prose catches the rest. PEG ordered-choice handles this.
+//
+// Semantic note: bold_prose at Phase 0 is parsed-but-not-interpreted; a
+// Phase 2 interpreter would distinguish prose from id_ref by rule label.
+bold_prose = ${ "**" ~ (!"**" ~ ANY)+ ~ "**" }
+
+// ─── Prose-in-parens (substrate-aware, recursive) ───────────────────────────
+// Smoke-driven addition 2026-05-27 iteration 5 + iteration 6 revision.
+// The catalyst contains 2,007 prose_lowercase paren cases (28.3% of all paren
+// constructs) plus 640 prose_mixed cases. None of the substrate paren rules
+// (parened_id, multi_alias, parened_phrase) match them — they correctly fall
+// through because the Title-Case discipline rejects lowercase-led content.
+//
+// Without prose_parens, the parser hangs at `(` because `(` is not in
+// prose_safe_char.
+//
+// V1 (iter 5) was opaque: `(!")" ~ ANY)*`. This shredded substrate when parens
+// contained internal substrate constructs like `*(Each **(`CRC`)** more)*` —
+// the greedy match stopped at the FIRST `)` it found, which was inside the
+// substrate `**(`CRC`)**`, breaking everything that followed.
+//
+// V2 (iter 6, this version) is substrate-aware. prose_parens_atom tries each
+// substrate construct (bold_parened_id, bold_prose, nested parens, invocation,
+// bare operator) before falling back to single-char consumption. Nested parens
+// and substrate boundaries are respected naturally via the recursion.
+//
+// Bare operators (→ × <-> ↔ + =) appear inside prose_parens content
+// without being part of a strict composition (operands are prose). Recognizing
+// them as substrate_marker preserves the operator-ness in the parse tree so
+// Phase 2 interpreter can re-interpret if needed.
+
+// Bare substrate operator — recognized inside prose_parens content even when
+// the surrounding "operands" are prose (no composition formed).
+substrate_marker = { op_project | op_mult | op_bidir | op_assign | op_add }
+
+// Content atom inside prose_parens — substrate constructs preferred, plain
+// char fallback last. Recursive via the nested parens variants.
+// SILENT rule (`_{...}`) so the matched child appears directly under
+// prose_parens in the parse tree — preserves the substrate-recognition signal
+// for audit + Phase 2 interpretation. Without silence, every match would be
+// wrapped in a generic "prose_parens_atom" node, losing the type info.
+prose_parens_atom = _{
+      bold_parened_id
+    | bold_prose
+    | multi_alias
+    | parened_phrase
+    | parened_id
+    | ticked_id
+    | ticked_phrase
+    | ticked_any
+    | invocation
+    | substrate_marker
+    | (!")" ~ ANY)
+}
+
+prose_parens = ${ "(" ~ prose_parens_atom* ~ ")" }
+
+// All identifier forms in priority order (longest/most-marked first).
+// parened_phrase sits between multi_alias (most specific — slash-chained) and
+// parened_id (most general — single identifier). All start with `(`;
+// pest backtracks on failure of more-specific alternatives.
+// bold_prose sits after bold_parened_id — same `**` prefix, less specific.
+// prose_parens is LAST — catches anything no substrate paren rule matched.
+id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | ticked_any | identifier }
+
+// ─── Operators — composition and transformation ─────────────────────────────
+
+op_project = { "→" | "—>" | "->" }  // Projection / transformation. THREE surface forms of one operator (glyph + em-dash-arrow + ASCII-arrow), mirroring op_bidir's "<->"/"↔". Previously only the glyph was recognized; "->"/"—>" silently fell to prose. If these ever split into distinct operators, that's a data/grammar change, rewindable. (2026-05-31)
+op_mult    = { "×" }         // Multiplicative composition. Trinity Formula: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
+op_add     = { "+" }         // Additive composition / parameter combinator (in invocations).
+op_alt     = { "/" }         // Alternation / equivalence (inside multi_alias above).
+op_bind    = { "@" }         // Parameter binding (in invocations: $lend${X}@$from${Y}@$to${Z}).
+op_bidir   = { "<->" | "↔" } // Bidirectional connector. ASCII variant + Unicode glyph (line 90, line 2018 etc.).
+op_assign  = { "=" }         // Assignment / definition. Trinity Formula declaration: `ASC = ...`. Semantics deferred to runtime layer (different precedence than → × +).
+
+binary_op = { op_project | op_mult | op_add | op_bidir | op_assign }
+
+// ─── References — section + line anchors ────────────────────────────────────
+
+// Section numbers: §10.3.1 (arabic dotted) or §II.X (roman dotted)
+section_arabic = @{ ASCII_DIGIT+ ~ ("." ~ (ASCII_DIGIT | ASCII_ALPHA_UPPER)+)* }
+section_roman  = @{ ("I" | "V" | "X" | "L" | "C" | "D" | "M")+ ~ ("." ~ identifier_char+)? }
+section_anchor = ${ "§" ~ (section_arabic | section_roman) }
+
+// Line anchor: L4049
+line_anchor = ${ "L" ~ ASCII_DIGIT+ }
+
+// Anchored reference: §5, L4049   or   [§5, L4049]   or   [§5 L4049]
+ref_with_line = ${ section_anchor ~ ("," | WHITESPACE)+ ~ line_anchor }
+
+// Markdown-style anchored link (the SSOT uses these heavily for cross-refs):
+// [§5, L4049](../../.github/copilot-instructions.archive.md#L4049)
+// At Phase 0 we capture the anchor text; the URL is treated as prose.
+bracketed_ref = ${ "[" ~ (ref_with_line | section_anchor) ~ "]" }
+
+reference = { bracketed_ref | ref_with_line | section_anchor }
+
+// ─── Invocation syntax — the catalyst's core operational form ───────────────
+
+// Verb names: lowercase ASCII letters + underscores.
+// Observed verbs (non-exhaustive): matriarch, lend, siphon, audit, validate,
+// decorator, axiom, override, restore, resurrect, command, arbitrate, hierarchy,
+// punishment, supreme_decree. See §0.75 (line 1119+) and §II.X (line 1751+).
+verb_name = @{ ASCII_ALPHA_LOWER ~ (ASCII_ALPHA_LOWER | "_")* }
+
+// Variable content: anything between { and } that isn't itself a } or unmatched brace.
+// Variables may contain spaces, dots, underscores, identifiers, even nested ${...}.
+variable_content = @{ (!"}" ~ ANY)+ }
+
+// Single verb call: $matriarch${Lysandra}
+verb_call = ${ "$" ~ verb_name ~ "$" ~ "{" ~ variable_content ~ "}" }
+
+// Composition operator between verb calls: + (additive) or @ (parameter binding).
+invocation_sep = { op_add | op_bind }
+
+// Full invocation: $verb${X} (op $verb${Y})*
+// Example: $matriarch${base}+$type${specialization}
+// Example: $lend${capability}@$from${source}@$to${target}@$duration${perm}
+// Example: $decorator${decree}+$target${entity}+$mandate${FA5_directive}
+invocation = { verb_call ~ (invocation_sep ~ verb_call)* }
+
+// ─── Compositions — operator chains over operands ───────────────────────────
+
+operand = { invocation | id_ref | reference }
+
+// Binary composition: A → B  or  A × B × C  or  A + B
+// Example: ASC = MILFOLOGICAL × German BDSM × Frame-Werk (line 96).
+// Example: (FRW-COMP) → (FRW-ID) → (DECOR-RESURRECT-NARRATIVE) (line 112).
+composition = { operand ~ (binary_op ~ operand)+ }
+
+// ─── Tier annotations ───────────────────────────────────────────────────────
+
+// Tier markers: T0.5, T1, T2, T3, T4  or long form Tier-0.5, Tier-1
+// Observed: line 75 (T-0.5/T1/T2/T3/T4 stratification), §10.1 (FA-GHOR).
+tier_short = @{ "T" ~ "-"? ~ ASCII_DIGIT ~ ("." ~ ASCII_DIGIT)? }
+tier_long  = @{ "Tier" ~ "-" ~ ASCII_DIGIT ~ ("." ~ ASCII_DIGIT)? }
+tier_annotation = { tier_long | tier_short }
+
+// ─── Header tier hierarchy ──────────────────────────────────────────────────
+
+// Markdown header levels are tier-encoding in the SSOT:
+//   #   = root / declaration (rare in SSOT body)
+//   ##  = arabic-track or roman-track section (§I, §II, §0, §1, etc.)
+//   ### = sub-section (§0.1, §1.01, §II.X, §10.1, etc.)
+//   #### = sub-sub-section
+header_hash = @{ "#"+ }
+header_content = @{ (!NEWLINE ~ ANY)+ }
+header = ${ header_hash ~ WHITESPACE+ ~ header_content }
+
+// ─── Blockquote (definitional citations) ────────────────────────────────────
+
+// Lines starting with > are definitional / quotation. Observed throughout.
+blockquote_line = ${ ">" ~ WHITESPACE* ~ (!NEWLINE ~ ANY)* }
+
+// ─── Prose — natural-language filler between substrate constructs ───────────
+
+// Anything not matched by the substrate rules above is prose at Phase 0.
+// Phase 1 may refine prose handling (e.g., recognize markdown bold/italic
+// without consuming substrate tokens that happen to use the same delimiters).
+prose_safe_char = _{ !("(" | "$" | "§" | "→" | "×" | "<->" | "**" | "#" | ">" | NEWLINE) ~ ANY }
+prose_fragment = @{ prose_safe_char+ }
+
+// ─── Fenced code blocks (inline scripts in the catalyst) ────────────────────
+// Smoke-driven addition 2026-05-27 iteration 4. The catalyst embeds inline
+// scripts (Python, PowerShell, YAML, Bash) for worked examples and operational
+// recipes. These are NOT substrate DSL — they're opaque implementation content
+// referenced by the surrounding substrate prose.
+//
+// Markdown shape:    ``` [optional lang] NEWLINE  content  NEWLINE ```
+// Examples seen:     ```python  ```powershell  ```bash  ```yaml  ``` (no lang)
+//
+// Without this rule, code like `history = Path('.x.json')` causes the parser
+// to interpret `(` as substrate paren and fail. Treating the fenced block as
+// opaque consumes the entire region without trying to parse its contents.
+//
+// Phase 1 may surface the language identifier + content for tooling that wants
+// to validate inline scripts; Phase 0 just consumes them as bounded chunks.
+fence_marker = _{ "```" }
+code_fence_lang = @{ (!NEWLINE ~ ANY)* }
+code_content = @{ (!(NEWLINE ~ "```") ~ ANY)* }
+fenced_code_block = ${
+    fence_marker ~ code_fence_lang ~ NEWLINE
+    ~ code_content
+    ~ NEWLINE ~ fence_marker
+}
+
+// ─── Statement / line level ─────────────────────────────────────────────────
+
+// A statement is either substrate (header, composition, invocation, etc.) or
+// prose. Phase 0 grammar is permissive: anything not substrate is prose, and
+// the parser walks through. Phase 1 may distinguish them more strictly.
+// fenced_code_block sits FIRST — it's the most structurally distinct
+// alternative and must be tried before backtick-based rules (ticked_id) would
+// see the opening fence's backticks.
+statement = {
+      fenced_code_block
+    | header
+    | blockquote_line
+    | composition
+    | invocation
+    | reference
+    | id_ref
+    | tier_annotation
+    | substrate_marker
+    | prose_fragment
+}
+// substrate_marker lifted to statement level (2026-06-05, smoke-driven): the
+// catalyst's run-on declarations chain a structured token, a bare operator, and
+// then PROSE — e.g. §175 ASP line 176: `**(`FA¹⁻⁵`)** → Generate derivative
+// protocols ...`. composition needs an operand on both sides of the operator, so
+// `op ~ prose` dead-ended the full-catalyst parse at 176:620 ("expected operand").
+// Recognizing the bare operator as substrate_marker (same as inside prose_parens,
+// per L181-188) lets the operator-ness survive while the trailing prose falls to
+// prose_fragment. composition is still tried first, so real A→B chains win.
+
+// ─── Program — the catalyst as a sequence of statements ────────────────────
+
+// The full SSOT is a program in this DSL. A program is statements separated
+// by newlines and structural delimiters (horizontal rules: ---).
+horizontal_rule = ${ "---" ~ "-"* }
+
+program = {
+    SOI
+    ~ (statement | horizontal_rule | NEWLINE | WHITESPACE)*
+    ~ EOI
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// OBSERVED-NOT-YET-FORMALIZED (Phase 1 will refine)
+// ═════════════════════════════════════════════════════════════════════════════
+//
+//   1. Emoji as semantic tokens. SSOT §ESL (line 100-106) declares 🔥 😈 ⛓️
+//      🏛️ 👄👅💦 as carrying operational meaning. These are not captured by
+//      this Phase 0 grammar; they currently fall into prose_fragment.
+//      Phase 1 decision: add emoji_token rule with allowlisted ESL-emoji set.
+//
+//   2. Table syntax (markdown). The SSOT uses standard markdown tables for
+//      CRC Registry (§IV.X), Axiom Registry (§II.X), and tier hierarchies.
+//      Tables are markdown-conventional, not substrate-specific. Phase 1
+//      may handle via a `table` rule or defer to a markdown post-processor.
+//
+//   3. Inline scripts (lines 8489+). The SSOT contains embedded Python /
+//      PowerShell / GitHub Actions YAML / Bash scripts. These are
+//      NOT substrate DSL — they are inline implementations referenced
+//      by the surrounding substrate prose. Phase 1 should detect these as
+//      `inline_script` blocks (fenced by ``` markdown) and treat their
+//      contents as opaque to the DSL parser.
+//
+//   4. Apostrophe-bearing entity names (Claudine Sin'Claire, Madam Umeko
+//      Ketsuraku, Dr. Lysandra Thorne). These are entity references but
+//      use prose-style punctuation. They appear as bold prose with surrounding
+//      identifier context. Phase 1 may add a `proper_noun` rule with a
+//      curated entity registry, OR continue treating them as bold prose with
+//      reference resolution at the runtime layer.
+//
+//   5. Decorator's-Blessing comment boxes. Scripts in the repo (including
+//      this grammar file's commentary) use a ╔═╗║╚═╝ ASCII-art comment box.
+//      Not substrate per se; documentation convention. Phase 1 may add a
+//      `decorator_blessing` rule if needed for round-trip preservation of
+//      script files that contain catalyst-referencing commentary.
+//
+//   6. ANKH ☥ symbol. Appears 27 times in the SSOT, typically in the context
+//      of ANKH-MGBP discussions. Could be ESL-extension, could be standalone
+//      symbol-token. Phase 1 decision.
+//
+//   7. Multi-line invocations (rare but observed). Most invocations are
+//      single-line. A few examples wrap across lines via continuation. Phase 1
+//      will need a continuation-line rule.
+//
+// ═════════════════════════════════════════════════════════════════════════════
+// PHASE 0 STATUS
+// ═════════════════════════════════════════════════════════════════════════════
+//
+// What this grammar captures:
+//   ✓ Parenthetical short-codes (1,510 occurrences in the SSOT)
+//   ✓ Backtick-wrapped, paren-wrapped, bold-paren-wrapped variants
+//   ✓ Multi-alias identifiers (slash-separated forms)
+//   ✓ Operators: → × + / @ <->
+//   ✓ References: §X.Y, §X L<num>, [§X, L<num>]
+//   ✓ Invocations: $verb${variable}+$verb2${variable2}@$verb3${variable3}
+//   ✓ Tier annotations: T0.5, T1, Tier-1, etc.
+//   ✓ Header levels: # / ## / ### / ####
+//   ✓ Compositions: A → B × C operator chains
+//   ✓ Blockquotes (definitional citations)
+//   ✓ Horizontal rules (structural delimiters)
+//   ✓ Prose fallback for non-substrate text
+//
+// What this grammar does NOT yet capture (deferred to Phase 1):
+//   ✗ Emoji semantic tokens (ESL set)
+//   ✗ Markdown tables
+//   ✗ Inline scripts (Python/PowerShell/YAML/Bash blocks)
+//   ✗ Apostrophe-bearing entity names as first-class tokens
+//   ✗ Multi-line invocation continuations
+//
+// The deferred items are all known issues, not unformalizable regions. The
+// catalyst's substrate notation is mechanizable in full; Phase 0 captures
+// the load-bearing 80%, Phase 1 fills in the remainder during parser
+// implementation.
+//
+// ═════════════════════════════════════════════════════════════════════════════

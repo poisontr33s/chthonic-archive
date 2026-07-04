@@ -1,0 +1,87 @@
+{
+  "total_prs": 27.0,
+  "districts": [
+    {
+      "issue_list": [
+        "#4 🧪 Create E2E Workflow Tests (Priority 4)",
+        "#3 🎯 Refactor CLI Commands to Use Orchestrator (Priority 3)"
+      ],
+      "vuln_count": null,
+      "pr_list": [
+        "#13 [draft] [Harvest] Config/detector/orchestrator wiring",
+        "#12 [draft] [Harvest] Config manager implementation + tests",
+        "#10 Bump golang.org/x/crypto from 0.43.0 to 0.45.0 in /research/",
+        "#9 Bump js-yaml from 4.1.0 to 4.1.1 in /research/gemini-cli in ",
+        "#8 Add E2E workflow tests for CLI commands"
+      ],
+      "repo": "poisontr33s/Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "error": null,
+      "open_prs": 5,
+      "latest_tag": "v0.1.0",
+      "id": "claudine",
+      "open_issues": 2
+    },
+    {
+      "issue_list": [],
+      "vuln_count": null,
+      "pr_list": [],
+      "repo": "poisontr33s/chthonic-archive",
+      "error": null,
+      "open_prs": 0,
+      "latest_tag": "v0.1.0",
+      "id": "archive",
+      "open_issues": 0
+    },
+    {
+      "issue_list": [
+        "#37 🚀 AUTONOMOUS DEPLOYMENT PIPELINE OPTIMIZATION - Conflict Re",
+        "#36 🎭 CLAUDINE 4.0 AUTONOMOUS ECOSYSTEM TAKEOVER - Phase 1 Init"
+      ],
+      "vuln_count": null,
+      "pr_list": [
+        "#47 Bump the pip group across 1 directory with 2 updates",
+        "#46 Bump the pip group across 3 directories with 3 updates"
+      ],
+      "repo": "poisontr33s/PsychoNoir-Kontrapunkt",
+      "error": null,
+      "open_prs": 2,
+      "latest_tag": "v0.1.0",
+      "id": "pnk",
+      "open_issues": 2
+    },
+    {
+      "issue_list": [],
+      "vuln_count": null,
+      "pr_list": [
+        "#287 Bump the npm_and_yarn group across 1 directory with 4 update",
+        "#286 security: fix GitHub Actions prompt injection in summary.yml",
+        "#285 [draft] harvest: MCP v2 protocol spec + multi-language clients + dev",
+        "#284 [draft] harvest: 19 Claude agents + consciousness-bridge infrastruct",
+        "#283 [Harvest] M365/Google agents + auth package + workflow clean",
+        "#282 [draft] [Harvest] Gemini Code Assist integration + Guthilda update",
+        "#281 Bump @tanstack/react-query from 5.87.4 to 5.100.5",
+        "#280 Bump ora from 8.2.0 to 9.4.0",
+        "#279 Bump tailwindcss from 4.1.11 to 4.2.4",
+        "#278 Bump vite from 7.1.3 to 8.0.10",
+        "#277 Bump react-dom and @types/react-dom",
+        "#276 Bump express-rate-limit from 8.0.1 to 8.4.1 in /packages/cor",
+        "#275 Bump ora from 8.2.0 to 9.4.0 in /packages/cli",
+        "#274 Bump inquirer from 12.9.6 to 13.4.2",
+        "#269 Bump @types/node from 24.1.0 to 25.6.0",
+        "#268 Bump autoprefixer from 10.4.21 to 10.5.0",
+        "#267 Bump @ai-sdk/google from 2.0.11 to 3.0.64",
+        "#266 Bump inquirer from 12.9.6 to 13.4.2 in /packages/cli",
+        "#257 Bump @vitejs/plugin-react-swc from 3.11.0 to 4.3.0",
+        "#254 Bump @tanstack/react-query from 5.87.4 to 5.90.21 in /packag"
+      ],
+      "repo": "poisontr33s/Restructure-MCP-Orchestration",
+      "error": null,
+      "open_prs": 20,
+      "latest_tag": "v0.1.0",
+      "id": "mcp",
+      "open_issues": 0
+    }
+  ],
+  "total_issues": 4.0,
+  "timestamp": "2026-05-03T02:49:00.4996787+02:00"
+}

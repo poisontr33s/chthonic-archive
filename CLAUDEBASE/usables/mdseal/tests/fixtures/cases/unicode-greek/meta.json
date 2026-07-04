@@ -1,0 +1,13 @@
+{
+  "name": "unicode-greek",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_UNICODE_GREEK_IN_MATH"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

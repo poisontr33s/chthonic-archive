@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\docs\\SEAL_FORMAT.md",
+  "sourceSha256": "059738361f6930eee717a4bea01388c18fd304c6c79a03354775528dd04c39bb",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "inline_code",
+      "startOffset": 41,
+      "endOffset": 51,
+      "text": "`.mdseal/`"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.591Z",
+  "hashOnly": false
+}

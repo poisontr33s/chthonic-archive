@@ -1,0 +1,40 @@
+{
+  "id": "scripts/lib/extract.py",
+  "title": "extract.py",
+  "role": "script",
+  "purpose": "extract.py \u2014 Claude Code Session Extractor @SID:           TOOL_SESSION_EXTRACTOR_V1 @Type:          CLI Tool @Context:       Hygiene / Session Analysis @Implements:    CONCEPT_SESSION_VALUE_EXTRACTION, ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP Extract valuable content from Claude Code session JSONL files.",
+  "invoke": "uv run scripts/lib/extract.py",
+  "exports": [
+    "Exchange",
+    "SessionData",
+    "check_redundancy",
+    "classify_content",
+    "compute_similarity_hash",
+    "deduplicate_exchanges",
+    "extract_text_content",
+    "generate_markdown",
+    "is_noise",
+    "main",
+    "process_session",
+    "sanitize_unicode",
+    "smart_truncate"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "collections",
+    "dataclasses",
+    "hashlib",
+    "json",
+    "logging",
+    "pathlib",
+    "re",
+    "shared",
+    "sys",
+    "traceback",
+    "typing"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/extract.py",
+  "updated_at": "2026-02-05T20:04:01.133761+00:00"
+}

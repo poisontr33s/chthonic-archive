@@ -1,0 +1,1 @@
+Inline valid: $E = mc^2$

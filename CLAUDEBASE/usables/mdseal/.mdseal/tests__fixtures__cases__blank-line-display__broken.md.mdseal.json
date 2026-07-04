@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\blank-line-display\\broken.md",
+  "sourceSha256": "e427160607bc81944ae6fab4556a9270431e6b4dad72bb16af7974f752613ede",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 0,
+      "endOffset": 2,
+      "text": "$$"
+    },
+    {
+      "kind": "unknown",
+      "startOffset": 9,
+      "endOffset": 11,
+      "text": "$$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.666Z",
+  "hashOnly": false
+}

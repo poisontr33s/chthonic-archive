@@ -1,0 +1,11 @@
+{
+  "name": "image-equation-alt-latex",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

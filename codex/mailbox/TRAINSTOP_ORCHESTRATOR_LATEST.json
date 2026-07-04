@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generated_on": "2026-07-03T21:39:04Z",
+  "results": [
+    {
+      "name": "CFG:local_ai_readiness_both",
+      "rc": 0,
+      "seconds": 26.683,
+      "cmd": [
+        "uv",
+        "run",
+        ".codex/skills/trainstop-orchestrator/scripts/local_ai_readiness.py",
+        "--mailboxes",
+        "codex,claude"
+      ],
+      "stdout_tail": "Wrote: codex/mailbox/LOCAL_AI_READINESS_LATEST.json\nWrote: codex/mailbox/LOCAL_AI_READINESS_LATEST.md\nWrote: claude/mailbox/LOCAL_AI_READINESS_LATEST.json\nWrote: claude/mailbox/LOCAL_AI_READINESS_LATEST.md",
+      "stderr_tail": "",
+      "missing_artifacts": [],
+      "notes": []
+    }
+  ]
+}

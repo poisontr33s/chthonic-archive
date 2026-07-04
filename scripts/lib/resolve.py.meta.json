@@ -1,0 +1,30 @@
+{
+  "id": "scripts/lib/resolve.py",
+  "title": "resolve.py",
+  "role": "script",
+  "purpose": "resolve.py - Semantic Identity Resolver (Anchor & Signal Protocol) @SID:           TOOL_SID_RESOLVER_V1 @Type:          CLI Tool @Context:       Infrastructure / Identity Resolution @Implements:    PROTOCOL_ANCHOR_SIGNAL, ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @SessionOrigin: SESSION_DOC_2026_01_17_CLEANUP Scans the codebase for @SID declarations and builds a resolution map.",
+  "invoke": "uv run scripts/lib/resolve.py",
+  "exports": [
+    "SIDEntry",
+    "SIDIndex",
+    "extract_sid_metadata",
+    "load_index",
+    "main",
+    "save_index",
+    "scan_directory"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "dataclasses",
+    "datetime",
+    "json",
+    "pathlib",
+    "re",
+    "shared",
+    "typing"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/resolve.py",
+  "updated_at": "2026-02-05T20:04:01.137943+00:00"
+}

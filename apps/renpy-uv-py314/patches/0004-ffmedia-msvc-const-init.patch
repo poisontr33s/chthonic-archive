@@ -1,0 +1,25 @@
+diff --git a/src/ffmedia.c b/src/ffmedia.c
+index e8ef0e922..009170d59 100644
+--- a/src/ffmedia.c
++++ b/src/ffmedia.c
+@@ -36,13 +36,18 @@ const int BPS = 4; // Bytes per sample.
+ const int FRAMES = 3;
+ 
+ // The alignment of each row of pixels.
+-const int ROW_ALIGNMENT = 16;
++#define ROW_ALIGNMENT_VALUE 16
++const int ROW_ALIGNMENT = ROW_ALIGNMENT_VALUE;
+ 
+ // The number of pixels on each side. This has to be greater that 0 (since
+ // Ren'Py needs some padding), FRAME_PADDING * BPS has to be a multiple of
+ // 16 (alignment issues on ARM NEON), and has to match the crop in the
+ // read_video function of renpysound.pyx.
+-const int FRAME_PADDING = ROW_ALIGNMENT / 4;
++// MSVC strict-C: file-scope `const int` initializers must be true constant
++// expressions. GCC accepts another `const int` here as an extension; MSVC
++// rejects with C2099. Use #define to keep the value derived from a single
++// source of truth.
++const int FRAME_PADDING = ROW_ALIGNMENT_VALUE / 4;
+ 
+ const int SPEED = 1;
+ 

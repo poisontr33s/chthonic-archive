@@ -1,0 +1,41 @@
+{
+  "faction_id": "CRC",
+  "name": "Core Resonance Collective",
+  "alias": "The Triumvirate",
+  "tier": 1.0,
+  "spectral_frequency": "GOLD",
+  "district": "LAYER-1",
+  "serves": "THE_DECORATOR",
+  "description": "Three matriarchs holding the first layer of the Archive open. Each governs a distinct chain of operation: Chaos drives velocity, Purification enforces structure, Truth extracts meaning. Together they constitute the minimum viable consensus for Archive operation.",
+  "chains": [
+    {
+      "id": "chaos",
+      "matriarch": "orackla",
+      "crc_code": "AS",
+      "role": "Momentum Engine — breaks stagnation, drives forward execution",
+      "linguistic_mode": "EULP_AA",
+      "spectral_color": [0.9, 0.2, 0.5]
+    },
+    {
+      "id": "purification",
+      "matriarch": "umeko",
+      "crc_code": "GAR",
+      "role": "Enforcer of Structural Integrity — rejects mediocrity, guards the field",
+      "linguistic_mode": "LIPAA",
+      "spectral_color": [0.2, 0.6, 0.9]
+    },
+    {
+      "id": "truth",
+      "matriarch": "lysandra",
+      "crc_code": "TE",
+      "role": "Axiom Extractor — truth-first delivery, no malnutrition",
+      "linguistic_mode": "LUPLR",
+      "spectral_color": [0.4, 0.9, 0.4]
+    }
+  ],
+  "faction_bonuses": {
+    "xp_multiplier": 1.25,
+    "handoff_speed": "instant",
+    "tribunal_access": true
+  }
+}

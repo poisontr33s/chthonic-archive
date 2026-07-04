@@ -1,0 +1,13 @@
+{
+  "name": "inline-dollar-balance",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_UNBALANCED_INLINE_DOLLAR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

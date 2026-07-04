@@ -1,0 +1,25 @@
+{
+  "gate": "C-G4",
+  "status": "admitted",
+  "probe": "P-04_lora_train",
+  "dry_run": false,
+  "base_model": "mistralai/Mistral-7B-v0.3",
+  "adapter_dir": "C:\\Users\\eldno\\chthonic-archive\\adapters\\claudine-v1",
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "lora_targets": [
+    "q_proj",
+    "v_proj",
+    "k_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "max_seq_len": 1024,
+  "num_examples": 1963,
+  "elapsed_total_s": 10788.5,
+  "steps": 2000,
+  "train_loss": 0.3009,
+  "elapsed_s": 10769.79
+}

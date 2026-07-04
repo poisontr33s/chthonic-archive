@@ -1,0 +1,67 @@
+# vulkan-lab/mise.toml — Oxidized Meta-Manifest
+# Freezes toolchain paths, bypasses broken shims, provides task aliases.
+# Usage: `mise run build` / `mise run probe` / `mise run gemm`
+
+[env]
+# FIX: Bypass broken uv cmake shim (C:\Users\eldno\.local\bin\cmake.exe)
+CMAKE_COMMAND = "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe"
+VULKAN_SDK = "C:/VulkanSDK/1.4.350.0"
+# GCC 16.1.0 from rv MSYS2 DevKit ucrt64. Not on PATH by default in a fresh
+# shell (only rv's own ruby-4.0.5/bin is) — _.path below makes CC/CXX
+# resolvable regardless of invoking shell state, instead of relying on the
+# caller having already activated rv's MSYS2 lane.
+CC = "gcc"
+CXX = "g++"
+
+_.path = [
+    "{{env.APPDATA}}/rv/rubies/ruby-4.0.5/msys64/ucrt64/bin",
+]
+
+[tasks.configure]
+description = "CMake configure (dev preset, Ninja)"
+shell = "pwsh -NoProfile -Command"
+run = '& $env:CMAKE_COMMAND --preset dev'
+
+[tasks.build]
+description = "Full build: configure + compile all targets"
+depends = ["configure"]
+shell = "pwsh -NoProfile -Command"
+run = '& $env:CMAKE_COMMAND --build build/dev'
+
+[tasks.probe]
+description = "Run vk_capability_probe"
+depends = ["build"]
+run = 'build\\dev\\vk_probe.exe'
+
+[tasks.gemm]
+description = "Run cooperative matrix GEMM (Vector 2)"
+depends = ["build"]
+shell = "pwsh -NoProfile -Command"
+run = 'Push-Location build/dev; ./coop_matrix.exe coop_matmul.comp.spv; Pop-Location'
+
+[tasks.v3-video]
+description = "Run AV1 video decode session probe (Vector 3)"
+depends = ["build"]
+run = 'build\\dev\\v3_video.exe'
+
+[tasks.clean]
+description = "Delete build dir (disposable state)"
+shell = "pwsh -NoProfile -Command"
+# Retry-with-backoff: freshly-written CMake compiler-ID probe files
+# (CompilerIdCXX, CMakeConfigureLog.yaml) can hold a transient lock (AV
+# on-write scan, or a build subprocess not yet fully exited) for a moment
+# after configure finishes — a bare single-shot Remove-Item intermittently
+# fails on them even with no lingering user-visible process.
+run = '''
+if (Test-Path build) {
+    $attempts = 0
+    do {
+        try { Remove-Item -Recurse -Force build -ErrorAction Stop; break }
+        catch { $attempts++; if ($attempts -ge 5) { throw }; Start-Sleep -Milliseconds 500 }
+    } while ($true)
+}
+'''
+
+[tasks.rebuild]
+description = "Clean + full build from scratch"
+depends = ["clean", "build"]

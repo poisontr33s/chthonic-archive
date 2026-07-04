@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "renpy-uv-py314",
+  "version-string": "0.0.1",
+  "description": "Native C/C++ deps for building Ren'Py against uv-managed Python 3.14.4 on Windows. Mirrors the pkg-config requirements extracted from renpy/renpy@master setup.py.",
+  "supports": "windows & x64",
+  "dependencies": [
+    "pkgconf",
+    "zlib",
+    "libpng",
+    "libjpeg-turbo",
+    "freetype",
+    "fribidi",
+    "openssl",
+    "harfbuzz",
+    "sdl2",
+    "sdl2-image",
+    "assimp",
+    "ffmpeg"
+  ],
+  "$ffmpeg-overlay": "ffmpeg uses an overlay port at vcpkg-overlay-ports/ffmpeg/ pulled from vcpkg HEAD (version 8.1.1). The baseline ffmpeg port (6.1.1) cannot install because msys2-file-5.45-1-x86_64 was delisted. The overlay's portfile only requests automake from MSYS2, sidestepping the dead package. Required when invoking vcpkg: --overlay-ports=apps/renpy-uv-py314/vcpkg-overlay-ports. Risk: 8.1.1 has API changes vs the 5/6-era ABI Ren'Py 8.5.2 was written for; renpy/src/ffmedia.c may need patching.",
+  "builtin-baseline": "821100d967e1737d96414a308e3f7cbe0d1abf18"
+}

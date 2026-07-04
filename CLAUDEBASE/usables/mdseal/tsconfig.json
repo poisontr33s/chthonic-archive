@@ -1,0 +1,7 @@
+{
+  "extends": "../../../tsconfig.bun-base.json",
+  "compilerOptions": {
+    "types": ["bun-types"]
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"]
+}

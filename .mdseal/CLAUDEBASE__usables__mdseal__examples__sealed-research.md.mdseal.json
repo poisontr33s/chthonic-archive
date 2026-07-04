@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\examples\\sealed-research.md",
+  "sourceSha256": "6130750135ee85023916d5b5f4acae6b44cbb6a8f40863883606bada9bbe2b43",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "math_inline",
+      "startOffset": 31,
+      "endOffset": 41,
+      "text": "$E = mc^2$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:02:38.710Z",
+  "hashOnly": false
+}

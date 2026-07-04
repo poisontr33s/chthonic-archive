@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.bun-base.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "types": ["node", "vscode", "react", "react-dom"],
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "webview/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

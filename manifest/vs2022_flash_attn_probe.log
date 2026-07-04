@@ -1,0 +1,31 @@
+C:\Users\eldno\chthonic-archive\probes\python\vs2022_flash_attn_probe.py:151: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "timestamp": datetime.datetime.utcnow().isoformat() + "Z",
+[P-06] VS 2022 14.4x detected: 14.44.35207 — skipping install
+[P-06] vcvarsall: C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat
+[P-06] Building flash-attn==2.8.3 with MSVC 14.44.35207...
+       cl.exe: C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe
+       INCLUDE[:120]: C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include;C:\Program Files (x86)\
+[P-06] Build output → C:\Users\eldno\chthonic-archive\manifest\flash_attn_build_full.log
+[P-06] BUILD SUCCEEDED — Gate 6 cleared with MSVC 14.44.35207
+{
+  "gate": "flash_attn/vs2022_buildtools_retry",
+  "artifact_type": "probe",
+  "probe_id": "P-06",
+  "timestamp": "2026-04-25T05:45:25.070479Z",
+  "target_package": "flash-attn==2.8.3",
+  "build_mode": "--no-build-isolation",
+  "cuda_home": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.8",
+  "venv_python": "C:\\Users\\eldno\\chthonic-archive\\dev\\tabbyAPI\\.venv\\Scripts\\python.exe",
+  "vs2022_msvc_base": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC",
+  "vs2022_14_4x_detected": true,
+  "vs2022_version": "14.44.35207",
+  "vs2022_cl_path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+  "install_phase": "skipped \u2014 already present",
+  "build_exit_code": 0,
+  "build_output_tail": "Using Python 3.14.4 environment at: dev\\tabbyAPI\\.venv\nINFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(1) @ 2.8.3 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(2) @ 2.11.0+cu128 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(3) @ 0.8.2 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(4) @ 3.29.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(5) @ 4.15.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(6) @ 81.0.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(7) @ 1.14.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(8) @ 3.6.1 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(9) @ 3.1.6 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(10) @ 2026.3.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(11) @ 1.3.0 without checking dependencies\nINFO add_decision: Id::<PubGrubPackage>(12) @ 3.0.3 without checking dependencies\nResolved 12 packages in 6ms\n   Building flash-attn==2.8.3\n      Built flash-attn==2.8.3\nPrepared 1 package in 60m 42s\nInstalled 1 package in 30ms\n + flash-attn==2.8.3\n",
+  "build_result": "SUCCESS",
+  "status": "source_build_succeeded_vs2022_14_4x",
+  "level": "L1_install_admitted"
+}
+
+manifest written: C:\Users\eldno\chthonic-archive\manifest\vs2022_flash_attn_probe.json

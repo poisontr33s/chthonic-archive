@@ -1,0 +1,35 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\docs\\CORPUS_GUIDE.md",
+  "sourceSha256": "1bc217746ac0dc419c6008bd0a9e233bf6339c2f8b9bfa82aabbe17f055e6cc4",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "inline_code",
+      "startOffset": 32,
+      "endOffset": 43,
+      "text": "`broken.md`"
+    },
+    {
+      "kind": "inline_code",
+      "startOffset": 45,
+      "endOffset": 56,
+      "text": "`golden.md`"
+    },
+    {
+      "kind": "inline_code",
+      "startOffset": 62,
+      "endOffset": 73,
+      "text": "`meta.json`"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.544Z",
+  "hashOnly": false
+}

@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\trailing-escape\\golden.md",
+  "sourceSha256": "44450c1ef230dcb7457d4ba767f81cc6730313a5bbd8d9f5467a5e167d698be4",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 1,
+      "endOffset": 3,
+      "text": "$$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:20.032Z",
+  "hashOnly": false
+}

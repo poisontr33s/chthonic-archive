@@ -1,0 +1,15 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.ts",
+  "title": "preflightExecutionContext.ts",
+  "role": "script",
+  "purpose": "Preflight Execution Context Tool Reports execution environment with explicit refusal of ambiguity.",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.ts",
+  "exports": [],
+  "xrefs": [
+    "bun:os",
+    "bun:process"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/tools/preflightExecutionContext.ts",
+  "updated_at": "2026-02-05T20:04:01.011094+00:00"
+}

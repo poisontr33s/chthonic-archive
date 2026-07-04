@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\backslash-collapse\\golden.md",
+  "sourceSha256": "f98b36e877f0bb1f12b1dcdf52e1ef588b3bee6a510a3ef75cb502bfc5168666",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "math_inline",
+      "startOffset": 5,
+      "endOffset": 14,
+      "text": "$\\\\alpha$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.650Z",
+  "hashOnly": false
+}

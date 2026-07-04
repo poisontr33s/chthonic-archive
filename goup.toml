@@ -1,0 +1,38 @@
+# goup project config - chthonic-archive
+#
+# Current goup-rs v0.16.11 does not consume TOML project config. Its native
+# project detection is go.work/go.mod. This file is the repo contract and the
+# proposed upstream schema target.
+#
+# @SID: TOOLCHAIN_GO_GOUP_V1
+# @Type: Configuration
+
+[toolchain]
+channel = "1.26.4"
+profile = "stable"
+targets = ["windows/amd64"]
+
+[goup]
+manager = "goup"
+home = "$env:USERPROFILE\\.goup"
+project_detection = ["goup.toml", "go.work", "go.mod"]
+
+[commands]
+install_stable = "goup install stable"
+self_update = "goup self update"
+list = "goup list"
+env = "goup env"
+shell = "goup shell"
+
+[policy]
+no_raw_go_bootstrap = true
+no_runtime_go_install = true
+prefer_goup_for_go_updates = true
+prefer_go_mod_or_go_work_for_real_go_modules = true
+root_go_work_requires_real_modules = true
+
+[cleanup]
+# Proposed upstream behavior: keep active/default plus this many previous
+# versions. Current goup requires explicit `goup remove <version>`.
+keep_previous_versions = 0
+prune_after_stable_update = true

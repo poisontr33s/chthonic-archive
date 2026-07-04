@@ -1,0 +1,24 @@
+# chthonic-archive repo root — mise monorepo entrypoint
+#
+# Wires extensions/chthonic-archive/.chthonic/mise.toml (the extension's own
+# "Monolithic Slab" kernel config) into root-level reach, via mise's native
+# monorepo mode (monorepo_root + [monorepo].config_roots — not an invented
+# mechanism, see mise docs/tasks/monorepo.md).
+#
+# Deliberately declares no [tools]/[tasks] of its own: the slab's tools
+# (cargo-binstall/terraform/kubectl) and tasks stay scoped to their own
+# directory, not promoted repo-wide. config_roots is an explicit allowlist —
+# it does not recursively auto-discover every mise.toml across this
+# poly-repo's satellites, only the one directory named below.
+#
+# From repo root, slab tasks run as:
+#   mise //extensions/chthonic-archive/.chthonic:nvidia-probe
+#   mise run //extensions/chthonic-archive/.chthonic:nvidia-probe
+# The existing bare form (`mise run nvidia-probe`) still works unchanged when
+# CWD is inside extensions/chthonic-archive/.chthonic/ itself.
+monorepo_root = true
+
+[monorepo]
+config_roots = [
+    "extensions/chthonic-archive/.chthonic",
+]

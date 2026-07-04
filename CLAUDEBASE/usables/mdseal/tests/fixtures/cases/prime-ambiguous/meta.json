@@ -1,0 +1,13 @@
+{
+  "name": "prime-ambiguous",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_PRIME_SUBSTITUTION_AMBIGUITY"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

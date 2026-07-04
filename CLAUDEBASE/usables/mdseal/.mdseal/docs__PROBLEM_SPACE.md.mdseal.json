@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\docs\\PROBLEM_SPACE.md",
+  "sourceSha256": "69f43c0612ecae4896c761e61f8fdb5c909f5317a6feedc3dbfade6948a172f0",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "inline_code",
+      "startOffset": 17,
+      "endOffset": 25,
+      "text": "`mdseal`"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.575Z",
+  "hashOnly": false
+}

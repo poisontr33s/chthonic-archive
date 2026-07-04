@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\blank-line-display\\golden.md",
+  "sourceSha256": "80145d121a52aefa2dcf453b162b5f83f4c9717c804510429dea935638e61907",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 0,
+      "endOffset": 2,
+      "text": "$$"
+    },
+    {
+      "kind": "unknown",
+      "startOffset": 7,
+      "endOffset": 9,
+      "text": "$$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.673Z",
+  "hashOnly": false
+}

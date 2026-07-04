@@ -1,0 +1,19 @@
+{
+  "name": "chthonic-local",
+  "owner": {
+    "name": "E.s.Abbr."
+  },
+  "metadata": {
+    "description": "Local marketplace for chthonic-archive (IDE self-heal + mailbox continuity tooling).",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "chthonic-tools",
+      "source": "./plugins/chthonic-tools",
+      "description": "Ops tooling: Insiders self-heal + mailbox continuity helpers."
+    }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "name": "parser-fence-disagreement",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_PARSER_FENCE_COUNT_DISAGREEMENT"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

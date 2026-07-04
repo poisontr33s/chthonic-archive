@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Nile delta with ripple water marks -->
+ <path d="M8 1.5v4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+ <path d="M8 6c-2 2-3.5 4-4.5 7" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <path d="M8 6c2 2 3.5 4 4.5 7" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <!-- Ripple marks (change indicator) -->
+ <path d="M5.5 10c.5-.5 1-.5 1.5 0s1 .5 1.5 0" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "name": "image-policy-requires-ocr-refusal",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_REFUSE_IMAGE_POLICY_REQUIRES_OCR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

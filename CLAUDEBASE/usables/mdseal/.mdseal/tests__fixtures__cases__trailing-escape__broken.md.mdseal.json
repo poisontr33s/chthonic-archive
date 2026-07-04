@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\trailing-escape\\broken.md",
+  "sourceSha256": "ae78cd1e7caa712406053a81d3bca398f4a7971c2b4bd8a0bf78df7e01de3b09",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 3,
+      "endOffset": 5,
+      "text": "$$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:20.026Z",
+  "hashOnly": false
+}

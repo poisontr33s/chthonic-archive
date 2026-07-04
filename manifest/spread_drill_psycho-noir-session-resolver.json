@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-05-28T20:31:58.801Z",
+  "spread_index_generated_at": "2026-05-28T20:31:08.991Z",
+  "project": {
+    "name": "psycho-noir-session-resolver",
+    "rel_path": "git-dump-lfs-holder-we-it-takes\\vscode-extension",
+    "root_dir": "c:\\Users\\eldno\\git-dump-lfs-holder-we-it-takes\\vscode-extension",
+    "languages": [
+      "node"
+    ],
+    "mode_hint": "snipe",
+    "repurposability_score": 2
+  },
+  "file_count": 2,
+  "ts_file_count": 2,
+  "rust_file_count": 0,
+  "native_file_count": 0,
+  "rust_pub_kinds": {},
+  "top_imports": [
+    {
+      "path": "vscode",
+      "count": 1
+    },
+    {
+      "path": "path",
+      "count": 1
+    },
+    {
+      "path": "axios",
+      "count": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "src\\copilot_integration.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 219,
+      "bytes": 7877,
+      "imports": [],
+      "exports": [
+        "initializePsychoNoirProtocols",
+        "ironMaiden",
+        "naturalLanguageBridge",
+        "necromancer",
+        "sadhanaManager",
+        "scanner"
+      ]
+    },
+    {
+      "path": "src\\extension.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 532,
+      "bytes": 20652,
+      "imports": [
+        "vscode",
+        "path",
+        "axios"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ]
+    }
+  ]
+}

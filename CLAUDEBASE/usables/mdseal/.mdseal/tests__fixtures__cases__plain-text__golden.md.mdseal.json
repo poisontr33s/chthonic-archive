@@ -1,0 +1,16 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\plain-text\\golden.md",
+  "sourceSha256": "8f01380299bc54444c76b844aa4c4d4af5f54f9bf2e483f35bda958d1fe95c7b",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.905Z",
+  "hashOnly": false
+}

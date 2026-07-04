@@ -1,0 +1,16 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\deescaped-display-brackets\\golden.md",
+  "sourceSha256": "62257b6147834123e70c2b802bf02d52b160b29794f71692d3e157970a05c080",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.697Z",
+  "hashOnly": false
+}

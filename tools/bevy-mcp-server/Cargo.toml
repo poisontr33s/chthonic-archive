@@ -1,0 +1,24 @@
+[package]
+name = "bevy-mcp-server"
+version = "0.19.0"
+edition = "2024"
+description = "Model Context Protocol Server for Bevy 0.19.0 Documentation"
+authors = ["chthonic-archive"]
+
+[dependencies]
+# The official Model Context Protocol Rust SDK, enabling server capabilities and macros
+rmcp = { version = "2.1", features = ["server", "transport-io", "macros"] }
+# Asynchronous runtime for executing non-blocking HTTP requests
+tokio = { version = "1.40", features = ["full", "rt-multi-thread"] }
+# Serialization framework
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# JSON Schema generator required by rmcp to expose tool argument structures to the agent
+schemars = "0.8"
+# HTTP client for fetching raw Markdown from GitHub
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+# Observability and logging framework
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# Ergonomic error handling
+anyhow = "1.0"

@@ -1,0 +1,13 @@
+{
+  "name": "katex-regression-refusal",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_KATEX_UNSAFE_COMMAND"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

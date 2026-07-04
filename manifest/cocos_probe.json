@@ -1,0 +1,25 @@
+{
+  "generated": "2026-05-01T23:45:45.818Z",
+  "dashboard": {
+    "exe": "C:\\Program Files (x86)\\CocosDashboard\\CocosDashboard.exe",
+    "version": "2.2.1",
+    "exists": true,
+    "gpu_flags": [
+      "--ignore-gpu-blocklist",
+      "--use-vulkan",
+      "--enable-features=Vulkan",
+      "--disable-gpu-compositing",
+      "--enable-gpu-rasterization",
+      "--enable-native-gpu-memory-buffers"
+    ]
+  },
+  "creators": [
+    {
+      "version": "3.8.8",
+      "exe": "C:\\ProgramData\\cocos\\editors\\Creator\\3.8.8\\CocosCreator.exe",
+      "root": "C:\\ProgramData\\cocos\\editors\\Creator\\3.8.8"
+    }
+  ],
+  "registry_entries": [],
+  "status": "ready"
+}

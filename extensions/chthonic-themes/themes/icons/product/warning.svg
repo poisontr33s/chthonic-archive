@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Unfinished pyramid with central eye slot — vigilance/warning -->
+ <path d="M8 1.5L1.5 14h13z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+ <!-- Eye of providence in capstone zone -->
+ <path d="M6 9c1-1 1.5-1 2 0" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+ <path d="M6 9c1 1 1.5 1 2 0" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+ <circle cx="7" cy="9" r="0.4" fill="currentColor" stroke="none"/>
+</svg>

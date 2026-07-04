@@ -1,0 +1,1 @@
+![equation](../../../../../../../dev/sd-candidates/sdnext/html/missing.png)

@@ -1,0 +1,13 @@
+{
+  "name": "parser-html-math-like-text",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_PARSER_HTML_BLOCK_DISAGREEMENT"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

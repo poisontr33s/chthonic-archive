@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "operators": {
+    "trainstop-orchestrator": {
+      "mode": "meta",
+      "read": true,
+      "mutate": false,
+      "cross_lane_mutate": false,
+      "self_target": true,
+      "recurse": true,
+      "requires_artifacts": true,
+      "requires_review": true
+    },
+    "skill-polisher": {
+      "mode": "mutating",
+      "read": true,
+      "mutate": true,
+      "cross_lane_mutate": true,
+      "self_target": true,
+      "recurse": false,
+      "requires_artifacts": true,
+      "requires_review": true
+    },
+    "skill-audit": {
+      "mode": "read_only",
+      "read": true,
+      "mutate": false,
+      "cross_lane_mutate": false,
+      "self_target": true,
+      "recurse": false,
+      "requires_artifacts": true,
+      "requires_review": false
+    },
+    "link-path-guard": {
+      "mode": "mutating",
+      "read": true,
+      "mutate": true,
+      "cross_lane_mutate": true,
+      "self_target": true,
+      "recurse": false,
+      "requires_artifacts": true,
+      "requires_review": true
+    }
+  }
+}

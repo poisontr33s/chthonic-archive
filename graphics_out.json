@@ -1,0 +1,253 @@
+{
+  "host": {
+    "manufacturer": "Komplett",
+    "model": "KomplettPC",
+    "total_physical_memory": 68463382528
+  },
+  "gpu": {
+    "controllers": [
+      {
+        "Name": "NVIDIA GeForce RTX 4090",
+        "DriverVersion": "32.0.16.1062",
+        "AdapterRAM": 4293918720
+      }
+    ],
+    "nvidia_smi_driver": null,
+    "cuda_driver_version": null
+  },
+  "graphics": {
+    "vulkan_sdk": "C:\\VulkanSDK\\1.4.350.0",
+    "glslc_path": "C:\\VulkanSDK\\1.4.350.0\\Bin\\glslc.exe",
+    "glslc_version": "shaderc v2026.2 v2026.2",
+    "dxc_path": "C:\\VulkanSDK\\1.4.350.0\\Bin\\dxc.exe",
+    "dxc_version": "Version: dxcompiler.dll: 1.10(5347-fe261573)(1.9.0.5347) - 1.9.0.5347 (fe2615732)"
+  },
+  "compute": {
+    "nvcc_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3\\bin\\nvcc.exe",
+    "nvcc_version": "CUDA 13.3 / nvcc 13.3.33",
+    "cuda_path": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v13.3",
+    "cudnn_dirs": [
+      "C:\\Program Files\\NVIDIA\\CUDNN\\v9.20"
+    ],
+    "tensorrt_dirs": [
+      "C:\\Program Files\\NVIDIA\\TensorRT-10.16.0.72",
+      "C:\\Program Files\\NVIDIA\\TensorRT-10.16.1.11"
+    ]
+  },
+  "msvc": {
+    "cl_path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe",
+    "msbuild_path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\MSBuild.exe",
+    "devenv_path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\devenv.exe",
+    "link_path": "C:\\Program Files\\Git\\usr\\bin\\link.exe",
+    "linker_shadow": true,
+    "linker_effective": "mitigated",
+    "linker_mitigations": [
+      {
+        "id": "M1",
+        "name": ".cargo/config.toml linker pin",
+        "active": true,
+        "value": "C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Insiders\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\link.exe"
+      },
+      {
+        "id": "M3",
+        "name": "Ruby/MSYS2 opt-in PATH guard",
+        "active": true,
+        "value": "MSYS2 DevKit excluded unless CHTHONIC_ENABLE_RUBY_DEVKIT_PATH=1"
+      }
+    ],
+    "cargo_config_linker": "C:\\\\Program Files\\\\Microsoft Visual Studio\\\\18\\\\Insiders\\\\VC\\\\Tools\\\\MSVC\\\\14.51.36231\\\\bin\\\\Hostx64\\\\x64\\\\link.exe"
+  },
+  "openssl": {
+    "version": "4.0.0",
+    "major": 4,
+    "effective": "fully mitigated",
+    "mitigations": [
+      {
+        "id": "M1",
+        "name": "openssl-sys OpenSSL 4 support",
+        "active": true,
+        "value": "crates.io 0.9.117"
+      },
+      {
+        "id": "M2",
+        "name": "OPENSSL env vars (User scope)",
+        "active": true,
+        "value": "C:\\Program Files\\OpenSSL-Win64"
+      }
+    ],
+    "dir": "C:\\Program Files\\OpenSSL-Win64",
+    "lib_dir": "C:\\Program Files\\OpenSSL-Win64\\lib\\VC\\x64\\MD",
+    "include_dir": "C:\\Program Files\\OpenSSL-Win64\\include",
+    "dir_exists": true,
+    "env_persisted": true,
+    "has_cargo_patch": false
+  },
+  "shaders": {
+    "source_count": 19,
+    "sources": [
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "cloud_noise.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\cloud_noise.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "cloud_raymarch.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\cloud_raymarch.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "iso_grid.frag.hlsl",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl\\iso_grid.frag.hlsl",
+        "ext": ".hlsl"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "iso_grid.vert.hlsl",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl\\iso_grid.vert.hlsl",
+        "ext": ".hlsl"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "iso_grid.frag",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\iso_grid.frag",
+        "ext": ".frag"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "iso_grid.vert",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\iso_grid.vert",
+        "ext": ".vert"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "multiscatter.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\multiscatter.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "ocean_displace.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\ocean_displace.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "ocean_evolve.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\ocean_evolve.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "ocean_fft.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\ocean_fft.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "ocean_h0.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\ocean_h0.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "skyview.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\skyview.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "trail_decompress.comp.glsl",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\trail_decompress.comp.glsl",
+        "ext": ".glsl"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "transmittance.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\transmittance.comp",
+        "ext": ".comp"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "taa_resolve.frag",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\taa_resolve.frag",
+        "ext": ".frag"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "taa_resolve.vert",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\taa_resolve.vert",
+        "ext": ".vert"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "water.frag",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\water.frag",
+        "ext": ".frag"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders",
+        "name": "water.vert",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\water.vert",
+        "ext": ".vert"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\chthonic-daemon\\src\\shaders",
+        "name": "sediment.comp",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\chthonic-daemon\\src\\shaders\\sediment.comp",
+        "ext": ".comp"
+      }
+    ],
+    "hlsl_source_count": 2,
+    "hlsl_sources": [
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl",
+        "name": "iso_grid.frag.hlsl",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl\\iso_grid.frag.hlsl",
+        "ext": ".hlsl"
+      },
+      {
+        "root": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl",
+        "name": "iso_grid.vert.hlsl",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\assets\\shaders\\hlsl\\iso_grid.vert.hlsl",
+        "ext": ".hlsl"
+      }
+    ]
+  },
+  "caches": [
+    {
+      "name": "DXCache",
+      "path": "C:\\Users\\eldno\\AppData\\Local\\NVIDIA\\DXCache",
+      "exists": true,
+      "size_bytes": 5221691392.0
+    },
+    {
+      "name": "GLCache",
+      "path": "C:\\Users\\eldno\\AppData\\Local\\NVIDIA\\GLCache",
+      "exists": true,
+      "size_bytes": 1409407.0
+    },
+    {
+      "name": "ComputeCache",
+      "path": "C:\\Users\\eldno\\AppData\\Local\\NVIDIA\\ComputeCache",
+      "exists": false,
+      "size_bytes": null
+    },
+    {
+      "name": "D3DSCache",
+      "path": "C:\\Users\\eldno\\AppData\\Local\\D3DSCache",
+      "exists": true,
+      "size_bytes": 3708248.0
+    }
+  ],
+  "repo": {
+    "vs_dir_exists": true,
+    "vscode_dir_exists": true,
+    "cmake_lists_exists": true,
+    "cmake_presets_exists": true,
+    "cuda_probe_exists": true,
+    "tensor_runtime_host_exists": true
+  }
+}

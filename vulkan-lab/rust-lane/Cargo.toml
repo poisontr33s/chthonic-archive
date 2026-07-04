@@ -1,0 +1,15 @@
+[package]
+name = "vulkan-lab-rs"
+version = "0.1.0"
+edition = "2024"
+
+# Standalone: nested under the root tree but not a root workspace member. An empty [workspace]
+# makes it its own one-crate workspace (decoupled, self-contained for later pruning).
+[workspace]
+
+[dependencies]
+ash = "0.38"
+# vulkano = "0.35"  # Alternative high-level wrapper — uncomment when needed
+
+[features]
+default = []

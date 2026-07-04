@@ -1,0 +1,34 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\broken\\image.md",
+  "sourceSha256": "cad75fbe908fd5b68955563dfbf65c7a7992c1a3cfd19baef1810a69041f4af0",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "image_alt_text",
+      "startOffset": 0,
+      "endOffset": 10,
+      "text": "equation"
+    },
+    {
+      "kind": "image_destination",
+      "startOffset": 12,
+      "endOffset": 33,
+      "text": "./images/equation.png"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [
+    {
+      "path": "./images/equation.png",
+      "alt": "equation"
+    }
+  ],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.623Z",
+  "hashOnly": false
+}

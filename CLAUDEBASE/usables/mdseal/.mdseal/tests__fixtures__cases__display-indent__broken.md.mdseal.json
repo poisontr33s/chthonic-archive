@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\display-indent\\broken.md",
+  "sourceSha256": "1661ddb6b410d059d3725a1de3f3e3c7ab5763374c024d4db1ab6782de4da34b",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "list_item",
+      "startOffset": 0,
+      "endOffset": 6,
+      "text": "- item"
+    },
+    {
+      "kind": "math_display",
+      "startOffset": 9,
+      "endOffset": 16,
+      "text": "$$x^2$$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.703Z",
+  "hashOnly": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "verify_all/v1",
+  "emittedAt": "2026-04-29T00:48:38.228Z",
+  "platform": "win32",
+  "arch": "x64",
+  "status": "passed",
+  "lanes": [
+    {
+      "name": "synapse-node",
+      "status": "SMOKE_OK",
+      "artifactPath": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\src\\reactor\\synapse.node",
+      "artifactCandidates": [
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\dist\\synapse-win32-x64.node",
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\src\\reactor\\synapse.node",
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\release\\synapse_node.dll"
+      ],
+      "smokeNote": "createRequire() loaded the .node and SynapseReader is exported"
+    },
+    {
+      "name": "chthonic-daemon",
+      "status": "SMOKE_OK",
+      "artifactPath": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\release\\chthonic-daemon.exe",
+      "artifactCandidates": [
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\release\\chthonic-daemon.exe",
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\debug\\chthonic-daemon.exe"
+      ],
+      "smokeNote": "--help reports --workspace flag; daemon CLI surface intact"
+    },
+    {
+      "name": "entropy-ledger-host",
+      "status": "SMOKE_OK",
+      "artifactPath": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\release\\entropy-ledger-host.exe",
+      "artifactCandidates": [
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\release\\entropy-ledger-host.exe",
+        "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\debug\\entropy-ledger-host.exe"
+      ],
+      "smokeNote": "--help exit=0; binary executes without crash"
+    }
+  ]
+}

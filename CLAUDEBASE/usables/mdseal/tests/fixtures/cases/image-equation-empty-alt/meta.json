@@ -1,0 +1,13 @@
+{
+  "name": "image-equation-empty-alt",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_IMAGE_EQUATION_WITHOUT_ALT_LATEX"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "deescaped-display-brackets",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_BRACKET_DELIMITER_DEESCAPED"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

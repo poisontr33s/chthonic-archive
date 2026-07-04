@@ -1,0 +1,15 @@
+{
+  "id": "scripts/lib/__init__.py",
+  "title": "__init__.py",
+  "role": "script",
+  "purpose": "chthonic.lib - Shared utilities for chthonic CLI tools @SID:           LIB_CHTHONIC_SHARED @Type:          Library @Context:       Infrastructure / Shared Utili",
+  "invoke": "uv run scripts/lib/__init__.py",
+  "exports": [],
+  "xrefs": [
+    "io",
+    "sys"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/__init__.py",
+  "updated_at": "2026-02-05T20:04:01.121295+00:00"
+}

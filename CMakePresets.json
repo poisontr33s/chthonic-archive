@@ -1,0 +1,54 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "dev-ninja",
+      "displayName": "Chthonic Dev (Ninja)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cmake/dev-ninja"
+    },
+    {
+      "name": "multi-ninja",
+      "displayName": "Chthonic Multi-Config (Ninja)",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build/cmake/multi-ninja"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "cargo-debug",
+      "configurePreset": "dev-ninja",
+      "targets": ["cargo_debug"]
+    },
+    {
+      "name": "cargo-release",
+      "configurePreset": "dev-ninja",
+      "targets": ["cargo_release"]
+    },
+    {
+      "name": "graphics-lane",
+      "configurePreset": "dev-ninja",
+      "targets": ["graphics_lane"]
+    },
+    {
+      "name": "shaders-glsl",
+      "configurePreset": "dev-ninja",
+      "targets": ["shaders_glsl"]
+    },
+    {
+      "name": "shaders-hlsl",
+      "configurePreset": "dev-ninja",
+      "targets": ["shaders_hlsl"]
+    },
+    {
+      "name": "cuda-probe",
+      "configurePreset": "dev-ninja",
+      "targets": ["cuda_probe"]
+    }
+  ]
+}

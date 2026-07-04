@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chthonic://game/design/quests.schema.json",
+  "title": "Chthonic Quest Structure",
+  "description": "Schema for quest chains, step gating, rewards, and state transitions.",
+  "type": "object",
+  "required": ["quest_id", "title", "steps"],
+  "properties": {
+    "quest_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "number"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/step"
+      }
+    },
+    "rewards": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reward"
+      }
+    }
+  },
+  "$defs": {
+    "step": {
+      "type": "object",
+      "required": ["id", "objective", "completion"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "objective": {
+          "type": "string"
+        },
+        "completion": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        }
+      }
+    },
+    "reward": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "value": {}
+      }
+    }
+  }
+}

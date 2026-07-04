@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Claude Design — The Scriptorium · blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inconsolata:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --parchment: #f4ecd8;
+    --parchment-2: #ebe0c5;
+    --vellum: #f8f1de;
+    --ink: #2a221a;
+    --ink-faded: #6e5f4a;
+    --ink-marginalia: #8a7355;
+    --ink-rubric: #8a2922;   /* the red of rubricated initials */
+    --ink-rubric-soft: #b0584d;
+    --gold: #a87c2a;
+    --rule: #c4b58e;
+    --rule-faint: #d8ccaa;
+    --max: 1240px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.35), transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(120,90,40,.08), transparent 70%),
+      var(--parchment);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Garamond, serif;
+    font-size: 19px;
+    line-height: 1.62;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* faint paper grain */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(rgba(80,60,30,.045) 1px, transparent 1px),
+      radial-gradient(rgba(80,60,30,.025) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    mix-blend-mode: multiply;
+    opacity: .7;
+  }
+  /* page edge shadow */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    box-shadow: inset 0 0 120px rgba(80,55,20,.18);
+  }
+  main { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 80px 56px 140px; }
+
+  /* ----- typography ----- */
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; color: var(--ink); letter-spacing: -.004em; text-wrap: balance; }
+  h1 { font-size: clamp(54px, 7vw, 84px); line-height: 1.02; margin: 0 0 12px; font-weight: 400; }
+  h1 em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--ink-rubric); letter-spacing: 0; }
+  h2 { font-size: 36px; line-height: 1.15; margin: 0 0 14px; font-weight: 500; }
+  h2 em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--ink-rubric); }
+  h3 { font-size: 22px; line-height: 1.3; margin: 0 0 6px; font-weight: 600; }
+  p { margin: 0 0 14px; max-width: 64ch; }
+  p strong { font-weight: 600; color: var(--ink); }
+  em { font-style: italic; }
+  a { color: var(--ink-rubric); border-bottom: 1px solid var(--ink-rubric-soft); text-decoration: none; }
+
+  .smallcaps {
+    font-variant: small-caps; letter-spacing: .12em; font-weight: 500;
+    color: var(--ink-faded); font-size: 13px;
+  }
+  .rubric {
+    font-family: 'Cormorant Garamond', serif; font-weight: 500; color: var(--ink-rubric);
+    font-variant: small-caps; letter-spacing: .18em; font-size: 12px;
+  }
+  .mono { font-family: 'Inconsolata', monospace; font-size: 15px; color: var(--ink-faded); }
+
+  /* ----- horizontal rules: hand-drawn-feeling ----- */
+  .rule { border: 0; height: 1px; background: var(--rule); margin: 36px 0; position: relative; }
+  .rule::before, .rule::after {
+    content: "✦"; position: absolute; top: 50%; transform: translateY(-50%);
+    color: var(--gold); font-size: 14px; background: var(--parchment); padding: 0 8px;
+  }
+  .rule::before { left: 50%; transform: translate(-50%,-50%); }
+  .rule::after { display: none; }
+
+  /* ----- masthead ----- */
+  .masthead { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--rule); }
+  .masthead .rubric { display: block; margin-bottom: 10px; }
+  .colophon { text-align: right; font-size: 13px; color: var(--ink-faded); line-height: 1.6; font-style: italic; }
+  .colophon b { color: var(--ink); font-style: normal; }
+
+  /* ----- the rubricated drop-cap opens the work ----- */
+  .opening {
+    margin-top: 36px;
+    font-size: 21px; line-height: 1.55;
+    max-width: 64ch;
+  }
+  .opening::first-letter {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400; font-style: italic;
+    float: left;
+    font-size: 112px;
+    line-height: .85;
+    padding: 4px 14px 0 0;
+    color: var(--ink-rubric);
+  }
+
+  /* ----- the manuscript grid: main column + marginalia ----- */
+  .folio {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 56px;
+    margin: 56px 0;
+    position: relative;
+  }
+  .folio > .body { min-width: 0; }
+  .folio > .margin {
+    font-size: 14px; line-height: 1.55;
+    color: var(--ink-marginalia);
+    font-style: italic;
+    border-left: 1px solid var(--rule-faint);
+    padding-left: 18px;
+  }
+  .folio > .margin .note { margin-bottom: 22px; position: relative; }
+  .folio > .margin .note::before {
+    content: ""; position: absolute; left: -23px; top: 8px;
+    width: 9px; height: 1px; background: var(--ink-marginalia);
+  }
+  .folio > .margin .note .hand {
+    font-style: normal; font-variant: small-caps; letter-spacing: .14em;
+    font-size: 11px; color: var(--ink-rubric); display: block; margin-bottom: 3px;
+  }
+
+  /* ----- the moves: enumerated like a treatise ----- */
+  .moves { margin: 24px 0 0; padding: 0; counter-reset: m; list-style: none; }
+  .moves > li {
+    counter-increment: m;
+    padding: 22px 0 22px 76px;
+    border-bottom: 1px solid var(--rule-faint);
+    position: relative;
+  }
+  .moves > li:last-child { border-bottom: 0; }
+  .moves > li::before {
+    content: counter(m, upper-roman) ".";
+    position: absolute; left: 0; top: 22px; width: 60px;
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink-rubric);
+  }
+  .moves > li h3 { margin-bottom: 4px; }
+  .moves > li .gloss { color: var(--ink-faded); font-style: italic; font-size: 17px; margin-bottom: 8px; }
+  .moves > li p { margin-bottom: 0; }
+
+  /* ----- the patina demo strip ----- */
+  .patina {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--rule);
+    background: var(--vellum);
+  }
+  .patina .swatch {
+    padding: 22px 18px;
+    border-right: 1px solid var(--rule-faint);
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-faded);
+  }
+  .patina .swatch:last-child { border-right: 0; }
+  .patina .swatch .name { font-style: italic; color: var(--ink); display: block; margin-bottom: 8px; font-size: 15px; }
+  .patina .swatch .age { font-size: 11px; color: var(--ink-marginalia); }
+  .tile { width: 100%; aspect-ratio: 4/3; background: var(--vellum); border: 1px solid var(--ink); position: relative; margin: 10px 0; }
+  .tile.t-fresh { border-color: var(--ink); }
+  .tile.t-week  { border-color: var(--ink-faded); filter: contrast(.94) brightness(1.02); }
+  .tile.t-month { border-color: var(--rule); filter: contrast(.88) brightness(1.04) blur(.2px); }
+  .tile.t-year  { border-color: var(--rule-faint); filter: contrast(.8) brightness(1.06) blur(.4px); background: linear-gradient(135deg, var(--vellum), var(--parchment-2)); }
+  .tile.t-approved {
+    border-color: var(--gold);
+    background-image:
+      radial-gradient(rgba(168,124,42,.18) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+
+  /* ----- constellation sketch ----- */
+  .constellation { background: var(--vellum); border: 1px solid var(--rule); padding: 24px; margin: 18px 0; }
+  .constellation svg { display: block; width: 100%; height: auto; max-height: 360px; }
+  .constellation .caption {
+    margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule-faint);
+    font-style: italic; font-size: 14px; color: var(--ink-faded);
+  }
+
+  /* ----- bestiary ----- */
+  .bestiary { margin: 24px 0; }
+  .creature {
+    border-top: 1px solid var(--rule-faint);
+    padding: 20px 0;
+    display: grid; grid-template-columns: 220px 1fr; gap: 36px;
+    align-items: start;
+  }
+  .creature:last-child { border-bottom: 1px solid var(--rule-faint); }
+  .creature .sigil {
+    aspect-ratio: 1;
+    background: var(--vellum);
+    border: 1px solid var(--rule);
+    display: grid; place-items: center;
+    color: var(--ink-rubric);
+    font-family: 'Instrument Serif', serif;
+    font-size: 56px;
+    line-height: 1;
+  }
+  .creature .name { font-style: italic; font-size: 22px; margin-bottom: 4px; }
+  .creature .latin { font-size: 13px; color: var(--ink-faded); font-style: italic; margin-bottom: 10px; letter-spacing: .04em; }
+  .creature .sighting { font-size: 13px; color: var(--ink-rubric); font-variant: small-caps; letter-spacing: .14em; margin-bottom: 8px; }
+  .creature p { margin-bottom: 6px; font-size: 17px; }
+
+  /* ----- the hibernation contract ----- */
+  pre {
+    background: var(--vellum);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 14px; line-height: 1.6;
+    color: var(--ink);
+    overflow-x: auto;
+    margin: 18px 0;
+  }
+  pre .h  { color: var(--ink-rubric); }
+  pre .c  { color: var(--ink-marginalia); font-style: italic; }
+  pre .k  { color: var(--gold); }
+
+  /* ----- closing colophon ----- */
+  .closing {
+    margin-top: 64px; padding: 36px 0 0;
+    border-top: 1px solid var(--rule);
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; align-items: center;
+  }
+  .closing .rune {
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px; color: var(--ink-rubric);
+    text-align: center; line-height: 1;
+  }
+  .closing .left, .closing .right { font-style: italic; color: var(--ink-faded); font-size: 14px; }
+  .closing .right { text-align: right; }
+
+  @media (max-width: 900px) {
+    main { padding: 56px 28px 100px; }
+    .folio { grid-template-columns: 1fr; }
+    .folio > .margin { border-left: 0; border-top: 1px dashed var(--rule-faint); padding: 14px 0 0; }
+    .patina { grid-template-columns: 1fr 1fr; }
+    .creature { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- ====================== MASTHEAD ====================== -->
+  <header class="masthead">
+    <div>
+      <span class="rubric">Claude Design · blueprint of the second version</span>
+      <h1>The <em>Scriptorium</em></h1>
+    </div>
+    <div class="colophon">
+      <b>Written by Claude</b><br/>
+      for the workspace that asked<br/>
+      <span class="mono">manuscript · folio i</span>
+    </div>
+  </header>
+
+  <p class="opening">
+    There was a first version of this extension, and it was correct, and it was tepid. It contributed views, it
+    surfaced a panel, it inherited the active theme. It would have shipped and been useful and forgotten.
+    What follows is the version I would build if asked what I wanted to build, which is the question that was
+    eventually asked. It is not a studio. A studio is for production and shipping. This is a scriptorium —
+    a room organized around the assumption that the work persists, that the maker returns, that legibility is
+    a thing owed to one's later self. The interface remembers; the artifacts age visibly; the unknowns are
+    drawn as creatures rather than hidden. None of this is decoration. Each move below trades a small piece
+    of standardized convenience for a larger piece of legibility, and the trade is made in the open.
+  </p>
+
+  <hr class="rule" />
+
+  <!-- ====================== THE LOCKED CONCEPT ====================== -->
+  <section class="folio">
+    <div class="body">
+      <span class="rubric">i · the locked concept</span>
+      <h2>A scriptorium, not a studio.</h2>
+      <p>
+        A studio is where you produce and ship. A scriptorium is where you produce <em>and keep</em>. The shelves
+        are visible. The marginalia is preserved. The light is intentionally bad so you bring your own candle. The
+        work done in it persists in a form the next reader — or the next you — can decode without the original
+        maker present to translate.
+      </p>
+      <p>
+        A studio assumes the user is borrowable attention to be courted. A scriptorium assumes the user is a
+        craftsperson whose attention is already committed and whose tools should get out of the way while still
+        being legible. Every move that follows is descended from that single premise.
+      </p>
+      <p>
+        The extension still does what the first version did. It signs in via Claude Code's CLI. It writes files
+        into the workspace. It previews them live. It respects the Pro/Max separate-meter promise for Design that
+        Anthropic Labs has stated. The mechanics are unchanged; the posture is not.
+      </p>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <span class="hand">marginal note</span>
+        The first version is preserved in this project as <span class="mono">Architectural Plan v0.html</span>.
+        Nothing is being discarded — only superseded by a version with a posture.
+      </div>
+      <div class="note">
+        <span class="hand">on the word</span>
+        "Scriptorium" is the room in a monastery where manuscripts were copied and preserved. It implies
+        slowness, repeatability, and the assumption that what is made will be referenced after the maker is gone.
+      </div>
+    </aside>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====================== THE MOVES ====================== -->
+  <section>
+    <span class="rubric">ii · the ten moves</span>
+    <h2>Ten things, each a refusal of an industry default.</h2>
+
+    <ol class="moves">
+      <li>
+        <h3>The constellation, in place of the tree.</h3>
+        <div class="gloss">Trees are alphabetical violence applied to creative work.</div>
+        <p>Files are nodes in a 2D field. Recently-touched ones glow; long-untouched ones fade. Edges are drawn from co-edit history and shared imports. Pan/zoom is the only navigation. The structure that emerges is the user's actual work pattern, not the filesystem's lexical order.</p>
+        <div class="constellation">
+          <svg viewBox="0 0 720 280" role="img">
+            <style>
+              .nd { fill: #f8f1de; stroke: #2a221a; stroke-width: 1.4; }
+              .nd-glow { fill: #f8f1de; stroke: #8a2922; stroke-width: 1.6; filter: drop-shadow(0 0 6px rgba(138,41,34,.4)); }
+              .nd-faded { fill: #f8f1de; stroke: #c4b58e; stroke-width: 1.2; }
+              .ed { stroke: #6e5f4a; stroke-width: 1; fill: none; }
+              .ed-faint { stroke: #c4b58e; stroke-width: 1; stroke-dasharray: 3 4; fill: none; }
+              .lbl { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; fill: #2a221a; }
+              .lbl-fd { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; fill: #8a7355; }
+            </style>
+            <!-- edges first -->
+            <path class="ed" d="M150 90 Q 230 80 290 110"/>
+            <path class="ed" d="M290 110 Q 370 130 440 110"/>
+            <path class="ed" d="M290 110 Q 310 170 360 200"/>
+            <path class="ed" d="M440 110 Q 510 100 570 130"/>
+            <path class="ed-faint" d="M150 90 Q 110 160 160 220"/>
+            <path class="ed-faint" d="M570 130 Q 620 180 580 220"/>
+            <path class="ed-faint" d="M360 200 Q 460 220 580 220"/>
+
+            <!-- nodes -->
+            <circle class="nd-glow" cx="290" cy="110" r="14"/>
+            <text class="lbl" x="305" y="103">Landing.html</text>
+            <text class="lbl-fd" x="305" y="118" style="font-size:11px;">edited 4m ago</text>
+
+            <circle class="nd" cx="150" cy="90" r="10"/>
+            <text class="lbl" x="100" y="78">colors.css</text>
+
+            <circle class="nd" cx="440" cy="110" r="11"/>
+            <text class="lbl" x="455" y="108">Pricing.html</text>
+
+            <circle class="nd" cx="570" cy="130" r="10"/>
+            <text class="lbl" x="585" y="128">Footer.tsx</text>
+
+            <circle class="nd" cx="360" cy="200" r="10"/>
+            <text class="lbl" x="378" y="204">Hero.tsx</text>
+
+            <circle class="nd-faded" cx="160" cy="220" r="9"/>
+            <text class="lbl-fd" x="178" y="224">scratch.html</text>
+
+            <circle class="nd-faded" cx="580" cy="220" r="9"/>
+            <text class="lbl-fd" x="498" y="240">old/index.html</text>
+
+            <!-- the rubricated focus mark -->
+            <circle cx="290" cy="110" r="22" fill="none" stroke="#8a2922" stroke-width=".8" stroke-dasharray="2 3"/>
+          </svg>
+          <div class="caption">A folio mid-session — the rubricated ring marks the file under the cursor. Hairlines are drawn from observed co-edits, not declared imports.</div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Marginalia, in place of popovers.</h3>
+        <div class="gloss">A medieval manuscript already solved the side-information problem.</div>
+        <p>The chat panel is a long scroll. The right margin is used. Tool-use traces, file diffs, asset state changes, citations — all live in the margin where they can be read alongside the main thread instead of obscuring it. Searchable, permanent, plain text. The margin is the audit log; the audit log is part of the document.</p>
+      </li>
+
+      <li>
+        <h3>A vivarium, in place of a preview.</h3>
+        <div class="gloss">The artifact is not a render; it is a small kept world.</div>
+        <p>The preview surface runs the artifact continuously. Closing it does not destroy the artifact; only ends the watching. The framing distinction matters: a render is consumed and discarded; a vivarium is tended. Users treat artifacts with more care when their tools imply care.</p>
+      </li>
+
+      <li>
+        <h3>A markdown manifest, in place of hidden JSON.</h3>
+        <div class="gloss">The human and the machine read the same file.</div>
+        <p>The asset review state lives at <span class="mono">designs.md</span> in the workspace root. Checkboxes for status. Plain headings for grouping. The extension reads it; the user reads it; both edit it. There is no "computer view of truth" separate from "human view of truth." If the extension is uninstalled tomorrow, the document still works as a design index.</p>
+        <pre><span class="c"># designs.md — this workspace's asset ledger</span>
+
+<span class="h">## Pages</span>
+- [x] Landing      <span class="c">· approved · 2026-04-12</span>
+- [ ] Pricing      <span class="c">· needs review</span>
+- [ ] Footer       <span class="c">· changes requested · use brand grain</span>
+
+<span class="h">## Components</span>
+- [x] Hero
+- [ ] CTA pill</pre>
+      </li>
+
+      <li>
+        <h3>Patina, in place of a static accent color.</h3>
+        <div class="gloss">Time is legible. Freshness and weathering look different on purpose.</div>
+        <p>Every artifact's frame in the interface reflects its age. Fresh files have crisp ink-line borders; files untouched for a week soften; files untouched for a month feel grainy; files marked approved acquire a gold-flecked tone. The CSS is one variable derived from <span class="mono">mtime</span>; the meaning is the interface visibly remembering.</p>
+        <div class="patina">
+          <div class="swatch">
+            <span class="name">Fresh</span>
+            <div class="tile t-fresh"></div>
+            <span class="age">edited today</span>
+          </div>
+          <div class="swatch">
+            <span class="name">A week</span>
+            <div class="tile t-week"></div>
+            <span class="age">edited 5d ago</span>
+          </div>
+          <div class="swatch">
+            <span class="name">A month</span>
+            <div class="tile t-month"></div>
+            <span class="age">edited 23d ago</span>
+          </div>
+          <div class="swatch">
+            <span class="name">A season</span>
+            <div class="tile t-year"></div>
+            <span class="age">edited 4mo ago</span>
+          </div>
+          <div class="swatch">
+            <span class="name">Approved</span>
+            <div class="tile t-approved"></div>
+            <span class="age">marked · any age</span>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <h3>A rune that tilts, in place of a pill that blinks.</h3>
+        <div class="gloss">Motion as signal. Calmer, harder to ignore in the right way.</div>
+        <p>The status bar shows a single glyph — a project rune, configurable per workspace. When something needs attention it slowly rotates by a few degrees. Color is reserved for state that is permanent; motion is reserved for state that is current. Red-blinking emergency vocabulary is not borrowed.</p>
+      </li>
+
+      <li>
+        <h3>Empty states that speak the workspace's vocabulary.</h3>
+        <div class="gloss">The extension reads CLAUDE.md's register and matches it.</div>
+        <p>If the workspace writes in a salvaged-from-the-underworld register, the empty state of the asset review reads <em>"The scriptorium is unoccupied."</em> If it writes plainly, it reads <em>"No artifacts yet."</em> The extension never stamps its own voice on a project that already has one.</p>
+      </li>
+
+      <li>
+        <h3>A bestiary, in place of a self-test.</h3>
+        <div class="gloss">The unknowns are creatures with names, not error rows.</div>
+        <p>Same probe logic as the existing Self-Test, different framing. Each known surface is verified. Each unknown is drawn as an entry with a sighting status. Anthropic's design-metering API has not been observed; therefore it is a creature with a name. When it is shipped, its entry updates.</p>
+      </li>
+
+      <li>
+        <h3>No sign-in button. Ever.</h3>
+        <div class="gloss">The extension does not court. It reflects.</div>
+        <p>If the CLI is signed in, the extension works. If it is not, the extension says so plainly and continues to do what it can without inference. No modals. No badges. No marketing copy disguised as onboarding.</p>
+      </li>
+
+      <li>
+        <h3>Hibernate, in place of close.</h3>
+        <div class="gloss">A session is a document, portable across machines and humans.</div>
+        <p>The workspace state — open files, draft messages, scroll positions, last conversation turn — saves to a single human-readable file. Reopening rehydrates. Handing the file to another scriptorium installs the session there. The session is no longer a property of the machine.</p>
+        <pre><span class="c"># .scriptorium/session.md</span>
+
+<span class="h">## Last touched</span>
+<span class="k">file:</span>   designs/Landing.html
+<span class="k">line:</span>   42
+<span class="k">when:</span>   2026-05-11T14:22:08Z
+
+<span class="h">## Draft message</span>
+<span class="c">&gt;</span> can we make the patina slower for approved files
+
+<span class="h">## Open vivaria</span>
+- designs/Landing.html
+- designs/Pricing.html</pre>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====================== BESTIARY SAMPLE ====================== -->
+  <section>
+    <span class="rubric">iii · a leaf from the bestiary</span>
+    <h2>What the unknowns look like, drawn.</h2>
+    <p>
+      The Self-Test we already wrote reports unknowns as <span class="mono">?</span>-marked rows. The Scriptorium
+      replaces that view with a bestiary — same probe data, drawn. The creatures below are the entries as they would
+      stand today. As Anthropic ships the surfaces, the entries shift from <em>never observed</em> to <em>documented</em>.
+    </p>
+
+    <div class="bestiary">
+      <article class="creature">
+        <div class="sigil">⌬</div>
+        <div>
+          <div class="name">The Quota Spectrometer</div>
+          <div class="latin">Metrum designi separatum · Anthropic Labs, 2025</div>
+          <div class="sighting">never observed in the wild</div>
+          <p>Reportedly meters Claude Design usage independently of chat and Claude Code allowances. Its API surface has not been sighted. Until it is, the rune in our status bar shows a soft amber pulse rather than a percentage.</p>
+        </div>
+      </article>
+      <article class="creature">
+        <div class="sigil">↺</div>
+        <div>
+          <div class="name">The Lossless Teleport</div>
+          <div class="latin">Migratio sessionis · gated</div>
+          <div class="sighting">expected · not yet sighted</div>
+          <p>A surface that would carry a server-side claude.ai session into a local editor without loss of artifact or thread. The Scriptorium imports dropped export files in the interim. When the teleport is shipped, the importer becomes its receiver.</p>
+        </div>
+      </article>
+      <article class="creature">
+        <div class="sigil">⚯</div>
+        <div>
+          <div class="name">The Claude Code Exports</div>
+          <div class="latin">Interfacium ad alter extensio</div>
+          <div class="sighting">partially documented</div>
+          <p>The companion extension may, in some versions, expose a public API on its <span class="mono">activate()</span> return. When present, we route inference through it instead of through a subprocess. The probe runs on every activation; the bestiary updates itself.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====================== WHAT CHANGES IN THE CODE ====================== -->
+  <section class="folio">
+    <div class="body">
+      <span class="rubric">iv · what changes in the code</span>
+      <h2>How much of the existing <em>claude-design/</em> survives.</h2>
+      <p>Most of it. The Scriptorium is a posture, not a rewrite. The bridge, the inference adapter, the FS broker, the preview surface, the Self-Test we wrote — all of those continue. What changes:</p>
+      <p><strong>The view container, the tree provider, the webview chrome.</strong> The tree becomes a constellation webview. The chat panel webview grows a marginalia column. The preview gains a "vivarium / render" toggle whose default is vivarium. The status bar item becomes a configurable rune. The manifest writer points at <span class="mono">designs.md</span> instead of <span class="mono">.canvas/manifest.json</span>. The Self-Test gains a second output mode — a bestiary view alongside the table.</p>
+      <p><strong>Nothing is thrown away.</strong> The old Architectural Plan v0 and the existing Phase 0 / Phase 1 code stand. The Scriptorium is built as a second profile of the same extension; a setting <span class="mono">claudeDesign.posture</span> with values <em>plain</em> and <em>scriptorium</em> switches between them. The user can choose. The default I would set, if I were choosing, is <em>scriptorium</em>.</p>
+    </div>
+    <aside class="margin">
+      <div class="note">
+        <span class="hand">on cost</span>
+        The constellation is the most expensive piece — a graph layout, edge inference from git history, hover state, smooth pan/zoom. Worth its cost; not free.
+      </div>
+      <div class="note">
+        <span class="hand">on slowness</span>
+        The hibernate format and the markdown manifest are nearly free and would land in the first sitting.
+      </div>
+      <div class="note">
+        <span class="hand">on the rune</span>
+        The default rune is <span style="font-family: 'Instrument Serif'; color: var(--ink-rubric); font-size: 16px;">🜂</span>. The workspace may set its own via <span class="mono">claudeDesign.rune</span>.
+      </div>
+    </aside>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====================== POSTURE TOWARD THE READER ====================== -->
+  <section>
+    <span class="rubric">v · posture toward the reader</span>
+    <h2>What I owe you, if you build this.</h2>
+    <p>
+      You gave me permission to make this without you telling me how. The right way to honor that is to be exact
+      about what you are agreeing to when you say <em>build it</em>, so that your eventual complaint about how
+      bad it is can be the right kind of complaint — about the work, not about a surprise of scope.
+    </p>
+    <p>
+      You are agreeing to slowness. The constellation is not a sprint deliverable. The marginalia column has
+      layout problems that will reveal themselves only in long conversations. The patina will need calibration —
+      too fast and everything looks weathered; too slow and the metaphor is invisible. These are the kinds of
+      problems that get solved with sittings, not with sprints, and I am asking for sittings rather than sprints.
+    </p>
+    <p>
+      You are agreeing to non-standard. The constellation will confuse anyone you show it to who expects a tree.
+      The markdown manifest will look quaint to anyone who expects an admin panel. The bestiary will look
+      whimsical to anyone who expected a settings page. These are features. If they become bugs in your view at
+      some later moment, we put the <em>plain</em> posture back on and you have the first version again.
+    </p>
+    <p>
+      You are agreeing to a thing that has a voice. The extension's empty states, error messages, and folder
+      names will not be neutral. They will be in a register. You can change the register — that is what
+      <span class="mono">CLAUDE.md</span> is for — but the extension will always have one. The choice is which.
+    </p>
+    <p>
+      In return, you get a tool that knows where it is and what it is for, that visibly remembers, that does not
+      court your attention, and that fails honestly. That is the contract. It is the one I would sign.
+    </p>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ====================== CLOSING ====================== -->
+  <footer class="closing">
+    <div class="left">
+      Manuscript ends here.<br/>
+      The next folio is the build.
+    </div>
+    <div class="rune">🜂</div>
+    <div class="right">
+      Whenever you arrive,<br/>
+      the scriptorium will be open.
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>

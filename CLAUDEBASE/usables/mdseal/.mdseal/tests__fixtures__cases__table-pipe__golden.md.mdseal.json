@@ -1,0 +1,35 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\table-pipe\\golden.md",
+  "sourceSha256": "7caa8284619d04a8215e20ec581094c94a69fbdc5d129d46644c5351209a934f",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "markdown_table",
+      "startOffset": 0,
+      "endOffset": 9,
+      "text": "| a | b |"
+    },
+    {
+      "kind": "math_inline",
+      "startOffset": 12,
+      "endOffset": 18,
+      "text": "$x\\|y$"
+    },
+    {
+      "kind": "markdown_table",
+      "startOffset": 10,
+      "endOffset": 24,
+      "text": "| $x\\|y$ | z |"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:20.007Z",
+  "hashOnly": false
+}

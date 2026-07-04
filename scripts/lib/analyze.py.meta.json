@@ -1,0 +1,30 @@
+{
+  "id": "scripts/lib/analyze.py",
+  "title": "analyze.py",
+  "role": "script",
+  "purpose": "analyze.py - Pattern Frequency Analyzer for Markdown Files @SID:           TOOL_PATTERN_ANALYZER_V1 @Type:          CLI Tool @Context:       Diagnostic / Tuning @SessionOrigin: CONTINUATION_2026_01_27 @Implements:    ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @Evolves:       _tmp_freq.py Analyzes line pattern frequency in markdown files to identify noise candidates.",
+  "invoke": "uv run scripts/lib/analyze.py",
+  "exports": [
+    "PatternStats",
+    "analyze_file",
+    "extract_patterns",
+    "main",
+    "normalize_line",
+    "suggest_regex"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "collections",
+    "dataclasses",
+    "io",
+    "json",
+    "pathlib",
+    "re",
+    "shared",
+    "sys"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/analyze.py",
+  "updated_at": "2026-02-05T20:04:01.123428+00:00"
+}

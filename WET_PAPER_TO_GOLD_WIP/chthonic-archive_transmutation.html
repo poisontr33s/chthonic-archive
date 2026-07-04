@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chthonic Archive — Transmutation Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg-void: #06060c;
+  --bg-deep: #0c0c16;
+  --bg-surface: #12121f;
+  --bg-raised: #1a1a2e;
+  --bg-hover: #22223a;
+  --gold-dim: #6b5a28;
+  --gold: #c9a84c;
+  --gold-bright: #e2c87a;
+  --gold-glow: #d4af3740;
+  --text-primary: #d4cfc4;
+  --text-secondary: #8a8478;
+  --text-muted: #5c574e;
+  --border: #2a2a3e;
+  --border-gold: #c9a84c30;
+  --success: #4a7c59;
+  --warning: #8b6914;
+  --danger: #8b3a3a;
+  --info: #3a5a8b;
+  --radius: 6px;
+  --radius-lg: 12px;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Crimson Pro', serif;
+  --font-mono: 'Fira Code', monospace;
+  --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+html.dark {}
+html:not(.dark) {
+  --bg-void: #f0ebe2;
+  --bg-deep: #f5f0e7;
+  --bg-surface: #faf6ef;
+  --bg-raised: #ffffff;
+  --bg-hover: #f0ebe2;
+  --gold-dim: #a08540;
+  --gold: #8b7340;
+  --gold-bright: #6b5a28;
+  --gold-glow: #d4af3720;
+  --text-primary: #2a2420;
+  --text-secondary: #5c574e;
+  --text-muted: #8a8478;
+  --border: #d4cfc4;
+  --border-gold: #c9a84c40;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+::selection { background: var(--gold-glow); color: var(--gold-bright); }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, var(--gold-glow) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, #3a5a8b15 0%, transparent 40%);
+  pointer-events: none; z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.06;
+  pointer-events: none; z-index: 0;
+}
+
+.app { position: relative; z-index: 1; }
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 56px;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 20px; z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex; gap: 4px;
+  margin-left: auto; list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; font-weight: 400;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  letter-spacing: 0.05em;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--gold);
+  background: var(--gold-glow);
+}
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px 60px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 60px 0 50px;
+  position: relative;
+}
+.hero-sigil {
+  width: 90px; height: 90px;
+  margin: 0 auto 30px;
+  position: relative;
+  animation: sigilPulse 4s ease-in-out infinite;
+}
+.hero-sigil::before {
+  content: '';
+  position: absolute; inset: 0;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  animation: sigilRotate 20s linear infinite;
+}
+.hero-sigil::after {
+  content: '';
+  position: absolute; inset: 10px;
+  border: 1px solid var(--gold-dim);
+  transform: rotate(45deg);
+}
+.hero-sigil .inner {
+  position: absolute; inset: 22px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-sigil .inner::before {
+  content: '?';
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold-glow);
+}
+@keyframes sigilPulse {
+  0%, 100% { opacity: 0.8; } 50% { opacity: 1; }
+}
+@keyframes sigilRotate {
+  from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 900; color: var(--gold);
+  letter-spacing: 0.08em; line-height: 1.2;
+  margin-bottom: 12px;
+  text-shadow: 0 0 40px var(--gold-glow);
+}
+.hero .subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  font-weight: 400; color: var(--text-secondary);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero .desc {
+  font-size: 1.1rem; color: var(--text-secondary);
+  max-width: 700px; margin: 0 auto;
+  font-weight: 300; line-height: 1.85;
+}
+.hero .desc em { color: var(--gold); font-style: italic; }
+
+/* Axiom Box */
+.axiom-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin: 30px auto;
+  max-width: 700px;
+}
+.axiom-box .axiom-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.axiom-box p {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* Section Headers */
+.section {
+  margin-bottom: 60px;
+  animation: fadeUp 0.6s ease-out both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.section-header .icon {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-glow);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  color: var(--gold); font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+}
+.section-header .badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; padding: 3px 8px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 20px; color: var(--text-muted);
+  margin-left: auto; letter-spacing: 0.05em;
+}
+.section-intro {
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.85;
+  margin-bottom: 28px;
+}
+.section-intro em { color: var(--gold); font-style: italic; }
+
+/* Pipeline */
+.pipeline {
+  display: flex; flex-wrap: wrap; gap: 0;
+  margin-bottom: 10px; position: relative;
+}
+.pipeline-stage {
+  flex: 1 1 120px;
+  padding: 18px 10px;
+  text-align: center; position: relative;
+  cursor: pointer; transition: var(--transition);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+}
+.pipeline-stage:hover {
+  background: var(--bg-surface);
+  border-color: var(--border);
+}
+.pipeline-stage.active {
+  background: var(--bg-raised);
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 30px var(--gold-glow);
+}
+.pipeline-stage .stage-num {
+  font-family: var(--font-mono);
+  font-size: 0.55rem; color: var(--text-muted);
+  letter-spacing: 0.1em; margin-bottom: 8px;
+}
+.pipeline-stage .stage-icon {
+  width: 38px; height: 38px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; transition: var(--transition);
+}
+.pipeline-stage.active .stage-icon { box-shadow: 0 0 20px var(--gold-glow); }
+.pipeline-stage .stage-name {
+  font-family: var(--font-display);
+  font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.06em; margin-bottom: 3px;
+}
+.pipeline-stage .stage-sub {
+  font-family: var(--font-mono);
+  font-size: 0.5rem; color: var(--text-muted);
+}
+.stage-arrow {
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 0.6rem;
+  padding: 0 1px; flex-shrink: 0;
+}
+
+/* Stage Detail Panel */
+.stage-detail {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px; margin-top: 20px;
+  display: none;
+}
+.stage-detail.visible { display: block; animation: fadeUp 0.3s ease-out; }
+.stage-detail h3 {
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 10px; letter-spacing: 0.05em;
+}
+.stage-detail .stage-desc {
+  color: var(--text-secondary);
+  margin-bottom: 20px; font-size: 0.95rem; line-height: 1.75;
+}
+.stage-detail .phase-list { list-style: none; }
+.stage-detail .phase-item {
+  display: flex; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+.stage-detail .phase-item:last-child { border-bottom: none; }
+.stage-detail .phase-item:hover { padding-left: 6px; }
+.phase-marker {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.6rem; font-weight: 500;
+  flex-shrink: 0; border: 1px solid;
+  margin-top: 2px;
+}
+.phase-content h4 {
+  font-family: var(--font-display);
+  font-size: 0.82rem; font-weight: 600;
+  margin-bottom: 4px; letter-spacing: 0.04em;
+}
+.phase-content p {
+  font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65;
+}
+.phase-tags {
+  display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px;
+}
+.phase-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem; padding: 2px 8px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 20px; color: var(--text-muted);
+}
+
+/* Protocol Cards */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.protocol-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.protocol-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--card-accent, var(--gold-dim));
+  transition: var(--transition);
+}
+.protocol-card:hover {
+  border-color: var(--card-accent, var(--gold-dim));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px #00000020;
+}
+.protocol-card:hover::before { height: 4px; }
+.protocol-card .pc-icon {
+  font-size: 1.1rem;
+  color: var(--card-accent, var(--gold));
+  margin-bottom: 12px;
+}
+.protocol-card h4 {
+  font-family: var(--font-display);
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.05em; margin-bottom: 8px;
+}
+.protocol-card p {
+  font-size: 0.85rem; color: var(--text-secondary);
+  line-height: 1.65; margin-bottom: 12px;
+}
+.protocol-card .pc-steps {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  line-height: 2;
+}
+.protocol-card .pc-steps li::before {
+  content: '\f054';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 0.5rem;
+  color: var(--card-accent, var(--gold-dim));
+  margin-right: 8px;
+}
+
+/* Directive Blocks */
+.directive-block {
+  display: flex; gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.directive-block:last-child { border-bottom: none; }
+.directive-num {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; font-weight: 500;
+  color: var(--gold);
+  background: var(--gold-glow);
+  border: 1px solid var(--border-gold);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.directive-body h4 {
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.04em; margin-bottom: 6px;
+}
+.directive-body p {
+  font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7;
+  margin-bottom: 8px;
+}
+.directive-body .rationale {
+  font-family: var(--font-mono);
+  font-size: 0.62rem; color: var(--text-muted);
+  padding: 6px 10px;
+  background: var(--bg-raised);
+  border-radius: var(--radius);
+  border-left: 2px solid var(--gold-dim);
+  line-height: 1.7;
+}
+
+/* Cycle Vis */
+.cycle-vis {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; flex-wrap: wrap; padding: 30px 0;
+}
+.cycle-node {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 2px solid; position: relative;
+  transition: var(--transition);
+}
+.cycle-node .cn-label {
+  font-family: var(--font-display);
+  font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.06em; text-align: center;
+}
+.cycle-node .cn-sub {
+  font-family: var(--font-mono);
+  font-size: 0.48rem; color: var(--text-muted);
+  margin-top: 3px; text-align: center;
+}
+.cycle-arrow { color: var(--text-muted); font-size: 1.2rem; }
+.node-wet { border-color: #5b7fa6; color: #5b7fa6; background: #5b7fa610; }
+.node-discover { border-color: #a6845b; color: #a6845b; background: #a6845b10; }
+.node-gold { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+.node-iterate { border-color: #a65b7f; color: #a65b7f; background: #a65b7f10; }
+
+/* Config Panel */
+.config-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.config-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+.config-header h3 {
+  font-family: var(--font-display);
+  font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.config-actions { display: flex; gap: 8px; }
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  cursor: pointer; transition: var(--transition);
+  letter-spacing: 0.04em;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+.btn-gold {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--bg-void); font-weight: 500;
+}
+.btn-gold:hover { background: var(--gold); }
+.config-body { padding: 22px; }
+.config-code {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; line-height: 1.8;
+  color: var(--text-secondary);
+  white-space: pre-wrap; word-break: break-all;
+  max-height: 500px; overflow-y: auto; tab-size: 2;
+}
+.config-code .key { color: var(--gold); }
+.config-code .str { color: #7ac494; }
+.config-code .num { color: #7ab0e0; }
+.config-code .bool { color: #d4706a; }
+.config-code .null { color: var(--text-muted); }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--bg-raised);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem; color: var(--gold);
+  z-index: 999;
+  animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 2.5s forwards;
+  box-shadow: 0 8px 30px #00000040;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; } to { opacity: 0; }
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0 30px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+.footer .sigil-sm {
+  display: inline-block;
+  width: 12px; height: 12px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 50%; margin: 0 6px;
+  vertical-align: middle; position: relative;
+}
+.footer .sigil-sm::after {
+  content: '';
+  position: absolute; inset: 3px;
+  background: var(--gold-dim); border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .pipeline { gap: 4px; }
+  .stage-arrow { display: none; }
+  .pipeline-stage { flex: 1 1 90px; padding: 12px 6px; }
+  .pipeline-stage .stage-icon { width: 30px; height: 30px; font-size: 0.8rem; }
+  .stage-detail { padding: 18px; }
+  .protocol-grid { grid-template-columns: 1fr; }
+  .cycle-vis { gap: 6px; }
+  .cycle-node { width: 85px; height: 85px; }
+  .config-header { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .directive-block { flex-direction: column; gap: 10px; }
+}
+@media (max-width: 480px) {
+  .pipeline-stage .stage-name { font-size: 0.55rem; }
+  .pipeline-stage .stage-sub { display: none; }
+  .hero h1 { font-size: 1.4rem; }
+  .cycle-node { width: 70px; height: 70px; }
+  .cycle-node .cn-label { font-size: 0.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<nav class="nav">
+  <div class="nav-brand">Chthonic Archive</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#pipeline" class="active">Pipeline</a></li>
+    <li><a href="#discovery">Discovery</a></li>
+    <li><a href="#emergence">Emergence</a></li>
+    <li><a href="#directives">Directives</a></li>
+    <li><a href="#cycle">Cycle</a></li>
+    <li><a href="#config">Manifest</a></li>
+  </ul>
+</nav>
+
+<main class="main">
+
+  <header class="hero">
+    <div class="hero-sigil"><div class="inner"></div></div>
+    <h1>Transmutation Framework</h1>
+    <p class="subtitle">Content-Agnostic Autonomous Optimization Protocol</p>
+    <p class="desc">
+      The intelligence knows <em>nothing</em> about the repository it will consume.
+      No file types are assumed. No languages are expected. No improvement strategies
+      are prescribed. This framework defines only <em>how to discover</em>, <em>how to
+      derive</em>, and <em>how to evolve</em> — the codebase itself teaches the
+      intelligence what it contains and what it needs.
+    </p>
+    <div class="axiom-box">
+      <div class="axiom-label">Core Axiom</div>
+      <p>The framework must never encode knowledge of what exists in the repository.
+      It encodes only the procedures by which such knowledge is autonomously acquired,
+      strategies are self-derived, and improvements are self-validated.
+      Anything prescriptive is a failure of the protocol.</p>
+    </div>
+  </header>
+
+  <!-- Pipeline -->
+  <section class="section" id="pipeline">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-project-diagram"></i></div>
+      <h2>Transmutation Pipeline</h2>
+      <span class="badge">7 STAGES</span>
+    </div>
+    <p class="section-intro">
+      Seven stages, each building on emergent knowledge from the prior. Nothing is predetermined.
+      The intelligence enters blind and constructs its entire operational context
+      from what it finds. Phases within each stage are <em>meta-procedural</em> — they define
+      the shape of work, not its content.
+    </p>
+    <div class="pipeline" id="pipelineVis"></div>
+    <div class="stage-detail" id="stageDetail"></div>
+  </section>
+
+  <!-- Discovery Protocols -->
+  <section class="section" id="discovery">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-microscope"></i></div>
+      <h2>Discovery Protocols</h2>
+      <span class="badge">SELF-DERIVING</span>
+    </div>
+    <p class="section-intro">
+      Where a prescriptive framework would list file types and hardcode strategies,
+      this framework defines <em>how the intelligence discovers what artifact types exist</em>
+      and <em>how it derives appropriate strategies for each</em> — at runtime,
+      from the repository itself. No artifact type is assumed. No strategy is predetermined.
+    </p>
+    <div class="protocol-grid" id="discoveryGrid"></div>
+  </section>
+
+  <!-- Criterion Emergence -->
+  <section class="section" id="emergence">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-seedling"></i></div>
+      <h2>Criterion Emergence</h2>
+      <span class="badge">EMERGENT AXES</span>
+    </div>
+    <p class="section-intro">
+      Improvement dimensions are not hardcoded. The intelligence derives its own evaluation
+      axes from the codebase's characteristics. A repository with no UI has no need for
+      accessibility metrics. A repository with no dependencies has no need for supply-chain
+      analysis. <em>The codebase declares its own criteria through its structure.</em>
+    </p>
+    <div class="protocol-grid" id="emergenceGrid"></div>
+  </section>
+
+  <!-- Governing Directives -->
+  <section class="section" id="directives">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-balance-scale"></i></div>
+      <h2>Governing Directives</h2>
+      <span class="badge">INVIOLABLE</span>
+    </div>
+    <p class="section-intro">
+      These are the only hardcoded rules in the framework. They govern the intelligence's
+      behavior — not what it should find or fix, but <em>how it must operate</em>.
+      They are constraints on process, never constraints on content.
+    </p>
+    <div id="directivesContainer"></div>
+  </section>
+
+  <!-- The Ouroboros Cycle -->
+  <section class="section" id="cycle">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-sync-alt"></i></div>
+      <h2>The Ouroboros Cycle</h2>
+      <span class="badge">INFINITE LOOP</span>
+    </div>
+    <p class="section-intro">
+      Gold is never final. Each completed transmutation establishes a new baseline.
+      What was gold becomes the next iteration's wet paper. But deeper: each cycle
+      also refines <em>the discovery process itself</em>. The intelligence doesn't just
+      improve the code — it improves how it improves.
+    </p>
+    <div class="cycle-vis">
+      <div class="cycle-node node-wet">
+        <span class="cn-label">WET PAPER</span>
+        <span class="cn-sub">unknown state</span>
+      </div>
+      <span class="cycle-arrow"><i class="fas fa-long-arrow-alt-right"></i></span>
+      <div class="cycle-node node-discover">
+        <span class="cn-label">DISCOVER</span>
+        <span class="cn-sub">self-derive</span>
+      </div>
+      <span class="cycle-arrow"><i class="fas fa-long-arrow-alt-right"></i></span>
+      <div class="cycle-node node-gold">
+        <span class="cn-label">GOLD</span>
+        <span class="cn-sub">verified state</span>
+      </div>
+      <span class="cycle-arrow"><i class="fas fa-long-arrow-alt-right"></i></span>
+      <div class="cycle-node node-iterate">
+        <span class="cn-label">RECLASSIFY</span>
+        <span class="cn-sub">gold &#x2192; paper</span>
+      </div>
+      <span class="cycle-arrow"><i class="fas fa-redo-alt"></i></span>
+    </div>
+    <div id="cycleRules"></div>
+  </section>
+
+  <!-- Configuration -->
+  <section class="section" id="config">
+    <div class="section-header">
+      <div class="icon"><i class="fas fa-scroll"></i></div>
+      <h2>Transmutation Manifest</h2>
+      <span class="badge">EXPORTABLE</span>
+    </div>
+    <p class="section-intro">
+      The complete protocol encoded as a portable configuration artifact. Contains only
+      meta-parameters: process rules, cycle governance, and discovery procedure definitions.
+      <em>No content-specific assumptions.</em> The manifest is the seed; the codebase is the soil.
+    </p>
+    <div class="config-panel">
+      <div class="config-header">
+        <h3>chthonic-manifest.json</h3>
+        <div class="config-actions">
+          <button class="btn" onclick="copyConfig()"><i class="fas fa-copy"></i> Copy</button>
+          <button class="btn btn-gold" onclick="downloadConfig()"><i class="fas fa-download"></i> Export</button>
+        </div>
+      </div>
+      <div class="config-body">
+        <div class="config-code" id="configOutput"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>CHTHONIC ARCHIVE <span class="sigil-sm"></span> TRANSMUTATION FRAMEWORK <span class="sigil-sm"></span> ITERATION &#x221e;</p>
+  </footer>
+</main>
+</div>
+
+<script>
+// ============================================================
+// CHTHONIC ARCHIVE — TRANSMUTATION FRAMEWORK v2
+// Content-Agnostic. Self-Deriving. Self-Evolving.
+// ============================================================
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.documentElement.classList.add('dark');
+}
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(event) {
+  if (event.matches) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+});
+
+var FRAMEWORK = {
+  meta: {
+    name: "Chthonic Archive Transmutation Framework",
+    version: "2.0.0",
+    target: "any-repository",
+    description: "Content-agnostic autonomous codebase optimization protocol. The intelligence discovers what to improve by analyzing the repository itself. No file types, languages, strategies, or evaluation dimensions are prescribed.",
+    coreAxiom: "The framework encodes procedures for autonomous knowledge acquisition, not knowledge itself. Anything prescriptive is a failure of the protocol.",
+    bunCentricExecution: {
+      jsRuntimePrimary: "bun",
+      jsPackageManagerPrimary: "bun",
+      disallowedPrimaryManagers: ["npm", "pnpm", "yarn"],
+      jsCommandPriority: ["bun install", "bun test", "bun run"],
+      crossLanes: { python: "uv", rust: "cargo" }
+    }
+  },
+
+  stages: [
+    {
+      id: "blind-ingestion",
+      num: "00",
+      name: "Blind Ingestion",
+      shortName: "INGEST",
+      icon: "fa-cloud-download-alt",
+      color: "#7ab0e0",
+      subtitle: "Zero-assumption intake",
+      description: "The intelligence consumes the entire repository as an opaque corpus. It makes zero assumptions about what it will find. No file type is expected. No directory convention is presumed. Every byte is catalogued as raw, unclassified material. The only output is a complete inventory of what physically exists.",
+      phases: [
+        { name: "Blind Tree Walk", desc: "Enumerate every path in the repository recursively. Record raw metadata: byte size, modification time, permissions, symlink targets. Do not interpret contents. Do not classify. The inventory is purely physical.", tags: ["enumerate", "metadata", "raw"] },
+        { name: "Binary/Text Discrimination", desc: "Apply byte-level heuristics to determine whether each artifact is binary or text. This is the sole initial classification — and even it is probabilistic, not assumed. Flag ambiguous cases for deferred analysis.", tags: ["heuristic", "binary", "text"] },
+        { name: "Encoding Detection", desc: "For text artifacts, detect character encoding through statistical analysis. Normalize to a processable form. Record original encoding for lossless round-trip capability. Flag encoding anomalies.", tags: ["encoding", "normalization", "anomaly"] },
+        { name: "Ignore-Rule Parsing", desc: "Discover any ignore rules the repository itself declares (.gitignore, .dockerignore, etc.) and record them — not to obey them blindly, but to understand what the repository's authors considered irrelevant. This is signal, not instruction.", tags: ["gitignore", "signal", "intent"] },
+        { name: "Raw Inventory Assembly", desc: "Produce the complete, unclassified inventory: a flat list of every artifact with its physical metadata and binary/text status. No interpretation. No categorization. This is the wet paper.", tags: ["inventory", "flat-list", "wet-paper"] }
+      ]
+    },
+    {
+      id: "emergent-taxonomy",
+      num: "01",
+      name: "Emergent Taxonomy",
+      shortName: "CLASSIFY",
+      icon: "fa-fingerprint",
+      color: "#5b7fa6",
+      subtitle: "Self-derived categories",
+      description: "The intelligence now examines each artifact to determine what it IS — not by matching against a predetermined list of known types, but by analyzing content patterns, structural markers, and contextual clues. The taxonomy is derived entirely from what the repository contains. If the repository uses a language or format the intelligence has never seen, it still classifies it by observable properties.",
+      phases: [
+        { name: "Content Fingerprinting", desc: "Analyze the first N bytes, structural patterns, recurring tokens, and syntactic markers of each text artifact. Build a fingerprint without assuming any known language or format. Cluster artifacts by fingerprint similarity.", tags: ["fingerprint", "cluster", "pattern"] },
+        { name: "Extension Correlation", desc: "Correlate file extensions with content fingerprints. Extensions are hints, not truth — verify that .py files actually contain Python-like syntax, that .json files actually parse as JSON. Flag mismatches as data points, not errors.", tags: ["extension", "correlation", "verify"] },
+        { name: "Shebang & Magic Byte Analysis", desc: "Extract interpreter declarations (shebangs) and magic byte sequences. These are self-declarations by the artifact about what it is. Weight them heavily but not absolutely — they can be stale or incorrect.", tags: ["shebang", "magic-bytes", "self-declaration"] },
+        { name: "Role Inference", desc: "Determine each artifact's role: is it source code, configuration, documentation, test harness, build script, asset, generated output, or something else? Role is inferred from content + location + naming patterns, not from a predefined role taxonomy.", tags: ["role", "inference", "context"] },
+        { name: "Taxonomy Assembly", desc: "From the clusters, correlations, and role inferences, assemble the repository's emergent taxonomy — the set of artifact categories that actually exist, named by their observable characteristics. This taxonomy is unique to this repository.", tags: ["taxonomy", "emergent", "unique"] },
+        { name: "Unknown Artifact Handling", desc: "Any artifact that resists classification is flagged as UNKNOWN — not ignored. Unknowns receive special attention in later stages because they may represent novel patterns, proprietary formats, or areas where the intelligence needs to expand its understanding.", tags: ["unknown", "novel", "expand"] }
+      ]
+    },
+    {
+      id: "cartography",
+      num: "02",
+      name: "Cartography",
+      shortName: "MAP",
+      icon: "fa-project-diagram",
+      color: "#9b7fa6",
+      subtitle: "Relationship discovery",
+      description: "The intelligence maps relationships between artifacts — not by knowing what import syntax looks like in each language, but by detecting reference patterns between files. String matches, path references, content similarity, co-modification history (if version control data is available), and structural parallels all contribute to the relationship graph.",
+      phases: [
+        { name: "Cross-Reference Detection", desc: "Scan each artifact for string literals, paths, or identifiers that appear in other artifacts. These are candidate relationships. The intelligence does not need to understand import syntax — it detects that file A mentions file B by content analysis.", tags: ["cross-ref", "mention", "content-scan"] },
+        { name: "Structural Parallelism", desc: "Identify artifacts that share structural patterns: similar directory positions, naming conventions, or internal organization. Parallel structure implies shared role or related purpose.", tags: ["parallel", "naming", "convention"] },
+        { name: "Dependency Direction Inference", desc: "For detected cross-references, infer directionality: which artifact depends on which? Heuristics include: which file is referenced more often (likely a dependency), which file references more (likely a consumer), and structural hierarchy.", tags: ["direction", "dependency", "hierarchy"] },
+        { name: "Cluster Identification", desc: "Group tightly-coupled artifacts into clusters. Clusters represent subsystems, features, or modules — even if the repository has no explicit module system. Cluster boundaries emerge from relationship density.", tags: ["cluster", "subsystem", "boundary"] },
+        { name: "Knowledge Graph Assembly", desc: "Synthesize all relationships into a unified knowledge graph. Nodes are artifacts and emergent concepts. Edges are discovered relationships with inferred types and weights. This graph is the intelligence's internal model of the codebase.", tags: ["knowledge-graph", "model", "synthesis"] }
+      ]
+    },
+    {
+      id: "criterion-genesis",
+      num: "03",
+      name: "Criterion Genesis",
+      shortName: "DERIVE",
+      icon: "fa-seedling",
+      color: "#a6845b",
+      subtitle: "Self-derived evaluation axes",
+      description: "The intelligence now determines HOW to evaluate the codebase — by deriving improvement dimensions from the codebase's own characteristics. A repository with UI code implies visual/accessibility concerns. A repository with network code implies security concerns. A repository with test files implies testing coverage matters. Dimensions are not prescribed — they emerge.",
+      phases: [
+        { name: "Characteristic Signal Detection", desc: "Scan the taxonomy and knowledge graph for signals that indicate relevant improvement axes. The presence of test files signals that testing quality matters. Configuration files signal that configuration hygiene matters. The absence of documentation signals that documentation is needed.", tags: ["signal", "presence", "absence"] },
+        { name: "Dimension Derivation", desc: "From detected signals, derive the set of improvement dimensions relevant to THIS repository. Each dimension is named, described, and weighted — all generated from the evidence, not from a predefined template.", tags: ["derive", "dimensions", "evidence"] },
+        { name: "Baseline Measurement", desc: "For each derived dimension, measure the repository's current state. These baselines are calculated, not assumed. If the intelligence derived a 'type safety' dimension, it measures current type annotation coverage from scratch.", tags: ["baseline", "measurement", "current-state"] },
+        { name: "Threshold Calibration", desc: "Set improvement thresholds for each dimension. Thresholds are calibrated relative to the baseline and the repository's apparent standards — not against an external ideal. A repository at 10% coverage has a different threshold than one at 80%.", tags: ["threshold", "relative", "calibration"] },
+        { name: "Dimension Interaction Mapping", desc: "Identify how derived dimensions interact. Improving performance might degrade readability. Improving type safety might require documentation updates. These interactions inform the transmutation stage's conflict resolution.", tags: ["interaction", "tradeoff", "conflict"] }
+      ]
+    },
+    {
+      id: "transmutation",
+      num: "04",
+      name: "Transmutation",
+      shortName: "TRANSMUTE",
+      icon: "fa-magic",
+      color: "#c9a84c",
+      subtitle: "Self-derived transformation",
+      description: "Improvements are applied — but no improvement strategy is predetermined. The intelligence generates transformation plans from its self-derived taxonomy, knowledge graph, and evaluation criteria. Each transformation is atomic, contextual, and derived from the intelligence's understanding of THIS codebase, not from generic best-practice checklists.",
+      phases: [
+        { name: "Opportunity Enumeration", desc: "For each artifact, compare its current state against derived criteria. Every gap between current state and calibrated threshold is an improvement opportunity. Opportunities are specific, measurable, and grounded in the intelligence's own analysis.", tags: ["opportunity", "gap", "measurable"] },
+        { name: "Strategy Generation", desc: "For each opportunity, the intelligence generates a transformation strategy. This strategy is derived from the artifact's type (as discovered), its role (as inferred), its relationships (as mapped), and the improvement dimension (as self-derived). No strategy template exists.", tags: ["strategy", "generate", "contextual"] },
+        { name: "Impact Projection", desc: "For each strategy, project its impact across all derived dimensions. A single change may improve multiple dimensions or create tradeoffs. Impact projection uses the dimension interaction map from Criterion Genesis.", tags: ["impact", "projection", "tradeoff"] },
+        { name: "Execution Planning", desc: "Sequence all approved transformations to minimize conflict and maximize parallel application. Respect dependency ordering from the knowledge graph. Group related changes into atomic changesets.", tags: ["sequence", "parallel", "atomic"] },
+        { name: "Transformation Execution", desc: "Apply each changeset. Every modification is recorded with full provenance: what was changed, why (linked to derived criterion), what impact was projected, and what the artifact looked like before.", tags: ["execute", "provenance", "record"] }
+      ]
+    },
+    {
+      id: "verification",
+      num: "05",
+      name: "Verification",
+      shortName: "VERIFY",
+      icon: "fa-shield-alt",
+      color: "#4a7c59",
+      subtitle: "Self-derived validation",
+      description: "Verification is not a checklist — it is a self-derived validation protocol. The intelligence constructs its verification suite from its understanding of the codebase. If it discovers Bun signals for JS/TS lanes, it executes Bun-first gates before compatibility fallbacks. If it discovers test suites, it executes them. If it discovers type-checking configuration, it invokes it. The verification protocol is as unique as the taxonomy.",
+      phases: [
+        { name: "Verification Protocol Construction", desc: "From the taxonomy and knowledge graph, identify all verification mechanisms the repository provides: build scripts, test runners, type checkers, linters, formatters, CI configurations. For JS/TS lanes, detect Bun manifests and lock artifacts to establish Bun as the primary verifier.", tags: ["construct", "quality-gates", "discover", "bun"] },
+        { name: "Pre-Existing Gate Execution", desc: "Execute every verification mechanism the repository already provides. The intelligence does not add external gates — it uses the codebase's own tools. If the repository has Bun lanes, run Bun gates first. If it has tests, run them. If it has a build, build it.", tags: ["execute", "native", "tools", "bun-first"] },
+        { name: "Derived Gate Execution", desc: "Additionally validate against the self-derived criteria. If the intelligence derived a 'consistency' dimension, verify that consistency improved. If it derived 'documentation coverage', verify that coverage increased.", tags: ["derived", "validate", "criteria"] },
+        { name: "Regression Detection", desc: "Compare all measurable properties against pre-transmutation baselines. Any regression — even in a dimension not targeted for improvement — triggers investigation. Regressions in non-targeted dimensions indicate unintended side effects.", tags: ["regression", "baseline-compare", "side-effect"] },
+        { name: "Rollback Arbitration", desc: "For any changeset that causes a regression: evaluate whether the improvement in targeted dimensions outweighs the regression. If not, quarantine the changeset for re-attempt in the next cycle with additional context.", tags: ["rollback", "quarantine", "arbitration"] }
+      ]
+    },
+    {
+      id: "iteration",
+      num: "06",
+      name: "Iteration",
+      shortName: "ITERATE",
+      icon: "fa-redo",
+      color: "#a65b7f",
+      subtitle: "Self-evolution",
+      description: "The gold state becomes the new wet paper. But this stage does more than reset — it evolves the intelligence's own processes. Which discovery heuristics worked well? Which derived dimensions proved most impactful? Which strategy generation patterns yielded the highest-quality transformations? The intelligence improves how it improves.",
+      phases: [
+        { name: "Cycle Retrospective", desc: "Analyze the completed cycle: which transformations succeeded, which were quarantined, which dimensions saw the most/least improvement. This is not just metrics — it is self-reflection on the intelligence's own effectiveness.", tags: ["retrospective", "self-analysis", "effectiveness"] },
+        { name: "Process Refinement", desc: "Based on the retrospective, refine the discovery, taxonomy, cartography, and criterion-genesis processes. If fingerprinting missed a pattern, adjust. If a derived dimension was irrelevant, understand why. The process evolves.", tags: ["refine", "process", "evolve"] },
+        { name: "Baseline Promotion", desc: "Promote the verified gold state to the new baseline. All measurements are re-taken against the new state. Previous baselines are archived for historical trend analysis.", tags: ["promote", "baseline", "archive"] },
+        { name: "Convergence Evaluation", desc: "Evaluate whether further cycles will yield meaningful improvement. If the delta is diminishing below threshold, the intelligence recommends halting or pivoting to a different subsystem. This prevents infinite no-value loops.", tags: ["convergence", "threshold", "halt"] },
+        { name: "Next Cycle Seeding", desc: "Generate the seed context for the next cycle: carry forward quarantined changesets, deprioritize saturated dimensions, escalate under-explored areas, and inject any new heuristics derived from this cycle's self-reflection.", tags: ["seed", "carry-forward", "escalate"] }
+      ]
+    }
+  ],
+
+  discoveryProtocols: [
+    {
+      id: "artifact-identification",
+      name: "Artifact Identification",
+      icon: "fa-fingerprint",
+      color: "#7ab0e0",
+      description: "How the intelligence determines what each artifact IS — without a predefined dictionary of known types.",
+      steps: [
+        "Analyze byte-level patterns and structural markers",
+        "Cluster artifacts by content similarity",
+        "Correlate clusters with file extensions as weak hints",
+        "Extract self-declarations (shebangs, magic bytes, headers)",
+        "Assign emergent type labels based on observable properties",
+        "Flag unclassifiable artifacts for deep analysis"
+      ]
+    },
+    {
+      id: "role-inference",
+      name: "Role Inference",
+      icon: "fa-theater-masks",
+      color: "#a67ab0",
+      description: "How the intelligence infers what role each artifact plays — source, config, test, documentation, build, asset, generated — from context alone.",
+      steps: [
+        "Analyze directory position and naming patterns",
+        "Detect test-indicative markers (assert, expect, describe)",
+        "Detect config-indicative markers (key-value pairs, env refs)",
+        "Detect build-indicative markers (targets, rules, scripts)",
+        "Cross-reference with dependency graph position",
+        "Infer from relationship density and direction"
+      ]
+    },
+    {
+      id: "bun-lane-detection",
+      name: "Bun Lane Detection",
+      icon: "fa-bolt",
+      color: "#c9a84c",
+      description: "How the intelligence detects and prioritizes Bun execution lanes in JS/TS ecosystems while preserving cross-runtime boundaries.",
+      steps: [
+        "Detect Bun artifacts: bun.lock variants, bunfig files, and Bun-oriented script patterns",
+        "Infer JS/TS lane precedence from lockfile and script invocation signals",
+        "Classify npm/pnpm/yarn references as fallback paths unless primary evidence overrides",
+        "Map Bun commands to corresponding verification and execution gates",
+        "Preserve lane separation: Bun for JS/TS, uv for Python, cargo for Rust"
+      ]
+    },
+    {
+      id: "strategy-derivation",
+      name: "Strategy Derivation",
+      icon: "fa-lightbulb",
+      color: "#e2c87a",
+      description: "How the intelligence generates improvement strategies for each artifact type — without consulting a lookup table of known best practices.",
+      steps: [
+        "Identify the artifact's self-declared standards (linter configs, schemas)",
+        "Measure deviation from the codebase's own conventions",
+        "Detect patterns in high-quality vs low-quality artifacts of same type",
+        "Generate strategies from the delta between current and best-in-repo",
+        "Cross-pollinate strategies from structurally similar artifact types",
+        "Validate strategies against the derived dimension interaction map"
+      ]
+    },
+    {
+      id: "convention-extraction",
+      name: "Convention Extraction",
+      icon: "fa-ruler-combined",
+      color: "#7ac494",
+      description: "How the intelligence learns the codebase's own rules — naming patterns, structural conventions, formatting norms — from statistical analysis of the corpus.",
+      steps: [
+        "Analyze naming patterns: frequency of camelCase, snake_case, etc.",
+        "Detect indentation norms per artifact type cluster",
+        "Identify recurring structural patterns within artifact types",
+        "Extract implicit interface contracts from cross-references",
+        "Map error handling patterns across the codebase",
+        "Build a convention profile unique to this repository"
+      ]
+    },
+    {
+      id: "boundary-detection",
+      name: "Boundary Detection",
+      icon: "fa-border-all",
+      color: "#d4706a",
+      description: "How the intelligence discovers where subsystems, modules, and logical boundaries exist — even in repositories with no formal module system.",
+      steps: [
+        "Compute relationship density between artifact groups",
+        "Detect sharp drops in coupling as boundary candidates",
+        "Validate boundaries against directory structure",
+        "Identify gateway artifacts (high fan-in at boundaries)",
+        "Map data flow across detected boundaries",
+        "Score boundary health: clean vs leaky abstraction"
+      ]
+    },
+    {
+      id: "unknown-handling",
+      name: "Unknown Handling",
+      icon: "fa-question-circle",
+      color: "#b0a67a",
+      description: "How the intelligence handles artifacts it cannot classify or understand — they are not ignored, they are elevated.",
+      steps: [
+        "Isolate unclassifiable artifacts into an 'unknown' cohort",
+        "Apply progressively deeper analysis: structural, statistical, semantic",
+        "Cross-reference unknowns with known artifacts for partial matches",
+        "Determine if unknowns are generated output, proprietary formats, or novel patterns",
+        "If truly novel: create a new taxonomy entry from observations",
+        "If generated: trace back to the generator for context"
+      ]
+    }
+  ],
+
+  criterionEmergence: [
+    {
+      id: "signal-detection",
+      name: "Signal Detection",
+      icon: "fa-satellite-dish",
+      color: "#7ab0e0",
+      description: "How the intelligence identifies signals in the codebase that indicate which improvement dimensions are relevant.",
+      steps: [
+        "Presence of test files → testing quality dimension emerges",
+        "Presence of type annotations → type safety dimension emerges",
+        "Presence of UI artifacts → visual/accessibility dimension emerges",
+        "Presence of network code → security dimension emerges",
+        "Absence of documentation → documentation need dimension emerges",
+        "Codebase age signals → technical debt dimension emerges"
+      ]
+    },
+    {
+      id: "weight-derivation",
+      name: "Weight Derivation",
+      icon: "fa-balance-scale-right",
+      color: "#a6845b",
+      description: "How the intelligence determines relative importance of each emerged dimension — based on the codebase's own priorities, not external ideals.",
+      steps: [
+        "Measure how much of the codebase relates to each dimension",
+        "Analyze the repository's own quality signals (CI config, linter rules)",
+        "Infer priority from what the authors enforced vs. what they left loose",
+        "Weight dimensions higher where the gap between intent and reality is largest",
+        "Adjust weights by artifact criticality (core vs peripheral)"
+      ]
+    },
+    {
+      id: "threshold-calibration",
+      name: "Threshold Calibration",
+      icon: "fa-sliders-h",
+      color: "#4a7c59",
+      description: "How thresholds are set relative to the repository's own state — not against external benchmarks that may be irrelevant.",
+      steps: [
+        "Measure the current distribution across each dimension",
+        "Set initial threshold at the repository's own 75th percentile",
+        "Scale threshold by improvement potential: low-hanging fruit first",
+        "Adjust per cycle: tighten thresholds as the baseline rises",
+        "Never import external thresholds — all calibration is endogenous"
+      ]
+    },
+    {
+      id: "dimension-interaction",
+      name: "Dimension Interaction",
+      icon: "fa-link",
+      color: "#a65b7f",
+      description: "How the intelligence maps tensions and synergies between its self-derived dimensions.",
+      steps: [
+        "For each dimension pair: estimate correlation from the codebase data",
+        "Identify synergies (improving A also improves B)",
+        "Identify tensions (improving A may degrade B)",
+        "Build a conflict matrix for the transmutation stage",
+        "Prioritize synergistic improvements in early cycles",
+        "Defer tension-heavy improvements to later cycles with more context"
+      ]
+    }
+  ],
+
+  directives: [
+    {
+      name: "Zero Assumption Directive",
+      description: "The intelligence must never assume what the repository contains. No file types, languages, frameworks, build systems, or conventions are expected. Every fact about the codebase is discovered, not presumed.",
+      rationale: "Assumptions create blind spots. A framework that assumes TypeScript will miss an embedded Forth interpreter. A framework that assumes npm will fail on a Bun-first workspace. Discovery eliminates these failure modes."
+    },
+    {
+      name: "Bun-Centric Lane Directive",
+      description: "For JavaScript and TypeScript lanes, Bun is the default runtime and package manager. Compatibility managers (npm/pnpm/yarn) are fallback lanes only when Bun compatibility is explicitly disproven by repository evidence.",
+      rationale: "Lane ambiguity creates drift and inconsistent reproducibility. A Bun-first directive keeps execution deterministic and aligned with the repository's toolchain priority."
+    },
+    {
+      name: "Self-Derived Strategy Directive",
+      description: "Every improvement strategy must be generated from the intelligence's analysis of THIS repository. No lookup table of language-specific best practices is consulted. The codebase teaches the intelligence what 'better' looks like.",
+      rationale: "Best practices are context-dependent. What improves a microservice may degrade a monolith. What improves a library may harm an application. Only strategies derived from the specific codebase are valid."
+    },
+    {
+      name: "Provenance Directive",
+      description: "Every transformation must carry full provenance: what was changed, which self-derived criterion motivated it, what impact was projected, and what the artifact looked like before. The archive is a complete history of reasoning.",
+      rationale: "Without provenance, transformations are opaque. The intelligence — and future iterations of itself — must be able to audit why every change was made, to avoid repeating failed strategies and to build on successful ones."
+    },
+    {
+      name: "Semantic Preservation Directive",
+      description: "No transformation may alter the observable behavior of the codebase unless the behavior is explicitly identified as a defect by the self-derived criteria. Improvements are structural, not behavioral — unless behavior is the diagnosed problem.",
+      rationale: "Behavioral changes carry the highest risk. An optimization that changes output, a refactor that alters API contracts, or a format change that breaks downstream consumers — all violate the principle that transmutation should only improve, never break."
+    },
+    {
+      name: "Unknown Elevation Directive",
+      description: "Artifacts the intelligence cannot classify or understand are elevated in priority, not suppressed. Unknowns receive more analysis cycles, more heuristic attempts, and more human-escalation signals than classified artifacts.",
+      rationale: "Ignoring what you don't understand is the most dangerous form of assumption. Unknown artifacts may be the most critical parts of the codebase, or they may reveal limitations in the intelligence's own discovery protocols."
+    },
+    {
+      name: "Process Self-Improvement Directive",
+      description: "Each iteration must include a retrospective on the intelligence's own processes. Discovery heuristics, taxonomy accuracy, strategy effectiveness, and verification completeness are all subject to self-evaluation and refinement.",
+      rationale: "A framework that cannot improve itself is bounded by its initial design. By applying the transmutation philosophy to its own processes, the intelligence becomes asymptotically more effective — the gold-to-paper loop applies to the process, not just the product."
+    },
+    {
+      name: "Convergence Honesty Directive",
+      description: "The intelligence must honestly report when further cycles will not yield meaningful improvement. It must not fabricate opportunities to justify its own continuation. When the codebase is as good as the current process can make it, the intelligence says so.",
+      rationale: "An intelligence that always finds more work is dishonest or ineffective. True optimization includes knowing when to stop. Convergence honesty prevents infinite no-value cycles and allows resources to be redirected."
+    },
+    {
+      name: "Atomic Reversibility Directive",
+      description: "Every changeset must be independently reversible without affecting other changesets. The archive must support rolling back any single transformation without cascading failures. Entangled changes are prohibited.",
+      rationale: "Entangled changes create fragile transmutation histories where reverting one change breaks others. Atomic reversibility ensures the intelligence can safely experiment with aggressive optimizations knowing any single failure is cleanly containable."
+    }
+  ],
+
+  cycleGovernance: [
+    {
+      rule: "Convergence Threshold",
+      description: "If the aggregate improvement delta across all self-derived dimensions falls below the convergence threshold for consecutive cycles, the intelligence recommends halting or pivoting focus.",
+      param: "convergence_threshold: 0.02, consecutive_cycles: 2"
+    },
+    {
+      rule: "Dimension Reweighting",
+      description: "After each cycle, dimensions that saw the most improvement are deprioritized. Dimensions with the least improvement are escalated. This prevents the intelligence from repeatedly improving what it's already good at.",
+      param: "reweight_factor: 0.15"
+    },
+    {
+      rule: "Runtime Lane Integrity",
+      description: "When Bun artifacts are present, JS/TS transformations and verification must remain Bun-first. Alternate package managers are logged as compatibility paths, not default execution lanes.",
+      param: "js_lane_primary: bun, fallback_managers: [npm,pnpm,yarn]"
+    },
+    {
+      rule: "Quarantine with Context",
+      description: "Failed changesets are not discarded — they are quarantined with the failure analysis attached. The next cycle's strategy generation has access to why the previous attempt failed, enabling more informed re-attempts.",
+      param: "quarantine_max_retries: 3, context_preservation: full"
+    },
+    {
+      rule: "Depth Escalation",
+      description: "Early cycles focus on surface-level improvements the intelligence can confidently identify. As confidence grows through successful cycles, the intelligence is permitted to attempt deeper structural and architectural changes.",
+      param: "depth_schedule: [surface, structural, architectural, systemic]"
+    },
+    {
+      rule: "Discovery Refinement Budget",
+      description: "Each cycle allocates a percentage of its effort to refining the discovery process itself — not just improving the code. This budget ensures the intelligence's own tools become sharper over time.",
+      param: "discovery_refinement_budget: 0.10"
+    }
+  ],
+
+  config: {
+    maxCycles: 10,
+    convergenceThreshold: 0.02,
+    consecutiveCyclesBeforeHalt: 2,
+    reweightFactor: 0.15,
+    quarantineMaxRetries: 3,
+    quarantineContextPreservation: "full",
+    depthSchedule: ["surface", "structural", "architectural", "systemic"],
+    discoveryRefinementBudget: 0.10,
+    changesetIsolation: true,
+    parallelPhases: true,
+    verificationStrictness: "self-derived",
+    autoRollbackOnRegression: true,
+    unknownElevationPriority: "high",
+    provenanceDetail: "full",
+    semanticPreservation: true,
+    jsLanePrimary: "bun",
+    jsPackageManagerPrimary: "bun",
+    jsFallbackManagers: ["npm", "pnpm", "yarn"],
+    bunLockIntegrityRequired: true,
+    bunCommandPriority: ["bun install", "bun test", "bun run"],
+    convergenceHonestyEnabled: true,
+    externalBenchmarksAllowed: false,
+    prescriptiveStrategiesAllowed: false
+  }
+};
+
+// ============================================================
+// Rendering
+// ============================================================
+
+function renderPipeline() {
+  var container = document.getElementById('pipelineVis');
+  container.innerHTML = FRAMEWORK.stages.map(function(stage, i) {
+    var arrow = i < FRAMEWORK.stages.length - 1
+      ? '<div class="stage-arrow"><i class="fas fa-chevron-right"></i></div>'
+      : '';
+    return '<div class="pipeline-stage' + (i === 0 ? ' active' : '') + '" data-stage="' + i + '" onclick="selectStage(' + i + ')" role="button" tabindex="0" aria-label="Stage ' + stage.num + ': ' + stage.name + '">' +
+      '<div class="stage-num">STAGE ' + stage.num + '</div>' +
+      '<div class="stage-icon" style="background:' + stage.color + '15; color:' + stage.color + '; border:1px solid ' + stage.color + '40;">' +
+        '<i class="fas ' + stage.icon + '"></i>' +
+      '</div>' +
+      '<div class="stage-name" style="color:' + stage.color + '">' + stage.shortName + '</div>' +
+      '<div class="stage-sub">' + stage.phases.length + ' phases</div>' +
+    '</div>' + arrow;
+  }).join('');
+  selectStage(0);
+}
+
+function selectStage(index) {
+  var allStages = document.querySelectorAll('.pipeline-stage');
+  allStages.forEach(function(s, i) { s.classList.toggle('active', i === index); });
+  var stage = FRAMEWORK.stages[index];
+  var detail = document.getElementById('stageDetail');
+  detail.innerHTML =
+    '<h3 style="color:' + stage.color + '"><i class="fas ' + stage.icon + '" style="margin-right:8px;"></i>Stage ' + stage.num + ': ' + stage.name + '</h3>' +
+    '<p class="stage-desc">' + stage.description + '</p>' +
+    '<ul class="phase-list">' +
+      stage.phases.map(function(phase, pi) {
+        return '<li class="phase-item">' +
+          '<div class="phase-marker" style="border-color:' + stage.color + '; color:' + stage.color + '; background:' + stage.color + '10;">' + String(pi + 1).padStart(2, '0') + '</div>' +
+          '<div class="phase-content">' +
+            '<h4>' + phase.name + '</h4>' +
+            '<p>' + phase.desc + '</p>' +
+            '<div class="phase-tags">' +
+              phase.tags.map(function(t) { return '<span class="phase-tag">' + t + '</span>'; }).join('') +
+            '</div>' +
+          '</div>' +
+        '</li>';
+      }).join('') +
+    '</ul>';
+  detail.classList.add('visible');
+}
+
+function renderDiscoveryProtocols() {
+  var grid = document.getElementById('discoveryGrid');
+  grid.innerHTML = FRAMEWORK.discoveryProtocols.map(function(proto) {
+    return '<div class="protocol-card" style="--card-accent:' + proto.color + '">' +
+      '<div class="pc-icon"><i class="fas ' + proto.icon + '"></i></div>' +
+      '<h4>' + proto.name + '</h4>' +
+      '<p>' + proto.description + '</p>' +
+      '<ul class="pc-steps">' +
+        proto.steps.map(function(s) { return '<li>' + s + '</li>'; }).join('') +
+      '</ul>' +
+    '</div>';
+  }).join('');
+}
+
+function renderCriterionEmergence() {
+  var grid = document.getElementById('emergenceGrid');
+  grid.innerHTML = FRAMEWORK.criterionEmergence.map(function(ce) {
+    return '<div class="protocol-card" style="--card-accent:' + ce.color + '">' +
+      '<div class="pc-icon"><i class="fas ' + ce.icon + '"></i></div>' +
+      '<h4>' + ce.name + '</h4>' +
+      '<p>' + ce.description + '</p>' +
+      '<ul class="pc-steps">' +
+        ce.steps.map(function(s) { return '<li>' + s + '</li>'; }).join('') +
+      '</ul>' +
+    '</div>';
+  }).join('');
+}
+
+function renderDirectives() {
+  var container = document.getElementById('directivesContainer');
+  container.innerHTML = FRAMEWORK.directives.map(function(d, i) {
+    return '<div class="directive-block">' +
+      '<div class="directive-num">' + String(i + 1).padStart(2, '0') + '</div>' +
+      '<div class="directive-body">' +
+        '<h4>' + d.name + '</h4>' +
+        '<p>' + d.description + '</p>' +
+        '<div class="rationale">' + d.rationale + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderCycleRules() {
+  var container = document.getElementById('cycleRules');
+  container.innerHTML = '<div style="margin-top:20px;">' +
+    FRAMEWORK.cycleGovernance.map(function(rule) {
+      return '<div style="display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--border);">' +
+        '<div style="flex-shrink:0; width:8px; height:8px; background:var(--gold); border-radius:50%; margin-top:8px;"></div>' +
+        '<div>' +
+          '<div style="font-family:var(--font-display); font-size:0.82rem; font-weight:600; margin-bottom:4px; letter-spacing:0.04em;">' + rule.rule + '</div>' +
+          '<div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.65; margin-bottom:6px;">' + rule.description + '</div>' +
+          '<code style="font-family:var(--font-mono); font-size:0.65rem; color:var(--gold-dim); background:var(--bg-raised); padding:3px 8px; border-radius:3px;">' + rule.param + '</code>' +
+        '</div>' +
+      '</div>';
+    }).join('') +
+  '</div>';
+}
+
+function renderConfig() {
+  var fullConfig = {
+    "$schema": "chthonic-archive/transmutation-framework/v2",
+    meta: FRAMEWORK.meta,
+    pipeline: {
+      stages: FRAMEWORK.stages.map(function(s) {
+        return { id: s.id, name: s.name, phases: s.phases.map(function(p) { return { name: p.name, tags: p.tags }; }) };
+      })
+    },
+    discoveryProtocols: FRAMEWORK.discoveryProtocols.map(function(dp) {
+      return { id: dp.id, name: dp.name, steps: dp.steps };
+    }),
+    criterionEmergence: FRAMEWORK.criterionEmergence.map(function(ce) {
+      return { id: ce.id, name: ce.name, steps: ce.steps };
+    }),
+    directives: FRAMEWORK.directives.map(function(d) {
+      return { name: d.name, description: d.description };
+    }),
+    cycleGovernance: FRAMEWORK.cycleGovernance.map(function(r) {
+      return { rule: r.rule, param: r.param };
+    }),
+    config: FRAMEWORK.config
+  };
+
+  var output = document.getElementById('configOutput');
+  output.innerHTML = syntaxHighlightJSON(JSON.stringify(fullConfig, null, 2));
+  window._exportConfig = fullConfig;
+}
+
+function syntaxHighlightJSON(json) {
+  return json
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"([^"]+)":/g, '<span class="key">"$1"</span>:')
+    .replace(/: "([^"]*)"/g, ': <span class="str">"$1"</span>')
+    .replace(/: (\d+\.?\d*)/g, ': <span class="num">$1</span>')
+    .replace(/: (true|false)/g, ': <span class="bool">$1</span>')
+    .replace(/: (null)/g, ': <span class="null">$1</span>');
+}
+
+// ============================================================
+// Interactions
+// ============================================================
+
+function copyConfig() {
+  var json = JSON.stringify(window._exportConfig, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(function() { showToast('Manifest copied to clipboard'); });
+  }
+}
+
+function downloadConfig() {
+  var json = JSON.stringify(window._exportConfig, null, 2);
+  var blob = new Blob([json], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'chthonic-manifest.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Manifest exported');
+}
+
+function showToast(message) {
+  var existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3000);
+}
+
+function initNavHighlight() {
+  var links = document.querySelectorAll('.nav-links a');
+  var sections = ['pipeline', 'discovery', 'emergence', 'directives', 'cycle', 'config'];
+  function update() {
+    var scrollY = window.scrollY + 100;
+    var current = sections[0];
+    sections.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    links.forEach(function(link) {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.target.classList.contains('pipeline-stage') && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    e.target.click();
+  }
+});
+
+// ============================================================
+// Initialize
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  renderPipeline();
+  renderDiscoveryProtocols();
+  renderCriterionEmergence();
+  renderDirectives();
+  renderCycleRules();
+  renderConfig();
+  initNavHighlight();
+});
+</script>
+</body>
+</html>

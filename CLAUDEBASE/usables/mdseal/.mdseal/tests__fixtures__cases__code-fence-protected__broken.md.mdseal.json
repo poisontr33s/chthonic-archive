@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\code-fence-protected\\broken.md",
+  "sourceSha256": "e347c370d40fc0d54390c532ae176bad3a961bec6038723b1857751e456ebaa4",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "code_fence",
+      "startOffset": 0,
+      "endOffset": 22,
+      "text": "```ts\nconst x = 1;\n```"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [
+    {
+      "startOffset": 0,
+      "endOffset": 22,
+      "hash": "e347c370d40fc0d54390c532ae176bad3a961bec6038723b1857751e456ebaa4"
+    }
+  ],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.680Z",
+  "hashOnly": false
+}

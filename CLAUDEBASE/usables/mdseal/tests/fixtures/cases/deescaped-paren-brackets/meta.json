@@ -1,0 +1,13 @@
+{
+  "name": "deescaped-paren-brackets",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_PAREN_DELIMITER_DEESCAPED"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

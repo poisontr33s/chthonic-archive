@@ -1,0 +1,21 @@
+{
+  "name": "mdseal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "mdseal": "bun run src/cli.ts",
+    "test": "bun test",
+    "check": "bun run src/cli.ts check",
+    "fix": "bun run src/cli.ts fix",
+    "seal": "bun run src/cli.ts seal",
+    "restore": "bun run src/cli.ts restore",
+    "sweep": "bun run src/cli.ts sweep",
+    "corpus:test": "bun run src/cli.ts corpus test",
+    "providers:list": "bun run src/cli.ts providers list",
+    "providers:doctor": "bun run src/cli.ts providers doctor"
+  },
+  "dependencies": {
+    "katex": "0.16.11"
+  }
+}

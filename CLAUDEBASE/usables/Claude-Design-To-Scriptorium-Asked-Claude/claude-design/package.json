@@ -1,0 +1,153 @@
+{
+  "name": "claude-design",
+  "displayName": "Claude Design — Scriptorium",
+  "description": "The Scriptorium: Constellation, Marginalia, Vivarium. A local VS Code sidecar for design work using the Claude CLI.",
+  "publisher": "claude-design",
+  "version": "0.1.0",
+  "icon": "media/icon.png",
+  "engines": {
+  "vscode": "^1.97.0-insider"
+},
+"categories": ["AI", "Visualization", "Other"],
+"activationEvents": ["onStartupFinished"],
+"main": "./dist/extension.js",
+"scripts": {
+  "build": "bun build src/extension.ts --outfile dist/extension.js --target node --external vscode",
+  "dev": "bun --hot build src/extension.ts --outfile dist/extension.js --target node --external vscode",
+  "package": "vsce package --no-dependencies",
+  "test": "bun test"
+},
+"contributes": {
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "claudeDesign",
+        "title": "Claude Design",
+        "icon": "media/sigil.svg"
+      }
+    ]
+  },
+  "views": {
+    "claudeDesign": [
+      {
+        "id": "claudeDesign.constellation",
+        "name": "Constellation",
+        "type": "webview",
+        "contextualTitle": "Constellation"
+      },
+      {
+        "id": "claudeDesign.marginalia",
+        "name": "Marginalia",
+        "type": "webview",
+        "contextualTitle": "Marginalia"
+      },
+      {
+        "id": "claudeDesign.vivarium",
+        "name": "Vivarium",
+        "type": "webview",
+        "contextualTitle": "Vivarium"
+      },
+      {
+        "id": "claudeDesign.bestiary",
+        "name": "Bestiary",
+        "type": "tree"
+      }
+    ],
+    "panel": [
+      {
+        "id": "claudeDesign.chat",
+        "name": "Design Chat",
+        "type": "webview"
+      }
+    ]
+  },
+  "commands": [
+    {
+    "command": "claudeDesign.signIn",
+    "title": "Claude Design: Sign in with Claude"
+  },
+  {
+  "command": "claudeDesign.focusLeaf",
+  "title": "Claude Design: Focus Leaf"
+},
+{
+"command": "claudeDesign.focusChat",
+"title": "Claude Design: Focus Chat"
+},
+{
+"command": "claudeDesign.selfTest",
+"title": "Claude Design: Self-Test"
+},
+{
+"command": "claudeDesign.toggleHand",
+"title": "Claude Design: Toggle Hand (terse / discursive / diagrammatic)"
+},
+{
+"command": "claudeDesign.marginalia.focus",
+"title": "Claude Design: Marginalia — Focus Leaf"
+},
+{
+"command": "claudeDesign.constellation.brighten",
+"title": "Claude Design: Constellation — Brighten Leaf"
+},
+{
+"command": "claudeDesign.enableSubstrate",
+"title": "Claude Design: Enable Mica Substrate"
+},
+{
+"command": "claudeDesign.disableSubstrate",
+"title": "Claude Design: Disable Mica Substrate"
+}
+],
+"configuration": {
+  "title": "Claude Design",
+  "properties": {
+    "claudeDesign.cliPath": {
+      "type": "string",
+      "default": "claude",
+      "description": "Path to the claude CLI binary. The CLI handles OAuth and quota; Design never sees credentials directly."
+    },
+    "claudeDesign.posture": {
+      "type": "string",
+      "enum": ["scriptorium", "plain"],
+      "default": "scriptorium",
+      "description": "Visual posture. scriptorium = parchment + marginalia + rubrics. plain = unstyled chrome."
+    },
+    "claudeDesign.hand": {
+      "type": "string",
+      "enum": ["terse", "discursive", "diagrammatic"],
+      "default": "discursive",
+      "description": "Gloss mode for marginalia."
+    },
+    "claudeDesign.accent": {
+      "type": "string",
+      "default": "",
+      "description": "Override the brand accent. Empty = inherit --vscode-charts-orange from the active theme."
+    },
+    "claudeDesign.telemetry": {
+      "type": "boolean",
+      "default": false,
+      "description": "Telemetry is off by default and stays that way unless you flip this on."
+    },
+    "claudeDesign.substrate.enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Patch VS Code Insiders' workbench files once to enable the local Mica substrate. This intentionally triggers VS Code's modified installation warning."
+    },
+    "claudeDesign.substrateCssPath": {
+      "type": "string",
+      "default": "",
+      "description": "Absolute path to vibrancy-obsidian.css. Empty = workspace designs/vibrancy-obsidian.css."
+    }
+  }
+}
+},
+"devDependencies": {
+  "@types/vscode": "^1.97.0",
+  "@vscode/vsce": "^3.0.0",
+  "typescript": "^5.4.0"
+},
+"trustedDependencies": [
+  "@vscode/vsce-sign"
+]
+}

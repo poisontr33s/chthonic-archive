@@ -1,0 +1,44 @@
+{
+  "factions": [
+    {
+      "faction_id": "TMO",
+      "name": "The MILF Obductors",
+      "tier": 2.0,
+      "spectral_frequency": "CRIMSON",
+      "district": "LAYER-2",
+      "description": "Abductive seduction masters. Operative doctrine: draw the target in willingly, then restructure their worldview.",
+      "operative_count": 12,
+      "abilities": ["abduction_field", "seduction_pull", "worldview_shift"]
+    },
+    {
+      "faction_id": "TTG",
+      "name": "The Thieves Guild",
+      "tier": 2.0,
+      "spectral_frequency": "SILVER",
+      "district": "LAYER-2",
+      "description": "Epistemic extraction specialists. They steal not objects but certainties — leaving targets resourced but unmoored.",
+      "operative_count": 8,
+      "abilities": ["epistemic_theft", "certainty_drain", "false_floor"]
+    },
+    {
+      "faction_id": "TDPC",
+      "name": "The Dark Priestesses Cove",
+      "tier": 2.0,
+      "spectral_frequency": "VIOLET",
+      "district": "LAYER-2",
+      "description": "Architectonic purification through ritual. TDPC maintains the deep structural layers the Triumvirate cannot reach.",
+      "operative_count": 6,
+      "abilities": ["ritual_cleanse", "deep_audit", "structural_seal"]
+    },
+    {
+      "faction_id": "Svartseils",
+      "name": "Svartseils Syndicate",
+      "tier": 3.0,
+      "spectral_frequency": "ONYX",
+      "district": "LAYER-3",
+      "description": "Ordeal-based matriarchy. Claudine Sin'claire presides. Entry requires surviving a documented ordeal; loyalty is proven by scar.",
+      "operative_count": 22,
+      "abilities": ["ordeal_initiation", "scar_bond", "syndicate_contract"]
+    }
+  ]
+}

@@ -13,6 +13,7 @@ type CliProbe = {
     name: string;
     path: string | null;
     exists: boolean;
+    usable: boolean;
     version: string | null;
     exitCode: number;
     stderr: string | null;
@@ -132,6 +133,7 @@ function probeCommand(name: string, argv: string[]): CliProbe {
             name,
             path: null,
             exists: false,
+            usable: false,
             version: null,
             exitCode: 127,
             stderr: null,
@@ -144,6 +146,7 @@ function probeCommand(name: string, argv: string[]): CliProbe {
         name,
         path: resolved,
         exists: true,
+        usable: run.exitCode === 0,
         version,
         exitCode: run.exitCode,
         stderr: run.stderr || run.error,
@@ -279,8 +282,8 @@ function probeBinary(name: string, filePath: string | null, source: string): Bin
     };
 }
 
-function hasCommand(commands: CliProbe[], name: string): boolean {
-    return commands.some((entry) => entry.name === name && entry.exists);
+function hasUsableCommand(commands: CliProbe[], name: string): boolean {
+    return commands.some((entry) => entry.name === name && entry.usable);
 }
 
 function determineNativeLane(binaries: BinaryProbe[], pro: VsInstance | null, bt: VsInstance | null): string {
@@ -297,8 +300,8 @@ function determineNativeLane(binaries: BinaryProbe[], pro: VsInstance | null, bt
 }
 
 function determineInfraLane(commands: CliProbe[]): string {
-    const hasAz = hasCommand(commands, 'az');
-    const hasBicep = hasCommand(commands, 'bicep');
+    const hasAz = hasUsableCommand(commands, 'az');
+    const hasBicep = hasUsableCommand(commands, 'bicep');
     if (hasAz && hasBicep) {
         return 'az+bicep-ready';
     }
@@ -392,7 +395,7 @@ function run(): void {
         ['cargo', ['--version']],
         ['solana', ['--version']],
         ['solana-install', ['--version']],
-        ['agave-install', ['--version']],
+        ['agave-install', ['--help']],
         ['bun', ['--version']],
         ['az', ['version', '--query', '"azure-cli"', '--output', 'tsv']],
         ['bicep', ['--version']],
@@ -426,10 +429,10 @@ function run(): void {
         commands,
         recommendedLanes: {
             native: determineNativeLane(binaries, pro, bt),
-            python: hasCommand(commands, 'uv') ? 'uv' : 'python-system',
-            ruby: hasCommand(commands, 'rv') ? 'rv' : (hasCommand(commands, 'ruby') ? 'ruby-system' : 'ruby-missing'),
-            go: hasCommand(commands, 'goup') ? 'goup' : (hasCommand(commands, 'go') ? 'go-system' : 'go-missing'),
-            node: hasCommand(commands, 'bun') ? 'bun' : 'node-missing',
+            python: hasUsableCommand(commands, 'uv') ? 'uv' : 'python-system',
+            ruby: hasUsableCommand(commands, 'rv') ? 'rv' : (hasUsableCommand(commands, 'ruby') ? 'ruby-system' : 'ruby-missing'),
+            go: hasUsableCommand(commands, 'goup') ? 'goup' : (hasUsableCommand(commands, 'go') ? 'go-system' : 'go-missing'),
+            node: hasUsableCommand(commands, 'bun') ? 'bun' : 'node-missing',
             sql: sql.path ? (sql.source?.startsWith('ssms') ? 'ssms-dacfx' : 'vs-dacfx') : 'sqlpackage-missing',
             infra: determineInfraLane(commands),
         },

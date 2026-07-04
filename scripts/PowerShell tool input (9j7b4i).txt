@@ -1,0 +1,4 @@
+{
+  "command": "$tools = @(\"rg\",\"fd\",\"bat\",\"eza\",\"delta\",\"zoxide\",\"starship\",\"tokei\",\"dust\",\"hyperfine\",\"procs\",\"bottom\",\"btm\",\"xh\",\"gitui\",\"jj\",\"sg\",\"ast-grep\",\"difft\",\"nu\",\"cargo\",\"rustup\",\"ripgrep\"); foreach ($t in $tools) { $cmd = Get-Command $t -ErrorAction SilentlyContinue; if ($cmd) { $ver = \"\"; try { $ver = (& $t --version 2>&1 | Select-Object -First 1) } catch {}; \"{0,-12} {1,-50} {2}\" -f $t, $cmd.Source, $ver } else { \"{0,-12} (not found)\" -f $t } }",
+  "description": "Inventory Rust-native CLI tools in PATH"
+}

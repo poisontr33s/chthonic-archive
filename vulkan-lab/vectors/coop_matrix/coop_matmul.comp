@@ -1,0 +1,35 @@
+#version 450
+#extension GL_KHR_cooperative_matrix : require
+#extension GL_KHR_memory_scope_semantics : require
+#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
+
+// Single subgroup = single tensor-core tile operation
+// NVIDIA Ada: subgroup size = 32
+layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+
+// SSBOs: A and B are FP16, C is FP32 (accumulator)
+layout(set = 0, binding = 0) buffer A_buf { float16_t A[]; };
+layout(set = 0, binding = 1) buffer B_buf { float16_t B[]; };
+layout(set = 0, binding = 2) buffer C_buf { float   C[]; };
+
+void main() {
+    // Cooperative matrix types — matches probe output:
+    //   16x16x16  A=FP16 B=FP16 C=FP32 Result=FP32  scope=subgroup
+    coopmat<float16_t, gl_ScopeSubgroup, 16, 16, gl_MatrixUseA>          matA;
+    coopmat<float16_t, gl_ScopeSubgroup, 16, 16, gl_MatrixUseB>          matB;
+    coopmat<float,     gl_ScopeSubgroup, 16, 16, gl_MatrixUseAccumulator> matC;
+
+    // Zero-init accumulator
+    matC = coopmat<float, gl_ScopeSubgroup, 16, 16, gl_MatrixUseAccumulator>(0.0);
+
+    // Load A[16x16] and B[16x16] from SSBOs
+    // stride = 16 elements (row-major, 16 columns)
+    coopMatLoad(matA, A, 0, 16, gl_CooperativeMatrixLayoutRowMajor);
+    coopMatLoad(matB, B, 0, 16, gl_CooperativeMatrixLayoutRowMajor);
+
+    // Tensor-core multiply-accumulate: C = A * B + C
+    matC = coopMatMulAdd(matA, matB, matC);
+
+    // Store result to FP32 SSBO
+    coopMatStore(matC, C, 0, 16, gl_CooperativeMatrixLayoutRowMajor);
+}

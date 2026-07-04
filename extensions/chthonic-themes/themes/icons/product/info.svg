@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Obelisk — wisdom/knowledge pillar -->
+ <path d="M8 1l-1 2v9h2V3z" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <!-- Base pedestal -->
+ <path d="M5 12h6v2H5z" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <!-- Inscription marks -->
+ <path d="M7.5 5.5h1M7.5 7.5h1" stroke="currentColor" stroke-width="0.7" stroke-linecap="round"/>
+</svg>

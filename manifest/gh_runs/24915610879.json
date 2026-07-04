@@ -1,0 +1,21 @@
+{
+  "run_id": 24915610879,
+  "fetched_at": "2026-04-25T15:50:31.605Z",
+  "summary": {
+    "conclusion": "failure",
+    "createdAt": "2026-04-24T22:58:03Z",
+    "databaseId": 24915610879,
+    "displayTitle": "feat: pentea_family_relations.py — full-archive .md x META.md relatio…",
+    "event": "push",
+    "headBranch": "main",
+    "headSha": "04898c047ad92ddd98f00276bc72199ff6234180",
+    "name": ".github/workflows/pentea-cloud-dispatch.yml",
+    "status": "completed",
+    "updatedAt": "2026-04-24T22:58:03Z",
+    "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24915610879",
+    "workflowDatabaseId": 266068053,
+    "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+  },
+  "jobs": [],
+  "failure_steps": []
+}

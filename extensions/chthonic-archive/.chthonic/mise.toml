@@ -14,9 +14,9 @@
 #   uv (self-managed), rv (cargo install), goup (self-managed), rust (rustup)
 #   go (goup; verified=1.26.4), cmake (VS Insiders path enforced — PATH cmake is a broken uv shim)
 # solana-cli/agave removed 2026-07-04: neither exists in mise's tool registry
-# under these names (verified — no close match either), and the agave-sync
-# task below never used them anyway — it installs via `solana-install init
-# stable`, a separate external installer, not mise tool management at all.
+# under these names (verified — no close match either). The local lane is
+# Agave/Anza CLI + Anchor/AVM on Win11; Frankendancer is tracked as a validator
+# lane, and full Firedancer C++ remains await/research.
 # These two lines never resolved successfully in any mise version.
 cargo-binstall = "latest"
 terraform = "latest"
@@ -29,7 +29,7 @@ disable_tools = ["python", "ruby"]
 CHTHONIC_SLAB_MODE = "kernel"
 CHTHONIC_GO_OWNER = "goup"
 CHTHONIC_SOLANA_RUNTIME = "agave"
-CHTHONIC_SOLANA_INSTALLER = "solana-install"
+CHTHONIC_SOLANA_INSTALLER = "agave-install"
 # 2026-07-04: these 4 were {{cwd}}-relative (tracks the INVOKING shell's
 # directory, not this file's own directory) and proven wrong in every tested
 # invocation context — bare-from-.chthonic/ doubled the segment into
@@ -110,8 +110,8 @@ _.path = [
 # matching the pattern nvidia-stack-probe.ps1 already used correctly.
 
 [tasks.agave-sync]
-description = "Sync Agave/Solana toolchain lane"
-run = "solana-install init stable"
+description = "Sync Agave/Anza CLI lane when agave-install is usable"
+run = "pwsh -NoProfile -Command \"Write-Error 'Blocked: agave-sync no longer calls stale solana-install. Restore a usable agave-install or install the current Anza prebuilt release manually, then re-run verify-host.'; exit 1\""
 
 [tasks.firedancer-artifacts]
 description = "Prepare Frankendancer artifact directory for native bridge"

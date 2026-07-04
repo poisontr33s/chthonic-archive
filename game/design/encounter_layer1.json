@@ -1,0 +1,72 @@
+{ 
+  "encounter_id": "layer1_awakening",
+  "$schema": "chthonic://game/systems/combat.schema.json",
+  "version": "1.0.0",
+  "title": "The Archive Stirs — Layer 1 Awakening",
+  "description": "The first combat encounter. The Triumvirate manifests to test whether the Savant belongs in the Archive at all.",
+  "resources": [
+    { "id": "ki",   "min": 0, "max": 100, "regen_per_turn": 10, "start": 50 },
+    { "id": "void", "min": 0, "max": 50,  "regen_per_turn": 0,  "start": 0 }
+  ],
+  "turn_structure": {
+    "initiative": "dex_roll",
+    "actions_per_turn": 2,
+    "movement_mode": "isometric_grid",
+    "grid_size": [12, 12],
+    "flanking_bonus": 0.2
+  },
+  "damage_types": [
+    { "id": "physical",    "resist_stat": "defense",             "color": [0.8, 0.2, 0.2] },
+    { "id": "conceptual",  "resist_stat": "conceptual_capacity",  "color": [0.4, 0.6, 1.0] },
+    { "id": "void",        "resist_stat": "none",                 "color": [0.2, 0.0, 0.4] },
+    { "id": "spectral",    "resist_stat": "tier_bonus",           "color": [1.0, 0.9, 0.3] }
+  ],
+  "actions": [
+    {
+      "id": "basic_strike",
+      "label": "Strike",
+      "ki_cost": 1,
+      "damage_type": "physical",
+      "targeting": { "shape": "single", "range": 1 },
+      "formula": "power * 0.8 + tier_bonus"
+    },
+    {
+      "id": "surge",
+      "label": "Surge",
+      "ki_cost": 2,
+      "damage_type": "conceptual",
+      "targeting": { "shape": "cone", "range": 3, "width": 2 },
+      "formula": "power * 1.4",
+      "status_effects": ["momentum"]
+    },
+    {
+      "id": "void_pulse",
+      "label": "Void Pulse",
+      "ki_cost": 3,
+      "void_cost": 15,
+      "damage_type": "void",
+      "targeting": { "shape": "aoe", "range": 0, "radius": 4 },
+      "formula": "conceptual_capacity * 0.5",
+      "status_effects": ["disoriented", "void_touched"]
+    }
+  ],
+  "combatants": [
+    { "id": "orackla",    "ref": "game/lore/characters/orackla.json",  "team": "triumvirate", "spawn": [2, 6] },
+    { "id": "umeko",      "ref": "game/lore/characters/umeko.json",    "team": "triumvirate", "spawn": [6, 2] },
+    { "id": "lysandra",   "ref": "game/lore/characters/lysandra.json", "team": "triumvirate", "spawn": [6, 10] },
+    { "id": "the_savant", "ref": "assets/data.json#entities[0]",       "team": "player",      "spawn": [6, 6] }
+  ],
+  "map": {
+    "grid": "isometric_12x12",
+    "layer": "LAYER-1",
+    "spectral_frequency": "GOLD",
+    "tile_set": "archival_stone",
+    "ambient": { "r": 0.6, "g": 0.5, "b": 0.9 }
+  },
+  "victory_conditions": [
+    { "condition": "all_triumvirate_impressed", "threshold": "health_below_30pct_or_yield" }
+  ],
+  "defeat_conditions": [
+    { "condition": "savant_health_zero" }
+  ]
+}

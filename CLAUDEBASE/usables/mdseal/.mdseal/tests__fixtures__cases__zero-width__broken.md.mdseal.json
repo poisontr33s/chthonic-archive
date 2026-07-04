@@ -1,0 +1,16 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\zero-width\\broken.md",
+  "sourceSha256": "8df62aef5f92e4c30c0c938497f55f60078c361a476e7e0448485194ad79f884",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:20.073Z",
+  "hashOnly": false
+}

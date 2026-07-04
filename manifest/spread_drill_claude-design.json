@@ -1,0 +1,401 @@
+{
+  "generated_at": "2026-05-28T20:31:34.882Z",
+  "spread_index_generated_at": "2026-05-28T20:31:08.991Z",
+  "project": {
+    "name": "claude-design",
+    "rel_path": "Downloads\\Claude-Design Vs-code-insider-Win11-official-beta-research-preview\\claude-design",
+    "root_dir": "c:\\Users\\eldno\\Downloads\\Claude-Design Vs-code-insider-Win11-official-beta-research-preview\\claude-design",
+    "languages": [
+      "node"
+    ],
+    "mode_hint": "snipe",
+    "repurposability_score": 4
+  },
+  "file_count": 20,
+  "ts_file_count": 20,
+  "rust_file_count": 0,
+  "native_file_count": 0,
+  "rust_pub_kinds": {},
+  "top_imports": [
+    {
+      "path": "vscode",
+      "count": 18
+    },
+    {
+      "path": "node:path",
+      "count": 4
+    },
+    {
+      "path": "node:child_process",
+      "count": 3
+    },
+    {
+      "path": "node:os",
+      "count": 1
+    },
+    {
+      "path": "node:fs/promises",
+      "count": 1
+    },
+    {
+      "path": "./inference/cli",
+      "count": 1
+    },
+    {
+      "path": "./fs/broker",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/marginalia",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/colophon",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/focus",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/rune",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/session",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/bestiary",
+      "count": 1
+    },
+    {
+      "path": "./scriptorium/manifest",
+      "count": 1
+    },
+    {
+      "path": "./views/constellation",
+      "count": 1
+    },
+    {
+      "path": "./views/marginaliaView",
+      "count": 1
+    },
+    {
+      "path": "./views/vivarium",
+      "count": 1
+    },
+    {
+      "path": "./views/chatPanel",
+      "count": 1
+    },
+    {
+      "path": "./diagnostics/selfTest",
+      "count": 1
+    },
+    {
+      "path": "node:events",
+      "count": 1
+    }
+  ],
+  "files": [
+    {
+      "path": "src\\bridge\\claudeCode.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 37,
+      "bytes": 1414,
+      "imports": [
+        "vscode",
+        "node:child_process"
+      ],
+      "exports": [
+        "ClaudeCodeBridge"
+      ]
+    },
+    {
+      "path": "src\\diagnostics\\selfTest.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 144,
+      "bytes": 6637,
+      "imports": [
+        "vscode",
+        "node:child_process",
+        "node:os",
+        "node:path",
+        "node:fs/promises"
+      ],
+      "exports": [
+        "runSelfTest"
+      ]
+    },
+    {
+      "path": "src\\extension.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 196,
+      "bytes": 7338,
+      "imports": [
+        "vscode",
+        "./inference/cli",
+        "./fs/broker",
+        "./scriptorium/marginalia",
+        "./scriptorium/colophon",
+        "./scriptorium/focus",
+        "./scriptorium/rune",
+        "./scriptorium/session",
+        "./scriptorium/bestiary",
+        "./scriptorium/manifest",
+        "./views/constellation",
+        "./views/marginaliaView",
+        "./views/vivarium",
+        "./views/chatPanel",
+        "./diagnostics/selfTest"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ]
+    },
+    {
+      "path": "src\\fs\\broker.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 88,
+      "bytes": 3026,
+      "imports": [
+        "vscode",
+        "node:path"
+      ],
+      "exports": [
+        "FsBroker"
+      ]
+    },
+    {
+      "path": "src\\inference\\cli.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 43,
+      "bytes": 1445,
+      "imports": [
+        "node:child_process",
+        "node:events"
+      ],
+      "exports": [
+        "CliInference"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\bestiary.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 144,
+      "bytes": 5094,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "BESTIARY",
+        "BestiaryProvider",
+        "bestiaryAsMarkdown"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\colophon.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 62,
+      "bytes": 2054,
+      "imports": [
+        "vscode",
+        "./marginalia"
+      ],
+      "exports": [
+        "ColophonScribe"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\focus.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 63,
+      "bytes": 2029,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "focusBridge",
+        "registerFocusBridge"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\manifest.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 165,
+      "bytes": 4974,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "ensureManifest",
+        "readManifest",
+        "setStatus",
+        "watchManifest"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\marginalia.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 192,
+      "bytes": 5853,
+      "imports": [
+        "vscode",
+        "path"
+      ],
+      "exports": [
+        "MarginaliaStore"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\patina.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 39,
+      "bytes": 1822,
+      "imports": [],
+      "exports": [
+        "APPROVED_PATINA_FILTER",
+        "PATINA_CSS",
+        "patinaFromMtime"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\rune.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 104,
+      "bytes": 3074,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "Rune"
+      ]
+    },
+    {
+      "path": "src\\scriptorium\\session.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 109,
+      "bytes": 3458,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "hibernate",
+        "rehydrate"
+      ]
+    },
+    {
+      "path": "src\\views\\assetReview.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 47,
+      "bytes": 1836,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "AssetReviewProvider"
+      ]
+    },
+    {
+      "path": "src\\views\\chatPanel.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 163,
+      "bytes": 6640,
+      "imports": [
+        "vscode",
+        "../inference/cli",
+        "../fs/broker",
+        "./previewPanel"
+      ],
+      "exports": [
+        "ChatPanel"
+      ]
+    },
+    {
+      "path": "src\\views\\constellation.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 298,
+      "bytes": 10836,
+      "imports": [
+        "vscode",
+        "../scriptorium/patina"
+      ],
+      "exports": [
+        "ConstellationView"
+      ]
+    },
+    {
+      "path": "src\\views\\designFiles.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 37,
+      "bytes": 1383,
+      "imports": [
+        "vscode",
+        "node:path"
+      ],
+      "exports": [
+        "DesignFilesProvider"
+      ]
+    },
+    {
+      "path": "src\\views\\marginaliaView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 597,
+      "bytes": 20340,
+      "imports": [
+        "vscode",
+        "../scriptorium/marginalia"
+      ],
+      "exports": [
+        "MarginaliaView"
+      ]
+    },
+    {
+      "path": "src\\views\\previewPanel.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 109,
+      "bytes": 4536,
+      "imports": [
+        "vscode",
+        "node:path"
+      ],
+      "exports": [
+        "PreviewPanel"
+      ]
+    },
+    {
+      "path": "src\\views\\vivarium.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 307,
+      "bytes": 9995,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "VivariumView"
+      ]
+    }
+  ]
+}

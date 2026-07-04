@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "mailbox": "gemini/mailbox",
+  "generated_on": "2026-03-20T14:14:43.731475+00:00",
+  "manifest_file": "mailbox_manifest.json",
+  "active": {
+    "md": [
+      "MAILBOX_CURRENT_STATE.md",
+      "TETRAGRAMMATON_PACKET.md"
+    ],
+    "json": []
+  },
+  "archive_count": 0,
+  "archive_files": []
+}

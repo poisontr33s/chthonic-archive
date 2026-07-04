@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "agent_flavors": [
+    "codex",
+    "claude",
+    "gemini"
+  ],
+  "skill_roots": {
+    "codex": ".codex/skills",
+    "claude": ".claude/skills",
+    "gemini": ".gemini/extensions/chthonic-archive-sync/skills"
+  },
+  "operator_skills": [
+    "trainstop-orchestrator",
+    "skill-polisher",
+    "skill-audit",
+    "link-path-guard"
+  ],
+  "target_flavor_modes": [
+    "codex",
+    "claude",
+    "gemini"
+  ],
+  "excluded_targets": [
+    ".system",
+    "artifact-upcycle",
+    "claude-skill-bridge",
+    "codex-skill-bridge",
+    "decision-razor",
+    "gh-address-comments",
+    "meta-polisher-validator",
+    "postman",
+    "script-envelope",
+    "session-resumer",
+    "sfa"
+  ],
+  "lane_specific_targets": {
+    "codex": [
+      "codekiller-remediation-gate",
+      "corpse-reviver"
+    ],
+    "claude": [
+      "git-snapshot",
+      "handoff-loop",
+      "overnight-archaeology",
+      "theme-system"
+    ],
+    "gemini": [
+      "triad-velocity-lane"
+    ]
+  },
+  "operator_modes": {
+    "trainstop-orchestrator": "meta",
+    "skill-polisher": "mutating",
+    "skill-audit": "read_only",
+    "link-path-guard": "mutating"
+  },
+  "operator_target_flavor_rules": {
+    "trainstop-orchestrator": "match_target_lane",
+    "skill-polisher": "match_target_lane",
+    "skill-audit": "any",
+    "link-path-guard": "any"
+  },
+  "operator_execution_scopes": {
+    "trainstop-orchestrator": "lane",
+    "skill-polisher": "skill",
+    "skill-audit": "skill",
+    "link-path-guard": "skill"
+  },
+  "self_target_rules": {
+    "default_allow_same_skill": false,
+    "default_allow_same_root": true
+  },
+  "transition_rules": {
+    "disallow_duplicate_cells_in_chain": true,
+    "disallow_same_target_skill_repeat": true,
+    "disallow_same_operator_consecutive": true,
+    "prefer_target_lane_to_next_executor": true,
+    "prefer_root_continuity": false
+  },
+  "diversity_minimums": {
+    "min_executor_flavors": 2,
+    "min_operator_skills": 3,
+    "min_cross_lane_coverage": 0.5
+  },
+  "history_pruning": {
+    "recent_success_window": 5,
+    "prune_exact_success_cells": true
+  }
+}

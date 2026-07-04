@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-06-29T19:23:24.0360520+02:00",
+  "installRoot": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders",
+  "appRoot": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\0d2dfb2eb8\\resources\\app",
+  "version": "1.127.0-insider",
+  "commit": "0d2dfb2eb897808a27356ab6e5d33000acec4590",
+  "electron": "42.2.0",
+  "mainJs": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\0d2dfb2eb8\\resources\\app\\out\\main.js",
+  "workbenchHtml": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\0d2dfb2eb8\\resources\\app\\out\\vs\\code\\electron-browser\\workbench\\workbench.html",
+  "mainJsHash": "c864cb892fc24943c83fe82eaef0dce09dda37b35e3e88d0905f7d098210c602",
+  "workbenchHtmlHash": "a374327453e9f87fb38a8b265354d4b516903a5df2ca8551fdd2e9efab8a30ed",
+  "hadVibrancyBlock": false,
+  "hadChthonicBlock": true,
+  "hadSubstrateCss": true
+}

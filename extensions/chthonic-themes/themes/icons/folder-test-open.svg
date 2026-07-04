@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Open pylon — test = Ma'at hall opened (judgement revealed) -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#E05545" stroke-width="0.4"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#E05545" stroke-width="0.4"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#E05545" opacity="0.5"/>
+ <rect x="4.5" y="5" width="7" height="8" fill="#E05545" opacity="0.1"/>
+
+ <line x1="8" y1="6.5" x2="8" y2="11.5" stroke="#8CB87A" stroke-width="0.45" stroke-linecap="round"/>
+ <path d="M8 7c-1 .2-1.5.8-1.5 1.3s.5.8 1.5.5" fill="none" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M8 7c1 .2 1.5.8 1.5 1.3s-.5.8-1.5.5" fill="none" stroke="#8CB87A" stroke-width="0.4"/>
+ <path d="M8 9c-1 .2-1.3.6-1.3 1s.4.7 1.3.4" fill="none" stroke="#8CB87A" stroke-width="0.35" opacity="0.8"/>
+ <path d="M8 9c1 .2 1.3.6 1.3 1s-.4.7-1.3.4" fill="none" stroke="#8CB87A" stroke-width="0.35" opacity="0.8"/>
+ <line x1="5" y1="13" x2="11" y2="13" stroke="#E05545" stroke-width="0.5" stroke-linecap="round"/>
+</svg>

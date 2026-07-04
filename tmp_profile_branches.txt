@@ -1,0 +1,12 @@
+failed to parse jq expression (line 1, column 9)
+    {branch:'copilot/fix-0eaffaa7-a238-44eb-b665-7f786be66fe4',ahead:.ahead_by,behind:.behind_by,files:[.files[].filename]}
+            ^  unexpected token "'"
+failed to parse jq expression (line 1, column 9)
+    {branch:'copilot/fix-55df25bc-319a-4987-a900-dc34681487c7',ahead:.ahead_by,behind:.behind_by,files:[.files[].filename]}
+            ^  unexpected token "'"
+failed to parse jq expression (line 1, column 9)
+    {branch:'copilot/fix-8c4f8aec-b447-4900-b18d-bc038d189294',ahead:.ahead_by,behind:.behind_by,files:[.files[].filename]}
+            ^  unexpected token "'"
+failed to parse jq expression (line 1, column 9)
+    {branch:'ai_main_1b463b74c4b1',ahead:.ahead_by,behind:.behind_by,files:[.files[].filename]}
+            ^  unexpected token "'"

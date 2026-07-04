@@ -1,0 +1,13 @@
+{
+  "name": "fence-collision",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_FENCE_COLLISION"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

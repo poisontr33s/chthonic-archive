@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Nemes headdress bust — pharaonic profile -->
+ <!-- Head -->
+ <ellipse cx="8" cy="4.5" rx="2" ry="2.2" fill="none" stroke="currentColor" stroke-width="1.1"/>
+ <!-- Nemes cloth folds descending -->
+ <path d="M6 6c-1.5 1-2.5 3-2.5 5h2" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <path d="M10 6c1.5 1 2.5 3 2.5 5h-2" fill="none" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"/>
+ <!-- Nemes headband -->
+ <path d="M5.5 4h5" stroke="currentColor" stroke-width="0.9" stroke-linecap="round"/>
+ <!-- Chin piece / uraeus hint -->
+ <path d="M8 2.3v-.8" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+ <!-- Broad collar -->
+ <path d="M5 12.5h6" stroke="currentColor" stroke-width="1.0" stroke-linecap="round"/>
+</svg>

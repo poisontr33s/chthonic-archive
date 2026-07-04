@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+  <!-- Chthonic Archive Sacred Mandala Icon -->
+  <!-- Tetrahedral Resonance: Void-Steel-Truth-Salt + Beauty -->
+
+  <!-- Outer Ring (FA¹ - Red) -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#FF6B6B" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Second Ring (FA² - Orange) -->
+  <circle cx="50" cy="50" r="36" fill="none" stroke="#FFB84D" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Third Ring (FA³ - Gold) -->
+  <circle cx="50" cy="50" r="27" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.9"/>
+
+  <!-- Fourth Ring (FA⁴ - Blue) -->
+  <circle cx="50" cy="50" r="18" fill="none" stroke="#4ECDC4" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Inner Ring (FA⁵ - White) -->
+  <circle cx="50" cy="50" r="9" fill="none" stroke="#E8E8F0" stroke-width="1" opacity="0.7"/>
+
+  <!-- Golden Ratio Spiral (φ = 1.618...) -->
+  <path d="M 50 50 Q 59 50 59 59 Q 59 68 50 68 Q 41 68 41 59 Q 41 50 50 50"
+        fill="none" stroke="#FFD700" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Center Point (The Decorator) -->
+  <circle cx="50" cy="50" r="3" fill="#FFD700" opacity="1"/>
+
+  <!-- Tetrahedral Points -->
+  <circle cx="50" cy="10" r="2" fill="#E066FF" opacity="0.9"/>
+  <circle cx="85" cy="65" r="2" fill="#E066FF" opacity="0.9"/>
+  <circle cx="15" cy="65" r="2" fill="#E066FF" opacity="0.9"/>
+
+  <!-- Connecting Lines (Ley Lines) -->
+  <line x1="50" y1="10" x2="85" y2="65" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+  <line x1="85" y1="65" x2="15" y2="65" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+  <line x1="15" y1="65" x2="50" y2="10" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+  <line x1="50" y1="10" x2="50" y2="50" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+  <line x1="85" y1="65" x2="50" y2="50" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+  <line x1="15" y1="65" x2="50" y2="50" stroke="#00E5FF" stroke-width="0.5" opacity="0.4"/>
+</svg>

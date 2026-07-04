@@ -1,0 +1,1 @@
+<picture><source srcset="a.png 1x, b.png 2x" media="(min-width: 800px)"><img src="fallback.png" alt="Chart"></picture>

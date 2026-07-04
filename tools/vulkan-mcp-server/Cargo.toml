@@ -1,0 +1,26 @@
+[package]
+name = "vulkan-mcp-server"
+version = "1.4.0"
+edition = "2024"
+description = "Vulkan Validation Diagnostics and VUID Resolution MCP Server"
+authors = ["chthonic-archive"]
+
+[dependencies]
+# Core MCP SDK
+rmcp = { version = "2.1", features = ["server", "transport-io", "macros"] }
+# Async runtime capable of handling large initial I/O loads
+tokio = { version = "1.40", features = ["full", "rt-multi-thread"] }
+# Serialization framework for parsing the 14.5MB validusage.json
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# JSON Schema generator for tool parameter definitions
+schemars = "0.8"
+# Regular expression engine for log parsing
+regex = "1.10"
+# HTTP client for the initial Khronos registry download
+reqwest = { version = "0.12", features = ["rustls-tls"] }
+# Standardized observability
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# Error context propagation
+anyhow = "1.0"

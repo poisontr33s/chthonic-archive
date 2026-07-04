@@ -1,0 +1,13 @@
+{
+  "name": "image-missing-file",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_IMAGE_MISSING_FILE"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

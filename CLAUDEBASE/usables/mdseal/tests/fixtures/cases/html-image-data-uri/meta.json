@@ -1,0 +1,13 @@
+{
+  "name": "html-image-data-uri",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_IMAGE_REFERENCE"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

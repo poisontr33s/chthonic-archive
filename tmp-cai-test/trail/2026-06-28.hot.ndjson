@@ -1,0 +1,2 @@
+{"at":"2026-06-28T03:54:54.461101500+00:00","kind":"cai-query","msg":"cai: test query","p":3,"type":"diagnostic"}
+{"at":"2026-06-28T03:54:54.545153700+00:00","kind":"cai-response","msg":"cai turn 1 response","p":3,"type":"artifact"}

@@ -1,0 +1,59 @@
+{
+  "schema": "mdseal.v1",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:40:38.998Z",
+  "file": "CLAUDEBASE/usables/mdseal/examples/sealed-research.md",
+  "sha256": "6130750135ee85023916d5b5f4acae6b44cbb6a8f40863883606bada9bbe2b43",
+  "encoding": "utf8",
+  "lineEndings": "lf",
+  "profile": "katex-gfm",
+  "hashMode": "full",
+  "document": {
+    "byteLength": 44,
+    "lineCount": 5,
+    "headingIndex": [
+      {
+        "level": 1,
+        "text": "Sealed research",
+        "line": 1,
+        "sha256": "3250fc5a27e5a0d9f84c7d9244cd0cfea37f25f4c07b0e0585685880c5933ca2"
+      }
+    ]
+  },
+  "zones": [
+    {
+      "id": "z0",
+      "kind": "math_inline",
+      "startOffset": 31,
+      "endOffset": 41,
+      "startLine": 3,
+      "endLine": 3,
+      "sha256": "e378e7d0fc40d503e2295fe397a215ed84871f250c96d07a753e083e568a2689",
+      "preview": "ch\n\nInline math $E = mc^2$.\n\n"
+    }
+  ],
+  "math": [
+    {
+      "id": "m0",
+      "zoneId": "z0",
+      "kind": "inline",
+      "delimiter": "single-dollar",
+      "startOffset": 31,
+      "endOffset": 41,
+      "startLine": 3,
+      "endLine": 3,
+      "sha256": "e378e7d0fc40d503e2295fe397a215ed84871f250c96d07a753e083e568a2689",
+      "contentSha256": "2820951a377c18ce3e89093ca7c31c204b1196a7e571781c6080f8207524a8dc",
+      "raw": "$E = mc^2$",
+      "normalizedLatex": "E = mc^2",
+      "leftContextSha256": "f111a9f7ab65c340db198a15b58f06908e35631d191a8741e1d5245dda679b2a",
+      "rightContextSha256": "0673d69ff78439adfb40182f626c701aa63586c0f636a134a72a8cd425151a29",
+      "leftContextPreview": "ch\n\nInline math ",
+      "rightContextPreview": ".\n\n"
+    }
+  ],
+  "fences": [],
+  "tables": [],
+  "images": [],
+  "hiddenSymbols": []
+}

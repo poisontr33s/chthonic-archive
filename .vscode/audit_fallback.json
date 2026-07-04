@@ -1,0 +1,2041 @@
+{
+  "generated_at": "2026-03-01T01:40:10.000832+00:00",
+  "workspace": "C:\\Users\\erdno\\chthonic-archive",
+  "vscode_insiders": {
+    "version": "1.110.0-insider",
+    "commit": "f5927e727c69039d3037f018f1790ebbbee596bc",
+    "arch": "x64",
+    "install_root": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\f5927e727c"
+  },
+  "summary": {
+    "active_count": 92,
+    "active_missing_count": 0,
+    "active_value_drift_count": 0,
+    "active_value_warning_count": 0,
+    "commented_count": 23,
+    "commented_supported_count": 0,
+    "commented_missing_count": 23
+  },
+  "active": [
+    {
+      "key": "editor.formatOnSave",
+      "line": 9,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.rulers",
+      "line": 10,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": [
+        100,
+        120
+      ],
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.tabSize",
+      "line": 11,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": 4,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/code/node/cliProcessMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.insertSpaces",
+      "line": 12,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/code/node/cliProcessMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/code/electron-utility/sharedProcess/sharedProcessMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js"
+      ]
+    },
+    {
+      "key": "editor.semanticHighlighting.enabled",
+      "line": 13,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.bracketPairColorization.enabled",
+      "line": 14,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js"
+      ]
+    },
+    {
+      "key": "editor.guides.bracketPairs",
+      "line": 15,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js"
+      ]
+    },
+    {
+      "key": "editor.maxTokenizationLineLength",
+      "line": 16,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": 99999999999,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.experimental.asyncTokenization",
+      "line": 17,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.inlineSuggest.showToolbar",
+      "line": 18,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "always",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "editor.tokenColorCustomizations",
+      "line": 19,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": {
+        "[Default Dark+]": {
+          "textMateRules": []
+        }
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "diffEditor.maxComputationTime",
+      "line": 24,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": 0,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.colorTheme",
+      "line": 25,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "theme-label",
+          "status": "ok",
+          "detail": "theme label exists"
+        }
+      ],
+      "note": null,
+      "value": "Chthonic — Flesh & Earth (The Decorator)",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.iconTheme",
+      "line": 26,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "icon-theme-id",
+          "status": "ok",
+          "detail": "file icon theme id exists"
+        }
+      ],
+      "note": null,
+      "value": "chthonic-file-icons",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.productIconTheme",
+      "line": 27,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "product-icon-theme-id",
+          "status": "ok",
+          "detail": "product icon theme id exists"
+        }
+      ],
+      "note": null,
+      "value": "chthonic-product-icons",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.editor.enablePreviewFromQuickOpen",
+      "line": 28,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.editor.enablePreviewFromCodeNavigation",
+      "line": 29,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "workbench.experimental.cloudChanges.partialMatches.enabled",
+      "line": 30,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "task.notifyWindowOnTaskCompletion",
+      "line": 31,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": -1,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chthonic.entropy.enabled",
+      "line": 35,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json",
+        "repo-extension:extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "key": "chthonic.entropy.polyglotEnabled",
+      "line": 36,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json",
+        "repo-extension:extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "key": "chthonic.slab.selfHealingEnabled",
+      "line": 37,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json",
+        "repo-extension:extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "key": "chthonic.reactor.enabled",
+      "line": 38,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json",
+        "repo-extension:extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "key": "chthonic.showLineage",
+      "line": 39,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/chthonic-archive.chthonic-archive-0.2.1/package.json",
+        "repo-extension:extensions/chthonic-archive/package.json"
+      ]
+    },
+    {
+      "key": "git.autorefresh",
+      "line": 43,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+      ]
+    },
+    {
+      "key": "git.autofetch",
+      "line": 44,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+      ]
+    },
+    {
+      "key": "git.decorations.enabled",
+      "line": 45,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+      ]
+    },
+    {
+      "key": "git.statusLimit",
+      "line": 46,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+        }
+      ],
+      "note": null,
+      "value": 500,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/git/package.json"
+      ]
+    },
+    {
+      "key": "scm.diffDecorations",
+      "line": 47,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "none",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "files.associations",
+      "line": 50,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "file-associations",
+          "status": "ok",
+          "detail": "all mapped language ids exist"
+        }
+      ],
+      "note": null,
+      "value": {
+        "*.vert": "glsl",
+        "*.frag": "glsl",
+        "*.geom": "glsl",
+        "*.comp": "glsl",
+        "*.tesc": "glsl",
+        "*.tese": "glsl",
+        "*.md": "markdown",
+        "*.json": "jsonc"
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "files.exclude",
+      "line": 62,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": {
+        "**/target": true,
+        "**/*.spv": false,
+        "**/Cargo.lock": false
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "files.watcherExclude",
+      "line": 67,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": {
+        "**/target/**": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/dumpster-dive/**": true,
+        "**/build/**": true,
+        "**/artifacts/**": true,
+        "**/__pycache__/**": true,
+        "**/book/**": true
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "search.exclude",
+      "line": 78,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": {
+        "**/target": true,
+        "**/node_modules": true,
+        "**/dumpster-dive": true,
+        "**/build": true,
+        "**/artifacts": true,
+        "**/__pycache__": true,
+        "**/.git": true,
+        "**/book": true
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.unicodeVersion",
+      "line": 96,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "11",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.gpuAcceleration",
+      "line": 98,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "off",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.environmentChangesRelaunch",
+      "line": 106,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.profiles.windows",
+      "line": 108,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "terminal-profile-paths",
+          "status": "ok",
+          "detail": "all profile executables exist"
+        }
+      ],
+      "note": null,
+      "value": {
+        "Pwsh 7.5 (Chthonic)": {
+          "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+          "args": [
+            "-NoLogo"
+          ],
+          "icon": "terminal-powershell"
+        },
+        "Pwsh (No Profile)": {
+          "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+          "args": [
+            "-NoProfile",
+            "-NoLogo"
+          ],
+          "icon": "terminal"
+        }
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.defaultProfile.windows",
+      "line": 120,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "default-terminal-profile",
+          "status": "ok",
+          "detail": "profile `Pwsh 7.5 (Chthonic)` exists"
+        }
+      ],
+      "note": null,
+      "value": "Pwsh 7.5 (Chthonic)",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.shellIntegration.enabled",
+      "line": 121,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.shellIntegration.decorationsEnabled",
+      "line": 123,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "never",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.shellIntegration.showCommandGuide",
+      "line": 124,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.shellIntegration.history",
+      "line": 125,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": 100,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.suggest.enabled",
+      "line": 127,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.suggest.suggestOnTriggerCharacters",
+      "line": 128,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.stickyScroll.enabled",
+      "line": 130,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.commandsToSkipShell",
+      "line": 131,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": [
+        "bash",
+        "wsl",
+        "ubuntu"
+      ],
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js"
+      ]
+    },
+    {
+      "key": "terminal.integrated.env.windows",
+      "line": 132,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "terminal-env-path",
+          "status": "ok",
+          "detail": "all explicit PATH segments exist"
+        }
+      ],
+      "note": null,
+      "value": {
+        "PATH": "${env:PATH};C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Users\\erdno\\.goup\\current\\bin;C:\\Users\\erdno\\.local\\bin;C:\\Users\\erdno\\AppData\\Roaming\\rv\\rubies\\ruby-4.0.1\\bin;C:\\Ruby40-x64\\msys64\\ucrt64\\bin;C:\\Ruby40-x64\\msys64\\usr\\bin;C:\\Program Files\\Git\\cmd;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\debugCommand;C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\globalStorage\\github.copilot-chat\\copilotCli;C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\GitHub CLI;C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin;C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\erdno\\AppData\\Local\\GitHubDesktop\\bin;C:\\Program Files\\Git\\bin;C:\\Program Files\\Git\\usr\\bin",
+        "RUST_BACKTRACE": "1",
+        "RUST_LOG": "info,chthonic_archive=debug"
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "[rust]",
+      "line": 150,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `rust` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.formatOnSave": true
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "[glsl]",
+      "line": 153,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `glsl` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.tabSize": 4,
+        "editor.formatOnSave": false
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "[toml]",
+      "line": 157,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `toml` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.formatOnSave": false
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "[markdown]",
+      "line": 160,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `markdown` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+          "comments": "on",
+          "strings": "on",
+          "other": "on"
+        },
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "editor.formatOnSave": false
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "[json]",
+      "line": 171,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `json` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.json-language-features"
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "[jsonc]",
+      "line": 175,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "language-override",
+          "status": "ok",
+          "detail": "language id `jsonc` exists"
+        }
+      ],
+      "note": null,
+      "value": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "vscode.json-language-features"
+      },
+      "evidence": [
+        "core:language-override-section"
+      ]
+    },
+    {
+      "key": "markdown.preview.fontSize",
+      "line": 181,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": 14,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "markdown.preview.lineHeight",
+      "line": 182,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": 1.6,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "markdown.preview.fontFamily",
+      "line": 183,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "markdown.validate.enabled",
+      "line": 184,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "markdown.validate.ignoredLinks",
+      "line": 185,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": [
+        "CLAUDE.md",
+        ".github/copilot-instructions.archive.md",
+        "../dumpster-dive/intake/templates/TRIUMVIRATE_TASK_TEMPLATE.md",
+        "./instructions/mathematical-engines.instructions.md",
+        "docs/standards/KCP_PROTOCOL_ONTOLOGY.md"
+      ],
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "markdown.editor.pasteUrlAsFormattedLink.enabled",
+      "line": 192,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+        }
+      ],
+      "note": null,
+      "value": "smart",
+      "evidence": [
+        "builtin-extension:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/extensions/markdown-language-features/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.nesFetcher",
+      "line": 195,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": "node-fetch",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.completionsFetcher",
+      "line": 196,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": "node-fetch",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.enable",
+      "line": 197,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": {
+        "*": true,
+        "markdown": true,
+        "scminput": true,
+        "plaintext": true
+      },
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.nextEditSuggestions.enabled",
+      "line": 203,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.scopeSelection",
+      "line": 212,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.newWorkspace.useContext7",
+      "line": 215,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.codeGeneration.useInstructionFiles",
+      "line": 216,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.customInstructionsInSystemMessage",
+      "line": 217,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.agent.currentEditorContext.enabled",
+      "line": 222,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.inlineEdits.diagnosticsContextProvider.enabled",
+      "line": 225,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.cli.mcp.enabled",
+      "line": 226,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    },
+    {
+      "key": "chat.tools.global.autoApprove",
+      "line": 229,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.tools.terminal.outputLocation",
+      "line": 230,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "chat",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.agent.maxRequests",
+      "line": 231,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": 9999999,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.unifiedAgentsBar.enabled",
+      "line": 232,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.useAgentSkills",
+      "line": 233,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.useAgentsMdFile",
+      "line": 234,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.checkpoints.enabled",
+      "line": 235,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.checkpoints.showFileChanges",
+      "line": 236,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.instructionsFilesLocations",
+      "line": 241,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "instruction-files",
+          "status": "ok",
+          "detail": "all instruction files exist"
+        }
+      ],
+      "note": null,
+      "value": {
+        ".github/copilot-instructions.md": true
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/worker/extensionHostWorkerMain.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/api/node/extensionHostProcess.js"
+      ]
+    },
+    {
+      "key": "inlineChat.holdToSpeech",
+      "line": 246,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.mcp.autostart",
+      "line": 249,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": "newAndOutdated",
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "chat.mcp.serverSampling",
+      "line": 250,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "mcp-server-sampling",
+          "status": "ok",
+          "detail": "all sampled MCP servers exist in .vscode/mcp.json"
+        }
+      ],
+      "note": null,
+      "value": {
+        "chthonic-archive/.vscode/mcp.json: github": {
+          "allowedModels": [
+            "copilot/gpt-5-mini",
+            "copilot/auto",
+            "copilot/claude-haiku-4.5",
+            "copilot/claude-opus-41",
+            "copilot/claude-opus-4.5",
+            "copilot/claude-sonnet-4",
+            "copilot/claude-sonnet-4.5",
+            "copilot/gemini-3-flash-preview",
+            "copilot/gemini-3-pro-preview",
+            "copilot/gpt-4.1",
+            "copilot/gpt-4o",
+            "copilot/gpt-4o-mini",
+            "copilot/gpt-5",
+            "copilot/gpt-5-codex",
+            "copilot/gpt-5.1",
+            "copilot/gpt-5.1-codex",
+            "copilot/gpt-5.2-codex",
+            "copilot/gpt-5.1-codex-max",
+            "copilot/gpt-5.1-codex-mini",
+            "copilot/gpt-5.2",
+            "copilot/grok-code-fast-1"
+          ]
+        },
+        "chthonic-archive/.vscode/mcp.json: browser": {
+          "allowedModels": [
+            "copilot/auto",
+            "copilot/claude-sonnet-4.5",
+            "copilot/claude-haiku-4.5",
+            "copilot/claude-opus-41",
+            "copilot/claude-opus-4.5",
+            "copilot/claude-sonnet-4",
+            "copilot/gemini-3-flash-preview",
+            "copilot/gemini-3-pro-preview",
+            "copilot/gpt-4.1",
+            "copilot/gpt-4o",
+            "copilot/gpt-5",
+            "copilot/gpt-5-mini",
+            "copilot/gpt-5-codex",
+            "copilot/gpt-5.1",
+            "copilot/gpt-5.1-codex",
+            "copilot/gpt-5.2-codex",
+            "copilot/gpt-5.1-codex-max",
+            "copilot/gpt-5.1-codex-mini",
+            "copilot/gpt-5.2",
+            "copilot/gpt-5.2-codex",
+            "copilot/grok-code-fast-1"
+          ]
+        }
+      },
+      "evidence": [
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.metadata.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/nls.keys.json",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/workbench/workbench.desktop.main.js",
+        "core:C:/Users/erdno/AppData/Local/Programs/Microsoft VS Code Insiders/f5927e727c/resources/app/out/vs/sessions/sessions.desktop.main.js"
+      ]
+    },
+    {
+      "key": "claudeCode.selectedModel",
+      "line": 305,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": "claude-opus-4-6",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "claudeCode.allowDangerouslySkipPermissions",
+      "line": 306,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "claudeCode.useTerminal",
+      "line": 307,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "claudeCode.respectGitIgnore",
+      "line": 308,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": false,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "claudeCode.initialPermissionMode",
+      "line": 309,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": "default",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "claudeCode.preferredLocation",
+      "line": 310,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": "panel",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/anthropic.claude-code-2.1.63-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "chatgpt.commentCodeLensEnabled",
+      "line": 319,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "chatgpt.openOnStartup",
+      "line": 320,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": true,
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "chatgpt.composerEnterBehavior",
+      "line": 321,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+        }
+      ],
+      "note": null,
+      "value": "cmdIfMultiline",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/openai.chatgpt-0.5.79-win32-x64/package.json"
+      ]
+    },
+    {
+      "key": "github.copilot.chat.anthropic.contextEditing.mode",
+      "line": 324,
+      "kind": "active",
+      "status": "supported",
+      "value_status": "ok",
+      "value_checks": [
+        {
+          "name": "manifest-schema",
+          "status": "ok",
+          "detail": "accepted by installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+        }
+      ],
+      "note": null,
+      "value": "clear-both",
+      "evidence": [
+        "installed-extension:C:/Users/erdno/.vscode-insiders/extensions/github.copilot-chat-0.38.2026022801/package.json"
+      ]
+    }
+  ],
+  "commented": [
+    {
+      "key": "terminal.integrated.defaultEncoding",
+      "line": 94,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "=== TERMINAL === THERMAL CONTAINMENT: Minimize integrated terminal overhead. Agent commands run here but decorations/suggestions/scroll are thermal load per keystroke. Force UTF-8 in VS Code terminal (matches system-wide registry setting) Unsupported in the current Insiders build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "terminal.integrated.logLevel",
+      "line": 101,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Triage gate: capture terminal diagnostics in trace mode. Unsupported in the current Insiders build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "terminal.integrated.environmentChangesIndicator",
+      "line": 104,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Kill the yellow \"wants to contribute\" env warning banner Unsupported in the current Insiders build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.cargo.allFeatures",
+      "line": 139,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Rust Analyzer is not currently installed in this profile; preserving these settings for restore.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.checkOnSave.command",
+      "line": 140,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.inlayHints.chainingHints.enable",
+      "line": 141,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.inlayHints.typeHints.enable",
+      "line": 142,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.inlayHints.parameterHints.enable",
+      "line": 143,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.lens.enable",
+      "line": 144,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.lens.run.enable",
+      "line": 145,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.lens.debug.enable",
+      "line": 146,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "rust-analyzer.procMacro.enable",
+      "line": 147,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": null,
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.inlineSuggest.enable",
+      "line": 205,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Copilot build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.enable",
+      "line": 207,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Copilot build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.useProjectContext",
+      "line": 211,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "=== GITHUB COPILOT CHAT === Unsupported in the current Copilot Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.editor.temporalContext.enabled",
+      "line": 214,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Copilot Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.codeExplanation.enabled",
+      "line": 219,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Copilot Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.codeRefactoring.enabled",
+      "line": 221,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Copilot Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "github.copilot.chat.anthropic.contextEditing.enabled",
+      "line": 224,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Replaced by github.copilot.chat.anthropic.contextEditing.mode below.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "chat.todoListTool.descriptionField",
+      "line": 238,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "chat.todoListTool.writeOnly",
+      "line": 240,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Chat build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "@azure.enableAutoSetAzureRules",
+      "line": 318,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "=== MISC === Unsupported in the current Azure extension set; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    },
+    {
+      "key": "chatgpt.thinkingMode",
+      "line": 323,
+      "kind": "commented",
+      "status": "missing",
+      "value_status": "unchecked",
+      "value_checks": [],
+      "note": "Unsupported in the current Codex extension build; preserved for future revalidation.",
+      "value": null,
+      "evidence": []
+    }
+  ]
+}

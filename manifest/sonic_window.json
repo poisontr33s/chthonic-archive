@@ -1,0 +1,52 @@
+{
+  "schema": "sonic_window/v1",
+  "source": "loopback",
+  "energy": 0.30999908,
+  "silent": false,
+  "captured_at_epoch_ms": 1783145172928,
+  "window_secs": 5.0,
+  "sample_rate": 48000,
+  "brightness": 0.699,
+  "tonality": 0.749,
+  "valence_proxy": 0.724,
+  "voiceness": 0.438,
+  "temporal": {
+    "phase": {
+      "character": "moderate-bright",
+      "secs": 6
+    },
+    "trend": {
+      "energy_30s": "steady",
+      "energy_5m": "steady",
+      "brightness_30s": "steady"
+    },
+    "events": [
+      {
+        "kind": "shift",
+        "detail": "quiet-bright → moderate-bright",
+        "secs_ago": 3
+      },
+      {
+        "kind": "shift",
+        "detail": "moderate-bright → quiet-bright",
+        "secs_ago": 103
+      },
+      {
+        "kind": "shift",
+        "detail": "quiet-bright → moderate-bright",
+        "secs_ago": 131
+      },
+      {
+        "kind": "shift",
+        "detail": "moderate-bright → quiet-bright",
+        "secs_ago": 147
+      }
+    ],
+    "stability": "transitional",
+    "relative": {
+      "energy": "around",
+      "brightness": "around",
+      "calibrated": true
+    },
+    "narrative": "Moderate-bright for 6s; quiet-bright → moderate-bright just now; in flux"
+  

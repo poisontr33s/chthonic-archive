@@ -1,0 +1,13 @@
+{
+  "name": "image-sweep-witness-written",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_IMAGE_WITNESS_WRITTEN"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

@@ -1,0 +1,39 @@
+{
+  "quest_id": "quest_awakening_01",
+  "title": "The Archive Stirs",
+  "tier": 1,
+  "act": 1,
+  "prerequisites": [],
+  "description": "The Archive woke the moment you arrived. The Triumvirate is waiting in Layer 1. What they want to determine is whether you belong here — or whether you are just passing through.",
+  "steps": [
+    {
+      "id": "s1",
+      "objective": "Enter Layer 1 and witness the Triumvirate manifesting",
+      "hint": "The gateway shimmers gold. Something massive is waiting behind it.",
+      "completion_trigger": "player_enters_layer1",
+      "next": "s2"
+    },
+    {
+      "id": "s2",
+      "objective": "Speak with Orackla",
+      "hint": "She won't wait for you to ask politely.",
+      "completion_trigger": "dialogue_orackla_awakening_complete",
+      "next": "s3"
+    },
+    {
+      "id": "s3",
+      "objective": "Survive the Awakening encounter",
+      "hint": "You don't need to win. You need to impress them.",
+      "completion_trigger": "encounter_layer1_awakening_complete",
+      "next": null
+    }
+  ],
+  "rewards": [
+    { "kind": "xp",             "value": 500 },
+    { "kind": "faction_standing", "value": { "CRC": 10 } },
+    { "kind": "item",            "value": "archive_key_layer2" },
+    { "kind": "unlock",          "value": "layer2_access" }
+  ],
+  "fail_conditions": [],
+  "journal_entry": "The Triumvirate tested me. I'm still standing, which apparently is the point."
+}

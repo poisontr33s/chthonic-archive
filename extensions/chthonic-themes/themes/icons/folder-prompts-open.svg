@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Open pylon — prompts = Hu utterance chamber (aperture widened) -->
+ <rect x="2" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="11.5" y="4" width="2.5" height="9" fill="#2A2724" stroke="#F4C430" stroke-width="0.5"/>
+ <rect x="4.5" y="4" width="7" height="1" fill="#F4C430" opacity="0.5"/>
+ <rect x="4.5" y="5" width="7" height="8" fill="#F4C430" opacity="0.15"/>
+ <ellipse cx="8" cy="7.5" rx="1.2" ry="0.6" fill="none" stroke="#F4C430" stroke-width="0.6"/>
+ <line x1="7.2" y1="9" x2="7.2" y2="11" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
+ <line x1="8" y1="8.5" x2="8" y2="11.5" stroke="#F4C430" stroke-width="0.6" stroke-linecap="round"/>
+ <line x1="8.8" y1="9" x2="8.8" y2="11" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
+ <line x1="5" y1="13" x2="11" y2="13" stroke="#F4C430" stroke-width="0.5" stroke-linecap="round"/>
+</svg>

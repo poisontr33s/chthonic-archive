@@ -1,0 +1,13 @@
+{
+  "name": "replacement-char",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_REPLACEMENT_CHAR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

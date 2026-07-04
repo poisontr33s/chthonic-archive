@@ -1,0 +1,22 @@
+{
+  "schema": "mdseal.image-witness.v1",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T04:24:23.759Z",
+  "sourceMarkdownFile": "CLAUDEBASE/usables/mdseal/tests/fixtures/cases/image-sidecar-only-policy/broken.md",
+  "markdownPath": "./images/equation.png",
+  "resolvedPath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\image-sidecar-only-policy\\images\\equation.png",
+  "exists": true,
+  "sha256": "310ac028856f17c9a88785b7c8234ae4ae29406197dadbd56b7706341c414674",
+  "sizeBytes": 68,
+  "extension": ".png",
+  "altText": "equation",
+  "title": null,
+  "likelyEquation": true,
+  "likelyEquationReason": "filename hint",
+  "policy": "sidecar-only",
+  "ocr": {
+    "status": "not-run",
+    "provider": "none",
+    "result": null
+  }
+}

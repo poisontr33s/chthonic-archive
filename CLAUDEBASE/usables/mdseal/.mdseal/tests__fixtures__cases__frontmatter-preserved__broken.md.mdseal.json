@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\frontmatter-preserved\\broken.md",
+  "sourceSha256": "c3a136afa1e502e2f17dd8fbc74890e9e3f8b4867a0c7b8006c36b95d4a3ec0b",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "frontmatter",
+      "startOffset": 0,
+      "endOffset": 20,
+      "text": "---\ntitle: demo\n---\n"
+    },
+    {
+      "kind": "math_inline",
+      "startOffset": 40,
+      "endOffset": 60,
+      "text": "$E = mc^2 and text.$"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.727Z",
+  "hashOnly": false
+}

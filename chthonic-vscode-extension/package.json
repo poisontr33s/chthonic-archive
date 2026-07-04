@@ -1,0 +1,99 @@
+{
+  "name": "chthonic-assistant",
+  "displayName": "Chthonic Archive Assistant",
+  "description": "ASC Framework MCP-powered sidepanel for VSCode",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "publisher": "chthonic-archive",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/chthonic-archive"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "AI",
+    "Chat"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "chthonic-assistant",
+          "title": "Chthonic Assistant",
+          "icon": "$(flame)"
+        }
+      ]
+    },
+    "views": {
+      "chthonic-assistant": [
+        {
+          "id": "chthonic.chatView",
+          "name": "Chat",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "chthonic.openChat",
+        "title": "Chthonic: Open Chat",
+        "icon": "$(flame)"
+      },
+      {
+        "command": "chthonic.injectSSOT",
+        "title": "Chthonic: Inject SSOT Context"
+      },
+      {
+        "command": "chthonic.validateHash",
+        "title": "Chthonic: Validate SSOT Hash"
+      }
+    ],
+    "configuration": {
+      "title": "Chthonic Assistant",
+      "properties": {
+        "chthonic.ssotPath": {
+          "type": "string",
+          "default": ".github/copilot-instructions.md",
+          "description": "Path to SSOT file (relative to workspace)"
+        },
+        "chthonic.mcpServers": {
+          "type": "array",
+          "default": [
+            "asc-injector",
+            "artisan"
+          ],
+          "description": "Active MCP servers to connect"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "bun run build:extension && bun run build:webview",
+    "build:extension": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode",
+    "build:webview": "bun build webview/index.tsx --outdir dist --target browser --format cjs",
+    "watch": "bun run watch:extension & bun run watch:webview",
+    "watch:extension": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
+    "watch:webview": "bun build webview/index.tsx --outdir dist --target browser --format cjs --watch",
+    "package": "bun run build && vsce package",
+    "dev": "bun run build && code --extensionDevelopmentPath=."
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.8.3"
+  }
+}

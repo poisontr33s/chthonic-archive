@@ -1,0 +1,1119 @@
+Using Python 3.14.4 environment at: dev\tabbyAPI\.venv
+INFO add_decision: Id::<PubGrubPackage>(0) @ 0a0.dev0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(1) @ 2.8.3 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(2) @ 2.11.0+cu128 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(3) @ 0.8.2 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(4) @ 3.29.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(5) @ 4.15.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(6) @ 81.0.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(7) @ 1.14.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(8) @ 3.6.1 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(9) @ 3.1.6 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(10) @ 2026.3.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(11) @ 1.3.0 without checking dependencies
+INFO add_decision: Id::<PubGrubPackage>(12) @ 3.0.3 without checking dependencies
+Resolved 12 packages in 220ms
+   Building flash-attn==2.8.3
+  × Failed to build `flash-attn==2.8.3`
+  ├─▶ The build backend returned an error
+  ╰─▶ Call to `setuptools.build_meta:__legacy__.build_wheel` failed (exit
+      code: 1)
+
+      [stdout]
+
+
+      torch.__version__  = 2.11.0+cu128
+
+
+      running bdist_wheel
+      Guessing wheel URL:
+      https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3/flash_attn-2.8.3+cu12torch2.11cxx11abiTRUE-cp314-cp314-win_amd64.whl
+      Precompiled wheel not found. Building from source...
+      running build
+      running build_py
+      copying flash_attn\bert_padding.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\flash_attn_interface.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\flash_attn_triton.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\flash_attn_triton_og.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\flash_blocksparse_attention.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\flash_blocksparse_attn_interface.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying flash_attn\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn
+      copying hopper\benchmark_attn.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\benchmark_flash_attention_fp8.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\benchmark_mla_decode.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\benchmark_split_kv.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\flash_attn_interface.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\generate_kernels.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\padding.py -> build\lib.win-amd64-cpython-314\hopper
+      copying hopper\setup.py -> build\lib.win-amd64-cpython-314\hopper
+      copying hopper\test_attn_kvcache.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\test_flash_attn.py ->
+      build\lib.win-amd64-cpython-314\hopper
+      copying hopper\test_kvcache.py -> build\lib.win-amd64-cpython-314\hopper
+      copying hopper\test_util.py -> build\lib.win-amd64-cpython-314\hopper
+      copying hopper\__init__.py -> build\lib.win-amd64-cpython-314\hopper
+      copying flash_attn\cute\ampere_helpers.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\blackwell_helpers.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\block_info.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\fast_math.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\flash_bwd.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\flash_bwd_postprocess.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\flash_bwd_preprocess.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\flash_fwd.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\flash_fwd_sm100.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\hopper_helpers.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\interface.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\mask.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\mma_sm100_desc.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\named_barrier.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\pack_gqa.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\pipeline.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\seqlen_info.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\softmax.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\tile_scheduler.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\utils.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\cute\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\cute
+      copying flash_attn\flash_attn_triton_amd\bench.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\bwd_prefill.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\bwd_prefill_fused.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\bwd_prefill_onekernel.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\bwd_prefill_split.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\bwd_ref.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\fp8.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\fwd_decode.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\fwd_prefill.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\fwd_ref.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\interface_fa.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\test.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\train.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\utils.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\flash_attn_triton_amd\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\flash_attn_triton_amd
+      copying flash_attn\layers\patch_embed.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\layers
+      copying flash_attn\layers\rotary.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\layers
+      copying flash_attn\layers\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\layers
+      copying flash_attn\losses\cross_entropy.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\losses
+      copying flash_attn\losses\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\losses
+      copying flash_attn\models\baichuan.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\bert.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\bigcode.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\btlm.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\falcon.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\gpt.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\gptj.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\gpt_neox.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\llama.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\opt.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\vit.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\models\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\models
+      copying flash_attn\modules\block.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\modules
+      copying flash_attn\modules\embedding.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\modules
+      copying flash_attn\modules\mha.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\modules
+      copying flash_attn\modules\mlp.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\modules
+      copying flash_attn\modules\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\modules
+      copying flash_attn\ops\activations.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops
+      copying flash_attn\ops\fused_dense.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops
+      copying flash_attn\ops\layer_norm.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops
+      copying flash_attn\ops\rms_norm.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops
+      copying flash_attn\ops\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops
+      copying flash_attn\utils\benchmark.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\distributed.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\generation.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\library.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\pretrained.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\testing.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\torch.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\utils\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\utils
+      copying flash_attn\ops\triton\cross_entropy.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\k_activations.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\layer_norm.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\linear.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\mlp.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\rotary.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      copying flash_attn\ops\triton\__init__.py ->
+      build\lib.win-amd64-cpython-314\flash_attn\ops\triton
+      running build_ext
+      building 'flash_attn_2_cuda' extension
+      [1/73] C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      FAILED: [code=1]
+      C:/Users/eldno/AppData/Local/uv/cache/sdists-v9/pypi/flash-attn/2.8.3/3dsAeHbysUuxmBjUX4pHo/src/build/temp.win-amd64-cpython-314/Release/csrc/flash_attn/src/flash_bwd_hdim128_fp16_causal_sm80.obj
+      C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_fp16_causal_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      flash_bwd_hdim128_fp16_causal_sm80.cu
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_fp16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_fp16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_fp16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_fp16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      fatal   : Could not open input file
+      C:/Users/eldno/AppData/Local/Temp/tmpxft_00011f20_00000000-6_flash_bwd_hdim128_fp16_causal_sm80.cpp4.ii
+      [2/73] C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      FAILED: [code=1]
+      C:/Users/eldno/AppData/Local/uv/cache/sdists-v9/pypi/flash-attn/2.8.3/3dsAeHbysUuxmBjUX4pHo/src/build/temp.win-amd64-cpython-314/Release/csrc/flash_attn/src/flash_bwd_hdim128_bf16_causal_sm80.obj
+      C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_causal_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      flash_bwd_hdim128_bf16_causal_sm80.cu
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_causal_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      fatal   : Could not open input file
+      C:/Users/eldno/AppData/Local/Temp/tmpxft_00010818_00000000-6_flash_bwd_hdim128_bf16_causal_sm80.cpp4.ii
+      [3/73] C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      FAILED: [code=1]
+      C:/Users/eldno/AppData/Local/uv/cache/sdists-v9/pypi/flash-attn/2.8.3/3dsAeHbysUuxmBjUX4pHo/src/build/temp.win-amd64-cpython-314/Release/csrc/flash_attn/src/flash_bwd_hdim128_bf16_sm80.obj
+      C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\bin\nvcc -MD -MF
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.obj.d
+      -std=c++17 -Xcompiler /MD -Xcompiler /wd4819 -Xcompiler /wd4251
+      -Xcompiler /wd4244 -Xcompiler /wd4267 -Xcompiler /wd4275
+      -Xcompiler /wd4018 -Xcompiler /wd4190 -Xcompiler /wd4624 -Xcompiler
+      /wd4067 -Xcompiler /wd4068 -Xcompiler /EHsc --use-local-env
+      -Xcudafe --diag_suppress=base_class_has_different_dll_interface
+      -Xcudafe --diag_suppress=field_without_dll_interface -Xcudafe
+      --diag_suppress=dll_interface_conflict_none_assumed -Xcudafe
+      --diag_suppress=dll_interface_conflict_dllexport_assumed
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program
+      Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt"
+      "-IC:\Program Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.cu
+      -o
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\src\flash_bwd_hdim128_bf16_sm80.obj
+      -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__
+      -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__
+      --expt-relaxed-constexpr -O3 -std=c++17 -U__CUDA_NO_HALF_OPERATORS__
+      -U__CUDA_NO_HALF_CONVERSIONS__ -U__CUDA_NO_HALF2_OPERATORS__
+      -U__CUDA_NO_BFLOAT16_CONVERSIONS__ --expt-relaxed-constexpr
+      --expt-extended-lambda --use_fast_math -gencode
+      arch=compute_80,code=sm_80 -gencode arch=compute_90,code=sm_90
+      -gencode arch=compute_100,code=sm_100 -gencode
+      arch=compute_120,code=sm_120 --threads 4 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda
+      flash_bwd_hdim128_bf16_sm80.cu
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_OPERATORS__' with '/U__CUDA_NO_HALF_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF_CONVERSIONS__' with '/U__CUDA_NO_HALF_CONVERSIONS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_HALF2_OPERATORS__' with '/U__CUDA_NO_HALF2_OPERATORS__'
+      cl : Command line warning D9025 : overriding
+      '/D__CUDA_NO_BFLOAT16_CONVERSIONS__' with
+      '/U__CUDA_NO_BFLOAT16_CONVERSIONS__'
+      flash_bwd_hdim128_bf16_sm80.cu
+      C:\Program Files\NVIDIA GPU Computing
+      Toolkit\CUDA\v12.8\include\crt/host_config.h(170): fatal error C1189:
+      #error:  -- unsupported Microsoft Visual Studio version! Only the
+      versions between 2017 and 2022 (inclusive) are supported! The nvcc
+      flag '-allow-unsupported-compiler' can be used to override this version
+      check; however, using an unsupported host compiler may cause compilation
+      failure or incorrect run time execution. Use at your own risk.
+      fatal   : Could not open input file
+      C:/Users/eldno/AppData/Local/Temp/tmpxft_000110f8_00000000-6_flash_bwd_hdim128_bf16_sm80.cpp4.ii
+      [4/73] cl /showIncludes /nologo /O2 /W3 /GL /DNDEBUG /MD
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt" "-IC:\Program
+      Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" /MD /wd4819 /wd4251
+      /wd4244 /wd4267 /wd4275 /wd4018 /wd4190 /wd4624 /wd4067 /wd4068 /EHsc -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\flash_api.cpp
+      /FoC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\flash_api.obj
+      -O3 -std=c++17 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda /std:c++17
+      FAILED: [code=2]
+      C:/Users/eldno/AppData/Local/uv/cache/sdists-v9/pypi/flash-attn/2.8.3/3dsAeHbysUuxmBjUX4pHo/src/build/temp.win-amd64-cpython-314/Release/csrc/flash_attn/flash_api.obj
+      cl /showIncludes /nologo /O2 /W3 /GL /DNDEBUG /MD
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\src
+      -IC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\include\torch\csrc\api\include
+      "-IC:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8\include"
+      -IC:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\include
+      -IC:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Include
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Tools\MSVC\14.51.36231\ATLMFC\include"
+      "-IC:\Program Files (x86)\Microsoft Visual
+      Studio\18\BuildTools\VC\Auxiliary\VS\include" "-IC:\Program Files
+      (x86)\Windows Kits\10\include\10.0.26100.0\ucrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\um" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\shared" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt" "-IC:\Program Files
+      (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt" "-IC:\Program
+      Files (x86)\Windows Kits\NETFXSDK\4.8.1\include\um" /MD /wd4819 /wd4251
+      /wd4244 /wd4267 /wd4275 /wd4018 /wd4190 /wd4624 /wd4067 /wd4068 /EHsc -c
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\flash_attn\flash_api.cpp
+      /FoC:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\build\temp.win-amd64-cpython-314\Release\csrc\flash_attn\flash_api.obj
+      -O3 -std=c++17 -DTORCH_API_INCLUDE_EXTENSION_H
+      -DTORCH_EXTENSION_NAME=flash_attn_2_cuda /std:c++17
+      cl : Command line warning D9002 : ignoring unknown option '-O3'
+      cl : Command line warning D9002 : ignoring unknown option '-std=c++17'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2039: 'is_unsigned_v': is not a member of 'cutlass::platform'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/integer_subbyte.h(235):
+      note: see declaration of 'cutlass::platform'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      note: the template instantiation context (the oldest one first) is
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(936):
+      note: while compiling class template 'cutlass::float_exmy_base'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(950):
+      note: see reference to function template instantiation 'auto
+      cutlass::detail::fp_encoding_selector<cutlass::detail::FpEncoding::E8M23>(void)'
+      being compiled
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(860):
+      note: see reference to class template instantiation
+      'cutlass::detail::FpBitRepresentation<uint32_t,32,8,23,cutlass::detail::NanInfEncoding::IEEE_754,true>'
+      being compiled
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2065: 'is_unsigned_v': undeclared identifier
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint32_t,32,8,23,cutlass::detail::NanInfEncoding::IEEE_754,true>::Storage':
+      expected an expression instead of a type
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2059: syntax error: ','
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2238: unexpected token(s) preceding ';'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::Storage':
+      expected an expression instead of a type
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1079):
+      error C2672:
+      'cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_from':
+      no matching overloaded function found
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(575):
+      note: could be 'unsigned char
+      cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_from(SrcFpBits::Storage,SrcFpBits)'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1079):
+      note: Failed to specialize function template 'unsigned char
+      cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_from(SrcFpBits::Storage,SrcFpBits)'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1079):
+      note: With the following template arguments:
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1079):
+      note:
+      'SrcFpBits=cutlass::float_exmy_base<cutlass::detail::FpEncoding::UE4M3,cutlass::float_ue4m3_t>::FP32BitRepresentation'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1092):
+      error C2672:
+      'cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_to':
+      no matching overloaded function found
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(567):
+      note: could be 'DstFpBits::Storage
+      cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_to(unsigned
+      char,DstFpBits)'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1092):
+      note: Failed to specialize function template 'DstFpBits::Storage
+      cutlass::detail::FpBitRepresentation<uint8_t,8,4,3,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::convert_to(unsigned
+      char,DstFpBits)'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1092):
+      note: With the following template arguments:
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/float8.h(1092):
+      note:
+      'DstFpBits=cutlass::float_exmy_base<cutlass::detail::FpEncoding::UE4M3,cutlass::float_ue4m3_t>::FP32BitRepresentation'
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint8_t,8,8,0,cutlass::detail::NanInfEncoding::CANONICAL_ONLY,false>::Storage':
+      expected an expression instead of a type
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint8_t,4,2,1,cutlass::detail::NanInfEncoding::NONE,true>::Storage':
+      expected an expression instead of a type
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint8_t,6,2,3,cutlass::detail::NanInfEncoding::NONE,true>::Storage':
+      expected an expression instead of a type
+      C:\Users\eldno\AppData\Local\uv\cache\sdists-v9\pypi\flash-attn\2.8.3\3dsAeHbysUuxmBjUX4pHo\src\csrc\cutlass\include\cutlass/exmy_base.h(404):
+      error C2275:
+      'cutlass::detail::FpBitRepresentation<uint8_t,6,3,2,cutlass::detail::NanInfEncoding::NONE,true>::Storage':
+      expected an expression instead of a type
+      ninja: build stopped: subcommand failed.
+
+      [stderr]
+      C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_vendor\wheel\bdist_wheel.py:4:
+      FutureWarning: The 'wheel' package is no longer the canonical location
+      of the 'bdist_wheel' command, and will be removed in a future release.
+      Please update to setuptools v70.1 or later which contains an integrated
+      version of this command.
+        warn(
+      C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\dist.py:765:
+      SetuptoolsDeprecationWarning: License classifiers are deprecated.
+      !!
+
+      
+      ********************************************************************************
+              Please consider removing the following classifiers in favor of a
+      SPDX license expression:
+
+              License :: OSI Approved :: BSD License
+
+              See
+      https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license
+      for details.
+      
+      ********************************************************************************
+
+      !!
+        self._finalize_license_expression()
+      C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\_msvccompiler.py:12:
+      UserWarning: _get_vc_env is private; find an alternative
+      (pypa/distutils#340)
+        warnings.warn(
+      Traceback (most recent call last):
+        File "<string>", line 486, in run
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 212, in urlretrieve
+          with contextlib.closing(urlopen(url, data)) as fp:
+                                  ~~~~~~~^^^^^^^^^^^
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 187, in urlopen
+          return opener.open(url, data, timeout)
+                 ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 493, in open
+          response = meth(req, response)
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 602, in http_response
+          response = self.parent.error(
+              'http', request, response, code, msg, hdrs)
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 531, in error
+          return self._call_chain(*args)
+                 ~~~~~~~~~~~~~~~~^^^^^^^
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 464, in _call_chain
+          result = func(*args)
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\urllib\request.py",
+      line 611, in http_error_default
+          raise HTTPError(req.full_url, code, msg, hdrs, fp)
+      urllib.error.HTTPError: HTTP Error 404: Not Found
+
+      During handling of the above exception, another exception occurred:
+
+      Traceback (most recent call last):
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\utils\cpp_extension.py",
+      line 2774, in _run_ninja_build
+          subprocess.run(
+          ~~~~~~~~~~~~~~^
+              command,
+              ^^^^^^^^
+          ...<4 lines>...
+              check=True,
+              ^^^^^^^^^^^
+              env=env)
+              ^^^^^^^^
+        File
+      "C:\Users\eldno\AppData\Roaming\uv\python\cpython-3.14.4-windows-x86_64-none\Lib\subprocess.py",
+      line 578, in run
+          raise CalledProcessError(retcode, process.args,
+                                   output=stdout, stderr=stderr)
+      subprocess.CalledProcessError: Command '['ninja', '-v', '-j', '4']'
+      returned non-zero exit status 2.
+
+      The above exception was the direct cause of the following exception:
+
+      Traceback (most recent call last):
+        File "<string>", line 11, in <module>
+          wheel_filename =
+      backend.build_wheel("C:\\Users\\eldno\\AppData\\Local\\uv\\cache\\builds-v0\\.tmpFf17GP",
+      {}, None)
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\build_meta.py",
+      line 438, in build_wheel
+          return _build(['bdist_wheel'])
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\build_meta.py",
+      line 429, in _build
+          return self._build_with_temp_dir(
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~^
+              cmd,
+              ^^^^
+          ...<3 lines>...
+              self._arbitrary_args(config_settings),
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          )
+          ^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\build_meta.py",
+      line 410, in _build_with_temp_dir
+          self.run_setup()
+          ~~~~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\build_meta.py",
+      line 520, in run_setup
+          super().run_setup(setup_script=setup_script)
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\build_meta.py",
+      line 317, in run_setup
+          exec(code, locals())
+          ~~~~^^^^^^^^^^^^^^^^
+        File "<string>", line 526, in <module>
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\__init__.py",
+      line 117, in setup
+          return distutils.core.setup(**attrs)  # type: ignore[return-value]
+                 ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\core.py",
+      line 186, in setup
+          return run_commands(dist)
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\core.py",
+      line 202, in run_commands
+          dist.run_commands()
+          ~~~~~~~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\dist.py",
+      line 1000, in run_commands
+          self.run_command(cmd)
+          ~~~~~~~~~~~~~~~~^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\dist.py",
+      line 1107, in run_command
+          super().run_command(command)
+          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\dist.py",
+      line 1019, in run_command
+          cmd_obj.run()
+          ~~~~~~~~~~~^^
+        File "<string>", line 503, in run
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\command\bdist_wheel.py",
+      line 370, in run
+          self.run_command("build")
+          ~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\cmd.py",
+      line 341, in run_command
+          self.distribution.run_command(command)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\dist.py",
+      line 1107, in run_command
+          super().run_command(command)
+          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\dist.py",
+      line 1019, in run_command
+          cmd_obj.run()
+          ~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\command\build.py",
+      line 135, in run
+          self.run_command(cmd_name)
+          ~~~~~~~~~~~~~~~~^^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\cmd.py",
+      line 341, in run_command
+          self.distribution.run_command(command)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\dist.py",
+      line 1107, in run_command
+          super().run_command(command)
+          ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\dist.py",
+      line 1019, in run_command
+          cmd_obj.run()
+          ~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\command\build_ext.py",
+      line 97, in run
+          _build_ext.run(self)
+          ~~~~~~~~~~~~~~^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\command\build_ext.py",
+      line 367, in run
+          self.build_extensions()
+          ~~~~~~~~~~~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\utils\cpp_extension.py",
+      line 1184, in build_extensions
+          build_ext.build_extensions(self)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\command\build_ext.py",
+      line 483, in build_extensions
+          self._build_extensions_serial()
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\command\build_ext.py",
+      line 509, in _build_extensions_serial
+          self.build_extension(ext)
+          ~~~~~~~~~~~~~~~~~~~~^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\command\build_ext.py",
+      line 262, in build_extension
+          _build_ext.build_extension(self, ext)
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\setuptools\_distutils\command\build_ext.py",
+      line 564, in build_extension
+          objects = self.compiler.compile(
+              sources,
+          ...<5 lines>...
+              depends=ext.depends,
+          )
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\utils\cpp_extension.py",
+      line 1153, in win_wrap_ninja_compile
+          _write_ninja_file_and_compile_objects(
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+              sources=sources,
+              ^^^^^^^^^^^^^^^^
+          ...<11 lines>...
+              with_cuda=with_cuda,
+              ^^^^^^^^^^^^^^^^^^^^
+              with_sycl=with_sycl)
+              ^^^^^^^^^^^^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\utils\cpp_extension.py",
+      line 2361, in _write_ninja_file_and_compile_objects
+          _run_ninja_build(
+          ~~~~~~~~~~~~~~~~^
+              build_directory,
+              ^^^^^^^^^^^^^^^^
+          ...<2 lines>...
+              # that failed to build but there isn't a good way to get it
+      here.
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              error_prefix='Error compiling objects for extension')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File
+      "C:\Users\eldno\chthonic-archive\dev\tabbyAPI\.venv\Lib\site-packages\torch\utils\cpp_extension.py",
+      line 2791, in _run_ninja_build
+          raise RuntimeError(message) from e
+      RuntimeError: Error compiling objects for extension
+
+      hint: This usually indicates a problem with the package or the build
+      environment.

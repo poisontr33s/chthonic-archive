@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyd
+*.so
+build/
+dist/
+*.egg-info/
+vendor/
+patches/*.rej
+vcpkg/
+vcpkg_installed/
+vcpkg-install.log
+*.log

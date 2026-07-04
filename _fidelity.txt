@@ -1,0 +1,10 @@
+PUPIL (r=2, stroke=1.4)
+  x1.25 fl=1.4 cap=2.5: eff=1.75 inner_r=1.12 hole=2.25 @20px=2.8px [invisible]
+  x1.35 fl=1.5 cap=2.0: eff=1.89 inner_r=1.06 hole=2.11 @20px=2.6px [PROPOSED]
+  x1.6 fl=1.8 cap=2.5: eff=2.24 inner_r=0.88 hole=1.76 @20px=2.2px [current-blobby]
+  x2.2 fl=2.4 cap=99: eff=3.08 inner_r=0.46 hole=0.92 @20px=1.1px [way-too-thick]
+TEXT LINES (stroke=1.2)
+  x1.25: eff=1.50 @20px=1.9px [invisible]
+  x1.35: eff=1.62 @20px=2.0px [PROPOSED]
+  x1.6: eff=1.92 @20px=2.4px [current-blobby]
+  x2.2: eff=2.64 @20px=3.3px [way-too-thick]

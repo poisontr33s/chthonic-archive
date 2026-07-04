@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "skill": "markdown-bridge",
+  "emitted_at_utc": "2026-04-27T05:41:12.6075866Z",
+  "extension_dir": "C:\\Users\\eldno\\.vscode-insiders\\extensions\\anthropic.claude-code-2.1.120-win32-x64",
+  "fully_patched_at_disk": true,
+  "ladder_vocabulary": [
+    "unknown",
+    "candidate",
+    "blocked",
+    "open_l0",
+    "open_l1",
+    "open_l2",
+    "open_l3",
+    "open_l4",
+    "impossible_currently",
+    "deferred"
+  ],
+  "gates": [
+    {
+      "gate": "paste_inbound/manifest_registered",
+      "status": "open_l1",
+      "probe": ".codex/skills/markdown-bridge/scripts/verify_patches.ps1",
+      "minimum_condition_to_reopen": null,
+      "notes": "package.json declares claude-vscode.pasteMarkdown command, palette entry, title-bar button",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "paste_inbound/host_dispatch",
+      "status": "open_l3",
+      "probe": ".codex/skills/markdown-bridge/scripts/verify_patches.ps1",
+      "minimum_condition_to_reopen": "D.allComms iteration replaces broken D.send(...) call",
+      "notes": "host fan-out routes paste_markdown_from_clipboard to all comm channels",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "paste_inbound/webview_handler",
+      "status": "open_l3",
+      "probe": "webview console: invoke command, observe insert into prompt",
+      "minimum_condition_to_reopen": null,
+      "notes": "webview IIFE listens for paste_markdown_from_clipboard, converts HTML, inserts via synthetic paste event",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "paste_inbound/useful_l4",
+      "status": "unknown",
+      "probe": "manual: copy from Google Docs, run command, diff source vs inserted",
+      "minimum_condition_to_reopen": "one observed paste cycle with non-empty insert and rough fidelity",
+      "notes": "L4 admission requires a live cycle observation post webview reload",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "copy_outbound/source_capture",
+      "status": "open_l2",
+      "probe": "webview console: assert window.__claudeMdBridgeInstalled === true",
+      "minimum_condition_to_reopen": null,
+      "notes": "IIFE installs io_message listener that captures source markdown by uuid pre-render",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "copy_outbound/last_response",
+      "status": "open_l3",
+      "probe": "palette: Claude Code: Copy Last Response as Markdown; verify clipboard",
+      "minimum_condition_to_reopen": null,
+      "notes": "host command + manifest entry; webview handler reads source by lastAssistantId() and writes clipboard",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "export_conversation/all_messages",
+      "status": "open_l3",
+      "probe": "palette: Claude Code: Export Conversation as Markdown",
+      "minimum_condition_to_reopen": null,
+      "notes": "concatenated markdown of all captured messages in arrival order",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "webview_lifecycle/marker_visible",
+      "status": "candidate",
+      "probe": "Developer: Open Webview Developer Tools; console contains \"[claude-md-bridge] loaded v2\"",
+      "minimum_condition_to_reopen": "webview must be recreated, not restored from retainContextWhenHidden",
+      "notes": "marker present in source; runtime visibility requires close-all-Claude-panels then reopen",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "copy_outbound/selection_aware",
+      "status": "impossible_currently",
+      "probe": ".codex/skills/markdown-bridge/scripts/dom_recon.ps1 (not yet written)",
+      "minimum_condition_to_reopen": "DOM recon identifies per-message-id anchor in rendered output; observer wires capture to selection",
+      "notes": "whole-message capture works; selection-aware needs message-id discovery in rendered DOM",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    },
+    {
+      "gate": "auto_reapply/post_insiders_update",
+      "status": "deferred",
+      "probe": ".codex/skills/markdown-bridge/scripts/apply_patches.ps1 (stub)",
+      "minimum_condition_to_reopen": "full idempotent patch applier with anchor-based insertions for all three files",
+      "notes": "currently re-application requires manual edits if Insiders auto-installs new extension version",
+      "last_observed_at": "2026-04-27T05:41:12.6075866Z"
+    }
+  ]
+}

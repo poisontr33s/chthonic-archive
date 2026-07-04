@@ -1,0 +1,64 @@
+  EMBALMED: dumpster-dive\forge\slag\claude_test.py → python/7feeab51c64ff52a_claude_test.py.snapshot (27 lines, 712 bytes)
+
+Session manifest: dumpster-dive\corpse-vault\before-edit-experiments\2026-04-24T02-32-20Z_zombie_chew\session_manifest.json
+{
+  "source": "dumpster-dive/forge/slag/claude_test.py",
+  "timestamp": "2026-04-24T02:32:21.526876+00:00",
+  "ore_rating": 1,
+  "category": "test",
+  "signals": [
+    "test_file",
+    "imports:2",
+    "ore_ml:2->1"
+  ],
+  "intelligence": {
+    "imports": [
+      "boto3",
+      "json"
+    ]
+  },
+  "content_hash": "7feeab51c64ff52a",
+  "provenance": {
+    "operator": "Novia Cadaveris",
+    "forge_matriarch": "Sister Ferrum Scoriae",
+    "pathway": "zombie -> bridge -> forge",
+    "source_file": "dumpster-dive/forge/slag/claude_test.py",
+    "hash": "7feeab51c64ff52a",
+    "content_hash": "7feeab51c64ff52a",
+    "language": ".py",
+    "byte_size": 712,
+    "line_count": 27,
+    "category": "test",
+    "signals": [
+      "test_file",
+      "imports:2",
+      "ore_ml:2->1"
+    ],
+    "landmarks": {
+      "imports": [
+        "boto3",
+        "json"
+      ]
+    },
+    "head_commit": "7b9cf547b456970a4972978c58126453ca5405d5",
+    "git_status": "clean",
+    "snapshot_at": "2026-04-24T02:32:21.608980+00:00",
+    "canon": {
+      "dumpster_domain": "dumpster-dive",
+      "corpse_axis": "Novia Cadaveris",
+      "forge_axis": "Sister Ferrum Scoriae"
+    }
+  },
+  "embalm_provenance": {
+    "hash": "7feeab51c64ff52a",
+    "source_file": "dumpster-dive\\forge\\slag\\claude_test.py",
+    "language": "python",
+    "byte_size": 712,
+    "line_count": 27,
+    "snapshot_at": "20260424T023220Z",
+    "head_commit": "7b9cf547b456970a4972978c58126453ca5405d5",
+    "git_status": "clean",
+    "landmarks": [],
+    "snapshot_path": "2026-04-24T02-32-20Z_zombie_chew\\python\\7feeab51c64ff52a_claude_test.py.snapshot"
+  }
+}

@@ -1,0 +1,36 @@
+diff --git a/src/renpysound_core.c b/src/renpysound_core.c
+index d47f3b266..a5ff586cd 100644
+--- a/src/renpysound_core.c
++++ b/src/renpysound_core.c
+@@ -29,6 +29,18 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ #include <string.h>
+ #include <renpy.pygame.surface_api.h>
+ 
++/* MSVC does not implement C99 variable-length arrays. Provide a portable
++ * alloca-style stack allocation macro so the audio callback's per-call
++ * scratch buffers stay on the stack (heap allocation in a hot audio path
++ * would tank latency). _alloca on MSVC matches the runtime semantics of
++ * GCC's VLA stack allocation closely enough for this use. */
++#ifdef _MSC_VER
++#  include <malloc.h>
++#  define RENPY_STACK_ALLOC(type, name, count) type *name = (type *)_alloca((count) * sizeof(type))
++#else
++#  define RENPY_STACK_ALLOC(type, name, count) type name[count]
++#endif
++
+ apply_audio_filter_type RPS_apply_audio_filter = NULL;
+ 
+ SDL_mutex *name_mutex;
+@@ -422,9 +434,9 @@ static void callback(void *userdata, Uint8 *stream, int length) {
+     // Convert the length to samples.
+     length /= (2 * sizeof(float));
+ 
+-    float mix_buffer[length * 2];
+-    short stream_buffer[length * 2];
+-    float float_buffer[length * 2];
++    RENPY_STACK_ALLOC(float, mix_buffer, length * 2);
++    RENPY_STACK_ALLOC(short, stream_buffer, length * 2);
++    RENPY_STACK_ALLOC(float, float_buffer, length * 2);
+ 
+     memset(mix_buffer, 0, length * 2 * sizeof(float));
+ 

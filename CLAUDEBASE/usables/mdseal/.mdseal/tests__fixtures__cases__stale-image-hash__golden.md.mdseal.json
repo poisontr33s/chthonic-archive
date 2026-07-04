@@ -1,0 +1,34 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\stale-image-hash\\golden.md",
+  "sourceSha256": "8dc5d47b525e5801cfce363e092869d16d4917cedaa9688f347c7a58e0da3f10",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "image_alt_text",
+      "startOffset": 0,
+      "endOffset": 4,
+      "text": "eq"
+    },
+    {
+      "kind": "image_destination",
+      "startOffset": 6,
+      "endOffset": 27,
+      "text": "./images/equation.png"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [
+    {
+      "path": "./images/equation.png",
+      "alt": "eq"
+    }
+  ],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.981Z",
+  "hashOnly": false
+}

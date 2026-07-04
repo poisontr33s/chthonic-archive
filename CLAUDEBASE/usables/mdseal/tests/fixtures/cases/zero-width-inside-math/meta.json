@@ -1,0 +1,13 @@
+{
+  "name": "zero-width-inside-math",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_ZERO_WIDTH_CHAR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

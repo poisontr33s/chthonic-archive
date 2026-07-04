@@ -1,0 +1,13 @@
+{
+  "name": "katex-unsupported-command",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_KATEX_UNSUPPORTED_COMMAND"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

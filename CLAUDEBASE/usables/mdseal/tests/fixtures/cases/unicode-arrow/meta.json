@@ -1,0 +1,13 @@
+{
+  "name": "unicode-arrow",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_UNICODE_ARROWS_IN_MATH"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

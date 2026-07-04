@@ -1,0 +1,13 @@
+{
+  "name": "list-display-indent",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_LIST_DISPLAY_MATH_INDENT"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

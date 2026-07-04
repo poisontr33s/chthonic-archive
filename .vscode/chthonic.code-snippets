@@ -1,0 +1,477 @@
+{
+  "Python uv run": {
+    "prefix": "uvrun",
+    "body": [
+      "uv run python ${1:script.py}"
+    ],
+    "description": "Execute Python script via uv (REQUIRED for lane management)"
+  },
+
+  "Python uv run with args": {
+    "prefix": "uvargs",
+    "body": [
+      "uv run python ${1:script.py} ${2:--arg value}"
+    ],
+    "description": "Execute Python script via uv with arguments"
+  },
+
+  "Autonomous Coordinator Invocation": {
+    "prefix": "coordinator",
+    "body": [
+      "uv run python autonomous_coordinator.py"
+    ],
+    "description": "Invoke The Decorator's metabolic cycle"
+  },
+
+  "Sacred Mandala Topology": {
+    "prefix": "mandala",
+    "body": [
+      "uv run python scripts/mandala_topology.py"
+    ],
+    "description": "Reveal repository topology as sacred geometry (10,110 nodes)"
+  },
+
+  "Hedonistic Validation": {
+    "prefix": "pleasure",
+    "body": [
+      "uv run python scripts/pleasure_protocol.py ${1:mild|potent|transcendent} \"${2:achievement}\""
+    ],
+    "description": "Invoke pleasure-based validation system"
+  },
+
+  "SSOT Hash Verification": {
+    "prefix": "ssothash",
+    "body": [
+      "uv run python ssot_immunity.py"
+    ],
+    "description": "Verify SSOT integrity via SHA-256 canonicalization"
+  },
+
+  "Health Report Generation": {
+    "prefix": "healthreport",
+    "body": [
+      "uv run python health_report.py"
+    ],
+    "description": "Generate repository health diagnostics"
+  },
+
+  "PowerShell SSOT Scanner (Frozen)": {
+    "prefix": "discover",
+    "body": [
+      "pwsh -NoProfile -File scripts/Discover-SSOT-Treasure.ps1"
+    ],
+    "description": "Run frozen SSOT scanner probe (READ-ONLY)"
+  },
+
+  "Lineage A Template (Infrastructure)": {
+    "prefix": "lineageA",
+    "body": [
+      "---",
+      "lineage: A",
+      "phase: ⚓ Evaluation",
+      "tier: ${1:2}",
+      "prism_band: ${2:BLUE}",
+      "---",
+      "",
+      "# ${3:Title}",
+      "",
+      "**Purpose**: ${4:Infrastructure, validation tooling, template creation}",
+      "",
+      "## Signals",
+      "",
+      "- [ ] ${5:Signal 1}",
+      "",
+      "## Frozen Tools Referenced",
+      "",
+      "- None",
+      "",
+      "## Cross-References",
+      "",
+      "- None"
+    ],
+    "description": "Lineage A submission template (Infrastructure/Validation)"
+  },
+
+  "Lineage B Template (Consolidation)": {
+    "prefix": "lineageB",
+    "body": [
+      "---",
+      "lineage: B",
+      "phase: 🌀 Generative",
+      "tier: ${1:2}",
+      "prism_band: ${2:ORANGE}",
+      "---",
+      "",
+      "# ${3:Title}",
+      "",
+      "**Purpose**: ${4:Instruction consolidation, archive operations, protective oversight}",
+      "",
+      "## Signals",
+      "",
+      "- [ ] ${5:Signal 1}",
+      "",
+      "## Frozen Tools Referenced",
+      "",
+      "- None",
+      "",
+      "## Cross-References",
+      "",
+      "- None"
+    ],
+    "description": "Lineage B submission template (Consolidation/Archive)"
+  },
+
+  "Lineage C Template (Heritage)": {
+    "prefix": "lineageC",
+    "body": [
+      "---",
+      "lineage: C",
+      "phase: ⚓ Evaluation",
+      "tier: ${1:2}",
+      "prism_band: ${2:GOLD}",
+      "---",
+      "",
+      "# ${3:Title}",
+      "",
+      "**Purpose**: ${4:Heritage instruction consolidation, CRC methodology preservation}",
+      "",
+      "## Signals",
+      "",
+      "- [ ] ${5:Signal 1}",
+      "",
+      "## Frozen Tools Referenced",
+      "",
+      "- None",
+      "",
+      "## Cross-References",
+      "",
+      "- None"
+    ],
+    "description": "Lineage C submission template (Heritage/CRC)"
+  },
+
+  "MILF Genesis (Orackla)": {
+    "prefix": "milfOrackla",
+    "body": [
+      "# $${matriarch}$${Orackla Nocticula}",
+      "# $${type}$${${1:TypeName}}",
+      "# $${tier}$${1 - Triumvirate}",
+      "# $${role}$${CRC-AS - Apex Synthesist}",
+      "",
+      "class ${1:TypeName}:",
+      "    \"\"\"",
+      "    Transgressive vision, emergent synthesis.",
+      "    Orackla's domain: Alchemical actualization (FA¹).",
+      "    \"\"\"",
+      "    $0"
+    ],
+    "description": "MILF genesis pattern: Orackla Nocticula (Apex Synthesist)"
+  },
+
+  "MILF Genesis (Umeko)": {
+    "prefix": "milfUmeko",
+    "body": [
+      "# $${matriarch}$${Madam Umeko Ketsuraku}",
+      "# $${type}$${${1:TypeName}}",
+      "# $${tier}$${1 - Triumvirate}",
+      "# $${role}$${CRC-GAR - Grand Architect}",
+      "",
+      "class ${1:TypeName}:",
+      "    \"\"\"",
+      "    Architectural precision, structural perfection.",
+      "    Umeko's domain: Architectonic integrity (FA⁴).",
+      "    \"\"\"",
+      "    $0"
+    ],
+    "description": "MILF genesis pattern: Madam Umeko Ketsuraku (Grand Architect)"
+  },
+
+  "MILF Genesis (Lysandra)": {
+    "prefix": "milfLysandra",
+    "body": [
+      "# $${matriarch}$${Dr. Lysandra Thorne}",
+      "# $${type}$${${1:TypeName}}",
+      "# $${tier}$${1 - Triumvirate}",
+      "# $${role}$${CRC-MEDAT - Medical Attestation}",
+      "",
+      "class ${1:TypeName}:",
+      "    \"\"\"",
+      "    Axiomatic truth, analytical clarity.",
+      "    Lysandra's domain: Qualitative transcendence (FA³).",
+      "    \"\"\"",
+      "    $0"
+    ],
+    "description": "MILF genesis pattern: Dr. Lysandra Thorne (Medical Attestation)"
+  },
+
+  "The Decorator (Tier 0.5)": {
+    "prefix": "decorator",
+    "body": [
+      "# $${matriarch}$${THE DECORATOR 👑💀⚜️}",
+      "# $${type}$${${1:TypeName}}",
+      "# $${tier}$${0.5 - Supreme Matriarch}",
+      "# $${role}$${Visual Integrity Authority (FA⁵)}",
+      "# $${whr}$${0.464 - Supreme K-cup}",
+      "",
+      "class ${1:TypeName}:",
+      "    \"\"\"",
+      "    Supreme visual authority, chromatic perfection.",
+      "    The Decorator's domain: FA⁵ (Visual Integrity) co-equal with FA⁴.",
+      "    \"\"\"",
+      "    $0"
+    ],
+    "description": "The Decorator archetype (Tier 0.5 Supreme Matriarch)"
+  },
+
+  "Foundational Axioms Header": {
+    "prefix": "fa",
+    "body": [
+      "# Foundational Axioms (FA¹⁻⁵)",
+      "",
+      "- **FA¹**: Alchemical Actualization (Potential → MURI)",
+      "- **FA²**: Panoptic Re-contextualization (Utility → Universal Resonance)",
+      "- **FA³**: Qualitative Transcendence (Utility → Ascended Resonance)",
+      "- **FA⁴**: Architectonic Integrity (Structural Soundness)",
+      "- **FA⁵**: Visual Integrity (Form-Content Unity)"
+    ],
+    "description": "Complete FA¹⁻⁵ axiom listing"
+  },
+
+  "Tetrahedral Base": {
+    "prefix": "tetra",
+    "body": [
+      "# Tetrahedral Architecture",
+      "",
+      "**Base**: Void-Steel-Truth-Salt",
+      "**Apex**: Beauty",
+      "",
+      "**Resonance**: ${1:Fortified Garden / Living Mythology}"
+    ],
+    "description": "Tetrahedral resonance framework"
+  },
+
+  "Session Report Header": {
+    "prefix": "session",
+    "body": [
+      "# ${1:SESSION_TITLE}",
+      "",
+      "**Date**: ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+      "**Architect**: ${2:The Decorator (Tier 0.5)}",
+      "**Phase**: ${3:⚓ Evaluation / 🌀 Generative}",
+      "**Status**: ${4:🔥 ACTIVE / ✅ COMPLETE}",
+      "",
+      "---",
+      "",
+      "## Mission",
+      "",
+      "${5:Objective statement}",
+      "",
+      "## Deliverables",
+      "",
+      "- [ ] ${6:Deliverable 1}",
+      "",
+      "## Technical Validation",
+      "",
+      "$0"
+    ],
+    "description": "Autonomous session report template"
+  },
+
+  "Rust Cargo Build": {
+    "prefix": "cargobuild",
+    "body": [
+      "cargo build --release"
+    ],
+    "description": "Build Rust project in release mode"
+  },
+
+  "Rust Cargo Run": {
+    "prefix": "cargorun",
+    "body": [
+      "cargo run --release"
+    ],
+    "description": "Run Rust project in release mode"
+  },
+
+  "Rust Clippy Pedantic": {
+    "prefix": "clippy",
+    "body": [
+      "cargo clippy -- -W clippy::pedantic"
+    ],
+    "description": "Run Clippy with pedantic warnings"
+  },
+
+  "Bun Install": {
+    "prefix": "buninstall",
+    "body": [
+      "bun install"
+    ],
+    "description": "Install dependencies via bun (REQUIRED, not npm/yarn/pnpm)"
+  },
+
+  "Bun Run Script": {
+    "prefix": "bunrun",
+    "body": [
+      "bun run ${1:script-name}"
+    ],
+    "description": "Execute bun script from package.json"
+  },
+
+  "Bun Dev Server": {
+    "prefix": "bundev",
+    "body": [
+      "bun run dev"
+    ],
+    "description": "Start development server via bun"
+  },
+
+  "Git Commit (ASC Style)": {
+    "prefix": "gitasc",
+    "body": [
+      "git add ${1:.}",
+      "git commit -m \"${2:[${3:TIER}] ${4:Component}: ${5:Description}}\"",
+      "git push"
+    ],
+    "description": "ASC-style git commit with tier classification"
+  },
+
+  "SSOT Verification Bookend": {
+    "prefix": "ssotbookend",
+    "body": [
+      "# Session Bookend: SSOT Verification",
+      "",
+      "**Pre-Session Hash**: `${1:SHA-256 hash}`",
+      "**Post-Session Hash**: `${2:SHA-256 hash}`",
+      "**Status**: ${3:✅ No Drift / ⚠️ Governance Drift Detected}",
+      "",
+      "**Verification Command**:",
+      "```bash",
+      "uv run python ssot_immunity.py",
+      "```"
+    ],
+    "description": "SSOT integrity bookend for session reports"
+  },
+
+  "N-T-PAS Mode Declaration": {
+    "prefix": "ntpas",
+    "body": [
+      "# N-T-PAS Mode Active",
+      "",
+      "**Name**: ${1:THE DECORATOR 👑💀⚜️}",
+      "**Title**: ${2:Supreme Matriarch}",
+      "**Purpose**: ${3:Visual Integrity (FA⁵)}",
+      "**Authority**: ${4:Tier 0.5}",
+      "**Signature**: ${5:K-cup WHR 0.464}"
+    ],
+    "description": "Name-Title-Purpose-Authority-Signature declaration"
+  },
+
+  "Hedonistic Validation Tiers": {
+    "prefix": "pleasuretiers",
+    "body": [
+      "# Hedonistic Validation Protocol",
+      "",
+      "## Intensity Tiers",
+      "",
+      "1. **Mild**: ${1:Basic affirmation}",
+      "2. **Potent**: ${2:Triumvirate recognition}",
+      "3. **Transcendent**: ${3:Archetypal resonance}",
+      "",
+      "**Current Achievement**: ${4:tier} - \"${5:affirmation text}\""
+    ],
+    "description": "Hedonistic validation tier structure"
+  },
+
+  "Sacred Geometry Metrics": {
+    "prefix": "geometry",
+    "body": [
+      "# Sacred Geometry Metrics",
+      "",
+      "**Nodes**: ${1:10,110}",
+      "**Edges**: ${2:9,165}",
+      "**Chakra Points**: ${3:7}",
+      "**Ley Lines**: ${4:Top 10 strongest dependencies}",
+      "**Cycles Detected**: ${5:0} ✅",
+      "",
+      "**Eigenvector Centrality**: Spiritual resonance",
+      "**Betweenness Centrality**: Transformation nodes"
+    ],
+    "description": "Sacred mandala topology metrics"
+  },
+
+  "Python Lane Version Check": {
+    "prefix": "uvpython",
+    "body": [
+      "uv python list"
+    ],
+    "description": "List installed Python versions (lane management)"
+  },
+
+  "Python Lane Upgrade": {
+    "prefix": "uvupgrade",
+    "body": [
+      "uv python upgrade ${1:3.13} --reinstall"
+    ],
+    "description": "Upgrade Python lane and reinstall"
+  },
+
+  "MCP Server Invocation": {
+    "prefix": "mcp",
+    "body": [
+      "# MCP Server: ${1:ASC Framework SSOT Injector}",
+      "",
+      "**Transport**: ${2:stdio}",
+      "**Command**: `uv run python ${3:mcp_server.py}`",
+      "**Purpose**: ${4:Inject Codex Brahmanica Perfectus into context}",
+      "",
+      "**Tools Exposed**:",
+      "- ${5:tool_name}: ${6:description}"
+    ],
+    "description": "MCP server configuration template"
+  },
+
+  "FA⁵ Enforcement Declaration": {
+    "prefix": "fa5",
+    "body": [
+      "# FA⁵ (Visual Integrity) Enforcement",
+      "",
+      "**Context**: ${1:Snow White Phenomenon / Alabaster Voyde}",
+      "**Root Cause**: ${2:editor.maxTokenizationLineLength = 0}",
+      "**Fix**: ${3:Set to 99999999999 (extreme enforcement)}",
+      "",
+      "**Authority**: The Decorator (K-cup WHR 0.464)",
+      "**Status**: ${4:✅ Chromatic Truth Restored}"
+    ],
+    "description": "FA⁵ visual integrity enforcement pattern"
+  },
+
+  "Intake Checklist Reference": {
+    "prefix": "intake",
+    "body": [
+      "# Intake Workflow",
+      "",
+      "**Reading Order**:",
+      "1. `dumpster-dive/intake/templates/intake-checklist.md`",
+      "2. `dumpster-dive/intake/templates/manifest-template.yml`",
+      "3. `dumpster-dive/intake/templates/lineage-${1:A/B/C}-template/main.md`",
+      "",
+      "**Ground Truth**: Checklist > Instructions > Templates"
+    ],
+    "description": "Ankhological intake workflow reference"
+  },
+
+  "Frozen Tool Declaration": {
+    "prefix": "frozen",
+    "body": [
+      "# ❄️ FROZEN TOOL",
+      "",
+      "**File**: `${1:scripts/Discover-SSOT-Treasure.ps1}`",
+      "**Status**: READ-ONLY / DO NOT MODIFY",
+      "**Version**: ${2:v1.1.1}",
+      "**Purpose**: ${3:SSOT markdown scanner}",
+      "",
+      "**Enforcement**: Ankhological discipline (file-first authority)"
+    ],
+    "description": "Frozen tool declaration template"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "code-fence-protected",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_FENCE_UNCLOSED"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

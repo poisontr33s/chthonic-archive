@@ -1,0 +1,15 @@
+{
+  "bridge_active": true,
+  "sources": {
+    "claude_memory_dir": "C:\\Users\\eldno\\.claude\\projects\\C--Users-eldno-chthonic-archive\\memory",
+    "claude_logs_dir": "C:\\Users\\eldno\\.claude\\projects\\C--Users-eldno-chthonic-archive",
+    "claudebase_dir": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE",
+    "project_north_star": "C:\\Users\\eldno\\.claude\\projects\\C--Users-eldno-chthonic-archive\\memory\\project_north_star_renderer_checkpoint.md",
+    "memory_satellite": "C:\\Users\\eldno\\.claude\\projects\\C--Users-eldno-chthonic-archive\\memory\\MEMORY.md"
+  },
+  "sync_protocol": {
+    "read_on_boot": true,
+    "write_on_checkpoint": true,
+    "format": "lossless_markdown"
+  }
+}

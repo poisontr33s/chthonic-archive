@@ -1,0 +1,26 @@
+diff --git a/renpy/__init__.py b/renpy/__init__.py
+index 840e10188..aa8ac84a6 100644
+--- a/renpy/__init__.py
++++ b/renpy/__init__.py
+@@ -30,6 +30,21 @@ import os
+ import types
+ import site
+ 
++# Windows: Python 3.8+ restricts DLL search for extension modules to
++# os.add_dll_directory() registrations + the .pyd's own directory.
++# When Ren'Py's native deps live elsewhere (e.g. vcpkg-managed under
++# RENPY_DEPS_INSTALL), register that directory so SDL2.dll, ffmpeg DLLs,
++# freetype.dll, etc. resolve at .pyd-load time.
++if sys.platform == "win32":
++    _renpy_deps_install = os.environ.get("RENPY_DEPS_INSTALL")
++    if _renpy_deps_install:
++        _renpy_dll_dir = os.path.join(_renpy_deps_install, "bin")
++        if os.path.isdir(_renpy_dll_dir):
++            try:
++                os.add_dll_directory(_renpy_dll_dir)
++            except (AttributeError, OSError):
++                pass
++
+ # Set up the hook for any renpy __init__ modules to import binary modules from
+ # a libexec directory if it available.
+ # This is relevant only for development RenPy itself, when compiled binaries

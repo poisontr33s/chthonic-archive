@@ -1,0 +1,10 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Pigment mortar (stone bowl) + reed brush (artisan’s tools) -->
+ <!-- Stone mortar bowl -->
+ <path d="M2 9c0 2.5 2.5 4.5 6 4.5s6-2 6-4.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+ <path d="M2 9h12" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <!-- Reed brush (diagonal) -->
+ <path d="M11 1.5l-4 7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+ <!-- Brush tip fibers -->
+ <path d="M6.5 9l.5-1M7.5 8l-.5 1" stroke="currentColor" stroke-width="0.7" stroke-linecap="round"/>
+</svg>

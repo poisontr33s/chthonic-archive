@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\table-math-pipe-2\\broken.md",
+  "sourceSha256": "75663086ac44d0111abff52f168172dfcd6e5898185bc6c4ce98e6a5106d8e22",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "math_inline",
+      "startOffset": 2,
+      "endOffset": 7,
+      "text": "$a|b$"
+    },
+    {
+      "kind": "markdown_table",
+      "startOffset": 0,
+      "endOffset": 9,
+      "text": "| $a|b$ |"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.987Z",
+  "hashOnly": false
+}

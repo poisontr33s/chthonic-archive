@@ -1,0 +1,23 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\examples\\broken-research.md",
+  "sourceSha256": "9281c429ac88885442933d7d71ac23879e7ff735df8383151c6eb65460e20cbe",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "unknown",
+      "startOffset": 31,
+      "endOffset": 65,
+      "text": "$E = mc^2 and unicode minus 5 - 3."
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.602Z",
+  "hashOnly": false
+}

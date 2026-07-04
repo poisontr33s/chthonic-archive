@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    json (2.19.8)
+    sqlite3 (2.9.4-x64-mingw-ucrt)
+    tk (0.6.0)
+
+PLATFORMS
+  x64-mingw-ucrt
+
+DEPENDENCIES
+  colorize (~> 0.8.1)
+  json (~> 2.5)
+  sqlite3 (~> 2.9)
+  tk (~> 0.6)
+
+CHECKSUMS
+  colorize (0.8.1) sha256=0ba0c2a58232f9b706dc30621ea6aa6468eeea120eb6f1ccc400105b90c4798c
+  json (2.19.8) sha256=6354310fd76ef69b87d5bd1f38b40d730613baf90b6803d2d0a48f618d32dfaa
+  sqlite3 (2.9.4-x64-mingw-ucrt) sha256=40997c549b19e2fdfcc5e271f6bdd4d502179742c0bfd678da23d0d09b929848
+  tk (0.6.0) sha256=f75ee691956dc48f3ff2730c018808fc8c44caf6ab755cf752c84cec10ee7282
+
+BUNDLED WITH
+  4.0.10

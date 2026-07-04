@@ -1,0 +1,1525 @@
+{
+  "generated_at": "2026-05-28T20:28:00.546Z",
+  "spread_index_generated_at": "2026-05-28T04:35:20.615Z",
+  "project": {
+    "name": "src",
+    "rel_path": "Downloads\\div desktop filer samlet\\PROJECTS\\salvaged_toptra_project\\src",
+    "root_dir": "C:\\Users\\eldno\\Downloads\\div desktop filer samlet\\PROJECTS\\salvaged_toptra_project\\src",
+    "languages": [
+      "rust",
+      "cuda",
+      "shaders"
+    ],
+    "mode_hint": "snipe",
+    "repurposability_score": 5
+  },
+  "file_count": 89,
+  "ts_file_count": 1,
+  "rust_file_count": 82,
+  "native_file_count": 6,
+  "rust_pub_kinds": {
+    "struct": 93,
+    "fn": 59,
+    "enum": 17,
+    "mod": 7,
+    "use": 3
+  },
+  "top_imports": [],
+  "files": [
+    {
+      "path": "ai\\gpu_service.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 57,
+      "bytes": 1797,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuService"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "ai\\inference.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 46,
+      "bytes": 1215,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "InferenceEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "ai_service.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 58,
+      "bytes": 1688,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "SyndicateAI"
+        }
+      ]
+    },
+    {
+      "path": "api\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 45,
+      "bytes": 1275,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "configure_routes"
+        }
+      ]
+    },
+    {
+      "path": "character\\traits.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 85,
+      "bytes": 2641,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterPersonality"
+        },
+        {
+          "kind": "enum",
+          "name": "CharacterArchetype"
+        },
+        {
+          "kind": "struct",
+          "name": "DrugInfluence"
+        },
+        {
+          "kind": "struct",
+          "name": "VoiceParameters"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_response_bias"
+        }
+      ]
+    },
+    {
+      "path": "club_system.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 65,
+      "bytes": 2409,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "ClubSystem"
+        }
+      ]
+    },
+    {
+      "path": "config.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 48,
+      "bytes": 1136,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "AppSettings"
+        },
+        {
+          "kind": "struct",
+          "name": "ServerConfig"
+        },
+        {
+          "kind": "struct",
+          "name": "DatabaseConfig"
+        },
+        {
+          "kind": "struct",
+          "name": "AiConfig"
+        },
+        {
+          "kind": "struct",
+          "name": "LogConfig"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "core\\gpu_inference.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 36,
+      "bytes": 905,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuInferenceManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "dialogue\\emotional_router.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 39,
+      "bytes": 1132,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "EmotionalState"
+        },
+        {
+          "kind": "struct",
+          "name": "DialogueRouter"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "route_to_character"
+        }
+      ]
+    },
+    {
+      "path": "engine\\character_reactions.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 228,
+      "bytes": 7291,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "ReactionTrigger"
+        },
+        {
+          "kind": "enum",
+          "name": "CharacterReaction"
+        },
+        {
+          "kind": "struct",
+          "name": "ReactionEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "generate_reaction"
+        },
+        {
+          "kind": "fn",
+          "name": "process_character_reaction"
+        }
+      ]
+    },
+    {
+      "path": "engine\\scenario.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 124,
+      "bytes": 3281,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "ClubEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "ScenarioEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "events\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 68,
+      "bytes": 1794,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "EventTrigger"
+        },
+        {
+          "kind": "enum",
+          "name": "TriggerType"
+        },
+        {
+          "kind": "struct",
+          "name": "EventEffect"
+        },
+        {
+          "kind": "struct",
+          "name": "EventSystem"
+        }
+      ]
+    },
+    {
+      "path": "events\\null_matrix.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 64,
+      "bytes": 1840,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "MatrixEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "NullMatrix"
+        }
+      ]
+    },
+    {
+      "path": "events\\real_time.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 55,
+      "bytes": 1595,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "EventProcessor"
+        }
+      ]
+    },
+    {
+      "path": "events\\scenarios.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 69,
+      "bytes": 1787,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "Scenario"
+        },
+        {
+          "kind": "enum",
+          "name": "ClubLocation"
+        },
+        {
+          "kind": "enum",
+          "name": "ScenarioType"
+        },
+        {
+          "kind": "fn",
+          "name": "create_rival_hack"
+        },
+        {
+          "kind": "fn",
+          "name": "check_trigger_conditions"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\character_engine.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 78,
+      "bytes": 2556,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterState"
+        },
+        {
+          "kind": "struct",
+          "name": "CharacterEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\cuda.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu\\cuda_manager.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu\\inference.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 84,
+      "bytes": 2859,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\inference_engine.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 50,
+      "bytes": 1528,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "InferenceEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\inference_patterns.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 74,
+      "bytes": 2575,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterInferencePattern"
+        },
+        {
+          "kind": "struct",
+          "name": "VoiceStyle"
+        },
+        {
+          "kind": "fn",
+          "name": "rae"
+        },
+        {
+          "kind": "fn",
+          "name": "belle"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\kernels\\character_traits.cu",
+      "ext": ".cu",
+      "kind": "native",
+      "lines": 40,
+      "bytes": 1436,
+      "symbol_hints": 0
+    },
+    {
+      "path": "gpu\\kernels\\scenario_processor.cu",
+      "ext": ".cu",
+      "kind": "native",
+      "lines": 51,
+      "bytes": 1792,
+      "symbol_hints": 0
+    },
+    {
+      "path": "gpu\\kernels\\syndicate_interactions.cu",
+      "ext": ".cu",
+      "kind": "native",
+      "lines": 83,
+      "bytes": 2965,
+      "symbol_hints": 4
+    },
+    {
+      "path": "gpu\\memory.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 51,
+      "bytes": 1539,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuMemoryManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\memory_manager.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 93,
+      "bytes": 3014,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "MemoryPool"
+        },
+        {
+          "kind": "struct",
+          "name": "GPUMemoryManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "allocate_buffer"
+        },
+        {
+          "kind": "fn",
+          "name": "copy_to_device"
+        },
+        {
+          "kind": "fn",
+          "name": "copy_from_device"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu\\probability_engine.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 45,
+      "bytes": 1350,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "ProbabilityEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\probability_kernels.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 50,
+      "bytes": 1819,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "ScenarioProbabilityEngine"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_rival_hack_probability"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\shaders\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 3,
+      "bytes": 46,
+      "pub_items": [
+        {
+          "kind": "mod",
+          "name": "shader"
+        },
+        {
+          "kind": "mod",
+          "name": "null_matrix_shader"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\shaders\\null_matrix.comp",
+      "ext": ".comp",
+      "kind": "native",
+      "lines": 43,
+      "bytes": 1070,
+      "symbol_hints": 2
+    },
+    {
+      "path": "gpu\\shaders\\null_matrix_shader.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 14,
+      "bytes": 423,
+      "pub_items": [
+        {
+          "kind": "mod",
+          "name": "null_matrix_shader"
+        },
+        {
+          "kind": "fn",
+          "name": "load"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\shaders\\probability.comp",
+      "ext": ".comp",
+      "kind": "native",
+      "lines": 40,
+      "bytes": 1150,
+      "symbol_hints": 2
+    },
+    {
+      "path": "gpu\\shaders\\shader.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 8,
+      "bytes": 146,
+      "pub_items": [
+        {
+          "kind": "mod",
+          "name": "ty"
+        },
+        {
+          "kind": "struct",
+          "name": "PushConstants"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\sync.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 28,
+      "bytes": 766,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuSyncManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "wait_and_reset"
+        },
+        {
+          "kind": "fn",
+          "name": "set_fence"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\syndicate_processor.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu\\text_processor.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 62,
+      "bytes": 1641,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuTextProcessor"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu\\transfer.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu\\vulkan.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "gpu_inference.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 50,
+      "bytes": 1517,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GPUInference"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu_service.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 91,
+      "bytes": 2737,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuService"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "struct",
+          "name": "GpuManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "gpu_utils.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 43,
+      "bytes": 1039,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "GpuManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "get_device"
+        },
+        {
+          "kind": "fn",
+          "name": "get_memory_info"
+        }
+      ]
+    },
+    {
+      "path": "inference\\character_patterns.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 86,
+      "bytes": 2918,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterPrompt"
+        },
+        {
+          "kind": "fn",
+          "name": "for_character"
+        },
+        {
+          "kind": "struct",
+          "name": "InferencePattern"
+        }
+      ]
+    },
+    {
+      "path": "lib.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "models\\character.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 68,
+      "bytes": 1887,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterProfile"
+        },
+        {
+          "kind": "struct",
+          "name": "CharacterTraits"
+        },
+        {
+          "kind": "struct",
+          "name": "DrugState"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_response_influence"
+        }
+      ]
+    },
+    {
+      "path": "models\\club_events.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 43,
+      "bytes": 1740,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "ClubEvent"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_probability"
+        }
+      ]
+    },
+    {
+      "path": "models\\emotional_drift.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 92,
+      "bytes": 3355,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "EmotionalState"
+        },
+        {
+          "kind": "struct",
+          "name": "EmotionalStateVector"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_drift"
+        }
+      ]
+    },
+    {
+      "path": "models\\emotional_state.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 16,
+      "bytes": 417,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "EmotionalState"
+        },
+        {
+          "kind": "struct",
+          "name": "EmotionalContext"
+        }
+      ]
+    },
+    {
+      "path": "models\\location_events.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 76,
+      "bytes": 2577,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "LocationEventSystem"
+        },
+        {
+          "kind": "fn",
+          "name": "check_triggers"
+        }
+      ]
+    },
+    {
+      "path": "models\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "models\\null_matrix.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 79,
+      "bytes": 2567,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "NullMatrix"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "models\\rivalry.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 44,
+      "bytes": 1394,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "RivalrySystem"
+        },
+        {
+          "kind": "struct",
+          "name": "RivalryState"
+        }
+      ]
+    },
+    {
+      "path": "models\\rivalry_interactions.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 58,
+      "bytes": 2293,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "RivalryAction"
+        },
+        {
+          "kind": "struct",
+          "name": "RivalryEvent"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_impact"
+        }
+      ]
+    },
+    {
+      "path": "models\\session.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 52,
+      "bytes": 1622,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "UserSession"
+        },
+        {
+          "kind": "struct",
+          "name": "EmotionalContext"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "update_emotional_state"
+        }
+      ]
+    },
+    {
+      "path": "models\\syndicate.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "models\\vulkan.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 197,
+      "bytes": 6499,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "VulkanCompute"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "calculate_base_probabilities"
+        },
+        {
+          "kind": "fn",
+          "name": "apply_emotional_weighting"
+        }
+      ]
+    },
+    {
+      "path": "models\\world.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 59,
+      "bytes": 1528,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "Location"
+        },
+        {
+          "kind": "struct",
+          "name": "Scenario"
+        },
+        {
+          "kind": "struct",
+          "name": "SyndicateMember"
+        },
+        {
+          "kind": "struct",
+          "name": "CharacterTraits"
+        }
+      ]
+    },
+    {
+      "path": "models\\world_state.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 20,
+      "bytes": 505,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "WorldState"
+        }
+      ]
+    },
+    {
+      "path": "null_matrix.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 71,
+      "bytes": 2095,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "Location"
+        },
+        {
+          "kind": "struct",
+          "name": "Scenario"
+        },
+        {
+          "kind": "struct",
+          "name": "NullMatrix"
+        }
+      ]
+    },
+    {
+      "path": "processing\\character_traits.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 87,
+      "bytes": 2859,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterProcessor"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "process_character_state"
+        }
+      ]
+    },
+    {
+      "path": "routes\\character.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 33,
+      "bytes": 753,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "Character"
+        },
+        {
+          "kind": "fn",
+          "name": "routes"
+        }
+      ]
+    },
+    {
+      "path": "routes\\events.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 49,
+      "bytes": 1391,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "ScenarioTrigger"
+        }
+      ]
+    },
+    {
+      "path": "routes\\interaction.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 43,
+      "bytes": 1277,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "InteractionRequest"
+        }
+      ]
+    },
+    {
+      "path": "routes\\matrix.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 5,
+      "bytes": 180,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "config"
+        }
+      ]
+    },
+    {
+      "path": "routes\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "routes\\narrative.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 32,
+      "bytes": 867,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "NarrativeResponse"
+        },
+        {
+          "kind": "struct",
+          "name": "InteractionRequest"
+        },
+        {
+          "kind": "fn",
+          "name": "routes"
+        }
+      ]
+    },
+    {
+      "path": "routes\\session.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 1,
+      "bytes": 0,
+      "pub_items": []
+    },
+    {
+      "path": "routes\\syndicate.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 9,
+      "bytes": 214,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "config"
+        }
+      ]
+    },
+    {
+      "path": "routes\\websocket.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 55,
+      "bytes": 1831,
+      "pub_items": []
+    },
+    {
+      "path": "scenario_engine.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 60,
+      "bytes": 1702,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "ScenarioState"
+        },
+        {
+          "kind": "struct",
+          "name": "Event"
+        },
+        {
+          "kind": "struct",
+          "name": "ScenarioEngine"
+        }
+      ]
+    },
+    {
+      "path": "services\\ai.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 49,
+      "bytes": 1026,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "AiService"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "services\\events.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 49,
+      "bytes": 1289,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "ClubEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "EventService"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "services\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 8,
+      "bytes": 151,
+      "pub_items": [
+        {
+          "kind": "mod",
+          "name": "ai"
+        },
+        {
+          "kind": "mod",
+          "name": "events"
+        },
+        {
+          "kind": "mod",
+          "name": "persistence"
+        },
+        {
+          "kind": "use",
+          "name": "ai"
+        },
+        {
+          "kind": "use",
+          "name": "events"
+        },
+        {
+          "kind": "use",
+          "name": "persistence"
+        }
+      ]
+    },
+    {
+      "path": "services\\persistence.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 43,
+      "bytes": 1246,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "PersistenceService"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "shaders\\null_matrix.comp",
+      "ext": ".comp",
+      "kind": "native",
+      "lines": 36,
+      "bytes": 1004,
+      "symbol_hints": 2
+    },
+    {
+      "path": "state\\mod.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 84,
+      "bytes": 2350,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "CharacterState"
+        },
+        {
+          "kind": "struct",
+          "name": "EmotionalDrift"
+        },
+        {
+          "kind": "struct",
+          "name": "SessionState"
+        },
+        {
+          "kind": "struct",
+          "name": "AppState"
+        }
+      ]
+    },
+    {
+      "path": "state\\narrative_state.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 62,
+      "bytes": 1730,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "NarrativeState"
+        }
+      ]
+    },
+    {
+      "path": "state.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 80,
+      "bytes": 2623,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "NarrativeState"
+        },
+        {
+          "kind": "struct",
+          "name": "SyndicateMember"
+        },
+        {
+          "kind": "struct",
+          "name": "AppState"
+        }
+      ]
+    },
+    {
+      "path": "tailwind.config.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 51,
+      "bytes": 1586,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "templating.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 18,
+      "bytes": 381,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "IndexTemplate"
+        },
+        {
+          "kind": "struct",
+          "name": "CrucibleTemplate"
+        }
+      ]
+    },
+    {
+      "path": "tests\\event_tests.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 45,
+      "bytes": 1418,
+      "pub_items": []
+    },
+    {
+      "path": "tests\\integration.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 47,
+      "bytes": 1102,
+      "pub_items": []
+    },
+    {
+      "path": "tests\\integration_tests.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 61,
+      "bytes": 1792,
+      "pub_items": []
+    },
+    {
+      "path": "websocket\\events.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 63,
+      "bytes": 1664,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "WebSocketManager"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        }
+      ]
+    },
+    {
+      "path": "websocket\\handler.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 78,
+      "bytes": 2518,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "WebSocketManager"
+        }
+      ]
+    },
+    {
+      "path": "websocket\\handlers.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 72,
+      "bytes": 2259,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "WebSocketHandler"
+        }
+      ]
+    },
+    {
+      "path": "websocket\\server.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 76,
+      "bytes": 2472,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "WebSocketManager"
+        }
+      ]
+    },
+    {
+      "path": "websocket.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 70,
+      "bytes": 2086,
+      "pub_items": [
+        {
+          "kind": "enum",
+          "name": "CrucibleEvent"
+        },
+        {
+          "kind": "struct",
+          "name": "WebSocketHandler"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#2A2724" stroke="#908672" stroke-width="0.5"/>
+
+ <!-- Left root pillar -->
+ <rect x="4.3" y="5.2" width="2.8" height="6" rx="0.35" fill="none" stroke="#C4A0E8" stroke-width="0.6"/>
+
+ <!-- Right root pillar -->
+ <rect x="8.9" y="5.2" width="2.8" height="6" rx="0.35" fill="none" stroke="#C4A0E8" stroke-width="0.6"/>
+
+ <!-- Binding arch: lintel connecting both pillars -->
+ <path d="M5.7 5.2 Q8 3.0 10.3 5.2" fill="none" stroke="#C4A0E8" stroke-width="0.65" stroke-linecap="round"/>
+
+ <!-- Apex anchor dot (the workspace root node) -->
+ <circle cx="8" cy="2.85" r="0.55" fill="#C4A0E8"/>
+
+ <!-- Inner rule marks — left pillar (directory entries) -->
+ <line x1="4.9" y1="7.0" x2="6.6" y2="7.0" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+ <line x1="4.9" y1="8.2" x2="6.6" y2="8.2" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+ <line x1="4.9" y1="9.4" x2="6.0" y2="9.4" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+
+ <!-- Inner rule marks — right pillar -->
+ <line x1="9.5" y1="7.0" x2="11.2" y2="7.0" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+ <line x1="9.5" y1="8.2" x2="11.2" y2="8.2" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+ <line x1="9.5" y1="9.4" x2="10.6" y2="9.4" stroke="#C4A0E8" stroke-width="0.38" stroke-linecap="round"/>
+
+ <!-- Orbit dot — satellite motif (center binding) -->
+ <circle cx="8" cy="7.8" r="0.38" fill="#C4A0E8" opacity="0.75"/>
+</svg>

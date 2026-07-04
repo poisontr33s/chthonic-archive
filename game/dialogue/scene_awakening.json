@@ -1,0 +1,71 @@
+{
+  "scene_id": "scene_orackla_awakening",
+  "participants": ["ORACKLA", "THE_SAVANT"],
+  "entry_node": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "speaker": "ORACKLA",
+      "voice": "EULP_AA",
+      "lines": [
+        "You've finally arrived, Savant.",
+        "The Archive has been waiting.",
+        "I have not."
+      ],
+      "choices": [
+        { "id": "c1", "label": "Why are the three of you here?",   "next": "n2" },
+        { "id": "c2", "label": "What do you want from me?",         "next": "n2b" },
+        { "id": "c3", "label": "[Say nothing. Hold the silence.]",  "next": "n3" }
+      ]
+    },
+    {
+      "id": "n2",
+      "speaker": "ORACKLA",
+      "voice": "EULP_AA",
+      "lines": [
+        "The Decorator opened this layer. We hold it open.",
+        "Chaos, Purification, Truth — without the three chains in balance, the Archive collapses into static.",
+        "Without you, we're just gatekeepers of nothing."
+      ],
+      "choices": [
+        { "id": "c4", "label": "I understand. Let's begin.", "next": "n4" }
+      ]
+    },
+    {
+      "id": "n2b",
+      "speaker": "ORACKLA",
+      "voice": "EULP_AA",
+      "lines": [
+        "To determine if you're worth the Archive's time.",
+        "Umeko has standards. Lysandra has facts. I have momentum.",
+        "Together we'll find out if you have any of those."
+      ],
+      "choices": [
+        { "id": "c5", "label": "Then let's not waste any more of it.", "next": "n4" }
+      ]
+    },
+    {
+      "id": "n3",
+      "speaker": "ORACKLA",
+      "voice": "EULP_AA",
+      "lines": [
+        "Good.",
+        "Words are wasted here anyway."
+      ],
+      "effects": [
+        { "kind": "trigger_encounter", "payload": { "encounter_id": "layer1_awakening" } }
+      ]
+    },
+    {
+      "id": "n4",
+      "speaker": "ORACKLA",
+      "voice": "EULP_AA",
+      "lines": [
+        "Then surge forward."
+      ],
+      "effects": [
+        { "kind": "trigger_encounter", "payload": { "encounter_id": "layer1_awakening" } }
+      ]
+    }
+  ]
+}

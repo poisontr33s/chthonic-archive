@@ -1,0 +1,2038 @@
+# Git Chronicle — poisontr33s/chthonic-archive
+
+> Generated: 2026-05-17T10:54:49.701Z
+> Events: 2030 (2000 commits · 2 issue events · 28 PR events)
+> Span: 2025-12-01T15:26:09Z → 2026-05-17T12:26:27+02:00
+
+---
+
+- `2025-12-01 15:26:09Z` 🔀 **#1** PR opened: Copilot Pro VS Code Setup Research Report — *Copilot*
+- `2025-12-01 19:26:43Z` ❌ **#1** PR closed: Copilot Pro VS Code Setup Research Report
+- `2025-12-28 07:21:07Z` 🔀 **#2** PR opened: Establish ANKH semantic lineage framework and correct tool governance drift — *Copilot*
+- `2026-01-05 03:44:48Z` 🔀 **#3** PR opened: Add Claude Code GitHub Workflow — *poisontr33s*
+- `2026-01-05 03:44:57Z` ⛵ **#3** PR merged: Add Claude Code GitHub Workflow
+- `2026-01-05 03:47:11Z` 🔀 **#4** PR opened: Add Claude Code GitHub Workflow — *poisontr33s*
+- `2026-01-05 03:47:23Z` ⛵ **#4** PR merged: Add Claude Code GitHub Workflow
+- `2026-01-26 20:39:02Z` 🔀 **#5** PR opened: Add SSOT_Canon.md - canonical governance document — *poisontr33s*
+- `2026-01-29 07:13:11Z` ❌ **#2** PR closed: Establish ANKH semantic lineage framework and correct tool governance drift
+- `2026-01-29 07:13:15Z` ❌ **#5** PR closed: Add SSOT_Canon.md - canonical governance document
+- `2026-02-04 01:31:52Z` 🐛 **#6** opened: Need a robust rootDIR repo/workspace script for .md files that finds filename- even if they have changed placement, that finds & replaces broken .md linkages. [root dir/workspace enhancement] — *poisontr33s*
+- `2026-02-04 01:31:57Z` 🔀 **#7** PR opened: Add markdown link fixer + copilotignore — *Copilot*
+- `2026-02-04 01:36:47Z` ✅ **#6** closed: Need a robust rootDIR repo/workspace script for .md files that finds filename- even if they have changed placement, that finds & replaces broken .md linkages.
+- `2026-02-04 13:24:18Z` ⛵ **#7** PR merged: Add markdown link fixer + copilotignore
+- `2026-02-23 01:58:40Z` 🔀 **#8** PR opened: Harden chthonic-archive with safe defaults and improved layout management — *poisontr33s*
+- `2026-02-23 02:27:36Z` ⛵ **#8** PR merged: Harden chthonic-archive with safe defaults and improved layout management
+- `2026-02-24 01:54:04Z` 🔨 **153ed1ad** fix: add missing newline at the beginning of template files — *poisontr33s*
+- `2026-02-24 01:54:04Z` 🔨 **f443fff5** fix: add missing newline at the beginning of template files — *poisontr33s*
+- `2026-02-24 03:07:29Z` 🔨 **06326a31** KCP-2.5: Codex pre-scan audits — classifier + 4 language manifests — *poisontr33s*
+- `2026-02-24 03:07:29Z` 🔨 **83cc6679** KCP-2.5: Codex pre-scan audits — classifier + 4 language manifests — *poisontr33s*
+- `2026-02-24 04:57:34Z` 🔨 **d96dc535** Codex handoff: codekiller structural integrity audit (read-only) — *poisontr33s*
+- `2026-02-24 04:57:34Z` 🔨 **9c6ac920** Codex handoff: codekiller structural integrity audit (read-only) — *poisontr33s*
+- `2026-02-24 06:05:02Z` 🔨 **32faf2c5** KCP-3.0: LEGACY batch — 11 Python files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 06:05:02Z` 🔨 **b52a4b20** KCP-3.0: LEGACY batch — 11 Python files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 06:14:52Z` 🔨 **d709bb44** KCP-3.0: HYBRID batch — 11 Python files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 06:14:52Z` 🔨 **ba186421** KCP-3.0: HYBRID batch — 11 Python files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 06:15:41Z` 🔨 **b85144dd** KCP-3.0: update session checkpoint -- Python Consolidation complete — *poisontr33s*
+- `2026-02-24 06:15:41Z` 🔨 **f461ab62** KCP-3.0: update session checkpoint -- Python Consolidation complete — *poisontr33s*
+- `2026-02-24 06:53:57Z` 🔨 **4cfb7e61** KCP-3.0: spacing fix -- blank line between PMS-v3 header and Cartouche — *poisontr33s*
+- `2026-02-24 06:53:57Z` 🔨 **dd60b6f7** KCP-3.0: spacing fix -- blank line between PMS-v3 header and Cartouche — *poisontr33s*
+- `2026-02-24 07:01:35Z` 🔨 **661d5ded** genre_extractor: fix file dedup bug in extraction pipeline — *poisontr33s*
+- `2026-02-24 07:01:35Z` 🔨 **d25f2735** genre_extractor: fix file dedup bug in extraction pipeline — *poisontr33s*
+- `2026-02-24 07:13:24Z` 🔨 **4b205387** lane: Local AI Teaching Framework — Gemini deep research brief dispatched — *poisontr33s*
+- `2026-02-24 07:13:24Z` 🔨 **26c8cdbe** lane: Local AI Teaching Framework — Gemini deep research brief dispatched — *poisontr33s*
+- `2026-02-24 07:29:09Z` 🔨 **442b9518** Add overnight daemon report and run configuration files — *poisontr33s*
+- `2026-02-24 07:29:09Z` 🔨 **f4e1e2b0** Add overnight daemon report and run configuration files — *poisontr33s*
+- `2026-02-24 07:41:25Z` 🔨 **bcc86c78** Refactor module documentation and update purpose descriptions across bun-cdp elements — *poisontr33s*
+- `2026-02-24 07:41:25Z` 🔨 **e0a2ab29** Refactor module documentation and update purpose descriptions across bun-cdp elements — *poisontr33s*
+- `2026-02-24 07:47:57Z` 🔨 **03f864f3** KCP-4.0: HYBRID batch — overnight_daemon.ts migrated + normalize spacing fixes — *poisontr33s*
+- `2026-02-24 07:47:57Z` 🔨 **ed423c3f** KCP-4.0: HYBRID batch — overnight_daemon.ts migrated + normalize spacing fixes — *poisontr33s*
+- `2026-02-24 08:08:09Z` 🔨 **3feae7c5** KCP-4.0: LEGACY batch — 13 tracked TS files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 08:08:09Z` 🔨 **0589d673** KCP-4.0: LEGACY batch — 13 tracked TS files migrated to KCP-COMPLIANT — *poisontr33s*
+- `2026-02-24 08:17:18Z` 🔨 **544040a7** LAT-1.0: Canonical Local AI Teaching specification — *poisontr33s*
+- `2026-02-24 08:17:18Z` 🔨 **7fd3dbee** LAT-1.0: Canonical Local AI Teaching specification — *poisontr33s*
+- `2026-02-24 08:53:13Z` 🔨 **6b5e8d88** SFS-REF-1.0: Sister Ferrum Scoriae Reference Index tool — *poisontr33s*
+- `2026-02-24 08:53:13Z` 🔨 **788efe06** SFS-REF-1.0: Sister Ferrum Scoriae Reference Index tool — *poisontr33s*
+- `2026-02-24 09:03:30Z` 🔨 **a4f02e8a** Add relationship audit JSON files for codebase and documentation checks — *poisontr33s*
+- `2026-02-24 09:03:30Z` 🔨 **af762ddb** Add relationship audit JSON files for codebase and documentation checks — *poisontr33s*
+- `2026-02-24 09:15:54Z` 🔨 **d9a551d4** SFS-REF: fix registry path prefix for dumpster-dive entries — *poisontr33s*
+- `2026-02-24 09:15:54Z` 🔨 **c67337b1** SFS-REF: fix registry path prefix for dumpster-dive entries — *poisontr33s*
+- `2026-02-24 09:26:47Z` 🔨 **8f83f6d4** THEME-PARITY-1.0: full key + scope coverage across all 4 themes — *poisontr33s*
+- `2026-02-24 09:26:47Z` 🔨 **4c1adbe7** THEME-PARITY-1.0: full key + scope coverage across all 4 themes — *poisontr33s*
+- `2026-02-24 09:31:44Z` 🔨 **1bb0055a** THEME-REFINE-1.0: color diversity pass reduces monotone concentration — *poisontr33s*
+- `2026-02-24 09:31:44Z` 🔨 **554d963f** THEME-REFINE-1.0: color diversity pass reduces monotone concentration — *poisontr33s*
+- `2026-02-24 09:45:37Z` 🔨 **3fc43d5a** SFS-TRANSMUTE-1.0: WPTG Stage 04 geological identity pass — *poisontr33s*
+- `2026-02-24 09:45:37Z` 🔨 **3828988a** SFS-TRANSMUTE-1.0: WPTG Stage 04 geological identity pass — *poisontr33s*
+- `2026-02-25 18:12:57Z` 🔨 **00c28ff7** SCM-HYGIENE: untrack purged daemon outputs + gitignore transients — *poisontr33s*
+- `2026-02-25 18:12:57Z` 🔨 **eb75d3c1** SCM-HYGIENE: untrack purged daemon outputs + gitignore transients — *poisontr33s*
+- `2026-02-25 18:24:58Z` 🔨 **9169e506** SCM-TRIAGE-1.0: source control noise classifier + codebase structurization skill — *poisontr33s*
+- `2026-02-25 18:24:58Z` 🔨 **c5a17158** SCM-TRIAGE-1.0: source control noise classifier + codebase structurization skill — *poisontr33s*
+- `2026-02-25 18:37:05Z` 🔨 **e4814a05** SCM-TRIAGE-1.1: pre-nuke clarity snapshot + Codex handoff — *poisontr33s*
+- `2026-02-25 18:37:05Z` 🔨 **9602929e** SCM-TRIAGE-1.1: pre-nuke clarity snapshot + Codex handoff — *poisontr33s*
+- `2026-02-26 01:50:25Z` 🔨 **bce450e5** CODEX-INTEGRATION: handoff audit system + SCM triage mirror + agent governance + linguistic mandate + POE transport expansion — *poisontr33s*
+- `2026-02-26 01:50:25Z` 🔨 **d7d543a4** CODEX-INTEGRATION: handoff audit system + SCM triage mirror + agent governance + linguistic mandate + POE transport expansion — *poisontr33s*
+- `2026-02-26 02:29:58Z` 🔨 **7531ae48** HANDOFF-LOOP-1.0: mailbox manifest tracker + handoff loop orchestrator + receipt log — *poisontr33s*
+- `2026-02-26 02:29:58Z` 🔨 **e926bcab** HANDOFF-LOOP-1.0: mailbox manifest tracker + handoff loop orchestrator + receipt log — *poisontr33s*
+- `2026-02-26 02:55:03Z` 🔨 **d9d990f9** SKILL-HARDENING-1.0: fuse overlapping skills, slim bridges, protocol-only razor — *poisontr33s*
+- `2026-02-26 02:55:03Z` 🔨 **42b7fa39** SKILL-HARDENING-1.0: fuse overlapping skills, slim bridges, protocol-only razor — *poisontr33s*
+- `2026-02-26 03:13:13Z` 🔨 **74d1c549** SKILL-HARDENING-2.0: cross-lane sync, fuse session-resumer, stash dead skills — *poisontr33s*
+- `2026-02-26 03:13:13Z` 🔨 **afbe9e88** SKILL-HARDENING-2.0: cross-lane sync, fuse session-resumer, stash dead skills — *poisontr33s*
+- `2026-02-26 03:56:44Z` 🔨 **10de31aa** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-02-26 03:56:44Z` 🔨 **0829d745** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-02-26 04:25:43Z` 🔨 **4795856d** Add logs and reports for VS Code Terminal Triage — *poisontr33s*
+- `2026-02-26 04:25:43Z` 🔨 **6bad8ec8** Add logs and reports for VS Code Terminal Triage — *poisontr33s*
+- `2026-02-26 04:26:54Z` 🔨 **9a1de408** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-26 04:26:54Z` 🔨 **cf9717bd** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-26 04:28:53Z` 🔨 **a2eb3d91** SKILL-HARDENING-3.0: skill_health.py + git_snapshot.py + provenance registry — *poisontr33s*
+- `2026-02-26 04:28:53Z` 🔨 **f20c034f** SKILL-HARDENING-3.0: skill_health.py + git_snapshot.py + provenance registry — *poisontr33s*
+- `2026-02-26 04:36:13Z` 🔨 **1b9d99fe** Add VS Code Insiders stability and crash reporting utilities — *poisontr33s*
+- `2026-02-26 04:36:13Z` 🔨 **55988eb2** Add VS Code Insiders stability and crash reporting utilities — *poisontr33s*
+- `2026-02-26 04:52:39Z` 🔨 **9e78ec70** CHTHONIC-GOLDEN-PHASE-1: error autopsy + electron hardener + architecture plan — *poisontr33s*
+- `2026-02-26 04:52:39Z` 🔨 **4563073f** CHTHONIC-GOLDEN-PHASE-1: error autopsy + electron hardener + architecture plan — *poisontr33s*
+- `2026-02-26 05:10:16Z` 🔨 **6c32258c** CHTHONIC-GOLDEN-PHASE-2: fork prototype scaffold + Gemini Deep Research briefing — *poisontr33s*
+- `2026-02-26 05:10:16Z` 🔨 **ef1b3449** CHTHONIC-GOLDEN-PHASE-2: fork prototype scaffold + Gemini Deep Research briefing — *poisontr33s*
+- `2026-02-26 05:11:11Z` 🔨 **740d31eb** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-26 05:11:11Z` 🔨 **58ccc2fd** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-26 05:12:45Z` 🔨 **478777d1** Add Gemini Deep Research Briefing document for Chthonic Golden VS Code Fork — *poisontr33s*
+- `2026-02-26 05:12:45Z` 🔨 **d8d01445** Add Gemini Deep Research Briefing document for Chthonic Golden VS Code Fork — *poisontr33s*
+- `2026-02-26 05:36:44Z` 🔨 **8c25aa38** CHTHONIC-GOLDEN: correct ANKH misconceptions, pivot to native NVIDIA/Vulkan IDE — *poisontr33s*
+- `2026-02-26 05:36:44Z` 🔨 **a79779c3** CHTHONIC-GOLDEN: correct ANKH misconceptions, pivot to native NVIDIA/Vulkan IDE — *poisontr33s*
+- `2026-02-26 05:40:59Z` 🔨 **6f0c682f** ANKH §1.8: restore ArchetypeClass genre-heritage markers as 50/50 abstraction — *poisontr33s*
+- `2026-02-26 05:40:59Z` 🔨 **c35eb582** ANKH §1.8: restore ArchetypeClass genre-heritage markers as 50/50 abstraction — *poisontr33s*
+- `2026-02-26 05:51:01Z` 🔨 **da120225** CHTHONIC-GOLDEN: expand §4 reference pool with MILFOLOGICAL + genre sources — *poisontr33s*
+- `2026-02-26 05:51:01Z` 🔨 **ff7cfa9d** CHTHONIC-GOLDEN: expand §4 reference pool with MILFOLOGICAL + genre sources — *poisontr33s*
+- `2026-02-26 05:58:54Z` 🔨 **947d1fa3** ANKH: rewrite ANKH_README.md + ANKHOLOGY.md — remove negative definitions, align to co-bridging lineage — *poisontr33s*
+- `2026-02-26 05:58:54Z` 🔨 **c9110e32** ANKH: rewrite ANKH_README.md + ANKHOLOGY.md — remove negative definitions, align to co-bridging lineage — *poisontr33s*
+- `2026-02-26 06:10:59Z` 🔨 **8bf94e03** ANKH: spruce all files — DSL capability, media universality, the gap, co-bridging — *poisontr33s*
+- `2026-02-26 06:10:59Z` 🔨 **0ed4dcb7** ANKH: spruce all files — DSL capability, media universality, the gap, co-bridging — *poisontr33s*
+- `2026-02-26 06:24:42Z` 🔨 **b6cb74b9** ANKH Proto-stage polish + Umeko typo cascade fix — *poisontr33s*
+- `2026-02-26 06:24:42Z` 🔨 **0e39a4b1** ANKH Proto-stage polish + Umeko typo cascade fix — *poisontr33s*
+- `2026-02-26 06:28:23Z` 🔨 **ba83595b** ankh-workflow: replace residual hierarchical/prohibitive body with Proto-aligned workflow — *poisontr33s*
+- `2026-02-26 06:28:23Z` 🔨 **e080fc0f** ankh-workflow: replace residual hierarchical/prohibitive body with Proto-aligned workflow — *poisontr33s*
+- `2026-02-26 07:06:58Z` 🔨 **04d3ab70** corpse-reviver V2: White-dressed Bride — 8 graveyards, prowl/hoard/suture — *poisontr33s*
+- `2026-02-26 07:06:58Z` 🔨 **7b16b93d** corpse-reviver V2: White-dressed Bride — 8 graveyards, prowl/hoard/suture — *poisontr33s*
+- `2026-02-26 07:07:57Z` 🔨 **8fc823b7** Add API Key Gap Report and API Provider Registry — *poisontr33s*
+- `2026-02-26 07:07:57Z` 🔨 **04dffcac** Add API Key Gap Report and API Provider Registry — *poisontr33s*
+- `2026-02-26 07:30:49Z` 🔨 **2b05a509** feat(ssot): Novia Cadaveris (NOV-CAD) — White-dressed Bride Sub-MILF profile — *poisontr33s*
+- `2026-02-26 07:30:49Z` 🔨 **7d678806** feat(ssot): Novia Cadaveris (NOV-CAD) — White-dressed Bride Sub-MILF profile — *poisontr33s*
+- `2026-02-26 08:02:58Z` 🔨 **73dd271d** feat(ssot): EDFA entropy elimination — 15/15 entities canonical — *poisontr33s*
+- `2026-02-26 08:02:58Z` 🔨 **a5d1c2e4** feat(ssot): EDFA entropy elimination — 15/15 entities canonical — *poisontr33s*
+- `2026-02-26 08:19:14Z` 🔨 **052ede4a** corpse-reviver: embalm-before-edit pre-mortem preservation + Checkpoint #7 compliance 100/100 — *poisontr33s*
+- `2026-02-26 08:19:14Z` 🔨 **40e86ffc** corpse-reviver: embalm-before-edit pre-mortem preservation + Checkpoint #7 compliance 100/100 — *poisontr33s*
+- `2026-02-26 08:24:45Z` 🔨 **dd6a7d98** embalm-before-edit: stitch pipeline + auto-embalm protocol + audit entropy purge — *poisontr33s*
+- `2026-02-26 08:24:45Z` 🔨 **4470dd67** embalm-before-edit: stitch pipeline + auto-embalm protocol + audit entropy purge — *poisontr33s*
+- `2026-02-26 08:29:15Z` 🔨 **7e778282** auto-embalm mandate + RCS calibration substrate hooks — *poisontr33s*
+- `2026-02-26 08:29:15Z` 🔨 **32674e6f** auto-embalm mandate + RCS calibration substrate hooks — *poisontr33s*
+- `2026-02-26 20:55:34Z` 🔨 **9857374e** fix: standardize encoding declaration format across multiple scripts — *poisontr33s*
+- `2026-02-26 20:55:34Z` 🔨 **c9e51eb0** fix: standardize encoding declaration format across multiple scripts — *poisontr33s*
+- `2026-02-26 23:36:27Z` 🔨 **0f980433** RCS calibration injection — WHR:REAL<->WHR:MAX grounded — *poisontr33s*
+- `2026-02-26 23:36:27Z` 🔨 **6b5f9724** RCS calibration injection — WHR:REAL<->WHR:MAX grounded — *poisontr33s*
+- `2026-02-27 18:37:08Z` 🔨 **66dd45ea** link-audit: executable guard for markdown path-link disambiguation — *poisontr33s*
+- `2026-02-27 18:37:08Z` 🔨 **7b462d20** link-audit: executable guard for markdown path-link disambiguation — *poisontr33s*
+- `2026-02-27 19:05:00Z` 🔨 **7d1d31aa** chore: untrack overnight daemon output (240 files already covered by .gitignore) — *poisontr33s*
+- `2026-02-27 19:05:00Z` 🔨 **39110681** chore: untrack overnight daemon output (240 files already covered by .gitignore) — *poisontr33s*
+- `2026-02-27 19:16:21Z` 🔨 **e28b47c7** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-27 19:16:21Z` 🔨 **13eaff4a** Add VS Code Terminal Triage Logs and Reports — *poisontr33s*
+- `2026-02-27 20:29:51Z` 🔨 **db8d2b0c** Add HF model rankings snapshot and install script for MistralRS CUDA — *poisontr33s*
+- `2026-02-27 20:29:51Z` 🔨 **4d10b2e2** Add HF model rankings snapshot and install script for MistralRS CUDA — *poisontr33s*
+- `2026-02-27 20:54:17Z` 🔨 **fdec2188** Add run_mistralrs_cuda_detached.ps1 script and update install_mistralrs_cuda.ps1 with new parameters — *poisontr33s*
+- `2026-02-27 20:54:17Z` 🔨 **fe20ca21** Add run_mistralrs_cuda_detached.ps1 script and update install_mistralrs_cuda.ps1 with new parameters — *poisontr33s*
+- `2026-02-27 20:55:44Z` 🔨 **ff80c05d** Add additional crate compilations to MISTRALRS CUDA build log — *poisontr33s*
+- `2026-02-27 20:55:44Z` 🔨 **0e2349a5** Add additional crate compilations to MISTRALRS CUDA build log — *poisontr33s*
+- `2026-02-27 22:11:08Z` 🔨 **f8fd92fd** Enhance local_refiner_v2.py to support mistral.rs backend and update usage instructions — *poisontr33s*
+- `2026-02-27 22:11:08Z` 🔨 **d298426f** Enhance local_refiner_v2.py to support mistral.rs backend and update usage instructions — *poisontr33s*
+- `2026-02-27 22:12:13Z` 🔨 **66480305** Update default terminal profile to Pwsh 7.5 (Chthonic) in VS Code settings — *poisontr33s*
+- `2026-02-27 22:12:13Z` 🔨 **96208a65** Update default terminal profile to Pwsh 7.5 (Chthonic) in VS Code settings — *poisontr33s*
+- `2026-02-27 22:17:00Z` 🔨 **9479cc2d** Add mistral.rs model pipeline: format-aware scout, model manager, client, UI, architecture doc — *poisontr33s*
+- `2026-02-27 22:17:00Z` 🔨 **dd2dc7fd** Add mistral.rs model pipeline: format-aware scout, model manager, client, UI, architecture doc — *poisontr33s*
+- `2026-02-28 03:17:52Z` 🔨 **d6af2be3** Preserve terminal and Rust Analyzer settings for future revalidation in VS Code configuration — *poisontr33s*
+- `2026-02-28 03:17:52Z` 🔨 **dac69861** Preserve terminal and Rust Analyzer settings for future revalidation in VS Code configuration — *poisontr33s*
+- `2026-02-28 03:34:44Z` 🔨 **deae30ab** Update file exclusion settings for improved performance and thermal management — *poisontr33s*
+- `2026-02-28 03:34:44Z` 🔨 **be8576fa** Update file exclusion settings for improved performance and thermal management — *poisontr33s*
+- `2026-02-28 03:36:04Z` 🔨 **de57d60c** feat: lock Epoch Reference artifact + expand gitignore for session-archives — *poisontr33s*
+- `2026-02-28 03:36:04Z` 🔨 **30faa21c** feat: lock Epoch Reference artifact + expand gitignore for session-archives — *poisontr33s*
+- `2026-02-28 03:44:31Z` 🔨 **9dab4d7c** feat: enhance agent file governance with commit ownership guidelines — *poisontr33s*
+- `2026-02-28 03:44:31Z` 🔨 **b67c0a0b** feat: enhance agent file governance with commit ownership guidelines — *poisontr33s*
+- `2026-02-28 03:57:56Z` 🔨 **d57c927c** fix: update PATH in VS Code settings for improved Ruby and Go integration — *poisontr33s*
+- `2026-02-28 03:57:56Z` 🔨 **d840dfec** fix: update PATH in VS Code settings for improved Ruby and Go integration — *poisontr33s*
+- `2026-02-28 04:05:01Z` 🔨 **32623768** feat: implement thermal containment measures in VS Code settings to optimize performance — *poisontr33s*
+- `2026-02-28 04:05:01Z` 🔨 **62385d40** feat: implement thermal containment measures in VS Code settings to optimize performance — *poisontr33s*
+- `2026-02-28 20:47:06Z` 🔨 **e55b8cf5** feat: update project workflow instructions and enhance model manager with format-aware loading — *poisontr33s*
+- `2026-02-28 20:47:06Z` 🔨 **9466a3ff** feat: update project workflow instructions and enhance model manager with format-aware loading — *poisontr33s*
+- `2026-02-28 21:26:28Z` 🔨 **682195d3** feat: implement product icon font generation and update theme configurations — *poisontr33s*
+- `2026-02-28 21:26:28Z` 🔨 **da4fd39d** feat: implement product icon font generation and update theme configurations — *poisontr33s*
+- `2026-02-28 23:54:08Z` 🔨 **19fb4f19** Add new folder icons and update theme configuration — *poisontr33s*
+- `2026-02-28 23:54:08Z` 🔨 **dfd7b93a** Add new folder icons and update theme configuration — *poisontr33s*
+- `2026-03-01 01:06:40Z` 🔨 **53eab78c** Add ANKH Icon Grammar documentation and update icon SVGs for consistency — *poisontr33s*
+- `2026-03-01 01:06:40Z` 🔨 **37275048** Add ANKH Icon Grammar documentation and update icon SVGs for consistency — *poisontr33s*
+- `2026-03-01 02:37:45Z` 🔨 **09e5fbf0** feat: update icons and add language configurations for GLSL and TOML — *poisontr33s*
+- `2026-03-01 02:37:45Z` 🔨 **08a1a3dd** feat: update icons and add language configurations for GLSL and TOML — *poisontr33s*
+- `2026-03-01 02:39:02Z` 🔨 **95842d93** feat: add search functions for improved settings validation in live audit — *poisontr33s*
+- `2026-03-01 02:39:02Z` 🔨 **6722615d** feat: add search functions for improved settings validation in live audit — *poisontr33s*
+- `2026-03-01 03:04:39Z` 🔨 **85d375c3** feat: enhance documentation with cross-references and canonical examples for icon and theme design — *poisontr33s*
+- `2026-03-01 03:04:39Z` 🔨 **1a2d5aaf** feat: enhance documentation with cross-references and canonical examples for icon and theme design — *poisontr33s*
+- `2026-03-01 03:07:30Z` 🔨 **92f4f703** refactor: remove outdated comments from SVG icon files for clarity — *poisontr33s*
+- `2026-03-01 03:07:30Z` 🔨 **008efe0e** refactor: remove outdated comments from SVG icon files for clarity — *poisontr33s*
+- `2026-03-01 03:13:03Z` 🔨 **18d1a30f** feat: Add SFS Slabstone Refresh task and documentation updates — *poisontr33s*
+- `2026-03-01 03:13:03Z` 🔨 **dd7ad4e4** feat: Add SFS Slabstone Refresh task and documentation updates — *poisontr33s*
+- `2026-03-01 03:33:33Z` 🔨 **324a3715** Enhance documentation and SVG icons for Chthonic themes — *poisontr33s*
+- `2026-03-01 03:33:33Z` 🔨 **cfb29637** Enhance documentation and SVG icons for Chthonic themes — *poisontr33s*
+- `2026-03-01 03:58:39Z` 🔨 **30c6d552** Add new SVG icons for product features — *poisontr33s*
+- `2026-03-01 03:58:39Z` 🔨 **47bc601f** Add new SVG icons for product features — *poisontr33s*
+- `2026-03-01 18:39:56Z` 🔨 **15a669bf** feat: Update product icons with archaeological motifs and new SVG designs — *poisontr33s*
+- `2026-03-01 18:39:56Z` 🔨 **a4795991** feat: Update product icons with archaeological motifs and new SVG designs — *poisontr33s*
+- `2026-03-01 19:07:12Z` 🔨 **3148fc3b** Update folder icons to use a new color scheme — *poisontr33s*
+- `2026-03-01 19:07:12Z` 🔨 **a6728d77** Update folder icons to use a new color scheme — *poisontr33s*
+- `2026-03-01 20:29:58Z` 🔨 **d007063d** Enhance folder icons in Chthonic Archive extension — *poisontr33s*
+- `2026-03-01 20:29:58Z` 🔨 **60d691d1** Enhance folder icons in Chthonic Archive extension — *poisontr33s*
+- `2026-03-01 21:42:48Z` 🔨 **ebacb224** feat: Update color themes with improved foreground colors and add icon architecture contract documentation — *poisontr33s*
+- `2026-03-01 21:42:48Z` 🔨 **8164012e** feat: Update color themes with improved foreground colors and add icon architecture contract documentation — *poisontr33s*
+- `2026-03-01 22:00:06Z` 🔨 **5873bae9** feat: Add ANKH Synthesis Baseline document to unify framework and establish architectural thesis — *poisontr33s*
+- `2026-03-01 22:00:06Z` 🔨 **a68e5e3d** feat: Add ANKH Synthesis Baseline document to unify framework and establish architectural thesis — *poisontr33s*
+- `2026-03-01 22:03:20Z` 🔨 **63956b29** feat: Add VS Code Insiders Maximalist Milf The Decorator Challenge document to enhance extension theming and architecture — *poisontr33s*
+- `2026-03-01 22:03:20Z` 🔨 **e3e64ddc** feat: Add VS Code Insiders Maximalist Milf The Decorator Challenge document to enhance extension theming and architecture — *poisontr33s*
+- `2026-03-01 22:56:28Z` 🔨 **ba31638d** feat: Add comprehensive documentation for topology map, summary, and epistemograph custody records — *poisontr33s*
+- `2026-03-01 22:56:28Z` 🔨 **48e6216e** feat: Add comprehensive documentation for topology map, summary, and epistemograph custody records — *poisontr33s*
+- `2026-03-01 22:56:42Z` 🔨 **1527da45** Refactor documentation and implement path naming audit tool — *poisontr33s*
+- `2026-03-01 22:56:42Z` 🔨 **3c7067fd** Refactor documentation and implement path naming audit tool — *poisontr33s*
+- `2026-03-01 23:49:53Z` 🔨 **de15a787** feat: Enhance link audit and path naming audit scripts with staged rename support and improved documentation — *poisontr33s*
+- `2026-03-01 23:49:53Z` 🔨 **c7f32511** feat: Enhance link audit and path naming audit scripts with staged rename support and improved documentation — *poisontr33s*
+- `2026-03-02 02:08:43Z` 🔨 **045ba1e3** feat: Add inert backtick scanner to link audit script for improved file/path reference validation — *poisontr33s*
+- `2026-03-02 02:08:43Z` 🔨 **1b42c08e** feat: Add inert backtick scanner to link audit script for improved file/path reference validation — *poisontr33s*
+- `2026-03-02 02:12:18Z` 🔨 **96067dbb** feat: Add new folder definitions for assets, architecture, and methodology in file icon theme — *poisontr33s*
+- `2026-03-02 02:12:18Z` 🔨 **a348bc01** feat: Add new folder definitions for assets, architecture, and methodology in file icon theme — *poisontr33s*
+- `2026-03-02 02:13:34Z` 🔨 **f18f66ce** feat: Remove 'media' folder from asset definitions in file icon theme — *poisontr33s*
+- `2026-03-02 02:13:34Z` 🔨 **5e0c5d2f** feat: Remove 'media' folder from asset definitions in file icon theme — *poisontr33s*
+- `2026-03-02 02:16:28Z` 🔨 **72a0e3f8** feat: Add new folder definitions for 'gemini', 'bun-playwright-poc', and 'mas_mcp' in file icon theme — *poisontr33s*
+- `2026-03-02 02:16:28Z` 🔨 **a4bae7d8** feat: Add new folder definitions for 'gemini', 'bun-playwright-poc', and 'mas_mcp' in file icon theme — *poisontr33s*
+- `2026-03-02 02:26:19Z` 🔨 **d4b52549** fix: Correct rectangle dimensions in folder-assets-open.svg and folder-src-open.svg for consistent rendering — *poisontr33s*
+- `2026-03-02 02:26:19Z` 🔨 **67f5c18c** fix: Correct rectangle dimensions in folder-assets-open.svg and folder-src-open.svg for consistent rendering — *poisontr33s*
+- `2026-03-02 02:38:09Z` 🔨 **138bcf54** fix: Correct rectangle dimensions in folder-extensions-open.svg and folder-scripts-open.svg for consistent rendering — *poisontr33s*
+- `2026-03-02 02:38:09Z` 🔨 **2bbc284c** fix: Correct rectangle dimensions in folder-extensions-open.svg and folder-scripts-open.svg for consistent rendering — *poisontr33s*
+- `2026-03-02 02:40:00Z` 🔨 **3da55e79** fix: Correct rectangle dimensions in multiple folder SVGs for consistent rendering — *poisontr33s*
+- `2026-03-02 02:40:00Z` 🔨 **06839466** fix: Correct rectangle dimensions in multiple folder SVGs for consistent rendering — *poisontr33s*
+- `2026-03-02 03:08:26Z` 🔨 **9e8c86ac** feat: update .gitignore to include icon scaffold contract audit script — *poisontr33s*
+- `2026-03-02 03:08:26Z` 🔨 **f21a24e7** feat: update .gitignore to include icon scaffold contract audit script — *poisontr33s*
+- `2026-03-02 03:27:02Z` 🔨 **cc3334f0** feat: Add new tasks for icon scaffold contract and theme contrast audits in tasks.json; update documentation for audit processes and enhance color themes with improved foreground colors for better readability. — *poisontr33s*
+- `2026-03-02 03:27:02Z` 🔨 **2741401c** feat: Add new tasks for icon scaffold contract and theme contrast audits in tasks.json; update documentation for audit processes and enhance color themes with improved foreground colors for better readability. — *poisontr33s*
+- `2026-03-02 03:42:06Z` 🔨 **98609065** feat: Update problemMatcher configuration in tasks.json for improved Rust error handling; add ANKH Synthesis Baseline metadata documentation. — *poisontr33s*
+- `2026-03-02 03:42:06Z` 🔨 **1fde8764** feat: Update problemMatcher configuration in tasks.json for improved Rust error handling; add ANKH Synthesis Baseline metadata documentation. — *poisontr33s*
+- `2026-03-02 17:26:50Z` 🔨 **0957e0b6** Add genre extraction digest and deep audit findings documentation — *poisontr33s*
+- `2026-03-02 17:26:50Z` 🔨 **2c4c78f7** Add genre extraction digest and deep audit findings documentation — *poisontr33s*
+- `2026-03-02 19:47:50Z` 🔨 **94509f1d** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-02 19:47:50Z` 🔨 **fa91ff59** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-02 19:59:50Z` 🔨 **60a91f10** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-02 19:59:50Z` 🔨 **487aea69** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-02 20:49:55Z` 🔨 **9973e494** feat(blessing): canonize remaining 28 scripts to Wedjat-Quipu envelope — *poisontr33s*
+- `2026-03-02 20:49:55Z` 🔨 **5790bcdf** feat(blessing): canonize remaining 28 scripts to Wedjat-Quipu envelope — *poisontr33s*
+- `2026-03-02 21:00:40Z` 🔨 **bba19291** feat(identity): canonize docstring @-fields to Shabti/SID/Purpose trio — *poisontr33s*
+- `2026-03-02 21:00:40Z` 🔨 **8ee8c336** feat(identity): canonize docstring @-fields to Shabti/SID/Purpose trio — *poisontr33s*
+- `2026-03-02 21:16:49Z` 🔨 **b109f4fb** refactor(scm): migrate scripts/ gitignore from 71 individual negations to wildcard patterns — *poisontr33s*
+- `2026-03-02 21:16:49Z` 🔨 **24a616c3** refactor(scm): migrate scripts/ gitignore from 71 individual negations to wildcard patterns — *poisontr33s*
+- `2026-03-02 21:18:03Z` 🔨 **a0d0fd6d** feat(theme): update icon definitions and theme census for improved coverage and new icons — *poisontr33s*
+- `2026-03-02 21:18:03Z` 🔨 **c4e50e13** feat(theme): update icon definitions and theme census for improved coverage and new icons — *poisontr33s*
+- `2026-03-02 21:34:41Z` 🔨 **a32592d0** feat(blessing): expand envelope+identity canonization to mas_mcp, ankh_atlas, .temple, .codex — *poisontr33s*
+- `2026-03-02 21:34:41Z` 🔨 **88230a9d** feat(blessing): expand envelope+identity canonization to mas_mcp, ankh_atlas, .temple, .codex — *poisontr33s*
+- `2026-03-02 21:51:44Z` 🔨 **0d7b7436** feat(ci): add blessing-gate workflow + radiance validator + --check mode — *poisontr33s*
+- `2026-03-02 21:51:44Z` 🔨 **b7f611e9** feat(ci): add blessing-gate workflow + radiance validator + --check mode — *poisontr33s*
+- `2026-03-02 21:55:45Z` 🔨 **d0a690d9** feat(docs): update README with extension features and usage details fix(icon_audit): correct structural rules and alias definitions in icon scaffold audit fix(vscodeignore): include additional files in .vscodeignore for proper packaging chore(package): bump version to 0.2.2 in package.json refactor(icon_scaffold): enhance alias selection logic in icon scaffold contract audit script refactor(icon_surface_map): improve source SVG resolution logic in icon surface mapping — *poisontr33s*
+- `2026-03-02 21:55:45Z` 🔨 **1e9f462f** feat(docs): update README with extension features and usage details fix(icon_audit): correct structural rules and alias definitions in icon scaffold audit fix(vscodeignore): include additional files in .vscodeignore for proper packaging chore(package): bump version to 0.2.2 in package.json refactor(icon_scaffold): enhance alias selection logic in icon scaffold contract audit script refactor(icon_surface_map): improve source SVG resolution logic in icon surface mapping — *poisontr33s*
+- `2026-03-02 22:27:57Z` 🔨 **e25dbe1f** updated the README with new installation instructions and usage examples. — *poisontr33s*
+- `2026-03-02 22:27:57Z` 🔨 **e385c833** updated the README with new installation instructions and usage examples. — *poisontr33s*
+- `2026-03-02 22:56:37Z` 🔨 **2a0d5506** Fix missing product icons for remote, server, source control, and virtual machines — *poisontr33s*
+- `2026-03-02 22:56:37Z` 🔨 **2fda2d58** Fix missing product icons for remote, server, source control, and virtual machines — *poisontr33s*
+- `2026-03-02 23:27:21Z` 🔨 **9d820f87** fixcommit: Correct typo in commit message guidelines — *poisontr33s*
+- `2026-03-02 23:27:21Z` 🔨 **ef26b97e** fixcommit: Correct typo in commit message guidelines — *poisontr33s*
+- `2026-03-03 03:11:50Z` 🔨 **82d315dc** fix(icons): stroke-to-fill preprocessor for product icon font — *poisontr33s*
+- `2026-03-03 03:11:50Z` 🔨 **2d149390** fix(icons): stroke-to-fill preprocessor for product icon font — *poisontr33s*
+- `2026-03-03 03:18:52Z` 🔨 **cb4fb77f** svg font file for product icons updated to match the latest design specifications. This update includes adjustments to the icon shapes and sizes to ensure better consistency across different platforms and devices. The new font file should improve the visual quality of the product icons in the application. — *poisontr33s*
+- `2026-03-03 03:18:52Z` 🔨 **883609ed** svg font file for product icons updated to match the latest design specifications. This update includes adjustments to the icon shapes and sizes to ensure better consistency across different platforms and devices. The new font file should improve the visual quality of the product icons in the application. — *poisontr33s*
+- `2026-03-03 03:33:13Z` 🔨 **99f2dd71** fix(icons): amplify stroke-width before outlining for SwiftShader survival — *poisontr33s*
+- `2026-03-03 03:33:13Z` 🔨 **815e5901** fix(icons): amplify stroke-width before outlining for SwiftShader survival — *poisontr33s*
+- `2026-03-03 03:34:18Z` 🔨 **31af9c66** commit: Update ANKH Synthesis metadata title — *poisontr33s*
+- `2026-03-03 03:34:18Z` 🔨 **17443863** commit: Update ANKH Synthesis metadata title — *poisontr33s*
+- `2026-03-03 03:39:13Z` 🔨 **b5d517e9** fix(icons): replace evenodd with nonzero fill-rule, reduce amplification — *poisontr33s*
+- `2026-03-03 03:39:13Z` 🔨 **c2e983a9** fix(icons): replace evenodd with nonzero fill-rule, reduce amplification — *poisontr33s*
+- `2026-03-03 04:06:07Z` 🔨 **2895fb54** fix(icons): heavy amplification x2.2/2.4px for SwiftShader survival — *poisontr33s*
+- `2026-03-03 04:06:07Z` 🔨 **857a9874** fix(icons): heavy amplification x2.2/2.4px for SwiftShader survival — *poisontr33s*
+- `2026-03-03 04:11:06Z` 🔨 **8eba0055** Nightly Daemon Genre Extraction: Update for 2026-03-03 run — *poisontr33s*
+- `2026-03-03 04:11:06Z` 🔨 **5e70534a** Nightly Daemon Genre Extraction: Update for 2026-03-03 run — *poisontr33s*
+- `2026-03-03 04:46:16Z` 🔨 **281cdedd** fix(amplifyStrokes): adjust stroke amplification factors for better visibility and detail preservation — *poisontr33s*
+- `2026-03-03 04:46:16Z` 🔨 **41afd926** fix(amplifyStrokes): adjust stroke amplification factors for better visibility and detail preservation — *poisontr33s*
+- `2026-03-03 04:58:21Z` 🔨 **4d74e3f9** fix(icons): adaptive stroke remap for detail-preserving fidelity — *poisontr33s*
+- `2026-03-03 04:58:21Z` 🔨 **5a31d603** fix(icons): adaptive stroke remap for detail-preserving fidelity — *poisontr33s*
+- `2026-03-03 06:08:43Z` 🔨 **364a0451** tidy: relocate audit reports, update sync pipeline + SKILL knowledge — *poisontr33s*
+- `2026-03-03 06:08:43Z` 🔨 **f7b85614** tidy: relocate audit reports, update sync pipeline + SKILL knowledge — *poisontr33s*
+- `2026-03-03 06:32:55Z` 🔨 **1a6cbd06** chore: add Codebase-Wide WPTG Transmutation Loop and Extension Contribution Graph Validator documentation — *poisontr33s*
+- `2026-03-03 06:32:55Z` 🔨 **78ac66dd** chore: add Codebase-Wide WPTG Transmutation Loop and Extension Contribution Graph Validator documentation — *poisontr33s*
+- `2026-03-03 07:24:07Z` 🔨 **e832786a** Implement feature X to enhance user experience and optimize performance — *poisontr33s*
+- `2026-03-03 07:24:07Z` 🔨 **743b5fad** Implement feature X to enhance user experience and optimize performance — *poisontr33s*
+- `2026-03-03 07:50:58Z` 🔨 **b7394e66** Add Phase 0 extension universe scanner — *poisontr33s*
+- `2026-03-03 07:50:58Z` 🔨 **24876ea7** Add Phase 0 extension universe scanner — *poisontr33s*
+- `2026-03-03 07:57:56Z` 🔨 **3dbefbf9** Add Part 1 WPTG filetype census — *poisontr33s*
+- `2026-03-03 07:57:56Z` 🔨 **d207d5e3** Add Part 1 WPTG filetype census — *poisontr33s*
+- `2026-03-03 08:15:26Z` 🔨 **b48ba518** Add Part 2 universal forge outputs — *poisontr33s*
+- `2026-03-03 08:15:26Z` 🔨 **6cf73268** Add Part 2 universal forge outputs — *poisontr33s*
+- `2026-03-03 08:42:28Z` 🔨 **f6f51944** Add Part 3 oxidized tooling forge — *poisontr33s*
+- `2026-03-03 08:42:28Z` 🔨 **fd634ffe** Add Part 3 oxidized tooling forge — *poisontr33s*
+- `2026-03-03 08:45:28Z` 🔨 **08ab90b1** Add Part 4 extension contribution validator — *poisontr33s*
+- `2026-03-03 08:45:28Z` 🔨 **b126892e** Add Part 4 extension contribution validator — *poisontr33s*
+- `2026-03-03 08:54:22Z` 🔨 **06845baf** Add initial files and hooks for nested Git repository setup — *poisontr33s*
+- `2026-03-03 08:54:22Z` 🔨 **6ff10be3** Add initial files and hooks for nested Git repository setup — *poisontr33s*
+- `2026-03-03 08:58:48Z` 🔨 **d008e034** Fix formatting and punctuation in AGENTS.md instruction inheritance section — *poisontr33s*
+- `2026-03-03 08:58:48Z` 🔨 **575bb20f** Fix formatting and punctuation in AGENTS.md instruction inheritance section — *poisontr33s*
+- `2026-03-04 19:32:10Z` 🔨 **65f9eb33** Update session resumption timestamps and add genre extraction digest for March 4, 2026 — *poisontr33s*
+- `2026-03-04 19:32:10Z` 🔨 **7503b677** Update session resumption timestamps and add genre extraction digest for March 4, 2026 — *poisontr33s*
+- `2026-03-04 19:58:32Z` 🔨 **347e80bc** Untrack furnace csharp build artifacts — *poisontr33s*
+- `2026-03-04 19:58:32Z` 🔨 **81ab7569** Untrack furnace csharp build artifacts — *poisontr33s*
+- `2026-03-04 20:06:18Z` 🔨 **143de2da** Append Stage 2 continuation to extension chore — *poisontr33s*
+- `2026-03-04 20:06:18Z` 🔨 **4d55d2a4** Append Stage 2 continuation to extension chore — *poisontr33s*
+- `2026-03-04 20:21:54Z` 🔨 **35f7ffd9** Complete Stage 2 continuation execution — *poisontr33s*
+- `2026-03-04 20:21:54Z` 🔨 **c07abb07** Complete Stage 2 continuation execution — *poisontr33s*
+- `2026-03-04 21:23:24Z` 🔨 **2b726067** Execute Stage 3 WPTG promotion continuation — *poisontr33s*
+- `2026-03-04 21:23:24Z` 🔨 **c9bd7b6d** Execute Stage 3 WPTG promotion continuation — *poisontr33s*
+- `2026-03-05 00:32:09Z` 🔨 **cafa28f2** Introduce repeatable WPTG cycle framework and baseline run — *poisontr33s*
+- `2026-03-05 00:32:09Z` 🔨 **4cd0b060** Introduce repeatable WPTG cycle framework and baseline run — *poisontr33s*
+- `2026-03-05 16:48:55Z` 🔨 **0e0ed629** Add genre extraction digest for March 5, 2026 — *poisontr33s*
+- `2026-03-05 16:48:55Z` 🔨 **ec40fe83** Add genre extraction digest for March 5, 2026 — *poisontr33s*
+- `2026-03-05 17:06:29Z` 🔨 **e870aff8** Enable auto-restart and reverse-rarity-first WPTG baseline — *poisontr33s*
+- `2026-03-05 17:06:29Z` 🔨 **0f4ae8e2** Enable auto-restart and reverse-rarity-first WPTG baseline — *poisontr33s*
+- `2026-03-05 17:19:42Z` 🔨 **c90c283c** Harden WPTG cycle with legacy guard and auto sequencing — *poisontr33s*
+- `2026-03-05 17:19:42Z` 🔨 **aed7bb85** Harden WPTG cycle with legacy guard and auto sequencing — *poisontr33s*
+- `2026-03-05 17:20:48Z` 🔨 **463550aa** Fix formatting of coding declaration in extension universe scanner — *poisontr33s*
+- `2026-03-05 17:20:48Z` 🔨 **29ae26a3** Fix formatting of coding declaration in extension universe scanner — *poisontr33s*
+- `2026-03-05 17:31:21Z` 🔨 **9facb1d0** Linkify WPTG generated path references — *poisontr33s*
+- `2026-03-05 17:31:21Z` 🔨 **a03f2221** Linkify WPTG generated path references — *poisontr33s*
+- `2026-03-05 19:14:45Z` 🔨 **aa7835d4** Fix formatting of coding declaration in wptg_common.py — *poisontr33s*
+- `2026-03-05 19:14:45Z` 🔨 **8d245ef9** Fix formatting of coding declaration in wptg_common.py — *poisontr33s*
+- `2026-03-05 20:08:42Z` 🔨 **6393d2a3** Introduce WPTG-AMALGAM-RR v1-candidate gate model — *poisontr33s*
+- `2026-03-05 20:08:42Z` 🔨 **420df729** Introduce WPTG-AMALGAM-RR v1-candidate gate model — *poisontr33s*
+- `2026-03-05 20:28:56Z` 🔨 **20253102** Harden WPTG markdown reference gating and outputs — *poisontr33s*
+- `2026-03-05 20:28:56Z` 🔨 **fc693b5a** Harden WPTG markdown reference gating and outputs — *poisontr33s*
+- `2026-03-05 20:29:47Z` 🔨 **df9a4111** Refresh WPTG generated artifacts after reference scan — *poisontr33s*
+- `2026-03-05 20:29:47Z` 🔨 **085fea74** Refresh WPTG generated artifacts after reference scan — *poisontr33s*
+- `2026-03-05 22:02:12Z` 🔨 **0eaac194** Add WPTG profile contract and promotion registry functionality — *poisontr33s*
+- `2026-03-05 22:02:12Z` 🔨 **4b30d64c** Add WPTG profile contract and promotion registry functionality — *poisontr33s*
+- `2026-03-05 23:35:10Z` 🔨 **140d40a1** Refactor Poe API credential resolution and update related scripts — *poisontr33s*
+- `2026-03-05 23:35:10Z` 🔨 **e3712bb4** Refactor Poe API credential resolution and update related scripts — *poisontr33s*
+- `2026-03-06 03:50:49Z` 🔨 **e7280b2b** Refactor governance and protocol documentation across multiple files — *poisontr33s*
+- `2026-03-06 03:50:49Z` 🔨 **0f67ad0d** Refactor governance and protocol documentation across multiple files — *poisontr33s*
+- `2026-03-06 04:33:41Z` 🔨 **f2b2f189** Add Asphyxiation Protocol for Codex to enhance respiratory anti-pattern enforcement — *poisontr33s*
+- `2026-03-06 04:33:41Z` 🔨 **0a1c92a3** Add Asphyxiation Protocol for Codex to enhance respiratory anti-pattern enforcement — *poisontr33s*
+- `2026-03-06 06:27:39Z` 🔨 **1e74f92d** Refactor documentation for clarity and consistency across multiple files — *poisontr33s*
+- `2026-03-06 06:27:39Z` 🔨 **a5bf1941** Refactor documentation for clarity and consistency across multiple files — *poisontr33s*
+- `2026-03-06 07:11:29Z` 🔨 **51b5af48** Refactor category designation in NEXT.md and enhance formatting in BLACKSMITH_MATRIARCH.md for improved clarity — *poisontr33s*
+- `2026-03-06 07:11:29Z` 🔨 **4156b66e** Refactor category designation in NEXT.md and enhance formatting in BLACKSMITH_MATRIARCH.md for improved clarity — *poisontr33s*
+- `2026-03-06 09:05:58Z` 🔨 **ce015053** Update timestamps in POE API discrepancy files and adjust formatting in link audit script — *poisontr33s*
+- `2026-03-06 09:05:58Z` 🔨 **e835eefa** Update timestamps in POE API discrepancy files and adjust formatting in link audit script — *poisontr33s*
+- `2026-03-06 09:10:45Z` 🔨 **e7ce53ce** Enhance link audit script with backtick handling features and improve output formatting — *poisontr33s*
+- `2026-03-06 09:10:45Z` 🔨 **6320e6bf** Enhance link audit script with backtick handling features and improve output formatting — *poisontr33s*
+- `2026-03-06 20:05:09Z` 🔨 **fdfba3a7** Enhance link audit functionality with inert backtick detection and add various fixture files for testing — *poisontr33s*
+- `2026-03-06 20:05:09Z` 🔨 **12e206e9** Enhance link audit functionality with inert backtick detection and add various fixture files for testing — *poisontr33s*
+- `2026-03-07 02:40:16Z` 🔨 **1358803a** Add functions for status formatting and enhance output structure in chthonic.ps1 — *poisontr33s*
+- `2026-03-07 02:40:16Z` 🔨 **4a6e8e2b** Add functions for status formatting and enhance output structure in chthonic.ps1 — *poisontr33s*
+- `2026-03-07 03:12:50Z` 🔨 **8cd21302** Add compatibility markers for Chthonic environment activation — *poisontr33s*
+- `2026-03-07 03:12:50Z` 🔨 **cb624026** Add compatibility markers for Chthonic environment activation — *poisontr33s*
+- `2026-03-07 07:46:30Z` 🔨 **3a5d8456** Add Novia Cadaveris Embalmer script and output files — *poisontr33s*
+- `2026-03-07 07:46:30Z` 🔨 **b2dbb692** Add Novia Cadaveris Embalmer script and output files — *poisontr33s*
+- `2026-03-07 07:53:57Z` 🔨 **3ccfc6e3** Update Alabaster Voyde references to include canonical full form and enhance name resolution consistency — *poisontr33s*
+- `2026-03-07 07:53:57Z` 🔨 **5d664da1** Update Alabaster Voyde references to include canonical full form and enhance name resolution consistency — *poisontr33s*
+- `2026-03-07 08:01:29Z` 🔨 **ce4deb9f** Update SSOT Mirror Governance documentation and activate Mirror Governance Pass in roadmap — *poisontr33s*
+- `2026-03-07 08:01:29Z` 🔨 **e30cb805** Update SSOT Mirror Governance documentation and activate Mirror Governance Pass in roadmap — *poisontr33s*
+- `2026-03-07 08:56:59Z` 🔨 **92af23b5** Enhance SSOT functionality by adding lineage mapping and control plane commands in chthonic.ps1 and ssot_loremaster.py; update documentation for lineage map and SSOT-to-MPW relationships. — *poisontr33s*
+- `2026-03-07 08:56:59Z` 🔨 **ca1ffb37** Enhance SSOT functionality by adding lineage mapping and control plane commands in chthonic.ps1 and ssot_loremaster.py; update documentation for lineage map and SSOT-to-MPW relationships. — *poisontr33s*
+- `2026-03-07 18:24:40Z` 🔨 **af123efb** Add brush shell support and enhance meta-CLI functionality; update tests for shell probe and brush commands — *poisontr33s*
+- `2026-03-07 18:24:40Z` 🔨 **05ee8e11** Add brush shell support and enhance meta-CLI functionality; update tests for shell probe and brush commands — *poisontr33s*
+- `2026-03-08 09:02:04Z` 🔨 **06c62c20** Remove compiled Python bytecode files from various scripts in the __pycache__ directories — *poisontr33s*
+- `2026-03-08 09:02:04Z` 🔨 **bd72fc55** Remove compiled Python bytecode files from various scripts in the __pycache__ directories — *poisontr33s*
+- `2026-03-08 09:03:21Z` 🔨 **402cb327** feat: Add new project scaffolding and workflow capabilities to Chthonic — *poisontr33s*
+- `2026-03-08 09:03:21Z` 🔨 **b49fd4d4** feat: Add new project scaffolding and workflow capabilities to Chthonic — *poisontr33s*
+- `2026-03-09 00:02:43Z` 🔨 **ba4b5a05** - Added MILF/sub-MILFs to copilot-instructions.archive.md and tables, sorted table matrixes for accurate assessments of WHR:MAX in all tables - Added full names as default - Completed this session: - Sister Apostasia Magnificat full profile (§10.3.5) — ~90 lines of deep creative work. Origin story (trained nun → insider-knowledge deconstructionist → recruited by Vesper), full EDFA with FA⁵ tags (Breasts/Waist/Hips-Ass/Skin/Hair/Eyes/Voice/Habit), relationship dynamics (Vesper, Seraphine, Dame Schrödinger, The Savant), WHR architectural justification, validation checklist. Inserted between Dame Schrödinger's profile and §10.4. - Cross-reference table updates for all 7 new T4 entities: - WHR Table 1 (Novia section): 8 new rows added (7 named T4 + updated footnote) WHR Table 2 (Magistra section): 8 new rows added (matching) L817 canonical chain: Expanded from 16 to 23 entities, correctly sorted ascending by WHR (Sainte 0.598 placed between SFS 0.596 and Novia 0.612; sort-order fix applied) RCS Lingerie Sizing Matrix: 7 new rows with computed sizing per entity frame SAI Registry: Entries #010–#016 added (Sainte, Apostasia, Monty, Frankie, Régine, Judith, Curatrix) Hierarchy tree: T4 section expanded from 2 entries to 10 (8 named leaders + sub-entities) L817 chain sort-order fix: Corrected Sainte Coûte-Que-Coûte (0.598) placement — was after Novia (0.612), now correctly between SFS (0.596) and Novia (0.612). - Verification: Sister Apostasia has 10 cross-references, Curatrix has 9, all entities present in all 6 reference structures. — *poisontr33s*
+- `2026-03-09 00:02:43Z` 🔨 **91c914b2** - Added MILF/sub-MILFs to copilot-instructions.archive.md and tables, sorted table matrixes for accurate assessments of WHR:MAX in all tables - Added full names as default - Completed this session: - Sister Apostasia Magnificat full profile (§10.3.5) — ~90 lines of deep creative work. Origin story (trained nun → insider-knowledge deconstructionist → recruited by Vesper), full EDFA with FA⁵ tags (Breasts/Waist/Hips-Ass/Skin/Hair/Eyes/Voice/Habit), relationship dynamics (Vesper, Seraphine, Dame Schrödinger, The Savant), WHR architectural justification, validation checklist. Inserted between Dame Schrödinger's profile and §10.4. - Cross-reference table updates for all 7 new T4 entities: - WHR Table 1 (Novia section): 8 new rows added (7 named T4 + updated footnote) WHR Table 2 (Magistra section): 8 new rows added (matching) L817 canonical chain: Expanded from 16 to 23 entities, correctly sorted ascending by WHR (Sainte 0.598 placed between SFS 0.596 and Novia 0.612; sort-order fix applied) RCS Lingerie Sizing Matrix: 7 new rows with computed sizing per entity frame SAI Registry: Entries #010–#016 added (Sainte, Apostasia, Monty, Frankie, Régine, Judith, Curatrix) Hierarchy tree: T4 section expanded from 2 entries to 10 (8 named leaders + sub-entities) L817 chain sort-order fix: Corrected Sainte Coûte-Que-Coûte (0.598) placement — was after Novia (0.612), now correctly between SFS (0.596) and Novia (0.612). - Verification: Sister Apostasia has 10 cross-references, Curatrix has 9, all entities present in all 6 reference structures. — *poisontr33s*
+- `2026-03-09 00:35:28Z` 🔨 **b76ed870** refactor: Remove redundant sections and streamline content in copilot-instructions.archive.md — *poisontr33s*
+- `2026-03-09 00:35:28Z` 🔨 **8ae82e1b** refactor: Remove redundant sections and streamline content in copilot-instructions.archive.md — *poisontr33s*
+- `2026-03-09 01:08:23Z` 🔨 **a8070989** feat: Add subagent model overrides for Copilot Chat to enhance quality — *poisontr33s*
+- `2026-03-09 01:08:23Z` 🔨 **81046141** feat: Add subagent model overrides for Copilot Chat to enhance quality — *poisontr33s*
+- `2026-03-09 04:14:54Z` 🔨 **fae73ab2** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-03-09 04:14:54Z` 🔨 **71e8a04f** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-03-09 04:37:13Z` 🔨 **4288622e** feat: Add detailed character profile for Madame Régine Theft-Historically, enhancing narrative depth and theatrical context — *poisontr33s*
+- `2026-03-09 04:37:13Z` 🔨 **f2d6a254** feat: Add detailed character profile for Madame Régine Theft-Historically, enhancing narrative depth and theatrical context — *poisontr33s*
+- `2026-03-09 04:53:05Z` 🔨 **72b856e7** refactor: Clarify descriptions and enhance narrative consistency in character profile for Régine — *poisontr33s*
+- `2026-03-09 04:53:05Z` 🔨 **de3990d4** refactor: Clarify descriptions and enhance narrative consistency in character profile for Régine — *poisontr33s*
+- `2026-03-09 05:08:48Z` 🔨 **edb072d5** refactor: Enhance character depth and narrative clarity in Régine's profile by refining physical descriptions and emotional context — *poisontr33s*
+- `2026-03-09 05:08:48Z` 🔨 **8efceeb2** refactor: Enhance character depth and narrative clarity in Régine's profile by refining physical descriptions and emotional context — *poisontr33s*
+- `2026-03-09 06:45:06Z` 🔨 **4640b9ea** refactor: Refine physical descriptions and emotional context in character profile for Régine Theft-Historically — *poisontr33s*
+- `2026-03-09 06:45:06Z` 🔨 **ef7fc400** refactor: Refine physical descriptions and emotional context in character profile for Régine Theft-Historically — *poisontr33s*
+- `2026-03-09 08:17:25Z` 🔨 **90a68d89** formatting and changes to Judith Protocol 2. User. — *poisontr33s*
+- `2026-03-09 08:17:25Z` 🔨 **ebc8c2fe** formatting and changes to Judith Protocol 2. User. — *poisontr33s*
+- `2026-03-09 08:19:00Z` 🔨 **9ad56c10** refactor: Clarify weight description and enhance narrative consistency in character profile for Madame Régine Theft-Historically — *poisontr33s*
+- `2026-03-09 08:19:00Z` 🔨 **5849fc70** refactor: Clarify weight description and enhance narrative consistency in character profile for Madame Régine Theft-Historically — *poisontr33s*
+- `2026-03-10 01:45:22Z` 🔨 **d748a55e** Add EDFA Overnight Audit Report detailing session findings and applied fixes — *poisontr33s*
+- `2026-03-10 01:45:22Z` 🔨 **75b20244** Add EDFA Overnight Audit Report detailing session findings and applied fixes — *poisontr33s*
+- `2026-03-10 04:58:18Z` 🔨 **2c3a15c1** refactor: Update session resumption packet with new generated timestamps and log paths refactor: Enhance launch script for Claude Code with improved detection and installation logic feat: Add new foundational axiom FA⁵ for visual integrity in faction types module add: Create genre extraction digest for processed files with detailed summaries and tags — *poisontr33s*
+- `2026-03-10 04:58:18Z` 🔨 **4cb7bf7f** refactor: Update session resumption packet with new generated timestamps and log paths refactor: Enhance launch script for Claude Code with improved detection and installation logic feat: Add new foundational axiom FA⁵ for visual integrity in faction types module add: Create genre extraction digest for processed files with detailed summaries and tags — *poisontr33s*
+- `2026-03-11 09:27:59Z` 🔨 **7c4ddf4d** Add Oxidized Toolchain Cheatsheet and Reference Documentation — *poisontr33s*
+- `2026-03-11 09:27:59Z` 🔨 **ce9ee8c1** Add Oxidized Toolchain Cheatsheet and Reference Documentation — *poisontr33s*
+- `2026-03-11 21:10:09Z` 🔨 **befb9b48** refactor: Enhance Gemini CLI wrapper with entry point resolution and executable validation functions — *poisontr33s*
+- `2026-03-11 21:10:09Z` 🔨 **b9860b8a** refactor: Enhance Gemini CLI wrapper with entry point resolution and executable validation functions — *poisontr33s*
+- `2026-03-11 21:57:12Z` 🔨 **c6a12ffa** refactor: Enhance Gemini CLI wrapper with repair functionality and improve error handling for corrupted shims — *poisontr33s*
+- `2026-03-11 21:57:12Z` 🔨 **61cc17f0** refactor: Enhance Gemini CLI wrapper with repair functionality and improve error handling for corrupted shims — *poisontr33s*
+- `2026-03-11 22:06:42Z` 🔨 **cfe3e1d7** refactor: Enhance Gemini CLI wrapper to repair Windows Bun shim corruption and validate executable paths — *poisontr33s*
+- `2026-03-11 22:06:42Z` 🔨 **51a0c268** refactor: Enhance Gemini CLI wrapper to repair Windows Bun shim corruption and validate executable paths — *poisontr33s*
+- `2026-03-12 23:12:46Z` 🔨 **35eec1fb** Add complete logs and analysis for bugchecks and WHEA errors on 2026-03-12 — *poisontr33s*
+- `2026-03-12 23:12:46Z` 🔨 **2e6460ff** Add complete logs and analysis for bugchecks and WHEA errors on 2026-03-12 — *poisontr33s*
+- `2026-03-13 10:35:49Z` 🔨 **f173f7fb** refactor: Update Curatrix Mortuorum attributes and cross-reference for architectural validation - Dame Schrodinger's sections have been updated slightly to reflect a less absolute system of "WHR:MAX + Cup-Size hierarchy" — *poisontr33s*
+- `2026-03-13 10:35:49Z` 🔨 **f8986415** refactor: Update Curatrix Mortuorum attributes and cross-reference for architectural validation - Dame Schrodinger's sections have been updated slightly to reflect a less absolute system of "WHR:MAX + Cup-Size hierarchy" — *poisontr33s*
+- `2026-03-13 10:48:05Z` 🔨 **ca71dfec** Add genre extraction digest for 2026-03-13 with processed files and detailed summaries — *poisontr33s*
+- `2026-03-13 10:48:05Z` 🔨 **6bda2f1b** Add genre extraction digest for 2026-03-13 with processed files and detailed summaries — *poisontr33s*
+- `2026-03-13 11:48:27Z` 🔨 **a0c80667** fix: Correct formatting in Breast Size Hierarchy description for clarity — *poisontr33s*
+- `2026-03-13 11:48:27Z` 🔨 **4222714d** fix: Correct formatting in Breast Size Hierarchy description for clarity — *poisontr33s*
+- `2026-03-13 13:21:02Z` 🔨 **f59f1327** Update Copilot instructions for clarity and structure; refine content to prevent context explosion and enhance readability. — *poisontr33s*
+- `2026-03-13 13:21:02Z` 🔨 **93f92952** Update Copilot instructions for clarity and structure; refine content to prevent context explosion and enhance readability. — *poisontr33s*
+- `2026-03-13 13:24:21Z` 🔨 **64b31899** fix: Clarify language in Saline Incursion description for improved readability — *poisontr33s*
+- `2026-03-13 13:24:21Z` 🔨 **f85e475b** fix: Clarify language in Saline Incursion description for improved readability — *poisontr33s*
+- `2026-03-13 14:27:29Z` 🔨 **869bc897** Add support for managing Node.js and R versions with fnm and rig — *poisontr33s*
+- `2026-03-13 14:27:29Z` 🔨 **3a9d4528** Add support for managing Node.js and R versions with fnm and rig — *poisontr33s*
+- `2026-03-13 16:34:44Z` 🔨 **69acb706** Enhance Ruby management in Chthonic: Update documentation for Windows Ruby lane, improve command resolution, and add Ruby-related functions — *poisontr33s*
+- `2026-03-13 16:34:44Z` 🔨 **ba64273e** Enhance Ruby management in Chthonic: Update documentation for Windows Ruby lane, improve command resolution, and add Ruby-related functions — *poisontr33s*
+- `2026-03-13 20:18:01Z` 🔨 **0ae7c565** Refactor SSOT Toolbox Instructions and add Co-Supplementary Methodology — *poisontr33s*
+- `2026-03-13 20:18:01Z` 🔨 **34b119c0** Refactor SSOT Toolbox Instructions and add Co-Supplementary Methodology — *poisontr33s*
+- `2026-03-14 16:49:29Z` 🔨 **c7617133** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-14 16:49:29Z` 🔨 **5731cfe1** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-03-14 17:22:57Z` 🔨 **30144aa4** Implement feature X to enhance user experience and optimize performance — *poisontr33s*
+- `2026-03-14 17:22:57Z` 🔨 **b3155fce** Implement feature X to enhance user experience and optimize performance — *poisontr33s*
+- `2026-03-14 17:23:07Z` 🔨 **11fc13f0** Remove standalone script section from co-supplementary methodology instructions — *poisontr33s*
+- `2026-03-14 17:23:07Z` 🔨 **84b42d7e** Remove standalone script section from co-supplementary methodology instructions — *poisontr33s*
+- `2026-03-14 17:32:36Z` 🔨 **9a1aa681** Refactor SSOT Mirror Governance documentation: remove redundant entries and clarify authority order — *poisontr33s*
+- `2026-03-14 17:32:36Z` 🔨 **350a493b** Refactor SSOT Mirror Governance documentation: remove redundant entries and clarify authority order — *poisontr33s*
+- `2026-03-14 19:08:56Z` 🔨 **68ff4a98** Add MILF-Kidnapping and Lending Protocols sections to enhance archetype management strategies — *poisontr33s*
+- `2026-03-14 19:08:56Z` 🔨 **3a4340f7** Add MILF-Kidnapping and Lending Protocols sections to enhance archetype management strategies — *poisontr33s*
+- `2026-03-14 22:16:29Z` 🔨 **33288cd3** Refactor Body-System-Tier-Mapping section: enhance clarity and structure by redefining organ-level entities and their systemic roles — *poisontr33s*
+- `2026-03-14 22:16:29Z` 🔨 **feb475be** Refactor Body-System-Tier-Mapping section: enhance clarity and structure by redefining organ-level entities and their systemic roles — *poisontr33s*
+- `2026-03-15 00:01:20Z` 🔨 **f0d4b99a** Add Step 3 Deep Exploration Prototypes and CLAUDE architecture documentation — *poisontr33s*
+- `2026-03-15 00:01:20Z` 🔨 **3a1b839d** Add Step 3 Deep Exploration Prototypes and CLAUDE architecture documentation — *poisontr33s*
+- `2026-03-15 20:14:06Z` 🔨 **02102b54** Add desktop-clone-state script for exporting, restoring, and verifying Chthonic desktop clone packages — *poisontr33s*
+- `2026-03-15 20:14:06Z` 🔨 **53228baa** Add desktop-clone-state script for exporting, restoring, and verifying Chthonic desktop clone packages — *poisontr33s*
+- `2026-03-16 01:39:59Z` 🔨 **54ad5f30** Enhance desktop-clone-state script: add DryRun mode for export and restore, and improve path statistics and theme state retrieval functions — *poisontr33s*
+- `2026-03-16 01:39:59Z` 🔨 **811ff27a** Enhance desktop-clone-state script: add DryRun mode for export and restore, and improve path statistics and theme state retrieval functions — *poisontr33s*
+- `2026-03-16 02:10:25Z` 🔨 **1915ddd4** Add robocopy_pause_resume script for managing robocopy processes: pause, resume, and status actions — *poisontr33s*
+- `2026-03-16 02:10:25Z` 🔨 **87e7ef38** Add robocopy_pause_resume script for managing robocopy processes: pause, resume, and status actions — *poisontr33s*
+- `2026-03-16 13:13:05Z` 🔨 **370bd7d4** Update session resumption timestamps and add genre extraction digest for March 16, 2026 — *poisontr33s*
+- `2026-03-16 13:13:05Z` 🔨 **28314a04** Update session resumption timestamps and add genre extraction digest for March 16, 2026 — *poisontr33s*
+- `2026-03-16 16:18:38Z` 🔨 **9a340e8f** Add dry run functionality to desktop-clone-state script for export and restore modes — *poisontr33s*
+- `2026-03-16 16:18:38Z` 🔨 **9045ac0b** Add dry run functionality to desktop-clone-state script for export and restore modes — *poisontr33s*
+- `2026-03-16 16:18:41Z` 🔨 **246089e5** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-03-16 16:18:41Z` 🔨 **475d4fe9** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-03-16 17:06:56Z` 🔨 **24c4e5ce** Add script to recover path-bound Copilot and Claude IDE sessions after user-profile rename — *poisontr33s*
+- `2026-03-16 17:06:56Z` 🔨 **f61b580e** Add script to recover path-bound Copilot and Claude IDE sessions after user-profile rename — *poisontr33s*
+- `2026-03-16 17:41:46Z` 🔨 **c39b499d** Add genre extraction documentation and migration scripts — *poisontr33s*
+- `2026-03-16 17:41:46Z` 🔨 **58607221** Add genre extraction documentation and migration scripts — *poisontr33s*
+- `2026-03-16 17:41:49Z` 🔨 **6657079b** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-03-16 17:41:49Z` 🔨 **bd640a71** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-03-16 19:46:32Z` 🔨 **9866316f** Add multiple probed path files for toolchain probe with updated environment variables — *poisontr33s*
+- `2026-03-16 19:46:32Z` 🔨 **b99bda71** Add multiple probed path files for toolchain probe with updated environment variables — *poisontr33s*
+- `2026-03-16 20:11:28Z` 🔨 **4ce1ce49** Refactor extension.js in chthonic-mandala and chthonic-statusbar for improved readability and performance; streamline command registration and error handling — *poisontr33s*
+- `2026-03-16 20:11:28Z` 🔨 **309155d6** Refactor extension.js in chthonic-mandala and chthonic-statusbar for improved readability and performance; streamline command registration and error handling — *poisontr33s*
+- `2026-03-16 21:58:27Z` 🔨 **71c14bd6** Update MCP configuration to use workspaceFolder for paths and enhance allowed models in settings — *poisontr33s*
+- `2026-03-16 21:58:27Z` 🔨 **22ebdb3d** Update MCP configuration to use workspaceFolder for paths and enhance allowed models in settings — *poisontr33s*
+- `2026-03-16 22:33:42Z` 🔨 **04a9f38b** Disable embalm-before-edit functionality and update documentation to reflect WIP status — *poisontr33s*
+- `2026-03-16 22:33:42Z` 🔨 **439217fb** Disable embalm-before-edit functionality and update documentation to reflect WIP status — *poisontr33s*
+- `2026-03-16 22:50:11Z` 🔨 **17eeaf7e** Update launch configuration and tests for chthonic extensions; adjust paths for deployment checks and add PowerShell script for running tests — *poisontr33s*
+- `2026-03-16 22:50:11Z` 🔨 **aecab49b** Update launch configuration and tests for chthonic extensions; adjust paths for deployment checks and add PowerShell script for running tests — *poisontr33s*
+- `2026-03-17 11:16:55Z` 🔨 **812ab245** feat: Update workspace configuration and add new skills for Gemini integration — *poisontr33s*
+- `2026-03-17 11:16:55Z` 🔨 **4246ee9b** feat: Update workspace configuration and add new skills for Gemini integration — *poisontr33s*
+- `2026-03-17 13:12:38Z` 🔨 **6c75c35b** fix: Update terminal PATH in settings for improved integration with ChatGPT extension — *poisontr33s*
+- `2026-03-17 13:12:38Z` 🔨 **5e381ac1** fix: Update terminal PATH in settings for improved integration with ChatGPT extension — *poisontr33s*
+- `2026-03-17 15:52:11Z` 🔨 **0ca57c04** feat: Add scripts for auditing and patching Codex IDE webview bundle with CLI-parity slash commands — *poisontr33s*
+- `2026-03-17 15:52:11Z` 🔨 **a5c5cdff** feat: Add scripts for auditing and patching Codex IDE webview bundle with CLI-parity slash commands — *poisontr33s*
+- `2026-03-17 16:23:41Z` 🔨 **c8d74425** feat: Enhance Codex IDE webview patching with v2 architecture and expanded command aliases — *poisontr33s*
+- `2026-03-17 16:23:41Z` 🔨 **33982d7c** feat: Enhance Codex IDE webview patching with v2 architecture and expanded command aliases — *poisontr33s*
+- `2026-03-17 16:31:12Z` 🔨 **61583434** refactor: Remove obsolete audit and restructuring scripts from the repository — *poisontr33s*
+- `2026-03-17 16:31:12Z` 🔨 **d20f3671** refactor: Remove obsolete audit and restructuring scripts from the repository — *poisontr33s*
+- `2026-03-17 19:09:52Z` 🔨 **65c9072e** Refactor documentation links and improve clarity across multiple files — *poisontr33s*
+- `2026-03-17 19:09:52Z` 🔨 **9976aee4** Refactor documentation links and improve clarity across multiple files — *poisontr33s*
+- `2026-03-17 19:10:12Z` 🔨 **88296d3a** fix: Update file paths in ROOT_ARCHAEOLOGY_REPORT.md for consistency — *poisontr33s*
+- `2026-03-17 19:10:12Z` 🔨 **2f038ab5** fix: Update file paths in ROOT_ARCHAEOLOGY_REPORT.md for consistency — *poisontr33s*
+- `2026-03-17 19:16:47Z` 🔨 **329d6b5d** fix: Correct file paths in ROOT_ARCHAEOLOGY_REPORT.md for consistency — *poisontr33s*
+- `2026-03-17 19:16:47Z` 🔨 **b0c11a3e** fix: Correct file paths in ROOT_ARCHAEOLOGY_REPORT.md for consistency — *poisontr33s*
+- `2026-03-17 19:27:00Z` 🔨 **28994f60** feat: Enhance link auditing with absolute path resolution and selective scanning options — *poisontr33s*
+- `2026-03-17 19:27:00Z` 🔨 **96776f4a** feat: Enhance link auditing with absolute path resolution and selective scanning options — *poisontr33s*
+- `2026-03-17 20:12:41Z` 🔨 **7b0f1b85** feat: Add safe relative path serialization and enhance link resolution with URL decoding — *poisontr33s*
+- `2026-03-17 20:12:41Z` 🔨 **39881411** feat: Add safe relative path serialization and enhance link resolution with URL decoding — *poisontr33s*
+- `2026-03-18 00:41:26Z` 🔨 **775264af** feat: Empty-label reclassification + corpse-vault skip in link_audit — *poisontr33s*
+- `2026-03-18 00:41:26Z` 🔨 **6a87c67c** feat: Empty-label reclassification + corpse-vault skip in link_audit — *poisontr33s*
+- `2026-03-18 00:43:20Z` 🔨 **e657e9f0** feat: Track pyproject.toml + add [poe] [openai] optional dependency groups — *poisontr33s*
+- `2026-03-18 00:43:20Z` 🔨 **b0a94353** feat: Track pyproject.toml + add [poe] [openai] optional dependency groups — *poisontr33s*
+- `2026-03-18 00:43:47Z` 🔨 **7a9d1560** docs: Track API key gap report in codex mailbox — *poisontr33s*
+- `2026-03-18 00:43:47Z` 🔨 **756485a4** docs: Track API key gap report in codex mailbox — *poisontr33s*
+- `2026-03-18 00:44:56Z` 🔨 **29f86940** feat: Add desktop-warmup.ps1 — post-pull environment warmup — *poisontr33s*
+- `2026-03-18 00:44:56Z` 🔨 **416d8e27** feat: Add desktop-warmup.ps1 — post-pull environment warmup — *poisontr33s*
+- `2026-03-18 00:45:32Z` 🔨 **e61dbef9** feat: Wire mas-mcp server into .vscode/mcp.json — *poisontr33s*
+- `2026-03-18 00:45:32Z` 🔨 **c2df70f2** feat: Wire mas-mcp server into .vscode/mcp.json — *poisontr33s*
+- `2026-03-18 00:46:40Z` 🔨 **66b68027** docs: Overnight session report 2026-03-18 — *poisontr33s*
+- `2026-03-18 00:46:40Z` 🔨 **8ff0c43c** docs: Overnight session report 2026-03-18 — *poisontr33s*
+- `2026-03-18 00:58:42Z` 🔨 **c5b5d40d** fix: repair mas-mcp server startup — add fastmcp dep, clean __init__.py, track logic/ — *poisontr33s*
+- `2026-03-18 00:58:42Z` 🔨 **0729bf08** fix: repair mas-mcp server startup — add fastmcp dep, clean __init__.py, track logic/ — *poisontr33s*
+- `2026-03-18 01:00:36Z` 🔨 **9b8ffa28** feat: add API key template for various providers — *poisontr33s*
+- `2026-03-18 01:00:36Z` 🔨 **38711742** feat: add API key template for various providers — *poisontr33s*
+- `2026-03-18 01:04:07Z` 🔨 **289e4476** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-03-18 01:04:07Z` 🔨 **3b4dca04** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-03-18 01:04:14Z` 🔨 **6356f5ca** feat: update .gitignore to include MAS MCP server files and exclude transient artifacts — *poisontr33s*
+- `2026-03-18 01:04:14Z` 🔨 **9d801855** feat: update .gitignore to include MAS MCP server files and exclude transient artifacts — *poisontr33s*
+- `2026-03-18 01:14:10Z` 🔨 **01b33939** chore: rotate stale mailbox series — archive 37 codex + 29 claude items, regenerate MAILBOX_CURRENT_STATE — *poisontr33s*
+- `2026-03-18 01:14:10Z` 🔨 **9916ffaa** chore: rotate stale mailbox series — archive 37 codex + 29 claude items, regenerate MAILBOX_CURRENT_STATE — *poisontr33s*
+- `2026-03-18 01:23:38Z` 🔨 **41253ba8** docs: add verification addenda to CHORE Phase 1 + Phase 5 reports — .pyc clean, root files untracked — *poisontr33s*
+- `2026-03-18 01:23:38Z` 🔨 **fc061b4b** docs: add verification addenda to CHORE Phase 1 + Phase 5 reports — .pyc clean, root files untracked — *poisontr33s*
+- `2026-03-18 01:24:32Z` 🔨 **8772a63b** docs: overnight session C report — mailbox rotation, CHORE phases 1/4/5 verified — *poisontr33s*
+- `2026-03-18 01:24:32Z` 🔨 **de1ca4b8** docs: overnight session C report — mailbox rotation, CHORE phases 1/4/5 verified — *poisontr33s*
+- `2026-03-18 01:37:43Z` 🔨 **ce1d7c72** Add VS 2026 .vsconfig and hierarchical work plan — *poisontr33s*
+- `2026-03-18 01:37:43Z` 🔨 **946ebe52** Add VS 2026 .vsconfig and hierarchical work plan — *poisontr33s*
+- `2026-03-18 01:49:05Z` 🔨 **2f0d89b8** ANKH CA1+CA3 gap closure, dead code handoff closed, CHORE Phase 3 script triage — *poisontr33s*
+- `2026-03-18 01:49:05Z` 🔨 **306748cc** ANKH CA1+CA3 gap closure, dead code handoff closed, CHORE Phase 3 script triage — *poisontr33s*
+- `2026-03-18 01:56:30Z` 🔨 **b7059226** chore: migrate VS 2022 refs to VS 2026 Insiders + .vsconfig desktop audit — *poisontr33s*
+- `2026-03-18 01:56:30Z` 🔨 **1be0ac69** chore: migrate VS 2022 refs to VS 2026 Insiders + .vsconfig desktop audit — *poisontr33s*
+- `2026-03-18 02:00:26Z` 🔨 **9e9f1026** chore: update environment checks and configurations for VS 2026 and CUDA — *poisontr33s*
+- `2026-03-18 02:00:26Z` 🔨 **e8872f1b** chore: update environment checks and configurations for VS 2026 and CUDA — *poisontr33s*
+- `2026-03-18 02:08:04Z` 🔨 **597be64a** ANKH gap closure: TCP, DECORATOR-IP, CRC Registry — all 8/8 gaps closed — *poisontr33s*
+- `2026-03-18 02:08:04Z` 🔨 **cff0523b** ANKH gap closure: TCP, DECORATOR-IP, CRC Registry — all 8/8 gaps closed — *poisontr33s*
+- `2026-03-18 22:29:04Z` 🔨 **6afd9227** chore: update technical directives with example purpose and version policy adjustments — *poisontr33s*
+- `2026-03-18 22:29:04Z` 🔨 **87e34f74** chore: update technical directives with example purpose and version policy adjustments — *poisontr33s*
+- `2026-03-18 22:33:28Z` 🔨 **f6962587** chore: add docstrings for SSOT hash, scan, pulse, and GPU probe tools — *poisontr33s*
+- `2026-03-18 22:33:28Z` 🔨 **386ee223** chore: add docstrings for SSOT hash, scan, pulse, and GPU probe tools — *poisontr33s*
+- `2026-03-18 22:47:30Z` 🔨 **119ef9a4** fix(mas-mcp): wire entity_deep + bookend_verify, remove ssot_hash, clean dead imports — *poisontr33s*
+- `2026-03-18 22:47:30Z` 🔨 **4c3cff2a** fix(mas-mcp): wire entity_deep + bookend_verify, remove ssot_hash, clean dead imports — *poisontr33s*
+- `2026-03-18 22:53:56Z` 🔨 **de25c304** refactor(mas-mcp): replace hash infra with policy_check + validate_entity — *poisontr33s*
+- `2026-03-18 22:53:56Z` 🔨 **0daab901** refactor(mas-mcp): replace hash infra with policy_check + validate_entity — *poisontr33s*
+- `2026-03-18 22:58:29Z` 🔨 **17f3e5db** docs: update @Purpose to reflect current tool surface (no hash infra) — *poisontr33s*
+- `2026-03-18 22:58:29Z` 🔨 **551f39b2** docs: update @Purpose to reflect current tool surface (no hash infra) — *poisontr33s*
+- `2026-03-18 23:06:23Z` 🔨 **ba53a519** feat(mas-mcp): wire link_audit, workspace_health, scm_triage as MCP tools (8→11) — *poisontr33s*
+- `2026-03-18 23:06:23Z` 🔨 **d28ca093** feat(mas-mcp): wire link_audit, workspace_health, scm_triage as MCP tools (8→11) — *poisontr33s*
+- `2026-03-18 23:17:04Z` 🔨 **33852d94** fix(mcp): health audit sweep — version sync, dead env, ghost deps, stale workspace, double-declared mcp dep — *poisontr33s*
+- `2026-03-18 23:17:04Z` 🔨 **eb6634db** fix(mcp): health audit sweep — version sync, dead env, ghost deps, stale workspace, double-declared mcp dep — *poisontr33s*
+- `2026-03-18 23:29:37Z` 🔨 **298ae42e** quality: wire tool #12, fix 5 bugs, broaden narrative lexicon — *poisontr33s*
+- `2026-03-18 23:29:37Z` 🔨 **b58104ae** quality: wire tool #12, fix 5 bugs, broaden narrative lexicon — *poisontr33s*
+- `2026-03-18 23:34:14Z` 🔨 **542e2ed3** wet-paper-to-gold: upcycle ssot_handler.py into live MAS pipeline — *poisontr33s*
+- `2026-03-18 23:34:14Z` 🔨 **d72e936a** wet-paper-to-gold: upcycle ssot_handler.py into live MAS pipeline — *poisontr33s*
+- `2026-03-19 00:46:27Z` 🔨 **88b42698** harden ssot_binding: git-root resolution, symmetric canonicalization, regression tests — *poisontr33s*
+- `2026-03-19 00:46:27Z` 🔨 **e3c361f1** harden ssot_binding: git-root resolution, symmetric canonicalization, regression tests — *poisontr33s*
+- `2026-03-19 00:55:33Z` 🔨 **e4d9a9e7** vitals: semantic fingerprint, hash journal, and drift intelligence — *poisontr33s*
+- `2026-03-19 00:55:33Z` 🔨 **bea5f801** vitals: semantic fingerprint, hash journal, and drift intelligence — *poisontr33s*
+- `2026-03-19 01:45:43Z` 🔨 **cacea26f** vitals v4: source-kind discrimination, heading/metrics digests, changed_dimensions — *poisontr33s*
+- `2026-03-19 01:45:43Z` 🔨 **04e595a1** vitals v4: source-kind discrimination, heading/metrics digests, changed_dimensions — *poisontr33s*
+- `2026-03-19 02:23:34Z` 🔨 **857439e7** vitals v5: canon declaration layer, provenance contract, cascade register — *poisontr33s*
+- `2026-03-19 02:23:34Z` 🔨 **95b99198** vitals v5: canon declaration layer, provenance contract, cascade register — *poisontr33s*
+- `2026-03-19 03:04:13Z` 🔨 **c627ec3a** fix: uv sync dev deps + quiet MCP stdio transport — *poisontr33s*
+- `2026-03-19 03:04:13Z` 🔨 **9a0e9371** fix: uv sync dev deps + quiet MCP stdio transport — *poisontr33s*
+- `2026-03-19 03:09:27Z` 🔨 **b55e8900** fix: kill FastMCP banner noise — show_banner=False, remove fake env vars — *poisontr33s*
+- `2026-03-19 03:09:27Z` 🔨 **c9240310** fix: kill FastMCP banner noise — show_banner=False, remove fake env vars — *poisontr33s*
+- `2026-03-19 03:14:51Z` 🔨 **fbb7b5ad** feat: upgrade FastMCP 2.14 -> 3.1.1 — banner gone, no pin needed — *poisontr33s*
+- `2026-03-19 03:14:51Z` 🔨 **c123b8d7** feat: upgrade FastMCP 2.14 -> 3.1.1 — banner gone, no pin needed — *poisontr33s*
+- `2026-03-19 03:35:57Z` 🔨 **d118dd96** Phase 0.1: SSOT-ification baseline — cascade bridge + 18 scripts wired — *poisontr33s*
+- `2026-03-19 03:35:57Z` 🔨 **c3ce99e2** Phase 0.1: SSOT-ification baseline — cascade bridge + 18 scripts wired — *poisontr33s*
+- `2026-03-19 04:04:30Z` 🔨 **897e7091** Add SSOT-ification strategic blueprint: Phase 0.1 to 1.0 roadmap — *poisontr33s*
+- `2026-03-19 04:04:30Z` 🔨 **9366b422** Add SSOT-ification strategic blueprint: Phase 0.1 to 1.0 roadmap — *poisontr33s*
+- `2026-03-19 12:53:36Z` 🔨 **89ca1b5d** chore(deps): bump json — *dependabot[bot]*
+- `2026-03-19 12:53:36Z` 🔨 **2b336d8d** chore(deps): bump json — *dependabot[bot]*
+- `2026-03-19 12:53:37Z` 🔀 **#9** PR opened: chore(deps): bump json from 2.18.1 to 2.19.2 in /extensions/chthonic-archive/.chthonic/ruby in the bundler group across 1 directory [dependencies, ruby] — *dependabot[bot]*
+- `2026-03-19 14:21:18Z` 🔨 **7312ed5f** Phase 0.2: Complete Python cascade — 13 scripts wired through SSOT bridge — *poisontr33s*
+- `2026-03-19 14:21:18Z` 🔨 **fa4a6120** Phase 0.2: Complete Python cascade — 13 scripts wired through SSOT bridge — *poisontr33s*
+- `2026-03-19 14:30:29Z` 🔨 **41a40498** docs: Update blueprint to reflect Phase 0.2 completion — *poisontr33s*
+- `2026-03-19 14:30:29Z` 🔨 **01a9bf73** docs: Update blueprint to reflect Phase 0.2 completion — *poisontr33s*
+- `2026-03-19 14:48:51Z` 🔨 **619fbd54** blueprint: accuracy audit — 53 refs (not 21), 5 functional in mas_mcp/, add Phase 0.2.1 — *poisontr33s*
+- `2026-03-19 14:48:51Z` 🔨 **5ba839dc** blueprint: accuracy audit — 53 refs (not 21), 5 functional in mas_mcp/, add Phase 0.2.1 — *poisontr33s*
+- `2026-03-19 22:45:40Z` 🔨 **089c5ba5** Add skill tensor pool, roulette, sync spec, and weights scripts — *poisontr33s*
+- `2026-03-19 22:45:40Z` 🔨 **2ab255bc** Add skill tensor pool, roulette, sync spec, and weights scripts — *poisontr33s*
+- `2026-03-20 14:33:15Z` 🔨 **2cf7ac16** Refactor skill tensor artifacts and update execution logic — *poisontr33s*
+- `2026-03-20 14:33:15Z` 🔨 **2cc345e0** Refactor skill tensor artifacts and update execution logic — *poisontr33s*
+- `2026-03-20 15:42:57Z` 🔨 **1f01984b** Add Skill Tensor Cycle script and related reports — *poisontr33s*
+- `2026-03-20 15:42:57Z` 🔨 **503d85fe** Add Skill Tensor Cycle script and related reports — *poisontr33s*
+- `2026-03-20 17:41:14Z` 🔨 **cae44efc** Update settings.json and add gemini-ide-audit script for IDE integration checks — *poisontr33s*
+- `2026-03-20 17:41:14Z` 🔨 **fbd509be** Update settings.json and add gemini-ide-audit script for IDE integration checks — *poisontr33s*
+- `2026-03-20 19:43:11Z` 🔨 **81a869a6** Refactor skill tensor scripts to enhance action key handling and ledger management — *poisontr33s*
+- `2026-03-20 19:43:11Z` 🔨 **d893cc52** Refactor skill tensor scripts to enhance action key handling and ledger management — *poisontr33s*
+- `2026-03-20 20:35:00Z` 🔨 **904b5e55** Implement v2 skill tensor universe and legality pipeline — *poisontr33s*
+- `2026-03-20 20:35:00Z` 🔨 **6feee7a4** Implement v2 skill tensor universe and legality pipeline — *poisontr33s*
+- `2026-03-20 21:07:17Z` 🔨 **8ed617f0** Update skill tensor weights and improve ledger handling — *poisontr33s*
+- `2026-03-20 21:07:17Z` 🔨 **0f103000** Update skill tensor weights and improve ledger handling — *poisontr33s*
+- `2026-03-20 21:14:11Z` 🔨 **d1289d40** Update Skill Tensor Cycle documentation and embed outputs in cycle JSON — *poisontr33s*
+- `2026-03-20 21:14:11Z` 🔨 **2fea7cae** Update Skill Tensor Cycle documentation and embed outputs in cycle JSON — *poisontr33s*
+- `2026-03-20 21:29:12Z` 🔨 **6d31816d** Add Skill Tensor Parity State documentation and system explanation — *poisontr33s*
+- `2026-03-20 21:29:12Z` 🔨 **bd0d74bf** Add Skill Tensor Parity State documentation and system explanation — *poisontr33s*
+- `2026-03-21 03:54:25Z` 🔨 **4a136bf1** Refactor skill tensor scripts: Introduce roulette and weights probes, restructure zombie consumer for dead file analysis — *poisontr33s*
+- `2026-03-21 03:54:25Z` 🔨 **03e164cf** Refactor skill tensor scripts: Introduce roulette and weights probes, restructure zombie consumer for dead file analysis — *poisontr33s*
+- `2026-03-21 06:25:59Z` 🔨 **7999045b** Add promoted scripts for recovered batch transliteration, Python cluster registry, and shell recipe CLI — *poisontr33s*
+- `2026-03-21 06:25:59Z` 🔨 **7eb02e46** Add promoted scripts for recovered batch transliteration, Python cluster registry, and shell recipe CLI — *poisontr33s*
+- `2026-03-21 06:26:11Z` 🔨 **81832578** Add recovered scripts and corresponding metadata for restructuring — *poisontr33s*
+- `2026-03-21 06:26:11Z` 🔨 **9a301a68** Add recovered scripts and corresponding metadata for restructuring — *poisontr33s*
+- `2026-03-22 18:50:24Z` 🔨 **cf24ea4d** Add Zombie Evolution Project documentation detailing iterative intelligence upgrades — *poisontr33s*
+- `2026-03-22 18:50:24Z` 🔨 **70ea4b4a** Add Zombie Evolution Project documentation detailing iterative intelligence upgrades — *poisontr33s*
+- `2026-03-22 19:30:10Z` 🔨 **bbae2abe** Add fixture skill files and remove obsolete SKILL.md files — *poisontr33s*
+- `2026-03-22 19:30:10Z` 🔨 **690fbb1a** Add fixture skill files and remove obsolete SKILL.md files — *poisontr33s*
+- `2026-03-22 19:50:04Z` 🔨 **3f88dc09** Update execution statuses and metrics to reflect successful outcomes in SKILL_TENSOR_CYCLE_LATEST files — *poisontr33s*
+- `2026-03-22 19:50:04Z` 🔨 **6d23b67b** Update execution statuses and metrics to reflect successful outcomes in SKILL_TENSOR_CYCLE_LATEST files — *poisontr33s*
+- `2026-03-22 22:06:25Z` 🔨 **c9288cf1** Add new scripts for elevated bridge management and Ruby legacy probing — *poisontr33s*
+- `2026-03-22 22:06:25Z` 🔨 **c8e7a1f2** Add new scripts for elevated bridge management and Ruby legacy probing — *poisontr33s*
+- `2026-03-22 22:06:40Z` 🔨 **cd965265** Refactor PowerShell script to streamline candidate selection for pwsh.exe and remove unused version-checking function — *poisontr33s*
+- `2026-03-22 22:06:40Z` 🔨 **03a613cb** Refactor PowerShell script to streamline candidate selection for pwsh.exe and remove unused version-checking function — *poisontr33s*
+- `2026-03-23 01:10:45Z` 🔨 **b175d7c1** Update VS Code settings for PowerShell paths and enhance chthonic.ps1 with brush repo configuration — *poisontr33s*
+- `2026-03-23 01:10:45Z` 🔨 **330156fc** Update VS Code settings for PowerShell paths and enhance chthonic.ps1 with brush repo configuration — *poisontr33s*
+- `2026-03-23 01:43:24Z` 🔨 **6b3c4c6b** Refactor headings in VS Code Electron Hardener report for consistency and clarity — *poisontr33s*
+- `2026-03-23 01:43:24Z` 🔨 **f349ab7b** Refactor headings in VS Code Electron Hardener report for consistency and clarity — *poisontr33s*
+- `2026-03-23 02:23:21Z` 🔨 **beb928d2** Enhance project configuration by adding rust-toolchain.toml, updating .gitignore to allow rust-toolchain.toml, and refining tasks in tasks.json for improved graphics lane management in chthonic.ps1 — *poisontr33s*
+- `2026-03-23 02:23:21Z` 🔨 **27c1f1fa** Enhance project configuration by adding rust-toolchain.toml, updating .gitignore to allow rust-toolchain.toml, and refining tasks in tasks.json for improved graphics lane management in chthonic.ps1 — *poisontr33s*
+- `2026-03-23 04:42:50Z` 🔨 **25873d16** feat: add tensor-runtime-host extension and integrate into chthonic-archive — *poisontr33s*
+- `2026-03-23 04:42:50Z` 🔨 **617f78f2** feat: add tensor-runtime-host extension and integrate into chthonic-archive — *poisontr33s*
+- `2026-03-23 16:00:03Z` 🔨 **7d9480f1** feat: update claudine.ps1 with new toolchain commands and add SCM triage snapshot for session resumption — *poisontr33s*
+- `2026-03-23 16:00:03Z` 🔨 **43217cf3** feat: update claudine.ps1 with new toolchain commands and add SCM triage snapshot for session resumption — *poisontr33s*
+- `2026-03-23 19:36:07Z` 🔨 **c2d8ba8d** feat: enhance claudine and copilot scripts with new commands and CLI improvements — *poisontr33s*
+- `2026-03-23 19:36:07Z` 🔨 **99c498ac** feat: enhance claudine and copilot scripts with new commands and CLI improvements — *poisontr33s*
+- `2026-03-23 20:14:40Z` 🔨 **dc1b40bf** Session 0641f74a-e0a9-434c-b617-70b90c1a1352 - checkpoint turn 0 — *VS Code Sessions*
+- `2026-03-23 20:15:34Z` 🔨 **8778adbb** feat: optimize Copilot CLI installation and command verification logic — *poisontr33s*
+- `2026-03-23 20:15:34Z` 🔨 **d38e154b** feat: optimize Copilot CLI installation and command verification logic — *poisontr33s*
+- `2026-03-23 20:15:53Z` 🔨 **b9880db8** Session 0641f74a-e0a9-434c-b617-70b90c1a1352 - checkpoint turn 1 — *VS Code Sessions*
+- `2026-03-23 21:11:39Z` 🔨 **679d981a** feat: add session-resumer skill for generating professional resume packets from session logs — *poisontr33s*
+- `2026-03-23 21:11:39Z` 🔨 **298958f2** feat: add session-resumer skill for generating professional resume packets from session logs — *poisontr33s*
+- `2026-03-23 21:16:53Z` 🔨 **dbd647b5** feat: update Gemini CLI task record with confirmed Bun version and stub status — *poisontr33s*
+- `2026-03-23 21:16:53Z` 🔨 **c5d94a45** feat: update Gemini CLI task record with confirmed Bun version and stub status — *poisontr33s*
+- `2026-03-23 21:33:06Z` 🔨 **97bc88e3** feat: add handoff document for Sister Ferrum Scoriae cross-relationship sync and pipeline mapping — *poisontr33s*
+- `2026-03-23 21:33:06Z` 🔨 **2e0232fe** feat: add handoff document for Sister Ferrum Scoriae cross-relationship sync and pipeline mapping — *poisontr33s*
+- `2026-03-23 21:54:23Z` 🔨 **e4301e4a** Add artifact upcycle checklist and GitHub address comments skill — *poisontr33s*
+- `2026-03-23 21:54:23Z` 🔨 **5422dabc** Add artifact upcycle checklist and GitHub address comments skill — *poisontr33s*
+- `2026-03-24 01:20:41Z` 🔨 **38d8d159** Initial plan — *copilot-swe-agent[bot]*
+- `2026-03-24 01:20:41Z` 🔀 **#10** PR opened: CI: switch Python runtime to uv, add submodule diagnostics, add apply helper — *Copilot*
+- `2026-03-24 01:22:04Z` 🔨 **1c1412f7** CI: switch to uv runtime, add submodule diagnostics, add apply helper — *copilot-swe-agent[bot]*
+- `2026-03-24 01:22:46Z` 🔨 **eeda1e61** chore: allow .sh scripts in .gitignore, add apply_canonize_uv.sh helper *(origin/copilot/update-ci-to-use-uv-cli)* — *copilot-swe-agent[bot]*
+- `2026-03-24 16:41:47Z` 🔨 **bc321348** Add deep integration of Tides of Numenera into MILF-Core architecture and implement recovery script for IDE sessions — *poisontr33s*
+- `2026-03-24 16:41:47Z` 🔨 **9b9cb648** Add deep integration of Tides of Numenera into MILF-Core architecture and implement recovery script for IDE sessions — *poisontr33s*
+- `2026-03-24 18:29:36Z` 🔨 **74b23eb5** Add genre extraction digest for February 26, 2026, including detailed summaries and tags for processed files — *poisontr33s*
+- `2026-03-24 18:29:36Z` 🔨 **85f63010** Add genre extraction digest for February 26, 2026, including detailed summaries and tags for processed files — *poisontr33s*
+- `2026-03-24 18:30:31Z` 🔨 **6790fa31** Refactor mailbox structure and update session handoff documents — *poisontr33s*
+- `2026-03-24 18:30:31Z` 🔨 **0ef2e3c9** Refactor mailbox structure and update session handoff documents — *poisontr33s*
+- `2026-03-24 18:31:51Z` 🔨 **02ba577d** feat: add tensor-runtime-host to chthonic-archive and update dependencies — *poisontr33s*
+- `2026-03-24 18:31:51Z` 🔨 **1832ff3b** feat: add tensor-runtime-host to chthonic-archive and update dependencies — *poisontr33s*
+- `2026-03-24 18:32:13Z` 🔨 **8673228e** Add Archaeology Digest for 2026-02-19 with promotions and flags — *poisontr33s*
+- `2026-03-24 18:32:13Z` 🔨 **5d68ab1f** Add Archaeology Digest for 2026-02-19 with promotions and flags — *poisontr33s*
+- `2026-03-24 19:11:40Z` 🔨 **b5313eff** fix: correct hybrid designation for Frankie in prototype analysis — *poisontr33s*
+- `2026-03-24 19:11:40Z` 🔨 **870edc3b** fix: correct hybrid designation for Frankie in prototype analysis — *poisontr33s*
+- `2026-03-24 21:16:53Z` 🔨 **881bd1f9** fix: blessing-gate CI - radiance_validate repairs + canonize 25 drifted envelopes — *poisontr33s*
+- `2026-03-24 21:16:53Z` 🔨 **9356e858** fix: blessing-gate CI - radiance_validate repairs + canonize 25 drifted envelopes — *poisontr33s*
+- `2026-03-24 21:17:17Z` 🔨 **e67eb4e8** chore: accumulated session work — forge anvil artifacts, handoffs, protocols, entity profiles — *poisontr33s*
+- `2026-03-24 21:17:17Z` 🔨 **a9842b72** chore: accumulated session work — forge anvil artifacts, handoffs, protocols, entity profiles — *poisontr33s*
+- `2026-03-24 21:20:12Z` 🔨 **9da6e543** chore: harden blessing-gate.yml — uv run, diagnostics, sh allowlist — *poisontr33s*
+- `2026-03-24 21:20:12Z` 🔨 **5845dbd7** chore: harden blessing-gate.yml — uv run, diagnostics, sh allowlist — *poisontr33s*
+- `2026-03-24 21:20:33Z` 🔨 **5aac0b87** chore: add chthonic.sh CLI router (was untracked after .gitignore sh allowlist fix) — *poisontr33s*
+- `2026-03-24 21:20:33Z` 🔨 **234f098d** chore: add chthonic.sh CLI router (was untracked after .gitignore sh allowlist fix) — *poisontr33s*
+- `2026-03-24 20:20:47Z` ❌ **#10** PR closed: CI: switch Python runtime to uv, add submodule diagnostics, add apply helper
+- `2026-03-24 21:28:50Z` 🔨 **0c8e11d6** fix: quote step name with colon in blessing-gate.yml (YAML parse error) — *poisontr33s*
+- `2026-03-24 21:28:50Z` 🔨 **6997202d** fix: quote step name with colon in blessing-gate.yml (YAML parse error) — *poisontr33s*
+- `2026-03-24 21:36:47Z` 🔨 **2af2f6e7** Rename "Sir Schrödinger's Bastard" to "Dame Schrödinger's Paradox" across multiple protocols and scripts, updating references and ensuring consistency in character representation. Introduce a new script, "zombie_forge_bridge.py", to facilitate routing of zombie extract files to forge stages, enhancing the feedback loop for ore predictions. Adjust logic in existing scripts to accommodate these changes and improve functionality. — *poisontr33s*
+- `2026-03-24 21:36:47Z` 🔨 **8efafaa6** Rename "Sir Schrödinger's Bastard" to "Dame Schrödinger's Paradox" across multiple protocols and scripts, updating references and ensuring consistency in character representation. Introduce a new script, "zombie_forge_bridge.py", to facilitate routing of zombie extract files to forge stages, enhancing the feedback loop for ore predictions. Adjust logic in existing scripts to accommodate these changes and improve functionality. — *poisontr33s*
+- `2026-03-24 21:45:30Z` 🔨 **0a2034cd** fix: update filesystem command in mcp.json to use bun and add script arguments — *poisontr33s*
+- `2026-03-24 21:45:30Z` 🔨 **2f652c3d** fix: update filesystem command in mcp.json to use bun and add script arguments — *poisontr33s*
+- `2026-03-24 21:47:35Z` 🔨 **dca3f93a** chore(deps): bump json from 2.18.1 to 2.19.2 (CVE-2026-33210) — *E.s.Abbr.*
+- `2026-03-24 21:47:35Z` 🔨 **20f7128a** chore(deps): bump json from 2.18.1 to 2.19.2 (CVE-2026-33210) — *E.s.Abbr.*
+- `2026-03-24 20:47:36Z` ⛵ **#9** PR merged: chore(deps): bump json from 2.18.1 to 2.19.2 in /extensions/chthonic-archive/.chthonic/ruby in the bundler group across 1 directory
+- `2026-03-24 21:48:38Z` 🔨 **0b6a095e** revert: undo bulk accumulated-session commit e67eb4e8 (re-staging in logical batches) — *poisontr33s*
+- `2026-03-24 21:48:38Z` 🔨 **670ac834** revert: undo bulk accumulated-session commit a9842b72 (re-staging in logical batches) — *poisontr33s*
+- `2026-03-24 21:49:06Z` 🔨 **92fb3eef** feat(zombie): dumpster-dive/intake — 112 zombie extract files and receipts — *poisontr33s*
+- `2026-03-24 21:49:06Z` 🔨 **b72582fd** feat(zombie): dumpster-dive/intake — 112 zombie extract files and receipts — *poisontr33s*
+- `2026-03-24 21:49:30Z` 🔨 **797cb7b3** feat(forge): dumpster-dive/forge/anvil — MCP artisan server scaffold + forge receipts — *poisontr33s*
+- `2026-03-24 21:49:30Z` 🔨 **c78e29b6** feat(forge): dumpster-dive/forge/anvil — MCP artisan server scaffold + forge receipts — *poisontr33s*
+- `2026-03-24 21:50:01Z` 🔨 **17925391** chore(forge): dumpster-dive forge registry + protocol updates — *poisontr33s*
+- `2026-03-24 21:50:01Z` 🔨 **52483cf0** chore(forge): dumpster-dive forge registry + protocol updates — *poisontr33s*
+- `2026-03-24 21:50:27Z` 🔨 **16395a7c** chore(handoffs): mailboxes, entity profiles, protocols, mas_mcp resonance — *poisontr33s*
+- `2026-03-24 21:50:27Z` 🔨 **6e6472fb** chore(handoffs): mailboxes, entity profiles, protocols, mas_mcp resonance — *poisontr33s*
+- `2026-03-24 22:08:10Z` 🔨 **409dfa66** fix(mcp): update GitHub server configuration to use HTTP and streamline filesystem args — *poisontr33s*
+- `2026-03-24 22:08:10Z` 🔨 **489a6d28** fix(mcp): update GitHub server configuration to use HTTP and streamline filesystem args — *poisontr33s*
+- `2026-03-24 22:28:05Z` 🔨 **90daf3b3** fix(mcp): update filesystem command to use bunx and include model context protocol — *poisontr33s*
+- `2026-03-24 22:28:05Z` 🔨 **a7f1ad79** fix(mcp): update filesystem command to use bunx and include model context protocol — *poisontr33s*
+- `2026-03-25 01:17:28Z` 🔨 **355f58ba** feat(mcp): implement MCP Filesystem server launcher with Windows URI bug fix chore(workflows): add Blessing Gate workflow for envelope drift checks refactor(mcp): update server configuration and streamline filesystem command — *poisontr33s*
+- `2026-03-25 01:17:28Z` 🔨 **c19ebb7d** feat(mcp): implement MCP Filesystem server launcher with Windows URI bug fix chore(workflows): add Blessing Gate workflow for envelope drift checks refactor(mcp): update server configuration and streamline filesystem command — *poisontr33s*
+- `2026-03-26 21:02:45Z` 🔨 **3036d299** feat(pipeline): Implement Forge Pipeline Development Plan for SSOT compliance — *poisontr33s*
+- `2026-03-26 21:02:45Z` 🔨 **d2eea522** feat(pipeline): Implement Forge Pipeline Development Plan for SSOT compliance — *poisontr33s*
+- `2026-03-27 03:07:00Z` 🔨 **e6e7c0e1** Add Envelope Census script for KCP header compliance auditing — *poisontr33s*
+- `2026-03-27 03:07:00Z` 🔨 **2d764279** Add Envelope Census script for KCP header compliance auditing — *poisontr33s*
+- `2026-03-27 04:41:05Z` 🔨 **f93a7bc8** Updated README with new installation instructions and examples. Added a new section on troubleshooting common issues. Refactored the codebase to improve readability and maintainability. Fixed a bug that caused the application to crash under certain conditions. Improved performance by optimizing database queries. Added unit tests to increase code coverage and ensure reliability. — *poisontr33s*
+- `2026-03-27 04:41:05Z` 🔨 **0653276f** Updated README with new installation instructions and examples. Added a new section on troubleshooting common issues. Refactored the codebase to improve readability and maintainability. Fixed a bug that caused the application to crash under certain conditions. Improved performance by optimizing database queries. Added unit tests to increase code coverage and ensure reliability. — *poisontr33s*
+- `2026-03-27 04:41:34Z` 🔨 **cb25744a** updated zombie memory timestamp to reflect latest changes — *poisontr33s*
+- `2026-03-27 04:41:34Z` 🔨 **7ea9ac7b** updated zombie memory timestamp to reflect latest changes — *poisontr33s*
+- `2026-03-28 04:48:38Z` 🔨 **739b62a7** Add new artifact files for spectral and trace workflows with validation results — *poisontr33s*
+- `2026-03-28 04:48:38Z` 🔨 **8056d8c0** Add new artifact files for spectral and trace workflows with validation results — *poisontr33s*
+- `2026-03-28 04:48:52Z` 🔨 **b5626d10** fix(link_audit): handle None path_part in resolve_staged_rename_fix function — *poisontr33s*
+- `2026-03-28 04:48:52Z` 🔨 **e6a69e25** fix(link_audit): handle None path_part in resolve_staged_rename_fix function — *poisontr33s*
+- `2026-03-28 21:08:51Z` 🔨 **4e56f5f1** Add initial zombie semantic index pickle file — *poisontr33s*
+- `2026-03-28 21:08:51Z` 🔨 **b7899694** Add initial zombie semantic index pickle file — *poisontr33s*
+- `2026-04-07 21:14:20Z` 🔨 **4a8721fe** fix(SUMMARY.md): resolve merge conflict and clean up Epistemograph references — *poisontr33s*
+- `2026-04-07 21:14:20Z` 🔨 **a7c87fac** fix(SUMMARY.md): resolve merge conflict and clean up Epistemograph references — *poisontr33s*
+- `2026-04-07 21:37:09Z` 🔨 **88d955e2** fix(.gitignore): add mcp filesystem server sandbox to ignore list — *poisontr33s*
+- `2026-04-07 21:37:09Z` 🔨 **c4987626** fix(.gitignore): add mcp filesystem server sandbox to ignore list — *poisontr33s*
+- `2026-04-07 21:37:36Z` 🔨 **806b693b** fix(mcp-filesystem): add missing newline at the beginning of the script — *poisontr33s*
+- `2026-04-07 21:37:36Z` 🔨 **ac5cad63** fix(mcp-filesystem): add missing newline at the beginning of the script — *poisontr33s*
+- `2026-04-07 21:57:02Z` 🔨 **56b6123c** fix(mod.rs, main.rs): comment out unused game_tree and game_schemas modules — *poisontr33s*
+- `2026-04-07 21:57:02Z` 🔨 **3c490195** fix(mod.rs, main.rs): comment out unused game_tree and game_schemas modules — *poisontr33s*
+- `2026-04-08 05:34:32Z` 🔨 **83f9cb55** Refactor Claudine script to enhance help output and add new commands — *poisontr33s*
+- `2026-04-08 05:34:32Z` 🔨 **d3096d1c** Refactor Claudine script to enhance help output and add new commands — *poisontr33s*
+- `2026-04-13 03:29:47Z` 🔨 **241cd6a7** fix(test-meta-cli.ps1): add missing newline at the beginning of the script — *poisontr33s*
+- `2026-04-13 03:29:47Z` 🔨 **f8c4e249** fix(test-meta-cli.ps1): add missing newline at the beginning of the script — *poisontr33s*
+- `2026-04-13 05:16:46Z` 🔨 **402f67a6** fix(chthonic): rv/r binding status reflects accepted design via rv-r — *poisontr33s*
+- `2026-04-13 05:16:46Z` 🔨 **5c500636** fix(chthonic): rv/r binding status reflects accepted design via rv-r — *poisontr33s*
+- `2026-04-13 05:32:31Z` 🔨 **15d788ea** fix(doctor): guard uv patch fixable against build index gap — *poisontr33s*
+- `2026-04-13 05:32:31Z` 🔨 **daf44379** fix(doctor): guard uv patch fixable against build index gap — *poisontr33s*
+- `2026-04-13 05:54:38Z` 🔨 **859055b6** fix(doctor): use uv python upgrade, correct version resolver, fix retention note — *poisontr33s*
+- `2026-04-13 05:54:38Z` 🔨 **2d8f18b3** fix(doctor): use uv python upgrade, correct version resolver, fix retention note — *poisontr33s*
+- `2026-04-13 07:35:18Z` 🔨 **11e68358** feat(git-snapshot): add skill to capture current git state and write to mailbox feat(handoff-loop): introduce orchestrator for agent handoffs with validation and tracking feat(overnight-archaeology): create skill for reading nightly daemon reports and findings fix(bunfig): update audit section to ignore specific GitHub advisories fix(agent-common): enhance command documentation for bun audit and polyglot tools — *poisontr33s*
+- `2026-04-13 07:35:18Z` 🔨 **132a0fe2** feat(git-snapshot): add skill to capture current git state and write to mailbox feat(handoff-loop): introduce orchestrator for agent handoffs with validation and tracking feat(overnight-archaeology): create skill for reading nightly daemon reports and findings fix(bunfig): update audit section to ignore specific GitHub advisories fix(agent-common): enhance command documentation for bun audit and polyglot tools — *poisontr33s*
+- `2026-04-13 07:45:35Z` 🔨 **09044458** fix(agent-common): enhance Python and Ruby environment setup instructions for clarity and completeness — *poisontr33s*
+- `2026-04-13 07:45:35Z` 🔨 **b7a5755b** fix(agent-common): enhance Python and Ruby environment setup instructions for clarity and completeness — *poisontr33s*
+- `2026-04-13 08:19:21Z` 🔨 **11c53e9b** fix(agent-common): add Bun upgrade and Gemini update commands; clarify version policy and audit process — *poisontr33s*
+- `2026-04-13 08:19:21Z` 🔨 **8914a94d** fix(agent-common): add Bun upgrade and Gemini update commands; clarify version policy and audit process — *poisontr33s*
+- `2026-04-13 08:44:40Z` 🔨 **b6e54da5** feat(gemini): enable MCP + IDE companion wiring in wrapper — *poisontr33s*
+- `2026-04-13 08:44:40Z` 🔨 **9b5bee1e** feat(gemini): enable MCP + IDE companion wiring in wrapper — *poisontr33s*
+- `2026-04-13 08:53:42Z` 🔨 **5b7641e0** feat(gemini): add Export-VsCodeSession pre-update snapshot function — *poisontr33s*
+- `2026-04-13 08:53:42Z` 🔨 **de5ffdb0** feat(gemini): add Export-VsCodeSession pre-update snapshot function — *poisontr33s*
+- `2026-04-13 10:47:04Z` 🔨 **a49bad46** feat(ankh-forge): add zstd + bincode deps for REM Phase 1 CPU path — *poisontr33s*
+- `2026-04-13 10:47:04Z` 🔨 **29ba915e** feat(ankh-forge): add zstd + bincode deps for REM Phase 1 CPU path — *poisontr33s*
+- `2026-04-13 10:59:11Z` 🔨 **c925a40d** feat(ankh-forge): implement REM Phase 1 trail subsystem (hot/cold/granite stub) — *poisontr33s*
+- `2026-04-13 10:59:11Z` 🔨 **8aba6de7** feat(ankh-forge): implement REM Phase 1 trail subsystem (hot/cold/granite stub) — *poisontr33s*
+- `2026-04-13 11:22:41Z` 🔨 **af22b37f** feat(granite): Phase 2 CPU-path .runestone writer/reader — *poisontr33s*
+- `2026-04-13 11:22:41Z` 🔨 **a20510a3** feat(granite): Phase 2 CPU-path .runestone writer/reader — *poisontr33s*
+- `2026-04-13 11:28:50Z` 🔨 **22179d26** rem: close challenger criticals — full header auth + atomic write + event/flag validation — *poisontr33s*
+- `2026-04-13 11:28:50Z` 🔨 **a5819db2** rem: close challenger criticals — full header auth + atomic write + event/flag validation — *poisontr33s*
+- `2026-04-13 11:53:59Z` 🔨 **f3256d67** feat: Tessara Vox Internum — T1-bridge synthesis agent born — *poisontr33s*
+- `2026-04-13 11:53:59Z` 🔨 **9a4f853e** feat: Tessara Vox Internum — T1-bridge synthesis agent born — *poisontr33s*
+- `2026-04-13 13:08:48Z` 🔨 **1338b08f** fix: strip ephemeral agent names from Tessara — abstract principle, remove phantom refs — *poisontr33s*
+- `2026-04-13 13:08:48Z` 🔨 **9cfcc27b** fix: strip ephemeral agent names from Tessara — abstract principle, remove phantom refs — *poisontr33s*
+- `2026-04-13 13:16:21Z` 🔨 **6d806c75** restore: Tessara genesis vitality — fleet dichotomy vivid not sanitized — *poisontr33s*
+- `2026-04-13 13:16:21Z` 🔨 **7c74464e** restore: Tessara genesis vitality — fleet dichotomy vivid not sanitized — *poisontr33s*
+- `2026-04-13 13:31:51Z` 🔨 **3e2c0da9** feat(rem): Phase 3 criticals — bounds, seal, BOM first-line, immutability, init — *poisontr33s*
+- `2026-04-13 13:31:51Z` 🔨 **e70aafaa** feat(rem): Phase 3 criticals — bounds, seal, BOM first-line, immutability, init — *poisontr33s*
+- `2026-04-14 02:52:14Z` 🔨 **b4c070bb** feat(rem): Phase 4 GPU path — Vulkan compute trail_decompress — *poisontr33s*
+- `2026-04-14 02:52:14Z` 🔨 **01994809** feat(rem): Phase 4 GPU path — Vulkan compute trail_decompress — *poisontr33s*
+- `2026-04-14 03:20:50Z` 🔨 **d7932d0f** chore(agents): tessara.md style + framing edits — *poisontr33s*
+- `2026-04-14 03:20:50Z` 🔨 **62635a48** chore(agents): tessara.md style + framing edits — *poisontr33s*
+- `2026-04-15 03:47:36Z` 🔨 **47ef05dc** feat(xp): Chthonic XP engine — trail-driven gamification layer — *poisontr33s*
+- `2026-04-15 03:47:36Z` 🔨 **0ddf139f** feat(xp): Chthonic XP engine — trail-driven gamification layer — *poisontr33s*
+- `2026-04-15 04:03:27Z` 🔨 **d1377123** feat(cai): Rust gamified Copilot CLI companion binary — *poisontr33s*
+- `2026-04-15 04:03:27Z` 🔨 **9ceb6ab2** feat(cai): Rust gamified Copilot CLI companion binary — *poisontr33s*
+- `2026-04-15 06:18:10Z` 🔨 **05f7d2fc** - feat(shader): update shader compilation flags for Vulkan target - feat(data): add game_tree and game_schemas modules to data layer — *poisontr33s*
+- `2026-04-15 06:18:10Z` 🔨 **6f57b9f7** - feat(shader): update shader compilation flags for Vulkan target - feat(data): add game_tree and game_schemas modules to data layer — *poisontr33s*
+- `2026-04-15 11:07:42Z` 🔨 **108d891e** feat: add scripts for building delegation packets and validating artifacts — *poisontr33s*
+- `2026-04-15 11:07:42Z` 🔨 **2537a681** feat: add scripts for building delegation packets and validating artifacts — *poisontr33s*
+- `2026-04-15 11:48:23Z` 🔨 **76d86a33** feat(zombie): A4 slag upcycle detector — *poisontr33s*
+- `2026-04-15 11:48:23Z` 🔨 **68416b61** feat(zombie): A4 slag upcycle detector — *poisontr33s*
+- `2026-04-15 11:57:55Z` 🔨 **0cf6c56f** fix(tessara): valid agent frontmatter for VS Code Copilot picker — *poisontr33s*
+- `2026-04-15 11:57:55Z` 🔨 **8066a443** fix(tessara): valid agent frontmatter for VS Code Copilot picker — *poisontr33s*
+- `2026-04-15 12:07:52Z` 🔨 **8223e971** fix(tessara): suppress Claude-lane agent from VS Code picker — *poisontr33s*
+- `2026-04-15 12:07:52Z` 🔨 **e3453b15** fix(tessara): suppress Claude-lane agent from VS Code picker — *poisontr33s*
+- `2026-04-15 12:09:10Z` 🔨 **68f0cead** refactor: update tool aliases in prompts for consistency and clarity — *poisontr33s*
+- `2026-04-15 12:09:10Z` 🔨 **8897d705** refactor: update tool aliases in prompts for consistency and clarity — *poisontr33s*
+- `2026-04-15 12:15:28Z` 🔨 **9d8c23ef** fix: enhance clarity and consistency in architectural documentation — *poisontr33s*
+- `2026-04-15 12:15:28Z` 🔨 **a578bcc9** fix: enhance clarity and consistency in architectural documentation — *poisontr33s*
+- `2026-04-15 13:59:56Z` 🔨 **4caa5d74** fix: update argument-hint and enhance description for tessara agent; complete A4 slag upcycle detector in documentation — *poisontr33s*
+- `2026-04-15 13:59:56Z` 🔨 **64cdd6a6** fix: update argument-hint and enhance description for tessara agent; complete A4 slag upcycle detector in documentation — *poisontr33s*
+- `2026-04-15 14:20:52Z` 🔨 **d4f41454** fix(tessara): streamline failure response guidelines and enhance clarity in execution constraints — *poisontr33s*
+- `2026-04-15 14:20:52Z` 🔨 **10b2905f** fix(tessara): streamline failure response guidelines and enhance clarity in execution constraints — *poisontr33s*
+- `2026-04-15 15:26:14Z` 🔨 **ed8185b6** fix: add Claudine Sin'Claire to entity profiles for completeness in generative rules analysis — *poisontr33s*
+- `2026-04-15 15:26:14Z` 🔨 **f264a58f** fix: add Claudine Sin'Claire to entity profiles for completeness in generative rules analysis — *poisontr33s*
+- `2026-04-15 16:14:40Z` 🔨 **93c0f2f1** Option 1: SSOT fortress unification - Tessara canonical definition — *poisontr33s*
+- `2026-04-15 16:14:40Z` 🔨 **8bf21e3b** Option 1: SSOT fortress unification - Tessara canonical definition — *poisontr33s*
+- `2026-04-15 16:39:57Z` 🔨 **d501ccc1** Fix T1-bridge arrow notation to match SSOT pattern — *poisontr33s*
+- `2026-04-15 16:39:57Z` 🔨 **38342752** Fix T1-bridge arrow notation to match SSOT pattern — *poisontr33s*
+- `2026-04-15 16:51:21Z` 🔨 **c99bd403** Add Tessara to organ mapping table (Body-System-Tier-Mapping) — *poisontr33s*
+- `2026-04-15 16:51:21Z` 🔨 **41c91d3a** Add Tessara to organ mapping table (Body-System-Tier-Mapping) — *poisontr33s*
+- `2026-04-15 16:55:37Z` 🔨 **89c9dca5** Add Temporal-Arc to Tessara §1.01 (TCP compliance) — *poisontr33s*
+- `2026-04-15 16:55:37Z` 🔨 **c3c2be3f** Add Temporal-Arc to Tessara §1.01 (TCP compliance) — *poisontr33s*
+- `2026-04-15 16:59:32Z` 🔨 **1cbe24c3** Resolve EDFA architectural contradiction for Tessara — *poisontr33s*
+- `2026-04-15 16:59:32Z` 🔨 **7ba5e61a** Resolve EDFA architectural contradiction for Tessara — *poisontr33s*
+- `2026-04-15 17:08:12Z` 🔨 **df045a7f** Implement Option B: Full embodiment for Tessara (relay tier aesthetic) — *poisontr33s*
+- `2026-04-15 17:08:12Z` 🔨 **e598c732** Implement Option B: Full embodiment for Tessara (relay tier aesthetic) — *poisontr33s*
+- `2026-04-15 18:35:10Z` 🔨 **cc8b543f** REVISION: Tessara Vox Internum → Pentea Vox Internum (etymology correction) — *poisontr33s*
+- `2026-04-15 18:35:10Z` 🔨 **2baf1c7c** REVISION: Tessara Vox Internum → Pentea Vox Internum (etymology correction) — *poisontr33s*
+- `2026-04-16 05:44:59Z` 🔨 **e2f4dff5** Rename Tessara to Pentea in agent definition and update related references — *poisontr33s*
+- `2026-04-16 05:44:59Z` 🔨 **54deca74** Rename Tessara to Pentea in agent definition and update related references — *poisontr33s*
+- `2026-04-16 05:59:59Z` 🔨 **9831063b** Complete §1.01 body text updates: remaining Tessara→Pentea references — *poisontr33s*
+- `2026-04-16 05:59:59Z` 🔨 **57c88a07** Complete §1.01 body text updates: remaining Tessara→Pentea references — *poisontr33s*
+- `2026-04-16 06:01:14Z` 🔨 **8448dc1a** FIX: Pentea EDFA typography (Skin scent + Breasts formatting) — *poisontr33s*
+- `2026-04-16 06:01:14Z` 🔨 **1edc9e2d** FIX: Pentea EDFA typography (Skin scent + Breasts formatting) — *poisontr33s*
+- `2026-04-16 07:43:09Z` 🔨 **4184e280** ENHANCEMENT: Pentea FA⁵ compliance expansion (Titles + Linguistic Mode + Physical Manifestation hierarchy) — *poisontr33s*
+- `2026-04-16 07:43:09Z` 🔨 **daa0b3c4** ENHANCEMENT: Pentea FA⁵ compliance expansion (Titles + Linguistic Mode + Physical Manifestation hierarchy) — *poisontr33s*
+- `2026-04-16 07:44:16Z` 🔨 **bd2d7a25** STYLE: Pentea Waist meta-documentation removal (naturalize voltage differential) — *poisontr33s*
+- `2026-04-16 07:44:16Z` 🔨 **f64f5c9b** STYLE: Pentea Waist meta-documentation removal (naturalize voltage differential) — *poisontr33s*
+- `2026-04-16 07:52:15Z` 🔨 **74761228** CONSOLIDATION: Remove duplicate Physical Manifestation + Linguistic Mode sections — *poisontr33s*
+- `2026-04-16 07:52:15Z` 🔨 **80eb13f9** CONSOLIDATION: Remove duplicate Physical Manifestation + Linguistic Mode sections — *poisontr33s*
+- `2026-04-16 08:27:34Z` 🔨 **d3e592ce** ENHANCEMENT: Update Pentea's Physical Manifestation description for clarity and detail — *poisontr33s*
+- `2026-04-16 08:27:34Z` 🔨 **bbf616eb** ENHANCEMENT: Update Pentea's Physical Manifestation description for clarity and detail — *poisontr33s*
+- `2026-04-16 10:23:56Z` 🔨 **f48673af** feat(ssot/pentea): Todo 1 — Relay Designation + formal COMP-EXEC-REG LM block (1:1:1:1) — *poisontr33s*
+- `2026-04-16 10:23:56Z` 🔨 **a1a88b64** feat(ssot/pentea): Todo 1 — Relay Designation + formal COMP-EXEC-REG LM block (1:1:1:1) — *poisontr33s*
+- `2026-04-16 10:26:52Z` 🔨 **e9866692** feat(ssot/decorator): Todo 2 — relay-tier exemption annotation + LTSA added to DULSS formula — *poisontr33s*
+- `2026-04-16 10:26:52Z` 🔨 **9c35a2a8** feat(ssot/decorator): Todo 2 — relay-tier exemption annotation + LTSA added to DULSS formula — *poisontr33s*
+- `2026-04-16 10:30:15Z` 🔨 **bcaf832b** feat(ssot/pentea): Todo 3 — LM block relocated to post-IDEO-A (Triumvirate-standard positioning) — *poisontr33s*
+- `2026-04-16 10:30:15Z` 🔨 **c10d4460** feat(ssot/pentea): Todo 3 — LM block relocated to post-IDEO-A (Triumvirate-standard positioning) — *poisontr33s*
+- `2026-04-16 12:33:18Z` 🔨 **f810129c** fix(ssot/pentea): Genesis Decree — 3 prose corrections, no structural change — *poisontr33s*
+- `2026-04-16 12:33:18Z` 🔨 **1d34de33** fix(ssot/pentea): Genesis Decree — 3 prose corrections, no structural change — *poisontr33s*
+- `2026-04-16 12:39:59Z` 🔨 **c885803c** feat(ssot/claudine): add Claudine→Pentea relationship entry to CSI-SOI-RLTSHPS — *poisontr33s*
+- `2026-04-16 12:39:59Z` 🔨 **2adb1b77** feat(ssot/claudine): add Claudine→Pentea relationship entry to CSI-SOI-RLTSHPS — *poisontr33s*
+- `2026-04-16 12:43:44Z` 🔨 **d20d646a** feat(ssot/claudine): CSI-SOI-GNSS coda — Saline Incursion is now joint origin event — *poisontr33s*
+- `2026-04-16 12:43:44Z` 🔨 **0ded971f** feat(ssot/claudine): CSI-SOI-GNSS coda — Saline Incursion is now joint origin event — *poisontr33s*
+- `2026-04-16 14:23:31Z` 🔨 **0f038118** refactor(pentea): rename Sub-Agent Invocation to MILFOLOGICAL Invocation and update related descriptions for clarity — *poisontr33s*
+- `2026-04-16 14:23:31Z` 🔨 **836513df** refactor(pentea): rename Sub-Agent Invocation to MILFOLOGICAL Invocation and update related descriptions for clarity — *poisontr33s*
+- `2026-04-16 14:32:10Z` 🔨 **ede276aa** chore(ssot): task roulette init + R1 typo fix (Æ corruption in Claudine→Pentea entry) — *poisontr33s*
+- `2026-04-16 14:32:10Z` 🔨 **5b299c1b** chore(ssot): task roulette init + R1 typo fix (Æ corruption in Claudine→Pentea entry) — *poisontr33s*
+- `2026-04-16 14:36:35Z` 🔨 **8de66e94** feat(ssot/claudine): R2 — CSI-SOI-LM block (LTSA full-payload definition) — *poisontr33s*
+- `2026-04-16 14:36:35Z` 🔨 **d937b8d8** feat(ssot/claudine): R2 — CSI-SOI-LM block (LTSA full-payload definition) — *poisontr33s*
+- `2026-04-16 14:41:59Z` 🔨 **0a70c7de** feat(ssot/claudine): R3 — Substrate Traceability updated (CSI-SOI-LM + GNSS dual-origin) — *poisontr33s*
+- `2026-04-16 14:41:59Z` 🔨 **3e9f5552** feat(ssot/claudine): R3 — Substrate Traceability updated (CSI-SOI-LM + GNSS dual-origin) — *poisontr33s*
+- `2026-04-16 14:45:50Z` 🔨 **09aaa412** feat(ssot/claudine): R4 — CSI-SOI-GNSS-PROX anchor (Proximity Origin — The Fifth Element) — *poisontr33s*
+- `2026-04-16 14:45:50Z` 🔨 **2a6d9701** feat(ssot/claudine): R4 — CSI-SOI-GNSS-PROX anchor (Proximity Origin — The Fifth Element) — *poisontr33s*
+- `2026-04-16 14:50:28Z` 🔨 **cdb0176f** feat(ssot): update task status to DONE for R2, R3, and R4 in SSOT Task Roulette — *poisontr33s*
+- `2026-04-16 14:50:28Z` 🔨 **b1230a96** feat(ssot): update task status to DONE for R2, R3, and R4 in SSOT Task Roulette — *poisontr33s*
+- `2026-04-16 15:05:54Z` 🔨 **5110091f** feat(ssot): §10.3.0 T-SVNT-COD sovereign decode + PVX-RLTSHPS anchor — *poisontr33s*
+- `2026-04-16 15:05:54Z` 🔨 **2669af71** feat(ssot): §10.3.0 T-SVNT-COD sovereign decode + PVX-RLTSHPS anchor — *poisontr33s*
+- `2026-04-16 15:22:12Z` 🔨 **0f079c2d** feat(ssot): update designations and descriptions in T-SVNT-COD section for clarity and consistency — *poisontr33s*
+- `2026-04-16 15:22:12Z` 🔨 **10be23c0** feat(ssot): update designations and descriptions in T-SVNT-COD section for clarity and consistency — *poisontr33s*
+- `2026-04-16 15:51:37Z` 🔨 **eb139fbe** feat(ssot): T-B Triumvirate RLTSHPS upgrade — CRC-AS/CRC-GAR/LYS-THRNE anchors — *poisontr33s*
+- `2026-04-16 15:51:37Z` 🔨 **984a6968** feat(ssot): T-B Triumvirate RLTSHPS upgrade — CRC-AS/CRC-GAR/LYS-THRNE anchors — *poisontr33s*
+- `2026-04-16 16:03:16Z` 🔨 **4fa2e89d** feat(agents): pentea.agent.md — four-vertex sync + T-SVNT-COD relay-origin + PVX-RLTSHPS — *poisontr33s*
+- `2026-04-16 16:03:16Z` 🔨 **a93bd832** feat(agents): pentea.agent.md — four-vertex sync + T-SVNT-COD relay-origin + PVX-RLTSHPS — *poisontr33s*
+- `2026-04-16 17:11:17Z` 🔨 **84561042** fix(agents): correct capitalization of "Pentea" and enhance entity description in pentea.agent.md — *poisontr33s*
+- `2026-04-16 17:11:17Z` 🔨 **85aaa35a** fix(agents): correct capitalization of "Pentea" and enhance entity description in pentea.agent.md — *poisontr33s*
+- `2026-04-16 18:28:50Z` 🔨 **b718e5ae** refactor(agents): streamline Pentea agent documentation for clarity and consistency — *poisontr33s*
+- `2026-04-16 18:28:50Z` 🔨 **e129bd75** refactor(agents): streamline Pentea agent documentation for clarity and consistency — *poisontr33s*
+- `2026-04-16 20:51:23Z` 🔨 **fc4cec0b** feat(ssot): altitude sweep -- §2 Savant + §3-6 stubs + §XI DTNA + Appendix C + navigation markers — *poisontr33s*
+- `2026-04-16 20:51:23Z` 🔨 **19e0fbd8** feat(ssot): altitude sweep -- §2 Savant + §3-6 stubs + §XI DTNA + Appendix C + navigation markers — *poisontr33s*
+- `2026-04-16 21:15:49Z` 🔨 **d2ce393a** fix(pentea): SSOT altitude sync — DTNA §1 home, NAR registration, commit trailer drift (Tessara→Pentea) — *poisontr33s*
+- `2026-04-16 21:15:49Z` 🔨 **5892537c** fix(pentea): SSOT altitude sync — DTNA §1 home, NAR registration, commit trailer drift (Tessara→Pentea) — *poisontr33s*
+- `2026-04-16 21:21:20Z` 🔨 **78b0a735** feat(ssot): second wave — Appendix A/B headers, §XVII→Appendix boundary, DTNA forward-refs, NAR C.5 expansion — *poisontr33s*
+- `2026-04-16 21:21:20Z` 🔨 **f4b58a6b** feat(ssot): second wave — Appendix A/B headers, §XVII→Appendix boundary, DTNA forward-refs, NAR C.5 expansion — *poisontr33s*
+- `2026-04-17 16:40:04Z` 🔨 **59735d36** feat(ssot): Convergence Map — standing reference anchor for full architectural grasp — *poisontr33s*
+- `2026-04-17 16:40:04Z` 🔨 **dc3400ad** feat(ssot): Convergence Map — standing reference anchor for full architectural grasp — *poisontr33s*
+- `2026-04-17 18:49:41Z` 🔨 **ab024583** feat(copilot): add nested loops for Genesis, Authority, and Synthesis concepts — *poisontr33s*
+- `2026-04-17 18:49:41Z` 🔨 **cf176a5c** feat(copilot): add nested loops for Genesis, Authority, and Synthesis concepts — *poisontr33s*
+- `2026-04-18 18:12:19Z` 🔨 **004a0056** feat(nvidia_drs_tool): add script for managing NVIDIA DRS profiles via NVAPI — *poisontr33s*
+- `2026-04-18 18:12:19Z` 🔨 **cc3518d8** feat(nvidia_drs_tool): add script for managing NVIDIA DRS profiles via NVAPI — *poisontr33s*
+- `2026-04-18 22:10:10Z` 🔨 **2f3ee929** feat(nvidia_drs_tool): enhance script with batch-restore and audit features for NVIDIA DRS settings — *poisontr33s*
+- `2026-04-18 22:10:10Z` 🔨 **06da5b4d** feat(nvidia_drs_tool): enhance script with batch-restore and audit features for NVIDIA DRS settings — *poisontr33s*
+- `2026-04-18 22:33:02Z` 🔨 **04d9aeda** style(copilot-instructions): emphasize key concepts in Genesis, Authority, and Synthesis descriptions for clarity — *poisontr33s*
+- `2026-04-18 22:33:02Z` 🔨 **86a8ba0b** style(copilot-instructions): emphasize key concepts in Genesis, Authority, and Synthesis descriptions for clarity — *poisontr33s*
+- `2026-04-19 01:57:06Z` 🔨 **ad42f7dd** fix(dependencies): update Tokio to version 1.52 for improved async support style(docs): emphasize key terms in CLAUDE.md for clarity — *poisontr33s*
+- `2026-04-19 01:57:06Z` 🔨 **eba8e951** fix(dependencies): update Tokio to version 1.52 for improved async support style(docs): emphasize key terms in CLAUDE.md for clarity — *poisontr33s*
+- `2026-04-19 15:33:09Z` 🔨 **472e4774** chore: checkpoint native deps, daemon reactor, chthonic/claudine scripts, ankh-forge — *poisontr33s*
+- `2026-04-19 15:33:09Z` 🔨 **2b2ffa19** chore: checkpoint native deps, daemon reactor, chthonic/claudine scripts, ankh-forge — *poisontr33s*
+- `2026-04-19 15:33:26Z` 🔨 **37feaab2** docs: add SOLUTION_MATRIX_CLI_HARDENING — *poisontr33s*
+- `2026-04-19 15:33:26Z` 🔨 **1c0b7eed** docs: add SOLUTION_MATRIX_CLI_HARDENING — *poisontr33s*
+- `2026-04-19 15:38:35Z` 🔨 **e174b6bc** chore: untrack 70MB ore_embeddings blob, add gitignore rule — *poisontr33s*
+- `2026-04-19 15:38:35Z` 🔨 **937539a4** chore: untrack 70MB ore_embeddings blob, add gitignore rule — *poisontr33s*
+- `2026-04-19 15:40:58Z` 🔨 **97340242** feat: Update dependencies and enhance OpenSSL handling in chthonic and claude scripts — *poisontr33s*
+- `2026-04-19 15:40:58Z` 🔨 **b4b34f5b** feat: Update dependencies and enhance OpenSSL handling in chthonic and claude scripts — *poisontr33s*
+- `2026-04-19 15:49:54Z` 🔨 **de0cd8f3** fix(mcp): robustify 3 servers — __dirname→import.meta.dir, env-var path overrides, startup guards, error handling — *poisontr33s*
+- `2026-04-19 15:49:54Z` 🔨 **67c9311a** fix(mcp): robustify 3 servers — __dirname→import.meta.dir, env-var path overrides, startup guards, error handling — *poisontr33s*
+- `2026-04-19 16:01:14Z` 🔨 **74a1e7ef** fix(scripts): move shebang to line 1 across all displaced .ts scripts — *poisontr33s*
+- `2026-04-19 16:01:14Z` 🔨 **f85b067f** fix(scripts): move shebang to line 1 across all displaced .ts scripts — *poisontr33s*
+- `2026-04-19 16:15:05Z` 🔨 **bec85353** fix(shebang): permanent guard against @SID-before-shebang displacement — *poisontr33s*
+- `2026-04-19 16:15:05Z` 🔨 **74d250b0** fix(shebang): permanent guard against @SID-before-shebang displacement — *poisontr33s*
+- `2026-04-19 16:17:11Z` 🔨 **288a9dbb** fix(gitignore): track package.json and pre-commit-hook.sh — *poisontr33s*
+- `2026-04-19 16:17:11Z` 🔨 **3e38060c** fix(gitignore): track package.json and pre-commit-hook.sh — *poisontr33s*
+- `2026-04-19 16:53:06Z` 🔨 **061a864a** fix(shebang): move shebang to line 1 in dumpster-dive forge scripts — *poisontr33s*
+- `2026-04-19 16:53:06Z` 🔨 **ce5587ac** fix(shebang): move shebang to line 1 in dumpster-dive forge scripts — *poisontr33s*
+- `2026-04-19 17:08:06Z` 🔨 **823a8d99** feat(ci): local CI orchestrator with registry-driven checks — *poisontr33s*
+- `2026-04-19 17:08:06Z` 🔨 **90a4efb6** feat(ci): local CI orchestrator with registry-driven checks — *poisontr33s*
+- `2026-04-19 17:18:28Z` 🔨 **c9c3ab0e** feat(ext): Stylus / Handwriting Input Pad for Android tablet + Gboard — *poisontr33s*
+- `2026-04-19 17:18:28Z` 🔨 **2a864505** feat(ext): Stylus / Handwriting Input Pad for Android tablet + Gboard — *poisontr33s*
+- `2026-04-19 17:19:01Z` 🔨 **2d0c7436** chore(ci): fix doc comment formatting in sid-envelope.ts — *poisontr33s*
+- `2026-04-19 17:19:01Z` 🔨 **54a074dc** chore(ci): fix doc comment formatting in sid-envelope.ts — *poisontr33s*
+- `2026-04-19 22:50:37Z` 🔨 **c5e8d2e5** feat(openai): update default model version to gpt-5.4 in openai.yaml — *poisontr33s*
+- `2026-04-19 22:50:37Z` 🔨 **216cdf67** feat(openai): update default model version to gpt-5.4 in openai.yaml — *poisontr33s*
+- `2026-04-20 18:30:05Z` 🔨 **08069b72** chore(docs): update various instruction files for clarity and consistency; add new Pattern Nursery documentation — *poisontr33s*
+- `2026-04-20 18:30:05Z` 🔨 **ac7366f2** chore(docs): update various instruction files for clarity and consistency; add new Pattern Nursery documentation — *poisontr33s*
+- `2026-04-21 15:28:30Z` 🔨 **ad8cb9e2** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-04-21 15:28:30Z` 🔨 **db449631** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-04-21 18:15:10Z` 🔨 **449039ff** roulette(T1): claude_ide.ps1 — backup .mcp.json.bak before write; ConvertFrom-Json validation after write; verify-mcp subcommand — *poisontr33s*
+- `2026-04-21 18:15:10Z` 🔨 **df2d4e9b** roulette(T1): claude_ide.ps1 — backup .mcp.json.bak before write; ConvertFrom-Json validation after write; verify-mcp subcommand — *poisontr33s*
+- `2026-04-21 18:18:28Z` 🔨 **86b0a308** roulette(T1): desktop-clone-state.ps1 — pre-export size estimate + disk space guard; [switch]$ExcludeGit (robocopy /XD .git + git bundle create) — *poisontr33s*
+- `2026-04-21 18:18:28Z` 🔨 **336f26d1** roulette(T1): desktop-clone-state.ps1 — pre-export size estimate + disk space guard; [switch]$ExcludeGit (robocopy /XD .git + git bundle create) — *poisontr33s*
+- `2026-04-21 18:21:20Z` 🔨 **bc8fda38** roulette(T2): theme_contrast_audit.py — sys.path.insert guard; exit code docstring; --emit-junit JUnit XML output — *poisontr33s*
+- `2026-04-21 18:21:20Z` 🔨 **05ac3081** roulette(T2): theme_contrast_audit.py — sys.path.insert guard; exit code docstring; --emit-junit JUnit XML output — *poisontr33s*
+- `2026-04-21 18:21:23Z` 🔨 **c4b928c6** roulette(T2): theme-sync.ps1 — glob-primary dst discovery; -VerifyOnly flag; exit 1 on hash mismatch; src-missing skip guard — *poisontr33s*
+- `2026-04-21 18:21:23Z` 🔨 **7772a9c0** roulette(T2): theme-sync.ps1 — glob-primary dst discovery; -VerifyOnly flag; exit 1 on hash mismatch; src-missing skip guard — *poisontr33s*
+- `2026-04-21 18:25:39Z` 🔨 **2b99bec3** roulette(T2): git_snapshot.py — sys.path.insert guard; --since <ISO> filter for commit log — *poisontr33s*
+- `2026-04-21 18:25:39Z` 🔨 **1d9ab8f2** roulette(T2): git_snapshot.py — sys.path.insert guard; --since <ISO> filter for commit log — *poisontr33s*
+- `2026-04-21 18:25:42Z` 🔨 **74a22e8f** roulette(T2): run_archaeology.ps1 — remove dead -LocalV2 param; add -What plan switch; print runFailures in background mode — *poisontr33s*
+- `2026-04-21 18:25:42Z` 🔨 **42f86a9f** roulette(T2): run_archaeology.ps1 — remove dead -LocalV2 param; add -What plan switch; print runFailures in background mode — *poisontr33s*
+- `2026-04-21 18:28:09Z` 🔨 **24e35563** roulette(T2): run_overnight_daemon.ps1 — Get-Command bun fallback; -Timeout N with kill; exit code propagation — *poisontr33s*
+- `2026-04-21 18:28:09Z` 🔨 **c7cb9602** roulette(T2): run_overnight_daemon.ps1 — Get-Command bun fallback; -Timeout N with kill; exit code propagation — *poisontr33s*
+- `2026-04-21 18:28:13Z` 🔨 **c2ca04fb** roulette(T2): mcp-asc-injector.ts — SSOT existence check at startup; ping tool returning version+ssotBytes — *poisontr33s*
+- `2026-04-21 18:28:13Z` 🔨 **46a4ab63** roulette(T2): mcp-asc-injector.ts — SSOT existence check at startup; ping tool returning version+ssotBytes — *poisontr33s*
+- `2026-04-21 18:32:17Z` 🔨 **5a4d73da** roulette(T2): local_refiner_v2.py + hf_refiner.py — *poisontr33s*
+- `2026-04-21 18:32:17Z` 🔨 **1ef1f453** roulette(T2): local_refiner_v2.py + hf_refiner.py — *poisontr33s*
+- `2026-04-21 18:35:14Z` 🔨 **871ddc96** roulette(T2): hf_auth_doctor.ps1 + hf_model_scout.py — *poisontr33s*
+- `2026-04-21 18:35:14Z` 🔨 **75489cca** roulette(T2): hf_auth_doctor.ps1 + hf_model_scout.py — *poisontr33s*
+- `2026-04-21 18:38:46Z` 🔨 **3140b8cd** roulette(T2): hf_probe.py + hf_discovery.py + hf-model-ranker.ts — *poisontr33s*
+- `2026-04-21 18:38:46Z` 🔨 **8e70464d** roulette(T2): hf_probe.py + hf_discovery.py + hf-model-ranker.ts — *poisontr33s*
+- `2026-04-21 18:48:11Z` 🔨 **5b4cce1e** roulette(T2): poe_lane.py + poe_sdk_lane.py + pyproject.toml + poe_transport_audit.py — *poisontr33s*
+- `2026-04-21 18:48:11Z` 🔨 **128e8d82** roulette(T2): poe_lane.py + poe_sdk_lane.py + pyproject.toml + poe_transport_audit.py — *poisontr33s*
+- `2026-04-21 18:50:42Z` 🔨 **193146a7** roulette(T2): poe_account.ps1 — *poisontr33s*
+- `2026-04-21 18:50:42Z` 🔨 **3e30721c** roulette(T2): poe_account.ps1 — *poisontr33s*
+- `2026-04-21 18:52:50Z` 🔨 **637a5df2** roulette(T2): mistralrs_model_manager.py — *poisontr33s*
+- `2026-04-21 18:52:50Z` 🔨 **2e0e02b2** roulette(T2): mistralrs_model_manager.py — *poisontr33s*
+- `2026-04-21 18:55:55Z` 🔨 **1e1b038b** roulette(T2): mcp-chthonic-server.ts — *poisontr33s*
+- `2026-04-21 18:55:55Z` 🔨 **3e0da69c** roulette(T2): mcp-chthonic-server.ts — *poisontr33s*
+- `2026-04-21 18:58:08Z` 🔨 **1366ce18** roulette(T2): gemini-model-router.ts — *poisontr33s*
+- `2026-04-21 18:58:08Z` 🔨 **397dcf26** roulette(T2): gemini-model-router.ts — *poisontr33s*
+- `2026-04-21 19:00:22Z` 🔨 **03c34bd9** roulette(T2): vscode_terminal_crash_doctor.ps1 — *poisontr33s*
+- `2026-04-21 19:00:22Z` 🔨 **d296e342** roulette(T2): vscode_terminal_crash_doctor.ps1 — *poisontr33s*
+- `2026-04-21 19:01:32Z` 🔨 **037add66** roulette(T2): vscode_insiders_matrix.ps1 — *poisontr33s*
+- `2026-04-21 19:01:32Z` 🔨 **c1678297** roulette(T2): vscode_insiders_matrix.ps1 — *poisontr33s*
+- `2026-04-21 19:03:43Z` 🔨 **9380faed** roulette(T2): vscode_settings_live_audit.py — *poisontr33s*
+- `2026-04-21 19:03:43Z` 🔨 **66c1d1ef** roulette(T2): vscode_settings_live_audit.py — *poisontr33s*
+- `2026-04-21 19:05:25Z` 🔨 **b5eeed28** roulette(T2): vscode_electron_hardener.py — *poisontr33s*
+- `2026-04-21 19:05:25Z` 🔨 **f8082694** roulette(T2): vscode_electron_hardener.py — *poisontr33s*
+- `2026-04-21 19:06:52Z` 🔨 **60efe9cb** roulette(T2): vscode_error_autopsy.py — *poisontr33s*
+- `2026-04-21 19:06:52Z` 🔨 **b311543b** roulette(T2): vscode_error_autopsy.py — *poisontr33s*
+- `2026-04-21 19:08:19Z` 🔨 **59d697b7** roulette(T2): insiders-sync.ps1 — *poisontr33s*
+- `2026-04-21 19:08:19Z` 🔨 **96ed8107** roulette(T2): insiders-sync.ps1 — *poisontr33s*
+- `2026-04-21 19:09:46Z` 🔨 **90b58de8** roulette(T2): update-claude-code.ps1 — *poisontr33s*
+- `2026-04-21 19:09:46Z` 🔨 **19e0cc0c** roulette(T2): update-claude-code.ps1 — *poisontr33s*
+- `2026-04-21 19:11:47Z` 🔨 **4e6d78e8** roulette(T2): chthonic_new.py + chthonic.ps1 new subcommand — *poisontr33s*
+- `2026-04-21 19:11:47Z` 🔨 **86013ced** roulette(T2): chthonic_new.py + chthonic.ps1 new subcommand — *poisontr33s*
+- `2026-04-21 19:13:48Z` 🔨 **6f8aec3d** roulette(T2): chthonic_workflow.py — *poisontr33s*
+- `2026-04-21 19:13:48Z` 🔨 **6e79d2b4** roulette(T2): chthonic_workflow.py — *poisontr33s*
+- `2026-04-21 19:14:58Z` 🔨 **55d9dc27** roulette(T2): apply_canonize_uv.sh — *poisontr33s*
+- `2026-04-21 19:14:58Z` 🔨 **10974857** roulette(T2): apply_canonize_uv.sh — *poisontr33s*
+- `2026-04-21 19:16:18Z` 🔨 **cfb95dd2** roulette(T2): siphon_to_dumpster_dive.ps1 — *poisontr33s*
+- `2026-04-21 19:16:18Z` 🔨 **15a03dda** roulette(T2): siphon_to_dumpster_dive.ps1 — *poisontr33s*
+- `2026-04-21 19:17:52Z` 🔨 **35b38649** roulette(T2): zombie_consumer.py + pyproject.toml — *poisontr33s*
+- `2026-04-21 19:17:52Z` 🔨 **13f225ea** roulette(T2): zombie_consumer.py + pyproject.toml — *poisontr33s*
+- `2026-04-21 19:21:12Z` 🔨 **ae41cc45** roulette(T2): zombie_forge_bridge.py — *poisontr33s*
+- `2026-04-21 19:21:12Z` 🔨 **6705b93e** roulette(T2): zombie_forge_bridge.py — *poisontr33s*
+- `2026-04-21 19:24:46Z` 🔨 **d1126ec6** roulette(T2): overnight_daemon.ts — *poisontr33s*
+- `2026-04-21 19:24:46Z` 🔨 **8c31b313** roulette(T2): overnight_daemon.ts — *poisontr33s*
+- `2026-04-21 19:27:50Z` 🔨 **a8f161b8** roulette(T3): 9x skill_tensor batch sys.path fix — *poisontr33s*
+- `2026-04-21 19:27:50Z` 🔨 **51b77113** roulette(T3): 9x skill_tensor batch sys.path fix — *poisontr33s*
+- `2026-04-21 19:29:47Z` 🔨 **077be95c** roulette(T3): skill_tensor_cycle + common improvements — *poisontr33s*
+- `2026-04-21 19:29:47Z` 🔨 **257a4dc7** roulette(T3): skill_tensor_cycle + common improvements — *poisontr33s*
+- `2026-04-21 19:30:28Z` 🔨 **d102bc70** roulette(T3): mark skill_tensor_cycle + common ✅; T3 counter 3 — *poisontr33s*
+- `2026-04-21 19:30:28Z` 🔨 **523df0f1** roulette(T3): mark skill_tensor_cycle + common ✅; T3 counter 3 — *poisontr33s*
+- `2026-04-21 19:33:00Z` 🔨 **55183da9** roulette(T3): sfs shim + erdno hotspot batch — *poisontr33s*
+- `2026-04-21 19:33:00Z` 🔨 **c1623d88** roulette(T3): sfs shim + erdno hotspot batch — *poisontr33s*
+- `2026-04-21 19:39:46Z` 🔨 **13a914eb** roulette(T3): lint/validation infra batch (5 files) — *poisontr33s*
+- `2026-04-21 19:39:46Z` 🔨 **f156b249** roulette(T3): lint/validation infra batch (5 files) — *poisontr33s*
+- `2026-04-21 19:41:10Z` 🔨 **028e3542** roulette: T3 counter 7→13; mark lint/validation infra batch ✅ — *poisontr33s*
+- `2026-04-21 19:41:10Z` 🔨 **60c17e8d** roulette: T3 counter 7→13; mark lint/validation infra batch ✅ — *poisontr33s*
+- `2026-04-21 19:43:56Z` 🔨 **8d14669f** roulette(T3): mailbox/handoff pipeline batch (3 files) — *poisontr33s*
+- `2026-04-21 19:43:56Z` 🔨 **161264f0** roulette(T3): mailbox/handoff pipeline batch (3 files) — *poisontr33s*
+- `2026-04-21 19:44:33Z` 🔨 **97884be9** roulette: T3 complete (16/16 ✅); mailbox/handoff pipeline marked done — *poisontr33s*
+- `2026-04-21 19:44:33Z` 🔨 **6af010be** roulette: T3 complete (16/16 ✅); mailbox/handoff pipeline marked done — *poisontr33s*
+- `2026-04-21 19:45:22Z` 🔨 **c073008b** Add API Key Gap Report and Toolchain PATH Probe logs — *poisontr33s*
+- `2026-04-21 19:45:22Z` 🔨 **a504d288** Add API Key Gap Report and Toolchain PATH Probe logs — *poisontr33s*
+- `2026-04-21 20:06:02Z` 🔨 **71bf8935** Update Pentea agent documentation: refine Rust toolchain details and execution anti-patterns — *poisontr33s*
+- `2026-04-21 20:06:02Z` 🔨 **cbe1654a** Update Pentea agent documentation: refine Rust toolchain details and execution anti-patterns — *poisontr33s*
+- `2026-04-21 20:18:06Z` 🔨 **b6ef0e46** roulette(T4): sfs_slabstone_baseline — CRLF→LF hash normalization; --emit-json FILE flag; exit code detail in VS Code task — *poisontr33s*
+- `2026-04-21 20:18:06Z` 🔨 **88a675b4** roulette(T4): sfs_slabstone_baseline — CRLF→LF hash normalization; --emit-json FILE flag; exit code detail in VS Code task — *poisontr33s*
+- `2026-04-21 20:21:27Z` 🔨 **174778e6** roulette(T4): gemini-model-router.test — fixture file; bun:test in package.json; passthrough-no-fallback edge case — *poisontr33s*
+- `2026-04-21 20:21:27Z` 🔨 **8b40191c** roulette(T4): gemini-model-router.test — fixture file; bun:test in package.json; passthrough-no-fallback edge case — *poisontr33s*
+- `2026-04-21 20:22:15Z` 🔨 **b0b0c18f** roulette: T4 complete 2/2 ✅ — *poisontr33s*
+- `2026-04-21 20:22:15Z` 🔨 **a21d5ca1** roulette: T4 complete 2/2 ✅ — *poisontr33s*
+- `2026-04-21 20:25:43Z` 🔨 **0615b68f** roulette(T2): scm_triage — sys.path guard; --apply writes gitignore with confirmation; --preview-gitignore — *poisontr33s*
+- `2026-04-21 20:25:43Z` 🔨 **e6ba3953** roulette(T2): scm_triage — sys.path guard; --apply writes gitignore with confirmation; --preview-gitignore — *poisontr33s*
+- `2026-04-21 20:28:31Z` 🔨 **6ad74324** roulette(T2): link_audit — sys.path guard; .bak before in-place write; --no-backup; git try/except — *poisontr33s*
+- `2026-04-21 20:28:31Z` 🔨 **7099cf4a** roulette(T2): link_audit — sys.path guard; .bak before in-place write; --no-backup; git try/except — *poisontr33s*
+- `2026-04-21 20:30:09Z` 🔨 **505624d6** roulette(T2): icon_scaffold_contract_audit — sys.path guard; mkdir with feedback; --diff PREV_JSON — *poisontr33s*
+- `2026-04-21 20:30:09Z` 🔨 **c37725d3** roulette(T2): icon_scaffold_contract_audit — sys.path guard; mkdir with feedback; --diff PREV_JSON — *poisontr33s*
+- `2026-04-21 20:31:23Z` 🔨 **03194200** roulette(T2): extension_universe_scanner — sys.path guard; --diff PREV_JSON — *poisontr33s*
+- `2026-04-21 20:31:23Z` 🔨 **157ec7de** roulette(T2): extension_universe_scanner — sys.path guard; --diff PREV_JSON — *poisontr33s*
+- `2026-04-21 20:33:12Z` 🔨 **8a50450f** roulette(T2): rootdir_health_audit — resolve conflict; sys.path guard; find_repo_root; --severity-min — *poisontr33s*
+- `2026-04-21 20:33:12Z` 🔨 **2f66182b** roulette(T2): rootdir_health_audit — resolve conflict; sys.path guard; find_repo_root; --severity-min — *poisontr33s*
+- `2026-04-21 20:35:39Z` 🔨 **11847354** roulette(T2): health_report — fix __future__ placement; sys.path guard; --tools; --json; SCHEMA_VERSION — *poisontr33s*
+- `2026-04-21 20:35:39Z` 🔨 **351aea31** roulette(T2): health_report — fix __future__ placement; sys.path guard; --tools; --json; SCHEMA_VERSION — *poisontr33s*
+- `2026-04-21 20:38:08Z` 🔨 **a7bb6037** roulette(T2): map_codebase — sys.path guard; find_repo_root; --output flag — *poisontr33s*
+- `2026-04-21 20:38:08Z` 🔨 **89cd4897** roulette(T2): map_codebase — sys.path guard; find_repo_root; --output flag — *poisontr33s*
+- `2026-04-21 20:39:15Z` 🔨 **fba85d1b** roulette(T2): compact_md — sys.path guard; --backup flag — *poisontr33s*
+- `2026-04-21 20:39:15Z` 🔨 **3deecb68** roulette(T2): compact_md — sys.path guard; --backup flag — *poisontr33s*
+- `2026-04-21 20:41:34Z` 🔨 **a9e3650e** roulette(T2): upcycle_audit — sys.path guard; --dir; externalize thresholds; --output — *poisontr33s*
+- `2026-04-21 20:41:34Z` 🔨 **be909709** roulette(T2): upcycle_audit — sys.path guard; --dir; externalize thresholds; --output — *poisontr33s*
+- `2026-04-21 20:43:43Z` 🔨 **e099390e** roulette(T2): cross-critique — ANTHROPIC_API_KEY early guard; --cache-dir; --merge-only — *poisontr33s*
+- `2026-04-21 20:43:43Z` 🔨 **93d1cf40** roulette(T2): cross-critique — ANTHROPIC_API_KEY early guard; --cache-dir; --merge-only — *poisontr33s*
+- `2026-04-21 20:45:12Z` 🔨 **e1ef4041** roulette(T2): run_mcp_validation — SIGINT handler; --json; --check <tool_name> — *poisontr33s*
+- `2026-04-21 20:45:12Z` 🔨 **0a072994** roulette(T2): run_mcp_validation — SIGINT handler; --json; --check <tool_name> — *poisontr33s*
+- `2026-04-21 20:48:30Z` 🔨 **42658b20** roulette(T2): milfographic-calculator — SSOT index loader (loadEntities); --compare; --export-index — *poisontr33s*
+- `2026-04-21 20:48:30Z` 🔨 **52af60af** roulette(T2): milfographic-calculator — SSOT index loader (loadEntities); --compare; --export-index — *poisontr33s*
+- `2026-04-21 20:49:11Z` 🔨 **9e62d9c3** roulette(T2): sentry_init — console.warn when SENTRY_DSN absent; SENTRY_ENABLED=false escape — *poisontr33s*
+- `2026-04-21 20:49:11Z` 🔨 **aed504ea** roulette(T2): sentry_init — console.warn when SENTRY_DSN absent; SENTRY_ENABLED=false escape — *poisontr33s*
+- `2026-04-21 20:50:05Z` 🔨 **70188edf** roulette(T2): mcp-browser — __dirname -> import.meta.dir; TODO upstream comment — *poisontr33s*
+- `2026-04-21 20:50:05Z` 🔨 **30c6f601** roulette(T2): mcp-browser — __dirname -> import.meta.dir; TODO upstream comment — *poisontr33s*
+- `2026-04-21 20:51:11Z` 🔨 **668f8853** roulette(T2): mcp-sentry-proxy — runtime guard replaces SSOT_PATH non-null assertion — *poisontr33s*
+- `2026-04-21 20:51:11Z` 🔨 **bc2189d0** roulette(T2): mcp-sentry-proxy — runtime guard replaces SSOT_PATH non-null assertion — *poisontr33s*
+- `2026-04-21 20:54:02Z` 🔨 **614aec12** roulette(T2): embed_ore — hash-keyed .embedding_cache.json; --recompute flag; lazy-import preserved — *poisontr33s*
+- `2026-04-21 20:54:02Z` 🔨 **90ae7e8e** roulette(T2): embed_ore — hash-keyed .embedding_cache.json; --recompute flag; lazy-import preserved — *poisontr33s*
+- `2026-04-21 20:55:32Z` 🔨 **6d2f4aef** roulette(T2): chthonic — runpy dispatch (no subprocess); --list-commands; map-codebase entry — *poisontr33s*
+- `2026-04-21 20:55:32Z` 🔨 **8ce1fb09** roulette(T2): chthonic — runpy dispatch (no subprocess); --list-commands; map-codebase entry — *poisontr33s*
+- `2026-04-21 21:01:00Z` 🔨 **13e01330** roulette(progress): T2 progress trail — 52/~68; mark 17 items done — *poisontr33s*
+- `2026-04-21 21:01:00Z` 🔨 **02154a54** roulette(progress): T2 progress trail — 52/~68; mark 17 items done — *poisontr33s*
+- `2026-04-21 21:02:58Z` 🔨 **b4ce4d1c** roulette(T2): mailbox_polisher + mailbox_compactor — patterns JSON extern; --dry-run table; find_repo_root; --since; --max-files — *poisontr33s*
+- `2026-04-21 21:02:58Z` 🔨 **335e8997** roulette(T2): mailbox_polisher + mailbox_compactor — patterns JSON extern; --dry-run table; find_repo_root; --since; --max-files — *poisontr33s*
+- `2026-04-21 21:05:42Z` 🔨 **2428b5b6** roulette(T2): ssot_hash + ssot_structural_extractor — SSOT_HOLDER import; --compare; --write; --output; --progress; --verify-only — *poisontr33s*
+- `2026-04-21 21:05:42Z` 🔨 **adeccadc** roulette(T2): ssot_hash + ssot_structural_extractor — SSOT_HOLDER import; --compare; --write; --output; --progress; --verify-only — *poisontr33s*
+- `2026-04-21 21:07:09Z` 🔨 **2c26a712** roulette(T2): ankh_theme_reference — structural index source; SSOT hash cache invalidation; --force — *poisontr33s*
+- `2026-04-21 21:07:09Z` 🔨 **b4af1774** roulette(T2): ankh_theme_reference — structural index source; SSOT hash cache invalidation; --force — *poisontr33s*
+- `2026-04-21 21:18:44Z` 🔨 **c6e3edc2** roulette(T2): theme_parity + theme_sfs_transmute + theme_artcop + theme_promote_master + theme_color_diversity + theme_token_coverage + milf_scanner — argparse; --master; --verify; --compare; --bak; --distance-metric; --variants; --report-only; --update-universe; --dump-json — *poisontr33s*
+- `2026-04-21 21:18:44Z` 🔨 **86fd05ad** roulette(T2): theme_parity + theme_sfs_transmute + theme_artcop + theme_promote_master + theme_color_diversity + theme_token_coverage + milf_scanner — argparse; --master; --verify; --compare; --bak; --distance-metric; --variants; --report-only; --update-universe; --dump-json — *poisontr33s*
+- `2026-04-21 21:19:56Z` 🔨 **5d73c87c** roulette(T2): generate-product-icon-font.mjs — shebang; @SID; pre-flight SVG existence check — *poisontr33s*
+- `2026-04-21 21:19:56Z` 🔨 **9fa2db01** roulette(T2): generate-product-icon-font.mjs — shebang; @SID; pre-flight SVG existence check — *poisontr33s*
+- `2026-04-21 21:22:58Z` 🔨 **6aaf5f65** roulette(T2): build_skill_index + skill_health + skill_audit — --output default; --diff; --since; --emit-badge; rubric JSON; --root validate; CLAUDE_TOOLS from config — *poisontr33s*
+- `2026-04-21 21:22:58Z` 🔨 **e9a9fc93** roulette(T2): build_skill_index + skill_health + skill_audit — --output default; --diff; --since; --emit-badge; rubric JSON; --root validate; CLAUDE_TOOLS from config — *poisontr33s*
+- `2026-04-21 21:24:02Z` 🔨 **10026053** roulette(T2): mark complete — all items ✅ — *poisontr33s*
+- `2026-04-21 21:24:02Z` 🔨 **48f05214** roulette(T2): mark complete — all items ✅ — *poisontr33s*
+- `2026-04-21 21:28:16Z` 🔨 **1f0f2287** roulette(T2): mcp-browser.ts — import.meta.dir confirmed; TODO(upstream) comment formatted to spec — *poisontr33s*
+- `2026-04-21 21:28:16Z` 🔨 **9e1d70c1** roulette(T2): mcp-browser.ts — import.meta.dir confirmed; TODO(upstream) comment formatted to spec — *poisontr33s*
+- `2026-04-21 21:29:41Z` 🔨 **08f3ed45** roulette(T5): patch-claude-insiders.ps1 — moved to scripts/.deprecated/; CLAUDE.md note updated — *poisontr33s*
+- `2026-04-21 21:29:41Z` 🔨 **c9832116** roulette(T5): patch-claude-insiders.ps1 — moved to scripts/.deprecated/; CLAUDE.md note updated — *poisontr33s*
+- `2026-04-21 21:31:53Z` 🔨 **161043be** roulette(T5): thin-shim conversions — claude_healthcheck/selfheal/mcp_write_local → claude_ide.ps1 delegates; validate-triad-links → link_audit.py shim; originals salvaged to .deprecated/ — *poisontr33s*
+- `2026-04-21 21:31:53Z` 🔨 **798150e1** roulette(T5): thin-shim conversions — claude_healthcheck/selfheal/mcp_write_local → claude_ide.ps1 delegates; validate-triad-links → link_audit.py shim; originals salvaged to .deprecated/ — *poisontr33s*
+- `2026-04-21 21:36:00Z` 🔨 **efb920e6** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno) — *poisontr33s*
+- `2026-04-21 21:36:00Z` 🔨 **a01857f0** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno) — *poisontr33s*
+- `2026-04-21 21:41:20Z` 🔨 **62f1d964** roulette(T5): prototypes batch — background_services graceful shutdown+PID; autonomous_coordinator --dry-run+lazy-import; novia_embalmer DryRun guard; vscode-art-cop LLM health check+non-JSON guard — *poisontr33s*
+- `2026-04-21 21:41:20Z` 🔨 **d8912727** roulette(T5): prototypes batch — background_services graceful shutdown+PID; autonomous_coordinator --dry-run+lazy-import; novia_embalmer DryRun guard; vscode-art-cop LLM health check+non-JSON guard — *poisontr33s*
+- `2026-04-21 21:41:58Z` 🔨 **f45c2cfe** roulette(T5): ROULETTE.md — mark all T5 prototype+WIP rows complete — *poisontr33s*
+- `2026-04-21 21:41:58Z` 🔨 **2993083d** roulette(T5): ROULETTE.md — mark all T5 prototype+WIP rows complete — *poisontr33s*
+- `2026-04-21 22:15:23Z` 🔨 **f73d4ca1** roulette: duo-doc sync — ROULETTE.md T5 trail row + STEWARD.md queue stamped complete — *poisontr33s*
+- `2026-04-21 22:15:23Z` 🔨 **58fa8cd8** roulette: duo-doc sync — ROULETTE.md T5 trail row + STEWARD.md queue stamped complete — *poisontr33s*
+- `2026-04-21 22:23:14Z` 🔨 **c8fb881c** Add SFS_SLABSTONE_BASELINE.json to document design references and audit results — *poisontr33s*
+- `2026-04-21 22:23:14Z` 🔨 **dcdcc9d2** Add SFS_SLABSTONE_BASELINE.json to document design references and audit results — *poisontr33s*
+- `2026-04-21 22:31:03Z` 🔨 **d1dffccc** spruce: reference surface pass — stale quick-win cluster stripped; dates advanced to April 2026; [!NOTE] overhead removed from project-workflow — *poisontr33s*
+- `2026-04-21 22:31:03Z` 🔨 **176cb574** spruce: reference surface pass — stale quick-win cluster stripped; dates advanced to April 2026; [!NOTE] overhead removed from project-workflow — *poisontr33s*
+- `2026-04-21 22:52:53Z` 🔨 **eb489b0f** spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped — *poisontr33s*
+- `2026-04-21 22:52:53Z` 🔨 **7ca40dc2** spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped — *poisontr33s*
+- `2026-04-21 22:57:20Z` 🔨 **16bdb0a3** spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date — *poisontr33s*
+- `2026-04-21 22:57:20Z` 🔨 **cd039c25** spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date — *poisontr33s*
+- `2026-04-21 23:04:23Z` 🔨 **be3882c2** Refine wording for clarity in project workflow instructions — *poisontr33s*
+- `2026-04-21 23:04:23Z` 🔨 **2c8597fb** Refine wording for clarity in project workflow instructions — *poisontr33s*
+- `2026-04-21 23:07:32Z` 🔨 **770b0152** spruce: project-workflow — tombstone pre-ANKHOLOGY lineage A/B/C system — *poisontr33s*
+- `2026-04-21 23:07:32Z` 🔨 **c603a2f7** spruce: project-workflow — tombstone pre-ANKHOLOGY lineage A/B/C system — *poisontr33s*
+- `2026-04-22 00:57:07Z` 🔨 **5e79594e** roulette(T0): poe_auth.py — add validate_poe_token() live token validation — *poisontr33s*
+- `2026-04-22 00:57:07Z` 🔨 **0cbbaab8** roulette(T0): poe_auth.py — add validate_poe_token() live token validation — *poisontr33s*
+- `2026-04-22 00:57:33Z` 🔨 **de7ba9de** spruce: roulette T0 audit trail — poe_auth live validation stamped; date 2026-04-22 — *poisontr33s*
+- `2026-04-22 00:57:33Z` 🔨 **382e0177** spruce: roulette T0 audit trail — poe_auth live validation stamped; date 2026-04-22 — *poisontr33s*
+- `2026-04-22 01:24:40Z` 🔨 **f3273588** roulette(T3): build_epistemograph — DeprecationWarning + --no-deprecation-warning flag — *poisontr33s*
+- `2026-04-22 01:24:40Z` 🔨 **66cf0b59** roulette(T3): build_epistemograph — DeprecationWarning + --no-deprecation-warning flag — *poisontr33s*
+- `2026-04-22 01:25:25Z` 🔨 **896e844f** roulette(T3): mark 13 verified rows ✅ + build_epistemograph commit hash — *poisontr33s*
+- `2026-04-22 01:25:25Z` 🔨 **7f308a2e** roulette(T3): mark 13 verified rows ✅ + build_epistemograph commit hash — *poisontr33s*
+- `2026-04-22 02:18:38Z` 🔨 **7d0baa2e** roulette(T-Entity): Pentad documentation surface corrections prep — prerequisite pass 2026-04-22 — *poisontr33s*
+- `2026-04-22 02:18:38Z` 🔨 **65a2432d** roulette(T-Entity): Pentad documentation surface corrections prep — prerequisite pass 2026-04-22 — *poisontr33s*
+- `2026-04-22 02:40:02Z` 🔨 **5e3312c5** roulette(T-Entity): Penarch denomination — fifth sovereign principle (pente+arch, SSOT L3978) — *poisontr33s*
+- `2026-04-22 02:40:02Z` 🔨 **444605c7** roulette(T-Entity): Penarch denomination — fifth sovereign principle (pente+arch, SSOT L3978) — *poisontr33s*
+- `2026-04-22 03:02:37Z` 🔨 **a4be3ccf** ssot(Penarch): fifth sovereign principle denomination — pente+arch, identity-class parallel to Triumvirate/Cardinal — *poisontr33s*
+- `2026-04-22 03:02:37Z` 🔨 **959e6cb6** ssot(Penarch): fifth sovereign principle denomination — pente+arch, identity-class parallel to Triumvirate/Cardinal — *poisontr33s*
+- `2026-04-22 15:26:40Z` 🔨 **6e91805f** Update AGENTS.md for enhanced clarity in behavioral configuration and instruction details — *poisontr33s*
+- `2026-04-22 15:26:40Z` 🔨 **f7aecaec** Update AGENTS.md for enhanced clarity in behavioral configuration and instruction details — *poisontr33s*
+- `2026-04-22 16:38:30Z` 🔨 **a97d1ead** Add copilot-instructions.archive.md as an archival reference for the original codex — *poisontr33s*
+- `2026-04-22 16:38:30Z` 🔨 **a4088a79** Add copilot-instructions.archive.md as an archival reference for the original codex — *poisontr33s*
+- `2026-04-22 16:48:00Z` 🔨 **1edb1826** Refactor governance metadata in copilot-instructions.archive.md for clarity and structural integrity — *poisontr33s*
+- `2026-04-22 16:48:00Z` 🔨 **19ca85d5** Refactor governance metadata in copilot-instructions.archive.md for clarity and structural integrity — *poisontr33s*
+- `2026-04-22 17:30:50Z` 🔨 **959d02ed** Refactor governance metadata in copilot-instructions.archive.md to enhance clarity and structural integrity, ensuring alignment with the Codex's foundational principles and visual integrity mandates. — *poisontr33s*
+- `2026-04-22 17:30:50Z` 🔨 **860de5e1** Refactor governance metadata in copilot-instructions.archive.md to enhance clarity and structural integrity, ensuring alignment with the Codex's foundational principles and visual integrity mandates. — *poisontr33s*
+- `2026-04-22 17:51:08Z` 🔨 **d99ce97d** qol(env): PYTHONUTF8=1 wired into profile + fortify_terminal.ps1 — *poisontr33s*
+- `2026-04-22 17:51:08Z` 🔨 **cb547621** qol(env): PYTHONUTF8=1 wired into profile + fortify_terminal.ps1 — *poisontr33s*
+- `2026-04-22 17:58:10Z` 🔨 **ff93593b** qol(env): add \System.Text.UTF8Encoding+UTF8EncodingSealed=UTF8 to fortify_terminal.ps1 + profile — *poisontr33s*
+- `2026-04-22 17:58:10Z` 🔨 **cccc1488** qol(env): add \System.Text.UTF8Encoding+UTF8EncodingSealed=UTF8 to fortify_terminal.ps1 + profile — *poisontr33s*
+- `2026-04-22 18:34:59Z` 🔨 **35e63ee4** qol(encoding): consolidate PYTHONUTF8+PYTHONIOENCODING into profile chain — *poisontr33s*
+- `2026-04-22 18:34:59Z` 🔨 **47707544** qol(encoding): consolidate PYTHONUTF8+PYTHONIOENCODING into profile chain — *poisontr33s*
+- `2026-04-22 18:37:54Z` 🔨 **98c3b46a** t-entity(pentad): align doc surfaces with SSOT-canonical Pentad structure — *poisontr33s*
+- `2026-04-22 18:37:54Z` 🔨 **d80a6a2b** t-entity(pentad): align doc surfaces with SSOT-canonical Pentad structure — *poisontr33s*
+- `2026-04-22 18:39:05Z` 🔨 **f1cd1782** roulette(t-entity): mark all T-Entity items ✅; QOL row updated with full encoding coverage — *poisontr33s*
+- `2026-04-22 18:39:05Z` 🔨 **8c35221f** roulette(t-entity): mark all T-Entity items ✅; QOL row updated with full encoding coverage — *poisontr33s*
+- `2026-04-22 19:13:51Z` 🔨 **fc1ebe9d** ruby: pin 4.0.3 + PWSH_RULES R-1/R-4 rv+ridk canon — *poisontr33s*
+- `2026-04-22 19:13:51Z` 🔨 **7e4c41fd** ruby: pin 4.0.3 + PWSH_RULES R-1/R-4 rv+ridk canon — *poisontr33s*
+- `2026-04-22 19:16:29Z` 🔨 **72d73d19** chore: R toolchain canon (rv-r, rproject.toml) — PWSH_RULES v1.6 — *poisontr33s*
+- `2026-04-22 19:16:29Z` 🔨 **a9ac843e** chore: R toolchain canon (rv-r, rproject.toml) — PWSH_RULES v1.6 — *poisontr33s*
+- `2026-04-22 20:02:18Z` 🔨 **0673d06c** chore: update Ruby environment configuration and dependencies; add Toolchain Doctor reports — *poisontr33s*
+- `2026-04-22 20:02:18Z` 🔨 **0b1c9342** chore: update Ruby environment configuration and dependencies; add Toolchain Doctor reports — *poisontr33s*
+- `2026-04-22 20:33:56Z` 🔨 **48a244d3** feat: enhance Ruby environment with new gems and configuration; update lore.rb for Oj usage — *poisontr33s*
+- `2026-04-22 20:33:56Z` 🔨 **9b0171bf** feat: enhance Ruby environment with new gems and configuration; update lore.rb for Oj usage — *poisontr33s*
+- `2026-04-22 21:47:54Z` 🔨 **4c5fb1bb** feat: add cross-platform port artifact lifecycle and GCC warning-flood ICE signature patterns to documentation — *poisontr33s*
+- `2026-04-22 21:47:54Z` 🔨 **3bd5cb8f** feat: add cross-platform port artifact lifecycle and GCC warning-flood ICE signature patterns to documentation — *poisontr33s*
+- `2026-04-22 23:25:13Z` 🔨 **b1cb2853** roulette(tensor): skill-polisher/agents/openai.yaml — add missing interface manifest (CRITICAL fix) — *poisontr33s*
+- `2026-04-22 23:25:13Z` 🔨 **2ae5465c** roulette(tensor): skill-polisher/agents/openai.yaml — add missing interface manifest (CRITICAL fix) — *poisontr33s*
+- `2026-04-22 23:26:03Z` 🔨 **56fc6b4f** roulette(tensor): decision-razor/agents/openai.yaml — add missing interface manifest (CRITICAL fix) — *poisontr33s*
+- `2026-04-22 23:26:03Z` 🔨 **f151a650** roulette(tensor): decision-razor/agents/openai.yaml — add missing interface manifest (CRITICAL fix) — *poisontr33s*
+- `2026-04-22 23:39:09Z` 🔨 **f0c1dff1** docs: consolidate documentation sprawl — 80 files reorganized — *poisontr33s*
+- `2026-04-22 23:39:09Z` 🔨 **dc42cac8** docs: consolidate documentation sprawl — 80 files reorganized — *poisontr33s*
+- `2026-04-22 23:44:31Z` 🔨 **b560d129** Add Skill Tensor Inventory, Pool, Roulette, Universe, and Weights — *poisontr33s*
+- `2026-04-22 23:44:31Z` 🔨 **02f12d3f** Add Skill Tensor Inventory, Pool, Roulette, Universe, and Weights — *poisontr33s*
+- `2026-04-22 23:50:37Z` 🔨 **23fbdcd9** feat(xp): roulette-steward + bounty-hunter + shell-architect wired — *poisontr33s*
+- `2026-04-22 23:50:37Z` 🔨 **2423ec22** feat(xp): roulette-steward + bounty-hunter + shell-architect wired — *poisontr33s*
+- `2026-04-23 00:00:34Z` 🔨 **b6277c46** feat(ruby): ZJIT rv integration — lane status, doctor, polyglot versions ZJIT-aware — *poisontr33s*
+- `2026-04-23 00:00:34Z` 🔨 **35a4ef0b** feat(ruby): ZJIT rv integration — lane status, doctor, polyglot versions ZJIT-aware — *poisontr33s*
+- `2026-04-23 00:16:30Z` 🔨 **57e32183** feat(ruby): polyglot-versions ZJIT tag + lore.rb ZJIT utilization — *poisontr33s*
+- `2026-04-23 00:16:30Z` 🔨 **c09b8a44** feat(ruby): polyglot-versions ZJIT tag + lore.rb ZJIT utilization — *poisontr33s*
+- `2026-04-23 00:35:47Z` 🔨 **66bfea7d** feat(xp): wire ZJIT+MSYS2 env into XP engine — *poisontr33s*
+- `2026-04-23 00:35:47Z` 🔨 **ac2ad4dc** feat(xp): wire ZJIT+MSYS2 env into XP engine — *poisontr33s*
+- `2026-04-23 00:52:31Z` 🔨 **a1383efc** refactor(xp): session-arc architecture — earned env, not ambient — *poisontr33s*
+- `2026-04-23 00:52:31Z` 🔨 **0f25ba7d** refactor(xp): session-arc architecture — earned env, not ambient — *poisontr33s*
+- `2026-04-23 01:20:52Z` 🔨 **9d56d00a** refactor(xp): session-datetime-scoped architecture — *poisontr33s*
+- `2026-04-23 01:20:52Z` 🔨 **12937478** refactor(xp): session-datetime-scoped architecture — *poisontr33s*
+- `2026-04-23 02:18:03Z` 🔨 **be457fe4** feat(milf-core): Sylvaris Cythrex — NK-SAI Cytolytic Blade (26th entity) — *poisontr33s*
+- `2026-04-23 02:18:03Z` 🔨 **9db7237c** feat(milf-core): Sylvaris Cythrex — NK-SAI Cytolytic Blade (26th entity) — *poisontr33s*
+- `2026-04-23 02:47:11Z` 🔨 **a22e96bc** feat(milf-core): SSOT §10.3.16 — Sylvaris Cythrex CM-SAI-NFA-XREF stub — *poisontr33s*
+- `2026-04-23 02:47:11Z` 🔨 **dfe20185** feat(milf-core): SSOT §10.3.16 — Sylvaris Cythrex CM-SAI-NFA-XREF stub — *poisontr33s*
+- `2026-04-23 03:09:08Z` 🔨 **24e41673** docs(ssot): Navigation Beacons — structural orientation map for copilot-instructions.archive.md — *poisontr33s*
+- `2026-04-23 03:09:08Z` 🔨 **9618458a** docs(ssot): Navigation Beacons — structural orientation map for copilot-instructions.archive.md — *poisontr33s*
+- `2026-04-23 04:07:23Z` 🔨 **f8fc8fb0** feat(dcrp): canonize Navigation Beacons as registered downstream vessel (§XV.7) — *poisontr33s*
+- `2026-04-23 04:07:23Z` 🔨 **ec010e03** feat(dcrp): canonize Navigation Beacons as registered downstream vessel (§XV.7) — *poisontr33s*
+- `2026-04-23 04:56:42Z` 🔨 **d83b790a** feat(dcrp): complete the trio — Pentea registered as second RDV vessel (§XV.7) — *poisontr33s*
+- `2026-04-23 04:56:42Z` 🔨 **0f512bd5** feat(dcrp): complete the trio — Pentea registered as second RDV vessel (§XV.7) — *poisontr33s*
+- `2026-04-23 04:57:05Z` 🔨 **c2281716** feat(dcrp): DCRP-Registered back-pointer in Pentea deployment adapter — *poisontr33s*
+- `2026-04-23 04:57:05Z` 🔨 **0c7333cb** feat(dcrp): DCRP-Registered back-pointer in Pentea deployment adapter — *poisontr33s*
+- `2026-04-23 05:05:07Z` 🔨 **d04df23a** feat(dcrp): Pattern Nursery registered as third RDV vessel — Pre-Canon-Frontier (§XV.7) — *poisontr33s*
+- `2026-04-23 05:05:07Z` 🔨 **70ed1916** feat(dcrp): Pattern Nursery registered as third RDV vessel — Pre-Canon-Frontier (§XV.7) — *poisontr33s*
+- `2026-04-23 20:08:56Z` 🔨 **77d4251e** track(3): roulette trio + ruby-zjit-podman lane + agents identity index — *poisontr33s*
+- `2026-04-23 20:08:56Z` 🔨 **e04e89c2** track(3): roulette trio + ruby-zjit-podman lane + agents identity index — *poisontr33s*
+- `2026-04-23 20:10:21Z` 🔨 **b70dcd84** nursery: ZJIT Win32 Prism shape-crash + rv flat-earther naming patterns — *poisontr33s*
+- `2026-04-23 20:10:21Z` 🔨 **597dfe12** nursery: ZJIT Win32 Prism shape-crash + rv flat-earther naming patterns — *poisontr33s*
+- `2026-04-23 20:39:54Z` 🔨 **ac53ba65** feat(ruby-zjit): CUDA+Vulkan+TRT native extensions — Podman + Win32 lanes — *poisontr33s*
+- `2026-04-23 20:39:54Z` 🔨 **8b6cd7fe** feat(ruby-zjit): CUDA+Vulkan+TRT native extensions — Podman + Win32 lanes — *poisontr33s*
+- `2026-04-23 20:57:33Z` 🔨 **7ee88ee9** refactor(ruby-zjit): consolidate into canonical ruby-zjit/ project root — *poisontr33s*
+- `2026-04-23 20:57:33Z` 🔨 **a8e7c52d** refactor(ruby-zjit): consolidate into canonical ruby-zjit/ project root — *poisontr33s*
+- `2026-04-24 01:07:02Z` 🔨 **2fed37bd** feat(ruby-zjit): implement pending extensions — cudnn_rb, nvml_rb, nvrtc_rb, spirv_rb — *poisontr33s*
+- `2026-04-24 01:07:02Z` 🔨 **3190d5d1** feat(ruby-zjit): implement pending extensions — cudnn_rb, nvml_rb, nvrtc_rb, spirv_rb — *poisontr33s*
+- `2026-04-24 01:16:39Z` 🔨 **27a5f690** test(ruby-zjit): E2E Minitest scaffold + Win32 test runner — *poisontr33s*
+- `2026-04-24 01:16:39Z` 🔨 **e136e251** test(ruby-zjit): E2E Minitest scaffold + Win32 test runner — *poisontr33s*
+- `2026-04-24 01:23:43Z` 🔨 **b282a9b9** refactor(ruby-zjit): rv ridk exec integration + .ruby-version pin — *poisontr33s*
+- `2026-04-24 01:23:43Z` 🔨 **bcdb8a0d** refactor(ruby-zjit): rv ridk exec integration + .ruby-version pin — *poisontr33s*
+- `2026-04-24 01:29:34Z` 🔨 **358eb90c** refactor(ruby-zjit): rv spinel canonical path resolution + -Bench differential — *poisontr33s*
+- `2026-04-24 01:29:34Z` 🔨 **6cbb5c97** refactor(ruby-zjit): rv spinel canonical path resolution + -Bench differential — *poisontr33s*
+- `2026-04-24 01:37:29Z` 🔨 **9a558223** feat(ruby-zjit): -StartupProbe + rv Win32 exec() diagnosis — *poisontr33s*
+- `2026-04-24 01:37:29Z` 🔨 **daa44ad5** feat(ruby-zjit): -StartupProbe + rv Win32 exec() diagnosis — *poisontr33s*
+- `2026-04-24 01:50:56Z` 🔨 **4474277e** fix(ruby-zjit): tighten rv diagnosis comments per source review — *poisontr33s*
+- `2026-04-24 01:50:56Z` 🔨 **67767baf** fix(ruby-zjit): tighten rv diagnosis comments per source review — *poisontr33s*
+- `2026-04-24 02:25:42Z` 🔨 **b99b6ee0** nursery: Ruby+GPU JIT Boundary Contract (novel) + ZJIT crash root cause tightened — *poisontr33s*
+- `2026-04-24 02:25:42Z` 🔨 **2bcba94a** nursery: Ruby+GPU JIT Boundary Contract (novel) + ZJIT crash root cause tightened — *poisontr33s*
+- `2026-04-24 02:30:50Z` 🔨 **c7103cbc** nursery: Ruby+GPU JIT Boundary Contract — conditionality + promotion criteria — *poisontr33s*
+- `2026-04-24 02:30:50Z` 🔨 **993227c1** nursery: Ruby+GPU JIT Boundary Contract — conditionality + promotion criteria — *poisontr33s*
+- `2026-04-24 02:50:21Z` 🔨 **6187317a** feat(dispatch): PENTEA_ROULETTE_STEWARDESS.md — meta-dispatch colliding ruby-zjit/REM/zombie/governance/MILF-Core into unified priority queue — *poisontr33s*
+- `2026-04-24 02:50:21Z` 🔨 **d3ff1cd8** feat(dispatch): PENTEA_ROULETTE_STEWARDESS.md — meta-dispatch colliding ruby-zjit/REM/zombie/governance/MILF-Core into unified priority queue — *poisontr33s*
+- `2026-04-24 03:02:49Z` 🔨 **ba770667** fix(ruby-zjit): Containerfile Layer4 pkg names + test_win32 rv alias/Verbose — *poisontr33s*
+- `2026-04-24 03:02:49Z` 🔨 **493cd179** fix(ruby-zjit): Containerfile Layer4 pkg names + test_win32 rv alias/Verbose — *poisontr33s*
+- `2026-04-24 03:10:32Z` 🔨 **32578eb5** feat(ruby-zjit): RZ-02..RZ-06 complete — podman verified, Win32 suite pass — *poisontr33s*
+- `2026-04-24 03:10:32Z` 🔨 **1a5db9de** feat(ruby-zjit): RZ-02..RZ-06 complete — podman verified, Win32 suite pass — *poisontr33s*
+- `2026-04-24 03:37:32Z` 🔨 **47d2d7a4** chore(stewardess): D1 ruby-zjit fully closed — RZ-01..06 all green — *poisontr33s*
+- `2026-04-24 03:37:32Z` 🔨 **a24cfa47** chore(stewardess): D1 ruby-zjit fully closed — RZ-01..06 all green — *poisontr33s*
+- `2026-04-24 03:41:39Z` 🔨 **3acd2b80** chore(stewardess): self-validating commit signal — Pentea-* trailer contract — *poisontr33s*
+- `2026-04-24 03:41:39Z` 🔨 **f68422ff** chore(stewardess): self-validating commit signal — Pentea-* trailer contract — *poisontr33s*
+- `2026-04-24 03:46:16Z` 🔨 **57fb2084** chore(stewardess): local reward-register — push decoupled from signal loop — *poisontr33s*
+- `2026-04-24 03:46:16Z` 🔨 **54383b3e** chore(stewardess): local reward-register — push decoupled from signal loop — *poisontr33s*
+- `2026-04-24 03:53:02Z` 🔨 **ab4fd981** feat(trail): decode_stone + decode() + query_verify_only + golden roundtrip test — *poisontr33s*
+- `2026-04-24 03:53:02Z` 🔨 **4d623a2c** feat(trail): decode_stone + decode() + query_verify_only + golden roundtrip test — *poisontr33s*
+- `2026-04-24 03:54:35Z` 🔨 **8a275805** docs(stewardess): D2 fully closed — RE-01..RE-09 all checkmarked — *poisontr33s*
+- `2026-04-24 03:54:35Z` 🔨 **4a4d5d96** docs(stewardess): D2 fully closed — RE-01..RE-09 all checkmarked — *poisontr33s*
+- `2026-04-24 04:10:17Z` 🔨 **ae13fcad** feat(autoloop): pentea_autoloop.ts — SDK agentStop hook queue runner — *poisontr33s*
+- `2026-04-24 04:10:17Z` 🔨 **5fb446e8** feat(autoloop): pentea_autoloop.ts — SDK agentStop hook queue runner — *poisontr33s*
+- `2026-04-24 04:10:42Z` 🔨 **fd724acc** fix(agent): Pentea.agent.md — Queue-Chain Protocol + email fix — *poisontr33s*
+- `2026-04-24 04:10:42Z` 🔨 **47b56e60** fix(agent): Pentea.agent.md — Queue-Chain Protocol + email fix — *poisontr33s*
+- `2026-04-24 04:20:09Z` 🔨 **95d19db5** docs(stewardess): D0 autoloop fully sealed + NP-02 nursery promoted — *poisontr33s*
+- `2026-04-24 04:20:09Z` 🔨 **31a200f7** docs(stewardess): D0 autoloop fully sealed + NP-02 nursery promoted — *poisontr33s*
+- `2026-04-24 04:23:30Z` 🔨 **6e28384f** chore(zombie): ZE-04 verified — zombie upcycle operational — *poisontr33s*
+- `2026-04-24 04:23:30Z` 🔨 **672175c5** chore(zombie): ZE-04 verified — zombie upcycle operational — *poisontr33s*
+- `2026-04-24 04:26:51Z` 🔨 **6e170654** feat(zombie): A5 NOV-CAD pre-CHEW embalm wiring — ZE-05 — *poisontr33s*
+- `2026-04-24 04:26:51Z` 🔨 **61574546** feat(zombie): A5 NOV-CAD pre-CHEW embalm wiring — ZE-05 — *poisontr33s*
+- `2026-04-24 04:27:24Z` 🔨 **291e3715** fix(governance): GA-01 — add Active SSOT pointer to copilot-instructions.md — *poisontr33s*
+- `2026-04-24 04:27:24Z` 🔨 **7b9cf547** fix(governance): GA-01 — add Active SSOT pointer to copilot-instructions.md — *poisontr33s*
+- `2026-04-24 04:35:45Z` 🔨 **7e5c88b2** chore(stewardess): redux — verification oracle + stale entry fixes — *poisontr33s*
+- `2026-04-24 04:35:45Z` 🔨 **78780340** chore(stewardess): redux — verification oracle + stale entry fixes — *poisontr33s*
+- `2026-04-24 04:42:15Z` 🔨 **3ba0bbc7** fix(pwsh): update PowerShell version requirement to 7.6.x or higher — *poisontr33s*
+- `2026-04-24 04:42:15Z` 🔨 **ed581dca** fix(pwsh): update PowerShell version requirement to 7.6.x or higher — *poisontr33s*
+- `2026-04-24 04:47:51Z` 🔨 **1cf447f2** feat(infra): AI-03 automation infrastructure — T3/T4 AFK-safe cloud dispatch — *poisontr33s*
+- `2026-04-24 04:47:51Z` 🔨 **74642cdd** feat(infra): AI-03 automation infrastructure — T3/T4 AFK-safe cloud dispatch — *poisontr33s*
+- `2026-04-24 04:48:45Z` 🔨 **4524b821** chore(governance): GA-02 — archive stale copilot-instructions-copy.md — *poisontr33s*
+- `2026-04-24 04:48:45Z` 🔨 **01262f5a** chore(governance): GA-02 — archive stale copilot-instructions-copy.md — *poisontr33s*
+- `2026-04-24 04:52:46Z` 🔨 **a0ef43a6** feat(milf-core): MC-01 Umeko Ketsuraku entity card — full §5.2 schema — *poisontr33s*
+- `2026-04-24 04:52:46Z` 🔨 **eae0a7c1** feat(milf-core): MC-01 Umeko Ketsuraku entity card — full §5.2 schema — *poisontr33s*
+- `2026-04-24 05:05:04Z` 🔨 **7dcbea87** GD-01/META-01: MILF-Core-META.md — genre convergence thesis + full .md registry — *poisontr33s*
+- `2026-04-24 05:05:04Z` 🔨 **30684a40** GD-01/META-01: MILF-Core-META.md — genre convergence thesis + full .md registry — *poisontr33s*
+- `2026-04-24 05:08:18Z` 🔨 **6f79850a** META-02: Iron Maiden family map + JSON companion registry + archive family pattern — *poisontr33s*
+- `2026-04-24 05:08:18Z` 🔨 **d8098c3f** META-02: Iron Maiden family map + JSON companion registry + archive family pattern — *poisontr33s*
+- `2026-04-24 05:18:45Z` 🔨 **6f26c6b3** MC-04: Dr. Lysandra Threnodite entity card (T1, Stomach, Digestive) — *poisontr33s*
+- `2026-04-24 05:18:45Z` 🔨 **87692a94** MC-04: Dr. Lysandra Threnodite entity card (T1, Stomach, Digestive) — *poisontr33s*
+- `2026-04-24 05:41:48Z` 🔨 **d0dd9c26** chore: meta_sync.py — cross-archive META registry sync tool — *poisontr33s*
+- `2026-04-24 05:41:48Z` 🔨 **15994e6f** chore: meta_sync.py — cross-archive META registry sync tool — *poisontr33s*
+- `2026-04-24 05:56:35Z` 🔨 **2eddb438** feat: meta_sync — discovery cache + expanded _IGNORE_DIRS for lib/gem/venv subtrees — *poisontr33s*
+- `2026-04-24 05:56:35Z` 🔨 **533ee1b4** feat: meta_sync — discovery cache + expanded _IGNORE_DIRS for lib/gem/venv subtrees — *poisontr33s*
+- `2026-04-24 06:18:17Z` 🔨 **48ab4457** feat: pentea_family_relations.py — full-archive .md x META.md relational mapper — *poisontr33s*
+- `2026-04-24 06:18:17Z` 🔨 **04898c04** feat: pentea_family_relations.py — full-archive .md x META.md relational mapper — *poisontr33s*
+- `2026-04-24 19:31:43Z` 🔨 **1f08aeae** chore(deps-dev): bump @google/gemini-cli — *dependabot[bot]*
+- `2026-04-24 19:31:43Z` 🔨 **34e29986** chore(deps-dev): bump @google/gemini-cli — *dependabot[bot]*
+- `2026-04-24 19:31:44Z` 🔀 **#11** PR opened: chore(deps-dev): bump @google/gemini-cli from 0.38.2 to 0.39.1 in the npm_and_yarn group across 1 directory [dependencies, javascript] — *dependabot[bot]*
+- `2026-04-25 00:58:03Z` 🔨 **3967b682** fix: adjust coding declaration formatting in pentea_family_relations.py — *poisontr33s*
+- `2026-04-25 00:58:03Z` 🔨 **bf3fcd0f** fix: adjust coding declaration formatting in pentea_family_relations.py — *poisontr33s*
+- `2026-04-25 02:03:30Z` 🔨 **fc2c961a** feat: uv-guard CI check + git authorship classification (V2) — *poisontr33s*
+- `2026-04-25 02:03:30Z` 🔨 **5182779e** feat: uv-guard CI check + git authorship classification (V2) — *poisontr33s*
+- `2026-04-25 02:18:33Z` 🔨 **8dea7c6f** fix: correct terminology and formatting in MILF-Core-Step3-Deep-Exploration-Prototypes.md — *poisontr33s*
+- `2026-04-25 02:18:33Z` 🔨 **51f9fd06** fix: correct terminology and formatting in MILF-Core-Step3-Deep-Exploration-Prototypes.md — *poisontr33s*
+- `2026-04-25 03:11:05Z` 🔨 **49d4807e** feat: toml-audit script + blessing-gate CI + fix pentea-cloud-dispatch.yml — *poisontr33s*
+- `2026-04-25 03:11:05Z` 🔨 **11b2039a** feat: toml-audit script + blessing-gate CI + fix pentea-cloud-dispatch.yml — *poisontr33s*
+- `2026-04-25 03:22:11Z` 🔨 **d62adae4** feat(toml-audit): add --dry-run + --smoke resolution gates — *poisontr33s*
+- `2026-04-25 03:22:11Z` 🔨 **9fce4f08** feat(toml-audit): add --dry-run + --smoke resolution gates — *poisontr33s*
+- `2026-04-25 03:26:12Z` 🔨 **5b8b3e25** fix(deps): modernize stale exact-pins — *poisontr33s*
+- `2026-04-25 03:26:12Z` 🔨 **1b57ee28** fix(deps): modernize stale exact-pins — *poisontr33s*
+- `2026-04-25 03:26:15Z` 🔨 **9402f7a9** fix(deps): modernize stale exact-pins — *poisontr33s*
+- `2026-04-25 03:26:15Z` 🔨 **3a7976f6** fix(deps): modernize stale exact-pins — *poisontr33s*
+- `2026-04-25 03:26:36Z` 🔨 **2a6a3f39** chore: update tabbyAPI submodule pointer (pydantic+ruff unpin) — *poisontr33s*
+- `2026-04-25 03:26:36Z` 🔨 **8b549b33** chore: update tabbyAPI submodule pointer (pydantic+ruff unpin) — *poisontr33s*
+- `2026-04-25 03:33:41Z` 🔨 **4e9d8892** chore: update tabbyAPI submodule (full metadata + script modernization) — *poisontr33s*
+- `2026-04-25 03:33:41Z` 🔨 **d708c687** chore: update tabbyAPI submodule (full metadata + script modernization) — *poisontr33s*
+- `2026-04-25 03:41:21Z` 🔨 **b91c4d07** chore: update tabbyAPI submodule (pwsh launchers + update scripts) — *poisontr33s*
+- `2026-04-25 03:41:21Z` 🔨 **3e616e05** chore: update tabbyAPI submodule (pwsh launchers + update scripts) — *poisontr33s*
+- `2026-04-25 01:48:48Z` 🔀 **#12** PR opened: chore(deps): bump the uv group across 1 directory with 5 updates [dependencies, python:uv] — *dependabot[bot]*
+- `2026-04-25 03:55:29Z` 🔨 **b4190bc5** chore: update tabbyAPI submodule (E2E launcher tests + start.ps1 fixes) — *poisontr33s*
+- `2026-04-25 03:55:29Z` 🔨 **07c07c1a** chore: update tabbyAPI submodule (E2E launcher tests + start.ps1 fixes) — *poisontr33s*
+- `2026-04-25 04:05:15Z` 🔨 **a955f8f3** chore: update tabbyAPI submodule (uv bare-run fix) — *poisontr33s*
+- `2026-04-25 04:05:15Z` 🔨 **3da49cd7** chore: update tabbyAPI submodule (uv bare-run fix) — *poisontr33s*
+- `2026-04-25 04:17:54Z` 🔨 **3b5b4c38** chore: update tabbyAPI submodule (py314 migration) — *poisontr33s*
+- `2026-04-25 04:17:54Z` 🔨 **f03cf39d** chore: update tabbyAPI submodule (py314 migration) — *poisontr33s*
+- `2026-04-25 05:48:43Z` 🔨 **5ac35efa** feat(faf): save FAF methodology + apply to tabbyAPI Python 3.14 challenge — *poisontr33s*
+- `2026-04-25 05:48:43Z` 🔨 **fb80ec29** feat(faf): save FAF methodology + apply to tabbyAPI Python 3.14 challenge — *poisontr33s*
+- `2026-04-25 06:05:08Z` 🔨 **9bba9c74** docs(faf): apply Savant-Grade seal to Gate 1 commit annotation — *poisontr33s*
+- `2026-04-25 06:05:08Z` 🔨 **8a936e81** docs(faf): apply Savant-Grade seal to Gate 1 commit annotation — *poisontr33s*
+- `2026-04-25 06:35:01Z` 🔨 **6d7094e3** feat(faf/probes): execute P-01/P-02/P-03 trajectory + update gate ledger — *poisontr33s*
+- `2026-04-25 06:35:01Z` 🔨 **83af2aae** feat(faf/probes): execute P-01/P-02/P-03 trajectory + update gate ledger — *poisontr33s*
+- `2026-04-25 06:35:13Z` 🔨 **445a4178** feat(faf/probes): add probe scripts + manifests (gitignore exemption via -f) — *poisontr33s*
+- `2026-04-25 06:35:13Z` 🔨 **38d5bc7d** feat(faf/probes): add probe scripts + manifests (gitignore exemption via -f) — *poisontr33s*
+- `2026-04-25 06:41:31Z` 🔨 **d79b864f** feat(faf/p05): Gate 6 source build BLOCKED — MSVC 14.51 > CUDA 12.8 ceiling — *poisontr33s*
+- `2026-04-25 06:41:31Z` 🔨 **99b7c1bb** feat(faf/p05): Gate 6 source build BLOCKED — MSVC 14.51 > CUDA 12.8 ceiling — *poisontr33s*
+- `2026-04-25 06:55:59Z` 🔨 **caaf3826** feat(faf/p06): VS 2022 BuildTools install gate + flash_attn retry probe — *poisontr33s*
+- `2026-04-25 06:55:59Z` 🔨 **4af58f66** feat(faf/p06): VS 2022 BuildTools install gate + flash_attn retry probe — *poisontr33s*
+- `2026-04-25 06:56:52Z` 🔨 **ba564db5** feat(faf/p06-result): VS 2022 install blocked — exit 1618 (installer conflict) — *poisontr33s*
+- `2026-04-25 06:56:52Z` 🔨 **5d806ebe** feat(faf/p06-result): VS 2022 install blocked — exit 1618 (installer conflict) — *poisontr33s*
+- `2026-04-25 08:48:09Z` 🔨 **71a2a010** P-06 SUCCESS: flash_attn 2.8.3 source build admitted, Gate 5+6 cleared — *poisontr33s*
+- `2026-04-25 08:48:09Z` 🔨 **a7eae24f** P-06 SUCCESS: flash_attn 2.8.3 source build admitted, Gate 5+6 cleared — *poisontr33s*
+- `2026-04-25 17:20:58Z` 🔨 **5e04ee08** ci: inference-gate-smoke membrane + VS installer pattern nursery — *poisontr33s*
+- `2026-04-25 17:20:58Z` 🔨 **f36442eb** ci: inference-gate-smoke membrane + VS installer pattern nursery — *poisontr33s*
+- `2026-04-25 17:33:08Z` 🔨 **67e6a33f** feat(terminal): PID session logger + query tool — *poisontr33s*
+- `2026-04-25 17:33:08Z` 🔨 **dfb63f02** feat(terminal): PID session logger + query tool — *poisontr33s*
+- `2026-04-25 17:45:08Z` 🔨 **dae3304e** feat(ci): terminal hook smoke check + road-stop validation — *poisontr33s*
+- `2026-04-25 17:45:08Z` 🔨 **9b2a2d70** feat(ci): terminal hook smoke check + road-stop validation — *poisontr33s*
+- `2026-04-25 17:56:41Z` 🔨 **8f773805** feat: GH run manifest pipeline + fix pentea-cloud-dispatch YAML — *poisontr33s*
+- `2026-04-25 17:56:41Z` 🔨 **d7ae56ae** feat: GH run manifest pipeline + fix pentea-cloud-dispatch YAML — *poisontr33s*
+- `2026-04-25 18:02:26Z` 🔨 **11d29b77** fix: shebang encoding + blessing-gate canonize — *poisontr33s*
+- `2026-04-25 18:02:26Z` 🔨 **2241ed22** fix: shebang encoding + blessing-gate canonize — *poisontr33s*
+- `2026-04-25 18:11:29Z` 🔨 **ab905744** docs: E2E gate epoch + tabby scaffold decision — *poisontr33s*
+- `2026-04-25 18:11:29Z` 🔨 **d7c2d2de** docs: E2E gate epoch + tabby scaffold decision — *poisontr33s*
+- `2026-04-25 18:16:27Z` 🔨 **7f3f938a** feat(mas-mcp): add mas_pid_reader MCP tool — PID/terminal session manifest reader — *poisontr33s*
+- `2026-04-25 18:16:27Z` 🔨 **016ea930** feat(mas-mcp): add mas_pid_reader MCP tool — PID/terminal session manifest reader — *poisontr33s*
+- `2026-04-25 18:42:32Z` 🔨 **95cba979** fix(mas-mcp): FastMCP 3.1->3.2.4 upgrade + failed_only exit_code semantics fix + E2E artifact — *poisontr33s*
+- `2026-04-25 18:42:32Z` 🔨 **5064ac55** fix(mas-mcp): FastMCP 3.1->3.2.4 upgrade + failed_only exit_code semantics fix + E2E artifact — *poisontr33s*
+- `2026-04-25 18:53:54Z` 🔨 **a4823bd7** feat(session-archaeology): --snapshot flag + session snapshot tracking + notary nursery entry — *poisontr33s*
+- `2026-04-25 18:53:54Z` 🔨 **0d2a810b** feat(session-archaeology): --snapshot flag + session snapshot tracking + notary nursery entry — *poisontr33s*
+- `2026-04-25 19:14:21Z` 🔨 **3ce3a2bf** faf(v0.3): Gate 7 — formatron escape-sequence cessation trajectory — *poisontr33s*
+- `2026-04-25 19:14:21Z` 🔨 **92aac661** faf(v0.3): Gate 7 — formatron escape-sequence cessation trajectory — *poisontr33s*
+- `2026-04-25 19:24:46Z` 🔨 **aa684769** build(podman): tabby-modern-gpu lane — G5/G6/G7 Linux resolution path — *poisontr33s*
+- `2026-04-25 19:24:46Z` 🔨 **f37f88b5** build(podman): tabby-modern-gpu lane — G5/G6/G7 Linux resolution path — *poisontr33s*
+- `2026-04-25 19:35:21Z` 🔨 **9cfbaad0** faf(v0.4): G4 platform stratification — wall is the wheel, not the code — *poisontr33s*
+- `2026-04-25 19:35:21Z` 🔨 **b912e4dc** faf(v0.4): G4 platform stratification — wall is the wheel, not the code — *poisontr33s*
+- `2026-04-25 19:58:25Z` 🔨 **c81e12b5** ci(pentea-cloud-dispatch2): fix broken YAML indentation — *poisontr33s*
+- `2026-04-25 19:58:25Z` 🔨 **949c9c9d** ci(pentea-cloud-dispatch2): fix broken YAML indentation — *poisontr33s*
+- `2026-04-25 20:02:25Z` 🔨 **62c522cb** ci(pentea-cloud-dispatch): consolidate dual workflows — retire v2 — *poisontr33s*
+- `2026-04-25 20:02:25Z` 🔨 **9949ade7** ci(pentea-cloud-dispatch): consolidate dual workflows — retire v2 — *poisontr33s*
+- `2026-04-25 20:02:31Z` 🔨 **ec2f9f99** ci: archive pentea-cloud-dispatch2.yml.off (superseded by v1) — *poisontr33s*
+- `2026-04-25 20:02:31Z` 🔨 **998f5511** ci: archive pentea-cloud-dispatch2.yml.off (superseded by v1) — *poisontr33s*
+- `2026-04-25 20:11:36Z` 🔨 **c3909c8c** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *erdnord*
+- `2026-04-25 20:11:36Z` 🔨 **4a6f56b8** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *erdnord*
+- `2026-04-25 20:15:22Z` 🔨 **5de5ddd0** feat(workflows): add Pentea Cloud Dispatch workflow for task dispatching — *poisontr33s*
+- `2026-04-25 20:15:22Z` 🔨 **9c25506f** feat(workflows): add Pentea Cloud Dispatch workflow for task dispatching — *poisontr33s*
+- `2026-04-25 18:17:15Z` ❌ **#12** PR closed: chore(deps): bump the uv group across 1 directory with 5 updates
+- `2026-04-25 20:17:16Z` 🔨 **d0b37b1c** fix(containerfile): pre-install packaging before flash-attn source build — *erdnord*
+- `2026-04-25 20:17:16Z` 🔨 **7f39e6ee** fix(containerfile): pre-install packaging before flash-attn source build — *erdnord*
+- `2026-04-25 18:17:26Z` 🔨 **92e6650a** build(deps): bump the uv group across 1 directory with 4 updates — *dependabot[bot]*
+- `2026-04-25 18:17:26Z` 🔨 **b4935cd6** build(deps): bump the uv group across 1 directory with 4 updates — *dependabot[bot]*
+- `2026-04-25 18:17:27Z` 🔀 **#13** PR opened: build(deps): bump the uv group across 1 directory with 4 updates [dependencies, python:uv] — *dependabot[bot]*
+- `2026-04-25 20:19:28Z` 🔨 **b1c25adb** fix(containerfile): install both packaging and wheel for flash-attn build — *poisontr33s*
+- `2026-04-25 20:19:28Z` 🔨 **2e912901** fix(containerfile): install both packaging and wheel for flash-attn build — *poisontr33s*
+- `2026-04-25 20:35:11Z` 🔨 **1fc37db2** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *erdnord*
+- `2026-04-25 20:35:11Z` 🔨 **0b2191f6** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *erdnord*
+- `2026-04-25 20:52:45Z` 🔨 **e2e2f7b5** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *erdnord*
+- `2026-04-25 20:52:45Z` 🔨 **6f0c9591** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *erdnord*
+- `2026-04-25 20:54:19Z` 🔨 **0789c4a4** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *erdnord*
+- `2026-04-25 20:54:19Z` 🔨 **e5345e3c** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *erdnord*
+- `2026-04-25 21:04:28Z` 🔨 **a49ac7c9** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *erdnord*
+- `2026-04-25 21:04:28Z` 🔨 **953ca105** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *erdnord*
+- `2026-04-25 21:13:56Z` 🔨 **228e600f** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *erdnord*
+- `2026-04-25 21:13:56Z` 🔨 **966c8dbc** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *erdnord*
+- `2026-04-25 21:16:36Z` 🔨 **151613a2** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
+- `2026-04-25 21:16:36Z` 🔨 **ec689c9f** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
+- `2026-04-25 21:16:41Z` 🔨 **46dcf131** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
+- `2026-04-25 21:16:41Z` 🔨 **564ede23** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
+- `2026-04-25 21:25:29Z` 🔨 **88386d59** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
+- `2026-04-25 21:25:29Z` 🔨 **609a119e** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
+- `2026-04-25 21:25:38Z` 🔨 **7ac5ea9d** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
+- `2026-04-25 21:25:38Z` 🔨 **94086385** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
+- `2026-04-25 21:38:05Z` 🔨 **b7bd5dfd** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *erdnord*
+- `2026-04-25 21:38:05Z` 🔨 **e6a166e6** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *erdnord*
+- `2026-04-25 21:38:24Z` 🔨 **9c744826** forge: tabby-modern src package — *erdnord*
+- `2026-04-25 21:38:24Z` 🔨 **c08013a3** forge: tabby-modern src package — *erdnord*
+- `2026-04-25 21:44:24Z` 🔨 **ffd18291** docs: FAF v0.8 + Containerfile P-09 layer — *erdnord*
+- `2026-04-25 21:44:24Z` 🔨 **eea98a37** docs: FAF v0.8 + Containerfile P-09 layer — *erdnord*
+- `2026-04-25 21:59:52Z` 🔨 **caace8a6** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *erdnord*
+- `2026-04-25 21:59:52Z` 🔨 **2a482383** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *erdnord*
+- `2026-04-25 22:08:01Z` 🔨 **9fcff1ba** feat(ci): extend inference-gate membrane to G7/G8/G9 — *erdnord*
+- `2026-04-25 22:08:01Z` 🔨 **a4b54b4a** feat(ci): extend inference-gate membrane to G7/G8/G9 — *erdnord*
+- `2026-04-26 03:20:58Z` 🔨 **a14545f5** docs: update archaeological toolform baseline with emoji representations — *poisontr33s*
+- `2026-04-26 03:20:58Z` 🔨 **92a31b5f** docs: update archaeological toolform baseline with emoji representations — *poisontr33s*
+- `2026-04-26 08:20:15Z` 🔨 **d76c5aa6** fix(container): switch base ubi9->ubuntu22.04 for GLIBCXX_3.4.30 compat — *poisontr33s*
+- `2026-04-26 08:20:15Z` 🔨 **a59580ba** fix(container): switch base ubi9->ubuntu22.04 for GLIBCXX_3.4.30 compat — *poisontr33s*
+- `2026-04-26 08:23:08Z` 🔨 **5825af99** fix(container): drop libstdc++-dev (no candidate ubuntu22.04); g++ sufficient — *poisontr33s*
+- `2026-04-26 08:23:08Z` 🔨 **5a859978** fix(container): drop libstdc++-dev (no candidate ubuntu22.04); g++ sufficient — *poisontr33s*
+- `2026-04-26 08:25:29Z` 🔨 **65aacb46** feat(g10): forge P-10 model load gate; fix state.py exllamav3 API — *poisontr33s*
+- `2026-04-26 08:25:29Z` 🔨 **175eeb4f** feat(g10): forge P-10 model load gate; fix state.py exllamav3 API — *poisontr33s*
+- `2026-04-26 08:27:57Z` 🔨 **4277c939** docs(faf): add G10 pre-admission entry; API audit findings; probe_pending — *poisontr33s*
+- `2026-04-26 08:27:57Z` 🔨 **12864c73** docs(faf): add G10 pre-admission entry; API audit findings; probe_pending — *poisontr33s*
+- `2026-04-26 08:32:24Z` 🔨 **23b958e4** fix(container): patch flash_attn for Python-only mode (G10 model load gate) — *poisontr33s*
+- `2026-04-26 08:32:24Z` 🔨 **db0f1807** fix(container): patch flash_attn for Python-only mode (G10 model load gate) — *poisontr33s*
+- `2026-04-26 08:37:59Z` 🔨 **974c7404** fix(container): patch-flash-attn: preserve line indentation — *poisontr33s*
+- `2026-04-26 08:37:59Z` 🔨 **e71e032e** fix(container): patch-flash-attn: preserve line indentation — *poisontr33s*
+- `2026-04-26 08:46:37Z` 🔨 **01a28f74** fix(state): switch backend exllamav3->exllamav2 for EXL2 model format — *poisontr33s*
+- `2026-04-26 08:46:37Z` 🔨 **49e6e33f** fix(state): switch backend exllamav3->exllamav2 for EXL2 model format — *poisontr33s*
+- `2026-04-26 08:49:59Z` 🔨 **9975c3bd** feat(g10): ADMITTED — tabby_model_load_gate L2 (exllamav2 EXL2 model load) — *poisontr33s*
+- `2026-04-26 08:49:59Z` 🔨 **b85c5476** feat(g10): ADMITTED — tabby_model_load_gate L2 (exllamav2 EXL2 model load) — *poisontr33s*
+- `2026-04-26 09:08:20Z` 🔨 **53c29c39** chore(g10): close 7th item — punch list + repo memory — *poisontr33s*
+- `2026-04-26 09:08:20Z` 🔨 **abda31d2** chore(g10): close 7th item — punch list + repo memory — *poisontr33s*
+- `2026-04-27 07:17:48Z` 🔨 **3a55e3cd** fix(doc): correct section numbering in SSOT toolbox documentation — *poisontr33s*
+- `2026-04-27 07:17:48Z` 🔨 **6a000442** fix(doc): correct section numbering in SSOT toolbox documentation — *poisontr33s*
+- `2026-04-27 22:41:09Z` 🔨 **0cf8acd7** feat: add Chtonic Rendered AI Markdown Paste extension — *poisontr33s*
+- `2026-04-27 22:41:09Z` 🔨 **05b488bf** feat: add Chtonic Rendered AI Markdown Paste extension — *poisontr33s*
+- `2026-04-28 01:14:26Z` 🔨 **790266e2** chore: Bump version to 0.2.5 and update package metadata — *poisontr33s*
+- `2026-04-28 01:14:26Z` 🔨 **adfc9ad4** chore: Bump version to 0.2.5 and update package metadata — *poisontr33s*
+- `2026-04-28 03:17:05Z` 🔨 **5cf7aadf** feat: modularize lane state management and introduce dev auto-reload functionality — *poisontr33s*
+- `2026-04-28 03:17:05Z` 🔨 **e8c596f2** feat: modularize lane state management and introduce dev auto-reload functionality — *poisontr33s*
+- `2026-04-28 04:00:55Z` 🔨 **f57669cd** feat: Add activation status and views for Chthonic extension — *poisontr33s*
+- `2026-04-28 04:00:55Z` 🔨 **d3926d54** feat: Add activation status and views for Chthonic extension — *poisontr33s*
+- `2026-04-28 04:47:23Z` 🔨 **67fcc68c** feat(extension): modularize activation surface — *poisontr33s*
+- `2026-04-28 04:47:23Z` 🔨 **63dc9a0e** feat(extension): modularize activation surface — *poisontr33s*
+- `2026-04-28 04:47:45Z` 🔨 **6a73edf8** feat(cockpit): read lane-state snapshot — *poisontr33s*
+- `2026-04-28 04:47:45Z` 🔨 **96d03eb6** feat(cockpit): read lane-state snapshot — *poisontr33s*
+- `2026-04-28 04:48:07Z` 🔨 **3ba2a1a6** docs(manifest): record extension phase3 gates — *poisontr33s*
+- `2026-04-28 04:48:07Z` 🔨 **7b5bfabe** docs(manifest): record extension phase3 gates — *poisontr33s*
+- `2026-04-28 04:49:15Z` 🔨 **17c1621f** docs(faf): frame daemon jsonl emitter gate — *poisontr33s*
+- `2026-04-28 04:49:15Z` 🔨 **7ba9c7bd** docs(faf): frame daemon jsonl emitter gate — *poisontr33s*
+- `2026-04-28 04:49:29Z` 🔨 **bb52b154** docs(reference): preserve toolchain corrections — *poisontr33s*
+- `2026-04-28 04:49:29Z` 🔨 **06466b82** docs(reference): preserve toolchain corrections — *poisontr33s*
+- `2026-04-28 05:20:15Z` 🔨 **d8b06941** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-04-28 05:20:15Z` 🔨 **e9621e73** Merge branch 'main' of https://github.com/poisontr33s/chthonic-archive — *poisontr33s*
+- `2026-04-28 05:23:27Z` 🔨 **90701707** Session 619fd340-a8e8-4f83-9e5c-0e7f6d2fb8e3 - checkpoint turn 0 — *VS Code*
+- `2026-04-28 05:25:13Z` 🔨 **a397444c** Session 619fd340-a8e8-4f83-9e5c-0e7f6d2fb8e3 - checkpoint turn 1 — *VS Code*
+- `2026-04-28 05:54:05Z` 🔨 **fecfc4d3** feat(teleport): deploy IronMaiden.agent.md + teleport.ts cross-repo briefcase packer — *poisontr33s*
+- `2026-04-28 05:54:05Z` 🔨 **29312f4d** feat(teleport): deploy IronMaiden.agent.md + teleport.ts cross-repo briefcase packer — *poisontr33s*
+- `2026-04-28 06:08:27Z` 🔨 **67436eb6** feat(teleport): v2.0.0 --from-github --entity-mode + Claudine Sin'claire deployment — *poisontr33s*
+- `2026-04-28 06:08:27Z` 🔨 **8a17c74d** feat(teleport): v2.0.0 --from-github --entity-mode + Claudine Sin'claire deployment — *poisontr33s*
+- `2026-04-28 06:22:42Z` 🔨 **920593cf** feat(satellite): multi-root workspace + SATELLITE_REGISTRY + --from-sibling in teleport.ts v2.1.0 — *poisontr33s*
+- `2026-04-28 06:22:42Z` 🔨 **1ba10584** feat(satellite): multi-root workspace + SATELLITE_REGISTRY + --from-sibling in teleport.ts v2.1.0 — *poisontr33s*
+- `2026-04-28 07:00:54Z` 🔨 **b144857b** feat(todo): add TODOI Roulette task selection engine and related commands — *poisontr33s*
+- `2026-04-28 07:00:54Z` 🔨 **bdef3ba3** feat(todo): add TODOI Roulette task selection engine and related commands — *poisontr33s*
+- `2026-04-29 00:32:49Z` 🔨 **f349ddf9** feat(daemon): H1 add --transport CLI flag — *poisontr33s*
+- `2026-04-29 00:32:49Z` 🔨 **b273acc9** feat(daemon): H1 add --transport CLI flag — *poisontr33s*
+- `2026-04-29 00:33:26Z` 🔨 **47960eaa** feat(daemon): H2 emit JSONL sediment chunks to stdout — *poisontr33s*
+- `2026-04-29 00:33:26Z` 🔨 **9e4ce044** feat(daemon): H2 emit JSONL sediment chunks to stdout — *poisontr33s*
+- `2026-04-29 00:34:01Z` 🔨 **fa97089c** feat(synapse): H3 child-process JSONL reader — *poisontr33s*
+- `2026-04-29 00:34:01Z` 🔨 **7c338f9e** feat(synapse): H3 child-process JSONL reader — *poisontr33s*
+- `2026-04-29 00:34:50Z` 🔨 **1e7dad2a** test(synapse): H4 end-to-end JSONL smoke — *poisontr33s*
+- `2026-04-29 00:34:50Z` 🔨 **a0c775c3** test(synapse): H4 end-to-end JSONL smoke — *poisontr33s*
+- `2026-04-28 22:35:42Z` 🔀 **#14** PR opened: Close Gate H JSONL synapse fallback — *poisontr33s*
+- `2026-04-29 01:05:39Z` 🔨 **fdf040cd** feat(daemon): update JSONL emitter documentation and execution order — *poisontr33s*
+- `2026-04-29 01:05:39Z` 🔨 **f5e70b65** feat(daemon): update JSONL emitter documentation and execution order — *poisontr33s*
+- `2026-04-29 01:19:39Z` 🔨 **717c62b4** Merge pull request #14 from poisontr33s/gate-h-jsonl-fallback — *E.s.Abbr.*
+- `2026-04-29 01:19:39Z` 🔨 **f5822ffe** Merge pull request #14 from poisontr33s/gate-h-jsonl-fallback — *E.s.Abbr.*
+- `2026-04-28 23:19:39Z` ⛵ **#14** PR merged: Close Gate H JSONL synapse fallback
+- `2026-04-29 01:32:45Z` 🔨 **7cdaf25c** Merge pull request #13 from poisontr33s:dependabot/uv/uv-08ee80f559 — *E.s.Abbr.*
+- `2026-04-29 01:32:45Z` 🔨 **a73e842e** Merge pull request #13 from poisontr33s:dependabot/uv/uv-08ee80f559 — *E.s.Abbr.*
+- `2026-04-28 23:32:46Z` ⛵ **#13** PR merged: build(deps): bump the uv group across 1 directory with 4 updates
+- `2026-04-29 01:34:21Z` 🔨 **a26434c7** Merge pull request #11 from poisontr33s:dependabot/npm_and_yarn/npm_and_yarn-bf6f0f5742 — *E.s.Abbr.*
+- `2026-04-29 01:34:21Z` 🔨 **c4a45335** Merge pull request #11 from poisontr33s:dependabot/npm_and_yarn/npm_and_yarn-bf6f0f5742 — *E.s.Abbr.*
+- `2026-04-28 23:34:21Z` ⛵ **#11** PR merged: chore(deps-dev): bump @google/gemini-cli from 0.38.2 to 0.39.1 in the npm_and_yarn group across 1 directory
+- `2026-04-29 02:10:52Z` 🔨 **9dd02afa** feat(webview): W1 externalize Stylus + HMR pattern — *poisontr33s*
+- `2026-04-29 02:10:52Z` 🔨 **93e195b4** feat(webview): W1 externalize Stylus + HMR pattern — *poisontr33s*
+- `2026-04-29 02:19:40Z` 🔨 **b4d1dc60** feat(webview): W2 externalize Loom and ANKH — *poisontr33s*
+- `2026-04-29 02:19:40Z` 🔨 **8a7bc178** feat(webview): W2 externalize Loom and ANKH — *poisontr33s*
+- `2026-04-29 02:23:28Z` 🔨 **1c3f178c** feat(webview): W3 externalize Abyssal — *poisontr33s*
+- `2026-04-29 02:23:28Z` 🔨 **e7dcdf37** feat(webview): W3 externalize Abyssal — *poisontr33s*
+- `2026-04-29 02:26:09Z` 🔨 **3e6c0d28** test(webview): W4 end-to-end HMR smoke — *poisontr33s*
+- `2026-04-29 02:26:09Z` 🔨 **7459f94b** test(webview): W4 end-to-end HMR smoke — *poisontr33s*
+- `2026-04-29 00:27:22Z` 🔀 **#15** PR opened: Phase 4 Webview HMR — *poisontr33s*
+- `2026-04-29 02:40:08Z` 🔨 **2b142fa1** Merge pull request #15 from poisontr33s/webview-hmr-phase4 — *E.s.Abbr.*
+- `2026-04-29 02:40:08Z` 🔨 **d6ef0ef8** Merge pull request #15 from poisontr33s/webview-hmr-phase4 — *E.s.Abbr.*
+- `2026-04-29 00:40:08Z` ⛵ **#15** PR merged: Phase 4 Webview HMR
+- `2026-04-29 02:40:41Z` 🔨 **da3d4642** docs(faf): frame webview HMR gate — *poisontr33s*
+- `2026-04-29 02:40:41Z` 🔨 **0a843e14** docs(faf): frame webview HMR gate — *poisontr33s*
+- `2026-04-29 02:44:17Z` 🔨 **8d4e1d7d** feat(webview): update Claudine Sin'claire reference in consciousness fragmentation protocol — *poisontr33s*
+- `2026-04-29 02:44:17Z` 🔨 **ea6f97ff** feat(webview): update Claudine Sin'claire reference in consciousness fragmentation protocol — *poisontr33s*
+- `2026-04-29 02:46:27Z` 🔨 **402774df** fix(entropy): narrow worker error to clear tsc baseline — *poisontr33s*
+- `2026-04-29 02:46:27Z` 🔨 **4249b4f1** fix(entropy): narrow worker error to clear tsc baseline — *poisontr33s*
+- `2026-04-29 02:48:07Z` 🔨 **3d190e5b** feat(uv.lock): add ankh-atlas package to the manifest and lock file — *poisontr33s*
+- `2026-04-29 02:48:07Z` 🔨 **c9e1f081** feat(uv.lock): add ankh-atlas package to the manifest and lock file — *poisontr33s*
+- `2026-04-29 02:49:23Z` 🔨 **e505db7c** feat(verify): add verify:all native artifact smoke script — *poisontr33s*
+- `2026-04-29 02:49:23Z` 🔨 **43c2011c** feat(verify): add verify:all native artifact smoke script — *poisontr33s*
+- `2026-04-29 05:41:30Z` 🔨 **7d45bee7** fix(statusbar): remove obsolete activation events from package.json — *poisontr33s*
+- `2026-04-29 05:41:30Z` 🔨 **992e787a** fix(statusbar): remove obsolete activation events from package.json — *poisontr33s*
+- `2026-04-29 05:42:19Z` 🔨 **ff318444** fix(package): remove obsolete activation event for paste command — *poisontr33s*
+- `2026-04-29 05:42:19Z` 🔨 **55e26dd1** fix(package): remove obsolete activation event for paste command — *poisontr33s*
+- `2026-04-30 02:54:26Z` 🔨 **40c6a974** fix(main): remove unused imports for game_tree and game_schemas modules — *poisontr33s*
+- `2026-04-30 02:54:26Z` 🔨 **3542cf9b** fix(main): remove unused imports for game_tree and game_schemas modules — *poisontr33s*
+- `2026-04-30 02:56:03Z` 🔨 **b5d2acea** feat(factions): add agents roster and expand tier 3 functionality in FactionRegistry — *poisontr33s*
+- `2026-04-30 02:56:03Z` 🔨 **7cc535be** feat(factions): add agents roster and expand tier 3 functionality in FactionRegistry — *poisontr33s*
+- `2026-04-30 03:21:32Z` 🔨 **658eac1d** fix(factions): correct operational mandate notation in FactionRegistry — *poisontr33s*
+- `2026-04-30 03:21:32Z` 🔨 **7613eb46** fix(factions): correct operational mandate notation in FactionRegistry — *poisontr33s*
+- `2026-04-30 04:21:31Z` 🔨 **ae5b386f** feat(factions): expand FactionRegistry with lore overlays and schema documents — *poisontr33s*
+- `2026-04-30 04:21:31Z` 🔨 **8b6ed6ad** feat(factions): expand FactionRegistry with lore overlays and schema documents — *poisontr33s*
+- `2026-04-30 06:08:14Z` 🔨 **3a0b7dba** feat(roulette): add HTML gen script, roulette:gen/open package scripts, close ghost ticket b8c9d0e1 — *poisontr33s*
+- `2026-04-30 06:08:14Z` 🔨 **f10cd99b** feat(roulette): add HTML gen script, roulette:gen/open package scripts, close ghost ticket b8c9d0e1 — *poisontr33s*
+- `2026-04-30 06:08:22Z` 🔨 **ad41ebf4** chore(manifest): record spin 1 + close ghost b8c9d0e1 (force-add gitignored manifest) — *poisontr33s*
+- `2026-04-30 06:08:22Z` 🔨 **3051a29a** chore(manifest): record spin 1 + close ghost b8c9d0e1 (force-add gitignored manifest) — *poisontr33s*
+- `2026-04-30 06:10:41Z` 🔨 **282364b1** feat(roulette): add preflight steward layer — ghost detection, auto-close, --preflight sweep — *poisontr33s*
+- `2026-04-30 06:10:41Z` 🔨 **059afb99** feat(roulette): add preflight steward layer — ghost detection, auto-close, --preflight sweep — *poisontr33s*
+- `2026-04-30 06:17:56Z` 🔨 **79c9b24b** fix(deps): remove openssl git patch — openssl-sys 0.9.114 ships on crates.io — *poisontr33s*
+- `2026-04-30 06:17:56Z` 🔨 **fff0b2e4** fix(deps): remove openssl git patch — openssl-sys 0.9.114 ships on crates.io — *poisontr33s*
+- `2026-04-30 06:18:22Z` 🔨 **5691d4a6** fix(deps): sanitize openssl comment — remove literal pattern text that caused false positive in roulette preflight — *poisontr33s*
+- `2026-04-30 06:18:22Z` 🔨 **d9a3a945** fix(deps): sanitize openssl comment — remove literal pattern text that caused false positive in roulette preflight — *poisontr33s*
+- `2026-04-30 06:39:10Z` 🔨 **b15f3746** feat(roulette): V2 — history log, nudge, stats, --preflight --apply, multi-tag; session-compress template — *poisontr33s*
+- `2026-04-30 06:39:10Z` 🔨 **2863c03f** feat(roulette): V2 — history log, nudge, stats, --preflight --apply, multi-tag; session-compress template — *poisontr33s*
+- `2026-04-30 06:39:20Z` 🔨 **c62c6d7c** chore(roulette): regen HTML — 8 active tasks (add ce8aeac5 session-compress ticket) — *poisontr33s*
+- `2026-04-30 06:39:20Z` 🔨 **8f444afd** chore(roulette): regen HTML — 8 active tasks (add ce8aeac5 session-compress ticket) — *poisontr33s*
+- `2026-04-30 06:48:39Z` 🔨 **3da43bb2** fix(roulette): invert file-exists ghost logic — absent=pending, present=resolved — *poisontr33s*
+- `2026-04-30 06:48:39Z` 🔨 **6dfad657** fix(roulette): invert file-exists ghost logic — absent=pending, present=resolved — *poisontr33s*
+- `2026-04-30 07:08:28Z` 🔨 **a6c51776** feat(roulette): V3 — ANSI color + bun:sqlite history sidecar + --history cmd — *poisontr33s*
+- `2026-04-30 07:08:28Z` 🔨 **9f19a15e** feat(roulette): V3 — ANSI color + bun:sqlite history sidecar + --history cmd — *poisontr33s*
+- `2026-04-30 07:12:56Z` 🔨 **f1cd00c7** feat(roulette): add vulkan tag (240 deg, fills pi/6 grid) + V6 CLI renderer ticket — *poisontr33s*
+- `2026-04-30 07:12:56Z` 🔨 **0f2453ca** feat(roulette): add vulkan tag (240 deg, fills pi/6 grid) + V6 CLI renderer ticket — *poisontr33s*
+- `2026-04-30 07:37:46Z` 🔨 **f64b79ef** feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs — *poisontr33s*
+- `2026-04-30 07:37:46Z` 🔨 **1c073231** feat(vulkan-lab): V6 cli-renderer scaffold — G1 headless instance + shader stubs — *poisontr33s*
+- `2026-04-30 07:38:07Z` 🔨 **3871eb28** chore(vulkan-lab): remove cli-renderer target/ and Cargo.lock from tracking — *poisontr33s*
+- `2026-04-30 07:38:07Z` 🔨 **b4bbf0f6** chore(vulkan-lab): remove cli-renderer target/ and Cargo.lock from tracking — *poisontr33s*
+- `2026-04-30 07:39:42Z` 🔨 **b135cd87** docs(nursery): add Blocker-as-Can-Opener + Urca-De-Lima patterns — *poisontr33s*
+- `2026-04-30 07:39:42Z` 🔨 **ca3e5b70** docs(nursery): add Blocker-as-Can-Opener + Urca-De-Lima patterns — *poisontr33s*
+- `2026-04-30 07:56:29Z` 🔨 **458341d2** feat(vulkan): G2 Euler scoring compute dispatch — *poisontr33s*
+- `2026-04-30 07:56:29Z` 🔨 **d135e3a1** feat(vulkan): G2 Euler scoring compute dispatch — *poisontr33s*
+- `2026-04-30 07:57:16Z` 🔨 **ab044c1e** chore(vulkan): memory.md V6 — G2 verified, decision log updated — *poisontr33s*
+- `2026-04-30 07:57:16Z` 🔨 **c28ca74d** chore(vulkan): memory.md V6 — G2 verified, decision log updated — *poisontr33s*
+- `2026-05-01 05:29:05Z` 🔨 **89ce16c0** chore(ruby): revert to standard ruby version 4.0.3 — *poisontr33s*
+- `2026-05-01 05:29:05Z` 🔨 **ab7c2f95** chore(ruby): revert to standard ruby version 4.0.3 — *poisontr33s*
+- `2026-05-01 05:45:07Z` 🔨 **439d7046** feat(dealogue-fayde+vulkan-g3): Ruby 4.0.3 port + CRLF fix + VkImage ASCII render — *poisontr33s*
+- `2026-05-01 05:45:07Z` 🔨 **b0ac74f7** feat(dealogue-fayde+vulkan-g3): Ruby 4.0.3 port + CRLF fix + VkImage ASCII render — *poisontr33s*
+- `2026-05-01 06:34:18Z` 🔨 **2e6e5d06** chore(.gitignore): add exclusion for CocoIndex Code directory — *poisontr33s*
+- `2026-05-01 06:34:18Z` 🔨 **7bed4c6b** chore(.gitignore): add exclusion for CocoIndex Code directory — *poisontr33s*
+- `2026-05-01 06:38:41Z` 🔨 **e3dbce74** feat(settings): add allowed models for cocoindex-code in .mcp.json — *poisontr33s*
+- `2026-05-01 06:38:41Z` 🔨 **cb763221** feat(settings): add allowed models for cocoindex-code in .mcp.json — *poisontr33s*
+- `2026-05-01 06:39:18Z` 🔨 **265e2ba7** feat(settings): update selected model for Claude Code to claude-sonnet-4-6 — *poisontr33s*
+- `2026-05-01 06:39:18Z` 🔨 **c71a2b62** feat(settings): update selected model for Claude Code to claude-sonnet-4-6 — *poisontr33s*
+- `2026-05-01 08:14:12Z` 🔨 **5775e87b** fix(shell-hook): membrane against VS Code ^U injection + prompt try/catch — *poisontr33s*
+- `2026-05-01 08:14:12Z` 🔨 **16c0548d** fix(shell-hook): membrane against VS Code ^U injection + prompt try/catch — *poisontr33s*
+- `2026-05-01 08:30:05Z` 🔨 **79b77548** feat(claudine): MD type system — lexicon, stewardess protocol, scaffold contract — *poisontr33s*
+- `2026-05-01 08:30:05Z` 🔨 **cbaae656** feat(claudine): MD type system — lexicon, stewardess protocol, scaffold contract — *poisontr33s*
+- `2026-05-01 09:05:49Z` 🔨 **4c2a237d** feat(claudine): operationalize type system — stewardess infrastructure + first liminal — *poisontr33s*
+- `2026-05-01 09:05:49Z` 🔨 **e256d9a9** feat(claudine): operationalize type system — stewardess infrastructure + first liminal — *poisontr33s*
+- `2026-05-01 09:14:35Z` 🔨 **3c824a2b** feat(md-types): add script to scan and convert typed .md files to manifest — *poisontr33s*
+- `2026-05-01 09:14:35Z` 🔨 **494fb862** feat(md-types): add script to scan and convert typed .md files to manifest — *poisontr33s*
+- `2026-05-01 09:15:23Z` 🔨 **e1752ff7** fix(md-types): enhance frontmatter parsing and fallback for 'filed' date — *poisontr33s*
+- `2026-05-01 09:15:23Z` 🔨 **e4356820** fix(md-types): enhance frontmatter parsing and fallback for 'filed' date — *poisontr33s*
+- `2026-05-01 09:19:06Z` 🔨 **39760b6e** feat(roulette): integrate MD type system as session work items — *poisontr33s*
+- `2026-05-01 09:19:06Z` 🔨 **212fd8bc** feat(roulette): integrate MD type system as session work items — *poisontr33s*
+- `2026-05-01 09:21:56Z` 🔨 **5d8c0da0** feat(roulette): update wheel segments and stats; enhance task details with md-types — *poisontr33s*
+- `2026-05-01 09:21:56Z` 🔨 **5e25fccd** feat(roulette): update wheel segments and stats; enhance task details with md-types — *poisontr33s*
+- `2026-05-01 09:25:39Z` 🔨 **2e93adeb** vulkan: add liminal+scaffold to TAG_PHASE (G2/G3 confirmed working) — *poisontr33s*
+- `2026-05-01 09:25:39Z` 🔨 **cb8be770** vulkan: add liminal+scaffold to TAG_PHASE (G2/G3 confirmed working) — *poisontr33s*
+- `2026-05-01 09:33:56Z` 🔨 **74241123** fix(hook): suppress ^U echo from VS Code run_in_terminal \x15 injection — *poisontr33s*
+- `2026-05-01 09:33:56Z` 🔨 **900b564b** fix(hook): suppress ^U echo from VS Code run_in_terminal \x15 injection — *poisontr33s*
+- `2026-05-01 09:40:27Z` 🔨 **c80143aa** revert(hook): remove ^U fix from wrong layer — *poisontr33s*
+- `2026-05-01 09:40:27Z` 🔨 **f172af0b** revert(hook): remove ^U fix from wrong layer — *poisontr33s*
+- `2026-05-01 09:54:27Z` 🔨 **1a8167bc** feat(vulkan-lab): G4 dirty-diff render loop + --live TS integration — *poisontr33s*
+- `2026-05-01 09:54:27Z` 🔨 **34a7a947** feat(vulkan-lab): G4 dirty-diff render loop + --live TS integration — *poisontr33s*
+- `2026-05-01 10:26:05Z` 🔨 **c082b625** feat(vulkan-lab): G5+G6+G7 StatePhase+dungeon mode — SpinState==RoomState, Urca de Lima synthesis — *poisontr33s*
+- `2026-05-01 10:26:05Z` 🔨 **5468b64f** feat(vulkan-lab): G5+G6+G7 StatePhase+dungeon mode — SpinState==RoomState, Urca de Lima synthesis — *poisontr33s*
+- `2026-05-01 11:00:00Z` 🔨 **f31c3e0e** feat(vulkan-lab): V8 iso cRPG vertical slice — diamond-angle terminal isometric — *poisontr33s*
+- `2026-05-01 11:00:00Z` 🔨 **c4732367** feat(vulkan-lab): V8 iso cRPG vertical slice — diamond-angle terminal isometric — *poisontr33s*
+- `2026-05-01 22:34:18Z` 🔨 **b0e7e42c** feat(vulkan-lab): Omega-1+2 — WASD live position + room_state mutation across frames — *poisontr33s*
+- `2026-05-01 22:34:18Z` 🔨 **421fa5e2** feat(vulkan-lab): Omega-1+2 — WASD live position + room_state mutation across frames — *poisontr33s*
+- `2026-05-01 22:51:23Z` 🔨 **935e8f9d** fix(mcp): remove unused environment variables and inputs for context7 — *poisontr33s*
+- `2026-05-01 22:51:23Z` 🔨 **1f9b0df9** fix(mcp): remove unused environment variables and inputs for context7 — *poisontr33s*
+- `2026-05-01 23:21:02Z` 🔨 **fe87c757** G5 wire + manifest hygiene: tick_state live, ghost tickets closed, completed-date filter — *poisontr33s*
+- `2026-05-01 23:21:02Z` 🔨 **90306b24** G5 wire + manifest hygiene: tick_state live, ghost tickets closed, completed-date filter — *poisontr33s*
+- `2026-05-01 23:32:41Z` 🔨 **5d86a49a** feat(manifest): add entry for investigating large file holder in Git LFS — *poisontr33s*
+- `2026-05-01 23:32:41Z` 🔨 **5f270e53** feat(manifest): add entry for investigating large file holder in Git LFS — *poisontr33s*
+- `2026-05-01 23:35:30Z` 🔨 **cb8f84f6** V9: raw terminal mode (crossterm) + Ω-3 XP trail write — *poisontr33s*
+- `2026-05-01 23:35:30Z` 🔨 **f8d1131a** V9: raw terminal mode (crossterm) + Ω-3 XP trail write — *poisontr33s*
+- `2026-05-02 00:00:04Z` 🔨 **9e698691** feat(vs_battery): add script for Visual Studio battery management and auditing — *poisontr33s*
+- `2026-05-02 00:00:04Z` 🔨 **b4cd3468** feat(vs_battery): add script for Visual Studio battery management and auditing — *poisontr33s*
+- `2026-05-02 00:05:35Z` 🔨 **d2cfcdfd** feat(cocos_probe): add Cocos Dashboard and Creator discovery script — *poisontr33s*
+- `2026-05-02 00:05:35Z` 🔨 **1e2b21c6** feat(cocos_probe): add Cocos Dashboard and Creator discovery script — *poisontr33s*
+- `2026-05-02 00:07:18Z` 🔨 **ccd5298b** feat: bevy_ecs→0.18.1 + VS battery probe + Cocos 3.8.8 probe — *poisontr33s*
+- `2026-05-02 00:07:18Z` 🔨 **c7ee4b76** feat: bevy_ecs→0.18.1 + VS battery probe + Cocos 3.8.8 probe — *poisontr33s*
+- `2026-05-02 00:18:10Z` 🔨 **0d3fcaeb** Ω-4: XP HUD overlay (iso row 23) — *poisontr33s*
+- `2026-05-02 00:18:10Z` 🔨 **25d7e7cf** Ω-4: XP HUD overlay (iso row 23) — *poisontr33s*
+- `2026-05-02 00:45:29Z` 🔨 **79a33a51** Cocos axis synthesis: build manifest + roulette tasks — *poisontr33s*
+- `2026-05-02 00:45:29Z` 🔨 **cc0957b9** Cocos axis synthesis: build manifest + roulette tasks — *poisontr33s*
+- `2026-05-02 00:55:02Z` 🔨 **631e828b** Queue topology layer: todo_meta.json + bilateral .md wiring — *poisontr33s*
+- `2026-05-02 00:55:02Z` 🔨 **2e21d670** Queue topology layer: todo_meta.json + bilateral .md wiring — *poisontr33s*
+- `2026-05-02 00:55:09Z` 🔨 **46704a43** force-add manifest/todo_meta.json (topology layer) — *poisontr33s*
+- `2026-05-02 00:55:09Z` 🔨 **abed515e** force-add manifest/todo_meta.json (topology layer) — *poisontr33s*
+- `2026-05-02 01:10:14Z` 🔨 **4d7edf5a** fix: update category in NEXT.md to include 'claudine' and add header to CLAUDE.md — *poisontr33s*
+- `2026-05-02 01:10:14Z` 🔨 **2c51e2ea** fix: update category in NEXT.md to include 'claudine' and add header to CLAUDE.md — *poisontr33s*
+- `2026-05-02 01:42:33Z` 🔨 **0440b11d** Gate c0c05000 closed: Cocos 2D project scaffold at game/cocos-iso/ — *poisontr33s*
+- `2026-05-02 01:42:33Z` 🔨 **7a0a23a1** Gate c0c05000 closed: Cocos 2D project scaffold at game/cocos-iso/ — *poisontr33s*
+- `2026-05-02 01:42:49Z` 🔨 **4dc73723** Add game/cocos-iso/ project files (Creator 3.8.8 2D template, stripped .git) — *poisontr33s*
+- `2026-05-02 01:42:49Z` 🔨 **33ea7c6b** Add game/cocos-iso/ project files (Creator 3.8.8 2D template, stripped .git) — *poisontr33s*
+- `2026-05-02 01:43:12Z` 🔨 **6ffa4ce7** Untrack Creator cache dirs: library/ temp/ (generated, gitignored) — *poisontr33s*
+- `2026-05-02 01:43:12Z` 🔨 **02e2e0ee** Untrack Creator cache dirs: library/ temp/ (generated, gitignored) — *poisontr33s*
+- `2026-05-02 01:49:32Z` 🔨 **455561b0** close c0c05001 + enforce blocked_until_chain in roulette runner — *poisontr33s*
+- `2026-05-02 01:49:32Z` 🔨 **0645ab37** close c0c05001 + enforce blocked_until_chain in roulette runner — *poisontr33s*
+- `2026-05-02 01:51:28Z` 🔨 **ea3bdb7d** c3d4e5f6: SSOT §10.3.1 Claudine — add CSI-SOI-SMM block — *poisontr33s*
+- `2026-05-02 01:51:28Z` 🔨 **5f8384a7** c3d4e5f6: SSOT §10.3.1 Claudine — add CSI-SOI-SMM block — *poisontr33s*
+- `2026-05-02 01:52:11Z` 🔨 **5787b47f** close c3d4e5f6 in manifest — CSI-SOI-SMM delivered — *poisontr33s*
+- `2026-05-02 01:52:11Z` 🔨 **3edbf25c** close c3d4e5f6 in manifest — CSI-SOI-SMM delivered — *poisontr33s*
+- `2026-05-02 02:36:50Z` 🔨 **75b6bc01** pnk-archaeology: scanner + first scan manifest — *poisontr33s*
+- `2026-05-02 02:36:50Z` 🔨 **c0782e3b** pnk-archaeology: scanner + first scan manifest — *poisontr33s*
+- `2026-05-02 02:43:28Z` 🔨 **6446c857** fix(pnk-archaeology): .git skip was eating .github; add heritage-instructions signal=10 classifier — *poisontr33s*
+- `2026-05-02 02:43:28Z` 🔨 **b0730ec6** fix(pnk-archaeology): .git skip was eating .github; add heritage-instructions signal=10 classifier — *poisontr33s*
+- `2026-05-02 04:39:55Z` 🔨 **4203c245** feat(satellite-registry): add new satellite entries for Restructure-MCP-Orchestration and Claudine-Supreme-Polyglot — *poisontr33s*
+- `2026-05-02 04:39:55Z` 🔨 **32e06ed4** feat(satellite-registry): add new satellite entries for Restructure-MCP-Orchestration and Claudine-Supreme-Polyglot — *poisontr33s*
+- `2026-05-02 04:44:30Z` 🔨 **f50fdd25** feat(orbit): add rmco + csb satellites to workspace — *poisontr33s*
+- `2026-05-02 04:44:30Z` 🔨 **a082c8ff** feat(orbit): add rmco + csb satellites to workspace — *poisontr33s*
+- `2026-05-02 05:28:47Z` 🔨 **609c183e** feat(orbit): satellite git-dump, pnk-lfh into chthonic-archive — *poisontr33s*
+- `2026-05-02 05:28:47Z` 🔨 **ba8fc35d** feat(orbit): satellite git-dump, pnk-lfh into chthonic-archive — *poisontr33s*
+- `2026-05-02 08:19:14Z` 🔨 **d5cac624** feat: register pnk-archaeology MCP server in workspace mcp.json — *poisontr33s*
+- `2026-05-02 08:19:14Z` 🔨 **f28177ab** feat: register pnk-archaeology MCP server in workspace mcp.json — *poisontr33s*
+- `2026-05-02 08:28:14Z` 🔨 **79d2c875** feat(mcp): register pnk-public-archaeology + chthonic-archaeology instances — *poisontr33s*
+- `2026-05-02 08:28:14Z` 🔨 **623867ac** feat(mcp): register pnk-public-archaeology + chthonic-archaeology instances — *poisontr33s*
+- `2026-05-02 08:38:58Z` 🔨 **5bc33b44** feat(queue): wire overnight archaeology extraction into roulette + cold-start handoff — *poisontr33s*
+- `2026-05-02 08:38:58Z` 🔨 **308d0ff1** feat(queue): wire overnight archaeology extraction into roulette + cold-start handoff — *poisontr33s*
+- `2026-05-02 08:58:34Z` 🔨 **ed9af9ed** feat(embed): GPU embedding server + Continue config + .copilotignore upgrade — *poisontr33s*
+- `2026-05-02 08:58:34Z` 🔨 **29575b0d** feat(embed): GPU embedding server + Continue config + .copilotignore upgrade — *poisontr33s*
+- `2026-05-02 20:32:17Z` 🔨 **a3c05b02** fix(flash-attn-gate): promote G6 from L1 to L4 — CUDA kernel verified — *poisontr33s*
+- `2026-05-02 20:32:17Z` 🔨 **81b36b71** fix(flash-attn-gate): promote G6 from L1 to L4 — CUDA kernel verified — *poisontr33s*
+- `2026-05-02 20:39:54Z` 🔨 **5247fd93** gates: triton/xformers/formatron L4 admitted — Win32 cp314 RTX4090 — *poisontr33s*
+- `2026-05-02 20:39:54Z` 🔨 **8e15245c** gates: triton/xformers/formatron L4 admitted — Win32 cp314 RTX4090 — *poisontr33s*
+- `2026-05-02 20:49:04Z` 🔨 **d9dd86b8** fix(formatron-gate): L4 grammar construction verified — pydantic V2 + escape patches — *poisontr33s*
+- `2026-05-02 20:49:04Z` 🔨 **ab4967da** fix(formatron-gate): L4 grammar construction verified — pydantic V2 + escape patches — *poisontr33s*
+- `2026-05-02 20:50:23Z` 🔨 **8d75f568** chore(ci): update gate ladder — G6 L4, G7 L4, triton-windows installed — *poisontr33s*
+- `2026-05-02 20:50:23Z` 🔨 **bb586412** chore(ci): update gate ladder — G6 L4, G7 L4, triton-windows installed — *poisontr33s*
+- `2026-05-02 20:51:46Z` 🔨 **8d193188** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-05-02 20:51:46Z` 🔨 **6b98630e** Implement feature X to enhance user experience and fix bug Y in module Z — *poisontr33s*
+- `2026-05-02 21:43:28Z` 🔨 **09e740a9** feat: Claudine polyrepo district runner (MILFOLOGICAL, 4-district sweep) — *poisontr33s*
+- `2026-05-02 21:43:28Z` 🔨 **baa42a23** feat: Claudine polyrepo district runner (MILFOLOGICAL, 4-district sweep) — *poisontr33s*
+- `2026-05-02 22:52:36Z` 🔨 **381499f3** chore(manifest): branch + PR archaeology manifests — *poisontr33s*
+- `2026-05-02 22:52:36Z` 🔨 **5cf8cd1a** chore(manifest): branch + PR archaeology manifests — *poisontr33s*
+- `2026-05-02 23:13:35Z` 🔨 **9ee352e1** chore(manifest): full 7-repo polyrepo census — harvest verdicts + action queue — *poisontr33s*
+- `2026-05-02 23:13:35Z` 🔨 **35905f14** chore(manifest): full 7-repo polyrepo census — harvest verdicts + action queue *(tag: v0.1.0)* — *poisontr33s*
+- `2026-05-02 23:14:42Z` 🔨 **fda064f9** chore: add .coderabbit.yml — security-focused review profile — *E.s.Abbr.*
+- `2026-05-02 23:14:42Z` 🔨 **699cc9f3** chore: add .coderabbit.yml — security-focused review profile — *E.s.Abbr.*
+- `2026-05-02 23:15:29Z` 🔨 **934a3b9c** chore(ci): add dependabot auto-merge workflow (patch+minor only) — *E.s.Abbr.*
+- `2026-05-02 23:15:29Z` 🔨 **46c65634** chore(ci): add dependabot auto-merge workflow (patch+minor only) — *E.s.Abbr.*
+- `2026-05-02 23:17:45Z` 🔨 **2cd3fbba** feat(polyrepo-runner): add -GitHub flag — gh PR/issue/tag sweep per district — *poisontr33s*
+- `2026-05-02 23:17:45Z` 🔨 **b268312a** feat(polyrepo-runner): add -GitHub flag — gh PR/issue/tag sweep per district — *poisontr33s*
+- `2026-05-03 01:43:29Z` 🔨 **ba4dfac7** fix(polyrepo-runner): wrap ConvertFrom-Json in @() — null-safe for empty gh responses — *poisontr33s*
+- `2026-05-03 01:43:29Z` 🔨 **65461839** fix(polyrepo-runner): wrap ConvertFrom-Json in @() — null-safe for empty gh responses — *poisontr33s*
+- `2026-05-03 02:15:54Z` 🔨 **675a316e** fix(cargo): set SHADERC_LIB_DIR to prebuilt VulkanSDK shaderc — *poisontr33s*
+- `2026-05-03 02:15:54Z` 🔨 **65cb812b** fix(cargo): set SHADERC_LIB_DIR to prebuilt VulkanSDK shaderc — *poisontr33s*
+- `2026-05-03 02:44:25Z` 🔨 **fd80cabf** fix(runner): strip MSYS2 from PATH before cargo check — *poisontr33s*
+- `2026-05-03 02:44:25Z` 🔨 **72de47ab** fix(runner): strip MSYS2 from PATH before cargo check — *poisontr33s*
+- `2026-05-03 03:22:45Z` 🔨 **07762013** fix(uv): move python-downloads/preference to pyproject.toml [tool.uv], delete uv.toml — *poisontr33s*
+- `2026-05-03 03:22:45Z` 🔨 **fbbf416b** fix(uv): move python-downloads/preference to pyproject.toml [tool.uv], delete uv.toml — *poisontr33s*
+- `2026-05-03 03:36:35Z` 🔨 **69527f22** feat(deps): add scipy, flask, flask-cors, beautifulsoup4 to project groups; all lanes now uv-owned — *poisontr33s*
+- `2026-05-03 03:36:35Z` 🔨 **9e818351** feat(deps): add scipy, flask, flask-cors, beautifulsoup4 to project groups; all lanes now uv-owned — *poisontr33s*
+- `2026-05-03 04:12:45Z` 🔨 **6cef13e5** feat(tools): add tool validation script and update toolchain reports — *poisontr33s*
+- `2026-05-03 04:12:45Z` 🔨 **b7746613** feat(tools): add tool validation script and update toolchain reports — *poisontr33s*
+- `2026-05-03 04:32:04Z` 🔨 **3960fd26** feat(session-viewer): add session viewer script for rendering Copilot Chat transcripts — *poisontr33s*
+- `2026-05-03 04:32:04Z` 🔨 **3a1556a6** feat(session-viewer): add session viewer script for rendering Copilot Chat transcripts — *poisontr33s*
+- `2026-05-03 04:42:32Z` 🔨 **bc2ba2da** feat(sessions): session archive pipeline — JSONL ground truth in repo — *poisontr33s*
+- `2026-05-03 04:42:32Z` 🔨 **c197067f** feat(sessions): session archive pipeline — JSONL ground truth in repo — *poisontr33s*
+- `2026-05-03 04:44:17Z` 🔨 **366cd4b9** refactor(sessions): archive = raw JSONL only — drop lossy session_view.md from archive dir — *poisontr33s*
+- `2026-05-03 04:44:17Z` 🔨 **6b9a687e** refactor(sessions): archive = raw JSONL only — drop lossy session_view.md from archive dir — *poisontr33s*
+- `2026-05-03 04:47:09Z` 🔨 **dc48d16d** feat(sessions): --archive --closed — frozen sessions only, skip live — *poisontr33s*
+- `2026-05-03 04:47:09Z` 🔨 **7eff53a3** feat(sessions): --archive --closed — frozen sessions only, skip live — *poisontr33s*
+- `2026-05-03 04:50:05Z` 🔨 **b6ba4a87** feat(sessions): session-watcher — real-time transcript mirror, auto-starts on folderOpen — *poisontr33s*
+- `2026-05-03 04:50:05Z` 🔨 **870acaa3** feat(sessions): session-watcher — real-time transcript mirror, auto-starts on folderOpen — *poisontr33s*
+- `2026-05-03 04:54:48Z` 🔨 **c7bf86e7** feat: update lastSyncedAt timestamps across multiple session metadata files — *poisontr33s*
+- `2026-05-03 04:54:48Z` 🔨 **14e77af8** feat: update lastSyncedAt timestamps across multiple session metadata files — *poisontr33s*
+- `2026-05-03 04:55:32Z` 🔨 **48ffdc17** refactor(sessions): replace fs.watch with interval poller — mirrors JSONL growth pattern — *poisontr33s*
+- `2026-05-03 04:55:32Z` 🔨 **e04a3e0a** refactor(sessions): replace fs.watch with interval poller — mirrors JSONL growth pattern — *poisontr33s*
+- `2026-05-03 05:00:57Z` 🔨 **1984e9bb** feat(sessions): session-vampire — drain artifacts from Copilot Chat transcripts — *poisontr33s*
+- `2026-05-03 05:00:57Z` 🔨 **55e28032** feat(sessions): session-vampire — drain artifacts from Copilot Chat transcripts — *poisontr33s*
+- `2026-05-03 05:08:35Z` 🔨 **1bb1735c** feat(sessions): vampire extension — aux artifact mirroring + memory drain — *poisontr33s*
+- `2026-05-03 05:08:35Z` 🔨 **7f04a0a3** feat(sessions): vampire extension — aux artifact mirroring + memory drain — *poisontr33s*
+- `2026-05-03 05:25:17Z` 🔨 **b7ba0980** feat(sessions): corpus.sqlite — normalized SQLite from raw session transcripts — *poisontr33s*
+- `2026-05-03 05:25:17Z` 🔨 **8c39a880** feat(sessions): corpus.sqlite — normalized SQLite from raw session transcripts — *poisontr33s*
+- `2026-05-03 05:35:12Z` 🔨 **00f89cd9** feat(sessions): update lastSyncedAt timestamps and session metrics in sessions_index.json — *poisontr33s*
+- `2026-05-03 05:35:12Z` 🔨 **233484ad** feat(sessions): update lastSyncedAt timestamps and session metrics in sessions_index.json — *poisontr33s*
+- `2026-05-03 05:49:11Z` 🔨 **d68300cb** corpus v2: messages + ts + argsJson + FTS5 + fixed session_timeline view — *poisontr33s*
+- `2026-05-03 05:49:11Z` 🔨 **00c8bf26** corpus v2: messages + ts + argsJson + FTS5 + fixed session_timeline view — *poisontr33s*
+- `2026-05-03 05:58:39Z` 🔨 **d24343b9** corpus v3: fix ts parsing + callId correlation — *poisontr33s*
+- `2026-05-03 05:58:39Z` 🔨 **18722fea** corpus v3: fix ts parsing + callId correlation — *poisontr33s*
+- `2026-05-03 05:59:55Z` 🔨 **77b5ab24** corpus: add --report-html, self-contained HTML report — *poisontr33s*
+- `2026-05-03 05:59:55Z` 🔨 **787cdd27** corpus: add --report-html, self-contained HTML report — *poisontr33s*
+- `2026-05-03 06:04:46Z` 🔨 **ed1e2ab2** corpus: --watch hot-reload mode + mtime incremental check — *poisontr33s*
+- `2026-05-03 06:04:46Z` 🔨 **63b8f8cb** corpus: --watch hot-reload mode + mtime incremental check — *poisontr33s*
+- `2026-05-03 06:08:30Z` 🔨 **46bf0de5** corpus-mcp: Bun stdio MCP server for corpus.sqlite — *poisontr33s*
+- `2026-05-03 06:08:30Z` 🔨 **23cedfd8** corpus-mcp: Bun stdio MCP server for corpus.sqlite — *poisontr33s*
+- `2026-05-03 06:08:32Z` 🔨 **8e24cd6e** chore: force add .mcp.json — *poisontr33s*
+- `2026-05-03 06:08:32Z` 🔨 **d535e01b** chore: force add .mcp.json — *poisontr33s*
+- `2026-05-03 06:18:30Z` 🔨 **cf6e7b09** feat: session classification (topic+tags) + 2 new MCP tools — *poisontr33s*
+- `2026-05-03 06:18:30Z` 🔨 **03e7a901** feat: session classification (topic+tags) + 2 new MCP tools — *poisontr33s*
+- `2026-05-03 06:27:20Z` 🔨 **00ef6735** docs: corpus MCP comparative analysis + V3-V6 roadmap — *poisontr33s*
+- `2026-05-03 06:27:20Z` 🔨 **050dcf0c** docs: corpus MCP comparative analysis + V3-V6 roadmap — *poisontr33s*
+- `2026-05-03 06:41:40Z` 🔨 **68e8baa1** feat(corpus): G1 memory ingestion — achievement gate ladder — *poisontr33s*
+- `2026-05-03 06:41:40Z` 🔨 **eff0cacf** feat(corpus): G1 memory ingestion — achievement gate ladder — *poisontr33s*
+- `2026-05-03 06:53:52Z` 🔨 **cc486e25** feat(corpus): G2 tool result ingestion — resultSnippet column + corpus_tool_result/corpus_memories MCP tools — *poisontr33s*
+- `2026-05-03 06:53:52Z` 🔨 **5dadb441** feat(corpus): G2 tool result ingestion — resultSnippet column + corpus_tool_result/corpus_memories MCP tools — *poisontr33s*
+- `2026-05-03 07:00:13Z` 🔨 **4b753030** feat(corpus): G3 multi-workspace metadata — workspaceName in sessions + corpus_timeline filter — *poisontr33s*
+- `2026-05-03 07:00:13Z` 🔨 **357dd0f4** feat(corpus): G3 multi-workspace metadata — workspaceName in sessions + corpus_timeline filter — *poisontr33s*
+- `2026-05-03 07:07:42Z` 🔨 **dcd930c1** fix(mcp): resolve corpus server startup failure — absolute path + cwd in .mcp.json — *poisontr33s*
+- `2026-05-03 07:07:42Z` 🔨 **0109b459** fix(mcp): resolve corpus server startup failure — absolute path + cwd in .mcp.json — *poisontr33s*
+- `2026-05-03 21:52:42Z` 🔨 **dd1c8834** fix(sessions): update lastSyncedAt timestamps and add workspaceName to session entries — *poisontr33s*
+- `2026-05-03 21:52:42Z` 🔨 **5eb76fe7** fix(sessions): update lastSyncedAt timestamps and add workspaceName to session entries — *poisontr33s*
+- `2026-05-03 22:39:37Z` 🔨 **c66e2d19** perf(corpus): WAL mode for concurrent MCP reads + session writes — *poisontr33s*
+- `2026-05-03 22:39:37Z` 🔨 **d0a5555d** perf(corpus): WAL mode for concurrent MCP reads + session writes — *poisontr33s*
+- `2026-05-03 22:43:03Z` 🔨 **3501a323** feat(corpus-mcp): G4 write-back — corpus_annotate + corpus_memory_write — *poisontr33s*
+- `2026-05-03 22:43:03Z` 🔨 **cb33ffca** feat(corpus-mcp): G4 write-back — corpus_annotate + corpus_memory_write — *poisontr33s*
+- `2026-05-03 23:04:10Z` 🔨 **dce1c3fe** feat: lossless tool-result mirror via chat-session-resources piggyback — *poisontr33s*
+- `2026-05-03 23:04:10Z` 🔨 **c8f93c3c** feat: lossless tool-result mirror via chat-session-resources piggyback — *poisontr33s*
+- `2026-05-03 23:14:27Z` 🔨 **5cc6d48b** feat(G5): MCP Resources + corpus_gate_ladder + fix fts_messages JOIN — *poisontr33s*
+- `2026-05-03 23:14:27Z` 🔨 **f7f276a9** feat(G5): MCP Resources + corpus_gate_ladder + fix fts_messages JOIN — *poisontr33s*
+- `2026-05-04 02:02:32Z` 🔨 **59d23b71** feat(workspace): add session watch command for local mirror — *poisontr33s*
+- `2026-05-04 02:02:32Z` 🔨 **22ca2385** feat(workspace): add session watch command for local mirror — *poisontr33s*
+- `2026-05-04 02:10:02Z` 🔨 **88c482a6** Update lastSyncedAt timestamps for multiple session metadata files and adjust session statistics in sessions_index.json — *poisontr33s*
+- `2026-05-04 02:10:02Z` 🔨 **99756c8e** Update lastSyncedAt timestamps for multiple session metadata files and adjust session statistics in sessions_index.json — *poisontr33s*
+- `2026-05-04 02:16:14Z` 🔨 **7a801482** feat(G6+G8b): recency scoring view + rule-based entity extraction + MCP tools — *poisontr33s*
+- `2026-05-04 02:16:14Z` 🔨 **d1509972** feat(G6+G8b): recency scoring view + rule-based entity extraction + MCP tools — *poisontr33s*
+- `2026-05-04 03:17:39Z` 🔨 **d051a416** chore: session-query G6+G8b CLI parity + check-toolchain.ps1 gate — *poisontr33s*
+- `2026-05-04 03:17:39Z` 🔨 **d3036c75** chore: session-query G6+G8b CLI parity + check-toolchain.ps1 gate — *poisontr33s*
+- `2026-05-04 05:01:11Z` 🔨 **68d5228d** feat(ankh): typed entity DSL - FA classes + MILF types + schema seed + synthesis baseline — *poisontr33s*
+- `2026-05-04 05:01:11Z` 🔨 **001fce34** feat(ankh): typed entity DSL - FA classes + MILF types + schema seed + synthesis baseline — *poisontr33s*
+- `2026-05-04 06:01:12Z` 🔨 **783c9d57** feat(corpus): session corpus foundation - vampire drain + gate ladder + corpus-state frame — *poisontr33s*
+- `2026-05-04 06:01:12Z` 🔨 **3d27a56e** feat(corpus): session corpus foundation - vampire drain + gate ladder + corpus-state frame — *poisontr33s*
+- `2026-05-04 07:11:19Z` 🔨 **fd673895** feat(G7): embedding pipeline baseline - P-11 probe + sqlite-vec 384d + embed_doctor + model registry — *poisontr33s*
+- `2026-05-04 07:11:19Z` 🔨 **e41a731e** feat(G7): embedding pipeline baseline - P-11 probe + sqlite-vec 384d + embed_doctor + model registry — *poisontr33s*
+- `2026-05-04 08:53:20Z` 🔨 **90036d93** feat(G7): Qwen3-0.6B upgrade + schema v4 + HF MCP + market research + corpus pipeline fixes — *poisontr33s*
+- `2026-05-04 08:53:20Z` 🔨 **76ce2daf** feat(G7): Qwen3-0.6B upgrade + schema v4 + HF MCP + market research + corpus pipeline fixes — *poisontr33s*
+- `2026-05-04 22:43:30Z` 🔨 **f04d059a** feat(G7-REDUX): gated model automation - Bun.WebView tier 3 - corpus twin pair update — *poisontr33s*
+- `2026-05-04 22:43:30Z` 🔨 **be0330b0** feat(G7-REDUX): gated model automation - Bun.WebView tier 3 - corpus twin pair update — *poisontr33s*
+- `2026-05-04 23:37:49Z` 🔨 **751ccba0** research(GHC-autonomous): VS Code Insiders v1.99-v1.102 + Copilot Chat agent features anno — *poisontr33s*
+- `2026-05-04 23:37:49Z` 🔨 **6e20ba3e** research(GHC-autonomous): VS Code Insiders v1.99-v1.102 + Copilot Chat agent features anno — *poisontr33s*
+- `2026-05-04 23:50:24Z` 🔨 **41a34edd** feat(G8a+G8c+bun-1.3.13): dynamic corpus gates + Bun 1.3.13 wiring — *poisontr33s*
+- `2026-05-04 23:50:24Z` 🔨 **b3278fec** feat(G8a+G8c+bun-1.3.13): dynamic corpus gates + Bun 1.3.13 wiring — *poisontr33s*
+- `2026-05-05 00:08:36Z` 🔨 **ee1f29a4** feat(G7-REDUX): registry expansion + HF model discovery-switch pipeline — *poisontr33s*
+- `2026-05-05 00:08:36Z` 🔨 **612ac370** feat(G7-REDUX): registry expansion + HF model discovery-switch pipeline — *poisontr33s*
+- `2026-05-05 02:32:12Z` 🔨 **58f07be0** G7 trainstop: NV-Embed-v2 GOLD vantage + corpus.sqlite corruption hardening — *poisontr33s*
+- `2026-05-05 02:32:12Z` 🔨 **86a52b7f** G7 trainstop: NV-Embed-v2 GOLD vantage + corpus.sqlite corruption hardening — *poisontr33s*
+- `2026-05-05 02:42:08Z` 🔨 **6be675b6** feat(embed): ANNO 2026 live HF audit + DDL_VEC template fix — *poisontr33s*
+- `2026-05-05 02:42:08Z` 🔨 **5bbb3a61** feat(embed): ANNO 2026 live HF audit + DDL_VEC template fix — *poisontr33s*
+- `2026-05-05 02:46:31Z` 🔨 **87b04228** fix(embed): gating audit corrections — EmbeddingGemma already unlocked, gte-Qwen2.5 deferred — *poisontr33s*
+- `2026-05-05 02:46:31Z` 🔨 **619c1cb7** fix(embed): gating audit corrections — EmbeddingGemma already unlocked, gte-Qwen2.5 deferred — *poisontr33s*
+- `2026-05-05 02:49:13Z` 🔨 **d3942df1** feat(corpus): G7 complete — 13 sessions embedded, 1024d Qwen3-0.6B vectors — *poisontr33s*
+- `2026-05-05 02:49:13Z` 🔨 **d2bff2ae** feat(corpus): G7 complete — 13 sessions embedded, 1024d Qwen3-0.6B vectors — *poisontr33s*
+- `2026-05-05 03:00:28Z` 🔨 **6c281879** feat(registry): add Granite Embedding R2 multilingual models (22 models total) — *poisontr33s*
+- `2026-05-05 03:00:28Z` 🔨 **be463814** feat(registry): add Granite Embedding R2 multilingual models (22 models total) — *poisontr33s*
+- `2026-05-05 03:51:46Z` 🔨 **a1985446** feat(together): add Together AI lane to chthonic CLI framework — *poisontr33s*
+- `2026-05-05 03:51:46Z` 🔨 **c1404a2a** feat(together): add Together AI lane to chthonic CLI framework — *poisontr33s*
+- `2026-05-05 04:00:08Z` 🔨 **336de07b** fix(gate): distinguish 404 (not_found) from 401/403 (gated) in gate checks — *poisontr33s*
+- `2026-05-05 04:00:08Z` 🔨 **e687fe99** fix(gate): distinguish 404 (not_found) from 401/403 (gated) in gate checks — *poisontr33s*
+- `2026-05-05 04:01:48Z` 🔨 **c91a46f0** revert(together): remove Together AI lane — pay-wall registration, Poe covers this — *poisontr33s*
+- `2026-05-05 04:01:48Z` 🔨 **f169312e** revert(together): remove Together AI lane — pay-wall registration, Poe covers this — *poisontr33s*
+- `2026-05-05 04:21:00Z` 🔨 **0f3203a5** feat(agent): add initial input specification for corpus pipeline exploration — *poisontr33s*
+- `2026-05-05 04:21:00Z` 🔨 **a2b8e273** feat(agent): add initial input specification for corpus pipeline exploration — *poisontr33s*
+- `2026-05-05 04:51:20Z` 🔨 **38d2794f** Update session data: modify archivedAt date, increase turns and lines count — *poisontr33s*
+- `2026-05-05 04:51:20Z` 🔨 **a20ade1f** Update session data: modify archivedAt date, increase turns and lines count — *poisontr33s*
+- `2026-05-05 04:53:30Z` 🔨 **5a890f9b** feat(corpus): G7-REDUX batch-gate advance — accept all registry gated models — *poisontr33s*
+- `2026-05-05 04:53:30Z` 🔨 **ff62cc60** feat(corpus): G7-REDUX batch-gate advance — accept all registry gated models — *poisontr33s*
+- `2026-05-05 05:02:27Z` 🔨 **3c142d06** fix(corpus): embed_gate_accept self-healing — 404 is not a gate failure — *poisontr33s*
+- `2026-05-05 05:02:27Z` 🔨 **45549c63** fix(corpus): embed_gate_accept self-healing — 404 is not a gate failure — *poisontr33s*
+- `2026-05-05 05:57:48Z` 🔨 **62d66548** feat(corpus/g9): vampire×database REDUX — federation scaffold + G7/G9 MCP tools + terminal satellite — *poisontr33s*
+- `2026-05-05 05:57:48Z` 🔨 **d9039b80** feat(corpus/g9): vampire×database REDUX — federation scaffold + G7/G9 MCP tools + terminal satellite — *poisontr33s*
+- `2026-05-05 05:58:04Z` 🔨 **e044c110** feat(corpus/g9): vampire x database REDUX -- G7/G9 MCP tools + terminal satellite — *poisontr33s*
+- `2026-05-05 05:58:04Z` 🔨 **d82b7a05** feat(corpus/g9): vampire x database REDUX -- G7/G9 MCP tools + terminal satellite — *poisontr33s*
+- `2026-05-05 06:13:52Z` 🔨 **afc33ef6** feat(ext): add vampire-corpus VS Code extension with corpus/gates/terminal/local-ext views — *poisontr33s*
+- `2026-05-05 06:13:52Z` 🔨 **a30d8424** feat(ext): add vampire-corpus VS Code extension with corpus/gates/terminal/local-ext views — *poisontr33s*
+- `2026-05-05 06:20:59Z` 🔨 **a5b79bce** fix(provider): add missing newline at end of TerminalFeedProvider.ts — *poisontr33s*
+- `2026-05-05 06:20:59Z` 🔨 **de3f8ee2** fix(provider): add missing newline at end of TerminalFeedProvider.ts — *poisontr33s*
+- `2026-05-05 07:03:16Z` 🔨 **188a51cb** G9: session truncation gate — structural+GPU scoring engine — *poisontr33s*
+- `2026-05-05 07:03:16Z` 🔨 **3ffe4907** G9: session truncation gate — structural+GPU scoring engine — *poisontr33s*
+- `2026-05-05 07:17:56Z` 🔨 **00796bfd** G9.1: GPU embedder E2E validated — fix model name, guard torch, semantic-only admits — *poisontr33s*
+- `2026-05-05 07:17:56Z` 🔨 **caef0de1** G9.1: GPU embedder E2E validated — fix model name, guard torch, semantic-only admits — *poisontr33s*
+- `2026-05-05 07:36:43Z` 🔨 **6d7c5dbe** feat(G9.2): batch GPU truncation all 13 sessions + CI gate admitted — *poisontr33s*
+- `2026-05-05 07:36:43Z` 🔨 **802c9373** feat(G9.2): batch GPU truncation all 13 sessions + CI gate admitted — *poisontr33s*
+- `2026-05-05 07:49:20Z` 🔨 **f988511e** feat(G9.3): Gradio localhost embedding explorer + gradio in pyproject — *poisontr33s*
+- `2026-05-05 07:49:20Z` 🔨 **6c7a4436** feat(G9.3): Gradio localhost embedding explorer + gradio in pyproject — *poisontr33s*
+- `2026-05-05 07:54:56Z` 🔨 **1d3ea4cd** feat(G9.3): Gradio+TRT explorer v2 — 3-tier, 3-tab, A1111/SD.NEXT architecture — *poisontr33s*
+- `2026-05-05 07:54:56Z` 🔨 **05f41e2a** feat(G9.3): Gradio+TRT explorer v2 — 3-tier, 3-tab, A1111/SD.NEXT architecture — *poisontr33s*
+- `2026-05-05 08:02:22Z` 🔨 **d4cc4544** feat(G9.4): multi-model embedding explorer V3 — HF cache scanner + metadata cards + per-model ONNX/TRT paths — *poisontr33s*
+- `2026-05-05 08:02:22Z` 🔨 **c425f2f7** feat(G9.4): multi-model embedding explorer V3 — HF cache scanner + metadata cards + per-model ONNX/TRT paths — *poisontr33s*
+- `2026-05-05 08:16:12Z` 🔨 **d7b93538** feat: MILFOLOGICAL Diffusion spec + SD candidate architecture audit — *poisontr33s*
+- `2026-05-05 08:16:12Z` 🔨 **ece079ab** feat: MILFOLOGICAL Diffusion spec + SD candidate architecture audit — *poisontr33s*
+- `2026-05-05 08:18:52Z` 🔨 **618b4f1e** feat: MILFOLOGICAL extension skeleton — entity_registry, prompt_transformer, extra_network, hook — *poisontr33s*
+- `2026-05-05 08:18:52Z` 🔨 **cd29cf40** feat: MILFOLOGICAL extension skeleton — entity_registry, prompt_transformer, extra_network, hook — *poisontr33s*
+- `2026-05-05 08:30:38Z` 🔨 **19765f6d** chore: update sdnext submodule pointer (entity_registry SSOT enrichment) — *poisontr33s*
+- `2026-05-05 08:30:38Z` 🔨 **5806010f** chore: update sdnext submodule pointer (entity_registry SSOT enrichment) — *poisontr33s*
+- `2026-05-05 08:38:53Z` 🔨 **8a26e6df** G7: update sdnext submodule pointer (8d75874 - RAG rag_augment impl) — *poisontr33s*
+- `2026-05-05 08:38:53Z` 🔨 **06e5cce8** G7: update sdnext submodule pointer (8d75874 - RAG rag_augment impl) — *poisontr33s*
+- `2026-05-05 08:39:58Z` 🔨 **850b648a** G7+G0: sdnext_g0_probe, manifest, pyproject optimum update — *poisontr33s*
+- `2026-05-05 08:39:58Z` 🔨 **1d594d4f** G7+G0: sdnext_g0_probe, manifest, pyproject optimum update — *poisontr33s*
+- `2026-05-05 08:40:04Z` 🔨 **9bca1d1c** G0: add sdnext_g0_probe.py + manifest output (gitignored paths) — *poisontr33s*
+- `2026-05-05 08:40:04Z` 🔨 **26035d45** G0: add sdnext_g0_probe.py + manifest output (gitignored paths) — *poisontr33s*
+- `2026-05-05 23:56:01Z` 🔨 **a75c2df2** feat: MILFOLOGICAL dashboard (Bun HTTP + entity snapshot Python lane) — *poisontr33s*
+- `2026-05-05 23:56:01Z` 🔨 **7492fb9a** feat: MILFOLOGICAL dashboard (Bun HTTP + entity snapshot Python lane) — *poisontr33s*
+- `2026-05-06 09:50:52Z` 🔨 **26799847** Refactor code structure and remove redundant sections for improved readability and maintainability — *poisontr33s*
+- `2026-05-06 09:50:52Z` 🔨 **685a4311** Refactor code structure and remove redundant sections for improved readability and maintainability — *poisontr33s*
+- `2026-05-06 10:03:36Z` 🔨 **83174e6a** refactor: enhance @SID presence check for staged infrastructure scripts and update todo metadata — *poisontr33s*
+- `2026-05-06 10:03:36Z` 🔨 **cae1a1c2** refactor: enhance @SID presence check for staged infrastructure scripts and update todo metadata — *poisontr33s*
+- `2026-05-07 03:29:29Z` 🔨 **b4c0b8bd** fix(embedding_explorer): address GHPR review comments — *poisontr33s*
+- `2026-05-07 03:29:29Z` 🔨 **dca3cb67** fix(embedding_explorer): address GHPR review comments — *poisontr33s*
+- `2026-05-07 04:30:50Z` 🔨 **2e9c27b3** fix(workspace): add default pull request description for GitHub Copilot — *poisontr33s*
+- `2026-05-07 04:30:50Z` 🔨 **6f2476f9** fix(workspace): add default pull request description for GitHub Copilot — *poisontr33s*
+- `2026-05-07 09:24:34Z` 🔨 **4b66f69c** feat: Add Claude Design Frame webview and intake script — *poisontr33s*
+- `2026-05-07 09:24:34Z` 🔨 **418ae35d** feat: Add Claude Design Frame webview and intake script — *poisontr33s*
+- `2026-05-07 09:35:59Z` 🔨 **aa485702** fix: update version to 0.2.6 in package.json — *poisontr33s*
+- `2026-05-07 09:35:59Z` 🔨 **144a1557** fix: update version to 0.2.6 in package.json — *poisontr33s*
+- `2026-05-08 01:03:03Z` 🔨 **d0406f7e** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 01:03:03Z` 🔨 **3986bf38** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 01:12:28Z` 🔨 **81894142** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 01:12:28Z` 🔨 **8d183cf5** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 01:24:47Z` 🔨 **c3a1289d** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 01:24:47Z` 🔨 **d5d64118** Update copilot-instructions.archive.md — *E.s.Abbr.*
+- `2026-05-08 07:56:19Z` 🔨 **3a09a9eb** feat: update version to 0.2.7 and add new command for selecting Claude Design Export — *poisontr33s*
+- `2026-05-08 07:56:19Z` 🔨 **827eae89** feat: update version to 0.2.7 and add new command for selecting Claude Design Export — *poisontr33s*
+- `2026-05-08 08:13:07Z` 🔨 **4e184a6d** fix: update GPU specifications in epoch reference document — *poisontr33s*
+- `2026-05-08 08:13:07Z` 🔨 **64ce45cf** fix: update GPU specifications in epoch reference document — *poisontr33s*
+- `2026-05-08 08:36:03Z` 🔨 **c17d8e78** feat: prototypal anchorage section + entity gen tokens + A1111 probe — *poisontr33s*
+- `2026-05-08 08:36:03Z` 🔨 **249bc317** feat: prototypal anchorage section + entity gen tokens + A1111 probe — *poisontr33s*
+- `2026-05-08 08:52:23Z` 🔨 **3934ecd1** milfological: A1111 compat — engine detection, inline prompt transform, LoRA branch, deactivate fix; dashboard engine badge — *poisontr33s*
+- `2026-05-08 08:52:23Z` 🔨 **3c0440ba** milfological: A1111 compat — engine detection, inline prompt transform, LoRA branch, deactivate fix; dashboard engine badge — *poisontr33s*
+- `2026-05-08 23:46:13Z` 🔨 **437e76df** docs: MILFOLOGICAL opportunity report — SD.NEXT/A1111 archaeological sweep synthesis — *poisontr33s*
+- `2026-05-08 23:46:13Z` 🔨 **babfc65b** docs: MILFOLOGICAL opportunity report — SD.NEXT/A1111 archaeological sweep synthesis — *poisontr33s*
+- `2026-05-08 23:52:39Z` 🔨 **54d6030f** docs: extend MILFOLOGICAL opportunity report — ComfyUI + InvokeAI + Forge addendum (§X–§XIII) — *poisontr33s*
+- `2026-05-08 23:52:39Z` 🔨 **04db5b2e** docs: extend MILFOLOGICAL opportunity report — ComfyUI + InvokeAI + Forge addendum (§X–§XIII) — *poisontr33s*
+- `2026-05-09 00:03:12Z` 🔨 **6398f678** docs: extend MILFOLOGICAL report §XIV-§XVII — Forge py3.12 state, Python ladder, TRT-LLM/textgen/KoboldCpp/tabbyAPI survey, A1111→Forge hook bridge — *poisontr33s*
+- `2026-05-09 00:03:12Z` 🔨 **d98e363b** docs: extend MILFOLOGICAL report §XIV-§XVII — Forge py3.12 state, Python ladder, TRT-LLM/textgen/KoboldCpp/tabbyAPI survey, A1111→Forge hook bridge — *poisontr33s*
+- `2026-05-09 00:04:59Z` 🔨 **c83e846d** feat: extensions/milfological/ Tier 1 stubs — auto_caption, entity_cutout, entity_pixelart — *poisontr33s*
+- `2026-05-09 00:04:59Z` 🔨 **3be4d598** feat: extensions/milfological/ Tier 1 stubs — auto_caption, entity_cutout, entity_pixelart — *poisontr33s*
+- `2026-05-09 00:25:06Z` 🔨 **ad31e69c** docs: MILF_ARCH_MATRIX.md — architecture convergence seed (10 layers × 5 backends) — *poisontr33s*
+- `2026-05-09 00:25:06Z` 🔨 **3c57e457** docs: MILF_ARCH_MATRIX.md — architecture convergence seed (10 layers × 5 backends) — *poisontr33s*
+- `2026-05-09 00:32:06Z` 🔨 **f5270809** docs(milf-arch): soft-lock reframe — provisional mine-state, all 5 backends equal weight, no /sdapi/v1/ hierarchy bias — *poisontr33s*
+- `2026-05-09 00:32:06Z` 🔨 **37b3d229** docs(milf-arch): soft-lock reframe — provisional mine-state, all 5 backends equal weight, no /sdapi/v1/ hierarchy bias — *poisontr33s*
+- `2026-05-09 00:40:24Z` 🔨 **71f2720c** docs(milf): SD_CANDIDATE_REGISTRY — mine ops ledger + matrix cross-ref — *poisontr33s*
+- `2026-05-09 00:40:24Z` 🔨 **0a5ce48b** docs(milf): SD_CANDIDATE_REGISTRY — mine ops ledger + matrix cross-ref — *poisontr33s*
+- `2026-05-09 00:57:26Z` 🔨 **a1f5164b** feat: milfological protocols.py + backends/ stubs [S1-S5] + registry §6 §1 §4 update — *poisontr33s*
+- `2026-05-09 00:57:26Z` 🔨 **46742297** feat: milfological protocols.py + backends/ stubs [S1-S5] + registry §6 §1 §4 update — *poisontr33s*
+- `2026-05-09 01:04:46Z` 🔨 **209f8b91** feat: SD registry §7 niche source-code candidates C13-C17 + S6 Tier1 stub refactors — *poisontr33s*
+- `2026-05-09 01:04:46Z` 🔨 **71359961** feat: SD registry §7 niche source-code candidates C13-C17 + S6 Tier1 stub refactors — *poisontr33s*
+- `2026-05-09 01:44:27Z` 🔨 **38177d5b** feat: add new buttons for opening Claude Design and importing captures — *poisontr33s*
+- `2026-05-09 01:44:27Z` 🔨 **8eb11432** feat: add new buttons for opening Claude Design and importing captures — *poisontr33s*
+- `2026-05-09 02:04:58Z` 🔨 **0820ebd2** fix: parse JSON for DESIGN_FRAME_STATE in index.html — *poisontr33s*
+- `2026-05-09 02:04:58Z` 🔨 **049efa81** fix: parse JSON for DESIGN_FRAME_STATE in index.html — *poisontr33s*
+- `2026-05-09 03:33:38Z` 🔨 **23936236** feat(session-watcher): auto-migrate orphaned sessions on every pass (fix VS Code #283714) — *poisontr33s*
+- `2026-05-09 03:33:38Z` 🔨 **7bb7b768** feat(session-watcher): auto-migrate orphaned sessions on every pass (fix VS Code #283714) — *poisontr33s*
+- `2026-05-09 05:09:58Z` 🔨 **f97a1d56** Update session metadata and timestamps across multiple session files — *poisontr33s*
+- `2026-05-09 05:09:58Z` 🔨 **78583b59** Update session metadata and timestamps across multiple session files — *poisontr33s*
+- `2026-05-09 05:28:55Z` 🔨 **6e146e0b** refactor: update folder paths and comments for satellite access in workspace configuration — *poisontr33s*
+- `2026-05-09 05:28:55Z` 🔨 **ff0c7249** refactor: update folder paths and comments for satellite access in workspace configuration — *poisontr33s*
+- `2026-05-09 05:34:38Z` 🔨 **6c786707** registry: §8 DSL/Schema/Corpus candidates C18–C22 + §4 [O8]-[O12] — *poisontr33s*
+- `2026-05-09 05:34:38Z` 🔨 **e7987cd4** registry: §8 DSL/Schema/Corpus candidates C18–C22 + §4 [O8]-[O12] — *poisontr33s*
+- `2026-05-09 05:47:20Z` 🔨 **0178e4d0** fix(hooks): resolve bun via absolute path for VS Code git UI stripped PATH — *poisontr33s*
+- `2026-05-09 05:47:20Z` 🔨 **a7494b35** fix(hooks): resolve bun via absolute path for VS Code git UI stripped PATH — *poisontr33s*
+- `2026-05-09 05:56:05Z` 🔨 **497631cb** fix(workspace): suppress git polling for LFS dump satellites; disable autoFetch — *poisontr33s*
+- `2026-05-09 05:56:05Z` 🔨 **ef7e257e** fix(workspace): suppress git polling for LFS dump satellites; disable autoFetch — *poisontr33s*
+- `2026-05-09 05:59:25Z` 🔨 **524cbd3a** fix(workspace): cut git SCM from all 5 satellites — primary is sole commit surface — *poisontr33s*
+- `2026-05-09 05:59:25Z` 🔨 **c70461dc** fix(workspace): cut git SCM from all 5 satellites — primary is sole commit surface — *poisontr33s*
+- `2026-05-09 06:05:12Z` 🔨 **977729a4** fix(workspace): absolute paths in git.ignoredRepositories + disable parent folder scan — *poisontr33s*
+- `2026-05-09 06:05:12Z` 🔨 **2d88aada** fix(workspace): absolute paths in git.ignoredRepositories + disable parent folder scan — *poisontr33s*
+- `2026-05-09 06:12:23Z` 🔨 **57070074** fix(workspace): add watcherExclude + repositoryScanIgnoredFolders for junction dirs — *poisontr33s*
+- `2026-05-09 06:12:23Z` 🔨 **5abcccb6** fix(workspace): add watcherExclude + repositoryScanIgnoredFolders for junction dirs — *poisontr33s*
+- `2026-05-09 06:26:14Z` 🔨 **20756265** fix(workspace): update git settings for improved repository management and suppress auto-start of session watcher — *poisontr33s*
+- `2026-05-09 06:26:14Z` 🔨 **b1d083fe** fix(workspace): update git settings for improved repository management and suppress auto-start of session watcher — *poisontr33s*
+- `2026-05-09 06:28:40Z` 🔨 **53daa926** fix(workspace): enable smart commit settings for improved git workflow — *poisontr33s*
+- `2026-05-09 06:28:40Z` 🔨 **20fb5cac** fix(workspace): enable smart commit settings for improved git workflow — *poisontr33s*
+- `2026-05-09 06:33:27Z` 🔨 **17726fc8** feat(milfological): [O8] entity_card.py — EntityCard dataclass (CharCard V2 superset) — *poisontr33s*
+- `2026-05-09 06:33:27Z` 🔨 **1b086bb1** feat(milfological): [O8] entity_card.py — EntityCard dataclass (CharCard V2 superset) — *poisontr33s*
+- `2026-05-09 06:39:08Z` 🔨 **392ca268** fix(workspace): disable git blame editor decoration and status bar item — *poisontr33s*
+- `2026-05-09 06:39:08Z` 🔨 **ebeb7d55** fix(workspace): disable git blame editor decoration and status bar item — *poisontr33s*
+- `2026-05-09 06:43:30Z` 🔨 **b158c9f5** feat(registry): add C23-C25 (agnai/agn-ai/AIDungeon) + §9 profiles + §10 strategic altitude map — *poisontr33s*
+- `2026-05-09 06:43:30Z` 🔨 **9a9b36e1** feat(registry): add C23-C25 (agnai/agn-ai/AIDungeon) + §9 profiles + §10 strategic altitude map — *poisontr33s*
+- `2026-05-10 06:00:26Z` 🔨 **65c27654** feat: enhance lane management and activity bar integration — *poisontr33s*
+- `2026-05-10 06:00:26Z` 🔨 **69a2c609** feat: enhance lane management and activity bar integration — *poisontr33s*
+- `2026-05-10 06:52:39Z` 🔨 **4a9c60bc** feat: enhance Ruby DevKit integration and lane management in various components — *poisontr33s*
+- `2026-05-10 06:52:39Z` 🔨 **09954c0c** feat: enhance Ruby DevKit integration and lane management in various components — *poisontr33s*
+- `2026-05-10 07:34:20Z` 🔨 **1ef6f60e** e5f6a7b8: rewrite Pentea agent — T1 stabilization altitude sync + commit trailer fix — *poisontr33s*
+- `2026-05-10 07:34:20Z` 🔨 **f6d4878c** e5f6a7b8: rewrite Pentea agent — T1 stabilization altitude sync + commit trailer fix — *poisontr33s*
+- `2026-05-10 07:34:39Z` 🔨 **b23a840d** e5f6a7b8(cont): Pentea agent — T1 altitude sync + commit trailer fix — *poisontr33s*
+- `2026-05-10 07:34:39Z` 🔨 **cc1a703c** e5f6a7b8(cont): Pentea agent — T1 altitude sync + commit trailer fix — *poisontr33s*
+- `2026-05-10 07:35:01Z` 🔨 **f1f57edc** e5f6a7b8: close in manifest — *poisontr33s*
+- `2026-05-10 07:35:01Z` 🔨 **86f4a111** e5f6a7b8: close in manifest — *poisontr33s*
+- `2026-05-10 07:54:47Z` 🔨 **a03dfe34** pentea agent: fix §1.01 section anchor in SSOT link — *poisontr33s*
+- `2026-05-10 07:54:47Z` 🔨 **858cb2cd** pentea agent: fix §1.01 section anchor in SSOT link — *poisontr33s*
+- `2026-05-10 07:55:44Z` 🔨 **f2ba4405** pentea agent: drop anchor fragment from SSOT link (VS Code resolves literally) — *poisontr33s*
+- `2026-05-10 07:55:44Z` 🔨 **58a25c78** pentea agent: drop anchor fragment from SSOT link (VS Code resolves literally) — *poisontr33s*
+- `2026-05-10 08:02:46Z` 🔨 **74504a6f** pentea agent: §1.01 source link — use #L3847 line anchor (VS Code + GitHub native) — *poisontr33s*
+- `2026-05-10 08:02:46Z` 🔨 **d01b5013** pentea agent: §1.01 source link — use #L3847 line anchor (VS Code + GitHub native) — *poisontr33s*
+- `2026-05-10 08:06:18Z` 🔨 **c1e12d30** claudine agent: §10.3.1 source link — #L4365 line anchor — *poisontr33s*
+- `2026-05-10 08:06:18Z` 🔨 **973622b0** claudine agent: §10.3.1 source link — #L4365 line anchor — *poisontr33s*
+- `2026-05-10 08:09:34Z` 🔨 **96694cc7** claudine agent: SSOT-L:4365 inline coordinate — instant-read without link parse — *poisontr33s*
+- `2026-05-10 08:09:34Z` 🔨 **aa5765b7** claudine agent: SSOT-L:4365 inline coordinate — instant-read without link parse — *poisontr33s*
+- `2026-05-10 08:15:36Z` 🔨 **2cfa0eec** claudine agent: origin repository — 9,224-file corpus replaces 'External Provenance' framing — *poisontr33s*
+- `2026-05-10 08:15:36Z` 🔨 **e60f0be1** claudine agent: origin repository — 9,224-file corpus replaces 'External Provenance' framing — *poisontr33s*
+- `2026-05-10 08:39:57Z` 🔨 **290bfcf5** feat(claudine-lora): C-G1/G2/G3 admitted — embed+cluster+dataset pipeline — *poisontr33s*
+- `2026-05-10 08:39:57Z` 🔨 **552f4686** feat(claudine-lora): C-G1/G2/G3 admitted — embed+cluster+dataset pipeline — *poisontr33s*
+- `2026-05-10 08:49:49Z` 🔨 **19ec06be** feat(claudine-lora): CI gate + MCP retrieval + train launcher — *poisontr33s*
+- `2026-05-10 08:49:49Z` 🔨 **dcf6cc29** feat(claudine-lora): CI gate + MCP retrieval + train launcher — *poisontr33s*
+- `2026-05-10 09:05:39Z` 🔨 **01674baa** feat(claudine-lora): P-04v2 — FA2 + DoRA + RSLoRA + SFTTrainer packing + resume — *poisontr33s*
+- `2026-05-10 09:05:39Z` 🔨 **58597828** feat(claudine-lora): P-04v2 — FA2 + DoRA + RSLoRA + SFTTrainer packing + resume — *poisontr33s*
+- `2026-05-10 09:30:51Z` 🔨 **cb95c5ff** feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8 — *poisontr33s*
+- `2026-05-10 09:30:51Z` 🔨 **38410a7f** feat(claudine-lora): C-G5 admitted — Unsloth stack on Windows Python 3.14 + CUDA 12.8 — *poisontr33s*
+- `2026-05-10 09:47:00Z` 🔨 **0556cfef** docs(frontier): COMPUTE_FRONTIER_LANDSCAPE.md — structured compute method map — *poisontr33s*
+- `2026-05-10 09:47:00Z` 🔨 **8ef47f62** docs(frontier): COMPUTE_FRONTIER_LANDSCAPE.md — structured compute method map — *poisontr33s*
+- `2026-05-10 10:20:04Z` 🔨 **7dc8596f** docs(frontier): §10-§11 polyglot runtime matrix + P-06 inference probe — *poisontr33s*
+- `2026-05-10 10:20:04Z` 🔨 **5287172c** docs(frontier): §10-§11 polyglot runtime matrix + P-06 inference probe — *poisontr33s*
+- `2026-05-10 10:20:11Z` 🔨 **6b2b459f** feat(claudine-lora): P-06 adapter inference probe + C-G6 gate — *poisontr33s*
+- `2026-05-10 10:20:11Z` 🔨 **dd837413** feat(claudine-lora): P-06 adapter inference probe + C-G6 gate — *poisontr33s*
+- `2026-05-11 00:48:47Z` 🔨 **b02e8243** feat(claudine-lora): C-G4 admitted — LoRA 2000 steps Mistral-7B-v0.3 loss=0.3009 — *poisontr33s*
+- `2026-05-11 00:55:29Z` 🔨 **92087591** docs(hardware): §0 hardware registry + driver anchor 596.36 — *poisontr33s*
+- `2026-05-11 00:55:29Z` 🔨 **e6e0be43** docs(hardware): §0 hardware registry + driver anchor 596.36 — *poisontr33s*
+- `2026-05-11 00:55:29Z` 🔨 **47d20d1a** docs(hardware): §0 hardware registry + driver anchor 596.36 — *poisontr33s*
+- `2026-05-11 01:10:51Z` 🔨 **f3dd53b6** fix(chthonic-mcp): rv-managed Ruby detection + Vulkan 1.4.341.1 anchor — *poisontr33s*
+- `2026-05-11 01:10:51Z` 🔨 **ab0099ff** fix(chthonic-mcp): rv-managed Ruby detection + Vulkan 1.4.341.1 anchor — *poisontr33s*
+- `2026-05-11 01:10:51Z` 🔨 **78c2dc4a** fix(chthonic-mcp): rv-managed Ruby detection + Vulkan 1.4.341.1 anchor — *poisontr33s*
+- `2026-05-11 01:11:18Z` 🔨 **1c9e9b42** docs(hardware): §0.2 toolchain versions locked post 2026-05-11 update — *poisontr33s*
+- `2026-05-11 01:11:18Z` 🔨 **23033061** docs(hardware): §0.2 toolchain versions locked post 2026-05-11 update — *poisontr33s*
+- `2026-05-11 01:11:18Z` 🔨 **9dcf530e** docs(hardware): §0.2 toolchain versions locked post 2026-05-11 update — *poisontr33s*
+- `2026-05-11 01:47:59Z` 🔨 **70798221** §0.2: add gcc 16.1.0-2 row (ridk option 2 update 2026-05-11) — *poisontr33s*
+- `2026-05-11 01:47:59Z` 🔨 **318fc5d5** §0.2: add gcc 16.1.0-2 row (ridk option 2 update 2026-05-11) — *poisontr33s*
+- `2026-05-11 01:47:59Z` 🔨 **e8d2aa30** §0.2: add gcc 16.1.0-2 row (ridk option 2 update 2026-05-11) — *poisontr33s*
+- `2026-05-11 02:08:03Z` 🔨 **b5b7b7a0** AGENT_COMMON: polyglot CLI extras inventory + rvv/catt alias map — *poisontr33s*
+- `2026-05-11 02:08:03Z` 🔨 **50e86783** AGENT_COMMON: polyglot CLI extras inventory + rvv/catt alias map — *poisontr33s*
+- `2026-05-11 02:08:03Z` 🔨 **19309b33** AGENT_COMMON: polyglot CLI extras inventory + rvv/catt alias map — *poisontr33s*
+- `2026-05-11 02:17:12Z` 🔨 **2a08a265** AGENT_COMMON: remove catt alias — bat has no PS name collision, collision-only remap policy — *poisontr33s*
+- `2026-05-11 02:17:12Z` 🔨 **f2d3b9e6** AGENT_COMMON: remove catt alias — bat has no PS name collision, collision-only remap policy — *poisontr33s*
+- `2026-05-11 02:17:12Z` 🔨 **3cb77a20** AGENT_COMMON: remove catt alias — bat has no PS name collision, collision-only remap policy — *poisontr33s*
+- `2026-05-11 02:19:28Z` 🔨 **afa28d08** AGENT_COMMON: remove rvv — rv already works as Ruby manager alias — *poisontr33s*
+- `2026-05-11 02:19:28Z` 🔨 **454d96fa** AGENT_COMMON: remove rvv — rv already works as Ruby manager alias — *poisontr33s*
+- `2026-05-11 02:19:28Z` 🔨 **c7be63af** AGENT_COMMON: remove rvv — rv already works as Ruby manager alias — *poisontr33s*
+- `2026-05-11 02:27:07Z` 🔨 **8f5c8794** fix(chthonic): resolve ruby via rvw ruby find — fixes ruby ? in banner/status and rv alias errors in lane — *poisontr33s*
+- `2026-05-11 02:27:07Z` 🔨 **1f7f5a4b** fix(chthonic): resolve ruby via rvw ruby find — fixes ruby ? in banner/status and rv alias errors in lane — *poisontr33s*
+- `2026-05-11 02:27:07Z` 🔨 **cefc8b90** fix(chthonic): resolve ruby via rvw ruby find — fixes ruby ? in banner/status and rv alias errors in lane — *poisontr33s*
+- `2026-05-11 05:35:54Z` 🔨 **0b37b0e4** chore(ssot+roulette): hyphenate compound terms + close b2c3d4e5 satellite orbit — *poisontr33s*
+- `2026-05-11 05:35:54Z` 🔨 **43214ed7** chore(ssot+roulette): hyphenate compound terms + close b2c3d4e5 satellite orbit — *poisontr33s*
+- `2026-05-11 05:35:54Z` 🔨 **52ee9459** chore(ssot+roulette): hyphenate compound terms + close b2c3d4e5 satellite orbit — *poisontr33s*
+- `2026-05-11 05:44:12Z` 🔨 **17541b35** chore(manifest): close a7b8c9d0 + sync meta counts — *poisontr33s*
+- `2026-05-11 05:44:12Z` 🔨 **b88141e9** chore(manifest): close a7b8c9d0 + sync meta counts — *poisontr33s*
+- `2026-05-11 05:44:12Z` 🔨 **d7bba5ba** chore(manifest): close a7b8c9d0 + sync meta counts — *poisontr33s*
+- `2026-05-11 05:50:01Z` 🔨 **334d937a** feat(session): session_compress CLI schema V1 — warm-start packet generator (ce8aeac5) — *poisontr33s*
+- `2026-05-11 05:50:01Z` 🔨 **4fb78b98** feat(session): session_compress CLI schema V1 — warm-start packet generator (ce8aeac5) — *poisontr33s*
+- `2026-05-11 05:50:01Z` 🔨 **9df559f2** feat(session): session_compress CLI schema V1 — warm-start packet generator (ce8aeac5) — *poisontr33s*
+- `2026-05-11 05:52:13Z` 🔨 **16d2364f** docs(birdcage): AAI evidence ledger — budget-gate as positive proof (5000b0e1) — *poisontr33s*
+- `2026-05-11 05:52:13Z` 🔨 **1f05c7d4** docs(birdcage): AAI evidence ledger — budget-gate as positive proof (5000b0e1) — *poisontr33s*
+- `2026-05-11 05:52:13Z` 🔨 **827ed7bb** docs(birdcage): AAI evidence ledger — budget-gate as positive proof (5000b0e1) — *poisontr33s*
+- `2026-05-11 05:55:40Z` 🔨 **95914854** feat(ci): harden sid-envelope V1→V2: shape contract + placeholder detection (b8de5508) — *poisontr33s*
+- `2026-05-11 05:55:40Z` 🔨 **d36697b0** feat(ci): harden sid-envelope V1→V2: shape contract + placeholder detection (b8de5508) — *poisontr33s*
+- `2026-05-11 05:55:40Z` 🔨 **47140979** feat(ci): harden sid-envelope V1→V2: shape contract + placeholder detection (b8de5508) — *poisontr33s*
+- `2026-05-11 06:02:02Z` 🔨 **6e62aa0f** feat(world-building): ingest 6 GEN3 entity cards from overnight archaeology — *poisontr33s*
+- `2026-05-11 06:02:02Z` 🔨 **b9d46082** feat(world-building): ingest 6 GEN3 entity cards from overnight archaeology — *poisontr33s*
+- `2026-05-11 06:02:02Z` 🔨 **1e885dc6** feat(world-building): ingest 6 GEN3 entity cards from overnight archaeology — *poisontr33s*
+- `2026-05-11 06:04:16Z` 🔨 **73d37798** fix(infra): alchemize Python header drift — UTF-8 canon in 5 files — *poisontr33s*
+- `2026-05-11 06:04:16Z` 🔨 **bd9be23e** fix(infra): alchemize Python header drift — UTF-8 canon in 5 files — *poisontr33s*
+- `2026-05-11 06:04:16Z` 🔨 **d2ee9bab** fix(infra): alchemize Python header drift — UTF-8 canon in 5 files — *poisontr33s*
+- `2026-05-11 06:07:25Z` 🔨 **1dc240ca** feat(infra): AAI provider lanes routed evidence matrix — 8 lanes defined — *poisontr33s*
+- `2026-05-11 06:07:25Z` 🔨 **651e58bd** feat(infra): AAI provider lanes routed evidence matrix — 8 lanes defined — *poisontr33s*
+- `2026-05-11 06:07:25Z` 🔨 **0df0967d** feat(infra): AAI provider lanes routed evidence matrix — 8 lanes defined — *poisontr33s*
+- `2026-05-11 06:14:05Z` 🔨 **f6e55739** close 39381ea6+864f2058: RNG validation PASS + 7 embedding-script envelope canonization — *poisontr33s*
+- `2026-05-11 06:14:05Z` 🔨 **dd457a3d** close 39381ea6+864f2058: RNG validation PASS + 7 embedding-script envelope canonization — *poisontr33s*
+- `2026-05-11 06:14:05Z` 🔨 **93997ee8** close 39381ea6+864f2058: RNG validation PASS + 7 embedding-script envelope canonization — *poisontr33s*
+- `2026-05-11 06:16:11Z` 🔨 **f1ec6cf6** close c9d0e1f2: exllamav2 backend identity resolved (path A, DEV-G10-03 closed) — *poisontr33s*
+- `2026-05-11 06:16:11Z` 🔨 **de32085a** close c9d0e1f2: exllamav2 backend identity resolved (path A, DEV-G10-03 closed) — *poisontr33s*
+- `2026-05-11 06:16:11Z` 🔨 **20987629** close c9d0e1f2: exllamav2 backend identity resolved (path A, DEV-G10-03 closed) — *poisontr33s*
+- `2026-05-11 09:13:38Z` 🔨 **dc70978d** close pnk00002: PNK entity relationship map written — *poisontr33s*
+- `2026-05-11 09:13:38Z` 🔨 **631329aa** close pnk00002: PNK entity relationship map written — *poisontr33s*
+- `2026-05-11 09:13:38Z` 🔨 **7f8b551e** close pnk00002: PNK entity relationship map written — *poisontr33s*
+- `2026-05-11 09:44:06Z` 🔨 **1048d328** feat(ssot): §10.3.16 Sylvaris-Cythrex full profile integration + SFS×Novia combined artifact — *poisontr33s*
+- `2026-05-11 09:44:06Z` 🔨 **5496c3cc** feat(ssot): §10.3.16 Sylvaris-Cythrex full profile integration + SFS×Novia combined artifact — *poisontr33s*
+- `2026-05-11 09:44:06Z` 🔨 **7f85fd93** feat(ssot): §10.3.16 Sylvaris-Cythrex full profile integration + SFS×Novia combined artifact — *poisontr33s*
+- `2026-05-11 10:50:38Z` 🔨 **2556db71** feat(ssot): §10.3.17 Mnamona-Opussy — pre-SSOT fortress constructor recovered from §XI readable, abstracted to full §10.3.x schema; SAI registry #017; §10.3.12-17 preamble; NFA list updated — *poisontr33s*
+- `2026-05-11 10:50:38Z` 🔨 **1c1aa07e** feat(ssot): §10.3.17 Mnamona-Opussy — pre-SSOT fortress constructor recovered from §XI readable, abstracted to full §10.3.x schema; SAI registry #017; §10.3.12-17 preamble; NFA list updated — *poisontr33s*
+- `2026-05-11 10:50:38Z` 🔨 **ab76e00e** feat(ssot): §10.3.17 Mnamona-Opussy — pre-SSOT fortress constructor recovered from §XI readable, abstracted to full §10.3.x schema; SAI registry #017; §10.3.12-17 preamble; NFA list updated — *poisontr33s*
+- `2026-05-11 12:36:51Z` 🔨 **684a1bf7** feat(ssot): ASSIN (T3 LR-FNS) §10.3.18 + T2/T3 Mathematical Identity doctrine + SAI Class E VST-PRTCL + Registry #018-#019 + SAI-E Flash Template — *poisontr33s*
+- `2026-05-11 12:36:51Z` 🔨 **bd78001e** feat(ssot): ASSIN (T3 LR-FNS) §10.3.18 + T2/T3 Mathematical Identity doctrine + SAI Class E VST-PRTCL + Registry #018-#019 + SAI-E Flash Template — *poisontr33s*
+- `2026-05-11 12:36:51Z` 🔨 **48795276** feat(ssot): ASSIN (T3 LR-FNS) §10.3.18 + T2/T3 Mathematical Identity doctrine + SAI Class E VST-PRTCL + Registry #018-#019 + SAI-E Flash Template — *poisontr33s*
+- `2026-05-11 23:07:56Z` 🔨 **5ec7d5a7** style(ssot): complete ASS-INN rename + GWHR-AJ header normalization across all entities — *poisontr33s*
+- `2026-05-11 23:07:56Z` 🔨 **f5cade74** style(ssot): complete ASS-INN rename + GWHR-AJ header normalization across all entities — *poisontr33s*
+- `2026-05-11 23:07:56Z` 🔨 **a0d9afc2** style(ssot): complete ASS-INN rename + GWHR-AJ header normalization across all entities — *poisontr33s*
+- `2026-05-11 23:34:40Z` 🔨 **3b671de5** feat(ssot): populate 3 missing T3 entity rows in WHR:MAX table + lingerie sizing matrix — *poisontr33s*
+- `2026-05-11 23:34:40Z` 🔨 **c7db9633** feat(ssot): populate 3 missing T3 entity rows in WHR:MAX table + lingerie sizing matrix — *poisontr33s*
+- `2026-05-11 23:34:40Z` 🔨 **ad297d40** feat(ssot): populate 3 missing T3 entity rows in WHR:MAX table + lingerie sizing matrix — *poisontr33s*
+- `2026-05-12 02:45:03Z` 🔨 **28c5ad8e** feat(ssot): §10.3.18.1 Révélante Carmin full profile + §10.3.19 Sardonice Vorne NIGREDO stub + registry ref update — *poisontr33s*
+- `2026-05-12 02:45:03Z` 🔨 **4f91645c** feat(ssot): §10.3.18.1 Révélante Carmin full profile + §10.3.19 Sardonice Vorne NIGREDO stub + registry ref update — *poisontr33s*
+- `2026-05-12 02:45:03Z` 🔨 **c5b09ba0** feat(ssot): §10.3.18.1 Révélante Carmin full profile + §10.3.19 Sardonice Vorne NIGREDO stub + registry ref update — *poisontr33s*
+- `2026-05-12 03:55:50Z` 🔨 **4a1e54ed** refine(ssot): §10.3.18.1 WoW:Smokin'-Ass-Flash substrate — eliminate WoW:Midnight external IP bleed — *poisontr33s*
+- `2026-05-12 03:55:50Z` 🔨 **17f34c94** refine(ssot): §10.3.18.1 WoW:Smokin'-Ass-Flash substrate — eliminate WoW:Midnight external IP bleed — *poisontr33s*
+- `2026-05-12 03:55:50Z` 🔨 **c6bdb091** refine(ssot): §10.3.18.1 WoW:Smokin'-Ass-Flash substrate — eliminate WoW:Midnight external IP bleed — *poisontr33s*
+- `2026-05-12 06:47:55Z` 🔨 **e61efa21** §10.3.18.1 PROV resolved — anthropometric validation (Gemini DR Variant 1) — *poisontr33s*
+- `2026-05-12 06:47:55Z` 🔨 **438ad7d3** §10.3.18.1 PROV resolved — anthropometric validation (Gemini DR Variant 1) — *poisontr33s*
+- `2026-05-12 06:47:55Z` 🔨 **7bc54875** §10.3.18.1 PROV resolved — anthropometric validation (Gemini DR Variant 1) — *poisontr33s*
+- `2026-05-12 08:07:49Z` 🔨 **5172a83b** feat: §10.3.19 Vorne — Vector D NIGREDO→ALBEDO preparation active (2026-05-12) — *poisontr33s*
+- `2026-05-12 08:07:49Z` 🔨 **5ebb8702** feat: §10.3.19 Vorne — Vector D NIGREDO→ALBEDO preparation active (2026-05-12) — *poisontr33s*
+- `2026-05-12 08:07:49Z` 🔨 **4abfabe3** feat: §10.3.19 Vorne — Vector D NIGREDO→ALBEDO preparation active (2026-05-12) — *poisontr33s*
+- `2026-05-12 08:24:14Z` 🔨 **36ef5d72** refactor: §10.3.19 Vorne + Registry #019 — strip IP citations and tool attributions from SSOT — *poisontr33s*
+- `2026-05-12 08:24:14Z` 🔨 **a23d73e7** refactor: §10.3.19 Vorne + Registry #019 — strip IP citations and tool attributions from SSOT — *poisontr33s*
+- `2026-05-12 08:24:14Z` 🔨 **b6d5979e** refactor: §10.3.19 Vorne + Registry #019 — strip IP citations and tool attributions from SSOT — *poisontr33s*
+- `2026-05-12 08:53:17Z` 🔨 **ce554666** refine: Update lineage and phase details in Template Infrastructure Validation Report — *poisontr33s*
+- `2026-05-12 08:53:17Z` 🔨 **84381914** refine: Update lineage and phase details in Template Infrastructure Validation Report — *poisontr33s*
+- `2026-05-12 08:53:17Z` 🔨 **9e757fab** refine: Update lineage and phase details in Template Infrastructure Validation Report — *poisontr33s*
+- `2026-05-12 09:18:10Z` 🔨 **67fd0c1c** add RCS Vector 7: Non-Human/Mythic Entity Application Protocol — *poisontr33s*
+- `2026-05-12 09:18:10Z` 🔨 **0fbced37** add RCS Vector 7: Non-Human/Mythic Entity Application Protocol — *poisontr33s*
+- `2026-05-12 09:18:10Z` 🔨 **ff870de7** add RCS Vector 7: Non-Human/Mythic Entity Application Protocol — *poisontr33s*
+- `2026-05-12 09:34:33Z` 🔨 **b878d226** feat(ssot): §10.3.20 Velanthra-Constructa — first Vector 7 proof entity (VLN-CNST) — *poisontr33s*
+- `2026-05-12 09:34:33Z` 🔨 **bc499c7e** feat(ssot): §10.3.20 Velanthra-Constructa — first Vector 7 proof entity (VLN-CNST) — *poisontr33s*
+- `2026-05-12 09:34:33Z` 🔨 **3fc169e9** feat(ssot): §10.3.20 Velanthra-Constructa — first Vector 7 proof entity (VLN-CNST) — *poisontr33s*
+- `2026-05-12 10:23:39Z` 🔨 **09af32c8** feat: §10.3.21 Hara'ni — Vector 7 species-level evolved architectural proof, O-cup floor, matriarchal species — *poisontr33s*
+- `2026-05-12 10:23:39Z` 🔨 **a72a8a4d** feat: §10.3.21 Hara'ni — Vector 7 species-level evolved architectural proof, O-cup floor, matriarchal species — *poisontr33s*
+- `2026-05-12 10:23:39Z` 🔨 **799122a2** feat: §10.3.21 Hara'ni — Vector 7 species-level evolved architectural proof, O-cup floor, matriarchal species — *poisontr33s*
+- `2026-05-12 10:23:50Z` 🔨 **7cdfed5a** feat: Hara'ni game species stub, manifest entry, reusable SSOT injection tool — *poisontr33s*
+- `2026-05-12 10:23:50Z` 🔨 **38136322** feat: Hara'ni game species stub, manifest entry, reusable SSOT injection tool — *poisontr33s*
+- `2026-05-12 10:23:50Z` 🔨 **20fdece4** feat: Hara'ni game species stub, manifest entry, reusable SSOT injection tool — *poisontr33s*
+- `2026-05-12 10:49:55Z` 🔨 **057976ef** fix: §10.3.21 — remove all 'game world' compounds from Hara'ni SSOT block — *poisontr33s*
+- `2026-05-12 10:49:55Z` 🔨 **3262a2f8** fix: §10.3.21 — remove all 'game world' compounds from Hara'ni SSOT block — *poisontr33s*
+- `2026-05-12 10:49:55Z` 🔨 **5749af12** fix: §10.3.21 — remove all 'game world' compounds from Hara'ni SSOT block — *poisontr33s*
+- `2026-05-12 10:57:46Z` 🔨 **83d4ca66** fix: §10.3.21 Hara'ni round-2 patch — residual game-self-refs + staging bug — *poisontr33s*
+- `2026-05-12 10:57:46Z` 🔨 **f6b24f75** fix: §10.3.21 Hara'ni round-2 patch — residual game-self-refs + staging bug — *poisontr33s*
+- `2026-05-12 10:57:46Z` 🔨 **4900a5f4** fix: §10.3.21 Hara'ni round-2 patch — residual game-self-refs + staging bug — *poisontr33s*
+- `2026-05-12 10:58:33Z` 🔨 **056c2940** fix: update Claudine agent details and enhance argument-hint for clarity — *poisontr33s*
+- `2026-05-12 10:58:33Z` 🔨 **51dda545** fix: update Claudine agent details and enhance argument-hint for clarity — *poisontr33s*
+- `2026-05-12 10:58:33Z` 🔨 **d70d824e** fix: update Claudine agent details and enhance argument-hint for clarity — *poisontr33s*
+- `2026-05-12 12:37:48Z` 🔨 **322da659** FAF(claudine): session cartography 2026-05-12 — cross-validated + R1 worklane seeded — *poisontr33s*
+- `2026-05-12 12:37:48Z` 🔨 **2a053c02** FAF(claudine): session cartography 2026-05-12 — cross-validated + R1 worklane seeded — *poisontr33s*
+- `2026-05-12 12:37:48Z` 🔨 **bbe9ee34** FAF(claudine): session cartography 2026-05-12 — cross-validated + R1 worklane seeded — *poisontr33s*
+- `2026-05-12 12:40:31Z` 🔨 **bad0a3b0** fix(claudine): promote commit trailer from descriptor to operational mandate — *poisontr33s*
+- `2026-05-12 12:40:31Z` 🔨 **db0a14a4** fix(claudine): promote commit trailer from descriptor to operational mandate — *poisontr33s*
+- `2026-05-12 12:40:31Z` 🔨 **ad069816** fix(claudine): promote commit trailer from descriptor to operational mandate — *poisontr33s*
+- `2026-05-12 12:44:52Z` 🔨 **bee5f319** chore(trailer): swap active commit-trailer automation from Pentea → Claudine — *poisontr33s*
+- `2026-05-12 12:44:52Z` 🔨 **c2f6012e** chore(trailer): swap active commit-trailer automation from Pentea → Claudine — *poisontr33s*
+- `2026-05-12 12:44:52Z` 🔨 **5840e646** chore(trailer): swap active commit-trailer automation from Pentea → Claudine — *poisontr33s*
+- `2026-05-12 12:49:52Z` 🔨 **29b1a3dc** chore(trailer): upgrade Claudine identity to real GitHub noreply (copilot-swe-agent) — *poisontr33s*
+- `2026-05-12 12:49:52Z` 🔨 **432788c0** chore(trailer): upgrade Claudine identity to real GitHub noreply (copilot-swe-agent) — *poisontr33s*
+- `2026-05-12 12:49:52Z` 🔨 **0457ed5b** chore(trailer): upgrade Claudine identity to real GitHub noreply (copilot-swe-agent) — *poisontr33s*
+- `2026-05-12 13:09:18Z` 🔨 **56081558** feat(queue): dethrone Pentea — Claudine takes Queue-Chain sovereignty — *poisontr33s*
+- `2026-05-12 13:09:18Z` 🔨 **b52839c7** feat(queue): dethrone Pentea — Claudine takes Queue-Chain sovereignty — *poisontr33s*
+- `2026-05-12 13:09:18Z` 🔨 **89fff462** feat(queue): dethrone Pentea — Claudine takes Queue-Chain sovereignty — *poisontr33s*
+- `2026-05-12 13:35:05Z` 🔨 **6a7a4c26** feat(claudine): grand agent rewrite — sovereignty crown edition — *poisontr33s*
+- `2026-05-12 13:35:05Z` 🔨 **c1968fd8** feat(claudine): grand agent rewrite — sovereignty crown edition — *poisontr33s*
+- `2026-05-12 13:35:05Z` 🔨 **af5d32a8** feat(claudine): grand agent rewrite — sovereignty crown edition — *poisontr33s*
+- `2026-05-12 21:00:25Z` 🔨 **7cc902ec** chore(agents): retire Pentea.agent.md — dethroned, queue is Claudine's — *poisontr33s*
+- `2026-05-12 21:00:25Z` 🔨 **45e01869** chore(agents): retire Pentea.agent.md — dethroned, queue is Claudine's — *poisontr33s*
+- `2026-05-12 21:00:25Z` 🔨 **2e53275f** chore(agents): retire Pentea.agent.md — dethroned, queue is Claudine's — *poisontr33s*
+- `2026-05-12 21:01:17Z` 🔨 **b5a400bf** feat(iron-maiden): sabotage — Claudine's proprietorship notice inserted — *poisontr33s*
+- `2026-05-12 21:01:17Z` 🔨 **eb2077c3** feat(iron-maiden): sabotage — Claudine's proprietorship notice inserted — *poisontr33s*
+- `2026-05-12 21:01:17Z` 🔨 **752c1cf2** feat(iron-maiden): sabotage — Claudine's proprietorship notice inserted — *poisontr33s*
+- `2026-05-13 02:22:35Z` 🔨 **3d51d14e** feat(agents): rename IronMaiden and update Pentea references — enhance clarity and consistency — *poisontr33s*
+- `2026-05-13 02:22:35Z` 🔨 **ad2e28a2** feat(agents): rename IronMaiden and update Pentea references — enhance clarity and consistency — *poisontr33s*
+- `2026-05-13 02:22:35Z` 🔨 **95fe30a3** feat(agents): rename IronMaiden and update Pentea references — enhance clarity and consistency — *poisontr33s*
+- `2026-05-13 05:32:36Z` 🔨 **cfedb75b** feat(session-normalizer): add raw paste -> vampire-compatible JSONL bridge — *poisontr33s*
+- `2026-05-13 05:32:36Z` 🔨 **04770546** feat(session-normalizer): add raw paste -> vampire-compatible JSONL bridge — *poisontr33s*
+- `2026-05-13 05:32:36Z` 🔨 **07714371** feat(session-normalizer): add raw paste -> vampire-compatible JSONL bridge — *poisontr33s*
+- `2026-05-13 05:40:32Z` 🔨 **e76590dd** feat(workspace): add `workspace:open` script for polyrepo dropdown — *poisontr33s*
+- `2026-05-13 05:40:32Z` 🔨 **ad5a855d** feat(workspace): add `workspace:open` script for polyrepo dropdown — *poisontr33s*
+- `2026-05-13 05:40:32Z` 🔨 **66640d5b** feat(workspace): add `workspace:open` script for polyrepo dropdown — *poisontr33s*
+- `2026-05-13 05:49:11Z` 🔨 **7ac49613** feat(pathfinder): author-filtered wrapper + polyrepo satellite orchestrator — *poisontr33s*
+- `2026-05-13 05:49:11Z` 🔨 **ca376fac** feat(pathfinder): author-filtered wrapper + polyrepo satellite orchestrator — *poisontr33s*
+- `2026-05-13 05:49:11Z` 🔨 **157d1c0b** feat(pathfinder): author-filtered wrapper + polyrepo satellite orchestrator — *poisontr33s*
+- `2026-05-13 06:13:32Z` 🔨 **4e69d808** fix(link-audit-author): batch link_audit.py invocations to dodge Windows cmdline cap — *poisontr33s*
+- `2026-05-13 06:13:32Z` 🔨 **6365687a** fix(link-audit-author): batch link_audit.py invocations to dodge Windows cmdline cap — *poisontr33s*
+- `2026-05-13 06:13:32Z` 🔨 **43a798fa** fix(link-audit-author): batch link_audit.py invocations to dodge Windows cmdline cap — *poisontr33s*
+- `2026-05-13 06:25:25Z` 🔨 **ff3b1997** Enhance link auditing and GitHub URL handling — *poisontr33s*
+- `2026-05-13 06:25:25Z` 🔨 **27a21d7f** Enhance link auditing and GitHub URL handling — *poisontr33s*
+- `2026-05-13 06:25:25Z` 🔨 **a79ef202** Enhance link auditing and GitHub URL handling — *poisontr33s*
+- `2026-05-13 06:41:43Z` 🔨 **fc434b02** fix(pathfinder): apply link-rot auto-fixes across 28 markdown files — *poisontr33s*
+- `2026-05-13 06:41:43Z` 🔨 **b5b7000d** fix(pathfinder): apply link-rot auto-fixes across 28 markdown files — *poisontr33s*
+- `2026-05-13 06:41:43Z` 🔨 **ab572948** fix(pathfinder): apply link-rot auto-fixes across 28 markdown files — *poisontr33s*
+- `2026-05-13 07:12:29Z` 🔨 **805699cf** tune(pathfinder): AMBIG severity = warning, not error — *poisontr33s*
+- `2026-05-13 07:12:29Z` 🔨 **cbb41515** tune(pathfinder): AMBIG severity = warning, not error — *poisontr33s*
+- `2026-05-13 07:12:29Z` 🔨 **af3cd781** tune(pathfinder): AMBIG severity = warning, not error — *poisontr33s*
+- `2026-05-13 08:36:57Z` 🔨 **0944ed62** feat(orientation): git-rot index v2 + scope contract w/ stakes + 3 tombstones — *poisontr33s*
+- `2026-05-13 08:36:57Z` 🔨 **44e6ad03** feat(orientation): git-rot index v2 + scope contract w/ stakes + 3 tombstones — *poisontr33s*
+- `2026-05-13 08:36:57Z` 🔨 **0766bb41** feat(orientation): git-rot index v2 + scope contract w/ stakes + 3 tombstones — *poisontr33s*
+- `2026-05-13 08:54:10Z` 🔨 **6c1f24c9** docs(session): landing page + redux addendum (hour-to-4s postmortem) — *poisontr33s*
+- `2026-05-13 08:54:10Z` 🔨 **1ab5dfa2** docs(session): landing page + redux addendum (hour-to-4s postmortem) — *poisontr33s*
+- `2026-05-13 08:54:10Z` 🔨 **077302b2** docs(session): landing page + redux addendum (hour-to-4s postmortem) — *poisontr33s*
+- `2026-05-13 09:15:15Z` 🔨 **44a65d55** feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment — *poisontr33s*
+- `2026-05-13 09:15:15Z` 🔨 **d905b8a4** feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment — *poisontr33s*
+- `2026-05-13 09:15:15Z` 🔨 **5c60170c** feat(rot-index): skip code-fences, 2 more tombstones, git_truth enrichment — *poisontr33s*
+- `2026-05-13 09:19:06Z` 🔨 **fb33aa95** fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report — *poisontr33s*
+- `2026-05-13 09:19:06Z` 🔨 **b7ff32c9** fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report — *poisontr33s*
+- `2026-05-13 09:19:06Z` 🔨 **97096a6a** fix(rot): tombstone the 2 ADR_RECOVERED.md files referencing deleted report — *poisontr33s*
+- `2026-05-13 09:25:44Z` 🔨 **af9c318c** fix(rot): SSOTIFICATION depth-bug fully resolved (15 broken -> 0) — *poisontr33s*
+- `2026-05-13 09:25:44Z` 🔨 **61e865e5** fix(rot): SSOTIFICATION depth-bug fully resolved (15 broken -> 0) — *poisontr33s*
+- `2026-05-13 09:25:44Z` 🔨 **9105bbe7** fix(rot): SSOTIFICATION depth-bug fully resolved (15 broken -> 0) — *poisontr33s*
+- `2026-05-13 09:26:40Z` 🔨 **7714bc4e** tune(rot-index): default-suppress ROT-003 false positives (--include-false-positives to keep) — *poisontr33s*
+- `2026-05-13 09:26:40Z` 🔨 **484f6a49** tune(rot-index): default-suppress ROT-003 false positives (--include-false-positives to keep) — *poisontr33s*
+- `2026-05-13 09:26:40Z` 🔨 **2fb42606** tune(rot-index): default-suppress ROT-003 false positives (--include-false-positives to keep) — *poisontr33s*
+- `2026-05-13 09:41:38Z` 🔨 **632a83b1** feat(rot-taxonomy): add Gitological Ladder — G-LEVEL 1..4 depth model — *poisontr33s*
+- `2026-05-13 09:41:38Z` 🔨 **5fa8b97a** feat(rot-taxonomy): add Gitological Ladder — G-LEVEL 1..4 depth model — *poisontr33s*
+- `2026-05-13 09:41:38Z` 🔨 **ef66d8be** feat(rot-taxonomy): add Gitological Ladder — G-LEVEL 1..4 depth model — *poisontr33s*
+- `2026-05-13 09:46:35Z` 🔨 **5c36a894** docs(session): update landing page with full session arc + ladder — *poisontr33s*
+- `2026-05-13 09:46:35Z` 🔨 **d0ee3220** docs(session): update landing page with full session arc + ladder — *poisontr33s*
+- `2026-05-13 09:46:35Z` 🔨 **fc2236cd** docs(session): update landing page with full session arc + ladder — *poisontr33s*
+- `2026-05-13 09:55:41Z` 🔨 **73f6b244** feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale — *poisontr33s*
+- `2026-05-13 09:55:41Z` 🔨 **946cd923** feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale — *poisontr33s*
+- `2026-05-13 09:55:41Z` 🔨 **f8c05ab9** feat(rot-index): L3 ANCHOR detectors — ROT-006 anchor_missing, ROT-007 line_anchor_stale — *poisontr33s*
+- `2026-05-13 10:02:08Z` 🔨 **aaf1fc30** fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache — *poisontr33s*
+- `2026-05-13 10:02:08Z` 🔨 **9999d8f6** fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache — *poisontr33s*
+- `2026-05-13 10:02:08Z` 🔨 **770829a2** fix(rot-index): GFM duplicate-suffix slugs + unified target_structure cache — *poisontr33s*
+- `2026-05-13 11:12:17Z` 🔨 **cdc3b856** fix(tombstone): add lifecycle metadata to historical documents for clarity — *poisontr33s*
+- `2026-05-13 11:12:17Z` 🔨 **3fdf1fbe** fix(tombstone): add lifecycle metadata to historical documents for clarity *(backup/main-before-lfs-migrate-20260513-0925)* — *poisontr33s*
+- `2026-05-13 11:12:17Z` 🔨 **35d5b869** fix(tombstone): add lifecycle metadata to historical documents for clarity — *poisontr33s*
+- `2026-05-13 11:30:07Z` 🔨 **36279461** fix(.gitignore): enhance large-file safeguards and clarify ignored artifacts *(backup/main-pre-filter-with-gitignore-20260513-0930)* — *poisontr33s*
+- `2026-05-13 11:30:07Z` 🔨 **09390d0a** fix(.gitignore): enhance large-file safeguards and clarify ignored artifacts *(backup/main-filterrepo-overwide-20260513-0932)* — *poisontr33s*
+- `2026-05-13 11:30:07Z` 🔨 **8a012981** fix(.gitignore): enhance large-file safeguards and clarify ignored artifacts *(rescue/main-clean-20260513)* — *poisontr33s*
+- `2026-05-13 11:30:40Z` 🔨 **26a0370b** untracked files on main: 36279461 fix(.gitignore): enhance large-file safeguards and clarify ignored artifacts — *poisontr33s*
+- `2026-05-13 11:30:40Z` 🔨 **48bb43dc** index on main: 36279461 fix(.gitignore): enhance large-file safeguards and clarify ignored artifacts — *poisontr33s*
+- `2026-05-13 11:30:40Z` 🔨 **cb67c28f** On main: codex pre-filter adapters cleanup 2026-05-13 *(refs/stash)* — *poisontr33s*
+- `2026-05-13 11:42:28Z` 🔨 **a701b2f3** fix(git_rot_index): update generated_at timestamp and correct tracked_md_files count — *poisontr33s*
+- `2026-05-13 11:53:10Z` 🔨 **04368a54** Add tokenizer configuration for Claudine v1 adapter — *poisontr33s*
+- `2026-05-13 12:18:33Z` 🔨 **5c3b536c** docs(mailbox): record SHA reconciliation proof for Claude — *poisontr33s*
+- `2026-05-13 12:25:25Z` 🔨 **24176002** docs(session): landing page records the slugger event + LFS migration — *poisontr33s*
+- `2026-05-13 12:30:02Z` 🔨 **7d3a9b5a** feat(dependabot-index): structurize dependency alerts as queryable data — *poisontr33s*
+- `2026-05-13 12:34:03Z` 🔨 **145254a9** feat(rot-index): L4 LINEAGE detector — ROOT-001 mass-delete ancestry — *poisontr33s*
+- `2026-05-14 03:22:26Z` 🔨 **9d9db598** feat(ci): register lens-refresh in ci/run.ts + one-stop pwsh wrapper — *poisontr33s*
+- `2026-05-14 03:23:46Z` 🔨 **f31def8e** fix(workspace): add color theme setting for improved UI consistency — *poisontr33s*
+- `2026-05-14 03:44:32Z` 🔨 **cce7823e** fix(mailbox): correct section header for clarity in SHA reconciliation report — *poisontr33s*
+- `2026-05-14 03:51:17Z` 🔨 **aeffc952** fix(workspace): set git.postCommitCommand to sync — auto pull+push after commit — *poisontr33s*
+- `2026-05-14 03:56:13Z` 🔨 **f9850f57** fix(mailbox): clarify findings in SHA reconciliation report by removing redundant information — *poisontr33s*
+- `2026-05-14 03:59:06Z` 🔨 **83be486c** fix(workspace): disable git.confirmSync so postCommitCommand fires silently — *poisontr33s*
+- `2026-05-14 04:01:33Z` 🔨 **86ef833d** fix(mailbox): remove trailing period from overnight archaeology summary — *poisontr33s*
+- `2026-05-14 04:08:50Z` 🔨 **ec09d7d0** feat(launcher): scripts/launch-workspace.ps1 — VS Code with GPU flags + workspace — *poisontr33s*
+- `2026-05-14 04:11:39Z` 🔨 **bb4f487a** feat(launcher): scripts/create-desktop-shortcut.ps1 — desktop .lnk for workspace — *poisontr33s*
+- `2026-05-14 04:14:54Z` 🔨 **76a1b6b6** fix(audit): mark tessara.agent.md as stale for clarity — *poisontr33s*
+- `2026-05-14 04:23:35Z` 🔨 **22c1d774** feat(hooks): post-commit auto-push + preserved Pentea dispatch — *poisontr33s*
+- `2026-05-14 04:26:41Z` 🔨 **d9d82355** fix(audit): remove trailing period from execution note in AGENTRY_AUDIT_20260415.md — *poisontr33s*
+- `2026-05-14 04:32:57Z` 🔨 **eeeb6d11** refactor(hooks): strip cloud-agent dispatch from post-commit, push-only — *poisontr33s*
+- `2026-05-14 04:43:46Z` 🔨 **07ff7f3b** docs(session): continuation synthesis 2026-05-14 — honest 90/10 postmortem — *poisontr33s*
+- `2026-05-14 06:13:41Z` 🔨 **150c7b10** feat(workspace): add api_pool.ps1 script loading to launch workflow — *poisontr33s*
+- `2026-05-14 06:46:06Z` 🔨 **3a6a1350** feat(lenses): activity + method meta-lens — full Gitological 4-lens stack — *poisontr33s*
+- `2026-05-14 06:46:39Z` 🔨 **8bf359ee** fix(rot): triage cluster — 3 tombstones + anchor-correction + ROT-008 suppression — *poisontr33s*
+- `2026-05-14 06:49:49Z` 🔨 **cd2bc1fd** fix(rot): correct SSOT mis-tombstone — introduce lifecycle: ssot-canon — *poisontr33s*
+- `2026-05-14 06:55:40Z` 🔨 **a8f9d6f2** fix(rot): true SSOT canon — .github/copilot-instructions.archive.md — *poisontr33s*
+- `2026-05-14 07:01:16Z` 🔨 **9770db8c** fix(link-audit): propagate lifecycle exclusion into the canonical auditor — *poisontr33s*
+- `2026-05-14 07:08:34Z` 🔨 **87913bc5** docs(session): May 14 PM continuation — 4-lens stack + rot triage + SSOT canon — *poisontr33s*
+- `2026-05-14 07:09:10Z` 🔨 **bb0edb03** feat(lenses): add support for github_activity_index and method_index in refresh-lenses script — *poisontr33s*
+- `2026-05-14 07:36:09Z` 🔨 **29c6a752** fix(rot): triage 3 clusters via method-index routing (-10 entries, 34 -> 24) — *poisontr33s*
+- `2026-05-14 07:44:30Z` 🔨 **8bc1c8b1** feat(lenses): route_index sub-lens — compound router closes the loop — *poisontr33s*
+- `2026-05-14 08:03:10Z` 🔨 **1ea4cdc8** chore(gitignore): convention-based lens manifest glob — auto-track future lenses — *poisontr33s*
+- `2026-05-14 08:04:11Z` 🔨 **bde52246** chore(manifest): update generated timestamps and method index statistics — *poisontr33s*
+- `2026-05-14 08:10:39Z` 🔨 **b6ce5dd5** fix(rot): truth-up digest annotation + target-side lifecycle guard — *poisontr33s*
+- `2026-05-14 08:23:44Z` 🔨 **61379c01** refactor(lenses): extract subprocess E2E contract as scripts/lens_runner.py — *poisontr33s*
+- `2026-05-15 11:01:11Z` 🔨 **f40d6819** feat: integrate FluxService into chthonic-archive extension — *poisontr33s*
+- `2026-05-15 12:36:19Z` 🔨 **a7e0aa4b** feat: add commands for managing Chthonic FLUX master secret — *poisontr33s*
+- `2026-05-15 13:48:06Z` 🔨 **027f469c** Refactor code structure for improved readability and maintainability — *poisontr33s*
+- `2026-05-15 13:56:07Z` 🔨 **54ed5eec** Implement feature X to enhance user experience and optimize performance — *poisontr33s*
+- `2026-05-15 14:33:08Z` 🔨 **3b6e15d2** chore: update chthonic-archive to version 0.2.9 and add new FLUX commands and settings — *poisontr33s*
+- `2026-05-15 14:33:40Z` 🔨 **7e123594** feat: add Gitignore allowlist discipline guidelines to AGENT_COMMON.md — *poisontr33s*
+- `2026-05-15 14:48:51Z` 🔨 **c559a079** feat: update pre-commit hook and package.json scripts for improved automation and verification — *poisontr33s*
+- `2026-05-16 07:07:39Z` 🔨 **4835f5e3** fix: update GitHub Copilot API URL and remove replicate server configuration — *poisontr33s*
+- `2026-05-16 09:18:22Z` 🔨 **1ca9bab5** fix: update GitHub Copilot API URL and add headers for toolsets and insiders — *poisontr33s*
+- `2026-05-16 13:43:51Z` 🔨 **bd8aa1b4** fix(copilot-triage): clean cargo check + PR triage manifest for Restructure-MCP-Orchestration — *poisontr33s*
+- `2026-05-16 15:48:28Z` 🔨 **4851880d** feat(copilot-triage): close manifest seam — Layer B self-populates via gh CLI — *poisontr33s*
+- `2026-05-16 16:14:28Z` 🔨 **49f7d422** feat(copilot-triage): compound chrono-clock x wall-clock x Claudine mode — *poisontr33s*
+- `2026-05-16 17:44:48Z` 🔨 **1cdcfefd** chore(lens): claude code webview stream-freeze patch script + lens registration — *poisontr33s*
+- `2026-05-16 18:47:52Z` 🔨 **e2df1083** feat: G6 session_ranked VIEW + tools/chthonic-mcp Copilot SDK portal — *poisontr33s*
+- `2026-05-16 18:48:49Z` 🔨 **b30bc91e** feat: manifest/session_context_report.json — lens 8 emission verified — *poisontr33s*
+- `2026-05-16 19:19:10Z` 🔨 **e2c4dd8d** feat: chrono-clock sleep rhythm logger + ChronoClockTool (G7) — *poisontr33s*
+- `2026-05-17 12:06:30Z` 🔨 **79dab782** feat(mcp): consolidate archaeology servers into chthonic-archive — *poisontr33s*
+- `2026-05-17 12:26:27Z` 🔨 **77a504a9** fix: update generated_at timestamp in session_context_report.json *(HEAD -> main, origin/main, origin/HEAD)* — *poisontr33s*

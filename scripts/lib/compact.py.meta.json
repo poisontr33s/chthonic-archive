@@ -1,0 +1,28 @@
+{
+  "id": "scripts/lib/compact.py",
+  "title": "compact.py",
+  "role": "script",
+  "purpose": "compact.py - Markdown Template-Based Compactor @SID:           TOOL_COMPACT_MD_V1 @Type:          CLI Tool @Context:       Hygiene / Content Compression @SessionOrigin: STANDALONE_2026_01_27 @Implements:    ROADMAP_TOOL_CONSOLIDATION_2026_01_27 @ReferencedBy:  DOC_CLAUDE_MD_ROOT Condenses large .md files using template-based rules.",
+  "invoke": "uv run scripts/lib/compact.py",
+  "exports": [
+    "CompactStats",
+    "compact_file",
+    "compact_lines",
+    "is_keep",
+    "is_noise",
+    "main"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "dataclasses",
+    "io",
+    "pathlib",
+    "re",
+    "shared",
+    "sys"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/compact.py",
+  "updated_at": "2026-02-05T20:04:01.128668+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "trailing-escape",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_TRAILING_ESCAPE_BEFORE_DELIMITER"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

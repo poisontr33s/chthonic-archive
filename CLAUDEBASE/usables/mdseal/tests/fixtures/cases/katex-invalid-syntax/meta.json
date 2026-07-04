@@ -1,0 +1,13 @@
+{
+  "name": "katex-invalid-syntax",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_KATEX_PARSE_ERROR"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

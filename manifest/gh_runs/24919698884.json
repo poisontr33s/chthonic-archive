@@ -1,0 +1,21 @@
+{
+  "run_id": 24919698884,
+  "fetched_at": "2026-04-25T15:50:28.270Z",
+  "summary": {
+    "conclusion": "failure",
+    "createdAt": "2026-04-25T01:48:49Z",
+    "databaseId": 24919698884,
+    "displayTitle": "chore(deps): bump the uv group across 1 directory with 5 updates",
+    "event": "push",
+    "headBranch": "dependabot/uv/uv-f6d1eaaa88",
+    "headSha": "90093100073b51b881e334325e4641be835ece57",
+    "name": ".github/workflows/pentea-cloud-dispatch.yml",
+    "status": "completed",
+    "updatedAt": "2026-04-25T01:48:49Z",
+    "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24919698884",
+    "workflowDatabaseId": 266068053,
+    "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+  },
+  "jobs": [],
+  "failure_steps": []
+}

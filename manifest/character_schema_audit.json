@@ -1,7 +1,7 @@
 {
   "tool": "CI_CHECK_CHARACTER_SCHEMA_V1",
   "schema_path": "game/lore/characters/character.schema.json",
-  "generated_at": "2026-06-03T04:15:34.343Z",
+  "generated_at": "2026-07-04T06:04:40.936Z",
   "scope": "always",
   "file_count": 5,
   "pass_count": 5,

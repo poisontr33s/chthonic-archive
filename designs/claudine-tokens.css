@@ -1,0 +1,35 @@
+/* Claudine Material System — canonical token layer
+ * Stratigraphy: depth as temporal property. Older = deeper = darker.
+ * Used in: Scriptorium webviews, Vivarium iframe, and as the
+ * authoritative source for vibrancy-obsidian.css.
+ * Made by Claude */
+
+:root {
+  /* ── Stratigraphy ─────────────────────────────────────────── */
+  --claudine-abyss:  oklch(6%  0.010 222);  /* bedrock — never transparent */
+  --claudine-deep:   oklch(9%  0.013 220);  /* deep hull */
+  --claudine-hull:   oklch(12% 0.015 218);  /* main bg */
+  --claudine-deck:   oklch(16% 0.017 216);  /* elevated surface */
+  --claudine-patina: oklch(21% 0.020 214);  /* aged, worn surface */
+
+  /* ── Accents ─────────────────────────────────────────────── */
+  --claudine-lantern:   oklch(63% 0.115 72);   /* amber — primary signal */
+  --claudine-verdigris: oklch(53% 0.088 164);  /* copper oxide — secondary */
+  --claudine-wine:      oklch(43% 0.108 14);   /* dried blood — tertiary */
+
+  /* ── Typography ──────────────────────────────────────────── */
+  --claudine-bone:   oklch(83% 0.011 75);   /* primary text */
+  --claudine-spray:  oklch(57% 0.015 212);  /* secondary text */
+  --claudine-shadow: oklch(23% 0.017 216);  /* ghost / timestamp */
+
+  /* ── Transparency compounds ──────────────────────────────── */
+  --claudine-hull-t82:   oklch(12% 0.015 218 / 0.82);
+  --claudine-deck-t75:   oklch(16% 0.017 216 / 0.75);
+  --claudine-deep-t88:   oklch(9%  0.013 220 / 0.88);
+  --claudine-abyss-t92:  oklch(6%  0.010 222 / 0.92);
+
+  /* ── Structural ──────────────────────────────────────────── */
+  --claudine-border:         color-mix(in oklch, var(--claudine-verdigris) 20%, transparent);
+  --claudine-glow-lantern:   color-mix(in oklch, var(--claudine-lantern)   16%, transparent);
+  --claudine-glow-verdigris: color-mix(in oklch, var(--claudine-verdigris) 12%, transparent);
+}

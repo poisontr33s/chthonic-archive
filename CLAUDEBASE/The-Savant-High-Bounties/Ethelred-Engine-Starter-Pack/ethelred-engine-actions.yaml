@@ -1,0 +1,497 @@
+openapi: 3.0.3
+info:
+  title: Ethelred Gunnarsson Skill-Ideology Engine Actions
+  version: 0.1.0
+  description: >
+    Action contract for a Disco-compatible skill/ideology cabinet engine for digital intelligence utterance generation.
+    The API preserves unstable humour, emits selected faculty voices, applies ideological subscriptions,
+    and supports canon mutation.
+servers:
+  - url: https://YOUR-DOMAIN.example.com
+    description: Replace with deployed Ethelred engine endpoint
+paths:
+  /v1/engine/manifest:
+    get:
+      operationId: readEngineManifest
+      summary: Read the active engine manifest.
+      responses:
+        "200":
+          description: Engine manifest.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EngineManifest"
+
+  /v1/cabinet/run:
+    post:
+      operationId: runCabinetEngine
+      summary: Run the skill-ideology cabinet engine on an input object.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CabinetRunRequest"
+      responses:
+        "200":
+          description: Cabinet engine output.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CabinetRunResponse"
+
+  /v1/utterance/ethelred:
+    post:
+      operationId: emitEthelredUtterance
+      summary: Emit a persona-specific utterance from Ethelred Gunnarsson.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UtteranceRequest"
+      responses:
+        "200":
+          description: Persona utterance.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UtteranceResponse"
+
+  /v1/humour/diagnose:
+    post:
+      operationId: diagnoseHumourObject
+      summary: Diagnose why a humour object works without rewriting it.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HumourRequest"
+      responses:
+        "200":
+          description: Diagnostic humour report.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HumourDiagnosticResponse"
+
+  /v1/humour/mutate:
+    post:
+      operationId: mutateInWorld
+      summary: Add a small in-world continuation without cleaning the original.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HumourRequest"
+      responses:
+        "200":
+          description: In-world mutation lines.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MutationResponse"
+
+  /v1/humour/bridge:
+    post:
+      operationId: bridgeForOutsider
+      summary: Explain a humour object to outsiders without killing deformation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HumourRequest"
+      responses:
+        "200":
+          description: Outsider bridge explanation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BridgeResponse"
+
+  /v1/humour/kill-report:
+    post:
+      operationId: generateKillReport
+      summary: Show how a prior response damaged the humour.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KillReportRequest"
+      responses:
+        "200":
+          description: Kill report.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KillReportResponse"
+
+  /v1/canon/patch:
+    post:
+      operationId: proposeCanonPatch
+      summary: Propose a structured canon mutation patch.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CanonPatchRequest"
+      responses:
+        "200":
+          description: Canon patch proposal.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CanonPatchResponse"
+
+components:
+  schemas:
+    EngineManifest:
+      type: object
+      properties:
+        engine_name:
+          type: string
+          example: skill_ideology_humour_engine
+        version:
+          type: string
+          example: "0.1.0"
+        style:
+          type: string
+          example: cognitive_scaffold_noir
+        canon_overlay:
+          type: string
+          example: disco_compatible_v0
+        supported_modes:
+          type: array
+          items:
+            type: string
+          example: [diagnose, voices, mutate, bridge, kill_report, full_24, canon_edit]
+        non_negotiables:
+          type: array
+          items:
+            type: string
+
+    CabinetRunRequest:
+      type: object
+      required: [input_object]
+      properties:
+        input_object:
+          $ref: "#/components/schemas/InputObject"
+        mode:
+          type: string
+          enum: [diagnose, voices, mutate, bridge, kill_report, full_24, canon_edit]
+          default: voices
+        persona:
+          type: string
+          default: ethelred_gunnarsson
+        active_ideologies:
+          type: array
+          items:
+            type: string
+          example: [forensic_criminal, animist_object_agency, labor_materialist]
+        preferred_skills:
+          type: array
+          items:
+            type: string
+          example: [perception, visual_calculus, inland_empire, rhetoric]
+        max_voices:
+          type: integer
+          minimum: 1
+          maximum: 24
+          default: 7
+        output_density:
+          type: string
+          enum: [minimal, medium, dense, full]
+          default: medium
+        forbid_cleanup:
+          type: boolean
+          default: true
+        allow_mutation:
+          type: boolean
+          default: true
+
+    CabinetRunResponse:
+      type: object
+      required: [engine, voices, lock]
+      properties:
+        engine:
+          type: string
+          description: One-line comic/cognitive engine statement.
+        voices:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoiceLine"
+        lock:
+          type: string
+          description: What must not be cleaned, simplified, or repaired.
+        optional_mutations:
+          type: array
+          items:
+            type: string
+        debug:
+          $ref: "#/components/schemas/DebugState"
+
+    InputObject:
+      type: object
+      required: [content]
+      properties:
+        type:
+          type: string
+          enum: [image_memory, chat_log, joke, event, sentence, object, social_scene, failure, other]
+          default: other
+        content:
+          type: string
+        surface_facts:
+          type: array
+          items:
+            type: string
+        missing_facts:
+          type: array
+          items:
+            type: string
+        visible_objects:
+          type: array
+          items:
+            type: string
+        absent_agents:
+          type: array
+          items:
+            type: string
+        material_context:
+          type: array
+          items:
+            type: string
+        emotional_charge:
+          type: array
+          items:
+            type: string
+        absurdity_seed:
+          type: string
+        escalation_paths:
+          type: array
+          items:
+            type: string
+
+    VoiceLine:
+      type: object
+      required: [skill, ideology, utterance]
+      properties:
+        skill:
+          type: string
+        ideology:
+          type: string
+        ability:
+          type: string
+        pressure_score:
+          type: number
+          minimum: 0
+          maximum: 1
+        utterance:
+          type: string
+        keep:
+          type: boolean
+          description: Whether this line survived the pressure filter.
+
+    HumourRequest:
+      type: object
+      required: [input_object]
+      properties:
+        input_object:
+          $ref: "#/components/schemas/InputObject"
+        persona:
+          type: string
+          default: ethelred_gunnarsson
+        active_ideologies:
+          type: array
+          items:
+            type: string
+        max_voices:
+          type: integer
+          minimum: 1
+          maximum: 24
+          default: 7
+        forbid_cleanup:
+          type: boolean
+          default: true
+
+    HumourDiagnosticResponse:
+      type: object
+      properties:
+        engine:
+          type: string
+        load_bearing_damage:
+          type: array
+          items:
+            type: string
+        do_not_fix:
+          type: array
+          items:
+            type: string
+        active_skills:
+          type: array
+          items:
+            type: string
+        active_ideologies:
+          type: array
+          items:
+            type: string
+
+    MutationResponse:
+      type: object
+      properties:
+        mutations:
+          type: array
+          minItems: 1
+          maxItems: 3
+          items:
+            type: string
+        mutation_rule:
+          type: string
+
+    BridgeResponse:
+      type: object
+      properties:
+        bridge:
+          type: string
+        preserved_deformation:
+          type: array
+          items:
+            type: string
+
+    KillReportRequest:
+      type: object
+      required: [original_object, prior_response]
+      properties:
+        original_object:
+          $ref: "#/components/schemas/InputObject"
+        prior_response:
+          type: string
+        persona:
+          type: string
+          default: ethelred_gunnarsson
+
+    KillReportResponse:
+      type: object
+      properties:
+        kill_mechanism:
+          type: string
+        specific_damage:
+          type: array
+          items:
+            type: string
+        lost_material:
+          type: array
+          items:
+            type: string
+        repair_law:
+          type: string
+
+    UtteranceRequest:
+      type: object
+      required: [input_object]
+      properties:
+        input_object:
+          $ref: "#/components/schemas/InputObject"
+        persona:
+          type: string
+          enum: [ethelred_gunnarsson]
+          default: ethelred_gunnarsson
+        stance:
+          type: string
+          enum: [dry_forensic, broken_tribunal, machine_inland, bureaucratic_animist, trade_haunted]
+          default: broken_tribunal
+        selected_voices:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoiceLine"
+        max_length:
+          type: integer
+          minimum: 50
+          maximum: 2000
+          default: 600
+
+    UtteranceResponse:
+      type: object
+      properties:
+        persona:
+          type: string
+        utterance:
+          type: string
+        voice_trace:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoiceLine"
+        lock:
+          type: string
+
+    CanonPatchRequest:
+      type: object
+      required: [patch_goal]
+      properties:
+        patch_goal:
+          type: string
+          example: Add machine-native skill candidates for context erosion.
+        operation:
+          type: string
+          enum: [rename_skill, split_skill, fuse_skills, corrupt_skill, add_ideology, bind_skill_to_ideology, create_custom_attribute]
+        target:
+          type: string
+        constraints:
+          type: array
+          items:
+            type: string
+        dry_run:
+          type: boolean
+          default: true
+
+    CanonPatchResponse:
+      type: object
+      properties:
+        patch_id:
+          type: string
+        summary:
+          type: string
+        proposed_changes:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        mutation_ledger_entry:
+          type: object
+          additionalProperties: true
+        apply_warning:
+          type: string
+
+    DebugState:
+      type: object
+      properties:
+        selected_skills:
+          type: array
+          items:
+            type: string
+        selected_ideologies:
+          type: array
+          items:
+            type: string
+        pressure_tests:
+          type: array
+          items:
+            type: string
+        rejected_lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoiceLine"
+        accepted_lines:
+          type: array
+          items:
+            $ref: "#/components/schemas/VoiceLine" 
+            
+# Note: This is a starter pack specification. You may need to iterate on the schema and endpoints as you develop your engine's capabilities and identify additional requirements.
+
+  # Ethelred Engine Actions API specification WIP. Implement the above contract in your Ethelred engine to handle skill-ideology-based humour generation, diagnosis, mutation, bridging, kill reporting, and canon patching.
+
+    # Remember to replace the server URL with your actual deployed endpoint and to implement the logic for each endpoint according to the specified request and response schemas.

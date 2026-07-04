@@ -1,0 +1,35 @@
+# ╔════════════════════════════════════════════════════════════════════════════
+# ║ Zig Toolchain Config — chthonic-archive
+# ║ Convention mirrors rust-toolchain.toml (pin + profile + targets).
+# ╚════════════════════════════════════════════════════════════════════════════
+#
+# Install pinned zig via `goup zig install <channel>` or manually from
+# https://ziglang.org/download/. The `chthonic` CLI surfaces this file in
+# the toolchain table when `chthonic doctor` is run.
+#
+# @SID: TOOLCHAIN_ZIG_V1
+# @Type: Configuration
+
+[toolchain]
+# Stable release as of 2026-04-13. Update when next stable drops.
+channel  = "0.16.0"
+profile  = "default"
+# Windows primary target — MSVC ABI for LNK compatibility with the Vulkan pipeline.
+targets  = [
+    "x86_64-windows",
+    "x86_64-linux-musl",
+]
+
+[options]
+# zig build cache — shared across projects on this machine.
+global_cache = true
+# Treat -fno-omit-frame-pointer as default for debuggability.
+frame_pointers = true
+# Link mode: dynamic preferred to reduce binary size where possible.
+link_mode = "dynamic"
+
+[env]
+# Zig binary location when installed standalone (goup-managed preferred).
+# ZIG_BIN  = "$env:USERPROFILE\\.zig\\0.14.0\\zig.exe"
+# Zig standard library override (uncomment if using custom std).
+# ZIG_LIB  = "$env:USERPROFILE\\.zig\\0.14.0\\lib"

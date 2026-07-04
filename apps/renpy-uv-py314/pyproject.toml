@@ -1,0 +1,54 @@
+# Ren'Py-on-uv-Python-3.14 development lane
+# Standalone (not a workspace member) so the build chain stays isolated.
+
+[project]
+name = "renpy-uv-py314"
+version = "0.0.1"
+description = "Ren'Py 8.5.x ported to Python 3.14 via uv. Phase 0 = tooling lane; later phases = source build + Vulkan/RTX renderer."
+requires-python = "==3.14.*"
+
+dependencies = [
+    # Pure-Python deps mirrored from upstream renpy/pyproject.toml
+    "future",
+    "six",
+    "pefile",
+    "requests",
+    "rsa",
+    "setuptools",
+    "jinja2",
+    "pkgconfig>=1.6.0",
+    # PEP 594 backports for stdlib modules removed in Python 3.13+.
+    # legacy-cgi: Ren'Py launcher uses cgi via webserver.py.
+    # Add more legacy-* / standard-* backports here as the PEP 594 audit surfaces them.
+    "legacy-cgi",
+]
+
+[dependency-groups]
+build = [
+    # Cython 3.2.4+ has explicit Python 3.14 classifiers
+    "cython>=3.2.4",
+    "setuptools>=75",
+    "wheel",
+]
+docs = [
+    "sphinx",
+    "sphinx_rtd_theme",
+    "sphinx-tabs",
+]
+dev = [
+    "ruff",
+    "pytest>=8",
+]
+probe = [
+    # Tools the boundary-probe scripts use
+    "rich>=15",
+]
+
+[tool.uv]
+# Pin to the exact uv-managed CPython we already verified locally.
+python-preference = "only-managed"
+required-version = ">=0.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py314"

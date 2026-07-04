@@ -1,0 +1,228 @@
+#version 450
+#extension GL_ARB_separate_shader_objects : enable
+
+layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
+
+// set=0  output cloud render target (rgba16f)
+layout(set = 0, binding = 0, rgba16f) uniform writeonly image2D u_cloud_target;
+
+// set=1  FrameUniform UBO – layout must match the Rust FrameUniform repr(C) exactly
+layout(set = 1, binding = 0) uniform FrameUniform {
+    mat4  curr_mvp;
+    mat4  prev_mvp;
+    vec4  sst_data;
+    vec3  sun_dir;
+    float bottom_radius;         // km   (6360.0)
+    vec3  rayleigh_scattering;
+    float top_radius;            // km   (6460.0)
+    vec3  mie_scattering;
+    float mie_extinction;
+    vec3  ozone_absorption;
+    float mie_g;
+    vec4  weather_data;          // [wind_dir_deg, wind_speed_ms, 0, 0]
+} u_frame;
+
+// set=2  cloud noise textures  (baked by CloudNoiseCompute)
+layout(set = 2, binding = 0) uniform sampler3D u_base_noise;
+layout(set = 2, binding = 1) uniform sampler3D u_detail_noise;
+layout(set = 2, binding = 2) uniform sampler2D u_coverage;
+
+// set=3  atmosphere LUTs  (baked by AtmosphereCompute)
+layout(set = 3, binding = 0) uniform sampler2D u_transmittance;
+layout(set = 3, binding = 1) uniform sampler2D u_multiscatter;
+
+layout(push_constant) uniform CloudPush {
+    mat4  inv_view_proj;   // inverse of the render VP (game world space)
+    vec4  cam_pos_time;    // .xyz = camera world pos, .w = elapsed frame time
+    vec2  resolution;      // render target pixel dimensions
+    vec2  pad;
+} pc;
+
+// ─── Constants ────────────────────────────────────────────────────────────────
+
+const float CLOUD_BOTTOM   = 1.5;   // km above surface
+const float CLOUD_TOP      = 4.0;   // km above surface
+const float CLOUD_HEIGHT   = 2.5;   // CLOUD_TOP - CLOUD_BOTTOM
+const float CLOUD_TILE     = 64.0;  // km horizontal tiling period
+const float CLOUD_EXT      = 0.04;  // km^-1 extinction cross-section
+const int   VIEW_STEPS     = 64;    // per-ray march steps through cloud shell
+const int   LIGHT_STEPS    = 6;     // per-sample shadow march toward sun
+const float PHASE_G        = 0.85;  // HG forward-scattering asymmetry
+const float PI             = 3.14159265;
+
+// ─── Math helpers ─────────────────────────────────────────────────────────────
+
+float remap(float v, float lo1, float hi1, float lo2, float hi2) {
+    return lo2 + (hi2 - lo2) * clamp((v - lo1) / max(hi1 - lo1, 1e-5), 0.0, 1.0);
+}
+
+// Far (positive) intersection of a ray with a sphere centered at origin.
+// Returns -1 if the intersection is behind the camera or the ray misses.
+float raySphereExit(vec3 orig, vec3 dir, float R) {
+    float b = dot(orig, dir);
+    float c = dot(orig, orig) - R * R;
+    float d = b * b - c;
+    if (d < 0.0) return -1.0;
+    float t2 = -b + sqrt(d);
+    return (t2 >= 0.0) ? t2 : -1.0;
+}
+
+// Henyey-Greenstein phase function
+float henyeyGreenstein(float cosTheta, float g) {
+    float g2 = g * g;
+    return (1.0 - g2) / (4.0 * PI * pow(1.0 + g2 - 2.0 * g * cosTheta, 1.5));
+}
+
+// Sample the precomputed Transmittance LUT.
+// Parameterisation: u = sqrt(altitude_fraction), v = 0.5 + 0.5 * cos_sun
+vec3 sampleTransmittanceLut(float altRadiusKm, float cosSun) {
+    float u = sqrt(clamp(
+        (altRadiusKm - u_frame.bottom_radius) /
+        (u_frame.top_radius - u_frame.bottom_radius),
+        0.0, 1.0));
+    float v = clamp(cosSun * 0.5 + 0.5, 0.0, 1.0);
+    return texture(u_transmittance, vec2(u, v)).rgb;
+}
+
+// ─── Cloud density ────────────────────────────────────────────────────────────
+
+// Returns an extinction density (km^-1) for a point in atmosphere-space km coords.
+// windOff is the XZ advection offset in normalised CLOUD_TILE units.
+float sampleDensity(vec3 posKm, vec2 windOff) {
+    float altCloud = length(posKm) - u_frame.bottom_radius;
+    if (altCloud < CLOUD_BOTTOM || altCloud > CLOUD_TOP) return 0.0;
+
+    float altFrac = (altCloud - CLOUD_BOTTOM) / CLOUD_HEIGHT;
+    // Smooth fade at the bottom 7% and top 7% of the layer
+    float altGrad = smoothstep(0.0, 0.07, altFrac) * smoothstep(1.0, 0.93, altFrac);
+
+    // 2-D coverage map (tiled, wind-advected)
+    vec2 uvCov = posKm.xz / CLOUD_TILE + windOff;
+    float coverage = texture(u_coverage, uvCov).r;
+    if (coverage < 0.01) return 0.0;
+
+    // 3-D base noise: R = Perlin-Worley, GBA = Worley FBM octaves
+    vec3 uvwBase = vec3(posKm.xz / CLOUD_TILE + windOff, altFrac);
+    vec4 base = texture(u_base_noise, uvwBase);
+
+    // Nubis-style remap: coverage controls where cloud bulk starts
+    float baseCloud = remap(base.r, 1.0 - coverage, 1.0, 0.0, 1.0);
+    // Erode macro shape with packed Worley FBM
+    float baseFbm = base.g * 0.625 + base.b * 0.25 + base.a * 0.125;
+    baseCloud = remap(baseCloud, 1.0 - baseFbm, 1.0, 0.0, 1.0);
+
+    // 3-D detail noise at 4× higher frequency (curl-like surface erosion)
+    vec3 uvwDet = vec3(posKm.xz / (CLOUD_TILE * 0.25) + windOff * 4.0, altFrac);
+    vec4 detail = texture(u_detail_noise, uvwDet);
+    float detFbm = detail.r * 0.625 + detail.g * 0.25 + detail.b * 0.125;
+    baseCloud = remap(baseCloud, detFbm * 0.2, 1.0, 0.0, 1.0);
+
+    return max(0.0, baseCloud * altGrad) * CLOUD_EXT;
+}
+
+// Light-cone shadow: march toward the sun, accumulate density, return Beer transmittance.
+float lightConeShadow(vec3 posKm, vec3 sunDir, vec2 windOff) {
+    float tSun = raySphereExit(posKm, sunDir, u_frame.bottom_radius + CLOUD_TOP);
+    if (tSun <= 0.0) return 1.0;
+
+    float stepSize = tSun / float(LIGHT_STEPS);
+    float sigma    = 0.0;
+    for (int i = 0; i < LIGHT_STEPS; i++) {
+        vec3 p = posKm + sunDir * (float(i) + 0.5) * stepSize;
+        sigma += sampleDensity(p, windOff);
+    }
+    return exp(-sigma * stepSize);
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+void main() {
+    ivec2 coord = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 res   = ivec2(pc.resolution);
+    if (any(greaterThanEqual(coord, res))) return;
+
+    // ── Ray reconstruction ──────────────────────────────────────────────────
+    vec2 uv  = (vec2(coord) + 0.5) / pc.resolution;
+    vec2 ndc = uv * 2.0 - 1.0;
+    ndc.y    = -ndc.y;  // Vulkan Y-down: flip to match OpenGL-style NDC
+
+    vec4 nearClip  = vec4(ndc, -1.0, 1.0);
+    vec4 worldNear = pc.inv_view_proj * nearClip;
+    worldNear     /= worldNear.w;
+    vec3 rayDir    = normalize(worldNear.xyz - pc.cam_pos_time.xyz);
+    float time     = pc.cam_pos_time.w;
+
+    // ── Atmosphere-space ray origin (camera always at sea level in LUT coords) ──
+    float R_surface   = u_frame.bottom_radius;
+    float R_cloud_bot = R_surface + CLOUD_BOTTOM;
+    float R_cloud_top = R_surface + CLOUD_TOP;
+    vec3  atmOrigin   = vec3(0.0, R_surface + 0.001, 0.0);  // just above planet surface
+
+    // ── Cloud shell intersection ─────────────────────────────────────────────
+    float tBot = raySphereExit(atmOrigin, rayDir, R_cloud_bot);
+    float tTop = raySphereExit(atmOrigin, rayDir, R_cloud_top);
+
+    // tBot > 500 km means the ray is going into the other hemisphere (through Earth).
+    if (tBot < 0.0 || tTop < 0.0 || tBot > 500.0 || tTop <= tBot) {
+        imageStore(u_cloud_target, coord, vec4(0.0));
+        return;
+    }
+
+    // ── Wind advection offset ────────────────────────────────────────────────
+    float windRad = radians(u_frame.weather_data.x);
+    float windSpd = u_frame.weather_data.y;
+    vec2  windOff = vec2(cos(windRad), sin(windRad))
+                    * (windSpd * 0.001 * time) / CLOUD_TILE;
+
+    vec3  sunDir = normalize(u_frame.sun_dir);
+
+    // ── Raymarching loop ─────────────────────────────────────────────────────
+    float stepSize          = (tTop - tBot) / float(VIEW_STEPS);
+    vec3  pos               = atmOrigin + rayDir * (tBot + stepSize * 0.5);
+
+    vec3  cloudRgb          = vec3(0.0);
+    float cloudAlpha        = 0.0;
+    float viewTransmittance = 1.0;
+
+    for (int i = 0; i < VIEW_STEPS; i++) {
+        if (viewTransmittance < 0.005) break;  // early exit once opaque
+
+        float density = sampleDensity(pos, windOff);
+
+        if (density > 0.0) {
+            // Beer's law view step transmittance
+            float stepTrans = exp(-density * stepSize);
+
+            // ─ Shadow from the sun ─
+            float lightTrans = lightConeShadow(pos, sunDir, windOff);
+
+            // ─ Atmospheric transmittance at cloud altitude ─
+            float altKm  = length(pos);
+            float cosSun = dot(normalize(pos), sunDir);
+            vec3  atmAtt = sampleTransmittanceLut(altKm, cosSun);
+
+            // ─ Phase function (strong forward scattering) ─
+            float cosView = dot(rayDir, -sunDir);
+            float phase   = henyeyGreenstein(cosView, PHASE_G);
+
+            // Powder sugar: bright silver lining on backlit cloud edges
+            float powder = 2.0 * (1.0 - exp(-density * stepSize * 2.0));
+
+            // Sun inscattering + ambient multi-scatter approximation
+            vec3 sunIrr     = vec3(1.2, 1.1, 0.9) * 8.0;
+            vec3 scattering = sunIrr * lightTrans * phase * powder * atmAtt;
+            vec3 ambient    = vec3(0.20, 0.25, 0.35) * 0.4;
+            scattering     += ambient;
+
+            // Front-to-back alpha accumulation
+            float dAlpha     = 1.0 - stepTrans;
+            cloudRgb        += scattering * dAlpha * viewTransmittance;
+            cloudAlpha      += dAlpha * viewTransmittance;
+            viewTransmittance *= stepTrans;
+        }
+
+        pos += rayDir * stepSize;
+    }
+
+    imageStore(u_cloud_target, coord, vec4(cloudRgb, cloudAlpha));
+}

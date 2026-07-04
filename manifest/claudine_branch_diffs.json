@@ -1,0 +1,160 @@
+[
+  {
+    "branch": "copilot/add-gpu-accelerated-tfjs-package",
+    "ahead_by": 0,
+    "behind_by": 7,
+    "total_commits": 0,
+    "files": null
+  },
+  {
+    "branch": "copilot/create-e2e-workflow-tests",
+    "ahead_by": 3,
+    "behind_by": 21,
+    "total_commits": 3,
+    "files": [
+      {
+        "status": "modified",
+        "adds": 9,
+        "dels": 7,
+        "file": "biome.json"
+      },
+      {
+        "status": "modified",
+        "adds": 1,
+        "dels": 1,
+        "file": "claudine-cli/index.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 76,
+        "dels": 77,
+        "file": "claudine-cli/src/cli.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 208,
+        "dels": 220,
+        "file": "claudine-cli/src/commands/env/health.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 12,
+        "dels": 12,
+        "file": "claudine-cli/src/commands/env/index.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 10,
+        "dels": 10,
+        "file": "claudine-cli/src/commands/env/status.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 12,
+        "dels": 12,
+        "file": "claudine-cli/src/commands/project/index.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 72,
+        "dels": 80,
+        "file": "claudine-cli/src/commands/project/list.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 242,
+        "dels": 247,
+        "file": "claudine-cli/src/commands/project/new.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 59,
+        "dels": 62,
+        "file": "claudine-cli/src/utils/environment.ts"
+      },
+      {
+        "status": "added",
+        "adds": 114,
+        "dels": 0,
+        "file": "claudine-cli/tests/README.md"
+      },
+      {
+        "status": "added",
+        "adds": 368,
+        "dels": 0,
+        "file": "claudine-cli/tests/e2e/clit-workflow.test.ts"
+      }
+    ]
+  },
+  {
+    "branch": "copilot/implement-config-system-tests",
+    "ahead_by": 2,
+    "behind_by": 21,
+    "total_commits": 2,
+    "files": [
+      {
+        "status": "modified",
+        "adds": 9,
+        "dels": 7,
+        "file": "biome.json"
+      },
+      {
+        "status": "added",
+        "adds": 346,
+        "dels": 0,
+        "file": "claudine-cli/src/core/config/config-manager.ts"
+      },
+      {
+        "status": "added",
+        "adds": 507,
+        "dels": 0,
+        "file": "claudine-cli/tests/config-manager.test.ts"
+      }
+    ]
+  },
+  {
+    "branch": "copilot/integrate-config-manager-orchestrator",
+    "ahead_by": 3,
+    "behind_by": 20,
+    "total_commits": 3,
+    "files": [
+      {
+        "status": "added",
+        "adds": 88,
+        "dels": 0,
+        "file": "claudine-cli/src/core/config/index.ts"
+      },
+      {
+        "status": "added",
+        "adds": 23,
+        "dels": 0,
+        "file": "claudine-cli/src/core/detector/index.ts"
+      },
+      {
+        "status": "added",
+        "adds": 161,
+        "dels": 0,
+        "file": "claudine-cli/src/core/orchestrator/orchestrator.ts"
+      },
+      {
+        "status": "added",
+        "adds": 87,
+        "dels": 0,
+        "file": "claudine-cli/tests/orchestration.test.ts"
+      },
+      {
+        "status": "modified",
+        "adds": 1,
+        "dels": 0,
+        "file": "claudine-cli/tsconfig.json"
+      }
+    ]
+  },
+  {
+    "branch": "copilot/refactor-cli-commands-orchestrator",
+    "ahead_by": 0,
+    "behind_by": 12,
+    "total_commits": 0,
+    "files": null
+  }
+]

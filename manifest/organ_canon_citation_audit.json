@@ -1,7 +1,7 @@
 {
   "tool": "CI_CHECK_ORGAN_CANON_CITATION_V1",
   "ssot_path": ".chthonic/SSOT.md",
-  "generated_at": "2026-06-03T04:15:33.811Z",
+  "generated_at": "2026-07-04T06:04:40.409Z",
   "scope": "always",
   "ssot_canonical_organs": [
     "adrenal_glands",

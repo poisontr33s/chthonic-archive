@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chthonic-archive.local/meta/script-envelope.schema.json",
+  "title": "ScriptEnvelopeMetadata",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "runtime",
+    "purpose",
+    "invoke",
+    "exports",
+    "xrefs",
+    "updated_at"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "role": { "type": "string" },
+    "purpose": { "type": "string", "minLength": 1 },
+    "invoke": { "type": "string", "minLength": 1 },
+    "exports": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "xrefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "owners": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "license_spdx": { "type": "string" },
+    "runtime": {
+      "type": "string",
+      "enum": ["python", "bun", "node", "nextjs", "unknown"]
+    },
+    "entrypoint": { "type": "string" },
+    "updated_at": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -182,6 +182,19 @@ const CHECKS: Check[] = [
     },
   },
   {
+    name: "pin-truth",
+    aliases: ["pins", "version-pins"],
+    script: "ci/checks/pin-truth.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Version declaration truth membrane: distinguish exact pins, ranges, floating channels, and contradictory latest/current/stable claims",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "A version contradiction is a law/intent problem, not a mechanical edit: the right repair may be changing a comment from 'latest' to 'pinned', changing a pin to a floating channel, or moving live-upstream facts into a dated source ledger. CI must not choose that policy silently.",
+      manual_remediation: "Read each flagged line. If the file is meant to pin, say pinned/range and remove latest/current/stable language. If it is meant to float, use the resolver's floating token (`latest`, `stable`, etc.) instead of a concrete version. If the line records upstream state, move it to a dated research ledger and cite the source.",
+    },
+  },
+  {
     name: "pathfinder",
     aliases: ["link-audit"],
     script: "ci/checks/link-audit.ts",

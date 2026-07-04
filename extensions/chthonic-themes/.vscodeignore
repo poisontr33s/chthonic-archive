@@ -1,0 +1,16 @@
+# Include only what the VSIX needs
+node_modules/**
+.vscode-test/**
+src/**
+dist/**
+scripts/**
+docs/**
+fixtures/**
+audit-reports/**
+bun.lock
+tsconfig.json
+*.ts
+*.js
+!package.json
+!themes/**
+!icons/**

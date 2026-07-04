@@ -1,0 +1,1 @@
+![equation](./images/equation.png)

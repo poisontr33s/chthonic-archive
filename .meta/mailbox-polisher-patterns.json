@@ -1,0 +1,71 @@
+{
+  "keep_base": [
+    "MAILBOX_CURRENT_STATE.md",
+    "mailbox_manifest.json",
+    "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+    "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+    "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+    "KISS_PARITY_BRIEF_2026_02_06.md",
+    "QUEUE_2026_02_07.md",
+    "tatragrammatron_trend.json"
+  ],
+  "keep_codex": [
+    "TETRAGRAMMATON_PACKET.md",
+    "CLAUDE_RUNBOOK_MATRIX.md",
+    "HF_GEMMA_PROBE.md",
+    "hf_gemma_probe.json",
+    "tatragrammatron_matrix_2026_02_07.json",
+    "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+    "tatragrammatron_stamps_latest_codex.json",
+    "TOOLCHAIN_DOCTOR_LATEST.md",
+    "TETRAGRAMMATON_PROGRESS_2026_02_06.md"
+  ],
+  "keep_claude": [
+    "CLAUDE_META_VALIDATION_SUMMARY.json",
+    "skills_parity_map_2026_02_06.json"
+  ],
+  "keep_gemini": [
+    "MAILBOX_CURRENT_STATE.md",
+    "mailbox_manifest.json",
+    "TETRAGRAMMATON_PACKET.md"
+  ],
+  "archive_codex": [
+    {
+      "prefix": "TATRAGRAMMATRON_SUMMARY_",
+      "exclude_exact": "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+      "reason": "superseded summary (keep only LATEST at root)"
+    },
+    {
+      "prefix": "tatragrammatron_stamps_",
+      "exclude_exact": "tatragrammatron_stamps_latest_codex.json",
+      "reason": "superseded stamps (keep only LATEST at root)"
+    },
+    {
+      "prefix": "e2e_matrix_",
+      "reason": "e2e matrix raw artifacts (packet/manifest keep reference; archive for traceability)"
+    },
+    {
+      "startswith": "MAILBOX_CURRENT_STATE_",
+      "endswith": "_2026_02_06.md",
+      "reason": "dated mailbox state (keep stable MAILBOX_CURRENT_STATE.md)"
+    },
+    {
+      "startswith": "TETRAGRAMMATON_PROGRESS_",
+      "endswith": "_2026_02_06.md",
+      "reason": "dated progress note (optional at root)"
+    }
+  ],
+  "archive_claude": [
+    {
+      "prefix": "e2e_matrix_",
+      "suffix": ".json",
+      "reason": "e2e matrix raw artifacts (keep parity reports at root; archive run artifacts)"
+    },
+    {
+      "prefix": "MAILBOX_CURRENT_STATE_",
+      "suffix": ".md",
+      "exclude_exact": "MAILBOX_CURRENT_STATE.md",
+      "reason": "dated mailbox state (keep stable MAILBOX_CURRENT_STATE.md)"
+    }
+  ]
+}

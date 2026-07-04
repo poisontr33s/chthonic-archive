@@ -1,0 +1,1 @@
+Display valid: $$E = mc^2$$

@@ -1,0 +1,13 @@
+{
+  "name": "parser-table-pipe-disagreement",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_PARSER_TABLE_COUNT_DISAGREEMENT"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "katex-repair-improves-validation",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_MATH_BACKSLASH_COLLAPSED"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

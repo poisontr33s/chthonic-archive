@@ -1,0 +1,1 @@
+<img src="a.png" alt="Diagram" title="Fig 1">

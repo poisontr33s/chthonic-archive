@@ -1,0 +1,13 @@
+{
+  "name": "parser-list-display-math",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_PARSER_STRUCTURE_DISAGREEMENT"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

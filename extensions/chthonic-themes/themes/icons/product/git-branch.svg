@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Nile delta tributary — river branching to streams -->
+ <path d="M8 1.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+ <path d="M8 6.5c-2 2-3.5 4-4.5 7.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+ <path d="M8 6.5c0 2.5.5 5 0 7.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+ <path d="M8 6.5c2 2 3.5 4 4.5 7.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

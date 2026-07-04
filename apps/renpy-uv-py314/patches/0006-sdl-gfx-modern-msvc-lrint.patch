@@ -1,0 +1,15 @@
+diff --git a/src/pygame/SDL_gfxPrimitives.c b/src/pygame/SDL_gfxPrimitives.c
+index baa373b20..93d961227 100644
+--- a/src/pygame/SDL_gfxPrimitives.c
++++ b/src/pygame/SDL_gfxPrimitives.c
+@@ -3960,7 +3960,9 @@ int ellipseRGBA(SDL_Surface * dst, Sint16 x, Sint16 y, Sint16 rx, Sint16 ry, Uin
+ /* ----- AA Ellipse */
+ 
+ /* Windows targets do not have lrint, so provide a local inline version */
+-#if defined(_MSC_VER)
++/* Modern MSVC (VS 2015+, _MSC_VER >= 1900) provides lrint as an intrinsic via <math.h>;
++ * defining our own conflicts with C2169. Gate the shim on older toolsets. */
++#if defined(_MSC_VER) && _MSC_VER < 1900
+ /* Detect 64bit and use intrinsic version */
+ #ifdef _M_X64
+ #include <emmintrin.h>

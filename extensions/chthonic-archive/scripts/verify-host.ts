@@ -14,9 +14,33 @@ type HostCheck = {
     infoOnly?: boolean;
 };
 
+type EvidenceBasis =
+    | 'manual-check'
+    | 'command-exit'
+    | 'command-predicate'
+    | 'auto-fix'
+    | 'policy-warn'
+    | 'policy-info'
+    | 'path-probe'
+    | 'stderr-warning'
+    | 'upstream-not-checked'
+    | 'await-lane'
+    | 'workspace-declaration'
+    | 'remediation-blocked';
+
+type EvidenceConfidence = 'local-observed' | 'local-inferred' | 'policy' | 'upstream-not-checked';
+
+type EvidenceEntry = {
+    basis: EvidenceBasis;
+    claim: string;
+    observed?: string;
+    confidence: EvidenceConfidence;
+};
+
 type ManualCheckResult = {
     ok: boolean;
     note?: string;
+    evidence?: EvidenceEntry[];
 };
 
 type CheckStatus = 'OK' | 'WARN' | 'INFO' | 'FAILED' | 'MISSING' | 'FIXED';
@@ -27,6 +51,7 @@ type EvaluatedNode = {
     note?: string;
     fix?: string;
     hardFail: boolean;
+    evidence?: EvidenceEntry[];
     children: EvaluatedNode[];
 };
 
@@ -112,6 +137,41 @@ function runSync(cmd: string[]): {
 
 function normalizeOutput(text: string): string {
     return text.replace(/\u0000/g, '').trim();
+}
+
+function firstOutputLine(text: string): string | null {
+    const line = normalizeOutput(text)
+        .split(/\r?\n/)
+        .map((entry) => entry.trim())
+        .find(Boolean);
+    return line ?? null;
+}
+
+function makeEvidence(
+    basis: EvidenceBasis,
+    claim: string,
+    observed?: string,
+    confidence: EvidenceConfidence = 'local-observed',
+): EvidenceEntry {
+    return {
+        basis,
+        claim,
+        observed,
+        confidence,
+    };
+}
+
+function formatCommandObservation(result: ReturnType<typeof runSync>): string {
+    const pieces = [`exit=${result.threw ? 'threw' : result.exitCode}`];
+    const stdout = firstOutputLine(result.stdout);
+    const stderr = firstOutputLine(result.stderr);
+    if (stdout) {
+        pieces.push(`stdout=${stdout}`);
+    }
+    if (stderr) {
+        pieces.push(`stderr=${stderr}`);
+    }
+    return pieces.join('; ');
 }
 
 function resolveCommandPath(command: string): string | null {
@@ -438,38 +498,98 @@ function workspaceNeedsSolanaLane(): boolean {
     return false;
 }
 
-function ensureSolanaToolSuiteLane(): ManualCheckResult {
+function ensureAgaveAnzaLane(): ManualCheckResult {
     const needsLane = workspaceNeedsSolanaLane();
     const solana = runSync(['solana', '--version']);
-    const agave = runSync(['agave-install', '--version']);
+    const agaveVersion = runSync(['agave-install', '--version']);
+    const agaveHelp = runSync(['agave-install', '--help']);
+    const solanaPath = resolveCommandPath('solana');
+    const agaveInstallPath = resolveCommandPath('agave-install');
+    const solanaInstallPath = resolveCommandPath('solana-install');
 
     const hasSolana = !solana.threw && solana.exitCode === 0;
-    const hasAgaveInstall = !agave.threw && agave.exitCode === 0;
+    const hasUsableAgaveInstall =
+        Boolean(agaveInstallPath) &&
+        ((!agaveVersion.threw && agaveVersion.exitCode === 0) || (!agaveHelp.threw && agaveHelp.exitCode === 0));
+    const baseEvidence: EvidenceEntry[] = [
+        makeEvidence(
+            'workspace-declaration',
+            needsLane ? 'workspace declares a Solana/Agave lane' : 'workspace does not declare a Solana/Agave lane',
+            undefined,
+            'local-inferred',
+        ),
+        makeEvidence('command-exit', 'solana CLI version probe', formatCommandObservation(solana)),
+        makeEvidence('path-probe', 'solana path probe', solanaPath ?? 'missing'),
+        makeEvidence('path-probe', 'agave-install path probe', agaveInstallPath ?? 'missing'),
+        makeEvidence('command-exit', 'agave-install --version probe', formatCommandObservation(agaveVersion)),
+        makeEvidence('command-exit', 'agave-install --help probe', formatCommandObservation(agaveHelp)),
+        makeEvidence('path-probe', 'solana-install legacy path probe', solanaInstallPath ?? 'missing'),
+        makeEvidence(
+            'upstream-not-checked',
+            'offline preflight does not prove latest Agave release',
+            'live release source must be checked before upgrade motion',
+            'upstream-not-checked',
+        ),
+    ];
+    const blockedInstallerEvidence = makeEvidence(
+        'remediation-blocked',
+        'stale solana-install remediation must not be called',
+        'use a usable agave-install or current Anza prebuilt release instead',
+        'policy',
+    );
 
-    if (hasSolana && hasAgaveInstall) {
-        return { ok: true, note: 'solana + agave-install detected' };
+    const note = [
+        `solana=${hasSolana ? normalizeOutput(solana.stdout).split(/\r?\n/)[0] : 'MISSING'}`,
+        `solana.path=${solanaPath ?? 'missing'}`,
+        `agave-install.path=${agaveInstallPath ?? 'missing'}`,
+        `agave-install.usable=${hasUsableAgaveInstall ? 'OK' : 'BROKEN'}`,
+        `solana-install=${solanaInstallPath ? `present (${solanaInstallPath})` : 'missing (legacy/stale task target)'}`,
+        'latest Agave release is not checked by offline preflight; verify live before upgrading',
+    ];
+
+    if (hasSolana && hasUsableAgaveInstall) {
+        return {
+            ok: true,
+            note: [...note, 'update lane: agave-install update'].join('\n'),
+            evidence: baseEvidence,
+        };
     }
     if (!needsLane) {
         return {
             ok: true,
-            note: 'workspace does not currently declare Solana lane requirements',
+            note: 'workspace does not currently declare Agave/Anza lane requirements',
+            evidence: baseEvidence,
         };
     }
-    if (hasSolana && !hasAgaveInstall) {
+    if (hasSolana && agaveInstallPath && !hasUsableAgaveInstall) {
         return {
             ok: false,
-            note: 'solana detected but agave-install missing (update lane unavailable)',
+            note: [
+                ...note,
+                'Agave CLI is present, but the Anza installer lane is broken; do not call solana-install.',
+                'Repair via the current Anza Windows installer or manual prebuilt release, then re-run this check.',
+            ].join('\n'),
+            evidence: [...baseEvidence, blockedInstallerEvidence],
         };
     }
-    if (!hasSolana && hasAgaveInstall) {
+    if (hasSolana && !agaveInstallPath) {
         return {
             ok: false,
-            note: 'agave-install detected but solana CLI missing on PATH',
+            note: [...note, 'Agave CLI is present, but agave-install is missing; update lane unavailable.'].join('\n'),
+            evidence: [...baseEvidence, blockedInstallerEvidence],
+        };
+    }
+    if (!hasSolana && hasUsableAgaveInstall) {
+        return {
+            ok: false,
+            note: [...note, 'agave-install is usable, but solana CLI is missing on PATH.'].join('\n'),
+            evidence: baseEvidence,
         };
     }
     return {
         ok: false,
-        note: 'solana + agave-install are both missing for declared Solana lane',
+        note: [...note, 'Agave/Anza CLI lane is not usable for this declared workspace.'].join('\n'),
+        evidence: [...baseEvidence, blockedInstallerEvidence],
     };
 }
 
@@ -480,31 +600,98 @@ function ensureAnchorLane(): ManualCheckResult {
 
     const hasAnchor = !anchor.threw && anchor.exitCode === 0;
     const hasAvm = !avm.threw && avm.exitCode === 0;
+    const avmWarning = normalizeOutput(avm.stderr);
+    const note = [
+        `anchor=${hasAnchor ? normalizeOutput(anchor.stdout).split(/\r?\n/)[0] : 'MISSING'}`,
+        `avm=${hasAvm ? normalizeOutput(avm.stdout).split(/\r?\n/)[0] : 'MISSING'}`,
+    ];
+    const baseEvidence: EvidenceEntry[] = [
+        makeEvidence(
+            'workspace-declaration',
+            needsLane ? 'workspace declares an Anchor lane' : 'workspace does not declare an Anchor lane',
+            undefined,
+            'local-inferred',
+        ),
+        makeEvidence('command-exit', 'anchor CLI version probe', formatCommandObservation(anchor)),
+        makeEvidence('command-exit', 'avm version probe', formatCommandObservation(avm)),
+    ];
 
     if (hasAnchor && hasAvm) {
-        return { ok: true, note: 'anchor + avm detected' };
+        if (avmWarning) {
+            return {
+                ok: false,
+                note: [...note, `avm warning=${avmWarning}`].join('\n'),
+                evidence: [
+                    ...baseEvidence,
+                    makeEvidence('stderr-warning', 'avm emitted a warning while returning exit 0', avmWarning),
+                ],
+            };
+        }
+        return { ok: true, note: note.join('\n'), evidence: baseEvidence };
     }
     if (!needsLane) {
         return {
             ok: true,
             note: 'workspace does not currently declare Anchor lane requirements',
+            evidence: baseEvidence,
         };
     }
     if (hasAnchor && !hasAvm) {
         return {
             ok: false,
             note: 'anchor detected but avm missing (version management unavailable)',
+            evidence: baseEvidence,
         };
     }
     if (!hasAnchor && hasAvm) {
         return {
             ok: false,
             note: 'avm detected but anchor CLI not activated',
+            evidence: baseEvidence,
         };
     }
     return {
         ok: false,
         note: 'anchor + avm are both missing for declared Solana lane',
+        evidence: baseEvidence,
+    };
+}
+
+function ensureFrankendancerLane(): ManualCheckResult {
+    return {
+        ok: false,
+        note: [
+            'Frankendancer is the active Firedancer-family validator lane for mainnet/testnet.',
+            'Track firedancer-io/firedancer releases separately from Win11 bundle compile.',
+            'Not a local Windows package preflight blocker.',
+        ].join('\n'),
+        evidence: [
+            makeEvidence(
+                'await-lane',
+                'Frankendancer is tracked as a validator lane, not a local Win11 compile blocker',
+                'requires release/source check before validator work',
+                'policy',
+            ),
+        ],
+    };
+}
+
+function ensureFiredancerCppLane(): ManualCheckResult {
+    return {
+        ok: false,
+        note: [
+            'Await: full Firedancer C++ validator is not the local Win11 compile lane.',
+            'Current upstream positions full Firedancer as heavy-development / non-production.',
+            'Treat as Linux/validator research, not Agave CLI remediation.',
+        ].join('\n'),
+        evidence: [
+            makeEvidence(
+                'await-lane',
+                'full Firedancer C++ is await/research for this Win11 repo lane',
+                'not a package preflight remediation target',
+                'policy',
+            ),
+        ],
     };
 }
 
@@ -682,13 +869,13 @@ const solanaLaneNode: CheckTreeNode = {
     name: 'Solana Lanes',
     children: [
         {
-            name: 'Tool Suite',
+            name: 'Agave / Anza CLI',
             check: {
-                name: 'Solana Tool Suite Lane',
+                name: 'Agave / Anza CLI Lane',
                 cmd: ['solana', '--version'],
-                manualCheck: ensureSolanaToolSuiteLane,
+                manualCheck: ensureAgaveAnzaLane,
                 warnOnly: true,
-                fix: 'Install Solana Tool Suite (Agave): mise run agave-sync (or use the official Anza installer for your host shell).',
+                fix: 'Repair Agave/Anza installer lane: restore usable agave-install or install the current Anza prebuilt release manually.',
             },
         },
         {
@@ -699,6 +886,26 @@ const solanaLaneNode: CheckTreeNode = {
                 manualCheck: ensureAnchorLane,
                 warnOnly: true,
                 fix: 'Install AVM + Anchor CLI: cargo install --git https://github.com/solana-foundation/anchor avm --force && avm install latest && avm use latest',
+            },
+        },
+        {
+            name: 'Frankendancer Validator Lane',
+            check: {
+                name: 'Frankendancer Validator Lane',
+                cmd: ['fdctl', '--version'],
+                manualCheck: ensureFrankendancerLane,
+                infoOnly: true,
+                fix: 'Track firedancer-io/firedancer Frankendancer releases; do not wire this as a Win11 bundle blocker.',
+            },
+        },
+        {
+            name: 'Firedancer C++ Lane',
+            check: {
+                name: 'Firedancer C++ Lane',
+                cmd: ['fdctl', '--version'],
+                manualCheck: ensureFiredancerCppLane,
+                infoOnly: true,
+                fix: 'Await full Firedancer readiness; keep as Linux/C++ validator research lane.',
             },
         },
     ],
@@ -772,13 +979,21 @@ let failed = false;
 const evaluatedTree = checkTree.map((node) => evaluateNode(node));
 renderTree(evaluatedTree);
 failed = evaluatedTree.some((node) => node.hardFail);
+const hasWarnings = evaluatedTree.some((node) => treeHasStatus(node, 'WARN'));
+const hasInfo = evaluatedTree.some((node) => treeHasStatus(node, 'INFO'));
 
 if (failed) {
     console.log(`\n${red}[!] Host verification failed. Resolve the failing checks above.${reset}`);
     process.exit(1);
 }
 
-console.log(`\n${green}[+] Host verification passed. Ready for Oxidation.${reset}`);
+if (hasWarnings) {
+    console.log(`\n${yellow}[!] Host verification completed with WARN lanes. No hard failures; clear WARN truth before treating this as an all-clear.${reset}`);
+} else if (hasInfo) {
+    console.log(`\n${cyan}[i] Host verification completed with INFO lanes. No hard failures.${reset}`);
+} else {
+    console.log(`\n${green}[+] Host verification passed. Ready for Oxidation.${reset}`);
+}
 
 function evaluateNode(node: CheckTreeNode): EvaluatedNode {
     if (node.check) {
@@ -794,15 +1009,44 @@ function evaluateNode(node: CheckTreeNode): EvaluatedNode {
     };
 }
 
+function policyEvidenceFor(check: HostCheck, status: CheckStatus): EvidenceEntry[] {
+    if (status === 'WARN') {
+        return [
+            makeEvidence(
+                'policy-warn',
+                `${check.name} is warning-only; failure does not hard-fail this preflight`,
+                undefined,
+                'policy',
+            ),
+        ];
+    }
+    if (status === 'INFO') {
+        return [
+            makeEvidence(
+                'policy-info',
+                `${check.name} is informational; absence or non-readiness is not a local blocker`,
+                undefined,
+                'policy',
+            ),
+        ];
+    }
+    return [];
+}
+
 function evaluateCheck(check: HostCheck): EvaluatedNode {
     if (check.manualCheck) {
         const manual = check.manualCheck();
+        const manualEvidence = [
+            ...(manual.evidence ?? []),
+            makeEvidence('manual-check', `manual check returned ok=${manual.ok}`, undefined, 'local-inferred'),
+        ];
         if (manual.ok) {
             return {
                 name: check.name,
                 status: 'OK',
                 note: manual.note,
                 hardFail: false,
+                evidence: manualEvidence,
                 children: [],
             };
         }
@@ -813,6 +1057,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 note: manual.note,
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...manualEvidence, ...policyEvidenceFor(check, 'WARN')],
                 children: [],
             };
         }
@@ -823,6 +1068,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 note: manual.note,
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...manualEvidence, ...policyEvidenceFor(check, 'INFO')],
                 children: [],
             };
         }
@@ -832,6 +1078,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
             note: manual.note,
             fix: check.fix,
             hardFail: true,
+            evidence: manualEvidence,
             children: [],
         };
     }
@@ -839,6 +1086,13 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
     const proc = runSync(check.cmd);
     const stdout = proc.stdout;
     const stderr = proc.stderr;
+    const commandEvidence = [
+        makeEvidence(
+            'command-exit',
+            `${check.cmd.join(' ')} ${proc.threw || proc.exitCode !== 0 ? 'failed' : 'succeeded'}`,
+            formatCommandObservation(proc),
+        ),
+    ];
 
     if (proc.threw || proc.exitCode !== 0) {
         if (check.autoFix) {
@@ -847,14 +1101,22 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 stderr: 'inherit',
                 env: mergedEnv(),
             });
+            const fixEvidence = makeEvidence(
+                'auto-fix',
+                `${check.autoFix.join(' ')} returned exit=${fixProc.exitCode ?? 'unknown'}`,
+                undefined,
+                'local-observed',
+            );
             if (fixProc.exitCode === 0) {
                 return {
                     name: check.name,
                     status: 'FIXED',
                     hardFail: false,
+                    evidence: [...commandEvidence, fixEvidence],
                     children: [],
                 };
             }
+            commandEvidence.push(fixEvidence);
         }
 
         if (check.warnOnly) {
@@ -863,6 +1125,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 status: 'WARN',
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...commandEvidence, ...policyEvidenceFor(check, 'WARN')],
                 children: [],
             };
         }
@@ -872,6 +1135,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 status: 'INFO',
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...commandEvidence, ...policyEvidenceFor(check, 'INFO')],
                 children: [],
             };
         }
@@ -880,25 +1144,44 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
             status: 'MISSING',
             fix: check.fix,
             hardFail: true,
+            evidence: commandEvidence,
             children: [],
         };
     }
 
     if (check.check && !check.check(stdout, stderr)) {
+        const predicateEvidence = makeEvidence(
+            'command-predicate',
+            `${check.name} command exited 0 but repo predicate rejected the output`,
+            [
+                `stdout=${firstOutputLine(stdout) ?? '<empty>'}`,
+                `stderr=${firstOutputLine(stderr) ?? '<empty>'}`,
+            ].join('; '),
+            'local-inferred',
+        );
+        const failedPredicateEvidence = [...commandEvidence, predicateEvidence];
         if (check.autoFix) {
             const fixProc = spawnSync(check.autoFix, {
                 stdout: 'inherit',
                 stderr: 'inherit',
                 env: mergedEnv(),
             });
+            const fixEvidence = makeEvidence(
+                'auto-fix',
+                `${check.autoFix.join(' ')} returned exit=${fixProc.exitCode ?? 'unknown'}`,
+                undefined,
+                'local-observed',
+            );
             if (fixProc.exitCode === 0) {
                 return {
                     name: check.name,
                     status: 'FIXED',
                     hardFail: false,
+                    evidence: [...failedPredicateEvidence, fixEvidence],
                     children: [],
                 };
             }
+            failedPredicateEvidence.push(fixEvidence);
         }
 
         if (check.warnOnly) {
@@ -907,6 +1190,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 status: 'WARN',
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...failedPredicateEvidence, ...policyEvidenceFor(check, 'WARN')],
                 children: [],
             };
         }
@@ -916,6 +1200,7 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
                 status: 'INFO',
                 fix: check.fix,
                 hardFail: false,
+                evidence: [...failedPredicateEvidence, ...policyEvidenceFor(check, 'INFO')],
                 children: [],
             };
         }
@@ -925,14 +1210,31 @@ function evaluateCheck(check: HostCheck): EvaluatedNode {
             status: 'FAILED',
             fix: check.fix,
             hardFail: true,
+            evidence: failedPredicateEvidence,
             children: [],
         };
+    }
+
+    const okEvidence = [...commandEvidence];
+    if (check.check) {
+        okEvidence.push(
+            makeEvidence(
+                'command-predicate',
+                `${check.name} predicate accepted the command output`,
+                [
+                    `stdout=${firstOutputLine(stdout) ?? '<empty>'}`,
+                    `stderr=${firstOutputLine(stderr) ?? '<empty>'}`,
+                ].join('; '),
+                'local-inferred',
+            ),
+        );
     }
 
     return {
         name: check.name,
         status: 'OK',
         hardFail: false,
+        evidence: okEvidence,
         children: [],
     };
 }
@@ -942,6 +1244,10 @@ function renderTree(nodes: EvaluatedNode[]): void {
         console.log(`${node.name} ${colorizeStatus(node.status)}`);
         renderChildren(node.children, '');
     }
+}
+
+function treeHasStatus(node: EvaluatedNode, status: CheckStatus): boolean {
+    return node.status === status || node.children.some((child) => treeHasStatus(child, status));
 }
 
 function renderChildren(children: EvaluatedNode[], prefix: string): void {
@@ -956,6 +1262,9 @@ function renderChildren(children: EvaluatedNode[], prefix: string): void {
         }
         if (child.fix && child.status !== 'OK' && child.status !== 'FIXED') {
             printIndented(child.fix, childPrefix);
+        }
+        if (child.evidence && child.evidence.length > 0) {
+            printEvidence(child.evidence, childPrefix);
         }
         if (child.children.length > 0) {
             renderChildren(child.children, childPrefix);
@@ -1006,5 +1315,23 @@ function printIndented(text: string, prefix = '  '): void {
     for (const line of text.split(/\r?\n/)) {
         console.log(`${prefix}${colorizeInlineStatus(line)}`);
     }
+}
+
+function printEvidence(entries: EvidenceEntry[], prefix = '  '): void {
+    for (const entry of entries) {
+        printIndented(formatEvidence(entry), prefix);
+    }
+}
+
+function formatEvidence(entry: EvidenceEntry): string {
+    const pieces = [
+        `basis=${entry.basis}`,
+        `confidence=${entry.confidence}`,
+        `claim=${entry.claim}`,
+    ];
+    if (entry.observed) {
+        pieces.push(`observed=${entry.observed}`);
+    }
+    return pieces.join(' | ');
 }
 

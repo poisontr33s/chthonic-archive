@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "packet_name_default": "TETRAGRAMMATON_PACKET.md",
+  "canonical_mailboxes": [
+    "codex/mailbox",
+    "claude/mailbox"
+  ],
+  "archive_dir_name": "archive",
+  "include_patterns": [
+    "*.md",
+    "*.json"
+  ],
+  "prefer_files": [
+    "SESSION_CONTEXT_CHRONICLE_2026_02_06.md",
+    "SESSION_CONTEXT_APPENDIX_2026_02_06.md",
+    "SKILLS_PARITY_DISCREPANCY_2026_02_06.md",
+    "KISS_PARITY_BRIEF_2026_02_06.md",
+    "HF_GEMMA_PROBE.md",
+    "hf_gemma_probe.json",
+    "CLAUDE_RUNBOOK_MATRIX.md",
+    "QUEUE_2026_02_07.md",
+    "MAILBOX_CURRENT_STATE.md",
+    "tatragrammatron_matrix_2026_02_07.json",
+    "TATRAGRAMMATRON_SUMMARY_LATEST_CODEX.md",
+    "tatragrammatron_stamps_latest_codex.json",
+    "tatragrammatron_trend.json",
+    "mailbox_manifest.json"
+  ],
+  "allow_archive_moves": false,
+  "update_manifest": true,
+  "update_current_state": true
+}

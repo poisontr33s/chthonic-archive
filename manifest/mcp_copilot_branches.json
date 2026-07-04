@@ -1,0 +1,117 @@
+[
+  {
+    "branch": "copilot/fix-0e509e58-a8a3-4aab-8588-f0b860582db9",
+    "sha": "558b9c710bc44f0925220aad165d3f8510c5db74",
+    "issue_number": 0
+  },
+  {
+    "branch": "copilot/fix-108",
+    "sha": "eedd3263b314781e7db741e0c79fef5836c4ab88",
+    "issue_number": 108
+  },
+  {
+    "branch": "copilot/fix-19f1aac9-e951-4d46-9b38-e2b7611778aa",
+    "sha": "f4ecd4a354e186159457df371d0335246fa41794",
+    "issue_number": 19
+  },
+  {
+    "branch": "copilot/fix-2450ec9a-7e60-436c-bf10-6fc39cf96be9",
+    "sha": "09dd2be71f4cebf342c86cc96a72a7b036bc0b0e",
+    "issue_number": 2450
+  },
+  {
+    "branch": "copilot/fix-2850999b-8dde-4d42-a9f9-41ece23ccc15",
+    "sha": "8cf704e161cc6655f95160887e4df96680a7b882",
+    "issue_number": 2850999
+  },
+  {
+    "branch": "copilot/fix-2959d0f1-af28-42d7-a14e-642788c0542b",
+    "sha": "b4b7faa416532395c1246a6d758106deb7c856f0",
+    "issue_number": 2959
+  },
+  {
+    "branch": "copilot/fix-2f88733c-05b5-4908-bba0-6fd226b3ca87",
+    "sha": "24f629751c18f7a27b06e2e11454a3efb6b02115",
+    "issue_number": 2
+  },
+  {
+    "branch": "copilot/fix-41bc9e10-b9dd-4df8-ade5-ae91edfc6b3e",
+    "sha": "cd11fcc4a6f426b709ba3ea8f1e045f7b2b6dd12",
+    "issue_number": 41
+  },
+  {
+    "branch": "copilot/fix-46",
+    "sha": "b7e8343ab2257b97573b72d5acfa34d893329373",
+    "issue_number": 46
+  },
+  {
+    "branch": "copilot/fix-46fe1ea2-0bcf-4b5e-a7ce-4cc5dcd9e492",
+    "sha": "8e10f8d4c71bddbe62a439b518cdad0a0962c7ed",
+    "issue_number": 46
+  },
+  {
+    "branch": "copilot/fix-59a2d42a-8fdc-4b77-af38-96ddfb7ecde5",
+    "sha": "e541a63875e30a2b1c6ccb278df845d1501b8ea6",
+    "issue_number": 59
+  },
+  {
+    "branch": "copilot/fix-64",
+    "sha": "a1ac64b8d79d2bfcf78bf0752484f01e94656f6a",
+    "issue_number": 64
+  },
+  {
+    "branch": "copilot/fix-66a6ffe6-389e-4291-ad24-2e69a0d69ec7",
+    "sha": "939c1f2c312c5af7d1cfa4b97c941b5e7961dc1b",
+    "issue_number": 66
+  },
+  {
+    "branch": "copilot/fix-68",
+    "sha": "345220d6bd8afb3d94fef36b8ca8aac192dcf456",
+    "issue_number": 68
+  },
+  {
+    "branch": "copilot/fix-6ea325f0-731d-4f45-81e8-40a2b63550d1",
+    "sha": "69235bc7d2ef56b523b125879512bc0c03797c41",
+    "issue_number": 6
+  },
+  {
+    "branch": "copilot/fix-84",
+    "sha": "3329f37922e4c19585bae8060e86892f476d828b",
+    "issue_number": 84
+  },
+  {
+    "branch": "copilot/fix-88",
+    "sha": "980f3d2d63967919910af14ea44434443d9c3aaa",
+    "issue_number": 88
+  },
+  {
+    "branch": "copilot/fix-91",
+    "sha": "cd7b8157bf508a1f9ab91e0f72f82cc8b67c3d17",
+    "issue_number": 91
+  },
+  {
+    "branch": "copilot/fix-a35cec08-31b0-49cd-81f8-9edabd02b588",
+    "sha": "52c0b99d4a331f4be35e3b5ffd87a295b7978b63",
+    "issue_number": null
+  },
+  {
+    "branch": "copilot/fix-bc78a3f1-98f6-4771-b774-f3447c0f537a",
+    "sha": "b0878984f390dd5d7224fa95089aacccacbd7deb",
+    "issue_number": null
+  },
+  {
+    "branch": "copilot/fix-bf859984-cc54-491a-a27c-9ec91c4dc2a3",
+    "sha": "c00712e29b636fd3699cd64f99affbcaf166cd0b",
+    "issue_number": null
+  },
+  {
+    "branch": "copilot/fix-cc9b1d03-e7e5-4237-8990-84f2b3c4cc77",
+    "sha": "87c9cb46577b106b29a242a2cabfc7afc56f767f",
+    "issue_number": null
+  },
+  {
+    "branch": "copilot/fix-dec32d8f-0e49-4d04-9c12-7271b8d65c31",
+    "sha": "f283ca482e5ff3dc9165f3aff84b6ba0cd292270",
+    "issue_number": null
+  }
+]

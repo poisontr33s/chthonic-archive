@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "auto_add_enabled": false,
+  "allowed_groups": [
+    "default",
+    "analysis",
+    "dev"
+  ],
+  "import_package_map": {
+    "networkx": "networkx",
+    "fastmcp": "fastmcp",
+    "radon": "radon",
+    "huggingface_hub": "huggingface-hub"
+  },
+  "lock_after_add": true,
+  "sync_after_add": true,
+  "audit_after_add": true
+}

@@ -1,0 +1,29 @@
+{
+  "sourcePath": "C:\\Users\\eldno\\chthonic-archive\\CLAUDEBASE\\usables\\mdseal\\tests\\fixtures\\cases\\math-fence\\golden.md",
+  "sourceSha256": "55fdeb79ae94c56ff8d25b4ada6f4c80377dad16e2f41cdd97adcdc95b143442",
+  "lineEnding": "\n",
+  "encoding": "utf-8",
+  "zoneTable": [
+    {
+      "kind": "code_fence",
+      "startOffset": 0,
+      "endOffset": 15,
+      "text": "```math\nx^2\n```"
+    }
+  ],
+  "mathSpanTable": [],
+  "codeFenceSpans": [
+    {
+      "startOffset": 0,
+      "endOffset": 15,
+      "hash": "55fdeb79ae94c56ff8d25b4ada6f4c80377dad16e2f41cdd97adcdc95b143442"
+    }
+  ],
+  "tableShapeHashes": [],
+  "imageReferences": [],
+  "hiddenSymbols": [],
+  "dialectProfile": "katex-gfm",
+  "toolVersion": "0.1.0",
+  "createdAt": "2026-06-27T01:01:19.856Z",
+  "hashOnly": false
+}

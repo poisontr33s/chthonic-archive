@@ -1,0 +1,11 @@
+{
+  "name": "katex-valid-display",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

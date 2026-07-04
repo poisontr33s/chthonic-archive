@@ -1,0 +1,1654 @@
+{
+  "generated_at": "2026-05-28T20:21:11.570Z",
+  "spread_index_generated_at": "2026-05-28T04:35:20.615Z",
+  "project": {
+    "name": "chthonic-archive",
+    "rel_path": "chthonic-archive\\extensions\\chthonic-archive",
+    "root_dir": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
+    "languages": [
+      "node",
+      "shaders"
+    ],
+    "mode_hint": "snipe",
+    "repurposability_score": 10
+  },
+  "file_count": 99,
+  "ts_file_count": 81,
+  "rust_file_count": 17,
+  "native_file_count": 1,
+  "rust_pub_kinds": {
+    "fn": 29,
+    "struct": 28,
+    "enum": 2,
+    "const": 7
+  },
+  "top_imports": [
+    {
+      "path": "vscode",
+      "count": 36
+    },
+    {
+      "path": "path",
+      "count": 25
+    },
+    {
+      "path": "fs",
+      "count": 17
+    },
+    {
+      "path": "child_process",
+      "count": 13
+    },
+    {
+      "path": "node:fs",
+      "count": 10
+    },
+    {
+      "path": "node:path",
+      "count": 9
+    },
+    {
+      "path": "../runtime/webviewLoader",
+      "count": 5
+    },
+    {
+      "path": "../runtime/webviewHmrWatcher",
+      "count": 5
+    },
+    {
+      "path": "node:child_process",
+      "count": 4
+    },
+    {
+      "path": "./connection",
+      "count": 4
+    },
+    {
+      "path": "crypto",
+      "count": 3
+    },
+    {
+      "path": "fs/promises",
+      "count": 3
+    },
+    {
+      "path": "@vscode/test-electron",
+      "count": 2
+    },
+    {
+      "path": "bun",
+      "count": 2
+    },
+    {
+      "path": "../src/markdownPaste/convert",
+      "count": 2
+    },
+    {
+      "path": "./client",
+      "count": 2
+    },
+    {
+      "path": "./webview",
+      "count": 2
+    },
+    {
+      "path": "../entropy/archiveAbyssalView",
+      "count": 2
+    },
+    {
+      "path": "../entropy/entropyDecorations",
+      "count": 2
+    },
+    {
+      "path": "../entropy/entropyWorkerClient",
+      "count": 2
+    }
+  ],
+  "files": [
+    {
+      "path": "media\\views\\abyssal\\view.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 26,
+      "bytes": 725,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\views\\ankh\\view.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 97,
+      "bytes": 3229,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\views\\design-frame\\view.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 169,
+      "bytes": 6300,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\views\\loom\\view.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 94,
+      "bytes": 3511,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\views\\stylus\\view.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 104,
+      "bytes": 3802,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\wasm\\pkg\\chthonic_loom.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 53,
+      "bytes": 2149,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\wasm\\pkg\\chthonic_loom.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 567,
+      "bytes": 20820,
+      "imports": [],
+      "exports": [
+        "alloc_buffer",
+        "default",
+        "digest_sediment",
+        "free_buffer",
+        "initSync",
+        "init_loom",
+        "render_frame"
+      ]
+    },
+    {
+      "path": "media\\wasm\\pkg\\chthonic_loom_bg.wasm.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 16,
+      "bytes": 892,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\wasm\\pkg\\entropy_renderer_wasm.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 45,
+      "bytes": 1936,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "media\\wasm\\pkg\\entropy_renderer_wasm.js",
+      "ext": ".js",
+      "kind": "ts",
+      "lines": 678,
+      "bytes": 24675,
+      "imports": [],
+      "exports": [
+        "default",
+        "initSync",
+        "init_renderer",
+        "render_graph"
+      ]
+    },
+    {
+      "path": "media\\wasm\\pkg\\entropy_renderer_wasm_bg.wasm.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 14,
+      "bytes": 828,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "native\\chthonic-acp-bridge\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 206,
+      "bytes": 7633,
+      "pub_items": []
+    },
+    {
+      "path": "native\\chthonic-copilot-bridge\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 157,
+      "bytes": 5156,
+      "pub_items": []
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\anno.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 244,
+      "bytes": 8858,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "detect_project"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\entropy_monitor.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 893,
+      "bytes": 26508,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "EntropyState"
+        },
+        {
+          "kind": "struct",
+          "name": "EntropyToolState"
+        },
+        {
+          "kind": "struct",
+          "name": "EntropyMonitorOptions"
+        },
+        {
+          "kind": "fn",
+          "name": "from_env"
+        },
+        {
+          "kind": "struct",
+          "name": "EntropyMonitor"
+        },
+        {
+          "kind": "fn",
+          "name": "start"
+        },
+        {
+          "kind": "fn",
+          "name": "snapshot"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\env.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 258,
+      "bytes": 8815,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "provision"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 425,
+      "bytes": 15309,
+      "pub_items": []
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\reactor.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 968,
+      "bytes": 34609,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "Node"
+        },
+        {
+          "kind": "struct",
+          "name": "VulkanReactor"
+        },
+        {
+          "kind": "fn",
+          "name": "compute_sediment"
+        },
+        {
+          "kind": "fn",
+          "name": "initialize"
+        },
+        {
+          "kind": "struct",
+          "name": "GitMetricsResult"
+        },
+        {
+          "kind": "fn",
+          "name": "gather_git_metrics"
+        },
+        {
+          "kind": "fn",
+          "name": "compute_path_entropy"
+        },
+        {
+          "kind": "fn",
+          "name": "cpu_simulate"
+        },
+        {
+          "kind": "fn",
+          "name": "simulate_firedancer_telemetry"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\shaders\\sediment.comp",
+      "ext": ".comp",
+      "kind": "native",
+      "lines": 116,
+      "bytes": 4044,
+      "symbol_hints": 2
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\synapse.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 521,
+      "bytes": 15799,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "SynapseDescriptor"
+        },
+        {
+          "kind": "struct",
+          "name": "SynapsePublishSummary"
+        },
+        {
+          "kind": "struct",
+          "name": "JsonlSynapseChunk"
+        },
+        {
+          "kind": "struct",
+          "name": "SynapseWriter"
+        },
+        {
+          "kind": "fn",
+          "name": "create"
+        },
+        {
+          "kind": "fn",
+          "name": "descriptor"
+        },
+        {
+          "kind": "fn",
+          "name": "publish_result"
+        },
+        {
+          "kind": "fn",
+          "name": "emit_jsonl_result"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-daemon\\src\\types.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 227,
+      "bytes": 5449,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "JsonRpcRequest"
+        },
+        {
+          "kind": "struct",
+          "name": "JsonRpcNotification"
+        },
+        {
+          "kind": "struct",
+          "name": "JsonRpcSuccess"
+        },
+        {
+          "kind": "struct",
+          "name": "JsonRpcError"
+        },
+        {
+          "kind": "struct",
+          "name": "ErrorPayload"
+        },
+        {
+          "kind": "fn",
+          "name": "parse_error"
+        },
+        {
+          "kind": "fn",
+          "name": "method_not_found"
+        },
+        {
+          "kind": "fn",
+          "name": "internal"
+        },
+        {
+          "kind": "struct",
+          "name": "AnnoManifest"
+        },
+        {
+          "kind": "struct",
+          "name": "LanguagePolicy"
+        },
+        {
+          "kind": "enum",
+          "name": "ToolOwner"
+        },
+        {
+          "kind": "struct",
+          "name": "DetectedMarker"
+        },
+        {
+          "kind": "enum",
+          "name": "MarkerKind"
+        },
+        {
+          "kind": "fn",
+          "name": "has_language"
+        },
+        {
+          "kind": "fn",
+          "name": "needs_mise"
+        },
+        {
+          "kind": "struct",
+          "name": "EnvReport"
+        },
+        {
+          "kind": "struct",
+          "name": "PathSegment"
+        },
+        {
+          "kind": "struct",
+          "name": "SedimentRequest"
+        },
+        {
+          "kind": "struct",
+          "name": "SedimentResult"
+        },
+        {
+          "kind": "struct",
+          "name": "FiredancerTelemetry"
+        },
+        {
+          "kind": "struct",
+          "name": "SedimentVertex"
+        }
+      ]
+    },
+    {
+      "path": "native\\chthonic-synapse-schema\\src\\lib.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 46,
+      "bytes": 1130,
+      "pub_items": [
+        {
+          "kind": "const",
+          "name": "SYNAPSE_MAGIC"
+        },
+        {
+          "kind": "const",
+          "name": "SLOT_MAGIC"
+        },
+        {
+          "kind": "const",
+          "name": "SLOT_VERSION"
+        },
+        {
+          "kind": "const",
+          "name": "GEO_BG_RGB"
+        },
+        {
+          "kind": "const",
+          "name": "GEO_SAFFRON_RGB"
+        },
+        {
+          "kind": "struct",
+          "name": "SedimentSlotHeader"
+        },
+        {
+          "kind": "struct",
+          "name": "PackedSedimentVertex"
+        },
+        {
+          "kind": "const",
+          "name": "fn"
+        },
+        {
+          "kind": "const",
+          "name": "fn"
+        }
+      ]
+    },
+    {
+      "path": "native\\entropy-ledger-host\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 279,
+      "bytes": 8155,
+      "pub_items": []
+    },
+    {
+      "path": "native\\entropy-renderer-wasm\\src\\lib.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 191,
+      "bytes": 5660,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "render_graph"
+        }
+      ]
+    },
+    {
+      "path": "native\\synapse-node\\build.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 4,
+      "bytes": 39,
+      "pub_items": []
+    },
+    {
+      "path": "native\\synapse-node\\src\\lib.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 179,
+      "bytes": 5572,
+      "pub_items": [
+        {
+          "kind": "struct",
+          "name": "SynapseReader"
+        },
+        {
+          "kind": "fn",
+          "name": "new"
+        },
+        {
+          "kind": "fn",
+          "name": "wait_for_signal"
+        },
+        {
+          "kind": "fn",
+          "name": "read_chunk"
+        }
+      ]
+    },
+    {
+      "path": "native\\tensor-runtime-host\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 155,
+      "bytes": 4489,
+      "pub_items": []
+    },
+    {
+      "path": "native\\xtask\\src\\main.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 305,
+      "bytes": 10680,
+      "pub_items": []
+    },
+    {
+      "path": "scripts\\bootstrap-env.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 100,
+      "bytes": 3420,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\build-daemon.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 87,
+      "bytes": 2542,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\build-ledger.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 48,
+      "bytes": 1452,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\build-synapse.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 69,
+      "bytes": 2452,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\build-wasm.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 137,
+      "bytes": 4286,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\daemon-jsonl-smoke.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 189,
+      "bytes": 5939,
+      "imports": [
+        "node:child_process",
+        "node:fs",
+        "node:path",
+        "node:readline",
+        "../src/reactor/synapseBridge"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\e2e-extension-host.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 160,
+      "bytes": 5545,
+      "imports": [
+        "node:fs",
+        "node:path",
+        "@vscode/test-electron"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\e2e-smoke-runner.cjs",
+      "ext": ".cjs",
+      "kind": "ts",
+      "lines": 86,
+      "bytes": 2611,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "scripts\\insiders-post-restart-verify.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 551,
+      "bytes": 18542,
+      "imports": [
+        "bun",
+        "fs",
+        "path"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\markdown-paste-fixture.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 17,
+      "bytes": 538,
+      "imports": [
+        "../src/markdownPaste/convert"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\markdown-paste-stress-corpus.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 64,
+      "bytes": 3700,
+      "imports": [
+        "../src/markdownPaste/convert"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\setup-oxidized.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 75,
+      "bytes": 2753,
+      "imports": [
+        "fs",
+        "path"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\toolpool-scan.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 469,
+      "bytes": 16452,
+      "imports": [
+        "fs",
+        "path",
+        "child_process"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\verify-all.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 164,
+      "bytes": 5648,
+      "imports": [
+        "node:child_process",
+        "node:fs",
+        "node:module",
+        "node:path"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\verify-host.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 1011,
+      "bytes": 32652,
+      "imports": [
+        "bun",
+        "fs",
+        "path"
+      ],
+      "exports": []
+    },
+    {
+      "path": "scripts\\webview-hmr-smoke-runner.cjs",
+      "ext": ".cjs",
+      "kind": "ts",
+      "lines": 262,
+      "bytes": 9277,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "scripts\\webview-hmr-smoke.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 63,
+      "bytes": 2320,
+      "imports": [
+        "node:fs",
+        "node:path",
+        "@vscode/test-electron"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src\\acp\\client.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 127,
+      "bytes": 4313,
+      "imports": [
+        "vscode",
+        "node:events"
+      ],
+      "exports": [
+        "ChthonicAcpClient"
+      ]
+    },
+    {
+      "path": "src\\acp\\connection.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 182,
+      "bytes": 6489,
+      "imports": [
+        "node:child_process",
+        "node:stream",
+        "@agentclientprotocol/sdk",
+        "./client"
+      ],
+      "exports": [
+        "AcpConnection"
+      ]
+    },
+    {
+      "path": "src\\acp\\index.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 5,
+      "bytes": 168,
+      "imports": [
+        "./client",
+        "./connection",
+        "./webview"
+      ],
+      "exports": [
+        "AcpConnection",
+        "ChthonicAcpClient",
+        "ChthonicChatProvider"
+      ]
+    },
+    {
+      "path": "src\\acp\\webview.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 393,
+      "bytes": 12666,
+      "imports": [
+        "vscode",
+        "./connection"
+      ],
+      "exports": [
+        "ChthonicChatProvider"
+      ]
+    },
+    {
+      "path": "src\\activation\\activateCockpit.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 192,
+      "bytes": 6163,
+      "imports": [
+        "crypto",
+        "vscode"
+      ],
+      "exports": [
+        "buildWebCockpitHtml",
+        "delay",
+        "isWebCockpitReachable",
+        "openWebCockpitPanel",
+        "resolveWebCockpitUrl"
+      ]
+    },
+    {
+      "path": "src\\activation\\activateCommands.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 357,
+      "bytes": 17882,
+      "imports": [
+        "vscode",
+        "path",
+        "../runtime/statusReport",
+        "./activateCockpit",
+        "./activateStatus"
+      ],
+      "exports": [
+        "activateCommands"
+      ]
+    },
+    {
+      "path": "src\\activation\\activateSidecars.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 479,
+      "bytes": 20035,
+      "imports": [
+        "fs",
+        "path",
+        "vscode",
+        "../entropy/archiveAbyssalView",
+        "../entropy/entropyDecorations",
+        "../entropy/entropyWorkerClient",
+        "../polyglot/polyglotEntropyOrchestrator",
+        "../monolith/activityBarMorph",
+        "../monolith/selfHealingLoop",
+        "../monolith/loomView",
+        "../monolith/restoreOrderLayout",
+        "../reactor/annoClient",
+        "../reactor/cockpitLayout",
+        "../reactor/synapseBridge"
+      ],
+      "exports": [
+        "activateSidecars"
+      ]
+    },
+    {
+      "path": "src\\activation\\activateStatus.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 196,
+      "bytes": 6632,
+      "imports": [
+        "crypto",
+        "fs",
+        "path",
+        "vscode",
+        "../ssot-paths"
+      ],
+      "exports": [
+        "activateStatus",
+        "computePolicyFingerprint"
+      ]
+    },
+    {
+      "path": "src\\activation\\activateViews.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 453,
+      "bytes": 16822,
+      "imports": [
+        "vscode",
+        "../design/designFrameView",
+        "../entropy/archiveAbyssalView",
+        "../entropy/entropyDecorations",
+        "../monolith/ankhReferenceView",
+        "../monolith/loomView",
+        "../monolith/stylusInputView"
+      ],
+      "exports": [
+        "StatusTreeProvider",
+        "ThemeTreeProvider",
+        "activateViews"
+      ]
+    },
+    {
+      "path": "src\\activation\\types.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 18,
+      "bytes": 756,
+      "imports": [
+        "vscode"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src\\design\\designFrameView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 601,
+      "bytes": 21502,
+      "imports": [
+        "node:child_process",
+        "node:fs",
+        "node:path",
+        "vscode",
+        "../runtime/webviewLoader",
+        "../runtime/webviewHmrWatcher"
+      ],
+      "exports": [
+        "DesignFrameProvider"
+      ]
+    },
+    {
+      "path": "src\\entropy\\archiveAbyssalView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 142,
+      "bytes": 5497,
+      "imports": [
+        "path",
+        "vscode",
+        "../runtime/webviewLoader",
+        "../runtime/webviewHmrWatcher",
+        "./entropyWorkerClient"
+      ],
+      "exports": [
+        "AbyssalPaneProvider"
+      ]
+    },
+    {
+      "path": "src\\entropy\\entropyDecorations.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 112,
+      "bytes": 3713,
+      "imports": [
+        "vscode",
+        "./entropyWorkerClient"
+      ],
+      "exports": [
+        "EntropyDecorationProvider"
+      ]
+    },
+    {
+      "path": "src\\entropy\\entropyWorker.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 457,
+      "bytes": 13572,
+      "imports": [
+        "fs/promises",
+        "path",
+        "worker_threads"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src\\entropy\\entropyWorkerClient.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 213,
+      "bytes": 7109,
+      "imports": [
+        "path",
+        "vscode",
+        "worker_threads"
+      ],
+      "exports": [
+        "EntropyWorkerClient"
+      ]
+    },
+    {
+      "path": "src\\entropy\\types.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 72,
+      "bytes": 1397,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "src\\extension.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 143,
+      "bytes": 7642,
+      "imports": [
+        "vscode",
+        "./monolith/activityBarMorph",
+        "./design/designFrameView",
+        "./monolith/deepFocusLayout",
+        "./monolith/restoreOrderLayout",
+        "./monolith/loomView",
+        "./monolith/rustificationScore",
+        "./monolith/stylusInputView",
+        "./markdownPaste/register",
+        "./runtime/laneState",
+        "./runtime/devAutoReload",
+        "./runtime/webviewHmrWatcher",
+        "./activation/activateCommands",
+        "./flux/fluxService",
+        "./activation/activateStatus",
+        "./activation/activateViews",
+        "./activation/activateSidecars"
+      ],
+      "exports": [
+        "activate",
+        "deactivate"
+      ]
+    },
+    {
+      "path": "src\\flux\\fluxLauncherView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 246,
+      "bytes": 7179,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "FluxLauncherViewProvider"
+      ]
+    },
+    {
+      "path": "src\\flux\\fluxPanel.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 188,
+      "bytes": 7757,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "FluxPanel"
+      ]
+    },
+    {
+      "path": "src\\flux\\fluxService.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 397,
+      "bytes": 18425,
+      "imports": [
+        "node:crypto",
+        "node:fs",
+        "node:path",
+        "vscode",
+        "./fluxLauncherView",
+        "./fluxPanel"
+      ],
+      "exports": [
+        "FluxService"
+      ]
+    },
+    {
+      "path": "src\\markdownPaste\\convert.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 74,
+      "bytes": 2266,
+      "imports": [
+        "turndown",
+        "turndown-plugin-gfm"
+      ],
+      "exports": [
+        "htmlToMarkdown",
+        "normalizeMarkdown"
+      ]
+    },
+    {
+      "path": "src\\markdownPaste\\markdown-it.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 15,
+      "bytes": 293,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "src\\markdownPaste\\register.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 71,
+      "bytes": 2567,
+      "imports": [
+        "vscode",
+        "./convert"
+      ],
+      "exports": [
+        "registerRenderedMarkdownPasteLane"
+      ]
+    },
+    {
+      "path": "src\\markdownPaste\\turndown-plugin-gfm.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 9,
+      "bytes": 349,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "src\\monolith\\activityBarMorph.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 133,
+      "bytes": 5315,
+      "imports": [
+        "vscode",
+        "./rustificationScore"
+      ],
+      "exports": [
+        "ActivityBarMorph"
+      ]
+    },
+    {
+      "path": "src\\monolith\\ankhReferenceView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 320,
+      "bytes": 12329,
+      "imports": [
+        "vscode",
+        "fs",
+        "path",
+        "../runtime/webviewLoader",
+        "../runtime/webviewHmrWatcher",
+        "../ssot-paths"
+      ],
+      "exports": [
+        "AnkhReferenceProvider"
+      ]
+    },
+    {
+      "path": "src\\monolith\\deepFocusLayout.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 31,
+      "bytes": 1187,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "DeepFocusLayout"
+      ]
+    },
+    {
+      "path": "src\\monolith\\loomView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 87,
+      "bytes": 2907,
+      "imports": [
+        "vscode",
+        "../runtime/webviewLoader",
+        "../runtime/webviewHmrWatcher"
+      ],
+      "exports": [
+        "LoomViewProvider"
+      ]
+    },
+    {
+      "path": "src\\monolith\\restoreOrderLayout.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 46,
+      "bytes": 1586,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "RestoreOrderLayout"
+      ]
+    },
+    {
+      "path": "src\\monolith\\rustificationScore.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 83,
+      "bytes": 2333,
+      "imports": [
+        "fs",
+        "path"
+      ],
+      "exports": [
+        "computeRustificationReport",
+        "iconFileForTier",
+        "resolveTier"
+      ]
+    },
+    {
+      "path": "src\\monolith\\selfHealingLoop.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 579,
+      "bytes": 19827,
+      "imports": [
+        "fs",
+        "path",
+        "child_process",
+        "vscode"
+      ],
+      "exports": [
+        "SelfHealingLoop"
+      ]
+    },
+    {
+      "path": "src\\monolith\\stylusInputView.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 109,
+      "bytes": 4055,
+      "imports": [
+        "vscode",
+        "../runtime/webviewLoader",
+        "../runtime/webviewHmrWatcher"
+      ],
+      "exports": [
+        "StylusInputProvider"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\jsonl.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 52,
+      "bytes": 1536,
+      "imports": [],
+      "exports": [
+        "createJsonlDecoder"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\ledgerBroker.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 105,
+      "bytes": 3221,
+      "imports": [
+        "vscode",
+        "./types",
+        "./solanaLedger"
+      ],
+      "exports": [
+        "LedgerBroker"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\merkleAccumulator.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 77,
+      "bytes": 2329,
+      "imports": [
+        "crypto"
+      ],
+      "exports": [
+        "EntropyMerkleAccumulator"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\polyglotBroker.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 265,
+      "bytes": 9983,
+      "imports": [
+        "fs",
+        "path",
+        "child_process",
+        "vscode",
+        "./jsonl"
+      ],
+      "exports": [
+        "PolyglotBroker"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\polyglotEntropyOrchestrator.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 510,
+      "bytes": 17792,
+      "imports": [
+        "fs/promises",
+        "path",
+        "vscode",
+        "./merkleAccumulator",
+        "./polyglotBroker",
+        "./ledgerBroker",
+        "../entropy/entropyWorkerClient"
+      ],
+      "exports": [
+        "PolyglotEntropyOrchestrator"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\solanaLedger.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 291,
+      "bytes": 10140,
+      "imports": [
+        "fs",
+        "fs/promises",
+        "path",
+        "child_process",
+        "vscode",
+        "./jsonl"
+      ],
+      "exports": [
+        "RustLedgerHostClient"
+      ]
+    },
+    {
+      "path": "src\\polyglot\\types.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 110,
+      "bytes": 2283,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "src\\reactor\\annoClient.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 291,
+      "bytes": 11581,
+      "imports": [
+        "path",
+        "child_process",
+        "vscode",
+        "../polyglot/jsonl"
+      ],
+      "exports": [
+        "AnnoClient"
+      ]
+    },
+    {
+      "path": "src\\reactor\\cockpitLayout.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 122,
+      "bytes": 4624,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "CockpitLayout"
+      ]
+    },
+    {
+      "path": "src\\reactor\\synapseBridge.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 352,
+      "bytes": 12110,
+      "imports": [
+        "child_process",
+        "fs",
+        "module",
+        "path",
+        "readline"
+      ],
+      "exports": [
+        "SynapseBridge"
+      ]
+    },
+    {
+      "path": "src\\reactor\\types.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 165,
+      "bytes": 4163,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "src\\runtime\\devAutoReload.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 72,
+      "bytes": 2423,
+      "imports": [
+        "node:fs",
+        "node:path",
+        "vscode"
+      ],
+      "exports": [
+        "registerDevAutoReload"
+      ]
+    },
+    {
+      "path": "src\\runtime\\laneState.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 101,
+      "bytes": 3116,
+      "imports": [
+        "node:fs",
+        "node:path",
+        "vscode"
+      ],
+      "exports": [
+        "LaneRegistry",
+        "formatRuntimeLaneState"
+      ]
+    },
+    {
+      "path": "src\\runtime\\statusReport.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 127,
+      "bytes": 4951,
+      "imports": [
+        "node:fs",
+        "node:path",
+        "./laneState"
+      ],
+      "exports": [
+        "collectRuntimeLaneStates",
+        "collectRuntimeStatusRows"
+      ]
+    },
+    {
+      "path": "src\\runtime\\webviewHmrWatcher.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 277,
+      "bytes": 8646,
+      "imports": [
+        "vscode"
+      ],
+      "exports": [
+        "markWebviewHmrDegraded",
+        "registerWebviewHmrWatcher",
+        "trackWebview"
+      ]
+    },
+    {
+      "path": "src\\runtime\\webviewLoader.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 106,
+      "bytes": 3633,
+      "imports": [
+        "node:fs",
+        "vscode",
+        "./webviewHmrWatcher"
+      ],
+      "exports": [
+        "applySubstitutions",
+        "jsonForInlineScript",
+        "loadWebviewHtml"
+      ]
+    },
+    {
+      "path": "src\\sdk.unused.off\\connection.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 193,
+      "bytes": 6272,
+      "imports": [
+        "vscode",
+        "child_process",
+        "readline",
+        "path"
+      ],
+      "exports": [
+        "SdkConnection"
+      ]
+    },
+    {
+      "path": "src\\sdk.unused.off\\index.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 4,
+      "bytes": 121,
+      "imports": [
+        "./connection",
+        "./webview"
+      ],
+      "exports": [
+        "ChthonicChatProvider",
+        "SdkConnection"
+      ]
+    },
+    {
+      "path": "src\\sdk.unused.off\\webview.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 517,
+      "bytes": 16520,
+      "imports": [
+        "vscode",
+        "child_process",
+        "path",
+        "./connection"
+      ],
+      "exports": [
+        "ChthonicChatProvider"
+      ]
+    },
+    {
+      "path": "src\\ssot-paths.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 18,
+      "bytes": 668,
+      "imports": [],
+      "exports": [
+        "SSOT_HOLDER",
+        "SSOT_POINTER",
+        "SSOT_PROTO"
+      ]
+    },
+    {
+      "path": "vscode.d.ts",
+      "ext": ".ts",
+      "kind": "ts",
+      "lines": 21224,
+      "bytes": 741585,
+      "imports": [],
+      "exports": []
+    },
+    {
+      "path": "wasm\\chthonic-loom\\src\\lib.rs",
+      "ext": ".rs",
+      "kind": "rust",
+      "lines": 314,
+      "bytes": 9961,
+      "pub_items": [
+        {
+          "kind": "fn",
+          "name": "init_loom"
+        },
+        {
+          "kind": "fn",
+          "name": "alloc_buffer"
+        },
+        {
+          "kind": "fn",
+          "name": "free_buffer"
+        },
+        {
+          "kind": "fn",
+          "name": "digest_sediment"
+        },
+        {
+          "kind": "fn",
+          "name": "render_frame"
+        }
+      ]
+    }
+  ]
+}

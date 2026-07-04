@@ -1,0 +1,1568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Claude Design — VS Code Insiders extension · Architectural plan (v1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<template id="__bundler_thumbnail" data-bg-color="#0b0d10">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0b0d10"/>
+    <g transform="translate(600 400)">
+      <circle r="180" fill="none" stroke="#4cc2ff" stroke-width="3" opacity="0.3"/>
+      <circle r="120" fill="none" stroke="#4cc2ff" stroke-width="3" opacity="0.6"/>
+      <circle r="60" fill="#4cc2ff"/>
+    </g>
+    <text x="600" y="640" fill="#e6e8eb" font-family="serif" font-size="36" text-anchor="middle" font-style="italic">Claude Design</text>
+    <text x="600" y="680" fill="#777e88" font-family="monospace" font-size="14" text-anchor="middle" letter-spacing="2">ARCHITECTURAL PLAN</text>
+  </svg>
+</template>
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg-2: #0e0e10;
+    --surface: #131316;
+    --surface-2: #1a1a1e;
+    --line: #232026;
+    --line-2: #2d2932;
+    --text: #e8e4dc;
+    --text-dim: #b3ac9d;
+    --text-muted: #7a7468;
+    --accent: #e8b339;          /* chthonic amber/gold */
+    --accent-warm: #f0883e;
+    --warn: #f1c40f;
+    --good: #56d364;
+    --bad: #ff7b72;
+    --pro: #d97757;             /* Claude orange */
+    --grad: linear-gradient(180deg, #e8b339 0%, #b88a1f 100%);
+    --maxw: 1100px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgba(232,179,57,.3); color: #fff; }
+  a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted rgba(232,179,57,.4); }
+  a:hover { border-bottom-style: solid; }
+  code, pre, .mono { font-family: 'Geist Mono', ui-monospace, 'Cascadia Code', Menlo, monospace; }
+  code { background: var(--surface); padding: .12em .42em; border-radius: 4px; font-size: .88em; border: 1px solid var(--line); }
+  pre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  pre code { background: transparent; border: 0; padding: 0; font-size: 13px; }
+
+  /* ------- top chrome ------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11,13,16,.78);
+    backdrop-filter: saturate(1.4) blur(14px);
+    -webkit-backdrop-filter: saturate(1.4) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 18px;
+    font-size: 13px;
+  }
+  .topbar .mark {
+    display: flex; align-items: center; gap: 10px; font-weight: 600;
+  }
+  .topbar .mark .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
+  .topbar nav { margin-left: auto; display: flex; gap: 22px; color: var(--text-dim); }
+  .topbar nav a { color: inherit; border: 0; }
+  .topbar nav a:hover { color: var(--text); }
+  .topbar .tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    padding: 3px 8px; border-radius: 999px;
+  }
+
+  /* ------- layout ------- */
+  main { max-width: var(--maxw); margin: 0 auto; padding: 0 28px 120px; }
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: 0; }
+  .eyebrow {
+    text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 600;
+    color: var(--text-muted); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow .num {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 2px 7px; color: var(--text-dim);
+    font-family: 'Geist Mono', monospace; letter-spacing: 0;
+  }
+  h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.018em; text-wrap: balance; }
+  h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.04; margin: 0 0 18px; font-weight: 400; }
+  h1 em { font-family: 'Instrument Serif', 'Geist', serif; font-style: italic; font-weight: 400; color: var(--accent); letter-spacing: -0.01em; }
+  h2 { font-size: 32px; line-height: 1.15; margin: 0 0 18px; }
+  h3 { font-size: 19px; line-height: 1.3; margin: 0 0 8px; font-weight: 600; }
+  h4 { font-size: 14px; margin: 0 0 6px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; }
+  p { margin: 0 0 14px; color: var(--text-dim); max-width: 72ch; }
+  p strong { color: var(--text); font-weight: 600; }
+
+  /* ------- hero ------- */
+  .hero { padding: 88px 0 72px; }
+  .hero .lead {
+    font-size: 19px; line-height: 1.55; color: var(--text-dim); max-width: 64ch;
+    margin-top: 22px;
+  }
+  .hero .meta {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    margin-top: 56px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  }
+  .hero .meta > div { background: var(--bg-2); padding: 18px 20px; }
+  .hero .meta h4 { color: var(--text-muted); margin-bottom: 8px; font-size: 11px; }
+  .hero .meta .v { font-family: 'Geist Mono', monospace; color: var(--text); font-size: 14px; }
+
+  /* ------- cards ------- */
+  .grid { display: grid; gap: 16px; }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .card {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px;
+  }
+  .card.pad-lg { padding: 28px 30px; }
+  .card .kicker {
+    font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-family: 'Geist Mono', monospace;
+    padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--text-dim);
+    background: var(--surface);
+  }
+  .pill .swatch { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .pill.good { color: var(--good); border-color: rgba(86,211,100,.3); }
+  .pill.bad { color: var(--bad); border-color: rgba(255,123,114,.3); }
+  .pill.warn { color: var(--accent-warm); border-color: rgba(240,136,62,.3); }
+  .pill.pro { color: var(--pro); border-color: rgba(217,119,87,.4); background: rgba(217,119,87,.07); }
+
+  /* ------- TL;DR ------- */
+  .tldr {
+    border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 100%);
+  }
+  .tldr .header { padding: 18px 24px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+  .tldr .header h3 { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--text-dim); }
+  .tldr ol { margin: 0; padding: 22px 28px 26px 22px; counter-reset: tldr; list-style: none; }
+  .tldr li { counter-increment: tldr; position: relative; padding-left: 36px; padding-bottom: 14px; color: var(--text-dim); }
+  .tldr li:last-child { padding-bottom: 0; }
+  .tldr li::before {
+    content: counter(tldr, decimal-leading-zero);
+    position: absolute; left: 0; top: 0;
+    font-family: 'Geist Mono', monospace; font-size: 11px;
+    color: var(--accent); padding-top: 4px;
+  }
+  .tldr li b { color: var(--text); font-weight: 600; }
+
+  /* ------- callout ------- */
+  .callout {
+    border: 1px solid var(--line); border-left: 3px solid var(--accent-warm);
+    background: linear-gradient(90deg, rgba(240,136,62,.06), transparent 70%);
+    border-radius: 8px; padding: 18px 22px;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .callout .ic {
+    flex: 0 0 22px; height: 22px; border-radius: 50%;
+    background: var(--accent-warm); color: var(--bg);
+    display: grid; place-items: center; font-weight: 700; font-size: 13px;
+    margin-top: 1px;
+  }
+  .callout p { margin: 0; color: var(--text); }
+  .callout p + p { margin-top: 8px; color: var(--text-dim); }
+
+  /* ------- diagram frames ------- */
+  .figure {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 24px 0 8px;
+  }
+  .figure .caption {
+    font-family: 'Geist Mono', monospace; font-size: 11px;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: .1em;
+    margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line);
+  }
+  .figure svg { display: block; max-width: 100%; height: auto; }
+
+  /* ------- kv table ------- */
+  .kv {
+    display: grid; grid-template-columns: 200px 1fr; gap: 0;
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  }
+  .kv > div { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .kv > div:nth-child(odd) { background: var(--bg-2); color: var(--text-dim); font-family: 'Geist Mono', monospace; font-size: 13px; }
+  .kv > div:nth-last-child(-n+2) { border-bottom: 0; }
+
+  /* ------- phases ------- */
+  .phases {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    border-left: 1px dashed var(--line-2);
+    margin-left: 18px;
+  }
+  .phase { display: contents; }
+  .phase .marker {
+    position: relative; height: 100%;
+    font-family: 'Geist Mono', monospace; font-size: 11px;
+    color: var(--text-muted); padding: 22px 0 22px 24px;
+  }
+  .phase .marker::before {
+    content: ''; position: absolute; left: -7px; top: 28px;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--line-2);
+  }
+  .phase.now .marker::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 18px rgba(76,194,255,.5); }
+  .phase .body {
+    padding: 18px 0 36px 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .phase:last-child .body { border-bottom: 0; }
+  .phase .body h3 { margin-bottom: 6px; }
+  .phase .body p { margin-bottom: 10px; }
+  .phase .deliverables {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+  }
+
+  /* ------- risk table ------- */
+  .risks { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .risks th, .risks td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .risks th { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); font-weight: 600; }
+  .risks tr:last-child td { border-bottom: 0; }
+  .risks td.severity { width: 90px; }
+  .sev { font-family: 'Geist Mono', monospace; font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+  .sev.hi { background: rgba(255,123,114,.12); color: var(--bad); border: 1px solid rgba(255,123,114,.3); }
+  .sev.md { background: rgba(240,136,62,.1); color: var(--accent-warm); border: 1px solid rgba(240,136,62,.3); }
+  .sev.lo { background: rgba(86,211,100,.08); color: var(--good); border: 1px solid rgba(86,211,100,.3); }
+
+  /* ------- mock area ------- */
+  .mock-frame {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    background: #1f1f1f; margin-top: 24px;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.6);
+  }
+
+  /* ------- footer ------- */
+  footer {
+    border-top: 1px solid var(--line); padding: 40px 28px;
+    color: var(--text-muted); font-size: 13px;
+    max-width: var(--maxw); margin: 0 auto;
+    display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+  }
+
+  /* helpers */
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .muted { color: var(--text-muted); }
+  .small { font-size: 13px; }
+  .mono-tag {
+    font-family: 'Geist Mono', monospace; font-size: 11px;
+    color: var(--text-muted); padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px;
+  }
+
+  @media (max-width: 800px) {
+    .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+    .hero .meta { grid-template-columns: repeat(2, 1fr); }
+    .kv { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="mark"><span class="dot"></span> Claude Design</span>
+    <span class="tag">v1 · architectural plan</span>
+    <nav>
+      <a href="#tldr">TL;DR</a>
+      <a href="#auth">Auth</a>
+      <a href="#arch">Architecture</a>
+      <a href="#ui">Surfaces</a>
+      <a href="#phases">Phasing</a>
+      <a href="#mock">Mock</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+  <!-- ========================= HERO ========================= -->
+  <section class="hero">
+    <div class="row" style="margin-bottom: 22px;">
+      <span class="pill"><span class="swatch"></span> VS Code Insiders</span>
+      <span class="pill pro"><span class="swatch"></span> Claude Max · OAuth</span>
+      <span class="pill"><span class="swatch"></span> Windows 11 · chthonic theme</span>
+      <span class="pill"><span class="swatch"></span> Bun-native toolchain</span>
+      <span class="pill"><span class="swatch"></span> Extends Claude Code</span>
+    </div>
+    <h1>An extension that <em>splices</em> claude.ai's design surface into Claude Code — same auth, same window, same hot-reload muscle memory.</h1>
+    <p class="lead">
+      You moved to Max. You don't want to alt-tab to claude.ai for design work, and you don't want a second auth flow,
+      a second status bar, or a second mental model on top of Claude Code. <b>Claude Design</b> contributes
+      directly into Claude Code's view container, reuses its Pro/Max OAuth, and adds three new surfaces —
+      a multi-file design canvas, a hot-reload preview, and an asset review pane — styled to match your
+      chthonic-archive aesthetic (amber on near-black, custom icon theme, runic status bar).
+      Bun is the package manager and bundler throughout. Hot reload is non-negotiable.
+    </p>
+
+    <div class="meta">
+      <div>
+        <h4>Target</h4>
+        <div class="v">VS Code Insiders 1.97+</div>
+      </div>
+      <div>
+        <h4>Auth</h4>
+        <div class="v">Claude Code OAuth (Max)</div>
+      </div>
+      <div>
+        <h4>Toolchain</h4>
+        <div class="v">Bun · React · Tailwind · shadcn</div>
+      </div>
+      <div>
+        <h4>Relationship</h4>
+        <div class="v">Extends Claude Code</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TL;DR ========================= -->
+  <section id="tldr">
+    <div class="eyebrow"><span class="num">00</span> Executive summary</div>
+    <h2>The shortest version of this plan.</h2>
+
+    <div class="tldr" style="margin-top: 28px;">
+      <div class="header">
+        <h3>If you only read one thing</h3>
+        <span class="pill"><span class="swatch"></span> 6-minute read total</span>
+      </div>
+      <ol>
+        <li><b>You don't need a new auth path.</b> Anthropic supports your Claude Max subscription inside Claude Code via OAuth. We piggy-back on that. Web-cookie replay against claude.ai is unsupported, brittle, and out of scope.</li>
+        <li><b>Claude Design extends Claude Code — it does not duplicate it.</b> Same view container, same auth, same model. We add three contributions: a Designs tree, an Asset Review tree, and a Preview/Tweaks webview. Nothing competes for activation, nothing requires a second login.</li>
+        <li><b>Bun is the toolchain, end to end.</b> <code>bun install</code>, <code>bun build</code>, <code>bun test</code>, <code>bun --hot</code> for preview dev mode. No node_modules tax during onboarding.</li>
+        <li><b>The webviews are React + Tailwind + shadcn/ui.</b> Generated artifacts default to the same stack, so the preview that ships in the extension is the same surface generated artifacts target. Zero impedance mismatch.</li>
+        <li><b>About Max tokenomics:</b> the Max plan grants higher session caps and Opus access. As far as I know there isn't a separate “Design” quota distinct from your chat quota — design and chat usage debit the same Max allowance. Flagged here as the one item to verify before launch, not as plan-foundation truth.</li>
+        <li><b>Phased toward an installable MVP.</b> Phase 1 is the artifact you can <code>bun run package</code> and sideload into your Insiders instance. Each subsequent phase ships on its own without forcing a republish.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================= TOKENOMICS REALITY ========================= -->
+  <section id="reality">
+    <div class="eyebrow"><span class="num">01</span> The honest constraint</div>
+    <h2>Tokenomics, OAuth, and what we are <em style="font-family: 'Instrument Serif'; font-style: italic; color: var(--accent-warm);">not</em> going to do.</h2>
+    <p>
+      The motivating frustration is real: you're paying for Claude Pro, but the moment you open the official Claude Code
+      extension on its default config you're on API billing. That's a real friction. Before we plan anything, let's name
+      what's possible and what isn't, because the auth choice decides almost every other architectural decision downstream.
+    </p>
+
+    <div class="grid cols-3" style="margin-top: 24px;">
+      <div class="card">
+        <div class="kicker">Option A · sanctioned</div>
+        <h3 style="color: var(--good);">Claude Code Pro/Max OAuth</h3>
+        <p class="small">Claude Code supports a <code>/login</code> flow that opens the browser, OAuths against your Claude.ai Pro or Max subscription, and stores a refresh token locally. Inference then debits your subscription quota, not API credits.</p>
+        <p class="small"><b>Use this.</b> It is the single supported, stable Pro-subscription-in-editor path.</p>
+        <div class="row" style="margin-top: 10px;"><span class="pill good"><span class="swatch"></span> stable</span> <span class="pill good"><span class="swatch"></span> sanctioned</span></div>
+      </div>
+      <div class="card">
+        <div class="kicker">Option B · unstable</div>
+        <h3 style="color: var(--bad);">Reuse claude.ai web cookies</h3>
+        <p class="small">Lift the session token out of <code>claude.ai</code>'s cookies, replay it against the web endpoints. Looks tempting, briefly works.</p>
+        <p class="small"><b>Don't.</b> The endpoints aren't a public contract; they rotate, CSRF/CSP hardening lands, the cookie format changes — and reselling/automating that surface violates Anthropic's TOS regardless of whether it's "your own account".</p>
+        <div class="row" style="margin-top: 10px;"><span class="pill bad"><span class="swatch"></span> TOS</span> <span class="pill bad"><span class="swatch"></span> brittle</span></div>
+      </div>
+      <div class="card">
+        <div class="kicker">Option C · fallback</div>
+        <h3>Anthropic API key (BYOK)</h3>
+        <p class="small">The thing you already do not want. We expose this as an <i>opt-in escape hatch</i> for power users on team plans, rate-limit overflow, or environments where browser OAuth isn't available — but it is never the default.</p>
+        <div class="row" style="margin-top: 10px;"><span class="pill warn"><span class="swatch"></span> opt-in only</span></div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 28px;">
+      <div class="ic">!</div>
+      <div>
+        <p><b>The plan locks Option A as the primary path.</b> Canvas does not ship its own OAuth client; it never sees your password; it never touches claude.ai cookies.</p>
+        <p>If Claude Code is installed and signed in, Canvas reuses its credentials. If it isn't, we surface a one-click <code>Sign in with Claude (Pro)</code> button that runs <code>claude /login</code> for you and waits for the callback.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= AUTH FLOW ========================= -->
+  <section id="auth">
+    <div class="eyebrow"><span class="num">02</span> Auth &amp; inference flow</div>
+    <h2>How a keystroke in VS Code becomes a Pro-quota completion.</h2>
+    <p>
+      The diagram below is the full happy-path flow for a single chat turn or artifact generation.
+      The red dotted boxes are the things <b>we never do</b> — they are pinned in the diagram so reviewers can verify
+      the architecture by what it doesn't touch as much as by what it does.
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 1040 460" role="img" aria-label="Sequence diagram of auth and inference flow">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#aab1bb"/>
+          </marker>
+          <marker id="arrow-warm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/>
+          </marker>
+          <marker id="arrow-bad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#ff7b72"/>
+          </marker>
+        </defs>
+        <style>
+          .lane { fill: #15181d; stroke: #232830; }
+          .lane-title { fill: #e6e8eb; font: 600 13px 'Geist', sans-serif; }
+          .lane-sub { fill: #777e88; font: 11px 'Geist Mono', monospace; }
+          .axis { stroke: #2c333d; stroke-dasharray: 3 5; }
+          .step { fill: #4cc2ff; font: 500 12px 'Geist', sans-serif; }
+          .step-warm { fill: #f0883e; font: 500 12px 'Geist', sans-serif; }
+          .arrow { stroke: #aab1bb; stroke-width: 1.4; fill: none; }
+          .arrow-warm { stroke: #f0883e; stroke-width: 1.6; fill: none; }
+          .arrow-bad { stroke: #ff7b72; stroke-width: 1.4; fill: none; stroke-dasharray: 4 3; }
+          .nogo { fill: rgba(255,123,114,.06); stroke: #ff7b72; stroke-dasharray: 5 4; }
+          .nogo-text { fill: #ff7b72; font: 500 11px 'Geist Mono', monospace; }
+        </style>
+
+        <!-- lanes -->
+        <g>
+          <rect class="lane" x="20" y="20" width="180" height="44" rx="6"/>
+          <text class="lane-title" x="36" y="42">Canvas Webview</text>
+          <text class="lane-sub" x="36" y="58">react · iframe</text>
+
+          <rect class="lane" x="220" y="20" width="180" height="44" rx="6"/>
+          <text class="lane-title" x="236" y="42">Extension Host</text>
+          <text class="lane-sub" x="236" y="58">node · ts</text>
+
+          <rect class="lane" x="420" y="20" width="180" height="44" rx="6"/>
+          <text class="lane-title" x="436" y="42">claude CLI</text>
+          <text class="lane-sub" x="436" y="58">subprocess · stdio json</text>
+
+          <rect class="lane" x="620" y="20" width="180" height="44" rx="6"/>
+          <text class="lane-title" x="636" y="42">Auth keystore</text>
+          <text class="lane-sub" x="636" y="58">~/.claude/credentials</text>
+
+          <rect class="lane" x="820" y="20" width="200" height="44" rx="6"/>
+          <text class="lane-title" x="836" y="42">Anthropic OAuth + API</text>
+          <text class="lane-sub" x="836" y="58">Pro / Max quota</text>
+        </g>
+
+        <!-- vertical axes -->
+        <line class="axis" x1="110" y1="68" x2="110" y2="430"/>
+        <line class="axis" x1="310" y1="68" x2="310" y2="430"/>
+        <line class="axis" x1="510" y1="68" x2="510" y2="430"/>
+        <line class="axis" x1="710" y1="68" x2="710" y2="430"/>
+        <line class="axis" x1="920" y1="68" x2="920" y2="430"/>
+
+        <!-- step 1: user types -->
+        <text class="step" x="120" y="100">1 · user sends message</text>
+        <line class="arrow" x1="110" y1="115" x2="305" y2="115" marker-end="url(#arrow)"/>
+
+        <!-- step 2: extension spawns CLI -->
+        <text class="step" x="320" y="148">2 · spawn `claude --print --output-format=stream-json`</text>
+        <line class="arrow" x1="310" y1="163" x2="505" y2="163" marker-end="url(#arrow)"/>
+
+        <!-- step 3: CLI reads creds -->
+        <text class="step" x="520" y="195">3 · read OAuth refresh token</text>
+        <line class="arrow" x1="510" y1="210" x2="705" y2="210" marker-end="url(#arrow)"/>
+
+        <!-- step 4: refresh + completion -->
+        <text class="step" x="520" y="242">4 · refresh + completion (Pro quota)</text>
+        <line class="arrow" x1="510" y1="257" x2="915" y2="257" marker-end="url(#arrow)"/>
+
+        <!-- step 5: streamed tokens back -->
+        <text class="step-warm" x="120" y="295">5 · stream-json tokens back to webview</text>
+        <line class="arrow-warm" x1="915" y1="310" x2="110" y2="310" marker-end="url(#arrow-warm)"/>
+
+        <!-- step 6: artifact write -->
+        <text class="step" x="320" y="345">6 · tool_use → fs write to workspace</text>
+        <line class="arrow" x1="310" y1="360" x2="305" y2="395"/>
+        <text class="lane-sub" x="220" y="410">workspace.fs · canvas/</text>
+
+        <!-- the never-zone -->
+        <rect class="nogo" x="640" y="375" width="380" height="44" rx="6"/>
+        <text class="nogo-text" x="654" y="396">we never read from claude.ai cookies</text>
+        <text class="nogo-text" x="654" y="412">we never POST to claude.ai web endpoints</text>
+      </svg>
+      <div class="caption">Fig 1 · Single-turn flow. Canvas owns steps 1, 5, 6. Anthropic-supported tooling owns 2–4.</div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top: 22px;">
+      <div class="card">
+        <h3>Why <code>claude</code> CLI as the inference shim</h3>
+        <p class="small">It is the highest-stability surface Anthropic offers for "use Pro auth headlessly." Its <code>--print --output-format=stream-json</code> mode emits a documented JSON stream of message events, tool calls, and usage stats that we can pipe straight into the webview. Token refresh, retry, rate-limit backoff, and quota accounting are all problems the CLI solves for us.</p>
+      </div>
+      <div class="card">
+        <h3>Forward path: extension API surface</h3>
+        <p class="small">VS Code extensions can <code>activate()</code> and <code>export</code> a public API that other extensions consume via <code>extensions.getExtension('anthropic.claude-code').exports</code>. If Claude Code grows such a surface, Canvas should prefer it over CLI subprocess. We design the inference adapter as an interface so the swap is one file.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= SYSTEM ARCHITECTURE ========================= -->
+  <section id="arch">
+    <div class="eyebrow"><span class="num">03</span> System architecture</div>
+    <h2>Process model, boundaries, and what owns what.</h2>
+    <p>
+      VS Code extensions have a deceptively constrained shape: one Node.js process (the extension host) runs your TypeScript;
+      every UI lives inside a sandboxed webview iframe; the only way they talk is <code>postMessage</code>.
+      Canvas embraces that constraint instead of fighting it.
+    </p>
+
+    <div class="figure">
+      <svg viewBox="0 0 1040 470" role="img" aria-label="System architecture diagram">
+        <defs>
+          <linearGradient id="hostGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1b1f25"/>
+            <stop offset="100%" stop-color="#15181d"/>
+          </linearGradient>
+        </defs>
+        <style>
+          .blk { fill: url(#hostGrad); stroke: #232830; }
+          .blk-accent { fill: #15181d; stroke: #4cc2ff; }
+          .blk-pro { fill: rgba(217,119,87,.07); stroke: #d97757; }
+          .blk-warm { fill: rgba(240,136,62,.05); stroke: #f0883e; stroke-dasharray: 5 4; }
+          .ttl { fill: #e6e8eb; font: 600 13px 'Geist', sans-serif; }
+          .sub { fill: #aab1bb; font: 11px 'Geist Mono', monospace; }
+          .lbl { fill: #777e88; font: 600 10px 'Geist Mono', monospace; letter-spacing: .08em; text-transform: uppercase; }
+          .wire { stroke: #4cc2ff; stroke-width: 1.4; fill: none; }
+          .wire-fs { stroke: #56d364; stroke-width: 1.4; fill: none; }
+          .wire-cli { stroke: #f0883e; stroke-width: 1.4; fill: none; }
+          .wire-lbl { fill: #aab1bb; font: 500 11px 'Geist Mono', monospace; }
+        </style>
+
+        <!-- Process: VS Code Renderer -->
+        <text class="lbl" x="40" y="38">VS Code renderer process</text>
+        <rect class="blk-accent" x="40" y="50" width="420" height="180" rx="10"/>
+        <text class="ttl" x="56" y="76">Webviews (iframes)</text>
+
+        <rect class="blk" x="56" y="92" width="180" height="60" rx="6"/>
+        <text class="ttl" x="68" y="114">Chat panel</text>
+        <text class="sub" x="68" y="132">react · streams · refs</text>
+
+        <rect class="blk" x="56" y="160" width="180" height="60" rx="6"/>
+        <text class="ttl" x="68" y="182">Asset review</text>
+        <text class="sub" x="68" y="200">manifest · status</text>
+
+        <rect class="blk" x="252" y="92" width="200" height="128" rx="6"/>
+        <text class="ttl" x="264" y="114">Preview surface</text>
+        <text class="sub" x="264" y="132">srcdoc iframe</text>
+        <text class="sub" x="264" y="148">tweaks postMessage</text>
+        <text class="sub" x="264" y="164">live-reload on fs.watch</text>
+        <rect x="264" y="178" width="176" height="32" rx="4" fill="#0b0d10" stroke="#232830"/>
+        <text class="sub" x="276" y="198" style="fill:#56d364">artifact.html</text>
+
+        <!-- Process: Extension Host -->
+        <text class="lbl" x="40" y="262">VS Code extension host (Node)</text>
+        <rect class="blk-accent" x="40" y="274" width="420" height="170" rx="10"/>
+        <text class="ttl" x="56" y="300">Canvas extension</text>
+
+        <rect class="blk" x="56" y="316" width="125" height="56" rx="6"/>
+        <text class="ttl" x="68" y="338">Inference adapter</text>
+        <text class="sub" x="68" y="356">CLI · API (future)</text>
+
+        <rect class="blk" x="189" y="316" width="125" height="56" rx="6"/>
+        <text class="ttl" x="201" y="338">FS broker</text>
+        <text class="sub" x="201" y="356">workspace.fs · watch</text>
+
+        <rect class="blk" x="322" y="316" width="125" height="56" rx="6"/>
+        <text class="ttl" x="334" y="338">Asset manifest</text>
+        <text class="sub" x="334" y="356">.canvas/manifest.json</text>
+
+        <rect class="blk" x="56" y="380" width="190" height="50" rx="6"/>
+        <text class="ttl" x="68" y="402">Project resolver</text>
+        <text class="sub" x="68" y="418">cross-project · DS mounts</text>
+
+        <rect class="blk" x="254" y="380" width="193" height="50" rx="6"/>
+        <text class="ttl" x="266" y="402">Tweaks bridge</text>
+        <text class="sub" x="266" y="418">__edit_mode_* protocol</text>
+
+        <!-- External: claude CLI subprocess -->
+        <text class="lbl" x="500" y="262">Subprocess</text>
+        <rect class="blk-pro" x="500" y="274" width="220" height="100" rx="10"/>
+        <text class="ttl" x="516" y="298">claude CLI</text>
+        <text class="sub" x="516" y="318">--output-format=stream-json</text>
+        <text class="sub" x="516" y="334">tool_use callbacks</text>
+        <text class="sub" x="516" y="350">refresh / quota / retry</text>
+        <text class="sub" x="516" y="366">spawn-on-demand · pooled</text>
+
+        <!-- External: workspace -->
+        <text class="lbl" x="500" y="38">Workspace files</text>
+        <rect class="blk-warm" x="500" y="50" width="220" height="180" rx="10"/>
+        <text class="ttl" x="516" y="76">VS Code workspace</text>
+        <text class="sub" x="516" y="96">.canvas/   manifest, scratch</text>
+        <text class="sub" x="516" y="114">designs/   user artifacts</text>
+        <text class="sub" x="516" y="132">assets/    images, fonts</text>
+        <text class="sub" x="516" y="150">CLAUDE.md  project rules</text>
+        <text class="sub" x="516" y="180" style="fill:#56d364">+ DS mount: read-only</text>
+        <text class="sub" x="516" y="198" style="fill:#56d364">canvas-ds://design-system/</text>
+
+        <!-- External: keystore -->
+        <text class="lbl" x="760" y="262">Local keystore</text>
+        <rect class="blk-warm" x="760" y="274" width="240" height="100" rx="10"/>
+        <text class="ttl" x="776" y="298">~/.claude/credentials</text>
+        <text class="sub" x="776" y="318">refresh token (Pro/Max)</text>
+        <text class="sub" x="776" y="334">DPAPI on Windows 11</text>
+        <text class="sub" x="776" y="350">shared with Claude Code</text>
+        <text class="sub" x="776" y="366">never read by Canvas TS</text>
+
+        <!-- External: anthropic -->
+        <text class="lbl" x="760" y="38">Anthropic</text>
+        <rect class="blk-warm" x="760" y="50" width="240" height="80" rx="10"/>
+        <text class="ttl" x="776" y="76">OAuth + completions</text>
+        <text class="sub" x="776" y="96">pro/max quota debits</text>
+        <text class="sub" x="776" y="114">no key in extension code</text>
+
+        <!-- wires -->
+        <line class="wire" x1="146" y1="232" x2="146" y2="316" marker-end="url(#arrow)"/>
+        <text class="wire-lbl" x="152" y="278">postMessage</text>
+
+        <line class="wire" x1="352" y1="232" x2="352" y2="316" marker-end="url(#arrow)"/>
+        <text class="wire-lbl" x="358" y="278">postMessage</text>
+
+        <line class="wire-cli" x1="180" y1="344" x2="500" y2="324" marker-end="url(#arrow-warm)"/>
+        <text class="wire-lbl" x="240" y="338" style="fill:#f0883e">spawn / pipe</text>
+
+        <line class="wire-fs" x1="316" y1="344" x2="500" y2="140" marker-end="url(#arrow)" stroke="#56d364"/>
+        <text class="wire-lbl" x="340" y="220" style="fill:#56d364">workspace.fs</text>
+
+        <line class="wire" x1="610" y1="274" x2="760" y2="298" marker-end="url(#arrow)"/>
+        <text class="wire-lbl" x="624" y="290">read creds</text>
+
+        <line class="wire" x1="720" y1="298" x2="760" y2="90" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+        <text class="wire-lbl" x="730" y="180">https · oauth</text>
+      </svg>
+      <div class="caption">Fig 2 · Three webviews, one extension host, one subprocess. Five wires, all crossing one trust boundary each.</div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top: 22px;">
+      <div class="card">
+        <h3>Trust boundaries</h3>
+        <ul style="margin:8px 0 0; padding-left: 18px; color: var(--text-dim); font-size: 14px;">
+          <li>Webviews are sandboxed iframes — they get <i>nothing</i> from the host that isn't <code>postMessage</code>'d explicitly.</li>
+          <li>The CLI keystore is treated as opaque; we shell out, we don't parse it.</li>
+          <li>All file writes funnel through the FS broker, which enforces a workspace-relative path allowlist.</li>
+          <li>The preview iframe runs with <code>sandbox="allow-scripts"</code> only — no <code>allow-same-origin</code>.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What we deliberately don't build</h3>
+        <ul style="margin:8px 0 0; padding-left: 18px; color: var(--text-dim); font-size: 14px;">
+          <li>An OAuth client. The CLI has one already.</li>
+          <li>A token refresher. The CLI has one already.</li>
+          <li>A model selector UI. We honor whatever Claude Code chose.</li>
+          <li>A per-extension settings store for API keys. There are no API keys.</li>
+          <li>Telemetry. Out of scope; we ship with it off, the user opts in via setting if ever.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= UI SURFACES ========================= -->
+  <section id="ui">
+    <div class="eyebrow"><span class="num">04</span> UI surfaces in VS Code</div>
+    <h2>Where each piece of the experience lives — and why.</h2>
+    <p>
+      VS Code gives us five places to put UI: <b>activity bar</b>, <b>side bar</b>, <b>editor area</b>,
+      <b>panel</b> (bottom drawer), and <b>floating webview</b>. Canvas claims one slot in each, and one extra
+      surface (the inline iframe inside an editor tab). Everything below is designed so the extension is
+      legible at a glance — no ambiguity about which surface owns which job.
+    </p>
+
+    <div class="figure" style="padding: 32px 24px;">
+      <svg viewBox="0 0 1040 360" role="img" aria-label="VS Code surface map">
+        <style>
+          .vsc { fill: #1f1f1f; stroke: #2c333d; }
+          .vsc-act { fill: #181818; stroke: #2c333d; }
+          .vsc-side { fill: #1f1f1f; stroke: #2c333d; }
+          .vsc-edit { fill: #1e1e1e; stroke: #2c333d; }
+          .vsc-pan { fill: #181818; stroke: #2c333d; }
+          .vsc-stat { fill: #007acc; }
+          .own { fill: rgba(76,194,255,.16); stroke: #4cc2ff; stroke-dasharray: 4 3; }
+          .own-pro { fill: rgba(217,119,87,.16); stroke: #d97757; stroke-dasharray: 4 3; }
+          .lbl { fill: #e6e8eb; font: 600 12px 'Geist', sans-serif; }
+          .lbl-sm { fill: #aab1bb; font: 11px 'Geist Mono', monospace; }
+          .lbl-acc { fill: #4cc2ff; font: 600 11px 'Geist Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
+          .lbl-pro { fill: #d97757; font: 600 11px 'Geist Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
+        </style>
+        <!-- VS Code window -->
+        <rect class="vsc" x="20" y="20" width="1000" height="320" rx="8"/>
+        <!-- title bar -->
+        <rect class="vsc-act" x="20" y="20" width="1000" height="28" rx="8"/>
+        <text class="lbl-sm" x="40" y="38">VS Code Insiders — my-design-project</text>
+        <!-- activity bar -->
+        <rect class="vsc-act" x="20" y="48" width="48" height="252"/>
+        <rect class="own" x="26" y="106" width="36" height="36" rx="6"/>
+        <!-- side bar -->
+        <rect class="vsc-side" x="68" y="48" width="240" height="252"/>
+        <text class="lbl-sm" x="84" y="68">EXPLORER</text>
+        <rect class="own" x="76" y="80" width="224" height="124" rx="4"/>
+        <text class="lbl-acc" x="86" y="98">Canvas · file tree</text>
+        <text class="lbl-sm" x="86" y="116">designs/</text>
+        <text class="lbl-sm" x="86" y="132">  Landing.html</text>
+        <text class="lbl-sm" x="86" y="148">  Pricing.html</text>
+        <text class="lbl-sm" x="86" y="164">assets/</text>
+        <text class="lbl-sm" x="86" y="180">.canvas/manifest</text>
+        <rect class="own-pro" x="76" y="212" width="224" height="80" rx="4"/>
+        <text class="lbl-pro" x="86" y="230">Asset review</text>
+        <text class="lbl-sm" x="86" y="248">3 needs review · 1 approved</text>
+        <text class="lbl-sm" x="86" y="266">▸ Landing — needs review</text>
+        <text class="lbl-sm" x="86" y="282">▸ Pricing — needs review</text>
+
+        <!-- editor area -->
+        <rect class="vsc-edit" x="308" y="48" width="488" height="172"/>
+        <text class="lbl-sm" x="324" y="68">Landing.html</text>
+        <rect class="own" x="316" y="76" width="472" height="136" rx="4"/>
+        <text class="lbl-acc" x="328" y="96">Editor tab · code</text>
+        <text class="lbl-sm" x="328" y="118">&lt;section class="hero"&gt; …</text>
+        <text class="lbl-sm" x="328" y="136">&lt;/section&gt;</text>
+        <text class="lbl-sm" x="328" y="170" style="fill:#777e88">// Inline preview opens to the right →</text>
+
+        <!-- preview surface -->
+        <rect class="vsc-edit" x="796" y="48" width="224" height="172"/>
+        <rect class="own" x="804" y="56" width="208" height="156" rx="4"/>
+        <text class="lbl-acc" x="816" y="74">Preview surface</text>
+        <text class="lbl-sm" x="816" y="92">iframe · srcdoc</text>
+        <text class="lbl-sm" x="816" y="108">live-reload on save</text>
+        <text class="lbl-sm" x="816" y="124">device frame toggle</text>
+        <text class="lbl-sm" x="816" y="140">Tweaks toggle</text>
+        <text class="lbl-sm" x="816" y="158">2576px capture cap</text>
+        <text class="lbl-sm" x="816" y="180">⌥⌘D detach to float</text>
+
+        <!-- panel -->
+        <rect class="vsc-pan" x="308" y="220" width="712" height="80"/>
+        <text class="lbl-sm" x="324" y="240">PROBLEMS · OUTPUT · TERMINAL · CANVAS CHAT</text>
+        <rect class="own" x="316" y="248" width="696" height="44" rx="4"/>
+        <text class="lbl-acc" x="328" y="266">Chat panel · streams</text>
+        <text class="lbl-sm" x="328" y="282">drag files in · ⌘K to focus · /commands</text>
+
+        <!-- status bar -->
+        <rect class="vsc-stat" x="20" y="300" width="1000" height="20" rx="0"/>
+        <text class="lbl-sm" x="36" y="314" style="fill:#fff">Canvas · Pro · 47% used this 5h block · ●</text>
+      </svg>
+      <div class="caption">Fig 3 · Six surfaces. Blue = Canvas-owned. Orange = Asset review (lives in Side Bar but renders independently).</div>
+    </div>
+
+    <div class="kv" style="margin-top: 24px;">
+      <div>activity bar</div><div>One icon. Click = focus side bar to Canvas's combined Explorer + Asset Review.</div>
+      <div>side bar</div><div>Two stacked TreeViews: <code>canvasFiles</code> (project files filtered to design output) and <code>canvasReview</code> (asset review manifest, status filters, approve/changes).</div>
+      <div>editor area</div><div>Preview opens as a beside-the-active-editor webview. Reuses VS Code's split semantics so Cmd+\\ feels native. Detachable to a floating webview window via command palette.</div>
+      <div>panel (bottom)</div><div>Chat lives here by default — like Terminal, it's always one shortcut away. User can drag it to the side bar if they prefer that layout; we expose both placements via <code>view.canMoveViews</code>.</div>
+      <div>status bar</div><div>One <code>StatusBarItem</code>: <code>Canvas · Pro · 47% · ●</code>. Tooltip shows quota, model, last sync. Click cycles model presets.</div>
+      <div>command palette</div><div>All commands prefixed <code>Claude Canvas: </code>. We never hijack <code>Claude Code:</code> namespace.</div>
+    </div>
+  </section>
+
+  <!-- ========================= SIDECAR ========================= -->
+  <section id="sidecar">
+    <div class="eyebrow"><span class="num">05</span> Splicing into Claude Code</div>
+    <h2>One extension, one window, zero second logins.</h2>
+    <p>
+      The shift from “sidecar” to “extends” is the highest-leverage decision in this revision.
+      Claude Design declares <code>extensionDependencies: ["anthropic.claude-code"]</code> so it activates
+      only when Claude Code is present, contributes its views into Claude Code's existing view container
+      (falling back to its own when the host container ID isn't public), and reuses Claude Code's auth
+      keystore through the same CLI shim. Below: the six contracts that make this safe.
+    </p>
+
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="kicker">contract 1</div>
+        <h3>Disjoint command namespace</h3>
+        <p class="small">Every command starts with <code>claudeDesign.</code>; every label is <code>Claude Design: …</code>. Lives in the same palette as Claude Code, never shadows it.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">contract 2</div>
+        <h3>Disjoint settings &amp; storage</h3>
+        <p class="small">Settings under <code>claudeDesign.*</code>. Workspace state in <code>.claude-design/</code>. Global state in <code>workspaceState</code>/<code>globalState</code> keyed <code>design.</code>. We never write Claude Code's keys.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">contract 3</div>
+        <h3>Shared OAuth, shared quota surface</h3>
+        <p class="small">Both extensions read the same <code>~/.claude/credentials</code> via the CLI. Quota indicator lives in Claude Code's existing status item when its API allows; otherwise Design shows a sibling pill in matching amber.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">contract 4</div>
+        <h3>FS broker with conflict back-off</h3>
+        <p class="small">Design only watches <code>.claude-design/**</code> and <code>designs/**</code>. If Claude Code is mid-stream into a file Design wants to touch, we requeue with a 200ms backoff and surface a non-modal toast.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">contract 5</div>
+        <h3>Single sign-in doorway</h3>
+        <p class="small">If Claude Code is signed in, Design's sign-in UI never appears — we just work. If not, our welcome view says “Sign in via Claude Code” and triggers Claude Code's own command. We never run our own OAuth.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">contract 6 · forward-looking</div>
+        <h3>Programmatic handoff</h3>
+        <p class="small">When Claude Code exposes a public <code>extension.exports</code>, Design detects it on activate and swaps the CLI-subprocess adapter for an in-process call. No user-visible change. One file diff.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= WORKSPACE MODEL ========================= -->
+  <section id="workspace">
+    <div class="eyebrow"><span class="num">06</span> Workspace &amp; design-system model</div>
+    <h2>What lives on disk, what's read-only, and how cross-project mounts work.</h2>
+
+    <p>
+      The claude.ai habit you don't want disturbed: dropping a design system into a project as an attachment
+      and letting it inform every output. In VS Code that's just a folder, but it has to be <i>read-only</i>,
+      <i>scoped</i>, and visible to the model without being committed into your workspace.
+    </p>
+
+    <pre><code><span style="color:#aab1bb">my-project/</span>
+├── designs/                <span style="color:#777e88"># your output — html files, components</span>
+│   ├── Landing.html
+│   ├── Pricing.html
+│   └── components/
+├── assets/                 <span style="color:#777e88"># images, fonts, video</span>
+├── .canvas/                <span style="color:#777e88"># Canvas's own scratch space</span>
+│   ├── manifest.json       <span style="color:#777e88"># asset review state</span>
+│   ├── conversation.jsonl  <span style="color:#777e88"># chat history (local only)</span>
+│   └── tweaks.json         <span style="color:#777e88"># EDITMODE state per file</span>
+├── CLAUDE.md               <span style="color:#777e88"># project rules — picked up automatically</span>
+└── canvas.code-workspace   <span style="color:#56d364"># mounts a design-system folder read-only</span></code></pre>
+
+    <div class="grid cols-2" style="margin-top: 24px;">
+      <div class="card">
+        <h3>Design-system mounts</h3>
+        <p class="small">VS Code's multi-root workspace gives us folder URIs. Canvas adds a virtual scheme <code>canvas-ds://</code> that proxies a chosen folder anywhere on disk as <i>read-only</i>. The model sees it as <code>canvas-ds://design-system/colors.css</code>; it can read, it cannot write. This is the local equivalent of the cross-project read access you have on claude.ai.</p>
+      </div>
+      <div class="card">
+        <h3>Project rules (<code>CLAUDE.md</code>)</h3>
+        <p class="small">Same conventions as Claude Code — root <code>CLAUDE.md</code> auto-loads as a system-level instruction. Canvas adds a UI affordance: status-bar pill <code>📜 rules</code> that opens it in a peek editor and shows a diff if it changed since the last turn.</p>
+      </div>
+      <div class="card">
+        <h3>FS broker — write rules</h3>
+        <p class="small">Tool calls from the model can only write under <code>designs/</code>, <code>assets/</code>, and <code>.canvas/</code>. Anything else triggers a confirmation prompt with the proposed path and content. This is enforced in the host, not the prompt.</p>
+      </div>
+      <div class="card">
+        <h3>Live reload &amp; devices</h3>
+        <p class="small">Preview iframe is rebuilt on file save (<code>workspace.onDidSaveTextDocument</code>). User can wrap the preview in iOS / Android / browser frames via the same starter components used on claude.ai — Canvas ships those frames inline so they work offline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ASSET REVIEW + TWEAKS ========================= -->
+  <section id="parity">
+    <div class="eyebrow"><span class="num">07</span> Asset review &amp; Tweaks parity</div>
+    <h2>The two protocols that make claude.ai's design loop feel different from a chat box.</h2>
+
+    <div class="grid cols-2">
+      <div class="card pad-lg">
+        <h3>Asset review</h3>
+        <p>The manifest lives at <code>.canvas/manifest.json</code>: an array of <code>{asset, path, status, group, viewport, subtitle}</code>. Canvas writes it; the user marks status from the side-bar TreeView; the model reads it on every turn so it knows what's pending.</p>
+        <pre><code>{
+  "items": [
+    {
+      "asset": "Landing page",
+      "path": "designs/Landing.html",
+      "group": "Components",
+      "status": "needs-review",
+      "viewport": { "width": 1440 }
+    },
+    {
+      "asset": "Brand colors",
+      "path": "designs/colors.html",
+      "group": "Colors",
+      "status": "approved"
+    }
+  ]
+}</code></pre>
+        <p class="small">Side-bar TreeView groups by <code>group</code>. Right-click an item to open with viewport pinning. Bulk approve across selection. Status changes are debounced to <code>manifest.json</code> writes so the file diff stays clean.</p>
+      </div>
+
+      <div class="card pad-lg">
+        <h3>Tweaks protocol</h3>
+        <p>The same <code>__edit_mode_*</code> postMessage protocol claude.ai uses, ported as-is so any HTML you wrote on claude.ai keeps working in VS Code with zero changes.</p>
+        <pre><code><span style="color:#777e88">// the artifact says:</span>
+window.parent.postMessage({type:'__edit_mode_available'}, '*');
+
+<span style="color:#777e88">// Canvas reveals a toolbar toggle.</span>
+<span style="color:#777e88">// User flips it on:</span>
+window.postMessage({type:'__activate_edit_mode'});
+
+<span style="color:#777e88">// User changes a knob:</span>
+window.parent.postMessage(
+  {type:'__edit_mode_set_keys', edits:{primary:'#D97757'}},
+  '*'
+);
+
+<span style="color:#777e88">// Canvas merges into the EDITMODE-BEGIN/END</span>
+<span style="color:#777e88">// JSON block in the source HTML, saves to disk.</span></code></pre>
+        <p class="small">Persistence is the trick: Canvas parses the <code>/*EDITMODE-BEGIN*/…/*EDITMODE-END*/</code> block, merges the partial edits, and rewrites the file in place. The change survives reload because it survives <i>save</i>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= PHASING ========================= -->
+  <section id="phases">
+    <div class="eyebrow"><span class="num">08</span> Implementation phasing</div>
+    <h2>Five phases. Each one is independently shippable.</h2>
+    <p>
+      The point of phasing is that you can stop after any phase and have a useful tool. We don't bury value behind
+      a 12-week build — phase 1 alone gets the live preview into VS Code with Pro auth, which is the lion's share
+      of the daily-driver experience.
+    </p>
+
+    <div class="phases" style="margin-top: 28px;">
+      <div class="phase now">
+        <div class="marker">PHASE 0<br/><span class="muted small">~3 days</span></div>
+        <div class="body">
+          <h3>Skeleton &amp; auth</h3>
+          <p>Empty extension, activates on a single command, surfaces a side-bar webview that says "Hello, signed-in user." Underneath: inference adapter interface, CLI subprocess wired up, OAuth check on activation, status bar item, settings schema.</p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> activate / deactivate</span>
+            <span class="pill"><span class="swatch"></span> claudeCanvas.signIn</span>
+            <span class="pill"><span class="swatch"></span> CLI adapter v1</span>
+            <span class="pill"><span class="swatch"></span> status bar</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="marker">PHASE 1<br/><span class="muted small">~1 week</span></div>
+        <div class="body">
+          <h3>Chat + preview</h3>
+          <p>Chat panel that streams responses. Tool-use messages that write HTML files into <code>designs/</code>. A preview webview beside the editor that loads the most recent artifact via <code>srcdoc</code> with live reload on save. <b>This is the MVP — already replaces 70% of why you'd alt-tab to claude.ai.</b></p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> chat panel</span>
+            <span class="pill"><span class="swatch"></span> stream-json parser</span>
+            <span class="pill"><span class="swatch"></span> FS broker</span>
+            <span class="pill"><span class="swatch"></span> preview surface</span>
+            <span class="pill"><span class="swatch"></span> live reload</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="marker">PHASE 2<br/><span class="muted small">~3 days</span></div>
+        <div class="body">
+          <h3>Asset review</h3>
+          <p>Side-bar TreeView for the manifest. Status icons, group filters, bulk-approve. Manifest read by the model every turn so "what's pending" is always accurate.</p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> manifest schema</span>
+            <span class="pill"><span class="swatch"></span> review TreeView</span>
+            <span class="pill"><span class="swatch"></span> status quick-pick</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="marker">PHASE 3<br/><span class="muted small">~4 days</span></div>
+        <div class="body">
+          <h3>Tweaks &amp; mention bridge</h3>
+          <p>Full <code>__edit_mode_*</code> protocol parity. Inline element comments / mentions surface in the chat panel as <code>&lt;mentioned-element&gt;</code> attachments. Drag-and-drop a workspace file into chat to mention it.</p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> edit-mode bridge</span>
+            <span class="pill"><span class="swatch"></span> EDITMODE rewriter</span>
+            <span class="pill"><span class="swatch"></span> mention picker</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="marker">PHASE 4<br/><span class="muted small">~3 days</span></div>
+        <div class="body">
+          <h3>Cross-project · design-system mounts</h3>
+          <p><code>canvas-ds://</code> virtual scheme. Read-only proxy of any folder. <code>canvas.code-workspace</code> generator that bakes a chosen design-system path in. Asset review respects the mount so DS files never accumulate review state.</p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> FileSystemProvider</span>
+            <span class="pill"><span class="swatch"></span> workspace generator</span>
+            <span class="pill"><span class="swatch"></span> mount UI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="marker">PHASE 5<br/><span class="muted small">~3 days</span></div>
+        <div class="body">
+          <h3>Polish &amp; release prep</h3>
+          <p>Marketplace listing, Insiders-targeted <code>engines.vscode</code>, telemetry-off-by-default, a CONTRIBUTING.md for handoff, performance pass on the preview iframe (it should redraw &lt;100ms after save). Verify all six sidecar contracts with integration tests.</p>
+          <div class="deliverables">
+            <span class="pill"><span class="swatch"></span> marketplace</span>
+            <span class="pill"><span class="swatch"></span> integration tests</span>
+            <span class="pill"><span class="swatch"></span> docs</span>
+            <span class="pill"><span class="swatch"></span> perf pass</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= RISKS ========================= -->
+  <section id="risks">
+    <div class="eyebrow"><span class="num">09</span> Risk register</div>
+    <h2>Things that can break this plan, ranked.</h2>
+    <table class="risks">
+      <thead>
+        <tr><th>Risk</th><th class="severity">Severity</th><th>Mitigation</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>CLI surface changes.</b> <code>claude --print --output-format=stream-json</code> isn't a frozen API contract.</td>
+          <td class="severity"><span class="sev md">MEDIUM</span></td>
+          <td>Adapter interface isolates the contract to one file. Pin a known-good CLI version range. Run a contract test on activation that warns if the JSON shape drifts.</td>
+        </tr>
+        <tr>
+          <td><b>Pro/Max OAuth scope changes</b> — Anthropic could decide editor clients need a different scope or a separate consent.</td>
+          <td class="severity"><span class="sev hi">HIGH</span></td>
+          <td>We never bypass; if the CLI says "re-auth", we surface that prompt verbatim. We don't ship our own client_id.</td>
+        </tr>
+        <tr>
+          <td><b>Webview CSP and resource roots.</b> The preview iframe needs to load workspace files; VS Code's CSP is strict.</td>
+          <td class="severity"><span class="sev md">MEDIUM</span></td>
+          <td>Use <code>asWebviewUri</code> for asset references. Use <code>localResourceRoots</code> scoped to <code>designs/</code> + <code>assets/</code>. Keep iframe sandbox to <code>allow-scripts</code> only.</td>
+        </tr>
+        <tr>
+          <td><b>Race conditions with Claude Code on the same file.</b></td>
+          <td class="severity"><span class="sev md">MEDIUM</span></td>
+          <td>FS broker holds an in-memory lock per path. If a save lands within 200ms of another writer, we requeue and notify. Tests cover concurrent-write scenarios.</td>
+        </tr>
+        <tr>
+          <td><b>User has no Claude Code installed and no terminal experience.</b></td>
+          <td class="severity"><span class="sev lo">LOW</span></td>
+          <td>Canvas can ship with a bundled <code>claude</code> CLI binary on first install (Windows/macOS/Linux), or run <code>claude /login</code> via integrated terminal with on-screen guidance.</td>
+        </tr>
+        <tr>
+          <td><b>Quota exhaustion mid-session.</b> Pro plans have 5-hour blocks; running out is jarring.</td>
+          <td class="severity"><span class="sev lo">LOW</span></td>
+          <td>Status bar shows live <code>%</code> used. At 80% we surface a non-blocking toast; at 100%, chat input gets disabled with the same wording claude.ai uses.</td>
+        </tr>
+        <tr>
+          <td><b>Insiders-only API drift.</b> Targeting Insiders means we can use proposed APIs but we have to track them.</td>
+          <td class="severity"><span class="sev lo">LOW</span></td>
+          <td>Limit proposed API usage to one feature (likely <code>chatVariableResolver</code> or similar) and gate it behind a feature flag.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========================= MOCK ========================= -->
+  <section id="mock">
+    <div class="eyebrow"><span class="num">10</span> Reference UI mock</div>
+    <h2>What this looks like, in your editor.</h2>
+    <p>
+      The mock below is a static-but-clickable VS Code Insiders rendering. Hover the highlighted regions to see
+      which Canvas surface owns them; click a tab to swap the editor view. It is not a working extension — it is
+      the visual contract this plan promises to deliver in Phase 1.
+    </p>
+    <div class="mock-frame" id="mock-host">
+      <!-- mock injected by script.js -->
+    </div>
+    <p class="small muted" style="margin-top: 16px;">Mock is illustrative — proportions match VS Code Insiders 1.97 default density on Windows 11; colors taken from the Dark Modern theme.</p>
+  </section>
+
+  <!-- ========================= APPENDIX ========================= -->
+  <section id="appendix">
+    <div class="eyebrow"><span class="num">A</span> Appendix · package.json sketch</div>
+    <h2>The smallest manifest that gets us to Phase 0.</h2>
+    <pre><code>{
+  <span style="color:#ce9178">"name"</span>: <span style="color:#ce9178">"claude-design"</span>,
+  <span style="color:#ce9178">"displayName"</span>: <span style="color:#ce9178">"Claude Design"</span>,
+  <span style="color:#ce9178">"publisher"</span>: <span style="color:#ce9178">"your-publisher"</span>,
+  <span style="color:#ce9178">"version"</span>: <span style="color:#ce9178">"0.1.0"</span>,
+  <span style="color:#ce9178">"engines"</span>: { <span style="color:#ce9178">"vscode"</span>: <span style="color:#ce9178">"^1.97.0-insider"</span> },
+  <span style="color:#ce9178">"categories"</span>: [<span style="color:#ce9178">"AI"</span>, <span style="color:#ce9178">"Visualization"</span>, <span style="color:#ce9178">"Other"</span>],
+  <span style="color:#ce9178">"extensionDependencies"</span>: [<span style="color:#ce9178">"anthropic.claude-code"</span>],
+  <span style="color:#ce9178">"activationEvents"</span>: [<span style="color:#ce9178">"onStartupFinished"</span>],
+  <span style="color:#ce9178">"main"</span>: <span style="color:#ce9178">"./dist/extension.js"</span>,
+  <span style="color:#ce9178">"scripts"</span>: {
+    <span style="color:#ce9178">"build"</span>:   <span style="color:#ce9178">"bun build src/extension.ts --outdir=dist --target=node --external=vscode"</span>,
+    <span style="color:#ce9178">"dev"</span>:     <span style="color:#ce9178">"bun build src/extension.ts --outdir=dist --target=node --external=vscode --watch"</span>,
+    <span style="color:#ce9178">"webview"</span>: <span style="color:#ce9178">"bun --hot src/webview/index.tsx"</span>,
+    <span style="color:#ce9178">"test"</span>:    <span style="color:#ce9178">"bun test"</span>,
+    <span style="color:#ce9178">"package"</span>: <span style="color:#ce9178">"bun run build &amp;&amp; vsce package --no-dependencies"</span>
+  },
+  <span style="color:#ce9178">"contributes"</span>: {
+    <span style="color:#ce9178">"views"</span>: {
+      <span style="color:#ce9178">"claude-code.views"</span>: [
+        { <span style="color:#ce9178">"id"</span>: <span style="color:#ce9178">"designFiles"</span>,  <span style="color:#ce9178">"name"</span>: <span style="color:#ce9178">"Designs"</span>,      <span style="color:#ce9178">"type"</span>: <span style="color:#ce9178">"tree"</span> },
+        { <span style="color:#ce9178">"id"</span>: <span style="color:#ce9178">"designReview"</span>, <span style="color:#ce9178">"name"</span>: <span style="color:#ce9178">"Asset Review"</span>, <span style="color:#ce9178">"type"</span>: <span style="color:#ce9178">"tree"</span> }
+      ]
+    },
+    <span style="color:#ce9178">"commands"</span>: [
+      { <span style="color:#ce9178">"command"</span>: <span style="color:#ce9178">"claudeDesign.openPreview"</span>, <span style="color:#ce9178">"title"</span>: <span style="color:#ce9178">"Claude Design: Open Preview Beside"</span> },
+      { <span style="color:#ce9178">"command"</span>: <span style="color:#ce9178">"claudeDesign.toggleTweaks"</span>,<span style="color:#ce9178">"title"</span>: <span style="color:#ce9178">"Claude Design: Toggle Tweaks"</span> },
+      { <span style="color:#ce9178">"command"</span>: <span style="color:#ce9178">"claudeDesign.review"</span>,      <span style="color:#ce9178">"title"</span>: <span style="color:#ce9178">"Claude Design: Review Asset…"</span> }
+    ],
+    <span style="color:#ce9178">"configuration"</span>: {
+      <span style="color:#ce9178">"title"</span>: <span style="color:#ce9178">"Claude Design"</span>,
+      <span style="color:#ce9178">"properties"</span>: {
+        <span style="color:#ce9178">"claudeDesign.previewPlacement"</span>: { <span style="color:#ce9178">"type"</span>: <span style="color:#ce9178">"string"</span>, <span style="color:#ce9178">"enum"</span>: [<span style="color:#ce9178">"beside"</span>,<span style="color:#ce9178">"panel"</span>,<span style="color:#ce9178">"float"</span>], <span style="color:#ce9178">"default"</span>: <span style="color:#ce9178">"beside"</span> },
+        <span style="color:#ce9178">"claudeDesign.stack"</span>:            { <span style="color:#ce9178">"type"</span>: <span style="color:#ce9178">"string"</span>, <span style="color:#ce9178">"enum"</span>: [<span style="color:#ce9178">"react-tailwind-shadcn"</span>,<span style="color:#ce9178">"vanilla"</span>], <span style="color:#ce9178">"default"</span>: <span style="color:#ce9178">"react-tailwind-shadcn"</span> },
+        <span style="color:#ce9178">"claudeDesign.telemetry"</span>:        { <span style="color:#ce9178">"type"</span>: <span style="color:#ce9178">"boolean"</span>, <span style="color:#ce9178">"default"</span>: false }
+      }
+    }
+  }
+}</code></pre>
+  </section>
+
+  <!-- ========================= NEXT ========================= -->
+  <section id="next">
+    <div class="eyebrow"><span class="num">→</span> Next steps</div>
+    <h2>What I'd want from you to start Phase 0.</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="kicker">decision · 5 min</div>
+        <h3>Confirm the working name</h3>
+        <p class="small"><b>Claude Design</b> matches your project title; “Claude Designer” / “Claude Canvas” are alternates. I've locked in <i>Claude Design</i> across this doc — say the word and I'll find/replace.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">decision · 5 min</div>
+        <h3>CLI dependency posture</h3>
+        <p class="small">Since <code>extensionDependencies</code> requires Claude Code, the <code>claude</code> CLI is implicitly provided. No bundling needed.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">artifact · I'll build next</div>
+        <h3>Phase 0 scaffold</h3>
+        <p class="small">A real Bun-managed extension repo: <code>package.json</code>, <code>tsconfig.json</code>, <code>src/extension.ts</code>, <code>src/inference/cli.ts</code>, <code>src/webview/</code> with React + Tailwind + shadcn, a smoke test under <code>bun test</code>, and a single <code>bun run package</code> that emits a sideloadable <code>.vsix</code>.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Claude Design — architectural plan v1 · Bun-native, extends Claude Code, Windows 11 / Insiders</span>
+  <span class="mono">draft · not yet implemented</span>
+</footer>
+
+<script>
+  // ---------- mock injection ----------
+  const mockHTML = `
+  <div class="vscm" data-active="landing">
+    <style>
+      .vscm { font-family: 'Geist', system-ui, sans-serif; color: #cccccc; background:#1f1f1f; display:grid; grid-template-rows: 30px 22px 1fr 22px; height: 660px; font-size: 13px; }
+      .vscm-title { background:#181818; display:flex; align-items:center; padding: 0 12px; gap: 12px; border-bottom: 1px solid #2c333d; font-size: 12px; color: #888; }
+      .vscm-title .traffic { display:flex; gap: 8px; }
+      .vscm-title .traffic span { width: 12px; height: 12px; border-radius: 50%; background:#3c3c3c; }
+      .vscm-title .traffic span.r{background:#ff5f56;} .vscm-title .traffic span.y{background:#ffbd2e;} .vscm-title .traffic span.g{background:#27c93f;}
+      .vscm-title .crumbs { color:#aaa; font-size:12px; }
+      .vscm-title .right { margin-left:auto; display:flex; gap: 14px; color:#888; font-size:12px; }
+      .vscm-menu { background:#181818; display:flex; align-items:center; gap:18px; padding: 0 14px; font-size:12px; color:#bbb; border-bottom: 1px solid #2c333d; }
+      .vscm-body { display:grid; grid-template-columns: 48px 280px 1fr 360px; min-height: 0; }
+      .vscm-act { background:#181818; display:flex; flex-direction:column; align-items:center; padding: 8px 0; gap: 4px; border-right: 1px solid #2c333d; }
+      .vscm-act .ic {
+        width: 32px; height: 32px; border-radius: 5px; display:grid; place-items:center; color:#9aa0a6; cursor: pointer;
+      }
+      .vscm-act .ic:hover { background:#2a2d2e; color: #fff; }
+      .vscm-act .ic.active { background:#37373d; color: #fff; box-shadow: inset 2px 0 0 #4cc2ff; }
+      .vscm-act .ic.canvas-active { background:#37373d; color: #d97757; box-shadow: inset 2px 0 0 #d97757; }
+      .vscm-act svg { width: 20px; height: 20px; }
+      .vscm-side { background:#1f1f1f; border-right: 1px solid #2c333d; display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+      .vscm-side .head { padding: 10px 14px; font-size: 11px; letter-spacing: .12em; color: #ccc; text-transform: uppercase; display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid #2c333d; }
+      .vscm-side .head .more { color:#777; }
+      .vscm-section { border-bottom: 1px solid #2c333d; }
+      .vscm-section .stitle { padding: 6px 14px; font-size: 11px; letter-spacing: .12em; color: #aaa; text-transform: uppercase; display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+      .vscm-section .stitle .count { background:#2a2d2e; color:#aaa; border-radius: 8px; font-size: 10px; padding: 1px 6px; }
+      .vscm-section ul { list-style:none; margin: 0; padding: 0 0 8px; }
+      .vscm-section li { padding: 3px 14px 3px 26px; display:flex; align-items:center; gap: 6px; font-size: 13px; color:#cccccc; cursor:pointer; position: relative; }
+      .vscm-section li:hover { background:#2a2d2e; }
+      .vscm-section li.active { background: #37373d; color: #fff; }
+      .vscm-section li.folder { padding-left: 14px; color:#aaa; }
+      .vscm-section li .chev { color:#888; font-size:10px; width: 10px; }
+      .vscm-section li .ext { color:#777; margin-left:auto; font-size: 11px; }
+      .vscm-section li .status-dot { width: 8px; height:8px; border-radius:50%; }
+      .vscm-section li .status-dot.review { background:#f0883e; }
+      .vscm-section li .status-dot.approved { background:#56d364; }
+      .vscm-section li .status-dot.changes { background:#ff7b72; }
+      .vscm-edit { display:grid; grid-template-rows: 35px 1fr 220px; min-height:0; }
+      .vscm-tabs { background:#181818; display:flex; align-items:flex-end; border-bottom: 1px solid #2c333d; }
+      .vscm-tabs .tab { padding: 8px 14px; background: #1f1f1f; border-right: 1px solid #2c333d; color: #969696; font-size: 13px; display:flex; align-items:center; gap:8px; cursor:pointer; height: 100%; }
+      .vscm-tabs .tab.active { background: #1e1e1e; color: #fff; box-shadow: inset 0 1px 0 #4cc2ff; }
+      .vscm-tabs .tab .x { color:#888; }
+      .vscm-tabs .tab .dot { width:6px; height:6px; border-radius:50%; background:#888; }
+      .vscm-code { background:#1e1e1e; padding: 14px 20px; font-family: 'Geist Mono', 'Cascadia Code', monospace; font-size: 13px; line-height: 1.55; overflow:hidden; position: relative; }
+      .vscm-code .gutter { position: absolute; left:0; top:14px; bottom:14px; width: 38px; color:#5a5a5a; font-size: 12px; text-align:right; padding-right:12px; user-select:none; }
+      .vscm-code pre { margin:0; padding-left: 50px; color:#d4d4d4; white-space: pre; overflow-x: auto; }
+      .tk-tag { color:#569cd6; }
+      .tk-attr { color:#9cdcfe; }
+      .tk-str { color:#ce9178; }
+      .tk-cmt { color:#6a9955; font-style: italic; }
+      .tk-key { color:#c586c0; }
+      .tk-fn  { color:#dcdcaa; }
+      .vscm-panel { background:#181818; border-top: 1px solid #2c333d; display:grid; grid-template-rows: 36px 1fr; }
+      .vscm-panel-tabs { display:flex; gap:0; padding: 0 12px; align-items:flex-end; border-bottom: 1px solid #2c333d; }
+      .vscm-panel-tabs .pt { padding: 9px 14px; font-size: 12px; color: #969696; cursor:pointer; border-bottom: 1px solid transparent; }
+      .vscm-panel-tabs .pt.active { color:#fff; border-bottom-color:#4cc2ff; }
+      .vscm-panel-tabs .right { margin-left:auto; display:flex; gap:6px; padding: 6px 0; }
+      .vscm-panel-tabs .right .ic { width:24px; height:24px; display:grid; place-items:center; color:#888; border-radius:4px; cursor:pointer; }
+      .vscm-panel-tabs .right .ic:hover { background:#2a2d2e; color:#fff; }
+      .vscm-chat { padding: 14px 18px; overflow:hidden; display:flex; flex-direction:column; gap: 10px; }
+      .vscm-msg { max-width: 80%; padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height:1.5; }
+      .vscm-msg.user { align-self:flex-end; background:#264f78; color:#fff; }
+      .vscm-msg.claude { align-self:flex-start; background:#2a2d2e; color:#e6e8eb; }
+      .vscm-msg.claude .name { color:#d97757; font-weight:600; font-size:11px; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 4px; }
+      .vscm-msg.tool { align-self:flex-start; background:transparent; border: 1px dashed #3a3a3a; color:#888; font-family:'Geist Mono',monospace; font-size:11px; padding:6px 10px; }
+      .vscm-msg.tool .ok { color:#56d364; }
+      .vscm-input-row { margin-top:auto; display:flex; gap:8px; align-items:center; padding-top: 8px; border-top: 1px solid #2c333d; }
+      .vscm-input { flex:1; background: #1e1e1e; border: 1px solid #3c3c3c; border-radius: 6px; padding: 8px 12px; color:#ccc; font-size: 13px; font-family: inherit; }
+      .vscm-input:focus { outline: 1px solid #4cc2ff; }
+      .vscm-input-row .btn { background:#0e639c; color:#fff; border:0; padding: 7px 14px; border-radius:5px; font-size:12px; cursor:pointer; }
+      .vscm-input-row .btn:hover { background:#1177bb; }
+      .vscm-preview { background: #0b0d10; border-left: 1px solid #2c333d; display:grid; grid-template-rows: 35px 1fr; }
+      .vscm-preview-bar { background:#181818; display:flex; align-items:center; padding: 0 12px; gap: 10px; font-size: 12px; color:#aaa; border-bottom: 1px solid #2c333d; }
+      .vscm-preview-bar .url { flex:1; background:#0b0d10; border:1px solid #2c333d; border-radius:4px; padding: 3px 8px; font-family:'Geist Mono',monospace; font-size: 11px; color:#aab1bb; }
+      .vscm-preview-bar .ic-btn { width:22px; height: 22px; display:grid; place-items:center; color:#888; border-radius:3px; cursor:pointer; }
+      .vscm-preview-bar .ic-btn:hover { background:#2a2d2e; color:#fff; }
+      .vscm-preview-bar .ic-btn.active { background:#37373d; color:#4cc2ff; }
+      .vscm-preview-stage { position: relative; background: linear-gradient(135deg, #0e1014 0%, #15181d 100%); display:grid; place-items:center; padding: 24px; overflow:hidden; }
+      .vscm-art {
+        width: 100%; max-width: 320px; aspect-ratio: 9/16; background:#fff;
+        border-radius: 18px; box-shadow: 0 30px 60px -15px rgba(0,0,0,.6), 0 0 0 1px #232830;
+        overflow: hidden; position: relative;
+        font-family: 'Geist', system-ui, sans-serif;
+      }
+      .vscm-art .a-hero { padding: 32px 24px 24px; background:#fef3eb; height: 50%; display:flex; flex-direction:column; gap:10px; justify-content:center; }
+      .vscm-art .a-hero h1 { font-size: 22px; line-height: 1.1; margin:0; color:#1d1d1f; font-weight:500; letter-spacing: -.02em; }
+      .vscm-art .a-hero h1 em { color:#d97757; font-style: italic; }
+      .vscm-art .a-hero p { margin:0; font-size: 11px; color: #5a5a5a; }
+      .vscm-art .a-hero button { align-self: flex-start; background:#1d1d1f; color:#fff; border:0; padding:7px 14px; border-radius: 999px; font-size:11px; }
+      .vscm-art .a-grid { padding: 16px 24px; display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .vscm-art .a-grid .a-card { background:#f4f1ec; border-radius:10px; aspect-ratio: 1; padding:10px; display:flex; flex-direction:column; justify-content:flex-end; }
+      .vscm-art .a-grid .a-card h4 { margin:0; font-size:10px; color:#1d1d1f; }
+      .vscm-art .a-grid .a-card span { font-size: 9px; color:#888; }
+      .vscm-art .a-grid .a-card.accent { background:#d97757; color:#fff; }
+      .vscm-art .a-grid .a-card.accent h4, .vscm-art .a-grid .a-card.accent span { color:#fff; }
+      .vscm-art .a-foot { padding: 14px 24px; border-top: 1px solid #eee; font-size: 10px; color:#999; display:flex; justify-content:space-between; }
+      .vscm-tweaks { position:absolute; right: 14px; bottom: 14px; background: rgba(20,20,22,.92); color:#eee; border-radius: 10px; padding: 10px 12px; min-width: 160px; font-size: 11px; box-shadow: 0 8px 24px rgba(0,0,0,.4); border: 1px solid #2c333d; }
+      .vscm-tweaks .tw-title { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color:#888; margin-bottom: 8px; display:flex; justify-content:space-between; }
+      .vscm-tweaks .tw-row { display:flex; justify-content:space-between; align-items:center; padding: 4px 0; }
+      .vscm-tweaks .tw-swatches { display:flex; gap:4px; }
+      .vscm-tweaks .sw { width:14px; height:14px; border-radius:50%; cursor:pointer; border: 1px solid #444; }
+      .vscm-tweaks .sw.active { box-shadow: 0 0 0 1.5px #fff; }
+      .vscm-status { background:#1a1410; color:#e8b339; display:flex; align-items:center; padding: 0 10px; font-size: 11px; gap: 14px; border-top: 1px solid #2d2932; }
+      .vscm-status .left, .vscm-status .right { display:flex; gap: 14px; align-items:center; }
+      .vscm-status .right { margin-left:auto; }
+      .vscm-status .pro { background: rgba(232,179,57,.18); color:#e8b339; padding: 1px 7px; border-radius: 3px; }
+      .vscm-status .blink { width:6px; height:6px; border-radius:50%; background:#9be9a8; box-shadow: 0 0 6px #9be9a8; animation: blk 1.6s infinite; }
+      @keyframes blk { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+      .annot {
+        position: absolute; padding: 6px 10px; background: #4cc2ff; color: #0b0d10;
+        font-family: 'Geist Mono', monospace; font-size: 10px; border-radius: 4px;
+        pointer-events:none; opacity: 0; transition: opacity .15s;
+        white-space: nowrap; z-index: 10;
+      }
+      .annot::after { content:''; position:absolute; bottom:-5px; left: 12px; border:5px solid transparent; border-top-color:#4cc2ff; border-bottom: 0; }
+      .vscm-edit:hover ~ * .annot, .vscm [data-annot]:hover .annot { opacity: 1; }
+    </style>
+
+    <!-- title bar -->
+    <div class="vscm-title">
+      <div class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+      <div class="crumbs">my-design-project — Visual Studio Code <span style="color:#4cc2ff">Insiders</span></div>
+      <div class="right"><span>⊟</span><span>□</span><span>×</span></div>
+    </div>
+
+    <!-- menu bar -->
+    <div class="vscm-menu">
+      <span>File</span><span>Edit</span><span>Selection</span><span>View</span><span>Go</span><span>Run</span><span>Terminal</span><span>Help</span>
+    </div>
+
+    <!-- body -->
+    <div class="vscm-body">
+
+      <!-- activity bar -->
+      <div class="vscm-act">
+        <div class="ic" title="Explorer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h6l2 3h8v12H4z"/></svg></div>
+        <div class="ic" title="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+        <div class="ic" title="Source Control"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="14" r="2.5"/><path d="M6 8.5v7M8 6h6a4 4 0 0 1 4 4v1.5"/></svg></div>
+        <div class="ic" title="Run"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="ic" title="Extensions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M14 6h7M17.5 3v7"/></svg></div>
+        <div class="ic" title="Claude Code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4z"/></svg></div>
+        <div class="ic canvas-active" title="Claude Canvas — current"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 3v18"/><circle cx="14.5" cy="14.5" r="2"/></svg></div>
+      </div>
+
+      <!-- side bar -->
+      <div class="vscm-side">
+        <div class="head">CLAUDE DESIGN<span class="more">⋯</span></div>
+
+        <div class="vscm-section">
+          <div class="stitle">Designs <span class="count">5</span></div>
+          <ul>
+            <li class="folder"><span class="chev">▼</span> designs</li>
+            <li class="active" data-tab="landing"><span class="chev"></span>📄 Landing.html <span class="ext">main</span></li>
+            <li data-tab="pricing"><span class="chev"></span>📄 Pricing.html</li>
+            <li data-tab="components"><span class="chev"></span>📄 components/Hero.jsx</li>
+            <li class="folder"><span class="chev">▼</span> assets</li>
+            <li><span class="chev"></span>🖼 logo.svg</li>
+            <li class="folder"><span class="chev">▼</span> .canvas</li>
+            <li><span class="chev"></span>📋 manifest.json</li>
+          </ul>
+        </div>
+
+        <div class="vscm-section">
+          <div class="stitle">Asset Review <span class="count">3 / 1</span></div>
+          <ul>
+            <li><span class="status-dot review"></span> Landing page <span class="ext">needs review</span></li>
+            <li><span class="status-dot review"></span> Pricing page <span class="ext">needs review</span></li>
+            <li><span class="status-dot review"></span> Hero component <span class="ext">needs review</span></li>
+            <li><span class="status-dot approved"></span> Brand colors <span class="ext">approved</span></li>
+            <li><span class="status-dot changes"></span> Footer v2 <span class="ext">changes</span></li>
+          </ul>
+        </div>
+
+        <div class="vscm-section">
+          <div class="stitle">Mounted <span class="count">RO</span></div>
+          <ul>
+            <li class="folder"><span class="chev">▶</span> 🔒 design-system</li>
+            <li class="folder"><span class="chev">▶</span> 🔒 brand-kit</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- editor + panel -->
+      <div class="vscm-edit">
+        <div class="vscm-tabs">
+          <div class="tab active" data-tab="landing"><span class="dot" style="background:#d97757"></span>Landing.html <span class="x">×</span></div>
+          <div class="tab" data-tab="pricing"><span class="dot"></span>Pricing.html <span class="x">×</span></div>
+          <div class="tab" data-tab="manifest"><span class="dot"></span>manifest.json <span class="x">×</span></div>
+        </div>
+
+        <!-- code -->
+        <div class="vscm-code">
+          <div class="gutter">
+            <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+          </div>
+          <pre id="codepane"><span class="tk-cmt">&lt;!-- designs/Landing.html · auto-saved --&gt;</span>
+<span class="tk-tag">&lt;section</span> <span class="tk-attr">class</span>=<span class="tk-str">"hero"</span><span class="tk-tag">&gt;</span>
+  <span class="tk-tag">&lt;h1&gt;</span>Ship beautiful design without
+       <span class="tk-tag">&lt;em&gt;</span>leaving your editor<span class="tk-tag">&lt;/em&gt;</span><span class="tk-tag">&lt;/h1&gt;</span>
+  <span class="tk-tag">&lt;p&gt;</span>Pro-tier Claude, native VS Code surface.<span class="tk-tag">&lt;/p&gt;</span>
+  <span class="tk-tag">&lt;button</span> <span class="tk-attr">class</span>=<span class="tk-str">"cta"</span><span class="tk-tag">&gt;</span>Open the canvas<span class="tk-tag">&lt;/button&gt;</span>
+<span class="tk-tag">&lt;/section&gt;</span>
+
+<span class="tk-tag">&lt;script&gt;</span>
+  <span class="tk-cmt">/*EDITMODE-BEGIN*/</span>
+  <span class="tk-key">const</span> <span class="tk-fn">tweaks</span> = { <span class="tk-attr">"primary"</span>: <span class="tk-str">"#D97757"</span> };
+  <span class="tk-cmt">/*EDITMODE-END*/</span>
+<span class="tk-tag">&lt;/script&gt;</span></pre>
+        </div>
+
+        <!-- panel: chat -->
+        <div class="vscm-panel">
+          <div class="vscm-panel-tabs">
+            <div class="pt">PROBLEMS</div>
+            <div class="pt">OUTPUT</div>
+            <div class="pt">TERMINAL</div>
+            <div class="pt active">CANVAS CHAT</div>
+            <div class="right">
+              <div class="ic">↗</div>
+              <div class="ic">▽</div>
+              <div class="ic">×</div>
+            </div>
+          </div>
+          <div class="vscm-chat">
+            <div class="vscm-msg user">Make the hero feel less corporate. Use the brand orange more.</div>
+            <div class="vscm-msg claude">
+              <div class="name">Claude · Pro</div>
+              Swapped the headline to a serif italic accent and restyled the CTA as a dark pill. Tweaks panel exposes the primary color so you can A/B without re-prompting.
+            </div>
+            <div class="vscm-msg tool">✎ wrote designs/Landing.html · 1.4 KB · <span class="ok">ok</span></div>
+            <div class="vscm-input-row">
+              <input class="vscm-input" placeholder="Message Claude · ⌘K to focus · drag a file to mention" />
+              <button class="btn">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- preview -->
+      <div class="vscm-preview">
+        <div class="vscm-preview-bar">
+          <div class="ic-btn" title="Reload">⟳</div>
+          <div class="url">file://designs/Landing.html</div>
+          <div class="ic-btn active" title="Mobile frame">📱</div>
+          <div class="ic-btn" title="Desktop">🖥</div>
+          <div class="ic-btn" title="Tweaks">⚙</div>
+          <div class="ic-btn" title="Detach">⛶</div>
+        </div>
+        <div class="vscm-preview-stage">
+          <div class="vscm-art">
+            <div class="a-hero">
+              <h1>Ship beautiful design without <em>leaving your editor</em></h1>
+              <p>Pro-tier Claude, native VS Code surface.</p>
+              <button>Open the canvas</button>
+            </div>
+            <div class="a-grid">
+              <div class="a-card accent"><h4>Live preview</h4><span>iframe + reload</span></div>
+              <div class="a-card"><h4>Asset review</h4><span>3 pending</span></div>
+              <div class="a-card"><h4>Design system</h4><span>mounted</span></div>
+              <div class="a-card"><h4>Tweaks</h4><span>knobs</span></div>
+            </div>
+            <div class="a-foot"><span>Claude Canvas v0</span><span>Pro · 47%</span></div>
+          </div>
+          <div class="vscm-tweaks">
+            <div class="tw-title">Tweaks <span style="color:#4cc2ff">live</span></div>
+            <div class="tw-row"><span>Primary</span>
+              <div class="tw-swatches">
+                <div class="sw active" style="background:#D97757"></div>
+                <div class="sw" style="background:#4cc2ff"></div>
+                <div class="sw" style="background:#56d364"></div>
+                <div class="sw" style="background:#1d1d1f"></div>
+              </div>
+            </div>
+            <div class="tw-row"><span>Headline</span><span style="color:#aab1bb">serif italic</span></div>
+            <div class="tw-row"><span>Density</span><span style="color:#aab1bb">cozy</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- status bar -->
+    <div class="vscm-status">
+      <div class="left">
+        <span>⎇ main</span>
+        <span>↑ 0 ↓ 0</span>
+        <span>⓿ 0 ⚠ 0</span>
+      </div>
+      <div class="right">
+        <span class="pro">⚡ Design · Max</span>
+        <span>47% used · 2h 11m left</span>
+        <span class="blink"></span>
+        <span>UTF-8</span>
+        <span>HTML</span>
+        <span>Ln 4, Col 27</span>
+      </div>
+    </div>
+  </div>`;
+
+  document.getElementById('mock-host').innerHTML = mockHTML;
+
+  // tab switching
+  const tabContents = {
+    landing: `<span class="tk-cmt">&lt;!-- designs/Landing.html · auto-saved --&gt;</span>
+<span class="tk-tag">&lt;section</span> <span class="tk-attr">class</span>=<span class="tk-str">"hero"</span><span class="tk-tag">&gt;</span>
+  <span class="tk-tag">&lt;h1&gt;</span>Ship beautiful design without
+       <span class="tk-tag">&lt;em&gt;</span>leaving your editor<span class="tk-tag">&lt;/em&gt;</span><span class="tk-tag">&lt;/h1&gt;</span>
+  <span class="tk-tag">&lt;p&gt;</span>Pro-tier Claude, native VS Code surface.<span class="tk-tag">&lt;/p&gt;</span>
+  <span class="tk-tag">&lt;button</span> <span class="tk-attr">class</span>=<span class="tk-str">"cta"</span><span class="tk-tag">&gt;</span>Open the canvas<span class="tk-tag">&lt;/button&gt;</span>
+<span class="tk-tag">&lt;/section&gt;</span>
+
+<span class="tk-tag">&lt;script&gt;</span>
+  <span class="tk-cmt">/*EDITMODE-BEGIN*/</span>
+  <span class="tk-key">const</span> <span class="tk-fn">tweaks</span> = { <span class="tk-attr">"primary"</span>: <span class="tk-str">"#D97757"</span> };
+  <span class="tk-cmt">/*EDITMODE-END*/</span>
+<span class="tk-tag">&lt;/script&gt;</span>`,
+    pricing: `<span class="tk-cmt">&lt;!-- designs/Pricing.html · auto-saved --&gt;</span>
+<span class="tk-tag">&lt;section</span> <span class="tk-attr">class</span>=<span class="tk-str">"plans"</span><span class="tk-tag">&gt;</span>
+  <span class="tk-tag">&lt;article</span> <span class="tk-attr">class</span>=<span class="tk-str">"plan plan-pro"</span><span class="tk-tag">&gt;</span>
+    <span class="tk-tag">&lt;h3&gt;</span>Pro<span class="tk-tag">&lt;/h3&gt;</span>
+    <span class="tk-tag">&lt;p</span> <span class="tk-attr">class</span>=<span class="tk-str">"price"</span><span class="tk-tag">&gt;</span>$20<span class="tk-tag">&lt;span&gt;</span>/mo<span class="tk-tag">&lt;/span&gt;</span><span class="tk-tag">&lt;/p&gt;</span>
+    <span class="tk-tag">&lt;ul&gt;</span>
+      <span class="tk-tag">&lt;li&gt;</span>Use Claude in VS Code<span class="tk-tag">&lt;/li&gt;</span>
+      <span class="tk-tag">&lt;li&gt;</span>5h block · resets daily<span class="tk-tag">&lt;/li&gt;</span>
+    <span class="tk-tag">&lt;/ul&gt;</span>
+  <span class="tk-tag">&lt;/article&gt;</span>
+<span class="tk-tag">&lt;/section&gt;</span>`,
+    manifest: `<span class="tk-cmt">// .canvas/manifest.json — Canvas-managed</span>
+{
+  <span class="tk-attr">"version"</span>: <span class="tk-str">1</span>,
+  <span class="tk-attr">"items"</span>: [
+    {
+      <span class="tk-attr">"asset"</span>: <span class="tk-str">"Landing page"</span>,
+      <span class="tk-attr">"path"</span>: <span class="tk-str">"designs/Landing.html"</span>,
+      <span class="tk-attr">"group"</span>: <span class="tk-str">"Components"</span>,
+      <span class="tk-attr">"status"</span>: <span class="tk-str">"needs-review"</span>,
+      <span class="tk-attr">"viewport"</span>: { <span class="tk-attr">"width"</span>: <span class="tk-str">1440</span> }
+    },
+    {
+      <span class="tk-attr">"asset"</span>: <span class="tk-str">"Brand colors"</span>,
+      <span class="tk-attr">"path"</span>: <span class="tk-str">"designs/colors.html"</span>,
+      <span class="tk-attr">"group"</span>: <span class="tk-str">"Colors"</span>,
+      <span class="tk-attr">"status"</span>: <span class="tk-str">"approved"</span>
+    }
+  ]
+}`,
+    components: `<span class="tk-cmt">// designs/components/Hero.jsx</span>
+<span class="tk-key">export function</span> <span class="tk-fn">Hero</span>({ headline, accent }) {
+  <span class="tk-key">return</span> (
+    <span class="tk-tag">&lt;section</span> <span class="tk-attr">className</span>=<span class="tk-str">"hero"</span><span class="tk-tag">&gt;</span>
+      <span class="tk-tag">&lt;h1&gt;</span>{headline}<span class="tk-tag">&lt;/h1&gt;</span>
+      <span class="tk-tag">&lt;button</span> <span class="tk-attr">style</span>={{ background: accent }}<span class="tk-tag">&gt;</span>
+        Open the canvas
+      <span class="tk-tag">&lt;/button&gt;</span>
+    <span class="tk-tag">&lt;/section&gt;</span>
+  );
+}`
+  };
+
+  const codepane = document.getElementById('codepane');
+  document.querySelectorAll('.vscm-tabs .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const k = tab.dataset.tab;
+      if (!tabContents[k]) return;
+      document.querySelectorAll('.vscm-tabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      codepane.innerHTML = tabContents[k];
+    });
+  });
+
+  document.querySelectorAll('.vscm-section li[data-tab]').forEach(li => {
+    li.addEventListener('click', () => {
+      const k = li.dataset.tab;
+      const tab = document.querySelector('.vscm-tabs .tab[data-tab="' + k + '"]');
+      if (tab) {
+        tab.click();
+      } else if (tabContents[k]) {
+        document.querySelectorAll('.vscm-section li').forEach(l => l.classList.remove('active'));
+        li.classList.add('active');
+        codepane.innerHTML = tabContents[k];
+      }
+      document.querySelectorAll('.vscm-section li').forEach(l => l.classList.remove('active'));
+      li.classList.add('active');
+    });
+  });
+
+  // tweaks swatch hot-swap
+  document.querySelectorAll('.vscm-tweaks .sw').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.vscm-tweaks .sw').forEach(s => s.classList.remove('active'));
+      sw.classList.add('active');
+      const c = getComputedStyle(sw).backgroundColor;
+      const hero = document.querySelector('.vscm-art .a-hero');
+      const accent = document.querySelector('.vscm-art .a-card.accent');
+      const btn = document.querySelector('.vscm-art .a-hero button');
+      const em = document.querySelector('.vscm-art .a-hero h1 em');
+      if (accent) accent.style.background = c;
+      if (em) em.style.color = c;
+      if (btn) btn.style.background = '#1d1d1f';
+      // tint hero bg lightly
+      const hex = rgbToHex(c);
+      if (hero) hero.style.background = tint(hex, .92);
+    });
+  });
+
+  function rgbToHex(rgb) {
+    const m = rgb.match(/\d+/g);
+    if (!m) return '#fef3eb';
+    return '#' + m.slice(0,3).map(x => (+x).toString(16).padStart(2,'0')).join('');
+  }
+  function tint(hex, mix) {
+    const h = hex.replace('#','');
+    const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
+    const tr = Math.round(r + (255-r)*mix);
+    const tg = Math.round(g + (255-g)*mix);
+    const tb = Math.round(b + (255-b)*mix);
+    return `rgb(${tr},${tg},${tb})`;
+  }
+</script>
+</body>
+</html>

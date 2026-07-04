@@ -1,0 +1,55 @@
+# vulkan-lab/mise.toml — Oxidized Meta-Manifest
+# Freezes toolchain paths, bypasses broken shims, provides task aliases.
+# Usage: `mise run build` / `mise run probe` / `mise run gemm`
+
+[env]
+# FIX: Bypass broken uv cmake shim (C:\Users\eldno\.local\bin\cmake.exe)
+CMAKE_COMMAND = "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe"
+VULKAN_SDK = "C:/VulkanSDK/1.4.350.0"
+# GCC 16.1.0 from rv MSYS2 DevKit ucrt64. Not on PATH by default in a fresh
+# shell (only rv's own ruby-4.0.5/bin is) — _.path below makes CC/CXX
+# resolvable regardless of invoking shell state.
+CC = "gcc"
+CXX = "g++"
+
+_.path = [
+    "{{env.APPDATA}}/rv/rubies/ruby-4.0.5/msys64/ucrt64/bin",
+]
+
+[tasks.configure]
+description = "CMake configure (dev preset, Ninja)"
+run = '& "$env:CMAKE_COMMAND" --preset dev'
+
+[tasks.build]
+description = "Full build: configure + compile all targets"
+depends = ["configure"]
+run = '& "$env:CMAKE_COMMAND" --build build/dev'
+
+[tasks.probe]
+description = "Run vk_capability_probe"
+depends = ["build"]
+run = './build/dev/vk_probe.exe'
+
+[tasks.gemm]
+description = "Run cooperative matrix GEMM (Vector 2)"
+depends = ["build"]
+run = 'Push-Location build/dev; ./coop_matrix.exe coop_matmul.comp.spv; Pop-Location'
+
+[tasks.clean]
+description = "Delete build dir (disposable state)"
+# Retry-with-backoff: see vulkan-lab/mise.toml clean task for why a
+# single-shot Remove-Item intermittently fails on freshly-written CMake
+# compiler-ID probe files.
+run = '''
+if (Test-Path build) {
+    $attempts = 0
+    do {
+        try { Remove-Item -Recurse -Force build -ErrorAction Stop; break }
+        catch { $attempts++; if ($attempts -ge 5) { throw }; Start-Sleep -Milliseconds 500 }
+    } while ($true)
+}
+'''
+
+[tasks.rebuild]
+description = "Clean + full build from scratch"
+depends = ["clean", "build"]

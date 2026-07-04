@@ -1,0 +1,13 @@
+{
+  "name": "soft-hyphen",
+  "profile": "katex-gfm",
+  "expectedDiagnostics": [
+    "MDSEAL_SOFT_HYPHEN_IN_MATH"
+  ],
+  "mustPreserveZones": [
+    "code_fence",
+    "inline_code",
+    "frontmatter"
+  ],
+  "allowProviders": false
+}

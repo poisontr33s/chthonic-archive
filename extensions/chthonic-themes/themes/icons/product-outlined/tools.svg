@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Adze-tupu hybrid — Direction B from ETS_ARCHAEOLOGICAL_TOOLFORM_BASELINE
+      Egyptian: adze handle + transverse work edge (right-angle junction)
+      Andean: tupu-like semicircular void at head junction -->
+ <!-- Handle (diagonal shaft, adze-grip angle) -->
+ <path d="M 9.1801233 14.4099383 L 5.6801233 7.4099383 A 0.91665 0.91665 0 0 1 7.3198767 6.5900617 L 10.8198767 13.5900617 A 0.91665 0.91665 0 0 1 9.1801233 14.4099383 Z" fill="currentColor"/>
+ <!-- Transverse adze blade (Egyptian right-angle to handle) -->
+ <path d="M 5.5 0.61665 L 8.5 0.61665 A 0.88335 0.88335 0 0 1 8.708992 0.6417287 A 3.539122 3.539122 0 0 1 11.2553282 3.0429516 A 0.88335 0.88335 0 0 1 11.2647961 3.0761309 A 3.5595977 3.5595977 0 0 1 11.38334 4.0042039 A 0.88335 0.88335 0 0 1 11.03001 4.70668 L 7.03001 7.70668 A 0.88335 0.88335 0 0 1 5.96999 6.29332 L 9.572449 3.5914757 A 1.7928977 1.7928977 0 0 0 9.5611729 3.544593 A 1.772422 1.772422 0 0 0 8.3831306 2.38335 L 5.6511963 2.38335 A 3.577304 3.577304 0 0 0 5.5820799 2.4101075 A 0.88335 0.88335 0 0 1 5.516009 2.4334827 A 1.6088482 1.6088482 0 0 0 4.3832873 3.9894727 A 0.88335 0.88335 0 0 1 2.6167127 4.0105273 A 3.3755482 3.3755482 0 0 1 4.958829 0.7567592 A 5.344004 5.344004 0 0 1 5.2211578 0.6618149 A 0.88335 0.88335 0 0 1 5.5 0.61665 Z" fill="currentColor"/>
+ <!-- Tupu void (Andean semicircular perforation at junction) -->
+ <path d="M 6.5 5.5 m -1.83335 0 a 1.83335 1.83335 0 0 0 3.6667 0 a 1.83335 1.83335 0 0 0 -3.6667 0 z M 6.5 5.5 m -0.16665 0 a 0.16665 0.16665 0 0 0 0.3333 0 a 0.16665 0.16665 0 0 0 -0.3333 0 z" fill="currentColor" fill-rule="nonzero"/>
+</svg>

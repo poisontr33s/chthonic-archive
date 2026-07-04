@@ -1,0 +1,154 @@
+{
+  "districts": [
+    {
+      "path": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
+      "tributaries": [
+        {
+          "name": "🐰 Typecheck",
+          "pass": true,
+          "info": false,
+          "output": "",
+          "elapsed": "2,6s"
+        },
+        {
+          "name": "🐰 Lint",
+          "pass": true,
+          "info": false,
+          "output": "Checked 1 file in 15ms. No fixes applied.\r\n",
+          "elapsed": "0,1s"
+        },
+        {
+          "name": "🐰 Tests",
+          "pass": true,
+          "info": false,
+          "output": "bun test v1.3.13 (bf2e2cec)\r\n⚠️  Warning message\r\n❌ Error message\r\n⚠️  Warning message\r\n❌ Error occurred\r\n❌ Error with metadata\r\n⚠️  Failed to parse plugin manifest\r\n⚠️  Failed to parse plugin manifest\r\n",
+          "elapsed": "0,3s"
+        },
+        {
+          "name": "🐰 Build",
+          "pass": true,
+          "info": false,
+          "output": "Bundled 424 modules in 67ms\r\n\r\n  claudine.js  0.57 MB  (entry point)\r\n\r\n",
+          "elapsed": "0,1s"
+        }
+      ],
+      "skipped": false,
+      "id": "claudine",
+      "pass": 4,
+      "name": "☥ Claudine CLI — The Polyglot Blade",
+      "fail": 0
+    },
+    {
+      "path": "C:\\Users\\eldno\\chthonic-archive",
+      "tributaries": [
+        {
+          "name": "📜 Git Health",
+          "pass": true,
+          "info": false,
+          "output": "",
+          "elapsed": "0,1s"
+        },
+        {
+          "name": "🦀 Cargo Check",
+          "pass": true,
+          "info": false,
+          "output": "",
+          "elapsed": "0,3s"
+        },
+        {
+          "name": "🐰 CI Gate Smoke",
+          "pass": true,
+          "info": false,
+          "output": "[inference-gate-smoke] ✓ All active gates admitted — G1_resolver_coherence=L4 G2_pydantic_pyо3_abi=L4 G3_torch_cuda=L4 G5_exllamav3_cp314=L4 G6_flash_attn_build=L4_cuda_kernel_verified G7_formatron_cessation=L4 G8_exllamav2_linux_source=L2_interrogable G9_tabby_modern_import_gate=L1 G10_tabby_model_load_gate=L2\r\n",
+          "elapsed": "0,1s"
+        },
+        {
+          "name": "🐍 Link Audit",
+          "pass": true,
+          "info": false,
+          "output": "warning: Found both a `uv.toml` file and a `[tool.uv]` section in an adjacent `pyproject.toml`. The following fields from `[tool.uv]` will be ignored in favor of the `uv.toml` file:\r\n- index\r\n[INFO] Building file index ...\r\nOK: pathstofiles.md — 1 links, all valid\r\n",
+          "elapsed": "1,1s"
+        }
+      ],
+      "skipped": false,
+      "id": "archive",
+      "pass": 4,
+      "name": "⚡ chthonic-archive — The Living Machine",
+      "fail": 0
+    },
+    {
+      "path": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+      "tributaries": [
+        {
+          "name": "📜 Git Health",
+          "pass": true,
+          "info": false,
+          "output": "Dirty files: 2\r\n",
+          "elapsed": "0,1s"
+        },
+        {
+          "name": "🐰 Install Health",
+          "pass": true,
+          "info": false,
+          "output": "bun install v1.3.13 (bf2e2cec)\r\n\r\nChecked 312 installs across 304 packages (no changes) [51.00ms]\r\n",
+          "elapsed": "0,1s"
+        },
+        {
+          "name": "🐰 Typecheck",
+          "pass": true,
+          "info": false,
+          "output": "",
+          "elapsed": "1,4s"
+        },
+        {
+          "name": "📜 Script Count",
+          "pass": true,
+          "info": true,
+          "output": "Root scripts: 99\r\n",
+          "elapsed": "0,0s"
+        }
+      ],
+      "skipped": false,
+      "id": "pnk",
+      "pass": 4,
+      "name": "🌀 PsychoNoir-Kontrapunkt — The Chaos Arm",
+      "fail": 0
+    },
+    {
+      "path": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
+      "tributaries": [
+        {
+          "name": "📜 Git Health",
+          "pass": true,
+          "info": false,
+          "output": " M .github/ISSUE_TEMPLATE/README.md\r\n M .vscode/tasks.json\r\n M CLAUDE-COPILOT-COLLABORATION.md\r\n M docs/agents.md\r\n M packages/servers/base/package.json\r\n M packages/shared/package.json\r\n M scripts/branch-consolidation.sh\r\n M tsconfig.json\r\n M turbo.json\r\n?? bun.lock\r\n",
+          "elapsed": "0,0s"
+        },
+        {
+          "name": "🐰 Install Health",
+          "pass": true,
+          "info": false,
+          "output": "\r\n$ husky install\r\nhusky - install command is DEPRECATED\r\n\r\nChecked 313 installs across 350 packages (no changes) [243.00ms]\r\n",
+          "elapsed": "0,3s"
+        },
+        {
+          "name": "🐰 Typecheck",
+          "pass": true,
+          "info": false,
+          "output": "",
+          "elapsed": "1,3s"
+        }
+      ],
+      "skipped": false,
+      "id": "mcp",
+      "pass": 3,
+      "name": "🔌 Restructure-MCP-Orchestration — The Thalamus Node",
+      "fail": 0
+    }
+  ],
+  "total_pass": 15,
+  "wall_time_s": 15.25,
+  "total_fail": 0,
+  "quick_mode": false,
+  "timestamp": "2026-05-03T02:49:00.5128698+02:00"
+}

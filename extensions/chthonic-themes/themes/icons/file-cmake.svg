@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Stele base -->
+ <rect x="3" y="1.5" width="10" height="13" rx="1" fill="#2A2724" stroke="#908672" stroke-width="0.5"/>
+
+ <circle cx="8" cy="7.5" r="2" fill="none" stroke="#F4C430" stroke-width="0.6"/>
+
+ <circle cx="7.2" cy="7" r="0.3" fill="#F4C430"/>
+ <circle cx="8.8" cy="7" r="0.3" fill="#F4C430"/>
+
+ <path d="M7.3 8.3Q8 8.8 8.7 8.3" stroke="#F4C430" stroke-width="0.3" fill="none"/>
+
+ <line x1="8" y1="4" x2="8" y2="5" stroke="#F4C430" stroke-width="0.5"/>
+ <line x1="8" y1="10" x2="8" y2="11" stroke="#F4C430" stroke-width="0.5"/>
+ <line x1="4.5" y1="7.5" x2="5.5" y2="7.5" stroke="#F4C430" stroke-width="0.5"/>
+ <line x1="10.5" y1="7.5" x2="11.5" y2="7.5" stroke="#F4C430" stroke-width="0.5"/>
+
+ <path d="M5.8 5.3Q5.5 5.8 5 5.5" stroke="#F4C430" stroke-width="0.4" fill="none"/>
+ <path d="M10.2 5.3Q10.5 5.8 11 5.5" stroke="#F4C430" stroke-width="0.4" fill="none"/>
+ <path d="M5.8 9.7Q5.5 9.2 5 9.5" stroke="#F4C430" stroke-width="0.4" fill="none"/>
+ <path d="M10.2 9.7Q10.5 9.2 11 9.5" stroke="#F4C430" stroke-width="0.4" fill="none"/>
+</svg>

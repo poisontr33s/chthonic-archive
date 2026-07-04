@@ -1,0 +1,80 @@
+=== FILES ===
+  agent-priority-protocol.md [5KB]
+  ankh-workflow.instructions.md [1.9KB]
+  asc-combinational-analysis.md [61.2KB]
+  asc-entity-generation-validation-workflow.md [29.9KB]
+  asc-entity-generation.reference.md [24.3KB]
+  asc-entity-profiles.json [28.6KB]
+  asc-generative-rules-analysis.md [36.4KB]
+  asc-ml-framework-hardening-requirements.md [21.1KB]
+  autopsy-protocol.instructions.md [2.2KB]
+  behavioral-scenarios.reference.md [5.3KB]
+  co-supplementary-methodology-opus46_x_sonnet46-instructions.md [6KB]
+  dcrp-operational-guide.md [4.3KB]
+  dev-conventions.reference.md [9.3KB]
+  magistra-logic.reference.md [29.8KB]
+  mathematical-engines.reference.md [33.5KB]
+  pattern-nursery.instructions.md [10KB]
+  project-workflow.instructions.md [5.1KB]
+  python-scripting.instructions.md [4.8KB]
+  reference-appendix.reference.md [4.2KB]
+  ssot-toolbox.instructions.md [7.4KB]
+  technical-directives.instructions.md [11.4KB]
+
+=== copilot-instructions.archive.md refs (BAD) ===
+
+=== erdno typo refs (BAD) ===
+agent-priority-protocol.md:L92: cd C:\Users\erdno\chthonic-archive
+dcrp-operational-guide.md:L66: cd C:\Users\erdno\chthonic-archive
+dev-conventions.reference.md:L52: $env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+technical-directives.instructions.md:L81: $env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+
+=== All copilot-instructions refs ===
+agent-priority-protocol.md:L4: > SSOT: [copilot-instructions.md](../copilot-instructions.md#L6812) §XVI — enforcement hierarchy: Decorator → Triumvirate → Factions → Branch → Tools.
+agent-priority-protocol.md:L10: **Authority:** [copilot-instructions.md](../copilot-instructions.md#L6812) (§XVI)
+agent-priority-protocol.md:L57: 3. SSOT (../copilot-instructions.md)
+agent-priority-protocol.md:L102: with open('.github/copilot-instructions.md', 'r', encoding='utf-8') as f:
+asc-entity-generation-validation-workflow.md:L656: - **$SSOT** - Single Source of Truth (`.github/copilot-instructions.md`, canonical mythology)
+asc-entity-generation.reference.md:L37: **File:** `$SSOT` (`.github/copilot-instructions.md`)
+asc-entity-generation.reference.md:L47: - **Fossilized literal check:** Umeko's "suffering" quote (formerly line 788) now at [L2443](../copilot-instructions.md#L2443).
+asc-entity-generation.reference.md:L666: - `$SSOT` - `.github/copilot-instructions.md` (canonical mythology)
+asc-entity-profiles.json:L2: //[SSOT](../copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+asc-generative-rules-analysis.md:L127: - I-cup: Claudine Sin'Claire (Tidal Ordeal, Brine + Salt + REF: copilot-instructions.archive.md - not added in due to stale file here) <-- # TODO Add Claudine to entity profiles for completeness
+behavioral-scenarios.reference.md:L17: > **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L3789) (§X - MMPS)
+dcrp-operational-guide.md:L3: > SSOT: [copilot-instructions.md](../copilot-instructions.md#L6643) §XV — cross-reference integrity across all repo files.
+dcrp-operational-guide.md:L9: **Authority:** [copilot-instructions.md](../copilot-instructions.md#L6643) (§XV)
+dev-conventions.reference.md:L17: **Authority:** [copilot-instructions.md](../copilot-instructions.md#L6634) (┬ºXIV)
+dev-conventions.reference.md:L79: **Source of Truth:** `.github/copilot-instructions.md`
+dev-conventions.reference.md:L148: Ôöé   Ôö£ÔöÇÔöÇ copilot-instructions.md    ÔåÉ SSOT
+magistra-logic.reference.md:L17: > **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L4780) (§X.7 - Calibration Validation)
+magistra-logic.reference.md:L18: > **Sovereign Sync:** Fossilized literals (formerly 6004) now target §XI @ [copilot-instructions.md](../copilot-instructions.md#L6500).
+magistra-logic.reference.md:L220: ║  File: .github/copilot-instructions.md                       ║
+mathematical-engines.reference.md:L18: > **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L1) (§VIII & IX lead-in)
+pattern-nursery.instructions.md:L42: > **Governance:** SSOT-L-H via copilot-instructions.md. Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
+pattern-nursery.instructions.md:L50: > **Context Reference:** copilot-instructions.md#L6634 (§XIV - Development Conventions)
+project-workflow.instructions.md:L4: > **Governance:** SSOT-L-H via [copilot-instructions.md](../copilot-instructions.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
+project-workflow.instructions.md:L11: > **Context Reference:** [copilot-instructions.md](../copilot-instructions.md#L67) (Tier Hierarchy Baseline)
+python-scripting.instructions.md:L3: > SSOT: [copilot-instructions.md](../copilot-instructions.md) §XV — Metabolic-Standard-v3. uv manages Python; pyproject.toml is the dependency SSOT.
+reference-appendix.reference.md:L18: **SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L6991)
+reference-appendix.reference.md:L35: **SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7130)
+reference-appendix.reference.md:L47: **SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7220)
+reference-appendix.reference.md:L56: **SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7279)
+reference-appendix.reference.md:L64: **SSOT Reference:** [copilot-instructions.md](../copilot-instructions.md#L7331)
+ssot-toolbox.instructions.md:L4: > **Governance:** SSOT-L-H via [copilot-instructions.md](../copilot-instructions.md). Update-Protocol, Addressability, Enforcement-Hierarchy, No-Duplication constraint inherited — not repeated here.
+ssot-toolbox.instructions.md:L145: 3. edit section in copilot-instructions.md
+ssot-toolbox.instructions.md:L155: | **SSOT** | `C:\Users\eldno\chthonic-archive\.github\copilot-instructions.md` |
+technical-directives.instructions.md:L3: > SSOT: [copilot-instructions.md](../copilot-instructions.md#L6634) §XIV — runtime-critical, not aesthetic.
+technical-directives.instructions.md:L110: │   └── copilot-instructions.md    ← SSOT (This Document)
+
+=== Pinned version numbers ===
+dev-conventions.reference.md:L151: Ôöé   Ôö£ÔöÇÔöÇ .venv/                      ÔåÉ Python 3.13.10 virtual environment
+magistra-logic.reference.md:L67: | **5** | Execution Invariants | pwsh-7-5-x, bun, uv python 3.13.10 | MEDIUM |
+technical-directives.instructions.md:L112: │   ├── .venv/                      ← Python 3.13.10 virtual environment
+technical-directives.instructions.md:L161: **DIRECTIVE (Updated — Bun 1.3.12):** Prefer `Bun.WebView` (Chrome backend) for browser automation. `child_process.spawn` + Playwright via Bun still broken on Windows.
+technical-directives.instructions.md:L178: - Available since Bun 1.3.12 — this is the revisit gate resolved
+technical-directives.instructions.md:L202: | Browser automation (CDP/headless) | **Bun.WebView** | Native, no IPC fragility (Bun 1.3.12+) |
+technical-directives.instructions.md:L206: **Revisit Gate:** ✅ RESOLVED — Bun 1.3.12 `Bun.WebView` (Chrome backend, CDP-direct) is the resolution. Update Playwright suites incrementally to `Bun.WebView` as bandwidth allows.
+
+=== Windows/OS version refs ===
+
+=== Absolute path refs ===

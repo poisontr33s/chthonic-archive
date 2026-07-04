@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Ouroboros — serpent devouring its tail, eternal cycle -->
+ <circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+ <!-- Serpent head biting tail (gap + head triangle) -->
+ <path d="M8 3l-1.2.5L8 4z" fill="currentColor" stroke="none"/>
+ <!-- Scale texture marks on body -->
+ <path d="M12.5 6.5l.5.5M12.5 9.5l.5-.5M3 6.5l-.5.5M3 9.5l-.5-.5" stroke="currentColor" stroke-width="0.6" stroke-linecap="round"/>
+</svg>

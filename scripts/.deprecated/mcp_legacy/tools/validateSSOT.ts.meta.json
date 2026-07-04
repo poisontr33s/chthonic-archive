@@ -1,0 +1,14 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts",
+  "title": "validateSSOT.ts",
+  "role": "script",
+  "purpose": "Canonicalize text per Section XIV.3: - CRLF\u2192LF normalization - Trim trailing whitespace per line - NFC Unicode normalization - Strip final newline",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts",
+  "exports": [],
+  "xrefs": [
+    "node:path"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/tools/validateSSOT.ts",
+  "updated_at": "2026-02-05T20:04:01.012832+00:00"
+}

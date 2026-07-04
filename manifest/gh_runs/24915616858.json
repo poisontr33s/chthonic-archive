@@ -1,0 +1,21 @@
+{
+  "run_id": 24915616858,
+  "fetched_at": "2026-04-25T15:50:30.780Z",
+  "summary": {
+    "conclusion": "failure",
+    "createdAt": "2026-04-24T22:58:15Z",
+    "databaseId": 24915616858,
+    "displayTitle": "fix: adjust coding declaration formatting in pentea_family_relations.py",
+    "event": "push",
+    "headBranch": "main",
+    "headSha": "bf3fcd0f7c160656846356b158e9df78b769d7af",
+    "name": ".github/workflows/pentea-cloud-dispatch.yml",
+    "status": "completed",
+    "updatedAt": "2026-04-24T22:58:15Z",
+    "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24915616858",
+    "workflowDatabaseId": 266068053,
+    "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+  },
+  "jobs": [],
+  "failure_steps": []
+}

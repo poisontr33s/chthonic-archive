@@ -1,0 +1,55 @@
+# Claude CLI Ignore Rules
+# Purpose: Prevent context explosion by excluding massive artifacts, binaries, and logs.
+
+# Massive Directories
+dumpster-dive/
+artifacts/
+logs/
+target/
+build/
+dist/
+node_modules/
+.venv/
+.git/
+.hg/
+.svn/
+__pycache__/
+
+# Binaries and Large Data
+*.zip
+*.exe
+*.dll
+*.pyd
+*.so
+*.dylib
+*.sqlite
+*.db
+*.pack
+*.idx
+*.tiktoken
+*.onnx
+*.pb
+*.wasm
+*.bin
+
+# Large Generated Reports
+*.json
+!package.json
+!tsconfig.json
+!pyproject.toml
+!*.schema.json
+!*.model.json
+!claude/*.json
+
+# Keep instructions visible
+!CLAUDE.md
+!.github/instructions/
+!SSOT.md
+
+# Specific massive files identified
+SSOTI_FIED_SESSION_LOG.md
+codex-session-log-*.json
+rollout-*.jsonl
+captured_*.txt
+edits_context_*.txt
+temp_tail.txt

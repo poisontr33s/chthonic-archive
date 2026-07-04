@@ -1,0 +1,22 @@
+{
+  "id": "20260527T194512.924Z",
+  "created_at": "2026-05-27T19:45:12.924951400Z",
+  "reason": "pre-check",
+  "files": [
+    {
+      "original_path": ".chthonic\\../manifest\\chthonic_iteration_history.ndjson",
+      "snapshot_path": "20260527T194512.924Z\\.chthonic_.._manifest_chthonic_iteration_history.ndjson",
+      "was_missing": false,
+      "size_bytes": 534
+    },
+    {
+      "original_path": ".chthonic\\../manifest\\chthonic_coverage_paren_audit.json",
+      "snapshot_path": "20260527T194512.924Z\\.chthonic_.._manifest_chthonic_coverage_paren_audit.json",
+      "was_missing": false,
+      "size_bytes": 2445617
+    }
+  ],
+  "git_head": "2f61f16698aa",
+  "grammar_hash": "c2c8cfc4c65377e8",
+  "project_name": "chthonic"
+}

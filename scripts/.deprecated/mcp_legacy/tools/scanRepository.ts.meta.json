@@ -1,0 +1,15 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/tools/scanRepository.ts",
+  "title": "scanRepository.ts",
+  "role": "script",
+  "purpose": "Script logic for scanRepository.ts.",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/tools/scanRepository.ts",
+  "exports": [],
+  "xrefs": [
+    "node:fs/promises",
+    "node:path"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/tools/scanRepository.ts",
+  "updated_at": "2026-02-05T20:04:01.012276+00:00"
+}

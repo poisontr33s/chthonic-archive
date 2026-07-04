@@ -1,0 +1,21 @@
+{
+  "run_id": 24919642351,
+  "fetched_at": "2026-04-25T15:50:29.083Z",
+  "summary": {
+    "conclusion": "failure",
+    "createdAt": "2026-04-25T01:45:56Z",
+    "databaseId": 24919642351,
+    "displayTitle": "chore: update tabbyAPI submodule (pwsh launchers + update scripts)",
+    "event": "push",
+    "headBranch": "main",
+    "headSha": "3e616e054c9806f6498f1fcf353dbd9d84685873",
+    "name": ".github/workflows/pentea-cloud-dispatch.yml",
+    "status": "completed",
+    "updatedAt": "2026-04-25T01:45:56Z",
+    "url": "https://github.com/poisontr33s/chthonic-archive/actions/runs/24919642351",
+    "workflowDatabaseId": 266068053,
+    "workflowName": ".github/workflows/pentea-cloud-dispatch.yml"
+  },
+  "jobs": [],
+  "failure_steps": []
+}

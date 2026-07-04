@@ -1,0 +1,38 @@
+{
+  "id": "scripts/lib/shared.py",
+  "title": "shared.py",
+  "role": "script",
+  "purpose": "shared.py - Common utilities for chthonic CLI tools @SID:           LIB_CHTHONIC_SHARED_UTILS @Type:          Library Module @Context:       Infrastructure / Sh",
+  "invoke": "uv run scripts/lib/shared.py",
+  "exports": [
+    "ChthonicConfig",
+    "ChthonicError",
+    "ConfigError",
+    "ValidationError",
+    "add_common_args",
+    "add_output_arg",
+    "configure_utf8_output",
+    "find_repo_root",
+    "handle_errors",
+    "print_json",
+    "print_table",
+    "setup_logging"
+  ],
+  "xrefs": [
+    "__future__",
+    "argparse",
+    "dataclasses",
+    "json",
+    "logging",
+    "os",
+    "pathlib",
+    "subprocess",
+    "sys",
+    "tomli",
+    "tomllib",
+    "typing"
+  ],
+  "runtime": "python",
+  "entrypoint": "scripts/lib/shared.py",
+  "updated_at": "2026-02-05T20:04:01.139637+00:00"
+}

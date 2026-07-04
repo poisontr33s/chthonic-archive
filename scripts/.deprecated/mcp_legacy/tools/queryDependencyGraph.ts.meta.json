@@ -1,0 +1,14 @@
+{
+  "id": "scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+  "title": "queryDependencyGraph.ts",
+  "role": "script",
+  "purpose": "Query the dependency graph (read-only, loads existing JSON) Supported queries: - \"node <filename>\" - Get node details - \"dependencies <filename>\" - Get what thi",
+  "invoke": "bun scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+  "exports": [],
+  "xrefs": [
+    "path"
+  ],
+  "runtime": "bun",
+  "entrypoint": "scripts/.deprecated/mcp_legacy/tools/queryDependencyGraph.ts",
+  "updated_at": "2026-02-05T20:04:01.011658+00:00"
+}

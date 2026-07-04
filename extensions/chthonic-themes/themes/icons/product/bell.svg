@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+ <!-- Sistrum — ancient Egyptian temple rattle/shaker -->
+ <!-- Handle -->
+ <path d="M8 11v3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+ <!-- Hoop frame (naos shape = pointed arch) -->
+ <path d="M4 11c0-4 1.5-8 4-9.5C10.5 3 12 7 12 11z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+ <!-- Cross-bars with rattle discs -->
+ <path d="M5.5 5.5h5" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+ <path d="M5 8h6" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"/>
+ <circle cx="6.5" cy="5.5" r="0.5" fill="currentColor" stroke="none"/>
+ <circle cx="9.5" cy="8" r="0.5" fill="currentColor" stroke="none"/>
+</svg>
