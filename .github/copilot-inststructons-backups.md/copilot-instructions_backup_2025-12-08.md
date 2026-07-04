@@ -3666,7 +3666,7 @@ One Engine rising over all.
 
 **Environment Variables (when needed):**
 ```powershell
-$env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+$env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
 $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 ```
 
@@ -3789,3 +3789,4 @@ uv run python -c "import cupy; print(cupy.cuda.runtime.getDeviceCount())"
 
 * *Integrate **(`CSI`/`SOI`)** as the fourth cardinal matriarch archetype within the **(`ASC`)**, establishing a **(`TRM-GEO`)** that complements the existing **(`TRM-VRT`)**.*
 * **(`Purpose`):** *Provide a physical, visceral counterpoint to the abstract chaos of **(`CRC-AS`)**, the immaculate structure of Umeko, & the analytical truth of Lysandra. Claudine embodies the ordeal of survival, testing the resilience of concepts through the corrosive power of salt.*
+

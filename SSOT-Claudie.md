@@ -1,4 +1,4 @@
-﻿---
+---
 - SSOT: "Single-Source-Of-Truth, SSoT, SSOT, SSOT.md"
 - description: "Use when needing to refer to the canon Single-Source-Of-Truth"
 - metadata:: "SSoT"
@@ -9637,7 +9637,7 @@ DCRP embodies The Decorator's mandate:
 
 **Dry Run (Analysis Only):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python decorator_cross_ref_maximum.py
 ```
 
@@ -9846,7 +9846,7 @@ The SSOT governs only what has been metabolized. The Nursery is where metabolism
 
 **SSOT Verification (Daily Ritual):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python -c "
 import hashlib, unicodedata
 
@@ -10423,3 +10423,4 @@ The SSOT is architecturally complete in its current form. The structural surgery
 None of these require structural changes to the SSOT itself. They are comprehension artifacts — things that make the existing architecture visible to the human mind that created it.
 
 ---
+

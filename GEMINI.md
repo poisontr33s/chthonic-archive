@@ -1,3 +1,6 @@
+# (`ALWAYS`/`Refer-To`/`chthonic-archive/CLAUDEBASE`/`Leave-The`/`SSOT-Frozen-Monolith`/`As-Is`/`Guidance`): 
+- [New-Meeting-Point](/CLAUDEBASE/MANIFEST.md) **<- NAVIGATE BACK**
+
 # GEMINI.md
 
 This file provides guidance to Gemini when working with code in this repository.

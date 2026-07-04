@@ -1,3 +1,6 @@
+# (`ALWAYS`/`Refer-To`/`chthonic-archive/CLAUDEBASE`/`Leave-The`/`SSOT-Frozen-Monolith`/`As-Is`/`Guidance`): 
+- [New-Meeting-Point](/CLAUDEBASE/MANIFEST.md) **<- NAVIGATE BACK**
+
 # (`Codex.md`)
 
 - *— Workspace notes for Codex agents in — `chthonic-archive/CLAUDEBASE/Codex.md`.*

@@ -161,7 +161,7 @@ This repository now carries an explicit **Codekiller anti-pattern enforcement ad
    - d) user-approved displacement/deletion (only after explicit instruction)
 3. **Preflight deletion gate (mandatory):** Before completing substantial edits, agents must check working tree deletions (`git status --short`) and treat any unapproved `D` entries as a blocking policy violation.
 4. **Incident recovery protocol:** If accidental deletion occurs, stop mutation work, restore from preserved artifacts, and report incident + recovery proof in mailbox outputs.
-5. **Known salvage root:** `C:\Users\erdno\chthonic-archive\.codex\codekiller_DUMP_code` is a recognized manual salvage source for Codekiller-class recovery evidence.
+5. **Known salvage root:** `C:\Users\eldno\chthonic-archive\.codex\codekiller_DUMP_code` is a recognized manual salvage source for Codekiller-class recovery evidence.
 6. **Pre-mutation salvage gate (mandatory):** Before any edit that would remove code/blocks/files, agents must salvage candidate "dead code" into extension-congruent artifacts with provenance, then perform refinement/fusion work. Delete-only simplification is non-compliant.
 7. **Cross-agent parity:** This addendum applies equally to Codex, Claude, Gemini, and any delegated/sub-agent lane.
 
@@ -564,3 +564,4 @@ The pre-commit hook enforces 4 gates:
 **Established:** 2026-01-29
 **Updated:** 2026-02-10 (Gold Signal taxonomy — file-type affordance map, default-gold axiom, No-Destroy as consequence)
 **Context:** Claude Code session methodology
+

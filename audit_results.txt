@@ -23,11 +23,11 @@
 
 === copilot-instructions.archive.md refs (BAD) ===
 
-=== erdno typo refs (BAD) ===
-agent-priority-protocol.md:L92: cd C:\Users\erdno\chthonic-archive
-dcrp-operational-guide.md:L66: cd C:\Users\erdno\chthonic-archive
-dev-conventions.reference.md:L52: $env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
-technical-directives.instructions.md:L81: $env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+=== eldno typo refs (BAD) ===
+agent-priority-protocol.md:L92: cd C:\Users\eldno\chthonic-archive
+dcrp-operational-guide.md:L66: cd C:\Users\eldno\chthonic-archive
+dev-conventions.reference.md:L52: $env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
+technical-directives.instructions.md:L81: $env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
 
 === All copilot-instructions refs ===
 agent-priority-protocol.md:L4: > SSOT: [copilot-instructions.md](../copilot-instructions.md#L6812) §XVI — enforcement hierarchy: Decorator → Triumvirate → Factions → Branch → Tools.
@@ -78,3 +78,4 @@ technical-directives.instructions.md:L206: **Revisit Gate:** ✅ RESOLVED — Bu
 === Windows/OS version refs ===
 
 === Absolute path refs ===
+

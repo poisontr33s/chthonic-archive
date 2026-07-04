@@ -1,4 +1,5 @@
-# ALWAYS: Refer to (`Single-Source-Of-Truth`) for authoritative guidance: [SSOT](copilot-instructions.md) **<- NAVIGATE BACK TO SSOT!**
+# (`ALWAYS`/`Refer-To`/`chthonic-archive/CLAUDEBASE`/`Leave-The`/`SSOT-Frozen-Monolith`/`As-Is`/`Guidance`): 
+- [New-Meeting-Point](/CLAUDEBASE/MANIFEST.md) **<- NAVIGATE BACK**
 
 ---
 
@@ -15,7 +16,7 @@
 
 # ⚡ SESSION RESUME - POINT-BLANK CONTEXT
 
-**For AI: Load this FIRST in new sessions before doing anything**
+**For : Load this FIRST in new sessions before doing anything**
 
 ---
 
@@ -80,7 +81,7 @@
 
 ## 📚 QUICK REFERENCE
 
-**Project Root**: `C:\Users\erdno\chthonic-archive\`
+**Project Root**: `C:\Users\eldno\chthonic-archive\`
 
 **Build Commands**:
 ```bash
@@ -146,3 +147,4 @@ chthonic-archive/
 **Full conversation**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
 
 **🔥💀⚓ Last Updated: 2025-12-31T06:49:00Z**
+

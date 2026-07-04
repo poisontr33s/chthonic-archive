@@ -35,7 +35,7 @@ triggers:
 **Three workspace hashes** with chthonic-archive data:
 - `710554437afe84ae817dd8a105e496f6` — primary (10 sessions, 28+ memory mds)
 - `eccd2abdbb1acd0697631505bd88f668` — current active workspace
-- `ef54bace47120bf8bda2a555aef41825` — typo path `erdno` (1 session, 40 memory mds)
+- `ef54bace47120bf8bda2a555aef41825` — typo path `eldno` (1 session, 40 memory mds)
 
 `session-watcher` discovers all hashes via `allTranscripts()` — no manual config needed.
 
@@ -128,3 +128,4 @@ Array of `BloodEntry`: sessionId, drainedAt, sessionIntent, turns, fileEditCount
 - Do NOT mirror `chat-session-resources/` wholesale — some dirs are 741KB+ and there are 31+ per session.
 - Do NOT call `--extract memories` as a substitute for actually reading the memory files — use it as an index, then `read_file manifest/sessions/<id>/memories/<filename>.md` to see content.
 - The SQLite `codebase-external.sqlite` is session-agnostic (global workspace index, not per-session state). Drain scope is session-scoped artifacts only.
+

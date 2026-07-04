@@ -1,3 +1,6 @@
+# (`ALWAYS`/`Refer-To`/`chthonic-archive/CLAUDEBASE`/`Leave-The`/`SSOT-Frozen-Monolith`/`As-Is`/`Guidance`): 
+- [New-Meeting-Point](/CLAUDEBASE/MANIFEST.md) **<- NAVIGATE BACK**
+
 # PowerShell Rules (pwsh-first)
 
 <!--
@@ -276,7 +279,7 @@ bash -lc "command here"
 
 **Authority Hierarchy (top-down):**
 1. **Runtime Reality:** OS + shell behavior (Win11 + pwsh)
-2. **Repository Doctrine:** [.github/copilot-instructions.md](.github/copilot-instructions.md) (SSOT - 313KB)
+2. **Repository Doctrine:** [SSOT](.github/copilot-instructions.archive.md) (SSOT - FROZEN Monolith - 313KB)
 3. **Session Bootstrap:** [SESSION_BOOTSTRAP_SPEC.md](docs/archive/sessions/SESSION_BOOTSTRAP_SPEC.md) v1.1
 4. **Editing Policy:** [CLI_EDITING_POLICY.md](docs/ops/CLI_EDITING_POLICY.md) (mechanical edits only)
 5. **This Document:** [PWSH_RULES.md (repo-root)](PWSH_RULES.md) v1.0
@@ -647,7 +650,7 @@ r_version = "4.5"   # R version constraint — not a rv-r subcommand
 |---------|------|---------|
 | 1.6 | 2026-04-22 | Added R Toolchain section (RR-1/RR-2): rv-r vs rv disambiguation, rproject.toml as R manifest, R version pin location; rproject.toml whitelisted in .gitignore |
 | 1.5 | 2026-04-22 | Added Ruby Toolchain section (R-1 through R-4): rv r ridk canonical form, sequential DevKit install, version pin (.ruby-version), upgrade path |
-| 1.4 | 2026-04-21 | Hash refresh (shell_capabilities.ps1 → `934B9E30...`); `erdno` → `eldno` typo fix |
+| 1.4 | 2026-04-21 | Hash refresh (shell_capabilities.ps1 → `934B9E30...`); `eldno` → `eldno` typo fix |
 | 1.3 | 2026-04-15 | Added PATH Integrity & Invocation Rules (P-1 through P-5): bare-name phantom risk, MSYS2 usr\bin demotion, extensionless file prohibition, powershell.exe/pwsh.exe disambiguation |
 | 1.2 | 2026-04-13 | Added bun audit architecture, precedence chain, hono boundary bug, home-dir workspace scope, npm death strategy |
 | 1.1 | 2026-01-29 | Added "Common Error Patterns & Corrections" section from session learnings |
@@ -658,3 +661,4 @@ r_version = "4.5"   # R version constraint — not a rv-r subcommand
 **Maintained by:** Repository governance framework
 **SSOT Reference:** `.github/copilot-instructions.md`
 **Related:** `docs/docs/SESSION_BOOTSTRAP_SPEC.md` v1.1, `docs/docs/CLI_EDITING_POLICY.md`
+
