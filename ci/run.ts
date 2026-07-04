@@ -169,6 +169,19 @@ const CHECKS: Check[] = [
     },
   },
   {
+    name: "homepath-portability",
+    aliases: ["homepath", "erdno-guard"],
+    script: "ci/checks/homepath-portability.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "Literal C:\\Users\\<name>\\ paths baked into staged scripts/configs instead of resolved dynamically (stale=foreign machine, smell=current-but-fragile)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "The correct replacement depends on intent — home-relative ({{env.USERPROFILE}} / $env:USERPROFILE / os.homedir()) vs repo-relative ({{config_root}} / import.meta.dir) — not a mechanical username swap. A blind fixer risks silently producing a DIFFERENT wrong value: this repo's own CHTHONIC_NVIDIA_STACK fix (2026-07-04) needed a different relative depth than its three sibling vars purely because someone traced where the real target file actually lived. That trace doesn't mechanize.",
+      manual_remediation: "Read the flagged line. Decide: does this path mean 'wherever the current user's home is' (rewrite to the home-relative primitive for that file's language) or 'wherever this repo is checked out' (rewrite to the repo-relative primitive)? For `stale` findings specifically, also check whether the file is a cache/report artifact that should just be deleted/regenerated rather than edited (see project_mise_slab_monorepo_wiring memory for the worked example).",
+    },
+  },
+  {
     name: "pathfinder",
     aliases: ["link-audit"],
     script: "ci/checks/link-audit.ts",
