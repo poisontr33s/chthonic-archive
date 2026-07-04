@@ -8,7 +8,8 @@ import { ClientSideConnection, ndJsonStream, PROTOCOL_VERSION } from '@agentclie
 import type { Agent, InitializeResponse, NewSessionResponse, PromptResponse, ContentBlock } from '@agentclientprotocol/sdk';
 import { ChthonicAcpClient } from './client';
 
-const COPILOT_PATH = 'C:\\Users\\erdno\\AppData\\Local\\Microsoft\\WinGet\\Packages\\GitHub.Copilot.Prerelease_Microsoft.Winget.Source_8wekyb3d8bbwe\\copilot.exe';
+// Resolved via PATH (WinGet Links shim; spawn uses shell:true). CHTHONIC_COPILOT_PATH pins an explicit exe when PATH resolution is wrong.
+const COPILOT_PATH = process.env.CHTHONIC_COPILOT_PATH ?? 'copilot';
 
 export interface AcpSession {
     sessionId: string;

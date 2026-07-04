@@ -25,12 +25,15 @@ if sys.platform == 'win32':
     sys.stderr.reconfigure(encoding='utf-8')
 
 import json, sqlite3
+from pathlib import Path
 
-db = sqlite3.connect(r"C:\Users\erdno\chthonic-archive\scripts\test_epistemograph.sqlite")
+_HERE = Path(__file__).resolve().parent
+
+db = sqlite3.connect(_HERE / "test_epistemograph.sqlite")
 cur = db.cursor()
 
 # Load dependency graph
-with open(r"C:\Users\erdno\chthonic-archive\dependency_graph_production.json", "r", encoding="utf-8") as f:
+with open(_HERE.parent / "dependency_graph_production.json", "r", encoding="utf-8") as f:
     graph = json.load(f)
 
 # Insert provenance

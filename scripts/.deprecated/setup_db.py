@@ -25,9 +25,12 @@ if sys.platform == 'win32':
     sys.stderr.reconfigure(encoding='utf-8')
 
 import sqlite3
+from pathlib import Path
 
-db_path = r"C:\Users\erdno\chthonic-archive\scripts\test_epistemograph.sqlite"
-schema_path = r"C:\Users\erdno\chthonic-archive\scripts\epistemograph_schema.sql"
+_SCRIPTS_DIR = Path(__file__).resolve().parent.parent
+
+db_path = _SCRIPTS_DIR / "test_epistemograph.sqlite"
+schema_path = _SCRIPTS_DIR / "epistemograph_schema.sql"
 
 # Create database
 db = sqlite3.connect(db_path)

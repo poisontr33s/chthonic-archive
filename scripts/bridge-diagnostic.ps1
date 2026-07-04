@@ -86,7 +86,7 @@ $files = @(
 )
 
 foreach ($file in $files) {
-    $path = Join-Path "C:\Users\erdno\chthonic-archive" $file
+    $path = Join-Path (Split-Path $PSScriptRoot -Parent) $file
     if (Test-Path $path) {
         $size = (Get-Item $path).Length
         Write-Host "   ✅ $file ($([Math]::Round($size/1KB))KB)" -ForegroundColor Green

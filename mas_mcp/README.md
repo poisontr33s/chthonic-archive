@@ -89,17 +89,18 @@ uv run python -m server
 
 The `claudine-gpu` venv is the **sacred sandbox** for GPU-accelerated operations. All GPU tooling (CuPy, ONNX Runtime GPU, PyTorch) must operate within this containment to prevent system Python pollution.
 
-**Location:** `C:\Users\erdno\chthonic-archive\claudine-gpu\`
+**Location:** `<repo-root>\claudine-gpu\`
 
 **Creation:**
 ```powershell
-uv venv C:\Users\erdno\chthonic-archive\claudine-gpu --python 3.14
+# from the repo root:
+uv venv claudine-gpu --python 3.14
 ```
 
 **Activation:**
 ```powershell
-# Manual activation
-& C:\Users\erdno\chthonic-archive\claudine-gpu\Scripts\Activate.ps1
+# Manual activation (from the repo root)
+& .\claudine-gpu\Scripts\Activate.ps1
 
 # Verify
 (Get-Command python).Source  # Should contain "claudine-gpu"
@@ -146,7 +147,8 @@ These are enforced in:
 For Python 3.14 + CUDA 13.1, CuPy must be built from source:
 
 ```powershell
-cd C:\Users\erdno\chthonic-archive\mas_mcp
+# from the repo root:
+cd mas_mcp
 .\build_cupy.ps1 -DryRun   # Validate environment first
 .\build_cupy.ps1           # Full build (~15-30 min)
 ```

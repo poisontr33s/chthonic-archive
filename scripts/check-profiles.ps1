@@ -34,5 +34,5 @@ Write-Host "AllUsersCurrentHost: $(Test-Path $PROFILE.AllUsersCurrentHost)"
 Write-Host "CurrentUserAllHosts: $(Test-Path $PROFILE.CurrentUserAllHosts)"
 Write-Host "CurrentUserCurrentHost: $(Test-Path $PROFILE.CurrentUserCurrentHost)"
 Write-Host ""
-Write-Host "Local copy exists: $(Test-Path 'C:\Users\erdno\Documents\PowerShell\Microsoft.PowerShell_profile.ps1')"
+Write-Host "Local copy exists: $(Test-Path (Join-Path $env:USERPROFILE 'Documents\PowerShell\Microsoft.PowerShell_profile.ps1'))"
 

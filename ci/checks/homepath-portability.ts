@@ -102,7 +102,13 @@ const SCAN_EXTS = new Set([
 // Cache/report/manifest outputs legitimately capture a resolved path at scan
 // time — that's their job, not a portability bug. Exempt by path fragment
 // (git ls-files always returns forward-slash paths, but match both defensively).
-const EXEMPT_PARTS = ["/cache/", "\\cache\\", "/manifest/", "\\manifest\\"];
+const EXEMPT_PARTS = [
+  "/cache/", "\\cache\\", "/manifest/", "\\manifest\\",
+  // Runtime data stores (MCP memory-server store, scan inventories) — same
+  // output class as cache/manifest: recorded resolved paths ARE their content,
+  // and rewriting them would falsify history (their referents may be gone).
+  "mas_mcp/mas_memory.json", "mas_mcp/data/",
+];
 
 function ext(f: string): string {
   return f.slice(f.lastIndexOf("."));

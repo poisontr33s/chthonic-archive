@@ -4,13 +4,12 @@
 # Validate documentation content: file references, paths, and @SID claims
 # Usage: .\validate_docs_content.ps1
 
-Metadata {
-    .Title        = "Documentation Content Validator"
-    .Author       = "erdn0"
-    .Description  = "Validates file references, paths, and @SID claims in documentation markdown files."
-    .Version      = "1.0.0"
-    .Requires     = "PowerShell 7.1"
-}
+# Metadata (was a non-parsing pseudo-DSL block since first commit — converted to comments 2026-07-04, content preserved):
+#   Title:        Documentation Content Validator
+#   Author:       erdn0
+#   Description:  Validates file references, paths, and @SID claims in documentation markdown files.
+#   Version:      1.0.0
+#   Requires:     PowerShell 7.1
 
 
 [CmdletBinding()]
@@ -21,7 +20,7 @@ $ErrorActionPreference = 'Continue'
 # UTF-8 output
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-$repoRoot = "C:\Users\erdno\chthonic-archive"
+$repoRoot = Split-Path $PSScriptRoot -Parent
 $docsDir = Join-Path $repoRoot "docs"
 
 Write-Host "`n=== Documentation Content Validation ===" -ForegroundColor Cyan

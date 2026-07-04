@@ -35,7 +35,8 @@ The genesis engine validates the correct Python environment:
 
 **Environment Variable:**
 ```powershell
-$env:MAS_MCP_GPU_PY = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv\Scripts\python.exe"
+# from the repo root:
+$env:MAS_MCP_GPU_PY = "$PWD\mas_mcp\.venv\Scripts\python.exe"
 ```
 
 **Validation at startup:**

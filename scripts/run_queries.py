@@ -26,8 +26,9 @@ if sys.platform == 'win32':
 
 import sqlite3
 import json
+from pathlib import Path
 
-db = sqlite3.connect(r"C:\Users\erdno\chthonic-archive\scripts\test_epistemograph.sqlite")
+db = sqlite3.connect(Path(__file__).resolve().parent / "test_epistemograph.sqlite")
 cur = db.cursor()
 
 print("=" * 80)

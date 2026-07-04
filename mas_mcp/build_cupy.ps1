@@ -148,7 +148,7 @@ Write-Host @"
 # VIRTUAL ENVIRONMENT ACTIVATION (claudine-gpu)
 # ═══════════════════════════════════════════════════════════════════════════
 
-$VENV_PATH = "C:\Users\erdno\chthonic-archive\claudine-gpu"
+$VENV_PATH = Join-Path (Split-Path $PSScriptRoot -Parent) "claudine-gpu"
 $venvActivate = "$VENV_PATH\Scripts\Activate.ps1"
 
 if (Test-Path $venvActivate) {

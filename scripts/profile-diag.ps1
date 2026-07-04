@@ -24,13 +24,13 @@ Write-Host "   $($t1.TotalMilliseconds)ms" -ForegroundColor Green
 
 Write-Host "`n2. Test-Path chthonic.ps1..."
 $t2 = Measure-Command {
-    Test-Path "C:\Users\erdno\chthonic-archive\scripts\chthonic.ps1"
+    Test-Path "$PSScriptRoot\chthonic.ps1"
 }
 Write-Host "   $($t2.TotalMilliseconds)ms" -ForegroundColor Green
 
 Write-Host "`n3. Chthonic env -Quiet (THE SLOW ONE?)..."
 $t3 = Measure-Command {
-    & "C:\Users\erdno\chthonic-archive\scripts\chthonic.ps1" env -Quiet
+    & "$PSScriptRoot\chthonic.ps1" env -Quiet
 }
 Write-Host "   $($t3.TotalSeconds) seconds" -ForegroundColor $(if ($t3.TotalSeconds -gt 5) { "Red" } else { "Green" })
 

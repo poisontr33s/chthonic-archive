@@ -15,13 +15,13 @@
   Run this on the desktop-local machine after the desktop clone package has been copied locally.
   This script remaps:
   - the Copilot chat session "Understanding Machine Learning Algorithms"
-  - the Claude Code project bucket tied to C:\Users\erdno\chthonic-archive
+  - the Claude Code project bucket tied to the old user profile's chthonic-archive checkout (see -OldUser)
 
   It must not be run from the remote laptop tunnel session.
 
 .USAGE
   pwsh -NoProfile -File scripts/recover_ide_sessions.ps1
-  pwsh -NoProfile -File scripts/recover_ide_sessions.ps1 -PackageRoot "C:\Users\eldno\Desktop\chthonic-desktop-clone"
+  pwsh -NoProfile -File scripts/recover_ide_sessions.ps1 -PackageRoot "$env:USERPROFILE\Desktop\chthonic-desktop-clone"
 #>
 
 param(
