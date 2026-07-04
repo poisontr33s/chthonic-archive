@@ -16,8 +16,9 @@
 # SSOT: "../.chthonic/SSOT.md".
 # CLAUDEBASE: "CLAUDEBASE/README.md".
 # CLAUDEBASE_MANIFEST: "CLAUDEBASE/MANIFEST.md".
-# Skill-Files-Live-@: ".claude/skills/<skill-name>/SKILL.md".
+# Skill-Files-Live-@: ".claude/skills/<skill-name>/SKILL.md". <—> + "claude/skills/<skill-name>/SKILL.md". <—> "dot-folder" + "non-dot-folders".
 # CLAUDEBASE: "CLAUDEBASE/CLAUDINE.md"
+# LAST SESSION CONTEXT: "CLAUDEBASE/last-CLAUDEBASE-session-important.md", Important-Session-Context, Warm-Start-Packets, What-Just-Occurred-Most-Recent".
 # CLAUDEBASE-Agents: "CLAUDEBASE/AGENTS.md, Codex.md, gemini.md".
 # The-Savant-High-Bounties: "CLAUDEBASE/GRILLING.md, CLAUDEBASE/TODO.md".
 # README.md: "Base-Identity, Governance-Chain, Population, Order".                 
