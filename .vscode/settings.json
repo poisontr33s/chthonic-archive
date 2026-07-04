@@ -250,5 +250,5 @@
 "chthonic.security.allowNativeSidecars": true,
 "chthonic.reactor.headlessVulkan": false,
 "chthonic.reactor.transport": "jsonl",
-"chthonic.reactor.daemonBinaryPath": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\native\\target\\debug\\chthonic-daemon.exe",
+    "chthonic.reactor.daemonBinaryPath": "extensions/chthonic-archive/native/target/debug/chthonic-daemon.exe",
 }
