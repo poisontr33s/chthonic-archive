@@ -13,8 +13,11 @@
 # Dedicated managers own these — mise must not shadow them:
 #   uv (self-managed), rv (cargo install), goup (self-managed), rust (rustup)
 #   go (goup; verified=1.26.4), cmake (VS Insiders path enforced — PATH cmake is a broken uv shim)
-solana-cli = "2.3.1"
-agave = "2.3.1"
+# solana-cli/agave removed 2026-07-04: neither exists in mise's tool registry
+# under these names (verified — no close match either), and the agave-sync
+# task below never used them anyway — it installs via `solana-install init
+# stable`, a separate external installer, not mise tool management at all.
+# These two lines never resolved successfully in any mise version.
 cargo-binstall = "latest"
 terraform = "latest"
 kubectl = "latest"
@@ -27,11 +30,22 @@ CHTHONIC_SLAB_MODE = "kernel"
 CHTHONIC_GO_OWNER = "goup"
 CHTHONIC_SOLANA_RUNTIME = "agave"
 CHTHONIC_SOLANA_INSTALLER = "solana-install"
-CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{cwd}}/.chthonic/firedancer/artifacts"
+# 2026-07-04: these 4 were {{cwd}}-relative (tracks the INVOKING shell's
+# directory, not this file's own directory) and proven wrong in every tested
+# invocation context — bare-from-.chthonic/ doubled the segment into
+# ".chthonic/.chthonic/..."; namespaced-from-root dropped the
+# "extensions/chthonic-archive" segment entirely. {{config_root}} is proven
+# invocation-stable (same resolved value bare or namespaced) — see
+# project_mise_slab_monorepo_wiring memory for the full E2E comparison.
+CHTHONIC_FIREDANCER_ARTIFACT_DIR = "{{config_root}}/firedancer/artifacts"
 CHTHONIC_REACTOR_TRANSPORT = "auto" # set to "jsonl" for Safe Mode fallback
-CHTHONIC_TOOLPOOL_REPORT = "{{cwd}}/.chthonic/cache/toolpool.json"
-CHTHONIC_TOOLPOOL_ENV = "{{cwd}}/.chthonic/cache/toolpool.env"
-CHTHONIC_NVIDIA_STACK = "{{cwd}}/.chthonic/cache/nvidia_stack.json"
+CHTHONIC_TOOLPOOL_REPORT = "{{config_root}}/cache/toolpool.json"
+CHTHONIC_TOOLPOOL_ENV = "{{config_root}}/cache/toolpool.env"
+# NVIDIA_STACK is deliberately 3 levels up + back down: nvidia-stack-probe.ps1
+# writes to the REPO ROOT's OWN .chthonic/ (agent-infra/SSOT directory), a
+# completely separate directory from this slab's own .chthonic/ despite the
+# identical name — confirmed via direct filesystem inspection, not assumed.
+CHTHONIC_NVIDIA_STACK = "{{config_root}}/../../../.chthonic/cache/nvidia_stack.json"
 
 # VISUAL STUDIO 2026 INSIDERS LSL PATHING
 # Resolved from local VS 2026 Insiders installation lane.
@@ -46,6 +60,16 @@ CARGO_TARGET_X86_64_PC_WINDOWS_MSVC_LINKER = "lld-link"
 # SQL DEV KIT 22 SYNERGY (resolved from VS 2026 Insiders SQLDB extension)
 SQL_DEV_KIT_PATH = 'C:\Program Files\Microsoft Visual Studio\18\Insiders\Common7\IDE\Extensions\Microsoft\SQLDB\DAC'
 
+# Windows-native only — this slab has no cross-platform target, so these live
+# directly in [env] rather than a mise.windows.toml + auto_env split. An inline
+# [env."windows"] table (the prior form) is not valid mise syntax at all; the
+# real mechanism is a separate OS-suffixed config file, which would be pure
+# overhead for a repo that only ever runs on Windows.
+CC = "clang-cl"
+CXX = "clang-cl"
+CMAKE_GENERATOR = "Ninja"
+CHTHONIC_WINDOWS_NATIVE_LANE = "vs2026_insiders"
+
 _.path = [
     "{{env.USERPROFILE}}/.local/bin",
     "{{env.USERPROFILE}}/.cargo/bin",
@@ -54,11 +78,36 @@ _.path = [
     "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja",
 ]
 
-[env."windows"]
-CC = "clang-cl"
-CXX = "clang-cl"
-CMAKE_GENERATOR = "Ninja"
-CHTHONIC_WINDOWS_NATIVE_LANE = "vs2026_insiders"
+# ── Working-directory note (2026-07-04) ─────────────────────────────
+# mise's default task dir is wherever THIS file lives ({{config_root}} =
+# extensions/chthonic-archive/.chthonic/), not repo root. Verified empirically
+# via an isolated test config, not assumed. The scripts these tasks call are
+# NOT all in one place: toolpool-scan.ts / vs2026_audit.ps1 / sqlpackage_task.ps1
+# live one level up at extensions/chthonic-archive/scripts/, while
+# nvidia-stack-probe.ps1 lives at the repo root's scripts/. Each task below is
+# anchored with an explicit `dir` matching where its real target actually is —
+# a single "move this file" fix cannot work here since the two script sets
+# already live in two different real directories.
+#
+# CHTHONIC_TOOLPOOL_REPORT / CHTHONIC_TOOLPOOL_ENV / CHTHONIC_FIREDANCER_ARTIFACT_DIR
+# / CHTHONIC_NVIDIA_STACK (see [env] above) are still NOT consumed as input by
+# the scripts they're named after — toolpool-scan.ts only WRITES a
+# CHTHONIC_TOOLPOOL_REPORT= line into its own output .env, and
+# nvidia-stack-probe.ps1 derives its output path from its own script location,
+# ignoring CHTHONIC_NVIDIA_STACK entirely. Treat them as documentation, not
+# live configuration, unless the scripts are changed to actually read them.
+#
+# 2026-07-04 correction: these 4 vars were previously {{cwd}}-relative and
+# genuinely WRONG (not merely unwired) — confirmed via direct cross-context
+# test to resolve to two different nonexistent paths depending on whether
+# invoked bare-from-.chthonic/ or namespaced-from-root. Rewritten to
+# {{config_root}}-relative, which IS invocation-stable, so the documented
+# values are now at least accurate if anything starts reading them. Root
+# cause was one layer deeper than the mise.toml: toolpool-scan.ts itself used
+# `process.cwd()` for its own notion of "extensionRoot" — the same
+# CWD-fragility baked into the source, not just the task wrapper. Fixed to
+# `path.dirname(import.meta.dir)` (Bun's script-relative path primitive),
+# matching the pattern nvidia-stack-probe.ps1 already used correctly.
 
 [tasks.agave-sync]
 description = "Sync Agave/Solana toolchain lane"
@@ -66,56 +115,77 @@ run = "solana-install init stable"
 
 [tasks.firedancer-artifacts]
 description = "Prepare Frankendancer artifact directory for native bridge"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"New-Item -ItemType Directory -Force -Path .chthonic/firedancer/artifacts | Out-Null\""
 
 [tasks.toolpool-scan]
 description = "Scan and cache tool-pool lanes (VS2026, SQL, infra CLIs, polyglot managers)"
+dir = "{{config_root}}/.."
 run = "bun run scripts/toolpool-scan.ts"
 alias = "scan-pool"
 
 [tasks.toolpool-wire]
 description = "Generate tool-pool report + env overlay for downstream tasks"
+dir = "{{config_root}}/.."
 run = "bun run scripts/toolpool-scan.ts --write-env"
 alias = "wire-pool"
 
 [tasks.nvidia-probe]
-description = "Probe full NVIDIA/CUDA/Vulkan stack — writes .chthonic/cache/nvidia_stack.json"
+description = "Probe full NVIDIA/CUDA/Vulkan stack — writes .chthonic/cache/nvidia_stack.json (repo-root .chthonic/, not this slab's)"
+dir = "{{config_root}}/../../.."
 run = "pwsh -NoProfile -File scripts/nvidia-stack-probe.ps1"
 alias = "nv-probe"
 
 [tasks.toolpool-report]
 description = "Show latest cached tool-pool report"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"if (Test-Path .chthonic/cache/toolpool.json) { Get-Content .chthonic/cache/toolpool.json } else { Write-Error 'Missing .chthonic/cache/toolpool.json (run mise run toolpool-scan first)' }\""
 alias = "pool-report"
 
 [tasks.vs2026-audit]
 description = "Audit VS 2026 Insiders components and critical binaries against local .vsconfig baselines"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -File ./scripts/vs2026_audit.ps1"
 alias = "audit-vs"
 
+# native/ is real: extensions/chthonic-archive/native/ is an 11-member Cargo
+# workspace (chthonic-daemon, entropy-ledger-host, synapse-node, etc.) with its
+# own Cargo.lock + built target/. daemon-fast/daemon-prod/synapse-fast/ledger-prod
+# are cargo aliases defined in native/.cargo/config.toml, not raw subcommands.
+# 2026-07-04 correction: an earlier pass here claimed native/ "does not exist
+# anywhere in this repo" — that was wrong, caught by actually running
+# native-hardened (which already had the dir fix below) and watching it
+# genuinely compile chthonic-daemon. Applying the same dir fix to the two
+# siblings that were still missing it.
 [tasks.native-fast]
 description = "Fast native build lane (MSVC target + lld-link pathing from slab env)"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"Set-Location native; cargo daemon-fast; cargo synapse-fast\""
 
 [tasks.native-prod]
 description = "Release native lane for daemon + ledger host"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"Set-Location native; cargo daemon-prod; cargo ledger-prod\""
 
 [tasks.native-hardened]
 description = "Strict audit gate + release native build lane"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"./scripts/vs2026_audit.ps1 -Strict; Set-Location native; cargo daemon-prod; cargo ledger-prod\""
 alias = "hardened"
 
 [tasks.sql-version]
 description = "Print SqlPackage version from VS 2026 SQLDB DAC lane"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode version"
 
 [tasks.sql-drift]
 description = "Generate DACPAC drift report (requires SQL_DACPAC_PATH + SQL_TARGET_CONNECTION env vars)"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode drift"
 
 [tasks.sql-publish]
 description = "Publish DACPAC to target (requires SQL_DACPAC_PATH + SQL_TARGET_CONNECTION env vars)"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -File ./scripts/sqlpackage_task.ps1 -Mode publish"
 
 [tasks.infra-bicep-bootstrap]
@@ -125,5 +195,6 @@ alias = "bicep-up"
 
 [tasks.oracle-loop]
 description = "Refresh Oracle Loop: VS audit + tool-pool wire-up + endoflife-driven upgrade/reshim cycle"
+dir = "{{config_root}}/.."
 run = "pwsh -NoProfile -Command \"./scripts/vs2026_audit.ps1 -Strict; bun run scripts/toolpool-scan.ts --write-env --quiet; mise upgrade; mise reshim; bun run scripts/toolpool-scan.ts --quiet\""
 alias = "ol-refresh"

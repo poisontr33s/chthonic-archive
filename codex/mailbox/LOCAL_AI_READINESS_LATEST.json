@@ -1,37 +1,37 @@
 {
   "schema_version": 1,
-  "generated_on": "2026-02-23T16:57:31Z",
-  "repo_root": "C:/Users/erdno/chthonic-archive",
+  "generated_on": "2026-07-03T21:39:04Z",
+  "repo_root": "C:/Users/eldno/chthonic-archive",
   "platform": {
     "system": "Windows",
     "release": "11",
-    "python": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]"
+    "python": "3.14.6 (main, Jun 11 2026, 04:05:02) [MSC v.1944 64 bit (AMD64)]"
   },
   "toolchain": {
-    "uv": "uv 0.10.3 (c75a0c625 2026-02-16)",
-    "python": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]",
-    "rv": "rv 0.5.1",
-    "ruby": "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]",
-    "az": "2.83.0",
-    "bun": "1.3.9",
-    "pwsh": "7.5.4",
-    "rustc": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
-    "cargo": "cargo 1.93.1 (083ac5135 2025-12-15)",
-    "msvc_cl": "C/C++ COMPILER OPTIONS",
-    "cmake": "cmake version 4.2.1",
+    "uv": "uv 0.11.25 (1fc7de7c4 2026-06-26 x86_64-pc-windows-msvc)",
+    "python": "3.14.6 (main, Jun 11 2026, 04:05:02) [MSC v.1944 64 bit (AMD64)]",
+    "rv": "rv 0.6.0",
+    "ruby": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [x64-mingw-ucrt]",
+    "az": "2.86.0",
+    "bun": "1.3.14",
+    "pwsh": "7.6.1",
+    "rustc": "rustc 1.96.0 (ac68faa20 2026-05-25)",
+    "cargo": "cargo 1.96.0 (30a34c682 2026-05-25)",
+    "msvc_cl": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.51.36231\\bin\\Hostx64\\x64\\cl.exe",
+    "cmake": "cmake version 4.3.4",
     "ninja": "1.13.0.git.kitware.jobserver-pipe-1",
-    "msbuild": "18.4.0.7901",
-    "glslc": "shaderc v2026.1 v2026.1",
-    "vulkan_sdk": "C:\\VulkanSDK\\1.4.341.1",
-    "vs_build_tools": "inferred_from_cl=C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64",
-    "vs_any_instance": "SQL Server Management Studio 22 (22.3.11505.172)",
-    "ssms": "22.3.11505.172"
+    "msbuild": "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\MSBuild.exe",
+    "glslc": "shaderc v2026.2 v2026.2",
+    "vulkan_sdk": "C:\\VulkanSDK\\1.4.350.0",
+    "vs_build_tools": "display=17.14.35 (June 2026) install=17.14.37411.7",
+    "vs_any_instance": "SQL Server Management Studio 22 (22.7.11919.86)",
+    "ssms": "22.7.11919.86"
   },
   "paths": {
-    "latest_daemon_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002",
-    "latest_daemon_log": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-23_030002.log",
-    "latest_arch_run": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06",
-    "latest_digest": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md"
+    "latest_daemon_run": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260430_023324",
+    "latest_daemon_log": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-03-13_030005.log",
+    "latest_arch_run": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06",
+    "latest_digest": null
   },
   "summary": {
     "runtime_ready": true,
@@ -45,7 +45,7 @@
   "models": [
     {
       "name": "qwen_14b",
-      "path": "C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
+      "path": "C:/Users/eldno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
       "format": "gguf",
       "exists": true,
       "file_count": 7,
@@ -54,7 +54,7 @@
     },
     {
       "name": "gpt_oss_20b",
-      "path": "C:/Users/erdno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored",
+      "path": "C:/Users/eldno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored",
       "format": "gguf",
       "exists": true,
       "file_count": 3,
@@ -63,7 +63,7 @@
     },
     {
       "name": "llama_8b_exl2",
-      "path": "C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
+      "path": "C:/Users/eldno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
       "format": "safetensors/exl2",
       "exists": true,
       "file_count": 19,
@@ -76,7 +76,7 @@
       "lane": "local_refiner_v2",
       "language": "python",
       "entrypoint": "scripts/local_refiner_v2.py",
-      "model": "C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
+      "model": "C:/Users/eldno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
       "ready": true,
       "required": [
         "llama_cpp",
@@ -86,9 +86,7 @@
         "tool:pwsh"
       ],
       "missing_required": [],
-      "optional_missing": [
-        "torch"
-      ],
+      "optional_missing": [],
       "notes": [
         "Primary local LLM lane (structured JSON)."
       ]
@@ -97,7 +95,7 @@
       "lane": "local_refiner_v1",
       "language": "python",
       "entrypoint": "scripts/local_refiner.py",
-      "model": "C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
+      "model": "C:/Users/eldno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
       "ready": false,
       "required": [
         "exllamav2",
@@ -106,8 +104,7 @@
         "tool:pwsh"
       ],
       "missing_required": [
-        "exllamav2",
-        "torch"
+        "exllamav2"
       ],
       "optional_missing": [],
       "notes": [
@@ -129,13 +126,7 @@
         "tool:pwsh"
       ],
       "missing_required": [],
-      "optional_missing": [
-        "transformers",
-        "datasets",
-        "accelerate",
-        "tokenizers",
-        "safetensors"
-      ],
+      "optional_missing": [],
       "notes": [
         "Uses HF token auth; can run without local GPU model files."
       ]
@@ -182,31 +173,31 @@
     {
       "name": "runtime:uv",
       "ok": true,
-      "detail": "uv 0.10.3 (c75a0c625 2026-02-16)",
+      "detail": "uv 0.11.25 (1fc7de7c4 2026-06-26 x86_64-pc-windows-msvc)",
       "notes": []
     },
     {
       "name": "runtime:python",
       "ok": true,
-      "detail": "3.13.11 (main, Dec  9 2025, 19:02:08) [MSC v.1944 64 bit (AMD64)]",
+      "detail": "3.14.6 (main, Jun 11 2026, 04:05:02) [MSC v.1944 64 bit (AMD64)]",
       "notes": []
     },
     {
       "name": "runtime:bun",
       "ok": true,
-      "detail": "1.3.9",
+      "detail": "1.3.14",
       "notes": []
     },
     {
       "name": "runtime:pwsh",
       "ok": true,
-      "detail": "7.5.4",
+      "detail": "7.6.1",
       "notes": []
     },
     {
       "name": "runtime:rustc",
       "ok": true,
-      "detail": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
+      "detail": "rustc 1.96.0 (ac68faa20 2026-05-25)",
       "notes": [
         "Rust toolchain is optional for current local-AI paths but available for extension lanes."
       ]
@@ -214,7 +205,7 @@
     {
       "name": "runtime:rv",
       "ok": true,
-      "detail": "rv 0.5.1",
+      "detail": "rv 0.6.0",
       "notes": [
         "Ruby manager lane in your polyglot toolchain."
       ]
@@ -222,7 +213,7 @@
     {
       "name": "runtime:ruby",
       "ok": true,
-      "detail": "ruby 4.0.1 (2026-01-13 revision e04267a14b) +PRISM [x64-mingw-ucrt]",
+      "detail": "ruby 4.0.5 (2026-05-20 revision 64336ffd0e) +PRISM [x64-mingw-ucrt]",
       "notes": [
         "Optional for local-AI flows; useful for broader polyglot automation."
       ]
@@ -230,7 +221,7 @@
     {
       "name": "runtime:az",
       "ok": true,
-      "detail": "2.83.0",
+      "detail": "2.86.0",
       "notes": [
         "Azure CLI is optional but useful for model artifact storage and cloud deployment lanes."
       ]
@@ -238,7 +229,7 @@
     {
       "name": "runtime:msvc_cl",
       "ok": true,
-      "detail": "C/C++ COMPILER OPTIONS",
+      "detail": "found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe",
       "notes": [
         "Core C++ compiler for native extension and tooling builds.",
         "If only found on disk, launch Developer PowerShell or run vcvarsall to activate PATH."
@@ -247,7 +238,7 @@
     {
       "name": "runtime:cmake",
       "ok": true,
-      "detail": "cmake version 4.2.1",
+      "detail": "cmake version 4.3.4",
       "notes": [
         "Required by many C++/CUDA projects and local model runtimes."
       ]
@@ -263,7 +254,7 @@
     {
       "name": "runtime:msbuild",
       "ok": true,
-      "detail": "18.4.0.7901",
+      "detail": "found on disk (not on PATH): C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/MSBuild.exe",
       "notes": [
         "Needed for some Visual Studio and native extension workflows.",
         "If only found on disk, launch Developer PowerShell to expose msbuild on PATH."
@@ -272,7 +263,7 @@
     {
       "name": "runtime:glslc",
       "ok": true,
-      "detail": "shaderc v2026.1 v2026.1",
+      "detail": "shaderc v2026.2 v2026.2",
       "notes": [
         "Shader compiler from Vulkan SDK."
       ]
@@ -280,7 +271,7 @@
     {
       "name": "runtime:vulkan_sdk",
       "ok": true,
-      "detail": "C:\\VulkanSDK\\1.4.341.1",
+      "detail": "C:\\VulkanSDK\\1.4.350.0",
       "notes": [
         "Expected when targeting Vulkan-native shader/tooling lanes."
       ]
@@ -288,16 +279,16 @@
     {
       "name": "runtime:vs_build_tools",
       "ok": true,
-      "detail": "inferred_from_cl=C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.50.35717/bin/Hostx64/x64",
+      "detail": "display=17.14.35 (June 2026) install=17.14.37411.7",
       "notes": [
         "Uses vswhere for discovery.",
-        "Detected Visual Studio-family instance: SQL Server Management Studio 22 (22.3.11505.172)"
+        "Detected Visual Studio-family instance: SQL Server Management Studio 22 (22.7.11919.86)"
       ]
     },
     {
       "name": "runtime:ssms",
       "ok": true,
-      "detail": "22.3.11505.172",
+      "detail": "22.7.11919.86",
       "notes": [
         "SQL Server Management Studio detection via vswhere product Microsoft.VisualStudio.Product.Ssms."
       ]
@@ -346,38 +337,38 @@
     },
     {
       "name": "module:transformers",
-      "ok": false,
-      "detail": "missing module transformers",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
       "name": "module:tokenizers",
-      "ok": false,
-      "detail": "missing module tokenizers",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
       "name": "module:safetensors",
-      "ok": false,
-      "detail": "missing module safetensors",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
       "name": "module:datasets",
-      "ok": false,
-      "detail": "missing module datasets",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
       "name": "module:accelerate",
-      "ok": false,
-      "detail": "missing module accelerate",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
       "name": "module:torch",
-      "ok": false,
-      "detail": "missing module torch",
+      "ok": true,
+      "detail": "import ok",
       "notes": []
     },
     {
@@ -391,49 +382,49 @@
     {
       "name": "model:qwen_14b",
       "ok": true,
-      "detail": "3 gguf file(s) in C:/Users/erdno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
+      "detail": "3 gguf file(s) in C:/Users/eldno/chthonic-archive/models/Qwen2.5-14B-Instruct-GGUF",
       "notes": []
     },
     {
       "name": "model:gpt_oss_20b",
       "ok": true,
-      "detail": "1 gguf file(s) in C:/Users/erdno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored",
+      "detail": "1 gguf file(s) in C:/Users/eldno/chthonic-archive/models/GPT-OSS-20B-NEOPlus-Uncensored",
       "notes": []
     },
     {
       "name": "model:llama_8b_exl2",
       "ok": true,
-      "detail": "1 safetensors file(s) in C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
+      "detail": "1 safetensors file(s) in C:/Users/eldno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-6.0bpw",
       "notes": []
     },
     {
       "name": "artifact:daemon_report_json",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002/report.json",
+      "detail": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260430_023324/report.json",
       "notes": []
     },
     {
       "name": "artifact:daemon_report_md",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260223_030002/report.md",
+      "detail": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260430_023324/report.md",
       "notes": []
     },
     {
       "name": "artifact:l1_ore",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json",
+      "detail": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json",
       "notes": []
     },
     {
       "name": "artifact:l1_summary",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-summary.md",
+      "detail": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-summary.md",
       "notes": []
     },
     {
       "name": "artifact:latest_digest",
-      "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/claude/mailbox/ARCHAEOLOGY_DIGEST_2026_02_20.md",
+      "ok": false,
+      "detail": "no ARCHAEOLOGY_DIGEST_*.md found",
       "notes": [
         "Digest absence is acceptable for L1-only runs."
       ]
@@ -441,7 +432,7 @@
     {
       "name": "log:scheduler",
       "ok": true,
-      "detail": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-23_030002.log",
+      "detail": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-03-13_030005.log",
       "notes": [
         "No fatal markers in latest scheduler log."
       ]

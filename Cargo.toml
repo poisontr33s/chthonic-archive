@@ -94,6 +94,7 @@ members = [
     "tools/dsl-smoke",
     "tools/dsl-iteration-toolkit",
     "tools/bevy-mcp-server",
-    "tools/vulkan-mcp-server"
+    "tools/vulkan-mcp-server",
+    "tools/chthonic-hw-mcp-server"
 ]
 resolver = "2"

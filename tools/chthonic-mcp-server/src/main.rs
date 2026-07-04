@@ -33,7 +33,7 @@ use std::process::Stdio;
 
 use rmcp::handler::server::router::tool::ToolRouter;
 use rmcp::handler::server::wrapper::Parameters;
-use rmcp::model::{CallToolResult, Content, ServerCapabilities, ServerInfo};
+use rmcp::model::{CallToolResult, ContentBlock, ServerCapabilities, ServerInfo};
 use rmcp::{tool, tool_handler, tool_router, ErrorData, ServerHandler, ServiceExt};
 use schemars::JsonSchema;
 use serde::Deserialize;
@@ -151,9 +151,9 @@ impl ChthonicServer {
         text.push_str(&format!("\n[exit {code}]"));
 
         if output.status.success() {
-            Ok(CallToolResult::success(vec![Content::text(text)]))
+            Ok(CallToolResult::success(vec![ContentBlock::text(text)]))
         } else {
-            Ok(CallToolResult::error(vec![Content::text(text)]))
+            Ok(CallToolResult::error(vec![ContentBlock::text(text)]))
         }
     }
 }
@@ -229,7 +229,7 @@ impl ChthonicServer {
     async fn chthonic_vulkan_doctor(&self) -> Result<CallToolResult, ErrorData> {
         let log_path = self.repo_root.join("target").join("render-smoke.log");
         if !log_path.exists() {
-            return Ok(CallToolResult::success(vec![Content::text("No render-smoke.log found. Run scripts/render-smoke.ps1 first.".to_string())]));
+            return Ok(CallToolResult::success(vec![ContentBlock::text("No render-smoke.log found. Run scripts/render-smoke.ps1 first.".to_string())]));
         }
         let content = tokio::fs::read_to_string(&log_path).await.map_err(|e| {
             ErrorData::internal_error(format!("Failed to read smoke log: {}", e), None)
@@ -266,7 +266,7 @@ impl ChthonicServer {
         }
 
         if errors.is_empty() {
-            return Ok(CallToolResult::success(vec![Content::text("No Vulkan validation errors found in render-smoke.log. Clean!".to_string())]));
+            return Ok(CallToolResult::success(vec![ContentBlock::text("No Vulkan validation errors found in render-smoke.log. Clean!".to_string())]));
         }
 
         let mut output = format!("Found {} unique Vulkan validation error signatures:\n\n", errors.len());
@@ -277,7 +277,7 @@ impl ChthonicServer {
             output.push_str(&format!("Count: {}\nError: {}\n----------------------------------------\n", count, err));
         }
 
-        Ok(CallToolResult::success(vec![Content::text(output)]))
+        Ok(CallToolResult::success(vec![ContentBlock::text(output)]))
     }
 }
 

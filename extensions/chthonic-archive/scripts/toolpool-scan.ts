@@ -73,7 +73,7 @@ type ExecResult = {
     error: string | null;
 };
 
-const extensionRoot = process.cwd();
+const extensionRoot = path.dirname(import.meta.dir);
 const cacheDir = path.join(extensionRoot, '.chthonic', 'cache');
 const reportPath = path.join(cacheDir, 'toolpool.json');
 const envPath = path.join(cacheDir, 'toolpool.env');
