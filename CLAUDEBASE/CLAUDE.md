@@ -69,60 +69,60 @@
 
 ## (`State.Of-Emergency`/`Bloat`/`Active`/`Inactive`/`Pending`/`Protocols`/`Retrospectives`)
 
-- *Bloat, active, inactive, pending, — protocols, bla bla bla ...and, well — retrospectives + whatnot.*
+- *— Bloat, active, inactive, pending, — protocols, bla bla bla ...and, well — retrospectives + whatnot.*
   - *Oh my!*
 
-    - *This is a WIP section, but the goal is to distill the essence of what these protocols represent and reframe them in a more concise and actionable way.*
+    - *— This is a WIP section, but the goal is to distill the essence of what these protocols represent and reframe them in a more concise and actionable way.*
 
-      - *The existing metadocumentation herein are needed for active protocols; the rest are deprecated and will be removed in due course.*
+      - *— The existing metadocumentation herein are needed for active protocols; the rest are deprecated and will be removed in due course.*
 
-        - *No worktrees.*
+        - *— No worktrees.*
 
 ---
 
 ## (`Context`/`Staging-Area`/`Decluttering`)
 
-  - `chthonic-archive`/`confiscated_instructions` *=* <'`deprecated-meta-documentation`'/`sludge`> *— this is the staging area for cleaning up* `.MD`/`Bloat` *— this is a* `WIP` *— & will be updated as we go.* 
+  - *—* `chthonic-archive`/`confiscated_instructions` *=* <'`deprecated-meta-documentation`'/`sludge`> *— this is the staging area for cleaning up* `.MD`/`Bloat` *— this is a* `WIP` *— & will be updated as we go.* 
   
-    - *The goal is to declutter and make it easier to navigate, while preserving the necessary historical context and documentation for reference, — anchoring `ig.`*
+    - *— The goal is to declutter and make it easier to navigate, while preserving the necessary historical context and documentation for reference, — anchoring `ig.`*
 
 ---
 
 ## (`Session`/`Retrospectives`)
 
-- **(`Likely`/`Outdated`/`Redundant`/`Obsolete`/`Active`/`Pending`)** *— a rolling archive of retrospectives, post-mortems, and session artifacts. The goal is to capture the learnings and insights from each session in a structured way, so that we can refer back to them and build on them over time.*
+- *— **(`Likely`/`Outdated`/`Redundant`/`Obsolete`/`Active`/`Pending`)** *— a rolling archive of retrospectives, post-mortems, and session artifacts. The goal is to capture the learnings and insights from each session in a structured way, so that we can refer back to them and build on them over time.*
 
 ---
 
 ## (`Workspace`/`Codebase`/`Bloat`)
 
-  - *Dirty workspace, but here are some notes on the current state of the project:*
+  - *— Dirty workspace, but here are some notes on the current state of the project:*
 
-    - *"Ask the `#codebase`/`workspace`/`rust'ified`/`Tools`/`ACP`/`MCP`/`Cries-Of-Modernization-To-Rust-SCREAMING-Mute`/vs-code-insider-WORKBENCH/`Tasks.json`/`~Et-Cetera`.*
+    - *— "Ask the —* `#codebase`/`workspace`/`rust'ified`/`Tools`/`ACP`/`MCP`/`Cries-Of-Modernization-To-Rust-SCREAMING-Mute`/`vs-code-insider-WORKBENCH`/`Tasks.json`/`~Et-Cetera`*.*
 
-      - *"The `#codebase` is currently a mix of Python and PowerShell, with some Rust in the works. The `workspace` is a bit of a mess, but we're working on cleaning it up. The `rust'ified` parts are still in progress, but we're making good progress.*
+      - *— "The —* `#codebase` *— is currently a mix of Python and PowerShell, with some Rust in the works —* `workspace` *— is a bit of a mess, but we're working on cleaning it up. The —* `rust'ified` *— parts are still in progress, but we're making good progress.*
       
-        - *The `Tools` are mostly Python scripts, but we're looking into adding some Rust tools as well. The `ACP` and `MCP` are still being defined, but we're aiming for a clear separation of concerns between the two.* 
+        - *—* `Tools` *— are mostly Python scripts, but we're looking into adding some Rust tools as well. The —* `ACP` *—* `MCP` *— are still being defined, but we're aiming for a clear separation of concerns between the two.* 
       
-          - *The `Cries-Of-Modernization-To-Rust-SCREAMING-Mute` is a bit of a joke, but it reflects the general sentiment around the transition to Rust. The `vs-code-insider-WORKBENCH` is where we do most of our development work, and it's currently set up with a mix of Python and Rust extensions.* 
+          - *—* `Cries-Of-Modernization-To-Rust-SCREAMING-Mute` *— is a bit of a joke, but it reflects the general sentiment around the transition to Rust —* `vs-code-insider-WORKBENCH` *—is where we do most of our development work, and it's currently set up with a mix of Python and Rust extensions.* 
         
-          - *The `Tasks.json` is where we define our build and test tasks, and it's still a work in progress. Overall, the workspace is functional but could definitely use some organization and cleanup."*
+          - *—* `Tasks.json` *— is where we define our build and test tasks, and it's still a work in progress. Overall, the workspace is functional but could definitely use some organization and cleanup."*
 
-           - *I'm too lazy to update this section— this = temporal lazy "snapshot" of where we are at the moment.*
+           - *— I'm too lazy to update this section— this = temporal lazy "snapshot" of where we are at the moment.*
 
 ---
 
 ## (`Immutable-API-Tokens/Semented`/`No-Flippery`/`DRY`/`Different-GUI`/`Different-Tools`/`Same-Token-Management`)
 
-- *Follow* [docs/API_POOL_MCP_CONTRACT.md](../docs/API_POOL_MCP_CONTRACT.md). `~/.chthonic/api_pool.json` *is the source of truth for API and MCP tokens.*
+- *— Follow* [docs/API_POOL_MCP_CONTRACT.md](../docs/API_POOL_MCP_CONTRACT.md). *—* `~/.chthonic/api_pool.json` *— is the source of truth for API and MCP tokens.*
 
-  - *Before claiming auth is missing or stale, run* `.\scripts\api_pool.ps1 -Doctor`, *then load/verify from the pool.*
+  - *— Before claiming auth is missing or stale, run —* `.\scripts\api_pool.ps1 -Doctor` *— then load/verify from the pool.*
 
-    - *Restore MCP config with* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot`*; do not hand-edit or refresh tokens for* `.mcp.json` *rewrites.*
+    - *— Restore MCP config with —* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot` *— do not hand-edit or refresh tokens for* `.mcp.json` *rewrites.*
 
-      - *Token renewal is manual only when a token is actually expired, revoked, or intentionally replaced.*
+      - *— Token renewal is manual only when a token is actually expired, revoked, or intentionally replaced.*
 
-        - *Report MCP servers with* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -List` *so no token values are printed.*
+        - *— Report MCP servers with —* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -List` *— so no token values are printed.*
 
 ---
 
@@ -140,6 +140,6 @@
 
 --- 
 
-*The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
+- *— The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
 
 ---
