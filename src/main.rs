@@ -121,7 +121,11 @@ impl ApplicationHandler for ArchiveApp {
         info!("🎨 Creating rendering pipeline...");
         // Rung 3 (IO off render thread): load bathymetry on a worker thread before any GPU init.
         let bathy_handle = std::thread::spawn(|| {
-            match render::bathymetry::Bathymetry::load(render::bathymetry::DEFAULT_PATH) {
+            // CHTHONIC_BATHYMETRY_PATH lets a candidate dataset (e.g. a Copernicus SDB
+            // fused composite) be smoke-tested without touching the production file.
+            let bathy_path = std::env::var("CHTHONIC_BATHYMETRY_PATH")
+                .unwrap_or_else(|_| render::bathymetry::DEFAULT_PATH.to_string());
+            match render::bathymetry::Bathymetry::load(&bathy_path) {
                 Ok(b) => {
                     let mesh = b.mesh();
                     info!("🌊 Bathymetry pre-load: {}x{} → {} vertices", b.w, b.h, mesh.len());
