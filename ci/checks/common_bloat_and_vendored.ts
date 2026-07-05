@@ -1,3 +1,4 @@
+// @SID: CI_CHECK_COMMON_BLOAT_AND_VENDORED_V1
 /**
  * ci/checks/common_bloat_and_vendored.ts
  *
