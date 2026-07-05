@@ -17,7 +17,12 @@
 # under these names (verified — no close match either). The local lane is
 # Agave/Anza CLI + Anchor/AVM on Win11; Frankendancer is tracked as a validator
 # lane, and full Firedancer C++ remains await/research.
-# These two lines never resolved successfully in any mise version.
+# Verified live 2026-07-05: `mise install` places real, runnable binaries for
+# all three (cargo-binstall 1.20.1, terraform 1.15.7, kubectl 1.36.2) under
+# %LOCALAPPDATA%\mise\installs\<tool>\<version>\ — confirmed via `mise which`
+# and `mise exec -- cargo-binstall -V`. The earlier "never resolved" comment
+# was wrong. They're just not on bare PATH without `mise exec --`/shim
+# activation — that's normal mise usage, not a resolution failure.
 cargo-binstall = "latest"
 terraform = "latest"
 kubectl = "latest"
@@ -30,6 +35,26 @@ CHTHONIC_SLAB_MODE = "kernel"
 CHTHONIC_GO_OWNER = "goup"
 CHTHONIC_SOLANA_RUNTIME = "agave"
 CHTHONIC_SOLANA_INSTALLER = "agave-install"
+
+# Extension runtime lane overrides consumed by src/runtime/localLaneConfig.ts.
+# Precedence: process env > this [env] table > VS Code contributed settings.
+# Migrated from the current workspace shape: native lanes allowed, entropy and
+# polyglot/Solana settlement still opt-in while the Agave lane is modernized.
+CHTHONIC_ALLOW_NATIVE_SIDECARS = "true"
+CHTHONIC_ENTROPY_ENABLED = "false"
+CHTHONIC_ENTROPY_MAX_FILES = "3000"
+CHTHONIC_ENTROPY_SCAN_INTERVAL_MS = "60000"
+CHTHONIC_ENTROPY_DECORATION_DEBOUNCE_MS = "120"
+CHTHONIC_ENTROPY_DECORATION_BATCH_SIZE = "240"
+CHTHONIC_ENTROPY_POLYGLOT_ENABLED = "false"
+CHTHONIC_ENTROPY_PYTHON_SCAN_INTERVAL_MS = "30000"
+CHTHONIC_ENTROPY_LEDGER_SETTLE_DEBOUNCE_MS = "1400"
+CHTHONIC_ENTROPY_LEDGER_MODE = "bankrun"
+CHTHONIC_SOLANA_RPC_URL = "http://127.0.0.1:8899"
+CHTHONIC_SOLANA_AUTOSTART_VALIDATOR = "false"
+CHTHONIC_SOLANA_LEDGER_HOST_BINARY_PATH = ""
+CHTHONIC_SOLANA_WALLET_PATH = ""
+CHTHONIC_SOLANA_IDL_PATH = ""
 # 2026-07-04: these 4 were {{cwd}}-relative (tracks the INVOKING shell's
 # directory, not this file's own directory) and proven wrong in every tested
 # invocation context — bare-from-.chthonic/ doubled the segment into
@@ -109,9 +134,21 @@ _.path = [
 # `path.dirname(import.meta.dir)` (Bun's script-relative path primitive),
 # matching the pattern nvidia-stack-probe.ps1 already used correctly.
 
+# 2026-07-04: BOTH agave-install.exe and agave-install-init.exe are confirmed
+# broken on Windows for their actual purpose (argv0 self-path defect -- verified
+# against a fresh from-source v4.1.1 build, not just the stale prebuilt
+# download, so it's an upstream defect, not corruption). agave-install-init
+# LOOKS usable because --version/--help short-circuit past the bug, but a real
+# release argument fails identically -- do not trust either binary for an
+# actual install/update. Simplest verified-working remediation: download the
+# official prebuilt tarball directly (no installer, no protoc/clang/cargo
+# needed) -- confirmed 2026-07-04 in under a minute. Source build via
+# cargo-install-all.sh remains a fallback for patched/custom builds, not the
+# default. Full record + the false start (source-build was tried first,
+# unnecessarily) is in CLAUDEBASE/The-Savant-Free-Agency-Logging.md Entry-03.
 [tasks.agave-sync]
-description = "Sync Agave/Anza CLI lane when agave-install is usable"
-run = "pwsh -NoProfile -Command \"Write-Error 'Blocked: agave-sync no longer calls stale solana-install. Restore a usable agave-install or install the current Anza prebuilt release manually, then re-run verify-host.'; exit 1\""
+description = "Print the verified Agave/Anza sync path (both installer binaries are confirmed broken; use the prebuilt tarball)"
+run = "pwsh -NoProfile -Command \"Write-Host 'Neither agave-install.exe nor agave-install-init.exe can be trusted to install/update (confirmed Windows argv0 defect, 2026-07-04). Verified remediation: curl -L -o solana-release.tar.bz2 https://github.com/anza-xyz/agave/releases/download/v<TAG>/solana-release-x86_64-pc-windows-msvc.tar.bz2, then tar -xjf it, then point PATH at the extracted bin/. No protoc/clang/cargo required. Full record: CLAUDEBASE/The-Savant-Free-Agency-Logging.md Entry-03.'\""
 
 [tasks.firedancer-artifacts]
 description = "Prepare Frankendancer artifact directory for native bridge"
