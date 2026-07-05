@@ -51,7 +51,7 @@ exit (from bash)                  # Exit WSL properly
 
 ### WSL-Automount-Disabled
 ```ini
-# C:\Users\erdno\.wslconfig
+# C:\Users\eldno\.wslconfig
 [wsl2]
 automount=false  # No /mnt/c mounting
 ```
@@ -90,11 +90,11 @@ Get-Process | Where-Object { $_.ProcessName -like '*Code*' } |
 
 | Item | Location |
 |------|----------|
-| **VSCode Insiders Bin** | `C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` |
+| **VSCode Insiders Bin** | `C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` |
 | **Shell Integration** | `...\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1` |
-| **WSL Config** | `C:\Users\erdno\.wslconfig` |
-| **Workspace Settings** | `c:\Users\erdno\chthonic-archive\.vscode\settings.json` |
-| **Extensions** | `c:\Users\erdno\chthonic-archive\extensions\` |
+| **WSL Config** | `C:\Users\eldno\.wslconfig` |
+| **Workspace Settings** | `c:\Users\eldno\chthonic-archive\.vscode\settings.json` |
+| **Extensions** | `c:\Users\eldno\chthonic-archive\extensions\` |
 
 ---
 
@@ -161,3 +161,4 @@ code-insiders --version
 
 **Last Updated**: January 9, 2026
 **Status**: ✅ All systems operational
+

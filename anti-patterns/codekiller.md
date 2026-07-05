@@ -43,7 +43,7 @@ This file is intentionally preserved as a raw artifact.
 - [chthonic-archive_transmutation_framework_original.html](../WET_PAPER_TO_GOLD_WIP/chthonic-archive_transmutation_framework_original.html) file:
   - to preserve the original intent of the **chthonic-archive** as transmutation framework architecture and directives that were lost, and which are still being referenced to this day as the baseline for all subsequent work on the framework and derivative methodologies consistent with a **Code-Killer -> (`CDE-KLLR`)**  anti-pattern where files are hidden or made inaccessible without proper archival or versioning. 
     **->** Refer also to the:
-- [Readme.md](file:///C:/Users/erdno/chthonic-archive/anti-patterns/codekiller/Readme.md) in this folder for a detailed analysis of the code-killer event and its implications for the project.
+- [Readme.md](file:///C:/Users/eldno/chthonic-archive/anti-patterns/codekiller/Readme.md) in this folder for a detailed analysis of the code-killer event and its implications for the project.
 
 ## Raw Session Artifact (Preserved Below)
 
@@ -2917,3 +2917,4 @@ export const CONFIGURATION_SCHEMA = {
 };
 
 ```
+

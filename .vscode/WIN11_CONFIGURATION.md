@@ -13,13 +13,13 @@
 **Solution**: Enabled automatic shell integration via settings.json
 **Location**: Shell integration script at:
 ```
-c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
+c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
 ```
 
 ### ✅ 2. `code-insiders` CLI Available
 **Problem**: Command not recognized in PowerShell sessions
 **Solution**:
-- Verified PATH: `C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` ✓
+- Verified PATH: `C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` ✓
 - Added to workspace terminal PATH in settings.json
 - Refreshed current session PATH
 
@@ -33,7 +33,7 @@ x64
 
 ### ✅ 3. WSL Automount Disabled
 **Problem**: Typing `bash` accidentally launched WSL and mounted Windows drives at `/mnt/c/`
-**Solution**: Created `C:\Users\erdno\.wslconfig` with:
+**Solution**: Created `C:\Users\eldno\.wslconfig` with:
 ```ini
 [wsl2]
 automount=false  # Disable automatic Windows drive mounting
@@ -103,7 +103,7 @@ code-tunnel-insiders  86620       22.89      0.72  Remote tunnel
 5. **Decorations**: Command success/failure indicators enabled
 6. **History**: 100 commands tracked
 
-### WSL2 Configuration (`C:\Users\erdno\.wslconfig`)
+### WSL2 Configuration (`C:\Users\eldno\.wslconfig`)
 ```ini
 [wsl2]
 automount=false        # ⚠️ CRITICAL: Prevents C:\ mounting at /mnt/c
@@ -135,13 +135,13 @@ C:\Windows\System32\Wbem
 C:\Windows\System32\WindowsPowerShell\v1.0
 C:\Program Files\PowerShell\7
 C:\Program Files\GitHub CLI
-C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin  ← ADDED
-C:\Users\erdno\AppData\Local\Microsoft\WinGet\Packages\...
-C:\Users\erdno\AppData\Local\GitHubDesktop\bin
-C:\Users\erdno\.local\bin  (uv)
-C:\Users\erdno\.bun\bin
-C:\Users\erdno\.cargo\bin
-C:\Users\erdno\chthonic-archive\scripts\bin  (workspace)
+C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin  ← ADDED
+C:\Users\eldno\AppData\Local\Microsoft\WinGet\Packages\...
+C:\Users\eldno\AppData\Local\GitHubDesktop\bin
+C:\Users\eldno\.local\bin  (uv)
+C:\Users\eldno\.bun\bin
+C:\Users\eldno\.cargo\bin
+C:\Users\eldno\chthonic-archive\scripts\bin  (workspace)
 C:\Go\bin
 C:\Ruby34-x64\bin
 C:\Ruby34-x64\msys64\ucrt64\bin
@@ -188,7 +188,7 @@ Ctrl+Shift+P → "Terminal: Select Default Profile" → WSL (Ubuntu)
 # Open Windows Terminal → Ubuntu profile
 
 # Method 3: Temporarily re-enable automount
-# Edit C:\Users\erdno\.wslconfig → comment out "automount=false"
+# Edit C:\Users\eldno\.wslconfig → comment out "automount=false"
 wsl --shutdown
 bash
 ```
@@ -206,16 +206,16 @@ Ctrl+D         # ✅ CORRECT
 ### Load Chthonic Extensions
 ```powershell
 # Method 1: Press F5 in extension directory (Extension Development Host)
-cd c:\Users\erdno\chthonic-archive\extensions\chthonic-statusbar
+cd c:\Users\eldno\chthonic-archive\extensions\chthonic-statusbar
 # Press F5 in VSCode
 
 # Method 2: Package as VSIX
-cd c:\Users\erdno\chthonic-archive\extensions\chthonic-statusbar
+cd c:\Users\eldno\chthonic-archive\extensions\chthonic-statusbar
 bunx @vscode/vsce package
 # Install via Extensions → Install from VSIX
 
 # Method 3: Symlink to extensions folder
-cd c:\Users\erdno\chthonic-archive\extensions
+cd c:\Users\eldno\chthonic-archive\extensions
 New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.vscode-insiders\extensions\chthonic-statusbar" -Target ".\chthonic-statusbar"
 # Reload window
 ```
@@ -267,7 +267,7 @@ swap=4GB       # Default: 25% of memory (reduce if SSD wear is a concern)
 ## 📝 Files Modified
 
 ### Created
-- `C:\Users\erdno\.wslconfig` - WSL2 global configuration
+- `C:\Users\eldno\.wslconfig` - WSL2 global configuration
 - `.vscode/SETTINGS_DIAGNOSIS.md` - Diagnostic report
 - `.vscode/WIN11_CONFIGURATION.md` - This file
 
@@ -286,13 +286,13 @@ swap=4GB       # Default: 25% of memory (reduce if SSD wear is a concern)
 1. Check that PowerShell is 7.5.4: `$PSVersionTable.PSVersion`
 2. Verify script path exists:
    ```powershell
-   Test-Path "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1"
+   Test-Path "c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1"
    ```
 3. Reload window: `Ctrl+Shift+P` → "Developer: Reload Window"
 4. Check terminal profile: `Ctrl+Shift+P` → "Terminal: Select Default Profile" → "Pwsh (Chthonic)"
 
 ### WSL Still Auto-Mounting
-1. Verify .wslconfig exists: `Get-Content C:\Users\erdno\.wslconfig`
+1. Verify .wslconfig exists: `Get-Content C:\Users\eldno\.wslconfig`
 2. Ensure WSL is shutdown: `wsl --shutdown`
 3. Check WSL version: `wsl --version` (requires WSL 2.0+)
 4. Restart Windows (nuclear option)
@@ -339,3 +339,4 @@ swap=4GB       # Default: 25% of memory (reduce if SSD wear is a concern)
 **Status**: ✅ **ALL SYSTEMS OPERATIONAL**
 
 **Next Action**: Reload VSCode window (`Ctrl+Shift+P` → "Developer: Reload Window") to activate all changes.
+

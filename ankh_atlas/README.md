@@ -32,7 +32,7 @@ The tool provides **navigation without narration**. It emits coordinates, not in
   "schema_version": "0.1.0",
   "generated_at": "2025-12-30T08:40:01.627822+00:00",
   "commit": "e494aa0df7e70a5bef550b8ba4f80bcf9311e066",
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
+  "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "signal_count": 35942,
   "signals": [
     {

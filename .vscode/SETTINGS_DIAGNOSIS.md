@@ -11,12 +11,12 @@
 - **Status**: ✅ **FIXED**
 - **Problem**: Shell integration was not configured, preventing command detection, decorations, and IntelliSense
 - **Solution**: Added comprehensive shell integration settings to `.vscode/settings.json`
-- **Shell Integration Script**: `c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1`
+- **Shell Integration Script**: `c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1`
 
 ### 2. **Missing `code-insiders` CLI Command**
 - **Status**: ✅ **FIXED**
 - **Problem**: `code-insiders` was in User PATH but PowerShell session didn't have it loaded
-- **Root Cause**: PATH already contained `C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` but terminal needed refresh
+- **Root Cause**: PATH already contained `C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin` but terminal needed refresh
 - **Solution**:
   - Verified PATH entry exists
   - Refreshed PATH in current session
@@ -28,10 +28,10 @@
 - **Problem**: Typing `bash` in PowerShell terminal triggered WSL automount of Windows drives at `/mnt/c/`
 - **Impact**:
   - Unwanted Ubuntu WSL session with "NEURAL INTERFACE" custom prompt
-  - Mounted chthonic-archive at `/mnt/c/Users/erdno/chthonic-archive`
+  - Mounted chthonic-archive at `/mnt/c/Users/eldno/chthonic-archive`
   - Confusion about how to exit (tried `quit`, `unmount`, `wsl unmount` - correct command is `exit`)
 - **Solution Applied**:
-  1. **Created `C:\Users\erdno\.wslconfig`** with `automount=false` to prevent Windows drive mounting
+  1. **Created `C:\Users\eldno\.wslconfig`** with `automount=false` to prevent Windows drive mounting
   2. **Added terminal command skip list** in settings.json to prevent `bash`, `wsl`, `ubuntu` from hijacking terminal
   3. **Shutdown WSL** to apply configuration (`wsl --shutdown`)
 - **To Manually Mount** (when needed): `wsl --mount --vhd <path>` or remove `automount=false` temporarily
@@ -68,7 +68,7 @@
 
 ```jsonc
 // Shell Integration Configuration (VSCode Insiders + PowerShell 7.5.4)
-// Shell integration script: c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
+// Shell integration script: c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7c62052af6\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1
 "terminal.integrated.shellIntegration.enabled": true,
 "terminal.integrated.shellIntegration.decorationsEnabled": "both",
 "terminal.integrated.shellIntegration.showCommandGuide": true,
@@ -86,7 +86,7 @@
 ],
 ```
 
-### WSL Configuration (Created `C:\Users\erdno\.wslconfig`)
+### WSL Configuration (Created `C:\Users\eldno\.wslconfig`)
 
 ```ini
 [wsl2]
@@ -377,3 +377,4 @@ code-insiders --extensionDevelopmentPath="$PWD\extensions\chthonic-statusbar"
 ```powershell
 bun run extensions/validate_fixes.js
 # Should show all ✓ checks passing
+
