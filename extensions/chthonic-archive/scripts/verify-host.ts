@@ -499,18 +499,45 @@ function workspaceNeedsSolanaLane(): boolean {
 }
 
 function ensureAgaveAnzaLane(): ManualCheckResult {
+    // 2026-07-04: BOTH agave-install.exe and agave-install-init.exe have a
+    // confirmed Windows argv0-self-path defect -- verified against a
+    // from-source v4.1.1 build, not just the stale prebuilt v3.1.9 download,
+    // so it's an upstream Anza/Windows defect, not a corrupted-binary
+    // artifact. `agave-install` fails on every invocation, args or none.
+    // `agave-install-init` LOOKS usable because --version/--help short-circuit
+    // past the bug (clap resolves those before touching positional args) --
+    // but giving it a real release argument (e.g. `4.1.1`) fails the exact
+    // same way ("Found argument '4.1.1' which wasn't expected"): the leaked
+    // self-path permanently occupies the `[release]` slot. An earlier version
+    // of this check treated agave-install-init's --version success as "usable
+    // update lane" -- that was wrong, caught only because a real install
+    // attempt was tested, not just the version probe. NEITHER installer
+    // binary can actually install/update anything on Windows right now.
+    //
+    // The verified-working remediation is NOT a source build: it's the plain
+    // prebuilt release tarball -- `curl -L -o solana-release.tar.bz2
+    // https://github.com/anza-xyz/agave/releases/download/v<X>/solana-release-x86_64-pc-windows-msvc.tar.bz2`
+    // then `tar -xjf`, then point PATH at the extracted bin/. No protoc, no
+    // clang, no cargo, no crossbeam git-symlink issue -- all of that was only
+    // needed because this session assumed source-build was the only path
+    // without testing the tarball first. Source-build via
+    // scripts/cargo-install-all.sh remains a legitimate fallback (e.g. a
+    // patched/custom build), just not the simplest one.
     const needsLane = workspaceNeedsSolanaLane();
     const solana = runSync(['solana', '--version']);
-    const agaveVersion = runSync(['agave-install', '--version']);
-    const agaveHelp = runSync(['agave-install', '--help']);
+    const agaveInstallInit = runSync(['agave-install-init', '--version']);
     const solanaPath = resolveCommandPath('solana');
     const agaveInstallPath = resolveCommandPath('agave-install');
+    const agaveInstallInitPath = resolveCommandPath('agave-install-init');
     const solanaInstallPath = resolveCommandPath('solana-install');
 
     const hasSolana = !solana.threw && solana.exitCode === 0;
-    const hasUsableAgaveInstall =
-        Boolean(agaveInstallPath) &&
-        ((!agaveVersion.threw && agaveVersion.exitCode === 0) || (!agaveHelp.threw && agaveHelp.exitCode === 0));
+    // Deliberately NOT named "usable" -- this only proves the binary responds
+    // to --version, which is known to short-circuit past the confirmed defect
+    // in the actual install/update code path. It is not evidence the tool can
+    // perform its core function.
+    const respondsToVersionProbe =
+        Boolean(agaveInstallInitPath) && !agaveInstallInit.threw && agaveInstallInit.exitCode === 0;
     const baseEvidence: EvidenceEntry[] = [
         makeEvidence(
             'workspace-declaration',
@@ -520,37 +547,55 @@ function ensureAgaveAnzaLane(): ManualCheckResult {
         ),
         makeEvidence('command-exit', 'solana CLI version probe', formatCommandObservation(solana)),
         makeEvidence('path-probe', 'solana path probe', solanaPath ?? 'missing'),
-        makeEvidence('path-probe', 'agave-install path probe', agaveInstallPath ?? 'missing'),
-        makeEvidence('command-exit', 'agave-install --version probe', formatCommandObservation(agaveVersion)),
-        makeEvidence('command-exit', 'agave-install --help probe', formatCommandObservation(agaveHelp)),
+        makeEvidence('path-probe', 'agave-install-init path probe', agaveInstallInitPath ?? 'missing'),
+        makeEvidence(
+            'command-predicate',
+            'agave-install-init --version probe succeeds, but this is NOT proof of usability -- see manual-check below',
+            formatCommandObservation(agaveInstallInit),
+            'local-inferred',
+        ),
+        makeEvidence(
+            'manual-check',
+            'agave-install.exe: confirmed Windows argv0-self-path defect, fails on every invocation (verified against a from-source v4.1.1 build)',
+            agaveInstallPath ?? 'missing',
+            'local-observed',
+        ),
+        makeEvidence(
+            'manual-check',
+            'agave-install-init.exe: SAME defect as agave-install -- confirmed by giving it a real release argument ("4.1.1"), which fails identically ("Found argument \'4.1.1\' which wasn\'t expected"). --version/--help succeeding is not evidence of core functionality; both were tested directly, not assumed.',
+            undefined,
+            'local-observed',
+        ),
+        makeEvidence(
+            'manual-check',
+            'Verified-working remediation: plain prebuilt release tarball (solana-release-x86_64-pc-windows-msvc.tar.bz2 from github.com/anza-xyz/agave/releases) extracted directly, no installer binary involved. Confirmed 2026-07-04: produces every binary (including validator/watchtower/ledger-tool) in under a minute, no protoc/clang/cargo required.',
+            undefined,
+            'local-observed',
+        ),
         makeEvidence('path-probe', 'solana-install legacy path probe', solanaInstallPath ?? 'missing'),
         makeEvidence(
             'upstream-not-checked',
             'offline preflight does not prove latest Agave release',
-            'live release source must be checked before upgrade motion',
+            'last verified live against github.com/anza-xyz/agave tags on 2026-07-04 (v4.1.1); re-verify before upgrading again',
             'upstream-not-checked',
         ),
     ];
-    const blockedInstallerEvidence = makeEvidence(
-        'remediation-blocked',
-        'stale solana-install remediation must not be called',
-        'use a usable agave-install or current Anza prebuilt release instead',
-        'policy',
-    );
 
     const note = [
         `solana=${hasSolana ? normalizeOutput(solana.stdout).split(/\r?\n/)[0] : 'MISSING'}`,
         `solana.path=${solanaPath ?? 'missing'}`,
-        `agave-install.path=${agaveInstallPath ?? 'missing'}`,
-        `agave-install.usable=${hasUsableAgaveInstall ? 'OK' : 'BROKEN'}`,
+        `agave-install-init.path=${agaveInstallInitPath ?? 'missing'}`,
+        `agave-install-init.respondsToVersionProbe=${respondsToVersionProbe ? 'yes (not proof of usability)' : 'no'}`,
+        `agave-install.exe=${agaveInstallPath ? 'present, confirmed broken (Windows argv0 defect)' : 'missing'}`,
+        `agave-install-init.exe=confirmed broken for its actual purpose (same argv0 defect) despite responding to --version/--help`,
         `solana-install=${solanaInstallPath ? `present (${solanaInstallPath})` : 'missing (legacy/stale task target)'}`,
-        'latest Agave release is not checked by offline preflight; verify live before upgrading',
+        'to update: download the prebuilt release tarball directly (see manual-check evidence above); do not rely on either installer binary',
     ];
 
-    if (hasSolana && hasUsableAgaveInstall) {
+    if (hasSolana) {
         return {
             ok: true,
-            note: [...note, 'update lane: agave-install update'].join('\n'),
+            note: [...note, 'solana CLI itself is fine once installed; neither installer binary is needed for day-to-day use'].join('\n'),
             evidence: baseEvidence,
         };
     }
@@ -561,35 +606,17 @@ function ensureAgaveAnzaLane(): ManualCheckResult {
             evidence: baseEvidence,
         };
     }
-    if (hasSolana && agaveInstallPath && !hasUsableAgaveInstall) {
+    if (!hasSolana && respondsToVersionProbe) {
         return {
             ok: false,
-            note: [
-                ...note,
-                'Agave CLI is present, but the Anza installer lane is broken; do not call solana-install.',
-                'Repair via the current Anza Windows installer or manual prebuilt release, then re-run this check.',
-            ].join('\n'),
-            evidence: [...baseEvidence, blockedInstallerEvidence],
-        };
-    }
-    if (hasSolana && !agaveInstallPath) {
-        return {
-            ok: false,
-            note: [...note, 'Agave CLI is present, but agave-install is missing; update lane unavailable.'].join('\n'),
-            evidence: [...baseEvidence, blockedInstallerEvidence],
-        };
-    }
-    if (!hasSolana && hasUsableAgaveInstall) {
-        return {
-            ok: false,
-            note: [...note, 'agave-install is usable, but solana CLI is missing on PATH.'].join('\n'),
+            note: [...note, 'agave-install-init responds to --version, but solana CLI is missing on PATH -- and the installer cannot be trusted to fetch it (see manual-check evidence).'].join('\n'),
             evidence: baseEvidence,
         };
     }
     return {
         ok: false,
         note: [...note, 'Agave/Anza CLI lane is not usable for this declared workspace.'].join('\n'),
-        evidence: [...baseEvidence, blockedInstallerEvidence],
+        evidence: baseEvidence,
     };
 }
 

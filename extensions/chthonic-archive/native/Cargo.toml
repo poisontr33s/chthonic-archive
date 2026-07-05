@@ -60,7 +60,7 @@ shaderc = "0.10"
 # client crate. Dropping rpc-client removes its whole bundled tail AND its version
 # coupling — which is what previously force-PINNED solana-transaction down to 3.1.0
 # (rpc-client impl'd SerializableTransaction only for that version). With rpc-client
-# gone, solana-transaction floats to latest 4.0. The wire bytes are produced exactly
+# gone, solana-transaction floats to latest compatible 4.x. The wire bytes are produced exactly
 # as rpc-client did: bincode::serialize(&tx) (serde feature → short-vec encoding) →
 # base64. The offline dry-run shares this same construction/signing/serialization
 # code; the only online-only steps are the three HTTP calls.

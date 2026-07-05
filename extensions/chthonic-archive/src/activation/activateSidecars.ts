@@ -14,6 +14,7 @@ import { RestoreOrderLayout } from '../monolith/restoreOrderLayout';
 import { AnnoClient } from '../reactor/annoClient';
 import { CockpitLayout } from '../reactor/cockpitLayout';
 import { SynapseBridge } from '../reactor/synapseBridge';
+import { loadLocalLaneConfig } from '../runtime/localLaneConfig';
 import type { EntropyState, FiredancerSurgeState } from '../reactor/types';
 import type { LaneRegistry, RuntimeLaneState } from '../runtime/laneState';
 import type { ReactorReadiness } from '../runtime/statusReport';
@@ -53,15 +54,45 @@ export interface ActivateSidecarsDeps {
 
 export function activateSidecars(context: vscode.ExtensionContext, deps: ActivateSidecarsDeps): ActivatedSidecars {
     const entropyConfig = deps.chthonicConfig;
-    const allowNativeSidecars = entropyConfig.get<boolean>('security.allowNativeSidecars', false);
-    const entropyEnabled = entropyConfig.get<boolean>('entropy.enabled', false);
-    const entropyMaxFiles = entropyConfig.get<number>('entropy.maxFiles', 3000);
-    const entropyScanIntervalMs = entropyConfig.get<number>('entropy.scanIntervalMs', 60000);
-    const entropyDecorationDebounceMs = entropyConfig.get<number>('entropy.decorationDebounceMs', 120);
-    const entropyDecorationBatch = entropyConfig.get<number>('entropy.decorationBatchSize', 240);
-    const entropyPolyglotRequested = entropyConfig.get<boolean>('entropy.polyglotEnabled', false);
+    const localLaneConfig = loadLocalLaneConfig({
+        extensionRoot: context.extensionPath,
+        workspaceRoot: deps.workspaceRoot,
+        warn: (message) => deps.outputChannel.appendLine(`[local-lane-config] ${message}`),
+    });
+    const allowNativeSidecars = localLaneConfig.getBoolean(
+        'CHTHONIC_ALLOW_NATIVE_SIDECARS',
+        entropyConfig.get<boolean>('security.allowNativeSidecars', false),
+    );
+    const entropyEnabled = localLaneConfig.getBoolean(
+        'CHTHONIC_ENTROPY_ENABLED',
+        entropyConfig.get<boolean>('entropy.enabled', false),
+    );
+    const entropyMaxFiles = localLaneConfig.getNumber(
+        'CHTHONIC_ENTROPY_MAX_FILES',
+        entropyConfig.get<number>('entropy.maxFiles', 3000),
+    );
+    const entropyScanIntervalMs = localLaneConfig.getNumber(
+        'CHTHONIC_ENTROPY_SCAN_INTERVAL_MS',
+        entropyConfig.get<number>('entropy.scanIntervalMs', 60000),
+    );
+    const entropyDecorationDebounceMs = localLaneConfig.getNumber(
+        'CHTHONIC_ENTROPY_DECORATION_DEBOUNCE_MS',
+        entropyConfig.get<number>('entropy.decorationDebounceMs', 120),
+    );
+    const entropyDecorationBatch = localLaneConfig.getNumber(
+        'CHTHONIC_ENTROPY_DECORATION_BATCH_SIZE',
+        entropyConfig.get<number>('entropy.decorationBatchSize', 240),
+    );
+    const entropyPolyglotRequested = localLaneConfig.getBoolean(
+        'CHTHONIC_ENTROPY_POLYGLOT_ENABLED',
+        entropyConfig.get<boolean>('entropy.polyglotEnabled', false),
+    );
     const entropyPolyglotEnabled = entropyPolyglotRequested && allowNativeSidecars;
-    const entropyLedgerMode = entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'bankrun');
+    const entropyLedgerMode = localLaneConfig.getEnum<LedgerMode>(
+        'CHTHONIC_ENTROPY_LEDGER_MODE',
+        ['validator', 'bankrun'],
+        entropyConfig.get<LedgerMode>('entropy.ledgerMode', 'bankrun'),
+    );
 
     const entropyClient = new EntropyWorkerClient(context, deps.outputChannel);
     let entropyDecorations: EntropyDecorationProvider | undefined;
@@ -71,14 +102,35 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
         {
             extensionRoot: context.extensionPath,
             enabled: entropyPolyglotEnabled,
-            pythonScanIntervalMs: entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000),
-            settleDebounceMs: entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400),
+            pythonScanIntervalMs: localLaneConfig.getNumber(
+                'CHTHONIC_ENTROPY_PYTHON_SCAN_INTERVAL_MS',
+                entropyConfig.get<number>('entropy.pythonScanIntervalMs', 30000),
+            ),
+            settleDebounceMs: localLaneConfig.getNumber(
+                'CHTHONIC_ENTROPY_LEDGER_SETTLE_DEBOUNCE_MS',
+                entropyConfig.get<number>('entropy.ledgerSettleDebounceMs', 1400),
+            ),
             ledgerMode: entropyLedgerMode,
-            solanaRpcUrl: entropyConfig.get<string>('entropy.solanaRpcUrl', 'http://127.0.0.1:8899'),
-            solanaAutostartValidator: entropyConfig.get<boolean>('entropy.solanaAutostartValidator', false),
-            solanaLedgerHostBinaryPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaLedgerHostBinaryPath', '')),
-            solanaWalletPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaWalletPath', '')),
-            solanaIdlPath: asOptionalPath(entropyConfig.get<string>('entropy.solanaIdlPath', '')),
+            solanaRpcUrl: localLaneConfig.getString(
+                'CHTHONIC_SOLANA_RPC_URL',
+                entropyConfig.get<string>('entropy.solanaRpcUrl', 'http://127.0.0.1:8899'),
+            ),
+            solanaAutostartValidator: localLaneConfig.getBoolean(
+                'CHTHONIC_SOLANA_AUTOSTART_VALIDATOR',
+                entropyConfig.get<boolean>('entropy.solanaAutostartValidator', false),
+            ),
+            solanaLedgerHostBinaryPath: asOptionalPath(localLaneConfig.getString(
+                'CHTHONIC_SOLANA_LEDGER_HOST_BINARY_PATH',
+                entropyConfig.get<string>('entropy.solanaLedgerHostBinaryPath', ''),
+            )),
+            solanaWalletPath: asOptionalPath(localLaneConfig.getString(
+                'CHTHONIC_SOLANA_WALLET_PATH',
+                entropyConfig.get<string>('entropy.solanaWalletPath', ''),
+            )),
+            solanaIdlPath: asOptionalPath(localLaneConfig.getString(
+                'CHTHONIC_SOLANA_IDL_PATH',
+                entropyConfig.get<string>('entropy.solanaIdlPath', ''),
+            )),
             laneRegistry: deps.laneRegistry,
         },
         (uris) => entropyDecorations?.enqueueExternalUpdates(uris),
@@ -101,7 +153,7 @@ export function activateSidecars(context: vscode.ExtensionContext, deps: Activat
     const reactorTransport = entropyConfig.get<string>('reactor.transport', 'auto');
     const reactorDaemonBinaryRaw = asOptionalPath(entropyConfig.get<string>('reactor.daemonBinaryPath', ''));
     // Relative values resolve against the workspace root so the setting can stay machine-portable.
-    const reactorDaemonBinaryPath = reactorDaemonBinaryRaw && !path.isAbsolute(reactorDaemonBinaryRaw)
+    const reactorDaemonBinaryPath = reactorDaemonBinaryRaw && deps.workspaceRoot && !path.isAbsolute(reactorDaemonBinaryRaw)
         ? path.resolve(deps.workspaceRoot, reactorDaemonBinaryRaw)
         : reactorDaemonBinaryRaw;
     const reactorReadiness = assessReactorReadiness(

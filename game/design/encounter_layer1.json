@@ -51,9 +51,9 @@
     }
   ],
   "combatants": [
-    { "id": "orackla",    "ref": "game/lore/characters/orackla.json",  "team": "triumvirate", "spawn": [2, 6] },
-    { "id": "umeko",      "ref": "game/lore/characters/umeko.json",    "team": "triumvirate", "spawn": [6, 2] },
-    { "id": "lysandra",   "ref": "game/lore/characters/lysandra.json", "team": "triumvirate", "spawn": [6, 10] },
+    { "id": "orackla",    "ref": "game/lore/characters/heart/T1/orackla.json",  "team": "triumvirate", "spawn": [2, 6] },
+    { "id": "umeko",      "ref": "game/lore/characters/lungs/T1/umeko.json",    "team": "triumvirate", "spawn": [6, 2] },
+    { "id": "lysandra",   "ref": "game/lore/characters/stomach/T1/lysandra.json", "team": "triumvirate", "spawn": [6, 10] },
     { "id": "the_savant", "ref": "assets/data.json#entities[0]",       "team": "player",      "spawn": [6, 6] }
   ],
   "map": {
