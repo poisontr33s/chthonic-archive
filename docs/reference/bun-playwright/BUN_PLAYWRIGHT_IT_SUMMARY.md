@@ -95,7 +95,7 @@ Use **WSL2** to bypass enterprise Windows network policies:
 
 ```bash
 # In WSL2 Ubuntu
-cd /mnt/c/Users/erdno/chthonic-archive/bun-playwright-poc
+cd /mnt/c/Users/eldno/chthonic-archive/bun-playwright-poc
 bun install
 bunx playwright install chromium
 bun run launch-diag
@@ -122,3 +122,4 @@ Keep Node.js available — Bun lacks `node:inspector` for breakpoint debugging.
 **Bun-Playwright is production-viable for headless CI/CD** but blocked on this specific enterprise Windows environment due to security policies outside our control. The PoC is structurally complete and ready to validate in an unrestricted environment.
 
 *No IT policy changes are recommended — this is working as intended from a security perspective.*
+

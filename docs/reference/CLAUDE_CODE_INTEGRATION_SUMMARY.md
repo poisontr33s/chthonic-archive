@@ -76,10 +76,10 @@ pwsh -File .\scripts\run_mcp_session.ps1 -EnsureClaude
 ```json
 {
   "label": "chthonic-archive (local)",
-  "manifestPath": "C:\\Users\\erdno\\chthonic-archive\\mcp\\mcp.json",
+  "manifestPath": "C:\\Users\\eldno\\chthonic-archive\\mcp\\mcp.json",
   "command": "bun",
   "args": ["run", "mcp/server.ts"],
-  "workingDirectory": "C:\\Users\\erdno\\chthonic-archive",
+  "workingDirectory": "C:\\Users\\eldno\\chthonic-archive",
   "transport": "stdio"
 }
 ```
@@ -436,3 +436,4 @@ bun run run_mcp_validation.ts --ensure-claude-code
 **Signed in clean, reversible, boring architecture,**  
 **Implementation complete.**  
 **2026-01-05 03:22 UTC**
+

@@ -416,7 +416,7 @@
       "kind": "text",
       "lines": [
         "Edited file",
-        "c:\\Users\\erdno\\chthonic-archive\\.gitignore",
+        "c:\\Users\\eldno\\chthonic-archive\\.gitignore",
         "+1",
         "-0"
       ]
@@ -1207,3 +1207,4 @@
     }
   ]
 }
+

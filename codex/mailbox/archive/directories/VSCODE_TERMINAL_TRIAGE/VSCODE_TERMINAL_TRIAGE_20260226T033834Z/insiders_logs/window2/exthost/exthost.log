@@ -1,5 +1,5 @@
 2026-02-26 03:02:07.709 [info] Extension host with pid 35112 started
-2026-02-26 03:02:07.709 [info] Skipping acquiring lock for c:\Users\erdno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
+2026-02-26 03:02:07.709 [info] Skipping acquiring lock for c:\Users\eldno\AppData\Roaming\Code - Insiders\User\workspaceStorage\ef54bace47120bf8bda2a555aef41825.
 2026-02-26 03:02:07.987 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
 2026-02-26 03:02:08.003 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
 2026-02-26 03:02:08.015 [info] ExtensionService#_doActivateExtension GitHub.copilot-chat, startup: false, activationEvent: 'onChatParticipant:github.copilot.editsAgent'
@@ -18,14 +18,14 @@
 2026-02-26 03:02:11.349 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
 2026-02-26 03:02:11.943 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
 2026-02-26 03:02:12.145 [info] ExtensionService#_doActivateExtension GitHub.vscode-pull-request-github, startup: false, activationEvent: 'api', root cause: GitHub.copilot-chat
-2026-02-26 03:02:12.572 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-02-26 03:02:12.572 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-02-26 03:02:12.572 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"}
+2026-02-26 03:02:12.572 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
 2026-02-26 03:02:12.572 [info] Provider for scheme file is defined:  true
 2026-02-26 03:02:15.954 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
 2026-02-26 03:02:16.528 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
 2026-02-26 03:02:16.531 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"42b7fa3908224c0b93f04f3f19ea762c6648412d"}
-2026-02-26 03:02:16.555 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-02-26 03:02:16.555 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-02-26 03:02:16.555 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"}
+2026-02-26 03:02:16.555 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
 2026-02-26 03:02:16.555 [info] Provider for scheme file is defined:  true
 2026-02-26 03:02:16.555 [info] Provider returned edit session identifier match result:  50
 2026-02-26 03:02:17.144 [info] Eager extensions activated
@@ -35,13 +35,13 @@
 2026-02-26 03:02:18.138 [info] ExtensionService#_doActivateExtension chthonic-archive.chthonic-archive, startup: false, activationEvent: 'onStartupFinished'
 2026-02-26 03:02:18.143 [info] ExtensionService#_doActivateExtension google.gemini-cli-vscode-ide-companion, startup: false, activationEvent: 'onStartupFinished'
 2026-02-26 03:02:18.202 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-azure-mcp-server, startup: false, activationEvent: 'onStartupFinished'
-2026-02-26 03:02:18.518 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-02-26 03:02:18.518 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-02-26 03:02:18.518 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"}
+2026-02-26 03:02:18.518 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
 2026-02-26 03:02:18.518 [info] Provider for scheme file is defined:  true
 2026-02-26 03:02:19.400 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
 2026-02-26 03:02:19.401 [info] Provider returned edit session identifier:  {"remote":"https://github.com/poisontr33s/chthonic-archive.git","ref":"main","sha":"42b7fa3908224c0b93f04f3f19ea762c6648412d"}
-2026-02-26 03:02:19.418 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"}
-2026-02-26 03:02:19.418 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\erdno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/erdno/chthonic-archive","path":"/c:/Users/erdno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
+2026-02-26 03:02:19.418 [info] Getting edit session identifier for workspaceFolder {"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"}
+2026-02-26 03:02:19.418 [info] Invoking #provideEditSessionIdentity for workspaceFolder {"uri":{"$mid":1,"fsPath":"c:\\Users\\eldno\\chthonic-archive","_sep":1,"external":"file:///c%3A/Users/eldno/chthonic-archive","path":"/c:/Users/eldno/chthonic-archive","scheme":"file"},"name":"chthonic-archive","index":0}
 2026-02-26 03:02:19.418 [info] Provider for scheme file is defined:  true
 2026-02-26 03:02:19.418 [info] Provider returned edit session identifier match result:  50
 2026-02-26 03:02:39.375 [warning] [Decorations] CAPPING events from decorations provider vscode.git 506
@@ -60,60 +60,61 @@
 2026-02-26 03:50:06.772 [info] Extension host terminating: renderer closed the MessagePort
 2026-02-26 03:50:06.807 [error] An error occurred when disposing the subscriptions for extension 'GitHub.copilot-chat':
 2026-02-26 03:50:06.807 [error] Error: Channel has been closed
-	at i (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3935)
-	at Object.info (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:4305)
-	at XOe.logIt (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:2672:2136)
-	at c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2208
+	at i (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3935)
+	at Object.info (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:4305)
+	at XOe.logIt (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:2672:2136)
+	at c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2208
 	at Array.forEach (<anonymous>)
-	at fet._logIt (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2195)
-	at fet.info (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2285)
-	at n.info (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2804)
-	at VXe._fn (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1801:31944)
-	at VXe.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1210)
-	at Sv (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
-	at n.clear (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
-	at n.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
-	at S9e.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
-	at Sv (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
-	at n.clear (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
-	at n.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
-	at rJ.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
-	at Sv (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
-	at n.clear (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
-	at n.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
-	at Cee.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
-	at Sv (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
-	at n.clear (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
-	at n.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
-	at iL.dispose (c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
-	at In (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:401:736)
-	at Ok._fn (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:18365)
-	at Ok.dispose (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:401:1248)
-	at ik._deactivate (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:14704)
-	at file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:12006
+	at fet._logIt (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2195)
+	at fet.info (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2285)
+	at n.info (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1064:2804)
+	at VXe._fn (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1801:31944)
+	at VXe.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1210)
+	at Sv (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
+	at n.clear (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
+	at n.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
+	at S9e.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
+	at Sv (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
+	at n.clear (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
+	at n.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
+	at rJ.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
+	at Sv (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
+	at n.clear (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
+	at n.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
+	at Cee.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
+	at Sv (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:695)
+	at n.clear (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1527)
+	at n.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:1437)
+	at iL.dispose (c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022505\dist\extension.js:1051:2325)
+	at In (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:401:736)
+	at Ok._fn (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:18365)
+	at Ok.dispose (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:401:1248)
+	at ik._deactivate (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:14704)
+	at file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:12006
 	at Array.map (<anonymous>)
-	at ik._deactivateAll (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:11994)
-	at ik.terminate (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:12345)
-	at r.terminate (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:500:1072)
-	at Os (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:780:11691)
-	at MessagePortMain.<anonymous> (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:780:8122)
+	at ik._deactivateAll (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:11994)
+	at ik.terminate (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:498:12345)
+	at r.terminate (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:500:1072)
+	at Os (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:780:11691)
+	at MessagePortMain.<anonymous> (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:780:8122)
 	at MessagePortMain.emit (node:events:519:28)
 	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2959)
 	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
 2026-02-26 03:50:06.814 [error] Error: Channel has been closed
-	at o (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3524)
-	at Object.appendLine (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3663)
-	at Worker.<anonymous> (c:\Users\erdno\.vscode-insiders\extensions\chthonic-archive.chthonic-archive-0.2.1\dist\extension.js:1:3128)
+	at o (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3524)
+	at Object.appendLine (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3663)
+	at Worker.<anonymous> (c:\Users\eldno\.vscode-insiders\extensions\chthonic-archive.chthonic-archive-0.2.1\dist\extension.js:1:3128)
 	at Worker.emit (node:events:531:35)
 	at [kOnExit] (node:internal/worker:320:10)
 	at Worker.<computed>.onexit (node:internal/worker:232:20)
 	at Worker.callbackTrampoline (node:internal/async_hooks:130:17)
 2026-02-26 03:50:06.827 [error] Error: Channel has been closed
-	at i (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3935)
-	at Object.info (file:///c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:4305)
-	at zT.info (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:16:709)
-	at ChildProcess.<anonymous> (c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:21:48759)
+	at i (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:3935)
+	at Object.info (file:///c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/7e5adbd392/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:501:4305)
+	at zT.info (c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:16:709)
+	at ChildProcess.<anonymous> (c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\client\dist\node\jsonClientMain.js:21:48759)
 	at ChildProcess.emit (node:events:519:28)
 	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
 	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
 2026-02-26 03:50:06.827 [info] Extension host with pid 35112 exiting with code 0
+

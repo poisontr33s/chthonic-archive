@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-31T22:05:01.940308+00:00",
+  "generated_at": "2026-07-04T07:08:38.614742+00:00",
   "repo": "poisontr33s/chthonic-archive",
   "summary": {
     "prs": {
@@ -48,10 +48,10 @@
       "actor": "dependabot[bot]",
       "actor_type": "dependabot",
       "created_at": "2026-05-19T22:36:08Z",
-      "updated_at": "2026-05-27T00:02:51Z",
+      "updated_at": "2026-06-28T23:14:52Z",
       "merged_at": null,
       "closed_at": null,
-      "days_stale": 4,
+      "days_stale": 5,
       "labels": [
         "dependencies",
         "python:uv"
@@ -70,7 +70,7 @@
       "updated_at": "2026-04-29T00:40:12Z",
       "merged_at": "2026-04-29T00:40:08Z",
       "closed_at": "2026-04-29T00:40:08Z",
-      "days_stale": 32,
+      "days_stale": 66,
       "labels": [],
       "draft": false,
       "head_ref": "webview-hmr-phase4",
@@ -86,7 +86,7 @@
       "updated_at": "2026-04-29T00:25:19Z",
       "merged_at": "2026-04-28T23:19:39Z",
       "closed_at": "2026-04-28T23:19:39Z",
-      "days_stale": 32,
+      "days_stale": 66,
       "labels": [],
       "draft": false,
       "head_ref": "gate-h-jsonl-fallback",
@@ -102,7 +102,7 @@
       "updated_at": "2026-04-28T23:32:55Z",
       "merged_at": "2026-04-28T23:32:46Z",
       "closed_at": "2026-04-28T23:32:46Z",
-      "days_stale": 32,
+      "days_stale": 66,
       "labels": [
         "dependencies",
         "python:uv"
@@ -121,7 +121,7 @@
       "updated_at": "2026-04-25T18:17:17Z",
       "merged_at": null,
       "closed_at": "2026-04-25T18:17:15Z",
-      "days_stale": 36,
+      "days_stale": 69,
       "labels": [
         "dependencies",
         "python:uv"
@@ -140,7 +140,7 @@
       "updated_at": "2026-04-28T23:34:27Z",
       "merged_at": "2026-04-28T23:34:21Z",
       "closed_at": "2026-04-28T23:34:21Z",
-      "days_stale": 32,
+      "days_stale": 66,
       "labels": [
         "dependencies",
         "javascript"
@@ -159,7 +159,7 @@
       "updated_at": "2026-03-24T20:20:47Z",
       "merged_at": null,
       "closed_at": "2026-03-24T20:20:47Z",
-      "days_stale": 68,
+      "days_stale": 101,
       "labels": [],
       "draft": true,
       "head_ref": "copilot/update-ci-to-use-uv-cli",
@@ -175,7 +175,7 @@
       "updated_at": "2026-03-24T20:47:45Z",
       "merged_at": "2026-03-24T20:47:36Z",
       "closed_at": "2026-03-24T20:47:36Z",
-      "days_stale": 68,
+      "days_stale": 101,
       "labels": [
         "dependencies",
         "ruby"
@@ -194,7 +194,7 @@
       "updated_at": "2026-02-23T02:34:10Z",
       "merged_at": "2026-02-23T02:27:36Z",
       "closed_at": "2026-02-23T02:27:36Z",
-      "days_stale": 97,
+      "days_stale": 131,
       "labels": [],
       "draft": false,
       "head_ref": "copilot-worktree-2026-02-21T01-36-59",
@@ -210,7 +210,7 @@
       "updated_at": "2026-02-04T13:27:55Z",
       "merged_at": "2026-02-04T13:24:18Z",
       "closed_at": "2026-02-04T13:24:18Z",
-      "days_stale": 116,
+      "days_stale": 149,
       "labels": [],
       "draft": false,
       "head_ref": "copilot/find-and-replace-md-linkages",
@@ -226,7 +226,7 @@
       "updated_at": "2026-02-04T12:36:12Z",
       "merged_at": null,
       "closed_at": "2026-01-29T07:13:15Z",
-      "days_stale": 116,
+      "days_stale": 149,
       "labels": [],
       "draft": false,
       "head_ref": "claude/fetch-copilot-instructions-KGF55",
@@ -242,7 +242,7 @@
       "updated_at": "2026-01-05T03:49:03Z",
       "merged_at": "2026-01-05T03:47:23Z",
       "closed_at": "2026-01-05T03:47:23Z",
-      "days_stale": 146,
+      "days_stale": 180,
       "labels": [],
       "draft": false,
       "head_ref": "add-claude-github-actions-1767584822087",
@@ -258,7 +258,7 @@
       "updated_at": "2026-01-05T03:48:24Z",
       "merged_at": "2026-01-05T03:44:57Z",
       "closed_at": "2026-01-05T03:44:57Z",
-      "days_stale": 146,
+      "days_stale": 180,
       "labels": [],
       "draft": false,
       "head_ref": "add-claude-github-actions-1767584661398",
@@ -274,7 +274,7 @@
       "updated_at": "2026-02-04T12:35:38Z",
       "merged_at": null,
       "closed_at": "2026-01-29T07:13:11Z",
-      "days_stale": 116,
+      "days_stale": 149,
       "labels": [],
       "draft": true,
       "head_ref": "copilot/correct-ankh-understanding",
@@ -290,7 +290,7 @@
       "updated_at": "2026-02-04T12:35:56Z",
       "merged_at": null,
       "closed_at": "2025-12-01T19:26:43Z",
-      "days_stale": 116,
+      "days_stale": 149,
       "labels": [],
       "draft": false,
       "head_ref": "copilot/research-github-copilot-pro-features",
@@ -307,7 +307,7 @@
       "created_at": "2026-02-04T01:31:52Z",
       "updated_at": "2026-02-04T01:36:47Z",
       "closed_at": "2026-02-04T01:36:47Z",
-      "days_stale": 116,
+      "days_stale": 150,
       "labels": [
         "root dir/workspace enhancement"
       ],
@@ -338,7 +338,7 @@
     },
     {
       "name": "main",
-      "sha": "ca964a2175d97e0c9fcca777cb3a6aa9296807c8",
+      "sha": "e3cd06496cbf657e7f3e29911a3f4a1e31a77730",
       "actor_type": "human",
       "protected": false,
       "is_default": true

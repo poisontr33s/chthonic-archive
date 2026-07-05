@@ -140,6 +140,6 @@ These files show staleness, drift, or naming smells:
 - 🆕 **assets\save_state.json** — Fresh game state snapshot (12d), mirrors data.json schema—drift risk if diverged
 
 ---
-*Full ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L1-ore.json*
-*Full analysis: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L2-digest.md*
+*Full ore: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L1-ore.json*
+*Full analysis: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L2-digest.md*
 *This digest feeds the next run as L0 newsfeed.*

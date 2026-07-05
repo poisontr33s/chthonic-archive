@@ -1,5 +1,5 @@
 2026-02-26 02:31:37.783 [info] update#setState idle
-2026-02-26 02:31:38.454 [error] vscode-file: Refused to load resource c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\4741aa0afd\resources\app\extensions\theme-seti\icons\seti.woff from vscode-file: protocol (original URL: vscode-file://vscode-app/c:/Users/erdno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/4741aa0afd/resources/app/extensions/theme-seti/icons/seti.woff)
+2026-02-26 02:31:38.454 [error] vscode-file: Refused to load resource c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\4741aa0afd\resources\app\extensions\theme-seti\icons\seti.woff from vscode-file: protocol (original URL: vscode-file://vscode-app/c:/Users/eldno/AppData/Local/Programs/Microsoft%20VS%20Code%20Insiders/4741aa0afd/resources/app/extensions/theme-seti/icons/seti.woff)
 2026-02-26 02:32:09.093 [info] update#setState checking for updates
 2026-02-26 02:32:09.140 [info] update#setState idle
 2026-02-26 03:02:05.039 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)
@@ -8,3 +8,4 @@
 2026-02-26 03:32:09.263 [info] update#setState idle
 2026-02-26 03:50:06.777 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)
 2026-02-26 03:50:06.829 [info] Extension host with pid 35112 exited with code: 0, signal: unknown.
+

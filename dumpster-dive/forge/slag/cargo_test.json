@@ -1,1 +1,2 @@
-{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"cmd: C:\\Users\\erdno\\.cargo\\bin\\cargo.exe --version\ncargo 1.93.0 (083ac5135 2025-12-15)"}]}}
+{"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"cmd: C:\\Users\\eldno\\.cargo\\bin\\cargo.exe --version\ncargo 1.93.0 (083ac5135 2025-12-15)"}]}}
+

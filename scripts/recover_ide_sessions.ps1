@@ -27,7 +27,7 @@
 param(
     [string]$PackageRoot = "",
     [string]$RepoName = "chthonic-archive",
-    [string]$OldUser = "erdno",
+    [string]$OldUser = "eldno",
     [string]$CopilotSessionId = "de3fec44-4ae5-4c7e-bafe-2abbc4f10178",
     [string]$OldWorkspaceHash = "ef54bace47120bf8bda2a555aef41825"
 )
@@ -211,3 +211,4 @@ Write-Section "Done"
 Write-Host "Recovery complete. Reopen local VS Code Insiders and the local repo." -ForegroundColor Green
 Write-Info ("Copilot session ID: {0}" -f $CopilotSessionId)
 Write-Info ("Claude project bucket: {0}" -f $newProjectSlug)
+

@@ -11,7 +11,7 @@
       "HUGGINGFACE_HUB_TOKEN_present": true
     }
   },
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
+  "repo_root": "C:\\Users\\eldno\\chthonic-archive",
   "checks": [
     {
       "ok": true,
@@ -48,3 +48,4 @@
   "schema_version": 1,
   "ok": true
 }
+

@@ -1,11 +1,12 @@
-2026-02-26 02:31:39.155 [info] Deleted marked for removal extension from disk anthropic.claude-code c:\Users\erdno\.vscode-insiders\extensions\anthropic.claude-code-2.1.58-win32-x64
-2026-02-26 02:31:39.156 [info] Deleted marked for removal extension from disk anthropic.claude-code c:\Users\erdno\.vscode-insiders\extensions\anthropic.claude-code-2.1.56-win32-x64
-2026-02-26 02:31:39.157 [info] Deleted marked for removal extension from disk github.vscode-pull-request-github c:\Users\erdno\.vscode-insiders\extensions\github.vscode-pull-request-github-0.129.2026022404
-2026-02-26 02:31:39.160 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azure-mcp-server c:\Users\erdno\.vscode-insiders\extensions\ms-azuretools.vscode-azure-mcp-server-2.0.21-win32-x64
-2026-02-26 02:31:39.173 [info] Deleted marked for removal extension from disk github.copilot-chat c:\Users\erdno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022303
-2026-02-26 02:31:39.197 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azureresourcegroups c:\Users\erdno\.vscode-insiders\extensions\ms-azuretools.vscode-azureresourcegroups-0.12.1
+2026-02-26 02:31:39.155 [info] Deleted marked for removal extension from disk anthropic.claude-code c:\Users\eldno\.vscode-insiders\extensions\anthropic.claude-code-2.1.58-win32-x64
+2026-02-26 02:31:39.156 [info] Deleted marked for removal extension from disk anthropic.claude-code c:\Users\eldno\.vscode-insiders\extensions\anthropic.claude-code-2.1.56-win32-x64
+2026-02-26 02:31:39.157 [info] Deleted marked for removal extension from disk github.vscode-pull-request-github c:\Users\eldno\.vscode-insiders\extensions\github.vscode-pull-request-github-0.129.2026022404
+2026-02-26 02:31:39.160 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azure-mcp-server c:\Users\eldno\.vscode-insiders\extensions\ms-azuretools.vscode-azure-mcp-server-2.0.21-win32-x64
+2026-02-26 02:31:39.173 [info] Deleted marked for removal extension from disk github.copilot-chat c:\Users\eldno\.vscode-insiders\extensions\github.copilot-chat-0.38.2026022303
+2026-02-26 02:31:39.197 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azureresourcegroups c:\Users\eldno\.vscode-insiders\extensions\ms-azuretools.vscode-azureresourcegroups-0.12.1
 2026-02-26 02:31:39.303 [info] Marked extension as removed anthropic.claude-code-2.1.56-win32-x64
 2026-02-26 02:31:39.303 [info] Marked extension as removed anthropic.claude-code-2.1.58-win32-x64
 2026-02-26 02:31:39.303 [info] Marked extension as removed chthonic-archive.chthonic-assistant-0.1.0
 2026-02-26 02:31:39.303 [info] Marked extension as removed chthonic-archive.chthonic-statusbar-0.1.0
-2026-02-26 02:31:39.389 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azure-github-copilot c:\Users\erdno\.vscode-insiders\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.162-win32-x64
+2026-02-26 02:31:39.389 [info] Deleted marked for removal extension from disk ms-azuretools.vscode-azure-github-copilot c:\Users\eldno\.vscode-insiders\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.162-win32-x64
+

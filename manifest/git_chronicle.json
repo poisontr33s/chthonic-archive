@@ -9103,7 +9103,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T19:33:00+02:00",
       "id": "55183da9c6b7892d8f265f1c0442d610e1d0e844",
-      "title": "roulette(T3): sfs shim + erdno hotspot batch",
+      "title": "roulette(T3): sfs shim + eldno hotspot batch",
       "author": "poisontr33s",
       "url": "",
       "hash": "55183da9c6b7892d8f265f1c0442d610e1d0e844",
@@ -9113,7 +9113,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T19:33:00+02:00",
       "id": "c1623d88f7e21ed2e25d1c32e55024a6960b318f",
-      "title": "roulette(T3): sfs shim + erdno hotspot batch",
+      "title": "roulette(T3): sfs shim + eldno hotspot batch",
       "author": "poisontr33s",
       "url": "",
       "hash": "c1623d88f7e21ed2e25d1c32e55024a6960b318f",
@@ -9863,7 +9863,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T21:36:00+02:00",
       "id": "efb920e6b6887c397befb2d55f74d910f964b35d",
-      "title": "roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno)",
+      "title": "roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, eldno→eldno)",
       "author": "poisontr33s",
       "url": "",
       "hash": "efb920e6b6887c397befb2d55f74d910f964b35d",
@@ -9873,7 +9873,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T21:36:00+02:00",
       "id": "a01857f023280524808d629cb10fc96fcc0f4d91",
-      "title": "roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno)",
+      "title": "roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, eldno→eldno)",
       "author": "poisontr33s",
       "url": "",
       "hash": "a01857f023280524808d629cb10fc96fcc0f4d91",
@@ -10003,7 +10003,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T22:57:20+02:00",
       "id": "16bdb0a3d9fc3d38df72c35e3839a0292dc9a6ba",
-      "title": "spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date",
+      "title": "spruce: reference surface pass 3 — WIP→Archived labels; eldno→eldno typos; testing date",
       "author": "poisontr33s",
       "url": "",
       "hash": "16bdb0a3d9fc3d38df72c35e3839a0292dc9a6ba",
@@ -10013,7 +10013,7 @@
       "type": "commit",
       "timestamp": "2026-04-21T22:57:20+02:00",
       "id": "cd039c25c09849aa4adceb030ed8b846e1ca89bf",
-      "title": "spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date",
+      "title": "spruce: reference surface pass 3 — WIP→Archived labels; eldno→eldno typos; testing date",
       "author": "poisontr33s",
       "url": "",
       "hash": "cd039c25c09849aa4adceb030ed8b846e1ca89bf",
@@ -12334,7 +12334,7 @@
       "timestamp": "2026-04-25T20:11:36+02:00",
       "id": "c3909c8c189d8f6f8f269bdebb2dd2ec71588895",
       "title": "fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "c3909c8c189d8f6f8f269bdebb2dd2ec71588895",
       "short_hash": "c3909c8c"
@@ -12344,7 +12344,7 @@
       "timestamp": "2026-04-25T20:11:36+02:00",
       "id": "4a6f56b888c1bc93cb917de786b6a1f38d160280",
       "title": "fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "4a6f56b888c1bc93cb917de786b6a1f38d160280",
       "short_hash": "4a6f56b8"
@@ -12388,7 +12388,7 @@
       "timestamp": "2026-04-25T20:17:16+02:00",
       "id": "d0b37b1ca6722ad4ceb4d08b3fdd5e2fd5d618f1",
       "title": "fix(containerfile): pre-install packaging before flash-attn source build",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "d0b37b1ca6722ad4ceb4d08b3fdd5e2fd5d618f1",
       "short_hash": "d0b37b1c"
@@ -12398,7 +12398,7 @@
       "timestamp": "2026-04-25T20:17:16+02:00",
       "id": "7f39e6eebd14589fb96b51c1836424e6a19338f6",
       "title": "fix(containerfile): pre-install packaging before flash-attn source build",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "7f39e6eebd14589fb96b51c1836424e6a19338f6",
       "short_hash": "7f39e6ee"
@@ -12463,7 +12463,7 @@
       "timestamp": "2026-04-25T20:35:11+02:00",
       "id": "1fc37db221d3328473a59b2fc063d9e9513e5f47",
       "title": "fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "1fc37db221d3328473a59b2fc063d9e9513e5f47",
       "short_hash": "1fc37db2"
@@ -12473,7 +12473,7 @@
       "timestamp": "2026-04-25T20:35:11+02:00",
       "id": "0b2191f6c04cf4eb761407712ef8ed97f9236bea",
       "title": "fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "0b2191f6c04cf4eb761407712ef8ed97f9236bea",
       "short_hash": "0b2191f6"
@@ -12483,7 +12483,7 @@
       "timestamp": "2026-04-25T20:52:45+02:00",
       "id": "e2e2f7b50f1def1deca38001bef4b76392feb2e4",
       "title": "fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "e2e2f7b50f1def1deca38001bef4b76392feb2e4",
       "short_hash": "e2e2f7b5"
@@ -12493,7 +12493,7 @@
       "timestamp": "2026-04-25T20:52:45+02:00",
       "id": "6f0c95910fddcbd1da1d8bac4991fd65ef91ee36",
       "title": "fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "6f0c95910fddcbd1da1d8bac4991fd65ef91ee36",
       "short_hash": "6f0c9591"
@@ -12503,7 +12503,7 @@
       "timestamp": "2026-04-25T20:54:19+02:00",
       "id": "0789c4a4985d12cda9e7057cd4a1422d949c84f9",
       "title": "docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "0789c4a4985d12cda9e7057cd4a1422d949c84f9",
       "short_hash": "0789c4a4"
@@ -12513,7 +12513,7 @@
       "timestamp": "2026-04-25T20:54:19+02:00",
       "id": "e5345e3cfe8dc87c0dec33b7177e60aedbcc0048",
       "title": "docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "e5345e3cfe8dc87c0dec33b7177e60aedbcc0048",
       "short_hash": "e5345e3c"
@@ -12523,7 +12523,7 @@
       "timestamp": "2026-04-25T21:04:28+02:00",
       "id": "a49ac7c9b800cab9307f336bf8afa331ffb124f3",
       "title": "fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "a49ac7c9b800cab9307f336bf8afa331ffb124f3",
       "short_hash": "a49ac7c9"
@@ -12533,7 +12533,7 @@
       "timestamp": "2026-04-25T21:04:28+02:00",
       "id": "953ca105d73cfa612551e8753c31adc36a215d8c",
       "title": "fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "953ca105d73cfa612551e8753c31adc36a215d8c",
       "short_hash": "953ca105"
@@ -12543,7 +12543,7 @@
       "timestamp": "2026-04-25T21:13:56+02:00",
       "id": "228e600ffb5923b9ab94dfbcc8396b160af1da49",
       "title": "fix(containerfile): add tokenizers runtime dep for exllamav2 import",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "228e600ffb5923b9ab94dfbcc8396b160af1da49",
       "short_hash": "228e600f"
@@ -12553,7 +12553,7 @@
       "timestamp": "2026-04-25T21:13:56+02:00",
       "id": "966c8dbca102c8a4602311161cc08595da61a156",
       "title": "fix(containerfile): add tokenizers runtime dep for exllamav2 import",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "966c8dbca102c8a4602311161cc08595da61a156",
       "short_hash": "966c8dbc"
@@ -12563,7 +12563,7 @@
       "timestamp": "2026-04-25T21:16:36+02:00",
       "id": "151613a29f3b84e3f779a27122de2512b005ee34",
       "title": "docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "151613a29f3b84e3f779a27122de2512b005ee34",
       "short_hash": "151613a2"
@@ -12573,7 +12573,7 @@
       "timestamp": "2026-04-25T21:16:36+02:00",
       "id": "ec689c9f116a3143dc79b0a3851799894afbc8c4",
       "title": "docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "ec689c9f116a3143dc79b0a3851799894afbc8c4",
       "short_hash": "ec689c9f"
@@ -12583,7 +12583,7 @@
       "timestamp": "2026-04-25T21:16:41+02:00",
       "id": "46dcf13170a8366577880a47117527259f451116",
       "title": "docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "46dcf13170a8366577880a47117527259f451116",
       "short_hash": "46dcf131"
@@ -12593,7 +12593,7 @@
       "timestamp": "2026-04-25T21:16:41+02:00",
       "id": "564ede2335fc5e3b4dcbdf16cc9a39c75052da82",
       "title": "docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z)",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "564ede2335fc5e3b4dcbdf16cc9a39c75052da82",
       "short_hash": "564ede23"
@@ -12603,7 +12603,7 @@
       "timestamp": "2026-04-25T21:25:29+02:00",
       "id": "88386d59ef47c4d5e9ffbf481fdff7553221ced3",
       "title": "feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "88386d59ef47c4d5e9ffbf481fdff7553221ced3",
       "short_hash": "88386d59"
@@ -12613,7 +12613,7 @@
       "timestamp": "2026-04-25T21:25:29+02:00",
       "id": "609a119ee76e377e94803634b80874f38032e61a",
       "title": "feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "609a119ee76e377e94803634b80874f38032e61a",
       "short_hash": "609a119e"
@@ -12623,7 +12623,7 @@
       "timestamp": "2026-04-25T21:25:38+02:00",
       "id": "7ac5ea9d7411faaffb837c40b2d704604d2c6366",
       "title": "feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "7ac5ea9d7411faaffb837c40b2d704604d2c6366",
       "short_hash": "7ac5ea9d"
@@ -12633,7 +12633,7 @@
       "timestamp": "2026-04-25T21:25:38+02:00",
       "id": "940863850ef6b304e61ea12be12e14b758eba127",
       "title": "feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "940863850ef6b304e61ea12be12e14b758eba127",
       "short_hash": "94086385"
@@ -12643,7 +12643,7 @@
       "timestamp": "2026-04-25T21:38:05+02:00",
       "id": "b7bd5dfde573f993d852f80d2c08928665618428",
       "title": "forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "b7bd5dfde573f993d852f80d2c08928665618428",
       "short_hash": "b7bd5dfd"
@@ -12653,7 +12653,7 @@
       "timestamp": "2026-04-25T21:38:05+02:00",
       "id": "e6a166e616c4745ca96d1f81ae532093e0a8d658",
       "title": "forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "e6a166e616c4745ca96d1f81ae532093e0a8d658",
       "short_hash": "e6a166e6"
@@ -12663,7 +12663,7 @@
       "timestamp": "2026-04-25T21:38:24+02:00",
       "id": "9c74482654918fdab61c6dd461673c65de56e8a2",
       "title": "forge: tabby-modern src package",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "9c74482654918fdab61c6dd461673c65de56e8a2",
       "short_hash": "9c744826"
@@ -12673,7 +12673,7 @@
       "timestamp": "2026-04-25T21:38:24+02:00",
       "id": "c08013a3f540dd3a206afbf97feabbd7f6fb60f4",
       "title": "forge: tabby-modern src package",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "c08013a3f540dd3a206afbf97feabbd7f6fb60f4",
       "short_hash": "c08013a3"
@@ -12683,7 +12683,7 @@
       "timestamp": "2026-04-25T21:44:24+02:00",
       "id": "ffd18291494175a8d84f01a68d8bc43bbceced02",
       "title": "docs: FAF v0.8 + Containerfile P-09 layer",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "ffd18291494175a8d84f01a68d8bc43bbceced02",
       "short_hash": "ffd18291"
@@ -12693,7 +12693,7 @@
       "timestamp": "2026-04-25T21:44:24+02:00",
       "id": "eea98a375902747613f8b25338899f8622b024bf",
       "title": "docs: FAF v0.8 + Containerfile P-09 layer",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "eea98a375902747613f8b25338899f8622b024bf",
       "short_hash": "eea98a37"
@@ -12703,7 +12703,7 @@
       "timestamp": "2026-04-25T21:59:52+02:00",
       "id": "caace8a6975cff70b7e08fffa51b55c0cdac52ed",
       "title": "feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "caace8a6975cff70b7e08fffa51b55c0cdac52ed",
       "short_hash": "caace8a6"
@@ -12713,7 +12713,7 @@
       "timestamp": "2026-04-25T21:59:52+02:00",
       "id": "2a48238356934a6a3ee61b3621dc64d3c0ae177e",
       "title": "feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "2a48238356934a6a3ee61b3621dc64d3c0ae177e",
       "short_hash": "2a482383"
@@ -12723,7 +12723,7 @@
       "timestamp": "2026-04-25T22:08:01+02:00",
       "id": "9fcff1baa2c3f355a6829cf155edacee62735908",
       "title": "feat(ci): extend inference-gate membrane to G7/G8/G9",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "9fcff1baa2c3f355a6829cf155edacee62735908",
       "short_hash": "9fcff1ba"
@@ -12733,7 +12733,7 @@
       "timestamp": "2026-04-25T22:08:01+02:00",
       "id": "a4b54b4ae642ff5f48efb6056988d5556329dd6d",
       "title": "feat(ci): extend inference-gate membrane to G7/G8/G9",
-      "author": "erdnord",
+      "author": "eldnord",
       "url": "",
       "hash": "a4b54b4ae642ff5f48efb6056988d5556329dd6d",
       "short_hash": "a4b54b4a"

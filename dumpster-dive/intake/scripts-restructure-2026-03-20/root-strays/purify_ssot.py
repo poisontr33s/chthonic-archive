@@ -4,7 +4,7 @@
 import sys
 
 # Define file paths
-copy_path = r"c:\Users\erdno\chthonic-archive\.github\copilot-instructions-copy.md"
+copy_path = r"c:\Users\eldno\chthonic-archive\.github\copilot-instructions-copy.md"
 
 with open(copy_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()
@@ -124,3 +124,4 @@ with open(copy_path, 'w', encoding='utf-8') as f:
     f.writelines(new_lines)
 
 print(f"Surgery complete. New length: {len(new_lines)} lines.")
+

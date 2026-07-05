@@ -63,14 +63,14 @@ Key finding: OneDrive file access overhead was the bottleneck, not the profile c
 
 ### Solution: OneDrive Stub Pattern
 
-**OneDrive Profile** (`C:\Users\erdno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`):
+**OneDrive Profile** (`C:\Users\eldno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1`):
 ```powershell
 # Stub: Source actual profile from local disk (faster than OneDrive)
-$localProfile = "C:\Users\erdno\.config\powershell\profile.ps1"
+$localProfile = "C:\Users\eldno\.config\powershell\profile.ps1"
 if (Test-Path $localProfile) { . $localProfile }
 ```
 
-**Local Profile** (`C:\Users\erdno\.config\powershell\profile.ps1`):
+**Local Profile** (`C:\Users\eldno\.config\powershell\profile.ps1`):
 - Full profile content moved here
 - UTF-8 encoding (first line, prevents Mojibake)
 - Chthonic CLI setup with reload guards
@@ -104,8 +104,8 @@ if (-not $global:ChthonicPromptInstalled) {
 ### Files Created/Modified
 | File | Action |
 |------|--------|
-| `C:\Users\erdno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1` | Replaced with 3-line stub |
-| `C:\Users\erdno\.config\powershell\profile.ps1` | Created (full profile) |
+| `C:\Users\eldno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1` | Replaced with 3-line stub |
+| `C:\Users\eldno\.config\powershell\profile.ps1` | Created (full profile) |
 | `scripts/profile-diag.ps1` | Created (diagnostic) |
 | `scripts/check-profiles.ps1` | Created (discovery) |
 
@@ -139,7 +139,7 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 
 ### Created
 - `.gemini/TRIAD_SYNC_2026_02_01.md`
-- `C:\Users\erdno\.config\powershell\profile.ps1`
+- `C:\Users\eldno\.config\powershell\profile.ps1`
 - `scripts/profile-diag.ps1`
 - `scripts/check-profiles.ps1`
 - `codex/handoffs/SESSION_HANDOFF_2026_02_01_CLAUDE.md` (earlier in session)
@@ -147,7 +147,7 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 ### Modified
 - `claude-codex-gemini/TRIAD_DOC_CONSOLIDATION_STRATEGY.md` (broken link fix)
 - `GEMINI.md` (code block formatting)
-- `C:\Users\erdno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1` (stub pattern)
+- `C:\Users\eldno\OneDrive\Documents\PowerShell\Microsoft.PowerShell_profile.ps1` (stub pattern)
 
 ---
 
@@ -162,3 +162,4 @@ User indicated Claude Code is "next up for hooking it up" with GitHub Copilot Pr
 
 **Checkpoint Created:** 2026-02-01
 **Agent:** Claude Code (Opus 4.5)
+

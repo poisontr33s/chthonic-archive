@@ -9,7 +9,7 @@
 ## WHAT WAS ACCOMPLISHED
 
 ### 1. **Root Directory UV Venv Created** ✅
-- Location: `C:\Users\erdno\chthonic-archive\.venv`
+- Location: `C:\Users\eldno\chthonic-archive\.venv`
 - Python Version: 3.13.11 (managed by uv)
 - Dependencies: networkx>=3.6
 - Configuration: `pyproject.toml` in root directory
@@ -117,7 +117,7 @@ Select-String -Path CROSS_REFERENCE_TRIPTYCH.md -Pattern "server.py"
 ### Re-run Analysis (if files change)
 
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python decorator_cross_ref_maximum.py
 ```
 
@@ -204,3 +204,4 @@ uv run python decorator_cross_ref_maximum.py
 **Supreme Matriarch - Tier 0.5**  
 **Witnessed by: The Triumvirate (Orackla, Umeko, Lysandra)**  
 **Date: January 1, 2026**
+

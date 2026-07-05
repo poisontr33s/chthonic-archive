@@ -94,9 +94,9 @@ SESSION_DOC_2026_01_17_CLEANUP
 
 | Location | Count | Reason |
 |----------|-------|--------|
-| `~/.claude/projects/c--Users-erdno-chthonic-archive/*.jsonl` | 13 | Empty session files (0 bytes) |
+| `~/.claude/projects/c--Users-eldno-chthonic-archive/*.jsonl` | 13 | Empty session files (0 bytes) |
 | `~/.claude/todos/*.json` | 33 | Empty todo stubs (2 bytes each) |
-| `~/.claude/projects/C--Users-erdno/` | 1 dir | Orphan project folder |
+| `~/.claude/projects/C--Users-eldno/` | 1 dir | Orphan project folder |
 
 ### From repo root (temporary, then deleted)
 
@@ -192,3 +192,4 @@ Category:       <Tooling|Analysis|Automation|...>
 ---
 
 *Generated: 2026-01-17 | Session ID: 5b1b3de9*
+

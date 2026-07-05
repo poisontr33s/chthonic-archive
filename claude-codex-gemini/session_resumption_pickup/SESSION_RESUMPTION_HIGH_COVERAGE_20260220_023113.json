@@ -5,17 +5,17 @@
     {
       "name": "Claude digest exists",
       "ok": true,
-      "detail": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_20.md"
+      "detail": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_20.md"
     },
     {
       "name": "Local AI readiness snapshot exists",
       "ok": true,
-      "detail": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json"
+      "detail": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json"
     },
     {
       "name": "Nightly scheduler log exists",
       "ok": true,
-      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-20_030002.log"
+      "detail": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-20_030002.log"
     },
     {
       "name": "Nightly scheduler log clean",
@@ -30,12 +30,12 @@
     {
       "name": "Daemon report exists",
       "ok": true,
-      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260220_030002\\report.json"
+      "detail": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260220_030002\\report.json"
     },
     {
       "name": "L1 ore exists",
       "ok": true,
-      "detail": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-20T02-00-06\\L1-ore.json"
+      "detail": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-20T02-00-06\\L1-ore.json"
     },
     {
       "name": "Uncensored model lane present",
@@ -64,14 +64,14 @@
     }
   ],
   "paths": {
-    "latest_digest": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_20.md",
-    "latest_readiness_json": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json",
-    "latest_session_sync": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\SESSION_SYNC_PACKET_2026_02_09.md",
-    "latest_mailbox_state": "C:\\Users\\erdno\\chthonic-archive\\claude\\mailbox\\MAILBOX_CURRENT_STATE.md",
-    "latest_scheduler_log": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-20_030002.log",
-    "latest_daemon_run": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260220_030002",
-    "latest_arch_run": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-20T02-00-06",
-    "session_log": "C:\\Users\\erdno\\chthonic-archive\\claude-codex-gemini\\session_resumption_pickup\\session_resumption_pickup_codex.md"
+    "latest_digest": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\ARCHAEOLOGY_DIGEST_2026_02_20.md",
+    "latest_readiness_json": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\LOCAL_AI_READINESS_LATEST.json",
+    "latest_session_sync": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\SESSION_SYNC_PACKET_2026_02_09.md",
+    "latest_mailbox_state": "C:\\Users\\eldno\\chthonic-archive\\claude\\mailbox\\MAILBOX_CURRENT_STATE.md",
+    "latest_scheduler_log": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\nightly-scheduled-2026-02-20_030002.log",
+    "latest_daemon_run": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-daemon\\20260220_030002",
+    "latest_arch_run": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\overnight-intelligence\\arch-2026-02-20T02-00-06",
+    "session_log": "C:\\Users\\eldno\\chthonic-archive\\claude-codex-gemini\\session_resumption_pickup\\session_resumption_pickup_codex.md"
   },
   "models": [
     {

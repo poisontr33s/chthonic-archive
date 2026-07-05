@@ -1,5 +1,5 @@
 Can you help me set up Poe.com API key. I have 2 accounts. Needed for having a poe custom addition to the current huggingface and github copilot pro +.
-[NO5RwN3Iv2a0DPMmWZGWLogVdFeUwx_m6c0dw4RTpjk] this is one account erdnordd@gmail.com. I will provide you with the other, these are very practical because there are language models here that offload expensive Agent models that have a bargain/offer. The keys are safe but I have 2 different so I will create the other key next. (YES, they are safe keys, will change them after a while when added to the current api we already have acquired. Will fetch the second one next. !
+[NO5RwN3Iv2a0DPMmWZGWLogVdFeUwx_m6c0dw4RTpjk] this is one account eldnordd@gmail.com. I will provide you with the other, these are very practical because there are language models here that offload expensive Agent models that have a bargain/offer. The keys are safe but I have 2 different so I will create the other key next. (YES, they are safe keys, will change them after a while when added to the current api we already have acquired. Will fetch the second one next. !
 
 
 5 previous messages
@@ -135,7 +135,7 @@ emits POE_LANE_LATEST.json with account slot + model + status
 This gives deterministic health checks without exposing secrets.
 Add explicit account metadata (non-secret).
 Add labels in env or metadata so you can see which account is active:
-POE_ACCOUNT_1_LABEL=erdnordd@gmail.com
+POE_ACCOUNT_1_LABEL=eldnordd@gmail.com
 POE_ACCOUNT_2_LABEL=<second email>
 POE_ACCOUNT_ACTIVE=1|2
 Important compatibility note from Poe docs.
@@ -184,7 +184,7 @@ User attachment
 User attachment
 - The other option is the POE SDK uv python not openAPI. Not quite sure which is best. You'll have to audit and take responsibility for discerning. Based on capabilities and updates. Here is the current settings, it has different models and reasoning effort but the app creator is a BARGAIN! Secret goldmine.
 
-I'll provide the second API key. ^^ -> [6D8wr93EG2lOKf-h4x8W6eofxZQcjkGipYi-6gzZPgs] erdnordd@gmail.com <-
+I'll provide the second API key. ^^ -> [6D8wr93EG2lOKf-h4x8W6eofxZQcjkGipYi-6gzZPgs] eldnordd@gmail.com <-
 
 (Note if you see the leaderboard, the same cheap App creator is the settings on MAX!!! Crazy bargain.)
 
@@ -575,4 +575,5 @@ History JSON after cycle 1:
   ]
 }
 Next, I’ll run the second cycle of the iterative Art Cop mode after you review the first cycle’s results. You can provide feedback on the score and verdict, and I can adjust the patch set for the next cycle accordingly. The goal is to keep improving the design iteratively based on your fDeedback and the Art Cop’s analysis.
+
 

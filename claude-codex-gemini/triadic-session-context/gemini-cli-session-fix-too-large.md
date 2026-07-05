@@ -234,7 +234,7 @@
                                                                                
    Success
    Edited
-   C:\Users\erdno\.codex\skills\artifact-upcycle\references\ruleset.json       
+   C:\Users\eldno\.codex\skills\artifact-upcycle\references\ruleset.json       
      },
      "header_exempt_extensions": [".json", ".toml", ".yaml", ".yml", ".lock"], 
      "link_repair_extensions": [".md"],
@@ -244,7 +244,7 @@
    }
    }
    Edited
-   C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\artifact_upcycle.py   
+   C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\artifact_upcycle.py   
                                                                                
    def calculate_potency(path: Path, content: str, rules: Dict[str, Any]) ->   
    int:
@@ -338,13 +338,13 @@
    Undo
                                                                                
    Review
-   C:/Users/erdno/.codex/skills/artifact-upcycle/references/ruleset.json       
-   C:/Users/erdno/.codex/skills/artifact-upcycle/scripts/artifact_upcycle.py   
+   C:/Users/eldno/.codex/skills/artifact-upcycle/references/ruleset.json       
+   C:/Users/eldno/.codex/skills/artifact-upcycle/scripts/artifact_upcycle.py   
 ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 ╭─────────────────────────────────────────────────────────────────────────────╮
 │ ✓  ReadManyFiles Will attempt to read and concatenate files using patterns… │
 │                                                                             │
-│ ReadManyFiles Result (Target Dir: C:\Users\erdno\chthonic-archive)          │
+│ ReadManyFiles Result (Target Dir: C:\Users\eldno\chthonic-archive)          │
 │                                                                             │
 │ Successfully read and concatenated content from 1 file(s).                  │
 │                                                                             │
@@ -361,7 +361,7 @@
   second phase of the meta-upcycler implementation.
 
 ╭─────────────────────────────────────────────────────────────────────────────╮
-│ ✓  Shell uv run C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\arti… │
+│ ✓  Shell uv run C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\arti… │
 │                                                                             │
 │ File                      | Scr | Action          | Mode: DRY-RUN           │
 │ --------------------------------------------------------------------------- │
@@ -390,7 +390,7 @@
 
 
   I will implement the Action Adapters (Phase 2) in the installed skill        
-  C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\artifact_upcycle.py.   
+  C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\artifact_upcycle.py.   
   This transforms the placeholders into functional code that respects the      
   --apply flag.
 
@@ -517,7 +517,7 @@
 │ ✓  Shell "TODO: Fix this" | Out-File test_todo.md -Encoding utf8 [current … │
 │                                                                             │
 │                                                                             │
-│ ✓  Shell uv run C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\arti… │
+│ ✓  Shell uv run C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\arti… │
 │                                                                             │
 │ File                      | Scr | Action          | Mode: LIVE              │
 │ --------------------------------------------------------------------------- │
@@ -528,13 +528,13 @@
 │ ✓  Shell Get-Content dumpster-dive/TODO_EXTRACTION.md; Remove-Item test_to… │
 │                                                                             │
 │ Get-Content : Cannot find path                                              │
-│ 'C:\Users\erdno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
+│ 'C:\Users\eldno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
 │ because it does not exist.                                                  │
 │ At line:1 char:1                                                            │
 │ + Get-Content dumpster-dive/TODO_EXTRACTION.md; Remove-Item                 │
 │ test_todo.m ...                                                             │
 │ + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                              │
-│     + CategoryInfo          : ObjectNotFound: (C:\Users\erdno\...O_E        │
+│     + CategoryInfo          : ObjectNotFound: (C:\Users\eldno\...O_E        │
 │    XTRACTION.md:String) [Get-Content], ItemNotFoundException                │
 │     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Comm        │
 │    ands.GetContentCommand                                                   │
@@ -567,19 +567,19 @@
   (header), then we mine (todos).
 
 ╭─────────────────────────────────────────────────────────────────────────────╮
-│ ✓  Shell uv run C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\arti… │
+│ ✓  Shell uv run C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\arti… │
 │                                                                             │
 │ Target not found: test_todo.md                                              │
 │                                                                             │
 │ ✓  Shell Get-Content dumpster-dive/TODO_EXTRACTION.md [current working dir… │
 │                                                                             │
 │ Get-Content : Cannot find path                                              │
-│ 'C:\Users\erdno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
+│ 'C:\Users\eldno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
 │ because it does not exist.                                                  │
 │ At line:1 char:1                                                            │
 │ + Get-Content dumpster-dive/TODO_EXTRACTION.md                              │
 │ + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                              │
-│     + CategoryInfo          : ObjectNotFound: (C:\Users\erdno\...O_E        │
+│     + CategoryInfo          : ObjectNotFound: (C:\Users\eldno\...O_E        │
 │    XTRACTION.md:String) [Get-Content], ItemNotFoundException                │
 │     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Comm        │
 │    ands.GetContentCommand                                                   │
@@ -587,12 +587,12 @@
 │ ✓  Shell Remove-Item test_todo.md [current working directory C:\Users\erdn… │
 │                                                                             │
 │ Remove-Item : Cannot find path                                              │
-│ 'C:\Users\erdno\chthonic-archive\test_todo.md' because it does not          │
+│ 'C:\Users\eldno\chthonic-archive\test_todo.md' because it does not          │
 │ exist.                                                                      │
 │ At line:1 char:1                                                            │
 │ + Remove-Item test_todo.md                                                  │
 │ + ~~~~~~~~~~~~~~~~~~~~~~~~                                                  │
-│     + CategoryInfo          : ObjectNotFound: (C:\Users\erdno\...ve\        │
+│     + CategoryInfo          : ObjectNotFound: (C:\Users\eldno\...ve\        │
 │    test_todo.md:String) [Remove-Item], ItemNotFoundException                │
 │     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Comm        │
 │    ands.RemoveItemCommand                                                   │
@@ -623,7 +623,7 @@
 │ ✓  Shell "---\n# Test\n---\nTODO: Extract me" | Out-File test_todo_2.md -E… │
 │                                                                             │
 │                                                                             │
-│ ✓  Shell uv run C:\Users\erdno\.codex\skills\artifact-upcycle\scripts\arti… │
+│ ✓  Shell uv run C:\Users\eldno\.codex\skills\artifact-upcycle\scripts\arti… │
 │                                                                             │
 │ File                      | Scr | Action          | Mode: LIVE              │
 │ --------------------------------------------------------------------------- │
@@ -634,26 +634,26 @@
 │ ✓  Shell Get-Content dumpster-dive/TODO_EXTRACTION.md; Remove-Item test_to… │
 │                                                                             │
 │ Get-Content : Cannot find path                                              │
-│ 'C:\Users\erdno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
+│ 'C:\Users\eldno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
 │ because it does not exist.                                                  │
 │ At line:1 char:1                                                            │
 │ + Get-Content dumpster-dive/TODO_EXTRACTION.md; Remove-Item                 │
 │ test_todo_2 ...                                                             │
 │ + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                              │
-│     + CategoryInfo          : ObjectNotFound: (C:\Users\erdno\...O_E        │
+│     + CategoryInfo          : ObjectNotFound: (C:\Users\eldno\...O_E        │
 │    XTRACTION.md:String) [Get-Content], ItemNotFoundException                │
 │     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Comm        │
 │    ands.GetContentCommand                                                   │
 │                                                                             │
 │ Remove-Item : Cannot find path                                              │
-│ 'C:\Users\erdno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
+│ 'C:\Users\eldno\chthonic-archive\dumpster-dive\TODO_EXTRACTION.md'          │
 │ because it does not exist.                                                  │
 │ At line:1 char:75                                                           │
 │ + ... ove-Item test_todo_2.md; Remove-Item                                  │
 │ dumpster-dive/TODO_EXTRACTION.md                                            │
 │ +                                                                           │
 │ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                │
-│     + CategoryInfo          : ObjectNotFound: (C:\Users\erdno\...O_E        │
+│     + CategoryInfo          : ObjectNotFound: (C:\Users\eldno\...O_E        │
 │    XTRACTION.md:String) [Remove-Item], ItemNotFoundException                │
 │     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Comm        │
 │    ands.RemoveItemCommand                                                   │
@@ -704,7 +704,7 @@
   Implementing Fix: Update artifact_upcycle.py to use utf-8-sig.
 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
- > Appreciate it-- the silly -> @C:/Users/erdno/.codex &
+ > Appreciate it-- the silly -> @C:/Users/eldno/.codex &
    /skills/artifact-upcycle should be canon accessable by both you, and        
    Claude.. Codex has been lagging with making me think I am confused by back  
    and forth copying and its usual confusing behavior.
@@ -712,7 +712,7 @@
 ╭─────────────────────────────────────────────────────────────────────────────╮
 │ ✓  ReadManyFiles Will attempt to read and concatenate files using patterns… │
 │                                                                             │
-│ ReadManyFiles Result (Target Dir: C:\Users\erdno\chthonic-archive)          │
+│ ReadManyFiles Result (Target Dir: C:\Users\eldno\chthonic-archive)          │
 │                                                                             │
 │ Successfully read and concatenated content from 108 file(s).                │
 │                                                                             │
@@ -829,7 +829,7 @@
   ]]
 
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
- > @C:\Users\erdno\chthonic-archive | NOTE: Error likely caused by:
+ > @C:\Users\eldno\chthonic-archive | NOTE: Error likely caused by:
    "Det kommer fra Gemini‑CLI sin backend (Google Cloud Code API), ikke fra    
    repoet ditt. I debug‑linjen står det:
                                                                                
@@ -864,7 +864,7 @@
 ╭─────────────────────────────────────────────────────────────────────────────╮
 │ ✓  ReadManyFiles Will attempt to read and concatenate files using patterns… │
 │                                                                             │
-│ ReadManyFiles Result (Target Dir: C:\Users\erdno\chthonic-archive)          │
+│ ReadManyFiles Result (Target Dir: C:\Users\eldno\chthonic-archive)          │
 │                                                                             │
 │ Successfully read and concatenated content from 20106 file(s).              │
 │                                                                             │
@@ -890,14 +890,14 @@
 │    is.png (Reason: asset file (image/pdf/audio) was not explicitly          │
 │    requested by name or extension)                                          │
 │  - bun-playwright-poc/bun-launcher.ts (Reason: Read error: Error reading    │
-│    file C:\Users\erdno\chthonic-archive\bun-playwright-poc\bun-launcher.ts: │
+│    file C:\Users\eldno\chthonic-archive\bun-playwright-poc\bun-launcher.ts: │
 │    EMFILE: too many open files, open                                        │
-│    'C:\Users\erdno\chthonic-archive\bun-playwright-poc\bun-launcher.ts')    │
+│    'C:\Users\eldno\chthonic-archive\bun-playwright-poc\bun-launcher.ts')    │
 │  - bun-playwright-poc/chthonic-crawler.ts (Reason: Read error: Error        │
 │    reading file                                                             │
-│    C:\Users\erdno\chthonic-archive\bun-playwright-poc\chthonic-crawler.ts:  │
+│    C:\Users\eldno\chthonic-archive\bun-playwright-poc\chthonic-crawler.ts:  │
 │    EMFILE: too many open files, open                                        │
-│    'C:\Users\erdno\chthonic-archive\bun-playwright-poc\chthonic-crawler.ts' │
+│    'C:\Users\eldno\chthonic-archive\bun-playwright-poc\chthonic-crawler.ts' │
 │    )                                                                        │
 │  - ...and 134 more.                                                         │
 ╰─────────────────────────────────────────────────────────────────────────────╯
@@ -1055,4 +1055,5 @@ accepting edits (shift + tab to cycle)
 │                                                                             │
 ╰─────────────────────────────────────────────────────────────────────────────╯
 
-PS C:\Users\erdno\chthonic-archive> 
+PS C:\Users\eldno\chthonic-archive> 
+

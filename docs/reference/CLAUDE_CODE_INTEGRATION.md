@@ -66,9 +66,9 @@ pwsh -File .\scripts\run_mcp_session.ps1 -EnsureClaude
      - Label: `chthonic-archive (local)`
      - Command: `bun`
      - Args: `["run", "mcp/server.ts"]`
-     - Working Directory: `C:\Users\erdno\chthonic-archive`
+     - Working Directory: `C:\Users\eldno\chthonic-archive`
      - Transport: `stdio`
-     - Manifest Path: `C:\Users\erdno\chthonic-archive\mcp\mcp.json`
+     - Manifest Path: `C:\Users\eldno\chthonic-archive\mcp\mcp.json`
 
 **After Registration:**
 - Claude Code will discover 4 MCP tools via `mcp/mcp.json` manifest
@@ -192,4 +192,5 @@ bun run run_mcp_validation.ts --ensure-claude-code
 - `docs/SESSION_BOOTSTRAP_SPEC.md` - MCP session provisioning contract
 - `mcp/mcp.json` - MCP server manifest (4 tools)
 - `run_mcp_validation.ts` - Local validation runner (7 checks)
+
 

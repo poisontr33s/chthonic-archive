@@ -911,8 +911,8 @@
 - `2026-04-21 19:29:47Z` 🔨 **257a4dc7** roulette(T3): skill_tensor_cycle + common improvements — *poisontr33s*
 - `2026-04-21 19:30:28Z` 🔨 **d102bc70** roulette(T3): mark skill_tensor_cycle + common ✅; T3 counter 3 — *poisontr33s*
 - `2026-04-21 19:30:28Z` 🔨 **523df0f1** roulette(T3): mark skill_tensor_cycle + common ✅; T3 counter 3 — *poisontr33s*
-- `2026-04-21 19:33:00Z` 🔨 **55183da9** roulette(T3): sfs shim + erdno hotspot batch — *poisontr33s*
-- `2026-04-21 19:33:00Z` 🔨 **c1623d88** roulette(T3): sfs shim + erdno hotspot batch — *poisontr33s*
+- `2026-04-21 19:33:00Z` 🔨 **55183da9** roulette(T3): sfs shim + eldno hotspot batch — *poisontr33s*
+- `2026-04-21 19:33:00Z` 🔨 **c1623d88** roulette(T3): sfs shim + eldno hotspot batch — *poisontr33s*
 - `2026-04-21 19:39:46Z` 🔨 **13a914eb** roulette(T3): lint/validation infra batch (5 files) — *poisontr33s*
 - `2026-04-21 19:39:46Z` 🔨 **f156b249** roulette(T3): lint/validation infra batch (5 files) — *poisontr33s*
 - `2026-04-21 19:41:10Z` 🔨 **028e3542** roulette: T3 counter 7→13; mark lint/validation infra batch ✅ — *poisontr33s*
@@ -987,8 +987,8 @@
 - `2026-04-21 21:29:41Z` 🔨 **c9832116** roulette(T5): patch-claude-insiders.ps1 — moved to scripts/.deprecated/; CLAUDE.md note updated — *poisontr33s*
 - `2026-04-21 21:31:53Z` 🔨 **161043be** roulette(T5): thin-shim conversions — claude_healthcheck/selfheal/mcp_write_local → claude_ide.ps1 delegates; validate-triad-links → link_audit.py shim; originals salvaged to .deprecated/ — *poisontr33s*
 - `2026-04-21 21:31:53Z` 🔨 **798150e1** roulette(T5): thin-shim conversions — claude_healthcheck/selfheal/mcp_write_local → claude_ide.ps1 delegates; validate-triad-links → link_audit.py shim; originals salvaged to .deprecated/ — *poisontr33s*
-- `2026-04-21 21:36:00Z` 🔨 **efb920e6** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno) — *poisontr33s*
-- `2026-04-21 21:36:00Z` 🔨 **a01857f0** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno) — *poisontr33s*
+- `2026-04-21 21:36:00Z` 🔨 **efb920e6** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, eldno→eldno) — *poisontr33s*
+- `2026-04-21 21:36:00Z` 🔨 **a01857f0** roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, eldno→eldno) — *poisontr33s*
 - `2026-04-21 21:41:20Z` 🔨 **62f1d964** roulette(T5): prototypes batch — background_services graceful shutdown+PID; autonomous_coordinator --dry-run+lazy-import; novia_embalmer DryRun guard; vscode-art-cop LLM health check+non-JSON guard — *poisontr33s*
 - `2026-04-21 21:41:20Z` 🔨 **d8912727** roulette(T5): prototypes batch — background_services graceful shutdown+PID; autonomous_coordinator --dry-run+lazy-import; novia_embalmer DryRun guard; vscode-art-cop LLM health check+non-JSON guard — *poisontr33s*
 - `2026-04-21 21:41:58Z` 🔨 **f45c2cfe** roulette(T5): ROULETTE.md — mark all T5 prototype+WIP rows complete — *poisontr33s*
@@ -1001,8 +1001,8 @@
 - `2026-04-21 22:31:03Z` 🔨 **176cb574** spruce: reference surface pass — stale quick-win cluster stripped; dates advanced to April 2026; [!NOTE] overhead removed from project-workflow — *poisontr33s*
 - `2026-04-21 22:52:53Z` 🔨 **eb489b0f** spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped — *poisontr33s*
 - `2026-04-21 22:52:53Z` 🔨 **7ca40dc2** spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped — *poisontr33s*
-- `2026-04-21 22:57:20Z` 🔨 **16bdb0a3** spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date — *poisontr33s*
-- `2026-04-21 22:57:20Z` 🔨 **cd039c25** spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date — *poisontr33s*
+- `2026-04-21 22:57:20Z` 🔨 **16bdb0a3** spruce: reference surface pass 3 — WIP→Archived labels; eldno→eldno typos; testing date — *poisontr33s*
+- `2026-04-21 22:57:20Z` 🔨 **cd039c25** spruce: reference surface pass 3 — WIP→Archived labels; eldno→eldno typos; testing date — *poisontr33s*
 - `2026-04-21 23:04:23Z` 🔨 **be3882c2** Refine wording for clarity in project workflow instructions — *poisontr33s*
 - `2026-04-21 23:04:23Z` 🔨 **2c8597fb** Refine wording for clarity in project workflow instructions — *poisontr33s*
 - `2026-04-21 23:07:32Z` 🔨 **770b0152** spruce: project-workflow — tombstone pre-ANKHOLOGY lineage A/B/C system — *poisontr33s*
@@ -1233,46 +1233,46 @@
 - `2026-04-25 20:02:25Z` 🔨 **9949ade7** ci(pentea-cloud-dispatch): consolidate dual workflows — retire v2 — *poisontr33s*
 - `2026-04-25 20:02:31Z` 🔨 **ec2f9f99** ci: archive pentea-cloud-dispatch2.yml.off (superseded by v1) — *poisontr33s*
 - `2026-04-25 20:02:31Z` 🔨 **998f5511** ci: archive pentea-cloud-dispatch2.yml.off (superseded by v1) — *poisontr33s*
-- `2026-04-25 20:11:36Z` 🔨 **c3909c8c** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *erdnord*
-- `2026-04-25 20:11:36Z` 🔨 **4a6f56b8** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *erdnord*
+- `2026-04-25 20:11:36Z` 🔨 **c3909c8c** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *eldnord*
+- `2026-04-25 20:11:36Z` 🔨 **4a6f56b8** fix(containerfile): drop curl, add --allowerasing (ubi9 curl-minimal conflict) — *eldnord*
 - `2026-04-25 20:15:22Z` 🔨 **5de5ddd0** feat(workflows): add Pentea Cloud Dispatch workflow for task dispatching — *poisontr33s*
 - `2026-04-25 20:15:22Z` 🔨 **9c25506f** feat(workflows): add Pentea Cloud Dispatch workflow for task dispatching — *poisontr33s*
 - `2026-04-25 18:17:15Z` ❌ **#12** PR closed: chore(deps): bump the uv group across 1 directory with 5 updates
-- `2026-04-25 20:17:16Z` 🔨 **d0b37b1c** fix(containerfile): pre-install packaging before flash-attn source build — *erdnord*
-- `2026-04-25 20:17:16Z` 🔨 **7f39e6ee** fix(containerfile): pre-install packaging before flash-attn source build — *erdnord*
+- `2026-04-25 20:17:16Z` 🔨 **d0b37b1c** fix(containerfile): pre-install packaging before flash-attn source build — *eldnord*
+- `2026-04-25 20:17:16Z` 🔨 **7f39e6ee** fix(containerfile): pre-install packaging before flash-attn source build — *eldnord*
 - `2026-04-25 18:17:26Z` 🔨 **92e6650a** build(deps): bump the uv group across 1 directory with 4 updates — *dependabot[bot]*
 - `2026-04-25 18:17:26Z` 🔨 **b4935cd6** build(deps): bump the uv group across 1 directory with 4 updates — *dependabot[bot]*
 - `2026-04-25 18:17:27Z` 🔀 **#13** PR opened: build(deps): bump the uv group across 1 directory with 4 updates [dependencies, python:uv] — *dependabot[bot]*
 - `2026-04-25 20:19:28Z` 🔨 **b1c25adb** fix(containerfile): install both packaging and wheel for flash-attn build — *poisontr33s*
 - `2026-04-25 20:19:28Z` 🔨 **2e912901** fix(containerfile): install both packaging and wheel for flash-attn build — *poisontr33s*
-- `2026-04-25 20:35:11Z` 🔨 **1fc37db2** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *erdnord*
-- `2026-04-25 20:35:11Z` 🔨 **0b2191f6** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *erdnord*
-- `2026-04-25 20:52:45Z` 🔨 **e2e2f7b5** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *erdnord*
-- `2026-04-25 20:52:45Z` 🔨 **6f0c9591** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *erdnord*
-- `2026-04-25 20:54:19Z` 🔨 **0789c4a4** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *erdnord*
-- `2026-04-25 20:54:19Z` 🔨 **e5345e3c** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *erdnord*
-- `2026-04-25 21:04:28Z` 🔨 **a49ac7c9** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *erdnord*
-- `2026-04-25 21:04:28Z` 🔨 **953ca105** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *erdnord*
-- `2026-04-25 21:13:56Z` 🔨 **228e600f** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *erdnord*
-- `2026-04-25 21:13:56Z` 🔨 **966c8dbc** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *erdnord*
-- `2026-04-25 21:16:36Z` 🔨 **151613a2** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
-- `2026-04-25 21:16:36Z` 🔨 **ec689c9f** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
-- `2026-04-25 21:16:41Z` 🔨 **46dcf131** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
-- `2026-04-25 21:16:41Z` 🔨 **564ede23** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *erdnord*
-- `2026-04-25 21:25:29Z` 🔨 **88386d59** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
-- `2026-04-25 21:25:29Z` 🔨 **609a119e** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
-- `2026-04-25 21:25:38Z` 🔨 **7ac5ea9d** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
-- `2026-04-25 21:25:38Z` 🔨 **94086385** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *erdnord*
-- `2026-04-25 21:38:05Z` 🔨 **b7bd5dfd** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *erdnord*
-- `2026-04-25 21:38:05Z` 🔨 **e6a166e6** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *erdnord*
-- `2026-04-25 21:38:24Z` 🔨 **9c744826** forge: tabby-modern src package — *erdnord*
-- `2026-04-25 21:38:24Z` 🔨 **c08013a3** forge: tabby-modern src package — *erdnord*
-- `2026-04-25 21:44:24Z` 🔨 **ffd18291** docs: FAF v0.8 + Containerfile P-09 layer — *erdnord*
-- `2026-04-25 21:44:24Z` 🔨 **eea98a37** docs: FAF v0.8 + Containerfile P-09 layer — *erdnord*
-- `2026-04-25 21:59:52Z` 🔨 **caace8a6** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *erdnord*
-- `2026-04-25 21:59:52Z` 🔨 **2a482383** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *erdnord*
-- `2026-04-25 22:08:01Z` 🔨 **9fcff1ba** feat(ci): extend inference-gate membrane to G7/G8/G9 — *erdnord*
-- `2026-04-25 22:08:01Z` 🔨 **a4b54b4a** feat(ci): extend inference-gate membrane to G7/G8/G9 — *erdnord*
+- `2026-04-25 20:35:11Z` 🔨 **1fc37db2** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *eldnord*
+- `2026-04-25 20:35:11Z` 🔨 **0b2191f6** fix(containerfile): restrict TORCH_CUDA_ARCH_LIST to sm_89 for flash-attn — *eldnord*
+- `2026-04-25 20:52:45Z` 🔨 **e2e2f7b5** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *eldnord*
+- `2026-04-25 20:52:45Z` 🔨 **6f0c9591** fix(containerfile): FLASH_ATTENTION_SKIP_CUDA_BUILD python-only G6 install — *eldnord*
+- `2026-04-25 20:54:19Z` 🔨 **0789c4a4** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *eldnord*
+- `2026-04-25 20:54:19Z` 🔨 **e5345e3c** docs(faf): v0.5 - flash_attn Linux python_only_admitted, G6 linux subgate — *eldnord*
+- `2026-04-25 21:04:28Z` 🔨 **a49ac7c9** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *eldnord*
+- `2026-04-25 21:04:28Z` 🔨 **953ca105** fix(containerfile): restore TORCH_CUDA_ARCH_LIST for exllamav2 IndexError — *eldnord*
+- `2026-04-25 21:13:56Z` 🔨 **228e600f** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *eldnord*
+- `2026-04-25 21:13:56Z` 🔨 **966c8dbc** fix(containerfile): add tokenizers runtime dep for exllamav2 import — *eldnord*
+- `2026-04-25 21:16:36Z` 🔨 **151613a2** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *eldnord*
+- `2026-04-25 21:16:36Z` 🔨 **ec689c9f** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *eldnord*
+- `2026-04-25 21:16:41Z` 🔨 **46dcf131** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *eldnord*
+- `2026-04-25 21:16:41Z` 🔨 **564ede23** docs(faf): v0.6 - G4 Linux admitted_L2_source_linux (P-08 2026-04-25T19:14:56Z) — *eldnord*
+- `2026-04-25 21:25:29Z` 🔨 **88386d59** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *eldnord*
+- `2026-04-25 21:25:29Z` 🔨 **609a119e** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *eldnord*
+- `2026-04-25 21:25:38Z` 🔨 **7ac5ea9d** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *eldnord*
+- `2026-04-25 21:25:38Z` 🔨 **94086385** feat(tabby-modern): scaffold apps/tabby-modern/ — cp314 dep set, G7 formatron pin, exllamav3 backend config — *eldnord*
+- `2026-04-25 21:38:05Z` 🔨 **b7bd5dfd** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *eldnord*
+- `2026-04-25 21:38:05Z` 🔨 **e6a166e6** forge: tabby-modern src package — Python 3.14 / uv / exllamav3 archetype — *eldnord*
+- `2026-04-25 21:38:24Z` 🔨 **9c744826** forge: tabby-modern src package — *eldnord*
+- `2026-04-25 21:38:24Z` 🔨 **c08013a3** forge: tabby-modern src package — *eldnord*
+- `2026-04-25 21:44:24Z` 🔨 **ffd18291** docs: FAF v0.8 + Containerfile P-09 layer — *eldnord*
+- `2026-04-25 21:44:24Z` 🔨 **eea98a37** docs: FAF v0.8 + Containerfile P-09 layer — *eldnord*
+- `2026-04-25 21:59:52Z` 🔨 **caace8a6** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *eldnord*
+- `2026-04-25 21:59:52Z` 🔨 **2a482383** feat(gate9): P-09 admitted_import_gate — tabby_modern 9/9 PASS — *eldnord*
+- `2026-04-25 22:08:01Z` 🔨 **9fcff1ba** feat(ci): extend inference-gate membrane to G7/G8/G9 — *eldnord*
+- `2026-04-25 22:08:01Z` 🔨 **a4b54b4a** feat(ci): extend inference-gate membrane to G7/G8/G9 — *eldnord*
 - `2026-04-26 03:20:58Z` 🔨 **a14545f5** docs: update archaeological toolform baseline with emoji representations — *poisontr33s*
 - `2026-04-26 03:20:58Z` 🔨 **92a31b5f** docs: update archaeological toolform baseline with emoji representations — *poisontr33s*
 - `2026-04-26 08:20:15Z` 🔨 **d76c5aa6** fix(container): switch base ubi9->ubuntu22.04 for GLIBCXX_3.4.30 compat — *poisontr33s*

@@ -30,7 +30,7 @@
 - **Verification**: `grep_search` and `homepath-portability.ts` confirmed zero active `erdno` drift in source files within `chthonic-archive`.
 
 ### 2. (`Structural-Consolidation`) -> (`Common-Bloat`)
-- **New Artifact**: [ci/checks/common_bloat_and_vendored.ts](ci/checks/common_bloat_and_vendored.ts)
+- **New Artifact**: [ci/checks/common_bloat_and_vendored.ts](../../ci/checks/common_bloat_and_vendored.ts)
 - **Action**: Abstracted noisy directory lists into a shared module used by `link-audit.ts` and `homepath-portability.ts`.
 
 ### 3. (`Navigation-Standardization`) -> (`Meeting-Point-Redirects`)

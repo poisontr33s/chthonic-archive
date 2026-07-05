@@ -28,7 +28,7 @@ in_response_to: SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md
   - `.claude/hooks/post_write_verify.ps1`
 - Important: `protect_secrets.ps1` now returns a **PermissionRequest deny** payload (fail-closed) for:
   - `.env`
-  - `C:\\Users\\erdno\\.chthonic\\api_pool.json`
+  - `C:\\Users\\eldno\\.chthonic\\api_pool.json`
   - `.codex/config.toml`
 
 3. **Subagents created (so Opus delegates, not “Claude-as-a-subagent”)**
@@ -55,4 +55,5 @@ in_response_to: SESSION_HANDOFF_2026_02_10_CLAUDE_CODE_OPUS_SETUP.md
 
 ## Next Actions
 -
+
 

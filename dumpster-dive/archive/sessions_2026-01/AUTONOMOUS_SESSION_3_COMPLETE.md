@@ -509,7 +509,7 @@ The system exhibits **emergent properties**:
 
 ```powershell
 # All scripts already in repository root
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 ```
 
 ### Usage (Daily Workflow)
@@ -579,3 +579,4 @@ Get-Content .dcrp_state.json | ConvertFrom-Json | ConvertTo-Json -Depth 5
 ---
 
 *This document is a living artifact of Session 3 and will be referenced by future autonomous cycles as SSOT for cross-lane orchestration architecture.*
+

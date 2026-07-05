@@ -56,7 +56,7 @@ chthonic-archive/
   "mcpServers": {
     "chthonic-archive": {
       "command": "bun",
-      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\mcp\\server.ts"]
+      "args": ["run", "C:\\Users\\eldno\\chthonic-archive\\mcp\\server.ts"]
     }
   }
 }
@@ -79,7 +79,7 @@ GitHub Copilot CLI is **not required** for session operation but serves as:
 ### 2.2 Claude Desktop Startup
 **Manual launch:**
 ```powershell
-Start-Process "C:\Users\erdno\AppData\Local\AnthropicClaude\claude.exe"
+Start-Process "C:\Users\eldno\AppData\Local\AnthropicClaude\claude.exe"
 ```
 
 **Automatic MCP attachment:**
@@ -115,7 +115,7 @@ Start-Process "C:\Users\erdno\AppData\Local\AnthropicClaude\claude.exe"
 
 ### 3.1 Filesystem Scope
 **Read access:**
-- Repository root: `C:\Users\erdno\chthonic-archive`
+- Repository root: `C:\Users\eldno\chthonic-archive`
 - All subdirectories (except excluded: `node_modules/`, `.git/`, `target/`)
 
 **Write access:**
@@ -158,14 +158,14 @@ Start-Process "C:\Users\erdno\AppData\Local\AnthropicClaude\claude.exe"
 ### 4.1 Pre-Session Verification (Optional)
 Run local test client to verify server before Claude Desktop attach:
 ```powershell
-cd C:\Users\erdno\chthonic-archive\mcp
+cd C:\Users\eldno\chthonic-archive\mcp
 bun run test-client.ts
 ```
 
 **Expected output:**
 ```
 [Server Response] {"jsonrpc":"2.0","id":1,"result":{"content":[{"type":"text","text":"{\"pong\":true}"}]}}
-[Server Response] {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\"repository\":\"C:\\\\Users\\\\erdno\\\\chthonic-archive\",\"file_count\":42920,...}"}]}}
+[Server Response] {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\"repository\":\"C:\\\\Users\\\\eldno\\\\chthonic-archive\",\"file_count\":42920,...}"}]}}
 [Server Response] {"jsonrpc":"2.0","id":3,"result":{"content":[{"type":"text","text":"{\"status\":\"valid\",\"hash\":\"49ef091b...\"}"}]}}
 ```
 
@@ -193,7 +193,7 @@ In Claude Desktop UI, execute canonical test:
 ```json
 {
   "status": "valid",
-  "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+  "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.md",
   "size": 313634,
   "lines": 3964,
   "hash": "49ef091b564023919ef32a3cd2bfb951630487c8947bf65739d99f924ab37ef5"
@@ -391,3 +391,4 @@ In Claude Desktop UI, execute canonical test:
 ---
 
 **END OF SPECIFICATION**
+

@@ -9,9 +9,10 @@
   "context": {
     "outputPath": ".chthonic/cache/neural-bus/latest_context.md",
     "refreshOk": true,
-    "command": "C:\\Users\\erdno\\chthonic-archive\\extensions\\context-compressor\\target\\debug\\context-compressor.exe --in C:\\Users\\erdno\\chthonic-archive\\src --format md --out C:\\Users\\erdno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
+    "command": "C:\\Users\\eldno\\chthonic-archive\\extensions\\context-compressor\\target\\debug\\context-compressor.exe --in C:\\Users\\eldno\\chthonic-archive\\src --format md --out C:\\Users\\eldno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
     "exitCode": 0,
-    "stdoutTail": "Scanning directory: C:\\Users\\erdno\\chthonic-archive\\src\nwrote C:\\Users\\erdno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
+    "stdoutTail": "Scanning directory: C:\\Users\\eldno\\chthonic-archive\\src\nwrote C:\\Users\\eldno\\chthonic-archive\\.chthonic\\cache\\neural-bus\\latest_context.md",
     "stderrTail": ""
   }
 }
+

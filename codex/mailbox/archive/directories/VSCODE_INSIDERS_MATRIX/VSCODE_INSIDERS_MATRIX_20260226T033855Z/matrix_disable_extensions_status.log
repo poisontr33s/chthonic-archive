@@ -46,34 +46,34 @@ CPU %	Mem MB	   PID	Process
     0	   414	 11388	   window
     0	   120	 20212	   gpu-process
     0	   655	 42796	extension-host [3]
-    0	   117	 32732	     "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\server\dist\node\jsonServerMain" --node-ipc --clientProcessId=42796
+    0	   117	 32732	     "C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\json-language-features\server\dist\node\jsonServerMain" --node-ipc --clientProcessId=42796
     0	   119	 45848	     electron-nodejs (server-node.js)
-    0	    81	 47472	     c:\Users\erdno\.vscode-insiders\extensions\openai.chatgpt-0.5.76-win32-x64\bin\windows-x86_64\codex.exe app-server --analytics-default-enabled
+    0	    81	 47472	     c:\Users\eldno\.vscode-insiders\extensions\openai.chatgpt-0.5.76-win32-x64\bin\windows-x86_64\codex.exe app-server --analytics-default-enabled
     0	     7	 53436	       C:\WINDOWS\system32\conhost.exe 0x4
-    0	   118	 54136	     "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\markdown-language-features\dist\serverWorkerMain" --node-ipc --clientProcessId=42796
+    0	   118	 54136	     "C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" "c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\extensions\markdown-language-features\dist\serverWorkerMain" --node-ipc --clientProcessId=42796
     0	    35	 49756	   crashpad-handler
     0	   132	 50228	pty-host
     0	     9	  5308	     conpty-agent
     0	   109	 37324	     "C:\Program Files\PowerShell\7\pwsh.exe" -NoProfile -NoLogo
     0	    99	 38900	       "C:\Program Files\PowerShell\7\pwsh.exe" -NoProfile -File scripts/vscode_insiders_matrix.ps1
-    0	     7	 44608	         C:\WINDOWS\system32\cmd.exe /c ""C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-insiders.cmd" --disable-extensions --status"
+    0	     7	 44608	         C:\WINDOWS\system32\cmd.exe /c ""C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-insiders.cmd" --disable-extensions --status"
     0	   117	  2980	           electron-nodejs (cli.js)
-    0	   149	 43776	             "C:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" --disable-extensions --status
+    0	   149	 43776	             "C:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\Code - Insiders.exe" --disable-extensions --status
     0	    98	 52336	               crashpad-handler
     0	   117	 53760	               gpu-process
     0	   105	 53800	               utility-network-service
     0	     8	 38428	     conpty-agent
     0	     9	 40392	     conpty-agent
-    0	    94	 42732	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
-    0	   152	 44912	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
-    0	    26	 52024	       "C:\Users\erdno\.local\bin\uv.exe" run scripts/skill_health.py --json
-    0	     4	 42600	         "C:\Users\erdno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
-    0	    19	 45828	           "C:\Users\erdno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
-    0	    98	 46064	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	    94	 42732	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	   152	 44912	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+    0	    26	 52024	       "C:\Users\eldno\.local\bin\uv.exe" run scripts/skill_health.py --json
+    0	     4	 42600	         "C:\Users\eldno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
+    0	    19	 45828	           "C:\Users\eldno\chthonic-archive\.venv\Scripts\python.exe" scripts/skill_health.py --json
+    0	    98	 46064	     "C:\Program Files\PowerShell\7\pwsh.exe" -noexit -command "try { . \"c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\7e5adbd392\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
     0	     9	 51196	     conpty-agent
     0	     9	 52496	     conpty-agent
     0	   134	 53120	shared-process
-    0	    21	 40344	     "c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-tunnel-insiders.exe" tunnel --accept-server-license-terms --log info --name LAPTOP-DRAQGN8A --parent-process-id 53120
+    0	    21	 40344	     "c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\bin\code-tunnel-insiders.exe" tunnel --accept-server-license-terms --log info --name LAPTOP-DRAQGN8A --parent-process-id 53120
     0	     7	 43548	       C:\WINDOWS\system32\conhost.exe 0x4
 
 Workspace Stats: 
@@ -89,3 +89,4 @@ Workspace Stats:
 |                  claude-settings-local(1) copilot-instructions.md(1) mcp.json(1)
 |                  agents.md(1) claude.md(1)
 |      Launch Configs: node-terminal(4)
+

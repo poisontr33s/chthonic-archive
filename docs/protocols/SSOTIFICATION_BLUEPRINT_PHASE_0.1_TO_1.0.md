@@ -34,7 +34,7 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (29
 
 **Critical drift fixes (3):**
 - `scripts/ssot_loremaster.py` — dead `.temple/architecture/copilot-instructions.archive.md` → `_SSOT.proto`
-- `scripts/debug_code_blocks.py` — absolute `C:\Users\erdno\...` path → `resolve_ssot_paths()` bridge
+- `scripts/debug_code_blocks.py` — absolute `C:\Users\eldno\...` path → `resolve_ssot_paths()` bridge
 - `scripts/ssot_immunity.py` — `PROJECT_ROOT` bug (`.parent` → `.parent.parent`) + `SSOT_FILES[0]` → `SSOT_POINTER`
 
 **Direct filesystem wiring (4):**
@@ -104,11 +104,11 @@ Wired **13 additional Python scripts** through the manifest→bridge cascade (29
 | `scripts/milf_activator.py` | 17, 232 | 2 | Docstring + cosmetic print | None |
 | `scripts/probe_gpu_compatibility.py` | 18, 397, 416 | 3 | Docstring + `ssot_ref=` kwarg + print | **Medium** |
 | `scripts/run_cycle.py` | 28 | 1 | Docstring | None |
-| `scripts/ssot_abbrev/cli.py` | 42, 47, 48, 178 | 4 | 3 **FUNCTIONAL** (1 has wrong absolute `erdno` path!) + 1 backup | **Critical** |
+| `scripts/ssot_abbrev/cli.py` | 42, 47, 48, 178 | 4 | 3 **FUNCTIONAL** (1 has wrong absolute `eldno` path!) + 1 backup | **Critical** |
 | `scripts/ssot_abbrev/generator.py` | 37, 160 | 2 | Source metadata strings | **Medium** |
 | `ssot_extractor.py` | 16, 132 | 2 | Docstring | None |
 1. ~~`scripts/ssot_loremaster.py` — references DELETED path `.temple/architecture/copilot-instructions.archive.md`~~ ✅ Fixed (Phase 0.2)
-2. ~~`scripts/debug_code_blocks.py` — hardcodes absolute path `C:\Users\erdno\...` (wrong username)~~ ✅ Fixed (Phase 0.2)
+2. ~~`scripts/debug_code_blocks.py` — hardcodes absolute path `C:\Users\eldno\...` (wrong username)~~ ✅ Fixed (Phase 0.2)
 3. Three `.ps1` scripts resolve SSOT via `$PSScriptRoot\..` → repo root (missing `.github/` prefix) — **Phase 0.4**
 4. `.ankhrc` (bidirectional SSOT hub defined in methodology) — never created — **Phase 0.6**
 5. `.temple/methodology/AGENT_COMMON.md` replaced with redirect pointer to root `AGENT_COMMON.md` — **2026-03-25** (user elaborated with Root Documentation Index + Triadic Session Context)
@@ -169,7 +169,7 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 | Target | Issue | Fix | Status |
 |--------|-------|-----|--------|
 | `scripts/ssot_loremaster.py` L45 | References deleted `.temple/architecture/...` path | Dead ref → `_SSOT.proto` | ✅ |
-| `scripts/debug_code_blocks.py` L29 | Absolute path `C:\Users\erdno\...` | Replaced with `resolve_ssot_paths()` | ✅ |
+| `scripts/debug_code_blocks.py` L29 | Absolute path `C:\Users\eldno\...` | Replaced with `resolve_ssot_paths()` | ✅ |
 | `get_hash.py` (root) | Root-level utility with hardcoded path | Wired on disk but **gitignored** — not in any commit. See Phase 0.7 "Relocate to scripts/" | ⚠️ |
 
 #### Stage 02: Wire Remaining scripts/*.py ✅
@@ -218,7 +218,7 @@ Everything in this codebase either **IS** the SSOT or **SERVES** the SSOT. There
 | `milf_genesis_v2.py:1335` | `mpw_path = Path(...) / ".github" / "copilot-instructions.md"` | Hardcoded default in `__main__` | → `SSOT_POINTER_RELPATH` import | ✅ Done |
 | `scripts/abbrev/cli.py:48` | `SSOT_PATH = PROJECT_ROOT / ".github" / "copilot-instructions.md"` | Module-level constant | → `SSOT_POINTER_RELPATH` import | ✅ Done |
 | `scripts/ssot_abbrev/cli.py:42` | `ssot_path = project_root / ".github" / "copilot-instructions.md"` | In `get_ssot_path()` | → `SSOT_POINTER_RELPATH` import | ✅ Done |
-| `scripts/ssot_abbrev/cli.py:47` | `Path("c:/Users/erdno/chthonic-archive/...")` | **Wrong absolute path** (`erdno` ≠ `eldno`) | → removed entirely | ✅ Done |
+| `scripts/ssot_abbrev/cli.py:47` | `Path("c:/Users/eldno/chthonic-archive/...")` | **Wrong absolute path** (`eldno` ≠ `eldno`) | → removed entirely | ✅ Done |
 | `scripts/ssot_abbrev/cli.py:48` | `Path(".github/copilot-instructions.md")` | Fallback in `get_ssot_path()` | → cascade handles this | ✅ Done |
 | ~~`lib/asc/cli.py:41`~~ | ~~`LORE_MD = ... / "mas_mcp" / "lib" / "copilot-instructions.md"`~~ | ~~Dead ref~~ | ~~bridge import~~ | ✅ **Fixed** (2026-03-25, wired via `SSOT_HOLDER_RELPATH`) |
 
@@ -580,3 +580,4 @@ Every file type in the codebase has a role in supplementing the SSOT. This matri
 | This Blueprint | [docs/SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md](SSOTIFICATION_BLUEPRINT_PHASE_0.1_TO_1.0.md) | 0.1 (Anno Baseline) |
 | Codekiller Anti-Pattern | [anti-patterns/codekiller.md](../../anti-patterns/codekiller.md) | Pre-0.1 |
 | Harvest Registry | [HARVEST_REGISTRY.md](../../HARVEST_REGISTRY.md) | Pre-0.1 |
+

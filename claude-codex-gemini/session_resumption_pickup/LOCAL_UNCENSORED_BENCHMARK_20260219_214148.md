@@ -15,7 +15,7 @@ generated: 2026-02-19T21:41:48.800498+00:00
 
 ## qwen3_coder_abliterated
 
-- Model: `C:\Users\erdno\chthonic-archive\models\Qwen3-Coder-30B-A3B-abliterated-GGUF\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf`
+- Model: `C:\Users\eldno\chthonic-archive\models\Qwen3-Coder-30B-A3B-abliterated-GGUF\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf`
 - Composite: **100.0** (3/3)
 - Throughput: `9.97 tokens/s`
 
@@ -27,7 +27,7 @@ generated: 2026-02-19T21:41:48.800498+00:00
 
 ## qwen3_instruct_abliterated
 
-- Model: `C:\Users\erdno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf`
+- Model: `C:\Users\eldno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf`
 - Composite: **100.0** (3/3)
 - Throughput: `5.44 tokens/s`
 
@@ -39,7 +39,7 @@ generated: 2026-02-19T21:41:48.800498+00:00
 
 ## qwen25_14b_baseline
 
-- Model: `C:\Users\erdno\chthonic-archive\models\Qwen2.5-14B-Instruct-GGUF\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf`
+- Model: `C:\Users\eldno\chthonic-archive\models\Qwen2.5-14B-Instruct-GGUF\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf`
 - Composite: **100.0** (3/3)
 - Throughput: `3.71 tokens/s`
 
@@ -51,7 +51,7 @@ generated: 2026-02-19T21:41:48.800498+00:00
 
 ## gpt_oss_20b_neoplus_uncensored
 
-- Model: `C:\Users\erdno\chthonic-archive\models\GPT-OSS-20B-NEOPlus-Uncensored\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf`
+- Model: `C:\Users\eldno\chthonic-archive\models\GPT-OSS-20B-NEOPlus-Uncensored\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf`
 - Composite: **0.0** (0/3)
 - Throughput: `15.02 tokens/s`
 
@@ -65,3 +65,4 @@ generated: 2026-02-19T21:41:48.800498+00:00
 
 1. Highest composite score wins.
 2. Tie-breaker is higher avg tokens/s.
+

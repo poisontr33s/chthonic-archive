@@ -18,7 +18,7 @@
 - Detected crash codes: -2147483645 (0x80000003), -1073741819 (0xC0000005)
 
 ## Logs
-- Source log dir: `C:\Users\erdno\AppData\Roaming\Code - Insiders\logs\20260226T074523`
+- Source log dir: `C:\Users\eldno\AppData\Roaming\Code - Insiders\logs\20260226T074523`
 - Copied log files: `16`
 - Crash-pattern hits: `3`
 
@@ -40,6 +40,7 @@
 1. If no-profile is stable, re-enable profile incrementally and isolate crashing hook.
 
 ## Artifacts
-- JSON: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z\triage_report.json`
-- API doctor log: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z\api_doctor.log`
-- Bundle dir: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z`
+- JSON: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z\triage_report.json`
+- API doctor log: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z\api_doctor.log`
+- Bundle dir: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T200225Z`
+

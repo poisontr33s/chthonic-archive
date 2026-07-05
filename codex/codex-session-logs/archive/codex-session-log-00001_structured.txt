@@ -1,5 +1,5 @@
 [0001] CMD
-node "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+node "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 
 [0002] CMD
 python .codex/skills/skill-polisher/scripts/polish_skill.py .codex/skills --all
@@ -279,3 +279,4 @@ uv run .codex/skills/iron-maiden-runtime/scripts/render_scene.py `
 
 [0094] CMD
 uv run .codex/skills/iron-maiden-runtime/scripts/render_scene.py ... works as before.
+

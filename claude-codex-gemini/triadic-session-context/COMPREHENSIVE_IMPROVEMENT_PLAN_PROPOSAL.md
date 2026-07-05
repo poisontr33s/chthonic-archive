@@ -1076,7 +1076,7 @@ Read [](file:///c%3A/Users/eldno/chthonic-archive/.gemini/extensions)
 
 Searched for files matching `**/collisions_tmp.json`, no matches
 
-Searched for text `erdno` (`chthonic-archive` · `.temple/methodology/AGENT_COMMON.md`), 1 result
+Searched for text `eldno` (`chthonic-archive` · `.temple/methodology/AGENT_COMMON.md`), 1 result
 
 Execution complete: Check root JSON temp files and .git hooks
 
@@ -1124,7 +1124,7 @@ Here's the current truth mapped against the audit intelligence:
 
 | Finding | Current State | Embalm Gate? |
 |---------|--------------|--------------|
-| **D1** AGENT_COMMON.md | Still has `erdno` typo, still diverged | No — overwrite with redirect pointer (no content lost) |
+| **D1** AGENT_COMMON.md | Still has `eldno` typo, still diverged | No — overwrite with redirect pointer (no content lost) |
 | **D2** skills (9 stale skills) | Still there, confirmed NOT NOV-CAD modes | Yes — embalm before delete |
 | **D4** extensions | **9 months stale** (2025-06-17) | Yes — embalm before purge |
 | **H** Hook infrastructure | **WORSE** — `pre-commit-guardian.ps1` itself is GONE, not just unwired | N/A — creation, not deletion |
@@ -1314,7 +1314,7 @@ Replacing 7 lines with 6 lines in [](file:///c%3A/Users/eldno/chthonic-archive/.
 ```
 
 ```
-Now remove the diverged body content after the redirect header — the rest of the file had the old `erdno` typo and missing sections:  
+Now remove the diverged body content after the redirect header — the rest of the file had the old `eldno` typo and missing sections:  
 
 Read [](file:///c%3A/Users/eldno/chthonic-archive/.temple/methodology/AGENT_COMMON.md#5-5), lines 5 to 30
 
@@ -1340,7 +1340,7 @@ Audit rewrite complete. Here's what was done:
 - **Invariance contracts** — added SFS protocol, OSGTTLR pipeline, and bidirectional bridge as top-level invariants
 - **Sections F/H/I** — corrected with live-state verification (temp JSONs gone, hook script GONE, PWSH_RULES v1.1≠v1.2)
 
-**Phase 0.5 executed:** AGENT_COMMON.md stripped to a 5-line redirect pointer → root AGENT_COMMON.md. Eliminates the diverged copy with `erdno` typo and missing sections.
+**Phase 0.5 executed:** AGENT_COMMON.md stripped to a 5-line redirect pointer → root AGENT_COMMON.md. Eliminates the diverged copy with `eldno` typo and missing sections.
 
 Three fixes committed to working tree this session: C1 (merge conflict), C2 (dead SSOT ref), D1 (AGENT_COMMON redirect). 
 
@@ -2626,7 +2626,7 @@ Here's the full packet inventory — **18 files**, not 3.
 |---|------|-----|--------|
 | 10 | milf_genesis_v2.py | Hardcoded `mpw_path` → `SSOT_POINTER_RELPATH` | ✅ Current |
 | 11 | cli.py | `SSOT_PATH` constant → `SSOT_POINTER_RELPATH` | ✅ Current |
-| 12 | cli.py | 3 hardcodes + wrong `erdno` path → cascade | ✅ Current |
+| 12 | cli.py | 3 hardcodes + wrong `eldno` path → cascade | ✅ Current |
 | 13 | cli.py | Dead `LORE_MD` ref → `SSOT_HOLDER_RELPATH` | ✅ Current |
 
 ### Infrastructure (4 files — foundation, not modified this session)

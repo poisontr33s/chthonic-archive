@@ -1212,16 +1212,16 @@ bun       ~\.bun\bin\bun.exe                           irm bun.sh
 
 ### 0199 Note
 
-Grep "run: chthonic doctor --fix" (in c:\Users\erdno\chthonic-archive\scripts\chthonic.ps1)
+Grep "run: chthonic doctor --fix" (in c:\Users\eldno\chthonic-archive\scripts\chthonic.ps1)
 1 line of output
-Edit c:\Users\erdno\chthonic-archive\scripts\chthonic.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\chthonic.ps1
 Edit failed
-Read c:\Users\erdno\chthonic-archive\scripts\chthonic.ps1 (lines 855-864)
-Edit c:\Users\erdno\chthonic-archive\scripts\chthonic.ps1
+Read c:\Users\eldno\chthonic-archive\scripts\chthonic.ps1 (lines 855-864)
+Edit c:\Users\eldno\chthonic-archive\scripts\chthonic.ps1
 Modified
 Bash Verify updated footer
 IN
-cd /c/Users/erdno/chthonic-archive && pwsh -NoProfile -File scripts/chthonic.ps1 doctor 2>&1
+cd /c/Users/eldno/chthonic-archive && pwsh -NoProfile -File scripts/chthonic.ps1 doctor 2>&1
 
 ### 0200 Command
 
@@ -1411,7 +1411,7 @@ warning: spurious network error (3 tries remaining): [35] SSL connect error (Sen
   Downloaded goup-rs v0.16.9
   Installing goup-rs v0.16.9
     Updating crates.io index
-error: failed to compile `goup-rs v0.16.9`, intermediate artifacts can be found at `C:\Users\erdno\AppData\Local\Temp\cargo-installpjHRJF`.
+error: failed to compile `goup-rs v0.16.9`, intermediate artifacts can be found at `C:\Users\eldno\AppData\Local\Temp\cargo-installpjHRJF`.
 To reuse those artifacts with a future compilation, set the environment variable `CARGO_TARGET_DIR` to that path.
 
 ### 0231 Note
@@ -1433,7 +1433,7 @@ Exit code 101
     Updating crates.io index
   Installing goup-rs v0.16.8
     Updating crates.io index
-error: failed to compile `goup-rs v0.16.8`, intermediate artifacts can be found at `C:\Users\erdno\AppData\Local\Temp\cargo-installOH3Vdz`.
+error: failed to compile `goup-rs v0.16.8`, intermediate artifacts can be found at `C:\Users\eldno\AppData\Local\Temp\cargo-installOH3Vdz`.
 To reuse those artifacts with a future compilation, set the environment variable `CARGO_TARGET_DIR` to that path.
 
 ### 0233 Note
@@ -1456,7 +1456,7 @@ Exit code 101
   Installing goup-rs v0.16.10 (https://github.com/thinkgos/goup-rs#d0190775)
     Updating crates.io index
 warning: spurious network error (3 tries remaining): [35] SSL connect error (Recv failure: Connection was reset)
-error: failed to compile `goup-rs v0.16.10 (https://github.com/thinkgos/goup-rs#d0190775)`, intermediate artifacts can be found at `C:\Users\erdno\AppData\Local\Temp\cargo-installcp0QVY`.
+error: failed to compile `goup-rs v0.16.10 (https://github.com/thinkgos/goup-rs#d0190775)`, intermediate artifacts can be found at `C:\Users\eldno\AppData\Local\Temp\cargo-installcp0QVY`.
 To reuse those artifacts with a future compilation, set the environment variable `CARGO_TARGET_DIR` to that path.
 
 ### 0235 Note
@@ -1465,7 +1465,7 @@ Caused by:
   failed to select a version for the requirement `zip = "^7.4"`
     version 7.4.0 is yanked
   location searched: crates.io index
-  required by package `goup-rs v0.16.10 (C:\Users\erdno\.cargo\git\checkouts\goup-rs-ba9a2a600c6c89ed\d019077)`
+  required by package `goup-rs v0.16.10 (C:\Users\eldno\.cargo\git\checkouts\goup-rs-ba9a2a600c6c89ed\d019077)`
 Upstream zip crate is yanked — blocks all cargo builds. Let me grab the pre-built binary from their releases instead.
 
 ### 0236 Command
@@ -1593,3 +1593,4 @@ cargo check -p chthonic-daemon — clean, 0 warnings
 ```text
 bun run compile — 14 modules bundled, 56.42 KB (including new reactor modules)
 ```
+

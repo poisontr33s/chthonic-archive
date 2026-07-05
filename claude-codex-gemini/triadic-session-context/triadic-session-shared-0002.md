@@ -9,16 +9,16 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
 2) **Date, Agents Active, Workspace, Goal**
    - Date: 2026-02-01
    - Agents: Gemini CLI (Primary)
-   - Workspace: `C:\Users\erdno\chthonic-archive`
+   - Workspace: `C:\Users\eldno\chthonic-archive`
    - Goal: Authenticate Gemini CLI with GitHub Copilot via MCP using a Personal Access Token (PAT), since OAuth is not supported for GitHub MCP in Gemini CLI.
 3) **Canonical Artifacts**
    - Triadic index:
      - `claude-codex-gemini/triadic-session-shared-0002.md`
 4) **Files Created/Modified (Authoritative)**
    - Global Gemini Settings:
-     - `C:\Users\erdno\.gemini\settings.json`
+     - `C:\Users\eldno\.gemini\settings.json`
    - Extension enablement:
-     - `C:\Users\erdno\.gemini\extensions/extension-enablement.json` (GitHub extension re-enabled)
+     - `C:\Users\eldno\.gemini\extensions/extension-enablement.json` (GitHub extension re-enabled)
    - Handover:
      - `codex/reports/gemini_mcp_status_report.md`
 5) **Decisions & Locks**
@@ -48,7 +48,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
    - Environment variable persistence.
 3) **File Map**
    - `~/.gemini/settings.json`: Global Gemini config.
-   - `C:\Users\erdno\.gemini\extensions/extension-enablement.json`: Extension enablement.
+   - `C:\Users\eldno\.gemini\extensions/extension-enablement.json`: Extension enablement.
    - `codex/reports/gemini_mcp_status_report.md`: Handover snapshot (dummy token).
 
 ### Structured Log (Compressed)
@@ -61,7 +61,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
 - **PAT Bridge:** Use `GITHUB_MCP_PAT` env var; no OAuth flow for GitHub MCP.
 
 #### C) Authoritative Files (Created/Modified)
-- `C:\Users\erdno\.gemini\extensions/extension-enablement.json`: GitHub extension enabled.
+- `C:\Users\eldno\.gemini\extensions/extension-enablement.json`: GitHub extension enabled.
 - `codex/reports/gemini_mcp_status_report.md`: Status handover (dummy token).
 
 #### D) Errors → Root Cause → Fix → Verification
@@ -71,3 +71,4 @@ Shared, raw continuity log for Codex + Claude + Gemini. This entry captures the 
 #### E) Pending / Open Threads (Smallest Next Move)
 - Restart Gemini to load env var.
 - Run `/mcp list` to verify GitHub tools are available.
+

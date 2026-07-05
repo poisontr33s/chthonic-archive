@@ -1,3 +1,4 @@
-probe: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\toolchain-probe\20251226_093820\toolchain.json
-path:  C:\Users\erdno\chthonic-archive\dumpster-dive\intake\toolchain-probe\20251226_093820\PATH.txt
+probe: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\toolchain-probe\20251226_093820\toolchain.json
+path:  C:\Users\eldno\chthonic-archive\dumpster-dive\intake\toolchain-probe\20251226_093820\PATH.txt
 apply: True
+

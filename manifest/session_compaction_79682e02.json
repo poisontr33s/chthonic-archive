@@ -7059,7 +7059,7 @@
     },
     {
       "turn": 3407,
-      "command": "git commit -m \"roulette(T3): sfs shim + erdno hotspot batch\n\nscripts/sfs.ps1: replace body with thin shim delegating to\n  shell_capabilities.ps1 via & `$PSScriptRoot/shell_capabilities.ps1\n\nscripts/shell_capabilities.ps1: add gh key (was missing)\n\nscripts/setup-gemini-claude.ts:\n  - erdno->eldno in ",
+      "command": "git commit -m \"roulette(T3): sfs shim + eldno hotspot batch\n\nscripts/sfs.ps1: replace body with thin shim delegating to\n  shell_capabilities.ps1 via & `$PSScriptRoot/shell_capabilities.ps1\n\nscripts/shell_capabilities.ps1: add gh key (was missing)\n\nscripts/setup-gemini-claude.ts:\n  - eldno->eldno in ",
       "goal": "Commit changes"
     },
     {
@@ -8449,7 +8449,7 @@
     },
     {
       "turn": 4248,
-      "command": "git commit -m \"roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, erdno→eldno)\" --trailer \"Co-authored-by: Pentea <223556219+Pe",
+      "command": "git commit -m \"roulette(T5): assess-before-act batch — hf_gemma_probe/local_refiner_v1/setup_db/extract_session_value/build_epistemograph_v1.0 → .deprecated/; mistralrs_client → lib/; build_epistemograph_v1.1 renamed+fixed (--schema-path, eldno→eldno)\" --trailer \"Co-authored-by: Pentea <223556219+Pe",
       "goal": "Commit changes."
     },
     {
@@ -8554,7 +8554,7 @@
     },
     {
       "turn": 4412,
-      "command": "git commit -m \"spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped\n\n- PWSH_RULES.md v1.4: probe hash updated to 934B9E30 (actual current); erdno→eldno typo; v1.1→1.4 bump\n- SCRIPTS_README.md: probe hash 636383→934B9E30; chthonic version v3.2.0→v3.3.0\n- AGENT_COMMON.md: M",
+      "command": "git commit -m \"spruce: reference surface pass 2 — hash refresh, typo fix, stale labels stripped\n\n- PWSH_RULES.md v1.4: probe hash updated to 934B9E30 (actual current); eldno→eldno typo; v1.1→1.4 bump\n- SCRIPTS_README.md: probe hash 636383→934B9E30; chthonic version v3.2.0→v3.3.0\n- AGENT_COMMON.md: M",
       "goal": "Commit changes."
     },
     {
@@ -8564,7 +8564,7 @@
     },
     {
       "turn": 4436,
-      "command": "git commit -m \"spruce: reference surface pass 3 — WIP→Archived labels; erdno→eldno typos; testing date\n\n- AGENTS.md: item 10 MILF-Core WIP→Archived; stale copilot-instructions.md#anchor link removed\n- .github/pathstofiles.md: erdno→eldno in user-scoped settings paths (×2)\n- .github/instructions/proj",
+      "command": "git commit -m \"spruce: reference surface pass 3 — WIP→Archived labels; eldno→eldno typos; testing date\n\n- AGENTS.md: item 10 MILF-Core WIP→Archived; stale copilot-instructions.md#anchor link removed\n- .github/pathstofiles.md: eldno→eldno in user-scoped settings paths (×2)\n- .github/instructions/proj",
       "goal": "Commit the staged changes."
     },
     {

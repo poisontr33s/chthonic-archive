@@ -59,8 +59,8 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 4. Envelopes added to 15 additional PowerShell scripts (Task 4 batch)
 
 ## Current State (Stable)
-- Auth: file-based (`C:/Users/erdno/.codex/auth.json`)
-- Global config: auth-only (`C:/Users/erdno/.codex/config.toml`)
+- Auth: file-based (`C:/Users/eldno/.codex/auth.json`)
+- Global config: auth-only (`C:/Users/eldno/.codex/config.toml`)
 - Workspace config: behavior SSOT (`.codex/config.toml`) with sandbox locked to this repo
 - Instructions: `AGENTS.md` (compact) and `.github/copilot-instructions.md` (SSOT)
 - Gemini MCP: GitHub Server **Enabled** (PAT-based auth required; no OAuth flow)
@@ -169,7 +169,7 @@ Capture what's next for Codex in this workspace without expanding the SSOT. This
 Bun v1.3.8 (b64edcb4) Windows x64
 Windows v.win11_dt
 CPU: sse42 avx avx2
-Args: "C:\Users\erdno\.bun\bin\bun.exe" "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+Args: "C:\Users\eldno\.bun\bin\bun.exe" "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2)
 Builtins: "abort-controller" "bun:main" "node:assert" "node:async_hooks" "node:buffer" "node:child_process" "node:constants" "node:crypto" "node:dns" "node:events" "node:fs" "node:fs/promises" "node:http" "node:https" "node:module" "node:net" "node:os" "node:path" "node:perf_hooks" "node:process" "node:querystring" "node:readline" "node:stream" "node:stream/promises" "node:string_decoder" "node:timers/promises" "node:tls" "node:tty" "node:url" "node:util" "node:zlib" "node:worker_threads" "undici" "ws" "node-fetch" "node:v8" "node:http2" "node:diagnostics_channel"
 Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms
@@ -217,3 +217,4 @@ oh no: Bun has crashed. This indicates a bug in Bun, not your code.
 - `claude/SESSION_HANDOFF_2026_02_01_TRIAD_GEMINI.md`
 - `.gemini/TRIAD_SYNC_2026_02_01.md`
 - `deep-research-documents/Gemini_CLI_Preview_Win11_Bun_vscode_insiders_deep_research_IMPLEMENTATION.md`
+

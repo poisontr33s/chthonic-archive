@@ -178,7 +178,7 @@ Per SSOT §XIV.2, the following are **documented exceptions**:
 
 ```powershell
 # Run scanner locally
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python scripts/bun_compliance_audit.py
 
 # Verbose output
@@ -200,3 +200,4 @@ Expected output: `[PASS] Bun compliance: CLEAN (no violations detected)`
 ---
 
 *Bun compliance enforcement is now a permanent, automated part of the Chthonic Archive CI/CD pipeline.*
+

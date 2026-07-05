@@ -4,7 +4,7 @@
 
 ## Summary
 
-- **Root:** `C:\Users\erdno\chthonic-archive`
+- **Root:** `C:\Users\eldno\chthonic-archive`
 - **Directories:** 148
 - **Total Files:** 822
 
@@ -120,3 +120,4 @@
 ### `scripts\lib` (8 files) 
 
 - `.py`: 8
+

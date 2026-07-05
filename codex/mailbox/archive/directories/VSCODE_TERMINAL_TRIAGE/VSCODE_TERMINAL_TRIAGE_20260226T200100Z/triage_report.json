@@ -13,23 +13,23 @@
     "pwsh_version": "7.5.4"
   },
   "vscode": {
-    "code_insiders_cmd": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
+    "code_insiders_cmd": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
     "workspace_settings": {
-      "path": "C:\\Users\\erdno\\chthonic-archive\\.vscode\\settings.json",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\.vscode\\settings.json",
       "exists": true,
       "terminal_log_level": "trace"
     },
     "user_settings": {
-      "path": "C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\User\\settings.json",
+      "path": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\User\\settings.json",
       "exists": true,
       "terminal_log_level": null
     },
     "status": {
       "available": true,
-      "cmd": "C:\\Users\\erdno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
+      "cmd": "C:\\Users\\eldno\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin\\code-insiders.cmd",
       "exit_code": 0,
-      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\code_insiders_status.log",
-      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\code_insiders_status.err.log",
+      "stdout_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\code_insiders_status.log",
+      "stderr_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\code_insiders_status.err.log",
       "renderer_crash_lines": [],
       "gpu_error_lines": [
         "GPU Status:       2d_canvas:                              unavailable_software",
@@ -51,32 +51,32 @@
     {
       "name": "no_profile",
       "args": "-NoLogo -NoProfile -Command $PSVersionTable.PSVersion.ToString(); exit 0",
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exit_code": 0,
       "exit_hex": "0x00000000",
       "elapsed_ms": 1028,
-      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_no_profile_stdout.log",
-      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_no_profile_stderr.log"
+      "stdout_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_no_profile_stdout.log",
+      "stderr_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_no_profile_stderr.log"
     },
     {
       "name": "with_profile_repo",
       "args": "-NoLogo -Command $PSVersionTable.PSVersion.ToString(); exit 0",
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exit_code": 0,
       "exit_hex": "0x00000000",
       "elapsed_ms": 1016,
-      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_repo_stdout.log",
-      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_repo_stderr.log"
+      "stdout_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_repo_stdout.log",
+      "stderr_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_repo_stderr.log"
     },
     {
       "name": "with_profile_temp",
       "args": "-NoLogo -Command $PSVersionTable.PSVersion.ToString(); exit 0",
-      "cwd": "C:\\Users\\erdno\\AppData\\Local\\Temp",
+      "cwd": "C:\\Users\\eldno\\AppData\\Local\\Temp",
       "exit_code": 0,
       "exit_hex": "0x00000000",
       "elapsed_ms": 1013,
-      "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_temp_stdout.log",
-      "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_temp_stderr.log"
+      "stdout_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_temp_stdout.log",
+      "stderr_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\probe_with_profile_temp_stderr.log"
     }
   ],
   "findings": [
@@ -85,48 +85,48 @@
   ],
   "log_collection": {
     "found": true,
-    "source_dir": "C:\\Users\\erdno\\AppData\\Roaming\\Code - Insiders\\logs\\20260226T074523",
+    "source_dir": "C:\\Users\\eldno\\AppData\\Roaming\\Code - Insiders\\logs\\20260226T074523",
     "copied_files": [
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\ptyhost.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\sharedprocess.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\terminal.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\exthost\\exthost.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\exthost\\extHostTelemetry.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\renderer.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\exthost\\exthost.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\exthost\\extHostTelemetry.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\renderer.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\exthost\\exthost.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\exthost\\extHostTelemetry.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\renderer.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\exthost\\exthost.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\exthost\\extHostTelemetry.log",
-      "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\renderer.log"
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\ptyhost.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\sharedprocess.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\terminal.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\exthost\\exthost.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window1\\renderer.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\exthost\\exthost.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window2\\renderer.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\exthost\\exthost.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window3\\renderer.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\exthost\\exthost.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\exthost\\extHostTelemetry.log",
+      "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\window4\\renderer.log"
     ],
     "crash_hits": [
       {
-        "path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
         "line": 4,
         "text": "2026-02-26 07:56:15.273 [error] CodeWindow: renderer process gone (reason: crashed, code: -1073741819)"
       },
       {
-        "path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
         "line": 6,
         "text": "2026-02-26 08:12:18.836 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)"
       },
       {
-        "path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
+        "path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\insiders_logs\\main.log",
         "line": 8,
         "text": "2026-02-26 08:20:34.663 [error] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)"
       }
     ]
   },
   "api_doctor": {
-    "script": "C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\api-manager\\scripts\\api_manager.ps1",
+    "script": "C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\api-manager\\scripts\\api_manager.ps1",
     "exit_code": 0,
-    "stdout_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\api_doctor.log",
-    "stderr_path": "C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\api_doctor.err.log"
+    "stdout_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\api_doctor.log",
+    "stderr_path": "C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\VSCODE_TERMINAL_TRIAGE_20260226T200100Z\\api_doctor.err.log"
   },
   "next_steps": [
     "Inside VS Code Insiders, run: Developer: Set Log Level... -> Trace.",
@@ -137,3 +137,4 @@
     "If no-profile is stable, re-enable profile incrementally and isolate crashing hook."
   ]
 }
+

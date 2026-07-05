@@ -93,7 +93,7 @@
 
 ```bash
 # Navigate to workspace root
-cd c:\Users\erdno\chthonic-archive
+cd c:\Users\eldno\chthonic-archive
 
 # Install both extensions (already done ✅)
 cd extensions/chthonic-statusbar && bun install && bun run compile && cd ../..
@@ -127,11 +127,11 @@ bunx @vscode/vsce package
 # Symlink extensions (Windows requires admin or developer mode)
 New-Item -ItemType SymbolicLink `
   -Path "$env:USERPROFILE\.vscode-insiders\extensions\chthonic-statusbar" `
-  -Target "c:\Users\erdno\chthonic-archive\extensions\chthonic-statusbar"
+  -Target "c:\Users\eldno\chthonic-archive\extensions\chthonic-statusbar"
 
 New-Item -ItemType SymbolicLink `
   -Path "$env:USERPROFILE\.vscode-insiders\extensions\chthonic-mandala" `
-  -Target "c:\Users\erdno\chthonic-archive\extensions\chthonic-mandala"
+  -Target "c:\Users\eldno\chthonic-archive\extensions\chthonic-mandala"
 
 # Reload VSCode: Ctrl+Shift+P → "Developer: Reload Window"
 ```
@@ -346,3 +346,4 @@ chthonic-mandala:
 **Build Time**: 35ms (bun) vs 4s+ (tsc)
 **Bundle Size**: 37.6 KB (minimal)
 **Resource Impact**: <3% VSCode overhead
+

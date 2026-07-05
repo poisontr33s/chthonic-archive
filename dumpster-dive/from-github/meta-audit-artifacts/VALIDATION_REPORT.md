@@ -175,7 +175,7 @@ git commit -m "Complete session validation infrastructure"
 
 ```powershell
 # Step 1: Get full audit output
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python scripts/bun_compliance_audit.py > bun_audit.log 2>&1
 cat bun_audit.log
 
@@ -283,3 +283,4 @@ git commit -m "WIP: Session validation (bun compliance TBD)"
 **Validator:** validate_session_changes.ps1
 **Pass Rate:** 5/9 (55%) - **NEEDS REMEDIATION**
 **Blocker:** Bun compliance audit failure
+

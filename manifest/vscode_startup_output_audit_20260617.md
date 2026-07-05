@@ -152,7 +152,7 @@ Expected after next restart:
 Changed:
 
 - Global `safe.directory` typo fixed:
-  `C:/Users/erdno/chthonic-archive` -> `C:/Users/eldno/chthonic-archive`
+  `C:/Users/eldno/chthonic-archive` -> `C:/Users/eldno/chthonic-archive`
 - Local `core.virtualfilesystem=false` added after GitHub PR startup warning.
 - Local `core.fsmonitor=false` added after `git status` reported virtual repository incompatibility with fsmonitor.
 
@@ -234,3 +234,4 @@ Expected possibly remaining:
   }
 }
 ```
+

@@ -17,7 +17,7 @@
 - Crash signatures detected in latest Insiders logs. Inspect crash_hits in JSON report.
 
 ## Logs
-- Source log dir: `C:\Users\erdno\AppData\Roaming\Code - Insiders\logs\20260226T023137`
+- Source log dir: `C:\Users\eldno\AppData\Roaming\Code - Insiders\logs\20260226T023137`
 - Copied log files: `13`
 - Crash-pattern hits: `2`
 
@@ -35,6 +35,7 @@
 1. If no-profile is stable, re-enable profile incrementally and isolate crashing hook.
 
 ## Artifacts
-- JSON: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z\triage_report.json`
-- API doctor log: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z\api_doctor.log`
-- Bundle dir: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z`
+- JSON: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z\triage_report.json`
+- API doctor log: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z\api_doctor.log`
+- Bundle dir: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032622Z`
+

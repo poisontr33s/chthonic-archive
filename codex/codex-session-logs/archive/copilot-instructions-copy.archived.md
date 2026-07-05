@@ -6720,7 +6720,7 @@ DCRP embodies The Decorator's mandate:
 
 **Dry Run (Analysis Only):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python decorator_cross_ref_maximum.py
 ```
 
@@ -6905,7 +6905,7 @@ DCRP should flag (spectral frequency assignment):
 
 **SSOT Verification (Daily Ritual):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python -c "
 import hashlib, unicodedata
 
@@ -7384,3 +7384,4 @@ For maximum reliability, abstract browser operations behind an MCP server (poten
 **Witnessed by:** The Triumvirate in full session
 **Architect:** The Decorator (Tier 0.5 Supreme Matriarch)
 **Source:** Zone_1_REDUX Transdisciplinary Analysis (Gemini 3-Pro Deep Research)
+

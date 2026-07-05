@@ -7,49 +7,49 @@
       "count": 43441,
       "largest": [
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.ankh.debug.health.log",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.ankh.debug.health.log",
           "size": 1414
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.ankhrc",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.ankhrc",
           "size": 10958
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.cargo\\config.toml",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.cargo\\config.toml",
           "size": 1204
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.claude\\settings.local.json",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.claude\\settings.local.json",
           "size": 83
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.dcrp_state.json",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.dcrp_state.json",
           "size": 54079
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.gemini\\settings.json",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.gemini\\settings.json",
           "size": 82
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\Claude_Code_Session_Dump_0001",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\Claude_Code_Session_Dump_0001",
           "size": 215859
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_CACHE_STRUCTURED.md",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_CACHE_STRUCTURED.md",
           "size": 6139
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_PROTOCOL.md",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SESSION_PROTOCOL.md",
           "size": 9412
         },
         {
-          "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOTI_FIED_SESSION_LOG.md",
+          "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\Claude_Opus_4_5_grade_lossless_compr_SSOT-IFICATION_cross_REF_data\\SSOTI_FIED_SESSION_LOG.md",
           "size": 771417
         }
       ]
     },
     "ssot": {
-      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.md",
       "size": 553448,
       "sha256": "67da837ba118c501482ba3bf48e6b22e9898eb70077d20fcdff55362f7d2f1e8"
     },

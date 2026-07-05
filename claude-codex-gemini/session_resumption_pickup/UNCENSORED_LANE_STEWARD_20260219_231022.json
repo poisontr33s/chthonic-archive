@@ -6,7 +6,7 @@
       "composite_score": 100.0,
       "avg_toks_per_s": 13.2,
       "score": 100013.2,
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
       "tasks": [
         {
           "task": "json_task",
@@ -42,7 +42,7 @@
       "composite_score": 100.0,
       "avg_toks_per_s": 13.02,
       "score": 100013.02,
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
       "tasks": [
         {
           "task": "json_task",
@@ -78,7 +78,7 @@
       "composite_score": 100.0,
       "avg_toks_per_s": 3.98,
       "score": 100003.98,
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
       "tasks": [
         {
           "task": "json_task",
@@ -114,7 +114,7 @@
       "composite_score": 33.3,
       "avg_toks_per_s": 12.18,
       "score": 33312.18,
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored\\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored\\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
       "tasks": [
         {
           "task": "json_task",
@@ -149,7 +149,7 @@
   "local_models": [
     {
       "name": "GPT-OSS-20B-NEOPlus-Uncensored",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored",
       "total_gb": 11.004,
       "newest_mtime_utc": "2026-02-13T02:54:57.920456+00:00",
       "artifacts": {
@@ -160,7 +160,7 @@
     },
     {
       "name": "Llama-3.1-8B-Instruct-exl2-6.0bpw",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\models\\Llama-3.1-8B-Instruct-exl2-6.0bpw",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\models\\Llama-3.1-8B-Instruct-exl2-6.0bpw",
       "total_gb": 6.247,
       "newest_mtime_utc": "2026-02-13T00:35:04.431064+00:00",
       "artifacts": {
@@ -171,7 +171,7 @@
     },
     {
       "name": "Qwen2.5-14B-Instruct-GGUF",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF",
       "total_gb": 8.371,
       "newest_mtime_utc": "2026-02-13T02:14:30.335848+00:00",
       "artifacts": {
@@ -182,7 +182,7 @@
     },
     {
       "name": "Qwen3-30B-A3B-Instruct-abliterated-GGUF",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF",
       "total_gb": 13.701,
       "newest_mtime_utc": "2026-02-19T21:23:17.257422+00:00",
       "artifacts": {
@@ -193,7 +193,7 @@
     },
     {
       "name": "Qwen3-Coder-30B-A3B-abliterated-GGUF",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF",
       "total_gb": 13.701,
       "newest_mtime_utc": "2026-02-19T21:23:17.067396+00:00",
       "artifacts": {

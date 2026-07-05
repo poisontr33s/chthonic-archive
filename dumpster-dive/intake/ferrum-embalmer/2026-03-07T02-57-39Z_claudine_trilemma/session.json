@@ -2,7 +2,7 @@
   "session": "2026-03-07T02-57-39Z_claudine_trilemma",
   "generated_at_utc": "2026-03-07T02:57:39.3774072Z",
   "label": "claudine_trilemma",
-  "output_root": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\ferrum-embalmer",
+  "output_root": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\ferrum-embalmer",
   "dry_run": true,
   "copy_sources": false,
   "total_sources": 10,
@@ -127,7 +127,7 @@
   "records": [
     {
       "role": "canon_runtime",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\scripts\\chthonic.ps1",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\scripts\\chthonic.ps1",
       "scope": "repo",
       "note": "SSOT runtime engine",
       "exists": true,
@@ -150,7 +150,7 @@
     },
     {
       "role": "compat_facade",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\scripts\\claudine.ps1",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\scripts\\claudine.ps1",
       "scope": "repo",
       "note": "Thin compatibility wrapper",
       "exists": true,
@@ -173,7 +173,7 @@
     },
     {
       "role": "profile_ingress",
-      "path": "C:\\Users\\erdno\\.config\\powershell\\profile.ps1",
+      "path": "C:\\Users\\eldno\\.config\\powershell\\profile.ps1",
       "scope": "external",
       "note": "Active PowerShell ingress",
       "exists": true,
@@ -196,7 +196,7 @@
     },
     {
       "role": "profile_stub",
-      "path": "C:\\Users\\erdno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
+      "path": "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\Microsoft.PowerShell_profile.ps1",
       "scope": "external",
       "note": "Current user current host profile stub",
       "exists": true,
@@ -219,7 +219,7 @@
     },
     {
       "role": "profile_stub",
-      "path": "C:\\Users\\erdno\\OneDrive\\Documents\\PowerShell\\profile.ps1",
+      "path": "C:\\Users\\eldno\\OneDrive\\Documents\\PowerShell\\profile.ps1",
       "scope": "external",
       "note": "Current user all hosts profile",
       "exists": true,
@@ -242,7 +242,7 @@
     },
     {
       "role": "legacy_residue",
-      "path": "C:\\Users\\erdno\\PsychoNoir-Kontrapunkt\\scripts\\claudineENV.ps1",
+      "path": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt\\scripts\\claudineENV.ps1",
       "scope": "external",
       "note": "Historical residue from Local AI era",
       "exists": true,
@@ -265,7 +265,7 @@
     },
     {
       "role": "context_anchor",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.archive.md",
       "scope": "repo",
       "note": "Frozen SSOT mythology anchor",
       "exists": true,
@@ -288,7 +288,7 @@
     },
     {
       "role": "context_anchor",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\BLACKSMITH_MATRIARCH.md",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\BLACKSMITH_MATRIARCH.md",
       "scope": "repo",
       "note": "Sister Ferrum Scoriae profile",
       "exists": true,
@@ -311,7 +311,7 @@
     },
     {
       "role": "context_timeline",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\from-github\\SR_SCHRODINGERS_BASTARD.md",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\from-github\\SR_SCHRODINGERS_BASTARD.md",
       "scope": "repo",
       "note": "Sir Schroedinger's Bastard linkage",
       "exists": true,
@@ -334,7 +334,7 @@
     },
     {
       "role": "context_qmr_anomaly",
-      "path": "C:\\Users\\erdno\\chthonic-archive\\.github\\codex-satellites\\MMPS_GENERATION.md",
+      "path": "C:\\Users\\eldno\\chthonic-archive\\.github\\codex-satellites\\MMPS_GENERATION.md",
       "scope": "repo",
       "note": "QMR anomaly / Novia-Cadaveris / Bride lane",
       "exists": true,
@@ -357,3 +357,4 @@
     }
   ]
 }
+

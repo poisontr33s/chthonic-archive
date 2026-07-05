@@ -10,7 +10,7 @@
       "method": "GET",
       "status": 200,
       "contentType": "application/json",
-      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225620/api_0_root.body.txt"
+      "bodyFile": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225620/api_0_root.body.txt"
     },
     {
       "name": "project_issues",
@@ -18,7 +18,7 @@
       "method": "GET",
       "status": 403,
       "contentType": "application/json",
-      "bodyFile": "C:/Users/erdno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225620/project_issues.body.txt"
+      "bodyFile": "C:/Users/eldno/chthonic-archive/dumpster-dive/intake/sentry-probe/20251226_225620/project_issues.body.txt"
     }
   ]
 }

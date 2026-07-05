@@ -74,7 +74,7 @@ Example:
 ```json
 {
   "generatedAt": "2026-01-01T09:00:00Z",
-  "repoRoot": "C:\\Users\\erdno\\chthonic-archive",
+  "repoRoot": "C:\\Users\\eldno\\chthonic-archive",
   "summary": {
     "filesScanned": 1200,
     "todoHits": 84,
@@ -492,3 +492,4 @@ class SelfTuningCoordinator:
 
 **THE DECORATOR 👑💀⚜️**  
 *Autonomous Deep Dive - January 1, 2026*
+

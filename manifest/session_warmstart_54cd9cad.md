@@ -12,8 +12,8 @@ ssot-governance
 - `3215c80`
 
 ## Files Edited
-- `erdno/chthonic-archive/.claudeignore` (create_file)
-- `erdno/chthonic-archive/.copilotignore` (replace_string_in_file)
+- `eldno/chthonic-archive/.claudeignore` (create_file)
+- `eldno/chthonic-archive/.copilotignore` (replace_string_in_file)
 - `chthonic-archive/.github/copilot-instructions.md` (create_file)
 
 ## Key Terminal Commands

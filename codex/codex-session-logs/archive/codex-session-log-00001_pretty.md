@@ -21,7 +21,7 @@ oh no: Bun has crashed. This indicates a bug in Bun, not your code.
 ### 0002 Command
 
 ```text
-node "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+node "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 ```
 
 ### 0003 Note
@@ -893,3 +893,4 @@ uv run .codex/skills/iron-maiden-runtime/scripts/render_scene.py ... works as be
 >       *   **Active Plot Threads:** Ongoing feuds, outstanding debts/favors, current storyline objectives.
 >       *   **Keystone Echoes Triggered:** Note recent significant hauntings (see Echoes/Hauntings reference notes) to inform current emotional state/vulnerability.
 >   *   **Purpose:** Reference this cache constantly to ensure continuity in dialogue, relationship dynamics, emotional responses, and consequence tracking. Past actions *must* visibly influence the present.
+

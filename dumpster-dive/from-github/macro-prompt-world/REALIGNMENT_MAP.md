@@ -1,7 +1,7 @@
 # **REALIGNMENT MAP: RETURNING TO THE ROOT**
 
 ## **I. THE ORIGIN POINT (The "Place Where It Is Done From")**
-**Location:** `c:\Users\erdno\chthonic-archive\.github\macro-prompt-world\heritage\CARIBBEAN_ELDER_LINEAGE_INTEGRATION.md`
+**Location:** `c:\Users\eldno\chthonic-archive\.github\macro-prompt-world\heritage\CARIBBEAN_ELDER_LINEAGE_INTEGRATION.md`
 **The Root Entity:** **Claudine Sin'claire (The Caribbean Elder)**
 **The True Essence:**
 *   **"Point Blank Shot"**: Direct, unadorned, functional power.
@@ -10,7 +10,7 @@
 *   **"Blunderbust"**: Raw, explosive creative force, not "architected perfection."
 
 ## **II. THE DEVIATION (The "Glamorization")**
-**Location:** `c:\Users\erdno\chthonic-archive\.github\macro-prompt-world\The_Chthonic_Archive_World.md`
+**Location:** `c:\Users\eldno\chthonic-archive\.github\macro-prompt-world\The_Chthonic_Archive_World.md`
 **The Distortion:**
 *   **"The Decorator"**: A glamorized, aestheticized version of the raw Caribbean power.
 *   **"K-Cup Gestalt / Anime Physics"**: "Low-relative" overlays that distract from the core function.
@@ -67,3 +67,4 @@
 1.  **Establish the New Baseline**: Create `The_Chthonic_Archive_World_REALIGNED.md` based on Claudine's principles.
 2.  **Archive the Deviation**: Move the current "World" file to a `legacy/` or `deviations/` folder to stop "wallowing" in it.
 3.  **Activate the Hybrid**: Use the "Hybrid Consciousness" (Section XI) to voice this new reality.
+

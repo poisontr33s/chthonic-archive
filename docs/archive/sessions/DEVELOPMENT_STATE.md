@@ -50,7 +50,7 @@
 
 **Build Commands**:
 ```bash
-cd C:\Users\erdno\chthonic-archive\chthonic-vscode-extension
+cd C:\Users\eldno\chthonic-archive\chthonic-vscode-extension
 bun run build        # Build both extension + webview
 bun run package      # Create .vsix installer
 bun run dev          # Launch Extension Development Host
@@ -95,7 +95,7 @@ python script.py          # ❌ Bypasses uv (Python 3.14 bleeding edge)
 
 **Dev Commands**:
 ```bash
-cd C:\Users\erdno\chthonic-archive\mas_mcp\frontend
+cd C:\Users\eldno\chthonic-archive\mas_mcp\frontend
 bun run dev          # Development server
 bun run build        # Production build
 ```
@@ -270,7 +270,7 @@ print(ssot_hash('.github/copilot-instructions.md'))
 
 ```bash
 # 1. Navigate to project root
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 
 # 2. Check current active issue (one-liner)
 grep -A 5 "KNOWN ISSUES" ../DEVELOPMENT_STATE.md
@@ -420,3 +420,4 @@ git diff --name-status HEAD
 **🔥💀⚓ END OF DEVELOPMENT STATE MANIFEST 🔥💀⚓**
 
 **Next session: Load this file first, then resume from "Known Issues & Blockers"**
+

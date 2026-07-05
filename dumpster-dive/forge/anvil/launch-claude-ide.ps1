@@ -27,7 +27,7 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
-$CliPath = "C:\Users\erdno\.bun\install\global\node_modules\@anthropic-ai\claude-code\cli.js"
+$CliPath = "C:\Users\eldno\.bun\install\global\node_modules\@anthropic-ai\claude-code\cli.js"
 
 if ($debug) { Write-Host "🔍 Claude Code IDE Launcher v1.0" -ForegroundColor Cyan }
 
@@ -159,7 +159,7 @@ Write-Host "━━━━━━━━━━━━━━━━━━━━━━�
 Write-Host "If Claude Code IDE didn't launch, try:
 
 1️⃣  Make sure you're in the workspace directory:
-    cd c:\Users\erdno\chthonic-archive
+    cd c:\Users\eldno\chthonic-archive
 
 2️⃣  Launch from workspace root:
     claude --ide
@@ -188,4 +188,5 @@ if ($env:GOOGLE_API_KEY) {
 Write-Host "`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n"
 
 exit 1
+
 

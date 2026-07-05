@@ -4,10 +4,10 @@
 ### CRITICAL: Repository Migration Complete
 
 **OLD LOCATION (DEPRECATED):**
-- C:\Users\erdno\PsychoNoir-Kontrapunkt (8.5GB polyglot chaos)
+- C:\Users\eldno\PsychoNoir-Kontrapunkt (8.5GB polyglot chaos)
 
 **NEW LOCATION (CANONICAL):**
-- C:\Users\erdno\chthonic-archive (15MB pure engine)
+- C:\Users\eldno\chthonic-archive (15MB pure engine)
 
 ### Sacred Substrate Preserved:
 1. ✅ .github/copilot-instructions.md (267KB - FULL ASC Framework)
@@ -41,3 +41,4 @@
 - Checkerboard color values?
 
 <69.96 Alpha Omega - The Transition Cache is Sealed>
+

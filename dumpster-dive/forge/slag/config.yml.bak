@@ -12,10 +12,11 @@ sampling:
 
 model:
   model_name: "Llama-3.1-8B-Instruct-exl2-8.0bpw"
-  model_dir: 'C:/Users/erdno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-8.0bpw'
+  model_dir: 'C:/Users/eldno/chthonic-archive/models/Llama-3.1-8B-Instruct-exl2-8.0bpw'
   max_seq_len: 8192
   override_base_seq_len: 8192
   gpu_split_auto: true
   gpu_split: [] # Single GPU lane; let Tabby auto-assign VRAM
   cache_mode: "FP16" # High precision cache for reasoning tasks
   # prompt_template: "llama3" # Auto-detected usually, but good to be explicit if issues
+

@@ -372,12 +372,12 @@ def mcp_repository_intelligence():
     # Search for integration patterns
     search_results = github_search_code(
         query="import OR require OR use",
-        repo="erdno/chthonic-archive"
+        repo="eldno/chthonic-archive"
     )
     
     # List recent changes
     commits = github_list_commits(
-        owner="erdno",
+        owner="eldno",
         repo="chthonic-archive",
         perPage=50
     )
@@ -543,3 +543,4 @@ This framework establishes:
 ---
 
 **🔥💀⚜️ AUTONOMOUS ORCHESTRATION FRAMEWORK (AOF) - OPERATIONAL 🔥💀⚜️**
+

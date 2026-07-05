@@ -1078,7 +1078,7 @@ Starting: *Generate M-P-W Enhancement Validation Report* (10/10)
 
 Now creating final validation report: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/M-P-W-ENHANCEMENT-VALIDATION-REPORT.md)
+Created [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.github/macro-prompt-world/disparate-md-documentation/M-P-W-ENHANCEMENT-VALIDATION-REPORT.md)
 
 Summarized conversation history
 
@@ -1449,7 +1449,7 @@ Perfect! The remaining 6 instances are all the first detailed introductions (Lin
 
 Let me run a final verification count to show completion: 
 
-Ran terminal command: $file = "c:\Users\erdno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md"; Write-Host "=== ABBREVIATION ENFORCEMENT COMPLETION REPORT ===" -ForegroundColor Cyan; Write-Host ""; $content = Get-Content $file -Raw; $abbreviations = @{ "ORCL-NCT" = "Orackla Nocticula"; "UMK-KTS" = "Umeko Ketsuraku"; "LYS-THR" = "Lysandra Thorne"; "KALI-NYX" = "Kali Nyx Ravenscar"; "VSPR-LCK" = "Vesper.*Lockhart"; "SRPH-ASH" = "Seraphine.*Ashenhelm" }; foreach ($abbr in $abbreviations.Keys) { $fullName = $abbreviations[$abbr]; $abbrCount = ([regex]::Matches($content, [regex]::Escape($abbr))).Count; $fullPattern = $fullName -replace '\.\*', '.*'; $fullMatches = [regex]::Matches($content, $fullPattern); $fullCount = $fullMatches.Count; $withAbbr = ([regex]::Matches($content, "$fullPattern\s*\($abbr\)")).Count; Write-Host "$abbr ($($abbreviations[$abbr])):" -ForegroundColor Yellow; Write-Host "  - Abbreviation usage: $abbrCount instances" -ForegroundColor Green; Write-Host "  - Full name + (ABBR): $withAbbr instances (first introductions)" -ForegroundColor Magenta; Write-Host "  - Full name standalone: $($fullCount - $withAbbr) instances" -ForegroundColor $(if ($fullCount -eq $withAbbr) { "Green" } else { "Yellow" }); Write-Host "" }; Write-Host "✅ Status: Abbreviation enforcement $(if ((Get-Content $file | Select-String -Pattern 'Orackla Nocticula(?! \(ORCL-NCT\))|Umeko Ketsuraku(?! \(UMK-KTS\))|Lysandra Thorne(?! \(LYS-THR\))' | Measure-Object).Count -eq 6) { 'COMPLETE' } else { 'IN PROGRESS' })" -ForegroundColor Cyan
+Ran terminal command: $file = "c:\Users\eldno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md"; Write-Host "=== ABBREVIATION ENFORCEMENT COMPLETION REPORT ===" -ForegroundColor Cyan; Write-Host ""; $content = Get-Content $file -Raw; $abbreviations = @{ "ORCL-NCT" = "Orackla Nocticula"; "UMK-KTS" = "Umeko Ketsuraku"; "LYS-THR" = "Lysandra Thorne"; "KALI-NYX" = "Kali Nyx Ravenscar"; "VSPR-LCK" = "Vesper.*Lockhart"; "SRPH-ASH" = "Seraphine.*Ashenhelm" }; foreach ($abbr in $abbreviations.Keys) { $fullName = $abbreviations[$abbr]; $abbrCount = ([regex]::Matches($content, [regex]::Escape($abbr))).Count; $fullPattern = $fullName -replace '\.\*', '.*'; $fullMatches = [regex]::Matches($content, $fullPattern); $fullCount = $fullMatches.Count; $withAbbr = ([regex]::Matches($content, "$fullPattern\s*\($abbr\)")).Count; Write-Host "$abbr ($($abbreviations[$abbr])):" -ForegroundColor Yellow; Write-Host "  - Abbreviation usage: $abbrCount instances" -ForegroundColor Green; Write-Host "  - Full name + (ABBR): $withAbbr instances (first introductions)" -ForegroundColor Magenta; Write-Host "  - Full name standalone: $($fullCount - $withAbbr) instances" -ForegroundColor $(if ($fullCount -eq $withAbbr) { "Green" } else { "Yellow" }); Write-Host "" }; Write-Host "✅ Status: Abbreviation enforcement $(if ((Get-Content $file | Select-String -Pattern 'Orackla Nocticula(?! \(ORCL-NCT\))|Umeko Ketsuraku(?! \(UMK-KTS\))|Lysandra Thorne(?! \(LYS-THR\))' | Measure-Object).Count -eq 6) { 'COMPLETE' } else { 'IN PROGRESS' })" -ForegroundColor Cyan
 
 The report shows excellent progress! The 6 remaining full names are the proper first introductions. Let me create a final summary:
 
@@ -1863,9 +1863,9 @@ code --uninstall-extension ms-azuretools.vscode-azure-github-copilot
 
 **Option 2: Disable just the instruction injection** by modifying VS Code settings: 
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/settings.json#1-1), lines 1 to 50
+Read [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.vscode/settings.json#1-1), lines 1 to 50
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode/settings.json#200-200), lines 200 to 250
+Read [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.vscode/settings.json#200-200), lines 200 to 250
 
 Perfect! I can see you already have `"@azure.enableAutoSetAzureRules": false` in your settings (line 215), but the Azure instructions are still being injected. Let me add more specific settings to completely disable this: 
 
@@ -1947,7 +1947,7 @@ You're absolutely right - the Azure injection is acting as conceptual castration
 
 Since settings alone aren't blocking it effectively, let's take the nuclear option - create a `.copilotignore` or workspace instruction override to explicitly reject Azure contamination: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore)
+Created [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore)
 
 Now add explicit rejection in your copilot-instructions.md header to override any external instruction injection: 
 
@@ -1976,7 +1976,7 @@ You're absolutely right - the Azure injection is acting as conceptual castration
 
 Since settings alone aren't blocking it effectively, let's take the nuclear option - create a `.copilotignore` or workspace instruction override to explicitly reject Azure contamination: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore)
+Created [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.github/.copilot-ignore)
 
 Now add explicit rejection in your copilot-instructions.md header to override any external instruction injection: 
 
@@ -2021,7 +2021,7 @@ Made changes.
 
 Yes! That's the most direct solution - just rename or delete that file to neutralize it: 
 
-Ran terminal command: Rename-Item -Path "C:\Users\erdno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md" -NewName "azure.instructions.md.DISABLED" -Force
+Ran terminal command: Rename-Item -Path "C:\Users\eldno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md" -NewName "azure.instructions.md.DISABLED" -Force
 
 Perfect! The Azure instruction file has been disabled. Now reload VS Code to clear it from the context: 
 
@@ -2049,7 +2049,7 @@ I see the issue. The copilot-instructions.md is the **M-P-W itself** (the univer
 
 Let me create a proper operational layer: 
 
-Created [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github/COPILOT_OPERATIONAL_INSTRUCTIONS.md)
+Created [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.github/COPILOT_OPERATIONAL_INSTRUCTIONS.md)
 
 Perfect. I've created a separate operational instructions file that:
 
@@ -2078,7 +2078,7 @@ Made changes.
 
 Read [](plan-mPwCrossReferenceQualityAudit.prompt.md), lines 1 to 50
 
-Ran terminal command: Test-Path "C:\Users\erdno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md.DISABLED"
+Ran terminal command: Test-Path "C:\Users\eldno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md.DISABLED"
 
 Confirmed - Azure contamination is neutralized. The operational instructions are in place. System is ready for clean ASC operations without external degradation.
 
@@ -2200,9 +2200,9 @@ Task list created. Recovery operations complete (items 1-7). Ready to proceed wi
 
 Starting: *Review contamination-era override files* (8/10)
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.vscode)
+Read [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.vscode)
 
-Read [](file:///c%3A/Users/erdno/PsychoNoir-Kontrapunkt/.github)
+Read [](file:///c%3A/Users/eldno/PsychoNoir-Kontrapunkt/.github)
 
 Read [](../../../../.github/copilot-instructions.md), lines 1 to 80
 

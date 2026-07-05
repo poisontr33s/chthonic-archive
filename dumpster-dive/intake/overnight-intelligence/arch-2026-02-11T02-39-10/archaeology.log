@@ -1,7 +1,7 @@
 [2026-02-11T02:39:10.645Z] ☥ Overnight Archaeology Refinery starting
 [2026-02-11T02:39:10.645Z]   Loop 1 (scavenge): YES
 [2026-02-11T02:39:10.646Z]   Loop 2 (refine):   YES
-[2026-02-11T02:39:10.646Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10
+[2026-02-11T02:39:10.646Z]   Output: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10
 [2026-02-11T02:39:10.646Z]   Dry run: false
 [2026-02-11T02:39:10.646Z] 
 ━━━ LOOP 1: SCAVENGE ━━━
@@ -36,7 +36,8 @@
 [2026-02-11T02:45:01.888Z]   L2: Refining "dev" (4 files, sending 4)...
 [2026-02-11T02:45:14.344Z]   L2: Refining "plugins" (3 files, sending 3)...
 [2026-02-11T02:45:26.436Z]   L2 complete: 14 domains, 37 promotions, 36 flags
-[2026-02-11T02:45:26.438Z]   📬 Claude mailbox digest: C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_11.md
-[2026-02-11T02:45:26.439Z]   📬 Digest in Claude mailbox: C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_11.md
+[2026-02-11T02:45:26.438Z]   📬 Claude mailbox digest: C:\Users\eldno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_11.md
+[2026-02-11T02:45:26.439Z]   📬 Digest in Claude mailbox: C:\Users\eldno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_11.md
 [2026-02-11T02:45:26.439Z] 
 ☥ Archaeology complete. 6.3 min.
+

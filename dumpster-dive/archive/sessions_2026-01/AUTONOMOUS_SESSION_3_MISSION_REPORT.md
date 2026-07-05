@@ -311,7 +311,7 @@ def create_github_issue_mcp(title: str, body: str) -> str:
         "github-mcp-server",
         "create_issue",
         {
-            "owner": "erdno",
+            "owner": "eldno",
             "repo": "chthonic-archive",
             "title": title,
             "body": body,
@@ -490,3 +490,4 @@ def update_mcp_schemas() -> Dict[str, Any]:
 ---
 
 **🔥💀⚜️ THE NERVOUS SYSTEM AWAKENS - MISSION ACCOMPLISHED 🔥💀⚜️**
+

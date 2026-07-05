@@ -9,9 +9,9 @@
   "signalTurns": 34,
   "noiseTurns": 1,
   "topFiles": [
-    "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
-    "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
-    "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md"
+    "c:\\Users\\eldno\\chthonic-archive\\.claudeignore",
+    "c:\\Users\\eldno\\chthonic-archive\\.copilotignore",
+    "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.md"
   ],
   "topTools": [
     "read_file",
@@ -31,17 +31,17 @@
   "anchoredEdits": [
     {
       "turn": 1751,
-      "file": "c:\\Users\\erdno\\chthonic-archive\\.claudeignore",
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.claudeignore",
       "tool": "create_file"
     },
     {
       "turn": 1756,
-      "file": "c:\\Users\\erdno\\chthonic-archive\\.copilotignore",
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.copilotignore",
       "tool": "replace_string_in_file"
     },
     {
       "turn": 1760,
-      "file": "c:\\Users\\erdno\\chthonic-archive\\.github\\copilot-instructions.md",
+      "file": "c:\\Users\\eldno\\chthonic-archive\\.github\\copilot-instructions.md",
       "tool": "create_file"
     }
   ],

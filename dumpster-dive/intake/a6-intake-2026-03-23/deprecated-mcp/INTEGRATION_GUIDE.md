@@ -36,7 +36,7 @@ Edit `claude_desktop_config.json` and add the `chthonic-archive` server:
   "mcpServers": {
     "chthonic-archive": {
       "command": "bun",
-      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\mcp\\server.ts"],
+      "args": ["run", "C:\\Users\\eldno\\chthonic-archive\\mcp\\server.ts"],
       "env": {}
     }
   }
@@ -139,7 +139,7 @@ Add to VSCode `settings.json`:
 **Debug:**
 ```powershell
 # Test server manually
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 bun run mcp/server.ts
 # Then send test request:
 echo '{"id":1,"method":"ping"}' | bun run mcp/server.ts
@@ -168,8 +168,8 @@ bun test mcp/server.test.ts
 ## Current Configuration
 
 **Detected System:** Windows  
-**Claude Desktop Config:** `C:\Users\erdno\AppData\Roaming\Claude\claude_desktop_config.json`  
-**Server Manifest:** `C:\Users\erdno\chthonic-archive\mcp\mcp.json`
+**Claude Desktop Config:** `C:\Users\eldno\AppData\Roaming\Claude\claude_desktop_config.json`  
+**Server Manifest:** `C:\Users\eldno\chthonic-archive\mcp\mcp.json`
 
 **Current config state:**
 ```json
@@ -184,7 +184,7 @@ bun test mcp/server.test.ts
   "mcpServers": {
     "chthonic-archive": {
       "command": "bun",
-      "args": ["run", "C:\\Users\\erdno\\chthonic-archive\\mcp\\server.ts"],
+      "args": ["run", "C:\\Users\\eldno\\chthonic-archive\\mcp\\server.ts"],
       "env": {}
     }
   }
@@ -220,4 +220,5 @@ Once all tools successfully invoke from Claude Desktop:
 **Stop condition:** All three tools invoke successfully from real MCP client with output matching local test client.
 
 Do not expand capabilities until integration validated.
+
 

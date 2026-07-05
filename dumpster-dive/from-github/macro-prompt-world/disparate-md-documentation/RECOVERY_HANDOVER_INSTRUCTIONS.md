@@ -111,7 +111,7 @@
 ### Azure Contamination Neutralization:
 ✅ **Extension File Disabled:**
 ```
-C:\Users\erdno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md
+C:\Users\eldno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.137-win32-x64\resources\azureRules\azure.instructions.md
 ```
 **Renamed to:** `azure.instructions.md.DISABLED`
 
@@ -136,14 +136,14 @@ C:\Users\erdno\.vscode\extensions\ms-azuretools.vscode-azure-github-copilot-1.0.
 ### Option 3: Manual Backup Files
 Check these locations for manual backups:
 ```
-C:\Users\erdno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md.backup
-C:\Users\erdno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md.bak
-C:\Users\erdno\AppData\Roaming\Code\Backups\
+C:\Users\eldno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md.backup
+C:\Users\eldno\PsychoNoir-Kontrapunkt\.github\copilot-instructions.md.bak
+C:\Users\eldno\AppData\Roaming\Code\Backups\
 ```
 
 ### Option 4: VS Code Workspace Storage
 ```
-C:\Users\erdno\AppData\Roaming\Code\User\workspaceStorage\
+C:\Users\eldno\AppData\Roaming\Code\User\workspaceStorage\
 ```
 Search for workspace storage folder matching this repository, look for file backups
 
@@ -268,3 +268,4 @@ If recovery fails completely, the session conversation summary contains sufficie
 
 *Generated: November 22, 2025 - Azure Contamination Recovery Session*  
 *Session ID: Phase 2C Abbreviation Enforcement (Emergency Git Recovery)*
+

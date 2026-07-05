@@ -1,154 +1,154 @@
 {
   "districts": [
     {
-      "path": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "tributaries": [
         {
-          "name": "🐰 Typecheck",
           "pass": true,
-          "info": false,
           "output": "",
-          "elapsed": "2,6s"
+          "info": false,
+          "name": "🐰 Typecheck",
+          "elapsed": "8,6s"
         },
         {
+          "pass": true,
+          "output": "Checked 1 file in 42ms. No fixes applied.\r\n",
+          "info": false,
           "name": "🐰 Lint",
-          "pass": true,
-          "info": false,
-          "output": "Checked 1 file in 15ms. No fixes applied.\r\n",
-          "elapsed": "0,1s"
+          "elapsed": "0,3s"
         },
         {
+          "pass": true,
+          "output": "bun test v1.3.14 (0d9b296a)\r\n⚠️  Warning message\r\n❌ Error message\r\n⚠️  Warning message\r\n❌ Error occurred\r\n❌ Error with metadata\r\n⚠️  Failed to parse plugin manifest\r\n⚠️  Failed to parse plugin manifest\r\n",
+          "info": false,
           "name": "🐰 Tests",
-          "pass": true,
-          "info": false,
-          "output": "bun test v1.3.13 (bf2e2cec)\r\n⚠️  Warning message\r\n❌ Error message\r\n⚠️  Warning message\r\n❌ Error occurred\r\n❌ Error with metadata\r\n⚠️  Failed to parse plugin manifest\r\n⚠️  Failed to parse plugin manifest\r\n",
-          "elapsed": "0,3s"
+          "elapsed": "1,6s"
         },
         {
+          "pass": true,
+          "output": "Bundled 424 modules in 1140ms\r\n\r\n  claudine.js  0.57 MB  (entry point)\r\n\r\n",
+          "info": false,
           "name": "🐰 Build",
-          "pass": true,
-          "info": false,
-          "output": "Bundled 424 modules in 67ms\r\n\r\n  claudine.js  0.57 MB  (entry point)\r\n\r\n",
-          "elapsed": "0,1s"
+          "elapsed": "1,2s"
         }
       ],
       "skipped": false,
-      "id": "claudine",
-      "pass": 4,
+      "fail": 0,
+      "path": "C:\\Users\\eldno\\Claudine_Supreme-Polyglot-Git-Cli-Lsp-Repo-Clone-Engineering-Bun-Technique",
       "name": "☥ Claudine CLI — The Polyglot Blade",
-      "fail": 0
+      "pass": 4,
+      "id": "claudine"
     },
     {
-      "path": "C:\\Users\\eldno\\chthonic-archive",
       "tributaries": [
         {
-          "name": "📜 Git Health",
           "pass": true,
+          "output": " M .chthonic/SSOT.md\r\n M .claude/skills/session-vampire/SKILL.md\r\n M .github/SESSION_RESUME.md\r\n M .github/VALIDATION_REPORT.md\r\n M .github/copilot-instructions.archive.md\r\n M .github/copilot-inststructons-backups.md/copilot-instructions.readable.md\r\n M .github/copilot-inststructons-backups.md/copilot-instructions_backup_2025-12-08.md\r\n M .github/copilot-inststructons-backups.md/copilot-instructions_backup_20251209_033418.md\r\n M .github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md\r\n M .github/prompts/raw/TypeError_ExpectedObjectIssue.txt\r\n M .github/ssot_backups/copilot-instructions_20251209_010605.md\r\n M .spread/file_index.ndjson\r\n M .spread/file_index_polyrepo.ndjson\r\n M .spread/file_index_rust.ndjson\r\n M .temple/session-archives/EPOCH_REFERENCE_2026-02-18_to_2026-02-28.md\r\n M .vscode/QUICKREF.md\r\n M .vscode/SETTINGS_DIAGNOSIS.md\r\n M .vscode/WIN11_CONFIGURATION.md\r\n M .vscode/audit_fallback.json\r\n M .vscode/audit_fast.json\r\n",
           "info": false,
-          "output": "",
-          "elapsed": "0,1s"
+          "name": "📜 Git Health",
+          "elapsed": "0,4s"
         },
         {
+          "pass": true,
+          "output": "warning: variable does not need to be mutable\r\n   --> src\\render\\cloud_raymarch_compute.rs:153:13\r\n    |\r\n153 |         let mut sets = ctx.device.allocate_descriptor_sets(\r\n    |             ----^^^^\r\n    |             |\r\n    |             help: remove this `mut`\r\n    |\r\n    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default\r\n\r\nwarning: structure field `fft_set_aD` should have a snake case name\r\n  --> src\\render\\ocean_compute.rs:80:5\r\n   |\r\n80 |     fft_set_aD:  vk::DescriptorSet, // src=a dst=disp (final stage)\r\n   |     ^^^^^^^^^^ help: convert the identifier to snake case: `fft_set_a_d`\r\n   |\r\n   = note: `#[warn(non_snake_case)]` (part of `#[warn(nonstandard_style)]`) on by default\r\n\r\nwarning: structure field `fft_set_bD` should have a snake case name\r\n  --> src\\render\\ocean_compute.rs:81:5\r\n   |\r\n81 |     fft_set_bD:  vk::DescriptorSet, // src=b dst=disp (final stage alt)\r\n   |     ^^^^^^^^^^ help: convert the identifier to snake case: `fft_set_b_d`\r\n\r\nwarning: variable `fft_set_aD` should have a snake case name\r\n   --> src\\render\\ocean_compute.rs:333:46\r\n    |\r\n333 |                 let [fft_set_ab, fft_set_ba, fft_set_aD, fft_set_bD] =\r\n    |                                              ^^^^^^^^^^ help: convert the identifier to snake case: `fft_set_a_d`\r\n\r\nwarning: variable `fft_set_bD` should have a snake case name\r\n   --> src\\render\\ocean_compute.rs:333:58\r\n    |\r\n333 |                 let [fft_set_ab, fft_set_ba, fft_set_aD, fft_set_bD] =\r\n    |                                                          ^^^^^^^^^^ help: convert the identifier to snake case: `fft_set_b_d`\r\n\r\nwarning: field `faction_registry` is never read\r\n  --> src\\main.rs:51:5\r\n   |\r\n48 | struct ArchiveApp {\r\n   |        ---------- field in this struct\r\n...\r\n51 |     faction_registry: FactionRegistry,\r\n   |     ^^^^^^^^^^^^^^^^\r\n   |\r\n   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default\r\n\r\nwarning: field `zodiac_bodies` is never read\r\n   --> src\\render\\renderer.rs:148:9\r\n    |\r\n 82 | pub struct Renderer {\r\n    |            -------- field in this struct\r\n...\r\n148 |     pub zodiac_bodies: Vec<(&'static str, usize, &'static str, f64)>,\r\n    |         ^^^^^^^^^^^^^\r\n\r\nwarning: field `name` is never read\r\n   --> src\\render\\cosmos.rs:570:9\r\n    |\r\n569 | pub struct Star {\r\n    |            ---- field in this struct\r\n570 |     pub name: &'static str,\r\n    |         ^^^^\r\n\r\nwarning: function `surface_grid` is never used\r\n   --> src\\render\\ocean.rs:149:8\r\n    |\r\n149 | pub fn surface_grid(divisions: usize) -> Vec<Vertex> {\r\n    |        ^^^^^^^^^^^^\r\n\r\nwarning: field `motion_vector_ndc` is never read\r\n  --> src\\render\\temporal.rs:19:9\r\n   |\r\n11 | pub struct TemporalFrame {\r\n   |            ------------- field in this struct\r\n...\r\n19 |     pub motion_vector_ndc: Vec2,\r\n   |         ^^^^^^^^^^^^^^^^^\r\n\r\nwarning: constant `WGS84_B` is never used\r\n  --> src\\render\\geodesy.rs:25:11\r\n   |\r\n25 | pub const WGS84_B: f64 = WGS84_A * (1.0 - WGS84_F);\r\n   |           ^^^^^^^\r\n\r\nwarning: function `ecef_to_lla` is never used\r\n  --> src\\render\\geodesy.rs:58:8\r\n   |\r\n58 | pub fn ecef_to_lla(ecef: DVec3) -> (f64, f64, f64) {\r\n   |        ^^^^^^^^^^^\r\n\r\nwarning: function `enu_to_ecef` is never used\r\n   --> src\\render\\geodesy.rs:126:8\r\n    |\r\n126 | pub fn enu_to_ecef(\r\n    |        ^^^^^^^^^^^\r\n\r\nwarning: field `alt_m` is never read\r\n   --> src\\render\\geodesy.rs:149:9\r\n    |\r\n145 | pub struct GeoAnchor {\r\n    |            --------- field in this struct\r\n...\r\n149 |     pub alt_m: f64,\r\n    |         ^^^^^\r\n    |\r\n    = note: `GeoAnchor` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis\r\n\r\nwarning: associated function `from_ecef` is never used\r\n   --> src\\render\\geodesy.rs:164:12\r\n    |\r\n152 | impl GeoAnchor {\r\n    | -------------- associated function in this implementation\r\n...\r\n164 |     pub fn from_ecef(ecef: DVec3) -> Self {\r\n    |            ^^^^^^^^^\r\n\r\n",
+          "info": false,
           "name": "🦀 Cargo Check",
-          "pass": true,
-          "info": false,
-          "output": "",
-          "elapsed": "0,3s"
+          "elapsed": "8,8s"
         },
         {
-          "name": "🐰 CI Gate Smoke",
           "pass": true,
-          "info": false,
           "output": "[inference-gate-smoke] ✓ All active gates admitted — G1_resolver_coherence=L4 G2_pydantic_pyо3_abi=L4 G3_torch_cuda=L4 G5_exllamav3_cp314=L4 G6_flash_attn_build=L4_cuda_kernel_verified G7_formatron_cessation=L4 G8_exllamav2_linux_source=L2_interrogable G9_tabby_modern_import_gate=L1 G10_tabby_model_load_gate=L2\r\n",
+          "info": false,
+          "name": "🐰 CI Gate Smoke",
           "elapsed": "0,1s"
         },
         {
+          "pass": true,
+          "output": "[INFO] Building file index ...\r\nOK: pathstofiles.md — 1 links, all valid\r\n",
+          "info": false,
           "name": "🐍 Link Audit",
-          "pass": true,
-          "info": false,
-          "output": "warning: Found both a `uv.toml` file and a `[tool.uv]` section in an adjacent `pyproject.toml`. The following fields from `[tool.uv]` will be ignored in favor of the `uv.toml` file:\r\n- index\r\n[INFO] Building file index ...\r\nOK: pathstofiles.md — 1 links, all valid\r\n",
-          "elapsed": "1,1s"
+          "elapsed": "2,1s"
         }
       ],
       "skipped": false,
-      "id": "archive",
-      "pass": 4,
+      "fail": 0,
+      "path": "C:\\Users\\eldno\\chthonic-archive",
       "name": "⚡ chthonic-archive — The Living Machine",
-      "fail": 0
-    },
-    {
-      "path": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
-      "tributaries": [
-        {
-          "name": "📜 Git Health",
-          "pass": true,
-          "info": false,
-          "output": "Dirty files: 2\r\n",
-          "elapsed": "0,1s"
-        },
-        {
-          "name": "🐰 Install Health",
-          "pass": true,
-          "info": false,
-          "output": "bun install v1.3.13 (bf2e2cec)\r\n\r\nChecked 312 installs across 304 packages (no changes) [51.00ms]\r\n",
-          "elapsed": "0,1s"
-        },
-        {
-          "name": "🐰 Typecheck",
-          "pass": true,
-          "info": false,
-          "output": "",
-          "elapsed": "1,4s"
-        },
-        {
-          "name": "📜 Script Count",
-          "pass": true,
-          "info": true,
-          "output": "Root scripts: 99\r\n",
-          "elapsed": "0,0s"
-        }
-      ],
-      "skipped": false,
-      "id": "pnk",
       "pass": 4,
-      "name": "🌀 PsychoNoir-Kontrapunkt — The Chaos Arm",
-      "fail": 0
+      "id": "archive"
     },
     {
-      "path": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
       "tributaries": [
         {
+          "pass": true,
+          "output": "Dirty files: 4\r\n",
+          "info": false,
           "name": "📜 Git Health",
-          "pass": true,
-          "info": false,
-          "output": " M .github/ISSUE_TEMPLATE/README.md\r\n M .vscode/tasks.json\r\n M CLAUDE-COPILOT-COLLABORATION.md\r\n M docs/agents.md\r\n M packages/servers/base/package.json\r\n M packages/shared/package.json\r\n M scripts/branch-consolidation.sh\r\n M tsconfig.json\r\n M turbo.json\r\n?? bun.lock\r\n",
-          "elapsed": "0,0s"
+          "elapsed": "0,1s"
         },
         {
+          "pass": true,
+          "output": "bun install v1.3.14 (0d9b296a)\r\n\r\nChecked 312 installs across 304 packages (no changes) [2.39s]\r\n",
+          "info": false,
           "name": "🐰 Install Health",
-          "pass": true,
-          "info": false,
-          "output": "\r\n$ husky install\r\nhusky - install command is DEPRECATED\r\n\r\nChecked 313 installs across 350 packages (no changes) [243.00ms]\r\n",
-          "elapsed": "0,3s"
+          "elapsed": "2,4s"
         },
         {
-          "name": "🐰 Typecheck",
           "pass": true,
-          "info": false,
           "output": "",
-          "elapsed": "1,3s"
+          "info": false,
+          "name": "🐰 Typecheck",
+          "elapsed": "4,4s"
+        },
+        {
+          "pass": true,
+          "output": "Root scripts: 99\r\n",
+          "info": true,
+          "name": "📜 Script Count",
+          "elapsed": "0,0s"
         }
       ],
       "skipped": false,
-      "id": "mcp",
-      "pass": 3,
+      "fail": 0,
+      "path": "C:\\Users\\eldno\\PsychoNoir-Kontrapunkt",
+      "name": "🌀 PsychoNoir-Kontrapunkt — The Chaos Arm",
+      "pass": 4,
+      "id": "pnk"
+    },
+    {
+      "tributaries": [
+        {
+          "pass": true,
+          "output": "",
+          "info": false,
+          "name": "📜 Git Health",
+          "elapsed": "0,1s"
+        },
+        {
+          "pass": true,
+          "output": "\r\n$ husky install\r\nhusky - install command is DEPRECATED\r\n\r\nChecked 313 installs across 350 packages (no changes) [2.19s]\r\n",
+          "info": false,
+          "name": "🐰 Install Health",
+          "elapsed": "2,2s"
+        },
+        {
+          "pass": true,
+          "output": "",
+          "info": false,
+          "name": "🐰 Typecheck",
+          "elapsed": "5,9s"
+        }
+      ],
+      "skipped": false,
+      "fail": 0,
+      "path": "C:\\Users\\eldno\\Restructure-MCP-Orchestration",
       "name": "🔌 Restructure-MCP-Orchestration — The Thalamus Node",
-      "fail": 0
+      "pass": 3,
+      "id": "mcp"
     }
   ],
-  "total_pass": 15,
-  "wall_time_s": 15.25,
-  "total_fail": 0,
   "quick_mode": false,
-  "timestamp": "2026-05-03T02:49:00.5128698+02:00"
+  "total_fail": 0,
+  "wall_time_s": 41.32,
+  "timestamp": "2026-07-04T09:14:12.4516411+02:00",
+  "total_pass": 15
 }

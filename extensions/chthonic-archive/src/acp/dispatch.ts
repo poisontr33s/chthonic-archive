@@ -52,7 +52,7 @@ export type AgentKind =
  * on PATH. Returns the resolved path plus a one-line resolution note.
  *
  * NOTE: the existing extensions/chthonic-archive/src/acp/connection.ts pins
- * a hardcoded path under a different username ("erdno") — that's residue
+ * a hardcoded path under a different username ("eldno") — that's residue
  * from a robocopy migration off an older laptop account that wasn't cleaned
  * up post-move, not a typo. The path doesn't resolve on the current desktop
  * regardless of why. This resolver is the durable fix — when AcpConnection
@@ -168,3 +168,4 @@ export function chooseAgent(
 export function describeAgent(spec: AgentSpec): string {
     return `${spec.name} [${spec.protocol}] @ ${spec.command} (${spec.resolution})`;
 }
+

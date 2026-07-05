@@ -12,23 +12,23 @@ scope: claude-side continuation + localai stewardship
 
 ## Continuation Trail (Claude-side)
 
-- Latest digest: `C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md`
-- Latest local-AI readiness: `C:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json`
-- Latest session sync packet: `C:\Users\erdno\chthonic-archive\claude\mailbox\SESSION_SYNC_PACKET_2026_02_09.md`
-- Mailbox state anchor: `C:\Users\erdno\chthonic-archive\claude\mailbox\MAILBOX_CURRENT_STATE.md`
-- Session log anchor: `C:\Users\erdno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\session_resumption_pickup_codex.md`
+- Latest digest: `C:\Users\eldno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md`
+- Latest local-AI readiness: `C:\Users\eldno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json`
+- Latest session sync packet: `C:\Users\eldno\chthonic-archive\claude\mailbox\SESSION_SYNC_PACKET_2026_02_09.md`
+- Mailbox state anchor: `C:\Users\eldno\chthonic-archive\claude\mailbox\MAILBOX_CURRENT_STATE.md`
+- Session log anchor: `C:\Users\eldno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\session_resumption_pickup_codex.md`
 
 ## Coverage Checks
 
 | Check | Status | Detail |
 | --- | --- | --- |
-| Claude digest exists | OK | C:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md |
-| Local AI readiness snapshot exists | OK | C:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json |
-| Nightly scheduler log exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log |
+| Claude digest exists | OK | C:\Users\eldno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md |
+| Local AI readiness snapshot exists | OK | C:\Users\eldno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json |
+| Nightly scheduler log exists | OK | C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log |
 | Nightly scheduler log clean | OK | clean |
 | Nightly completion marker present | OK | complete marker found |
-| Daemon report exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260219_030002\report.json |
-| L1 ore exists | OK | C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\L1-ore.json |
+| Daemon report exists | OK | C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260219_030002\report.json |
+| L1 ore exists | OK | C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\L1-ore.json |
 | Uncensored model lane present | OK | detected |
 | Qwen3 abliterated lane present | OK | detected |
 | numpy 2.x functional | OK | 2.4.2 |
@@ -37,9 +37,9 @@ scope: claude-side continuation + localai stewardship
 
 ## Nightly Daemon Status
 
-- Latest scheduler log: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log`
-- Latest daemon run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260219_030002`
-- Latest archaeology run: `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05`
+- Latest scheduler log: `C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log`
+- Latest daemon run: `C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260219_030002`
+- Latest archaeology run: `C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05`
 - Nightly clean: **yes**
 
 ## LocalAI Runtime
@@ -116,15 +116,16 @@ scope: claude-side continuation + localai stewardship
 All parameters are case-insensitive.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 
 OUT
 [ref] cannot be applied to a variable that does not exist.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 
 OUT
 Syntax OK
 You've hit your limit · resets 1am (Europe/Oslo)
 ```
+

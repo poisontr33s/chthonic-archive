@@ -55,7 +55,7 @@ PATH_TOKEN_RE = re.compile(
 )
 
 EXT_HINT_RE = re.compile(r"\.(md|json|toml|yaml|yml|py|ps1|txt|schema)$", re.IGNORECASE)
-OLD_ROOT_RE = re.compile(r"^[A-Za-z]:[\\/]Users[\\/]erdno[\\/]chthonic-archive", re.IGNORECASE)
+OLD_ROOT_RE = re.compile(r"^[A-Za-z]:[\\/]Users[\\/]eldno[\\/]chthonic-archive", re.IGNORECASE)
 SKIP_PARTS = {"node_modules", ".git", "target", "__pycache__", ".venv", "build", "dist"}
 
 
@@ -280,3 +280,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

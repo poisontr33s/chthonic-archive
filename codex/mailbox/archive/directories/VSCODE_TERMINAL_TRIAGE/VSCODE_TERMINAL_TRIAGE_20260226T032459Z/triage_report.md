@@ -16,7 +16,7 @@
 - Smoke tests passed. If VS Code still crashes, focus on VS Code terminal host/extension/GPU path with trace logs.
 
 ## Logs
-- Source log dir: `C:\Users\erdno\AppData\Roaming\Code - Insiders\logs\20260226T042443`
+- Source log dir: `C:\Users\eldno\AppData\Roaming\Code - Insiders\logs\20260226T042443`
 - Copied log files: `0`
 - Crash-pattern hits: `0`
 
@@ -34,6 +34,7 @@
 1. If no-profile is stable, re-enable profile incrementally and isolate crashing hook.
 
 ## Artifacts
-- JSON: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z\triage_report.json`
-- API doctor log: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z\api_doctor.log`
-- Bundle dir: `C:\Users\erdno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z`
+- JSON: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z\triage_report.json`
+- API doctor log: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z\api_doctor.log`
+- Bundle dir: `C:\Users\eldno\chthonic-archive\codex\mailbox\VSCODE_TERMINAL_TRIAGE_20260226T032459Z`
+

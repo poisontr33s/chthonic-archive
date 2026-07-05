@@ -10,7 +10,7 @@
 
 ### Run Coordinator Manually
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python autonomous_coordinator.py
 ```
 
@@ -268,3 +268,4 @@ Remove-Item health_reports/*.md -Force
 **The Nervous System is alive. Use these commands to monitor its heartbeat. 👑💀⚜️**
 
 **Last validated:** January 1, 2026 08:50 UTC
+

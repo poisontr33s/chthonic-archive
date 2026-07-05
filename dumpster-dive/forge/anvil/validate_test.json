@@ -1,1 +1,2 @@
-{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\n  \"status\": \"valid\",\n  \"path\": \"C:\\\\Users\\\\erdno\\\\chthonic-archive\\\\.github\\\\copilot-instructions.md\",\n  \"size\": 509405,\n  \"lines\": 7375,\n  \"hash\": \"15ac51f429985dc4314b2f8078e74781b92ead8549007cc2405c067fcc7f7877\"\n}"}]}}
+{"jsonrpc":"2.0","id":5,"result":{"content":[{"type":"text","text":"{\n  \"status\": \"valid\",\n  \"path\": \"C:\\\\Users\\\\eldno\\\\chthonic-archive\\\\.github\\\\copilot-instructions.md\",\n  \"size\": 509405,\n  \"lines\": 7375,\n  \"hash\": \"15ac51f429985dc4314b2f8078e74781b92ead8549007cc2405c067fcc7f7877\"\n}"}]}}
+

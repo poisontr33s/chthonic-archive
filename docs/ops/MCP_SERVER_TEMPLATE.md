@@ -528,7 +528,7 @@ Add to Claude Desktop config (`~/Library/Application Support/Claude/claude_deskt
   "mcpServers": {
     "chthonic-archive": {
       "command": "bun",
-      "args": ["run", "C:/Users/erdno/chthonic-archive/mcp/server.ts"]
+      "args": ["run", "C:/Users/eldno/chthonic-archive/mcp/server.ts"]
     }
   }
 }
@@ -653,3 +653,4 @@ Architectural Role: 🌿 Garden (Bun-native Implementation Template)
 Parent: docs/MCP_AUTONOMOUS_PREREQUISITES.md (IMMUTABLE)
 Toolchain: Bun 1.3.5 + TypeScript SDK v1.x
 ```
+

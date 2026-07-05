@@ -32,7 +32,7 @@
   "label": "chthonic-archive (local)",
   "command": "bun",
   "args": ["run", "mcp/server.ts"],
-  "workingDirectory": "C:\\Users\\erdno\\chthonic-archive",
+  "workingDirectory": "C:\\Users\\eldno\\chthonic-archive",
   "transport": "stdio"
 }
 ```
@@ -132,3 +132,4 @@ Tools: ping, preflight_execution_context, scan_repository, validate_ssot_integri
 **Updated:** 2026-01-27 (verified all prerequisites functional)  
 **Purpose:** Manual registration guide for Claude Code MCP integration  
 **Status:** ✅ All systems operational - ready for Claude Code registration
+

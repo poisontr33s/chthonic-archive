@@ -18,10 +18,10 @@
 
 ### Phase 2: Client Configuration
 ✅ Updated Claude Desktop config (local system only, not committed)
-- Path: `C:\Users\erdno\AppData\Roaming\Claude\claude_desktop_config.json`
+- Path: `C:\Users\eldno\AppData\Roaming\Claude\claude_desktop_config.json`
 - Added `chthonic-archive` server entry
 - Command: `bun`
-- Args: `["run", "C:\\Users\\erdno\\chthonic-archive\\mcp\\server.ts"]`
+- Args: `["run", "C:\\Users\\eldno\\chthonic-archive\\mcp\\server.ts"]`
 - Backup created: `claude_desktop_config.backup.json`
 
 ### Phase 3: Documentation
@@ -101,7 +101,7 @@ User message: "Scan the chthonic-archive repository and tell me how many files e
 Expected response: 
 - ~44,207 files detected
 - List of first 50 files with sizes
-- Repository path: C:\Users\erdno\chthonic-archive
+- Repository path: C:\Users\eldno\chthonic-archive
 ```
 
 **Test 3: SSOT Validation (Cryptographic Integrity)**
@@ -281,4 +281,5 @@ Option A is complete when:
 ---
 
 **Option A setup phase complete. Standing by for user validation testing.**
+
 

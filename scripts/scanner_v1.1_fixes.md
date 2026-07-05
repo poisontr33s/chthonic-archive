@@ -176,7 +176,7 @@ elif source == 'gap_scan':
 
 ```powershell
 # From repository root
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 
 # Run fixed scanner
 uv run scripts/build_epistemograph_v1.1.py --root . --out chthonic_epistemograph_v1.1.sqlite
@@ -206,4 +206,5 @@ If v1.1 validation fails:
 **Ready for Validation:** ✓
 
 **Next Step:** Execute `build_epistemograph_v1.1.py` and re-run adversarial queries.
+
 

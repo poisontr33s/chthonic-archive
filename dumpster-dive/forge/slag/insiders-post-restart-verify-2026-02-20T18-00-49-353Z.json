@@ -100,7 +100,7 @@
         "code-insiders",
         "--version"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 197,
       "stdout": "1.110.0-insider\n61a6cf592925fe49b1cea1c7fb72a26be59f9725\nx64\n",
@@ -113,7 +113,7 @@
         "--list-extensions",
         "--show-versions"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 261,
       "stdout": "anthropic.claude-code@2.1.49\nchthonic-archive.chthonic-archive@0.2.0\nchthonic-archive.chthonic-mandala@0.1.0\ndonjayamanne.githistory@0.6.20\ngithub.codespaces@1.18.5\ngithub.copilot-chat@0.38.2026022002\ngithub.remotehub@0.65.2026012801\ngithub.vscode-github-actions@0.31.0\ngithub.vscode-pull-request-github@0.129.2026022004\ngoogle.gemini-cli-vscode-ide-companion@0.20.0\nms-azuretools.vscode-azure-github-copilot@1.0.162\nms-azuretools.vscode-azure-mcp-server@2.0.21\nms-azuretools.vscode-azureresourcegroups@0.12.1\nms-vscode.azure-repos@0.41.2026012801\nms-vscode.remote-repositories@0.43.2026012801\nopenai.chatgpt@0.5.76\n",
@@ -121,3 +121,4 @@
     }
   ]
 }
+

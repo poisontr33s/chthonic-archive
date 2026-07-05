@@ -85,7 +85,7 @@
         "code-insiders",
         "--version"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 180,
       "stdout": "1.110.0-insider\n61a6cf592925fe49b1cea1c7fb72a26be59f9725\nx64\n",
@@ -98,7 +98,7 @@
         "--list-extensions",
         "--show-versions"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 258,
       "stdout": "anthropic.claude-code@2.1.49\nchthonic-archive.chthonic-archive@0.2.0\nchthonic-archive.chthonic-mandala@0.1.0\ndonjayamanne.githistory@0.6.20\ngithub.codespaces@1.18.5\ngithub.copilot-chat@0.38.2026022001\ngithub.remotehub@0.65.2026012801\ngithub.vscode-github-actions@0.31.0\ngithub.vscode-pull-request-github@0.129.2026022004\ngoogle.gemini-cli-vscode-ide-companion@0.20.0\nms-azuretools.vscode-azure-github-copilot@1.0.162\nms-azuretools.vscode-azure-mcp-server@2.0.21\nms-azuretools.vscode-azureresourcegroups@0.12.1\nms-vscode.azure-repos@0.41.2026012801\nms-vscode.remote-repositories@0.43.2026012801\nopenai.chatgpt@0.5.76\n",
@@ -112,7 +112,7 @@
         "scripts/toolpool-scan.ts",
         "--quiet"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive\\extensions\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 2469,
       "stdout": "",
@@ -125,10 +125,10 @@
         "run",
         "scripts/verify-host.ts"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive\\extensions\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 1345,
-      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-professional-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[32mOK\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.104.0\n|  path=C:\\Users\\erdno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=0.5.76\n|  engines.vscode=^1.96.2\n|  code-insiders=1.110.0-insider\n|- Codex Native Sandbox (Windows) \u001b[32mOK\u001b[0m\n|  native Windows restricted-token sandbox is functional\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[32mOK\u001b[0m\n|- Solana Tool Suite Lane \u001b[32mOK\u001b[0m\n|  solana + agave-install detected\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   sanitized for this run (MAKEFLAGS=-j12)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\n",
+      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-professional-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[32mOK\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.104.0\n|  path=C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=0.5.76\n|  engines.vscode=^1.96.2\n|  code-insiders=1.110.0-insider\n|- Codex Native Sandbox (Windows) \u001b[32mOK\u001b[0m\n|  native Windows restricted-token sandbox is functional\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[32mOK\u001b[0m\n|- Solana Tool Suite Lane \u001b[32mOK\u001b[0m\n|  solana + agave-install detected\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   sanitized for this run (MAKEFLAGS=-j12)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\n",
       "stderr": ""
     },
     {
@@ -138,10 +138,10 @@
         "run",
         "compile"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive\\extensions\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 3881,
-      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-professional-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[32mOK\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.104.0\n|  path=C:\\Users\\erdno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=0.5.76\n|  engines.vscode=^1.96.2\n|  code-insiders=1.110.0-insider\n|- Codex Native Sandbox (Windows) \u001b[32mOK\u001b[0m\n|  native Windows restricted-token sandbox is functional\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[32mOK\u001b[0m\n|- Solana Tool Suite Lane \u001b[32mOK\u001b[0m\n|  solana + agave-install detected\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   sanitized for this run (MAKEFLAGS=-j12)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\nBundled 21 modules in 15ms\n\n  extension.js  84.72 KB  (entry point)\n\nBundled 1 module in 12ms\n\n  entropy-worker.js  5.33 KB  (entry point)\n\n",
+      "stdout": "\u001b[36m[Chthonic] Running Preflight Host Verification...\u001b[0m\nHost Lane Graph \u001b[32mOK\u001b[0m\n\\- Tool Pool Snapshot \u001b[32mOK\u001b[0m\n   native=vs2026-professional-insider \u001b[32mOK\u001b[0m\n   |- sql=vs-dacfx \u001b[32mOK\u001b[0m\n   \\- infra=az+bicep-ready \u001b[32mOK\u001b[0m\nCodex Agent Lanes \u001b[32mOK\u001b[0m\n|- WPTG Non-Delete Guard \u001b[32mOK\u001b[0m\n|  no tracked deletions detected (WPTG compliant)\n|- Codex CLI \u001b[32mOK\u001b[0m\n|  version=codex-cli 0.104.0\n|  path=C:\\Users\\eldno\\chthonic-archive\\extensions\\chthonic-archive\\node_modules\\.bin\\codex.exe\n|- Codex VS Code Extension \u001b[32mOK\u001b[0m\n|  channel=insiders\n|  version=0.5.76\n|  engines.vscode=^1.96.2\n|  code-insiders=1.110.0-insider\n|- Codex Native Sandbox (Windows) \u001b[32mOK\u001b[0m\n|  native Windows restricted-token sandbox is functional\n\\- OpenAI SDK/Agent Kits \u001b[32mOK\u001b[0m\n   @openai/codex-sdk=\u001b[32mOK\u001b[0m\n   |- @openai/agents=\u001b[32mOK\u001b[0m\n   |- openai(js)=\u001b[32mOK\u001b[0m\n   \\- openai-agents(py package, optional)=absent\nRuntime Lanes \u001b[32mOK\u001b[0m\n|- Rust Lane \u001b[32mOK\u001b[0m\n|  |- Rust Toolchain \u001b[32mOK\u001b[0m\n|  |- Rust Package Manager (cargo) \u001b[32mOK\u001b[0m\n|  \\- Rustup \u001b[32mOK\u001b[0m\n|- Ruby Lane \u001b[32mOK\u001b[0m\n|  |- Ruby Manager (rv) \u001b[32mOK\u001b[0m\n|  \\- Ruby Runtime \u001b[32mOK\u001b[0m\n|- Go Lane \u001b[32mOK\u001b[0m\n|  \\- Go Manager (goup) \u001b[32mOK\u001b[0m\n\\- JavaScript Lane \u001b[32mOK\u001b[0m\n   \\- JavaScript Runtime Lane (bun) \u001b[32mOK\u001b[0m\n      using bun (runtime + package manager + bundler + test runner)\nSolana Lanes \u001b[32mOK\u001b[0m\n|- Solana Tool Suite Lane \u001b[32mOK\u001b[0m\n|  solana + agave-install detected\n\\- Anchor Lane (anchor + avm) \u001b[32mOK\u001b[0m\n   anchor + avm detected\nWASM Lanes \u001b[32mOK\u001b[0m\n|- WASM Target \u001b[32mOK\u001b[0m\n\\- wasm-bindgen CLI \u001b[32mOK\u001b[0m\nBuild Hygiene \u001b[32mOK\u001b[0m\n\\- MAKEFLAGS (MSVC hygiene) \u001b[32mOK\u001b[0m\n   sanitized for this run (MAKEFLAGS=-j12)\n\n\u001b[32m[+] Host verification passed. Ready for Oxidation.\u001b[0m\nBundled 21 modules in 15ms\n\n  extension.js  84.72 KB  (entry point)\n\nBundled 1 module in 12ms\n\n  entropy-worker.js  5.33 KB  (entry point)\n\n",
       "stderr": "$ bun run verify:host\n$ bun run scripts/toolpool-scan.ts --quiet && bun run scripts/verify-host.ts\n$ bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --minify && bun build src/entropy/entropyWorker.ts --outfile dist/entropy-worker.js --target node --format cjs --minify\n"
     },
     {
@@ -153,7 +153,7 @@
         "extensions/chthonic-statusbar",
         "compile"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 66,
       "stdout": "Bundled 1 module in 12ms\n\n  extension.js  3.94 KB  (entry point)\n\n",
@@ -168,7 +168,7 @@
         "extensions/chthonic-mandala",
         "compile"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 63,
       "stdout": "Bundled 1 module in 12ms\n\n  extension.js  3.25 KB  (entry point)\n\n",
@@ -183,7 +183,7 @@
         "extensions/chthonic-archive",
         "test:e2e"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 3810,
       "stdout": "[e2e] running chthonic-archive\nExit code:   0\n[e2e] pass chthonic-archive\n[e2e] running chthonic-statusbar\nExit code:   0\n[e2e] pass chthonic-statusbar\n[e2e] running chthonic-mandala\nExit code:   0\n[e2e] pass chthonic-mandala\n",
@@ -196,7 +196,7 @@
         "test",
         "dumpster-dive/forge/extension-archaeology/diagnostics-tests"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 769,
       "stdout": "bun test v1.3.9 (cf6cdbbb)\n",
@@ -210,7 +210,7 @@
         "scripts/bun-practices-audit.ts",
         "--strict"
       ],
-      "cwd": "C:\\Users\\erdno\\chthonic-archive",
+      "cwd": "C:\\Users\\eldno\\chthonic-archive",
       "exitCode": 0,
       "durationMs": 674,
       "stdout": "[bun-audit] Bun Practices Sweep\n[bun-audit] source files: 232\n[bun-audit] package.json files: 14\n[bun-audit] tsconfig files: 8\n[bun-audit] issues: 0\n[bun-audit] report: .chthonic/cache/bun-practices-audit.json\n",
@@ -218,3 +218,4 @@
     }
   ]
 }
+

@@ -65,7 +65,7 @@ file_opener = "vscode-insiders"
 sandbox_mode = "workspace-write"
 
 [sandbox_workspace_write]
-writable_roots = ["C:/Users/erdno/chthonic-archive"]
+writable_roots = ["C:/Users/eldno/chthonic-archive"]
 ```
 
 ---
@@ -105,3 +105,4 @@ writable_roots = ["C:/Users/erdno/chthonic-archive"]
 - Instructions: Configured
 
 **Session complete. Triad synchronized.**
+

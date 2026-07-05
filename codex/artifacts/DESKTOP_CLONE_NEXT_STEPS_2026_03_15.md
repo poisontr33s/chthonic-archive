@@ -9,7 +9,7 @@ status: active
 
 ## Current State
 
-- Laptop export completed to `C:\Users\erdno\Desktop\chthonic-desktop-clone`
+- Laptop export completed to `C:\Users\eldno\Desktop\chthonic-desktop-clone`
 - Desktop-side `robocopy` from `\\192.168.1.9\chthonic-clone` is in progress
 - Do not interrupt `robocopy` unless it exits with a hard error
 
@@ -88,3 +88,4 @@ Remove-LocalUser -Name "clonebridge" -ErrorAction SilentlyContinue
 - Future lane: a functional terminal/process overlay with matrix-like glyph flow
 - Target abstraction: language-agnostic execution surface across `pwsh`, terminal, filetype, extension, and content-driven runtime lanes
 - Constraint: keep it aesthetic **and** operational, not just ornamental animation
+

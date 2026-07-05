@@ -148,7 +148,7 @@ Write-Host @"
 # VIRTUAL ENVIRONMENT ACTIVATION (claudine-gpu)
 # ═══════════════════════════════════════════════════════════════════════════
 
-$VENV_PATH = "C:\Users\erdno\chthonic-archive\claudine-gpu"
+$VENV_PATH = "C:\Users\eldno\chthonic-archive\claudine-gpu"
 $venvActivate = "$VENV_PATH\Scripts\Activate.ps1"
 
 if (Test-Path $venvActivate) {
@@ -455,3 +455,4 @@ if (-not $SkipTests) {
 }
 
 Write-Host "`n🎉 Build complete! CuPy is ready for MAS-MCP GPU acceleration.`n" -ForegroundColor Magenta
+

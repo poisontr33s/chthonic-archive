@@ -18,7 +18,7 @@ discarded: Redundant per-run noise once the repeated signature is captured.
 - `20x` \[20212:0226/041104.328:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526\] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation fro
 - `14x` 2026-02-26 02:46:09.839 \[warning\] Shell integration failed to add capabilities within 10 seconds []
 - `9x` \[39328:0226/205722.607:ERROR:gpu\command_buffer\service\shared_image\shared_image_manager.cc:526\] : SharedImageManager::ProduceMemory: Trying to Produce a Memory representation fro
-- `7x` 2026-02-26 02:31:38.454 \[error\] vscode-file: Refused to load resource c:\Users\erdno\AppData\Local\Programs\Microsoft VS Code Insiders\4741aa0afd\resources\app\extensions\theme-set
+- `7x` 2026-02-26 02:31:38.454 \[error\] vscode-file: Refused to load resource c:\Users\eldno\AppData\Local\Programs\Microsoft VS Code Insiders\4741aa0afd\resources\app\extensions\theme-set
 - `7x` 2026-02-26 03:02:05.039 \[error\] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)
 - `7x` 2026-02-26 03:50:06.777 \[error\] CodeWindow: renderer process gone (reason: crashed, code: -2147483645)
 - `7x` 2026-02-26 02:46:09.813 \[warning\] Shell integration failed to add capabilities within 10 seconds []
@@ -37,3 +37,4 @@ discarded: Redundant per-run noise once the repeated signature is captured.
 - Renderer crashes and shared image memory failures cluster around VS Code Insiders GPU and telemetry lanes.
 - Shell integration capability timeouts recur across the terminal triage captures.
 - CUDA build logs preserve compiler and NVCC versions; the short empty siblings can be archived after extraction by proposal.
+

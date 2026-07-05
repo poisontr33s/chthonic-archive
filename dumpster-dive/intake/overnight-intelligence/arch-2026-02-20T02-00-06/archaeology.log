@@ -1,7 +1,7 @@
 [2026-02-20T02:00:06.818Z] ☥ Overnight Archaeology Refinery starting
 [2026-02-20T02:00:06.819Z]   Loop 1 (scavenge): YES
 [2026-02-20T02:00:06.820Z]   Loop 2 (refine):   SKIP
-[2026-02-20T02:00:06.820Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06
+[2026-02-20T02:00:06.820Z]   Output: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06
 [2026-02-20T02:00:06.820Z]   Dry run: false
 [2026-02-20T02:00:06.820Z] 
 ━━━ LOOP 1: SCAVENGE ━━━
@@ -11,3 +11,4 @@
 [2026-02-20T02:00:19.871Z]   Files with name signals: 614
 [2026-02-20T02:00:19.873Z] 
 ☥ Archaeology complete. 0.2 min.
+

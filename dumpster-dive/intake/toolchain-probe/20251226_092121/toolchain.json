@@ -1,13 +1,14 @@
 {
   "generated_at": "2025-12-26T09:21:21.8604625+01:00",
-  "repo_root": "C:\\Users\\erdno\\chthonic-archive",
-  "out_dir": "C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\intake\\toolchain-probe\\20251226_092121",
+  "repo_root": "C:\\Users\\eldno\\chthonic-archive",
+  "out_dir": "C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\intake\\toolchain-probe\\20251226_092121",
   "found": {
     "msys": "C:\\Program Files\\Git\\bin",
     "go": "C:\\Go\\bin",
     "ruby": "C:\\Ruby34-x64\\bin",
     "git": "C:\\Program Files\\Git\\cmd",
-    "bun": "C:\\Users\\erdno\\.bun\\bin"
+    "bun": "C:\\Users\\eldno\\.bun\\bin"
   },
-  "path": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;C:\\Users\\erdno\\.local\\bin;C:\\Users\\erdno\\.bun\\bin;C:\\Users\\erdno\\.cargo\\bin;C:\\Users\\erdno\\chthonic-archive\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin"
+  "path": "C:\\Windows\\System32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\PowerShell\\7;C:\\Users\\eldno\\.local\\bin;C:\\Users\\eldno\\.bun\\bin;C:\\Users\\eldno\\.cargo\\bin;C:\\Users\\eldno\\chthonic-archive\\scripts\\bin;C:\\Go\\bin;C:\\Ruby34-x64\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\bin"
 }
+

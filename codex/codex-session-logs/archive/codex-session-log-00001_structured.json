@@ -120,7 +120,7 @@
   "commands": [
     {
       "event_id": 15,
-      "cmd": "node \"C:\\Users\\erdno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
+      "cmd": "node \"C:\\Users\\eldno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
       "phase": "other"
     },
     {
@@ -669,7 +669,7 @@
         "Bun v1.3.8 (b64edcb4) Windows x64",
         "Windows v.win11_dt",
         "CPU: sse42 avx avx2",
-        "Args: \"C:\\Users\\erdno\\.bun\\bin\\bun.exe\" \"C:\\Users\\erdno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
+        "Args: \"C:\\Users\\eldno\\.bun\\bin\\bun.exe\" \"C:\\Users\\eldno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
         "Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2)",
         "Builtins: \"abort-controller\" \"bun:main\" \"node:assert\" \"node:async_hooks\" \"node:buffer\" \"node:child_process\" \"node:constants\" \"node:crypto\" \"node:dns\" \"node:events\" \"node:fs\" \"node:fs/promises\" \"node:http\" \"node:https\" \"node:module\" \"node:net\" \"node:os\" \"node:path\" \"node:perf_hooks\" \"node:process\" \"node:querystring\" \"node:readline\" \"node:stream\" \"node:stream/promises\" \"node:string_decoder\" \"node:timers/promises\" \"node:tls\" \"node:tty\" \"node:url\" \"node:util\" \"node:zlib\" \"node:worker_threads\" \"undici\" \"ws\" \"node-fetch\" \"node:v8\" \"node:http2\" \"node:diagnostics_channel\"",
         "Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms",
@@ -712,7 +712,7 @@
       "id": 15,
       "kind": "cmd",
       "lines": [
-        "node \"C:\\Users\\erdno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\""
+        "node \"C:\\Users\\eldno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\""
       ]
     },
     {
@@ -737,7 +737,7 @@
         "  - (\"Bun v1.3.8 (b64edcb4) Windows x64",
         "Windows v.win11_dt",
         "CPU: sse42 avx avx2",
-        "Args: \"C:\\Users\\erdno\\.bun\\bin\\bun.exe\" \"C:\\Users\\erdno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
+        "Args: \"C:\\Users\\eldno\\.bun\\bin\\bun.exe\" \"C:\\Users\\eldno\\.bun\\install\\global\\node_modules\\@google\\gemini-cli\\dist\\index.js\"",
         "Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2)",
         "Builtins: \"abort-controller\" \"bun:main\" \"node:assert\" \"node:async_hooks\" \"node:buffer\" \"node:child_process\" \"node:constants\" \"node:crypto\" \"node:dns\" \"node:events\" \"node:fs\" \"node:fs/promises\" \"node:http\" \"node:https\" \"node:module\" \"node:net\" \"node:os\" \"node:path\" \"node:perf_hooks\" \"node:process\" \"node:querystring\" \"node:readline\" \"node:stream\" \"node:stream/promises\" \"node:string_decoder\" \"node:timers/promises\" \"node:tls\" \"node:tty\" \"node:url\" \"node:util\" \"node:zlib\" \"node:worker_threads\" \"undici\" \"ws\" \"node-fetch\" \"node:v8\" \"node:http2\" \"node:diagnostics_channel\"",
         "Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms",
@@ -5107,7 +5107,7 @@
       "id": 558,
       "kind": "text",
       "lines": [
-        "I had to update your python scripts, you misunderstood me. I meant #!/usr/bin/env python3 is correct standardization on Windows11 (for me), everyone else. Uv spins up and is handled by the -> C:\\Users\\erdno\\chthonic-archive\\pyproject.toml."
+        "I had to update your python scripts, you misunderstood me. I meant #!/usr/bin/env python3 is correct standardization on Windows11 (for me), everyone else. Uv spins up and is handled by the -> C:\\Users\\eldno\\chthonic-archive\\pyproject.toml."
       ]
     },
     {
@@ -5247,7 +5247,7 @@
       "id": 575,
       "kind": "text",
       "lines": [
-        "- **Workspace Lock:** Run from repo root (C:\\Users\\erdno\\chthonic-archive). Do not change directories unless explicitly instructed.",
+        "- **Workspace Lock:** Run from repo root (C:\\Users\\eldno\\chthonic-archive). Do not change directories unless explicitly instructed.",
         "- **Shell:** PowerShell 7+ (pwsh) \u2014 NEVER use bash syntax on Windows. See PWSH_RULES.md.",
         "- **Package Manager:** bun only \u2014 NEVER npm, pnpm, yarn",
         "- **Platform:** Windows 11 (MSYS/MINGW paths may appear in git context; always use PowerShell-native paths)",
@@ -6471,7 +6471,7 @@
       "id": 728,
       "kind": "text",
       "lines": [
-        "- Would it be better to enhance the -> C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\script-envelope skill?",
+        "- Would it be better to enhance the -> C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\script-envelope skill?",
         "  - Let's revise it?"
       ]
     },
@@ -7487,7 +7487,7 @@
       "id": 838,
       "kind": "text",
       "lines": [
-        "The KISS is usually what works the best. If a dep is required it will be added into the C:\\Users\\erdno\\chthonic-archive\\pyproject.toml as a simple stupid standardization avoiding juxtapositions and deviancy."
+        "The KISS is usually what works the best. If a dep is required it will be added into the C:\\Users\\eldno\\chthonic-archive\\pyproject.toml as a simple stupid standardization avoiding juxtapositions and deviancy."
       ]
     },
     {
@@ -8074,8 +8074,8 @@
       "id": 908,
       "kind": "text",
       "lines": [
-        "C:\\Users\\erdno\\chthonic-archive\\.claude\\mailbox",
-        "C:\\Users\\erdno\\chthonic-archive\\.claude\\mailbox\\CLAUDE_META_VALIDATION_SUMMARY.json | <- Not meant to be here, there are two folders- one without . and one with .claude <- the claude meta validation JSON is likely outdeted, same with .codex and codex folder. We should solve this to keep things structured, likely we should add mailbox in both just in case."
+        "C:\\Users\\eldno\\chthonic-archive\\.claude\\mailbox",
+        "C:\\Users\\eldno\\chthonic-archive\\.claude\\mailbox\\CLAUDE_META_VALIDATION_SUMMARY.json | <- Not meant to be here, there are two folders- one without . and one with .claude <- the claude meta validation JSON is likely outdeted, same with .codex and codex folder. We should solve this to keep things structured, likely we should add mailbox in both just in case."
       ]
     },
     {
@@ -8746,10 +8746,10 @@
       "id": 985,
       "kind": "text",
       "lines": [
-        "Sanity check is good here because claude side still missing the same amount of skills and updates you have. Such as the | dirs: C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\.system",
-        "C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\.system\\skill-creator",
-        "C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\.system\\skill-installer",
-        "C:\\Users\\erdno\\chthonic-archive\\.codex\\skills\\.system\\.codex-system-skills.marker"
+        "Sanity check is good here because claude side still missing the same amount of skills and updates you have. Such as the | dirs: C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\.system",
+        "C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\.system\\skill-creator",
+        "C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\.system\\skill-installer",
+        "C:\\Users\\eldno\\chthonic-archive\\.codex\\skills\\.system\\.codex-system-skills.marker"
       ]
     },
     {
@@ -13204,7 +13204,7 @@
       "id": 1502,
       "kind": "text",
       "lines": [
-        "Ah, I forgot to save it, here it is - C:\\Users\\erdno\\chthonic-archive\\.temple\\session-archives\\sessionDUMP0002.txt"
+        "Ah, I forgot to save it, here it is - C:\\Users\\eldno\\chthonic-archive\\.temple\\session-archives\\sessionDUMP0002.txt"
       ]
     },
     {
@@ -13355,7 +13355,7 @@
       "kind": "text",
       "lines": [
         "ps1",
-        "PS C:\\Users\\erdno\\chthonic-archive> bun update --latest"
+        "PS C:\\Users\\eldno\\chthonic-archive> bun update --latest"
       ]
     },
     {
@@ -13370,7 +13370,7 @@
       "kind": "text",
       "lines": [
         "Checked 287 installs across 268 packages (no changes) [935.00ms]",
-        "PS C:\\Users\\erdno\\chthonic-archive> bun audit"
+        "PS C:\\Users\\eldno\\chthonic-archive> bun audit"
       ]
     },
     {
@@ -13443,7 +13443,7 @@
       "id": 1533,
       "kind": "text",
       "lines": [
-        "PS C:\\Users\\erdno\\chthonic-archive>"
+        "PS C:\\Users\\eldno\\chthonic-archive>"
       ]
     },
     {
@@ -15063,8 +15063,8 @@
       "id": 1725,
       "kind": "text",
       "lines": [
-        "Abs- it will rewrite the: C:\\Users\\erdno\\chthonic-archive\\codex\\codex-session-logs\\codex-session-log-00001_pretty.md",
-        "C:\\Users\\erdno\\chthonic-archive\\codex\\codex-session-logs\\codex-session-log-00001_structured.txt <- not create new dupes. Proceed your skill iteration. It should ultimately turn raw .txt into art and .md files based off its initial state-"
+        "Abs- it will rewrite the: C:\\Users\\eldno\\chthonic-archive\\codex\\codex-session-logs\\codex-session-log-00001_pretty.md",
+        "C:\\Users\\eldno\\chthonic-archive\\codex\\codex-session-logs\\codex-session-log-00001_structured.txt <- not create new dupes. Proceed your skill iteration. It should ultimately turn raw .txt into art and .md files based off its initial state-"
       ]
     },
     {
@@ -15114,7 +15114,7 @@
       "id": 1730,
       "kind": "text",
       "lines": [
-        "Current limitations, yep, I have read them. Agree with you. Also -> Remember that [the dumpster upcycler should be repurposing the non skill prior to the dumpster-upcycler skill prior to first not creating the skill, but the code then creating a separeate skill not using the value of the code before it? In : C:\\Users\\erdno\\chthonic-archive\\codex\\codex-session-logs\\bonus-missions-txt.txt as context. ## Bonus Mission."
+        "Current limitations, yep, I have read them. Agree with you. Also -> Remember that [the dumpster upcycler should be repurposing the non skill prior to the dumpster-upcycler skill prior to first not creating the skill, but the code then creating a separeate skill not using the value of the code before it? In : C:\\Users\\eldno\\chthonic-archive\\codex\\codex-session-logs\\bonus-missions-txt.txt as context. ## Bonus Mission."
       ]
     },
     {
@@ -15434,7 +15434,7 @@
       "id": 1768,
       "kind": "text",
       "lines": [
-        "C:\\Users\\erdno\\chthonic-archive\\codex\\codex-session-logs\\The-Iron-Maiden.md | -> Here is my WIP, for the DE abstraction derivant, rust-belt flavored, suits the train-station lane."
+        "C:\\Users\\eldno\\chthonic-archive\\codex\\codex-session-logs\\The-Iron-Maiden.md | -> Here is my WIP, for the DE abstraction derivant, rust-belt flavored, suits the train-station lane."
       ]
     },
     {
@@ -15543,7 +15543,7 @@
       "id": 1780,
       "kind": "text",
       "lines": [
-        "C:\\Users\\erdno\\chthonic-archive\\codex\\codex-session-logs\\The-Iron-Maiden-(SSOT)-Copyright-Savant.md"
+        "C:\\Users\\eldno\\chthonic-archive\\codex\\codex-session-logs\\The-Iron-Maiden-(SSOT)-Copyright-Savant.md"
       ]
     },
     {
@@ -16333,3 +16333,4 @@
     }
   ]
 }
+

@@ -32,7 +32,7 @@ Stamped the skill with the Seal of Purity in SKILL.md.
 Bun v1.3.8 (b64edcb4) Windows x64
 Windows v.win11_dt
 CPU: sse42 avx avx2
-Args: "C:\Users\erdno\.bun\bin\bun.exe" "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+Args: "C:\Users\eldno\.bun\bin\bun.exe" "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2) 
 Builtins: "abort-controller" "bun:main" "node:assert" "node:async_hooks" "node:buffer" "node:child_process" "node:constants" "node:crypto" "node:dns" "node:events" "node:fs" "node:fs/promises" "node:http" "node:https" "node:module" "node:net" "node:os" "node:path" "node:perf_hooks" "node:process" "node:querystring" "node:readline" "node:stream" "node:stream/promises" "node:string_decoder" "node:timers/promises" "node:tls" "node:tty" "node:url" "node:util" "node:zlib" "node:worker_threads" "undici" "ws" "node-fetch" "node:v8" "node:http2" "node:diagnostics_channel" 
 Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms
@@ -50,7 +50,7 @@ If Node succeeds, we can pin a workaround or update Bun.
 Capture a minimal repro if it still crashes.
 Try this first (same CLI, but Node):
 
-node "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+node "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 If that works, it’s almost certainly a Bun bug. I can also switch the invocation to use node in whatever wrapper/script you’re using.
 
 One quick clarification (then I’ll act): are you launching this from a script in this repo, or manually from the terminal?
@@ -61,7 +61,7 @@ One quick clarification (then I’ll act): are you launching this from a script 
   - ("Bun v1.3.8 (b64edcb4) Windows x64 
 Windows v.win11_dt
 CPU: sse42 avx avx2
-Args: "C:\Users\erdno\.bun\bin\bun.exe" "C:\Users\erdno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
+Args: "C:\Users\eldno\.bun\bin\bun.exe" "C:\Users\eldno\.bun\install\global\node_modules\@google\gemini-cli\dist\index.js"
 Features: Bun.stderr(4) Bun.stdin(2) Bun.stdout(4) bunfig fetch(625) jsc spawn(29) transpiler_cache(52) tsconfig(23) workers_spawned workers_terminated napi_module_register process_dlopen(2) 
 Builtins: "abort-controller" "bun:main" "node:assert" "node:async_hooks" "node:buffer" "node:child_process" "node:constants" "node:crypto" "node:dns" "node:events" "node:fs" "node:fs/promises" "node:http" "node:https" "node:module" "node:net" "node:os" "node:path" "node:perf_hooks" "node:process" "node:querystring" "node:readline" "node:stream" "node:stream/promises" "node:string_decoder" "node:timers/promises" "node:tls" "node:tty" "node:url" "node:util" "node:zlib" "node:worker_threads" "undici" "ws" "node-fetch" "node:v8" "node:http2" "node:diagnostics_channel" 
 Elapsed: 1833187ms | User: 80765ms | Sys: 21265ms
@@ -1893,7 +1893,7 @@ You asked for cmd /c in skills earlier, but it breaks on your Win11 (open-with d
 If you want me to re-run the audits with uv run to verify, I can do that next.
 
 
-I had to update your python scripts, you misunderstood me. I meant #!/usr/bin/env python3 is correct standardization on Windows11 (for me), everyone else. Uv spins up and is handled by the -> C:\Users\erdno\chthonic-archive\pyproject.toml.
+I had to update your python scripts, you misunderstood me. I meant #!/usr/bin/env python3 is correct standardization on Windows11 (for me), everyone else. Uv spins up and is handled by the -> C:\Users\eldno\chthonic-archive\pyproject.toml.
 
 Got it — reverting to the repo standard.
 
@@ -1952,7 +1952,7 @@ Main instructions are in copilot-instructions.md (SSOT). Repo guidance also live
 
 Its already in the Agent_common.md [## Execution Invariants
 
-- **Workspace Lock:** Run from repo root (C:\Users\erdno\chthonic-archive). Do not change directories unless explicitly instructed.
+- **Workspace Lock:** Run from repo root (C:\Users\eldno\chthonic-archive). Do not change directories unless explicitly instructed.
 - **Shell:** PowerShell 7+ (pwsh) — NEVER use bash syntax on Windows. See PWSH_RULES.md.
 - **Package Manager:** bun only — NEVER npm, pnpm, yarn
 - **Platform:** Windows 11 (MSYS/MINGW paths may appear in git context; always use PowerShell-native paths)
@@ -2437,7 +2437,7 @@ Use command:
 
 uv run python .codex/skills/python-header-canon/scripts/python_header_canon.py scripts/ .codex/skills .claude/skills
 
-- Would it be better to enhance the -> C:\Users\erdno\chthonic-archive\.codex\skills\script-envelope skill?
+- Would it be better to enhance the -> C:\Users\eldno\chthonic-archive\.codex\skills\script-envelope skill?
   - Let's revise it?
 
 Enhancing script-envelope is the better long-term path for policy cohesion. I will fold Python header canon into script-envelope as a first-class rule and wire it to the new canonical script so both capabilities live in one skill.
@@ -2937,7 +2937,7 @@ uv run scripts/skill_audit.py --flavor claude --root .claude/skills
 If you want, I can apply step 2 directly now and keep it aligned with your existing AGENTS invariants.
 
 
-The KISS is usually what works the best. If a dep is required it will be added into the C:\Users\erdno\chthonic-archive\pyproject.toml as a simple stupid standardization avoiding juxtapositions and deviancy.
+The KISS is usually what works the best. If a dep is required it will be added into the C:\Users\eldno\chthonic-archive\pyproject.toml as a simple stupid standardization avoiding juxtapositions and deviancy.
 
 Agreed. For this repo, the clean standard is:
 
@@ -3206,8 +3206,8 @@ SKILL.md
 decorator_cross_ref_enhanced.py (cleanup of test-injected managed block)
 claude-chthonic-bridge.ts (cleanup of test-injected managed block)
 
-C:\Users\erdno\chthonic-archive\.claude\mailbox
-C:\Users\erdno\chthonic-archive\.claude\mailbox\CLAUDE_META_VALIDATION_SUMMARY.json | <- Not meant to be here, there are two folders- one without . and one with .claude <- the claude meta validation JSON is likely outdeted, same with .codex and codex folder. We should solve this to keep things structured, likely we should add mailbox in both just in case. 
+C:\Users\eldno\chthonic-archive\.claude\mailbox
+C:\Users\eldno\chthonic-archive\.claude\mailbox\CLAUDE_META_VALIDATION_SUMMARY.json | <- Not meant to be here, there are two folders- one without . and one with .claude <- the claude meta validation JSON is likely outdeted, same with .codex and codex folder. We should solve this to keep things structured, likely we should add mailbox in both just in case. 
 
 Problem area: .codex + codex folders have mailbox, .codex folder has the imported skills from the global settings, claude has .claude and claude, but both have mailbox, for codex/.codex/.claude/claude. - Can you make a plan to structure this so it balances and syncs with the .codex with the skills and claude without the "." has the skills, surgical.
 
@@ -3556,10 +3556,10 @@ They now give you a compact, machine-readable baseline for parity/drift checks a
 If you want next, I can wire this into run_e2e_parity_gate.ps1 so it regenerates both indexes and fails if counts diverge.
 
 
-Sanity check is good here because claude side still missing the same amount of skills and updates you have. Such as the | dirs: C:\Users\erdno\chthonic-archive\.codex\skills\.system
-C:\Users\erdno\chthonic-archive\.codex\skills\.system\skill-creator
-C:\Users\erdno\chthonic-archive\.codex\skills\.system\skill-installer
-C:\Users\erdno\chthonic-archive\.codex\skills\.system\.codex-system-skills.marker
+Sanity check is good here because claude side still missing the same amount of skills and updates you have. Such as the | dirs: C:\Users\eldno\chthonic-archive\.codex\skills\.system
+C:\Users\eldno\chthonic-archive\.codex\skills\.system\skill-creator
+C:\Users\eldno\chthonic-archive\.codex\skills\.system\skill-installer
+C:\Users\eldno\chthonic-archive\.codex\skills\.system\.codex-system-skills.marker
 
 I’ll mirror the .system structure on Claude side now so topology is consistent, and I’ll add Claude-side equivalents for skill-creator and skill-installer as scoped system skills. Then I’ll regenerate both skill indexes and show parity status.
 
@@ -5585,7 +5585,7 @@ If you re-run it once and paste just the last ~50 lines of output here, I’ll f
 # Example: capture uv sync
 uv sync *>&1 | Tee-Object -FilePath .temple/session-archives/sessionDUMP0002.txt
 
-Ah, I forgot to save it, here it is - C:\Users\erdno\chthonic-archive\.temple\session-archives\sessionDUMP0002.txt
+Ah, I forgot to save it, here it is - C:\Users\eldno\chthonic-archive\.temple\session-archives\sessionDUMP0002.txt
 
 sessionDUMP0002.txt shows your Bun/uv state is not “broken”, it’s mostly command-shape mismatches plus one audit/vuln report.
 
@@ -5623,11 +5623,11 @@ If you tell me which command is failing right now (copy/paste the last ~50 lines
 
 
 ps1
-PS C:\Users\erdno\chthonic-archive> bun update --latest
+PS C:\Users\eldno\chthonic-archive> bun update --latest
 bun update v1.3.8 (b64edcb4)
 
 Checked 287 installs across 268 packages (no changes) [935.00ms]
-PS C:\Users\erdno\chthonic-archive> bun audit
+PS C:\Users\eldno\chthonic-archive> bun audit
 bun audit v1.3.8 (b64edcb4)
 @isaacs/brace-expansion  <=5.0.0
   @modelcontextprotocol/server-filesystem › minimatch › @isaacs/brace-expansion
@@ -5651,7 +5651,7 @@ To update all dependencies to the latest compatible versions:
 To update all dependencies to the latest versions (including breaking changes):
   bun update --latest
 
-PS C:\Users\erdno\chthonic-archive>
+PS C:\Users\eldno\chthonic-archive>
 
 Your log is consistent: nothing “broke”, but bun audit was staying red because one dev dependency was pinning vulnerable transitive versions.
 
@@ -6381,8 +6381,8 @@ emits a structured.json timeline (events with kind, timestamp if present, payloa
 collapses repetitive ACTION noise,
 and classifies “results” blocks (PASS/FAIL, exit codes, artifacts written) as first-class events.
 
-Abs- it will rewrite the: C:\Users\erdno\chthonic-archive\codex\codex-session-logs\codex-session-log-00001_pretty.md
-C:\Users\erdno\chthonic-archive\codex\codex-session-logs\codex-session-log-00001_structured.txt <- not create new dupes. Proceed your skill iteration. It should ultimately turn raw .txt into art and .md files based off its initial state-
+Abs- it will rewrite the: C:\Users\eldno\chthonic-archive\codex\codex-session-logs\codex-session-log-00001_pretty.md
+C:\Users\eldno\chthonic-archive\codex\codex-session-logs\codex-session-log-00001_structured.txt <- not create new dupes. Proceed your skill iteration. It should ultimately turn raw .txt into art and .md files based off its initial state-
 
 It’s materially better now, and it overwrote the same two outputs (no dupes).
 
@@ -6408,7 +6408,7 @@ Some CMD blocks still include multi-line command lists (acceptable, but we can s
 If you want the next iteration, the obvious win is collapsing low-information ACTIONs (Undo, Review without file lists) and splitting multi-command blocks into one command per CMD event for even cleaner structure.
 
 
-Current limitations, yep, I have read them. Agree with you. Also -> Remember that [the dumpster upcycler should be repurposing the non skill prior to the dumpster-upcycler skill prior to first not creating the skill, but the code then creating a separeate skill not using the value of the code before it? In : C:\Users\erdno\chthonic-archive\codex\codex-session-logs\bonus-missions-txt.txt as context. ## Bonus Mission.
+Current limitations, yep, I have read them. Agree with you. Also -> Remember that [the dumpster upcycler should be repurposing the non skill prior to the dumpster-upcycler skill prior to first not creating the skill, but the code then creating a separeate skill not using the value of the code before it? In : C:\Users\eldno\chthonic-archive\codex\codex-session-logs\bonus-missions-txt.txt as context. ## Bonus Mission.
 
 bonus-missions-txt.txt is currently empty (0 bytes), so I can’t use it as additional context yet.
 
@@ -6531,7 +6531,7 @@ If you want, next iteration I’ll implement:
 De-dup + phase-grouping in *_structured.txt and *_pretty.md (while keeping JSON lossless).
 A new skill skeleton for the multi-voice “chorus” layer that sits beside conceptualize instead of replacing it.
 
-C:\Users\erdno\chthonic-archive\codex\codex-session-logs\The-Iron-Maiden.md | -> Here is my WIP, for the DE abstraction derivant, rust-belt flavored, suits the train-station lane.
+C:\Users\eldno\chthonic-archive\codex\codex-session-logs\The-Iron-Maiden.md | -> Here is my WIP, for the DE abstraction derivant, rust-belt flavored, suits the train-station lane.
 
 I read it. It’s a strong “prompt bible” with clear levers we can extract mechanically.
 
@@ -6597,7 +6597,7 @@ If you want, next step is I scaffold the new .codex/skills/the-iron-maiden/ skil
 
 No, I made Skills connecteed to driving creeds. Ahh- That was the iteration of the first WIP variant. Here it is. - The other is an older generation of the iterations I made.
 
-C:\Users\erdno\chthonic-archive\codex\codex-session-logs\The-Iron-Maiden-(SSOT)-Copyright-Savant.md
+C:\Users\eldno\chthonic-archive\codex\codex-session-logs\The-Iron-Maiden-(SSOT)-Copyright-Savant.md
 
 You just handed over the real scaffold. Compared to The-Iron-Maiden.md, this SSOT variant is much closer to “DE skill lattice”, because you made the missing thing explicit: voices wired to creeds, plus an internal runtime (memory cache, inventory, constrained randomization).
 

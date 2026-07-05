@@ -9,7 +9,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. The structured index bel
 2) **Date, Agents Active, Workspace, Goal**
    - Date: 2026-02-01
    - Agents: Claude + Codex + Gemini
-   - Workspace: `C:\Users\erdno\chthonic-archive`
+   - Workspace: `C:\Users\eldno\chthonic-archive`
    - Goal: Stable triad onboarding; Gemini CLI + MCP wiring.
 3) **Canonical Artifacts**
    - Instruction anchors:
@@ -31,7 +31,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. The structured index bel
      - `codex/NEXT.md`
    - Gemini settings:
      - `.gemini/settings.json`
-     - `C:\Users\erdno\.gemini\settings.json`
+     - `C:\Users\eldno\.gemini\settings.json`
    - Gemini extensions:
      - `.gemini/extensions/chthonic-archive-sync/`
      - `.gemini/extensions/_sources/github-mcp-server/`
@@ -88,7 +88,7 @@ Shared, raw continuity log for Codex + Claude + Gemini. The structured index bel
    - `codex/NEXT.md`: shared next-action waypoint.
    - `.codex/config.toml`: workspace behavior lock.
    - `.gemini/settings.json`: Gemini workspace settings.
-   - `C:\Users\erdno\.gemini\settings.json`: Gemini global settings.
+   - `C:\Users\eldno\.gemini\settings.json`: Gemini global settings.
    - `.gemini/extensions/chthonic-archive-sync/GEMINI.md`: Gemini sync context.
 5) **Command Map (State-Changing Only)**
    - `codex login` (with `CODEX_HOME` isolation).
@@ -110,7 +110,7 @@ This is the canonical triad summary. Raw logs are intentionally excluded to prev
 
 #### C) Authoritative Files (Created/Modified)
 - Auth-only config:
-  - `C:\Users\erdno\.codex\config.toml`
+  - `C:\Users\eldno\.codex\config.toml`
 - Workspace behavior:
   - `.codex/config.toml`
 - Instruction anchors:
@@ -121,7 +121,7 @@ This is the canonical triad summary. Raw logs are intentionally excluded to prev
   - `codex/NEXT.md`
 - Gemini settings:
   - `.gemini/settings.json`
-  - `C:\Users\erdno\.gemini\settings.json`
+  - `C:\Users\eldno\.gemini\settings.json`
 - Gemini extensions:
   - `.gemini/extensions/chthonic-archive-sync/`
 
@@ -132,3 +132,4 @@ This is the canonical triad summary. Raw logs are intentionally excluded to prev
 
 #### E) Pending / Open Threads (Smallest Next Move)
 - Set `GITHUB_MCP_PAT` (PAT-only), restart Gemini, run `/mcp list`.
+

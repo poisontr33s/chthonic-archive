@@ -3,7 +3,7 @@
   "results": [
     {
       "lane": "qwen3_instruct_abliterated",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
       "load_seconds": 8.01,
       "tasks": [
         {
@@ -43,7 +43,7 @@
     },
     {
       "lane": "qwen3_coder_abliterated",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
       "load_seconds": 7.959,
       "tasks": [
         {
@@ -83,7 +83,7 @@
     },
     {
       "lane": "gpt_oss_20b_neoplus_uncensored",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored\\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\GPT-OSS-20B-NEOPlus-Uncensored\\OpenAI-20B-NEOPlus-Uncensored-IQ4_NL.gguf",
       "load_seconds": 10.846,
       "tasks": [
         {
@@ -123,7 +123,7 @@
     },
     {
       "lane": "qwen25_14b_baseline",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen2.5-14B-Instruct-GGUF\\qwen2.5-14b-instruct-q4_k_m-00001-of-00003.gguf",
       "load_seconds": 7.099,
       "tasks": [
         {

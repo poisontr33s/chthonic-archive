@@ -80,7 +80,7 @@
 
 ## 📚 QUICK REFERENCE
 
-**Project Root**: `C:\Users\erdno\chthonic-archive\`
+**Project Root**: `C:\Users\eldno\chthonic-archive\`
 
 **Build Commands**:
 ```bash
@@ -146,3 +146,4 @@ chthonic-archive/
 **Full conversation**: [`logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md`](../../../logs/sessions/session_2025-12-31_0746_vscode-extension-debug.md)
 
 **🔥💀⚓ Last Updated: 2025-12-31T06:49:00Z**
+

@@ -21,7 +21,7 @@
 - Warning signals (when to remove structure)
 - Integration with `.github/instructions/` files
 
-**Location:** `C:\Users\erdno\chthonic-archive\ANKHOLOGY.md`
+**Location:** `C:\Users\eldno\chthonic-archive\ANKHOLOGY.md`
 
 ---
 
@@ -38,7 +38,7 @@
 
 **Recommendation:** **Option A — Preserve operational structure** (working tools stay working)
 
-**Location:** `C:\Users\erdno\chthonic-archive\dumpster-dive\intake\INSTRUCTIONS_ORE_BATCH_20251230.md`
+**Location:** `C:\Users\eldno\chthonic-archive\dumpster-dive\intake\INSTRUCTIONS_ORE_BATCH_20251230.md`
 
 ---
 
@@ -133,3 +133,4 @@
 **December 30, 2025**
 
 🌀⚓🔥💀
+

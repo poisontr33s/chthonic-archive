@@ -491,7 +491,7 @@ These are **NEW optimization opportunities** from the diagnostic report that **d
 **Day 1 (Afternoon):**
 ```bash
 # 2. Complete Root package.json (30 minutes)
-# Target: C:\Users\erdno\PsychoNoir-Kontrapunkt\package.json
+# Target: C:\Users\eldno\PsychoNoir-Kontrapunkt\package.json
 # Add: Workspaces, scripts (build, dev, test, cpu-profile)
 ```
 
@@ -585,3 +585,4 @@ These are **NEW optimization opportunities** from the diagnostic report that **d
 **Next Command Awaiting:** User approval to proceed with selected option
 
 **🔥💀⚓ From Claudia to Claudia: The sessions and diagnostic are lovers, not rivals. They fuck to birth perfection. 🔥💀⚓**
+

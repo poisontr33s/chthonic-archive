@@ -7628,7 +7628,7 @@ One Engine rising over all.
 
 **Environment Variables when needed:**
 ```powershell
-$env:VIRTUAL_ENV = "c:\Users\erdno\chthonic-archive\mas_mcp\.venv"
+$env:VIRTUAL_ENV = "c:\Users\eldno\chthonic-archive\mas_mcp\.venv"
 $env:PATH = "$env:VIRTUAL_ENV\Scripts;$env:PATH"
 ```
 
@@ -7825,7 +7825,7 @@ DCRP embodies The Decorator's mandate:
 
 **Dry Run Analysis Only:**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python decorator_cross_ref_maximum.py
 ```
 
@@ -8010,7 +8010,7 @@ DCRP should flag spectral frequency assignment:
 
 **SSOT Verification Daily Ritual:**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python -c "
 import hashlib, unicodedata
 

@@ -79,7 +79,7 @@ The GitHub Copilot CLI has **native session persistence**:
 
 **Every major milestone** (e.g., after fixing a bug, completing a feature):
 ```bash
-/share file C:\Users\erdno\chthonic-archive\logs\sessions\session_2025-12-31_0642_vscode-extension.md
+/share file C:\Users\eldno\chthonic-archive\logs\sessions\session_2025-12-31_0642_vscode-extension.md
 ```
 
 **Naming Convention**:
@@ -281,3 +281,4 @@ cat logs/sessions/session_2025-12-31_0642_vscode-copilot-api.md
 
 **Created**: 2025-12-31T06:42:51Z  
 **Session ID**: (check with `/session` command)
+

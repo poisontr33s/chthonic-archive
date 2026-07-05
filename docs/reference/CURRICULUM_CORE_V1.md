@@ -232,7 +232,7 @@ The exclusions above preserve the **signal-to-noise ratio** that makes this curr
 
 This curriculum was extracted via:
 ```bash
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python scripts\extract_curriculum.py
 ```
 
@@ -250,3 +250,4 @@ uv run python scripts\extract_curriculum.py
 
 *"Authority precedes topology, but never follows it."*  
 — Scanner Approval Document, Section 2.2
+

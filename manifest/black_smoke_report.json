@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-05-31T22:05:22.541Z",
+  "generated_at": "2026-07-04T07:09:10.973Z",
   "mode": "--black-smoke",
-  "total_checks": 20,
-  "failed": 2,
-  "with_advisories": 4,
+  "total_checks": 26,
+  "failed": 3,
+  "with_advisories": 6,
   "degraded_count": 1,
   "signatures": [
     {
       "check": "python-headers",
       "exit_ok": true,
       "advisory_lines": [
-        "[python-headers] ℹ 5/436 tracked .py file(s) have non-canonical headers:",
+        "[python-headers] ℹ 5/426 tracked .py file(s) have non-canonical headers:",
         "  These are advisory. Run 'bun run ci:check python-headers' to audit."
       ],
       "degraded": false
@@ -19,9 +19,9 @@
       "check": "sid-envelope",
       "exit_ok": true,
       "advisory_lines": [
-        "[sid-envelope] ℹ 5 script(s) missing @SID:",
-        "[sid-envelope] ⚠ 30 script(s) with malformed SID:",
-        "  (266/301 valid — malformed reported as advisory until alchemized)"
+        "[sid-envelope] ℹ 4 script(s) missing @SID:",
+        "[sid-envelope] ⚠ 29 script(s) with malformed SID:",
+        "  (303/336 valid — malformed reported as advisory until alchemized)"
       ],
       "degraded": false
     },
@@ -39,6 +39,7 @@
         "[uv-guard] ⚠ advisory mas_mcp\\scripts\\milf_activator.py",
         "[uv-guard] ⚠ advisory mas_mcp\\scripts\\probe_gpu_compatibility.py",
         "[uv-guard] ⚠ advisory mas_mcp\\scripts\\run_cycle.py",
+        "[uv-guard] ⚠ advisory pr2_review\\scripts\\ssot_hash.py",
         "[uv-guard] ⚠ advisory scripts\\background_services.py",
         "[uv-guard] ⚠ advisory scripts\\chthonic.ps1",
         "[uv-guard] ⚠ advisory scripts\\chthonic.py",
@@ -47,8 +48,32 @@
         "[uv-guard] ⚠ advisory scripts\\normalize_blessing_box.py",
         "[uv-guard] ⚠ advisory scripts\\ssot_hash.py",
         "[uv-guard] ⚠ advisory scripts\\tabby_podman_build.ps1",
-        "[uv-guard] ⚠ 62 advisory violation(s) — fix before committing new files"
+        "[uv-guard] ⚠ 65 advisory violation(s) — fix before committing new files"
       ],
+      "degraded": false
+    },
+    {
+      "check": "homepath-portability",
+      "exit_ok": true,
+      "advisory_lines": [
+        "[homepath-portability] ℹ 731 portability smell(s) — hardcoded but currently matches (eldno):"
+      ],
+      "degraded": false
+    },
+    {
+      "check": "pin-truth",
+      "exit_ok": true,
+      "advisory_lines": [
+        "[pin-truth] ℹ 74 manifest/config file(s); exact=142 major=42 range=144 floating=29 local=0 unknown=49",
+        "[pin-truth] ℹ 24 lockfile(s); locked=3848 [cargo=1668 bun=1511 uv=669]",
+        "[pin-truth] ⚠ 5 version-claim contradiction(s):"
+      ],
+      "degraded": false
+    },
+    {
+      "check": "pathfinder",
+      "exit_ok": false,
+      "advisory_lines": [],
       "degraded": false
     },
     {
@@ -66,7 +91,7 @@
       "degraded": true
     },
     {
-      "check": "dsl-conformance",
+      "check": "lore-canon-refs",
       "exit_ok": false,
       "advisory_lines": [],
       "degraded": false
