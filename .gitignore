@@ -97,8 +97,14 @@ adapters/
 *-shm
 manifest/sessions/
 manifest/sonic_window_history.ndjson
+manifest/*.lock
 dev/dealogue-fayde/*.db
 dev/dealogue-fayde/.bundle/
+
+# ── Vendored dev-tool clones (own .git history, never mirrored here) ──
+dev/copilot-cli/
+dev/sd-candidates/
+dev/tabbyAPI/
 
 # ── Editor / IDE / OS ──
 .vs/
