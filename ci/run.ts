@@ -170,7 +170,7 @@ const CHECKS: Check[] = [
   },
   {
     name: "homepath-portability",
-    aliases: ["homepath", "erdno-guard"],
+    aliases: ["homepath", "eldno-guard"],
     script: "ci/checks/homepath-portability.ts",
     scope: "staged",
     speed: "fast",
@@ -983,3 +983,4 @@ console.log(`\n[autofix] Per GOVERNANCE_RECONCILIATION_ENGINE_V1_CLAUDE §VI: au
 
 // Still exit 1 — the commit is blocked until the conductor re-stages.
 process.exit(1);
+

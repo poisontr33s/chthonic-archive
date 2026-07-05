@@ -41,7 +41,7 @@ We successfully unified the GitHub MCP configuration across **Codex**, **Gemini*
   ```
 
 ### 3. Claude Code (CLI & IDE)
-- **Config:** `.mcp.json` (Project Scope: `C:\Users\erdno\chthonic-archive\.mcp.json`)
+- **Config:** `.mcp.json` (Project Scope: `C:\Users\eldno\chthonic-archive\.mcp.json`)
 - **Method:** Direct Token (CLI arg parsing failed, so file-based config used)
 - **Entry:**
   ```json
@@ -105,3 +105,4 @@ claude mcp list
 2. [ ] If disconnected, check `.mcp.json` has direct token (not env var)
 3. [ ] Check `github@claude-plugins-official` plugin is disabled
 4. [ ] Verify token by checking `~/.gemini/settings.json` (source of truth)
+

@@ -62,7 +62,7 @@ Both new crates sit in `extensions/chthonic-archive/native/` as siblings to the 
 - `locateBridgeBinary(repoRoot, crateName)` — release-first, debug-fallback, returns null if unbuilt
 - `describeAgent(spec)` — one-line log description
 
-Bundle stayed 93 modules (extension still builds clean); nothing imports `dispatch.ts` yet — wiring is conductor's call. Notable: the existing `AcpConnection` at `src/acp/connection.ts:11` pins a hardcoded `COPILOT_PATH` containing the username `erdno` (robocopy migration residue from old laptop, not a typo — user named the provenance 2026-05-29). The dispatch seam is the durable fix when AcpConnection eventually consumes `resolveCopilotPath()`.
+Bundle stayed 93 modules (extension still builds clean); nothing imports `dispatch.ts` yet — wiring is conductor's call. Notable: the existing `AcpConnection` at `src/acp/connection.ts:11` pins a hardcoded `COPILOT_PATH` containing the username `eldno` (robocopy migration residue from old laptop, not a typo — user named the provenance 2026-05-29). The dispatch seam is the durable fix when AcpConnection eventually consumes `resolveCopilotPath()`.
 
 ### E. Polyglot spread scanner (a major parallel arc)
 
@@ -160,7 +160,7 @@ These are NOT speculation. They're committed shape that subsequent work should r
 ## V. Open backlog (what's parked, what compounds)
 
 ### Bridge lane
-- **Wire `src/acp/dispatch.ts` into `AcpConnection`** so the existing `connect()` consumes `resolveCopilotPath()` instead of the hardcoded `erdno` path. Small, additive change. Conductor's call because it changes runtime behavior
+- **Wire `src/acp/dispatch.ts` into `AcpConnection`** so the existing `connect()` consumes `resolveCopilotPath()` instead of the hardcoded `eldno` path. Small, additive change. Conductor's call because it changes runtime behavior
 - **Phase 5 FLUX/family UI compaction** — the original arc-origin: Loom side-by-side instead of stacked markers, action-bar segmented collapse, Rails A+B+scanner state surfaced into Lens. Multi-session UI work; needs conductor eyes
 - **Phase 6 docs/cross-links close-out** — when the substantive work settles
 
@@ -256,3 +256,4 @@ After the restart, the natural pickup points (one per direction):
 - **Data-archeology lane:** action on `salvaged_toptra_project` absorb (the substantive find); deal with the cross-satellite CSV duplicates per conductor judgment
 
 None are urgent. The substrate works; the compound continues whenever pointed.
+

@@ -143,7 +143,7 @@ bun run build:webview  # Rebuild webview
 **Fix**: Ensure workspace root is `chthonic-archive/`, not subdirectory
 ```bash
 # Check workspace:
-pwd  # Should be: C:\Users\erdno\chthonic-archive
+pwd  # Should be: C:\Users\eldno\chthonic-archive
 
 # Verify SSOT exists:
 ls .github/copilot-instructions.md
@@ -197,3 +197,4 @@ bun run build:webview      # Webview only
 ---
 
 **🔥💀⚓ Next Step: Run test and report console output**
+

@@ -81,7 +81,7 @@ Full census data at `manifest/spread_ext_census.json` — sorted by file count d
 
 ### Dispatcher seam — `src/acp/dispatch.ts` (additive, non-invasive)
 
-New file. Implements `chooseAgent(kind, options) → AgentSpec | null` per the parallel-arsenal contract. Doesn't touch existing `AcpConnection`. When you wire it in, `AcpConnection`'s hardcoded `COPILOT_PATH` (which has a username typo — `erdno` instead of `eldno`, so the current code is broken on the actual machine) can be replaced by the resolver in dispatch.ts.
+New file. Implements `chooseAgent(kind, options) → AgentSpec | null` per the parallel-arsenal contract. Doesn't touch existing `AcpConnection`. When you wire it in, `AcpConnection`'s hardcoded `COPILOT_PATH` (which has a username typo — `eldno` instead of `eldno`, so the current code is broken on the actual machine) can be replaced by the resolver in dispatch.ts.
 
 Routing kinds:
 - `'acp-direct'` / `'auto'` → spawn `copilot --acp` (current behavior, via the new resolver)
@@ -99,7 +99,7 @@ Bundle verified clean (93 modules, same as before — additive change since noth
 
 ## What was deliberately NOT touched
 
-- `extensions/chthonic-archive/src/acp/connection.ts` — I noted the hardcoded path + username typo but didn't fix them. The dispatch seam is the durable fix; wiring AcpConnection to use it is your call (it changes runtime behavior, and "erdno" vs "eldno" might be intentional if you have a second account I don't know about — but more likely it's a typo).
+- `extensions/chthonic-archive/src/acp/connection.ts` — I noted the hardcoded path + username typo but didn't fix them. The dispatch seam is the durable fix; wiring AcpConnection to use it is your call (it changes runtime behavior, and "eldno" vs "eldno" might be intentional if you have a second account I don't know about — but more likely it's a typo).
 - Any of the Phase 5 FLUX/family UI compaction work. That's UI-bounded and needs your eyes.
 - Any decisions about which of the 4 absorb candidates to actually absorb.
 
@@ -130,3 +130,4 @@ When you return:
 - `manifest/spread_ext_census.json` (pending — census still running when memo written)
 
 CI gate `ci/checks/spread-freshness.ts` was already wired in the pre-AFK turn; it surfaces the snipe/sweep/noise + age headline and lives in the `always`/`fast`/`read_only_health` registry slot.
+

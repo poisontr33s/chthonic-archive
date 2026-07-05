@@ -26,7 +26,7 @@
 
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/nightly-scheduled.ps1` | **3.0** | 1 | ✅ `erdno`→`eldno` fixed; failure sentinel on daemon crash added |
+| `scripts/nightly-scheduled.ps1` | **3.0** | 1 | ✅ `eldno`→`eldno` fixed; failure sentinel on daemon crash added |
 | `scripts/api_pool.ps1` | **3.0** | 1 | ✅ JSON schema validation added; `-Verify` switch confirms keys non-empty |
 | `scripts/desktop-warmup.ps1` | **3.0** | 1 | ✅ try/catch per step; `$failures` summary at end |
 | `scripts/mcp-filesystem.ts` | **3.0** | 1 | ✅ `// chthonic-patch` idempotency guard; package.json version assertion |
@@ -151,12 +151,12 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 |--------|-------|--------|--------|
 | `scripts/sfs.ps1` | **3.0** | 1 | ✅ Thin shim delegating to `shell_capabilities.ps1`; body replaced with `& "$PSScriptRoot/shell_capabilities.ps1"` |
 
-### Path Fix Hotspot (hardcoded `erdno` bug)
+### Path Fix Hotspot (hardcoded `eldno` bug)
 | Script | Score | Effort | Action |
 |--------|-------|--------|--------|
-| `scripts/setup-gemini-claude.ts` | **2.0** | 1 | ✅ `erdno`→`eldno`; use `import.meta.dir`-relative `CHTHONIC_ROOT` default |
-| `scripts/validate-triad-links.ps1` | **1.0** | 1 | ✅ `erdno`→`eldno`; `$RepoRoot` default now `PSScriptRoot`-relative |
-| `scripts/build_epistemograph.py` | **1.0** | 1 | ✅ `erdno`→`eldno` in docstring; v1 deprecation warning + `--no-deprecation-warning` flag — `66cf0b59` |
+| `scripts/setup-gemini-claude.ts` | **2.0** | 1 | ✅ `eldno`→`eldno`; use `import.meta.dir`-relative `CHTHONIC_ROOT` default |
+| `scripts/validate-triad-links.ps1` | **1.0** | 1 | ✅ `eldno`→`eldno`; `$RepoRoot` default now `PSScriptRoot`-relative |
+| `scripts/build_epistemograph.py` | **1.0** | 1 | ✅ `eldno`→`eldno` in docstring; v1 deprecation warning + `--no-deprecation-warning` flag — `66cf0b59` |
 
 ### Lint / Validation Infrastructure
 | Script | Score | Effort | Action |
@@ -270,12 +270,12 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 | `scripts/mistralrs_client.py` | ✅ Promoted → `scripts/lib/mistralrs_client.py` (already LIB_ SID) — `a01857f0` |
 | `scripts/local_refiner.py` | ✅ Tombstoned → `.deprecated/local_refiner.py`; `run_archaeology.ps1` calls v2 — `a01857f0` |
 | `scripts/vector_db.py` | ✅ Keep active — part of overnight archaeology pipeline; no change needed |
-| `scripts/setup_db.py` | ✅ Tombstoned → `.deprecated/` (hardcoded erdno path, superseded by build_epistemograph inline schema init) — `a01857f0` |
+| `scripts/setup_db.py` | ✅ Tombstoned → `.deprecated/` (hardcoded eldno path, superseded by build_epistemograph inline schema init) — `a01857f0` |
 | `scripts/mandala_topology.py` | ✅ Keep active — topology report from graph JSON; no change needed |
 | `scripts/unified_topology.py` | ✅ Keep active — cross-lane dependency graph generator; no change needed |
 | `scripts/extract_session_value.py` | ✅ Tombstoned → `.deprecated/` (superseded by dumpster-upcycler skill) — `a01857f0` |
 | `scripts/chthonic.sh` | ✅ Keep active — bash router for Unix platforms (companion to chthonic.py); no change needed |
-| `scripts/build_epistemograph_v1.1.py` | ✅ Renamed → `build_epistemograph.py`; v1.0 → `.deprecated/`; `--schema-path` added; `erdno→eldno` fixed — `a01857f0` |
+| `scripts/build_epistemograph_v1.1.py` | ✅ Renamed → `build_epistemograph.py`; v1.0 → `.deprecated/`; `--schema-path` added; `eldno→eldno` fixed — `a01857f0` |
 
 ### Prototypes (integrate or tombstone)
 | Script | Action |
@@ -356,3 +356,4 @@ All 9 files share the same broken import (`from skill_tensor_common import ...` 
 | Pentea registered (row 2) | ✅ `0c7333cb` | `.github/agents/Pentea.agent.md` back-pointer |
 | Pattern Nursery registered (row 3) | ✅ `70ed1916` | Nursery header back-pointer; loop closed |
 | FA³ spectral note added to §XV.7 | ✅ `70ed1916` | "SSOT governs only what has been metabolized. The Nursery is where metabolism begins. Pentea is the transit between them." |
+

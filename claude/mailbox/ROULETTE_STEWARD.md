@@ -74,7 +74,7 @@ Edit `SCRIPTS_ROULETTE.md`: change `⬜` → `✅`, append shorthand of what was
 | Pattern | Treatment |
 |---------|-----------|
 | Same fix across N files (T3 skill_tensor) | Single execution unit, one commit, mark all N ✅ |
-| Same `erdno`→`eldno` typo fix | One commit per file — don't batch across tiers |
+| Same `eldno`→`eldno` typo fix | One commit per file — don't batch across tiers |
 | `--dry-run` + `--json` flags | Same file, same commit |
 | Unrelated scripts in same tier | Separate commits |
 
@@ -144,3 +144,4 @@ Proceeding.
 ```
 
 No additional briefing from The Savant required.
+

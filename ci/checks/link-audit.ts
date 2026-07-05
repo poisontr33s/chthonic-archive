@@ -24,10 +24,13 @@
 import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 import { spawnSync } from "child_process";
+import { COMMON_SKIP_DIRS } from "./common_bloat_and_vendored";
 
 const STAGED = process.argv.includes("--staged");
+const FIX = process.argv.includes("--fix");
 const REPO_ROOT = resolve(import.meta.dir, "../..");
 const PASSIVE_MARKDOWN_PREFIXES = ["confiscated_instructions/"];
+const INTERNAL_SKIP_DIRS = COMMON_SKIP_DIRS;
 
 function gitLines(args: string[]): string[] {
   const result = spawnSync("git", args, {
@@ -93,14 +96,24 @@ function isTombstone(rel: string): boolean {
   return false;
 }
 
+function isInternalSkip(rel: string): boolean {
+  const normalized = normalizeRel(rel);
+  return INTERNAL_SKIP_DIRS.some((dir) => normalized.startsWith(dir));
+}
+
 function existingMarkdown(paths: string[]): string[] {
   let passiveCount = 0;
+  let internalSkipCount = 0;
   const active = paths
     .filter(isMarkdownPath)
     .filter((rel) => existsSync(resolve(REPO_ROOT, rel)))
     .filter((rel) => {
       if (isPassiveMarkdown(rel)) {
         passiveCount += 1;
+        return false;
+      }
+      if (isInternalSkip(rel)) {
+        internalSkipCount += 1;
         return false;
       }
       return true;
@@ -115,6 +128,9 @@ function existingMarkdown(paths: string[]): string[] {
 
   if (passiveCount > 0) {
     console.log(`[pathfinder] skipping ${passiveCount} passive markdown file(s)`);
+  }
+  if (internalSkipCount > 0) {
+    console.log(`[pathfinder] skipping ${internalSkipCount} internal-skip markdown file(s)`);
   }
   return active;
 }
@@ -199,7 +215,17 @@ if (STAGED) {
     console.log("[pathfinder] staged renames: none");
   }
 } else {
-  ok = runLinkAudit("changed markdown", ["scan", "--changed", "--dry-run", "--github-links"]) && ok;
+  const changed = existingMarkdown(
+    gitLines(["diff", "--name-only", "HEAD"])
+  );
+  if (changed.length > 0) {
+    const args = ["scan", "--github-links", "--paths", ...changed];
+    if (FIX) args.push("--fix");
+    else args.push("--dry-run");
+    ok = runLinkAudit("changed markdown", args) && ok;
+  } else {
+    console.log("[pathfinder] changed markdown: no files (after tombstone filtering)");
+  }
 }
 
 process.exit(ok ? 0 : 1);

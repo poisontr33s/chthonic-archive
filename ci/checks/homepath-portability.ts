@@ -32,14 +32,14 @@
  *
  * Two severities:
  *   - stale : <name> does not match the CURRENT resolved username — proven
- *             cross-machine/cross-account drift (the erdno-on-eldno case).
+ *             cross-machine/cross-account drift (the eldno-on-eldno case).
  *   - smell : <name> DOES match the current username — works today, breaks
  *             the moment this file crosses to another machine/account.
  *             The latent form of the same bug, caught before it can drift.
  *
  * Cache/manifest outputs are exempt — their job IS to record a resolved path
  * at scan time; this gate targets SOURCE (scripts/configs), not their
- * outputs. (The stale erdno file itself was exactly such an output, found by
+ * outputs. (The stale eldno file itself was exactly such an output, found by
  * hand this session — this check would not have re-flagged it as a bug in
  * itself, only in whatever SCRIPT wrote it, which is where the real fix went.)
  *
@@ -67,6 +67,7 @@ import { execSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import * as os from "os";
+import { COMMON_EXEMPT_PARTS } from "./common_bloat_and_vendored";
 
 const STAGED = process.argv.includes("--staged");
 const REPORT = process.argv.includes("--report");
@@ -103,7 +104,7 @@ const SCAN_EXTS = new Set([
 // time — that's their job, not a portability bug. Exempt by path fragment
 // (git ls-files always returns forward-slash paths, but match both defensively).
 const EXEMPT_PARTS = [
-  "/cache/", "\\cache\\", "/manifest/", "\\manifest\\",
+  ...COMMON_EXEMPT_PARTS,
   // Runtime data stores (MCP memory-server store, scan inventories) — same
   // output class as cache/manifest: recorded resolved paths ARE their content,
   // and rewriting them would falsify history (their referents may be gone).
@@ -274,3 +275,4 @@ if (STAGED) {
   }
   process.exit(0);
 }
+

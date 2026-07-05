@@ -6,13 +6,13 @@
 ```bash
 # In VSCode, press F5 (opens Extension Development Host)
 # OR
-cd C:\Users\erdno\chthonic-archive\chthonic-vscode-extension
+cd C:\Users\eldno\chthonic-archive\chthonic-vscode-extension
 code --extensionDevelopmentPath=.
 ```
 
 ### Option 2: Build & Install VSIX
 ```bash
-cd C:\Users\erdno\chthonic-archive\chthonic-vscode-extension
+cd C:\Users\eldno\chthonic-archive\chthonic-vscode-extension
 
 # Build
 bun run build
@@ -93,7 +93,7 @@ Expected output:
 ## 🔄 Rebuild After Changes
 
 ```bash
-cd C:\Users\erdno\chthonic-archive\chthonic-vscode-extension
+cd C:\Users\eldno\chthonic-archive\chthonic-vscode-extension
 bun run build  # Rebuilds both extension + webview
 ```
 
@@ -102,3 +102,4 @@ Then reload VSCode window (`Ctrl+R` in Extension Development Host).
 ## 🐛 If Still Echoing
 
 The new diagnostic build will show **full error message + stack trace** in the chat. Copy that and we can debug further.
+

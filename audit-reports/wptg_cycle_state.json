@@ -102,7 +102,7 @@
           "fresh": true
         }
       },
-      "stdout_tail": "Wrote C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\anvil\\CODEBASE_ANOMALY_HARVEST.json\nWrote C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\anvil\\CORPSE_VAULT_DEEP_AUDIT.json\nWrote C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\furnace\\FURNACE_MANIFEST.json\nWrote C:\\Users\\erdno\\chthonic-archive\\dumpster-dive\\forge\\tempered\\GRADUATION_MANIFEST.json\nWrote C:\\Users\\erdno\\chthonic-archive\\codex\\mailbox\\FORGE_TRANSMUTATION_REPORT.md",
+      "stdout_tail": "Wrote C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\forge\\anvil\\CODEBASE_ANOMALY_HARVEST.json\nWrote C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\forge\\anvil\\CORPSE_VAULT_DEEP_AUDIT.json\nWrote C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\forge\\furnace\\FURNACE_MANIFEST.json\nWrote C:\\Users\\eldno\\chthonic-archive\\dumpster-dive\\forge\\tempered\\GRADUATION_MANIFEST.json\nWrote C:\\Users\\eldno\\chthonic-archive\\codex\\mailbox\\FORGE_TRANSMUTATION_REPORT.md",
       "stderr_tail": ""
     },
     {
@@ -475,3 +475,4 @@
     ]
   }
 }
+

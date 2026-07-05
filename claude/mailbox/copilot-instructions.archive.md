@@ -8851,7 +8851,7 @@ DCRP embodies The Decorator's mandate:
 
 **Dry Run (Analysis Only):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python decorator_cross_ref_maximum.py
 ```
 
@@ -9036,7 +9036,7 @@ DCRP should flag (spectral frequency assignment):
 
 **SSOT Verification (Daily Ritual):**
 ```powershell
-cd C:\Users\erdno\chthonic-archive
+cd C:\Users\eldno\chthonic-archive
 uv run python -c "
 import hashlib, unicodedata
 
@@ -9615,4 +9615,5 @@ The SSOT is architecturally complete in its current form. The structural surgery
 None of these require structural changes to the SSOT itself. They are comprehension artifacts — things that make the existing architecture visible to the human mind that created it.
 
 ---
+
 
