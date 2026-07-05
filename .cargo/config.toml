@@ -27,7 +27,7 @@ strip = true
 # Windows-specific linker optimizations
 [target.x86_64-pc-windows-msvc]
 rustflags = [
-    "-C", "target-cpu=native",
+    "-C", "target-cpu=native", # Deliberately locked to this i9-13900 dev box — not portable; re-scope before building on/for another machine.
     "-C", "link-arg=/OPT:ICF",
     "-C", "link-arg=/OPT:REF",
     "-C", "link-arg=/DEBUG",

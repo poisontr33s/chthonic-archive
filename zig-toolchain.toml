@@ -30,6 +30,6 @@ link_mode = "dynamic"
 
 [env]
 # Zig binary location when installed standalone (goup-managed preferred).
-# ZIG_BIN  = "$env:USERPROFILE\\.zig\\0.14.0\\zig.exe"
+# ZIG_BIN  = "$env:USERPROFILE\\.zig\\0.16.0\\zig.exe"
 # Zig standard library override (uncomment if using custom std).
-# ZIG_LIB  = "$env:USERPROFILE\\.zig\\0.14.0\\lib"
+# ZIG_LIB  = "$env:USERPROFILE\\.zig\\0.16.0\\lib"

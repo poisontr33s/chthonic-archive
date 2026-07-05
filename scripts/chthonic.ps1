@@ -1447,6 +1447,7 @@ function Get-ChthonicCommandCatalog {
                 [pscustomobject]@{ name = "stop"; aliases = @(); summary = "stop MCP services" }
                 [pscustomobject]@{ name = "status"; aliases = @(); summary = "check service status" }
                 [pscustomobject]@{ name = "logs"; aliases = @(); summary = "tail service logs" }
+                [pscustomobject]@{ name = "unlock"; aliases = @(); summary = "kill MCP-spawned toolchain processes (uvx/mcp-server-*) holding file locks that block self-update; auto-respawn on next tool call" }
             )
         }
         [pscustomobject]@{
@@ -2869,11 +2870,94 @@ function Invoke-MCPStatus {
     $color = if ($status.Bridge -eq "running") { "Green" } else { "Red" }
     Write-Host $status.Bridge -ForegroundColor $color
     Write-Host ""
-    
+
     return 0
 }
 
+function Clear-MCPLocks {
+    # Kills MCP-server-spawned toolchain processes (uvx mcp-server-*, etc.) that
+    # hold Windows file-image locks on binaries a self-update needs to overwrite
+    # (e.g. `uv self update` failing on uvx.exe "used by another process").
+    #
+    # Scope is deliberately narrow — matched by BOTH:
+    #   1. process name family (uvx/uv/bun/zv/zig/rv/rvw/python/mcp-server-*)
+    #   2. its own or an ancestor's CommandLine containing "mcp" (case-insensitive)
+    #   3. its ancestor chain reaching a `claude` process (this repo's MCP host
+    #      spawns MCP servers as direct children of claude.exe, per observed
+    #      process trees — not "any descendant of the VS Code window", which
+    #      would over-match the user's own interactive terminal sessions)
+    #
+    # No restart logic: MCP stdio servers are expected to go offline and
+    # respawn lazily on the next tool call that needs them (verified live —
+    # killing this session's own mcp-server-time tree and then calling a time
+    # tool respawned it transparently, 2026-07-05).
+    param([switch]$Json, [switch]$WhatIfOnly)
 
+    $lockCandidateNames = @('uvx', 'uv', 'bun', 'zv', 'zig', 'rv', 'rvw', 'python', 'mcp-server-*')
+    $trustedHostNames = @('claude')
+
+    $allProcs = @(Get-CimInstance Win32_Process)
+    $byPid = @{}
+    foreach ($p in $allProcs) { $byPid[[int]$p.ProcessId] = $p }
+
+    function Test-AncestryTrusted([int]$startPid) {
+        $seen = @{}
+        $curPid = $startPid
+        while ($curPid -and $byPid.ContainsKey($curPid) -and -not $seen.ContainsKey($curPid)) {
+            $seen[$curPid] = $true
+            $proc = $byPid[$curPid]
+            $nameNoExt = ($proc.Name -replace '\.exe$', '')
+            if ($trustedHostNames -contains $nameNoExt) { return $true }
+            $curPid = [int]$proc.ParentProcessId
+        }
+        return $false
+    }
+
+    function Test-ChainHasMcp([int]$startPid) {
+        $seen = @{}
+        $curPid = $startPid
+        while ($curPid -and $byPid.ContainsKey($curPid) -and -not $seen.ContainsKey($curPid)) {
+            $seen[$curPid] = $true
+            $proc = $byPid[$curPid]
+            if ($proc.CommandLine -and $proc.CommandLine -match 'mcp') { return $true }
+            $curPid = [int]$proc.ParentProcessId
+        }
+        return $false
+    }
+
+    $candidates = @($allProcs | Where-Object {
+        $nameNoExt = ($_.Name -replace '\.exe$', '')
+        $lockCandidateNames | Where-Object { $nameNoExt -like $_ }
+    })
+
+    $toKill = @($candidates | Where-Object {
+        (Test-ChainHasMcp ([int]$_.ProcessId)) -and (Test-AncestryTrusted ([int]$_.ParentProcessId))
+    })
+
+    if ($Json) {
+        Write-Output (ConvertTo-Json @($toKill | ForEach-Object {
+            [pscustomobject]@{ pid = $_.ProcessId; name = $_.Name; parent_pid = $_.ParentProcessId; command_line = $_.CommandLine }
+        }) -Depth 4 -AsArray)
+    } else {
+        if ($toKill.Count -eq 0) {
+            Write-Host "  no MCP-descended toolchain locks found" -ForegroundColor Green
+        } else {
+            $verb = if ($WhatIfOnly) { "would kill" } else { "killing" }
+            Write-Host "  $verb $($toKill.Count) MCP-descended process(es) holding potential toolchain locks:" -ForegroundColor Yellow
+            foreach ($p in $toKill) {
+                Write-Host "    [$($p.ProcessId)] $($p.Name)  (parent $($p.ParentProcessId))" -ForegroundColor DarkGray
+            }
+        }
+    }
+
+    if (-not $WhatIfOnly) {
+        foreach ($p in $toKill) {
+            try { Stop-Process -Id ([int]$p.ProcessId) -Force -ErrorAction Stop } catch {}
+        }
+    }
+
+    return $toKill.Count
+}
 
 function Invoke-PolyglotActivation {
     param([switch]$Quiet)
@@ -4595,6 +4679,16 @@ function Invoke-Doctor {
 
     # --fix / --dry-run mode: execute or simulate upgrades and installs
     if (($Fix -or $DryRun) -and $fixable.Count -gt 0) {
+        # Toolchain self-update commands (uv self update, bun upgrade, etc.) overwrite
+        # binaries under ~/.local/bin, ~/.bun/bin, etc. that MCP-spawned `uvx <server>`
+        # processes hold open, causing "used by another process" failures mid-fix.
+        # Clear those locks first — MCP servers respawn lazily on next tool call, no
+        # restart logic needed here. Skipped on --dry-run (nothing is being written yet).
+        if ($Fix) {
+            Write-Host "PRE-FIX: clearing MCP-spawned toolchain locks" -ForegroundColor Cyan
+            Clear-MCPLocks -WhatIfOnly:$false | Out-Null
+            Write-Host ""
+        }
         if ($DryRun) {
             Write-Host "DRY RUN — no changes will be made" -ForegroundColor Magenta
         } else {
@@ -6289,6 +6383,16 @@ switch ($Domain) {
                     Write-Host "Job: $($_.Name)" -ForegroundColor Cyan
                     Receive-Job -Job $_
                 }
+                exit 0
+            }
+            "unlock" {
+                $dryRunFlag = $AllArgs -contains "--dry-run"
+                Write-Host "🔓 Clearing MCP-spawned toolchain locks..." -ForegroundColor Cyan
+                if ($HasJsonFlag) {
+                    Clear-MCPLocks -Json:$true -WhatIfOnly:$dryRunFlag | Out-Null
+                    exit 0
+                }
+                Clear-MCPLocks -Json:$false -WhatIfOnly:$dryRunFlag | Out-Null
                 exit 0
             }
             default {

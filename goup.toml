@@ -1,6 +1,6 @@
 # goup project config - chthonic-archive
 #
-# Current goup-rs v0.16.11 does not consume TOML project config. Its native
+# Current goup-rs v0.16.12 does not consume TOML project config. Its native
 # project detection is go.work/go.mod. This file is the repo contract and the
 # proposed upstream schema target.
 #

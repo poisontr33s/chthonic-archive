@@ -137,7 +137,7 @@ chthonic status --json
 | `detect` | Detect IDE/runtime context | Text report or JSON |
 | `ruby versions|tools|lane|doctor|search|install|upgrade` | Ruby lane via `rv` + RubyGems | Listing, summary, repair, search, install, stable upgrade |
 | `ide launch|detect|reset` | VS Code management helpers | Launch/diagnostics/reset |
-| `mcp start|stop|status|logs` | Bridge service lifecycle | Service control/status |
+| `mcp start|stop|status|logs|unlock` | Bridge service lifecycle | Service control/status; `unlock` kills MCP-spawned toolchain processes (uvx/mcp-server-*) holding file locks that block self-update — auto-respawns on next tool call, add `--dry-run` to preview |
 | `config init|show|set` | Manage `~/.chthonic/config.json` | Config bootstrap/display |
 | `book [build\|serve\|clean]` | mdBook command wrapper | mdBook output |
 | `audit|compact|extract|resolve|map|analyze` | Archive tool suite (`uv run python -m lib.<tool>`) | Tool-specific artifacts |
