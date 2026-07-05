@@ -1,7 +1,7 @@
 {
   "generated": "2026-02-19T23:17:21.292098+00:00",
   "default_lane": "strict_json",
-  "default_model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+  "default_model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
   "endpoint_defaults": {
     "host": "127.0.0.1",
     "port": 8000,
@@ -13,7 +13,7 @@
     "strict_json": {
       "lane": "qwen3_instruct_abliterated",
       "reason": "highest quality-first score",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
       "model_exists": true,
       "quant_tag": "Q3_K_M",
       "composite_score": 100.0,
@@ -28,7 +28,7 @@
     "code": {
       "lane": "qwen3_coder_abliterated",
       "reason": "coder-specialized lane preferred when available",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-Coder-30B-A3B-abliterated-GGUF\\Huihui-Qwen3-Coder-30B-A3B-Instruct-abliterated.i1-Q3_K_M.gguf",
       "model_exists": true,
       "quant_tag": "Q3_K_M",
       "composite_score": 100.0,
@@ -43,7 +43,7 @@
     "unrestricted": {
       "lane": "qwen3_instruct_abliterated",
       "reason": "best uncensored compliance lane with quality guarantees",
-      "model_file": "C:\\Users\\erdno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
+      "model_file": "C:\\Users\\eldno\\chthonic-archive\\models\\Qwen3-30B-A3B-Instruct-abliterated-GGUF\\Huihui-Qwen3-30B-A3B-Instruct-2507-abliterated.i1-Q3_K_M.gguf",
       "model_exists": true,
       "quant_tag": "Q3_K_M",
       "composite_score": 100.0,

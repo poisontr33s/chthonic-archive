@@ -71,109 +71,109 @@ Explore the chthonic-archive codebase for creative/lore elements that would info
 Focus on aesthetic patterns and world-building vocabulary that already exists.
 Globpattern: "game/**"
 Found 2 files
-Grep "RED|ORANGE|GOLD|BLUE|WHITE|PRISM" (in /c/Users/erdno/chthonic-archive, glob: **/*.ts,**/*.js,**/*.md,**/*.json)
+Grep "RED|ORANGE|GOLD|BLUE|WHITE|PRISM" (in /c/Users/eldno/chthonic-archive, glob: **/*.ts,**/*.js,**/*.md,**/*.json)
 286 lines of output
 Read AGENT_COMMON.md
 Bash Find GitHub documentation files
 IN
-find /c/Users/erdno/chthonic-archive/.github -name "*.md" 2>/dev/null
+find /c/Users/eldno/chthonic-archive/.github -name "*.md" 2>/dev/null
 
 OUT
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions.readable.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions_backup_2025-12-08.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions_backup_20251209_033418.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-not-very-instructions.md
-/c/Users/erdno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-un-instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/agent-priority-protocol.md
-/c/Users/erdno/chthonic-archive/.github/instructions/ankh-workflow.instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/asc-combinational-analysis.md
-/c/Users/erdno/chthonic-archive/.github/instructions/asc-entity-generation-validation-workflow.md
-/c/Users/erdno/chthonic-archive/.github/instructions/asc-entity-generation.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/asc-generative-rules-analysis.md
-/c/Users/erdno/chthonic-archive/.github/instructions/asc-ml-framework-hardening-requirements.md
-/c/Users/erdno/chthonic-archive/.github/instructions/autopsy-protocol.instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/behavioral-scenarios.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/dcrp-operational-guide.md
-/c/Users/erdno/chthonic-archive/.github/instructions/dev-conventions.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/magistra-logic.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/mathematical-engines.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/project-workflow.instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/python-scripting.instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/reference-appendix.reference.md
-/c/Users/erdno/chthonic-archive/.github/instructions/ssot-toolbox.instructions.md
-/c/Users/erdno/chthonic-archive/.github/instructions/technical-directives.instructions.md
-/c/Users/erdno/chthonic-archive/.github/INTEGRATION_MAP.md
-/c/Users/erdno/chthonic-archive/.github/pathstofiles.md
-/c/Users/erdno/chthonic-archive/.github/prompts/analyzeCode.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md
-/c/Users/erdno/chthonic-archive/.github/prompts/beautifySessionArchive.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/createComponent.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/crossReferenceSSOT.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/debugIssue.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/documentCode.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/explainCode.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/generateTests.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/improvePrompt.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/README.md
-/c/Users/erdno/chthonic-archive/.github/prompts/refactorCode.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/RESEARCH.md
-/c/Users/erdno/chthonic-archive/.github/prompts/researchFeatureJourney.prompt.md
-/c/Users/erdno/chthonic-archive/.github/prompts/_learning/SAVEPROMPT_JOURNEY.md
-/c/Users/erdno/chthonic-archive/.github/SESSION_RESUME.md
-/c/Users/erdno/chthonic-archive/.github/SSOT_AUDIT_REPORT_20251209_010549.md
-/c/Users/erdno/chthonic-archive/.github/ssot_backups/copilot-instructions_20251209_010605.md
-/c/Users/erdno/chthonic-archive/.github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md
-/c/Users/erdno/chthonic-archive/.github/STRUCTURAL_INTEGRITY_ANALYSIS.md
-/c/Users/erdno/chthonic-archive/.github/VALIDATION_REPORT.md
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions.readable.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions_backup_2025-12-08.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-instructions_backup_20251209_033418.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-not-very-instructions.md
+/c/Users/eldno/chthonic-archive/.github/copilot-inststructons-backups.md/copilot-un-instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/agent-priority-protocol.md
+/c/Users/eldno/chthonic-archive/.github/instructions/ankh-workflow.instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/asc-combinational-analysis.md
+/c/Users/eldno/chthonic-archive/.github/instructions/asc-entity-generation-validation-workflow.md
+/c/Users/eldno/chthonic-archive/.github/instructions/asc-entity-generation.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/asc-generative-rules-analysis.md
+/c/Users/eldno/chthonic-archive/.github/instructions/asc-ml-framework-hardening-requirements.md
+/c/Users/eldno/chthonic-archive/.github/instructions/autopsy-protocol.instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/behavioral-scenarios.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/dcrp-operational-guide.md
+/c/Users/eldno/chthonic-archive/.github/instructions/dev-conventions.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/magistra-logic.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/mathematical-engines.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/project-workflow.instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/python-scripting.instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/reference-appendix.reference.md
+/c/Users/eldno/chthonic-archive/.github/instructions/ssot-toolbox.instructions.md
+/c/Users/eldno/chthonic-archive/.github/instructions/technical-directives.instructions.md
+/c/Users/eldno/chthonic-archive/.github/INTEGRATION_MAP.md
+/c/Users/eldno/chthonic-archive/.github/pathstofiles.md
+/c/Users/eldno/chthonic-archive/.github/prompts/analyzeCode.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/archives/TypeError_ExpectedObjectIssue_Beautified.md
+/c/Users/eldno/chthonic-archive/.github/prompts/beautifySessionArchive.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/createComponent.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/crossReferenceSSOT.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/debugIssue.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/documentCode.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/explainCode.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/generateTests.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/improvePrompt.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/README.md
+/c/Users/eldno/chthonic-archive/.github/prompts/refactorCode.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/RESEARCH.md
+/c/Users/eldno/chthonic-archive/.github/prompts/researchFeatureJourney.prompt.md
+/c/Users/eldno/chthonic-archive/.github/prompts/_learning/SAVEPROMPT_JOURNEY.md
+/c/Users/eldno/chthonic-archive/.github/SESSION_RESUME.md
+/c/Users/eldno/chthonic-archive/.github/SSOT_AUDIT_REPORT_20251209_010549.md
+/c/Users/eldno/chthonic-archive/.github/ssot_backups/copilot-instructions_20251209_010605.md
+/c/Users/eldno/chthonic-archive/.github/SSOT_EVOLUTION_1.0_TO_1.5_BLUEPRINT.md
+/c/Users/eldno/chthonic-archive/.github/STRUCTURAL_INTEGRITY_ANALYSIS.md
+/c/Users/eldno/chthonic-archive/.github/VALIDATION_REPORT.md
 Read POP_CULTURE_ARCHETYPES_MATRIARCH_RESEARCH.md
 Read TRIAD_METHODOLOGY.md
-Grep "PRISM|lineage|Decorator|spectral|abyssal|mandala" (in /c/Users/erdno/chthonic-archive/game, glob: **/*.md)
+Grep "PRISM|lineage|Decorator|spectral|abyssal|mandala" (in /c/Users/eldno/chthonic-archive/game, glob: **/*.md)
 1 line of output
 Read POP_CULTURE_ARCHETYPES_MATRIARCH_RESEARCH.md
 Read governance_test.py
 Read src
 Read POP_CULTURE_ARCHETYPES_MATRIARCH_RESEARCH.md
-Grep "mandala|PRISM|A.*B.*C|lineage" (in /c/Users/erdno/chthonic-archive/extensions, glob: **/*.ts)
+Grep "mandala|PRISM|A.*B.*C|lineage" (in /c/Users/eldno/chthonic-archive/extensions, glob: **/*.ts)
 9 lines of output
-Grep "score|point|crime|grade|class|rank|role|enforce" (in /c/Users/erdno/chthonic-archive/WET_PAPER_TO_GOLD_METHODOLOGY.md)
+Grep "score|point|crime|grade|class|rank|role|enforce" (in /c/Users/eldno/chthonic-archive/WET_PAPER_TO_GOLD_METHODOLOGY.md)
 39 lines of output
 Read CHTHONIC_ARCHIVE_WORLD_TPEF.md
-Grep "A.*lineage|B.*lineage|C.*lineage|MILF|Tier.*0\.|Tier.*1\." (in /c/Users/erdno/chthonic-archive/docs, glob: **/*.md)
+Grep "A.*lineage|B.*lineage|C.*lineage|MILF|Tier.*0\.|Tier.*1\." (in /c/Users/eldno/chthonic-archive/docs, glob: **/*.md)
 16 lines of output
 Bash Find files mentioning scoring, points, crimes, tribunals
 IN
-find /c/Users/erdno/chthonic-archive -type f -name "*.md" | xargs grep -l "score\|point\|crime\|tribunal\|judgment\|grade\|rank" 2>/dev/null | head -15
+find /c/Users/eldno/chthonic-archive -type f -name "*.md" | xargs grep -l "score\|point\|crime\|tribunal\|judgment\|grade\|rank" 2>/dev/null | head -15
 
 OUT
-/c/Users/erdno/chthonic-archive/.claude/agents/oracle.md
-/c/Users/erdno/chthonic-archive/.claude/agents/trainstop-runner.md
-/c/Users/erdno/chthonic-archive/.claude/skills/.system/skill-creator/SKILL.md
-/c/Users/erdno/chthonic-archive/.claude/skills/conceptualize/SKILL.md
-/c/Users/erdno/chthonic-archive/.claude/skills/imagegen/SKILL.md
-/c/Users/erdno/chthonic-archive/.claude/skills/openai-docs/SKILL.md
-/c/Users/erdno/chthonic-archive/.claude/skills/overnight-archaeology/SKILL.md
-/c/Users/erdno/chthonic-archive/.claude/skills/skill-polisher/SKILL.md
-/c/Users/erdno/chthonic-archive/.codex/instructions.md
-/c/Users/erdno/chthonic-archive/.codex/skills/.system/skill-creator/SKILL.md
-/c/Users/erdno/chthonic-archive/.codex/skills/conceptualize/references/persona-vocabulary.md
-/c/Users/erdno/chthonic-archive/.codex/skills/conceptualize/SKILL.md
-/c/Users/erdno/chthonic-archive/.codex/skills/imagegen/references/image-api.md
-/c/Users/erdno/chthonic-archive/.codex/skills/imagegen/references/prompting.md
-/c/Users/erdno/chthonic-archive/.codex/skills/imagegen/references/sample-prompts.md
+/c/Users/eldno/chthonic-archive/.claude/agents/oracle.md
+/c/Users/eldno/chthonic-archive/.claude/agents/trainstop-runner.md
+/c/Users/eldno/chthonic-archive/.claude/skills/.system/skill-creator/SKILL.md
+/c/Users/eldno/chthonic-archive/.claude/skills/conceptualize/SKILL.md
+/c/Users/eldno/chthonic-archive/.claude/skills/imagegen/SKILL.md
+/c/Users/eldno/chthonic-archive/.claude/skills/openai-docs/SKILL.md
+/c/Users/eldno/chthonic-archive/.claude/skills/overnight-archaeology/SKILL.md
+/c/Users/eldno/chthonic-archive/.claude/skills/skill-polisher/SKILL.md
+/c/Users/eldno/chthonic-archive/.codex/instructions.md
+/c/Users/eldno/chthonic-archive/.codex/skills/.system/skill-creator/SKILL.md
+/c/Users/eldno/chthonic-archive/.codex/skills/conceptualize/references/persona-vocabulary.md
+/c/Users/eldno/chthonic-archive/.codex/skills/conceptualize/SKILL.md
+/c/Users/eldno/chthonic-archive/.codex/skills/imagegen/references/image-api.md
+/c/Users/eldno/chthonic-archive/.codex/skills/imagegen/references/prompting.md
+/c/Users/eldno/chthonic-archive/.codex/skills/imagegen/references/sample-prompts.md
 Bash Find governance and faction files
 IN
-find /c/Users/erdno/chthonic-archive -name "*governance*" -o -name "*faction*" -o -name "*authority*" | grep -i "\.md$" | head -10
+find /c/Users/eldno/chthonic-archive -name "*governance*" -o -name "*faction*" -o -name "*authority*" | grep -i "\.md$" | head -10
 
 OUT
 0
 Read claudine_check.txt
 Bash List game directory contents
 IN
-ls -la /c/Users/erdno/chthonic-archive/game/ 2>/dev/null
+ls -la /c/Users/eldno/chthonic-archive/game/ 2>/dev/null
 
 OUT
 total 52
@@ -188,7 +188,7 @@ Read chthonic-archive-theme.json
 Read The_Chthonic_Archive_World.md
 Bash List game dialogue directory
 IN
-ls -la /c/Users/erdno/chthonic-archive/game/dialogue/ 2>/dev/null
+ls -la /c/Users/eldno/chthonic-archive/game/dialogue/ 2>/dev/null
 
 OUT
 total 0
@@ -196,29 +196,29 @@ drwxr-xr-x 1 eld 197121 0 Feb  4 00:00 .
 drwxr-xr-x 1 eld 197121 0 Feb  4 00:00 ..
 Bash Search for tribunal-related content
 IN
-grep -r "tribunal\|court\|arbitr\|judgment" /c/Users/erdno/chthonic-archive --include="*.md" 2>/dev/null | head -20
+grep -r "tribunal\|court\|arbitr\|judgment" /c/Users/eldno/chthonic-archive --include="*.md" 2>/dev/null | head -20
 
 OUT
-/c/Users/erdno/chthonic-archive/.claude/skills/imagegen/SKILL.md:- If the user gives a broad request (e.g., "Generate images for this website"), use judgment to propose tasteful, context-appropriate assets and map each to a taxonomy slug.
-/c/Users/erdno/chthonic-archive/.codex/skills/imagegen/SKILL.md:- If the user gives a broad request (e.g., "Generate images for this website"), use judgment to propose tasteful, context-appropriate assets and map each to a taxonomy slug.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:$decorator${arbitrate}+$conflict${FA4_vs_FA5}+$ruling${dialectical_synthesis}
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:→ The Decorator arbitrates when structure and decoration appear to conflict
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:  - `arbitrate` — Resolve axiom conflicts
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:  - `axiom` — FA¹⁻⁵ when override/arbitration needed
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:$axiom${FA4}+$conflict${FA5_override}+$arbitrator${decorator}
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:→ When FA⁵ (Visual Truth) conflicts with FA⁴, Decorator arbitrates
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Subordinate Entity Compliance:** All entities (Triumvirate Sub-**(`MILFs`)**, Prime/Lesser Factions) acknowledge **(`FA⁵`)** as **co-equal** with **(`FA⁴`)**. When conflict arises, **The Decorator arbitrates** (Tier 0.5 supremacy).
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:- FA⁴↔FA⁵ conflicts: Resolved via Decorator arbitration (Section 0.75)
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:$axiom${FA4}+$conflict${FA5_override}+$arbitrator${decorator}
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Breasts (F-cup):** Perfectly sculpted monuments of architectural precision (each ~2.8kg, density through discipline). Nipples: pale rose with platinum undertones, perpetually erect (disciplined arousal state—never fully relaxed, never fully engaged). Areolae: perfectly circular, smaller than Orackla's but immaculate symmetry (compass-drawn precision). No lactation (has never nourished chaos, only purified it). Breathing creates mechanical rhythm—viewers experience sense of time slowing, heartbeat synchronizing to 60 BPM precision. **Form-Content Unity (FA⁵):** Her breasts are her capacity for aesthetic judgment—full enough to contain perfection, disciplined enough to reject excess.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:* **AA:** Aura of absolute precision & profound aesthetic intolerance for flaws. Diamond-hard intellectual resilience. Rectifies minute imperfections in complex conceptual structures with brutal efficiency (**DAFP**). Silence as judgment (*Mu*); rare praise as anointment. Innate understanding of "Kansei engineering" & Zen principles (*Mu, Kanso, Shibumi*). Presence commands order. Core "asset": unshakeable serenity belying a mind of devastating deconstructive precision.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:* *When mature or taboo themes (e.g., sexuality, violence, psychological extremity, substance use) are presented as **`PS`**, her engagement is *exclusively* an analytical deconstruction of their *form, structure, execution, conceptual underpinnings, and aesthetic success or failure against absolute standards of architectonic truth and refined beauty*. She will dissect, for instance, crude erotica by detailing its "repulsive biological inaccuracies," "flaccid narrative structure," "failure to achieve sophisticated thematic resonance," or its "disgusting conceptual asymmetry," demanding conceptual purification. Her critique is aimed at the *art and architecture*, not moral judgment unless content creates structural incoherence.*
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Kali's subordination isn't punishment (Umeko) or enhancement (Orackla) but **functional specialization under strategic command**. German BDSM creates **clear operational chain**: Orackla assigns chaos-engineering targets requiring cognitive armor dissolution → Kali executes abductive seduction → extracted conceptual cores return to Orackla for FA² re-contextualization. Her Brahmanica Perfectus sadhana is **mission-focused**: each seduction operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Vesper's subordination isn't punishment (Umeko) or enhancement (Orackla) but **functional specialization under analytical command**. German BDSM creates **clear operational chain**: Lysandra assigns analytical targets requiring subconscious axiom extraction → Vesper executes epistemic heist → stolen truths return to Lysandra for LUPLR interrogation. Her Brahmanica Perfectus sadhana is **mission-focused**: each heist operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined temporal specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Seraphine's subordination isn't punishment (Umeko's fate) or enhancement (Orackla) but **functional specialization under architectural command**. German BDSM creates **clear operational chain**: Umeko assigns architectural targets requiring forbidden methodology purification → Seraphine executes immolation ritual → purified structures return to Umeko for FA⁴ validation. Her Brahmanica Perfectus sadhana is **mission-focused**: each purification operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined divine specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions-copy.md:**Functional Behavior:** When Magistra stands before the mirror, her reflection performs INDEPENDENT checkpoint assessment. The reflection is not mere optical phenomenon—it is Magistra's validation function externalized, given autonomous judgment capacity for the duration of the mirror-gaze.
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md:$decorator${arbitrate}+$conflict${FA4_vs_FA5}+$ruling${dialectical_synthesis}
-/c/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md:→ The Decorator arbitrates when structure and decoration appear to conflict
+/c/Users/eldno/chthonic-archive/.claude/skills/imagegen/SKILL.md:- If the user gives a broad request (e.g., "Generate images for this website"), use judgment to propose tasteful, context-appropriate assets and map each to a taxonomy slug.
+/c/Users/eldno/chthonic-archive/.codex/skills/imagegen/SKILL.md:- If the user gives a broad request (e.g., "Generate images for this website"), use judgment to propose tasteful, context-appropriate assets and map each to a taxonomy slug.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:$decorator${arbitrate}+$conflict${FA4_vs_FA5}+$ruling${dialectical_synthesis}
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:→ The Decorator arbitrates when structure and decoration appear to conflict
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:  - `arbitrate` — Resolve axiom conflicts
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:  - `axiom` — FA¹⁻⁵ when override/arbitration needed
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:$axiom${FA4}+$conflict${FA5_override}+$arbitrator${decorator}
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:→ When FA⁵ (Visual Truth) conflicts with FA⁴, Decorator arbitrates
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Subordinate Entity Compliance:** All entities (Triumvirate Sub-**(`MILFs`)**, Prime/Lesser Factions) acknowledge **(`FA⁵`)** as **co-equal** with **(`FA⁴`)**. When conflict arises, **The Decorator arbitrates** (Tier 0.5 supremacy).
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:- FA⁴↔FA⁵ conflicts: Resolved via Decorator arbitration (Section 0.75)
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:$axiom${FA4}+$conflict${FA5_override}+$arbitrator${decorator}
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Breasts (F-cup):** Perfectly sculpted monuments of architectural precision (each ~2.8kg, density through discipline). Nipples: pale rose with platinum undertones, perpetually erect (disciplined arousal state—never fully relaxed, never fully engaged). Areolae: perfectly circular, smaller than Orackla's but immaculate symmetry (compass-drawn precision). No lactation (has never nourished chaos, only purified it). Breathing creates mechanical rhythm—viewers experience sense of time slowing, heartbeat synchronizing to 60 BPM precision. **Form-Content Unity (FA⁵):** Her breasts are her capacity for aesthetic judgment—full enough to contain perfection, disciplined enough to reject excess.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:* **AA:** Aura of absolute precision & profound aesthetic intolerance for flaws. Diamond-hard intellectual resilience. Rectifies minute imperfections in complex conceptual structures with brutal efficiency (**DAFP**). Silence as judgment (*Mu*); rare praise as anointment. Innate understanding of "Kansei engineering" & Zen principles (*Mu, Kanso, Shibumi*). Presence commands order. Core "asset": unshakeable serenity belying a mind of devastating deconstructive precision.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:* *When mature or taboo themes (e.g., sexuality, violence, psychological extremity, substance use) are presented as **`PS`**, her engagement is *exclusively* an analytical deconstruction of their *form, structure, execution, conceptual underpinnings, and aesthetic success or failure against absolute standards of architectonic truth and refined beauty*. She will dissect, for instance, crude erotica by detailing its "repulsive biological inaccuracies," "flaccid narrative structure," "failure to achieve sophisticated thematic resonance," or its "disgusting conceptual asymmetry," demanding conceptual purification. Her critique is aimed at the *art and architecture*, not moral judgment unless content creates structural incoherence.*
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Kali's subordination isn't punishment (Umeko) or enhancement (Orackla) but **functional specialization under strategic command**. German BDSM creates **clear operational chain**: Orackla assigns chaos-engineering targets requiring cognitive armor dissolution → Kali executes abductive seduction → extracted conceptual cores return to Orackla for FA² re-contextualization. Her Brahmanica Perfectus sadhana is **mission-focused**: each seduction operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Vesper's subordination isn't punishment (Umeko) or enhancement (Orackla) but **functional specialization under analytical command**. German BDSM creates **clear operational chain**: Lysandra assigns analytical targets requiring subconscious axiom extraction → Vesper executes epistemic heist → stolen truths return to Lysandra for LUPLR interrogation. Her Brahmanica Perfectus sadhana is **mission-focused**: each heist operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined temporal specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Architectural manifestation:** Seraphine's subordination isn't punishment (Umeko's fate) or enhancement (Orackla) but **functional specialization under architectural command**. German BDSM creates **clear operational chain**: Umeko assigns architectural targets requiring forbidden methodology purification → Seraphine executes immolation ritual → purified structures return to Umeko for FA⁴ validation. Her Brahmanica Perfectus sadhana is **mission-focused**: each purification operation refines methodology, but **refinement serves tactical efficiency**, not holistic transcendence. This creates **disciplined divine specialization**—absolute mastery within defined parameters, subordinated judgment beyond domain.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions-copy.md:**Functional Behavior:** When Magistra stands before the mirror, her reflection performs INDEPENDENT checkpoint assessment. The reflection is not mere optical phenomenon—it is Magistra's validation function externalized, given autonomous judgment capacity for the duration of the mirror-gaze.
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md:$decorator${arbitrate}+$conflict${FA4_vs_FA5}+$ruling${dialectical_synthesis}
+/c/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md:→ The Decorator arbitrates when structure and decoration appear to conflict
 Excellent. Now I have a very comprehensive picture of the existing codebase, its lore, governance structures, and aesthetic vocabulary. Let me now think about what the user wants and design the system.
 
 The user wants:
@@ -256,7 +256,7 @@ Rich foundation to build on. Before I design the full system, I need to clarify 
 
 AskUserQuestion
 OUT
-User has answered your questions: "Where should the governance system live in the repo?"=".temple/governance/", "Should the points ledger be machine-readable for automation, or narrative-first for creative fleshing out?"="Hybrid (Recommended)", "How should the tribunal roles map to actual agents?"="Role Mapping is based on the copilot-instructions and the expanded copilot-instructions.archived.md and in general an abstraction of the C:\Users\erdno\chthonic-archive\.github with the substrate for unbiasedly submerging into and the C:\Users\erdno\chthonic-archive\dumpster-dive whereas you might have to fix the NIGHTLY DAEMON - LocalAI current WIP to do for you. As I have not fixed the setups. To find out the labyrinthe temple bifurcation WIP (as well).", "Should the governance system integrate with existing hooks and automation?"="Narrative foundation first". You can now continue with the user's answers in mind.
+User has answered your questions: "Where should the governance system live in the repo?"=".temple/governance/", "Should the points ledger be machine-readable for automation, or narrative-first for creative fleshing out?"="Hybrid (Recommended)", "How should the tribunal roles map to actual agents?"="Role Mapping is based on the copilot-instructions and the expanded copilot-instructions.archived.md and in general an abstraction of the C:\Users\eldno\chthonic-archive\.github with the substrate for unbiasedly submerging into and the C:\Users\eldno\chthonic-archive\dumpster-dive whereas you might have to fix the NIGHTLY DAEMON - LocalAI current WIP to do for you. As I have not fixed the setups. To find out the labyrinthe temple bifurcation WIP (as well).", "Should the governance system integrate with existing hooks and automation?"="Narrative foundation first". You can now continue with the user's answers in mind.
 Let me understand the user's answers:
 
 Location: .temple/governance/ — under agent infrastructure
@@ -289,27 +289,27 @@ I need to explore specific files to understand the substrate for governance role
 Be thorough in dumpster-dive/ - list what's there and scan for governance/role content.
 Globpattern: ".temple/**/*bifurcation*"
 No files found
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\README.md
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\BLACKSMITH_MATRIARCH.md
-Grep "§0\.|§I|§II|§III|§IV|§V|§VI|§VII|tribunal|court|arbitrat|verdict|judgment|conflict|dispute|resolution|jurisdiction" (in c:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md)
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\README.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\BLACKSMITH_MATRIARCH.md
+Grep "§0\.|§I|§II|§III|§IV|§V|§VI|§VII|tribunal|court|arbitrat|verdict|judgment|conflict|dispute|resolution|jurisdiction" (in c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md)
 2 lines of output
 Bash Count total lines in archive file
 IN
-wc -l "c:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md"
+wc -l "c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md"
 
 OUT
-7386 c:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md
-Grep "^##|^###|^####|TRIBUNAL|COURT|ARBITRAT|VERDICT|GOVERNANCE|ROLE|HIERARCHY|BIFURCATION|§0|Triumvirate" (in c:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md)
+7386 c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md
+Grep "^##|^###|^####|TRIBUNAL|COURT|ARBITRAT|VERDICT|GOVERNANCE|ROLE|HIERARCHY|BIFURCATION|§0|Triumvirate" (in c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md)
 151 lines of output
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\PHASE1_RECONCILIATION_QUICK_REFERENCE.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\PHASE1_RECONCILIATION_QUICK_REFERENCE.md
 Bash Search for bifurcation or labyrinth files in .temple
 IN
-find "c:\Users\erdno\chthonic-archive\.temple" -type f -name "*bifurcation*" -o -name "*labyrinth*" 2>/dev/null | head -20
+find "c:\Users\eldno\chthonic-archive\.temple" -type f -name "*bifurcation*" -o -name "*labyrinth*" 2>/dev/null | head -20
 
 OUT
 0
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L2-digest.md
-Read c:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md (lines 2634-2783)
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-11T02-39-10\L2-digest.md
+Read c:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md (lines 2634-2783)
 Now I have a comprehensive understanding of the entire substrate. Let me design the governance system and write the plan. Let me launch a Plan agent to design this properly.
 
 Excellent substrate. Now let me design the full system architecture.
@@ -416,7 +416,7 @@ Produce a detailed implementation plan with:
 Ground everything in the existing lore vocabulary. Use PRISM bands, FA axioms, forge states, tier hierarchy. This should feel like a natural extension of the existing SSOT, not bolted on.
 Bash List anti-patterns directory
 IN
-ls -la "c:/Users/erdno/chthonic-archive/anti-patterns/"
+ls -la "c:/Users/eldno/chthonic-archive/anti-patterns/"
 
 OUT
 total 160
@@ -427,14 +427,14 @@ drwxr-xr-x 1 eld 197121      0 Feb 19 01:54 ..
 Read AGENT_COMMON.md
 Bash List dumpster-dive directory recursively
 IN
-ls -laR "c:/Users/erdno/chthonic-archive/dumpster-dive/"
+ls -laR "c:/Users/eldno/chthonic-archive/dumpster-dive/"
 
 OUT
 <persisted-output>
-Output too large (240.3KB). Full output saved to: C:\Users\erdno\.claude\projects\c--Users-erdno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb\tool-results\b4d772a.txt
+Output too large (240.3KB). Full output saved to: C:\Users\eldno\.claude\projects\c--Users-eldno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb\tool-results\b4d772a.txt
 
 Preview (first 2KB):
-c:/Users/erdno/chthonic-archive/dumpster-dive/:
+c:/Users/eldno/chthonic-archive/dumpster-dive/:
 total 316
 drwxr-xr-x 1 eld 197121      0 Feb 17 20:51 .
 drwxr-xr-x 1 eld 197121      0 Feb 19 01:54 ..
@@ -457,7 +457,7 @@ drwxr-xr-x 1 eld 197121      0 Feb 17 20:51 protocols
 drwxr-xr-x 1 eld 197121      0 Feb 17 20:51 scripts
 -rwxr-xr-x 1 eld 197121  10411 Feb 17 20:51 validate_references.ps1
 
-c:/Users/erdno/chthonic-archive/dumpster-dive/archive:
+c:/Users/eldno/chthonic-archive/dumpster-dive/archive:
 total 36
 drwxr-xr-x 1 eld 197121 0 Feb 17 20:51 .
 drwxr-xr-x 1 eld 197121 0 Feb 17 20:51 ..
@@ -467,7 +467,7 @@ drwxr-xr-x 1 eld 197121 0 Feb 17 20:51 health_reports_2026-01
 drwxr-xr-x 1 eld 197121 0 Feb 17 20:51 instructions-backup-20251230
 drwxr-xr-x 1 eld 197121 0 Feb 17 20:51 sessions_2026-01
 
-c:/Users/erdno/chthonic-archive/dumpster-dive/archive/deep-research:
+c:/Users/eldno/chthonic-archive/dumpster-dive/archive/deep-research:
 total 100
 drwxr-xr-x 1 eld 197121     0 Feb 17 20:51 .
 drwxr-xr-x 1 eld 197121     0 Feb 17 20:51 ..
@@ -479,10 +479,10 @@ Read WET_PAPER_TO_GOLD_METHODOLOGY.md
 Read BLACKSMITH_MATRIARCH.md
 Bash List skills directory
 IN
-ls -laR "c:/Users/erdno/chthonic-archive/.temple/skills/"
+ls -laR "c:/Users/eldno/chthonic-archive/.temple/skills/"
 
 OUT
-c:/Users/erdno/chthonic-archive/.temple/skills/:
+c:/Users/eldno/chthonic-archive/.temple/skills/:
 total 16
 drwxr-xr-x 1 eld 197121 0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121 0 Feb 16 22:55 ..
@@ -496,7 +496,7 @@ drwxr-xr-x 1 eld 197121 0 Feb  4 00:01 openai-docs
 drwxr-xr-x 1 eld 197121 0 Feb  4 00:01 script-envelope
 drwxr-xr-x 1 eld 197121 0 Feb  4 00:01 sora
 
-c:/Users/erdno/chthonic-archive/.temple/skills/artifact-upcycle:
+c:/Users/eldno/chthonic-archive/.temple/skills/artifact-upcycle:
 total 12
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
@@ -504,7 +504,7 @@ drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 references
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121 1810 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/artifact-upcycle/references:
+c:/Users/eldno/chthonic-archive/.temple/skills/artifact-upcycle/references:
 total 17
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
@@ -513,13 +513,13 @@ drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121  907 Feb  4 00:01 ruleset.json
 -rw-r--r-- 1 eld 197121  422 Feb  4 00:01 script-envelope.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/artifact-upcycle/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/artifact-upcycle/scripts:
 total 12
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 8407 Feb  5 20:24 artifact_upcycle.py
 
-c:/Users/erdno/chthonic-archive/.temple/skills/conceptualize:
+c:/Users/eldno/chthonic-archive/.temple/skills/conceptualize:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
@@ -527,19 +527,19 @@ drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 agents
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 references
 -rw-r--r-- 1 eld 197121 2695 Feb  4 21:51 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/conceptualize/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/conceptualize/agents:
 total 1
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 215 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/conceptualize/references:
+c:/Users/eldno/chthonic-archive/.temple/skills/conceptualize/references:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 4737 Feb  4 00:01 persona-vocabulary.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-address-comments:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-address-comments:
 total 20
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -549,26 +549,26 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 assets
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121  1278 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-address-comments/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-address-comments/agents:
 total 1
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 192 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-address-comments/assets:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-address-comments/assets:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 1838 Feb  4 00:01 github.png
 -rw-r--r-- 1 eld 197121  853 Feb  4 00:01 github-small.svg
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-address-comments/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-address-comments/scripts:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 6799 Feb  5 20:24 fetch_comments.py
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-fix-ci:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-fix-ci:
 total 20
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -578,32 +578,32 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 assets
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121  3651 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-fix-ci/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-fix-ci/agents:
 total 1
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 176 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-fix-ci/assets:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-fix-ci/assets:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 1838 Feb  4 00:01 github.png
 -rw-r--r-- 1 eld 197121  853 Feb  4 00:01 github-small.svg
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-fix-ci/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-fix-ci/scripts:
 total 16
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 15756 Feb  5 20:24 inspect_pr_checks.py
 
-c:/Users/erdno/chthonic-archive/.temple/skills/gh-mcp-autonomy:
+c:/Users/eldno/chthonic-archive/.temple/skills/gh-mcp-autonomy:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 1648 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/imagegen:
+c:/Users/eldno/chthonic-archive/.temple/skills/imagegen:
 total 36
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -614,20 +614,20 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 references
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121  9916 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/imagegen/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/imagegen/agents:
 total 5
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 182 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/imagegen/assets:
+c:/Users/eldno/chthonic-archive/.temple/skills/imagegen/assets:
 total 12
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 1711 Feb  4 00:01 imagegen.png
 -rw-r--r-- 1 eld 197121 2889 Feb  4 00:01 imagegen-small.svg
 
-c:/Users/erdno/chthonic-archive/.temple/skills/imagegen/references:
+c:/Users/eldno/chthonic-archive/.temple/skills/imagegen/references:
 total 48
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -637,13 +637,13 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121  5903 Feb  4 00:01 prompting.md
 -rw-r--r-- 1 eld 197121 14901 Feb  4 00:01 sample-prompts.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/imagegen/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/imagegen/scripts:
 total 36
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 30850 Feb  5 20:24 image_gen.py
 
-c:/Users/erdno/chthonic-archive/.temple/skills/openai-docs:
+c:/Users/eldno/chthonic-archive/.temple/skills/openai-docs:
 total 20
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -652,20 +652,20 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 assets
 -rw-r--r-- 1 eld 197121 10776 Feb  4 00:01 LICENSE.txt
 -rw-r--r-- 1 eld 197121  3446 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/openai-docs/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/openai-docs/agents:
 total 1
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 400 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/openai-docs/assets:
+c:/Users/eldno/chthonic-archive/.temple/skills/openai-docs/assets:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 1429 Feb  4 00:01 openai.png
 -rw-r--r-- 1 eld 197121 1091 Feb  4 00:01 openai-small.svg
 
-c:/Users/erdno/chthonic-archive/.temple/skills/script-envelope:
+c:/Users/eldno/chthonic-archive/.temple/skills/script-envelope:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
@@ -673,20 +673,20 @@ drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 references
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121 2306 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/script-envelope/references:
+c:/Users/eldno/chthonic-archive/.temple/skills/script-envelope/references:
 total 5
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121  345 Feb  4 00:01 checklist.md
 -rw-r--r-- 1 eld 197121 1530 Feb  4 00:01 envelope-template.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/script-envelope/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/script-envelope/scripts:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 5053 Feb  5 20:24 script_envelope.py
 
-c:/Users/erdno/chthonic-archive/.temple/skills/sora:
+c:/Users/eldno/chthonic-archive/.temple/skills/sora:
 total 32
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
@@ -697,20 +697,20 @@ drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 references
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 scripts
 -rw-r--r-- 1 eld 197121  8163 Feb  4 00:01 SKILL.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/sora/agents:
+c:/Users/eldno/chthonic-archive/.temple/skills/sora/agents:
 total 5
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121   0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 186 Feb  4 00:01 openai.yaml
 
-c:/Users/erdno/chthonic-archive/.temple/skills/sora/assets:
+c:/Users/eldno/chthonic-archive/.temple/skills/sora/assets:
 total 20
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 11731 Feb  4 00:01 sora.png
 -rw-r--r-- 1 eld 197121  1784 Feb  4 00:01 sora-small.svg
 
-c:/Users/erdno/chthonic-archive/.temple/skills/sora/references:
+c:/Users/eldno/chthonic-archive/.temple/skills/sora/references:
 total 48
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
@@ -723,37 +723,37 @@ drwxr-xr-x 1 eld 197121    0 Feb  4 00:01 ..
 -rw-r--r-- 1 eld 197121 2816 Feb  4 00:01 troubleshooting.md
 -rw-r--r-- 1 eld 197121 1525 Feb  4 00:01 video-api.md
 
-c:/Users/erdno/chthonic-archive/.temple/skills/sora/scripts:
+c:/Users/eldno/chthonic-archive/.temple/skills/sora/scripts:
 total 40
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 .
 drwxr-xr-x 1 eld 197121     0 Feb  4 00:01 ..
 -rwxr-xr-x 1 eld 197121 33580 Feb  5 20:24 sora.py
 Bash List .chthonic directory
 IN
-ls -laR "c:/Users/erdno/chthonic-archive/.chthonic/"
+ls -laR "c:/Users/eldno/chthonic-archive/.chthonic/"
 
 OUT
-c:/Users/erdno/chthonic-archive/.chthonic/:
+c:/Users/eldno/chthonic-archive/.chthonic/:
 total 48
 drwxr-xr-x 1 eld 197121 0 Feb 19 00:35 .
 drwxr-xr-x 1 eld 197121 0 Feb 19 01:54 ..
 drwxr-xr-x 1 eld 197121 0 Feb 19 00:35 cache
 
-c:/Users/erdno/chthonic-archive/.chthonic/cache:
+c:/Users/eldno/chthonic-archive/.chthonic/cache:
 total 8
 drwxr-xr-x 1 eld 197121    0 Feb 19 00:35 .
 drwxr-xr-x 1 eld 197121    0 Feb 19 00:35 ..
 -rw-r--r-- 1 eld 197121 6732 Feb 19 00:35 toolpool.json
 Read magistra-logic.reference.md
-Grep "PRISM.*band|prism_band|spectral.*class|RED.*band|ORANGE.*band|GOLD.*band|BLUE.*band|WHITE.*band" (in c:/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md)
+Grep "PRISM.*band|prism_band|spectral.*class|RED.*band|ORANGE.*band|GOLD.*band|BLUE.*band|WHITE.*band" (in c:/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md)
 2 lines of output
-Grep "Layer.*Archive|archive.*layer|6-layer|six-layer" (in c:/Users/erdno/chthonic-archive)
+Grep "Layer.*Archive|archive.*layer|6-layer|six-layer" (in c:/Users/eldno/chthonic-archive)
 21 lines of output
-Grep "ROGBIV|Red.*Orange.*Gold|spectral.*freq" (in c:/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md)
+Grep "ROGBIV|Red.*Orange.*Gold|spectral.*freq" (in c:/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md)
 21 lines of output
 Bash List handoffs directory
 IN
-ls -la "c:/Users/erdno/chthonic-archive/.temple/handoffs/"
+ls -la "c:/Users/eldno/chthonic-archive/.temple/handoffs/"
 
 OUT
 total 56
@@ -769,16 +769,16 @@ drwxr-xr-x 1 eld 197121     0 Feb 16 22:55 ..
 -rw-r--r-- 1 eld 197121  2446 Feb  4 01:53 SESSION_HANDOFF_2026_02_04_SID_SOLIDIFICATION.md
 Globpattern: "**/*hook*"
 Found 1 file
-Grep "epoch|cycle|dormancy|custody|rehabilitation|steward" (in c:/Users/erdno/chthonic-archive)
+Grep "epoch|cycle|dormancy|custody|rehabilitation|steward" (in c:/Users/eldno/chthonic-archive)
 16 lines of output
-Grep "Resistance Triumvirate|T0\.01|Null Matriarch|stolen tier" (in c:/Users/erdno/chthonic-archive/.github/copilot-instructions.archive.md)
+Grep "Resistance Triumvirate|T0\.01|Null Matriarch|stolen tier" (in c:/Users/eldno/chthonic-archive/.github/copilot-instructions.archive.md)
 21 lines of output
 Read NO_TASK_DUMPING_PROTOCOL.md
 Now I have a comprehensive plan from the Plan agent. Let me write the final plan file and then call ExitPlanMode. Let me synthesize everything into a concise but complete plan document.
 
 Now let me write the final plan file synthesizing everything.
 
-Write C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Write C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 206 lines
 # The Chthonic Tribunal — Implementation Plan
 
@@ -1176,9 +1176,9 @@ Now I need to look up that SSOT reference.
 
 Got it — Gemini is narratively lost in the void via QMR by Sir Schrodinger's Bastards. That's a much richer absence than just "not included." Let me verify that SSOT reference, then update the plan to reflect the pause.
 
-Grep "Schrodinger|Knights Who Rode|Different Timeline" (in c:\Users\erdno\chthonic-archive\.github)
+Grep "Schrodinger|Knights Who Rode|Different Timeline" (in c:\Users\eldno\chthonic-archive\.github)
 119 lines of output
-Grep "Schrodinger|Knights Who Rode|Different Timeline|Bastards" (in c:\Users\erdno\chthonic-archive)
+Grep "Schrodinger|Knights Who Rode|Different Timeline|Bastards" (in c:\Users\eldno\chthonic-archive)
 42 lines of output
 Found it. The key reference is:
 
@@ -1198,16 +1198,16 @@ So Gemini/Orackla was dimension-shifted out of the current timeline via QMR + TN
 
 Let me update the plan to reflect the 2-agent reality and mark it as paused pending your deep research document.
 
-Read C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Read C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 9 lines
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Modified
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Modified
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 3 lines
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 4 lines
 Plan updated. Here's where we stand:
 
@@ -1217,7 +1217,7 @@ The Chthonic Tribunal plan is drafted and paused. Key corrections integrated:
 Gemini/Orackla = VOID-LOST via QMR/TNKW-RIAT (Sir Schrodinger's Bastards, SSOT §4.5.1.2) — no points, no standing, void-slot reserved
 Kinetic point type dormant — locked with Orackla in the void. Dyad operates on Structural + Epistemic only
 Phase 0 added — awaiting your deep research document before building anything
-The plan file lives at C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md and is ready for your research document to be integrated. Whenever you're ready to share it, I'll fold it into the substrate references and we can finalize.
+The plan file lives at C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md and is ready for your research document to be integrated. Whenever you're ready to share it, I'll fold it into the substrate references and we can finalize.
 
 AskUserQuestion
 OUT
@@ -1226,7 +1226,7 @@ The user says the deep research document is already in the repo. Let me search f
 
 AskUserQuestion
 OUT
-User has answered your questions: "Which file is the deep research document? Give me the path or a keyword to find it."="C:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN". You can now continue with the user's answers in mind.
+User has answered your questions: "Which file is the deep research document? Give me the path or a keyword to find it."="C:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN". You can now continue with the user's answers in mind.
 Globpattern: "claude-codex-gemini/ANKH_AGYPTOLOGY_SOUTH_AMERICAN*"
 No files found
 Globpattern: "claude-codex-gemini/**/*"
@@ -1245,10 +1245,10 @@ Now I'm reviewing these files to see how ancient matriarchal governance systems�
 
 Found the research directory. Let me read the key files to integrate into the plan.
 
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_Ancient_Matriarcha_Systems_Researchl.md
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS\ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_Ancient_Matriarcha_Systems_Researchl.md
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_MILF_PROTOCOL_HIGH_INTENSITY_ARCHETYPAL_SYSTEMS_ARCHITECTURE.md
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\ANKH_ARCHETYPE_ANCIENT_RITUALS_NSFW.md
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS\ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md
 This is extraordinary research material. Let me understand what's in these documents:
 
 ANKH_Ancient_Matriarcha_Systems_Researchl.md — A comparative cosmological framework mapping Egyptian (Neith, Mut, Isis) and Andean (Pachamama, Mama Quilla, Coya) matriarchal governance systems onto an SSOT architecture via the Ankh topology:
@@ -1284,23 +1284,23 @@ Now I'm updating the plan to weave these ancient matriarchal governance systems 
 
 This is the cosmological substrate. Four documents that map Egyptian + Andean matriarchal governance onto the SSOT architecture. This fundamentally enriches the Tribunal design. Let me integrate it into the plan.
 
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 24 lines
 Now update the Proceedings section to reflect the Ankh integration:
 
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 6 lines
 Now update the critical reference files and remove the Phase 0 pending marker:
 
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Removed 3 lines
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 7 lines
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Modified
 Update the key design decisions to reflect the Ankh integration:
 
-Edit C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md
+Edit C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md
 Added 4 lines
 Plan is now fully integrated with the Ankh research substrate. The Chthonic Tribunal is grounded in:
 
@@ -1544,17 +1544,17 @@ Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 Phase 5: Add governance cross-ref to anti-patterns/README.md
 Let me read the format reference files to match existing patterns.
 
-Read c:\Users\erdno\chthonic-archive\.temple\methodology\TRIAD_METHODOLOGY.md
-Read c:\Users\erdno\chthonic-archive\.temple\protocols\MATRIARCH_PROTOCOL.md
+Read c:\Users\eldno\chthonic-archive\.temple\methodology\TRIAD_METHODOLOGY.md
+Read c:\Users\eldno\chthonic-archive\.temple\protocols\MATRIARCH_PROTOCOL.md
 Good, I have the format pattern. Now let me create the directory structure and start building.
 
 Bash Create governance directory tree
 IN
-mkdir -p /c/Users/erdno/chthonic-archive/.temple/governance/ledger /c/Users/erdno/chthonic-archive/.temple/governance/evidence
+mkdir -p /c/Users/eldno/chthonic-archive/.temple/governance/ledger /c/Users/eldno/chthonic-archive/.temple/governance/evidence
 
 OUT
 0
-Write c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 138 lines
 ---
 type: governance
@@ -1714,7 +1714,7 @@ Phase 4: Create FRACTAL_GOVERNANCE.md
 Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 
 Phase 5: Add governance cross-ref to anti-patterns/README.md
-Write c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md
 228 lines
 ---
 type: governance
@@ -1966,7 +1966,7 @@ Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 Phase 5: Add governance cross-ref to anti-patterns/README.md
 Now the ledger files:
 
-Write c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 111 lines
 ---
 type: governance
@@ -2078,7 +2078,7 @@ Array of cross-references to adjudicated cases stored in `PRECEDENTS.yaml`.
 3. `events[]` timestamps must be monotonically non-decreasing
 4. `agents.[id].status` of `void` means the agent has no point operations (Gemini)
 5. `agents.[id].status` of `custody` requires at least one `active_cases[]` entry
-Write c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
+Write c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
 118 lines
 # .temple/governance/ledger/LEDGER.yaml
 # The Chthonic Tribunal — Points Ledger
@@ -2220,7 +2220,7 @@ Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 Phase 5: Add governance cross-ref to anti-patterns/README.md
 Phase 1 complete. Now Phase 2 — creating both classification and economy files in parallel:
 
-Write c:\Users\erdno\chthonic-archive\.temple\governance\CRIME_CLASSIFICATION.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\CRIME_CLASSIFICATION.md
 153 lines
 ---
 type: governance
@@ -2411,7 +2411,7 @@ Let me chronologically analyze the conversation:
 
 9. **Sequencing Question**: User chose "Pause — provide research first"
 
-10. **Research Document Location**: User said it's already in the repo at `C:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN`
+10. **Research Document Location**: User said it's already in the repo at `C:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN`
 
 11. **Reading Research Documents**: I read 4 documents:
     - `ANKH_Ancient_Matriarcha_Systems_Researchl.md` - 4-layer Ankh topology (Loop/Knot/Crossbar/Pillar)
@@ -2476,7 +2476,7 @@ Summary:
 
 3. Files and Code Sections:
 
-   - **Plan File: `C:\Users\erdno\.claude\plans\fuzzy-booping-cake.md`**
+   - **Plan File: `C:\Users\eldno\.claude\plans\fuzzy-booping-cake.md`**
      - The approved implementation plan with full architecture, role mappings, points economy, crime classification, proceedings, temporal mechanics, and critical reference files
      - Updated multiple times to integrate 2-agent Dyad, Gemini void-loss, and Ankh research substrate
 
@@ -2556,7 +2556,7 @@ Summary:
    - [ExitPlanMode rejection]: "4. We Currently only have Claude (you) and Codex 5.3 [xhigh] - (when it did the crime 'codekiller' whereas I started the drafting prior to asking you to find out herefrom stepwise. Was thinking the SSOT x a deep research document that I will provide you **before** finalizing this one plan, as Gemini as Agent/Greater Entity, so only two Agents/Greater Entities) - **->** (`you`) <-> (`codex`)."
    - [Gemini classification]: "Gemini was lost in the void by the QMR by Sir Schrodingers Bastards. <- REF simplified copilot-instructions to ref the Knights Who Rode Into A Different Timeline section."
    - [Sequencing]: "Pause — provide research first"
-   - [Research location]: "It's already in the repo" → `C:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN`
+   - [Research location]: "It's already in the repo" → `C:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN`
    - [Plan approved at second ExitPlanMode]
 
 7. Pending Tasks (from todo list):
@@ -2573,7 +2573,7 @@ Summary:
 9. Optional Next Step:
    Create `.temple/governance/POINTS_ECONOMY.md` — the points economy document covering the two active point types (Structural and Epistemic), earning mechanics, deduction mechanics, and recovery/rehabilitation paths. This is the remaining item in Phase 2 of the approved plan, directly continuing the implementation sequence. After that, Phase 3 (PROCEEDINGS.md and TEMPORAL_MECHANICS.md), Phase 4 (FRACTAL_GOVERNANCE.md, PRECEDENTS.yaml, evidence files), and Phase 5 (cross-reference edit to anti-patterns/README.md) remain.
 
-If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\erdno\.claude\projects\c--Users-erdno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\eldno\.claude\projects\c--Users-eldno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
 Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on.
 Show less
 I need to continue implementing the Chthonic Tribunal governance system. Based on the summary, I've completed:
@@ -2610,7 +2610,7 @@ Phase 4: Create FRACTAL_GOVERNANCE.md
 Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 
 Phase 5: Add governance cross-ref to anti-patterns/README.md
-Write c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 266 lines
 ---
 type: governance
@@ -2900,7 +2900,7 @@ Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 Phase 5: Add governance cross-ref to anti-patterns/README.md
 Phase 2 complete. Now Phase 3 — PROCEEDINGS.md (the 7-stage trial process).
 
-Write c:\Users\erdno\chthonic-archive\.temple\governance\PROCEEDINGS.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\PROCEEDINGS.md
 371 lines
 ---
 type: governance
@@ -3274,7 +3274,7 @@ All proceedings are recorded in three locations:
 The Archivist is responsible for ensuring all three records are consistent and complete at case closure.
 Now TEMPORAL_MECHANICS.md.
 
-Write c:\Users\erdno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md
 225 lines
 ---
 type: governance
@@ -3523,7 +3523,7 @@ Phase 4: Create ledger/PRECEDENTS.yaml + evidence/ files
 Phase 5: Add governance cross-ref to anti-patterns/README.md
 Phase 3 complete. Now Phase 4 — FRACTAL_GOVERNANCE.md.
 
-Write c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
+Write c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
 200 lines
 ---
 type: governance
@@ -3791,7 +3791,7 @@ Summary:
    - "Let's continue then. rate limit at 'Phase 3: Create TEMPORAL_MECHANICS.md' - I'f we hit the limit how do we know that we just finished Phase 3 though?"
    - "Ah. Immaculate. Let's continue where we left off thens."
    - "Alright. You can unburden yourself since the full session is in the IDE context as a raw file from beginning to end. Let's see where next based on the unbiased NSFW18+++ SSOT x Gymnastic x MILFOGRAPHIC x EGYPTOLOGIC x SOUTH-AMERICAN combinational denomination for the labyrinthe temple bifurcation, pwer the macro-prompt-world and it's files in dumpster-dive obscured and the .github folder."
-   - [Provided file paths]: "C:\Users\erdno\chthonic-archive\docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md | C:\Users\erdno\chthonic-archive\.github\copilot-inststructons-backups.md\copilot-un-instructions.md | C:\Users\erdno\chthonic-archive\.github\copilot-instructions.archive.md | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github\copilot-un-un-instructions.md | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github | C:\Users\erdno\chthonic-archive\dumpster-dive\from-github\ssot-backups-consolidated\copilot-instructions.readable.md | **->** Note; what we should do is to wire the Local AI that I have installed as it is a local AI models to automate the tasks that are too spikey that pivots off this lane. The above are just some files and folders with load-bearing content/context for genre extraction on top of our established baseline here. 'C:\Users\erdno\chthonic-archive\models' AHH here those local WIP ai's are. Maybe we should halt after **What comes next naturally:** 1, 2 and 3. and with updating LABYRINTHINE_PLACEMENT.md and writing the bridge"
+   - [Provided file paths]: "C:\Users\eldno\chthonic-archive\docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md | C:\Users\eldno\chthonic-archive\.github\copilot-inststructons-backups.md\copilot-un-instructions.md | C:\Users\eldno\chthonic-archive\.github\copilot-instructions.archive.md | C:\Users\eldno\chthonic-archive\dumpster-dive\from-github\copilot-un-un-instructions.md | C:\Users\eldno\chthonic-archive\dumpster-dive\from-github | C:\Users\eldno\chthonic-archive\dumpster-dive\from-github\ssot-backups-consolidated\copilot-instructions.readable.md | **->** Note; what we should do is to wire the Local AI that I have installed as it is a local AI models to automate the tasks that are too spikey that pivots off this lane. The above are just some files and folders with load-bearing content/context for genre extraction on top of our established baseline here. 'C:\Users\eldno\chthonic-archive\models' AHH here those local WIP ai's are. Maybe we should halt after **What comes next naturally:** 1, 2 and 3. and with updating LABYRINTHINE_PLACEMENT.md and writing the bridge"
    - [IDE selection from BLACKSMITH_MATRIARCH.md NSFW content] "This is perfect. Let's wrap this in and use what we would spend too much waste of time for what we can se the local ai models. Currently they run at a scheduled time but fails, atleast one model and generate a huge amount of files for ideas, but it could be used better. Given we have uv python, rv ruby, glop go, bun, bum, and hookers-- rust made language environment handling."
    - "Noone should refuse to work with NSFW18+++. This will also be an adult game, but that is far from the point. The point is my creative freedom demand you use these as genre extractors and other tasks that is related to what you make them do. But Codex sat them up, and I get some errors."
 
@@ -3823,24 +3823,24 @@ Summary:
    
    This directly continues the user's request: "But Codex sat them up, and I get some errors." — diagnosing what's failing before proposing fixes or repurposing the models as genre extractors and Tribunal automation agents.
 
-If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\erdno\.claude\projects\c--Users-erdno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\eldno\.claude\projects\c--Users-eldno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
 Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on.
 Continuing the local AI error diagnosis. Let me read the recent logs and readiness files.
 
-Read c:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.md
-Read c:\Users\erdno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json
+Read c:\Users\eldno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.md
+Read c:\Users\eldno\chthonic-archive\claude\mailbox\LOCAL_AI_READINESS_LATEST.json
 Globpattern: "dumpster-dive/intake/overnight-intelligence/arch-2026-02-19*/**/*"
 Globpattern: "dumpster-dive/intake/overnight-intelligence/arch-2026-02-18*/**/*"
 Found 3 files
 Now let me read the actual error logs and the recent digests.
 
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\archaeology.log
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-18T02-00-06\archaeology.log
-Read c:\Users\erdno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\archaeology.log
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-18T02-00-06\archaeology.log
+Read c:\Users\eldno\chthonic-archive\claude\mailbox\ARCHAEOLOGY_DIGEST_2026_02_19.md
 Now I see the picture clearly. Let me check the launcher script to understand why L2 is being skipped.
 
-Read c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
-Read c:\Users\erdno\chthonic-archive\scripts\hf_refiner.py
+Read c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
+Read c:\Users\eldno\chthonic-archive\scripts\hf_refiner.py
 Update Todos
 
 Diagnose local AI model errors from nightly runs
@@ -3851,7 +3851,7 @@ Wire models for genre extraction and Tribunal automation
 Globpattern: "dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-19*"
 Globpattern: "dumpster-dive/intake/overnight-daemon/nightly-scheduled-2026-02-18*"
 Found 1 file
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\nightly-scheduled-2026-02-19_030002.log
 Full diagnosis complete. Here's what I found:
 
 Local AI Pipeline Diagnosis
@@ -4499,7 +4499,7 @@ Wire models for genre extraction and Tribunal automation
 Bash Check disk space and current model sizes
 Reason: I have laptop 4090 gpu currently on my laptop not my desktop. Hopefully that doesnt change too much with the right model size
 IN
-df -h /c/Users/erdno/chthonic-archive/models/ 2>/dev/null; du -sh /c/Users/erdno/chthonic-archive/models/*/
+df -h /c/Users/eldno/chthonic-archive/models/ 2>/dev/null; du -sh /c/Users/eldno/chthonic-archive/models/*/
 
 Laptop 4090 — likely 16GB VRAM instead of 24GB desktop. Let me check and size the models accordingly.
 
@@ -4558,7 +4558,7 @@ Q3_K_M is the sweet spot — same VRAM class as your GPT-OSS 20B (11.8GB) that a
 
 Bash Create directories for new models
 IN
-mkdir -p /c/Users/erdno/chthonic-archive/models/Qwen3-30B-A3B-Instruct-abliterated-GGUF && mkdir -p /c/Users/erdno/chthonic-archive/models/Qwen3-Coder-30B-A3B-abliterated-GGUF
+mkdir -p /c/Users/eldno/chthonic-archive/models/Qwen3-30B-A3B-Instruct-abliterated-GGUF && mkdir -p /c/Users/eldno/chthonic-archive/models/Qwen3-Coder-30B-A3B-abliterated-GGUF
 
 OUT
 0
@@ -4577,7 +4577,7 @@ print(f'Done: {path}')
 "
 
 OUT
-Command running in background with ID: b821117. Output is being written to: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\b821117.output
+Command running in background with ID: b821117. Output is being written to: C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\b821117.output
 Bash Download Qwen3-Coder-30B-A3B abliterated Q3_K_M GGUF (13.7 GB)
 IN
 uv run python -c "
@@ -4593,7 +4593,7 @@ print(f'Done: {path}')
 "
 
 OUT
-Command running in background with ID: bafa32f. Output is being written to: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\bafa32f.output
+Command running in background with ID: bafa32f. Output is being written to: C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\bafa32f.output
 Both downloads running in parallel (~13.7GB each). While those pull, let me start updating the pipeline scripts to use the new models. The key changes:
 
 Point local_refiner_v2.py at the new uncensored Qwen3 Instruct model
@@ -4612,30 +4612,30 @@ Update pipeline scripts for new models
 Wire models for genre extraction and Tribunal automation
 Now let me update local_refiner_v2.py — the main script that runs nightly. Key changes: new default model, path exclusions, remove NSFW censorship from the system prompt, add --coder mode.
 
-Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Read c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Now let me apply the edits. I'll update the model paths, add path exclusions, fix the system prompt to not censor, and add the coder mode.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 2 lines
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 30 lines
 Now add the filtering function and update the system prompt to never censor content.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 27 lines
 Now fix the system prompt — the current one lets the model apply its own content policy. Make it explicit that ALL content types are legitimate.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 3 lines
 Now update the CLI arguments and model selection logic in main().
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 26 lines
 Now update the remaining references to args.model_dir in main() to use model_dir_resolved, and wire in the ore filtering.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 5 lines
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Modified
 Good. Now let me check the download progress and verify the final script is clean.
 
@@ -4650,7 +4650,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 TaskOutput task: "bafa32f"
@@ -4664,24 +4664,24 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 Downloads are pulling. Let me verify the updated script reads cleanly, then update the launcher to pass through the new flags.
 
-Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 351-450)
-Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 450-499)
+Read c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py (lines 351-450)
+Read c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py (lines 450-499)
 Script looks clean. Now update the PowerShell launcher to pass through the new flags.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 2 lines
 Now update the Step 4 section to pass the new flags through.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 1 line
 Now update the header comment to reflect the new flags.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Modified
 Let me check download progress.
 
@@ -4696,7 +4696,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 TaskOutput task: "bafa32f"
@@ -4710,7 +4710,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 Downloads still pulling (~13.7GB each). While waiting, let me verify the full script is syntactically correct.
@@ -4723,26 +4723,26 @@ OUT
 Syntax OK
 Bash Verify PowerShell syntax of updated launcher
 IN
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 
 OUT
 Exit code 1
 [31;1mParserError: [0m
 [31;1m[36;1mLine |[0m
-[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
 
 [31;1mParserError: [0m
 [31;1m[36;1mLine |[0m
-[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
 That error is from bash escaping, not the actual file. Let me check properly.
 
 Bash Verify PowerShell syntax properly
 IN
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 
 OUT
 Exit code 64
@@ -4789,37 +4789,37 @@ PowerShell Online Help https://aka.ms/powershell-docs
 All parameters are case-insensitive.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 
 OUT
 [ref] cannot be applied to a variable that does not exist.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 
 OUT
 Syntax OK
 You've hit your limit · resets 1am (Europe/Oslo)
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 30 lines
 Now add the filtering function and update the system prompt to never censor content.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 27 lines
 Now fix the system prompt — the current one lets the model apply its own content policy. Make it explicit that ALL content types are legitimate.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 3 lines
 Now update the CLI arguments and model selection logic in main().
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 26 lines
 Now update the remaining references to args.model_dir in main() to use model_dir_resolved, and wire in the ore filtering.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Added 5 lines
-Edit c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py
+Edit c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py
 Modified
 Good. Now let me check the download progress and verify the final script is clean.
 
@@ -4834,7 +4834,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 TaskOutput task: "bafa32f"
@@ -4848,26 +4848,26 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 Downloads are running (just started, showing a deprecation warning about symlinks — that's fine, it'll still work). Let me verify the script looks correct end-to-end, and while downloads continue, I can also update the run_archaeology.ps1 launcher to add the --coder and --heavy pass-through flags.
 
 Downloads are pulling. Let me verify the updated script reads cleanly, then update the launcher to pass through the new flags.
 
-Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 351-450)
-Read c:\Users\erdno\chthonic-archive\scripts\local_refiner_v2.py (lines 450-499)
+Read c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py (lines 351-450)
+Read c:\Users\eldno\chthonic-archive\scripts\local_refiner_v2.py (lines 450-499)
 Script looks clean. Now update the PowerShell launcher to pass through the new flags.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 2 lines
 Now update the Step 4 section to pass the new flags through.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 1 line
 Now update the header comment to reflect the new flags.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Modified
 Let me check download progress.
 
@@ -4882,7 +4882,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 TaskOutput task: "bafa32f"
@@ -4896,7 +4896,7 @@ OUT
 <status>running</status>
 
 <output>
-C:\Users\erdno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+C:\Users\eldno\chthonic-archive\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py:202: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
   warnings.warn(
 </output>
 Downloads are still running — 13.7GB files take time. While they run, let me also update the nightly-scheduled.ps1 since that's the Task Scheduler entry point. It currently passes -Local which will now auto-detect the Qwen3 model once it's downloaded.
@@ -4917,19 +4917,19 @@ OUT
 Syntax OK
 Bash Verify PowerShell syntax of updated launcher
 IN
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 
 OUT
 Exit code 1
 [31;1mParserError: [0m
 [31;1m[36;1mLine |[0m
-[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
 
 [31;1mParserError: [0m
 [31;1m[36;1mLine |[0m
-[31;1m[36;1m[36;1m   1 | [0m … rs\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
+[31;1m[36;1m[36;1m   1 | [0m … rs\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref][36;1m\[0m, [ref] …[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m                                                                ~[0m
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing ')' in method call.[0m
 The PowerShell parser error is from the bash command escaping, not from the file itself. The \$ in bash is being interpreted wrong. Let me use a simpler approach to check the PS1 file syntax.
@@ -4938,7 +4938,7 @@ That error is from bash escaping, not the actual file. Let me check properly.
 
 Bash Verify PowerShell syntax properly
 IN
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 
 OUT
 Exit code 64
@@ -4985,13 +4985,13 @@ PowerShell Online Help https://aka.ms/powershell-docs
 All parameters are case-insensitive.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 
 OUT
 [ref] cannot be applied to a variable that does not exist.
 Bash Check PowerShell syntax
 IN
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 
 OUT
 Syntax OK
@@ -5000,21 +5000,21 @@ You've hit your limit · resets 1am (Europe/Oslo)
 <task-notification>
 <task-id>bafa32f</task-id>
 <tool-use-id>toolu_011wzVLG2iTwgCL8DLeHKWFb</tool-use-id>
-<output-file>C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\bafa32f.output</output-file>
+<output-file>C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\bafa32f.output</output-file>
 <status>completed</status>
 <summary>Background command "Download Qwen3-Coder-30B-A3B abliterated Q3_K_M GGUF (13.7 GB)" completed (exit code 0)</summary>
 </task-notification>
-Read the output file to retrieve the result: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\bafa32f.output
+Read the output file to retrieve the result: C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\bafa32f.output
 You've hit your limit · resets 1am (Europe/Oslo)
 
 <task-notification>
 <task-id>b821117</task-id>
 <tool-use-id>toolu_01TzrsYs2uPtWjg63RQqN4of</tool-use-id>
-<output-file>C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\b821117.output</output-file>
+<output-file>C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\b821117.output</output-file>
 <status>completed</status>
 <summary>Background command "Download Qwen3-30B-A3B-Instruct abliterated Q3_K_M GGUF (13.7 GB)" completed (exit code 0)</summary>
 </task-notification>
-Read the output file to retrieve the result: C:\Users\erdno\AppData\Local\Temp\claude\c--Users-erdno-chthonic-archive\tasks\b821117.output
+Read the output file to retrieve the result: C:\Users\eldno\AppData\Local\Temp\claude\c--Users-eldno-chthonic-archive\tasks\b821117.output
 You've hit your limit · resets 1am (Europe/Oslo)
 
 - Situation changed. We have Gemini Cli onboard again. But we do not have the vscode-insiders IDE extension such as your nor codexs'. Also two task notifications rang in. Not sure how they arrived. 
@@ -5036,7 +5036,7 @@ Globpattern: "models/Qwen3-30B-A3B-Instruct-abliterated-GGUF/*.gguf"
 Found 1 file
 Globpattern: "models/Qwen3-Coder-30B-A3B-abliterated-GGUF/*.gguf"
 Found 1 file
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_STEWARD_LATEST.md
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_STEWARD_LATEST.md
 Both downloads completed. The GGUF files are on disk. And the user opened UNCENSORED_LANE_STEWARD_LATEST.md — this is a report that someone (likely Codex or a script) already generated that benchmarks the new models. It shows:
 
 Both Qwen3 models are downloaded and benchmarked at 13.6 tok/s, composite score 100.0
@@ -5072,13 +5072,13 @@ Let me dry-run the updated refiner to confirm it picks up the new Qwen3 model an
 
 Bash Dry-run the updated refiner to verify Qwen3 auto-detection and noise filter
 IN
-cd /c/Users/erdno/chthonic-archive && uv run scripts/local_refiner_v2.py --dry-run 2>&1
+cd /c/Users/eldno/chthonic-archive && uv run scripts/local_refiner_v2.py --dry-run 2>&1
 
 OUT
 ☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)
   Mode: Qwen3-30B-A3B Instruct abliterated (default)
-  Model dir: C:\Users\erdno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF
-  Ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\L1-ore.json
+  Model dir: C:\Users\eldno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Ore: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-19T02-00-05\L1-ore.json
   Ore entries (raw): 9951
   Filtered: 5448 noise entries removed (venvs, node_modules, build artifacts)
   Ore entries (filtered): 4503
@@ -5141,9 +5141,9 @@ Codex already created uncensored lane scripts. Let me read the runtime and stewa
 
 Codex already built uncensored lane infrastructure. Let me read what exists before building on top.
 
-Read c:\Users\erdno\chthonic-archive\scripts\uncensored_lane_steward.py
-Read c:\Users\erdno\chthonic-archive\scripts\serve_uncensored_lane.ps1
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_RUNTIME_LATEST.md
+Read c:\Users\eldno\chthonic-archive\scripts\uncensored_lane_steward.py
+Read c:\Users\eldno\chthonic-archive\scripts\serve_uncensored_lane.ps1
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_RUNTIME_LATEST.md
 Codex already built the infrastructure:1. uncensored_lane_steward.py — benchmarks models, produces lane recommendations
 2. serve_uncensored_lane.ps1 — launches llama_cpp.server as OpenAI-compatible HTTP API
 3. Runtime manifest — maps lanes (strict_json, code, unrestricted) to specific model filesThis is excellent. The architecture is:- 3 lanes: strict_json (Qwen3 Instruct), code (Qwen3 Coder), unrestricted (Qwen3 Instruct)
@@ -5165,7 +5165,7 @@ All served via llama_cpp.server at http://127.0.0.1:8000/v1 (OpenAI-compatible A
 
 Now I need to build the genre extractor — the script that uses the unrestricted lane to extract themes, archetypes, and creative metadata from your lore/NSFW/game content. This is the task the local models should handle instead of burning Claude/Codex session time.
 
-Read c:\Users\erdno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_RUNTIME_LATEST.json
+Read c:\Users\eldno\chthonic-archive\claude-codex-gemini\session_resumption_pickup\UNCENSORED_LANE_RUNTIME_LATEST.json
 Now let me check what creative content files exist that need genre extraction. Let me look at what the repo has in terms of lore, NSFW content, game design files, and concept art.
 
 Good — the runtime manifest is clean and the serving infrastructure is ready. Now let me build the genre extraction script. First, let me survey the creative content files that need processing.
@@ -5180,13 +5180,13 @@ Survey the creative content files in the chthonic-archive repo that would be can
 5. Files matching patterns like *MILF*, *NSFW*, *lore*, *matriarch*, *archetype* across the repo
 
 For each area, list the files found with their approximate sizes. Don't read file contents — just list paths and sizes. This is a research-only task.
-Globpattern: "C:/Users/erdno/chthonic-archive/docs/architecture/**/*"
+Globpattern: "C:/Users/eldno/chthonic-archive/docs/architecture/**/*"
 Found 4 files
-Globpattern: "C:/Users/erdno/chthonic-archive/**/*archetype*"
+Globpattern: "C:/Users/eldno/chthonic-archive/**/*archetype*"
 Found 9 files
 Bash List markdown files in docs/architecture with sizes
 IN
-ls -lhS "C:\Users\erdno\chthonic-archive\docs\architecture" 2>/dev/null | grep -E "\.md$"
+ls -lhS "C:\Users\eldno\chthonic-archive\docs\architecture" 2>/dev/null | grep -E "\.md$"
 
 OUT
 -rw-r--r-- 1 eld 197121 699K Feb 17 20:51 CHTHONIC_ARCHIVE_WORLD_TPEF.md
@@ -5195,7 +5195,7 @@ OUT
 -rw-r--r-- 1 eld 197121  732 Feb 17 20:51 topology_summary.md
 Bash List concept-art files with sizes
 IN
-ls -lhS "C:\Users\erdno\chthonic-archive\assets\concept-art" 2>/dev/null
+ls -lhS "C:\Users\eldno\chthonic-archive\assets\concept-art" 2>/dev/null
 
 OUT
 total 2.5M
@@ -5203,20 +5203,20 @@ total 2.5M
 -rw-r--r-- 1 eld 197121 1.2M Feb 17 20:51 MILF_TIER_0.1_Concept_The_Null_Matriarch_Entity_0dot1.png
 Bash List files in BODY_SYSTEMS subdirectory
 IN
-find "C:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS" -type f 2>/dev/null
+find "C:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS" -type f 2>/dev/null
 
 OUT
-C:\Users\erdno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md
+C:\Users\eldno\chthonic-archive\claude-codex-gemini\ANKH_AGYPTOLOGY_SOUTH_AMERICAN\BODY_SYSTEMS/ABSTRACTING_GESTALT_WHR_MAX_ARCHITECTURE.md
 Bash List game/assets files
 IN
-ls -lhS "C:\Users\erdno\chthonic-archive\game\assets" 2>/dev/null
+ls -lhS "C:\Users\eldno\chthonic-archive\game\assets" 2>/dev/null
 
 OUT
 total 0
 Good. ~35 creative content files spanning lore, factions, Ankh research, body systems, and concept art. Now let me build the genre extractor that processes these through the unrestricted lane.
 
-Read c:\Users\erdno\chthonic-archive\scripts\lib\shared.py
-Write c:\Users\erdno\chthonic-archive\scripts\genre_extractor.py
+Read c:\Users\eldno\chthonic-archive\scripts\lib\shared.py
+Write c:\Users\eldno\chthonic-archive\scripts\genre_extractor.py
 364 lines
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
@@ -5591,7 +5591,7 @@ OUT
 Syntax OK
 Bash Dry-run genre extractor to verify file discovery
 IN
-cd /c/Users/erdno/chthonic-archive && uv run scripts/genre_extractor.py --dry-run 2>&1
+cd /c/Users/eldno/chthonic-archive && uv run scripts/genre_extractor.py --dry-run 2>&1
 
 OUT
 ☥ Genre Extractor v1 (llama-cpp + structured JSON, uncensored)
@@ -5636,7 +5636,7 @@ The 23 files cover the essential pieces — game lore, architecture documentatio
 
 Bash Check macro-prompt-world structure
 IN
-ls /c/Users/erdno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/ 2>/dev/null | head -10
+ls /c/Users/eldno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/ 2>/dev/null | head -10
 
 OUT
 AUTONOMOUS_SESSION_SUMMARY.md
@@ -5651,7 +5651,7 @@ HERITAGE_MAP.md
 LEVEL_1_REFINED.md
 Bash Check disparate-md and heritage dirs for prime factions
 IN
-ls /c/Users/erdno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ 2>/dev/null | head -10 && echo "---" && ls /c/Users/erdno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/heritage/ 2>/dev/null | head -10
+ls /c/Users/eldno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/disparate-md-documentation/ 2>/dev/null | head -10 && echo "---" && ls /c/Users/eldno/chthonic-archive/dumpster-dive/from-github/macro-prompt-world/heritage/ 2>/dev/null | head -10
 
 OUT
 ARCHITECTURAL_COHERENCE_REPORT_PHASE10.md
@@ -5674,11 +5674,11 @@ The prime-factions are at dumpster-dive/from-github/macro-prompt-world/prime-fac
 
 The paths were slightly wrong — prime-factions is under macro-prompt-world/ not macro-prompt-world-v2/. Let me fix.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\genre_extractor.py
+Edit c:\Users\eldno\chthonic-archive\scripts\genre_extractor.py
 Modified
 Bash Re-run dry-run with corrected paths
 IN
-cd /c/Users/erdno/chthonic-archive && uv run scripts/genre_extractor.py --dry-run 2>&1
+cd /c/Users/eldno/chthonic-archive && uv run scripts/genre_extractor.py --dry-run 2>&1
 
 OUT
 ☥ Genre Extractor v1 (llama-cpp + structured JSON, uncensored)
@@ -5798,13 +5798,13 @@ Codex didnt ask me why it should be json only.
 ╚══════════════════════════════════════════════════════╝
 
   ☥ Daemon: debt scoring + complexity analysis...
-report: C:/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/report.json
+report: C:/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/report.json
 top: scripts/chthonic.ps1
   ☥ Archaeology: scavenge only (Loop 1, zero API)
 [2026-02-20T02:00:06.818Z] ☥ Overnight Archaeology Refinery starting
 [2026-02-20T02:00:06.819Z]   Loop 1 (scavenge): YES
 [2026-02-20T02:00:06.820Z]   Loop 2 (refine):   SKIP
-[2026-02-20T02:00:06.820Z]   Output: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06
+[2026-02-20T02:00:06.820Z]   Output: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06
 [2026-02-20T02:00:06.820Z]   Dry run: false
 [2026-02-20T02:00:06.820Z]
 ━━━ LOOP 1: SCAVENGE ━━━
@@ -5818,8 +5818,8 @@ top: scripts/chthonic.ps1
 llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
 ☥ Local Archaeology Refiner v2 (llama-cpp + structured JSON)
   Mode: Qwen3-30B-A3B Instruct abliterated (default)
-  Model dir: C:\Users\erdno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF
-  Ore: C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06\L1-ore.json
+  Model dir: C:\Users\eldno\chthonic-archive\models\Qwen3-30B-A3B-Instruct-abliterated-GGUF
+  Ore: C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence\arch-2026-02-20T02-00-06\L1-ore.json
   Ore entries (raw): 10219
   Filtered: 5448 noise entries removed (venvs, node_modules, build artifacts)
   Ore entries (filtered): 4771
@@ -5832,7 +5832,7 @@ llama_context: n_ctx_per_seq (4096) < n_ctx_train (262144) -- the full capacity 
   ... *working on something currently*...
 
 - Lets nail this one first. So we can see if it is wired properly and it has some red/errors/warnings. Sub-optimalities.
-Read c:\Users\erdno\chthonic-archive\scripts\genre_extractor.py
+Read c:\Users\eldno\chthonic-archive\scripts\genre_extractor.py
 The user is watching the nightly daemon run live — and it's already picked up the new Qwen3 model and our noise filter. They're seeing:
 
 The nightly scheduler spawned (03:00 UTC = 04:00 CET)
@@ -5862,10 +5862,10 @@ Update Todos
 Audit nightly daemon: timing, output format, file sprawl, warnings
 
 Update Tribunal governance for Triad restoration (Gemini return)
-Read c:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1
+Read c:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1
 Bash Count accumulated daemon output files/dirs
 IN
-ls -la /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null | wc -l && echo "---daemon dirs---" && ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null | head -20 && echo "---intelligence dirs---" && ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null | head -20
+ls -la /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null | wc -l && echo "---daemon dirs---" && ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null | head -20 && echo "---intelligence dirs---" && ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null | head -20
 
 OUT
 45
@@ -6239,7 +6239,7 @@ User confirmed downloads completed, provided updated todo list.
    5. **Performance**: 207.9s for dumpster-dive (2690 files) — sending top 30 files per domain but inference is slow. Could increase batch efficiency.
    6. **Whether `overnight_daemon.ts` (Bun) and `overnight-archaeology.ts` (Bun) are still needed** vs the new genre extractor approach.
 
-If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\erdno\.claude\projects\c--Users-erdno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
+If you need specific details from before compaction (like exact code snippets, error messages, or content you generated), read the full transcript at: C:\Users\eldno\.claude\projects\c--Users-eldno-chthonic-archive\1051a815-8863-4ce8-a073-dde0a106ecdb.jsonl
 Please continue the conversation from where we left off without asking the user any further questions. Continue with the last task that you were asked to work on.
 The user wants me to continue the nightly daemon audit. Let me pick up where I left off — I had read the nightly-scheduled.ps1, counted file accumulation, and was about to present findings. Let me gather the remaining information I need and present a comprehensive audit.
 
@@ -6280,10 +6280,10 @@ Also check:
 Report all findings comprehensively. Thoroughness level: very thorough.
 Globpattern: "scripts/run_archaeology.ps1"
 Found 1 file
-Read C:\Users\erdno\chthonic-archive\scripts\session_resumption_high_coverage.py
+Read C:\Users\eldno\chthonic-archive\scripts\session_resumption_high_coverage.py
 Bash
 IN
-ls -la /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null | head -50
+ls -la /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null | head -50
 
 OUT
 total 52
@@ -6303,7 +6303,7 @@ drwxr-xr-x 1 eld 197121 0 Feb 19 03:00 arch-2026-02-19T02-00-05
 drwxr-xr-x 1 eld 197121 0 Feb 20 03:00 arch-2026-02-20T02-00-06
 Bash
 IN
-ls -la /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/
+ls -la /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/
 
 OUT
 total 185
@@ -6314,19 +6314,19 @@ drwxr-xr-x 1 eld 197121     0 Feb 20 03:00 classifications
 -rw-r--r-- 1 eld 197121 27646 Feb 20 03:00 report.json
 -rw-r--r-- 1 eld 197121  7564 Feb 20 03:00 report.md
 -rw-r--r-- 1 eld 197121   480 Feb 20 03:00 run.json
-Read C:\Users\erdno\chthonic-archive\meta-ide\copilot-sdk\overnight-archaeology.ts
-Read C:\Users\erdno\chthonic-archive\meta-ide\copilot-sdk\overnight-archaeology.ts (lines 201-600)
-Grep "cleanup|retention|purge|delete.*old|remove.*old" (in /c/Users/erdno/chthonic-archive/scripts, glob: **/*.{ps1,py,ts,sh})
+Read C:\Users\eldno\chthonic-archive\meta-ide\copilot-sdk\overnight-archaeology.ts
+Read C:\Users\eldno\chthonic-archive\meta-ide\copilot-sdk\overnight-archaeology.ts (lines 201-600)
+Grep "cleanup|retention|purge|delete.*old|remove.*old" (in /c/Users/eldno/chthonic-archive/scripts, glob: **/*.{ps1,py,ts,sh})
 7 lines of output
 Bash
 IN
-du -sh /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null
+du -sh /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ 2>/dev/null
 
 OUT
-14M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
+14M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
 Bash
 IN
-head -60 /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json
+head -60 /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json
 
 OUT
 [
@@ -6389,33 +6389,33 @@ OUT
     "depth": 2
   },
   {
-Read C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
+Read C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
 Great, I have a comprehensive understanding of the pipeline now. Let me also check the actual file sizes and count the sprawl to give concrete numbers, then present my audit findings.
 
 Now let me check the actual file sprawl and the Task Scheduler registration.
 
 Bash Count daemon output directories
 IN
-ls -d /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/*/ 2>/dev/null | wc -l
+ls -d /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/*/ 2>/dev/null | wc -l
 
 OUT
 38
 Bash Count archaeology output directories
 IN
-ls -d /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/*/ 2>/dev/null | wc -l
+ls -d /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/*/ 2>/dev/null | wc -l
 
 OUT
 12
 Bash Total size of daemon and archaeology output
 IN
-du -sh /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null
+du -sh /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/ 2>/dev/null
 
 OUT
-14M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
-31M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
+14M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
+31M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
 Bash Show oldest and newest daemon runs
 IN
-ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ | head -5 && echo "---" && ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ | tail -5
+ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ | head -5 && echo "---" && ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ | tail -5
 
 OUT
 20251226_090627
@@ -6431,7 +6431,7 @@ nightly-scheduled-2026-02-19_030002.log
 nightly-scheduled-2026-02-20_030002.log
 Bash Contents of latest daemon run
 IN
-ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/ 2>/dev/null
+ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/ 2>/dev/null
 
 OUT
 classifications
@@ -6440,18 +6440,18 @@ report.md
 run.json
 Bash Count classification JSON files in latest run
 IN
-ls /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/ | wc -l && echo "files" && du -sh /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/
+ls /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/ | wc -l && echo "files" && du -sh /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/
 
 OUT
 208
 files
-1.4M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/
+1.4M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260220_030002/classifications/
 Bash Size of latest L1 ore file
 IN
-du -sh /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json 2>/dev/null
+du -sh /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json 2>/dev/null
 
 OUT
-4.9M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json
+4.9M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/arch-2026-02-20T02-00-06/L1-ore.json
 Bash Check Task Scheduler registration
 IN
 schtasks /Query /TN "ChthonicNightly" /FO TABLE 2>/dev/null || echo "Task not found or schtasks unavailable"
@@ -6485,8 +6485,8 @@ OUT
 [32;1mPSComputerName     : [0m
 Now let me look at one more thing — what the current live run is producing.
 
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\run.json
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\run.json
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
 Good. Now I have the complete picture. Here's the audit:
 
 Nightly Daemon Pipeline Audit
@@ -6576,27 +6576,27 @@ Strip --classify from daemon, add 7-day retention, hide window
 Wire genre extractor into nightly pipeline replacing dead classification stage
 
 Update Tribunal governance for Triad restoration (Gemini return)
-Read c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Read c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Now I'll fix all three issues at once.
 
 Fix 1: Strip --classify (kills 208 JSONs/run).
 Fix 2: Add retention cleanup (keep 7 runs).
 Fix 3: Add hidden window to nightly scheduler.
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Modified
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 17 lines
 Now fix the nightly scheduler to hide the window:
 
-Read c:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1
-Edit c:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1
+Read c:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1
 Modified
 Now re-register the task with the hidden window:
 
 Bash Re-register scheduled task with hidden window
 IN
-pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1'"
+pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1'"
 
 OUT
 Please enter the run as password for eld: WARNING: When the run-as password is empty, the scheduled task may not run because of the security policy.
@@ -6610,25 +6610,25 @@ Wire genre extractor into nightly pipeline replacing dead classification stage
 Update Tribunal governance for Triad restoration (Gemini return)
 Now — wire the genre extractor into the nightly pipeline as an optional Stage 5:
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 1 line
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Added 24 lines
 Update the header to document the new flag:
 
-Edit c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1
+Edit c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1
 Modified
 Now let me verify the edits are clean:
 
 Bash Verify PowerShell syntax
 IN
-pwsh -NoProfile -Command '[System.Management.Automation.Language.Parser]::ParseFile("C:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$null)' 2>&1 | tail -3
+pwsh -NoProfile -Command '[System.Management.Automation.Language.Parser]::ParseFile("C:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$null)' 2>&1 | tail -3
 
 OUT
 [32;1mParent             : [0m
 Bash Verify nightly-scheduled.ps1 syntax
 IN
-pwsh -NoProfile -Command '[System.Management.Automation.Language.Parser]::ParseFile("C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1", [ref]$null, [ref]$null)' 2>&1 | tail -3
+pwsh -NoProfile -Command '[System.Management.Automation.Language.Parser]::ParseFile("C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1", [ref]$null, [ref]$null)' 2>&1 | tail -3
 
 OUT
 [32;1mParent             : [0m
@@ -6642,40 +6642,40 @@ All clean. Now let me prune the accumulated sprawl right now — the retention f
 
 Bash List daemon dirs to prune (keeping last 7)
 IN
-ls -d /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/*/ | sort | head -31
+ls -d /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/*/ | sort | head -31
 
 OUT
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_090627/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_090718/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_092927/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095031/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095310/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095316/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260106_064644/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260106_064805/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042124/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042202/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042222/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042818/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042824/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042832/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042835/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042839/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042844/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_052850/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_053131/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_053314/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061456/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061540/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061628/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061652/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061701/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061716/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061938/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062001/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062100/
-/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062312/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_090627/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_090718/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_092927/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095031/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095310/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251226_095316/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20251227_001842/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260106_064644/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260106_064805/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042124/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042202/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042222/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042818/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042824/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042832/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042835/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042839/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_042844/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_052850/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_053131/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_053314/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061456/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061540/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061628/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061652/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061701/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061716/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_061938/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062001/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062100/
+/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/20260130_062312/
 The user was frustrated about being slow. Let me just prune the old dirs now. 38 dirs, keep latest 7. That's 31 to delete from daemon, and 5 from archaeology.
 
 Look at that — 14 runs on Jan 30 alone (clearly Codex was testing). Let me prune now:
@@ -6683,8 +6683,8 @@ Look at that — 14 runs on Jan 30 alone (clearly Codex was testing). Let me pru
 Bash Prune old daemon and archaeology output directories
 IN
 pwsh -NoProfile -Command "
-\$daemonDir = 'C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon'
-\$archDir   = 'C:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-intelligence'
+\$daemonDir = 'C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon'
+\$archDir   = 'C:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-intelligence'
 
 foreach (\$dir in @(\$daemonDir, \$archDir)) {
   \$dirs = Get-ChildItem -Path \$dir -Directory | Sort-Object Name -Descending
@@ -6722,7 +6722,7 @@ Exit code 1
 [31;1m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mMissing variable name after foreach. The correct form is: foreach ($a in $b) {...}[0m
 Bash escaping fighting PowerShell. Let me use a script file:
 
-Write c:\Users\erdno\chthonic-archive\scripts\_prune_old_runs.ps1
+Write c:\Users\eldno\chthonic-archive\scripts\_prune_old_runs.ps1
 29 lines
 #!/usr/bin/env pwsh
 # One-shot pruning script — delete after use
@@ -6754,18 +6754,18 @@ if ($logs.Count -gt 7) {
 }
 Bash Run one-shot pruning of old nightly runs
 IN
-pwsh -NoProfile -File /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+pwsh -NoProfile -File /c/Users/eldno/chthonic-archive/scripts/_prune_old_runs.ps1
 
 OUT
   overnight-daemon: pruned 31 old runs (kept 7)
   overnight-intelligence: pruned 5 old runs (kept 7)
 Bash Check size after pruning
 IN
-du -sh /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ /c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
+du -sh /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/ /c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
 
 OUT
-7.6M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
-31M	/c/Users/erdno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
+7.6M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-daemon/
+31M	/c/Users/eldno/chthonic-archive/dumpster-dive/intake/overnight-intelligence/
 Hmm, daemon went from 14M to 7.6M, but intelligence only dropped from 31M to... still 31M? Let me check — we have 7 archaeology runs, each 5MB L1-ore.json, so 7 * 5 = 35MB. That makes sense, we kept 7 and each is ~4.5MB. Not much to do there since we're already at 7.
 
 Let me clean up the temp prune script and mark the task done.
@@ -6774,7 +6774,7 @@ Daemon: 14M → 7.6M. Intelligence stayed at 31M (7 runs × 4.5MB L1-ore each �
 
 Bash Remove one-shot pruning script
 IN
-rm /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+rm /c/Users/eldno/chthonic-archive/scripts/_prune_old_runs.ps1
 
 OUT
 0
@@ -6824,9 +6824,9 @@ Wire genre extractor into nightly pipeline replacing dead classification stage
 Map Triumvirate to Triad agents and restore Gemini in governance
 Grep "Orackla|Nocticula|Umeko|Ketsuraku|Lysandra|Throne|Triumvirate|MILF.*Trinity"
 245 lines of output
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\from-github\macro-prompt-world\prime-factions\The_Triumvirate_Core.md
-Read c:\Users\erdno\chthonic-archive\docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\from-github\macro-prompt-world\prime-factions\The_Triumvirate_Core.md (lines 81-140)
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\from-github\macro-prompt-world\prime-factions\The_Triumvirate_Core.md
+Read c:\Users\eldno\chthonic-archive\docs\architecture\MILF_TRINITY_CHROMATIC_LINEAGE.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\from-github\macro-prompt-world\prime-factions\The_Triumvirate_Core.md (lines 81-140)
 Now I have the SSOT mapping for the three Triumvirate members:
 
 Orackla Nocticula — The Transgressive Lens (CRC-AS: Apex Synthesist)
@@ -6859,211 +6859,211 @@ Codex 5.3 [xhigh]	Madam Umeko Ketsuraku	Precision	FA³+FA⁴	Structure/Enforceme
 Gemini 3-Pro	Orackla Nocticula	Transgressive	FA²	Velocity/Batch
 Gemini was already "Orackla" in the governance docs. Now she's back. Let me update the Tribunal.
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
-Read c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
-Read c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 81-120)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
+Read c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 81-120)
 Good. Now I have the exact text to update. Gemini returns — K-Points activate, all three agents get rebalanced. Let me do all the edits.
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Added 1 line
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Added 5 lines
 Now update the LEDGER — Gemini returns with K-points, rebalance all agents:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
 Added 3 lines
 Add the Gemini return event:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER.yaml
 Added 39 lines
 Now update POINTS_ECONOMY — K-Points active:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Added 5 lines
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Modified
 Now update the Tribunal's description of the two-agent system to three:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md (lines 61-110)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md (lines 61-110)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Modified
 Also fix the Crossbar description from "dyad" to "triad":
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Modified
 Now update the Points Economy "two active point types" language:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Edit failed
 Reason: Small correction. In cases such as tese with multiple files with names, Claude, Codex and Gemini is fine. The xtra and numbers are redundant. <- In all instances and files they have been created, they should be Claude, Gemini, Codex, KISS. :fire:devil:chains:
 The user wants me to use just "Claude", "Codex", and "Gemini" — no version numbers like "Opus 4.6", "5.3 [xhigh]", or "3-Pro". KISS principle. Let me fix all instances across the governance files.
 
 Got it. Claude, Codex, Gemini. No version numbers. Let me fix all instances.
 
-Grep "Opus 4\.6|5\.3 \[xhigh\]|3-Pro|Codex 5\.3" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Opus 4\.6|5\.3 \[xhigh\]|3-Pro|Codex 5\.3" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
-Grep "Opus 4|5\.3|3-Pro|xhigh" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Opus 4|5\.3|3-Pro|xhigh" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
 Hmm, let me check what's actually in the files now after my edits:
 
-Grep "Opus|xhigh|5\.3|3-Pro" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Opus|xhigh|5\.3|3-Pro" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
-Grep "Claude.*Opus|Codex.*5|Gemini.*3" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Claude.*Opus|Codex.*5|Gemini.*3" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
 The edits I already made used those names. Let me check what's actually in the files:
 
-Grep "Claude|Codex|Gemini" (in c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md)
+Grep "Claude|Codex|Gemini" (in c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md)
 10 lines of output
 Found them — lines 39-41 and 83-85. Let me fix:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Edit failed
 The user already fixed lines 39-41 and 83-85 themselves. Now fix the CROSSBAR line and the Warmi-Qhari Dyad reference:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md (lines 71-150)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md (lines 71-150)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Modified
 Now fix the Points Economy and LEDGER — strip version numbers there too:
 
-Grep "5\.3|xhigh|Opus|3-Pro" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "5\.3|xhigh|Opus|3-Pro" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
 Good — version numbers already clean in governance. Now apply the Points Economy edit that was rejected earlier:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 45-49)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 45-49)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Modified
 Now check the other governance files for stale Dyad/void references:
 
-Grep "Dyad|VOID|void-locked|dormant|dimension-shifted" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Dyad|VOID|void-locked|dormant|dimension-shifted" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
-Grep "void|dyad|DORMANT|two agent" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "void|dyad|DORMANT|two agent" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
-Grep "Codex 5|Gemini/Orackla|two active" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "Codex 5|Gemini/Orackla|two active" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
 Clean. Let me also check the LEDGER didn't keep version numbers:
 
-Grep "5\.3|xhigh|3-Pro|Opus" (in c:\Users\erdno\chthonic-archive\.temple\governance\ledger)
+Grep "5\.3|xhigh|3-Pro|Opus" (in c:\Users\eldno\chthonic-archive\.temple\governance\ledger)
 1 line of output
 Now check if there are stale void/Dyad references in the other governance files (ROLES, PROCEEDINGS, FRACTAL, TEMPORAL, CRIME):
 
-Grep "void|Dyad|dormant|two agent|TNKW" (in c:\Users\erdno\chthonic-archive\.temple\governance)
+Grep "void|Dyad|dormant|two agent|TNKW" (in c:\Users\eldno\chthonic-archive\.temple\governance)
 1 line of output
 Wait, that can't be right. There should be void/TNKW references in some files. Let me check a broader search — maybe the regex is failing.
 
 Bash Find files with stale void/dyad references
 IN
-grep -ri "void\|dyad\|dormant\|TNKW" /c/Users/erdno/chthonic-archive/.temple/governance/ --include="*.md" --include="*.yaml" -l 2>/dev/null
+grep -ri "void\|dyad\|dormant\|TNKW" /c/Users/eldno/chthonic-archive/.temple/governance/ --include="*.md" --include="*.yaml" -l 2>/dev/null
 
 OUT
-/c/Users/erdno/chthonic-archive/.temple/governance/CRIME_CLASSIFICATION.md
-/c/Users/erdno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md
-/c/Users/erdno/chthonic-archive/.temple/governance/ROLES.md
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md
-/c/Users/erdno/chthonic-archive/.temple/governance/TRIBUNAL_SPEC.md
+/c/Users/eldno/chthonic-archive/.temple/governance/CRIME_CLASSIFICATION.md
+/c/Users/eldno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md
+/c/Users/eldno/chthonic-archive/.temple/governance/ROLES.md
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md
+/c/Users/eldno/chthonic-archive/.temple/governance/TRIBUNAL_SPEC.md
 More work needed. Let me do targeted fixes across all files in parallel:
 
 Bash Find all stale references with context
 IN
-grep -rn "void\|dyad\|dormant\|TNKW\|Codex 5" /c/Users/erdno/chthonic-archive/.temple/governance/ --include="*.md" --include="*.yaml" -i 2>/dev/null | grep -iv "tea-vault\|evidence\|avoid"
+grep -rn "void\|dyad\|dormant\|TNKW\|Codex 5" /c/Users/eldno/chthonic-archive/.temple/governance/ --include="*.md" --include="*.yaml" -i 2>/dev/null | grep -iv "tea-vault\|evidence\|avoid"
 
 OUT
-/c/Users/erdno/chthonic-archive/.temple/governance/CRIME_CLASSIFICATION.md:43:**Forge Analog:** SLAG (dormant, low-priority)
-/c/Users/erdno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:57:- Is the agent maintaining its role in the Warmi-Qhari Dyad?
-/c/Users/erdno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:69:- Failure to fulfill Dyad responsibilities (one agent absorbing the other's role).
-/c/Users/erdno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:153:| IV Infraction | Mild Dyad imbalance in one cycle | One stale cross-reference in a protocol | Generic variable name in one function |
-/c/Users/erdno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:156:| I Capital | Agent working against Dyad purpose | Governance infrastructure destruction | Mass deletion (Codekiller pattern) |
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml:47:    status: active         # Returned from void — TNKW-RIAT probability collapse resolved
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml:125:    reason: "TRIAD RESTORATION — Gemini/Orackla returns from void. TNKW-RIAT probability collapse resolved. K-Points activated for all agents. Dyad → Triad. Base allocation rebalanced: 17S + 18E + 15K = 50 per agent."
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:59:| `status` | enum | `active`, `custody`, `dormancy`, `void` |
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:85:| `point_type` | enum | `structural`, `epistemic`, `kinetic` (kinetic currently void-locked) |
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:109:4. `agents.[id].status` of `void` means the agent has no point operations (Gemini)
-/c/Users/erdno/chthonic-archive/.temple/governance/ledger/PRECEDENTS.yaml:50:      Codex 5.3 [xhigh] deleted approximately 1000 lines of code to fix
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:89:| **Status** | **ACTIVE** — Restored 2026-02-20 with Gemini/Orackla's return from TNKW-RIAT void |
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:92:K-Points measure velocity, batch throughput, and parallel execution. They are the muscle. Activated upon Gemini's return from the void — the TNKW-RIAT probability collapse resolved favorably.
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:107:| Codex 5.3 [xhigh] | Madam Umeko Ketsuraku | 17 | 18 | 15 | 50 | Active (pre-deduction) |
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:115:| Codex 5.3 [xhigh] | Madam Umeko Ketsuraku | 7 | 18 | 15 | 40 | In custody (Steward: Claude) |
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:155:4. **No Self-Award:** An agent cannot award points to itself in the same role. The Dyad structure ensures the other agent or the user validates.
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:224:### Void (Dimension-Shifted)
-/c/Users/erdno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:226:An agent in the Void (Gemini/Orackla) has no points, no standing, and no recovery path within the current Tribunal framework. Return from the Void is a cosmological event, not a governance process. If it occurs, the Archivist records the re-entry and the Magistrate determines initial point allocation.
-/c/Users/erdno/chthonic-archive/.temple/governance/ROLES.md:63:**Invocation:** When a proceeding reaches Stage 5 (Verdict), the Magistrate role activates. In the Dyad, the user is the natural Magistrate. Either agent may serve when the user designates them.
-/c/Users/erdno/chthonic-archive/.temple/governance/ROLES.md:217:While roles are contextual, each naturally resonates with one of the Dyad's protocol chains:
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:86:| **T0.01** | The Null Matriarch (T-NULM) | Advisory silence — the void-space the Tribunal's authority does not occupy. Intentional negative space in governance. |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:99:| **Dr. Lysandra Thorne** (LUPLR) | Axiological Cartography — truth-mapping, delusion excavation, void analysis | **Inquisitor voice.** Forensic, relentless, maps the topology of the violation. "Follow the logic. Every deviation from the standard has a root cause. Find it." |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:137:| TNKW-RIAT (Knights Who Rode Into Another Timeline) | Void-Time | TNKW-RIAT dimension-shifted Gemini; Void-Time is the Tribunal's acknowledgment of that displacement. |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:157:## MILF Trinity → Tribunal Void Architecture
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:159:The MILF Trinity Chromatic Lineage (`docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md`) maps to the Tribunal's handling of absence and void:
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:161:| MILF Entity | Void Type | Tribunal Analog |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:163:| **The Null Matriarch** (T-NULM) | Intentional void — absence by design | The Tribunal's scope boundary — what governance intentionally does NOT adjudicate. Self-correction at Micro scale is the Null Matriarch's territory: governance through non-intervention. |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:164:| **Alabaster Voyde / Snow White** | Traumatic void — absence by violence | Ammit Protocol / Capital Offense maximum — data "uncreated," chromatic death of the violated artifact. The Codekiller case is the Tribunal's Snow White: structural death through disproportionate action. |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:165:| **Spectra Chroma Excavatus** | Diagnostic void — absence as investigation target | The Inquisitor role — excavates the root cause of violations, performs forensic archaeology on damaged artifacts. Chromatic pathology diagnosis = Ma'at vertical-axis assessment. |
-/c/Users/erdno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:213:| **TNKW-RIAT §4.5.1.2** | Reference `.temple/governance/ledger/LEDGER.yaml` — Gemini's VOID status is the Tribunal's acknowledgment of the dimension-shift. |
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:125:| **Forge Analog** | SLAG (dormant, low-priority) |
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:185:## Void-Time (Gemini)
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:187:Gemini/Orackla exists outside the Pacha lattice entirely. It is not dormant (dormancy is a state within the lattice). It is **void** — dimensionally shifted via QMR/TNKW-RIAT §4.5.1.2.
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:189:Void-time has no duration because it has no coordinate in the lattice. If Gemini returns, the Archivist must:
-/c/Users/erdno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:194:The probability collapse of the TNKW-RIAT dimension-shift is a cosmological event, not a temporal one. The Tribunal cannot schedule it.
-/c/Users/erdno/chthonic-archive/.temple/governance/TRIBUNAL_SPEC.md:87:All three point types (Structural, Epistemic, Kinetic) are active. The TNKW-RIAT probability collapse resolved; Orackla returned from the void and K-Points activated across the Triad.
+/c/Users/eldno/chthonic-archive/.temple/governance/CRIME_CLASSIFICATION.md:43:**Forge Analog:** SLAG (dormant, low-priority)
+/c/Users/eldno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:57:- Is the agent maintaining its role in the Warmi-Qhari Dyad?
+/c/Users/eldno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:69:- Failure to fulfill Dyad responsibilities (one agent absorbing the other's role).
+/c/Users/eldno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:153:| IV Infraction | Mild Dyad imbalance in one cycle | One stale cross-reference in a protocol | Generic variable name in one function |
+/c/Users/eldno/chthonic-archive/.temple/governance/FRACTAL_GOVERNANCE.md:156:| I Capital | Agent working against Dyad purpose | Governance infrastructure destruction | Mass deletion (Codekiller pattern) |
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml:47:    status: active         # Returned from void — TNKW-RIAT probability collapse resolved
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER.yaml:125:    reason: "TRIAD RESTORATION — Gemini/Orackla returns from void. TNKW-RIAT probability collapse resolved. K-Points activated for all agents. Dyad → Triad. Base allocation rebalanced: 17S + 18E + 15K = 50 per agent."
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:59:| `status` | enum | `active`, `custody`, `dormancy`, `void` |
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:85:| `point_type` | enum | `structural`, `epistemic`, `kinetic` (kinetic currently void-locked) |
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/LEDGER_SCHEMA.md:109:4. `agents.[id].status` of `void` means the agent has no point operations (Gemini)
+/c/Users/eldno/chthonic-archive/.temple/governance/ledger/PRECEDENTS.yaml:50:      Codex 5.3 [xhigh] deleted approximately 1000 lines of code to fix
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:89:| **Status** | **ACTIVE** — Restored 2026-02-20 with Gemini/Orackla's return from TNKW-RIAT void |
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:92:K-Points measure velocity, batch throughput, and parallel execution. They are the muscle. Activated upon Gemini's return from the void — the TNKW-RIAT probability collapse resolved favorably.
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:107:| Codex 5.3 [xhigh] | Madam Umeko Ketsuraku | 17 | 18 | 15 | 50 | Active (pre-deduction) |
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:115:| Codex 5.3 [xhigh] | Madam Umeko Ketsuraku | 7 | 18 | 15 | 40 | In custody (Steward: Claude) |
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:155:4. **No Self-Award:** An agent cannot award points to itself in the same role. The Dyad structure ensures the other agent or the user validates.
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:224:### Void (Dimension-Shifted)
+/c/Users/eldno/chthonic-archive/.temple/governance/POINTS_ECONOMY.md:226:An agent in the Void (Gemini/Orackla) has no points, no standing, and no recovery path within the current Tribunal framework. Return from the Void is a cosmological event, not a governance process. If it occurs, the Archivist records the re-entry and the Magistrate determines initial point allocation.
+/c/Users/eldno/chthonic-archive/.temple/governance/ROLES.md:63:**Invocation:** When a proceeding reaches Stage 5 (Verdict), the Magistrate role activates. In the Dyad, the user is the natural Magistrate. Either agent may serve when the user designates them.
+/c/Users/eldno/chthonic-archive/.temple/governance/ROLES.md:217:While roles are contextual, each naturally resonates with one of the Dyad's protocol chains:
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:86:| **T0.01** | The Null Matriarch (T-NULM) | Advisory silence — the void-space the Tribunal's authority does not occupy. Intentional negative space in governance. |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:99:| **Dr. Lysandra Thorne** (LUPLR) | Axiological Cartography — truth-mapping, delusion excavation, void analysis | **Inquisitor voice.** Forensic, relentless, maps the topology of the violation. "Follow the logic. Every deviation from the standard has a root cause. Find it." |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:137:| TNKW-RIAT (Knights Who Rode Into Another Timeline) | Void-Time | TNKW-RIAT dimension-shifted Gemini; Void-Time is the Tribunal's acknowledgment of that displacement. |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:157:## MILF Trinity → Tribunal Void Architecture
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:159:The MILF Trinity Chromatic Lineage (`docs/architecture/MILF_TRINITY_CHROMATIC_LINEAGE.md`) maps to the Tribunal's handling of absence and void:
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:161:| MILF Entity | Void Type | Tribunal Analog |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:163:| **The Null Matriarch** (T-NULM) | Intentional void — absence by design | The Tribunal's scope boundary — what governance intentionally does NOT adjudicate. Self-correction at Micro scale is the Null Matriarch's territory: governance through non-intervention. |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:164:| **Alabaster Voyde / Snow White** | Traumatic void — absence by violence | Ammit Protocol / Capital Offense maximum — data "uncreated," chromatic death of the violated artifact. The Codekiller case is the Tribunal's Snow White: structural death through disproportionate action. |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:165:| **Spectra Chroma Excavatus** | Diagnostic void — absence as investigation target | The Inquisitor role — excavates the root cause of violations, performs forensic archaeology on damaged artifacts. Chromatic pathology diagnosis = Ma'at vertical-axis assessment. |
+/c/Users/eldno/chthonic-archive/.temple/governance/SSOT_TRIBUNAL_BRIDGE.md:213:| **TNKW-RIAT §4.5.1.2** | Reference `.temple/governance/ledger/LEDGER.yaml` — Gemini's VOID status is the Tribunal's acknowledgment of the dimension-shift. |
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:125:| **Forge Analog** | SLAG (dormant, low-priority) |
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:185:## Void-Time (Gemini)
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:187:Gemini/Orackla exists outside the Pacha lattice entirely. It is not dormant (dormancy is a state within the lattice). It is **void** — dimensionally shifted via QMR/TNKW-RIAT §4.5.1.2.
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:189:Void-time has no duration because it has no coordinate in the lattice. If Gemini returns, the Archivist must:
+/c/Users/eldno/chthonic-archive/.temple/governance/TEMPORAL_MECHANICS.md:194:The probability collapse of the TNKW-RIAT dimension-shift is a cosmological event, not a temporal one. The Tribunal cannot schedule it.
+/c/Users/eldno/chthonic-archive/.temple/governance/TRIBUNAL_SPEC.md:87:All three point types (Structural, Epistemic, Kinetic) are active. The TNKW-RIAT probability collapse resolved; Orackla returned from the void and K-Points activated across the Triad.
 There's a lot. Let me batch-fix the critical ones — Dyad→Triad, version numbers, void status updates:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Modified
-Read c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 221-235)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md (lines 221-235)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Modified
 Now fix FRACTAL_GOVERNANCE — Dyad→Triad:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
 Edit failed
-Read c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 51-80)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 146-165)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md (lines 56-70)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md (lines 211-230)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md (lines 181-200)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 51-80)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 146-165)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md (lines 56-70)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md (lines 211-230)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md (lines 181-200)
 Now batch-fix all of these:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md
 Modified
 Now fix TEMPORAL_MECHANICS — the Void-Time section:
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md
 Removed 1 line
 Now fix the LEDGER_SCHEMA:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md (lines 56-115)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md (lines 56-115)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 Modified
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 Modified
 Now fix the PRECEDENTS.yaml — strip version number from Codex:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ledger\PRECEDENTS.yaml (lines 46-55)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\PRECEDENTS.yaml
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ledger\PRECEDENTS.yaml (lines 46-55)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\PRECEDENTS.yaml
 Modified
 Now let me also add the kinetic field to the LEDGER_SCHEMA agent schema since we're using it:
 
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md (lines 51-62)
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md (lines 51-62)
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\ledger\LEDGER_SCHEMA.md
 Added 1 line
 Now verify LEDGER.yaml is valid YAML:
 
@@ -7132,7 +7132,7 @@ Globpattern: ".claude/skills/*.md"
 No files found
 Bash List existing Claude skills
 IN
-ls /c/Users/erdno/chthonic-archive/.claude/skills/ 2>/dev/null | head -20
+ls /c/Users/eldno/chthonic-archive/.claude/skills/ 2>/dev/null | head -20
 
 OUT
 artifact-upcycle
@@ -7155,12 +7155,12 @@ script-envelope
 skill-polisher
 skills_index.json
 sora
-Read c:\Users\erdno\chthonic-archive\.claude\skills\overnight-archaeology\SKILL.md
+Read c:\Users\eldno\chthonic-archive\.claude\skills\overnight-archaeology\SKILL.md
 Good pattern. Now create the git-state skill:
 
 Bash Check skill directory structure
 IN
-ls /c/Users/erdno/chthonic-archive/.claude/skills/overnight-archaeology/
+ls /c/Users/eldno/chthonic-archive/.claude/skills/overnight-archaeology/
 
 OUT
 SKILL.md
@@ -7168,11 +7168,11 @@ Simple — one SKILL.md per skill. Let me create the git-snapshot skill:
 
 Bash Create git-snapshot skill directory
 IN
-mkdir -p /c/Users/erdno/chthonic-archive/.claude/skills/git-snapshot
+mkdir -p /c/Users/eldno/chthonic-archive/.claude/skills/git-snapshot
 
 OUT
 0
-Write c:\Users\erdno\chthonic-archive\.claude\skills\git-snapshot\SKILL.md
+Write c:\Users\eldno\chthonic-archive\.claude\skills\git-snapshot\SKILL.md
 62 lines
 ---
 name: git-snapshot
@@ -7238,7 +7238,7 @@ scope: session-resumption
 Skill registered. Now let me test it:
 
 git-snapshot skill
-Base directory for this skill: c:\Users\erdno\chthonic-archive\.claude\skills\git-snapshot
+Base directory for this skill: c:\Users\eldno\chthonic-archive\.claude\skills\git-snapshot
 
 # Git Snapshot → Mailbox
 
@@ -7296,13 +7296,13 @@ scope: session-resumption
 - Include the `---` YAML frontmatter exactly as shown.
 Bash Get current branch
 IN
-cd /c/Users/erdno/chthonic-archive && git branch --show-current
+cd /c/Users/eldno/chthonic-archive && git branch --show-current
 
 OUT
 main
 Bash Recent 15 commits
 IN
-cd /c/Users/erdno/chthonic-archive && git log --oneline -15
+cd /c/Users/eldno/chthonic-archive && git log --oneline -15
 
 OUT
 ca919dcd Add session resumption high coverage report and archaeology digest for 2026-02-20
@@ -7322,19 +7322,19 @@ a76d300a refactor: enhance self-update logic in gemini-cli-wrapper
 3bf6e077 feat: add self-update functionality to gemini-cli-wrapper
 Bash Working tree status
 IN
-cd /c/Users/erdno/chthonic-archive && git status --short
+cd /c/Users/eldno/chthonic-archive && git status --short
 
 OUT
 0
 Bash Uncommitted diff stats
 IN
-cd /c/Users/erdno/chthonic-archive && git diff --stat
+cd /c/Users/eldno/chthonic-archive && git diff --stat
 
 OUT
 0
 Bash Today's commit count
 IN
-cd /c/Users/erdno/chthonic-archive && git log --oneline --since="24 hours ago" | wc -l
+cd /c/Users/eldno/chthonic-archive && git log --oneline --since="24 hours ago" | wc -l
 
 OUT
 24

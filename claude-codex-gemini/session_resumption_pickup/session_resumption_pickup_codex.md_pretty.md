@@ -63,25 +63,25 @@ uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read
 ### 0008 Command
 
 ```text
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 ```
 
 ### 0009 Command
 
 ```text
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 ```
 
 ### 0010 Command
 
 ```text
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 ```
 
 ### 0011 Command
 
 ```text
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 ```
 
 ### 0012 Command
@@ -93,25 +93,25 @@ uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read
 ### 0013 Command
 
 ```text
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 ```
 
 ### 0014 Command
 
 ```text
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 ```
 
 ### 0015 Command
 
 ```text
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 ```
 
 ### 0016 Command
 
 ```text
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 ```
 
 ### 0017 Command
@@ -169,14 +169,14 @@ pwsh -NoProfile -Command "Get-ScheduledTask -TaskName 'ChthonicNightly' | Select
 
 ### 0026 Note
 
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\run.json
-Read c:\Users\erdno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\run.json
+Read c:\Users\eldno\chthonic-archive\dumpster-dive\intake\overnight-daemon\20260220_030002\report.md
 Good. Now I have the complete picture. Here's the audit:
 
 ### 0027 Command
 
 ```text
-pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1'"
+pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1'"
 ```
 
 ### 0028 Command
@@ -236,31 +236,31 @@ $logs = Get-ChildItem -Path $daemonDir -Filter 'nightly-scheduled-*.log' | Sort-
 ### 0037 Command
 
 ```text
-pwsh -NoProfile -File /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+pwsh -NoProfile -File /c/Users/eldno/chthonic-archive/scripts/_prune_old_runs.ps1
 ```
 
 ### 0038 Note
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\POINTS_ECONOMY.md
 Edit failed
 Reason: Small correction. In cases such as tese with multiple files with names, Claude, Codex and Gemini is fine. The xtra and numbers are redundant. <- In all instances and files they have been created, they should be Claude, Gemini, Codex, KISS. :fire:devil:chains:
 The user wants me to use just "Claude", "Codex", and "Gemini" — no version numbers like "Opus 4.6", "5.3 [xhigh]", or "3-Pro". KISS principle. Let me fix all instances across the governance files.
 
 ### 0039 Note
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\TRIBUNAL_SPEC.md
 Edit failed
 The user already fixed lines 39-41 and 83-85 themselves. Now fix the CROSSBAR line and the Warmi-Qhari Dyad reference:
 
 ### 0040 Note
 
-Edit c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
+Edit c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md
 Edit failed
-Read c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 51-80)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 146-165)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md (lines 56-70)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\ROLES.md (lines 211-230)
-Read c:\Users\erdno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md (lines 181-200)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 51-80)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\FRACTAL_GOVERNANCE.md (lines 146-165)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md (lines 56-70)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\ROLES.md (lines 211-230)
+Read c:\Users\eldno\chthonic-archive\.temple\governance\TEMPORAL_MECHANICS.md (lines 181-200)
 Now batch-fix all of these:
 
 ### 0041 Command
@@ -278,3 +278,4 @@ uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/PR
 ### 0043 Note
 
 For task 2: Update the session resumption pickup files to reflect current model reality (Qwen3 abliterated models are the active ones, Qwen 2.5-14B is legacy/censored, GPT-OSS 20B failed structured output).
+

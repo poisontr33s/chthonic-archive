@@ -30,7 +30,7 @@ This is the “mail” that explains the work. The other files are the payload r
   - `.claude/hooks/post_write_verify.ps1`
 - Important: `protect_secrets.ps1` now returns a **PermissionRequest deny** payload (fail-closed) for:
   - `.env`
-  - `C:\\Users\\erdno\\.chthonic\\api_pool.json`
+  - `C:\\Users\\eldno\\.chthonic\\api_pool.json`
   - `.codex/config.toml`
 
 3. **Subagents created (so Opus delegates, not “Claude-as-a-subagent”)**
@@ -57,4 +57,5 @@ This makes Claude Code behave deterministically (hooks + lanes + artifact gates)
 - `.claude/agents/`
 - `claude/mailbox/CLAUDE_CODE_CENTRIC_SETUP_2026_02_09.md`
 - `claude/mailbox/CLAUDE_CODE_HIERARCHICAL_RESEARCH_2026_02_09.md`
+
 

@@ -14,31 +14,31 @@ uv run python -c "
 uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read()); print('Syntax OK')"
 
 [0006] CMD
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 
 [0007] CMD
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 
 [0008] CMD
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 
 [0009] CMD
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 
 [0010] CMD
 uv run python -c "import ast; ast.parse(open('scripts/local_refiner_v2.py').read()); print('Syntax OK')"
 
 [0011] CMD
-pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
+pwsh -NoProfile -Command "try { [System.Management.Automation.Language.Parser]::ParseFile('c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1', [ref]\$null, [ref]\$null) | Out-Null; Write-Host 'Syntax OK' } catch { Write-Host \"Parse error: \$_\" }"
 
 [0012] CMD
-pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
+pwsh -NoProfile -File /dev/null -Command '& { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errors); if ($errors.Count -gt 0) { $errors | ForEach-Object { Write-Host $_.Message } } else { Write-Host "Syntax OK" } }'
 
 [0013] CMD
-pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
+pwsh -NoProfile -Command 'try { $null = [System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$null, [ref]$errs); if ($errs.Count -gt 0) { $errs | ForEach-Object { $_.Message } } else { "Syntax OK" } } catch { $_.Exception.Message }'
 
 [0014] CMD
-pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\erdno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
+pwsh -NoProfile -Command '$tokens = $null; $parseErrors = $null; [void][System.Management.Automation.Language.Parser]::ParseFile("c:\Users\eldno\chthonic-archive\scripts\run_archaeology.ps1", [ref]$tokens, [ref]$parseErrors); if ($parseErrors.Count -gt 0) { $parseErrors | ForEach-Object { $_.Message } } else { "Syntax OK" }'
 
 [0015] CMD
 uv run scripts/genre_extractor.py                    # scan all creative dirs
@@ -59,7 +59,7 @@ uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read(
 pwsh -NoProfile -Command "Get-ScheduledTask -TaskName 'ChthonicNightly' | Select-Object -ExpandProperty Triggers | Format-List"
 
 [0021] CMD
-pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1'"
+pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1'"
 
 [0022] CMD
 uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read()); print('OK')"
@@ -89,10 +89,11 @@ $logs = Get-ChildItem -Path $daemonDir -Filter 'nightly-scheduled-*.log' | Sort-
   $staleLogs = $logs | Select-Object -Skip 7
 
 [0031] CMD
-pwsh -NoProfile -File /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+pwsh -NoProfile -File /c/Users/eldno/chthonic-archive/scripts/_prune_old_runs.ps1
 
 [0032] CMD
 uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/LEDGER.yaml')); print('YAML OK')"
 
 [0033] CMD
 uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/PRECEDENTS.yaml')); print('YAML OK')"
+

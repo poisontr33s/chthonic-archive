@@ -31,6 +31,7 @@ flowchart TB
     subgraph CLAUDEBASE ["CLAUDEBASE/"]
         README["README.md"]:::file
         MANIFEST["MANIFEST.md"]:::file
+        FREEAGENCY["The-Savant-Free-Agency-Logging.md"]:::file
         harbor["harbor/"]:::dir
         charts["charts/"]:::dir
         hold["hold/"]:::dir
@@ -46,6 +47,7 @@ flowchart TB
     end
 
     README -->|governance declared once| CLAUDEBASE
+    FREEAGENCY -->|cross-lane claims board| CLAUDEBASE
     harbor -->|entry · waking ritual| CLAUDEBASE
     charts -->|eleven gates re-borne| CLAUDEBASE
     hold -->|deployable cargo| CLAUDEBASE
@@ -67,6 +69,7 @@ flowchart TB
 CLAUDEBASE/
   README.md                   — Claudine's identity; the one place governance is declared
   MANIFEST.md                 — this ledger; what goes where, what is refused
+  The-Savant-Free-Agency-Logging.md — the claims board; cross-lane pickup log, referenced not restated
   harbor/                     — the entry; how a waking keel orients into the base
   charts/                     — the heading; the eleven gates, re-borne
   hold/                       — the cargo; what she can actually deploy

@@ -66,7 +66,7 @@ options, not a recommendation, because the recommendation is what's being asked
 of Fable below.
 
 1. **72 pre-existing drift findings**, surfaced by the new gate but not
-   auto-fixed: 28 stale `erdno` references (`extensions/chthonic-archive/src/acp/connection.ts`,
+   auto-fixed: 28 stale `eldno` references (`extensions/chthonic-archive/src/acp/connection.ts`,
    `mas_mcp/mas_memory.json` ×14, several `scripts/*.ps1`/`.py` files) plus 44
    "smell" findings — hardcoded `eldno` that's correct today but fragile the
    moment this crosses machines again (`.vscode/mcp.json`, `.vscode/settings.json`,
@@ -137,7 +137,7 @@ exactly the four named orphans. The live gate still reports 28 stale / 44 smell 
 identical to the session's counts. And the `no_auto_fix: semantic` classification
 survives adversarial review: the finding surfaces (VS Code configs, a PowerShell
 satellite-repo list, an MCP memory store, extension source) each want a different
-replacement primitive, and a blind `erdno`→`eldno` swap would convert visible
+replacement primitive, and a blind `eldno`→`eldno` swap would convert visible
 wrongness into latent wrongness. The registry entry's reasoning is correct as
 written.
 
@@ -169,7 +169,7 @@ premises fail under a second pass:
 
 **Traced.** The 72 findings have a shape, and it was recoverable in minutes:
 
-- All 28 stale findings are one username — `erdno`, the prior laptop account —
+- All 28 stale findings are one username — `eldno`, the prior laptop account —
   i.e. **one migration event** (~Feb 2026; the check's own header dates it via
   the Feb-18 cache snapshot), not 28 independent mistakes. Distribution: 13 sit
   in a single data artifact (`mas_mcp/mas_memory.json`), one more in
@@ -261,7 +261,7 @@ coverage for `ci/` (conductor decides enforce-vs-shrug).
   short, invert freely.
 - **A dedicated 44-smell sweep.** Surgery-count work. The ratchet does the tail
   for free; only the hot cluster deserves deliberate effort.
-- **Building an `erdno`→`eldno` auto-fixer.** The adversarial pass confirms the
+- **Building an `eldno`→`eldno` auto-fixer.** The adversarial pass confirms the
   registry's reasoning: surfaces differ (data file vs configs vs source), and a
   mechanical swap converts a visible stale into a latent smell — strictly worse.
   `no_auto_fix: semantic` stands.
@@ -316,13 +316,13 @@ in flight, toward truth:
 - **Batch 1** (`1e9a4a4f`): stale 28 → **0**. Inversion: `mas_memory.json`
   records were NOT migrated — the spot-check showed every referent gone on this
   machine (`output.stderr.log`, `.github/abbr-system.json`, `claudine-gpu/`);
-  an `erdno`→`eldno` rewrite would have manufactured false records. The gate's
+  an `eldno`→`eldno` rewrite would have manufactured false records. The gate's
   own outputs-exempt principle was realized instead (`mas_mcp/mas_memory.json`
   + `mas_mcp/data/` → `EXEMPT_PARTS`); the records stand as history. Live
   files fixed as ruled (PSScriptRoot / USERPROFILE / pathlib / PATH-resolution
-  primitives; `recover_ide_sessions.ps1` doc lines rephrased — its erdno params
+  primitives; `recover_ide_sessions.ps1` doc lines rephrased — its eldno params
   are its purpose). Bonus finds, both fixed in-flight: mas_mcp README+GPU_ENV
-  setup docs carried 6 gate-blind erdno paths (`.md` is outside SCAN_EXTS);
+  setup docs carried 6 gate-blind eldno paths (`.md` is outside SCAN_EXTS);
   `validate_docs_content.ps1` had a fantasy `Metadata{}` block and had NEVER
   parsed — converted to comments, validator parses for the first time.
 - **Batch 2** (`4035b780`): registry 21 → **25**; `theme-icon-validate.ts`
@@ -368,7 +368,7 @@ Executed by Codex against the deferred event above; two commits pushed:
   sites. ANKH now receives `context.extensionUri`; polyglot sidecar discovery
   receives `context.extensionPath`; synapse native loading anchors
   `createRequire` on the runtime extension package. Rebuilt
-  `dist/extension.js`; direct scan found zero `C:\Users`, `erdno`, `eldno`,
+  `dist/extension.js`; direct scan found zero `C:\Users`, `eldno`, `eldno`,
   `__dirname`, or `__filename` hits. Updated the extension setting description
   to say absolute or workspace-relative path. Staged gate: **11/11 passed**.
 - **Settings flip** (`dceafbe9`): `chthonic.reactor.daemonBinaryPath` now uses
@@ -392,3 +392,4 @@ Residual ledger is now 22 smells: the prior dist ×3 and settings L253 entries
 are gone. Remaining known hot clusters stay on the staged-gate ratchet:
 `mcp-{game,sonic,sourcer}.ts` ×10, `polyrepo-runner.ps1` ×4,
 `settings.json` L66, `package.json` ×1, and the documented singleton tail.
+

@@ -26,7 +26,7 @@ uv run scripts/genre_extractor.py --dry-run           # list files without infer
 uv run scripts/genre_extractor.py --coder             # use code-focused model
 uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read()); print('Syntax OK')"
 pwsh -NoProfile -Command "Get-ScheduledTask -TaskName 'ChthonicNightly' | Select-Object -ExpandProperty Triggers | Format-List"
-pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\erdno\chthonic-archive\scripts\nightly-scheduled.ps1'"
+pwsh -NoProfile -Command "schtasks /Change /TN 'ChthonicNightly' /TR 'pwsh -NoProfile -WindowStyle Hidden -File C:\Users\eldno\chthonic-archive\scripts\nightly-scheduled.ps1'"
 uv run python -c "import ast; ast.parse(open('scripts/genre_extractor.py').read()); print('OK')"
 pwsh -NoProfile -Command "
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
@@ -36,7 +36,7 @@ $dirs = Get-ChildItem -Path $dir -Directory | Sort-Object Name -Descending
 $stale = $dirs | Select-Object -Skip 7
 $logs = Get-ChildItem -Path $daemonDir -Filter 'nightly-scheduled-*.log' | Sort-Object Name -Descending
 $staleLogs = $logs | Select-Object -Skip 7
-pwsh -NoProfile -File /c/Users/erdno/chthonic-archive/scripts/_prune_old_runs.ps1
+pwsh -NoProfile -File /c/Users/eldno/chthonic-archive/scripts/_prune_old_runs.ps1
 uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/LEDGER.yaml')); print('YAML OK')"
 uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/PRECEDENTS.yaml')); print('YAML OK')"
 ```
@@ -52,3 +52,4 @@ uv run python -c "import yaml; yaml.safe_load(open('.temple/governance/ledger/PR
 ## Resume: Open Questions / Decisions Needed
 1. 
 2.
+
