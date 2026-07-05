@@ -77,9 +77,16 @@ shaderc = "0.10"
 cc = "1"
 
 [profile.release]
+# Maximum optimization for RTX 4090 + Vulkan workloads. This is the sole
+# profile.release declaration — Cargo config-file [profile] tables take
+# precedence over manifest settings (per Cargo's own docs), so a duplicate
+# block in .cargo/config.toml would silently win over this one; removed
+# 2026-07-05 after finding it had been the real active source (lto="thin")
+# despite this file's lto=true looking authoritative.
 opt-level = 3
 lto = true
 codegen-units = 1
+strip = true
 
 [profile.dev]
 opt-level = 1

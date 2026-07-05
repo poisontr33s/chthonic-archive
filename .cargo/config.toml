@@ -17,12 +17,10 @@ codegen-units = 16
 # Enable debug symbols for better error messages
 debug = true
 
-[profile.release]
-# Maximum optimization for RTX 4090 + Vulkan workloads
-opt-level = 3
-lto = "thin"
-codegen-units = 1
-strip = true
+# profile.release lives solely in root Cargo.toml now — a config-file
+# [profile] table here would take precedence over the manifest (per Cargo's
+# own docs), which is exactly the silent-override this file used to cause
+# (lto="thin" here was winning over Cargo.toml's lto=true, unnoticed).
 
 # Windows-specific linker optimizations
 [target.x86_64-pc-windows-msvc]
