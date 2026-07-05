@@ -140,6 +140,10 @@ void main() {
         return;
     }
 
+    // Secchi-depth check (verified 2026-07-05, not tuned — SIGMA already produces this):
+    // floor_vis(25m)=2.25%, floor_vis(27.5m)=1.63%, floor_vis(30m)=1.18% — floor reads as
+    // effectively invisible across the whole Jerlov IB Secchi range (~25-30m) with no extra
+    // threshold needed. See CLAUDEBASE/charts/north-star-constellations.md for the full table.
     vec3  trans      = exp(-SIGMA * depth_m * 2.0);
     vec3  floor_light = SAND * lambert * I * trans;
     float floor_vis  = dot(trans, vec3(0.299, 0.587, 0.114));
