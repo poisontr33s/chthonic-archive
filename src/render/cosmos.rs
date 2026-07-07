@@ -43,6 +43,16 @@ pub fn scene_julian_day() -> f64 {
     julian_day(2026, 6, 9, 17, 0, 0.0)
 }
 
+/// The real Julian Day right now (UTC), for callers that want the live sky rather than the
+/// pinned verification epoch above. JD of the Unix epoch (1970-01-01T00:00:00Z) is exactly
+/// 2440587.5 — this is a pure unit conversion, nothing astronomical about it.
+pub fn julian_day_now() -> f64 {
+    let since_epoch = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap_or_default();
+    since_epoch.as_secs_f64() / 86400.0 + 2_440_587.5
+}
+
 /// Apparent solar altitude + azimuth (degrees) for a site at Julian Day `jd`.
 /// Azimuth is measured from North, increasing toward East. NOAA/Meeus apparent
 /// position (aberration + nutation in longitude), airless (no refraction model) —
@@ -698,6 +708,30 @@ mod tests {
     fn ang_diff(a: f64, b: f64) -> f64 {
         let d = (a - b).abs();
         if d > 180.0 { 360.0 - d } else { d }
+    }
+
+    /// julian_day_now() is a live clock, not a fixture. Two things worth actually asserting:
+    /// it lands in a sane bracket (this decade, catching a wrong epoch constant or unit error),
+    /// and it agrees with julian_day() at a fixed instant computed the ordinary way — anchoring
+    /// the Unix-epoch shortcut to the same calendar the JPL-verified tests below already trust,
+    /// rather than re-deriving a calendar by hand just to check a one-line unit conversion.
+    #[test]
+    fn julian_day_now_is_live_and_in_this_decade() {
+        let now = julian_day_now();
+        assert!(now > julian_day(2025, 1, 1, 0, 0, 0.0), "now {now} is before 2025");
+        assert!(now < julian_day(2035, 1, 1, 0, 0, 0.0), "now {now} is after 2035 — clock or conversion bug");
+    }
+
+    #[test]
+    fn julian_day_now_anchors_to_a_known_instant() {
+        // 2026-01-01T00:00:00Z is 20,454 whole days after the Unix epoch (1970-01-01T00:00:00Z).
+        let unix_secs = 20_454.0 * 86_400.0;
+        let jd_via_epoch_shortcut = unix_secs / 86_400.0 + 2_440_587.5;
+        let jd_via_calendar = julian_day(2026, 1, 1, 0, 0, 0.0);
+        assert!(
+            (jd_via_epoch_shortcut - jd_via_calendar).abs() < 1e-6,
+            "epoch shortcut {jd_via_epoch_shortcut} vs calendar {jd_via_calendar}"
+        );
     }
 
     #[test]

@@ -407,10 +407,15 @@ impl Renderer {
         info!("🌌 Celestial field mesh: {celestial_vertex_count} vertices");
 
         // Stage 2a: correspondence socket reads the true sky — ayanamsa + slot binding logged.
+        // Live wall-clock JD, deliberately NOT the pinned scene_julian_day() the celestial-field
+        // mesh above uses: this reading only ever produces log output + the stored field below,
+        // never a pixel, so it can (and should) read the real sky instead of the fixed
+        // verification epoch. See CLAUDEBASE/charts/frontier-atlas.md and reference_aca_engine_
+        // live_correspondence memory for why this was write-only/frozen before tonight.
+        let correspondence_jd = super::cosmos::julian_day_now();
         {
             use super::correspondence::{Correspondence, SkyContext};
-            let jd = super::cosmos::scene_julian_day();
-            let ctx = SkyContext::new_providence(jd);
+            let ctx = SkyContext::new_providence(correspondence_jd);
             let engine = Correspondence::new().with_slot(Box::new(super::zodiac::ZodiacSlot));
             for reading in engine.read(&ctx) {
                 let ayan = reading
@@ -426,8 +431,10 @@ impl Renderer {
         }
         // Stage 2b/2c: all seven bodies in their Ankhological signs — stored on the renderer so
         // the render loop and the game layer can query sign placements without recomputing.
-        // Position only; meaning is the owner's.
-        let zodiac_bodies = super::zodiac::bodies_in_signs(super::cosmos::scene_julian_day());
+        // Position only; meaning is the owner's. Snapshot at construction time (live JD, not
+        // per-frame) — see the landing doc for why per-frame recompute is a deliberate open
+        // question, not decided here.
+        let zodiac_bodies = super::zodiac::bodies_in_signs(correspondence_jd);
         info!(
             "☥ Zodiac bodies: {}",
             zodiac_bodies
