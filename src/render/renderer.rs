@@ -2309,7 +2309,7 @@ impl Renderer {
             );
 
             self.ray_tracing
-                .trace(ctx, cmd, self.swapchain.extent, self.sst_desc_set);
+                .trace(ctx, cmd, self.swapchain.extent, self.sst_desc_set, sun_push[3]);
 
             let from_rt = [
                 vk::ImageMemoryBarrier2::default()

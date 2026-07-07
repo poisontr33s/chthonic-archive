@@ -347,12 +347,12 @@ impl RayTracing {
         self.write_set0(ctx, set0, output_view, normal_ws_view, depth_view, nearest_sampler);
 
         // --- pipeline layout: set0 (RT-specific) + set1 (reused water frame-UBO set) ---
-        // Push constants: the two BLAS-input vertex-buffer addresses, read by the closest-hit
-        // shader only (water_reflection.rchit).
+        // Push constants: the two BLAS-input vertex-buffer addresses plus sun intensity, read by
+        // the closest-hit shader only (water_reflection.rchit) for the Beer-Lambert seabed model.
         let push_range = vk::PushConstantRange::default()
             .stage_flags(vk::ShaderStageFlags::CLOSEST_HIT_KHR)
             .offset(0)
-            .size(16);
+            .size(20);
         let set_layouts = [set0_layout, sst_desc_set_layout];
         let pipeline_layout = ctx.device.create_pipeline_layout(
             &vk::PipelineLayoutCreateInfo::default()
@@ -671,6 +671,7 @@ impl RayTracing {
         cmd: vk::CommandBuffer,
         extent: vk::Extent2D,
         sst_desc_set: vk::DescriptorSet,
+        sun_intensity: f32,
     ) {
         let rt_pipeline_loader = self
             .rt_pipeline_loader
@@ -688,9 +689,10 @@ impl RayTracing {
             &[],
         );
 
-        let mut push_data = [0u8; 16];
+        let mut push_data = [0u8; 20];
         push_data[0..8].copy_from_slice(&self.bathymetry_vertex_addr.to_le_bytes());
         push_data[8..16].copy_from_slice(&self.ocean_vertex_addr.to_le_bytes());
+        push_data[16..20].copy_from_slice(&sun_intensity.to_le_bytes());
         ctx.device.cmd_push_constants(
             cmd,
             self.pipeline_layout,

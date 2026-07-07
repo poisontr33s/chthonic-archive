@@ -1,8 +1,10 @@
-// Rung 2.5 (RT reflections) — closest-hit stage. First cut: flat vertex-interpolated albedo
-// x a basic N.L term — deliberately NOT the full Beer-Lambert shallow-water shader
-// (water.frag's hero shader); duplicating that shader's constants/logic into a hit shader is a
-// much bigger lift than this first pass warrants, and can be layered on once the pass's basic
-// correctness (does the ray hit the right geometry, in the right place) is established.
+// Rung 2.5 (RT reflections) — closest-hit stage. Fork-V: the real depth-driven Beer-Lambert
+// seabed model, ported from water.frag's hero shader (its "Rung 5: seabed volumetric optics"
+// block) rather than the flat vertex-color x N.L placeholder Phase 5 shipped with. Same
+// constants, same physics — minus water.frag's final surface Fresnel/sky-reflection blend,
+// which is the water SURFACE's own appearance from above and doesn't belong here: this shader
+// only answers "what does the ray see having hit the seabed," a single-bounce hit, not a second
+// reflection layered on top of the first.
 //
 // Reads vertex data via buffer_reference into the BLAS-input copy buffers built in
 // ray_tracing.rs Phase 2 — those buffers carry no index buffer (VK_INDEX_TYPE_NONE_KHR, plain
@@ -33,6 +35,7 @@ layout(buffer_reference, scalar, buffer_reference_align = 4) readonly buffer Ver
 layout(push_constant) uniform PushConstants {
     uint64_t bathymetry_vertex_addr;
     uint64_t ocean_vertex_addr;
+    float sun_intensity;
 } pc;
 
 layout(location = 0) rayPayloadInEXT vec4 hit_color;
@@ -44,6 +47,14 @@ layout(set = 1, binding = 0, std140) uniform FrameData {
     vec4 sst_data;
     layout(offset = 144) vec3 sun_direction;
 } u_frame;
+
+// Duplicated from water.frag (no shader #include mechanism in this codebase) — same Y_SCALE/
+// SIGMA/SAND/WATER constants, same citations. See water.frag for the full sourcing
+// (Williamson & Hollins 2022 PMID 36606827 Table 7, Jerlov IB; CoBOP/Voss 2003; Hill 2014).
+const float Y_SCALE = 1.0;
+const vec3  SIGMA   = vec3(0.471, 0.076, 0.050);
+const vec3  SAND    = vec3(0.150, 0.172, 0.097);
+const vec3  WATER   = vec3(0.006, 0.060, 0.185);
 
 void main() {
     uint64_t addr = (gl_InstanceCustomIndexEXT == 0)
@@ -57,11 +68,33 @@ void main() {
 
     vec3 bary = vec3(1.0 - attribs.x - attribs.y, attribs.x, attribs.y);
 
-    vec3 color = vb.v[i0].color  * bary.x + vb.v[i1].color  * bary.y + vb.v[i2].color  * bary.z;
-    vec3 normal = normalize(
+    vec3 position = vb.v[i0].position * bary.x + vb.v[i1].position * bary.y + vb.v[i2].position * bary.z;
+    vec3 color    = vb.v[i0].color    * bary.x + vb.v[i1].color    * bary.y + vb.v[i2].color    * bary.z;
+    vec3 normal   = normalize(
         vb.v[i0].normal * bary.x + vb.v[i1].normal * bary.y + vb.v[i2].normal * bary.z
     );
 
+    float I = pc.sun_intensity;
     float lambert = 0.30 + 0.70 * max(dot(normal, normalize(u_frame.sun_direction)), 0.0);
-    hit_color = vec4(color * lambert, 1.0); // alpha=1: a real hit, composite pass replaces
+
+    // water.frag's Rung 5 seabed block, verbatim physics: exposed cay uses the real per-vertex
+    // bathymetry color (varies per vertex); underwater uses the fixed SAND reflectance (the
+    // Jerlov/Williamson-Hollins model assumes a uniform sand/seagrass mix, not the bathymetry
+    // mesh's own per-vertex coloring) attenuated by Beer-Lambert, plus the water column's own
+    // in-scatter glow where the floor is no longer visible. water.frag keeps a final Fresnel/
+    // sky-reflection blend after this — deliberately not ported, see the header comment.
+    float depth_m = max(0.0, -position.y / Y_SCALE);
+
+    vec3 body;
+    if (depth_m <= 0.0) {
+        body = color * lambert * I;
+    } else {
+        vec3  trans       = exp(-SIGMA * depth_m * 2.0);
+        vec3  floor_light = SAND * lambert * I * trans;
+        float floor_vis   = dot(trans, vec3(0.299, 0.587, 0.114));
+        vec3  water_glow  = WATER * I * (1.0 - floor_vis);
+        body = floor_light + water_glow;
+    }
+
+    hit_color = vec4(body, 1.0); // alpha=1: a real hit, composite pass replaces
 }
