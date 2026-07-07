@@ -190,7 +190,7 @@ So the genuine first decision is not *which star*. It is one question: **(`Pay-F
 | | Item | Why |
 |---|---|---|
 | **Must** | Fork-VI's guardrail reword | Done above — zero ambiguity, already fully specified, no reason to sit on it. |
-| **Should** | Fix `skyview.comp`/`multiscatter.comp` UBO offset bug | Real, pre-existing, bounded two-file fix; needs its own scheduled visual-diff verification, not a fold-in. |
+| **Should** *(re-scoped 2026-07-07)* | Atmosphere UBO offset bug | Attempted, reverted — the offset fix itself is correct but exposes a SECOND, deeper bug in `multiscatter.comp`'s own scattering math (near-total black sky, isolated via diagnostic, not root-caused). Bigger than "two-file fix" — needs its own dedicated debugging session. See `reference_atmosphere_ubo_offset_bug.md`. |
 | **Could** | Fork-V (full Beer-Lambert hit-shading) | Gate already met; open it whenever a session wants that specific polish, not urgent. |
 | **Could** | Fork-III (displaced ocean BLAS) | Gate is lived experience with the water in motion — can't be rushed into being ready. |
 | **Won't (now)** | Fork-IV (DLSS-D bridge) | Dormant by design; correctly untouched unless roughness ever gets added. |
