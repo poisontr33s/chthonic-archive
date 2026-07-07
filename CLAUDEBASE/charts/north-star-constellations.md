@@ -174,7 +174,8 @@ So the genuine first decision is not *which star*. It is one question: **(`Pay-F
  
 - No engine, no middleware. `ash`-native, always.
 - IO never on the render thread — data is IO-bound; the GPU sees finished buffers only.
-- DLAA, not upscaling.
+- DLAA where available, TAA otherwise — never upscaling. *(Reworded 2026-07-07, Fork-VI: the old "DLAA, not upscaling" undersold the standing vendor-neutral TAA fallback that already exists.)*
+- **(`Standard-As-Floor`)** the broadest open/cross-vendor standard is the mandatory floor; the engine's own distinctive work is an optional layer on top, never a replacement of the floor. Never let "everyone does it this way" delete what's genuinely unique; never let "we do it our way" skip a standard that's actually load-bearing.
 - Never switch stars by rewriting a working subsystem. Migrate.
 - `rust-gpu` per-shader, never big-bang.
 - The wind vector stays single-sourced (one live value → sea + clouds).
@@ -183,6 +184,16 @@ So the genuine first decision is not *which star*. It is one question: **(`Pay-F
 - Respect the hardware floor (Win11 native, no WSL, 4090 / Vulkan).
 - **(`Main-Is-The-Stable-Road`)** Branches only when explicitly ordered. All other work happens on `main` with scoped staging and a smoke gate before push. Agents do not create branches autonomously.
 - **(`No-DR-Fog`)** Every research pass must produce one of: a source-ledger row, a code delta, or an explicit named rejection. A neutral synthesis cloud with no artifact is not a research pass.
+ 
+**(`5.5`/`MoSCoW`/`The-Actual-Backlog-Right-Now`)** *KISS on purpose — one line each, re-derive nothing from §4.5/Fork-VI, just triage it.*
+ 
+| | Item | Why |
+|---|---|---|
+| **Must** | Fork-VI's guardrail reword | Done above — zero ambiguity, already fully specified, no reason to sit on it. |
+| **Should** | Fix `skyview.comp`/`multiscatter.comp` UBO offset bug | Real, pre-existing, bounded two-file fix; needs its own scheduled visual-diff verification, not a fold-in. |
+| **Could** | Fork-V (full Beer-Lambert hit-shading) | Gate already met; open it whenever a session wants that specific polish, not urgent. |
+| **Could** | Fork-III (displaced ocean BLAS) | Gate is lived experience with the water in motion — can't be rushed into being ready. |
+| **Won't (now)** | Fork-IV (DLSS-D bridge) | Dormant by design; correctly untouched unless roughness ever gets added. |
 ---
  
 ## (`6`/`·`/`Current-Position`/`Last-Known-Fix`/`Verify-Before-Trusting`)
