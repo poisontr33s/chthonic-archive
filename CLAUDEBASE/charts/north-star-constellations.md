@@ -144,6 +144,8 @@ So the genuine first decision is not *which star*. It is one question: **(`Pay-F
  
 **(`Adjacent, Not-A-Fork`)** the atmosphere UBO offset bug (`skyview.comp`/`multiscatter.comp` missing the two leading mat4s that `transmittance.comp` correctly reads — see Claude's memory `reference_atmosphere_ubo_offset_bug.md`) has no gate at all. It is simply unscheduled — a small, mechanical, two-file fix with a real visual-diff verification step, sitting in the queue because it was out of scope for the session that found it, not because anything needs to happen first.
  
+**(`Fork-VI`/`Temporal-Resolve-Vendor-Neutrality`)** *Older than Rung 2.5 — the fork map surfaced it, not created it.* §5.4's guardrail reads flat — "DLAA, not upscaling" — but the standing implementation is already two branches, not one: `dlaa_enabled` (Streamline/NVIDIA) with `taa_enabled` as a real, working, vendor-neutral fallback (`renderer.rs`'s TAA resolve path, its own pipeline, no NGX dependency). The guardrail's *wording* reads more cemented to one vendor than the *architecture* actually is — Rung 2.5 itself already leans the honest way here (`VK_KHR_ray_tracing_pipeline` etc., cross-vendor, not `NVX`-anything). **(`Gate`)** an AMD FSR/FidelityFX-class path is ever built out to the same standard TAA already meets — until then this isn't a decision to force, it's a naming correction: the guardrail should say *"DLAA where available, TAA otherwise — never upscaling"*, so the fallback's standing is visible and the vendor question stays a live fork instead of quietly cemented by a guardrail's phrasing. No code change implied by this entry — only that the next time §5.4 is edited, the wording should stop overclaiming.
+ 
 ---
  
 ## (`5`/`·`/`Navigation`/`Run-This-Every-Session`)
