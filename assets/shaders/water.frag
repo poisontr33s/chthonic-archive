@@ -21,10 +21,18 @@ layout(push_constant) uniform PushConstants {
 
 // set=0 is the ocean displacement sampler (water.vert, bindings 0+1).
 // Frame UBO lives at set=1: vertex reads motion matrices, fragment reads SST tint.
-layout(set = 1, binding = 0) uniform FrameData {
+// This buffer is shared with cloud_raymarch.comp/skyview.comp/multiscatter.comp/
+// transmittance.comp, each declaring only the prefix of FrameUniform (renderer.rs) it needs;
+// camera_pos_and_lens_flag was appended at the END of that Rust struct precisely so none of
+// those byte offsets shifted — its true offset (224) is given explicitly here since this
+// block's own declaration skips the atmosphere/weather fields in between.
+layout(set = 1, binding = 0, std140) uniform FrameData {
     mat4 current_motion_view_projection;
     mat4 previous_motion_view_projection;
     vec4 sst_data;  // xyz = SST-adjusted warm tint, w = blend scalar [0..1]
+    // Rung 2.5 (RT reflections): xyz = camera world position, w = 0.0 orthographic
+    // (Isometric) / 1.0 perspective. Not yet read here — consumed by the RT ray-gen shader.
+    layout(offset = 224) vec4 camera_pos_and_lens_flag;
 } u_frame;
 
 layout(location = 3) in vec4 v_clip;       // current clip position
@@ -32,6 +40,10 @@ layout(location = 4) in vec4 v_prev_clip;  // previous-frame clip position
 
 layout(location = 0) out vec4 out_color;
 layout(location = 1) out vec2 out_motion;
+// Rung 2.5 (RT reflections): world-space normal, written only in the ocean-surface branch
+// (mode 1) below. The RT ray-gen pass (Phase 5) uses this to find water pixels and their
+// reflection direction; also the future DLSS-D guide-buffer input (normal/roughness).
+layout(location = 2) out vec4 out_normal_ws;
 
 layout(set = 1, binding = 1) uniform sampler2D u_sky_view_lut;
 layout(set = 1, binding = 2) uniform sampler2D u_cloud_tex;
@@ -90,6 +102,7 @@ void main() {
     vec2 prev_uv = (v_prev_clip.xy / v_prev_clip.w) * 0.5 + 0.5;
     vec2 motion  = prev_uv - curr_uv;
     out_motion = motion;
+    out_normal_ws = vec4(0.0); // overwritten below only for the ocean-surface branch (mode 1)
 
     // Motion-buffer debug view (CHTHONIC_SHOW_MOTION): mid-grey = still, R/G encode motion
     // direction. The gain is large because per-frame wave motion is sub-pixel at this zoom.
@@ -126,6 +139,7 @@ void main() {
         vec3  tint  = mix(vec3(0.08, 0.34, 0.42), u_frame.sst_data.xyz, u_frame.sst_data.w);
         vec3  col   = mix(tint, sky, fres) + vec3(glint);
         out_color   = vec4(col, 0.30); // translucent — lets the seabed turquoise read through
+        out_normal_ws = vec4(N, 1.0);
         return;
     }
 

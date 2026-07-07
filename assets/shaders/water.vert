@@ -25,10 +25,15 @@ layout(push_constant) uniform PushConstants {
 layout(set = 0, binding = 0) uniform sampler2D u_displacement_c0;
 layout(set = 0, binding = 1) uniform sampler2D u_displacement_c1;
 
-layout(set = 1, binding = 0) uniform FrameData {
+// Rung 2.5 (RT reflections): camera_pos_and_lens_flag appended at the END of the Rust
+// FrameUniform (renderer.rs) so shared byte offsets elsewhere (cloud/atmosphere shaders)
+// stay untouched — its true offset (224) is given explicitly since this block skips the
+// atmosphere/weather fields in between. Not yet read here — future RT ray-gen shader.
+layout(set = 1, binding = 0, std140) uniform FrameData {
     mat4 current_motion_view_projection;
     mat4 previous_motion_view_projection;
     vec4 sst_data;
+    layout(offset = 224) vec4 camera_pos_and_lens_flag;
 } u_frame;
 
 // ENU-local metres (must match ocean.rs X_HALF/Z_HALF). Site 2+3 — Ellipsoid retrofit.

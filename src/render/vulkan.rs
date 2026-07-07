@@ -127,12 +127,16 @@ impl VulkanContext {
 
         // Build the shared gpu-allocator. All image/buffer allocations go through this;
         // never call vkAllocateMemory directly after this point.
+        // buffer_device_address: true — Rung 2.5 (RT reflections) BLAS/TLAS/SBT buffers need
+        // VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT; gpu-allocator only chains the required
+        // VkMemoryAllocateFlagsInfo{DEVICE_ADDRESS_BIT} onto its allocations when this is set
+        // at Allocator-creation time. Harmless for existing non-address allocations.
         let allocator = Allocator::new(&AllocatorCreateDesc {
             instance:        instance.clone(),
             device:          device.clone(),
             physical_device,
             debug_settings:  Default::default(),
-            buffer_device_address: false,
+            buffer_device_address: true,
             allocation_sizes: Default::default(),
         }).context("create gpu-allocator")?;
         let allocator = Arc::new(Mutex::new(allocator));
@@ -327,16 +331,42 @@ impl VulkanContext {
                 continue;
             };
 
-            // Check Dynamic Rendering support
+            // Rung 2.5 Phase 0 spike: confirm the unified queue family also exposes COMPUTE,
+            // which vkCmdTraceRaysKHR requires (there is no dedicated RT/compute queue today).
+            let queue_flags = queue_families[queue_family_index as usize].queue_flags;
+            debug!(
+                "   🔎 {device_name} queue[{queue_family_index}] flags: {queue_flags:?} (COMPUTE present: {})",
+                queue_flags.contains(vk::QueueFlags::COMPUTE)
+            );
+
+            // Check Dynamic Rendering support, plus (Rung 2.5 Phase 0 spike) ray tracing
+            // capability — probe-only here, enablement happens in create_logical_device.
             let mut dynamic_rendering_features = vk::PhysicalDeviceDynamicRenderingFeatures::default();
+            let mut accel_struct_features = vk::PhysicalDeviceAccelerationStructureFeaturesKHR::default();
+            let mut rt_pipeline_features = vk::PhysicalDeviceRayTracingPipelineFeaturesKHR::default();
             let mut features2 = vk::PhysicalDeviceFeatures2::default()
-                .push_next(&mut dynamic_rendering_features);
+                .push_next(&mut dynamic_rendering_features)
+                .push_next(&mut accel_struct_features)
+                .push_next(&mut rt_pipeline_features);
             instance.get_physical_device_features2(pdevice, &mut features2);
 
             if dynamic_rendering_features.dynamic_rendering == vk::FALSE {
                 debug!("   ❌ {device_name} - No Dynamic Rendering support");
                 continue;
             }
+
+            let mut rt_pipeline_properties = vk::PhysicalDeviceRayTracingPipelinePropertiesKHR::default();
+            let mut properties2 = vk::PhysicalDeviceProperties2::default()
+                .push_next(&mut rt_pipeline_properties);
+            instance.get_physical_device_properties2(pdevice, &mut properties2);
+
+            info!(
+                "   🔎 {device_name} RT support: acceleration_structure={} ray_tracing_pipeline={} shaderGroupHandleAlignment={} shaderGroupBaseAlignment={}",
+                accel_struct_features.acceleration_structure == vk::TRUE,
+                rt_pipeline_features.ray_tracing_pipeline == vk::TRUE,
+                rt_pipeline_properties.shader_group_handle_alignment,
+                rt_pipeline_properties.shader_group_base_alignment,
+            );
 
             // Calculate score
             let mut score: u64 = 0;
@@ -403,11 +433,16 @@ impl VulkanContext {
         //                          without it NVSDK_NGX_Parameter_SuperSampling_Available = 0.
         // VK_NVX_image_view_handle: companion to binary_import; also queried by the DLSS cubin
         //                           kernel loader (logged as missing but tolerated).
+        // Rung 2.5 (RT reflections): ray_tracing_pipeline depends on deferred_host_operations;
+        // both depend on acceleration_structure. All three confirmed supported (Phase 0 spike).
         let device_extensions = [
             khr::swapchain::NAME.as_ptr(),
             khr::push_descriptor::NAME.as_ptr(),
             ash::nvx::binary_import::NAME.as_ptr(),
             ash::nvx::image_view_handle::NAME.as_ptr(),
+            khr::acceleration_structure::NAME.as_ptr(),
+            khr::ray_tracing_pipeline::NAME.as_ptr(),
+            khr::deferred_host_operations::NAME.as_ptr(),
         ];
 
         // Enable Vulkan 1.2/1.3 features. bufferDeviceAddress is required by Streamline/NGX
@@ -432,10 +467,19 @@ impl VulkanContext {
             .shader_storage_image_read_without_format(true)
             .shader_storage_image_write_without_format(true);
 
+        // Rung 2.5 (RT reflections): acceleration_structure requires bufferDeviceAddress,
+        // already enabled above for Streamline/NGX. Confirmed supported by Phase 0 probe.
+        let mut accel_struct_features = vk::PhysicalDeviceAccelerationStructureFeaturesKHR::default()
+            .acceleration_structure(true);
+        let mut rt_pipeline_features = vk::PhysicalDeviceRayTracingPipelineFeaturesKHR::default()
+            .ray_tracing_pipeline(true);
+
         let mut features2 = vk::PhysicalDeviceFeatures2::default()
             .features(features)
             .push_next(&mut vulkan_12_features)
-            .push_next(&mut vulkan_13_features);
+            .push_next(&mut vulkan_13_features)
+            .push_next(&mut accel_struct_features)
+            .push_next(&mut rt_pipeline_features);
 
         let queue_create_infos = [queue_create_info];
         let device_create_info = vk::DeviceCreateInfo::default()

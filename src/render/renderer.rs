@@ -73,9 +73,15 @@ struct FrameUniform {
     mie_extinction: f32,
     ozone_absorption: [f32; 3],
     mie_g: f32,
-    
+
     // Weather spine for Stage-3-D cloud advection
     weather_data: [f32; 4], // [wind_dir, wind_speed, 0.0, 0.0]
+
+    // Rung 2.5 (RT reflections): eye world position + lens kind, appended at the END of the
+    // struct so the byte offsets every OTHER shader sharing this buffer already relies on
+    // (cloud_raymarch.comp, skyview.comp, multiscatter.comp, transmittance.comp) are untouched.
+    // xyz = camera world position, w = 0.0 orthographic (Isometric) / 1.0 perspective.
+    camera_pos_and_lens_flag: [f32; 4],
 }
 
 /// Main renderer state
@@ -93,6 +99,7 @@ pub struct Renderer {
     pub celestial_vertex_buffer: vk::Buffer,
     pub celestial_vertex_memory: vk::DeviceMemory,
     pub celestial_vertex_count: u32,
+    pub ray_tracing: super::ray_tracing::RayTracing,
     pub ocean_compute: super::ocean_compute::OceanCompute,
     pub atmosphere_compute: super::atmosphere_compute::AtmosphereCompute,
     pub cloud_noise_compute: super::cloud_noise_compute::CloudNoiseCompute,
@@ -103,6 +110,10 @@ pub struct Renderer {
     pub motion_vector_image: vk::Image,
     pub motion_vector_memory: vk::DeviceMemory,
     pub motion_vector_view: vk::ImageView,
+    // Rung 2.5 (RT reflections): world-space normal G-buffer, water.frag ocean-surface branch.
+    pub normal_ws_image: vk::Image,
+    pub normal_ws_memory: vk::DeviceMemory,
+    pub normal_ws_view: vk::ImageView,
     pub offscreen_color_image: vk::Image,
     pub offscreen_color_memory: vk::DeviceMemory,
     pub offscreen_color_view: vk::ImageView,
@@ -342,6 +353,18 @@ impl Renderer {
             ocean_vertices.len() / 3
         );
 
+        // Rung 2.5 (RT reflections) Phase 2: build BLAS (bathymetry + ocean) + TLAS once at
+        // startup. No consumer yet — Phase 3/4/5 add the shaders/pipeline/render-loop wiring.
+        // Correctness here is judged by validation layers reporting zero VUIDs on the builds.
+        let ray_tracing = super::ray_tracing::RayTracing::new(
+            ctx,
+            command_pool,
+            vertex_buffer,
+            u32::try_from(vertices.len()).unwrap(),
+            ocean_vertex_buffer,
+            ocean_vertex_count,
+        )?;
+
         // Initialize isometric camera
         // Looking at origin from isometric angle, 10 units away, ortho size 5
         #[allow(clippy::cast_precision_loss)]
@@ -421,6 +444,8 @@ impl Renderer {
             Self::create_depth_resources(ctx, swapchain.extent)?;
         let (motion_vector_image, motion_vector_memory, motion_vector_view) =
             Self::create_motion_vector_resources(ctx, swapchain.extent)?;
+        let (normal_ws_image, normal_ws_memory, normal_ws_view) =
+            Self::create_normal_ws_resources(ctx, swapchain.extent)?;
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
         let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
@@ -474,6 +499,7 @@ impl Renderer {
             ocean_vertex_buffer,
             ocean_vertex_memory,
             ocean_vertex_count,
+            ray_tracing,
             celestial_vertex_buffer,
             celestial_vertex_memory,
             celestial_vertex_count,
@@ -487,6 +513,9 @@ impl Renderer {
             motion_vector_image,
             motion_vector_memory,
             motion_vector_view,
+            normal_ws_image,
+            normal_ws_memory,
+            normal_ws_view,
             offscreen_color_image,
             offscreen_color_memory,
             offscreen_color_view,
@@ -536,9 +565,11 @@ impl Renderer {
         let buffer_size = u64::try_from(std::mem::size_of_val(vertices)).unwrap();
 
         // Create buffer
+        // TRANSFER_SRC: Rung 2.5 (RT reflections) copies bathymetry/ocean vertex data into
+        // dedicated device-local BLAS-input buffers via vkCmdCopyBuffer (ray_tracing.rs).
         let buffer_info = vk::BufferCreateInfo::default()
             .size(buffer_size)
-            .usage(vk::BufferUsageFlags::VERTEX_BUFFER)
+            .usage(vk::BufferUsageFlags::VERTEX_BUFFER | vk::BufferUsageFlags::TRANSFER_SRC)
             .sharing_mode(vk::SharingMode::EXCLUSIVE);
 
         let buffer = ctx
@@ -1018,6 +1049,68 @@ impl Renderer {
         Ok((image, memory, view))
     }
 
+    /// Rung 2.5 (RT reflections) Phase 3: world-space normal G-buffer target. Written only in
+    /// water.frag's ocean-surface branch (mode 1); read by the RT ray-gen pass (Phase 5) to
+    /// find water pixels and their reflection direction. Same shape as
+    /// `create_motion_vector_resources`, RGBA16F instead of RG16F for float precision on N.xyz.
+    unsafe fn create_normal_ws_resources(
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+    ) -> Result<(vk::Image, vk::DeviceMemory, vk::ImageView)> {
+        let format = vk::Format::R16G16B16A16_SFLOAT;
+        let image_info = vk::ImageCreateInfo::default()
+            .image_type(vk::ImageType::TYPE_2D)
+            .format(format)
+            .extent(vk::Extent3D {
+                width: extent.width,
+                height: extent.height,
+                depth: 1,
+            })
+            .mip_levels(1)
+            .array_layers(1)
+            .samples(vk::SampleCountFlags::TYPE_1)
+            .tiling(vk::ImageTiling::OPTIMAL)
+            .usage(vk::ImageUsageFlags::COLOR_ATTACHMENT | vk::ImageUsageFlags::SAMPLED)
+            .sharing_mode(vk::SharingMode::EXCLUSIVE)
+            .initial_layout(vk::ImageLayout::UNDEFINED);
+        let image = ctx
+            .device
+            .create_image(&image_info, None)
+            .context("create normal-ws image")?;
+
+        let mem_req = ctx.device.get_image_memory_requirements(image);
+        let mem_type = Self::find_memory_type(
+            ctx,
+            mem_req.memory_type_bits,
+            vk::MemoryPropertyFlags::DEVICE_LOCAL,
+        )?;
+        let alloc_info = vk::MemoryAllocateInfo::default()
+            .allocation_size(mem_req.size)
+            .memory_type_index(mem_type);
+        let memory = ctx
+            .device
+            .allocate_memory(&alloc_info, None)
+            .context("alloc normal-ws memory")?;
+        ctx.device.bind_image_memory(image, memory, 0)?;
+
+        let view_info = vk::ImageViewCreateInfo::default()
+            .image(image)
+            .view_type(vk::ImageViewType::TYPE_2D)
+            .format(format)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+        let view = ctx
+            .device
+            .create_image_view(&view_info, None)
+            .context("create normal-ws view")?;
+        Ok((image, memory, view))
+    }
+
     /// Create the offscreen scene-colour target (TAA Gate 1). The scene renders here instead of
     /// straight to the swapchain; for now it is copied verbatim to the swapchain before present, so
     /// there is no visual change. Same format as the swapchain so the copy needs no conversion;
@@ -1296,6 +1389,7 @@ impl Renderer {
             ozone_absorption: [0.00065, 0.001881, 0.000085],
             mie_g: 0.8,
             weather_data: [90.0, 3.8, 0.0, 0.0],
+            camera_pos_and_lens_flag: [0.0, 0.0, 0.0, 0.0],
         };
         Self::write_frame_ubo(&ctx.device, memory, &initial)?;
 
@@ -1822,6 +1916,15 @@ impl Renderer {
             jd,
         );
         let sun_direction = [sun_push[0], sun_push[1], sun_push[2]];
+        // Rung 2.5 (RT reflections): also needed by the future ray-gen shader's per-pixel
+        // ray origin. Isometric is orthographic (parallel rays, w=0.0); Perspective has true
+        // divergent per-pixel rays (w=1.0).
+        let cam_pos = lens_view.inverse().w_axis.truncate().to_array();
+        let lens_flag = if matches!(self.lens, super::lens::Lens::Perspective) {
+            1.0
+        } else {
+            0.0
+        };
         let frame_uniform = FrameUniform {
             current_motion_view_projection: temporal_frame
                 .current_view_projection
@@ -1839,6 +1942,7 @@ impl Renderer {
             ozone_absorption: [0.00065, 0.001881, 0.000085],
             mie_g: 0.8,
             weather_data: [weather_state.wind_dir, weather_state.wind_speed, 0.0, 0.0],
+            camera_pos_and_lens_flag: [cam_pos[0], cam_pos[1], cam_pos[2], lens_flag],
         };
         Self::write_frame_ubo(&ctx.device, self.sst_ubo_memory, &frame_uniform)?;
 
@@ -1846,7 +1950,6 @@ impl Renderer {
         ctx.device.cmd_write_timestamp2(cmd, vk::PipelineStageFlags2::COMPUTE_SHADER, pool, 2);
         {
             let inv_vp = temporal_frame.current_view_projection.inverse();
-            let cam_pos = lens_view.inverse().w_axis.truncate().to_array();
             self.cloud_raymarch_compute.dispatch(
                 &ctx.device,
                 cmd,
@@ -1912,10 +2015,27 @@ impl Renderer {
                 layer_count: 1,
             });
 
+        let normal_ws_barrier_to_render = vk::ImageMemoryBarrier2::default()
+            .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+            .src_access_mask(vk::AccessFlags2::empty())
+            .dst_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+            .dst_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+            .old_layout(vk::ImageLayout::UNDEFINED)
+            .new_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+            .image(self.normal_ws_image)
+            .subresource_range(vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::COLOR,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            });
+
         let barriers_to_render = [
             image_barrier_to_render,
             depth_barrier_to_render,
             motion_barrier_to_render,
+            normal_ws_barrier_to_render,
         ];
         let dependency_info_to_render =
             vk::DependencyInfo::default().image_memory_barriers(&barriers_to_render);
@@ -1949,7 +2069,19 @@ impl Renderer {
             .store_op(vk::AttachmentStoreOp::STORE)
             .clear_value(motion_clear);
 
-        let color_attachments = [color_attachment, motion_attachment];
+        let normal_ws_clear = vk::ClearValue {
+            color: vk::ClearColorValue {
+                float32: [0.0, 0.0, 0.0, 0.0],
+            },
+        };
+        let normal_ws_attachment = vk::RenderingAttachmentInfo::default()
+            .image_view(self.normal_ws_view)
+            .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+            .load_op(vk::AttachmentLoadOp::CLEAR)
+            .store_op(vk::AttachmentStoreOp::STORE)
+            .clear_value(normal_ws_clear);
+
+        let color_attachments = [color_attachment, motion_attachment, normal_ws_attachment];
 
         let depth_clear = vk::ClearValue {
             depth_stencil: vk::ClearDepthStencilValue {
@@ -2711,6 +2843,9 @@ impl Renderer {
         ctx.device.destroy_image_view(self.motion_vector_view, None);
         ctx.device.destroy_image(self.motion_vector_image, None);
         ctx.device.free_memory(self.motion_vector_memory, None);
+        ctx.device.destroy_image_view(self.normal_ws_view, None);
+        ctx.device.destroy_image(self.normal_ws_image, None);
+        ctx.device.free_memory(self.normal_ws_memory, None);
         ctx.device
             .destroy_image_view(self.offscreen_color_view, None);
         ctx.device.destroy_image(self.offscreen_color_image, None);
@@ -2737,6 +2872,11 @@ impl Renderer {
         self.motion_vector_image = motion_vector_image;
         self.motion_vector_memory = motion_vector_memory;
         self.motion_vector_view = motion_vector_view;
+        let (normal_ws_image, normal_ws_memory, normal_ws_view) =
+            Self::create_normal_ws_resources(ctx, self.swapchain.extent)?;
+        self.normal_ws_image = normal_ws_image;
+        self.normal_ws_memory = normal_ws_memory;
+        self.normal_ws_view = normal_ws_view;
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(
                 ctx,

@@ -266,7 +266,19 @@ impl VulkanPipeline {
             .color_write_mask(vk::ColorComponentFlags::R | vk::ColorComponentFlags::G)
             .blend_enable(false);
 
-        let color_blend_attachments = [color_blend_attachment, motion_blend_attachment];
+        // Color blend attachment 2 (Rung 2.5: world-space normal, RGBA16F). Written only in
+        // the ocean-surface branch of water.frag; the RT ray-gen pass (Phase 3+) reads it to
+        // know which pixels are water and which direction to reflect. Doubles as the future
+        // DLSS-D guide-buffer input (normal/roughness) once that bridge lands.
+        let normal_ws_blend_attachment = vk::PipelineColorBlendAttachmentState::default()
+            .color_write_mask(vk::ColorComponentFlags::RGBA)
+            .blend_enable(false);
+
+        let color_blend_attachments = [
+            color_blend_attachment,
+            motion_blend_attachment,
+            normal_ws_blend_attachment,
+        ];
         let color_blend_state = vk::PipelineColorBlendStateCreateInfo::default()
             .logic_op_enable(false)
             .attachments(&color_blend_attachments);
@@ -304,7 +316,11 @@ impl VulkanPipeline {
 
         // === DYNAMIC RENDERING (Vulkan 1.3) ===
         // No VkRenderPass! Use VkPipelineRenderingCreateInfo instead
-        let color_formats = [color_format, vk::Format::R16G16_SFLOAT];
+        let color_formats = [
+            color_format,
+            vk::Format::R16G16_SFLOAT,
+            vk::Format::R16G16B16A16_SFLOAT,
+        ];
         let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
             .color_attachment_formats(&color_formats)
             .depth_attachment_format(vk::Format::D32_SFLOAT);

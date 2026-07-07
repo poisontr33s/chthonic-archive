@@ -44,6 +44,7 @@ pub mod cloud_noise_compute;
 pub mod cloud_raymarch_compute;
 pub mod weather;
 pub mod geodesy;
+pub mod ray_tracing;
 
 pub use vulkan::VulkanContext;
 pub use renderer::Renderer;
