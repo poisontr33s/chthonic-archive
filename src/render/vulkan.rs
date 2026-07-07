@@ -447,8 +447,12 @@ impl VulkanContext {
 
         // Enable Vulkan 1.2/1.3 features. bufferDeviceAddress is required by Streamline/NGX
         // internal allocations when DLAA is active.
+        // Rung 2.5 (RT reflections): scalarBlockLayout lets water_reflection.rchit's
+        // buffer_reference Vertex struct pack tightly (36-byte stride, matching the Rust
+        // #[repr(C)] layout exactly) instead of std430's vec3-padded-to-16-bytes layout.
         let mut vulkan_12_features = vk::PhysicalDeviceVulkan12Features::default()
-            .buffer_device_address(true);
+            .buffer_device_address(true)
+            .scalar_block_layout(true);
 
         // Enable Vulkan 1.3 features (includes Dynamic Rendering - no need for separate feature struct)
         // Note: VkPhysicalDeviceVulkan13Features already contains dynamic_rendering and synchronization2
@@ -460,12 +464,15 @@ impl VulkanContext {
             .private_data(true);
 
         // Base features
+        // shaderInt64: Rung 2.5 (RT reflections) — water_reflection.rchit's buffer_reference
+        // addresses are uint64_t (GL_EXT_shader_explicit_arithmetic_types_int64).
         let features = vk::PhysicalDeviceFeatures::default()
             .sampler_anisotropy(true)
             .independent_blend(true)
             .shader_storage_image_extended_formats(true)
             .shader_storage_image_read_without_format(true)
-            .shader_storage_image_write_without_format(true);
+            .shader_storage_image_write_without_format(true)
+            .shader_int64(true);
 
         // Rung 2.5 (RT reflections): acceleration_structure requires bufferDeviceAddress,
         // already enabled above for Streamline/NGX. Confirmed supported by Phase 0 probe.

@@ -354,9 +354,10 @@ impl Renderer {
         );
 
         // Rung 2.5 (RT reflections) Phase 2: build BLAS (bathymetry + ocean) + TLAS once at
-        // startup. No consumer yet — Phase 3/4/5 add the shaders/pipeline/render-loop wiring.
+        // startup. Phase 4 (pipeline + SBT) is wired in below, once normal_ws/depth views and
+        // the shared frame-UBO descriptor set exist. No render-loop dispatch yet (Phase 5).
         // Correctness here is judged by validation layers reporting zero VUIDs on the builds.
-        let ray_tracing = super::ray_tracing::RayTracing::new(
+        let mut ray_tracing = super::ray_tracing::RayTracing::new(
             ctx,
             command_pool,
             vertex_buffer,
@@ -446,6 +447,19 @@ impl Renderer {
             Self::create_motion_vector_resources(ctx, swapchain.extent)?;
         let (normal_ws_image, normal_ws_memory, normal_ws_view) =
             Self::create_normal_ws_resources(ctx, swapchain.extent)?;
+
+        // Rung 2.5 (RT reflections) Phase 4: pipeline object + SBT, now that normal_ws/depth
+        // views and the shared frame-UBO descriptor set (set=1, reused verbatim) all exist.
+        // Still no render-loop dispatch (Phase 5) — this only proves construction succeeds.
+        ray_tracing.build_pipeline(
+            ctx,
+            swapchain.extent,
+            normal_ws_view,
+            depth_view,
+            sst_desc_set_layout,
+            sst_desc_set,
+        )?;
+
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
         let (history_color_images, history_color_allocs, history_color_views, history_sampler) =
@@ -1282,17 +1296,27 @@ impl Renderer {
         vk::DeviceMemory,
         [f32; 4],
     )> {
+        // Rung 2.5 (RT reflections): RAYGEN_KHR/MISS_KHR/CLOSEST_HIT_KHR added to bindings 0/1
+        // so the RT pipeline (ray_tracing.rs build_pipeline) can reuse this exact descriptor
+        // set layout for its set=1 instead of duplicating a second FrameData/sky-LUT set.
         let bindings = [
             vk::DescriptorSetLayoutBinding::default()
                 .binding(0)
                 .descriptor_type(vk::DescriptorType::UNIFORM_BUFFER)
                 .descriptor_count(1)
-                .stage_flags(vk::ShaderStageFlags::VERTEX | vk::ShaderStageFlags::FRAGMENT | vk::ShaderStageFlags::COMPUTE),
+                .stage_flags(
+                    vk::ShaderStageFlags::VERTEX
+                        | vk::ShaderStageFlags::FRAGMENT
+                        | vk::ShaderStageFlags::COMPUTE
+                        | vk::ShaderStageFlags::RAYGEN_KHR
+                        | vk::ShaderStageFlags::MISS_KHR
+                        | vk::ShaderStageFlags::CLOSEST_HIT_KHR,
+                ),
             vk::DescriptorSetLayoutBinding::default()
                 .binding(1)
                 .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
                 .descriptor_count(1)
-                .stage_flags(vk::ShaderStageFlags::FRAGMENT),
+                .stage_flags(vk::ShaderStageFlags::FRAGMENT | vk::ShaderStageFlags::MISS_KHR),
             // binding 2: cloud raymarch output (written after CloudRaymarchCompute::new)
             vk::DescriptorSetLayoutBinding::default()
                 .binding(2)
