@@ -84,5 +84,26 @@ void main() {
     }
 
     ivec2 out_coord = (pc.axis == 0u) ? ivec2(i, j) : ivec2(j, i);
+
+    // Zero-frequency-shift correction (checkerboard artifact fix, 2026-07-06).
+    // The Tessendorf/DFT formula sums frequencies over the symmetric range
+    // -N/2..N/2-1, but this butterfly runs forward-indexed (0..N-1). The
+    // spatial-domain result of a forward-indexed IFFT carries an implicit
+    // (-1)^(x+z) checkerboard modulation relative to the symmetric-index
+    // result the shading math assumes — exactly the period-2 checker/diamond
+    // pattern seen in render-smoke screenshots, independent of ocean.rs's LOD
+    // geometry (confirmed: identical artifact with clipmap_grid(1, 32), i.e.
+    // zero ring boundaries). Every standard FFT-ocean reference (Tessendorf's
+    // own paper, GPU Gems 2 ch.18, Lantz's ocean-simulation series) applies
+    // this multiply once, on the final spatial-domain image — here, that's
+    // the last dispatch: the last vertical-axis stage.
+    bool is_final_pass = (pc.axis == 1u)
+        && (pc.stage == uint(round(log2(float(pc.resolution)))) - 1u);
+    if (is_final_pass) {
+        float sign = 1.0 - 2.0 * mod(float(out_coord.x + out_coord.y), 2.0);
+        out_xy *= sign;
+        out_zw *= sign;
+    }
+
     imageStore(u_dst, out_coord, vec4(out_xy, out_zw));
 }

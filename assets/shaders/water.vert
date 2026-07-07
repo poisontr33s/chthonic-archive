@@ -36,6 +36,13 @@ layout(set = 1, binding = 0) uniform FrameData {
 const float X_HALF = 200000.0; // 200 km East half-extent
 const float Z_HALF = 200000.0; // 200 km North half-extent
 
+// Cascade patch sizes (must match ocean_compute.rs DEFAULT_CASCADES): the small
+// FFT tile each cascade simulates should REPEAT every patch_size metres across
+// the world, not stretch once across the full 200km domain (checkerboard
+// artifact fix, 2026-07-06 — see uv_c0/uv_c1 below).
+const float PATCH_C0 = 5.0;  // ripple/chop
+const float PATCH_C1 = 60.0; // swell
+
 layout(location = 0) out vec3 v_world_pos;
 layout(location = 1) out vec3 v_normal;
 layout(location = 2) out vec3 v_floor_albedo;
@@ -48,31 +55,36 @@ void main() {
     vec3 prev_pos = in_position;
 
     if (pc.params.y > 0.5 && pc.params.y < 1.5) {
-        // Map vertex XZ → [0,1] UV over the surface grid domain.
-        // Clamp 1.5 texels inward from each edge so the finite-difference normal never
-        // samples across the displacement image border (prevents boundary spires).
-        const float MARGIN = 1.5 / 256.0;
-        vec2 uv = clamp(
-            (in_position.xz / vec2(X_HALF, Z_HALF)) * 0.5 + 0.5,
-            vec2(MARGIN), vec2(1.0 - MARGIN)
-        );
+        // Per-cascade tiling UV: the sampler is REPEAT-wrapped (ocean_compute.rs),
+        // so dividing world position by each cascade's OWN patch_size (not the
+        // 200km world half-extent) makes the small FFT tile repeat across the
+        // world at its intended physical scale, instead of one texture stretched
+        // once over the whole domain — that stretch was the checkerboard
+        // artifact: with no tiling, the raw 256x256 texture's own low-frequency
+        // structure was directly visible, magnified ~40,000x for C0 alone.
+        // No border margin/clamp needed — REPEAT wrap handles the seam.
+        vec2 uv_c0 = in_position.xz / PATCH_C0;
+        vec2 uv_c1 = in_position.xz / PATCH_C1;
 
         // Sum displacement from both cascades.
-        vec3 disp = texture(u_displacement_c0, uv).xyz
-                  + texture(u_displacement_c1, uv).xyz;
+        vec3 disp = texture(u_displacement_c0, uv_c0).xyz
+                  + texture(u_displacement_c1, uv_c1).xyz;
 
         pos = in_position + disp;
 
         // Finite-difference normal — sum height gradients from both cascades.
+        // texel is the same 1/256 step in EACH cascade's own uv space (uv_cN is
+        // already scaled by 1/patch_size, so one texel there is patch_size/256
+        // world metres regardless of which cascade).
         float texel = 1.0 / 256.0;
-        float dx = (texture(u_displacement_c0, uv + vec2(texel, 0.0)).y
-                  + texture(u_displacement_c1, uv + vec2(texel, 0.0)).y)
-                 - (texture(u_displacement_c0, uv - vec2(texel, 0.0)).y
-                  + texture(u_displacement_c1, uv - vec2(texel, 0.0)).y);
-        float dz = (texture(u_displacement_c0, uv + vec2(0.0, texel)).y
-                  + texture(u_displacement_c1, uv + vec2(0.0, texel)).y)
-                 - (texture(u_displacement_c0, uv - vec2(0.0, texel)).y
-                  + texture(u_displacement_c1, uv - vec2(0.0, texel)).y);
+        float dx = (texture(u_displacement_c0, uv_c0 + vec2(texel, 0.0)).y
+                  + texture(u_displacement_c1, uv_c1 + vec2(texel, 0.0)).y)
+                 - (texture(u_displacement_c0, uv_c0 - vec2(texel, 0.0)).y
+                  + texture(u_displacement_c1, uv_c1 - vec2(texel, 0.0)).y);
+        float dz = (texture(u_displacement_c0, uv_c0 + vec2(0.0, texel)).y
+                  + texture(u_displacement_c1, uv_c1 + vec2(0.0, texel)).y)
+                 - (texture(u_displacement_c0, uv_c0 - vec2(0.0, texel)).y
+                  + texture(u_displacement_c1, uv_c1 - vec2(0.0, texel)).y);
         nrm = normalize(vec3(-dx, 2.0 * texel, -dz));
 
         // Previous-frame position: sample the same field with time-offset params.
