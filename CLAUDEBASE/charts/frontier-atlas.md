@@ -6,6 +6,27 @@ Categories are ordered by what a session should reach for first, not by project 
 
 ---
 
+## Level map — clusters and nearest neighbors
+
+The categorical sections below (0-5) are the surface. This is the foundation underneath: which projects actually sit near each other, by shared file, shared substrate, or shared method — not by shared vibe. Built from what already existed across memory + the north-star chart, not invented fresh.
+
+**Level 0 — the thread.** Not a project; the law running through all of them, named explicitly in `[[project_aca_engine_philosophy]]`: *is it forced by a substrate you can check, or a free parameter wearing the costume of truth?* Same law shows up as "standard-as-floor, distinctive-as-layer" in the renderer's guardrails, as "surface=creative/substrate=verifiable" in the CLAUDEBASE frontmatter standard, and as the rewindability discipline in the DSL nightly. Three domains, one law — this is the thing that makes the clusters below legible as one map instead of five unrelated lists.
+
+**Level 1 — clusters, by nearest neighbor:**
+
+| Cluster | Members | Shared substrate | Nearest other cluster |
+|---|---|---|---|
+| **Renderer/Vulkan core** | Rung 2.5 RT reflections, atmosphere UBO/ray-sphere bug, A-C-A live correspondence, North Star checkpoint, Fork-III ocean BLAS | `renderer.rs`, plus this session's own method (numeric/instrumented verification over eyeballing a screenshot) | DSL (shares the rewindability/cessation discipline — the A-C-A nightly cited the DSL nightly's L45 fork by name) |
+| **GPU/ML compute** | FLUX C++ TRT pivot, FLUX modernization plan, FLUX sysmem fallback, NVIDIA stack inventory, TRT cp314 gap, chthonic-hw-mcp-server, tabby-modern G10 | CUDA/TensorRT/driver stack, cross-checked via `hw_inspect`/`hw_drift_check` | Toolchain/environment (version-manager discipline is the same shape, GPU driver vs. language runtime) |
+| **DSL/text-substrate** | DSL substrate methodology, DSL iteration rewindability, lore-canon directory structure, CI lore-canon membrane stack | `tools/dsl-smoke`, `.chthonic/grammar/chthonic.peg`, `.chthonic/SSOT.md` | Renderer/Vulkan (shared method, not shared file) |
+| **Data-archaeology** | Zombie evolution, corpus boomerang/gitological lenses, session-vampire/session-corpus tooling | `dumpster-dive/`, `corpus.sqlite` | DSL (both are text/corpus processing, but different intake — SSOT.md specifically vs. broad dumpster intake) |
+| **Toolchain/environment** | Ruby 4.0.5, R lang, VS 2026 variants, Mise slab, Rust toolchain modernization | polyglot version-manager convention (`uv`/`rv`/`goup`/`rig`/`rustup`) | GPU/ML (NVIDIA stack inventory sits on both sides) |
+| **Governance/hygiene** | PKFH Sentry incident (closed), CI autofix gate architecture, SID/envelope standards | repo-wide CI, not a "frontier" so much as the floor everything else stands on | touches all clusters peripherally, isn't itself one |
+
+**What this actually buys you, now that it exists:** picking a session's work by *cluster* rather than by single project means the verification method, the file layout, and the open forks from the last thing done in that cluster are still warm — tonight's A-C-A work reused the DSL nightly's exact discipline because they're nearest neighbors, not because I went looking for a precedent. Next time you're choosing what's next, "what cluster am I already warm in" is a cheap, real signal — cheaper than re-deriving from the categorical list alone.
+
+---
+
 ## 0. ~~Needs YOUR action~~ — closed 2026-07-07
 
 **PKFH Sentry token — was a dummy, confirmed by the user.** Struck from the board same session this atlas was built. Git history is still scrubbed clean across all 7 branches (2026-07-06, hygiene reasons, LFS-aware secret-removal technique worth keeping), but there was never a live credential to revoke. Ref: `[[project_pkfh_sentry_token_incident]]`.
