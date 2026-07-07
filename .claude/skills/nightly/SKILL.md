@@ -1,0 +1,62 @@
+---
+name: nightly
+description: "Autonomous continuation while the user is away (asleep, out) — picks one bounded task from the frontier atlas's warmest cluster, follows rewindability/cessation discipline, verifies before committing, writes a structured landing doc to claude/mailbox/. Formalizes a pattern proven twice, not invented fresh: SESSION_2026_05_27_DSL_AUTONOMOUS_NIGHT.md and SESSION_2026_07_07_ACA_AUTONOMOUS_NIGHT.md."
+allowed-tools: "Read, Grep, Glob, Bash, Edit, Write"
+user-invocable: true
+---
+
+# /nightly — autonomous continuation
+
+Two nightlies happened before this skill existed, hand-run from precedent: `claude/mailbox/SESSION_2026_05_27_DSL_AUTONOMOUS_NIGHT.md` and `claude/mailbox/SESSION_2026_07_07_ACA_AUTONOMOUS_NIGHT.md`. This skill generalizes what both actually did, not what a nightly *should* do in the abstract. Read both before the first real invocation if their shape isn't already warm in context.
+
+## When to use
+
+The user is stepping away for a real stretch (sleep, out) and wants bounded, verified progress rather than nothing happening. Not a replacement for asking — it exists because the user explicitly asked for it each time so far. Treat an unprompted `/nightly` invocation the same as an explicit ask, not as standing permission to run it whenever convenient.
+
+## 1. Scope selection
+
+Optional argument names a topic or cluster directly (`/nightly aca-engine`, `/nightly dsl`) — both real invocations so far worked this way, the user named the topic. With no argument: read `CLAUDEBASE/charts/frontier-atlas.md`'s Level map section and its §1 ("ready to alchemize now") first. Pick the item that is BOTH gate-met (§1, not §2/§3) AND in a cluster with a recent nearby landing doc — "what cluster am I already warm in" is the atlas's own stated purpose for this. Do not pick from §2 (externally blocked) or §3 (needs foundational work) without the user having named it directly — those are explicitly not nightly-sized.
+
+**Before acting on anything the atlas or memory claims**: verify it against the current code. Both real nightlies found the philosophy/planning memory didn't fully match what the code actually did (the DSL nightly found a hidden grammar shadow the "6/6 clean" baseline had missed; the A-C-A nightly found the whole correspondence engine was write-only despite the philosophy memory describing it as complete). Reading the live code before writing anything is not optional scaffolding, it is where both real findings came from.
+
+## 2. The discipline (non-negotiable, not a style choice)
+
+- **Build meta-tooling/baseline before changing behavior**, when a baseline doesn't already exist. The DSL nightly built the coverage tool before touching the grammar; the A-C-A nightly wrote a numeric probe pattern (see this session's atmosphere-shader debugging) before editing shaders.
+- **Never decide a genuine architectural fork alone.** If a change has more than one reasonable shape and picking wrong is expensive or hard to reverse, implement the safe/minimal version, and name the fork explicitly in the landing doc's "recommended next moves" table instead of picking for the user. Both real nightlies did this (DSL's L45 substrate-marker question; A-C-A's per-frame-recompute question) — neither was resolved unilaterally.
+- **No invented content in the user's own creative/authorship domains** (lore meanings, SSOT.md prose, character/world content). Verifiable, forced-by-substrate work only, unless the user has explicitly opened that domain for this invocation.
+- **One well-verified thing beats several padded ones.** Don't stretch scope to look more productive — both landing docs said this explicitly in their tone notes, and it's worth restating here so a future invocation doesn't drift.
+
+## 3. Verification gate — must pass before any commit
+
+- `cargo build` (or the project's equivalent) clean.
+- Relevant test suite green — run the narrowest scope that actually covers the change, then confirm nothing wider broke.
+- If the change touches anything with a visual/behavioral smoke test (this repo: `scripts/render-smoke.ps1`), run it and check BOTH that it still passes AND that the diff (screenshot bytes, log content) matches what the change should and shouldn't have touched. A byte-identical screenshot alongside a changed log line is a real proof of isolation, not a formality — this is exactly how the A-C-A nightly confirmed its fix reached only the intended surface.
+- Do not commit on a failing or unverified gate. Revert cleanly (matching this session's atmosphere-shader revert-and-rescope discipline) rather than leaving a half-working change in the tree.
+
+## 4. The landing doc
+
+Write to `claude/mailbox/SESSION_<YYYY_MM_DD>_<TOPIC>_AUTONOMOUS_NIGHT.md`, frontmatter:
+
+```yaml
+---
+type: session-handoff
+session: <this session's id>
+date: <YYYY-MM-DD>
+author: claude
+lane: <short-topic-slug>
+context: autonomous continuation while user slept
+---
+```
+
+Body sections, in this order, matching both precedents: what was found (including anything memory/planning claimed that the live code didn't back up), what landed (files + why, not a diff dump), the architectural fork(s) named but not decided, a "recommended next moves" table, a short tone note (honest about what was and wasn't done, no padding), and a plain sign-off.
+
+## 5. Commit
+
+Both real nightlies committed autonomously, including through this repo's auto-push-on-commit hook. That's the default here too — but it is a default, not a law: if the verification gate didn't fully pass, or the change touches something the discipline in §2 says name-don't-decide, stop short of committing and say so in the landing doc instead.
+
+## What this skill deliberately does not do
+
+- Does not pick §2/§3 atlas items (externally blocked, or genuinely foundational) without the user naming them directly.
+- Does not spawn subagents by default — both real nightlies were single-threaded, direct execution; that kept the landing doc's account of "what I did" exhaustive and trustworthy. Only reach for the Agent/Workflow tools if the scope genuinely needs them and that's stated in the landing doc.
+- Does not have a Codex-lane counterpart yet (`.codex/skills/` parity is unclaimed for this skill as of 2026-07-07) — flag this if cross-lane parity ever matters here, don't silently assume one exists.
+- Does not resolve, by itself: what triggers scope selection when the atlas is stale, how rigid the "when to stop" judgment call should be, or whether landing-doc frontmatter should be schema-validated. These are named in memory (`project_nightly_skill_idea`) as open design questions, not decided by writing this file.
