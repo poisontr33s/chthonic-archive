@@ -449,7 +449,9 @@ impl Renderer {
             Self::create_normal_ws_resources(ctx, swapchain.extent)?;
 
         // Rung 2.5 (RT reflections) Phase 4: pipeline object + SBT, now that normal_ws/depth
-        // views and the shared frame-UBO descriptor set (set=1, reused verbatim) all exist.
+        // views and the shared frame-UBO descriptor set LAYOUT (set=1, reused verbatim) exist.
+        // Only the layout is needed here (for the pipeline layout); the actual descriptor set
+        // (sst_desc_set) is bound directly from Renderer's own field per-frame in Phase 5.
         // Still no render-loop dispatch (Phase 5) — this only proves construction succeeds.
         ray_tracing.build_pipeline(
             ctx,
@@ -457,7 +459,6 @@ impl Renderer {
             normal_ws_view,
             depth_view,
             sst_desc_set_layout,
-            sst_desc_set,
         )?;
 
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
@@ -2901,6 +2902,13 @@ impl Renderer {
         self.normal_ws_image = normal_ws_image;
         self.normal_ws_memory = normal_ws_memory;
         self.normal_ws_view = normal_ws_view;
+
+        // Rung 2.5 (RT reflections): rebuild set0's normal_ws/depth/output-image bindings at
+        // the new extent — without this, set0 would reference the just-destroyed old views
+        // (independent review, 2026-07-07: confirmed this is invalid descriptor usage the
+        // moment Phase 5 dispatches, not merely a stale image).
+        self.ray_tracing
+            .resize(ctx, self.swapchain.extent, normal_ws_view, depth_view)?;
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(
                 ctx,

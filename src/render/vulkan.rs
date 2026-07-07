@@ -435,6 +435,9 @@ impl VulkanContext {
         //                           kernel loader (logged as missing but tolerated).
         // Rung 2.5 (RT reflections): ray_tracing_pipeline depends on deferred_host_operations;
         // both depend on acceleration_structure. All three confirmed supported (Phase 0 spike).
+        // Enabled unconditionally (no capability gate before device creation) — a non-RT GPU
+        // now fails create_device entirely. Moot in practice (the NVX extensions above already
+        // made this engine NVIDIA-only), but noted since it's a new hard floor, not a soft one.
         let device_extensions = [
             khr::swapchain::NAME.as_ptr(),
             khr::push_descriptor::NAME.as_ptr(),

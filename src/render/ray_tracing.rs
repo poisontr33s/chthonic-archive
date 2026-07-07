@@ -1,18 +1,30 @@
-//! Rung 2.5 — hardware ray-traced water reflections. Phase 2: acceleration structures only.
+//! Rung 2.5 — hardware ray-traced water reflections.
 //!
-//! Two BLAS built once at startup from the CPU-side vertex buffers as they exist today:
-//! the bathymetry mesh (genuinely static) and the ocean mesh (flat rest-state — all
-//! Tessendorf wave displacement happens GPU-side in water.vert, never touching the CPU
-//! vertex buffer). This trades wave-crest ripple accuracy in reflections for a much
-//! simpler first cut; a displaced-BLAS upgrade is a deliberately deferred follow-up.
+//! `new` (Phase 2): two BLAS built once at startup from the CPU-side vertex buffers as they
+//! exist today — the bathymetry mesh (genuinely static) and the ocean mesh (flat rest-state —
+//! all Tessendorf wave displacement happens GPU-side in water.vert, never touching the CPU
+//! vertex buffer). This trades wave-crest ripple accuracy in reflections for a much simpler
+//! first cut; a displaced-BLAS upgrade is a deliberately deferred follow-up. One TLAS with two
+//! identity-transform instances, architected to rebuild every frame from the start even though
+//! the flat-mesh approximation doesn't strictly require it yet — this keeps the future
+//! displaced-BLAS upgrade to a localized change (swap which BLAS handle the ocean instance
+//! points at) instead of a second architecture change.
 //!
-//! One TLAS with two identity-transform instances, architected to rebuild every frame
-//! from the start even though the flat-mesh approximation doesn't strictly require it yet —
-//! this keeps the future displaced-BLAS upgrade to a localized change (swap which BLAS
-//! handle the ocean instance points at) instead of a second architecture change.
+//! `build_pipeline` (Phase 4): the RT pipeline object (rgen/rmiss/rchit groups) and its shader
+//! binding table, reusing the water raster pass's own frame-UBO descriptor set layout for
+//! set=1 instead of duplicating a second copy of it.
 //!
-//! No consumer yet (Phase 3/4 add the shaders and pipeline that trace against this TLAS).
-//! Correctness here is judged by validation layers reporting zero VUIDs on the AS builds.
+//! No render-loop dispatch yet — Phase 5 (renderer.rs) wires `cmd_trace_rays` plus a hit/miss
+//! composite pass into the per-frame command buffer. That is the first phase that can change
+//! a rendered pixel; everything through Phase 4 is verified via validation layers reporting
+//! zero VUIDs on construction, with a byte-identical render throughout.
+//!
+//! Known gap, not yet handled: window resize. `handle_resize` (renderer.rs) recreates
+//! normal_ws_view/depth_view at the new extent but does not currently call anything in this
+//! module to rebuild `set0` (which still points at the old, now-destroyed views) or resize
+//! `output_image` (still sized for the old extent). This doesn't crash today because Phase 5
+//! doesn't dispatch yet; it must be fixed (rewrite set0's bindings 1-3 + reallocate
+//! output_image at the new extent) before Phase 5 can be considered resize-safe.
 
 //! @SID:    RENDER_RAY_TRACING_V1
 //! @Shabti: Ray-Tracing
@@ -38,12 +50,13 @@ struct Blas {
     backing: RtBuffer,
 }
 
-/// Rung 2.5 acceleration-structure state. Owns the BLAS/TLAS backing buffers and the
-/// acceleration_structure device loader; the ray_tracing_pipeline loader is added in Phase 4.
-#[allow(dead_code)] // blas_*/tlas_backing/tlas_instance_buffer consumed once Phase 4/5 land
+/// Rung 2.5 acceleration-structure + pipeline state (Phases 2 and 4). `blas_bathymetry`/
+/// `blas_ocean`/`tlas_backing`/`tlas_instance_buffer` are held only to keep their GPU objects
+/// alive for the TLAS's lifetime — never read again after construction until Phase 5 rebuilds
+/// the TLAS per frame, hence the blanket allow below.
+#[allow(dead_code)]
 pub struct RayTracing {
     pub accel_loader: khr::acceleration_structure::Device,
-    #[allow(dead_code)] // consumed once Phase 4/5 bind the TLAS into the RT pipeline descriptor set
     pub tlas: vk::AccelerationStructureKHR,
     blas_bathymetry: Blas,
     blas_ocean: Blas,
@@ -178,9 +191,28 @@ impl RayTracing {
         // to corrupt later allocations in this same Renderer::new — the offscreen/history/
         // depth images created after this point came back as full-frame noise (verified via
         // render-smoke.ps1 screenshot: 145KB clean bytes vs 3.6MB visible garbage once these
-        // buffers were freed). Root cause not further isolated; leaking matches every other
-        // subsystem's convention already (ocean_compute.rs etc. never call allocator.free()
-        // either — see VulkanContext::drop, the only Drop impl in this codebase).
+        // buffers were freed).
+        //
+        // CORRECTION (independent review, 2026-07-07): the original version of this comment
+        // claimed "leaking matches every other subsystem's convention — nothing else in this
+        // codebase calls allocator.free() either." That's wrong: Renderer::handle_resize DOES
+        // call allocator.free() routinely (on history_color_allocs) with no corruption. So
+        // free() is not inherently unsafe here — something about THIS specific call site is.
+        // Leading hypothesis (not confirmed): the freed blocks are gpu-allocator-managed, but
+        // the images that came back corrupted (depth/offscreen/history) are raw
+        // vkAllocateMemory allocations entirely outside gpu-allocator — allocator-internal
+        // reuse can't alias them directly. More likely: freeing the large RT temporaries
+        // (2 BLAS inputs + 3 scratch buffers, probably the dominant occupants of a GpuOnly
+        // block) empties that block, gpu-allocator vkFreeMemory's it back to the driver, and
+        // the driver hands those same physical pages to the very next same-process
+        // allocation WITHOUT zeroing them (fresh-from-OS pages are zeroed; same-process
+        // recycled pages are not) — meaning the "noise" is actually a PRE-EXISTING read of
+        // uninitialized memory somewhere in the frame graph that this leak merely masks by
+        // keeping the pages virgin. Not chased further; flagged here so it isn't mistaken for
+        // resolved. A cheap discriminating experiment exists (allocate+fill+free a
+        // scratch-sized GpuOnly buffer at this exact point and see if the noise still
+        // appears) but has not been run.
+        //
         // Captured before forgetting — the closest-hit shader's push constants need these
         // (Phase 4) to read per-triangle vertex data back out of these same buffers.
         let bathymetry_vertex_addr = blas_input_bathy.device_address;
@@ -236,7 +268,6 @@ impl RayTracing {
         normal_ws_view: vk::ImageView,
         depth_view: vk::ImageView,
         sst_desc_set_layout: vk::DescriptorSetLayout,
-        sst_desc_set: vk::DescriptorSet,
     ) -> Result<()> {
         let rt_pipeline_loader = khr::ray_tracing_pipeline::Device::new(&ctx.instance, &ctx.device);
 
@@ -391,12 +422,13 @@ impl RayTracing {
         let hit_offset = align_up(miss_offset + aligned_handle_size, base_alignment);
         let sbt_size = hit_offset + aligned_handle_size;
 
-        let mut sbt_buffer = Self::create_rt_buffer(
+        let mut sbt_buffer = Self::create_rt_buffer_aligned(
             ctx,
             sbt_size,
             vk::BufferUsageFlags::SHADER_BINDING_TABLE_KHR,
             MemoryLocation::CpuToGpu,
             "rt-sbt",
+            Some(base_alignment),
         )?;
         {
             let slice = sbt_buffer.alloc.as_mut().and_then(|a| a.mapped_slice_mut())
@@ -439,6 +471,35 @@ impl RayTracing {
         self.miss_region = miss_region;
         self.hit_region = hit_region;
         self.callable_region = callable_region;
+        Ok(())
+    }
+
+    /// Rung 2.5 — window-resize handling (independent review, 2026-07-07, confirmed this is
+    /// not optional: without it, `set0` bindings 2/3 reference destroyed image views and
+    /// `output_image` stays sized for the old extent, which validation flags as invalid
+    /// descriptor usage the moment Phase 5 starts dispatching — not merely a stale image).
+    /// Call from `Renderer::handle_resize`, after the caller has already recreated
+    /// `normal_ws_view`/`depth_view` at the new extent. Pipeline/SBT/TLAS are not
+    /// extent-dependent and are left untouched.
+    pub unsafe fn resize(
+        &mut self,
+        ctx: &VulkanContext,
+        extent: vk::Extent2D,
+        normal_ws_view: vk::ImageView,
+        depth_view: vk::ImageView,
+    ) -> Result<()> {
+        ctx.device.destroy_image_view(self.output_view, None);
+        ctx.device.destroy_image(self.output_image, None);
+        if let Some(alloc) = self.output_alloc.take() {
+            let _ = ctx.allocator.lock().unwrap().free(alloc);
+        }
+
+        let (output_image, output_alloc, output_view) = Self::alloc_storage_image(ctx, extent)?;
+        self.write_set0(ctx, self.set0, output_view, normal_ws_view, depth_view, self.nearest_sampler);
+
+        self.output_image = output_image;
+        self.output_alloc = Some(output_alloc);
+        self.output_view = output_view;
         Ok(())
     }
 
@@ -662,10 +723,18 @@ impl RayTracing {
             ],
         };
 
+        // Instance masks: bathymetry=0x01, ocean=0x02 — kept SEPARATE (not both 0xFF) because
+        // independent review (2026-07-07) found that tracing against the flat rest-state ocean
+        // BLAS produces self-hit speckle in wave troughs (the ray origin comes from the
+        // displaced/rasterized surface, which dips below the flat BLAS plane in troughs,
+        // crossing it from below). water_reflection.rgen's traceRayEXT cullMask is 0x01
+        // (bathymetry only) until a displaced-BLAS upgrade lands — a ray that would have hit
+        // the ocean now correctly misses to sky instead, which is a better first-cut
+        // approximation than an artifact-prone self-hit.
         let instances = [
             vk::AccelerationStructureInstanceKHR {
                 transform: identity,
-                instance_custom_index_and_mask: vk::Packed24_8::new(0, 0xFF),
+                instance_custom_index_and_mask: vk::Packed24_8::new(0, 0x01),
                 instance_shader_binding_table_record_offset_and_flags: vk::Packed24_8::new(
                     0,
                     vk::GeometryInstanceFlagsKHR::TRIANGLE_FACING_CULL_DISABLE.as_raw() as u8,
@@ -676,7 +745,7 @@ impl RayTracing {
             },
             vk::AccelerationStructureInstanceKHR {
                 transform: identity,
-                instance_custom_index_and_mask: vk::Packed24_8::new(1, 0xFF),
+                instance_custom_index_and_mask: vk::Packed24_8::new(1, 0x02),
                 instance_shader_binding_table_record_offset_and_flags: vk::Packed24_8::new(
                     0,
                     vk::GeometryInstanceFlagsKHR::TRIANGLE_FACING_CULL_DISABLE.as_raw() as u8,
@@ -797,6 +866,24 @@ impl RayTracing {
         location: MemoryLocation,
         label: &str,
     ) -> Result<RtBuffer> {
+        Self::create_rt_buffer_aligned(ctx, size, usage, location, label, None)
+    }
+
+    /// Same as `create_rt_buffer`, but forces the allocation's alignment up to at least
+    /// `min_alignment` — `vkGetBufferMemoryRequirements` alone does NOT guarantee a
+    /// SHADER_BINDING_TABLE-usage buffer's returned alignment satisfies
+    /// `shaderGroupBaseAlignment` (independent review, 2026-07-07: RADV commonly reports 16
+    /// for small buffers where NVIDIA happens to report 64+ already). Every SBT region's
+    /// device address is computed as `sbt_buffer.device_address + offset`, and only the
+    /// offsets were being aligned — the buffer's own base address needs it too.
+    unsafe fn create_rt_buffer_aligned(
+        ctx: &VulkanContext,
+        size: vk::DeviceSize,
+        usage: vk::BufferUsageFlags,
+        location: MemoryLocation,
+        label: &str,
+        min_alignment: Option<vk::DeviceSize>,
+    ) -> Result<RtBuffer> {
         let buffer = ctx
             .device
             .create_buffer(
@@ -807,7 +894,10 @@ impl RayTracing {
                 None,
             )
             .context("create RT buffer")?;
-        let req = ctx.device.get_buffer_memory_requirements(buffer);
+        let mut req = ctx.device.get_buffer_memory_requirements(buffer);
+        if let Some(min_alignment) = min_alignment {
+            req.alignment = req.alignment.max(min_alignment);
+        }
         let alloc = ctx
             .allocator
             .lock()

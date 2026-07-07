@@ -21,6 +21,11 @@ layout(set = 1, binding = 0, std140) uniform FrameData {
 
 layout(location = 0) rayPayloadEXT vec3 hit_color;
 
+// Independent review (2026-07-07) found reflections beyond this range silently truncate to
+// sky under the Perspective lens (Isometric reflections are sub-pixel at ~740m/pixel, so it
+// never mattered there) — named so the tradeoff is visible, not a magic number.
+const float MAX_REFLECTION_DISTANCE = 10000.0;
+
 void main() {
     ivec2 pixel = ivec2(gl_LaunchIDEXT.xy);
     ivec2 size  = ivec2(gl_LaunchSizeEXT.xy);
@@ -56,13 +61,17 @@ void main() {
     vec3 R = reflect(-V, N);
 
     hit_color = vec3(0.0);
+    // cullMask 0x01 = bathymetry only (ray_tracing.rs instance masks). Excludes the ocean
+    // BLAS (mask 0x02) — see ray_tracing.rs's instance-setup comment: tracing against the
+    // flat rest-state ocean mesh produces self-hit speckle in wave troughs, so a ray that
+    // would have hit ocean self-reflection correctly misses to sky instead for now.
     traceRayEXT(
-        u_tlas, gl_RayFlagsOpaqueEXT, 0xFF,
+        u_tlas, gl_RayFlagsOpaqueEXT, 0x01,
         0, 0, 0,              // sbtRecordOffset, sbtRecordStride, missIndex
         world.xyz + N * 0.05, // origin, offset along N to avoid self-intersection
         0.05,                 // tMin
         R,                    // direction
-        10000.0,              // tMax
+        MAX_REFLECTION_DISTANCE,
         0                      // payload location
     );
 
