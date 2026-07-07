@@ -10,6 +10,8 @@ layout(set = 0, binding = 0, rgba16f) uniform writeonly image2D u_multiscatter_l
 layout(set = 0, binding = 1) uniform sampler2D u_transmittance_lut;
 
 layout(set = 1, binding = 0) uniform AtmosphereData {
+    mat4  current_motion_view_projection;
+    mat4  previous_motion_view_projection;
     vec4  sst_data;
     vec3  sun_direction;
     float bottom_radius;
@@ -35,17 +37,25 @@ vec3 getTransmittance(float r, float mu) {
     return texture(u_transmittance_lut, vec2(u_mu, u_r)).rgb;
 }
 
-// Ray-sphere intersection (same as transmittance.comp)
+// Ray-sphere intersection: nearest positive root (entry point when ro is
+// outside the sphere, exit point when ro is inside it). The previous version
+// always returned the FAR root (-b+sqrt(discr)), which is only correct for
+// the origin-inside-sphere case (top_radius exit test). For the bottom_radius
+// (earth) test below, ro is outside that sphere, so the far root massively
+// overshoots the real ground-hit distance - the raymarch below would tunnel
+// straight through solid earth into deeply-negative-height territory, where
+// exp(-height/H) explodes and corrupts the whole multiscatter integral.
 float rayIntersectSphere(vec3 ro, vec3 rd, float rad) {
     float b = dot(ro, rd);
     float c = dot(ro, ro) - rad * rad;
     if (c > 0.0 && b > 0.0) return -1.0;
     float discr = b * b - c;
     if (discr < 0.0) return -1.0;
-    if (discr > 0.0) {
-        float t = -b + sqrt(discr);
-        if (t > 0.0) return t;
-    }
+    float sqrt_discr = sqrt(discr);
+    float t0 = -b - sqrt_discr;
+    float t1 = -b + sqrt_discr;
+    if (t0 > 0.0) return t0;
+    if (t1 > 0.0) return t1;
     return -1.0;
 }
 
@@ -92,7 +102,7 @@ void main() {
 
         for(int j = 0; j < 20; j++) {
             vec3 p = ro + rd * t;
-            float height = length(p) - u_atm.bottom_radius;
+            float height = max(0.0, length(p) - u_atm.bottom_radius);
             float rho_R = exp(-height / 8.0);
             float rho_M = exp(-height / 1.2);
             float rho_O = max(0.0, 1.0 - abs(height - 25.0) / 15.0);

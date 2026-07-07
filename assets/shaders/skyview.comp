@@ -9,6 +9,8 @@ layout(set = 0, binding = 1) uniform sampler2D u_transmittance_lut;
 layout(set = 0, binding = 2) uniform sampler2D u_multiscatter_lut;
 
 layout(set = 1, binding = 0) uniform AtmosphereData {
+    mat4  current_motion_view_projection;
+    mat4  previous_motion_view_projection;
     vec4  sst_data;
     vec3  sun_direction;
     float bottom_radius;
@@ -33,16 +35,20 @@ float miePhase(float cos_theta, float g) {
     return num / den;
 }
 
+// Nearest positive root (entry point when ro is outside the sphere, exit
+// point when inside). See multiscatter.comp for why the far-root version
+// broke the earth-clip test below.
 float rayIntersectSphere(vec3 ro, vec3 rd, float rad) {
     float b = dot(ro, rd);
     float c = dot(ro, ro) - rad * rad;
     if (c > 0.0 && b > 0.0) return -1.0;
     float discr = b * b - c;
     if (discr < 0.0) return -1.0;
-    if (discr > 0.0) {
-        float t = -b + sqrt(discr);
-        if (t > 0.0) return t;
-    }
+    float sqrt_discr = sqrt(discr);
+    float t0 = -b - sqrt_discr;
+    float t1 = -b + sqrt_discr;
+    if (t0 > 0.0) return t0;
+    if (t1 > 0.0) return t1;
     return -1.0;
 }
 
@@ -106,7 +112,7 @@ void main() {
 
     for (float i = 0.0; i < SAMPLE_COUNT; i++) {
         vec3 p = ro + rd * t;
-        float height = length(p) - u_atm.bottom_radius;
+        float height = max(0.0, length(p) - u_atm.bottom_radius);
 
         float rho_R = exp(-height / 8.0);
         float rho_M = exp(-height / 1.2);

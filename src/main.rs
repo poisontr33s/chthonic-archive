@@ -300,10 +300,7 @@ fn main() -> Result<()> {
     #[cfg(debug_assertions)]
     {
         info!("⚖️ Verifying Axiomatic Integrity (SSOT)...");
-        let verifier = AxiomVerifier::new(
-            ".chthonic/SSOT.md",
-            "cc1d0f63b564f90861bea13995aaa445055fb8ac1d7b6965bc6700eb0e41ad1b",
-        );
+        let verifier = AxiomVerifier::new(".chthonic/SSOT.md");
         if let Err(e) = verifier.verify_integrity() {
             error!("❌ AXIOMATIC FAILURE: {}", e);
         }

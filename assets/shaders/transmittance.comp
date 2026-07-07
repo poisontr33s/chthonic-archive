@@ -21,19 +21,24 @@ layout(set = 1, binding = 0) uniform AtmosphereData {
 
 const float SAMPLE_COUNT = 40.0;
 
-// Ray-sphere intersection routine
-// Returns distance to the intersection, or -1.0 if no hit.
+// Ray-sphere intersection routine.
+// Returns the nearest positive root: the entry point when ro is outside the
+// sphere, the exit point when ro is inside it. (This call site only uses the
+// result as a >0.0 existence check, so the old far-root-only version never
+// misbehaved here - but skyview.comp/multiscatter.comp use the equivalent
+// call to clip a raymarch distance, where the far root tunnels through solid
+// earth. Keeping one correct version in all three copies.)
 float rayIntersectSphere(vec3 ro, vec3 rd, float rad) {
     float b = dot(ro, rd);
     float c = dot(ro, ro) - rad * rad;
     if (c > 0.0 && b > 0.0) return -1.0;
     float discr = b * b - c;
     if (discr < 0.0) return -1.0;
-    // We want the forward intersection
-    if (discr > 0.0) {
-        float t = -b + sqrt(discr);
-        if (t > 0.0) return t;
-    }
+    float sqrt_discr = sqrt(discr);
+    float t0 = -b - sqrt_discr;
+    float t1 = -b + sqrt_discr;
+    if (t0 > 0.0) return t0;
+    if (t1 > 0.0) return t1;
     return -1.0;
 }
 
@@ -80,7 +85,7 @@ void main() {
 
     for (int i = 0; i < int(SAMPLE_COUNT); ++i) {
         vec3 p = ro + rd * t;
-        float height = length(p) - u_atm.bottom_radius;
+        float height = max(0.0, length(p) - u_atm.bottom_radius);
         // Calculate atmospheric density at current height
         float rho_R = exp(-height / H_R);
         float rho_M = exp(-height / H_M);

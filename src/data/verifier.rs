@@ -4,10 +4,20 @@
 // ╠════════════════════════════════════════════════════════════════════════════
 // ║ Spectral Frequency: GOLD
 // ║ Architectural Role: ⚖️ THE SCALE
-// ║ Purpose: Axiom Verification & SSOT Sync - Phase 14
+// ║ Purpose: Lore-Canon Seal Verification - Phase 14
 // ╚════════════════════════════════════════════════════════════════════════════
 
-//! Axiom Verification & SSOT Sync - Phase 14
+//! Lore-Canon Seal Verification - Phase 14
+//!
+//! Detects drift in a frozen lore-canon file (e.g. `.chthonic/SSOT.md`) against
+//! its last-sealed hash. Does one thing: compare, warn on mismatch. It does not
+//! govern Claude Code's operational instructions (that distinction lives in
+//! this repo's `CLAUDE.md`) - `AxiomVerifier` only watches canon content drift
+//! for `game/`'s consistency.
+//!
+//! The expected hash is NOT hardcoded in source. It lives in a sidecar seal
+//! file (`<canon_path>.sha256`) next to the canon it watches, so resealing
+//! after a legitimate edit is a data change, not a recompile.
 //!
 //! @SID:    DATA_VERIFIER_V1
 //! @Shabti: Verifier
@@ -17,40 +27,57 @@ use std::path::Path;
 use sha2::{Sha256, Digest};
 use anyhow::{Result, anyhow};
 
-/// AxiomVerifier: Ensures that the game runtime matches the core instructions (SSOT).
+/// AxiomVerifier: watches one frozen lore-canon file for drift against its seal.
 pub struct AxiomVerifier {
-    pub instruction_path: String,
-    pub expected_hash: String,
+    pub canon_path: String,
+    pub seal_path: String,
 }
 
 impl AxiomVerifier {
-    pub fn new(path: &str, hash: &str) -> Self {
+    /// `seal_path` defaults to `<canon_path>.sha256`.
+    pub fn new(canon_path: &str) -> Self {
         Self {
-            instruction_path: path.to_string(),
-            expected_hash: hash.to_string(),
+            canon_path: canon_path.to_string(),
+            seal_path: format!("{}.sha256", canon_path),
         }
     }
 
-    /// FA⁴: Check if the current instruction file matches the expected resonance.
-    pub fn verify_integrity(&self) -> Result<()> {
-        let path = Path::new(&self.instruction_path);
-        if !path.exists() {
-            return Err(anyhow!("Critical Axiom Missing: {}", self.instruction_path));
-        }
-
+    fn hash_file(path: &Path) -> Result<String> {
         let content = fs::read(path)?;
         let mut hasher = Sha256::new();
         hasher.update(content);
-        let actual_hash = format!("{:x}", hasher.finalize());
+        Ok(format!("{:x}", hasher.finalize()))
+    }
 
-        if actual_hash != self.expected_hash {
-            log::warn!("⚠️ AXIOMATIC DRIFT DETECTED!");
-            log::warn!("Expected: {}", self.expected_hash);
-            log::warn!("Actual:   {}", actual_hash);
-            return Err(anyhow!("SSOT Integrity Failure: Instructions have diverged from the baseline."));
+    /// FA⁴: Check if the current canon file matches its sealed hash.
+    pub fn verify_integrity(&self) -> Result<()> {
+        let canon = Path::new(&self.canon_path);
+        if !canon.exists() {
+            return Err(anyhow!("Critical Axiom Missing: {}", self.canon_path));
+        }
+        let actual_hash = Self::hash_file(canon)?;
+
+        let seal = Path::new(&self.seal_path);
+        if !seal.exists() {
+            log::warn!(
+                "⚖️ No seal recorded for {} yet - baseline would be: {}",
+                self.canon_path, actual_hash
+            );
+            return Ok(());
         }
 
-        log::info!("✅ Axiomatic Integrity Verified: {}", self.instruction_path);
+        let expected_hash = fs::read_to_string(seal)?.trim().to_string();
+        if actual_hash != expected_hash {
+            log::warn!("⚠️ AXIOMATIC DRIFT DETECTED (canon has moved since last seal)");
+            log::warn!("Sealed:  {}", expected_hash);
+            log::warn!("Current: {}", actual_hash);
+            return Err(anyhow!(
+                "Canon Drift: {} has diverged from its last seal ({}).",
+                self.canon_path, self.seal_path
+            ));
+        }
+
+        log::info!("✅ Axiomatic Integrity Verified: {}", self.canon_path);
         Ok(())
     }
 }
