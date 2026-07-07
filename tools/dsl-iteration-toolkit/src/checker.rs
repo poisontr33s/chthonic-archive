@@ -9,7 +9,7 @@ use std::path::PathBuf;
 use crate::catalog::{Catalog, PatternResult};
 use crate::checkpoint::{Checkpoint, DEFAULT_RETENTION};
 use crate::config::Config;
-use crate::coverage::{run_coverage, CoverageReport, ParenSurface, Surface};
+use crate::coverage::{run_coverage, BacktickSurface, BoldSurface, CoverageReport, FencedSurface, ParenSurface, Surface};
 use crate::grammar::Grammar;
 use crate::ledger::{Ledger, LedgerRow};
 
@@ -85,6 +85,9 @@ impl IterationChecker {
         for surface_name in &self.config.coverage_surfaces {
             let surface: Box<dyn Surface> = match surface_name.as_str() {
                 "paren" => Box::new(ParenSurface::default()),
+                "bold" => Box::new(BoldSurface::default()),
+                "backtick" => Box::new(BacktickSurface::default()),
+                "fenced" => Box::new(FencedSurface::default()),
                 other => {
                     eprintln!("[checker] unknown surface '{}', skipping", other);
                     continue;
@@ -116,6 +119,7 @@ impl IterationChecker {
             paren_coverage_pct: None,
             bold_coverage_pct: None,
             backtick_coverage_pct: None,
+            fenced_coverage_pct: None,
             regression_warnings: vec![],
             extra: Default::default(),
         };
@@ -124,6 +128,7 @@ impl IterationChecker {
                 "paren" => row.paren_coverage_pct = Some(report.coverage_pct),
                 "bold" => row.bold_coverage_pct = Some(report.coverage_pct),
                 "backtick" => row.backtick_coverage_pct = Some(report.coverage_pct),
+                "fenced" => row.fenced_coverage_pct = Some(report.coverage_pct),
                 _ => {}
             }
         }

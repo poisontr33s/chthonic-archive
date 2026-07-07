@@ -202,6 +202,9 @@ fn cmd_init(config_path: &PathBuf, project_name: &str) -> Result<ExitCode> {
 fn cmd_surfaces() -> Result<ExitCode> {
     println!("Known coverage surfaces:");
     println!("  paren     — (non-nested ...) constructs");
-    println!("  (more surfaces: bold, backtick, fenced, header — pending implementation)");
+    println!("  bold      — **X** constructs (bold_parened_id vs bold_prose)");
+    println!("  backtick  — `X` constructs (ticked_id / ticked_phrase / ticked_any)");
+    println!("  fenced    — ```...``` code blocks (fenced_code_block)");
+    println!("  (more surfaces: header — pending implementation)");
     Ok(ExitCode::from(0))
 }

@@ -221,3 +221,166 @@ impl Surface for ParenSurface {
 
     fn wrap_for_parsing(&self, content: &str) -> String { format!("({})", content) }
 }
+
+// ─── Bold surface ───────────────────────────────────────────────────────────
+// full-SSOT-smoke iteration 10 (2026-07-06), added per LIFECYCLE.md's Phase 1
+// maturation step — same shape as ParenSurface: enumerate **X** occurrences,
+// classify by whether X is itself paren-wrapped (→ bold_parened_id) or plain
+// prose (→ bold_prose). Deliberately excludes "***" (bold-italic) from the
+// regex's char class so triple-star spans aren't miscounted as bold.
+
+pub struct BoldSurface {
+    re: Regex,
+}
+
+impl Default for BoldSurface {
+    fn default() -> Self {
+        // (?:\*\*\*)? lookaround isn't available in `regex` crate's engine
+        // without look-around support, so exclude "*" from content directly —
+        // this naturally skips over "***X***" (content would start with "*",
+        // failing the [^*]+ class) without needing negative lookahead.
+        Self { re: Regex::new(r"\*\*([^*]+)\*\*").unwrap() }
+    }
+}
+
+impl Surface for BoldSurface {
+    fn name(&self) -> &str { "bold" }
+
+    fn enumerate(&self, corpus: &str) -> Vec<(usize, usize, String, String)> {
+        let mut out = Vec::new();
+        for (line_idx, line) in corpus.lines().enumerate() {
+            for m in self.re.captures_iter(line) {
+                let full = m.get(0).unwrap();
+                let content = m.get(1).unwrap().as_str().to_string();
+                out.push((line_idx + 1, full.start() + 1, full.as_str().to_string(), content));
+            }
+        }
+        out
+    }
+
+    fn classify_content(&self, content: &str) -> String {
+        let c = content.trim();
+        let paren_wrapped = Regex::new(r"^\(.+\)$").unwrap();
+        if paren_wrapped.is_match(c) { return "paren_wrapped".into(); }
+        "prose".into()
+    }
+
+    fn expected_rule_for(&self, category: &str) -> Option<&'static str> {
+        match category {
+            "paren_wrapped" => Some("bold_parened_id"),
+            "prose" => Some("bold_prose"),
+            _ => None,
+        }
+    }
+
+    fn parse_entry_rule(&self) -> &str { "id_ref" }
+
+    fn wrap_for_parsing(&self, content: &str) -> String { format!("**{}**", content) }
+}
+
+// ─── Backtick surface ───────────────────────────────────────────────────────
+// full-SSOT-smoke iteration 10 (2026-07-06). Classifies by which of the three
+// backtick rules the content shape targets: ticked_id (strict uppercase),
+// ticked_phrase (Title-Case), ticked_any (everything else — the catch-all).
+
+pub struct BacktickSurface {
+    re: Regex,
+}
+
+impl Default for BacktickSurface {
+    fn default() -> Self {
+        Self { re: Regex::new(r"`([^`]+)`").unwrap() }
+    }
+}
+
+impl Surface for BacktickSurface {
+    fn name(&self) -> &str { "backtick" }
+
+    fn enumerate(&self, corpus: &str) -> Vec<(usize, usize, String, String)> {
+        let mut out = Vec::new();
+        for (line_idx, line) in corpus.lines().enumerate() {
+            for m in self.re.captures_iter(line) {
+                let full = m.get(0).unwrap();
+                let content = m.get(1).unwrap().as_str().to_string();
+                out.push((line_idx + 1, full.start() + 1, full.as_str().to_string(), content));
+            }
+        }
+        out
+    }
+
+    fn classify_content(&self, content: &str) -> String {
+        let c = content.trim();
+        let uppercase_id = Regex::new(r"^[A-Z0-9_\-¹²³⁴⁵⁶⁷⁸⁹⁰]+$").unwrap();
+        let titlecase_phrase = Regex::new(r"^[A-Z][A-Za-z0-9_\-]*$").unwrap();
+        if uppercase_id.is_match(c) { return "uppercase_id".into(); }
+        if titlecase_phrase.is_match(c) { return "titlecase_phrase".into(); }
+        "any_content".into()
+    }
+
+    fn expected_rule_for(&self, category: &str) -> Option<&'static str> {
+        match category {
+            "uppercase_id" => Some("ticked_id"),
+            "titlecase_phrase" => Some("ticked_phrase"),
+            "any_content" => Some("ticked_any"),
+            _ => None,
+        }
+    }
+
+    fn parse_entry_rule(&self) -> &str { "id_ref" }
+
+    fn wrap_for_parsing(&self, content: &str) -> String { format!("`{}`", content) }
+}
+
+// ─── Fenced surface ─────────────────────────────────────────────────────────
+// full-SSOT-smoke iteration 10 (2026-07-06). Structurally different from the
+// other three surfaces: fenced code blocks are multi-line, so enumeration
+// scans the whole line list for matching ``` pairs instead of a per-line
+// regex. Every occurrence is expected to land on fenced_code_block — there's
+// only one shape here, unlike paren/bold/backtick's multi-category split.
+
+pub struct FencedSurface;
+
+impl Default for FencedSurface {
+    fn default() -> Self { Self }
+}
+
+impl Surface for FencedSurface {
+    fn name(&self) -> &str { "fenced" }
+
+    fn enumerate(&self, corpus: &str) -> Vec<(usize, usize, String, String)> {
+        let mut out = Vec::new();
+        let lines: Vec<&str> = corpus.lines().collect();
+        let mut i = 0;
+        while i < lines.len() {
+            if lines[i].trim_start().starts_with("```") {
+                let start_line = i;
+                let mut j = i + 1;
+                while j < lines.len() && !lines[j].trim_start().starts_with("```") {
+                    j += 1;
+                }
+                if j < lines.len() {
+                    let content = lines[start_line + 1..j].join("\n");
+                    let full = lines[start_line..=j].join("\n");
+                    out.push((start_line + 1, 1, full, content));
+                    i = j + 1;
+                    continue;
+                }
+            }
+            i += 1;
+        }
+        out
+    }
+
+    fn classify_content(&self, _content: &str) -> String { "code_block".into() }
+
+    fn expected_rule_for(&self, category: &str) -> Option<&'static str> {
+        match category {
+            "code_block" => Some("fenced_code_block"),
+            _ => None,
+        }
+    }
+
+    fn parse_entry_rule(&self) -> &str { "statement" }
+
+    fn wrap_for_parsing(&self, content: &str) -> String { format!("```\n{}\n```", content) }
+}

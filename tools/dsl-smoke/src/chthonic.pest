@@ -156,7 +156,63 @@ parened_phrase = ${ "(" ~ phrase_id ~ ")" }
 //
 // Semantic note: bold_prose at Phase 0 is parsed-but-not-interpreted; a
 // Phase 2 interpreter would distinguish prose from id_ref by rule label.
-bold_prose = ${ "**" ~ (!"**" ~ ANY)+ ~ "**" }
+//
+// Bounded to a single line (full-SSOT-smoke iteration 7, 2026-07-06) — this
+// had been the one emphasis rule WITHOUT the "single line" bound ticked_any
+// (and now bold_italic_prose/italic_prose) already carry. Consequence: an
+// unclosed "**" anywhere upstream let bold_prose's greedy content loop span
+// across paragraph boundaries hunting for the next "**", surfacing a
+// confusing failure many lines downstream instead of at the actual unclosed
+// marker. Bounding it makes odd-marker-count typos fail at their own line.
+bold_prose = ${ "**" ~ (!("**" | NEWLINE) ~ ANY)+ ~ "**" }
+
+// ─── Bold-italic + italic prose (***X***, *X*) ──────────────────────────────
+// full-SSOT-smoke iteration 3 (2026-07-06). The catalyst documents its own
+// three-tier emphasis convention explicitly (line 826): "uses **bold**,
+// *italic*, `code`, ***nested*** formatting as semantic markers". 169
+// occurrences of "***" in the corpus; Phase 0 had no rule for either
+// bold-italic or italic, so both silently fell into prose_fragment
+// character-by-character (prose_safe_char never excluded bare "*").
+//
+// Ordering (longest-marker-first, same discipline as phrase_delim): tried in
+// id_ref as bold_italic_prose FIRST (before bold_parened_id/bold_prose — "***"
+// is a strict prefix-superset of "**" and must get first chance at the triple
+// form), and italic_prose LAST (after every "**"/"***" alternative has failed
+// — "*" is the shortest, most generic marker).
+//
+// Bounded to a single line (excludes NEWLINE from content), same discipline as
+// ticked_any (line ~62) — full-SSOT-smoke iteration 4 follow-up (2026-07-06).
+// Without the bound, an unmatched marker anywhere in the document lets the
+// greedy content loop cross paragraph/line boundaries hunting for the next
+// closer, the exact class of bug iteration 5→6 already fixed once for
+// prose_parens (see the V1/V2 comment above prose_parens_atom).
+bold_italic_prose = ${ "***" ~ (!("***" | NEWLINE) ~ ANY)+ ~ "***" }
+
+// italic_prose is V2/recursive from the start (2026-07-06, full-SSOT iter 6),
+// skipping the V1 mistake prose_parens already made once: a naive
+// "(!("*"|NEWLINE) ~ ANY)+" content class stops at the FIRST bare "*" it
+// meets — including one that opens a NESTED bold_parened_id/ticked_id/etc.
+// inside the italic span. Observed failure: a line-spanning italic wraps
+// several `**(`X`)**` constructs; the naive rule closed the italic at the
+// first nested "**" instead of recursing through it. italic_content_atom
+// tries every substrate construct first (same shape as prose_parens_atom),
+// single safe char last — nested substrate is recognized, not shredded.
+italic_content_atom = _{
+      bold_italic_prose
+    | bold_parened_id
+    | bold_prose
+    | multi_alias
+    | parened_phrase
+    | parened_id
+    | ticked_id
+    | ticked_phrase
+    | ticked_any
+    | dollar_wrap
+    | reference
+    | substrate_marker
+    | (!("*" | NEWLINE) ~ ANY)
+}
+italic_prose = ${ "*" ~ italic_content_atom* ~ "*" }
 
 // ─── Prose-in-parens (substrate-aware, recursive) ───────────────────────────
 // Smoke-driven addition 2026-05-27 iteration 5 + iteration 6 revision.
@@ -175,13 +231,23 @@ bold_prose = ${ "**" ~ (!"**" ~ ANY)+ ~ "**" }
 //
 // V2 (iter 6, this version) is substrate-aware. prose_parens_atom tries each
 // substrate construct (bold_parened_id, bold_prose, nested parens, invocation,
-// bare operator) before falling back to single-char consumption. Nested parens
-// and substrate boundaries are respected naturally via the recursion.
+// section/line reference, bare operator) before falling back to single-char
+// consumption. Nested parens and substrate boundaries are respected naturally
+// via the recursion.
 //
 // Bare operators (→ × <-> ↔ + =) appear inside prose_parens content
 // without being part of a strict composition (operands are prose). Recognizing
 // them as substrate_marker preserves the operator-ness in the parse tree so
 // Phase 2 interpreter can re-interpret if needed.
+//
+// Iter 7 (2026-07-06, audit-driven): bare §-references inside prose parens
+// — e.g. (§0.03.1), (see 'Null Matriarch, §0.01; operational capacity') —
+// were shadow-failures: prose_parens matched the span, but `reference` wasn't
+// in prose_parens_atom's alternatives, so the §-anchor fell through to
+// single-char consumption with no substrate-aware inner rule. Added `reference`
+// (bracketed_ref | ref_with_line | section_anchor) before substrate_marker;
+// no ordering conflict since none of the existing alternatives start with
+// `§` or `[`.
 
 // Bare substrate operator — recognized inside prose_parens content even when
 // the surrounding "operands" are prose (no composition formed).
@@ -194,7 +260,8 @@ substrate_marker = { op_project | op_mult | op_bidir | op_assign | op_add }
 // for audit + Phase 2 interpretation. Without silence, every match would be
 // wrapped in a generic "prose_parens_atom" node, losing the type info.
 prose_parens_atom = _{
-      bold_parened_id
+      bold_italic_prose
+    | bold_parened_id
     | bold_prose
     | multi_alias
     | parened_phrase
@@ -203,7 +270,9 @@ prose_parens_atom = _{
     | ticked_phrase
     | ticked_any
     | invocation
+    | reference
     | substrate_marker
+    | italic_prose
     | (!")" ~ ANY)
 }
 
@@ -213,9 +282,18 @@ prose_parens = ${ "(" ~ prose_parens_atom* ~ ")" }
 // parened_phrase sits between multi_alias (most specific — slash-chained) and
 // parened_id (most general — single identifier). All start with `(`;
 // pest backtracks on failure of more-specific alternatives.
+// bold_italic_prose sits FIRST — "***" is a strict prefix-superset of "**"
+// and must be tried before bold_parened_id/bold_prose or the triple marker
+// never gets a chance to match as its own unit (2026-07-06, full-SSOT iter 3).
 // bold_prose sits after bold_parened_id — same `**` prefix, less specific.
-// prose_parens is LAST — catches anything no substrate paren rule matched.
-id_ref = { bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | ticked_any | identifier }
+// prose_parens sits before the ticked/identifier tail — catches anything no
+// substrate paren rule matched. italic_prose is LAST — "*" is the shortest,
+// most generic marker; every "**"/"***" alternative must fail first.
+// dollar_wrap sits after identifier — "$" never conflicts with any other
+// alternative's opener, and by the time id_ref is reached, invocation/verb_call
+// (tried earlier at the statement/operand level) has already had first chance
+// at any real "${...}" call.
+id_ref = { bold_italic_prose | bold_parened_id | bold_prose | multi_alias | parened_phrase | parened_id | prose_parens | ticked_id | ticked_phrase | ticked_any | identifier | italic_prose | dollar_wrap }
 
 // ─── Operators — composition and transformation ─────────────────────────────
 
@@ -264,6 +342,15 @@ variable_content = @{ (!"}" ~ ANY)+ }
 // Single verb call: $matriarch${Lysandra}
 verb_call = ${ "$" ~ verb_name ~ "$" ~ "{" ~ variable_content ~ "}" }
 
+// Bare $X$ emphasis/label wrap — DISTINCT from verb_call: no braces follow the
+// closing "$". Observed 29x, always in header-style declarations, e.g.
+// `$matriarch$`, `$Anime/Ecchi/Hentai/NTR x Pornographic$` (full-SSOT-smoke
+// iteration 5, 2026-07-06). invocation/verb_call is tried before id_ref at
+// both the statement and operand level, so by the time dollar_wrap is
+// reached, a real "${...}" invocation has already had first chance and won.
+dollar_wrap_content = @{ (!("$" | NEWLINE) ~ ANY)+ }
+dollar_wrap = ${ "$" ~ dollar_wrap_content ~ "$" }
+
 // Composition operator between verb calls: + (additive) or @ (parameter binding).
 invocation_sep = { op_add | op_bind }
 
@@ -311,8 +398,30 @@ blockquote_line = ${ ">" ~ WHITESPACE* ~ (!NEWLINE ~ ANY)* }
 // Anything not matched by the substrate rules above is prose at Phase 0.
 // Phase 1 may refine prose handling (e.g., recognize markdown bold/italic
 // without consuming substrate tokens that happen to use the same delimiters).
-prose_safe_char = _{ !("(" | "$" | "§" | "→" | "×" | "<->" | "**" | "#" | ">" | NEWLINE) ~ ANY }
-prose_fragment = @{ prose_safe_char+ }
+//
+// "`" excluded (full-SSOT-smoke iteration 4, 2026-07-06): backtick had been
+// missing from this set, the only substrate-opener char that was. Consequence:
+// whenever plain prose (e.g. a leading "- ") caused id_ref to fail and handed
+// the statement to prose_fragment, the greedy run didn't stop at the NEXT
+// backtick — it swallowed straight through a ticked_id/ticked_any span,
+// landing past it on whatever followed. Isolated case: `` `threshold${x}` ``
+// parses fine alone, but `` - `threshold${x}` `` fails — the leading "- "
+// causes prose_fragment to eat through the backtick and "threshold", exposing
+// the "$" as if it started a fresh invocation, which then fails needing
+// verb_name. Excluding "`" here forces prose_fragment to stop and hand the
+// backtick position back to id_ref on the next statement attempt, same as
+// every other substrate-opener char already does.
+prose_safe_char = _{ !("(" | "$" | "§" | "→" | "×" | "<->" | "**" | "#" | ">" | "`" | NEWLINE) ~ ANY }
+
+// Bare "#" used as a number-sign in prose (e.g. "Member #3", "Checkpoint #4"),
+// full-SSOT-smoke iteration 2 (2026-07-06): distinct from header's "#". A real
+// header requires "#"+ ~ WHITESPACE+ (line 313); a "#" immediately followed by
+// a digit can never satisfy that, so it is unambiguously prose here. Consumes
+// only the "#" itself (zero-width lookahead on the digit) — the digit is then
+// picked up by prose_safe_char on the next iteration of prose_fragment's `+`.
+prose_hash_number = _{ "#" ~ &ASCII_DIGIT }
+
+prose_fragment = @{ (prose_safe_char | prose_hash_number)+ }
 
 // ─── Fenced code blocks (inline scripts in the catalyst) ────────────────────
 // Smoke-driven addition 2026-05-27 iteration 4. The catalyst embeds inline
@@ -338,6 +447,17 @@ fenced_code_block = ${
     ~ NEWLINE ~ fence_marker
 }
 
+// ─── LaTeX math block ($$...$$) ──────────────────────────────────────────────
+// full-SSOT-smoke iteration 8 (2026-07-06). 3 occurrences, all single-line,
+// clustered at the document's end (§ Trinity Formula restated as LaTeX:
+// \text{Genesis}(...), \text{Authority}(...), \text{Synthesis}(...)). Genuine
+// LaTeX (\xrightarrow{}, superscripts) — a different formalism entirely from
+// the DSL's own $verb${arg} invocation / bare $X$ dollar_wrap. Same philosophy
+// as fenced_code_block: opaque foreign notation, don't parse LaTeX internals.
+// Must be tried before invocation/dollar_wrap — "$$" is a 2-char prefix those
+// single-"$" rules would otherwise fail against character-by-character.
+latex_math_block = ${ "$$" ~ (!("$$" | NEWLINE) ~ ANY)+ ~ "$$" }
+
 // ─── Statement / line level ─────────────────────────────────────────────────
 
 // A statement is either substrate (header, composition, invocation, etc.) or
@@ -345,9 +465,12 @@ fenced_code_block = ${
 // the parser walks through. Phase 1 may distinguish them more strictly.
 // fenced_code_block sits FIRST — it's the most structurally distinct
 // alternative and must be tried before backtick-based rules (ticked_id) would
-// see the opening fence's backticks.
+// see the opening fence's backticks. latex_math_block sits right after, same
+// "opaque foreign block" category, and must precede invocation/id_ref so
+// "$$" gets a clean match before any single-"$" rule is tried against it.
 statement = {
       fenced_code_block
+    | latex_math_block
     | header
     | blockquote_line
     | composition

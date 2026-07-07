@@ -23,7 +23,7 @@ fn audit_pair(pair: &pest::iterators::Pair<Rule>, slice_label: &str) -> usize {
                 let has_substrate_inner = inner_rule_names.iter().any(|r| {
                     r == "substrate_marker" || r == "bold_parened_id" || r == "bold_prose"
                     || r == "multi_alias" || r == "parened_phrase" || r == "parened_id"
-                    || r == "ticked_id" || r == "invocation"
+                    || r == "ticked_id" || r == "invocation" || r == "reference"
                 });
                 if !has_substrate_inner {
                     shadows += 1;

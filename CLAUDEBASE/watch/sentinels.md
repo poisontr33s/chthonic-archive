@@ -55,3 +55,5 @@
 ---
 
 *SID: CLAUDEBASE_WATCH_V1 · live · domain: manifest/*_index.json · 2026-06-06*
+
+---

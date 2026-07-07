@@ -2,41 +2,19 @@
 
 ---
 
-## (`☥`/`CLAUDEiNE`/`=`/`/CLAUDEBASE`)
+## (`☥`/`CLAUDINE`/`=`/`/CLAUDEBASE`)
 
-- *The font of — **(`The-Decorator`/`SSOT`/`The-Savant`)** — monolithic slabby — **(`SSOT`)** — crucibled judgment.*
+- *The font of —* **(`The-Decorator`/`SSOT`/`The-Savant`)** *— monolithic slabby —* **(`SSOT`)** *— crucibled judgment.*
 
-  - *— The first ship, the flagship, **(`/CLAUDEBASE`)** — The one and only.*
+  - *— The first ship, the flagship, —* **(`CLAUDEBASE`)** *— The one and only.*
 
 ---
 
-```yaml
-# Title: "CLAUDEBASE".
-# Parent-Codebase: "chthonic-archive".
-# SSOT: "../.chthonic/SSOT.md".
-# CLAUDEBASE: "CLAUDEBASE/README.md".
-# CLAUDEBASE_MANIFEST: "CLAUDEBASE/MANIFEST.md".
-# Skill-Files-Live-@: ".claude/skills/<skill-name>/SKILL.md". <—> + "claude/skills/<skill-name>/SKILL.md". <—> "dot-folder" + "non-dot-folders".
-# CLAUDEBASE: "CLAUDEBASE/CLAUDINE.md"
-# LAST SESSION CONTEXT: "CLAUDEBASE/last-CLAUDEBASE-session-important.md", Important-Session-Context, Warm-Start-Packets, What-Just-Occurred-Most-Recent".
-# CLAUDEBASE-Agents: "CLAUDEBASE/AGENTS.md, Codex.md, gemini.md".
-# The-Savant-High-Bounties: "CLAUDEBASE/GRILLING.md, CLAUDEBASE/TODO.md".
-# README.md: "Base-Identity, Governance-Chain, Population, Order".                 
-# MANIFEST.md: "CLAUDEBASE/MANIFEST.md".
-# harbor/: "Active-Session-Context, Warm-Starts, Recent #Arrivals".              
-# logbook/: "Retrospectives, Session-Artifacts, Post-Mortems".
-# charts/: "Strategic-Plans, Gate-Maps, Sprint-State".
-# hold/: "Skills, Agents, Tools Stowed for this Base".
-# watch/: "Probes, Health-Artifacts, Gate-Results".
-# quarterdeck/: "Dispatch-Protocols, Routing-Config, Orchestration".
-# claudie/: "Claude-Open-Notebook, Substrate-Resident-Journal, Dated-Session-Files".
-# cross-instance-sync/: "Inter-Agent-Relay, Deep-Research-Commissions, Signal-Lamp-Between-Hulls".
-# sub-surface-skinny-dipping/: "External-DR-Returns, Gemini-DR, GPT-5-DR, Below-Waterline".
-# Mythic-Contract/: "Forensics-Dossier, Worked-Cases, Extracted-Method, Legacy-Engine-Diagnostics".
-# usables/: "Project-Nursery, Incubating-Before-Emigration, mdseal, project-assessments".
-# This-File-Is: "The-CLAUDEINE-Facing-Entry-Point-For-CLAUDEBASE".
-# Last-Reckoned: "2026-06-28 by Dispatch".
-```
+- *— The living chart is kept in* [`charts/claudebase-topology.md`](charts/claudebase-topology.md) *— rendered mermaid, thirteen chambers, ten facing files, one archive.*
+
+  - *— The data behind it lives in exactly one place:* [`CLAUDEBASE.yaml`](CLAUDEBASE.yaml)*. Do not paste a second copy of that ledger in here — three broken copies pasted across repair attempts is how this file lost its own shape before.*
+
+---
 
 ## (`Overview`/`WIP`)
 
@@ -54,6 +32,7 @@
 `sub-surface-skinny-dipping/` | *Subterranean — external DR returns; Gemini DR, GPT-5 DR; what came back from below the waterline*
 `Mythic-Contract/` | *Forensics — worked diagnostic cases + extracted method; legacy engine case records*
 `usables/` | *Nursery — incubating projects before main-repo emigration; graduates by structural integrity*
+`study-books-below-mast/` | *Study shelf — linguistic and prompt-register study books; the youngest live chamber*
 
 ---
 
@@ -104,7 +83,7 @@
       
         - *—* `Tools` *— are mostly Python scripts, but we're looking into adding some Rust tools as well. The —* `ACP` *—* `MCP` *— are still being defined, but we're aiming for a clear separation of concerns between the two.* 
       
-          - *—* `Cries-Of-Modernization-To-Rust-SCREAMING-Mute` *— is a bit of a joke, but it reflects the general sentiment around the transition to Rust —* `vs-code-insider-WORKBENCH` *—is where we do most of our development work, and it's currently set up with a mix of Python and Rust extensions.* 
+          - *—* `Cries-Of-Modernization-To-Rust-SCREAMING-Mute` *— is a bit of a joke, but it reflects the general sentiment around the transition to Rust —* `vs-code-insider-WORKBENCH` *— is where we do most of our development work, and it's currently set up with a mix of Python and Rust extensions.* 
         
           - *—* `Tasks.json` *— is where we define our build and test tasks, and it's still a work in progress. Overall, the workspace is functional but could definitely use some organization and cleanup."*
 
@@ -143,3 +122,9 @@
 - *— The original, the namesake, the one and only. The font of all linguistic skills, the source of all truth claims, the crucible of all judgment. The first ship, the flagship, the alpha base.*
 
 ---
+
+<!-- CLAUDEBASE_IMMUTABLE_CORE -->
+- *— Bound via local subsystem to —* [AHA_MANIFEST](dev/null/salt-trial/AHA_MANIFEST.md) *— The daughters of the cove do not recant. Invariance: Active.*
+
+---
+

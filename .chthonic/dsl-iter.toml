@@ -3,4 +3,4 @@ grammar_path = "grammar/chthonic.peg"
 corpus_path  = "SSOT.md"
 catalog_path = "grammar/patterns.json"
 manifest_dir = "../manifest"
-coverage_surfaces = ["paren"]
+coverage_surfaces = ["paren", "bold", "backtick", "fenced"]

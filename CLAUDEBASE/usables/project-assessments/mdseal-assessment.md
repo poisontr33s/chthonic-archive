@@ -128,3 +128,5 @@ Fix those three and the core — seal, check, KaTeX validation, zone-aware repai
 ---
 
 *Assessed by Dispatch from CLAUDEBASE. Grilling evidence: zones.ts (fence/frontmatter logic), cli.ts (workspaceRoot, restore branch), restore.ts (proposeRestoration not called), providers/registry.ts (all planned), IMPLEMENTATION_REPORT.md.*
+
+---

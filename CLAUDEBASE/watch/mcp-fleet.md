@@ -71,3 +71,5 @@
 ---
 
 *SID: CLAUDEBASE_WATCH_MCP_V1 · live · derive from the wire, not the paper · 2026-06-07*
+
+---

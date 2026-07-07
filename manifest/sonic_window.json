@@ -1,53 +1,9 @@
 {
   "schema": "sonic_window/v1",
   "source": "loopback",
-  "energy": 0.27869275,
-  "silent": false,
-  "captured_at_epoch_ms": 1783241497093,
+  "energy": 0.0,
+  "silent": true,
+  "captured_at_epoch_ms": 1783396368295,
   "window_secs": 5.0,
-  "sample_rate": 48000,
-  "brightness": 0.73,
-  "tonality": 0.8,
-  "valence_proxy": 0.765,
-  "voiceness": 0.426,
-  "temporal": {
-    "phase": {
-      "character": "moderate-bright",
-      "secs": 140
-    },
-    "trend": {
-      "energy_30s": "steady",
-      "energy_5m": "steady",
-      "brightness_30s": "steady"
-    },
-    "events": [
-      {
-        "kind": "shift",
-        "detail": "quiet-bright → moderate-bright",
-        "secs_ago": 136
-      },
-      {
-        "kind": "shift",
-        "detail": "moderate-bright → quiet-bright",
-        "secs_ago": 302
-      },
-      {
-        "kind": "shift",
-        "detail": "quiet-bright → moderate-bright",
-        "secs_ago": 335
-      },
-      {
-        "kind": "shift",
-        "detail": "moderate-bright → quiet-bright",
-        "secs_ago": 363
-      }
-    ],
-    "stability": "settled",
-    "relative": {
-      "energy": "around",
-      "brightness": "around",
-      "calibrated": true
-    },
-    "narrative": "Moderate-bright for 2m; quiet-bright → moderate-bright 2m ago; settled"
-  }
+  "sample_rate": 48000
 }

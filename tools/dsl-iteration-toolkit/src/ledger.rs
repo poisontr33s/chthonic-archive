@@ -29,6 +29,8 @@ pub struct LedgerRow {
     pub bold_coverage_pct: Option<f64>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub backtick_coverage_pct: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fenced_coverage_pct: Option<f64>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub regression_warnings: Vec<String>,
     #[serde(flatten)]
@@ -132,6 +134,7 @@ impl Ledger {
             ("paren", prev.paren_coverage_pct, candidate.paren_coverage_pct),
             ("bold", prev.bold_coverage_pct, candidate.bold_coverage_pct),
             ("backtick", prev.backtick_coverage_pct, candidate.backtick_coverage_pct),
+            ("fenced", prev.fenced_coverage_pct, candidate.fenced_coverage_pct),
         ] {
             if let (Some(p), Some(c)) = (prev_pct, curr_pct) {
                 if c < p - 0.01 {  // 0.01% tolerance for noise

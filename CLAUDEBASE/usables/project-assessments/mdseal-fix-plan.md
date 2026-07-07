@@ -193,3 +193,5 @@ Gates 5–8 are preferred but not required for graduation.
 ---
 
 *Plan authored by Dispatch · 2026-06-28 · Evidence base: mdseal-assessment.md*
+
+---

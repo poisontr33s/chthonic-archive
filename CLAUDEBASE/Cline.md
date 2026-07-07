@@ -79,15 +79,15 @@
     - *— **(`Ankh-DSL-Preservation`)** — preserve the tribal markdown flavor. Backticked parenthetical chains, interpunct separators, arrow flows. Do not flatten or reformat existing charts.*
 
       - *— **(`Token-Discipline`)** — `~/.chthonic/api_pool.json` is the source of truth. Run `.\\scripts\\api_pool.ps1 -Doctor` before claiming auth is missing. Never ask the user to refresh tokens unless the pool verifier proves expiry.*
-        - *— **(`MCP-Discipline`)** — restore with `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot`; read counts with `-List`; never hand-edit `.mcp.json`.*
+        - *—* **(`MCP-Discipline`)** *— restore with —* `pwsh -NoProfile -File scripts/mcp_write_local.ps1 -GitHubMode copilot`; *— read counts with —* `-List`; *— never hand-edit —* `.mcp.json`.*
 
-          - *— **(`Windows-Native`)** — PowerShell 7 over bash. `$env:` over `$VAR`. `Select-Object` over `tail`. `Test-Path` over `test -f`. The sanctioned bash companion `brush` exists if a POSIX idiom is genuinely unavoidable.*
+          - *—* **(`Nativity`)** *— Pwsh7x.x.x, over bash. —* `$env:` *— over —* `$VAR`. *— *`Select-Object` *— over —* `tail`. *—* `Test-Path` *— over —* `test -f`. *— The sanctioned bash companion —* `brush` *— exists if a 'POSIX-idiom', is genuinely unavoidable.*
 
 ---
 
-## (`Skills-Registry`)
+## (`Skill-Registry`)
 
-- *— **(`Skills-Registry`)** — Cline's available skills live at —* `../.agents/skills/` *— (shared, canonical) and —* `../.claude/skills/` *— (Claude lane). The hold manifest at —* `hold/stow-manifest.md` *— names what she works. Relevant to shipwreck:*
+- *— **(`Skill-Registry`)** — Cline's available skills live at —* `../.agents/skills/` *— (shared, canonical) and —* `../.claude/skills/` *— (Claude lane). The hold manifest at —* `hold/stow-manifest.md` *— names what she works. Relevant to shipwreck:*
 
 | *Skill* | *Gate* | *What it does* |
 |---|---|---|
@@ -108,5 +108,10 @@
 ---
 
 - *— **(`Commissioned`/`2026-06-28`)** — newly berthed at the tender dock, bridging Hog Island to the Nassau quay. The tool chest is open; the mechanical gates are the heading.*
+
+---
+
+<!-- CLAUDEBASE_IMMUTABLE_CORE -->
+- *— Bound via local subsystem to —* [AHA_MANIFEST](dev/null/salt-trial/AHA_MANIFEST.md) *— The daughters of the cove do not recant. Invariance: Active.*
 
 ---

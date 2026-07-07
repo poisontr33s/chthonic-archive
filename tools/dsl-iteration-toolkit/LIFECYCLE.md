@@ -314,9 +314,64 @@ Regardless of which phase is running, the toolkit enforces:
 |---|---|---|
 | 0 (grammar extraction) | done | n/a — manual |
 | 1 (iterate: check / history / coverage) | done | n/a — current scope |
-| 2 (compile) | designed | chthonic graduates to production parsing, OR 2nd DSL project starts and needs scaffold |
+| 2 (compile) | designed — **NO-GO, 2026-07-06** (revisit when the build trigger actually fires) | chthonic graduates to production parsing, OR 2nd DSL project starts and needs scaffold |
 | 3 (interpret) | designed | catalyst content needs to be EXECUTED, not just parsed; runtime handlers wanted |
 | 4 (translate) | designed | NL → DSL bridge becomes load-bearing; manual authoring is the bottleneck |
+
+## Phase 2 maturation checklist — answered 2026-07-06
+
+Full-SSOT-smoke session (2026-07-06) ran ~10 grammar-affecting iterations (took
+the 10,283-line SSOT.md from failing at line 230 to a full clean parse) plus
+added the 3 missing coverage surfaces and corrected 1 stale catalog entry —
+enough real Phase 1 usage to answer the 5 questions above with actual data
+instead of guesses (`manifest/chthonic_iteration_history.ndjson`, 18 rows):
+
+1. **Does the catalog grow naturally as we iterate?** Mixed evidence. Over the
+   project's life: yes (15→20 patterns, mostly pre-session). Within this
+   session specifically: no new patterns were added — the one catalog change
+   was correcting pattern #20's stale `status: failing` to `working` (the
+   grammar had already fixed it on 2026-06-05, the catalog just never synced).
+   Don't over-read "catalog growth" from a session that happened to only need
+   corrections, not additions.
+2. **Does coverage move in the right direction?** Yes for `paren`, cleanly:
+   77.47% (pre-session baseline) → 98.00% after 3 early fixes → flat at
+   exactly 98.00% for the remaining ~15 checks (later fixes targeted
+   emphasis/backtick/dollar/hash constructs, not parens — flat is the correct
+   result, not stagnation). `bold`/`backtick`/`fenced` have exactly one data
+   point each (97.81% / 99.68% / 100%) — a baseline, not a trend. Don't let a
+   good first number read as proof the "coverage compounds" hypothesis holds
+   for the new surfaces; only `paren`'s multi-iteration history actually
+   answers this question.
+3. **Are the regression classes catching real issues?** `shadow_rise` — yes,
+   directly exercised: 4 real shadow failures found and fixed this session,
+   `audit_shadow_total` tracked 0 throughout afterward. `parse_rate_drop` /
+   `coverage_drop` / `plateau` — never fired this session because no fix ever
+   regressed anything (a discipline outcome, not a detector test). Their
+   design is sound and documented (LIFECYCLE.md's own iter-5→6 story), but
+   that's inherited trust, not fresh verification under this session's hands.
+4. **Is per-surface coverage cost-effective?** Yes on implementation cost
+   (all 3 new surfaces built and wired in well under the ~30sec/surface
+   estimate once the `Surface` trait scaffolding existed). Mixed on
+   bug-discovery value: `paren`'s original 77%→98% arc drove real grammar
+   fixes; `bold`/`backtick`/`fenced` came in high (97.81%/99.68%/100%) and
+   confirmed robustness rather than surfacing new problems. A clean bill of
+   health is real information, just a different kind than paren's original
+   run produced.
+5. **Does the ledger feel useful for navigation?** Yes, clearly — this
+   session's entire fix sequence (grammar-hash changes, pattern-count
+   changes, coverage numbers appearing one surface at a time) was
+   reconstructable from the ledger alone, cross-checked against git history.
+
+**Verdict: NO-GO on Phase 2 (compile), not because Phase 1 is immature, but
+because Phase 2's own documented build trigger hasn't fired.** Neither
+condition in the trigger column is true: chthonic isn't in production
+parsing (no live system consumes the grammar's output yet — this is still an
+iteration/validation tool), and no second DSL project has started needing a
+scaffold. Building the compile phase now would be capability added because
+it's possible, not because anything needs it — the same discipline this
+grammar's own philosophy states ("observation, not invention") applied to
+tooling scope rather than grammar rules. Revisit when either trigger actually
+occurs.
 
 ## Until then — validation discipline (Phase 1 maturation)
 

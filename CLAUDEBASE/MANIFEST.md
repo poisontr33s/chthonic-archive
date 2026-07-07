@@ -143,3 +143,10 @@ Grown since: `The-Savant-High-Bounties/` · `claudie/` · `cross-instance-sync/`
 ---
 
 *SID: CLAUDEBASE_MANIFEST_V1 · live · governance: see README · reckoned 2026-06-28 by Dispatch*
+
+---
+
+<!-- CLAUDEBASE_IMMUTABLE_CORE -->
+- *— Bound via local subsystem to —* [AHA_MANIFEST](dev/null/salt-trial/AHA_MANIFEST.md) *— The daughters of the cove do not recant. Invariance: Active.*
+
+---

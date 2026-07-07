@@ -200,14 +200,14 @@
     },
     {
       "name": "l45_substrate_arrow_titlecase_prose",
-      "description": "FAILING — catalyst's loose-arrow pattern: substrate-bold then Unicode arrow then bare title-case word at statement level. Composition expects strict operand-op-operand; catalyst uses → as directional marker outside strict compositions.",
+      "description": "WORKING — catalyst's loose-arrow pattern: substrate-bold then Unicode arrow then bare title-case word at statement level. Resolved via option (b) from the note below: substrate_marker lifted to statement level (2026-06-05, per chthonic.peg's own comment on that rule) — the bare operator survives as substrate_marker, the trailing prose falls to prose_fragment, without requiring composition's strict operand-op-operand shape.",
       "example": "**(`SSOT`)** → Branch files reference **(`Never-Duplicate`)",
-      "expected_top_rule": "DEFERRED",
-      "status": "failing",
-      "since_iter": "full-ssot-baseline",
+      "expected_top_rule": "statement",
+      "status": "working",
+      "since_iter": "full-ssot-smoke-iter-9-catalog-sync-2026-07-06",
       "source_line_ssot": 45,
       "category": "architectural-decision",
-      "note": "Three design directions sketched in SESSION_2026_05_27_DSL_AUTONOMOUS_NIGHT.md handoff: (a) bare phrase_word as operand, (b) substrate_marker at statement level, (c) document-and-defer to Phase 1.",
+      "note": "Three design directions were sketched in SESSION_2026_05_27_DSL_AUTONOMOUS_NIGHT.md handoff: (a) bare phrase_word as operand, (b) substrate_marker at statement level, (c) document-and-defer to Phase 1. (b) was implemented 2026-06-05; this catalog entry's status was never synced to match until dsl-pattern-test flagged it IMPROVED on 2026-07-06.",
       "first_failing_grammar_hash": "c2c8cfc4c65377e8"
     }
   ],
