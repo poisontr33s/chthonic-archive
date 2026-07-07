@@ -85,6 +85,16 @@ pub struct RayTracing {
     pub miss_region: vk::StridedDeviceAddressRegionKHR,
     pub hit_region: vk::StridedDeviceAddressRegionKHR,
     pub callable_region: vk::StridedDeviceAddressRegionKHR,
+
+    // Phase 5 — composite pass (fullscreen-triangle blend of output_image onto scene color,
+    // gated by its alpha channel). Populated by `build_composite`, called once after
+    // `build_pipeline`. Rebuilt on resize (its only extent-dependent input is output_view).
+    pub composite_pipeline: vk::Pipeline,
+    pub composite_pipeline_layout: vk::PipelineLayout,
+    composite_desc_pool: vk::DescriptorPool,
+    pub composite_desc_set: vk::DescriptorSet,
+    composite_desc_set_layout: vk::DescriptorSetLayout,
+    composite_sampler: vk::Sampler,
 }
 
 impl RayTracing {
@@ -250,6 +260,12 @@ impl RayTracing {
             miss_region: vk::StridedDeviceAddressRegionKHR::default(),
             hit_region: vk::StridedDeviceAddressRegionKHR::default(),
             callable_region: vk::StridedDeviceAddressRegionKHR::default(),
+            composite_pipeline: vk::Pipeline::null(),
+            composite_pipeline_layout: vk::PipelineLayout::null(),
+            composite_desc_pool: vk::DescriptorPool::null(),
+            composite_desc_set: vk::DescriptorSet::null(),
+            composite_desc_set_layout: vk::DescriptorSetLayout::null(),
+            composite_sampler: vk::Sampler::null(),
         })
     }
 
@@ -474,6 +490,143 @@ impl RayTracing {
         Ok(())
     }
 
+    /// Rung 2.5 Phase 5 — the composite pass: a fullscreen triangle (reusing
+    /// `taa_resolve.vert.spv`'s no-vertex-buffer trick) that blends `output_image` onto the
+    /// scene color, gated by its own alpha channel (1.0 on a real hit written by
+    /// water_reflection.rchit, 0.0 on a miss/non-water pixel) via the same SRC_ALPHA /
+    /// ONE_MINUS_SRC_ALPHA blend the main pipeline already uses for the ocean surface's
+    /// translucency (pipeline.rs). Called once, after `build_pipeline`.
+    pub unsafe fn build_composite(&mut self, ctx: &VulkanContext, color_format: vk::Format) -> Result<()> {
+        let composite_sampler = ctx.device.create_sampler(
+            &vk::SamplerCreateInfo::default()
+                .mag_filter(vk::Filter::NEAREST)
+                .min_filter(vk::Filter::NEAREST)
+                .address_mode_u(vk::SamplerAddressMode::CLAMP_TO_EDGE)
+                .address_mode_v(vk::SamplerAddressMode::CLAMP_TO_EDGE)
+                .address_mode_w(vk::SamplerAddressMode::CLAMP_TO_EDGE),
+            None,
+        ).context("create RT composite sampler")?;
+
+        let bindings = [vk::DescriptorSetLayoutBinding::default()
+            .binding(0)
+            .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+            .descriptor_count(1)
+            .stage_flags(vk::ShaderStageFlags::FRAGMENT)];
+        let composite_desc_set_layout = ctx.device.create_descriptor_set_layout(
+            &vk::DescriptorSetLayoutCreateInfo::default().bindings(&bindings),
+            None,
+        ).context("RT composite set layout")?;
+
+        let pool_sizes = [vk::DescriptorPoolSize::default()
+            .ty(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+            .descriptor_count(1)];
+        let composite_desc_pool = ctx.device.create_descriptor_pool(
+            &vk::DescriptorPoolCreateInfo::default().max_sets(1).pool_sizes(&pool_sizes),
+            None,
+        ).context("RT composite pool")?;
+        let composite_desc_set = ctx.device.allocate_descriptor_sets(
+            &vk::DescriptorSetAllocateInfo::default()
+                .descriptor_pool(composite_desc_pool)
+                .set_layouts(std::slice::from_ref(&composite_desc_set_layout)),
+        ).context("RT composite set alloc")?[0];
+
+        let composite_pipeline_layout = ctx.device.create_pipeline_layout(
+            &vk::PipelineLayoutCreateInfo::default()
+                .set_layouts(std::slice::from_ref(&composite_desc_set_layout)),
+            None,
+        ).context("RT composite pipeline layout")?;
+
+        let vert_spv = include_bytes!(concat!(env!("OUT_DIR"), "/taa_resolve.vert.spv"));
+        let frag_spv = include_bytes!(concat!(env!("OUT_DIR"), "/water_reflection_composite.frag.spv"));
+        let vert_module = create_shader(&ctx.device, vert_spv)?;
+        let frag_module = create_shader(&ctx.device, frag_spv)?;
+
+        let stages = [
+            vk::PipelineShaderStageCreateInfo::default()
+                .stage(vk::ShaderStageFlags::VERTEX)
+                .module(vert_module)
+                .name(c"main"),
+            vk::PipelineShaderStageCreateInfo::default()
+                .stage(vk::ShaderStageFlags::FRAGMENT)
+                .module(frag_module)
+                .name(c"main"),
+        ];
+
+        let vertex_input = vk::PipelineVertexInputStateCreateInfo::default();
+        let input_assembly = vk::PipelineInputAssemblyStateCreateInfo::default()
+            .topology(vk::PrimitiveTopology::TRIANGLE_LIST);
+        let viewport_state = vk::PipelineViewportStateCreateInfo::default()
+            .viewport_count(1)
+            .scissor_count(1);
+        let rasterizer = vk::PipelineRasterizationStateCreateInfo::default()
+            .polygon_mode(vk::PolygonMode::FILL)
+            .cull_mode(vk::CullModeFlags::NONE)
+            .line_width(1.0);
+        let multisample = vk::PipelineMultisampleStateCreateInfo::default()
+            .rasterization_samples(vk::SampleCountFlags::TYPE_1);
+        // Same blend as the main pipeline's color attachment 0 (pipeline.rs) — alpha=0 (miss)
+        // leaves the destination bit-for-bit untouched, alpha=1 (hit) fully replaces it.
+        let blend_attach = vk::PipelineColorBlendAttachmentState::default()
+            .color_write_mask(vk::ColorComponentFlags::RGBA)
+            .blend_enable(true)
+            .src_color_blend_factor(vk::BlendFactor::SRC_ALPHA)
+            .dst_color_blend_factor(vk::BlendFactor::ONE_MINUS_SRC_ALPHA)
+            .color_blend_op(vk::BlendOp::ADD)
+            .src_alpha_blend_factor(vk::BlendFactor::ONE)
+            .dst_alpha_blend_factor(vk::BlendFactor::ZERO)
+            .alpha_blend_op(vk::BlendOp::ADD);
+        let color_blend = vk::PipelineColorBlendStateCreateInfo::default()
+            .attachments(std::slice::from_ref(&blend_attach));
+        let dyn_states = [vk::DynamicState::VIEWPORT, vk::DynamicState::SCISSOR];
+        let dynamic_state = vk::PipelineDynamicStateCreateInfo::default().dynamic_states(&dyn_states);
+        let mut rendering_info = vk::PipelineRenderingCreateInfo::default()
+            .color_attachment_formats(std::slice::from_ref(&color_format));
+
+        let pipeline_info = vk::GraphicsPipelineCreateInfo::default()
+            .stages(&stages)
+            .vertex_input_state(&vertex_input)
+            .input_assembly_state(&input_assembly)
+            .viewport_state(&viewport_state)
+            .rasterization_state(&rasterizer)
+            .multisample_state(&multisample)
+            .color_blend_state(&color_blend)
+            .dynamic_state(&dynamic_state)
+            .layout(composite_pipeline_layout)
+            .push_next(&mut rendering_info);
+
+        let composite_pipeline = ctx.device
+            .create_graphics_pipelines(vk::PipelineCache::null(), &[pipeline_info], None)
+            .map_err(|(_, e)| e)
+            .context("create RT composite pipeline")?[0];
+
+        ctx.device.destroy_shader_module(vert_module, None);
+        ctx.device.destroy_shader_module(frag_module, None);
+
+        self.composite_sampler = composite_sampler;
+        self.composite_desc_set_layout = composite_desc_set_layout;
+        self.composite_desc_pool = composite_desc_pool;
+        self.composite_desc_set = composite_desc_set;
+        self.composite_pipeline_layout = composite_pipeline_layout;
+        self.composite_pipeline = composite_pipeline;
+
+        self.write_composite_set(ctx);
+        info!("🟢 Rung 2.5 Phase 5: composite pipeline built");
+        Ok(())
+    }
+
+    unsafe fn write_composite_set(&self, ctx: &VulkanContext) {
+        let output_info = vk::DescriptorImageInfo::default()
+            .sampler(self.composite_sampler)
+            .image_view(self.output_view)
+            .image_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL);
+        let write = vk::WriteDescriptorSet::default()
+            .dst_set(self.composite_desc_set)
+            .dst_binding(0)
+            .descriptor_type(vk::DescriptorType::COMBINED_IMAGE_SAMPLER)
+            .image_info(std::slice::from_ref(&output_info));
+        ctx.device.update_descriptor_sets(std::slice::from_ref(&write), &[]);
+    }
+
     /// Rung 2.5 — window-resize handling (independent review, 2026-07-07, confirmed this is
     /// not optional: without it, `set0` bindings 2/3 reference destroyed image views and
     /// `output_image` stays sized for the old extent, which validation flags as invalid
@@ -500,7 +653,121 @@ impl RayTracing {
         self.output_image = output_image;
         self.output_alloc = Some(output_alloc);
         self.output_view = output_view;
+
+        // Phase 5's composite descriptor also points at output_view — stale after the above
+        // recreation just like set0's binding 1 was (same class of bug the independent review
+        // caught before this method existed at all).
+        self.write_composite_set(ctx);
         Ok(())
+    }
+
+    /// Rung 2.5 Phase 5 — dispatch the ray-traced reflection pass. Caller must already have
+    /// transitioned `normal_ws`/`depth` to SHADER_READ_ONLY_OPTIMAL/DEPTH_STENCIL_READ_ONLY_OPTIMAL
+    /// and `output_image` to GENERAL (all via RAY_TRACING_SHADER_KHR-inclusive barriers) before
+    /// calling this. `sst_desc_set` is `Renderer::sst_desc_set` — bound here as set=1.
+    pub unsafe fn trace(
+        &self,
+        ctx: &VulkanContext,
+        cmd: vk::CommandBuffer,
+        extent: vk::Extent2D,
+        sst_desc_set: vk::DescriptorSet,
+    ) {
+        let rt_pipeline_loader = self
+            .rt_pipeline_loader
+            .as_ref()
+            .expect("RayTracing::build_pipeline must run before trace");
+
+        ctx.device
+            .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::RAY_TRACING_KHR, self.pipeline);
+        ctx.device.cmd_bind_descriptor_sets(
+            cmd,
+            vk::PipelineBindPoint::RAY_TRACING_KHR,
+            self.pipeline_layout,
+            0,
+            &[self.set0, sst_desc_set],
+            &[],
+        );
+
+        let mut push_data = [0u8; 16];
+        push_data[0..8].copy_from_slice(&self.bathymetry_vertex_addr.to_le_bytes());
+        push_data[8..16].copy_from_slice(&self.ocean_vertex_addr.to_le_bytes());
+        ctx.device.cmd_push_constants(
+            cmd,
+            self.pipeline_layout,
+            vk::ShaderStageFlags::CLOSEST_HIT_KHR,
+            0,
+            &push_data,
+        );
+
+        rt_pipeline_loader.cmd_trace_rays(
+            cmd,
+            &self.raygen_region,
+            &self.miss_region,
+            &self.hit_region,
+            &self.callable_region,
+            extent.width,
+            extent.height,
+            1,
+        );
+    }
+
+    /// Rung 2.5 Phase 5 — composite the traced reflection onto `color_view` (expected:
+    /// `Renderer::offscreen_color_view`). Caller must already have transitioned `output_image`
+    /// to SHADER_READ_ONLY_OPTIMAL and `color_view`'s image to COLOR_ATTACHMENT_OPTIMAL before
+    /// calling this. Owns its own begin/end dynamic-rendering scope (LOAD, not CLEAR — this
+    /// blends onto whatever the water raster pass already drew).
+    pub unsafe fn record_composite(
+        &self,
+        ctx: &VulkanContext,
+        cmd: vk::CommandBuffer,
+        extent: vk::Extent2D,
+        color_view: vk::ImageView,
+    ) {
+        let color_attachment = vk::RenderingAttachmentInfo::default()
+            .image_view(color_view)
+            .image_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+            .load_op(vk::AttachmentLoadOp::LOAD)
+            .store_op(vk::AttachmentStoreOp::STORE);
+        let color_attachments = [color_attachment];
+        let rendering_info = vk::RenderingInfo::default()
+            .render_area(vk::Rect2D {
+                offset: vk::Offset2D { x: 0, y: 0 },
+                extent,
+            })
+            .layer_count(1)
+            .color_attachments(&color_attachments);
+
+        ctx.device.cmd_begin_rendering(cmd, &rendering_info);
+
+        #[allow(clippy::cast_precision_loss)]
+        let viewport = vk::Viewport {
+            x: 0.0,
+            y: 0.0,
+            width: extent.width as f32,
+            height: extent.height as f32,
+            min_depth: 0.0,
+            max_depth: 1.0,
+        };
+        ctx.device.cmd_set_viewport(cmd, 0, &[viewport]);
+        let scissor = vk::Rect2D {
+            offset: vk::Offset2D { x: 0, y: 0 },
+            extent,
+        };
+        ctx.device.cmd_set_scissor(cmd, 0, &[scissor]);
+
+        ctx.device
+            .cmd_bind_pipeline(cmd, vk::PipelineBindPoint::GRAPHICS, self.composite_pipeline);
+        ctx.device.cmd_bind_descriptor_sets(
+            cmd,
+            vk::PipelineBindPoint::GRAPHICS,
+            self.composite_pipeline_layout,
+            0,
+            &[self.composite_desc_set],
+            &[],
+        );
+        ctx.device.cmd_draw(cmd, 3, 1, 0, 0);
+
+        ctx.device.cmd_end_rendering(cmd);
     }
 
     unsafe fn write_set0(

@@ -19,7 +19,10 @@ layout(set = 1, binding = 0, std140) uniform FrameData {
     layout(offset = 224) vec4 camera_pos_and_lens_flag;
 } u_frame;
 
-layout(location = 0) rayPayloadEXT vec3 hit_color;
+// .rgb = reflected color, .a = 1.0 on a real geometry hit / 0.0 on a sky miss — the Phase 5
+// composite pass (water_reflection_composite.frag) blends by this alpha so a miss leaves the
+// scene color bit-for-bit untouched. Written by water_reflection.rmiss/.rchit.
+layout(location = 0) rayPayloadEXT vec4 hit_color;
 
 // Independent review (2026-07-07) found reflections beyond this range silently truncate to
 // sky under the Perspective lens (Isometric reflections are sub-pixel at ~740m/pixel, so it
@@ -32,9 +35,11 @@ void main() {
 
     vec4 normal_sample = texelFetch(u_normal_ws, pixel, 0);
     if (normal_sample.a < 0.5) {
-        // Not a water pixel this frame. Leave the output image alone — the Phase 5 composite
-        // pass only blends rt_reflection_output where the raster water pass marked water,
-        // so an untouched (cleared) texel here is never read as a false hit.
+        // Not a water pixel this frame. output_image is transitioned from UNDEFINED every
+        // frame (Phase 5, renderer.rs) since every pixel is rewritten here — an early return
+        // without writing would leave this texel's content undefined, and the composite pass
+        // could read stale/garbage alpha as a false hit. Explicit miss-equivalent write instead.
+        imageStore(u_rt_output, pixel, vec4(0.0));
         return;
     }
     vec3 N = normalize(normal_sample.xyz);
@@ -60,7 +65,7 @@ void main() {
     vec3 V = is_perspective ? normalize(eye - world.xyz) : normalize(vec3(1.0, 1.0, 1.0));
     vec3 R = reflect(-V, N);
 
-    hit_color = vec3(0.0);
+    hit_color = vec4(0.0);
     // cullMask 0x01 = bathymetry only (ray_tracing.rs instance masks). Excludes the ocean
     // BLAS (mask 0x02) — see ray_tracing.rs's instance-setup comment: tracing against the
     // flat rest-state ocean mesh produces self-hit speckle in wave troughs, so a ray that
@@ -75,5 +80,5 @@ void main() {
         0                      // payload location
     );
 
-    imageStore(u_rt_output, pixel, vec4(hit_color, 1.0));
+    imageStore(u_rt_output, pixel, hit_color);
 }

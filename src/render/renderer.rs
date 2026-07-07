@@ -460,6 +460,9 @@ impl Renderer {
             depth_view,
             sst_desc_set_layout,
         )?;
+        // Rung 2.5 Phase 5: composite pipeline, writing into offscreen_color_image (same
+        // format as the swapchain) — still no per-frame dispatch wired in yet, just construction.
+        ray_tracing.build_composite(ctx, swapchain.format)?;
 
         let (offscreen_color_image, offscreen_color_memory, offscreen_color_view) =
             Self::create_offscreen_color_resources(ctx, swapchain.extent, swapchain.format)?;
@@ -2243,6 +2246,98 @@ impl Renderer {
             base_array_layer: 0,
             layer_count: 1,
         };
+
+        // === Rung 2.5 (RT reflections) Phase 5 ===
+        // Trace + composite BEFORE the TAA/DLAA resolve below consumes offscreen_color_image,
+        // so the resolve sees the water-reflection-composited color as if it always looked
+        // that way. normal_ws is never referenced again this frame in any of the three resolve
+        // branches (DLAA/TAA/Gate-1-fallback — all checked), so it's left in
+        // SHADER_READ_ONLY_OPTIMAL; next frame's own per-frame barrier already discards it via
+        // old_layout(UNDEFINED) regardless of its actual layout. depth_image IS referenced
+        // again this frame (only in the DLAA branch, which hardcodes
+        // old_layout(DEPTH_ATTACHMENT_OPTIMAL)), so it's transitioned back unconditionally —
+        // trivial extra cost when DLAA is off, but avoids duplicating that branch's runtime
+        // condition here to decide whether the transition-back is needed.
+        {
+            let depth_subresource_rt = vk::ImageSubresourceRange {
+                aspect_mask: vk::ImageAspectFlags::DEPTH,
+                base_mip_level: 0,
+                level_count: 1,
+                base_array_layer: 0,
+                layer_count: 1,
+            };
+
+            let to_rt = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::COLOR_ATTACHMENT_OUTPUT)
+                    .src_access_mask(vk::AccessFlags2::COLOR_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)
+                    .image(self.normal_ws_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::LATE_FRAGMENT_TESTS)
+                    .src_access_mask(vk::AccessFlags2::DEPTH_STENCIL_ATTACHMENT_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::DEPTH_ATTACHMENT_OPTIMAL)
+                    .new_layout(vk::ImageLayout::DEPTH_STENCIL_READ_ONLY_OPTIMAL)
+                    .image(self.depth_image)
+                    .subresource_range(depth_subresource_rt),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::TOP_OF_PIPE)
+                    .src_access_mask(vk::AccessFlags2::empty())
+                    .dst_stage_mask(vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_STORAGE_WRITE)
+                    .old_layout(vk::ImageLayout::UNDEFINED)
+                    .new_layout(vk::ImageLayout::GENERAL)
+                    .image(self.ray_tracing.output_image)
+                    .subresource_range(color_subresource),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&to_rt),
+            );
+
+            self.ray_tracing
+                .trace(ctx, cmd, self.swapchain.extent, self.sst_desc_set);
+
+            let from_rt = [
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR)
+                    .src_access_mask(vk::AccessFlags2::SHADER_STORAGE_WRITE)
+                    .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER)
+                    .dst_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .old_layout(vk::ImageLayout::GENERAL)
+                    .new_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)
+                    .image(self.ray_tracing.output_image)
+                    .subresource_range(color_subresource),
+                vk::ImageMemoryBarrier2::default()
+                    .src_stage_mask(vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR)
+                    .src_access_mask(vk::AccessFlags2::SHADER_READ)
+                    .dst_stage_mask(vk::PipelineStageFlags2::ALL_COMMANDS)
+                    .dst_access_mask(vk::AccessFlags2::MEMORY_READ | vk::AccessFlags2::MEMORY_WRITE)
+                    .old_layout(vk::ImageLayout::DEPTH_STENCIL_READ_ONLY_OPTIMAL)
+                    .new_layout(vk::ImageLayout::DEPTH_ATTACHMENT_OPTIMAL)
+                    .image(self.depth_image)
+                    .subresource_range(depth_subresource_rt),
+            ];
+            ctx.device.cmd_pipeline_barrier2(
+                cmd,
+                &vk::DependencyInfo::default().image_memory_barriers(&from_rt),
+            );
+
+            // offscreen_color_image is already COLOR_ATTACHMENT_OPTIMAL — the water raster
+            // pass just wrote it and cmd_end_rendering doesn't transition anything.
+            self.ray_tracing.record_composite(
+                ctx,
+                cmd,
+                self.swapchain.extent,
+                self.offscreen_color_view,
+            );
+        }
 
         if self.dlaa_enabled {
             // === RESOLVE (DLAA via Streamline) ===

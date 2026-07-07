@@ -5,7 +5,11 @@
 #version 460
 #extension GL_EXT_ray_tracing : require
 
-layout(location = 0) rayPayloadInEXT vec3 hit_color;
+// .a = 0.0 always — a miss means the composite pass (Phase 5) leaves water.frag's already-drawn
+// analytic sky reflection bit-for-bit untouched; the .rgb sky value computed below is real
+// (kept for forward-compatibility / a verification sanity-check), it's just never blended in
+// by the current hard hit/miss gate.
+layout(location = 0) rayPayloadInEXT vec4 hit_color;
 
 layout(set = 1, binding = 0, std140) uniform FrameData {
     mat4 current_motion_view_projection;
@@ -43,5 +47,5 @@ vec3 sampleSkyViewLut(vec3 view_dir) {
 }
 
 void main() {
-    hit_color = sampleSkyViewLut(normalize(gl_WorldRayDirectionEXT));
+    hit_color = vec4(sampleSkyViewLut(normalize(gl_WorldRayDirectionEXT)), 0.0);
 }

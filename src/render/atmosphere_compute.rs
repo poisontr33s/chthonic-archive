@@ -512,10 +512,17 @@ impl AtmosphereCompute {
         device.cmd_dispatch(cmd, group_x, group_y, 1);
 
         // GENERAL -> SHADER_READ_ONLY_OPTIMAL
+        // RAY_TRACING_SHADER_KHR added (Rung 2.5, independent review 2026-07-07):
+        // water_reflection.rmiss samples this same LUT and was missing from this dst mask —
+        // an unsynchronized read on paper even though the layout happened to already match.
         let barrier = vk::ImageMemoryBarrier2::default()
             .src_stage_mask(vk::PipelineStageFlags2::COMPUTE_SHADER)
             .src_access_mask(vk::AccessFlags2::SHADER_WRITE)
-            .dst_stage_mask(vk::PipelineStageFlags2::FRAGMENT_SHADER | vk::PipelineStageFlags2::COMPUTE_SHADER)
+            .dst_stage_mask(
+                vk::PipelineStageFlags2::FRAGMENT_SHADER
+                    | vk::PipelineStageFlags2::COMPUTE_SHADER
+                    | vk::PipelineStageFlags2::RAY_TRACING_SHADER_KHR,
+            )
             .dst_access_mask(vk::AccessFlags2::SHADER_READ)
             .old_layout(vk::ImageLayout::GENERAL)
             .new_layout(vk::ImageLayout::SHADER_READ_ONLY_OPTIMAL)

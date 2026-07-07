@@ -28,13 +28,14 @@ layout(buffer_reference, scalar, buffer_reference_align = 4) readonly buffer Ver
 
 // Set by the RT pipeline's push-constant range (Phase 4) — device addresses of the two
 // BLAS-input copy buffers from ray_tracing.rs. gl_InstanceCustomIndexEXT selects which one
-// (0 = bathymetry, 1 = ocean — matches Packed24_8::new(0/1, 0xFF) in ray_tracing.rs).
+// (0 = bathymetry, 1 = ocean — matches Packed24_8::new(0/1, ...) in ray_tracing.rs; only
+// bathymetry is ever actually hit today since the ray-gen's cullMask excludes ocean, mask 0x02).
 layout(push_constant) uniform PushConstants {
     uint64_t bathymetry_vertex_addr;
     uint64_t ocean_vertex_addr;
 } pc;
 
-layout(location = 0) rayPayloadInEXT vec3 hit_color;
+layout(location = 0) rayPayloadInEXT vec4 hit_color;
 hitAttributeEXT vec2 attribs;
 
 layout(set = 1, binding = 0, std140) uniform FrameData {
@@ -62,5 +63,5 @@ void main() {
     );
 
     float lambert = 0.30 + 0.70 * max(dot(normal, normalize(u_frame.sun_direction)), 0.0);
-    hit_color = color * lambert;
+    hit_color = vec4(color * lambert, 1.0); // alpha=1: a real hit, composite pass replaces
 }
