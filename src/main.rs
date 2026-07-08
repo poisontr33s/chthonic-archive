@@ -67,6 +67,15 @@ impl ArchiveApp {
         game_data: GameData,
         faction_registry: FactionRegistry,
     ) -> Self {
+        // TAA sustained-motion diagnostic (linear-mapping-rain.md Track A1): seeds the exact
+        // continuous-pan path a held key drives, instead of a separate one-shot hook, so
+        // render-smoke -Profile at a few different CHTHONIC_MAX_FRAMES values can capture
+        // ghosting/streaking across a real frame sequence rather than one post-jump screenshot.
+        let mut keys_held = HashSet::new();
+        if std::env::var("CHTHONIC_TEST_SUSTAINED_PAN").is_ok() {
+            keys_held.insert(KeyCode::KeyD);
+        }
+
         Self {
             save_path,
             game_data,
@@ -75,7 +84,7 @@ impl ArchiveApp {
             vulkan_context: None,
             renderer: None,
             frame_count: 0,
-            keys_held: HashSet::new(),
+            keys_held,
         }
     }
 

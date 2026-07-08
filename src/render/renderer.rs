@@ -145,6 +145,11 @@ pub struct Renderer {
     pub history_initialized: [bool; 2],
     pub frame_index: u64,
     pub screenshot: Option<String>,
+    /// Which frame the one-shot capture below fires on. Default 5 (unchanged behavior);
+    /// TAA sustained-motion diagnostic (linear-mapping-rain.md Track A1) overrides via
+    /// CHTHONIC_SCREENSHOT_FRAME so the same held-key scenario can be captured at different
+    /// points in a real frame sequence across separate runs, instead of always the same frame.
+    pub screenshot_frame: u64,
     pub show_motion: bool,
     pub lens: super::lens::Lens,
     pub heading: super::lens::Heading,
@@ -568,6 +573,10 @@ impl Renderer {
             history_initialized: [false, false],
             frame_index: 0,
             screenshot: std::env::var("CHTHONIC_SCREENSHOT").ok(),
+            screenshot_frame: std::env::var("CHTHONIC_SCREENSHOT_FRAME")
+                .ok()
+                .and_then(|s| s.parse().ok())
+                .unwrap_or(5),
             show_motion: std::env::var("CHTHONIC_SHOW_MOTION").is_ok(),
             lens,
             heading,
@@ -2920,7 +2929,7 @@ impl Renderer {
         // One-shot framebuffer capture (agent self-verify). Capture before present while the
         // swapchain image is still acquired; after present it belongs back to the swapchain.
         let next_frame_index = self.frame_index + 1;
-        if !self.shot_taken && next_frame_index >= 5 {
+        if !self.shot_taken && next_frame_index >= self.screenshot_frame {
             if let Some(path) = self.screenshot.clone() {
                 if let Err(e) = self.capture_screenshot(ctx, image_index, &path) {
                     log::warn!("📸 screenshot failed: {e:#}");
