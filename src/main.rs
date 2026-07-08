@@ -168,6 +168,29 @@ impl ApplicationHandler for ArchiveApp {
         self.renderer = Some(renderer);
         self.vulkan_context = Some(vulkan_context);
         self.window = Some(window);
+
+        // TEMPORARY diagnostic, not product code: exercises the exact set_target/zoom calls the
+        // real WASD/wheel handlers use, so a render-smoke screenshot can prove the camera math
+        // actually moves pixels -- decoupled from whether winit's own event delivery works (a
+        // mature library, not new code). Remove once hands-on input testing supersedes this.
+        // CHTHONIC_TEST_CAMERA=pan|zoom|both
+        if let Ok(mode) = std::env::var("CHTHONIC_TEST_CAMERA") {
+            if let Some(renderer) = self.renderer.as_mut() {
+                let extent = renderer.swapchain.extent;
+                let aspect = extent.width as f32 / extent.height.max(1) as f32;
+                if mode == "pan" || mode == "both" {
+                    let (forward, _right) = renderer.camera.ground_axes();
+                    let offset = forward * renderer.camera.ortho_size * 0.5;
+                    let new_target = renderer.camera.target + offset;
+                    info!("🧪 CHTHONIC_TEST_CAMERA=pan: target {:?} -> {:?}", renderer.camera.target, new_target);
+                    renderer.camera.set_target(new_target, aspect);
+                }
+                if mode == "zoom" || mode == "both" {
+                    info!("🧪 CHTHONIC_TEST_CAMERA=zoom: ortho_size {} -> scaling by 0.5", renderer.camera.ortho_size);
+                    renderer.camera.zoom(0.5, aspect);
+                }
+            }
+        }
     }
 
     fn window_event(
