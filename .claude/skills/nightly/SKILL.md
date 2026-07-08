@@ -17,7 +17,9 @@ The user is stepping away for a real stretch (sleep, out) and wants bounded, ver
 
 Optional argument names a topic or cluster directly (`/nightly aca-engine`, `/nightly dsl`) — both real invocations so far worked this way, the user named the topic. With no argument: read `CLAUDEBASE/charts/frontier-atlas.md`'s Level map section and its §1 ("ready to alchemize now") first. Pick the item that is BOTH gate-met (§1, not §2/§3) AND in a cluster with a recent nearby landing doc — "what cluster am I already warm in" is the atlas's own stated purpose for this. Do not pick from §2 (externally blocked) or §3 (needs foundational work) without the user having named it directly — those are explicitly not nightly-sized.
 
-**Before acting on anything the atlas or memory claims**: verify it against the current code. Both real nightlies found the philosophy/planning memory didn't fully match what the code actually did (the DSL nightly found a hidden grammar shadow the "6/6 clean" baseline had missed; the A-C-A nightly found the whole correspondence engine was write-only despite the philosophy memory describing it as complete). Reading the live code before writing anything is not optional scaffolding, it is where both real findings came from.
+**§1 is not a pure candidate queue.** First time scope selection actually ran with no topic named (2026-07-08, zombie B3), §1 held a mix: genuinely-open items sitting next to entries kept purely for record-keeping (work logged there the same session it closed). Check each entry's own stated status, not just its presence in §1 — "ready to alchemize" and "already alchemized, logged here" can sit side by side.
+
+**Before acting on anything the atlas or memory claims**: verify it against the current code. Three real nightlies, three different outcomes on this check — the DSL nightly found a hidden grammar shadow the "6/6 clean" baseline had missed (memory wrong); the A-C-A nightly found the whole correspondence engine was write-only despite the philosophy memory describing it as complete (memory wrong); the zombie B3 nightly found a genuine middle case — partially wired, some fields already flowing through, some not, neither fully-done nor fully-untouched. Don't force a verify-before-assume finding into a binary matches/doesn't-match box — read closely enough to say exactly which parts are real.
 
 ## 2. The discipline (non-negotiable, not a style choice)
 
@@ -53,6 +55,8 @@ Body sections, in this order, matching both precedents: what was found (includin
 ## 5. Commit
 
 Both real nightlies committed autonomously, including through this repo's auto-push-on-commit hook. That's the default here too — but it is a default, not a law: if the verification gate didn't fully pass, or the change touches something the discipline in §2 says name-don't-decide, stop short of committing and say so in the landing doc instead.
+
+**Check the index before staging, every time.** The zombie B3 nightly found the working tree already had ~20 unrelated files staged from earlier in the session (`git status --porcelain` showed `A `/`M ` entries before this invocation touched anything) — a first `git add <this task's files>` landed on top of that existing staged set instead of replacing it, and committing at that point would have swept all of it in under this skill's own authority. Every time: run `git status --porcelain` first; if anything unexpected is already staged, `git reset HEAD --` (unstages everything, working tree untouched) before adding your own files; stage only the exact files this invocation's task touched, by name — never `git add -A`/`git add .`. If the tree has other unrelated uncommitted or staged work, name it in the landing doc for the user's own call on how to batch it — deciding that is not this skill's job.
 
 ## What this skill deliberately does not do
 
