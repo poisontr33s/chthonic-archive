@@ -2635,6 +2635,308 @@ def _render_upcycle(result: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Tier C1 — Zombie Intake Report (docs/zombie/CONVERGENCE_PLAN.md)
+# ---------------------------------------------------------------------------
+
+_SEMANTIC_CLUSTER_THRESHOLD = 0.75  # tighter than `zombie similar`'s 0.70 default — a report wants real clusters, not loose neighbors
+
+
+def _ore_histogram_by_community(rows: list[dict]) -> dict[int, dict[int, int]]:
+    """Group _collect_training_data() rows by community_id, tabulate ore-value counts.
+
+    Returns {community_id: {ore_value: count}}. community_id -1 ("no dominant
+    community") is kept as its own bucket rather than dropped — a file with no
+    imports, or imports outside any detected community, is still real data.
+    """
+    histogram: dict[int, dict[int, int]] = {}
+    for row in rows:
+        cid = row.get("community_id", -1)
+        ore = row.get("ore", 0)
+        bucket = histogram.setdefault(cid, {})
+        bucket[ore] = bucket.get(ore, 0) + 1
+    return histogram
+
+
+def _provenance_age_distribution(rows: list[dict]) -> dict:
+    """Bucket days_since_last_touch into ranges; separately tally is_orphaned.
+
+    Ranges anchor on _ORPHAN_DAYS_THRESHOLD (90d, B2's own boundary) rather than
+    an arbitrary new one, so "90d+" here means exactly what is_orphaned already means.
+    """
+    buckets = {"0-7d": 0, "7-30d": 0, "30-90d": 0, "90d+ (orphaned)": 0, "unknown (no git history)": 0}
+    orphaned_count = 0
+    for row in rows:
+        days = row.get("days_since_last_touch", -1.0)
+        if row.get("is_orphaned"):
+            orphaned_count += 1
+        if days < 0:
+            buckets["unknown (no git history)"] += 1
+        elif days <= 7:
+            buckets["0-7d"] += 1
+        elif days <= 30:
+            buckets["7-30d"] += 1
+        elif days <= 90:
+            buckets["30-90d"] += 1
+        else:
+            buckets["90d+ (orphaned)"] += 1
+    return {"buckets": buckets, "total_orphaned": orphaned_count, "total": len(rows)}
+
+
+def _ml_confidence_distribution(rows: list[dict], mem: dict) -> dict:
+    """Per-row ML confidence (max class probability from the trained GBT), bucketed.
+
+    Reconstructs the same 10-feature vector _ml_ore_rating() builds, but calls
+    predict_proba() instead of predict() — a read-only, additive computation that
+    does not touch _ml_ore_rating() itself. Only supports the current 10-feature
+    bundle shape; older 7/5-feature bundles report unavailable with a clear reason
+    rather than silently guessing — narrower than _ml_ore_rating()'s own 3-way
+    degradation, a deliberate scope limit for this report, not an oversight.
+    """
+    ml_meta = mem.get("ml_model", {})
+    if ml_meta.get("n_samples", 0) < ML_TRAIN_THRESHOLD:
+        return {"available": False, "reason": f"model has <{ML_TRAIN_THRESHOLD} training samples"}
+    if not ML_MODEL_PATH.exists():
+        return {"available": False, "reason": "no trained model bundle on disk"}
+
+    try:
+        import pickle
+        bundle = pickle.loads(ML_MODEL_PATH.read_bytes())
+        clf = bundle["clf"]
+        le_ext = bundle["le_ext"]
+        le_cat = bundle["le_cat"]
+        feature_names = bundle.get("feature_names", [])
+    except Exception as exc:
+        return {"available": False, "reason": f"failed to load model bundle: {exc}"}
+
+    if len(feature_names) != 10:
+        return {
+            "available": False,
+            "reason": f"model bundle has {len(feature_names)} features, expected 10 "
+                      f"(retrain with `zombie train --force`)",
+        }
+
+    buckets = {">90%": 0, "70-90%": 0, "50-70%": 0, "<50%": 0}
+    scored = 0
+    for row in rows:
+        try:
+            ext_code = int(le_ext.transform([row["ext"]])[0]) if row["ext"] in le_ext.classes_ else 0
+            cat_code = int(le_cat.transform([row["category"]])[0]) if row["category"] in le_cat.classes_ else 0
+            X = [[
+                ext_code, cat_code, row["signal_count"], row["has_sid"], row["has_functions"],
+                row["community_id"], row["semantic_similarity_max"],
+                row["days_since_last_touch"], row["num_prior_edits"], row["is_orphaned"],
+            ]]
+            confidence = float(max(clf.predict_proba(X)[0]))
+        except Exception:
+            continue
+        scored += 1
+        if confidence > 0.90:
+            buckets[">90%"] += 1
+        elif confidence > 0.70:
+            buckets["70-90%"] += 1
+        elif confidence > 0.50:
+            buckets["50-70%"] += 1
+        else:
+            buckets["<50%"] += 1
+
+    return {"available": True, "buckets": buckets, "scored": scored, "total_rows": len(rows)}
+
+
+def _semantic_clusters_awaiting_attention(
+    top_n: int = 5, threshold: float = _SEMANTIC_CLUSTER_THRESHOLD
+) -> list[dict]:
+    """Group semantically-similar consumed files via connected-components over a
+    cosine-similarity graph, then flag clusters where at least one member hasn't
+    reached the 'tempered' forge stage — SFS's own terminal/reviewed state (see
+    learn_from_forge()'s forge_ore map, where tempered=5 is the ceiling). "Awaiting
+    attention" is defined here as exactly that: not yet tempered. A judgment call,
+    not a spec-mandated definition — documented so it's a visible choice, not a
+    silent assumption.
+
+    Returns the top-N clusters by member count, largest first. Singleton
+    "clusters" (no neighbor above threshold) are excluded — a lone file isn't a
+    cluster.
+    """
+    index = _load_semantic_index()
+    if len(index) < 2:
+        return []
+
+    import networkx as nx
+
+    outcomes = _scan_forge_outcomes()
+    forge_state_by_name: dict[str, str] = {o["name"]: o["forge_state"] for o in outcomes}
+
+    G = nx.Graph()
+    hashes = list(index.keys())
+    G.add_nodes_from(hashes)
+    for i in range(len(hashes)):
+        for j in range(i + 1, len(hashes)):
+            sim = _cosine_similarity(index[hashes[i]]["vector"], index[hashes[j]]["vector"])
+            if sim >= threshold:
+                G.add_edge(hashes[i], hashes[j], weight=sim)
+
+    clusters: list[dict] = []
+    for component in nx.connected_components(G):
+        if len(component) < 2:
+            continue
+        members = []
+        not_tempered = 0
+        for h in component:
+            source = index[h].get("source", "?")
+            name = Path(source).name
+            state = forge_state_by_name.get(name, "unrouted")
+            if state != "tempered":
+                not_tempered += 1
+            members.append({"source": source, "forge_state": state})
+        clusters.append({"size": len(component), "not_tempered": not_tempered, "members": members})
+
+    clusters.sort(key=lambda c: c["size"], reverse=True)
+    return clusters[:top_n]
+
+
+def generate_intake_report(mem: dict) -> dict:
+    """Tier C1: build the zombie intake report — ore-by-community, provenance age,
+    ML confidence, and semantic clusters awaiting SFS attention. Read-only against
+    the corpus itself; the only write is the report file.
+
+    Writes dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md. Returns a summary
+    dict for --json output and Rich rendering.
+    """
+    rows = _collect_training_data(mem)
+    ore_histogram = _ore_histogram_by_community(rows)
+    provenance = _provenance_age_distribution(rows)
+    ml_confidence = _ml_confidence_distribution(rows, mem)
+    semantic_clusters = _semantic_clusters_awaiting_attention()
+
+    date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    report_path = INTAKE / f"ZOMBIE_INTAKE_REPORT_{date_str}.md"
+
+    lines = [
+        f"# Zombie Intake Report — {date_str}",
+        "",
+        f"Generated from {len(rows)} consumed files with a known forge outcome "
+        "(see `_scan_forge_outcomes()`). Read-only — SFS reads this to prioritize "
+        "forge work without manual queue inspection (docs/zombie/CONVERGENCE_PLAN.md Tier C1).",
+        "",
+        "## Ore histogram by community",
+        "",
+        "| Community | Ore 1 | Ore 2 | Ore 3 | Ore 4 | Ore 5 | Total |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    real_community_ids = sorted(cid for cid in ore_histogram if cid != -1)
+    for cid in sorted(ore_histogram.keys(), key=lambda c: (c == -1, c)):
+        bucket = ore_histogram[cid]
+        total = sum(bucket.values())
+        label = "unknown (-1)" if cid == -1 else str(cid)
+        lines.append(
+            f"| {label} | {bucket.get(1, 0)} | {bucket.get(2, 0)} | {bucket.get(3, 0)} | "
+            f"{bucket.get(4, 0)} | {bucket.get(5, 0)} | {total} |"
+        )
+    if not real_community_ids:
+        lines.append(
+            "\n_No real Louvain communities detected — the import graph currently has "
+            "fewer than 3 nodes (see `detect_communities()`'s own threshold). Every row "
+            "falls into the `unknown (-1)` bucket above until the graph grows._"
+        )
+
+    lines += [
+        "",
+        "## Provenance age distribution",
+        "",
+        f"Total files: {provenance['total']} | Orphaned "
+        f"(>{_ORPHAN_DAYS_THRESHOLD}d since last touch): {provenance['total_orphaned']}",
+        "",
+        "| Age bucket | Count |",
+        "|---|---|",
+    ]
+    for bucket_name, count in provenance["buckets"].items():
+        lines.append(f"| {bucket_name} | {count} |")
+
+    lines += ["", "## ML confidence distribution", ""]
+    if ml_confidence["available"]:
+        lines.append(
+            f"Scored {ml_confidence['scored']}/{ml_confidence['total_rows']} rows "
+            "against the trained GBT model."
+        )
+        lines += ["", "| Confidence | Count |", "|---|---|"]
+        for bucket_name, count in ml_confidence["buckets"].items():
+            lines.append(f"| {bucket_name} | {count} |")
+    else:
+        lines.append(f"Not available: {ml_confidence['reason']}")
+
+    lines += [
+        "",
+        "## Top semantic clusters awaiting SFS attention",
+        "",
+        "\"Awaiting attention\" = at least one cluster member has not reached the "
+        "`tempered` forge stage yet (SFS's own terminal/reviewed state). Files with "
+        "no forge outcome yet show as `unrouted`.",
+        "",
+    ]
+    if semantic_clusters:
+        for i, cluster in enumerate(semantic_clusters, start=1):
+            lines.append(
+                f"### Cluster {i} — {cluster['size']} files, "
+                f"{cluster['not_tempered']} not yet tempered"
+            )
+            for m in cluster["members"]:
+                lines.append(f"- `{m['source']}` — {m['forge_state']}")
+            lines.append("")
+    else:
+        semantic_index_size = len(_load_semantic_index())
+        if semantic_index_size < 2:
+            lines.append(
+                f"None found — the semantic index has {semantic_index_size} entries, "
+                "too few to compare. Run `zombie digest` on more files (A1's embedding "
+                "step) to populate it."
+            )
+        else:
+            lines.append(
+                f"None found — {semantic_index_size} files are indexed but none pair "
+                f"above the {_SEMANTIC_CLUSTER_THRESHOLD} cosine-similarity threshold."
+            )
+
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    return {
+        "report_path": safe_relative(report_path),
+        "rows_analyzed": len(rows),
+        "communities_detected": len(real_community_ids),
+        "rows_with_unknown_community": ore_histogram.get(-1, {}) and sum(ore_histogram[-1].values()) or 0,
+        "provenance": provenance,
+        "ml_confidence": ml_confidence,
+        "semantic_clusters_found": len(semantic_clusters),
+        "semantic_index_size": len(_load_semantic_index()),
+    }
+
+
+def _render_intake_report(result: dict) -> None:
+    from rich.panel import Panel
+    from rich.table import Table
+
+    console = _get_console()
+
+    summary = Table(show_header=False, box=None, padding=(0, 2))
+    summary.add_column("Key", style="bold cyan")
+    summary.add_column("Value")
+    summary.add_row("Report", result["report_path"])
+    summary.add_row("Rows analyzed", str(result["rows_analyzed"]))
+    communities_note = (
+        str(result["communities_detected"])
+        if result["communities_detected"]
+        else f"0 (all {result['rows_with_unknown_community']} rows unknown — import graph too small)"
+    )
+    summary.add_row("Real communities detected", communities_note)
+    summary.add_row("Orphaned files", str(result["provenance"]["total_orphaned"]))
+    ml = result["ml_confidence"]
+    summary.add_row("ML confidence", "available" if ml["available"] else f"unavailable ({ml['reason']})")
+    summary.add_row("Semantic clusters found", str(result["semantic_clusters_found"]))
+
+    console.print(Panel(summary, title="[bold]ZOMBIE INTAKE REPORT[/bold]", border_style="dim"))
+
+
+# ---------------------------------------------------------------------------
 # CLI
 # ---------------------------------------------------------------------------
 
@@ -2704,6 +3006,12 @@ def main() -> int:
 
     p_upcycle = sub.add_parser("upcycle", help="Detect slag files whose ore has risen since routing")
     p_upcycle.add_argument("--json", action="store_true")
+
+    p_intake_report = sub.add_parser(
+        "intake-report",
+        help="Generate the Tier C1 intake report (ore/community, provenance age, ML confidence, semantic clusters)",
+    )
+    p_intake_report.add_argument("--json", action="store_true")
 
     args = parser.parse_args()
 
@@ -2911,6 +3219,15 @@ def main() -> int:
             print(json.dumps(result, indent=2))
         else:
             _render_upcycle(result)
+        return 0
+
+    if args.command == "intake-report":
+        mem = load_memory()
+        result = generate_intake_report(mem)
+        if getattr(args, "json", False):
+            print(json.dumps(result, indent=2))
+        else:
+            _render_intake_report(result)
         return 0
 
     parser.print_help()

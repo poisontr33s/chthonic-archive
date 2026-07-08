@@ -1,7 +1,7 @@
 # Zombie × Dumpster-Dive Convergence Plan
 
 > **Created:** 2026-03-28 | **Updated:** 2026-07-08 (night)
-> **Status:** Tier A complete (A1-A4). Tier B complete: B1 ✅ (2026-04-24, embalm pre-CHEW) → B2 ✅ (2026-07-08, provenance features in ML model) → B3 ✅ (2026-07-08 night, enriched bridge receipts). Tier C (intake-report) is next.
+> **Status:** Tier A complete (A1-A4). Tier B complete: B1 ✅ (2026-04-24, embalm pre-CHEW) → B2 ✅ (2026-07-08, provenance features in ML model) → B3 ✅ (2026-07-08 night, enriched bridge receipts). Tier C: C1 ✅ (2026-07-08, later the same night, via `/nightly`) → C2/C3 next.
 > **Staleness note (2026-07-08):** this file sat at its 2026-04-15 update for ~3 months while B1 (2026-04-24) shipped and was never recorded here — cross-check `claude/mailbox/PENTEA_ROULETTE_STEWARDESS.md`'s Verification Oracle (D3/ZE-04/ZE-05) or just re-run the relevant `zombie` subcommand before trusting this file's dates again.
 > **Governing constraint:** Zombie is an external anomaly. Convergence is a protocol stabilization, not a merge. Both systems retain their identities.
 
@@ -148,21 +148,34 @@
 
 ---
 
-## Tier C — Intake Oracle (zombie → SFS supply chain) ← **NEXT**
+## Tier C — Intake Oracle (zombie → SFS supply chain)
 
 > Read-only contract. Zombie produces. SFS consumes. No bidirectional coupling yet.
 
-### C1. `zombie intake-report`
-**Pre-condition:** B3 (enriched bridge receipts exist) — met 2026-07-08
-**What to build:**
-- New subcommand: generates `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md`
-- Contents: ore histogram by community, ML confidence distribution, provenance age distribution, top semantic clusters awaiting SFS attention
-- SFS reads this to prioritize forge work without manual queue inspection
+### C1. `zombie intake-report` ✅ COMPLETE (2026-07-08, `/nightly`)
+**Pre-condition:** B3 (enriched bridge receipts exist) — met 2026-07-08. Checked before assuming: `grep`'d for any existing `intake-report`/`intake_report` code first — genuinely unstarted, unlike A4/B1/B3's "already partially done" surprises.
+
+**Built:**
+- New subcommand `zombie intake-report [--json]`, generates `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md`
+- All four sections the plan named: ore histogram by community, provenance age distribution, ML confidence distribution, top semantic clusters awaiting SFS attention
+- Three of the four sections reuse `_collect_training_data()` directly (already returns `community_id`/`days_since_last_touch`/`is_orphaned`/`ore` per row) rather than rebuilding that reconstruction — new code only for ML confidence (`predict_proba()`, additive, doesn't touch `_ml_ore_rating()`) and semantic clustering (`networkx` connected-components over a cosine-similarity graph, reusing the existing `networkx` dependency)
+- "Awaiting SFS attention" defined explicitly as "not yet `tempered`" (SFS's own terminal state) — a documented judgment call, not a silent assumption, since the plan didn't spell out the exact definition
+
+**Verified, not assumed — three independent checks, two real issues caught:**
+1. First real run showed `"communities": 1` — looked plausible until `mem["community_map"]["membership"]` was read directly and found completely empty (import graph currently has fewer than 3 nodes, below `detect_communities()`'s own threshold). The "1" was the `-1` (unknown) bucket, not a real community. Fixed: summary now reports `communities_detected` (real Louvain communities only) separately from `rows_with_unknown_community`, and the markdown adds an explicit note when zero real communities exist.
+2. Semantic clusters showed `0` — checked the semantic index directly (`pickle.load` + manual pairwise cosine similarity), found it has exactly 0 entries. The report's message was vague ("too small or no matches") when the real answer was known and precise; fixed to report the actual index size and distinguish "empty" from "populated but no matches."
+3. Manually reconstructed one row's 10-feature vector and called `predict_proba()` independently (outside the new function) — matched the function's own output (0.9975) exactly, confirming the confidence computation is sound, not a fluke.
+
+**Honest current-state note (not a bug, a fact about this corpus right now):** 0 real communities and 0 semantic-index entries mean two of the four report sections are currently "empty but correctly so" — the report says this plainly rather than hiding it. Re-running `zombie graph --communities` and growing the semantic index (`zombie digest` on more files) would populate both; not done here since that's separate work, not part of C1 itself.
+
+**Key functions:** `_ore_histogram_by_community()`, `_provenance_age_distribution()`, `_ml_confidence_distribution()`, `_semantic_clusters_awaiting_attention()`, `generate_intake_report()`, `_render_intake_report()`
+**CLI:** `zombie intake-report` | `zombie intake-report --json`
+**No new dependencies** — `networkx` and `sklearn` were already present.
 
 ---
 
 ### C2. Upcycle Signal Propagation to SFS
-**Pre-condition:** A4 + C1
+**Pre-condition:** A4 + C1 — both met
 **What to build:**
 - `zombie intake-report` gains `upcycle_candidates` section
 - Slag files whose community membership has shifted (new tooling active, context changed in live repo) are surfaced
@@ -218,8 +231,8 @@ manual slag review →   upcycle detector    .                   .              
 .                  →   .                   NOV-CAD provenance ✅.                   .
 .                  →   .                   provenance features ✅.                   .
 .                  →   .                   enriched receipts ✅.                   .
-.                  →   .                   .                   intake-report ←NEXT  .
-.                  →   .                   .                   upcycle propagation .
+.                  →   .                   .                   intake-report ✅    .
+.                  →   .                   .                   upcycle propagation ←NEXT.
 .                  →   .                   .                   tempered feedback   .
 .                  →   .                   .                   .                   interface contract
 .                  →   .                   .                   .                   daemon mode
@@ -236,6 +249,7 @@ manual slag review →   upcycle detector    .                   .              
 | `scripts/zombie_forge_bridge.py` | Ore→forge stage router |
 | `dumpster-dive/intake/.zombie_memory.json` | Persistent memory (schema v2) |
 | `dumpster-dive/intake/.zombie_ml_model.pkl` | Trained model bundle |
+| `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md` | C1 output — generated by `zombie intake-report`, read by SFS |
 | `.claude/skills/corpse-reviver/scripts/embalm_before_edit.py` | NOV-CAD provenance interface (B1 target) |
 | `dumpster-dive/CIRCULATION_DIAGRAM.md` | SFS forge state machine reference |
 | `dumpster-dive/BLACKSMITH_MATRIARCH.md` | SFS operator profile |

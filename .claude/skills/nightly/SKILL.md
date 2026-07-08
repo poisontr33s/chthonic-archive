@@ -54,10 +54,18 @@ Record whichever mode ran (`default` if none named) in the ledger's `mode` field
 
 ## 3. Verification gate — must pass before any commit
 
+Two shapes, pick whichever fits the surface actually touched — this section read renderer-only for two real runs (B3, C1) before either needed the other path, both silently improvising the same missing half rather than the skill naming it:
+
+**Compiled/rendered surface** (Rust, shaders, anything with a build step):
 - `cargo build` (or the project's equivalent) clean.
 - Relevant test suite green — run the narrowest scope that actually covers the change, then confirm nothing wider broke.
 - If the change touches anything with a visual/behavioral smoke test (this repo: `scripts/render-smoke.ps1`), run it and check BOTH that it still passes AND that the diff (screenshot bytes, log content) matches what the change should and shouldn't have touched. A byte-identical screenshot alongside a changed log line is a real proof of isolation, not a formality — this is exactly how the A-C-A nightly confirmed its fix reached only the intended surface.
-- Do not commit on a failing or unverified gate. Revert cleanly (matching this session's atmosphere-shader revert-and-rescope discipline) rather than leaving a half-working change in the tree.
+
+**Scripted/CLI surface** (Python, PowerShell, anything with no compile step and no pytest suite to run):
+- Invoke the actual command for real — not a syntax check, the genuine thing a user would run.
+- Independently cross-check at least one real finding against raw data, bypassing your own new code entirely (read the underlying file/pickle/JSON directly, or hand-recompute one value) — this is the CLI-shaped equivalent of the byte-identical screenshot: proof the output is correct, not just that it ran without an exception. Both B3 and C1 did this and both found real issues this way that "it ran clean" alone would have missed.
+
+Do not commit on a failing or unverified gate, on either path. Revert cleanly (matching this session's atmosphere-shader revert-and-rescope discipline) rather than leaving a half-working change in the tree.
 
 ## 4. The landing doc
 

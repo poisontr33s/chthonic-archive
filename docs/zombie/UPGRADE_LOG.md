@@ -259,6 +259,31 @@ This is U5 formalized as the entry point of the 4-tier convergence plan (`docs/z
 
 ---
 
+## C1 — Zombie Intake Report (2026-07-08, later the same night)
+
+**Session:** Claude, `/nightly` (second invocation of the same night — first was B3), user genuinely asleep for the first time this skill ran fully unattended.
+
+**What:** new `zombie intake-report [--json]` subcommand generates `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md` — the four sections the plan named: ore histogram by community, provenance age distribution, ML confidence distribution, top semantic clusters awaiting SFS attention.
+
+**Built:**
+- `_ore_histogram_by_community()`, `_provenance_age_distribution()` — both pure aggregation over `_collect_training_data()`'s existing rows, no new data collection
+- `_ml_confidence_distribution()` — new, additive: reconstructs the same 10-feature vector `_ml_ore_rating()` builds, calls `predict_proba()` instead of `predict()`, buckets the max class probability. Does not touch `_ml_ore_rating()`. Only supports the current 10-feature bundle shape — reports unavailable with a clear reason for older 7/5-feature bundles rather than replicating the full 3-way degradation, a deliberate scope limit
+- `_semantic_clusters_awaiting_attention()` — new: connected-components over a cosine-similarity graph built with `networkx` (already a dependency), threshold 0.75 (tighter than `zombie similar`'s 0.70 default). "Awaiting attention" defined as "at least one member not yet `tempered`" — a documented judgment call, since the plan didn't specify the exact definition
+- `generate_intake_report()` orchestrates all four, writes the markdown file; `_render_intake_report()` is the Rich console summary
+
+**Verified, not assumed — real run, three independent checks, two real issues caught and fixed before calling this done:**
+1. First run's JSON summary said `"communities": 1` — read `mem["community_map"]["membership"]` directly (bypassing the new code entirely) and found it completely empty: the import graph currently has fewer than 3 nodes, below `detect_communities()`'s own threshold. The "1" was the `-1`/unknown bucket, not a real community — a misleading top-line number even though the markdown table itself was already honestly labeled. Fixed: summary now reports `communities_detected` (real Louvain communities only, currently 0) separately from `rows_with_unknown_community` (171), and the markdown adds an explicit sentence when zero real communities exist.
+2. Semantic clusters showed `0` — independently unpickled `.zombie_semantic_index.pkl` and computed every pairwise cosine similarity by hand; the index has exactly 0 entries, so `0` is correct, but the report's original wording ("too small, or no matches") was vague when the true answer was known and precise. Fixed to report the actual index size and distinguish "empty" from "populated but nothing clusters."
+3. Manually rebuilt one row's 10-feature vector and called `clf.predict_proba()` independently, outside `_ml_confidence_distribution()` — matched its own output (0.9975) exactly, confirming the confidence computation is sound rather than a fluke that happened to look plausible.
+
+**Honest current-state note, not a bug:** with 0 real communities and an empty semantic index right now, two of the four report sections are correctly-empty rather than broken — the report says so plainly. Growing the semantic index (`zombie digest` on more files) and letting the import graph pass 3 nodes would populate both; that's separate future work, not part of C1.
+
+**Key functions:** `_ore_histogram_by_community()`, `_provenance_age_distribution()`, `_ml_confidence_distribution()`, `_semantic_clusters_awaiting_attention()`, `generate_intake_report()`, `_render_intake_report()`
+**CLI:** `zombie intake-report` | `zombie intake-report --json`
+**No new dependencies** — `networkx` and `sklearn` were already present.
+
+---
+
 ## Recovery Checklist (zombie apocalypse protocol)
 
 If context is fully lost and you need to re-establish:
