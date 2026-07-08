@@ -58,6 +58,14 @@ Both real nightlies committed autonomously, including through this repo's auto-p
 
 **Check the index before staging, every time.** The zombie B3 nightly found the working tree already had ~20 unrelated files staged from earlier in the session (`git status --porcelain` showed `A `/`M ` entries before this invocation touched anything) — a first `git add <this task's files>` landed on top of that existing staged set instead of replacing it, and committing at that point would have swept all of it in under this skill's own authority. Every time: run `git status --porcelain` first; if anything unexpected is already staged, `git reset HEAD --` (unstages everything, working tree untouched) before adding your own files; stage only the exact files this invocation's task touched, by name — never `git add -A`/`git add .`. If the tree has other unrelated uncommitted or staged work, name it in the landing doc for the user's own call on how to batch it — deciding that is not this skill's job.
 
+## 6. Close the loop — retrospective self-improvement (mandatory, not optional)
+
+Every invocation ends with one more pass, after the landing doc and commit (or stopped-short note) are done: review the run itself for any place THIS SKILL's own design — scope selection, the discipline, the verification gate, the commit process — had a blind spot, produced a near-miss, or worked only because of a general habit rather than because this file said to. This is independent of whether the target task succeeded: a fully successful run, like zombie B3, can still expose a real gap in the skill itself (§1's mixed open/closed entries; the near-miss on pre-existing staged files, caught only by a general git-safety habit, not by anything this file said at the time).
+
+If a real gap surfaced: name it precisely, fix it in THIS SAME `SKILL.md`, re-verify with `skill_audit.py`, and note the fix — with which run found it — in the landing doc's tone note. If nothing surfaced: say so explicitly rather than silently skipping the step. "Reviewed, nothing found this run" is a real, valid outcome, not a failure to find something — don't invent a weakness to report just to have filled in this section.
+
+This is nightly's own scoped, immediate cousin of the `self-upcycle` skill's pattern — direct and same-invocation rather than deferred behind a 2+ occurrence promotion threshold, since nightly runs happen too infrequently for "wait for a second occurrence" to be worth the wait. Do this by default, every run, without being asked — that's the whole point: a self-improving skill that only improves when someone thinks to ask isn't actually recursive, it's just responsive.
+
 ## What this skill deliberately does not do
 
 - Does not pick §2/§3 atlas items (externally blocked, or genuinely foundational) without the user naming them directly.
