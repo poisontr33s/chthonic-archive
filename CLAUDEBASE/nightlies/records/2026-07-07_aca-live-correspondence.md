@@ -1,8 +1,9 @@
 ---
-schema_version: 1
+schema_version: 2
 date: 2026-07-07
 run_id: 2026-07-07_aca-live-correspondence
 trigger: claude-autonomous
+mode: default
 lane: aca-live-correspondence
 atlas_source: "predates frontier-atlas.md's first commit that same night — user-named directly"
 outcome: shipped

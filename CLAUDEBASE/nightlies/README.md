@@ -34,10 +34,11 @@ replaced; it's the detail this folder points back to.
 Per-run record frontmatter:
 
 ```yaml
-schema_version: 1
+schema_version: 2
 date: YYYY-MM-DD
 run_id: <short slug, matches the record filename's date+lane>
 trigger: user-invoked | claude-autonomous
+mode: default | creative | daytime   # see SKILL.md §1 for what each mode changes
 lane: <short-topic-slug>
 atlas_source: <where the task came from, or "user-named">
 outcome: shipped | stopped-short | partial
@@ -58,6 +59,13 @@ comparable; that's the whole point of a ledger. But `/nightly` is itself meant t
 improve every run (`SKILL.md` §7) — if a real run genuinely needs a new field, add
 it, bump `schema_version`, and note the change here. Stability is the default, not
 a wall.
+
+**v1 → v2 (2026-07-08, same night as v1):** added `mode`, the same night `--mode`
+itself was added to `SKILL.md` §1. All records were still same-day and
+self-authored at that point, so the 3 existing ones were updated in place to v2
+with `mode: default` rather than left at a permanently-orphaned v1 shape — a real
+future schema change, once external records exist that shouldn't be silently
+rewritten, gets a note here instead of an in-place edit.
 
 ## Both-ways requirement
 
