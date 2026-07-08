@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+# @SID: SCRIPT_ZOMBIE_CONSUMER_V1
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: zombie_consumer.py
@@ -561,6 +562,60 @@ def _load_sklearn():
         return None, None
 
 
+# B2 (provenance features into the ML model, docs/zombie/CONVERGENCE_PLAN.md Tier B):
+# a file that hasn't been touched in ORPHAN_DAYS is flagged is_orphaned. The plan's own
+# spec also wanted "no downstream imports" folded into that signal — deliberately NOT
+# implemented here: import_graph (mem["import_graph"]) is a co-occurrence graph (imports
+# seen together across consumed files, built in _update_import_graph()), not a reverse
+# dependency index, so it cannot answer "does anything import this specific file." That
+# would need a real reverse-dependency index, which doesn't exist yet. is_orphaned is git
+# activity only — an honest partial signal, not a faked complete one.
+_ORPHAN_DAYS_THRESHOLD = 90
+
+
+def _git_provenance_features(path: Path) -> dict:
+    """days_since_last_touch / num_prior_edits / is_orphaned / blame_author, from git history.
+
+    Uses --follow so history survives the excrete() git-mv into dumpster-dive/intake/.
+    No git history (untracked or git unavailable) degrades to a maximally-orphaned
+    sentinel rather than raising — training data collection should never hard-fail
+    on one file's history lookup. blame_author is the author of the most recent
+    commit touching the file (B3: exposed via the forge bridge receipt) — one name
+    per file, not a per-line git-blame.
+    """
+    try:
+        result = subprocess.run(
+            ["git", "log", "--follow", "--format=%at\x1f%an", "--", str(path)],
+            cwd=ROOT, capture_output=True, text=True, timeout=10, check=False,
+        )
+        entries: list[tuple[int, str]] = []
+        for line in result.stdout.splitlines():
+            if not line.strip():
+                continue
+            ts_str, _, author = line.partition("\x1f")
+            try:
+                entries.append((int(ts_str), author))
+            except ValueError:
+                continue
+    except Exception:
+        entries = []
+
+    if not entries:
+        return {
+            "days_since_last_touch": -1.0, "num_prior_edits": 0, "is_orphaned": 1,
+            "blame_author": "unknown",
+        }
+
+    latest_ts, latest_author = max(entries, key=lambda e: e[0])
+    days_since = (datetime.now(timezone.utc).timestamp() - latest_ts) / 86400.0
+    return {
+        "days_since_last_touch": round(days_since, 1),
+        "num_prior_edits": len(entries),
+        "is_orphaned": int(days_since > _ORPHAN_DAYS_THRESHOLD),
+        "blame_author": latest_author or "unknown",
+    }
+
+
 def _collect_training_data(mem: dict) -> list[dict]:
     """Build ML training rows from ALL matched forge outcomes (not just prediction errors).
 
@@ -570,7 +625,8 @@ def _collect_training_data(mem: dict) -> list[dict]:
     - consumption_log          → confirms the file was consumed by the zombie
 
     Returns list of dicts with features: ext, category, signal_count, has_sid, has_functions,
-    community_id, semantic_similarity_max, ore (label).
+    community_id, semantic_similarity_max, days_since_last_touch, num_prior_edits,
+    is_orphaned, ore (label).
     """
     log = mem.get("consumption_log", [])
     if not log:
@@ -578,7 +634,10 @@ def _collect_training_data(mem: dict) -> list[dict]:
 
     consumed_names = {Path(e["consumed"]).name for e in log}
 
-    # Build lookup: source_basename → payload from all compact manifests
+    # Build lookup: source_basename → payload from all compact manifests. _current_dir is
+    # synthetic (not part of the on-disk manifest schema) — the actual file now lives
+    # alongside its manifest (post-excrete git-mv), not at payload["source"]'s original
+    # pre-move path, so this is what a real git-history lookup needs to find it.
     payload_lookup: dict[str, dict] = {}
     for manifest_path in INTAKE.rglob(".zombie_compact_manifest.json"):
         try:
@@ -587,6 +646,7 @@ def _collect_training_data(mem: dict) -> list[dict]:
                 payload = ext_entry.get("payload", {})
                 src = payload.get("source", "")
                 if src:
+                    payload = dict(payload, _current_dir=str(manifest_path.parent))
                     payload_lookup[Path(src).name] = payload
         except Exception:
             continue
@@ -642,6 +702,11 @@ def _collect_training_data(mem: dict) -> list[dict]:
                     except ValueError:
                         pass
 
+        # B2: provenance features. Actual current path is alongside the manifest
+        # (post-excrete), not payload["source"]'s original pre-move location.
+        current_path = Path(payload["_current_dir"]) / Path(payload.get("source", fname)).name
+        provenance = _git_provenance_features(current_path)
+
         rows.append({
             "ext": ext,
             "category": category,
@@ -650,12 +715,18 @@ def _collect_training_data(mem: dict) -> list[dict]:
             "has_functions": has_functions,
             "community_id": community_id,
             "semantic_similarity_max": sem_max,
+            "days_since_last_touch": provenance["days_since_last_touch"],
+            "num_prior_edits": provenance["num_prior_edits"],
+            "is_orphaned": provenance["is_orphaned"],
             "ore": actual_ore,
         })
     return rows
 
 
-_GBT_FEATURE_NAMES = ["ext", "category", "signal_count", "has_sid", "has_functions", "community_id", "semantic_similarity_max"]
+_GBT_FEATURE_NAMES = [
+    "ext", "category", "signal_count", "has_sid", "has_functions", "community_id",
+    "semantic_similarity_max", "days_since_last_touch", "num_prior_edits", "is_orphaned",
+]
 _GBT_RETRAIN_GROWTH = 0.20  # auto-retrain when corpus grows ≥20% since last train
 
 
@@ -710,6 +781,9 @@ def train_ml_model(mem: dict, force: bool = False) -> dict:
             rows[i]["has_functions"],
             rows[i]["community_id"],
             rows[i]["semantic_similarity_max"],
+            rows[i]["days_since_last_touch"],
+            rows[i]["num_prior_edits"],
+            rows[i]["is_orphaned"],
         ]
         for i in range(n)
     ]
@@ -760,6 +834,9 @@ def _ml_ore_rating(
     mem: dict,
     community_id: int = -1,
     semantic_similarity_max: float = 0.0,
+    days_since_last_touch: float = -1.0,
+    num_prior_edits: int = 0,
+    is_orphaned: int = 0,
 ) -> int | None:
     """Return GBT-predicted ore_rating, or None if model unavailable/below threshold."""
     ml_meta = mem.get("ml_model", {})
@@ -776,8 +853,15 @@ def _ml_ore_rating(
         ext_code = int(le_ext.transform([ext])[0]) if ext in le_ext.classes_ else 0
         cat_code = int(le_cat.transform([category])[0]) if category in le_cat.classes_ else 0
         feature_names = bundle.get("feature_names", [])
-        if len(feature_names) == 7:
-            # GBT bundle with community + semantic features
+        if len(feature_names) == 10:
+            # B2: GBT bundle with provenance features (days_since_last_touch, num_prior_edits, is_orphaned)
+            X = [[
+                ext_code, cat_code, signal_count, int(has_sid), int(has_functions),
+                community_id, semantic_similarity_max,
+                days_since_last_touch, num_prior_edits, is_orphaned,
+            ]]
+        elif len(feature_names) == 7:
+            # GBT bundle with community + semantic features, pre-B2 — degrade gracefully until retrain
             X = [[ext_code, cat_code, signal_count, int(has_sid), int(has_functions), community_id, semantic_similarity_max]]
         else:
             # Legacy 5-feature bundle (DecisionTree) — degrade gracefully until retrain
@@ -1109,11 +1193,15 @@ def bite(path: Path, deep: bool = False) -> dict:
                     sem_max = max(sem_max, float(parts[1]))
                 except ValueError:
                     pass
+    bite_provenance = _git_provenance_features(path)
     ml_ore = _ml_ore_rating(
         result["category"], ext, len(result["signals"]),
         has_sid_flag, has_fn_flag, mem,
         community_id=bite_community_id,
         semantic_similarity_max=sem_max,
+        days_since_last_touch=bite_provenance["days_since_last_touch"],
+        num_prior_edits=bite_provenance["num_prior_edits"],
+        is_orphaned=bite_provenance["is_orphaned"],
     )
     if ml_ore is not None and ml_ore != result["ore_rating"]:
         result["signals"].append(f"ore_ml:{result['ore_rating']}->{ml_ore}")
@@ -1219,8 +1307,14 @@ def _build_bride_provenance(path: Path, assessment: dict) -> dict:
     A5 upgrade: the real embalm_before_edit snapshot is in chew()'s
     extract['embalm_provenance']. This inline summary is kept for
     backward-compat with callers that read extract['provenance'].
+
+    B3 (docs/zombie/CONVERGENCE_PLAN.md Tier B): also carries the same
+    git-provenance features B2 feeds the ML model (days_since_last_touch,
+    num_prior_edits, is_orphaned, blame_author), so the forge bridge receipt
+    can expose them — no forge-side schema requirement, just available.
     """
     source = safe_relative(path)
+    git_provenance = _git_provenance_features(path)
     return {
         "operator": "Novia Cadaveris",
         "forge_matriarch": "Sister Ferrum Scoriae",
@@ -1240,6 +1334,10 @@ def _build_bride_provenance(path: Path, assessment: dict) -> dict:
         "head_commit": _git_output("rev-parse", "HEAD") or "unknown",
         "git_status": _git_output("status", "--porcelain", "--", source) or "clean",
         "snapshot_at": datetime.now(timezone.utc).isoformat(),
+        "days_since_last_touch": git_provenance["days_since_last_touch"],
+        "num_prior_edits": git_provenance["num_prior_edits"],
+        "is_orphaned": git_provenance["is_orphaned"],
+        "blame_author": git_provenance["blame_author"],
         "canon": {
             "dumpster_domain": "dumpster-dive",
             "corpse_axis": "Novia Cadaveris",
@@ -2337,7 +2435,7 @@ def _render_train(result: dict) -> None:
     summary.add_row("Training samples", str(n))
     summary.add_row("Cross-val accuracy", acc_str)
     summary.add_row("Model path", result.get("model_path", "?"))
-    summary.add_row("Features", "ext · category · signal_count · has_sid · has_functions · community_id · semantic_similarity_max")
+    summary.add_row("Features", " · ".join(_GBT_FEATURE_NAMES))
     console.print(Panel(summary, title="[bold]ZOMBIE TRAIN[/bold]", border_style="dim"))
 
 

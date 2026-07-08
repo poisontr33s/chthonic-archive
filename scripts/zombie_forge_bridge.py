@@ -226,6 +226,11 @@ def _provenance_payload(provenance_data: dict | None) -> dict | None:
         "git_head": provenance_data.get("commit") or provenance_data.get("head_commit"),
         "snapshot_at": provenance_data.get("date") or provenance_data.get("snapshot_at"),
         "language": provenance_data.get("language"),
+        # B3 (docs/zombie/CONVERGENCE_PLAN.md Tier B): optional-read provenance for
+        # SFS at anvil/furnace — absent (None) on older extracts, no schema requirement.
+        "age_days": provenance_data.get("days_since_last_touch"),
+        "is_orphaned": provenance_data.get("is_orphaned"),
+        "blame_author": provenance_data.get("blame_author"),
     }
 
 

@@ -1,7 +1,8 @@
 # Zombie × Dumpster-Dive Convergence Plan
 
-> **Created:** 2026-03-28 | **Updated:** 2026-04-15
-> **Status:** Tier A — A1 ✅ A2 ✅ A3 ✅ A4 ✅ complete, Tier B (NOV-CAD first contact) is next
+> **Created:** 2026-03-28 | **Updated:** 2026-07-08 (night)
+> **Status:** Tier A complete (A1-A4). Tier B complete: B1 ✅ (2026-04-24, embalm pre-CHEW) → B2 ✅ (2026-07-08, provenance features in ML model) → B3 ✅ (2026-07-08 night, enriched bridge receipts). Tier C (intake-report) is next.
+> **Staleness note (2026-07-08):** this file sat at its 2026-04-15 update for ~3 months while B1 (2026-04-24) shipped and was never recorded here — cross-check `claude/mailbox/PENTEA_ROULETTE_STEWARDESS.md`'s Verification Oracle (D3/ZE-04/ZE-05) or just re-run the relevant `zombie` subcommand before trusting this file's dates again.
 > **Governing constraint:** Zombie is an external anomaly. Convergence is a protocol stabilization, not a merge. Both systems retain their identities.
 
 ---
@@ -100,7 +101,7 @@
 
 ---
 
-## Tier B — First Contact Surface (zombie ↔ NOV-CAD at provenance boundary) ← **NEXT**
+## Tier B — First Contact Surface (zombie ↔ NOV-CAD at provenance boundary) — ✅ COMPLETE (2026-07-08)
 
 > CHEW extension only. Zombie calls embalmer, receives receipt. NOV-CAD writes its own territory.
 
@@ -117,30 +118,42 @@
 
 ---
 
-### B2. Provenance Features in ML Model
-**Pre-condition:** B1 (provenance present in extracts)
-**What to build:**
-- Add to `_collect_training_data()`: `days_since_last_touch`, `num_prior_edits`, `is_orphaned` (no recent git activity + no downstream imports)
-- Retrain on enriched corpus
+### B2. Provenance Features in ML Model ✅ COMPLETE (2026-07-08)
+**Pre-condition:** B1 (provenance present in extracts) — met, re-verified live before starting.
+**Built:**
+- `_git_provenance_features(path)` — `git log --follow` (survives the excrete git-mv), returns `days_since_last_touch`, `num_prior_edits`, `is_orphaned` (>90 days since last touch)
+- `_collect_training_data()` reconstructs each file's current on-disk path from its manifest's parent dir (payload's own `source` field is the pre-excrete path, no longer valid) and calls the helper per row
+- `_GBT_FEATURE_NAMES` extended to 10; `train_ml_model()`'s `X` and `_ml_ore_rating()`'s prediction vector both updated in lockstep; `_ml_ore_rating()` gained a 3-way graceful-degradation branch (10/7/5-feature bundles) so older pickled models don't break before their next retrain
+- Also fixed in passing: `_render_train()`'s "Features" summary line was a hardcoded 7-name string, disconnected from `_GBT_FEATURE_NAMES` — now renders the real list
+
+**Deliberately partial, not silently faked:** the plan's own `is_orphaned` spec wanted "no recent git activity + no downstream imports." Only the git-activity half is implemented — `import_graph` is a co-occurrence graph (imports seen together across consumed files), not a reverse-dependency index, so it can't answer "does anything import this specific file." That would need a different data structure that doesn't exist yet.
+
+**Verified, not assumed:** `train --force` retrained cleanly on all 171 real samples (bundle's `clf.n_features_in_ == 10`, confirmed by inspecting the actual pickled model, not the display panel); `bite` now fires a live `ore_ml` signal from the new model (`ore_ml:2->1`) proving the 10-feature vector is genuinely used for prediction, not just training; `upcycle` still scans cleanly (79 slag); `chew`'s `embalm_provenance` (B1) still present — nothing regressed. Honest note: cross-val accuracy moved 84.4% → 83.8%, a slight decrease, not an improvement — expected noise on a small (171-sample), sparse-class dataset, not something to oversell as a win.
 
 **Unlocks:** Model learns that orphaned files and freshly-abandoned files behave differently in the forge.
 
 ---
 
-### B3. Provenance-Enriched Forge Bridge
-**Pre-condition:** B1
-**What to build:**
-- Bridge receipt JSON gains `provenance` sub-object (hash, age_days, is_orphaned, blame_author)
-- SFS can optionally read this at anvil/furnace — no schema requirement on the forge side, just available
+### B3. Provenance-Enriched Forge Bridge ✅ COMPLETE (2026-07-08, night)
+**Pre-condition:** B1 — met. **Not already wired**, verified before assuming (per the A4/B1 pattern earlier the same day): the bridge already carried a B1-era `provenance` sub-object (`sha256`/`source_file`/`git_head`/`snapshot_at`/`language`), but B2's git-provenance fields were computed only transiently inside `bite()` for ML scoring and never reached the extract JSON or the bridge receipt. `blame_author` didn't exist anywhere in the codebase.
+
+**Built:**
+- `_git_provenance_features()` (zombie_consumer.py) extended to also return `blame_author` — the most recent commit's author, read from the same single `git log --follow` call (added `%an` to the format string with a `\x1f`-delimited split, no second git subprocess)
+- `_build_bride_provenance()` now calls `_git_provenance_features(path)` and merges `days_since_last_touch`/`num_prior_edits`/`is_orphaned`/`blame_author` into `extract["provenance"]` — additive keys, nothing existing renamed or removed
+- `_provenance_payload()` (zombie_forge_bridge.py) extended to translate these into the receipt-facing names the plan specified: `age_days` (from `days_since_last_touch`), `is_orphaned`, `blame_author` — alongside the pre-existing B1 fields, using the same `.get()`-defensive style so older extracts without these fields degrade to `null` rather than erroring
+
+**Verified, not assumed:** ran real `chew` on a live tracked file (`scripts/zombie_consumer.py`), confirmed the extract's `provenance` block carries all 4 new fields with values cross-checked directly against `git log` (not just the tool's own output) — `days_since_last_touch: 44.6` matched the real last-commit date exactly, `blame_author: "poisontr33s"` matched `git log`'s `%an` directly. Fed that real (not synthetic) provenance block through the actual `_provenance_payload()` function and confirmed `age_days`/`is_orphaned`/`blame_author` translate correctly and `sha256` (B1) still matches. Non-regression: B1's `embalm_provenance` block still present and intact; B2's ML path re-verified directly (`_ml_ore_rating()` still returns a real prediction, not `None`; pickled model bundle still reports `n_features_in_ == 10`) since B3 touches neither.
+
+**Side finding, not fixed (out of scope for this task):** `chew --json` prints an "EMBALMED: ..." status line to stdout ahead of the JSON blob even in `--json` mode, breaking naive `| jq` piping. Pre-existing (from the A5 embalm-integration work), unrelated to B3 — named here rather than expanded into.
 
 ---
 
-## Tier C — Intake Oracle (zombie → SFS supply chain)
+## Tier C — Intake Oracle (zombie → SFS supply chain) ← **NEXT**
 
 > Read-only contract. Zombie produces. SFS consumes. No bidirectional coupling yet.
 
 ### C1. `zombie intake-report`
-**Pre-condition:** B3 (enriched bridge receipts exist)
+**Pre-condition:** B3 (enriched bridge receipts exist) — met 2026-07-08
 **What to build:**
 - New subcommand: generates `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_<date>.md`
 - Contents: ore histogram by community, ML confidence distribution, provenance age distribution, top semantic clusters awaiting SFS attention
@@ -202,10 +215,10 @@ hash dedup         ✅  semantic dedup ✅   .                   .              
 dict import graph  ✅  communities ✅       .                   .                   .
 DecisionTree 79%   ✅  GBT 84.4% ✅        .                   .                   .
 manual slag review →   upcycle detector    .                   .                   .
-.                  →   .                   NOV-CAD provenance  .                   .
-.                  →   .                   provenance features .                   .
-.                  →   .                   enriched receipts   .                   .
-.                  →   .                   .                   intake-report       .
+.                  →   .                   NOV-CAD provenance ✅.                   .
+.                  →   .                   provenance features ✅.                   .
+.                  →   .                   enriched receipts ✅.                   .
+.                  →   .                   .                   intake-report ←NEXT  .
 .                  →   .                   .                   upcycle propagation .
 .                  →   .                   .                   tempered feedback   .
 .                  →   .                   .                   .                   interface contract
