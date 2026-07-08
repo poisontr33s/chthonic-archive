@@ -33,7 +33,7 @@
 use anyhow::{Context, Result};
 use ash::vk::Handle;
 use ash::{vk, Device};
-use glam::{Mat4, Vec3};
+use glam::{Mat4, Vec2, Vec3};
 use gpu_allocator::vulkan::{Allocation, AllocationCreateDesc, Allocator};
 use gpu_allocator::MemoryLocation;
 use log::{debug, info};
@@ -1474,7 +1474,8 @@ impl Renderer {
     }
 
     /// Descriptor set: binding 0 = current (SAMPLED), 1 = history (SAMPLED), 2 = motion (SAMPLED).
-    /// Push constant: TaaParams { texel_size: vec2, blend: f32, debug: f32 } = 16 bytes.
+    /// Push constant: TaaParams { texel_size: vec2, blend: f32, debug: f32, camera_motion: f32 }
+    /// = 20 bytes.
     /// Output format matches the swapchain (passed in as `out_format`).
     #[allow(clippy::too_many_arguments)]
     unsafe fn create_taa_pipeline(
@@ -1519,11 +1520,12 @@ impl Renderer {
             )
             .context("taa: create desc set layout")?;
 
-        // --- pipeline layout: one push constant range (16 bytes: texel_xy + blend + debug) ---
+        // --- pipeline layout: one push constant range (20 bytes: texel_xy + blend + debug +
+        // camera_motion — the last is Track A1's disambiguated camera-only motion magnitude) ---
         let push_range = vk::PushConstantRange::default()
             .stage_flags(vk::ShaderStageFlags::FRAGMENT)
             .offset(0)
-            .size(16); // vec2 texel_size + f32 blend + f32 debug
+            .size(20); // vec2 texel_size + f32 blend + f32 debug + f32 camera_motion
         let pl_info = vk::PipelineLayoutCreateInfo::default()
             .set_layouts(std::slice::from_ref(&set_layout))
             .push_constant_ranges(std::slice::from_ref(&push_range));
@@ -1969,6 +1971,17 @@ impl Renderer {
         } else {
             0.0
         };
+        // Track A1 (TAA motion-adaptive resolve, attempt 2): project the camera's own
+        // target through both view-projections. The same world point both times means the
+        // resulting NDC delta is attributable purely to camera pan/zoom — unlike the combined
+        // per-pixel `out_motion` (water.frag), which also bakes in Tessendorf wave-crest
+        // animation and can't tell the two apart. See reference_taa_ghosting_investigation.
+        let target_curr = temporal_frame.current_view_projection * self.camera.target.extend(1.0);
+        let target_prev =
+            temporal_frame.previous_view_projection * self.camera.target.extend(1.0);
+        let ndc_curr = Vec2::new(target_curr.x / target_curr.w, target_curr.y / target_curr.w);
+        let ndc_prev = Vec2::new(target_prev.x / target_prev.w, target_prev.y / target_prev.w);
+        let camera_motion = (ndc_prev - ndc_curr).length() * 0.5; // NDC delta -> UV-space scale
         let frame_uniform = FrameUniform {
             current_motion_view_projection: temporal_frame
                 .current_view_projection
@@ -2728,11 +2741,13 @@ impl Renderer {
                 texel: [f32; 2],
                 blend: f32,
                 debug: f32,
+                camera_motion: f32,
             }
             let params = TaaParams {
                 texel: [1.0 / ext.width as f32, 1.0 / ext.height as f32],
                 blend: 0.1,
                 debug: if self.taa_debug { 1.0 } else { 0.0 },
+                camera_motion,
             };
             ctx.device.cmd_push_constants(
                 cmd,

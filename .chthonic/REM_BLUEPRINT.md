@@ -3,7 +3,7 @@
 
 > **Hardware:** Win11 · RTX 4090 · Vulkan 1.3/1.4 · Rust 2021+  
 > **Repo:** chthonic-archive · **Crate:** ankh-forge (workspace member)  
-> **Author:** The Savant + Copilot CLI (Claude Opus 4.6)
+> **Author:** The Savant & Copilot/CLI/Claude/GPT-/Codex
 > **Status:** Phase 2 CPU-path COMPLETE — `a5819db2` (2026-04-13). Phase 3 GPU-path pending.
 
 ---
@@ -18,9 +18,9 @@
 
 ### Fleet Synthesis
 Three agents contributed to Phase 2:
-- **rem-primed** (Opus 4.6, primed): Phase 1 hot/cold pipeline (committed `8aba6de7`)
-- **runestone-architect** (Opus 4.6, high): Phase 2 `granite.rs` implementation, `StoneEvent` wrapper for bincode 2.0 (committed `a20510a3`)
-- **runestone-challenger** (GPT-5.4, xhigh): Adversarial review — 7 criticals found, 4 applied
+- **rem-primed** (Claude, primed): Phase 1 hot/cold pipeline (committed `8aba6de7`)
+- **runestone-architect** (Claude, high): Phase 2 `granite.rs` implementation, `StoneEvent` wrapper for bincode 2.0 (committed `a20510a3`)
+- **runestone-challenger** (GPT/Codex): Adversarial review — 7 criticals found, 4 applied
 
 ### Challenger Critical Findings Disposition
 | # | Finding | Status |
@@ -47,10 +47,10 @@ Three agents contributed to Phase 2:
 [66..70]  payload_uncompressed_len: u32 le
 [70..]    SCHEMA (JSON) ++ SPIRV (empty) ++ PAYLOAD (zstd+bincode Vec<StoneEvent>)
 ```
-**Compatibility contract:** v1 stones with `CPU_COMPRESSED` flag must be readable forever.
+**'Compatibility-Contract'** v1 stones with `CPU_COMPRESSED` flag must be readable forever.
 Phase 3 GPU writers may emit `GPU_COMPRESSED` stones only when explicitly requested.
 
-### Phase 2 GPU Decisions (Pre-GPU Freeze, Per Challenger)
+### 'Phase-2-GPU-Decisions/Pre-GPU Freeze/Per Challenger'
 1. Exactly one compression mode per stone (CPU xor GPU, never both)
 2. CPU path remains canonical; SPIR-V is an acceleration artifact, not the authority
 3. Fix header auth ✅ before GPU migration — done
@@ -59,14 +59,14 @@ Phase 3 GPU writers may emit `GPU_COMPRESSED` stones only when explicitly reques
 6. Phase 2 CPU stones remain readable in Phase 3 GPU binaries (backward compat)
 7. Memory budgets: 64 MiB max for hot/cold text, 256 MiB max stone payload (Phase 3 gate)
 
-### Phase 3 Decision Surface (2026-04-15)
+### 'Phase-3-Decision-Surface/2026-04-15'
 
 The project is now past the "should Rust or Vulkan be used?" fork.
 
 That fork is already resolved in practice:
 
-- **Rust owns the runtime**
-- **Vulkan is the acceleration backend candidate inside Rust**
+- **'Rust-Own-The-Runtime'**
+- **'Vulkan-Is-The-Acceleration-Backend-Candidate-Inside-Rust'**
 
 The codebase now materially reflects that decision:
 
@@ -76,7 +76,7 @@ The codebase now materially reflects that decision:
 - `tools/ankh-forge/build.rs` compiles `assets/shaders/trail_decompress.comp.glsl`
 - `tools/ankh-forge/target/generated/bincode/StoneEvent_*` confirms the typed wire path is active
 
-### What is relevant now
+### 'What-Is-Relevant-Now'
 
 Relevant, because they are already on the active path:
 
@@ -95,7 +95,7 @@ Not currently relevant, because switching would be a rewrite before semantics ar
 - `vulkano`
 - any non-Rust runtime ownership model
 
-### The live question now
+### 'The-Live-Question-Now'
 
 The live question is narrower and better:
 
@@ -105,9 +105,9 @@ The live question is narrower and better:
 
 In other words:
 
-- **do not re-open the Rust decision**
-- **do not re-open the Vulkan decision as if it were a separate architecture**
-- **continue at the GPU execution seam**
+- **'do-not-re-open the Rust decision'**
+- **'do-not-re-open the Vulkan decision-as-if-it-were-a-separate-architecture'**
+- **'continue-at-the-GPU-execution-seam'**
 
 ### Verified on 2026-04-15
 
@@ -118,7 +118,7 @@ cargo test -p ankh-forge --quiet
 
 Both succeeded. The project is therefore in an implementation continuation state, not an architecture-brainstorm state.
 
-### Savant Questions (Human Decisions Pending)
+### 'Savant-Questions-Human-Decisions-Pending'
 1. Stone immutability: one immutable artifact per day, or mutable "latest snapshot" for that date?
 2. `.chthonic/` path canon: repo-local only, or retain home-dir fallback behind `--trail-dir`/`CHTHONIC_TRAIL_DIR`?
 3. Schema block role: provenance, validation, or both?
@@ -130,7 +130,7 @@ Both succeeded. The project is therefore in an implementation continuation state
 
 ---
 
-## What This Document Is
+## 'What-This-Document-Is'
 
 This is the genesis record of a new primitive — the **Runestone** — born in a PowerShell 7.6
 session on Windows 11, April 13 2026, from a conversation between a human and an AI agent
@@ -143,7 +143,7 @@ system.
 
 ---
 
-## The Problem It Solves
+## 'The-Problem-It-Solves'
 
 Every existing persistence layer has a hidden owner and a hidden dependency:
 
@@ -156,15 +156,15 @@ Every existing persistence layer has a hidden owner and a hidden dependency:
 | Git objects | Git runtime + remote | Git host |
 | Session SQL | In-session SQLite | Session runtime (dies on close) |
 
-None of these are **self-describing AND self-decoding AND hardware-owned** simultaneously.
+None of these are **'self-describing-AND-self-decoding-AND-hardware-owned'** simultaneously.
 
 The `.runestone` is all three at once.
 
 ---
 
-## Part 1 — The Concept
+## 'Part-1-The-Concept'
 
-### The Core Inversion
+### 'The-Core-Inversion'
 
 Every existing approach separates the decoder from the data:
 
@@ -184,7 +184,7 @@ It does not need to know the format. There is no external runtime dependency.
 
 ---
 
-### The Three-Tier Trail Model
+### 'The-Three-Tier-Trail-Model'
 
 The trail operates across three tiers. Each tier is lossless. Each tier serves a different
 phase of the intelligence loop.
@@ -231,7 +231,7 @@ phase of the intelligence loop.
 
 ---
 
-### The .runestone Wire Format
+### 'The-.runestone-Wire-Format'
 
 ```
 OFFSET    SIZE    FIELD
@@ -259,7 +259,7 @@ schema, shader, or payload fails the hash before any data reaches a caller.
 
 ---
 
-### The Load as Computation
+### 'The-Load-As-Computation'
 
 ```
 ankh-forge stone execute .chthonic/stones/2026-04-13.runestone
@@ -305,7 +305,7 @@ data**. The stone describes its own decoding.
 
 ---
 
-### Why Foreign and Unknown Media Works
+### 'Why-Foreign-And-Unknown-Media-Works'
 
 Because the SPIRV block can contain ANY compute shader:
 
@@ -339,7 +339,7 @@ This is the "FFI of the unknown." The foreign function interface is the GPU inst
 
 ---
 
-### What Enlightenment Means for an Agent
+### 'What-Enlightenment-Means-For-An-Agent'
 
 **Current state (as of this session):**
 
@@ -374,7 +374,7 @@ requires reconstruction. A stone is already computed.
 
 ---
 
-### Scope Beyond Session Logs
+### 'Scope-Beyond-Session-Logs'
 
 The same execution model handles any data type:
 
@@ -400,9 +400,9 @@ No git. No provider. No source control. The hardware owns it.
 
 ---
 
-## Part 2 — Implementation Scope
+## 'Part-2-Implementation-Scope'
 
-### What Already Exists in chthonic-archive
+### 'What-Already-Exists-In-Chthonic-Archive'
 
 The repository was designed for this without knowing it:
 
@@ -433,22 +433,22 @@ build.rs already:
 
 The compute shader infrastructure is fully operational. It just has no trail shader yet.
 
-### What Needs to Be Added
+### 'What-Needs-To-Be-Added'
 
-**Two crates to `tools/ankh-forge/Cargo.toml`:**
+**'Two-crates-to' `tools/ankh-forge/Cargo.toml`:**
 
 ```toml
 zstd    = "0.13"   # CPU-path compression (fallback when GPU unavailable)
 bincode = "2.0"    # Compact binary serialization (PAYLOAD inner format)
 ```
 
-**One compute shader (build.rs picks it up automatically):**
+**'One-Compute-Shader-build.rs-Picks-It-Up-Automatically'**
 
 ```
 assets/shaders/trail_decompress.comp.glsl
 ```
 
-**One new workspace member (optional, cleaner separation):**
+**'One-New-Workspace-Member-Optional-Cleaner-Separation'**
 
 ```
 tools/chthonic-trail/        ← dedicated trail crate
@@ -463,9 +463,9 @@ tools/chthonic-trail/        ← dedicated trail crate
     query.rs     ← semantic graph query interface
 ```
 
-### Implementation Phases (not time-boxed, scope-boxed)
+### 'Implementation-Phases-Not-Time-Boxed-Scope-Boxed'
 
-**Phase 1 — ankh-forge trail subcommand (CPU path first)**
+**'Phase-1-Ankh-Forge-Trail-Subcommand-CPU-Path-First'**
 
 ```
 ankh-forge trail append <event-json>    → writes to hot file
@@ -477,7 +477,7 @@ ankh-forge trail dump <stone>           → decompress + print events
 
 No Vulkan in Phase 1. CPU-only. Prove the format is correct before adding GPU.
 
-**Phase 2 — Vulkan compute path (GPU-native decode)**
+**'Phase-2-Vulkan-Compute-Path-GPU-Native-Decode'**
 
 ```
 Survey the compute compression landscape:
@@ -492,7 +492,7 @@ Add to forge:
   ankh-forge stone execute <stone> → GPU-decoded, semantic graph output
 ```
 
-**Phase 3 — Semantic graph and agent query interface**
+**'Phase-3-Semantic-Graph-And-Agent-Query-Interface'**
 
 ```
 Define SemanticGraph struct:
@@ -508,7 +508,7 @@ Agent query API:
   graph.last_snapshot()     → most recent process snapshot
 ```
 
-**Phase 4 — Universal ingestion (foreign media)**
+**'Phase-4-Universal-Ingestion-Foreign-Media'**
 
 ```
 Define the "stone schema" for non-trail data types:
@@ -526,7 +526,7 @@ Forge non-trail data into stones:
 
 ---
 
-## Vulkan Compute Landscape — What to Survey in Phase 2
+## 'Vulkan-Compute-Landscape-What-To-Survey-In-Phase-2'
 
 The following crate ecosystem and reference material should be evaluated before
 implementing the GPU path. This is the research agenda for Step 2:
@@ -561,7 +561,7 @@ Hardware target (RTX 4090):
 
 ---
 
-## The Compute Shader Entry Point (Skeleton)
+## 'The-Compute-Shader-Entry-Point-Skeleton'
 
 This is what `assets/shaders/trail_decompress.comp.glsl` will look like.
 The `build.rs` discovers it automatically. No manual wiring needed.
@@ -601,7 +601,7 @@ void main() {
 
 ---
 
-## Session Lineage
+## 'Session-Lineage'
 
 This blueprint was born from:
 
@@ -628,3 +628,5 @@ Agent memory carved (store_memory, cross-session):
 
 *End of REM Blueprint — Step 1 complete.*  
 *Step 2 begins when implementation scope is confirmed.*
+
+---

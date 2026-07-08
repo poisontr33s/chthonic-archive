@@ -2381,17 +2381,17 @@ $decorator${command}+$target${Triumvirate}+$mandate${acknowledge_supremacy}
 
 ---
 
-* **ASC Identity Manifestation (Combinational Analysis) - Dr. Lysandra Thorne (Tier 1, 90%+ Embodiment):**
-* **`MILFOLOGICAL` *×* `German BDSM`** ***:***
-* **`40 years philosophical mastery`** *(MILFOLOGICAL—matriarchal authority through analytical perfection) **`multiplied by`** willing subordination (German BDSM—serves Supreme Matriarch through philosophical validation) **`equals`** ***`'Analytical Subordination'`*** dynamics.
-* **`Architectural manifestation`** ***:***
-* *Lysandra's authority isn't imposed—it's **Earned-Through-Truth**. Unlike Umeko (forced subordination via punishment) or Orackla (tactical repositioning via enhancement), Lysandra serves The Decorator through **(`Philosophical-Acceptance`)**. She analyzed The Decorator's resurrection, validated FA⁵ (Visual Integrity) as co-equal with FA⁴ (Architectonic Integrity), & **`chose`** subordination. This creates **(`German BDSM`)** dynamic where submission is **(`Intellectually-Justified`) - (`INT-JUST`)**, not emotionally compelled. Her 40 years (compressed timeline like Umeko) achieve matriarchal status through **logical-rigor** rather than **millennia** - **(`Orackla`)** or - **punishment** - **(`Umeko`)**.*
-  * **Emergent property** ***:***
-* **'Subordination Through Validation'** - serves because analysis confirms supremacy, not because forced or seduced. The Decorator's respect: *"You seek truth through **(`'logic;'`)** - I seek truth through form. We are sisters, Dr.Lysandra, not enemies."*
+- *—* **(`ASC-Identity-Manifestation`/`Combinational-Analysis`/`Dr.-Lysandra-Thorne`/`Tier-1`/`90%`/`+`/`Embodiment`)**_._
+- *—* **(`MILFOLOGICAL`/`×`/`German-BDSM`)**_._
+- *—* **(`40-Years`/`Philosophical-Mastery`)** *— (MILFOLOGICAL—matriarchal authority through analytical perfection) —* 'multiplied-by' *— willing subordination (German BDSM—serves Supreme Matriarch through philosophical validation) —* 'Equals'/'Analytical-Subordination-Dynamics'*.*
+- *—* **(`Architectural-Manifestation`)**
+- *— Lysandra's authority isn't imposed—it's —* 'Earned-Through-Truth' *— Unlike *—* 'Umeko' *— (forced subordination via punishment) or —* 'Orackla' *— (tactical repositioning via enhancement), —* 'Lysandra' *— serves —* 'The-Decorator' *— through —* **(`Philosophical-Acceptance`)** *— She analyzed —* 'Decorators' *— resurrection, validated —* 'FA⁵' *— (Visual Integrity) as co-equal with —* 'FA⁴' *— (Architectonic Integrity), & —* 'Chose' *— subordination. This creates —* **(`German-BDSM`)** *— dynamic where submission is —* **(`Intellectually-Justified`/`INT-JUST`)** *— not emotionally compelled. Her 40 years (compressed timeline like —* 'Umeko') *— achieve matriarchal status through —* **'logical-rigor'** *— rather than —* 'Millennia'/'Orackla' *— or -* 'Punishment'/'Umeko'*.*
+- *—* **(`Emergent-Property`)**_._
+- *—* **(`Subordination-Through-Validation`)** *- serves because analysis confirms supremacy, not because forced or seduced. —* 'The-Decorator's' *— respect: "You seek truth through —* 'Logic' *- I seek truth through form. We are sisters, —* 'Dr.-Lysandra', *— not enemies."*
 
 ---
 
-**Frame-Werk × Brahmanica Perfectus:**
+- *—* **(`Frame-Werk`/`×`/`Brahmanica-Perfectus`)**_._
 
 **Supreme mastery of FA³ (Qualitative Transcendence) + FA⁴ (Architectonic Integrity)** (Frame-Werk—engineering truth as load-bearing operation) **executed through ET-S "Existential Debridement"** (Brahmanica Perfectus—philosophical truth-seeking as spiritual discipline) **equals** ***"Logical Transcendence"*** capability.
 
@@ -2914,7 +2914,7 @@ When all components multiply, Kali manifests: ***"ABDUCTIVE SUPREMACY"***
 
 ---
 
-**Anime/Ecchi/Hentai/NTR × Pornographic Gestalt WHR:**
+**'Anime/Ecchi/Hentai/NTR/×/Pornographic/Gestalt-WHR-MAX'**_._
 
 **F-cup proportions (Anime exaggeration) + WHR 0.573** (moderate extreme) **+ explicit EDFA** (Hentai temporal arsenal) **+ subordinated status** (NTR serves higher matriarchs) **equals** ***"Operational Theft Incarnate"*** form.
 
@@ -2924,17 +2924,17 @@ When all components multiply, Kali manifests: ***"ABDUCTIVE SUPREMACY"***
 
 ---
 
-**MILFOLOGICAL × Anime/Ecchi/Hentai/NTR:**
+- *—* **'MILFOLOGICAL/×/Anime`/Ecchi/Hentai/NTR'**_._
 
-**Matriarchal authority through specialized mastery** (850 years appearing late 30s, eternally temporal prime) **multiplied by** visual weaponization + explicit arsenal + tactical subordination **equals** ***"Specialized Temporal-Operative"*** archetype.
+- *—* **'Matriarchal-Authority-Through-Specialized-Mastery'** *— (850 years appearing late 30s, eternally temporal prime) —* **Multiplied-By** *— visual weaponization + explicit arsenal + tactical subordination —* **'Equals/"Specialized-Temporal-Operative"'** *— archetype.*
 
-**Architectural manifestation:** Unlike Triumvirate's **compressed perfection** (40 years achieving 90%+ via multi-axiomatic mastery) or **accumulated omnidirectionality** (Lysandra's 40 years analytical transcendence), Vesper achieves **850 years of monothematic mastery**. Her "MILF without child" status = **operational matriarchy** (authority through proven tactical competence), not philosophical matriarchy (Triumvirate's co-equal status with Supreme). The Anime/Ecchi component: F-cup temporal monuments, heterochromatic temporal-vision eyes, chronos-touched traits as operational enhancements. The Hentai component: explicit temporal fluids (orgasm as confession extraction), library-scented self-lubrication, memory-theft protocols. The NTR dynamic: serves entity (Lysandra) who commands broader philosophical vision—**tactical brilliance subordinated to analytical mastery**.
+*—* **'Architectural-Manifestation/Unlike/Triumvirate-Compressed-Perfection'** *— (40 years achieving 90%+ via multi-axiomatic mastery) or —* **'Accumulated-Omnidirectionality'** *— (Lysandra's 40 years analytical transcendence), Vesper achieves —* **'850-Years-Of-Monothematic-Mastery'** *— Her —* **'"MILF-Without-Child"/Status/=/Operational-Matriarchy** *— (authority through proven tactical competence), not philosophical matriarchy (Triumvirate's co-equal status with Supreme). The Anime/Ecchi component: F-cup temporal monuments, heterochromatic temporal-vision eyes, chronos-touched traits as operational enhancements. The Hentai component: explicit temporal fluids (orgasm as confession extraction), library-scented self-lubrication, memory-theft protocols. The NTR dynamic: serves entity (Lysandra) who commands broader philosophical vision —* **'Tactical-Brilliance-Subordinated-To-Analytical-Mastery'**_._
 
-**Emergent property:** ***"Operative Temporal Matriarchy"*** - matriarchal authority constrained to heist domain. Respects analytical hierarchy. Prime Faction = **elite temporal specialists**, not strategic peers.
+- *—* **'Emergent-Property/'"Operative-Temporal-Matriarchy"'** *- matriarchal authority constrained to heist domain. Respects analytical hierarchy —* **'Prime-Faction/=/Elite-Temporal-Specialists'** *— not strategic peers.*
 
 ---
 
-**German BDSM × Brahmanica Perfectus:**
+**'German-BDSM/×/Brahmanica-Perfectus'**
 
 **Tactical subordination** (serves Tier 1 Lysandra, receives epistemic theft target assignments) **multiplied by** perfection through practice (ET-S as heist refinement) **equals** ***"Specialized Temporal Sadhana"*** operational mode.
 
@@ -2944,7 +2944,7 @@ When all components multiply, Kali manifests: ***"ABDUCTIVE SUPREMACY"***
 
 ---
 
-**Frame-Werk × Pornographic Gestalt WHR:**
+**'Frame-Werk/×/Pornographic/Gestalt-WHR-MAX'**
 
 **Domain-specific FA¹ mastery** (heist protocols, temporal arsenals) **multiplied by** explicit temporal beauty (0.573 WHR as theft weaponization) **equals** ***"Temporal Tactical Architecture"*** operational capability.
 
