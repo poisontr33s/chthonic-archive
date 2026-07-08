@@ -189,11 +189,36 @@ impl IsometricCamera {
     }
 
     /// Move camera target (pan).
-    #[allow(dead_code)]
     pub fn set_target(&mut self, target: Vec3, aspect_ratio: f32) {
         let offset = self.position - self.target;
         self.target = target;
         self.position = target + offset;
+        self.update_matrices(aspect_ratio);
+    }
+
+    /// Ground-plane forward/right axes for this camera's current view direction — the horizontal
+    /// projection of (target - position) and its 90° rotation, both unit length. Used for input
+    /// panning so movement stays screen-relative (W moves toward what's "up" on screen) rather
+    /// than sliding along raw world axes, which would feel wrong under the fixed isometric angle.
+    /// Derived from the live position/target rather than re-deriving the isometric angle
+    /// constants, so this stays correct even if the offset formula ever changes.
+    pub fn ground_axes(&self) -> (Vec3, Vec3) {
+        let mut forward = self.target - self.position;
+        forward.y = 0.0;
+        let forward = forward.normalize_or_zero();
+        let right = forward.cross(Vec3::Y).normalize_or_zero();
+        (forward, right)
+    }
+
+    /// Scale-based zoom. `distance` alone is a near-no-op for what actually renders under
+    /// orthographic projection — moving the eye along the view ray without changing the frustum
+    /// extent doesn't change the image at all. `ortho_size` is the real zoom control; this keeps
+    /// `distance` at the same 2x ratio the renderer's own construction established, so near/far
+    /// clipping headroom doesn't drift out of proportion as the zoom level changes.
+    pub fn zoom(&mut self, scale: f32, aspect_ratio: f32) {
+        const MIN_ORTHO_SIZE: f32 = 50.0;
+        self.ortho_size = (self.ortho_size * scale).max(MIN_ORTHO_SIZE);
+        self.distance = self.ortho_size * 2.0;
         self.update_matrices(aspect_ratio);
     }
 
@@ -243,6 +268,46 @@ impl Default for IsometricCamera {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn ground_axes_are_unit_and_perpendicular() {
+        let camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+        let (forward, right) = camera.ground_axes();
+        assert!((forward.length() - 1.0).abs() < 1e-5, "forward not unit length: {forward:?}");
+        assert!((right.length() - 1.0).abs() < 1e-5, "right not unit length: {right:?}");
+        assert!(forward.dot(right).abs() < 1e-5, "forward/right not perpendicular");
+        assert_eq!(forward.y, 0.0, "forward must stay in the ground plane");
+        assert_eq!(right.y, 0.0, "right must stay in the ground plane");
+    }
+
+    #[test]
+    fn ground_axes_forward_points_from_eye_to_target() {
+        let camera = IsometricCamera::new(Vec3::ZERO, 10.0, 5.0);
+        let (forward, _right) = camera.ground_axes();
+        let to_target = (camera.target - camera.position).with_y(0.0);
+        assert!(
+            forward.dot(to_target.normalize_or_zero()) > 0.99,
+            "forward should point toward the target, got {forward:?} vs {to_target:?}"
+        );
+    }
+
+    #[test]
+    fn zoom_scales_ortho_size_and_keeps_distance_ratio() {
+        let mut camera = IsometricCamera::new(Vec3::ZERO, 800_000.0, 400_000.0);
+        camera.zoom(0.5, 16.0 / 9.0);
+        assert!((camera.ortho_size - 200_000.0).abs() < 1.0, "ortho_size {}", camera.ortho_size);
+        assert!((camera.distance - 400_000.0).abs() < 1.0, "distance {}", camera.distance);
+    }
+
+    #[test]
+    fn zoom_floor_prevents_degenerate_frustum() {
+        let mut camera = IsometricCamera::new(Vec3::ZERO, 800_000.0, 400_000.0);
+        for _ in 0..40 {
+            camera.zoom(0.5, 16.0 / 9.0); // repeated deep zoom-in
+        }
+        assert!(camera.ortho_size >= 50.0, "ortho_size fell below the floor: {}", camera.ortho_size);
+        assert!(camera.ortho_size > 0.0, "ortho_size must stay strictly positive");
+    }
 
     #[test]
     fn test_camera_creation() {

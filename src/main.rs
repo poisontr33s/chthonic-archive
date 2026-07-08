@@ -27,12 +27,15 @@ mod data;
 mod render;
 
 use anyhow::Result;
+use glam::Vec3;
 use log::{error, info};
+use std::collections::HashSet;
 use winit::{
     application::ApplicationHandler,
     dpi::LogicalSize,
-    event::WindowEvent,
+    event::{ElementState, MouseScrollDelta, WindowEvent},
     event_loop::{ActiveEventLoop, EventLoop},
+    keyboard::{KeyCode, PhysicalKey},
     window::{Window, WindowId},
 };
 
@@ -53,6 +56,9 @@ struct ArchiveApp {
     vulkan_context: Option<VulkanContext>,
     renderer: Option<Renderer>,
     frame_count: u64,
+    /// Rung 6.3 (camera input): held movement keys, applied continuously each RedrawRequested
+    /// tick rather than as one-shot per-keydown steps, so panning is smooth while a key is held.
+    keys_held: HashSet<KeyCode>,
 }
 
 impl ArchiveApp {
@@ -69,6 +75,7 @@ impl ArchiveApp {
             vulkan_context: None,
             renderer: None,
             frame_count: 0,
+            keys_held: HashSet::new(),
         }
     }
 
@@ -189,6 +196,33 @@ impl ApplicationHandler for ArchiveApp {
                 self.window = None;
                 event_loop.exit();
             }
+            WindowEvent::KeyboardInput { event: key_event, .. } => {
+                if let PhysicalKey::Code(code) = key_event.physical_key {
+                    match key_event.state {
+                        ElementState::Pressed => {
+                            self.keys_held.insert(code);
+                        }
+                        ElementState::Released => {
+                            self.keys_held.remove(&code);
+                        }
+                    }
+                }
+            }
+            WindowEvent::MouseWheel { delta, .. } => {
+                if let Some(renderer) = self.renderer.as_mut() {
+                    let scroll_y = match delta {
+                        MouseScrollDelta::LineDelta(_, y) => y,
+                        MouseScrollDelta::PixelDelta(pos) => (pos.y / 100.0) as f32,
+                    };
+                    if scroll_y != 0.0 {
+                        let extent = renderer.swapchain.extent;
+                        let aspect = extent.width as f32 / extent.height.max(1) as f32;
+                        // Scroll up (positive) zooms in — shrinks ortho_size.
+                        let scale = (1.0 - scroll_y * 0.1).clamp(0.5, 1.5);
+                        renderer.camera.zoom(scale, aspect);
+                    }
+                }
+            }
             WindowEvent::Resized(size) => {
                 if let Some(renderer) = self.renderer.as_mut() {
                     if size.width > 0 && size.height > 0 {
@@ -260,6 +294,34 @@ impl ApplicationHandler for ArchiveApp {
                         "☀️ Shallow-water + celestial shader live · sun = [{}, {}, {}]",
                         sun[0], sun[1], sun[2]
                     );
+                }
+
+                // Rung 6.3 (camera input): continuous pan while a WASD key is held. Speed scales
+                // with the current zoom level (ortho_size) so it feels consistent whether zoomed
+                // in close or viewing the whole Banks — a fixed step would be imperceptible at
+                // the full 400km extent and wildly too fast zoomed all the way in.
+                if !self.keys_held.is_empty() {
+                    let (forward, right) = renderer.camera.ground_axes();
+                    let mut delta = Vec3::ZERO;
+                    if self.keys_held.contains(&KeyCode::KeyW) {
+                        delta += forward;
+                    }
+                    if self.keys_held.contains(&KeyCode::KeyS) {
+                        delta -= forward;
+                    }
+                    if self.keys_held.contains(&KeyCode::KeyD) {
+                        delta += right;
+                    }
+                    if self.keys_held.contains(&KeyCode::KeyA) {
+                        delta -= right;
+                    }
+                    if delta != Vec3::ZERO {
+                        let pan_speed = renderer.camera.ortho_size * 0.02;
+                        let new_target = renderer.camera.target + delta.normalize() * pan_speed;
+                        let extent = renderer.swapchain.extent;
+                        let aspect = extent.width as f32 / extent.height.max(1) as f32;
+                        renderer.camera.set_target(new_target, aspect);
+                    }
                 }
 
                 match unsafe { renderer.render_frame(vulkan_context, sun) } {
