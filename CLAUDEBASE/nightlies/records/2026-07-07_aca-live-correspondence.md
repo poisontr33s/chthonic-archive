@@ -1,5 +1,5 @@
 ---
-schema_version: 2
+schema_version: 3
 date: 2026-07-07
 run_id: 2026-07-07_aca-live-correspondence
 trigger: claude-autonomous
@@ -8,7 +8,9 @@ lane: aca-live-correspondence
 atlas_source: "predates frontier-atlas.md's first commit that same night — user-named directly"
 outcome: shipped
 verification: pass
-commits: [670499a8]
+commits:
+  - hash: 670499a8
+    kind: feature
 landing_doc: claude/mailbox/SESSION_2026_07_07_ACA_AUTONOMOUS_NIGHT.md
 self_improvement:
   found: false

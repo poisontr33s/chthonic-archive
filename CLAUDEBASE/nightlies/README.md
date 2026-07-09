@@ -34,7 +34,7 @@ replaced; it's the detail this folder points back to.
 Per-run record frontmatter:
 
 ```yaml
-schema_version: 2
+schema_version: 3
 date: YYYY-MM-DD
 run_id: <short slug, matches the record filename's date+lane>
 trigger: user-invoked | claude-autonomous
@@ -43,7 +43,9 @@ lane: <short-topic-slug>
 atlas_source: <where the task came from, or "user-named">
 outcome: shipped | stopped-short | partial
 verification: pass | fail | not-applicable
-commits: [<hash>, ...]
+commits:
+  - hash: <hash>
+    kind: feature | meta | mixed   # feature = delivers the requested task; meta = this skill's own design/scaffolding/self-correction; mixed = both landed in one commit (§7 says fix a found gap in the same invocation, which can bundle the two)
 landing_doc: claude/mailbox/SESSION_..._AUTONOMOUS_NIGHT.md
 self_improvement:
   found: true | false
@@ -66,6 +68,23 @@ self-authored at that point, so the 3 existing ones were updated in place to v2
 with `mode: default` rather than left at a permanently-orphaned v1 shape — a real
 future schema change, once external records exist that shouldn't be silently
 rewritten, gets a note here instead of an in-place edit.
+
+**v2 → v3 (2026-07-09):** `commits` changed from a flat hash list to `{hash, kind}`
+objects (`feature` | `meta` | `mixed`), per `SKILL.md` §7's third retrospective
+question — the user asked for cost/value scrutiny against real Claude usage-panel
+data (weekly usage breakdown by skill), and a flat commit list can't show the
+feature-vs-meta ratio without manually re-deriving it from `git log` each time,
+which is exactly what happened to produce this change. Doing that re-derivation
+also surfaced two real, separate mistakes in the existing records, fixed in the
+same pass: the `zombie-b3` record had over-attributed two commits to itself
+(`801e9438`/`51fd78ff`) that actually landed in a later, separate conversational
+turn, not this invocation's own scope — see that record's own correction note; and
+the `zombie-c1` record's `commits` field had been left empty outright, filled in
+now with `acec176a` (classified `mixed`, since it bundles the feature work with a
+§7-triggered `SKILL.md` fix). Same in-place-update reasoning as v1→v2 for the
+schema-shape change itself: all four records were still self-authored, same short
+arc, so backfilled directly rather than left at v2 — but the *content* corrections
+(not just the shape change) are real fixes to real errors, not a mechanical migration.
 
 ## Both-ways requirement
 
