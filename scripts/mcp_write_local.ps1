@@ -247,6 +247,24 @@ try {
       ncbi = New-BunServer -Script "scripts/mcp-ncbi.ts"
       # --- VS Code parity set (workspaceFolder->repoRoot; bun/bunx/uv/uvx->absolute; HF env-token->pool) ---
       browser = New-BunServer -Script "scripts/mcp-browser.ts"
+      "chrome-devtools" = @{
+        type = "stdio"
+        command = "cmd"
+        args = @(
+          "/c",
+          "npx",
+          "-y",
+          "chrome-devtools-mcp@latest",
+          "--no-usage-statistics"
+        )
+        env = @{
+          SystemRoot = "C:\Windows"
+          PROGRAMFILES = "C:\Program Files"
+          CHROME_DEVTOOLS_MCP_NO_UPDATE_CHECKS = "true"
+          CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS = "true"
+        }
+        startup_timeout_ms = 20000
+      }
       "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
       "microsoft-docs" = @{ type = "http"; url = "https://learn.microsoft.com/api/mcp" }
       "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = ".chthonic/SSOT.md" }
@@ -403,7 +421,7 @@ try {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
       "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","ncbi",
-      "browser","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
+      "browser","chrome-devtools","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
     $actual = @()

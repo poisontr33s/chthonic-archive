@@ -96,6 +96,36 @@ fn main() {
             shaderc::EnvVersion::Vulkan1_3 as u32,
         );
         options.set_optimization_level(shaderc::OptimizationLevel::Performance);
+
+        // Backend-parity fix (found via reference-repo scouting, linear-mapping-rain.md
+        // Meta-track M2): the glslc CLI path below already resolves `#include "x.glsl"`
+        // natively (verified empirically — zero flags needed for same-directory includes),
+        // but this shaderc fallback had no include callback registered at all, so it would
+        // silently diverge from glslc's behavior on any machine where glslc isn't on PATH.
+        // No shader in this repo uses #include yet (there's no nested directory structure
+        // under assets/shaders/ to need it), so this closes a latent parity gap rather than
+        // fixing an active bug. Relative includes resolve next to the requesting file;
+        // standard (<...>) includes resolve against the shader root.
+        let include_root = shader_dir.clone();
+        options.set_include_callback(move |requested, include_type, requesting_source, _depth| {
+            let base_dir = match include_type {
+                shaderc::IncludeType::Relative => Path::new(requesting_source)
+                    .parent()
+                    .map(Path::to_path_buf)
+                    .unwrap_or_else(|| include_root.clone()),
+                shaderc::IncludeType::Standard => include_root.clone(),
+            };
+            let candidate = base_dir.join(requested);
+            fs::read_to_string(&candidate)
+                .map(|content| shaderc::ResolvedInclude {
+                    resolved_name: candidate.to_string_lossy().into_owned(),
+                    content,
+                })
+                .map_err(|e| {
+                    format!("cannot resolve #include \"{requested}\" from {requesting_source}: {e}")
+                })
+        });
+
         (Some(compiler), Some(options))
     } else {
         (None, None)

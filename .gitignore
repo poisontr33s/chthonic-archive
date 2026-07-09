@@ -87,6 +87,7 @@ extensions/*/bun.lock
 models/
 adapters/
 **/checkpoints/
+**/.checkpoints/
 
 # ── Databases / operational state ──
 *.sqlite
@@ -98,6 +99,8 @@ adapters/
 manifest/sessions/
 manifest/sonic_window_history.ndjson
 manifest/*.lock
+manifest/chthonic_coverage_*_audit.json
+manifest/ci_dry_run_*.json
 dev/dealogue-fayde/*.db
 dev/dealogue-fayde/.bundle/
 
@@ -120,6 +123,8 @@ Thumbs.db
 gha-creds-*.json
 .mcp.json
 .mcp.json.bak
+*.har
+*.dmp
 
 # ── App-specific (preserved from prior file) ──
 apps/chthonic-next/.next/

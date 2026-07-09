@@ -142,6 +142,18 @@ const CHECKS: Check[] = [
     },
   },
   {
+    name: "glsl-lint",
+    script: "ci/checks/glsl-lint.ts",
+    scope: "staged",
+    speed: "fast",
+    description: "GLSL shader compile validation via glslangValidator (assets/shaders/*)",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation: "A GLSL compile error or warning reflects an actual defect or ambiguity in the shader's own logic — fixing it requires understanding what the shader is supposed to do, not a mechanical text transform. No safe auto-fix concept applies to compiler diagnostics.",
+      manual_remediation: "Read the glslangValidator output line (file:line: message). Fix the GLSL source directly, then re-run `bun run ci -- --check glsl-lint` (cargo build's own shaderc step re-validates the same way at build.rs time).",
+    },
+  },
+  {
     name: "ignored-source",
     aliases: ["autoignore", "gitignore"],
     script: "ci/checks/ignored-source.ts",

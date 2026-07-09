@@ -1,7 +1,7 @@
 {
   "name": "chthonic-assistant",
-  "displayName": "Chthonic Archive Assistant",
-  "description": "ASC Framework MCP-powered sidepanel for VSCode",
+  "displayName": "Chthonic Deepcode",
+  "description": "Rust-native Chthonic Depths coding agent with DeepSeek provider support",
   "version": "0.1.0",
   "private": true,
   "type": "commonjs",
@@ -20,6 +20,15 @@
   "activationEvents": [
     "onStartupFinished"
   ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Chthonic starts a local Rust agent process and therefore only runs in trusted workspaces."
+    }
+  },
   "main": "./dist/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -53,10 +62,30 @@
       {
         "command": "chthonic.validateHash",
         "title": "Chthonic: Validate SSOT Hash"
+      },
+      {
+        "command": "chthonic.openTerminal",
+        "title": "Chthonic: Open Terminal Agent"
+      },
+      {
+        "command": "chthonic.startTerminal",
+        "title": "Chthonic: Start Terminal"
+      },
+      {
+        "command": "chthonic.rollbackLastEdit",
+        "title": "Chthonic: Rollback Last Edit"
+      },
+      {
+        "command": "chthonic.cancelRequest",
+        "title": "Chthonic: Cancel Current Request"
+      },
+      {
+        "command": "chthonic.restartAgent",
+        "title": "Chthonic: Restart Agent"
       }
     ],
     "configuration": {
-      "title": "Chthonic Assistant",
+      "title": "Chthonic Deepcode",
       "properties": {
         "chthonic.ssotPath": {
           "type": "string",
@@ -70,28 +99,48 @@
             "artisan"
           ],
           "description": "Active MCP servers to connect"
+        },
+        "chthonic.corePath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute path to deepseek-core.exe. Defaults to core/target/{release,debug}/deepseek-core.exe."
+        },
+        "chthonic.provider": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "deepseek",
+            "openai",
+            "anthropic",
+            "deterministic"
+          ],
+          "default": "auto",
+          "description": "Preferred Rust provider. SecretStorage/env still controls key availability."
+        },
+        "chthonic.deepseekModel": {
+          "type": "string",
+          "default": "deepseek-chat",
+          "description": "DeepSeek model passed to the Rust provider when DeepSeek is selected."
         }
       }
     }
   },
   "scripts": {
-    "build": "bun run build:extension && bun run build:webview",
+    "build": "bun run build:core && bun run build:extension && bun run build:webview",
+    "build:core": "cargo build --manifest-path core/Cargo.toml",
+    "build:core:release": "cargo build --manifest-path core/Cargo.toml --release",
     "build:extension": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode",
-    "build:webview": "bun build webview/index.tsx --outdir dist --target browser --format cjs",
+    "build:webview": "bun build webview/index.js --outdir dist --target browser --format esm",
     "watch": "bun run watch:extension & bun run watch:webview",
     "watch:extension": "bun build src/extension.ts --outdir dist --target node --format cjs --external vscode --watch",
-    "watch:webview": "bun build webview/index.tsx --outdir dist --target browser --format cjs --watch",
+    "watch:webview": "bun build webview/index.js --outdir dist --target browser --format esm --watch",
     "package": "bun run build && vsce package",
-    "dev": "bun run build && code --extensionDevelopmentPath=."
+    "dev": "bun run build && code --extensionDevelopmentPath=.",
+    "probe:live-deepseek-plan": "bun tests/live-deepseek-edit-plan-probe.ts"
   },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^2.22.0",
     "typescript": "^5.8.3"

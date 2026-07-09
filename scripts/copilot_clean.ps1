@@ -3,11 +3,11 @@
 
 # ╔════════════════════════════════════════════════════════════════════════════
 # ║ THE DECORATOR'S BLESSING: copilot_clean.ps1
-# ║ Module: Copilot CLI launcher profile
+# ║ Module: Copilot CLI explicit launcher
 # ╠════════════════════════════════════════════════════════════════════════════
 # ║ Spectral Frequency: integration/copilot
-# ║ Architectural Role: CLI profile shim (non-destructive)
-# ║ Purpose: Launch Copilot CLI with explicit flags/env (no hidden sabotage)
+# ║ Architectural Role: opt-in CLI lane (non-destructive)
+# ║ Purpose: Launch Copilot CLI with explicit flags/env (no profile shadowing)
 # ║ Exports: None (launcher script)
 # ║ Flags/Modes: -DisableCustomAgents, -DisableBuiltinMcps, -DisableMcpServer, -NoCustomInstructions
 # ║ Cross-References: .github/copilot-instructions.md, .github/pathstofiles.md
@@ -152,73 +152,10 @@ function Install-CopilotCli {
   Write-Warning "Could not auto-install Copilot CLI: no matching winget package and choco failed or is unavailable. Please install manually."
 }
 
-function Ensure-CopilotShimDirectory {
-  $shimDir = Join-Path $env:USERPROFILE 'bin'
-  if (-not (Test-Path $shimDir)) {
-    New-Item -ItemType Directory -Path $shimDir -Force | Out-Null
-  }
-
-  if (-not ($env:PATH -split ';' | Where-Object { $_.Trim() -ieq $shimDir })) {
-    $newPath = "$shimDir;$env:PATH"
-    [Environment]::SetEnvironmentVariable('PATH', $newPath, 'User')
-    $env:PATH = $newPath
-  }
-
-  return $shimDir
-}
-
-function Set-CopilotCmdShim {
-  param([string]$ExecutablePath)
-  $shimDir = Ensure-CopilotShimDirectory
-  $shimFile = Join-Path $shimDir 'copilot.cmd'
-  $shimContent = "@echo off`n`"$ExecutablePath`" %*"
-  Set-Content -Path $shimFile -Value $shimContent -Force
-  Write-Host "✅ Copilot CMD shim created at $shimFile" -ForegroundColor Green
-}
-
-function Set-CopilotProfileShim {
-  param([string]$ScriptPath)
-
-  if (-not (Test-Path $PROFILE)) {
-    New-Item -ItemType File -Path $PROFILE -Force | Out-Null
-  }
-
-  $shimMarker = '# copilot_clean ps1 shim (do not remove)'
-  $shimCommand = @'
-function copilot {
-  $scriptPath = "'$ScriptPath'"
-  if (Test-Path $scriptPath) { . $scriptPath }
-
-  try {
-    $path = Get-CopilotPath
-    if (-not $path) {
-      Write-Error 'Copilot CLI not found. Run scripts/copilot_clean.ps1 -EnsureCopilotCli first.'
-      return
-    }
-    & $path @args
-  } catch {
-    Write-Error "Copilot failed: $($_.Exception.Message)"
-  }
-}
-'@
-
-  $profileLines = Get-Content -Path $PROFILE -ErrorAction SilentlyContinue
-  $existingShim = $profileLines -contains $shimMarker
-
-  if ($existingShim) {
-    $newContent = $profileLines -replace '(?ms)# copilot_clean ps1 shim \(do not remove\).*?function copilot \{.*?\}', "$shimMarker`n$shimCommand"
-    Set-Content -Path $PROFILE -Value $newContent -Force
-    return
-  }
-
-  Add-Content -Path $PROFILE -Value "`n$shimMarker`n$shimCommand`n"
-}
-
 function Ensure-CopilotCli {
   $path = Get-CopilotPath
   if ($path) {
     Write-Host "✅ Copilot CLI already available at: $path" -ForegroundColor Green
-    Set-CopilotProfileShim -ScriptPath (Join-Path $PSScriptRoot 'copilot_clean.ps1')
     return
   }
 
@@ -229,8 +166,6 @@ function Ensure-CopilotCli {
   $path = Get-CopilotPath
   if ($path) {
     Write-Host "✅ Copilot CLI is now available at: $path" -ForegroundColor Green
-    Set-CopilotProfileShim -ScriptPath (Join-Path $PSScriptRoot 'copilot_clean.ps1')
-    Set-CopilotCmdShim -ExecutablePath $path
     return
   }
 

@@ -32,7 +32,7 @@ use log::{error, info};
 use std::collections::HashSet;
 use winit::{
     application::ApplicationHandler,
-    dpi::LogicalSize,
+    dpi::{LogicalSize, PhysicalPosition},
     event::{ElementState, MouseScrollDelta, WindowEvent},
     event_loop::{ActiveEventLoop, EventLoop},
     keyboard::{KeyCode, PhysicalKey},
@@ -108,10 +108,21 @@ impl ApplicationHandler for ArchiveApp {
         }
 
         info!("🖼️  Initializing windowing system...");
-        let window_attributes = Window::default_attributes()
+        // CHTHONIC_HEADLESS=1: park the window off-screen instead of showing it. Tried
+        // `.with_visible(false)` first -- verified (render-smoke, empirical, not assumed) that
+        // it silently stops winit from ever delivering RedrawRequested on Windows, stalling the
+        // whole render loop at frame 0. Off-screen positioning keeps the window "visible" from
+        // winit/the OS's perspective (so the redraw loop behaves exactly as normal) while never
+        // appearing on any actual monitor, so render-smoke-style verification runs don't steal
+        // focus or visually interrupt other work.
+        let headless = std::env::var("CHTHONIC_HEADLESS").is_ok();
+        let mut window_attributes = Window::default_attributes()
             .with_title("The Chthonic Archive: Triumvirate Ascension 🔺")
             .with_inner_size(LogicalSize::new(1280.0, 720.0))
             .with_resizable(true);
+        if headless {
+            window_attributes = window_attributes.with_position(PhysicalPosition::new(-32000, -32000));
+        }
 
         let window = match event_loop.create_window(window_attributes) {
             Ok(window) => window,
@@ -379,8 +390,30 @@ impl ApplicationHandler for ArchiveApp {
     }
 }
 
+#[cfg(windows)]
+#[link(name = "kernel32")]
+unsafe extern "system" {
+    fn FreeConsole() -> i32;
+}
+
 /// Entry point - The Gate to the Chthonic Archive
 fn main() -> Result<()> {
+    // CHTHONIC_HEADLESS=1: detach from the console window Windows auto-allocates for a
+    // console-subsystem binary, regardless of stdout/stderr redirection. This is the other
+    // half of "no visible window" alongside the off-screen graphics window in resumed() --
+    // that one only parks the render surface; without this, an empty terminal still shows
+    // up behind it every run. A launcher-side `-WindowStyle Hidden` fix doesn't work here:
+    // PowerShell/.NET silently ignores WindowStyle whenever Start-Process redirection is
+    // also used, which render-smoke.ps1 needs for its log capture -- so this has to be
+    // fixed from inside the process itself. Already-redirected stdout/stderr are plain file
+    // handles, unaffected by detaching from the console object.
+    #[cfg(windows)]
+    if std::env::var("CHTHONIC_HEADLESS").is_ok() {
+        unsafe {
+            FreeConsole();
+        }
+    }
+
     // Initialize logging
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info")).init();
 

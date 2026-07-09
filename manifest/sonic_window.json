@@ -1,9 +1,43 @@
 {
   "schema": "sonic_window/v1",
   "source": "loopback",
-  "energy": 0.0,
-  "silent": true,
-  "captured_at_epoch_ms": 1783396368295,
+  "energy": 0.18403612,
+  "silent": false,
+  "captured_at_epoch_ms": 1783573059084,
   "window_secs": 5.0,
-  "sample_rate": 48000
+  "sample_rate": 48000,
+  "brightness": 0.746,
+  "tonality": 0.702,
+  "valence_proxy": 0.724,
+  "voiceness": 0.369,
+  "temporal": {
+    "phase": {
+      "character": "quiet-bright",
+      "secs": 8184
+    },
+    "trend": {
+      "energy_30s": "steady",
+      "energy_5m": "steady",
+      "brightness_30s": "steady"
+    },
+    "events": [
+      {
+        "kind": "resume",
+        "detail": "audio resumed",
+        "secs_ago": 4018
+      },
+      {
+        "kind": "silence",
+        "detail": "audio stopped",
+        "secs_ago": 4020
+      }
+    ],
+    "stability": "settled",
+    "relative": {
+      "energy": "below",
+      "brightness": "around",
+      "calibrated": true
+    },
+    "narrative": "Quiet-bright for 2h16m; audio resumed 1h6m ago; quieter than your norm; settled"
+  }
 }

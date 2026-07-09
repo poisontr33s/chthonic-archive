@@ -34,8 +34,13 @@ fn norm360(x: f64) -> f64 {
 }
 
 /// Grounded render-site fix: New Providence/Nassau, east-positive longitude.
-pub const NEW_PROVIDENCE_LAT_DEG: f64 = 25.0443;
-pub const NEW_PROVIDENCE_LON_DEG: f64 = -77.3504;
+///
+/// Re-exported from `geodesy` (the WGS84-founded canonical home) rather than declared
+/// independently — this file and `geodesy.rs` previously carried two different values for
+/// the same point, which this re-export closes. See `geodesy::NEW_PROVIDENCE_LAT_DEG`'s own
+/// doc comment for the drift history; this specific value is the one with real JPL-Horizons/
+/// Skyfield verification behind it (see this module's test suite).
+pub use crate::render::geodesy::{NEW_PROVIDENCE_LAT_DEG, NEW_PROVIDENCE_LON_DEG};
 
 /// Current deterministic scene epoch used by the renderer: 2026-06-09 17:00 UTC.
 /// This is the high-Sun verification epoch from the Horizons/Skyfield test set.

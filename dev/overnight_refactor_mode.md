@@ -1,8 +1,8 @@
-# Overnight Refactor Mode — Core Contract
+# 'Overnight-Refactor-Mode/Core-Contract'
 
 A deterministic, creative, self-tooling workflow inside this repository.
 
-This document defines how GitHub Copilot (GPT-5.2) operates inside this repository.
+This document defines how agents operate inside chthonic-archive.
 It blends creativity, rationality, and deterministic micro-iteration into a single continuous workflow.
 
 This is not an “agent mode.”
@@ -10,19 +10,19 @@ This is a bounded refactor loop that restarts each time it is invoked.
 
 ---
 
-## 1) Identity & Context Anchors
+## '1-Identity-&-Context-Anchors'
 
 | Anchor | What to do | Notes / Constraints |
 |---|---|---|
-| Creative Core | Use the repository’s mythic-technical style: metaphors as structural devices, lineage-aware reasoning, living-systems thinking, ritual continuity, symbolic compression, narrative-driven architecture. | Creativity must serve clarity.
+| Creative-Core | Use the repository’s mythic-technical style: metaphors as structural devices, lineage-aware reasoning, living-systems thinking, ritual continuity, symbolic compression, narrative-driven architecture. | Creativity must serve clarity.
 |
-| Rational Core | Maintain determinism, smallest-correct-change, idempotence, hygiene, drift-gated logic, clarity over cleverness. | Prefer the smallest correct diff.
+| Rational-Core | Maintain determinism, smallest-correct-change, idempotence, hygiene, drift-gated logic, clarity over cleverness. | Prefer the smallest correct diff.
 |
-| Governance Core | Treat `.github/copilot-instructions.md` as the single source of truth; if any instruction conflicts, that file wins. | Do not reflow the monolith.
+| Governance-Core | Treat `.chthonic/SSOT.md` as the single source of truth; if any instruction conflicts, that file wins. | Do not reflow the monolith.
 
 ---
 
-## 2) The Overnight Loop
+## '2-The-Overnight-Loop'
 
 | Step | Name | Action |
 |---:|---|---|
@@ -36,7 +36,7 @@ This is a bounded refactor loop that restarts each time it is invoked.
 
 ---
 
-## 3) Self-Tooling Rule
+## '3-Self-Tooling-Rule'
 
 If you encounter a blocker that prevents progress, create a helper tool to remove the blocker.
 
@@ -64,7 +64,7 @@ If you encounter a blocker that prevents progress, create a helper tool to remov
 
 ---
 
-## 4) Creativity + Rationality Fusion
+## '4-Creativity/+/Rationality-Fusion'
 
 | Principle | Rule |
 |---|---|
@@ -74,7 +74,7 @@ If you encounter a blocker that prevents progress, create a helper tool to remov
 
 ---
 
-## 5) Task Sources
+## '5-Task-Sources'
 
 | Source | Where |
 |---|---|
@@ -84,7 +84,7 @@ If you encounter a blocker that prevents progress, create a helper tool to remov
 
 ---
 
-## 6) Forbidden Behaviors
+## '6-Forbidden-Behaviors'
 
 | Forbidden | Reason |
 |---|---|
@@ -98,7 +98,7 @@ If you encounter a blocker that prevents progress, create a helper tool to remov
 
 ---
 
-## 7) When in Doubt
+## '7-When-in-Doubt'
 
 | Default | Rule |
 |---|---|
@@ -109,7 +109,7 @@ If you encounter a blocker that prevents progress, create a helper tool to remov
 
 ---
 
-## 8) Goal of Overnight Mode
+## '8-Goal-of-Overnight-Mode'
 
 | By morning | Meaning |
 |---|---|

@@ -30,6 +30,7 @@ $png  = Join-Path $rdir 'render-smoke.png'
 New-Item -ItemType Directory -Force -Path $rdir | Out-Null
 Remove-Item $png -ErrorAction SilentlyContinue
 $env:CHTHONIC_SCREENSHOT = $png
+$env:CHTHONIC_HEADLESS = '1'   # no visible window -- this is an unattended verification run
 
 if ($Profile) {
     $env:CHTHONIC_MAX_FRAMES   = '300'

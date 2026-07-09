@@ -183,8 +183,18 @@ impl GeoAnchor {
 // ── New Providence constants (project reference datum) ───────────────────────
 
 /// Nassau, New Providence, Bahamas — the fixed scene datum for the Chthonic Archive.
-pub const NEW_PROVIDENCE_LAT_DEG: f64 = 25.048_9;
-pub const NEW_PROVIDENCE_LON_DEG: f64 = -77.355_5;
+///
+/// Single source of truth for this point: `cosmos.rs` re-exports these two (see its own
+/// `pub use`) rather than declaring an independent copy. They previously drifted apart —
+/// `cosmos.rs` carried 25.0443/-77.3504 (the value actually anchoring its JPL-Horizons/
+/// Skyfield-verified solar-position tests) while this file independently carried
+/// 25.0489/-77.3555 — meaning the sun-position math and the bathymetry/ENU terrain anchor
+/// (which already imported from here) were silently computed against two different physical
+/// points, ~500m apart. Corrected to the JPL-verified value: the sun's position is a hard
+/// scientific anchor, so the engineering choice (where ENU's origin sits) is the one that
+/// should match it, not the other way around.
+pub const NEW_PROVIDENCE_LAT_DEG: f64 = 25.0443;
+pub const NEW_PROVIDENCE_LON_DEG: f64 = -77.3504;
 pub const NEW_PROVIDENCE_ALT_M: f64 = 0.0;
 
 #[cfg(test)]

@@ -23,6 +23,7 @@
 # - .\scripts\api_pool.ps1 -SyncGitHubFromGh
 # - .\scripts\api_pool.ps1 -VerifyGitHub
 # - .\scripts\api_pool.ps1 -VerifyAnthropic
+# - .\scripts\api_pool.ps1 -VerifyDeepSeek
 # - .\scripts\api_pool.ps1 -VerifyOpenAI
 # - .\scripts\api_pool.ps1 -VerifyGemini
 # - .\scripts\api_pool.ps1 -VerifyProviders
@@ -36,6 +37,7 @@
 #     "HUGGINGFACE_HUB_TOKEN": "hf_...",
 #     "GITHUB_TOKEN": "ghp_...",
 #     "ANTHROPIC_API_KEY": "sk-ant-...",
+#     "DEEPSEEK_API_KEY": "sk-...",
 #     "OPENAI_API_KEY": "sk-...",
 #     "GEMINI_API_KEY": "..."
 #   }
@@ -52,6 +54,7 @@ param(
   [switch]$SyncGitHubFromGh,
   [switch]$VerifyGitHub,
   [switch]$VerifyAnthropic,
+  [switch]$VerifyDeepSeek,
   [switch]$VerifyOpenAI,
   [switch]$VerifyGemini,
   [switch]$VerifyProviders,
@@ -73,6 +76,7 @@ $WantVerifyHF = $PSBoundParameters.ContainsKey("VerifyHF") -or ($InvocationLine 
 $WantSyncGitHubFromGh = $PSBoundParameters.ContainsKey("SyncGitHubFromGh") -or ($InvocationLine -match '(?i)(^|\s)-SyncGitHubFromGh(\s|$)')
 $WantVerifyGitHub = $PSBoundParameters.ContainsKey("VerifyGitHub") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGitHub(\s|$)')
 $WantVerifyAnthropic = $PSBoundParameters.ContainsKey("VerifyAnthropic") -or ($InvocationLine -match '(?i)(^|\s)-VerifyAnthropic(\s|$)')
+$WantVerifyDeepSeek = $PSBoundParameters.ContainsKey("VerifyDeepSeek") -or ($InvocationLine -match '(?i)(^|\s)-VerifyDeepSeek(\s|$)')
 $WantVerifyOpenAI = $PSBoundParameters.ContainsKey("VerifyOpenAI") -or ($InvocationLine -match '(?i)(^|\s)-VerifyOpenAI(\s|$)')
 $WantVerifyGemini = $PSBoundParameters.ContainsKey("VerifyGemini") -or ($InvocationLine -match '(?i)(^|\s)-VerifyGemini(\s|$)')
 $WantVerifyProviders = $PSBoundParameters.ContainsKey("VerifyProviders") -or ($InvocationLine -match '(?i)(^|\s)-VerifyProviders(\s|$)')
@@ -141,6 +145,7 @@ function Get-ApiPoolKeyNames {
     "ANTHROPIC_API_KEY",
     "ANTHROPIC_AUTH_TOKEN",
     "ANTHROPIC_BASE_URL",
+    "DEEPSEEK_API_KEY",
     "OPENAI_API_KEY",
     "GEMINI_API_KEY",
     "GOOGLE_API_KEY",
@@ -244,6 +249,9 @@ function Test-PoolMock {
     }
     if ($name -eq "ANTHROPIC_API_KEY" -and $normalized -notmatch '^sk-ant-') {
       $warnings += "$name does not have expected sk-ant- prefix"
+    }
+    if ($name -eq "DEEPSEEK_API_KEY" -and $normalized -notmatch '^sk-') {
+      $warnings += "$name does not have expected sk- prefix"
     }
     if ($name -eq "OPENAI_API_KEY" -and $normalized -notmatch '^sk-') {
       $warnings += "$name does not have expected sk- prefix"
@@ -422,6 +430,24 @@ function Verify-OpenAI {
   }
 }
 
+function Verify-DeepSeek {
+  $key = Get-EnvVar -Name "DEEPSEEK_API_KEY"
+  if ([string]::IsNullOrWhiteSpace($key)) {
+    if (-not $Quiet) { Write-Host "skip: DEEPSEEK_API_KEY missing" }
+    return 4
+  }
+  try {
+    $headers = @{ "Authorization" = "Bearer $key" }
+    $response = Invoke-RestMethod -Method Get -Uri "https://api.deepseek.com/models" -Headers $headers -TimeoutSec 20
+    $count = @($response.data).Count
+    if (-not $Quiet) { Write-Host ("ok: DeepSeek models reachable ({0} model(s))" -f $count) }
+    return 0
+  } catch {
+    if (-not $Quiet) { Write-Host ("fail: DeepSeek token rejected or API unreachable: " + $_.Exception.Message) }
+    return 2
+  }
+}
+
 function Verify-Gemini {
   $key = Get-EnvVar -Name "GEMINI_API_KEY"
   if ([string]::IsNullOrWhiteSpace($key)) {
@@ -454,6 +480,7 @@ if (-not (
     $WantSyncGitHubFromGh -or
     $WantVerifyGitHub -or
     $WantVerifyAnthropic -or
+    $WantVerifyDeepSeek -or
     $WantVerifyOpenAI -or
     $WantVerifyGemini -or
     $WantVerifyProviders -or
@@ -471,6 +498,7 @@ if (-not (
   Write-Host "  .\\scripts\\api_pool.ps1 -SyncGitHubFromGh"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGitHub"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyAnthropic"
+  Write-Host "  .\\scripts\\api_pool.ps1 -VerifyDeepSeek"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyOpenAI"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyGemini"
   Write-Host "  .\\scripts\\api_pool.ps1 -VerifyProviders"
@@ -485,6 +513,7 @@ if (-not (Test-Path -LiteralPath $p.Path)) {
 {
   "env": {
     "ANTHROPIC_API_KEY": "",
+    "DEEPSEEK_API_KEY": "",
     "HUGGINGFACE_HUB_TOKEN": "",
     "GITHUB_TOKEN": "",
     "OPENAI_API_KEY": "",
@@ -651,6 +680,10 @@ if ($WantVerifyAnthropic) {
   exit (Verify-Anthropic)
 }
 
+if ($WantVerifyDeepSeek) {
+  exit (Verify-DeepSeek)
+}
+
 if ($WantVerifyOpenAI) {
   exit (Verify-OpenAI)
 }
@@ -674,6 +707,10 @@ if ($WantVerifyProviders) {
   if (Has-EnvVar -Name "ANTHROPIC_API_KEY") {
     $ran++
     if ((Verify-Anthropic) -ne 0) { $failures++ }
+  }
+  if (Has-EnvVar -Name "DEEPSEEK_API_KEY") {
+    $ran++
+    if ((Verify-DeepSeek) -ne 0) { $failures++ }
   }
   if (Has-EnvVar -Name "OPENAI_API_KEY") {
     $ran++
