@@ -174,12 +174,28 @@
 
 ---
 
-### C2. Upcycle Signal Propagation to SFS
-**Pre-condition:** A4 + C1 — both met
-**What to build:**
-- `zombie intake-report` gains `upcycle_candidates` section
-- Slag files whose community membership has shifted (new tooling active, context changed in live repo) are surfaced
-- SFS's scheduled re-assess becomes data-driven rather than calendar-driven
+### C2. Upcycle Signal Propagation to SFS ✅ COMPLETE (2026-07-09, Codex)
+**Pre-condition:** A4 + C1 — both met.
+
+**Built:**
+- Extracted `_dominant_community_id(imports, membership)` so `bite()`, `chew()`, `_collect_training_data()`, and `_community_ore_prior()` share the same dominant-community calculation instead of carrying duplicate `Counter` bodies.
+- Added `_community_shift_candidates(mem)` as the C2 detector. It reads slag files through `_scan_forge_outcomes()`, looks up each file's compact-manifest payload, treats missing `cluster_membership` as `no_baseline`, recomputes current dominant community from live `mem["community_map"]["membership"]`, and flags only known historical/current community IDs that differ.
+- `generate_intake_report()` now merges A4 ore-delta candidates and C2 community-shift candidates into one `upcycle_candidates` section, unioned by filename with combined reasons when both signals fire.
+- `_render_intake_report()` shows the same candidate counts and, when present, a Rich table of merged upcycle items.
+
+**Verified, not assumed:**
+1. `uv run python -m py_compile scripts\zombie_consumer.py` passed.
+2. `uv run scripts\zombie_consumer.py intake-report --json` generated `dumpster-dive/intake/ZOMBIE_INTAKE_REPORT_2026-07-09.md` with `upcycle_candidates`: `slag_scanned=79`, `candidates=2`, `ore_delta_candidates=2`, `community_shift_candidates=0`, `community_no_baseline=78`.
+3. Direct detector run (`_community_shift_candidates(load_memory())`) returned `slag_scanned=78`, `candidates=0`, `no_baseline=78`, confirming the C2 half is empty for the current corpus because non-dot slag files lack historical `cluster_membership`.
+4. Direct compact-manifest read for the report's `README.md` ore-delta candidate found `ore_rating=4`, `imports_count=0` (its `intelligence` only carries `md_headings` — import extraction doesn't apply to markdown), and `has_cluster_membership=false`; it is correctly an A4 candidate, not a hidden C2 shift.
+
+**Note on the 78 vs. 79 `slag_scanned` figures above (found during independent re-verification, not a C2 defect):** they differ because they come from two different counting methods, not from a bug. A4's pre-existing `scan_slag_for_upcycles()` (unchanged by this task) counts every file `slag_dir.iterdir()` returns, including the hidden `.forge_compact_manifest.json` bookkeeping file — 79. The new `_community_shift_candidates()` correctly reuses the shared `_scan_forge_outcomes()` helper, which excludes dot-files — 78. `_merge_upcycle_candidates()` reports `max(79, 78) = 79` as the report's one top-line `slag_scanned`, which is why it reads 79 in the rendered report (point 2) but 78 when the new detector is called directly (point 3). Left as-is: fixing A4's own hidden-file inclusion is a separate, pre-existing, out-of-scope change, not part of C2.
+
+**Honest current-state note:** The live import graph still has zero real community membership nodes, and the slag compact manifests currently lack `cluster_membership` baselines. A future digest after community detection is populated can make C2 produce positive community-shift candidates without any new persistence schema.
+
+**No SFS-side hook added:** Tier C remains a read-only contract: zombie produces, SFS consumes. No bidirectional coupling in this repo.
+
+**Key functions:** `_dominant_community_id()`, `_community_shift_candidates()`, `_merge_upcycle_candidates()`, `generate_intake_report()`, `_render_intake_report()`
 
 ---
 

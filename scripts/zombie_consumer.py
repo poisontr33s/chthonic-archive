@@ -76,6 +76,7 @@ import os
 import re
 import subprocess
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -350,13 +351,11 @@ def _community_ore_prior(imports: list[str], mem: dict) -> int:
     if not membership or not imports:
         return 0
 
-    graph = mem.get("import_graph", {})
-    from collections import Counter
-    cid_counts = Counter(membership.get(i) for i in imports if i in membership)
-    if not cid_counts:
+    dominant_cid = _dominant_community_id(imports, membership)
+    if dominant_cid == -1:
         return 0
 
-    dominant_cid = cid_counts.most_common(1)[0][0]
+    graph = mem.get("import_graph", {})
     # Compute avg ore_avg for all nodes in this community
     community_nodes = [n for n, cid in membership.items() if cid == dominant_cid]
     ore_values = [graph[n]["ore_avg"] for n in community_nodes if n in graph]
@@ -369,6 +368,16 @@ def _community_ore_prior(imports: list[str], mem: dict) -> int:
     if community_avg < 2.0:
         return -1  # low-ore community → nudge down
     return 0
+
+
+def _dominant_community_id(imports: list[str], membership: dict[str, int]) -> int:
+    """Return the most common community id among imports, or -1 when unknown."""
+    if not imports or not membership:
+        return -1
+    cid_counts = Counter(membership[i] for i in imports if i in membership)
+    if not cid_counts:
+        return -1
+    return cid_counts.most_common(1)[0][0]
 
 
 def _adaptive_ore_rating(
@@ -680,16 +689,9 @@ def _collect_training_data(mem: dict) -> list[dict]:
             bool(intel.get("ps1_functions") or intel.get("py_functions") or intel.get("ts_functions"))
         )
 
-        # community_id: dominant community of the file's imports (−1 = unknown)
+        # community_id: dominant community of the file's imports (-1 = unknown)
         imports_found = intel.get("imports", [])
-        community_id = -1
-        if imports_found and community_membership:
-            from collections import Counter
-            cid_counts = Counter(
-                community_membership[i] for i in imports_found if i in community_membership
-            )
-            if cid_counts:
-                community_id = cid_counts.most_common(1)[0][0]
+        community_id = _dominant_community_id(imports_found, community_membership)
 
         # semantic_similarity_max: highest cosine sim signal recorded at BITE (0.0 if none)
         sem_max = 0.0
@@ -1173,13 +1175,7 @@ def bite(path: Path, deep: bool = False) -> dict:
             result["ore_rating"] = max(1, result["ore_rating"] + nudge)
         # Capture dominant community_id for GBT feature
         community_membership = mem.get("community_map", {}).get("membership", {})
-        if community_membership:
-            from collections import Counter
-            cid_counts = Counter(
-                community_membership[i] for i in imports_found if i in community_membership
-            )
-            if cid_counts:
-                bite_community_id = cid_counts.most_common(1)[0][0]
+        bite_community_id = _dominant_community_id(imports_found, community_membership)
 
     # --- Upgrade A3: GBT Ore Rating (fires last — has all signals, community, semantic) ---
     has_sid_flag = any(s.startswith("has_sid:") for s in result["signals"])
@@ -1436,13 +1432,10 @@ def chew(path: Path) -> dict:
         community_map = mem.get("community_map", {})
         membership = community_map.get("membership", {})
         labels = community_map.get("labels", {})
-        # Find which community IDs appear among this file's imports
-        cids = {membership[i] for i in imports_found if i in membership}
-        if cids:
-            # Dominant community = most frequent among this file's imports
-            from collections import Counter
-            cid_counts = Counter(membership.get(i) for i in imports_found if i in membership)
-            dominant_cid = cid_counts.most_common(1)[0][0]
+        dominant_cid = _dominant_community_id(imports_found, membership)
+        if dominant_cid != -1:
+            # Find which community IDs appear among this file's imports
+            cids = {membership[i] for i in imports_found if i in membership}
             extract["cluster_membership"] = {
                 "community_id": dominant_cid,
                 "community_label": labels.get(str(dominant_cid), f"community_{dominant_cid}"),
@@ -2489,6 +2482,24 @@ def _build_slag_manifest_lookup() -> dict[str, int]:
     return lookup
 
 
+def _build_slag_manifest_payload_lookup() -> dict[str, dict]:
+    """Build {basename: payload} from compact manifests without touching A4's ore lookup."""
+    lookup: dict[str, dict] = {}
+    for manifest_path in INTAKE.rglob(".zombie_compact_manifest.json"):
+        try:
+            data = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for entry in data.get("extracts", []):
+            payload = entry.get("payload", {})
+            source = payload.get("source", "")
+            if source:
+                basename = Path(source).name
+                if basename not in lookup:
+                    lookup[basename] = payload
+    return lookup
+
+
 def scan_slag_for_upcycles(mem: dict) -> dict:
     """Scan the slag forge stage for files whose ore has risen since routing.
 
@@ -2581,6 +2592,142 @@ def scan_slag_for_upcycles(mem: dict) -> dict:
         "candidates": len(items),
         "no_baseline": no_baseline,
         "skipped_duplicate": skipped_duplicate,
+        "items": items,
+    }
+
+
+def _community_shift_candidates(mem: dict) -> dict:
+    """Scan slag files whose stored cluster membership differs from the live graph.
+
+    Read-only — uses each file's compact-manifest cluster_membership as the
+    historical baseline and mem["community_map"]["membership"] as current state.
+    """
+    slag_outcomes = [o for o in _scan_forge_outcomes() if o.get("forge_state") == "slag"]
+    slag_scanned = len(slag_outcomes)
+    if not slag_outcomes:
+        return {
+            "slag_scanned": 0,
+            "candidates": 0,
+            "no_baseline": 0,
+            "current_unknown": 0,
+            "items": [],
+        }
+
+    manifest_lookup = _build_slag_manifest_payload_lookup()
+    community_map = mem.get("community_map", {})
+    current_membership: dict[str, int] = community_map.get("membership", {})
+    labels = community_map.get("labels", {})
+
+    no_baseline = 0
+    current_unknown = 0
+    items: list[dict] = []
+
+    for outcome in slag_outcomes:
+        name = outcome["name"]
+        payload = manifest_lookup.get(name)
+        if payload is None:
+            no_baseline += 1
+            continue
+
+        baseline = payload.get("cluster_membership") or {}
+        if not isinstance(baseline, dict):
+            no_baseline += 1
+            continue
+        try:
+            historical_cid = int(baseline.get("community_id", -1))
+        except (TypeError, ValueError):
+            no_baseline += 1
+            continue
+        if historical_cid == -1:
+            no_baseline += 1
+            continue
+
+        intel = payload.get("intelligence", {}) or {}
+        imports_found = intel.get("imports", []) or []
+        current_cid = _dominant_community_id(imports_found, current_membership)
+        if current_cid == -1:
+            current_unknown += 1
+            continue
+        if current_cid == historical_cid:
+            continue
+
+        source = payload.get("source", name)
+        items.append({
+            "name": name,
+            "path": outcome.get("path", safe_relative(FORGE_STATES["slag"] / name)),
+            "ext": Path(source).suffix.lower() or "(none)",
+            "category": payload.get("category", "unknown"),
+            "historical_community_id": historical_cid,
+            "historical_community_label": baseline.get(
+                "community_label",
+                f"community_{historical_cid}",
+            ),
+            "current_community_id": current_cid,
+            "current_community_label": labels.get(str(current_cid), f"community_{current_cid}"),
+            "imports": imports_found,
+            "reason": "Community membership shifted since slag routing",
+        })
+
+    items.sort(key=lambda x: (str(x["name"])))
+
+    return {
+        "slag_scanned": slag_scanned,
+        "candidates": len(items),
+        "no_baseline": no_baseline,
+        "current_unknown": current_unknown,
+        "items": items,
+    }
+
+
+def _merge_upcycle_candidates(ore_result: dict, community_result: dict) -> dict:
+    """Union ore-delta and community-shift upcycle signals by filename."""
+    merged: dict[str, dict] = {}
+
+    for item in ore_result.get("items", []):
+        entry = dict(item)
+        entry["signals_active"] = ["ore_delta"]
+        entry["reasons"] = [item.get("reason", "Ore re-scored higher than original slag routing")]
+        merged[item["name"]] = entry
+
+    for item in community_result.get("items", []):
+        name = item["name"]
+        if name not in merged:
+            entry = dict(item)
+            entry["signals_active"] = ["community_shift"]
+            entry["reasons"] = [item.get("reason", "Community membership shifted since slag routing")]
+            merged[name] = entry
+            continue
+
+        entry = merged[name]
+        entry["signals_active"].append("community_shift")
+        entry["reasons"].append(item.get("reason", "Community membership shifted since slag routing"))
+        for key, value in item.items():
+            if key not in entry:
+                entry[key] = value
+
+    items = list(merged.values())
+    for item in items:
+        item["reason"] = " + ".join(item.get("reasons", []))
+
+    items.sort(
+        key=lambda x: (
+            -int(x.get("delta", 0)),
+            str(x.get("name", "")),
+        )
+    )
+
+    return {
+        "slag_scanned": max(
+            ore_result.get("slag_scanned", 0),
+            community_result.get("slag_scanned", 0),
+        ),
+        "candidates": len(items),
+        "ore_delta_candidates": ore_result.get("candidates", 0),
+        "community_shift_candidates": community_result.get("candidates", 0),
+        "ore_no_baseline": ore_result.get("no_baseline", 0),
+        "community_no_baseline": community_result.get("no_baseline", 0),
+        "community_current_unknown": community_result.get("current_unknown", 0),
+        "skipped_duplicate": ore_result.get("skipped_duplicate", 0),
         "items": items,
     }
 
@@ -2806,6 +2953,9 @@ def generate_intake_report(mem: dict) -> dict:
     ore_histogram = _ore_histogram_by_community(rows)
     provenance = _provenance_age_distribution(rows)
     ml_confidence = _ml_confidence_distribution(rows, mem)
+    ore_upcycles = scan_slag_for_upcycles(mem)
+    community_upcycles = _community_shift_candidates(mem)
+    upcycle_candidates = _merge_upcycle_candidates(ore_upcycles, community_upcycles)
     semantic_clusters = _semantic_clusters_awaiting_attention()
 
     date_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -2866,6 +3016,54 @@ def generate_intake_report(mem: dict) -> dict:
 
     lines += [
         "",
+        "## Upcycle candidates",
+        "",
+        "Read-only union of A4 ore-delta upcycles and C2 community-shift upcycles. "
+        "Zombie produces this contract; SFS consumes it separately, with no SFS-side "
+        "hook in this repo.",
+        "",
+        f"Slag files scanned: {upcycle_candidates['slag_scanned']} | "
+        f"Candidates: {upcycle_candidates['candidates']} | "
+        f"Ore-delta: {upcycle_candidates['ore_delta_candidates']} | "
+        f"Community-shift: {upcycle_candidates['community_shift_candidates']}",
+        f"No baseline: ore-delta {upcycle_candidates['ore_no_baseline']}, "
+        f"community-shift {upcycle_candidates['community_no_baseline']} | "
+        f"Current community unknown: {upcycle_candidates['community_current_unknown']} | "
+        f"Content duplicates skipped: {upcycle_candidates['skipped_duplicate']}",
+        "",
+    ]
+    if upcycle_candidates["items"]:
+        lines += [
+            "| File | Signals | Ore delta | Community shift | Reason |",
+            "|---|---|---|---|---|",
+        ]
+        for item in upcycle_candidates["items"]:
+            name = str(item["name"]).replace("|", "\\|")
+            signals = ", ".join(item.get("signals_active", [])).replace("|", "\\|")
+            if "delta" in item:
+                ore_delta = (
+                    f"{item.get('original_ore', '?')} -> {item.get('current_ore', '?')} "
+                    f"(+{item.get('delta', 0)})"
+                )
+            else:
+                ore_delta = "-"
+            if "historical_community_id" in item:
+                community_shift = (
+                    f"{item['historical_community_id']} -> {item['current_community_id']}"
+                )
+            else:
+                community_shift = "-"
+            reason = str(item.get("reason", "")).replace("|", "\\|")
+            lines.append(f"| `{name}` | {signals} | {ore_delta} | {community_shift} | {reason} |")
+    else:
+        lines.append(
+            "None found - either slag is still correctly classified, compact manifests "
+            "lack cluster baselines, or the live import graph cannot currently resolve "
+            "dominant communities."
+        )
+
+    lines += [
+        "",
         "## Top semantic clusters awaiting SFS attention",
         "",
         "\"Awaiting attention\" = at least one cluster member has not reached the "
@@ -2906,6 +3104,7 @@ def generate_intake_report(mem: dict) -> dict:
         "rows_with_unknown_community": ore_histogram.get(-1, {}) and sum(ore_histogram[-1].values()) or 0,
         "provenance": provenance,
         "ml_confidence": ml_confidence,
+        "upcycle_candidates": upcycle_candidates,
         "semantic_clusters_found": len(semantic_clusters),
         "semantic_index_size": len(_load_semantic_index()),
     }
@@ -2931,9 +3130,45 @@ def _render_intake_report(result: dict) -> None:
     summary.add_row("Orphaned files", str(result["provenance"]["total_orphaned"]))
     ml = result["ml_confidence"]
     summary.add_row("ML confidence", "available" if ml["available"] else f"unavailable ({ml['reason']})")
+    upcycle = result["upcycle_candidates"]
+    summary.add_row(
+        "Upcycle candidates",
+        (
+            f"{upcycle['candidates']} "
+            f"({upcycle['ore_delta_candidates']} ore, "
+            f"{upcycle['community_shift_candidates']} community-shift)"
+        ),
+    )
     summary.add_row("Semantic clusters found", str(result["semantic_clusters_found"]))
 
     console.print(Panel(summary, title="[bold]ZOMBIE INTAKE REPORT[/bold]", border_style="dim"))
+
+    if upcycle["items"]:
+        table = Table(title=f"Upcycle Candidates ({upcycle['candidates']})")
+        table.add_column("Name", style="bold")
+        table.add_column("Signals")
+        table.add_column("Ore")
+        table.add_column("Community")
+        table.add_column("Reason")
+        for item in upcycle["items"]:
+            ore = (
+                f"{item.get('original_ore', '?')} -> {item.get('current_ore', '?')}"
+                if "delta" in item
+                else "-"
+            )
+            community = (
+                f"{item['historical_community_id']} -> {item['current_community_id']}"
+                if "historical_community_id" in item
+                else "-"
+            )
+            table.add_row(
+                item["name"],
+                ", ".join(item.get("signals_active", [])),
+                ore,
+                community,
+                item.get("reason", ""),
+            )
+        console.print(table)
 
 
 # ---------------------------------------------------------------------------
