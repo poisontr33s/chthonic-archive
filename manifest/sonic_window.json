@@ -1,19 +1,15 @@
 {
   "schema": "sonic_window/v1",
   "source": "loopback",
-  "energy": 0.18403612,
-  "silent": false,
-  "captured_at_epoch_ms": 1783573059084,
+  "energy": 0.0,
+  "silent": true,
+  "captured_at_epoch_ms": 1783915914429,
   "window_secs": 5.0,
   "sample_rate": 48000,
-  "brightness": 0.746,
-  "tonality": 0.702,
-  "valence_proxy": 0.724,
-  "voiceness": 0.369,
   "temporal": {
     "phase": {
-      "character": "quiet-bright",
-      "secs": 8184
+      "character": "silent",
+      "secs": 170
     },
     "trend": {
       "energy_30s": "steady",
@@ -22,22 +18,32 @@
     },
     "events": [
       {
-        "kind": "resume",
-        "detail": "audio resumed",
-        "secs_ago": 4018
+        "kind": "shift",
+        "detail": "quiet-bright → silent",
+        "secs_ago": 167
       },
       {
         "kind": "silence",
         "detail": "audio stopped",
-        "secs_ago": 4020
+        "secs_ago": 170
+      },
+      {
+        "kind": "shift",
+        "detail": "moderate-bright → quiet-bright",
+        "secs_ago": 178
+      },
+      {
+        "kind": "shift",
+        "detail": "quiet-bright → moderate-bright",
+        "secs_ago": 229
       }
     ],
     "stability": "settled",
     "relative": {
       "energy": "below",
-      "brightness": "around",
+      "brightness": "below",
       "calibrated": true
     },
-    "narrative": "Quiet-bright for 2h16m; audio resumed 1h6m ago; quieter than your norm; settled"
+    "narrative": "Silence for 2m; quiet-bright → silent 2m ago; settled"
   }
 }
