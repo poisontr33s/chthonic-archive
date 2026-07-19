@@ -53,6 +53,9 @@
     {
       "name": "📦 pnk-large-file-holder [satellite]",
       "path": "../psychonoir-kontrapunkt-large-file-holder"
+    },
+    {
+      "path": ".."
     }
   ],
   "settings": {
