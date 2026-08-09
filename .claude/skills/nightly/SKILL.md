@@ -96,7 +96,7 @@ Record whichever mode ran (`default` if none named) in the ledger's `mode` field
 
 ## 3. Verification gate — must pass before any commit
 
-Two shapes, pick whichever fits the surface actually touched:
+Two shapes. **Every surface the run touched clears its own shape** — this is not a menu. A run that edits Rust *and* a script satisfies both, not the more convenient one; the compiled half passing says nothing about the scripted half. Worked example: `CLAUDEBASE/nightlies/records/2026-08-09_cai-parity.md`, which touched `xp.rs` and `xp-parity.ps1` and had to run a build, the real binary, and the rewritten script against raw data.
 
 **Compiled/rendered surface** (Rust, shaders, anything with a build step):
 - `cargo build` (or the project's equivalent) clean.
