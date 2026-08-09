@@ -1,2 +1,2 @@
-{"ts":1778570251708,"type":"meta","kind":"session_start","p":3,"sid":"cb0a0fb4","msg":"pwsh session start","start_ts":1778570251708,"zjit":null,"msys2":false}
-{"ts":1778581536723,"type":"meta","kind":"session_start","p":3,"sid":"8458a0a9","msg":"pwsh session start","start_ts":1778581536723,"zjit":null,"msys2":false}
+{"ts":1778570251708,"at":"2026-05-12T07:17:31.708Z","type":"meta","kind":"session_start","p":3,"sid":"cb0a0fb4","msg":"pwsh session start","start_ts":1778570251708,"zjit":null,"msys2":false}
+{"ts":1778581536723,"at":"2026-05-12T10:25:36.723Z","type":"meta","kind":"session_start","p":3,"sid":"8458a0a9","msg":"pwsh session start","start_ts":1778581536723,"zjit":null,"msys2":false}

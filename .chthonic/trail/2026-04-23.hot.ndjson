@@ -1,3 +1,3 @@
-{"ts":1776897335778,"type":"diagnostic","kind":"zjit-session","p":3,"msg":"pwsh session: ZJIT ruby active (4.0.3-zjit)"}
-{"ts":1776897335791,"type":"diagnostic","kind":"msys2-session","p":3,"msg":"pwsh session: MSYS2 DevKit active"}
-{"ts":1776966973599,"type":"meta","kind":"session_start","p":3,"sid":"d50c6f10","msg":"pwsh session start","start_ts":1776966973599,"zjit":null,"msys2":false}
+{"ts":1776897335778,"at":"2026-04-22T22:35:35.778Z","type":"diagnostic","kind":"zjit-session","p":3,"msg":"pwsh session: ZJIT ruby active (4.0.3-zjit)"}
+{"ts":1776897335791,"at":"2026-04-22T22:35:35.791Z","type":"diagnostic","kind":"msys2-session","p":3,"msg":"pwsh session: MSYS2 DevKit active"}
+{"ts":1776966973599,"at":"2026-04-23T17:56:13.599Z","type":"meta","kind":"session_start","p":3,"sid":"d50c6f10","msg":"pwsh session start","start_ts":1776966973599,"zjit":null,"msys2":false}
