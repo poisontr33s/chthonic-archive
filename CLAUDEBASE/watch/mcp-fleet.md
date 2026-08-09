@@ -58,7 +58,9 @@
 
           - *— **(`Upstream-STDIO`/`uv tool`/`pinned`)** —* `fetch` *— · —* `time` *— · —* `git` *— · —* `mas-mcp` *— each launched by its own resolved interpreter, never through a resolver that stays moored beside it. Some double native tools —* `fetch≈WebFetch` *—* `git≈Bash` *— kept for parity, not need.*
 
-          - *— The page names the shape, not the snapshot. Re-sound counts and versions with —* `scripts/mcp_write_local.ps1 -List` *— and a —* `tools/list` *— handshake, never trust this list to have stayed true.*
+          - *— **(`Last-Sounding`/`2026-08-09`)** — taken from the wire, not the paper: —* `25 declared` *— · —* `24 serving` *— (`19 stdio` *— booted + —* `5 http` *—) · —* `160 tools` *— across the booted stdio hulls. The one that would not answer: —* `workiq` *— a —* `WAM` *— auth error at the proxy, held deliberately.*
+
+            - *— The page names the shape, not the snapshot. Re-sound counts and versions with —* `scripts/mcp_write_local.ps1 -List` *— and a —* `uv run scripts/mcp_handshake_probe.py --boot` *— handshake, never trust this list to have stayed true.*
 
 ---
 
