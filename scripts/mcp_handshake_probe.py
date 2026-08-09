@@ -66,12 +66,47 @@ def resolve_command(command: str | None) -> tuple[str, str | None]:
 
 
 def frame_message(message: dict[str, Any]) -> bytes:
+    """Encode one JSON-RPC message for the MCP **stdio** transport.
+
+    MCP over stdio is newline-delimited JSON: one compact object per line.
+    This previously emitted LSP-style ``Content-Length:`` framing, which every
+    server rejects as a malformed first line -- they exit 1 without replying.
+    Measured 2026-08-09: all 23 stdio servers reported
+    ``boot=no-protocol-output, messages_seen=0, exit_code=1`` while several of
+    them were demonstrably connected and serving tools in the same session.
+    A health check that fails every subject identically is measuring itself.
+    """
     body = json.dumps(message, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
-    return b"Content-Length: " + str(len(body)).encode("ascii") + b"\r\n\r\n" + body
+    return body + b"\n"
 
 
 def parse_framed_messages(data: bytes) -> list[dict[str, Any]]:
+    """Parse server output as newline-delimited JSON, falling back to LSP framing.
+
+    NDJSON first because that is what the MCP stdio transport actually emits.
+    The ``Content-Length:`` scan below is kept as a fallback rather than deleted:
+    it costs nothing, and a server that does frame its output stays readable
+    instead of silently reporting zero messages -- which is precisely the
+    failure mode this function was the other half of.
+
+    Non-JSON lines are ignored on purpose. Several servers log to stdout before
+    speaking protocol (``vulkan`` announces a 14.5MB spec ingest), and treating
+    that as a parse failure would reintroduce a false negative.
+    """
     messages: list[dict[str, Any]] = []
+    for line in data.split(b"\n"):
+        line = line.strip()
+        if not line.startswith(b"{"):
+            continue
+        try:
+            obj = json.loads(line.decode("utf-8"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        if isinstance(obj, dict) and obj.get("jsonrpc") == "2.0":
+            messages.append(obj)
+    if messages:
+        return messages
+
     cursor = 0
     while True:
         idx = data.find(b"Content-Length:", cursor)

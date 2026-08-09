@@ -247,12 +247,16 @@ try {
       ncbi = New-BunServer -Script "scripts/mcp-ncbi.ts"
       # --- VS Code parity set (workspaceFolder->repoRoot; bun/bunx/uv/uvx->absolute; HF env-token->pool) ---
       browser = New-BunServer -Script "scripts/mcp-browser.ts"
+      # bunx, not `cmd /c npx`: this box is bun-native and has no Node install —
+      # `npx` and `npm` both resolve to NOT FOUND, so the old form died with
+      # "'npx' is not recognized as an internal or external command" (measured
+      # 2026-08-09). Dropping the cmd.exe wrapper also matches the repo shell
+      # policy in CLAUDE.md. Same package, same flags, resolvable launcher.
       "chrome-devtools" = @{
         type = "stdio"
-        command = "cmd"
+        command = $bunx
         args = @(
-          "/c",
-          "npx",
+          "--bun",
           "-y",
           "chrome-devtools-mcp@latest",
           "--no-usage-statistics"
@@ -321,21 +325,31 @@ try {
         command = $bunx
         args = @("--bun","-y","@modelcontextprotocol/server-memory")
       }
+      # --- uvx trio: SDK pinned below the McpError -> MCPError rename ---------
+      # The `mcp` Python SDK renamed McpError to MCPError and dropped
+      # Server.list_tools. mcp-server-{time,fetch,git} still import the old
+      # names upstream, so uvx resolving a current SDK makes all three die at
+      # import with `ImportError: cannot import name 'McpError'` (git fails
+      # slightly later with `'Server' object has no attribute 'list_tools'`).
+      # `--refresh` does not help — upstream has not adapted. Verified
+      # 2026-08-09: `uvx --with "mcp<2" mcp-server-time` starts and speaks
+      # JSON-RPC, exit 0. Revisit when those packages adopt the new SDK; the
+      # pin is a dated workaround, not a preference.
       fetch = @{
         type = "stdio"
         command = $uvx
-        args = @("mcp-server-fetch")
+        args = @("--with","mcp<2","mcp-server-fetch")
         env = @{ PYTHONIOENCODING = "utf-8" }
       }
       time = @{
         type = "stdio"
         command = $uvx
-        args = @("mcp-server-time")
+        args = @("--with","mcp<2","mcp-server-time")
       }
       git = @{
         type = "stdio"
         command = $uvx
-        args = @("mcp-server-git","--repository",$repoRoot)
+        args = @("--with","mcp<2","mcp-server-git","--repository",$repoRoot)
       }
     }
 
