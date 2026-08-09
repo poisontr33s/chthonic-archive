@@ -106,6 +106,21 @@ the seal question is settled.
 | Consider whether `verifier.rs` should distinguish "never sealed" from "seal expected but gone" | The fail-open branch is defensible for bootstrap, indefensible after first seal; needs a state the code doesn't have today | real design work |
 | Refresh atlas §1's zombie entry | Says C2 is next; memory says C2 landed 2026-07-09 | minutes |
 
+## Correction — appended later the same night
+
+The "push blocked" account below was true when written and is now closed. The user
+opened the AHA authorship domain explicitly; the back door at
+`CLAUDEBASE/dev/null/salt-trial/AHA_MANIFEST.md:38` pointed at an absolute
+`/CLAUDEBASE/` that resolved to nothing, while all ten sibling files link *into*
+the manifest with working relative paths — ten doors in, one out, and the way out
+did not open. Repointed to `../../../README.md`, which carries the same sigil, so
+the circuit closes. `bun run ci/run.ts --check pathfinder` → "OK: 13 files
+scanned, all links valid"; `45763118..a9f1e88c` pushed eight commits. Nothing else
+in that file was altered.
+
+Left as written above rather than edited away, per the skill's own rule: a record
+states what was true on its date, and corrections append.
+
 ## Tone note
 
 The push is blocked and I left it blocked. `CLAUDEBASE/dev/null/salt-trial/AHA_MANIFEST.md`
