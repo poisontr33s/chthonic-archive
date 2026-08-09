@@ -39,7 +39,22 @@ Two binding consequences:
 
 **Known gap, stated rather than papered over:** this section is itself an unenforced contract, the exact failure mode this repo keeps producing — a rule living in prose with nothing checking it. A doc-staleness gate (anchors resolve, cited `file:line` still says what the doc claims) is a real candidate task, not something this file can fix by asserting harder.
 
-## 1. Scope selection
+## Readiness gate — checked before every unattended run
+
+This skill has no agency between turns; something invokes it. When that something is a `/loop` rather than a person, the discipline has to survive re-entry without supervision, so each run answers these **before** doing anything. Any "no" means stop and say which one — that is a complete, successful run.
+
+1. **Is there a thread?** A live session thread (§1) or a genuinely gate-met §1 atlas item. Not "something I could do" — something already in motion or already cleared.
+2. **Can I prove it?** A verification path must exist *before* starting: a build, a test, a command whose output settles it, or a raw-data cross-check independent of whatever I'm about to write. Work I can only assert is not ready, however obvious it looks.
+3. **Does finishing it need a human answer?** If the next step is a fork, an authorship call, or a preference, it is not nightly work. Name it and stop — §2 already forbids deciding it alone, and nobody is awake to ask.
+4. **Can I commit without touching what isn't mine?** Uncommitted work in the tree is normal and fine; the test is whether this run's files can be staged by explicit path without disturbing it (§6). If not, do the work and leave it uncommitted with a note rather than reorganising someone else's index.
+
+### Under `/loop` specifically
+
+Re-entry is where an unattended run degrades, because the cheapest way to look productive on tick N+1 is to open a new lane. So:
+
+- **Finish or stop; do not start something else.** If the previous run left a finding that needs the user, the loop's job is to hold there. Successive ticks reporting the same honest blocker are correct behaviour, not a stuck loop.
+- **A tick with nothing ready writes nothing.** No file, no ledger row. §5's records are for runs that shipped; a loop that logs its own heartbeat has become the churn it was meant to avoid.
+- **Widen only downward.** Each tick may go deeper on the same thread. Jumping clusters is the abandonment habit §1 exists to prevent, and it is exactly what an unsupervised loop does if nothing forbids it.
 
 **First action, before anything else:** capture a start timestamp for tonight's `CLAUDEBASE/nightlies/` record (§5) — `mcp__time__get_current_time` (pass the working timezone, e.g. `Europe/Berlin`), or `date -u +"%Y-%m-%dT%H:%M:%SZ"` if that tool isn't loaded; both verified working (commit `e0729a10`). Do the same at the end, right before writing the ledger record, and compute the elapsed span — a run that skips this still ships, it just costs an honest `duration` instead of another "not recorded."
 
