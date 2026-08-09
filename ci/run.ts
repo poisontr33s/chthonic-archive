@@ -359,6 +359,21 @@ const CHECKS: Check[] = [
     },
   },
   {
+    name: "ssot-seal",
+    aliases: ["seal", "axiom-seal"],
+    script: "ci/checks/ssot-seal.ts",
+    scope: "always",
+    speed: "fast",
+    description: "Does each sealed canon still match its sidecar <canon>.sha256? Guards the seals AxiomVerifier reads at runtime. Read-only by default; --strict gates.",
+    no_auto_fix: {
+      reason: "semantic",
+      explanation:
+        "The two failure modes need opposite responses and only a human can pick. A missing seal is usually an accidental deletion of a tracked file (restore it). A hash mismatch means the canon moved after sealing — resealing declares the new content canonical, which is an authorship decision about frozen lore, not a mechanical fix. Auto-resealing would make this check self-satisfying: it would rubber-stamp every drift it was built to catch.",
+      manual_remediation:
+        "Missing seal: `git checkout -- <canon>.sha256`. Drift: confirm the canon edit was intended, then reseal deliberately with `(Get-FileHash -LiteralPath <canon> -Algorithm SHA256).Hash.ToLower() | Set-Content <canon>.sha256 -NoNewline`. The check prints both hashes and the exact command.",
+    },
+  },
+  {
     name: "spread-freshness",
     aliases: ["spread"],
     script: "ci/checks/spread-freshness.ts",

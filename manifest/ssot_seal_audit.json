@@ -1,0 +1,18 @@
+{
+  "tool": "CI_CHECK_SSOT_SEAL_V1",
+  "generated_at": "2026-08-09T03:42:55.671Z",
+  "strict": false,
+  "sealed_count": 1,
+  "ok_count": 0,
+  "finding_count": 1,
+  "results": [
+    {
+      "canon": ".chthonic/SSOT.md",
+      "seal": ".chthonic/SSOT.md.sha256",
+      "status": "seal_missing",
+      "actual_hash": "6808095b8bc79838b9b4d44fbfcf283ad9e3b9a26218f0d69de1fcbe1f8e2148",
+      "sealed_hash": null,
+      "note": "read by AxiomVerifier::new() in src/main.rs (debug builds only)"
+    }
+  ]
+}
