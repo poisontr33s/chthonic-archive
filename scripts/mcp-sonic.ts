@@ -16,14 +16,10 @@
  * Credentials: reads SPOTIFY_CLIENT_ID / CLIENT_SECRET / REFRESH_TOKEN from process.env.
  * Load via: .\scripts\api_pool.ps1 -Load   (writes them into the shell that spawns the MCP server)
  *
- * Registration (.mcp.json):
- *   "sonic": {
- *     "type": "stdio",
- *     "command": "C:/Users/eldno/.bun/bin/bun.exe",
- *     "args": ["run", "C:/Users/eldno/chthonic-archive/scripts/mcp-sonic.ts"],
- *     "cwd": "C:/Users/eldno/chthonic-archive",
- *     "env": { "SPOTIFY_CLIENT_ID": "...", "SPOTIFY_CLIENT_SECRET": "...", "SPOTIFY_REFRESH_TOKEN": "..." }
- *   }
+ * Registration: `.mcp.json` is generated — the `sonic` entry is declared in
+ * scripts/mcp_write_local.ps1 (bun + this script, cwd = repo root, Spotify
+ * credentials sourced from the API pool). Read it there; a copy of the JSON
+ * here would only drift from the thing that writes it.
  *
  * sonic_signal semantics:
  *   - If Spotify is paused/stopped → resume() (user paused to read; signal them it's done)
@@ -38,7 +34,15 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { SpotifyControl } from "./spotify_control.ts";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import {
+  appendFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  renameSync,
+  statSync,
+  writeFileSync,
+} from "fs";
 import { join } from "path";
 import { spawn as nodeSpawn } from "child_process";
 
@@ -111,16 +115,29 @@ function interpretLoopbackAffect(w: SonicWindow): string {
   return tags.join(" · ");
 }
 
+/**
+ * Cap for the session lake, mirroring the daemon's HistoryLake: roll over at the
+ * cap into `.jsonl.1` and keep one previous generation. SONIC_SESSION_MAX_BYTES
+ * wins if set (lets a test force a tiny cap); else MB — same knob pair and same
+ * precedence as SONIC_HISTORY_MAX_BYTES / SONIC_HISTORY_MAX_MB on the daemon.
+ */
+const SESSION_MAX_BYTES =
+  Number(process.env.SONIC_SESSION_MAX_BYTES) ||
+  Math.max(1, Number(process.env.SONIC_SESSION_MAX_MB) || 8) * 1024 * 1024;
+
 /** Append a sonic event to the session data lake (manifest/sonic_session.jsonl). */
 function logSonicEvent(entry: Record<string, unknown>): void {
   try {
     const dir = join(process.cwd(), "manifest");
     mkdirSync(dir, { recursive: true });
-    appendFileSync(
-      join(dir, "sonic_session.jsonl"),
-      JSON.stringify({ ts: Date.now(), ...entry }) + "\n",
-      "utf8",
-    );
+    const path = join(dir, "sonic_session.jsonl");
+    appendFileSync(path, JSON.stringify({ ts: Date.now(), ...entry }) + "\n", "utf8");
+    // Unbounded until 2026-08-09: this lake grew a line per tool call forever,
+    // and it is tracked, so every commit carried its diff. Rotation bounds it
+    // without losing the previous generation; `.jsonl.1` is gitignored.
+    if (statSync(path).size > SESSION_MAX_BYTES) {
+      renameSync(path, `${path}.1`);
+    }
   } catch {
     // Non-blocking — data lake writes must not break the tool call
   }

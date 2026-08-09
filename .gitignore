@@ -97,7 +97,10 @@ adapters/
 *-wal
 *-shm
 manifest/sessions/
-manifest/sonic_window_history.ndjson
+# The daemon rotates this lake at 64 MB into `.ndjson.1`, so the ignore has to
+# cover the rotation suffix too — a bare literal only ever matched the live file.
+manifest/sonic_window_history.ndjson*
+manifest/sonic_session.jsonl.*
 manifest/*.lock
 manifest/chthonic_coverage_*_audit.json
 manifest/ci_dry_run_*.json

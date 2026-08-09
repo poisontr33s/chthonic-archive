@@ -355,12 +355,28 @@ try {
         command = $bunx
         args = @("--bun","-y","@microsoft/workiq@latest","mcp")
       }
-      "mas-mcp" = @{
-        type = "stdio"
-        command = $uv
-        args = @("run","--quiet","--directory",$masDir,"python","-m","server")
-        cwd = $repoRoot
-      }
+      # `uv run --directory` resolves to the repo-root .venv anyway, and keeps
+      # uv.exe (~35 MB) plus a console host resident for the life of the server —
+      # the same launcher-chain tax as the uv trio below. Point at the resolved
+      # interpreter directly; fall back to `uv run` if that venv is absent.
+      "mas-mcp" = $(
+        $repoPython = Join-Path $repoRoot ".venv\Scripts\python.exe"
+        if (Test-Path -LiteralPath $repoPython) {
+          @{
+            type = "stdio"
+            command = (Resolve-Path -LiteralPath $repoPython).Path
+            args = @("-m","server")
+            cwd = $masDir
+          }
+        } else {
+          @{
+            type = "stdio"
+            command = $uv
+            args = @("run","--quiet","--directory",$masDir,"python","-m","server")
+            cwd = $repoRoot
+          }
+        }
+      )
       filesystem = New-BunServer -Script "scripts/mcp-filesystem.ts" -ExtraArgs $fsRoots
       context7 = @{ type = "http"; url = "https://mcp.context7.com/mcp" }
       "github-archaeology" = New-BunServer -Script "scripts/mcp-github-archaeology.ts" -EnvVars @{ ARCHAEOLOGY_REPO = "poisontr33s/Restructure-MCP-Orchestration" }
