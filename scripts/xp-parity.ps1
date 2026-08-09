@@ -54,8 +54,13 @@ if ($events.Count -eq 0) { throw "trail files exist but parsed to zero events �
 # ── The tables, stated once, as data ────────────────────────────────────────
 $BASE     = @{ artifact=10; decision=8; diagnostic=5; memory=4; recovery=15; snapshot=3; meta=5 }
 $KIND_PS  = @{ 'epoch-close'=45; git_commit=5; wiring=3; redux=8; roulette_steward=12; bounty_hunt=20; pwsh_fullstack=15 }
-$KIND_CAI = @{ 'epoch-close'=45; git_commit=5; wiring=3 }      # xp.rs:91-96
 $META     = @('session_start','session_end','zjit-session','msys2-session')
+
+# cai is INVOKED, not transcribed. An earlier version of this script re-implemented
+# xp.rs's rules here in PowerShell; the moment xp.rs was fixed, that copy started
+# reporting a drift that no longer existed — a checker lying about the thing it
+# checks. Running the real binary cannot go stale, which is the whole point.
+$CaiExe = Join-Path $Root 'target\debug\cai.exe'
 
 # Trail events are heterogeneous JSON — `type`, `kind` and `p` are each absent on
 # some rows. Under StrictMode Latest a bare $e.p on a row without it THROWS, and
@@ -88,7 +93,17 @@ function Measure-Variant {
 }
 
 $psXp  = Measure-Variant -events $events -kindTable $KIND_PS  -SkipMeta -HonorDelta -DefaultPrio 1.0
-$caiXp = Measure-Variant -events $events -kindTable $KIND_CAI                       -DefaultPrio 0.75
+
+# Ask the real binary. Empty stdin makes cai print its XP banner and exit at EOF.
+$caiXp = $null; $caiNote = ''
+if (Test-Path -LiteralPath $CaiExe) {
+    $caiOut = ("" | & $CaiExe 2>&1 | Out-String)
+    $m = [regex]::Match($caiOut, '\[XP\]\s+Lv\.\d+\s+\S+\s+\[[^\]]*\]\s+(\d+)\s+XP')
+    if ($m.Success) { $caiXp = [int]$m.Groups[1].Value }
+    else { $caiNote = 'binary ran but printed no parseable XP line' }
+} else {
+    $caiNote = "not built — cargo build -p chthonic-cai"
+}
 
 # ── Positive control: the transcription above must reproduce the REAL engine ─
 # Comparing two of my own reimplementations would prove nothing. Ask the engine.
@@ -97,11 +112,13 @@ $dbgLine   = @($engineRaw | Where-Object { $_ -match 'Raw XP:\s*(\d+)' })
 $engineXp  = if ($dbgLine.Count -gt 0 -and $dbgLine[0] -match 'Raw XP:\s*(\d+)') { [int]$Matches[1] } else { $null }
 $faithful  = ($null -ne $engineXp) -and ($engineXp -eq $psXp)
 
-# ── Drift causes, derived rather than asserted ───────────────────────────────
-$metaEvents     = @($events | Where-Object { $k = Get-Field $_ 'kind'; $k -and $META -contains [string]$k })
-$missingKinds   = @($KIND_PS.Keys | Where-Object { -not $KIND_CAI.ContainsKey($_) })
-$affectedByKind = @($events | Where-Object { $k = Get-Field $_ 'kind'; $k -and $missingKinds -contains [string]$k })
-$noPrio         = @($events | Where-Object { $null -eq (Get-Field $_ 'p') })
+# ── Context for interpreting a drift, derived rather than asserted ───────────
+# Deliberately NOT a list of cai's known bugs: those were fixed on 2026-08-09 and
+# a hardcoded cause list would have started lying the moment they were. These are
+# standing properties of the trail that make a divergence legible whatever caused it.
+$metaEvents = @($events | Where-Object { $k = Get-Field $_ 'kind'; $k -and $META -contains [string]$k })
+$deltaEvents= @($events | Where-Object { $null -ne (Get-Field $_ 'xp_delta') })
+$noPrio     = @($events | Where-Object { $null -eq (Get-Field $_ 'p') })
 
 $level = { param($x) [Math]::Floor([Math]::Sqrt($x / 10)) }
 
@@ -111,7 +128,11 @@ if (-not $Quiet) {
     Write-Host ""
     Write-Host ("  {0,-34} {1,10} {2,8}" -f 'implementation', 'xp', 'level') -ForegroundColor DarkGray
     Write-Host ("  {0,-34} {1,10} {2,8}   canonical" -f 'chthonic-xp.ps1', $psXp,  (& $level $psXp)) -ForegroundColor Green
-    Write-Host ("  {0,-34} {1,10} {2,8}" -f 'cai::compute_xp (xp.rs)', $caiXp, (& $level $caiXp)) -ForegroundColor $(if ($caiXp -eq $psXp) { 'Green' } else { 'Red' })
+    if ($null -eq $caiXp) {
+        Write-Host ("  {0,-34} {1,10} {2,8}   {3}" -f 'cai (target\debug\cai.exe)', '—', '—', $caiNote) -ForegroundColor Yellow
+    } else {
+        Write-Host ("  {0,-34} {1,10} {2,8}" -f 'cai (target\debug\cai.exe)', $caiXp, (& $level $caiXp)) -ForegroundColor $(if ($caiXp -eq $psXp) { 'Green' } else { 'Red' })
+    }
     Write-Host ""
     if ($faithful) {
         Write-Host "  control: transcription reproduces the live engine exactly ($engineXp)" -ForegroundColor Green
@@ -119,17 +140,19 @@ if (-not $Quiet) {
         Write-Host "  control: FAILED — transcription $psXp vs live engine $engineXp." -ForegroundColor Red
         Write-Host "           Every number below is therefore untrustworthy." -ForegroundColor Red
     }
-    if ($caiXp -ne $psXp) {
+    if ($null -eq $caiXp) {
         Write-Host ""
-        Write-Host "  DRIFT  $([Math]::Abs($caiXp - $psXp)) XP  ($([Math]::Round($caiXp / [Math]::Max($psXp,1), 1))x)" -ForegroundColor Red
-        Write-Host "    - cai has no meta-kind skip: $($metaEvents.Count) session/bookkeeping events scored as work" -ForegroundColor Yellow
-        Write-Host "      (xp.rs:107-113 loops every event; chthonic-xp.ps1 skips $($META -join ', '))" -ForegroundColor DarkGray
-        Write-Host "    - cai kind table missing $($missingKinds.Count): $($missingKinds -join ', ')" -ForegroundColor Yellow
-        Write-Host "      affecting $($affectedByKind.Count) event(s)" -ForegroundColor DarkGray
-        Write-Host "    - cai defaults absent priority to 0.75; the engine uses 1.0 — $($noPrio.Count) event(s)" -ForegroundColor Yellow
-        Write-Host "    - cai returns u32 (xp.rs:77): a negative total is unrepresentable, so the" -ForegroundColor Yellow
-        Write-Host "      subtractive scoring pwsh-experience emits cannot survive that lane" -ForegroundColor DarkGray
-        Write-Host "    - cai ignores xp_delta entirely; explicit judgements silently become base XP" -ForegroundColor Yellow
+        Write-Host "  cai NOT COMPARED — $caiNote" -ForegroundColor Yellow
+        Write-Host "  An uncomparable lane is unknown, not agreeing. Exiting 2." -ForegroundColor Yellow
+    } elseif ($caiXp -ne $psXp) {
+        Write-Host ""
+        Write-Host "  DRIFT  $([Math]::Abs($caiXp - $psXp)) XP" -ForegroundColor Red
+        Write-Host "  Standing properties of this trail, to locate the cause:" -ForegroundColor DarkGray
+        Write-Host "    - $($metaEvents.Count) of $($events.Count) events are session bookkeeping (skipped by the engine)" -ForegroundColor Yellow
+        Write-Host "    - $($deltaEvents.Count) event(s) carry an explicit xp_delta that must outrank the type table" -ForegroundColor Yellow
+        Write-Host "    - $($noPrio.Count) event(s) carry no priority; the engine defaults those to 1.0, not 0.75" -ForegroundColor Yellow
+        Write-Host "    - a BOM'd first line deserialises in PowerShell but not in Rust unless stripped" -ForegroundColor Yellow
+        Write-Host "      (tools/chthonic-cai/src/xp.rs read_trail; ankh-forge event.rs:23 does the same)" -ForegroundColor DarkGray
     }
     Write-Host ""
 }
@@ -147,10 +170,14 @@ if ($Emit) {
         type = 'diagnostic'; kind = 'xp_parity'; p = 2
         sid = (New-Guid).ToString('N').Substring(0,8)
         msg = "xp-parity: engine $psXp vs cai $caiXp over $($events.Count) events"
-        xp_delta = 0; engine_xp = $psXp; cai_xp = $caiXp; drift = ($caiXp - $psXp); control_ok = $faithful
+        xp_delta = 0; engine_xp = $psXp
+        cai_xp = $caiXp                                              # $null when the binary is absent/unparseable
+        drift = $(if ($null -eq $caiXp) { $null } else { $caiXp - $psXp })
+        cai_note = $caiNote; control_ok = $faithful
     } | ConvertTo-Json -Compress) | Add-Content -LiteralPath $file -Encoding UTF8
 }
 
-if (-not $faithful) { exit 2 }     # cannot trust the comparison at all
+if (-not $faithful)   { exit 2 }   # cannot trust the comparison at all
+if ($null -eq $caiXp) { exit 2 }   # cai uncomparable — unknown, NOT agreeing
 if ($caiXp -ne $psXp) { exit 1 }   # family is out of sync
 exit 0
