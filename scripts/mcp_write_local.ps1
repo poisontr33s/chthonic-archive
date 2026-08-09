@@ -285,6 +285,18 @@ try {
         command = Join-Path $repoRoot "target\debug\vulkan-mcp-server.exe"
         args = @()
       }
+      # chthonic-hw: native WMI + NVML + Win32VersionInfo probing (hw_inspect,
+      # gpu_telemetry, hw_drift_check). Built and E2E-verified 2026-07-03 but never
+      # registered here — while the repo's own SessionStart hook has been telling
+      # every session to "see the chthonic-hw MCP server" for full detail. Debug
+      # path, matching bevy/vulkan above rather than chthonic-v3's release-first
+      # pattern; a hardware probe gains nothing from optimisation and a third
+      # convention in one table costs more than it saves.
+      "chthonic-hw" = @{
+        type = "stdio"
+        command = Join-Path $repoRoot "target\debug\chthonic-hw-mcp-server.exe"
+        args = @()
+      }
       workiq = @{
         type = "stdio"
         command = $bunx
@@ -421,7 +433,7 @@ try {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
       "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","ncbi",
-      "browser","chrome-devtools","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","workiq","mas-mcp",
+      "browser","chrome-devtools","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","chthonic-hw","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
     $actual = @()
