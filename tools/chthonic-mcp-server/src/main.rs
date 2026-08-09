@@ -1,6 +1,6 @@
 // @SID: TOOL_CHTHONIC_MCP_SERVER_V1
 // ============================================================
-// chthonic-mcp-server — stdio MCP server (rmcp 1.x)
+// chthonic-mcp-server — stdio MCP server (rmcp 2.x)
 //
 
 // Modern Rust port of the bun `chthonic-v3` server
@@ -23,10 +23,36 @@
 // Everything chthonic.ps1 can do remains reachable through `chthonic`;
 // the named tools are convenience shortcuts for the high-value lanes.
 //
+// ── Absorbed canon family (2026-08-09) ──────────────────────
+// Three standalone bun servers — `ssot`, `sourcer`, `asc-injector` —
+// served ten tools that all answer one question: what does the catalyst
+// (.chthonic/SSOT.md) say? Measured single-instance they cost
+// 110 + 110 + 113 MB, essentially all of it three copies of the bun
+// runtime, to run wrappers that shell out and pass JSON through. They
+// live here now (see canon.rs); tool names are unchanged except the
+// asc-injector `ping`, renamed `asc_ping` for an unambiguous namespace.
+//
+//   ssot_lint            unbalanced-bold audit of the catalyst
+//   ssot_parse_frontier  where the DSL grammar first breaks
+//   ssot_outline         header map
+//   sourcer_check        is this name rooted in the heritage-root?
+//   sourcer_section      where does this topic live?
+//   sourcer_roster       canon organs + character rooting status
+//   sourcer_orphans      characters the SSOT does not carry
+//   sourcer_sdk          repo pins vs upstream latest
+//   inject_asc_context   inject the catalyst (or one section)
+//   asc_ping             catalyst liveness/size
+//
+// The engines stay where they were: ssot_loremaster.py, catalyst_lint.py,
+// dsl-full-smoke and sourcer-sdk.ts remain the source of truth; this crate
+// only spawns and shapes. The bun scripts remain on disk as reference.
+//
 // Transport: stdio (rmcp). Tool calls shell into chthonic.ps1 via a
 // captured subprocess (no stdout pollution; tracing -> stderr).
 // Repo root: CHTHONIC_ROOT env (set by .mcp.json) -> cwd fallback.
 // ============================================================
+
+mod canon;
 
 use std::path::PathBuf;
 use std::process::Stdio;
@@ -70,6 +96,40 @@ struct ToolchainParams {
     action: String,
     /// Additional positional arguments for the action.
     args: Option<Vec<String>>,
+}
+
+// ── Absorbed-family parameter types (ssot / sourcer / asc) ──────────────────────
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct CatalystPathParams {
+    /// File to operate on. Defaults to the catalyst (.chthonic/SSOT.md).
+    path: Option<String>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct OutlineParams {
+    /// File to outline. Defaults to the catalyst (.chthonic/SSOT.md).
+    path: Option<String>,
+    /// Maximum header depth to include (1-6). Default 6.
+    max_level: Option<u32>,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct NameParams {
+    /// The name/term to source-check against the SSOT (case-insensitive substring).
+    name: String,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct QueryParams {
+    /// Heading or acronym query (case-insensitive).
+    query: String,
+}
+
+#[derive(Debug, Deserialize, JsonSchema)]
+struct InjectParams {
+    /// Specific section to inject (e.g. 'IV', 'VIII', 'X'). Omit for the full catalyst.
+    section: Option<String>,
 }
 
 // ── Server ──────────────────────────────────────────────────────────────────────
@@ -155,6 +215,57 @@ impl ChthonicServer {
         } else {
             Ok(CallToolResult::error(vec![ContentBlock::text(text)]))
         }
+    }
+
+    // ── shared canon helpers (absorbed ssot / sourcer / asc-injector) ────────
+
+    /// Caller-supplied catalyst path, else the resolved default.
+    fn catalyst_or(&self, given: Option<String>) -> PathBuf {
+        match given.map(|s| s.trim().to_string()).filter(|s| !s.is_empty()) {
+            Some(s) => {
+                let p = PathBuf::from(&s);
+                if p.is_absolute() { p } else { self.repo_root.join(p) }
+            }
+            None => canon::ssot_path(&self.repo_root),
+        }
+    }
+
+    /// `uv run scripts/ssot_loremaster.py <subcmd> [value] --json`
+    ///
+    /// Valid subcommands are fixed by the script: queue | entity | section |
+    /// drift | lineage. There is no `check` — sourcer_check is the *tool* name,
+    /// and it runs `entity` then shapes the rooted/orphan verdict from the hits.
+    async fn loremaster_raw(&self, subcmd: &str, value: Option<&str>) -> Result<String, String> {
+        let mut args: Vec<&str> = vec!["run", "scripts/ssot_loremaster.py", subcmd];
+        if let Some(v) = value {
+            args.push(v);
+        }
+        args.push("--json");
+        canon::run_capture(&self.repo_root, "uv", &args).await
+    }
+
+    /// The organ-canon-citation audit manifest — the rooted/deferred roster.
+    async fn citation_manifest_json(&self) -> Result<serde_json::Value, ErrorData> {
+        let path = self
+            .repo_root
+            .join("manifest")
+            .join("organ_canon_citation_audit.json");
+        let text = tokio::fs::read_to_string(&path).await.map_err(|e| {
+            ErrorData::internal_error(
+                format!(
+                    "organ-canon-citation audit not found at {} ({e}).\n\
+                     Generate it first: bun run ci/checks/organ-canon-citation.ts",
+                    path.display()
+                ),
+                None,
+            )
+        })?;
+        serde_json::from_str(&text).map_err(|e| {
+            ErrorData::internal_error(
+                format!("citation manifest at {} is not valid JSON: {e}", path.display()),
+                None,
+            )
+        })
     }
 }
 
@@ -278,6 +389,304 @@ impl ChthonicServer {
         }
 
         Ok(CallToolResult::success(vec![ContentBlock::text(output)]))
+    }
+
+    // ── absorbed: ssot lane ─────────────────────────────────────────────────
+
+    #[tool(
+        description = "Structural variance audit of the catalyst (.chthonic/SSOT.md). Returns every line with unbalanced markdown bold — the orphan-** defect that runs a bold across newlines and derails the DSL parse far downstream — each tagged with line number, kind (header/list-item/prose/table-row/blockquote), and bold-marker count. Fenced code blocks and inline-code spans are excluded so a literal ** (e.g. an applyTo: \"**\" glob) is not falsely flagged. Detection only."
+    )]
+    async fn ssot_lint(
+        &self,
+        Parameters(p): Parameters<CatalystPathParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let path = self.catalyst_or(p.path);
+        let path = path.to_string_lossy().to_string();
+        match canon::run_capture(
+            &self.repo_root,
+            "uv",
+            &["run", "scripts/catalyst_lint.py", "--json", "--path", &path],
+        )
+        .await
+        {
+            Ok(text) => Ok(CallToolResult::success(vec![ContentBlock::text(text)])),
+            Err(e) => Ok(CallToolResult::error(vec![ContentBlock::text(e)])),
+        }
+    }
+
+    #[tool(
+        description = "Run the Chthonic DSL grammar against the FULL catalyst and report where the parse first breaks — the next structural corruption to fix. Returns status (OK if the whole catalyst parses, else FAIL), failing line/column, expected token, the first-failing-prefix line, that line's text, plus a diagnosis and next action. The corruption-walker: fix the reported line, re-run, it advances. A cold run compiles the Rust grammar tool and can take 1-2 minutes; warm runs are seconds."
+    )]
+    async fn ssot_parse_frontier(
+        &self,
+        Parameters(p): Parameters<CatalystPathParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let path_buf = self.catalyst_or(p.path);
+        let path = path_buf.to_string_lossy().to_string();
+        let out = canon::run_capture(
+            &self.repo_root,
+            "cargo",
+            &[
+                "run", "-p", "dsl-smoke", "--release", "--bin", "dsl-full-smoke", "--quiet", "--",
+                &path,
+            ],
+        )
+        .await
+        .unwrap_or_else(|e| e); // the tool reports failures on stderr; shape them anyway
+        let file_text = tokio::fs::read_to_string(&path_buf).await.ok();
+        let verdict = canon::parse_frontier(&out, file_text.as_deref());
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&verdict).unwrap_or_else(|e| e.to_string()),
+        )]))
+    }
+
+    #[tool(
+        description = "The catalyst's header/section outline — every markdown header as {line, level 1-6, title}, code fences excluded. Use to review structure and ordering: duplicated section numbers, out-of-sequence headers, dual-track (Arabic §0/§1 vs Roman §I/§II) inconsistencies, depth jumps. max_level caps depth (e.g. 3 for the top-level skeleton)."
+    )]
+    async fn ssot_outline(
+        &self,
+        Parameters(p): Parameters<OutlineParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let path = self.catalyst_or(p.path);
+        let text = tokio::fs::read_to_string(&path).await.map_err(|e| {
+            ErrorData::internal_error(format!("failed to read {}: {e}", path.display()), None)
+        })?;
+        let max_level = p.max_level.unwrap_or(6).clamp(1, 6) as usize;
+        let headings = canon::outline(&text, max_level);
+        let payload = serde_json::json!({
+            "path": path.to_string_lossy(),
+            "headers": headings.len(),
+            "outline": headings,
+        });
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&payload).unwrap_or_else(|e| e.to_string()),
+        )]))
+    }
+
+    // ── absorbed: sourcer lane ──────────────────────────────────────────────
+
+    #[tool(
+        description = "Ask the SSOT whether a name or term is rooted in the heritage-root canon. Pass an entity name (e.g. 'Orackla Nocticula'), an organ, a protocol, or any phrase; returns ROOTED (with the SSOT line(s) and section(s) where it lives) or ORPHAN (absent from the heritage-root) — so a claim can be sourced before it is trusted, rather than accepted from a derived JSON. Use before treating any character/entity/organ as canon."
+    )]
+    async fn sourcer_check(
+        &self,
+        Parameters(p): Parameters<NameParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let query = p.name.trim();
+        if query.is_empty() {
+            return Ok(CallToolResult::error(vec![ContentBlock::text(
+                "sourcer_check requires a non-empty 'name'.",
+            )]));
+        }
+        let raw = match self.loremaster_raw("entity", Some(query)).await {
+            Ok(t) => t,
+            Err(e) => return Ok(CallToolResult::error(vec![ContentBlock::text(e)])),
+        };
+        let parsed: serde_json::Value = serde_json::from_str(&raw).map_err(|e| {
+            ErrorData::internal_error(format!("ssot_loremaster entity returned non-JSON: {e}"), None)
+        })?;
+        let empty = Vec::new();
+        let hits = parsed
+            .get("archive_hits")
+            .and_then(|h| h.as_array())
+            .unwrap_or(&empty);
+        let rooted = !hits.is_empty();
+        let sources: Vec<serde_json::Value> = hits
+            .iter()
+            .take(12)
+            .map(|h| {
+                serde_json::json!({
+                    "line": h.get("line"),
+                    "section": h.get("section_title"),
+                    "range": h.get("section_range"),
+                    "text": h.get("text"),
+                })
+            })
+            .collect();
+        let verdict = serde_json::json!({
+            "query": query,
+            "rooted": rooted,
+            "verdict": if rooted {
+                "ROOTED — present in the heritage-root SSOT"
+            } else {
+                "ORPHAN — absent from the heritage-root SSOT (derived-only; source it before trusting)"
+            },
+            "hit_count": hits.len(),
+            "sources": sources,
+        });
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&verdict).unwrap_or_else(|e| e.to_string()),
+        )]))
+    }
+
+    #[tool(
+        description = "Search the SSOT's section headings and acronyms for a query (e.g. 'Triumvirate', 'Organ', 'ANKH'). Returns matching sections with heading line, level, title, acronyms and line range — the map of where a topic lives in the archive, so a reader can go to the source rather than a summary of it."
+    )]
+    async fn sourcer_section(
+        &self,
+        Parameters(p): Parameters<QueryParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let query = p.query.trim();
+        if query.is_empty() {
+            return Ok(CallToolResult::error(vec![ContentBlock::text(
+                "sourcer_section requires a non-empty 'query'.",
+            )]));
+        }
+        match self.loremaster_raw("section", Some(query)).await {
+            Ok(text) => Ok(CallToolResult::success(vec![ContentBlock::text(text)])),
+            Err(e) => Ok(CallToolResult::error(vec![ContentBlock::text(e)])),
+        }
+    }
+
+    #[tool(
+        description = "The canonical roster as the heritage-root defines it: SSOT-canon organs, and every game/lore character with its rooting status (PASS = organ is in the SSOT organ canon; DEFERRED = organ pending SSOT promotion; FAIL = claims an organ the SSOT does not carry). Sourced from the organ-canon-citation audit manifest."
+    )]
+    async fn sourcer_roster(&self) -> Result<CallToolResult, ErrorData> {
+        let m = self.citation_manifest_json().await?;
+        let characters: Vec<serde_json::Value> = m
+            .get("results")
+            .and_then(|r| r.as_array())
+            .map(|a| {
+                a.iter()
+                    .map(|r| {
+                        let mut o = serde_json::json!({
+                            "path": r.get("path"),
+                            "organ": r.get("organ"),
+                            "status": r.get("status"),
+                        });
+                        if let Some(reason) = r.get("reason") {
+                            o["reason"] = reason.clone();
+                        }
+                        o
+                    })
+                    .collect()
+            })
+            .unwrap_or_default();
+        let roster = serde_json::json!({
+            "generated_at": m.get("generated_at"),
+            "canonical_organs": m.get("ssot_canonical_organs"),
+            "characters": characters,
+            "summary": {
+                "rooted": m.get("pass_count"),
+                "deferred": m.get("deferred_count"),
+                "failed": m.get("fail_count"),
+            },
+        });
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&roster).unwrap_or_else(|e| e.to_string()),
+        )]))
+    }
+
+    #[tool(
+        description = "List the characters NOT rooted in the heritage-root SSOT — those whose organ is deferred or fails the canon. These are derived artifacts the SSOT does not (yet) carry. Use to catch drift: a new character added without registering it in the SSOT first."
+    )]
+    async fn sourcer_orphans(&self) -> Result<CallToolResult, ErrorData> {
+        let m = self.citation_manifest_json().await?;
+        let orphans: Vec<serde_json::Value> = m
+            .get("results")
+            .and_then(|r| r.as_array())
+            .map(|a| {
+                a.iter()
+                    .filter(|r| r.get("status").and_then(|s| s.as_str()).unwrap_or("") != "PASS")
+                    .map(|r| {
+                        let status = r.get("status").and_then(|s| s.as_str()).unwrap_or("");
+                        let note = if status == "DEFERRED" {
+                            serde_json::Value::from(
+                                "organ pending SSOT promotion — present only as a derived JSON",
+                            )
+                        } else {
+                            r.get("reason")
+                                .cloned()
+                                .unwrap_or_else(|| serde_json::Value::from("not rooted in the SSOT"))
+                        };
+                        serde_json::json!({
+                            "path": r.get("path"),
+                            "organ": r.get("organ"),
+                            "status": r.get("status"),
+                            "note": note,
+                        })
+                    })
+                    .collect()
+            })
+            .unwrap_or_default();
+        let payload = serde_json::json!({
+            "orphan_count": orphans.len(),
+            "orphans": orphans,
+            "note": "Orphans are characters the heritage-root SSOT does not carry. To root one: register it in the SSOT first (a semantic act), then promote its organ — never the reverse.",
+        });
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&payload).unwrap_or_else(|e| e.to_string()),
+        )]))
+    }
+
+    #[tool(
+        description = "Source the repo's pinned SDK versions against upstream latest — dependency currency, the same verification pointed at packages instead of canon. Returns each tracked SDK with its repo pin, latest upstream version (crates.io / GitHub releases), and status current/behind/ahead. Read-only: it reports the delta so a bump stays a decision."
+    )]
+    async fn sourcer_sdk(&self) -> Result<CallToolResult, ErrorData> {
+        match canon::run_capture(
+            &self.repo_root,
+            "bun",
+            &["run", "scripts/sourcer-sdk.ts", "compare", "--json"],
+        )
+        .await
+        {
+            Ok(text) => Ok(CallToolResult::success(vec![ContentBlock::text(text)])),
+            Err(e) => Ok(CallToolResult::error(vec![ContentBlock::text(e)])),
+        }
+    }
+
+    // ── absorbed: asc lane ──────────────────────────────────────────────────
+
+    #[tool(
+        description = "Inject the ASC Framework (Codex Brahmanica Perfectus, .chthonic/SSOT.md) into context. Omit `section` for the full catalyst, or pass a section marker (e.g. 'IV', 'VIII', 'X') to inject just that section. NOTE: the catalyst is ~1.27MB — a full injection is very large; prefer ssot_outline or sourcer_section to locate first."
+    )]
+    async fn inject_asc_context(
+        &self,
+        Parameters(p): Parameters<InjectParams>,
+    ) -> Result<CallToolResult, ErrorData> {
+        let path = canon::ssot_path(&self.repo_root);
+        let text = tokio::fs::read_to_string(&path).await.map_err(|e| {
+            ErrorData::internal_error(format!("failed to read SSOT at {}: {e}", path.display()), None)
+        })?;
+        let section = p.section.unwrap_or_else(|| "all".to_string());
+        if section == "all" {
+            return Ok(CallToolResult::success(vec![ContentBlock::text(format!(
+                "ASC Framework Context Injected (Section: all)\n\n{text}"
+            ))]));
+        }
+        match canon::extract_section(&text, &section) {
+            Some(body) => Ok(CallToolResult::success(vec![ContentBlock::text(format!(
+                "ASC Framework Context Injected (Section: {section})\n\n{body}"
+            ))])),
+            // The bun original returned "Section X not found. Injecting full SSOT."
+            // and then injected nothing — a message describing an action it never
+            // took. Report the miss and the real options instead.
+            None => {
+                let avail = canon::available_sections(&text);
+                Ok(CallToolResult::error(vec![ContentBlock::text(format!(
+                    "Section '{section}' not found in {}. Nothing was injected.\nAvailable section markers: {}",
+                    path.display(),
+                    if avail.is_empty() { "(none detected)".to_string() } else { avail.join(", ") }
+                ))]))
+            }
+        }
+    }
+
+    #[tool(
+        description = "Liveness probe for the canon lane: reports server version, resolved catalyst path and its size in bytes. Formerly the `ping` tool of the standalone asc-injector server; renamed for an unambiguous namespace in the merged surface."
+    )]
+    async fn asc_ping(&self) -> Result<CallToolResult, ErrorData> {
+        let path = canon::ssot_path(&self.repo_root);
+        let bytes = tokio::fs::metadata(&path).await.map(|m| m.len()).ok();
+        let payload = serde_json::json!({
+            "version": env!("CARGO_PKG_VERSION"),
+            "ssot_path": path.to_string_lossy(),
+            "ssot_bytes": bytes,
+            "ssot_present": bytes.is_some(),
+        });
+        Ok(CallToolResult::success(vec![ContentBlock::text(
+            serde_json::to_string_pretty(&payload).unwrap_or_else(|e| e.to_string()),
+        )]))
     }
 }
 

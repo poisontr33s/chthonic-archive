@@ -18,7 +18,7 @@
 ## Operational Mode Definitions
 
 ### Essential Mode (Default - Minimal Intervention)
-- **Allowed Agents:** `asc-injector` (SSOT), `filesystem` (read-only)
+- **Allowed Agents:** `chthonic-v3` (SSOT; absorbed `asc-injector` 2026-08-09), `filesystem` (read-only)
 - **Blocked Agents:** OpenAI (GPT-4.1- GPT-5.2/Codex), competing contexts
 - **Behavior:** Maximum clarity, minimum noise, structural creativity is a bonus, refer to "SSOT'ification"
 - **Use Case:** Solo creative work, prompt engineering, when "dirty codebase" causes stress
@@ -30,7 +30,7 @@
 - **Use Case:** Active coding sessions, feature implementation, testing, quality auditing and validation
 
 ### Maintenance Mode (Cleanup Operations)
-- **Allowed Agents:** `filesystem`, `asc-injector`, DCRP tools
+- **Allowed Agents:** `filesystem`, `chthonic-v3`, DCRP tools
 - **Blocked Agents:** All OpenAI agents -(prevents sabotague)
 - **Behavior:** Focus on git status cleanup, dependency updates, refactoring
 - **Use Case:** "Dirty codebase" cleanup, SSOT verification, hash checks
@@ -57,7 +57,7 @@
 3. SSOT (../copilot-instructions.md)
    └─ Canonical truth for all architectural decisions
 
-4. LOCAL MCP (asc-injector)
+4. LOCAL MCP (chthonic-v3)
    └─ SSOT-derived context, always aligned with source
 
 5. settings.json (operational flags)

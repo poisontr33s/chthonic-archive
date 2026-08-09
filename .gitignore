@@ -122,7 +122,10 @@ Thumbs.db
 .env.*.local
 gha-creds-*.json
 .mcp.json
-.mcp.json.bak
+# mcp_write_local.ps1 writes .mcp.json.bak-<epoch>, not a bare .bak — the exact
+# pattern below never matched a real backup, so every regeneration left a
+# token-bearing file untracked-but-not-ignored. Glob it.
+.mcp.json.bak*
 *.har
 *.dmp
 

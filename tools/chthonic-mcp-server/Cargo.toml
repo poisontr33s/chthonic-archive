@@ -2,7 +2,7 @@
 name        = "chthonic-mcp-server"
 version     = "0.1.0"
 edition     = "2024"
-description = "Chthonic polyglot CLI router as a stdio MCP server (rmcp 2.x). Modern Rust port of the bun chthonic-v3 server — wraps scripts/chthonic.ps1, drops toolchain runners redundant with Bash + the git MCP server."
+description = "Chthonic polyglot CLI router + canon family as a stdio MCP server (rmcp 2.x). Modern Rust port of the bun chthonic-v3 server — wraps scripts/chthonic.ps1, drops toolchain runners redundant with Bash + the git MCP server, and absorbs the ssot/sourcer/asc-injector bun servers (10 tools, ~333 MB of runtime) into one process."
 
 [[bin]]
 name = "chthonic-mcp-server"
@@ -12,6 +12,7 @@ path = "src/main.rs"
 rmcp               = { version = "2.1", features = ["server", "macros", "transport-io"] }
 tokio              = { version = "1",   features = ["macros", "rt-multi-thread", "process", "io-std", "fs"] }
 serde              = { version = "1",   features = ["derive"] }
+serde_json         = "1"
 schemars           = "1"
 anyhow             = "1"
 tracing            = "0.1"

@@ -95,8 +95,7 @@
         "chthonic.mcpServers": {
           "type": "array",
           "default": [
-            "asc-injector",
-            "artisan"
+            "chthonic-v3"
           ],
           "description": "Active MCP servers to connect"
         },

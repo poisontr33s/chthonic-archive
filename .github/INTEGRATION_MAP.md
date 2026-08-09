@@ -50,7 +50,7 @@ graph LR
 **Key Points:**
 - Only **852 files tracked** (`.gitignore` uses allowlist: `*` then `!specific/paths`)
 - Copilot reads: `.github/copilot-instructions.md` (SSOT - 4109 lines)
-- MCP servers: `asc-injector`, `filesystem`, `bun`, `microsoft-docs`, etc.
+- MCP servers: `chthonic-v3` (absorbed `asc-injector`/`ssot`/`sourcer` 2026-08-09), `filesystem`, `bun`, `microsoft-docs`, etc.
 
 ---
 

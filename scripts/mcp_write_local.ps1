@@ -216,8 +216,15 @@ try {
     $servers = [ordered]@{
       # --- Chthonic core (Claude Code lane; not present in the VS Code set) ---
       game = New-BunServer -Script "scripts/mcp-game.ts"
-      sourcer = New-BunServer -Script "scripts/mcp-sourcer.ts"
-      ssot = New-BunServer -Script "scripts/mcp-ssot.ts"
+      # sourcer / ssot / asc-injector: ABSORBED into chthonic-v3 (2026-08-09).
+      # All three were thin bun wrappers around the same catalyst and the same
+      # uv/cargo engines; three bun runtimes cost ~333 MB to serve 10 tools that
+      # answer one family of question. Ported to tools/chthonic-mcp-server/src/canon.rs;
+      # the tools kept their names (ssot_*, sourcer_*, inject_asc_context) so
+      # callers only change the server prefix. `ping` -> `asc_ping` (too generic
+      # in a merged namespace). Engines are untouched: ssot_loremaster.py,
+      # catalyst_lint.py, dsl-full-smoke and sourcer-sdk.ts are still the truth.
+      # The bun scripts remain on disk as the reference implementation.
       sonic = New-BunServer -Script "scripts/mcp-sonic.ts"
       corpus = New-BunServer -Script "scripts/corpus-mcp.ts"
       "cocoindex-code" = @{
@@ -271,9 +278,12 @@ try {
       }
       "bun-docs" = @{ type = "http"; url = "https://bun.com/docs/mcp" }
       "microsoft-docs" = @{ type = "http"; url = "https://learn.microsoft.com/api/mcp" }
-      "asc-injector" = New-BunServer -Script "scripts/mcp-asc-injector.ts" -EnvVars @{ SSOT_PATH = ".chthonic/SSOT.md" }
       # chthonic-v3: Rust rmcp port (target/release) when built; bun fallback otherwise (no-delete).
       # Build with: cargo build --release -p chthonic-mcp-server
+      # Also carries the absorbed ssot/sourcer/asc-injector family (17 tools total).
+      # No SSOT_PATH env: canon::ssot_path already defaults to repo_root/.chthonic/SSOT.md,
+      # which is exactly what asc-injector's env was pinning it to. The override
+      # still works if a caller ever needs a different catalyst.
       "chthonic-v3" = if (Test-Path $chthonicExe) {
         @{ type = "stdio"; command = $chthonicExe; args = @(); cwd = $repoRoot; env = @{ CHTHONIC_ROOT = $repoRoot } }
       } else {
@@ -446,10 +456,13 @@ try {
   function Assert-ExpectedMcpNames {
     param([Parameter(Mandatory=$true)]$Payload)
     $expected = @(
-      "game","sourcer","ssot","sonic","corpus","cocoindex-code","github","huggingface","ncbi",
-      "browser","chrome-devtools","bun-docs","microsoft-docs","asc-injector","chthonic-v3","bevy","vulkan","chthonic-hw","workiq","mas-mcp",
+      "game","sonic","corpus","cocoindex-code","github","huggingface","ncbi",
+      "browser","chrome-devtools","bun-docs","microsoft-docs","chthonic-v3","bevy","vulkan","chthonic-hw","workiq","mas-mcp",
       "filesystem","context7","github-archaeology","sequential-thinking","memory","fetch","time","git"
     )
+    # Absorbed into chthonic-v3 (2026-08-09). Named here so a re-add is caught as
+    # a regression rather than silently restoring three bun runtimes.
+    $absorbed = @("ssot","sourcer","asc-injector")
     $actual = @()
     if ($Payload.mcpServers -is [System.Collections.IDictionary]) {
       $actual = @($Payload.mcpServers.Keys)
@@ -459,6 +472,10 @@ try {
     $missing = @($expected | Where-Object { $actual -notcontains $_ })
     if ($missing.Count -gt 0) {
       throw "Generated MCP payload missing expected server(s): $($missing -join ', ')"
+    }
+    $resurrected = @($absorbed | Where-Object { $actual -contains $_ })
+    if ($resurrected.Count -gt 0) {
+      throw "Generated MCP payload re-declares server(s) absorbed into chthonic-v3: $($resurrected -join ', '). Their tools live in tools/chthonic-mcp-server/src/canon.rs."
     }
   }
 

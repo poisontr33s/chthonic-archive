@@ -5,7 +5,7 @@ VSCode extension providing MCP-powered chat interface to the ASC Framework.
 ## Features
 
 - 🔥 **Sidebar Chat Panel** - React 19 interface
-- 💀 **MCP Integration** - Connects to asc-injector, artisan servers
+- 💀 **MCP Integration** - Connects to the chthonic-v3 server (which absorbed asc-injector 2026-08-09)
 - ⚓ **SSOT Context** - Inject Codex Brahmanica Perfectus
 - ⚡ **Built with Bun** - Fast, modern tooling
 

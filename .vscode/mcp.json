@@ -25,25 +25,10 @@
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
     },
-    "asc-injector": {
-      "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp-asc-injector.ts"
-      ],
-      "cwd": "${workspaceFolder}",
-      "env": {
-        "SSOT_PATH": ".chthonic/SSOT.md"
-      }
-    },
     "chthonic-v3": {
       "type": "stdio",
-      "command": "bun",
-      "args": [
-        "run",
-        "scripts/mcp-chthonic-server.ts"
-      ],
+      "command": "${workspaceFolder}/target/release/chthonic-mcp-server.exe",
+      "args": [],
       "cwd": "${workspaceFolder}",
       "env": {
         "CHTHONIC_ROOT": "${workspaceFolder}"

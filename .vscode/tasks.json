@@ -235,7 +235,7 @@
 			"args": [
 				"-ForegroundColor",
 				"Cyan",
-				"'🔥💀⚓ ASC Framework Context Available via MCP Server: asc-injector\\n\\nUse @asc-injector in Copilot Chat or invoke resource: asc://ssot\\n\\nRestart VS Code if MCP server not visible.'"
+				"'🔥💀⚓ ASC Framework Context Available via MCP Server: chthonic-v3\\n\\nUse @chthonic-v3 in Copilot Chat (inject_asc_context, ssot_outline, sourcer_check) - asc-injector was absorbed into it 2026-08-09\\n\\nRestart VS Code if MCP server not visible.'"
 			],
 			"presentation": {
 				"reveal": "always",
