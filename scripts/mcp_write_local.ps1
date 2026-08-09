@@ -150,6 +150,45 @@ try {
     return $server
   }
 
+  function New-UvToolServer {
+    param(
+      [Parameter(Mandatory=$true)][string]$Tool,      # uv tool name, e.g. mcp-server-fetch
+      [string[]]$ExtraArgs = @(),
+      [hashtable]$EnvVars
+    )
+    # Launch the installed tool's own interpreter directly instead of going
+    # through `uvx`. Measured cold-start A/B, 2026-08-09, same server, same
+    # freshness:
+    #   uvx --with "mcp<2" mcp-server-fetch   5 processes  128.8 MB
+    #   <tool venv>\python.exe -m mcp_...     2 processes   75.1 MB
+    # uvx cannot exec-replace on Windows, so the whole launcher chain
+    # (uvx shim -> uvx resolver -> uv -> console-script shim -> python) stays
+    # resident for the life of the server. The resolver alone is ~43 MB.
+    # Installing the tool once makes that resolution a one-time cost.
+    #
+    # Install/refresh with (the pin is explained at the trio below):
+    #   uv tool install --with "mcp<2" mcp-server-{fetch,time,git}
+    $module = $Tool -replace '-', '_'
+    $toolPython = Join-Path $env:APPDATA "uv\tools\$Tool\Scripts\python.exe"
+    if (Test-Path -LiteralPath $toolPython) {
+      $server = @{
+        type = "stdio"
+        command = (Resolve-Path -LiteralPath $toolPython).Path
+        args = @("-m", $module) + $ExtraArgs
+      }
+    } else {
+      # Not installed yet — fall back to the ephemeral uvx form so a fresh
+      # clone still works, just heavier. No-delete, same as chthonic-v3.
+      $server = @{
+        type = "stdio"
+        command = $uvx
+        args = @("--with", "mcp<2", $Tool) + $ExtraArgs
+      }
+    }
+    if ($EnvVars) { $server["env"] = $EnvVars }
+    return $server
+  }
+
   function Resolve-GitHubOfficialServer {
     param([Parameter(Mandatory=$true)][string]$Token)
 
@@ -335,32 +374,21 @@ try {
         command = $bunx
         args = @("--bun","-y","@modelcontextprotocol/server-memory")
       }
-      # --- uvx trio: SDK pinned below the McpError -> MCPError rename ---------
+      # --- uv trio: SDK pinned below the McpError -> MCPError rename ----------
       # The `mcp` Python SDK renamed McpError to MCPError and dropped
       # Server.list_tools. mcp-server-{time,fetch,git} still import the old
-      # names upstream, so uvx resolving a current SDK makes all three die at
+      # names upstream, so resolving a current SDK makes all three die at
       # import with `ImportError: cannot import name 'McpError'` (git fails
       # slightly later with `'Server' object has no attribute 'list_tools'`).
       # `--refresh` does not help — upstream has not adapted. Verified
-      # 2026-08-09: `uvx --with "mcp<2" mcp-server-time` starts and speaks
-      # JSON-RPC, exit 0. Revisit when those packages adopt the new SDK; the
-      # pin is a dated workaround, not a preference.
-      fetch = @{
-        type = "stdio"
-        command = $uvx
-        args = @("--with","mcp<2","mcp-server-fetch")
-        env = @{ PYTHONIOENCODING = "utf-8" }
-      }
-      time = @{
-        type = "stdio"
-        command = $uvx
-        args = @("--with","mcp<2","mcp-server-time")
-      }
-      git = @{
-        type = "stdio"
-        command = $uvx
-        args = @("--with","mcp<2","mcp-server-git","--repository",$repoRoot)
-      }
+      # 2026-08-09 at mcp==1.29.0: all three start and speak JSON-RPC.
+      # Revisit when those packages adopt the new SDK; the pin is a dated
+      # workaround, not a preference. It is carried by the tool install
+      # (`uv tool install --with "mcp<2" <tool>`), not by the launch line —
+      # see New-UvToolServer for why the launcher chain was collapsed.
+      fetch = New-UvToolServer -Tool "mcp-server-fetch" -EnvVars @{ PYTHONIOENCODING = "utf-8" }
+      time  = New-UvToolServer -Tool "mcp-server-time"
+      git   = New-UvToolServer -Tool "mcp-server-git" -ExtraArgs @("--repository", $repoRoot)
     }
 
     if ($ncbiKey) {
