@@ -1,6 +1,6 @@
 ---
 name: nightly
-description: "Autonomous continuation while the user is away (asleep, out) — picks one bounded task from the frontier atlas's warmest cluster, follows rewindability/cessation discipline, verifies before committing, writes a structured landing doc to claude/mailbox/ AND a deterministic ledger entry to CLAUDEBASE/nightlies/ for cross-run performance analysis. Formalizes a pattern already proven across multiple real runs (full history in CLAUDEBASE/nightlies/LEDGER.md), not invented fresh."
+description: "Autonomous continuation while the user is away (asleep, out) — continues the live session's own thread first, falling back to the frontier atlas only when there is no thread; follows rewindability/cessation discipline, verifies before committing, and records to CLAUDEBASE/nightlies/ in proportion to what actually happened. Produces work or produces nothing: documentation is never the deliverable. Formalizes a pattern already proven across multiple real runs (full history in CLAUDEBASE/nightlies/LEDGER.md), not invented fresh."
 allowed-tools: "Read, Grep, Glob, Bash, Edit, Write"
 argument-hint: "[<topic>] [--mode creative|daytime]"
 user-invocable: true
@@ -23,6 +23,17 @@ Unsupervised is not the same as lesser. Every judgment call this skill makes get
 ## Never blocks on a synchronous human response (non-negotiable)
 
 A plan awaiting approval, or a question awaiting an answer, is a hard stop when nobody's there to respond. This skill never calls `EnterPlanMode` and never calls `AskUserQuestion` during a run. If a task feels like it needs upfront sign-off, that's the signal it's an atlas-§2/§3-sized item (externally blocked, or genuinely foundational — §1's own gloss of those categories) that doesn't belong in a nightly. Stop short and name it in the landing doc's "recommended next moves" table (§4) instead.
+
+## Produces work, or produces nothing (non-negotiable)
+
+There is no version of this skill whose deliverable is documentation. If the run has nothing real to do, the correct output is **one short line saying so and no files at all** — no landing doc, no record, no ledger row, no `SKILL.md` edit. An invocation that ends with three documents describing a small change has spent more on the account of the work than on the work.
+
+Two consequences, both binding:
+
+- **Recording scales to what happened.** The ledger row plus `records/<date>_<lane>.md` are the cheap, structured, compounding surface and stay mandatory for any run that shipped something. The prose landing doc in `claude/mailbox/` is for a run whose *reasoning* a human would otherwise have to reconstruct — a real fork, a surprising diagnosis, something reversed. A one-file fix does not earn one; put the two sentences in the record and stop. §4 is a template for when a landing doc is warranted, not an instruction to always write one.
+- **Never generate meta-documentation to fill the window.** No summaries of summaries, no re-describing the atlas, no restating what a commit message already says. If the honest account of a night is two sentences, write two sentences.
+
+The `outcome: stopped-short` field exists for exactly this and is a success, not a failure. Prefer it over inventing scope. A night where nothing needed doing and nothing was written is a *better* outcome than a night that manufactured a task to justify the invocation.
 
 ## 1. Scope selection
 
@@ -77,9 +88,11 @@ Two shapes, pick whichever fits the surface actually touched:
 
 Do not commit on a failing or unverified gate, on either path. Revert cleanly rather than leaving a half-working change in the tree.
 
-## 4. The landing doc
+## 4. The landing doc — only when it earns itself
 
-Write to `claude/mailbox/SESSION_<YYYY_MM_DD>_<TOPIC>_AUTONOMOUS_NIGHT.md`, frontmatter:
+Skip this whole section unless the run produced reasoning a human would otherwise have to reconstruct: a genuine fork, a diagnosis that contradicted what the code was believed to do, an attempt reversed, a decision deliberately not made. Mechanical work — one check, one fix, one migration that went as planned — is fully served by §5's record. When in doubt, don't write one; the record links to nothing and that is a valid state.
+
+When it is warranted, write to `claude/mailbox/SESSION_<YYYY_MM_DD>_<TOPIC>_AUTONOMOUS_NIGHT.md`, frontmatter:
 
 ```yaml
 ---
@@ -96,7 +109,9 @@ Body, in this order: what was found (including anything memory/planning claimed 
 
 ## 5. The nightlies ledger
 
-Every invocation writes to `CLAUDEBASE/nightlies/`, alongside (not instead of) the mailbox landing doc. Full schema in `CLAUDEBASE/nightlies/README.md`: a new `records/<date>_<lane-slug>.md` plus one appended row in `LEDGER.md` (never edit past rows). The ledger is the deterministic, compounding surface the landing doc can't be — structured fields across every run vs. one prose account per reader.
+Every invocation **that shipped something** writes to `CLAUDEBASE/nightlies/`: a new `records/<date>_<lane-slug>.md` plus one appended row in `LEDGER.md` (never edit past rows). Full schema in `CLAUDEBASE/nightlies/README.md`. This is the deterministic, compounding surface a prose doc can't be — structured fields across every run rather than one account per reader — and it is cheap enough to be worth writing even for small work. `landing_doc` may be empty; per §4 most runs won't warrant one.
+
+A run that correctly found nothing to do writes nothing here either — no row, no record. An empty night leaves no trace by design; a ledger padded with "nothing happened" rows is the same churn in structured clothing.
 
 ## 6. Commit
 

@@ -46,7 +46,7 @@ verification: pass | fail | not-applicable
 commits:
   - hash: <hash>
     kind: feature | meta | mixed   # feature = delivers the requested task; meta = this skill's own design/scaffolding/self-correction; mixed = both landed in one commit (§7 says fix a found gap in the same invocation, which can bundle the two)
-landing_doc: claude/mailbox/SESSION_..._AUTONOMOUS_NIGHT.md
+landing_doc: claude/mailbox/SESSION_..._AUTONOMOUS_NIGHT.md   # may be empty — see SKILL.md §4; most runs don't warrant one
 self_improvement:
   found: true | false
   summary: <one line, omit if false>
