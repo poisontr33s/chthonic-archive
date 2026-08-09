@@ -30,7 +30,15 @@ A plan awaiting approval, or a question awaiting an answer, is a hard stop when 
 
 No passive clock exists between those two checks, and none is needed: this skill was never meant to pace against a countdown or fill the absence window. It does one bounded task and stops, whatever real time that honestly takes. Padding work to consume more of the window violates §2's "one well-verified thing beats several padded ones," not satisfies it.
 
-Optional argument names a topic or cluster directly (`/nightly aca-engine`). With no argument: read `CLAUDEBASE/charts/frontier-atlas.md`'s Level map and its §1 ("ready to alchemize now") first, and pick the item that is both gate-met and in a cluster with a recent nearby landing doc. Do not pick from atlas §2/§3 without the user naming it directly.
+Optional argument names a topic or cluster directly (`/nightly aca-engine`).
+
+**With no argument, the live session's own thread comes first — ahead of the atlas.** This skill exists to *start you off* on work already in motion, not to open a parallel lane. When the session that invoked it has been working a thread — a subsystem just measured, a contract just found broken, a seam just mapped — continuing that thread IS the pick, and the atlas is not consulted for scope at all. The user's framing, and the reason this clause outranks everything below it: it can't jump off the horse we're taming. A defensible finding in a different subsystem is still the wrong answer if the session was somewhere else; "relevant" means relevant to what is already open, not merely true.
+
+Session continuity beats the atlas even when the atlas item looks tidier — a fresh lane is *always* tidier, because nothing is half-done in it yet, and that tidiness is precisely the pull toward abandoning interconnected work for something novel. That abandonment habit is the failure this repo accumulates fastest; do not add to it.
+
+Only when the session carries no live thread (a cold invocation, or the thread genuinely closed) fall through to: read `CLAUDEBASE/charts/frontier-atlas.md`'s Level map and its §1 ("ready to alchemize now"), and pick the item that is both gate-met and in a cluster with a recent nearby landing doc. Do not pick from atlas §2/§3 without the user naming it directly.
+
+Record which path was taken in the record's `atlas_source` — `session-thread: <what>` or the atlas entry — so the ledger shows whether continuity is actually holding across runs.
 
 **§1 is not a pure candidate queue** — it can mix genuinely-open items with entries kept purely for record-keeping. Check each entry's own stated status, not just its presence in §1 (worked example: `CLAUDEBASE/nightlies/records/2026-07-08_zombie-b3.md`).
 
