@@ -56,6 +56,8 @@ Re-entry is where an unattended run degrades, because the cheapest way to look p
 - **A tick with nothing ready writes nothing.** No file, no ledger row. §5's records are for runs that shipped; a loop that logs its own heartbeat has become the churn it was meant to avoid.
 - **Widen only downward.** Each tick may go deeper on the same thread. Jumping clusters is the abandonment habit §1 exists to prevent, and it is exactly what an unsupervised loop does if nothing forbids it.
 
+## 1. Scope selection
+
 **First action, before anything else:** capture a start timestamp for tonight's `CLAUDEBASE/nightlies/` record (§5) — `mcp__time__get_current_time` (pass the working timezone, e.g. `Europe/Berlin`), or `date -u +"%Y-%m-%dT%H:%M:%SZ"` if that tool isn't loaded; both verified working (commit `e0729a10`). Do the same at the end, right before writing the ledger record, and compute the elapsed span — a run that skips this still ships, it just costs an honest `duration` instead of another "not recorded."
 
 No passive clock exists between those two checks, and none is needed: this skill was never meant to pace against a countdown or fill the absence window. It does one bounded task and stops, whatever real time that honestly takes. Padding work to consume more of the window violates §2's "one well-verified thing beats several padded ones," not satisfies it.
