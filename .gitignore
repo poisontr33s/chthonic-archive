@@ -100,6 +100,19 @@ manifest/sessions/
 # The daemon rotates this lake at 64 MB into `.ndjson.1`, so the ignore has to
 # cover the rotation suffix too — a bare literal only ever matched the live file.
 manifest/sonic_window_history.ndjson*
+# Sonic runtime state, not source. The daemon rewrites these every few seconds,
+# so tracked they can never be clean and every commit either sweeps them in or
+# leaves the tree permanently dirty. Same rule the repo already applies to
+# .mcp.json: the generator is tracked, its output is not.
+#   sonic_window.json     live ~5s window        <- extensions/.../sonic-daemon
+#   sonic_daemon.readers  reader heartbeat (ms)  <- scripts/mcp-sonic.ts
+#   sonic_baseline.json   rolling calibration    <- sonic-daemon, self-rebuilding
+#   sonic_session.jsonl   append-only lake       <- scripts/mcp-sonic.ts (8 MB cap)
+# History already committed stays in git; only new churn stops.
+manifest/sonic_window.json
+manifest/sonic_daemon.readers
+manifest/sonic_baseline.json
+manifest/sonic_session.jsonl
 manifest/sonic_session.jsonl.*
 manifest/*.lock
 manifest/chthonic_coverage_*_audit.json

@@ -63,7 +63,7 @@ function Validate-HandoffSchema {
   return $errors
 }
 
-
+function Get-HandoffScoreMap {
   param([string]$AuditPath)
   if (-not (Test-Path $AuditPath)) {
     throw "Audit JSON not found: $AuditPath"

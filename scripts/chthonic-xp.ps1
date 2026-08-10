@@ -154,6 +154,15 @@ function Measure-XP {
     )
     foreach ($e in $events) {
         if ($e.kind -and $metaKinds.Contains([string]$e.kind)) { continue }
+        # An explicit xp_delta is a JUDGEMENT and outranks the type table, which
+        # can only ever add. Emitting an event proves work happened, not that the
+        # work was correct — a gate that scores its own findings has to be able
+        # to bill for them. Audited before enabling: of 11,274 historical events
+        # carrying xp_delta, all but this gate's are session_end, skipped above.
+        if ($null -ne $e.PSObject.Properties['xp_delta']) {
+            $total += [int]$e.xp_delta
+            continue
+        }
         $base = if ($XP_BASE.ContainsKey($e.type)) { $XP_BASE[$e.type] } else { 1 }
         $kind = if ($e.kind -and $XP_KIND_BONUS.ContainsKey($e.kind)) { $XP_KIND_BONUS[$e.kind] } else { 0 }
         $prio = if ($e.p -and $PRIORITY_MULT.ContainsKey([int]$e.p)) { $PRIORITY_MULT[[int]$e.p] } else { 1.0 }

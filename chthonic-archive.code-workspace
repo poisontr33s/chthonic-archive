@@ -79,7 +79,13 @@
       "git-dump-live/**": true,
       "pnk-lfh-live/**": true,
       "poisontr33s-live/**": true,
-      "eoai-live/**": true
+      "eoai-live/**": true,
+      // FLUX binary artifacts: ~44 GiB across 1,261 files that never change.
+      // Both dirs are gitignored, so search already skips them via
+      // search.useIgnoreFiles — but the watcher does NOT consult .gitignore,
+      // so ReadDirectoryChangesW traverses them without this.
+      "apps/flux-engine-forge/scratch/**": true,
+      "apps/flux-satellite/engines/**": true
     },
     // Belt-and-suspenders: stop git discovery walk from entering junction dirs
     "git.repositoryScanIgnoredFolders": ["pnk-live", "rmco-live", "csb-live", "git-dump-live", "pnk-lfh-live", "poisontr33s-live", "eoai-live"],
