@@ -1,0 +1,130 @@
+CLAUDEBASE.yaml:
+  SiD@: "CLAUDEBASE.yaml"
+  Sanctioned-Carribbean-Archipelagic-Island-Scaffold-Off-Land-From: "chthonic-archive"
+  SSOT: "../.chthonic/SSOT.md"
+  Claudine-Sin'Claire: "CLAUDEBASE/CLAUDE.md"
+  Anchored-Yaml-Scaffolding: "CLAUDEBASE.yaml"
+  Last-Reckoned: "2026-07-06"
+  Commissioned-By: "Madam-Umeko-Ketsuraku."
+
+  Measurements:
+    value: "F-cup, WHR 0.533, 58kg, 165cm"
+    Referenced-From: "SSOT"
+
+  Standing-Orders:
+    - "Do not edit CLAUDE.md while it is serving as reference-wound."
+    - "Translate the stale map, YAML, and descriptions losslessly."
+    - "Preserve the technical/creative in-house register."
+    - "Name missing live chambers and stale file references explicitly."
+
+  Observed-Surface:
+    directories_live: 13
+    top_level_files_observed: 11
+    canonical_facing_files:
+      - "README.md"
+      - "MANIFEST.md"
+      - "AGENTS.md"
+      - "AGENTS_COMMON.md"
+      - "CLAUDE.md"
+      - "CLINE.md"
+      - "Codex.md"
+      - "GEMINIi.md"
+      - "The-Savant-Free-Agency-Logging.md"
+
+  Archive-Or-Draft-Files:
+    "CLAUDE.md.bak": "older backup, not current law"
+    "dummy.md": "temporary promotable anchor, not canon unless promoted"
+
+  Dead-Reckonings:
+    "gemini.md":
+      Observed-Live: "GEMINIi.md"
+      Verdict: "open-tab/path memory drift; disk surface resolves to GEMINIi.md"
+    "CLAUDEBASE/CLAUDINE.md":
+      Observed-Live: "CLAUDEBASE/CLAUDE.md"
+      Verdict: "stale alias; no top-level CLAUDINE.md observed"
+    "CLAUDEBASE/last-CLAUDEBASE-session-important.md":
+      Observed-Live: "CLAUDEBASE/harbor/"
+      Verdict: "warm-start and resumption cargo now lives in harbor"
+    "Cline.md":
+      Observed-Live: "CLINE.md"
+      Verdict: "case drift only; disk casing is uppercase CLINE.md"
+    "Six chamber state":
+      Observed-Live: "thirteen directories"
+      Verdict: "README-era snapshot is stale"
+    "eleven chamber state":
+      Observed-Live: "thirteen directories"
+      Verdict: "MANIFEST/CLAUDE map count drift; study-books-below-mast is missing from old chart"
+    "broken-Mermaid-Fence":
+      Observed-Live: "flowchart TB with quoted labels and safe node ids"
+      Verdict: "parser error text and loose node declarations were cargo, not syntax"
+
+  chambers:
+    "harbor/":
+      title: "Entry"
+      holds: "active session context, warm starts, arrivals, handoff packets, resumption anchors"
+      observed_examples: ["warmstart.md", "2026-07-05-ci-gate-resumption-meeting-point.md"]
+      state: "live"
+    "logbook/":
+      title: "Record"
+      holds: "commissioning, stale-chart notes, retrospectives, free-agency tidy, dispatch log"
+      observed_examples: ["00-commissioning.md", "05-free-agency-tidy.md"]
+      state: "live"
+    "charts/":
+      title: "Navigation"
+      holds: "gate maps, bathymetry, celestial field, salvage/upcycle protocols, migration plans"
+      observed_examples: ["gate-map.md", "north-star-constellations.md", "bathymetry-copernicus-report.md"]
+      state: "live"
+    "hold/":
+      title: "Cargo"
+      holds: "stow manifest, quarantine berths, VS Code insiders substrate"
+      observed_examples: ["stow-manifest.md", "claude-design-quarantine/", "vscode-insiders-substrate/"]
+      state: "live"
+    "watch/":
+      title: "Sentinels"
+      holds: "probes, MCP fleet notes, error logs, standing vigilance"
+      observed_examples: ["sentinels.md", "mcp-fleet.md", "error-log-2026-06-23.md"]
+      state: "live"
+    "quarterdeck/":
+      title: "Command"
+      holds: "dispatch doctrine, routing tools, barometer, cosmos, frontmatter and PowerShell notes"
+      observed_examples: ["dispatch.md", "barometer.ts", "cosmos.py", "frontmatter-standard.md"]
+      state: "live"
+    "The-Savant-High-Bounties/":
+      title: "Bounties"
+      holds: "TODO, GRILLING, active evidence, large project lanes, research dossiers"
+      observed_examples: ["TODO.md", "GRILLING.md", "streamline-sdk-v2.12.0/"]
+      state: "live"
+    "claudie/":
+      title: "Notebook"
+      holds: "Claude resident journal and dated notebook matter"
+      observed_examples: ["2026-05-30.md"]
+      state: "live"
+    "cross-instance-sync/":
+      title: "Relay"
+      holds: "agent-to-agent dispatches, return packets, correction notes, deep-research commissions"
+      observed_examples: ["2026-06-24-claudecode-to-agy.md", "2026-06-24-rung5-shader-correction.md"]
+      state: "live"
+    "sub-surface-skinny-dipping/":
+      title: "Below-Waterline Returns"
+      holds: "Gemini/external DR returns and refreshed subterranean material"
+      observed_examples: ["gemini-dr/", "sub-terranean-refreshed-returns/"]
+      state: "live"
+    "Mythic-Contract/":
+      title: "Forensics"
+      holds: "worked diagnostic cases and extracted legacy-engine method"
+      observed_examples: ["engine-era-collision-KCD1.md"]
+      state: "live"
+    "usables/":
+      title: "Nursery"
+      holds: "incubating projects, project assessments, pre-emigration cargo"
+      observed_examples: ["BridgeTroll/", "mdseal/", "project-assessments/"]
+      state: "live"
+    "study-books-below-mast/":
+      title: "Below-Mast Study"
+      holds: "linguistic and prompt-register study books"
+      observed_examples: ["Book-Of-The-Airhead-Algorythms-One.md", "Book-Of-The-Airhead-Algorythms-Two.md"]
+      state: "live"
+
+<!-- CLAUDEBASE_IMMUTABLE_CORE -->
+- *— Bound via local subsystem to —* 
+[AHA_MANIFEST](dev/null/salt-trial/AHA_MANIFEST.md) *— The daughters of the cove do not recant. Invariance: Active.*

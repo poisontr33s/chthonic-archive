@@ -1,6 +1,6 @@
 # Chthonic MCP Servers
 
-This repository contains specialised Model Context Protocol (MCP) servers tailored for the Chthonic Arc-IV architecture. These servers provide AI agents (AGY, Claude) with deterministic, zero-latency access to authoritative documentation, preventing framework hallucination in Vulkan and Bevy.
+This repository contains specialised Model Context Protocol (MCP) servers tailored for the Chthonic Arc-IV architecture. These servers provide agents (AGY, Claude, Sol, Terra, Luna) with deterministic, zero-latency access to authoritative documentation, preventing framework hallucination in Vulkan and Bevy. Whether that is true and documented, is not a reality of the code from the very same MCP servers it claims *"good-as-gold"*.
 
 ## Architecture & Transport
 
